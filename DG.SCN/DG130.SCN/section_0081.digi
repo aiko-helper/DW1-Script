@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG130.SCN, section 81
 
 section_81(81):     ; len=1878
@@ -10,48 +10,37 @@ section_81(81):     ; len=1878
   001e:  moveCameraTo 30 -2852 2621
   0024:  waitForEntity 200
   0026:  if !trigger(352) then section_81+0xb8
-  0032:  setDialogOwner 6
-  0034:  showTextbox "Who are you?\n"
+  0032:  speak 6 "Who are you?\n"
   0052:  setDialogOwner Player
   0054:  setSelection section_81+0x512 section_81+0x4f6
   005a:  showTextbox "I came here to help you\nI'm not ready yet...\n"
   00b8:  setTrigger 352
-  00bc:  setDialogOwner 6
-  00be:  showTextbox "Is somebody there?\n"
+  00bc:  speak 6 "Is somebody there?\n"
   00e8:  playAnimation Player 25
   00ec:  delay 15
-  00f0:  setDialogOwner Player
-  00f2:  showTextbox "You can't see?\n"
+  00f0:  speak Player "You can't see?\n"
   0114:  playAnimation Player 0
-  0118:  setDialogOwner 6
-  011a:  showTextbox "I'm Whamon. Usually\nI live in the sea.\n"
+  0118:  speak 6 "I'm Whamon. Usually\nI live in the sea.\n"
   016c:  showTextbox "I don't have eyes, but\nI can feel most things.\n"
   01ce:  storeDigimonType 103
-  01d0:  setDialogOwner Player
-  01d2:  showTextbox "I'm human. My name is\n<LIGHTBLUE><PLAYER><WHITE>.\n"
+  01d0:  speak Player "I'm human. My name is\n<LIGHTBLUE><PLAYER><WHITE>.\n"
   020c:  showTextbox "This is <ORANGE><DIGIMON><WHITE>,\nmy partner and he is <DIGIMONTYPE2>.\n"
-  025a:  setDialogOwner 6
-  025c:  showTextbox "I feel some strong power.\n"
-  0294:  setDialogOwner 6
-  0296:  showTextbox "Will you listen to my story?\nThere's a beach cave near\nhere where I rest.\n"
+  025a:  speak 6 "I feel some strong power.\n"
+  0294:  speak 6 "Will you listen to my story?\nThere's a beach cave near\nhere where I rest.\n"
   032e:  showTextbox "But, some mean guys kicked me\nout and I lost my important\ntreasure there.\n"
   03c6:  playAnimation Player 16
   03ca:  delay 15
-  03ce:  setDialogOwner Player
-  03d0:  showTextbox "Mean guys, huh?\nDoesn't sound good.\n"
+  03ce:  speak Player "Mean guys, huh?\nDoesn't sound good.\n"
   041c:  playAnimation Player 0
-  0420:  setDialogOwner 6
-  0422:  showTextbox "Please kick them out.\nI want you to help me\nget the cave back.\n"
+  0420:  speak 6 "Please kick them out.\nI want you to help me\nget the cave back.\n"
   04a4:  setDialogOwner Player
   04a6:  setSelection section_81+0x512 section_81+0x4f6
   04ac:  showTextbox "I'll help you\nCan't help right now\n"
-  04f6:  setDialogOwner 6
-  04f8:  showTextbox "I see.\n"
+  04f6:  speak 6 "I see.\n"
   050a:  moveCameraToEntity Player 10
   050e:  waitForEntity 200
   0510:  endSection
-  0512:  setDialogOwner 6
-  0514:  showTextbox "Then get on my back.\n"
+  0512:  speak 6 "Then get on my back.\n"
   0542:  moveCameraTo 30 -3150 3000
   0548:  playAnimation 6 28
   054c:  playSound 8 3
@@ -106,8 +95,7 @@ section_81(81):     ; len=1878
   0618:  setRotation Player 1283
   061c:  setRotation Partner 1283
   0620:  delay 5
-  0624:  setDialogOwner Player
-  0626:  showTextbox "Let's go.\n"
+  0624:  speak Player "Let's go.\n"
   063e:  playSound 8 3
   0642:  moveEntityTo Player -4053 3680 99
   064a:  moveEntityTo Partner -4053 3680 99
@@ -130,8 +118,8 @@ section_81(81):     ; len=1878
   06c6:  setObjectVisibility 40 0
   06ca:  setObjectVisibility 41 0
   06ce:  setObjectVisibility 42 0
-  06d2:  setPStat 247 35
-  06d6:  setPStat 248 8
+  06d2:  pstat[247] = 35
+  06d6:  pstat[248] = 8
   06da:  callSubroutine 21
   06dc:  delay 10
   06e0:  moveObjectTo 0 35 1 120 0 0 730

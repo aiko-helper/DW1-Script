@@ -1,11 +1,10 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG181.SCN, section 51
 
 section_51(51):     ; len=2018
   0000:  if !trigger(345) then section_51+0xe
   000c:  endSection
-  000e:  setDialogOwner Player
-  0010:  showTextbox "!\n"
+  000e:  speak Player "!\n"
   0018:  entityWalkToWithCamera Player -835 -37 1
   0020:  entityWalkTo Partner -353 32 1
   0028:  waitForEntity Player
@@ -16,38 +15,31 @@ section_51(51):     ; len=2018
   0036:  waitForEntity Partner
   0038:  playAnimation 5 29
   003c:  waitForEntity 5
-  003e:  setDialogOwner 5
-  0040:  showTextbox "Are you <LIGHTBLUE><PLAYER><WHITE>?\n"
-  005e:  setDialogOwner Player
-  0060:  showTextbox "A skelton Digimon?!\n"
-  008c:  setDialogOwner 5
-  008e:  showTextbox "Are you <ORANGE><DIGIMON><WHITE>?\n"
-  00ac:  setDialogOwner Player
-  00ae:  showTextbox "I don't feel life from him,\nbut some evil.\n"
+  003e:  speak 5 "Are you <LIGHTBLUE><PLAYER><WHITE>?\n"
+  005e:  speak Player "A skelton Digimon?!\n"
+  008c:  speak 5 "Are you <ORANGE><DIGIMON><WHITE>?\n"
+  00ac:  speak Player "I don't feel life from him,\nbut some evil.\n"
   0108:  showTextbox "I wonder if he did\nsomething to Myotismon?!\n"
   0164:  playSound 8 13
-  0168:  setDialogOwner 5
-  016a:  showTextbox "If you don't tell me...\nI'll attack you!\n"
+  0168:  speak 5 "If you don't tell me...\nI'll attack you!\n"
   01c0:  setTrigger 1
-  01c4:  setPStat 250 1
-  01c8:  setPStat 251 5
-  01cc:  setPStat 252 255
-  01d0:  setPStat 253 255
+  01c4:  pstat[250] = 1
+  01c8:  pstat[251] = 5
+  01cc:  pstat[252] = 255
+  01d0:  pstat[253] = 255
   01d4:  fadeOutHUD
   01d6:  delay 1
   01da:  startBattle
   01dc:  unsetTrigger 1
-  01e0:  setPStat 250 0
+  01e0:  pstat[250] = 0
   01e4:  setTrigger 345
-  01e8:  setDialogOwner 5
-  01ea:  showTextbox "I'll attack you!\n"
+  01e8:  speak 5 "I'll attack you!\n"
   0210:  playSound 8 9
   0214:  playAnimation 5 28
   0218:  delay 60
   021c:  unloadEntity 5
   021e:  setRotation Player 3072
-  0222:  setDialogOwner Player
-  0224:  showTextbox "I gotta save Myotismon\nas soon as possible!\n"
+  0222:  speak Player "I gotta save Myotismon\nas soon as possible!\n"
   0280:  moveCameraToEntity Player 10
   0284:  waitForEntity 200
   0286:  endSection

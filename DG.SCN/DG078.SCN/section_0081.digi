@@ -1,11 +1,9 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG078.SCN, section 81
 
 section_81(81):     ; len=1368
-  0000:  setDialogOwner System
-  0002:  showTextbox "Vending Machine\n"
-  0026:  setDialogOwner Player
-  0028:  showTextbox "I wonder what'll come out?\nTwo hund bits each?\nShould I buy it?\n"
+  0000:  speak System "Vending Machine\n"
+  0026:  speak Player "I wonder what'll come out?\nTwo hund bits each?\nShould I buy it?\n"
   00ac:  setSelection section_81+0xd4 section_81+0x12a
   00b2:  showTextbox "Try\nCancel\n"
   00cc:  waitForSelectionChoice
@@ -14,20 +12,17 @@ section_81(81):     ; len=1368
   00d4:  if money < 200 then section_81+0xec
   00e4:  jump section_81+0x12c
   00e8:  jump section_81+0x128
-  00ec:  setDialogOwner Player
-  00ee:  showTextbox "I don't got enough money.\n"
+  00ec:  speak Player "I don't got enough money.\n"
   0126:  endSection
   0128:  endSection
   012a:  endSection
   012c:  storeRandom 102 99
   0130:  if pstat[102] >= 29 then section_81+0x1e8
   013c:  reduceMoney 200
-  0142:  setDialogOwner System
-  0144:  showTextbox "<LIGHTBLUE>Meat <WHITE>came out!\n"
+  0142:  speak System "<LIGHTBLUE>Meat <WHITE>came out!\n"
   016a:  giveItem Meat 1
   016e:  if !trigger(0) then section_81+0x1e4
-  017a:  setDialogOwner Player
-  017c:  showTextbox "I got too many Items.\nMust get rid of some.\n"
+  017a:  speak Player "I got too many Items.\nMust get rid of some.\n"
   01d8:  setTrigger 3
   01dc:  callSubroutine 0
   01de:  callSubroutine 13
@@ -38,12 +33,10 @@ section_81(81):     ; len=1368
   01ee:  if pstat[102] >= 59 then section_81+0x2ce
   01fa:  setDialogOwner System
   01fc:  reduceMoney 200
-  0202:  setDialogOwner System
-  0204:  showTextbox "A <LIGHTBLUE>Small Recovery\nFloppy <WHITE>came out!\n"
+  0202:  speak System "A <LIGHTBLUE>Small Recovery\nFloppy <WHITE>came out!\n"
   0250:  giveItem SmallRecovery 1
   0254:  if !trigger(0) then section_81+0x2ca
-  0260:  setDialogOwner Player
-  0262:  showTextbox "I got too many Items.\nMust get rid of some.\n"
+  0260:  speak Player "I got too many Items.\nMust get rid of some.\n"
   02be:  setTrigger 3
   02c2:  callSubroutine 0
   02c4:  callSubroutine 13
@@ -54,12 +47,10 @@ section_81(81):     ; len=1368
   02d4:  if pstat[102] >= 79 then section_81+0x392
   02e0:  setDialogOwner System
   02e2:  reduceMoney 200
-  02e8:  setDialogOwner System
-  02ea:  showTextbox "<LIGHTBLUE>Steak <WHITE>\ncame out!\n"
+  02e8:  speak System "<LIGHTBLUE>Steak <WHITE>\ncame out!\n"
   0314:  giveItem MoldyMeat 1
   0318:  if !trigger(0) then section_81+0x38e
-  0324:  setDialogOwner Player
-  0326:  showTextbox "I got too many Items.\nMust get rid of some.\n"
+  0324:  speak Player "I got too many Items.\nMust get rid of some.\n"
   0382:  setTrigger 3
   0386:  callSubroutine 0
   0388:  callSubroutine 13
@@ -70,11 +61,9 @@ section_81(81):     ; len=1368
   0398:  if pstat[102] > 99 then section_81+0x45e
   03a4:  setDialogOwner System
   03a6:  reduceMoney 200
-  03ac:  setDialogOwner System
-  03ae:  showTextbox "An <LIGHTBLUE>MP floppy <WHITE>\ncame out!\n"
+  03ac:  speak System "An <LIGHTBLUE>MP floppy <WHITE>\ncame out!\n"
   03e6:  if !trigger(0) then section_81+0x45e
-  03f2:  setDialogOwner Player
-  03f4:  showTextbox "I got too many Items.\nMust get rid of some.\n"
+  03f2:  speak Player "I got too many Items.\nMust get rid of some.\n"
   0450:  setTrigger 3
   0454:  callSubroutine 0
   0456:  callSubroutine 13

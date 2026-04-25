@@ -1,106 +1,81 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; MAP164.SCN, section 11
 
 section_11(11):     ; len=2742
   0000:  if trigger(74) then section_11+0x276
-  000c:  setDialogOwner 11
-  000e:  showTextbox "Would you like some Meat?\n"
+  000c:  speak 11 "Would you like some Meat?\n"
   0046:  showTextbox "Oh, I'm sorry.\nI forgot to explain.\n"
   0092:  showTextbox "This is a Meat Farm.\nWe grow Meat for everyone.\n"
-  00f6:  setDialogOwner Player
-  00f8:  showTextbox "You grow Meat on a farm?\n"
-  012e:  setDialogOwner 11
-  0130:  showTextbox "Yes, what's wrong?\n"
-  015a:  setDialogOwner Player
-  015c:  showTextbox "Nothing...it's alright.\nPlease continue...\n"
-  01b6:  setDialogOwner 11
-  01b8:  showTextbox "Jiji and I decided to give\nyou three pieces of Meat\na day, <LIGHTBLUE><PLAYER><WHITE>.\n"
+  00f6:  speak Player "You grow Meat on a farm?\n"
+  012e:  speak 11 "Yes, what's wrong?\n"
+  015a:  speak Player "Nothing...it's alright.\nPlease continue...\n"
+  01b6:  speak 11 "Jiji and I decided to give\nyou three pieces of Meat\na day, <LIGHTBLUE><PLAYER><WHITE>.\n"
   023c:  showTextbox "So, here's today's Meat.\n"
   0272:  jump section_11+0x27a
   0276:  jump section_11+0x46c
   027a:  giveItem Meat 3
   027e:  if item[Meat] < 99 then section_11+0x30a
-  028c:  setDialogOwner 11
-  028e:  showTextbox "You got too much Meat.\nI guess you don't\nneed any today.\n"
-  0304:  setPStat 31 1
+  028c:  speak 11 "You got too much Meat.\nI guess you don't\nneed any today.\n"
+  0304:  pstat[31] = 1
   0308:  endSection
   030a:  if item[Meat] < 97 then section_11+0x3dc
-  0318:  setDialogOwner 11
-  031a:  showTextbox "You got too much Meat.\nI will take what\nyou can't carry.\n"
-  0390:  setDialogOwner System
-  0392:  showTextbox "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n"
+  0318:  speak 11 "You got too much Meat.\nI will take what\nyou can't carry.\n"
+  0390:  speak System "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n"
   03d2:  setTrigger 74
-  03d6:  setPStat 31 0
+  03d6:  pstat[31] = 0
   03da:  endSection
   03dc:  if !trigger(0) then section_11+0x420
-  03e8:  setDialogOwner 11
-  03ea:  showTextbox "You got too many Items.\n"
+  03e8:  speak 11 "You got too many Items.\n"
   041e:  endSection
-  0420:  setDialogOwner System
-  0422:  showTextbox "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n"
+  0420:  speak System "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n"
   0462:  setTrigger 74
-  0466:  setPStat 31 0
+  0466:  pstat[31] = 0
   046a:  endSection
   046c:  storeRandom 110 9
   0470:  if pstat[31] < 1 OR pstat[110] > 0 then section_11+0x50c
-  0480:  setDialogOwner 11
-  0482:  showTextbox "We harvested lots of Meat!\nSo I'll give you\nfive pieces of Meat.\n"
+  0480:  speak 11 "We harvested lots of Meat!\nSo I'll give you\nfive pieces of Meat.\n"
   0508:  jump section_11+0x510
   050c:  jump section_11+0x762
   0510:  if item[Meat] < 99 then section_11+0x598
-  051e:  setDialogOwner 11
-  0520:  showTextbox "You got too much Meat.\nI guess you don't\nneed any today.\n"
+  051e:  speak 11 "You got too much Meat.\nI guess you don't\nneed any today.\n"
   0596:  endSection
   0598:  if item[Meat] < 95 then section_11+0x676
-  05a6:  setDialogOwner 11
-  05a8:  showTextbox "You got too much Meat.\nI'm happy to take\nwhat you can't carry\n"
-  0628:  setDialogOwner System
-  062a:  showTextbox "I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n"
+  05a6:  speak 11 "You got too much Meat.\nI'm happy to take\nwhat you can't carry\n"
+  0628:  speak System "I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n"
   0668:  giveItem Meat 5
   066c:  setTrigger 74
-  0670:  setPStat 31 0
+  0670:  pstat[31] = 0
   0674:  endSection
   0676:  giveItem Meat 5
   067a:  if !trigger(0) then section_11+0x6dc
-  0686:  setDialogOwner 11
-  0688:  showTextbox "I'm sorry, but\nyou got too many Items.\n"
+  0686:  speak 11 "I'm sorry, but\nyou got too many Items.\n"
   06da:  endSection
-  06dc:  setDialogOwner System
-  06de:  showTextbox "I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n"
-  071c:  setDialogOwner 11
-  071e:  showTextbox "I'll give you more tomorrow.\n"
-  075c:  setPStat 31 0
+  06dc:  speak System "I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n"
+  071c:  speak 11 "I'll give you more tomorrow.\n"
+  075c:  pstat[31] = 0
   0760:  endSection
   0762:  if pstat[31] < 1 then section_11+0x7a2
-  076e:  setDialogOwner 11
-  0770:  showTextbox "Here's today's Meat.\n"
+  076e:  speak 11 "Here's today's Meat.\n"
   079e:  jump section_11+0x7a6
   07a2:  jump section_11+0x9e2
   07a6:  if item[Meat] < 99 then section_11+0x82e
-  07b4:  setDialogOwner 11
-  07b6:  showTextbox "You got too much Meat.\nI guess you don't\nneed any today.\n"
+  07b4:  speak 11 "You got too much Meat.\nI guess you don't\nneed any today.\n"
   082c:  endSection
   082e:  if item[Meat] < 97 then section_11+0x910
-  083c:  setDialogOwner 11
-  083e:  showTextbox "You got too much Meat.\nI'm happy to take\nwhat you can't carry.\n"
-  08c0:  setDialogOwner System
-  08c2:  showTextbox "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n"
+  083c:  speak 11 "You got too much Meat.\nI'm happy to take\nwhat you can't carry.\n"
+  08c0:  speak System "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n"
   0902:  giveItem Meat 3
   0906:  setTrigger 74
-  090a:  setPStat 31 0
+  090a:  pstat[31] = 0
   090e:  endSection
   0910:  giveItem Meat 3
   0914:  if !trigger(0) then section_11+0x95a
-  0920:  setDialogOwner 11
-  0922:  showTextbox "You have too many Items.\n"
+  0920:  speak 11 "You have too many Items.\n"
   0958:  endSection
-  095a:  setDialogOwner System
-  095c:  showTextbox "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n"
-  099c:  setDialogOwner 11
-  099e:  showTextbox "I'll give you more tomorrow.\n"
-  09dc:  setPStat 31 0
+  095a:  speak System "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n"
+  099c:  speak 11 "I'll give you more tomorrow.\n"
+  09dc:  pstat[31] = 0
   09e0:  endSection
-  09e2:  setDialogOwner 11
-  09e4:  showTextbox "What? I gave you Meat today,\nremember?\n"
+  09e2:  speak 11 "What? I gave you Meat today,\nremember?\n"
   0a36:  showTextbox "If you run out of food,\nlook for mushrooms\nin Native Forest.\n"
   0ab4:  endSection

@@ -1,14 +1,12 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG048.SCN, section 11
 
 section_11(11):     ; len=614
   0000:  delay 10
   0004:  playAnimation 11 28
   0008:  delay 10
-  000c:  setDialogOwner Player
-  000e:  showTextbox "Who are you?\n"
-  002c:  setDialogOwner 11
-  002e:  showTextbox "Who am I? Who are you?\n"
+  000c:  speak Player "Who are you?\n"
+  002c:  speak 11 "Who am I? Who are you?\n"
   0060:  setRotation 11 1276
   0064:  delay 5
   0068:  setRotation 11 2300
@@ -36,8 +34,7 @@ section_11(11):     ; len=614
   00ca:  delay 10
   00ce:  setObjectVisibility 43 1
   00d2:  playSound 0 7
-  00d6:  setDialogOwner System
-  00d8:  showTextbox "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry twenty Items!\n"
+  00d6:  speak System "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry twenty Items!\n"
   0152:  playSound 0 7
   0156:  setInventorySize 20
   0158:  setTrigger 47
@@ -49,13 +46,12 @@ section_11(11):     ; len=614
   017a:  delay 10
   017e:  setObjectVisibility 42 1
   0182:  playSound 0 7
-  0186:  setDialogOwner System
-  0188:  showTextbox "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry thirty Items!\n"
+  0186:  speak System "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry thirty Items!\n"
   0202:  setInventorySize 30
   0204:  setTrigger 48
   0208:  setTrigger 253
-  020c:  addPStat 1 1
-  0210:  addPStat 21 1
+  020c:  pstat[1] += 1
+  0210:  pstat[21] += 1
   0214:  setTrigger 334
   0218:  endSection
   021a:  garbage 24 00 fe 00 24 00 05 00 4c 00 06 00 68 00 33 00 84 00 34 00 64 01 35 00 62 05 36 00 88 05 0b 00 9a 05 ff ff 75 20 51 fa 00 00 b8 00 00 0c 9f 02 19 00 00 00 af 00 18 00 4a 00 19 00 71 00 2d 01 0a 00 81 01 ce ff 67 00 0a 00

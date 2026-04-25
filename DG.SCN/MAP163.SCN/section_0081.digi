@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; MAP163.SCN, section 81
 
 section_81(81):     ; len=1148
@@ -8,8 +8,7 @@ section_81(81):     ; len=1148
   000c:  setTextboxOrigin -628 0 2226
   0014:  if !trigger(249) OR trigger(52) OR trigger(204) then section_81+0x1fa
   0028:  setTrigger 52
-  002c:  setDialogOwner 203
-  002e:  showTextbox "Welcome to my shop!\nI'll give you a great price\n<LIGHTBLUE><PLAYER><WHITE>.\n"
+  002c:  speak 203 "Welcome to my shop!\nI'll give you a great price\n<LIGHTBLUE><PLAYER><WHITE>.\n"
   009c:  showTextbox "I'm not good at sales,\nbut neither is anyone else.\n"
   0106:  showTextbox "I'm in charge of sales now.\nI hope we can do business.\n"
   0178:  showTextbox "<LIGHTBLUE><PLAYER><WHITE>, please bring\nas many Digimon back\nwith you as you can.\n"
@@ -17,18 +16,15 @@ section_81(81):     ; len=1148
   01f6:  playSound 0 1
   01fa:  if !trigger(204) OR trigger(52) OR trigger(249) then section_81+0x31c
   020e:  setTrigger 52
-  0212:  setDialogOwner 202
-  0214:  showTextbox "What do you think\nof my shop?\n"
+  0212:  speak 202 "What do you think\nof my shop?\n"
   0254:  showTextbox "I'm not good at sales,\nbut no one else is,\nso I must do it.\n"
   02d0:  showTextbox "Bring back lots\nof Digimon soon.\n"
   0316:  playSound 0 1
   031a:  endSection
   031c:  if !trigger(204) OR !trigger(249) OR trigger(95) then section_81+0x3f8
   0330:  setTrigger 95
-  0334:  setDialogOwner 202
-  0336:  showTextbox "Well, what do you think?\n"
-  036c:  setDialogOwner System
-  036e:  showTextbox "<YELLOW>Coelamon <WHITE>\nWe decided to help each\nother and sell these items.\n"
+  0334:  speak 202 "Well, what do you think?\n"
+  036c:  speak System "<YELLOW>Coelamon <WHITE>\nWe decided to help each\nother and sell these items.\n"
   03f2:  playSound 0 1
   03f6:  endSection
   03f8:  if !trigger(204) OR !trigger(249) then section_81+0x444
@@ -39,7 +35,7 @@ section_81(81):     ; len=1148
   0418:  setTrigger 406
   041c:  setTrigger 422
   0420:  unsetTrigger 3
-  0424:  setPStat 254 255
+  0424:  pstat[254] = 255
   0428:  callSubroutine 8
   042a:  unsetTrigger 384
   042e:  unsetTrigger 385
@@ -53,9 +49,9 @@ section_81(81):     ; len=1148
   044c:  setTrigger 422
   0450:  unsetTrigger 3
   0454:  if !trigger(249) then section_81+0x468
-  0460:  setPStat 254 255
+  0460:  pstat[254] = 255
   0464:  jump section_81+0x46c
-  0468:  setPStat 254 7
+  0468:  pstat[254] = 7
   046c:  callSubroutine 8
   046e:  unsetTrigger 384
   0472:  unsetTrigger 388

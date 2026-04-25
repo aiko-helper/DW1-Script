@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG124.SCN, section 51
 
 section_51(51):     ; len=1608
@@ -26,8 +26,7 @@ section_51(51):     ; len=1608
   006c:  waitForEntity Partner
   006e:  delay 20
   0072:  playAnimation Player 16
-  0076:  setDialogOwner Player
-  0078:  showTextbox "Hmm\n"
+  0076:  speak Player "Hmm\n"
   0084:  delay 20
   0088:  lookAt Player Partner
   008c:  lookAt Partner Player
@@ -35,15 +34,13 @@ section_51(51):     ; len=1608
   0092:  waitForEntity Partner
   0094:  playAnimation Player 19
   0098:  delay 15
-  009c:  setDialogOwner Player
-  009e:  showTextbox "It looks like a bird's nest.\nWhat do you think?\n"
+  009c:  speak Player "It looks like a bird's nest.\nWhat do you think?\n"
   0102:  playAnimation Player 0
   0106:  playAnimation Player 24
   010a:  delay 5
   010e:  playSound 8 13
   0112:  delay 20
-  0116:  setDialogOwner Player
-  0118:  showTextbox "I hear noise.\n"
+  0116:  speak Player "I hear noise.\n"
   0138:  setDigimon NPCBirdramon 0 0
   013c:  delay 10
   0140:  moveCameraToEntity 5 10
@@ -57,51 +54,38 @@ section_51(51):     ; len=1608
   0160:  lookAt Partner 5
   0164:  delay 20
   0168:  setTrigger 1
-  016c:  setPStat 250 1
-  0170:  setPStat 251 5
-  0174:  setPStat 252 255
-  0178:  setPStat 253 255
+  016c:  pstat[250] = 1
+  0170:  pstat[251] = 5
+  0174:  pstat[252] = 255
+  0178:  pstat[253] = 255
   017c:  fadeOutHUD
   017e:  delay 1
   0182:  startBattle
   0184:  unsetTrigger 1
-  0188:  setPStat 250 0
+  0188:  pstat[250] = 0
   018c:  lookAt Player 5
   0190:  lookAt 5 Player
   0194:  lookAt Partner 5
   0198:  delay 20
   019c:  playAnimation 5 28
   01a0:  delay 40
-  01a4:  setDialogOwner 5
-  01a6:  showTextbox "You're good.\n"
-  01c4:  setDialogOwner Player
-  01c6:  showTextbox "So it was your nest.\n"
-  01f4:  setDialogOwner 5
-  01f6:  showTextbox "Yeah.\n"
+  01a4:  speak 5 "You're good.\n"
+  01c4:  speak Player "So it was your nest.\n"
+  01f4:  speak 5 "Yeah.\n"
   0206:  playAnimation Player 20
-  020a:  setDialogOwner Player
-  020c:  showTextbox "Sorry to enter without asking.\n"
+  020a:  speak Player "Sorry to enter without asking.\n"
   024e:  playAnimation Player 0
-  0252:  setDialogOwner 5
-  0254:  showTextbox "Oh, don't worry about it.\n"
-  028c:  setDialogOwner Player
-  028e:  showTextbox "?\n"
-  0296:  setDialogOwner 5
-  0298:  showTextbox "I've heard of you.\n"
-  02c2:  setDialogOwner Player
-  02c4:  showTextbox "I didn't know I was famous.\n"
-  0300:  setDialogOwner 5
-  0302:  showTextbox "You're probably the only\nhuman left on the island.\n"
+  0252:  speak 5 "Oh, don't worry about it.\n"
+  028c:  speak Player "?\n"
+  0296:  speak 5 "I've heard of you.\n"
+  02c2:  speak Player "I didn't know I was famous.\n"
+  0300:  speak 5 "You're probably the only\nhuman left on the island.\n"
   036c:  playAnimation Player 16
-  0370:  setDialogOwner Player
-  0372:  showTextbox "Left...? There've been\nothers before me?\n"
-  03c8:  setDialogOwner 5
-  03ca:  showTextbox "Aren't you going to\ninvite me to the city?\n"
+  0370:  speak Player "Left...? There've been\nothers before me?\n"
+  03c8:  speak 5 "Aren't you going to\ninvite me to the city?\n"
   0424:  playAnimation Player 19
-  0428:  setDialogOwner Player
-  042a:  showTextbox "Oh, yeah, won't you come\nto the city?\n"
-  047a:  setDialogOwner 5
-  047c:  showTextbox "Okay. Then let's get down\nto business. Hold on tight.\n"
+  0428:  speak Player "Oh, yeah, won't you come\nto the city?\n"
+  047a:  speak 5 "Okay. Then let's get down\nto business. Hold on tight.\n"
   04ec:  entityWalkTo 5 167 -665 0
   04f4:  waitForEntity 5
   04f6:  moveCameraToEntity 5 20
@@ -113,10 +97,9 @@ section_51(51):     ; len=1608
   0510:  lookAt 5 Player
   0514:  delay 5
   0518:  playSound 8 10
-  051c:  setDialogOwner System
-  051e:  showTextbox "Birdramon joins the city!\n"
+  051c:  speak System "Birdramon joins the city!\n"
   0556:  setTrigger 221
-  055a:  addPStat 1 2
+  055a:  pstat[1] += 2
   055e:  playAnimation 5 29
   0562:  delay 40
   0566:  if !trigger(220) AND !trigger(214) AND pstat[1] < 50 then section_51+0x582

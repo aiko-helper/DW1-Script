@@ -1,31 +1,24 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG189.SCN, section 5
 
 section_5(5):     ; len=1904
   0000:  setTrigger 44
   0004:  if !trigger(229) then section_5+0xb6
   0010:  playSound 8 9
-  0014:  setDialogOwner 5
-  0016:  showTextbox "Did you bring something\nto treat the wound?\n"
-  0072:  setDialogOwner Player
-  0074:  showTextbox "Wait a second. Let me see...\n"
+  0014:  speak 5 "Did you bring something\nto treat the wound?\n"
+  0072:  speak Player "Wait a second. Let me see...\n"
   00b2:  jump section_5+0x1d0
   00b6:  playSound 8 9
-  00ba:  setDialogOwner 5
-  00bc:  showTextbox "My wing hurts!\n"
-  00de:  setDialogOwner Player
-  00e0:  showTextbox "What happened?\n"
-  0102:  setDialogOwner 5
-  0104:  showTextbox "I hurt my wing. Do you got\nsomething to treat my wound?\n"
-  0178:  setDialogOwner Player
-  017a:  showTextbox "It looks bad. Hold on.\nWhat should I do?\n"
+  00ba:  speak 5 "My wing hurts!\n"
+  00de:  speak Player "What happened?\n"
+  0102:  speak 5 "I hurt my wing. Do you got\nsomething to treat my wound?\n"
+  0178:  speak Player "It looks bad. Hold on.\nWhat should I do?\n"
   01d0:  playAnimation Player 4
   01d4:  delay 10
   01d8:  setTrigger 3
   01dc:  callSubroutine 0
   01de:  if !trigger(3) then section_5+0x226
-  01ea:  setDialogOwner Player
-  01ec:  showTextbox "I got nothing right now.\n"
+  01ea:  speak Player "I got nothing right now.\n"
   0222:  jump section_5+0x570
   0226:  if pstat[254] != 0 AND pstat[254] != 1 AND pstat[254] != 2 AND pstat[254] != 3 then section_5+0x244
   023e:  callSubroutine 12
@@ -34,35 +27,27 @@ section_5(5):     ; len=1904
   025c:  callSubroutine 12
   025e:  jump section_5+0x2a0
   0262:  jump section_5+0x2a0
-  0266:  setDialogOwner Player
-  0268:  showTextbox "No good. This won't do!\n"
+  0266:  speak Player "No good. This won't do!\n"
   029c:  jump section_5+0x570
   02a0:  playAnimation Player 5
   02a4:  delay 20
   02a8:  playAnimation Player 0
   02ac:  delay 5
   02b0:  playSound 8 9
-  02b4:  setDialogOwner 5
-  02b6:  showTextbox "It's much better. Thanks.\n"
+  02b4:  speak 5 "It's much better. Thanks.\n"
   02ee:  playAnimation 5 29
   02f2:  waitForEntity 5
-  02f4:  setDialogOwner Player
-  02f6:  showTextbox "Can you fly already?\n"
-  0324:  setDialogOwner 5
-  0326:  showTextbox "I don't think I can fly far.\n"
-  0364:  setDialogOwner Player
-  0366:  showTextbox "There's a clinic in city.\nYou should go there.\nIt isn't far from here.\n"
-  03f8:  setDialogOwner 5
-  03fa:  showTextbox "I heard about the city.\nIt's bigger than I thought.\n"
-  0466:  setDialogOwner Player
-  0468:  showTextbox "Go to the city and rest.\n"
+  02f4:  speak Player "Can you fly already?\n"
+  0324:  speak 5 "I don't think I can fly far.\n"
+  0364:  speak Player "There's a clinic in city.\nYou should go there.\nIt isn't far from here.\n"
+  03f8:  speak 5 "I heard about the city.\nIt's bigger than I thought.\n"
+  0466:  speak Player "Go to the city and rest.\n"
   049e:  playSound 8 9
-  04a2:  setDialogOwner 5
-  04a4:  showTextbox "Thanks. Maybe\nI can help you someday.\n"
+  04a2:  speak 5 "Thanks. Maybe\nI can help you someday.\n"
   04f4:  jump section_5+0x4f8
   04f8:  entityWalkTo 5 -93 -1821 1
   0500:  if pstat[101] >= 3 then section_5+0x524
-  050c:  addPStat 101 1
+  050c:  pstat[101] += 1
   0510:  playSound 8 0
   0514:  delay 20
   0518:  lookAt Player 5
@@ -70,18 +55,15 @@ section_5(5):     ; len=1904
   0520:  jump section_5+0x4f8
   0524:  waitForEntity 5
   0526:  unloadEntity 5
-  0528:  setPStat 101 0
+  0528:  pstat[101] = 0
   052c:  playSound 8 8
-  0530:  setDialogOwner System
-  0532:  showTextbox "Unimon joins the city!\n"
+  0530:  speak System "Unimon joins the city!\n"
   0564:  setTrigger 233
-  0568:  addPStat 1 2
+  0568:  pstat[1] += 2
   056c:  jump section_5+0x620
-  0570:  setDialogOwner Player
-  0572:  showTextbox "I'll bring something to cure\nyour wound. Wait for me.\n"
+  0570:  speak Player "I'll bring something to cure\nyour wound. Wait for me.\n"
   05e2:  playSound 8 9
-  05e6:  setDialogOwner 5
-  05e8:  showTextbox "Thanks. Please hurry!\n"
+  05e6:  speak 5 "Thanks. Please hurry!\n"
   0618:  setTrigger 229
   061c:  jump section_5+0x620
   0620:  endSection

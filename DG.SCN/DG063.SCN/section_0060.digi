@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG063.SCN, section 60
 
 section_60(60):     ; len=2460
@@ -6,69 +6,60 @@ section_60(60):     ; len=2460
   0004:  moveCameraTo 20 -1455 1463
   000a:  playAnimation Player 15
   000e:  delay 20
-  0012:  setDialogOwner Player
-  0014:  showTextbox "Wow!\n"
-  0022:  setDialogOwner 7
-  0024:  showTextbox "...\n"
-  0030:  setDialogOwner Player
-  0032:  showTextbox "Are you serious?\n"
+  0012:  speak Player "Wow!\n"
+  0022:  speak 7 "...\n"
+  0030:  speak Player "Are you serious?\n"
   0058:  waitForEntity 7
   005a:  unloadEntity 7
   005c:  delay 20
-  0060:  setDialogOwner Player
-  0062:  showTextbox "It's gone. Is this a dream?\n"
+  0060:  speak Player "It's gone. Is this a dream?\n"
   009e:  playAnimation 6 28
   00a2:  delay 40
   00a6:  delay 40
   00aa:  setTrigger 1
-  00ae:  setPStat 250 1
-  00b2:  setPStat 251 6
-  00b6:  setPStat 252 255
-  00ba:  setPStat 253 255
+  00ae:  pstat[250] = 1
+  00b2:  pstat[251] = 6
+  00b6:  pstat[252] = 255
+  00ba:  pstat[253] = 255
   00be:  fadeOutHUD
   00c0:  delay 1
   00c4:  startBattle
   00c6:  unsetTrigger 1
-  00ca:  setPStat 250 0
+  00ca:  pstat[250] = 0
   00ce:  entityWalkTo 6 -100 800 0
   00d6:  waitForEntity 6
   00d8:  playAnimation 6 43
   00dc:  delay 40
-  00e0:  setDialogOwner Player
-  00e2:  showTextbox "I think we took care of it.\n"
+  00e0:  speak Player "I think we took care of it.\n"
   011e:  lookAt Player 6
   0122:  waitForEntity 6
   0124:  waitForEntity Player
   0126:  unloadEntity 6
-  0128:  setDialogOwner Player
-  012a:  showTextbox "What?\n"
+  0128:  speak Player "What?\n"
   013a:  loadDigimon Soulmon
   013c:  setDigimon Soulmon 3 0
-  0140:  setDialogOwner 8
-  0142:  showTextbox "Huh? What?\n"
+  0140:  speak 8 "Huh? What?\n"
   015c:  lookAt 8 Player
   0160:  delay 20
-  0164:  setDialogOwner 8
-  0166:  showTextbox "I passed out. I'm sorry.\n"
+  0164:  speak 8 "I passed out. I'm sorry.\n"
   019c:  setTrigger 202
-  01a0:  setPStat 16 0
-  01a4:  setPStat 28 0
+  01a0:  pstat[16] = 0
+  01a4:  pstat[28] = 0
   01a8:  setTrigger 243
   01ac:  jump section_60+0x1b0
   01b0:  entityWalkTo 8 -40 -2800 1
   01b8:  if pstat[101] >= 3 then section_60+0x1d8
-  01c4:  addPStat 101 1
+  01c4:  pstat[101] += 1
   01c8:  delay 20
   01cc:  lookAt Player 8
   01d0:  lookAt Partner 8
   01d4:  jump section_60+0x1b0
   01d8:  waitForEntity 8
   01da:  unloadEntity 8
-  01dc:  setPStat 101 0
+  01dc:  pstat[101] = 0
   01e0:  playAnimation Player 16
   01e4:  delay 40
-  01e8:  setDialogOwner Player
-  01ea:  showTextbox "The curse of Analogman!\nDon't worry, it'll be OK.\n"
+  01e8:  speak Player "The curse of Analogman!\nDon't worry, it'll be OK.\n"
   0252:  delay 20
   0256:  if !trigger(220) AND !trigger(214) AND pstat[1] < 50 then section_60+0x272
   026a:  jump section_60+0x2d6

@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG043.SCN, section 51
 
 section_51(51):     ; len=1020
@@ -11,8 +11,7 @@ section_51(51):     ; len=1020
   002a:  setRotation Player 1944
   002e:  moveCameraTo 30 2000 173
   0034:  waitForEntity 200
-  0036:  setDialogOwner Player
-  0038:  showTextbox "I heard this road is where\nthe bandits attack.\n"
+  0036:  speak Player "I heard this road is where\nthe bandits attack.\n"
   009a:  showTextbox "Let's go, <ORANGE><DIGIMON><WHITE>.\n"
   00bc:  entityWalkTo Player 1925 468 0
   00c4:  entityWalkTo Partner 1925 78 0
@@ -23,13 +22,10 @@ section_51(51):     ; len=1020
   00d4:  setDigimon NPCOgremon 3 0
   00d8:  setDigimon Agumon 4 0
   00dc:  setDigimon Agumon 5 0
-  00e0:  setDialogOwner 9
-  00e2:  showTextbox "You-hoo!\n"
+  00e0:  speak 9 "You-hoo!\n"
   00f8:  playSound 8 11
-  00fc:  setDialogOwner 8
-  00fe:  showTextbox "Ha ha!\n"
-  0110:  setDialogOwner 10
-  0112:  showTextbox "Yaa-hoo!\n"
+  00fc:  speak 8 "Ha ha!\n"
+  0110:  speak 10 "Yaa-hoo!\n"
   0128:  delay 10
   012c:  playSound 8 1
   0130:  playAnimation 8 31
@@ -46,30 +42,24 @@ section_51(51):     ; len=1020
   0162:  lookAt Partner 9
   0166:  delay 10
   016a:  playSound 8 11
-  016e:  setDialogOwner 8
-  0170:  showTextbox "Give up and leave your stuff!\nOr else!\n"
-  01c2:  setDialogOwner Player
-  01c4:  showTextbox "No, you give up!\n"
-  01ea:  setDialogOwner 8
-  01ec:  showTextbox "What?! You...?\n"
-  020e:  setDialogOwner 8
-  0210:  showTextbox "It can't be.\n"
-  022e:  setDialogOwner 9
-  0230:  showTextbox "Boss, what'll we do?\n"
+  016e:  speak 8 "Give up and leave your stuff!\nOr else!\n"
+  01c2:  speak Player "No, you give up!\n"
+  01ea:  speak 8 "What?! You...?\n"
+  020e:  speak 8 "It can't be.\n"
+  022e:  speak 9 "Boss, what'll we do?\n"
   025e:  lookAt 9 8
-  0262:  setDialogOwner 8
-  0264:  showTextbox "Don't worry, we're stronger\nand there's more of us.\nGo get'um!\n"
+  0262:  speak 8 "Don't worry, we're stronger\nand there's more of us.\nGo get'um!\n"
   02e6:  lookAt 8 9
   02ea:  setTrigger 1
-  02ee:  setPStat 250 1
-  02f2:  setPStat 251 8
-  02f6:  setPStat 252 9
-  02fa:  setPStat 253 10
+  02ee:  pstat[250] = 1
+  02f2:  pstat[251] = 8
+  02f6:  pstat[252] = 9
+  02fa:  pstat[253] = 10
   02fe:  fadeOutHUD
   0300:  delay 1
   0304:  startBattle
   0306:  unsetTrigger 1
-  030a:  setPStat 250 0
+  030a:  pstat[250] = 0
   030e:  lookAt Player 8
   0312:  lookAt 8 Player
   0316:  lookAt Partner 8
@@ -79,13 +69,11 @@ section_51(51):     ; len=1020
   032c:  waitForEntity 10
   032e:  unloadEntity 9
   0330:  unloadEntity 10
-  0332:  setDialogOwner 8
-  0334:  showTextbox "I'll get even with\nyou someday!\n"
+  0332:  speak 8 "I'll get even with\nyou someday!\n"
   0378:  entityWalkTo 8 1650 2350 1
   0380:  waitForEntity 8
   0382:  unloadEntity 8
-  0384:  setDialogOwner Player
-  0386:  showTextbox "Look at them go! They won't\nbe back for a while.\n"
+  0384:  speak Player "Look at them go! They won't\nbe back for a while.\n"
   03ec:  moveCameraToEntity Player 10
   03f0:  waitForEntity 200
   03f2:  setTrigger 198

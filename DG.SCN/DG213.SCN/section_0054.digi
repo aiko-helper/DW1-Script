@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG213.SCN, section 54
 
 section_54(54):     ; len=568
@@ -6,8 +6,7 @@ section_54(54):     ; len=568
   0010:  lookAt 5 Player
   0014:  lookAt Player 5
   0018:  delay 5
-  001c:  setDialogOwner 5
-  001e:  showTextbox "Hey! You haven't\nregistered, you know!\n"
+  001c:  speak 5 "Hey! You haven't\nregistered, you know!\n"
   0070:  entityWalkTo Player -824 1146 1
   0078:  waitForEntity Player
   007a:  moveCameraToEntity Player 10
@@ -17,8 +16,7 @@ section_54(54):     ; len=568
   008e:  lookAt 5 Player
   0092:  lookAt Player 5
   0096:  delay 5
-  009a:  setDialogOwner 5
-  009c:  showTextbox "Hey! The tournament is\ntomorrow, you know!\n"
+  009a:  speak 5 "Hey! The tournament is\ntomorrow, you know!\n"
   00f6:  entityWalkTo Player -824 1146 1
   00fe:  waitForEntity Player
   0100:  moveCameraToEntity Player 10
@@ -29,8 +27,7 @@ section_54(54):     ; len=568
   0116:  lookAt 5 Player
   011a:  lookAt Player 5
   011e:  delay 5
-  0122:  setDialogOwner 5
-  0124:  showTextbox "It's still early to enter.\nWaiting until ten o'clock.\n"
+  0122:  speak 5 "It's still early to enter.\nWaiting until ten o'clock.\n"
   0194:  entityWalkTo Player -824 1146 1
   019c:  waitForEntity Player
   019e:  moveCameraToEntity Player 10
@@ -41,9 +38,8 @@ section_54(54):     ; len=568
   01b6:  if stat[TamerLevel] == 0 then section_54+0x210
   01c4:  if pstat[110] > 29 then section_54+0x210
   01d0:  reduceStats TamerLevel 1
-  01d4:  setDialogOwner System
-  01d6:  showTextbox " \n<PINK>Tamer Level went down!<WHITE>\n"
-  0210:  setPStat 254 5
+  01d4:  speak System " \n<PINK>Tamer Level went down!<WHITE>\n"
+  0210:  pstat[254] = 5
   0214:  callSubroutine 6
   0216:  storeDate 105
   0218:  addMinutesToDate 105 360

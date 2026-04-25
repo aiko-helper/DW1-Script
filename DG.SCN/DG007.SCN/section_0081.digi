@@ -1,12 +1,10 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG007.SCN, section 81
 
 section_81(81):     ; len=640
   0000:  if item[BlueFlute] < 1 then section_81+0xca
-  000e:  setDialogOwner Player
-  0010:  showTextbox "Oh, yes!\n"
-  0026:  setDialogOwner System
-  0028:  showTextbox "Will you play the Lake\nGuardian's <LIGHTBLUE>Blue Flute<WHITE>?\n"
+  000e:  speak Player "Oh, yes!\n"
+  0026:  speak System "Will you play the Lake\nGuardian's <LIGHTBLUE>Blue Flute<WHITE>?\n"
   008c:  setDialogOwner Player
   008e:  setSelection section_81+0xce section_81+0xcc
   0094:  showTextbox "I'll play\nI won't play\n"
@@ -36,8 +34,8 @@ section_81(81):     ; len=640
   011a:  setObjectVisibility 42 0
   011e:  setObjectVisibility 43 0
   0122:  setObjectVisibility 44 0
-  0126:  setPStat 247 40
-  012a:  setPStat 248 5
+  0126:  pstat[247] = 40
+  012a:  pstat[248] = 5
   012e:  callSubroutine 21
   0130:  playAnimation Player 15
   0134:  waitForEntity 5
@@ -51,21 +49,18 @@ section_81(81):     ; len=640
   0152:  setObjectVisibility 45 0
   0156:  playAnimation 5 32
   015a:  playSound 8 7
-  015e:  setDialogOwner 5
-  0160:  showTextbox "Do you need help my friend?\n"
+  015e:  speak 5 "Do you need help my friend?\n"
   019c:  playAnimation Player 19
   01a0:  delay 15
-  01a4:  setDialogOwner Player
-  01a6:  showTextbox "Take me to the other side.\n"
+  01a4:  speak Player "Take me to the other side.\n"
   01e0:  playAnimation Player 0
-  01e4:  setDialogOwner 5
-  01e6:  showTextbox "Sure. Get on.\n"
+  01e4:  speak 5 "Sure. Get on.\n"
   0206:  playAnimation 5 29
   020a:  setObjectVisibility 45 1
   020e:  setObjectVisibility 46 0
   0212:  setObjectVisibility 47 0
-  0216:  setPStat 247 46
-  021a:  setPStat 248 2
+  0216:  pstat[247] = 46
+  021a:  pstat[248] = 2
   021e:  callSubroutine 21
   0220:  delay 20
   0224:  setObjectVisibility 46 1

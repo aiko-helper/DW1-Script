@@ -1,12 +1,11 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG103.SCN, section 83
 
 section_83(83):     ; len=592
   0000:  setRotation Player 1968
   0004:  setTextboxOrigin -1330 0 1434
   000c:  callSubroutine 39
-  000e:  setDialogOwner 200
-  0010:  showTextbox "<GREEN>Training: Striking <WHITE>\n"
+  000e:  speak 200 "<GREEN>Training: Striking <WHITE>\n"
   0040:  setSelection section_83+0x76 section_83+0xb4 section_83+0x18e
   0048:  showTextbox "Begin\nExplain\nQuit\n"
   0072:  waitForSelectionChoice
@@ -16,24 +15,22 @@ section_83(83):     ; len=592
   0080:  showTextbox "Normal\nBonus Try\nQuit\n"
   00b0:  waitForSelectionChoice
   00b2:  endSection
-  00b4:  setDialogOwner 200
-  00b6:  showTextbox "Using a dummy, strike at\nfull force. Offensive Power\nis boosted greatly.\n"
+  00b4:  speak 200 "Using a dummy, strike at\nfull force. Offensive Power\nis boosted greatly.\n"
   014c:  setSelection section_83+0xb4 section_83+0x76 section_83+0x18e
   0154:  showTextbox "Explain again\nBegin\nQuit\n"
   018a:  waitForSelectionChoice
   018c:  endSection
   018e:  endSection
   0190:  fadeOutHUD
-  0192:  setPStat 254 1
-  0196:  setPStat 246 0
+  0192:  pstat[254] = 1
+  0196:  pstat[246] = 0
   019a:  callDigimonSubroutine 214
   019c:  callSubroutine 7
   019e:  endSection
   01a0:  setTexboxMode 1 0
-  01a4:  setDialogOwner System
-  01a6:  showTextbox "<YELLOW>slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n"
-  0206:  setPStat 254 1
-  020a:  setPStat 246 1
+  01a4:  speak System "<YELLOW>slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n"
+  0206:  pstat[254] = 1
+  020a:  pstat[246] = 1
   020e:  callDigimonSubroutine 214
   0210:  callSubroutine 7
   0212:  setTexboxMode 0 0

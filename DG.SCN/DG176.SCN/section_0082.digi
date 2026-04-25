@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG176.SCN, section 82
 
 section_82(82):     ; len=964
@@ -6,8 +6,7 @@ section_82(82):     ; len=964
   000c:  endSection
   000e:  lookAt Player 6
   0012:  lookAt 6 Player
-  0016:  setDialogOwner 6
-  0018:  showTextbox "Hi, I'm busy all the time\nrunning this shop... Not!\n"
+  0016:  speak 6 "Hi, I'm busy all the time\nrunning this shop... Not!\n"
   0084:  showTextbox "I'm kinda lazy and I won't\nbe in the shop much. \nBut I got some cool stuff.\n"
   0120:  showTextbox "Yes! 'Training Manual'!\nWith this, your training\nwill get better!\n"
   01a8:  showTextbox "It's very valuable. I'll\nsell it for fifty thous bits.\nYou'll regret not buying it.\n"
@@ -17,18 +16,14 @@ section_82(82):     ; len=964
   027c:  if money < 50000 then section_82+0x296
   028c:  reduceMoney 50000
   0292:  jump section_82+0x2d6
-  0296:  setDialogOwner 6
-  0298:  showTextbox "You don't have enough bits.\n"
+  0296:  speak 6 "You don't have enough bits.\n"
   02d4:  endSection
   02d6:  giveItem TrainingManual 1
   02da:  if !trigger(0) then section_82+0x342
-  02e6:  setDialogOwner 6
-  02e8:  showTextbox "Hmmm, you have lots of\nstuff with you.\n"
+  02e6:  speak 6 "Hmmm, you have lots of\nstuff with you.\n"
   033a:  addMoney 50000
   0340:  endSection
   0342:  playSound 0 5
-  0346:  setDialogOwner System
-  0348:  showTextbox "I got a\n<LIGHTBLUE>Training Manual<WHITE>!\n"
-  0382:  setDialogOwner 6
-  0384:  showTextbox "I won't give you a discount.\n"
+  0346:  speak System "I got a\n<LIGHTBLUE>Training Manual<WHITE>!\n"
+  0382:  speak 6 "I won't give you a discount.\n"
   03c2:  endSection

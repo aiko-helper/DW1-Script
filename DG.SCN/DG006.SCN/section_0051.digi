@@ -1,12 +1,12 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG006.SCN, section 51
 
 section_51(51):     ; len=3510
   0000:  if !trigger(185) OR trigger(249) then section_51+0x398
   0010:  moveCameraTo 20 2214 865
   0016:  waitForEntity 200
-  0018:  setPStat 247 13
-  001c:  setPStat 248 16
+  0018:  pstat[247] = 13
+  001c:  pstat[248] = 16
   0020:  callSubroutine 21
   0022:  entityWalkTo Player 1642 -107 0
   002a:  entityWalkTo Partner 1252 -547 1
@@ -30,8 +30,8 @@ section_51(51):     ; len=3510
   0076:  setDigimon Coelamon 0 0
   007a:  playSound 8 7
   007e:  setObjectVisibility 31 0
-  0082:  setPStat 247 31
-  0086:  setPStat 248 1
+  0082:  pstat[247] = 31
+  0086:  pstat[248] = 1
   008a:  callSubroutine 21
   008c:  delay 10
   0090:  setObjectVisibility 31 1
@@ -40,35 +40,30 @@ section_51(51):     ; len=3510
   009c:  lookAt Partner 5
   00a0:  delay 20
   00a4:  lookAt 5 Player
-  00a8:  setDialogOwner 5
-  00aa:  showTextbox "Oh, it's you, <LIGHTBLUE><PLAYER><WHITE>.\nThe bridge is fixed.\n"
+  00a8:  speak 5 "Oh, it's you, <LIGHTBLUE><PLAYER><WHITE>.\nThe bridge is fixed.\n"
   00fe:  showTextbox "I hear you're making a city.\n"
   013c:  showTextbox "I got a request.\nI want you to help me\njust like I helped you.\n"
-  01be:  setDialogOwner Player
-  01c0:  showTextbox "?\n"
-  01c8:  setDialogOwner 5
-  01ca:  showTextbox "Making a city means\nsaving this island.\nEveryone will be saved.\n"
+  01be:  speak Player "?\n"
+  01c8:  speak 5 "Making a city means\nsaving this island.\nEveryone will be saved.\n"
   024e:  playAnimation Player 19
   0252:  delay 15
-  0256:  setDialogOwner Player
-  0258:  showTextbox "Does that mean you'll\ncome to the city?\n"
+  0256:  speak Player "Does that mean you'll\ncome to the city?\n"
   02ac:  playAnimation Player 0
-  02b0:  setDialogOwner 5
-  02b2:  showTextbox "Yes. I'll go to your city.\n"
+  02b0:  speak 5 "Yes. I'll go to your city.\n"
   02ec:  delay 10
   02f0:  setObjectVisibility 34 1
   02f4:  unloadEntity 5
   02f6:  playSound 8 7
   02fa:  setObjectVisibility 37 0
-  02fe:  setPStat 247 37
-  0302:  setPStat 248 1
+  02fe:  pstat[247] = 37
+  0302:  pstat[248] = 1
   0306:  callSubroutine 21
   0308:  delay 10
   030c:  setObjectVisibility 37 1
   0310:  setObjectVisibility 29 0
   0314:  setObjectVisibility 30 0
-  0318:  setPStat 247 29
-  031c:  setPStat 248 2
+  0318:  pstat[247] = 29
+  031c:  pstat[248] = 2
   0320:  callSubroutine 21
   0322:  moveObjectTo 0 29 1 30 0 640 130
   032c:  moveObjectTo 1 30 1 30 0 640 130
@@ -77,12 +72,11 @@ section_51(51):     ; len=3510
   033e:  setObjectVisibility 30 1
   0342:  delay 10
   0346:  playSound 8 11
-  034a:  setDialogOwner System
-  034c:  showTextbox "Coelamon joins the city!\n"
+  034a:  speak System "Coelamon joins the city!\n"
   0382:  entityWalkTo Player 1000 -461 1
   038a:  moveCameraToEntity Player 10
   038e:  setTrigger 249
-  0392:  addPStat 1 2
+  0392:  pstat[1] += 2
   0396:  endSection
   0398:  storeDate 105
   039a:  if pstat[107] < 15 OR pstat[107] > 19 OR trigger(249) then section_51+0x3b2
@@ -90,8 +84,8 @@ section_51(51):     ; len=3510
   03b2:  endSection
   03b4:  moveCameraTo 20 2214 865
   03ba:  waitForEntity 200
-  03bc:  setPStat 247 13
-  03c0:  setPStat 248 16
+  03bc:  pstat[247] = 13
+  03c0:  pstat[248] = 16
   03c4:  callSubroutine 21
   03c6:  entityWalkTo Player 1642 -107 0
   03ce:  entityWalkTo Partner 1252 -547 1
@@ -115,8 +109,8 @@ section_51(51):     ; len=3510
   041a:  setDigimon Coelamon 0 0
   041e:  playSound 8 7
   0422:  setObjectVisibility 31 0
-  0426:  setPStat 247 31
-  042a:  setPStat 248 1
+  0426:  pstat[247] = 31
+  042a:  pstat[248] = 1
   042e:  callSubroutine 21
   0430:  delay 10
   0434:  setObjectVisibility 31 1
@@ -129,8 +123,7 @@ section_51(51):     ; len=3510
   0450:  delay 20
   0454:  if !trigger(96) then section_51+0x464
   0460:  jump section_51+0x6e4
-  0464:  setDialogOwner 5
-  0466:  showTextbox "Hey, are you human?\n"
+  0464:  speak 5 "Hey, are you human?\n"
   0492:  showTextbox "I am Coelamon,\nthe fish Digimon.\nDid you come to see me?\n"
   0508:  setTrigger 49
   050c:  setDialogOwner Player
@@ -139,16 +132,13 @@ section_51(51):     ; len=3510
   0578:  playAnimation Player 19
   057c:  delay 20
   0580:  unsetTrigger 49
-  0584:  setDialogOwner 5
-  0586:  showTextbox "Ha-ha, is that so!\n"
+  0584:  speak 5 "Ha-ha, is that so!\n"
   05b0:  jump section_51+0x602
   05b4:  playAnimation Player 19
   05b8:  delay 20
   05bc:  unsetTrigger 49
-  05c0:  setDialogOwner 5
-  05c2:  showTextbox "I already know what\nyou want.\n"
-  0602:  setDialogOwner 5
-  0604:  showTextbox "The bridge upstream is\nbroken and you want to go\nacross. Right?\n"
+  05c0:  speak 5 "I already know what\nyou want.\n"
+  0602:  speak 5 "The bridge upstream is\nbroken and you want to go\nacross. Right?\n"
   0688:  playSound 8 8
   068c:  playAnimation Player 22
   0690:  delay 8
@@ -159,24 +149,23 @@ section_51(51):     ; len=3510
   06a4:  playSound 8 14
   06a8:  showTextbox "I see.\nFine, I'll help you.\n"
   06e4:  if !trigger(96) then section_51+0x72a
-  06f0:  setDialogOwner 5
-  06f2:  showTextbox "Aa-ha, you've come again.\n"
+  06f0:  speak 5 "Aa-ha, you've come again.\n"
   072a:  moveCameraToEntity 5 10
   072e:  waitForEntity 200
   0730:  setObjectVisibility 34 1
   0734:  unloadEntity 5
   0736:  playSound 8 7
   073a:  setObjectVisibility 37 0
-  073e:  setPStat 247 37
-  0742:  setPStat 248 1
+  073e:  pstat[247] = 37
+  0742:  pstat[248] = 1
   0746:  callSubroutine 21
   0748:  delay 60
   074c:  setObjectVisibility 37 1
   0750:  setDigimon Coelamon 0 0
   0754:  playSound 8 7
   0758:  setObjectVisibility 31 0
-  075c:  setPStat 247 31
-  0760:  setPStat 248 1
+  075c:  pstat[247] = 31
+  0760:  pstat[248] = 1
   0764:  callSubroutine 21
   0766:  delay 15
   076a:  setObjectVisibility 31 1
@@ -184,8 +173,8 @@ section_51(51):     ; len=3510
   0772:  setDigimon Coelamon 6 0
   0776:  playSound 8 7
   077a:  setObjectVisibility 32 0
-  077e:  setPStat 247 32
-  0782:  setPStat 248 1
+  077e:  pstat[247] = 32
+  0782:  pstat[248] = 1
   0786:  callSubroutine 21
   0788:  delay 15
   078c:  setObjectVisibility 32 1
@@ -193,16 +182,15 @@ section_51(51):     ; len=3510
   0794:  setDigimon Coelamon 7 0
   0798:  playSound 8 7
   079c:  setObjectVisibility 33 0
-  07a0:  setPStat 247 33
-  07a4:  setPStat 248 1
+  07a0:  pstat[247] = 33
+  07a4:  pstat[248] = 1
   07a8:  callSubroutine 21
   07aa:  delay 15
   07ae:  setObjectVisibility 33 1
   07b2:  setObjectVisibility 36 0
   07b6:  lookAt 5 Player
   07ba:  delay 20
-  07be:  setDialogOwner 5
-  07c0:  showTextbox "Now, walk on our heads.\nDon't worry.\n"
+  07be:  speak 5 "Now, walk on our heads.\nDon't worry.\n"
   080e:  playSound 8 14
   0812:  delay 10
   0816:  playSound 8 14
@@ -211,8 +199,7 @@ section_51(51):     ; len=3510
   0822:  delay 10
   0826:  playAnimation Player 11
   082a:  delay 20
-  082e:  setDialogOwner Player
-  0830:  showTextbox "Okay, here we go!\n"
+  082e:  speak Player "Okay, here we go!\n"
   0858:  lookAt Player 5
   085c:  delay 3
   0860:  playAnimation Player 21
@@ -222,8 +209,8 @@ section_51(51):     ; len=3510
   0874:  delay 12
   0878:  playSound 8 7
   087c:  setObjectVisibility 31 0
-  0880:  setPStat 247 31
-  0884:  setPStat 248 1
+  0880:  pstat[247] = 31
+  0884:  pstat[248] = 1
   0888:  callSubroutine 21
   088a:  lookAt Player 11
   088e:  delay 3
@@ -235,8 +222,8 @@ section_51(51):     ; len=3510
   08aa:  setObjectVisibility 31 1
   08ae:  playSound 8 7
   08b2:  setObjectVisibility 32 0
-  08b6:  setPStat 247 32
-  08ba:  setPStat 248 1
+  08b6:  pstat[247] = 32
+  08ba:  pstat[248] = 1
   08be:  callSubroutine 21
   08c0:  lookAt Player 12
   08c4:  delay 3
@@ -248,8 +235,8 @@ section_51(51):     ; len=3510
   08e0:  setObjectVisibility 32 1
   08e4:  playSound 8 7
   08e8:  setObjectVisibility 33 0
-  08ec:  setPStat 247 33
-  08f0:  setPStat 248 1
+  08ec:  pstat[247] = 33
+  08f0:  pstat[248] = 1
   08f4:  callSubroutine 21
   08f6:  lookAt Player 12
   08fa:  delay 3
@@ -263,16 +250,15 @@ section_51(51):     ; len=3510
   091e:  lookAt 5 Player
   0922:  playSound 8 7
   0926:  setObjectVisibility 31 0
-  092a:  setPStat 247 31
-  092e:  setPStat 248 1
+  092a:  pstat[247] = 31
+  092e:  pstat[248] = 1
   0932:  callSubroutine 21
   0934:  delay 15
   0938:  setObjectVisibility 31 1
   093c:  lookAt 11 Player
   0940:  lookAt 12 Player
   0944:  delay 20
-  0948:  setDialogOwner 5
-  094a:  showTextbox "This world needs more\nteamwork. Let's meet again.\n"
+  0948:  speak 5 "This world needs more\nteamwork. Let's meet again.\n"
   09b2:  playSound 8 14
   09b6:  setTrigger 96
   09ba:  entityWalkTo Partner 3500 2500 0

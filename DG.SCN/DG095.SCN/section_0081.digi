@@ -1,12 +1,11 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG095.SCN, section 81
 
 section_81(81):     ; len=576
   0000:  setRotation Player 2048
   0004:  setTextboxOrigin -11 0 1049
   000c:  callSubroutine 39
-  000e:  setDialogOwner 200
-  0010:  showTextbox "<GREEN>Training: Moving Ice <WHITE>\n"
+  000e:  speak 200 "<GREEN>Training: Moving Ice <WHITE>\n"
   0044:  setSelection section_81+0x7a section_81+0xb6 section_81+0x1b6
   004c:  showTextbox "Begin\nExplain\nQuit\n"
   0076:  waitForSelectionChoice
@@ -23,16 +22,15 @@ section_81(81):     ; len=576
   01b4:  endSection
   01b6:  endSection
   01b8:  fadeOutHUD
-  01ba:  setPStat 254 0
-  01be:  setPStat 246 0
+  01ba:  pstat[254] = 0
+  01be:  pstat[246] = 0
   01c2:  callDigimonSubroutine 214
   01c4:  callSubroutine 7
   01c6:  endSection
   01c8:  setTexboxMode 1 0
-  01cc:  setDialogOwner System
-  01ce:  showTextbox "<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to match\nthree pictures.\n"
-  022e:  setPStat 254 0
-  0232:  setPStat 246 1
+  01cc:  speak System "<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to match\nthree pictures.\n"
+  022e:  pstat[254] = 0
+  0232:  pstat[246] = 1
   0236:  callDigimonSubroutine 214
   0238:  callSubroutine 7
   023a:  setTexboxMode 0 0

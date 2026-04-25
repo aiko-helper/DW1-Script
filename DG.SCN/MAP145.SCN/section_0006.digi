@@ -1,14 +1,12 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; MAP145.SCN, section 6
 
 section_6(6):     ; len=1620
   0000:  delay 10
   0004:  playAnimation 6 28
   0008:  delay 10
-  000c:  setDialogOwner Player
-  000e:  showTextbox "What? Who are you?\n"
-  0038:  setDialogOwner 6
-  003a:  showTextbox "Who am I? Who are you?!\n"
+  000c:  speak Player "What? Who are you?\n"
+  0038:  speak 6 "Who am I? Who are you?!\n"
   006e:  setRotation 6 1276
   0072:  delay 5
   0076:  setRotation 6 2300
@@ -36,8 +34,7 @@ section_6(6):     ; len=1620
   00d8:  delay 10
   00dc:  setObjectVisibility 54 1
   00e0:  playSound 0 7
-  00e4:  setDialogOwner System
-  00e6:  showTextbox "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can hold\nup to twenty Items now.\n"
+  00e4:  speak System "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can hold\nup to twenty Items now.\n"
   0172:  playSound 0 7
   0176:  setInventorySize 20
   0178:  setTrigger 47
@@ -49,13 +46,12 @@ section_6(6):     ; len=1620
   019a:  delay 10
   019e:  setObjectVisibility 53 1
   01a2:  playSound 0 7
-  01a6:  setDialogOwner System
-  01a8:  showTextbox "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can hold\nup to twenty Items now.\n"
+  01a6:  speak System "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can hold\nup to twenty Items now.\n"
   0234:  setInventorySize 30
   0236:  setTrigger 48
   023a:  setTrigger 253
-  023e:  addPStat 1 1
-  0242:  addPStat 21 1
+  023e:  pstat[1] += 1
+  0242:  pstat[21] += 1
   0246:  setTrigger 337
   024a:  endSection
   024c:  garbage 14 00 fe 00 14 00 33 00 34 00 05 00 42 00 06 00 ac 11 ff ff 75 1b a7 fc 00 00 e3 01 00 00 9c 02 64 2b 19 00 01 00 0e 01 18 00 32 00 19 00 16 00 42 00 fe 00 4e fd 18 00 3c f6 00 00 4b 96 02 ff fe 00 19 00 00 00 0e 01 18 00 dc 00 19 00 56 00 fd 14 1b fd 1a 00 82 70 82 95 82 89 82 94 81 40 82 8d 82 85 82 93 82 93 82 89 82 8e 82 87 81 40 82 81 82 92 82 8f 82 95 82 8e 82 84 81 49 0d 00 00 00 1b 05 1a 00 82 60 82 8c 82 92 82 89 82 87 82 88 82 94 81 42 81 40 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 94 82 88 82 89 82 8e 82 8b 0d 00 82 68 81 75 82 8c 82 8c 81 40 82 84 82 8f 81 40 82 89 82 94 81 40 82 81 82 87 82 81 82 89 82 8e 81 42 0d 00 00 00 fe 00 67 00 3c 00 1b fd 1a 00 82 68 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 81 40 82 89 82 93 0d 00 82 94 82 88 82 85 81 40 82 8c 82 81 82 93 82 94 81 40 82 92 82 8f 82 8f 82 8d 81 42 0d 00 00 00 4e fd 0e 00 0e fd 00 00 4f 14 49 00 b5 00 4a c8 4e fd 33 ff a0 fd 00 00 4e fc c3 00 a0 fd 00 00 67 00 28 00 4d fd 00 08 4d fc 00 08 67 00 05 00 1b ff 1a 00 01 07 81 48 81 48 81 48 81 40 01 01 0d 00 82 76 82 88 82 89 82 83 82 88 81 40 82 8f 82 8e 82 85 81 48 0d 00 00 00 4d fd 00 0a 67 00 14 00 4d fd 00 06 67 00 14 00 4d fd 00 08 67 00 05 00 1b fd 1a 00 82 73 82 88 82 81 82 94 81 40 82 96 82 8f 82 89 82 83 82 85 81 42 81 42 81 42 82 93 82 8f 82 95 82 8e 82 84 82 93 81 40 82 8c 82 89 82 8b 82 85 0d 00 82 76 82 81 82 92 82 95 82 6c 82 8f 82 8e 82 9a 82 81 82 85 82 8d 82 8f 82 8e 81 49 0d 00 00 00 1a 00 82 60 81 40 82 82 82 89 82 87 81 40 82 82 82 8f 82 98 81 40 82 8f 82 92 81 40 82 81 81 40 82 93 82 8d 82 81 82 8c 82 8c 81 40 82 82 82 8f 82 98 81 42 0d 00 82 68 81 40 82 83 82 81 82 8e 81 40 82 92 82 85 82 81 82 84 81 40 82 99 82 8f 82 95 82 92 81 40 82 8d 82 89 82 8e 82 84 81 49 0d 00 00 00 10 02 7e 02 fc 04 1a 00 82 61 82 89 82 87 81 40 82 82 82 8f 82 98 0d 00 82 72 82 8d 82 81 82 8c 82 8c 81 40 82 82 82 8f 82 98 0d 00 00 00 1e 00 fe 01 64 2c 67 00 0a 00 57 00 00 00 57 00 01 00 1e 00 f7 00 1e 00 f8 02 64 15 71 00 00 01 01 00 04 01 75 00 71 01 01 01 01 00 ff 00 82 00 67 00 0a 00 5a 00 08 0e 71 00 00 01 08 00 04 01 1b 00 71 01 01 01 08 00 ff 00 28 00 67 00 09 00 71 00 00 01 0d 00 a5 00 1b 00 71 01 01 01 0d 00 a0 00 28 00 67 00 0e 00 5a 00 08 0e 71 00 00 01 0c 00 a5 00 b1 00 71 01 01 01 0c 00 a0 00 be 00 67 00 0d 00 1b fd 1a 00 82 67 82 95 82 88 81 48 81 40 82 60 82 81 82 81 82 88 82 88 82 88 82 88 81 49 0d 00 00 00 57 00 00 01 57 00 01 01 57 00 0d 00 57 00 0e 00 57 00 0f 00 57 00 10 00 57 00 11 00 57 00 12 00 57 00 13 00 57 00 14 00 57 00 15 00 57 00 16 00 57 00 17 00 57 00 18 00 57 00 19 00 57 00 1a 00 57 00 1b 00 57 00 1c 00 57 00 1d 00 57 00 1e 00 57 00 1f 00 57 00 20 00 57 00 21 00 57 00 22 00 57 00 23 00 57 00 24 00 57 00 25 00 57 00 26 00 57 00 27 00 57 00 28 00 57 00 29 00 57 00 2a 00 57 00 2b 00 57 00 2c 00 57 00 2d 00 57 00 2e 00 57 00 2f 00 57 00 30 00 57 00 31 00 57 00 32 00 1e 00 f7 0d 1e 00 f8 26 64 15 5a 00 08 0f 56 00 fd 0f 67 00 14 00 57 00 0d 01 57 00 0e 01 57 00 0f 01 57 00 10 01 57 00 11 01 57 00 12 01 57 00 13 01 57 00 14 01 57 00 15 01 57 00 16 01 57 00 17 01

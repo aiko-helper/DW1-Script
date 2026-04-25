@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG108.SCN, section 81
 
 section_81(81):     ; len=648
@@ -6,11 +6,9 @@ section_81(81):     ; len=648
   0004:  setTextboxOrigin 1010 0 -975
   000c:  callSubroutine 39
   000e:  if !trigger(219) then section_81+0x70
-  001a:  setDialogOwner 200
-  001c:  showTextbox "<GREEN>Training:\nBoulder Moving, revision <WHITE>\n"
+  001a:  speak 200 "<GREEN>Training:\nBoulder Moving, revision <WHITE>\n"
   006c:  jump section_81+0xae
-  0070:  setDialogOwner 200
-  0072:  showTextbox "<GREEN>Training:\nBoulder Moving <WHITE>\n"
+  0070:  speak 200 "<GREEN>Training:\nBoulder Moving <WHITE>\n"
   00ae:  setSelection section_81+0xe4 section_81+0x120 section_81+0x1fc
   00b6:  showTextbox "Begin\nExplain\nQuit\n"
   00e0:  waitForSelectionChoice
@@ -26,16 +24,15 @@ section_81(81):     ; len=648
   01fa:  endSection
   01fc:  endSection
   01fe:  fadeOutHUD
-  0200:  setPStat 254 0
-  0204:  setPStat 246 0
+  0200:  pstat[254] = 0
+  0204:  pstat[246] = 0
   0208:  callDigimonSubroutine 214
   020a:  callSubroutine 7
   020c:  endSection
   020e:  setTexboxMode 1 0
-  0212:  setDialogOwner System
-  0214:  showTextbox "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n"
-  0276:  setPStat 254 0
-  027a:  setPStat 246 1
+  0212:  speak System "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n"
+  0276:  pstat[254] = 0
+  027a:  pstat[246] = 1
   027e:  callDigimonSubroutine 214
   0280:  callSubroutine 7
   0282:  setTexboxMode 0 0

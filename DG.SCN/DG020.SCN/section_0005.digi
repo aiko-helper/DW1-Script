@@ -1,10 +1,9 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG020.SCN, section 5
 
 section_5(5):     ; len=826
   0000:  playSound 8 11
-  0004:  setDialogOwner 5
-  0006:  showTextbox "Are we gonna battle?\nChicken?!\n"
+  0004:  speak 5 "Are we gonna battle?\nChicken?!\n"
   0048:  playAnimation Player 16
   004c:  delay 20
   0050:  setDialogOwner Player
@@ -20,60 +19,53 @@ section_5(5):     ; len=826
   00b2:  lookAt Partner 5
   00b6:  lookAt 5 Player
   00ba:  waitForEntity Player
-  00bc:  setDialogOwner 5
-  00be:  showTextbox "Oh no! I lost!\n"
+  00bc:  speak 5 "Oh no! I lost!\n"
   00e0:  playAnimation 5 29
   00e4:  delay 40
   00e8:  playAnimation Player 20
   00ec:  delay 20
-  00f0:  setDialogOwner Player
-  00f2:  showTextbox "He was pretty tough.\n"
+  00f0:  speak Player "He was pretty tough.\n"
   0120:  playAnimation Player 0
   0124:  playAnimation 5 28
   0128:  delay 20
   012c:  playAnimation 5 0
   0130:  lookAt 5 Player
   0134:  playSound 8 11
-  0138:  setDialogOwner 5
-  013a:  showTextbox "You're nice. I'm Mamemon.\nI'll go with you.\n"
+  0138:  speak 5 "You're nice. I'm Mamemon.\nI'll go with you.\n"
   0196:  playAnimation Player 19
   019a:  delay 20
-  019e:  setDialogOwner Player
-  01a0:  showTextbox "Coming with us? Well, why\ndon't you go to the city?\n"
+  019e:  speak Player "Coming with us? Well, why\ndon't you go to the city?\n"
   020c:  playSound 8 11
-  0210:  setDialogOwner 5
-  0212:  showTextbox "OK. I'll go there.\n"
+  0210:  speak 5 "OK. I'll go there.\n"
   023c:  jump section_5+0x240
   0240:  entityWalkTo 5 3800 -3100 1
   0248:  if pstat[101] >= 10 then section_5+0x268
-  0254:  addPStat 101 1
+  0254:  pstat[101] += 1
   0258:  delay 10
   025c:  lookAt Player 5
   0260:  lookAt Partner 5
   0264:  jump section_5+0x240
   0268:  waitForEntity 5
   026a:  unloadEntity 5
-  026c:  setPStat 101 0
+  026c:  pstat[101] = 0
   0270:  playSound 8 8
-  0274:  setDialogOwner System
-  0276:  showTextbox "Mamemon joins the city!\n"
+  0274:  speak System "Mamemon joins the city!\n"
   02aa:  unsetTrigger 1
   02ae:  moveCameraToEntity Player 10
   02b2:  waitForEntity 200
-  02b4:  addPStat 1 3
+  02b4:  pstat[1] += 3
   02b8:  setTrigger 213
   02bc:  endSection
-  02be:  setDialogOwner 5
-  02c0:  showTextbox "Come back when\nyou get tougher.\n"
+  02be:  speak 5 "Come back when\nyou get tougher.\n"
   0304:  jump section_5+0x308
   0308:  entityWalkTo 5 3800 -3100 1
   0310:  if pstat[101] >= 10 then section_5+0x330
-  031c:  addPStat 101 1
+  031c:  pstat[101] += 1
   0320:  delay 10
   0324:  lookAt Player 5
   0328:  lookAt Partner 5
   032c:  jump section_5+0x308
   0330:  waitForEntity 5
   0332:  unloadEntity 5
-  0334:  setPStat 101 0
+  0334:  pstat[101] = 0
   0338:  endSection

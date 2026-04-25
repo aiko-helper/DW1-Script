@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG010.SCN, section 51
 
 section_51(51):     ; len=1678
@@ -7,8 +7,7 @@ section_51(51):     ; len=1678
   000e:  if !trigger(206) AND !trigger(211) AND !trigger(252) AND !trigger(213) then section_51+0x2a
   0026:  jump section_51+0x2c
   002a:  endSection
-  002c:  setDialogOwner System
-  002e:  showTextbox "<YELLOW>? ? ? <WHITE>\nWait!\n"
+  002c:  speak System "<YELLOW>? ? ? <WHITE>\nWait!\n"
   0050:  playAnimation Player 16
   0054:  delay 20
   0058:  playAnimation Player 0
@@ -60,8 +59,8 @@ section_51(51):     ; len=1678
   0130:  setObjectVisibility 65 0
   0134:  setObjectVisibility 66 0
   0138:  setObjectVisibility 67 0
-  013c:  setPStat 247 42
-  0140:  setPStat 248 26
+  013c:  pstat[247] = 42
+  0140:  pstat[248] = 26
   0144:  callSubroutine 21
   0146:  setObjectVisibility 41 1
   014a:  playSound 8 0
@@ -95,8 +94,7 @@ section_51(51):     ; len=1678
   01ba:  setObjectVisibility 67 1
   01be:  playSound 8 1
   01c2:  delay 10
-  01c6:  setDialogOwner 6
-  01c8:  showTextbox "I'm called Ninjamon!\n"
+  01c6:  speak 6 "I'm called Ninjamon!\n"
   01f6:  playAnimation Player 15
   01fa:  delay 20
   01fe:  lookAt 6 Player
@@ -111,19 +109,18 @@ section_51(51):     ; len=1678
   02fc:  showTextbox "Sure\nAnother time\n"
   0324:  waitForSelectionChoice
   0326:  jump section_51+0x32a
-  032a:  setDialogOwner 6
-  032c:  showTextbox "Ha, that's what you think!\n"
+  032a:  speak 6 "Ha, that's what you think!\n"
   0366:  jump section_51+0x36a
   036a:  setTrigger 1
-  036e:  setPStat 250 1
-  0372:  setPStat 251 6
-  0376:  setPStat 252 255
-  037a:  setPStat 253 255
+  036e:  pstat[250] = 1
+  0372:  pstat[251] = 6
+  0376:  pstat[252] = 255
+  037a:  pstat[253] = 255
   037e:  fadeOutHUD
   0380:  delay 1
   0384:  startBattle
   0386:  unsetTrigger 1
-  038a:  setPStat 250 0
+  038a:  pstat[250] = 0
   038e:  entityWalkTo Partner -633 -581 1
   0396:  entityWalkTo Partner -1033 -481 1
   039e:  entityWalkTo 6 -905 -1096 1
@@ -132,14 +129,11 @@ section_51(51):     ; len=1678
   03ac:  lookAt 6 Player
   03b0:  lookAt Partner 6
   03b4:  waitForEntity Player
-  03b6:  setDialogOwner 6
-  03b8:  showTextbox "You're just as strong as\nthey say you are. Please\nmake me your disciple!\n"
+  03b6:  speak 6 "You're just as strong as\nthey say you are. Please\nmake me your disciple!\n"
   044e:  playAnimation Player 19
   0452:  delay 20
-  0456:  setDialogOwner Player
-  0458:  showTextbox "Disciple? Well, I don't\ndo that. But you can help us\nmake a city.\n"
-  04e0:  setDialogOwner 6
-  04e2:  showTextbox "Okay.\nThat's good training too.\nI'll work hard.\n"
+  0456:  speak Player "Disciple? Well, I don't\ndo that. But you can help us\nmake a city.\n"
+  04e0:  speak 6 "Okay.\nThat's good training too.\nI'll work hard.\n"
   0546:  delay 20
   054a:  playAnimation 6 28
   054e:  delay 10
@@ -169,8 +163,8 @@ section_51(51):     ; len=1678
   05ae:  setObjectVisibility 65 0
   05b2:  setObjectVisibility 66 0
   05b6:  setObjectVisibility 67 0
-  05ba:  setPStat 247 42
-  05be:  setPStat 248 26
+  05ba:  pstat[247] = 42
+  05be:  pstat[248] = 26
   05c2:  callSubroutine 21
   05c4:  playSound 8 0
   05c8:  delay 10
@@ -204,11 +198,10 @@ section_51(51):     ; len=1678
   0636:  setObjectVisibility 67 1
   063a:  delay 10
   063e:  playSound 8 11
-  0642:  setDialogOwner System
-  0644:  showTextbox "Ninjamon joins the city!\n"
+  0642:  speak System "Ninjamon joins the city!\n"
   067a:  unsetTrigger 1
   067e:  moveCameraToEntity Player 10
   0682:  waitForEntity 200
   0684:  setTrigger 258
-  0688:  addPStat 1 2
+  0688:  pstat[1] += 2
   068c:  endSection

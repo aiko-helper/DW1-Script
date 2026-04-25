@@ -1,71 +1,63 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG003.SCN, section 7
 
 section_7(7):     ; len=1790
   0000:  setTrigger 44
   0004:  switch pstat[32] { 0 => section_7+0x10, 1 => section_7+0x38, 2 => section_7+0x6e, 3 => section_7+0xaa }
-  0010:  setDialogOwner System
-  0012:  showTextbox "<YELLOW>? ? ? <WHITE>\n...\n"
-  0030:  addPStat 32 1
+  0010:  speak System "<YELLOW>? ? ? <WHITE>\n...\n"
+  0030:  pstat[32] += 1
   0034:  jump section_7+0x30a
-  0038:  setDialogOwner System
-  003a:  showTextbox "<YELLOW>? ? ? <WHITE>. A flower.\n"
-  0066:  addPStat 32 1
+  0038:  speak System "<YELLOW>? ? ? <WHITE>. A flower.\n"
+  0066:  pstat[32] += 1
   006a:  jump section_7+0x30a
-  006e:  setDialogOwner System
-  0070:  showTextbox "<YELLOW>? ? ? <WHITE>\nI'm a flower.\n"
-  00a2:  addPStat 32 1
+  006e:  speak System "<YELLOW>? ? ? <WHITE>\nI'm a flower.\n"
+  00a2:  pstat[32] += 1
   00a6:  jump section_7+0x30a
-  00aa:  setDialogOwner System
-  00ac:  showTextbox "<YELLOW>? ? ? <WHITE>\nI said I'm a flower!\nAren't you listening!?\n"
+  00aa:  speak System "<YELLOW>? ? ? <WHITE>\nI said I'm a flower!\nAren't you listening!?\n"
   011a:  playSound 8 12
   011e:  lookAt 7 Player
   0122:  delay 20
   0126:  setTrigger 1
-  012a:  setPStat 250 1
-  012e:  setPStat 251 7
-  0132:  setPStat 252 255
-  0136:  setPStat 253 255
+  012a:  pstat[250] = 1
+  012e:  pstat[251] = 7
+  0132:  pstat[252] = 255
+  0136:  pstat[253] = 255
   013a:  fadeOutHUD
   013c:  delay 1
   0140:  startBattle
   0142:  unsetTrigger 1
-  0146:  setPStat 250 0
+  0146:  pstat[250] = 0
   014a:  lookAt 7 Player
   014e:  lookAt Player 7
   0152:  lookAt Partner 7
   0156:  waitForEntity Player
   0158:  waitForEntity Partner
   015a:  playSound 8 12
-  015e:  setDialogOwner 7
-  0160:  showTextbox "I hate fighting.\n"
+  015e:  speak 7 "I hate fighting.\n"
   0186:  playAnimation Player 19
-  018a:  setDialogOwner Player
-  018c:  showTextbox "In that case,\ncome to the city.\n"
+  018a:  speak Player "In that case,\ncome to the city.\n"
   01d0:  playAnimation Player 19
   01d4:  showTextbox "It's peaceful there.\n"
   0202:  playAnimation Player 0
-  0206:  setDialogOwner 7
-  0208:  showTextbox "The city?\n"
+  0206:  speak 7 "The city?\n"
   0220:  showTextbox "Sounds like fun.\nI'm Palmon.\nYou'll find me useful!\n"
   028c:  jump section_7+0x290
   0290:  entityWalkTo 7 170 1863 1
   0298:  if pstat[101] >= 3 then section_7+0x2b8
-  02a4:  addPStat 101 1
+  02a4:  pstat[101] += 1
   02a8:  delay 18
   02ac:  lookAt Player 7
   02b0:  lookAt Partner 7
   02b4:  jump section_7+0x290
   02b8:  waitForEntity 7
   02ba:  unloadEntity 7
-  02bc:  setPStat 101 0
+  02bc:  pstat[101] = 0
   02c0:  moveCameraToEntity Player 10
   02c4:  playSound 8 11
-  02c8:  setDialogOwner System
-  02ca:  showTextbox "Palmon joins the city!\n"
-  02fc:  setPStat 32 0
+  02c8:  speak System "Palmon joins the city!\n"
+  02fc:  pstat[32] = 0
   0300:  setTrigger 246
-  0304:  addPStat 1 1
+  0304:  pstat[1] += 1
   0308:  endSection
   030a:  endSection
   030c:  garbage 1c 00 fe 00 1c 00 05 00 60 00 06 00 88 00 08 00 b0 00 09 00 da 00 07 00 02 01 ff ff 24 00 6e 63 19 00 0b 00 6e 03 18 00 32 00 19 00 74 30 25 00 21 00 24 00 6e 63 19 00 0b 00 6e 1d 18 00 48 00 19 00 74 2c 2e 00 3b 00 24 00 6e 63 19 00 0b 00 6e 0f 18 00 5e 00 19 00 74 2c 3e 00 36 00 fe 00 1b 05 1a 00 82 66 82 85 82 94 81 40 82 81 82 97 82 81 82 99 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 06 1a 00 82 66 82 85 82 94 81 40 82 8c 82 8f 82 93 82 94 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 08 1a 00 82 68 82 94 81 75 82 93 81 40 82 8d 82 89 82 8e 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 09 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 89 82 94 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1c 00 2c 00 18 20 04 00 12 01 3a 01 70 01 ac 01 1b ff 1a 00 01 07 81 48 81 40 81 48 81 40 81 48 81 40 01 01 0d 00 81 42 81 42 81 42 0d 00 00 00 1f 00 20 01 16 00 0c 04 1b ff 1a 00 01 07 81 48 81 40 81 48 81 40 81 48 81 40 01 01 81 42 81 40 82 60 81 40 82 86 82 8c 82 8f 82 97 82 85 82 92 81 42 0d 00 00 00 1f 00 20 01 16 00 0c 04 1b ff 1a 00 01 07 81 48 81 40 81 48 81 40 81 48 81 40 01 01 0d 00 82 68 81 75 82 8d 81 40 82 81 81 40 82 86 82 8c 82 8f 82 97 82 85 82 92 81 42 0d 00 00 00 1f 00 20 01 16 00 0c 04 1b ff 1a 00 01 07 81 48 81 40 81 48 81 40 81 48 81 40 01 01 0d 00 82 68 81 40 82 93 82 81 82 89 82 84 81 40 82 68 81 75 82 8d 81 40 82 81 81 40 82 86 82 8c 82 8f 82 97 82 85 82 92 81 49 0d 00 82 60 82 92 82 85 82 8e 81 75 82 94 81 40 82 99 82 8f 82 95 81 40 82 8c 82 89 82 93 82 94 82 85 82 8e 82 89 82 8e 82 87 81 49 81 48 0d 00 00 00 5a 00 08 0c 4c 00 07 fd 67 00 14 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 07 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 07 fd 4c 00 fd 07 4c 00 fc 07 4a fd 4a fc 5a 00 08 0c 1b 07 1a 00 82 68 81 40 82 88 82 81 82 94 82 85 81 40 82 86 82 89 82 87 82 88 82 94 82 89 82 8e 82 87 81 42 0d 00 00 00 56 00 fd 13 1b fd 1a 00 82 68 82 8e 81 40 82 94 82 88 82 81 82 94 81 40 82 83 82 81 82 93 82 85 81 43 0d 00 82 83 82 8f 82 8d 82 85 81 40 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 42 0d 00 00 00 56 00 fd 13 1a 00 82 68 82 94 81 75 82 93 81 40 82 90 82 85 82 81 82 83 82 85 82 86 82 95 82 8c 81 40 82 94 82 88 82 85 82 92 82 85 81 42 0d 00 00 00 56 00 fd 00 1b 07 1a 00 82 73 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 48 0d 00 00 00 1a 00 82 72 82 8f 82 95 82 8e 82 84 82 93 81 40 82 8c 82 89 82 8b 82 85 81 40 82 86 82 95 82 8e 81 42 0d 00 82 68 81 75 82 8d 81 40 82 6f 82 81 82 8c 82 8d 82 8f 82 8e 81 42 0d 00 82 78 82 8f 82 95 81 75 82 8c 82 8c 81 40 82 86 82 89 82 8e 82 84 81 40 82 8d 82 85 81 40 82 95 82 93 82 85 82 86 82 95 82 8c 81 49 0d 00 00 00 16 00 92 03 4e 07 aa 00 47 07 01 00 19 00 0d 00 65 03 18 00 ba 03 19 00 1f 00 65 01 67 00 12 00 4c 00 fd 07 4c 00 fc 07 16 00 92 03 4a 07 48 07 1e 00 65 00 50 00 fd 0a 5a 00 08 0b 1b ff 1a 00 82 6f 82 81 82 8c 82 8d 82 8f 82 8e 81 40 82 8a 82 8f 82 89 82 8e 82 93 81 40 82 94 82 88 82 85 81 40

@@ -1,12 +1,11 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG126.SCN, section 82
 
 section_82(82):     ; len=290
   0000:  lookAt 6 Player
   0004:  lookAt Player 6
   0008:  playSound 8 4
-  000c:  setDialogOwner 6
-  000e:  showTextbox "This's a Recycled Goods shop.\n"
+  000c:  speak 6 "This's a Recycled Goods shop.\n"
   004e:  setDialogOwner Player
   0050:  setSelection section_82+0xd0 section_82+0x114 section_82+0x120
   0058:  showTextbox "I want a regular item\nI want a recycled item\nNext time\n"
@@ -20,7 +19,7 @@ section_82(82):     ; len=290
   00e4:  setTrigger 400
   00e8:  setTrigger 401
   00ec:  unsetTrigger 3
-  00f0:  setPStat 254 6
+  00f0:  pstat[254] = 6
   00f4:  callSubroutine 8
   00f6:  unsetTrigger 385
   00fa:  unsetTrigger 389
@@ -31,7 +30,7 @@ section_82(82):     ; len=290
   010e:  unsetTrigger 401
   0112:  endSection
   0114:  setTrigger 3
-  0118:  setPStat 254 6
+  0118:  pstat[254] = 6
   011c:  callSubroutine 8
   011e:  endSection
   0120:  endSection

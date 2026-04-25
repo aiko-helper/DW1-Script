@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG026.SCN, section 51
 
 section_51(51):     ; len=2240
@@ -19,31 +19,25 @@ section_51(51):     ; len=2240
   004c:  lookAt 9 Player
   0050:  lookAt 10 Player
   0054:  lookAt 8 Player
-  0058:  setDialogOwner 8
-  005a:  showTextbox "Hey guys, if you want\nto get thru here,"
+  0058:  speak 8 "Hey guys, if you want\nto get thru here,"
   00ac:  .string "?nt\nleave all your stuff!\n"  ; dead string
-  00e2:  setDialogOwner Player
-  00e4:  showTextbox "Long time no see.\n"
-  010c:  setDialogOwner 8
-  010e:  showTextbox "Mmm. You guys again!\n"
-  013c:  setDialogOwner Player
-  013e:  showTextbox "That's my line!\nIt was so easy to find you.\nReady to lose?\n"
+  00e2:  speak Player "Long time no see.\n"
+  010c:  speak 8 "Mmm. You guys again!\n"
+  013c:  speak Player "That's my line!\nIt was so easy to find you.\nReady to lose?\n"
   01b8:  playAnimation 8 32
-  01bc:  setDialogOwner 8
-  01be:  showTextbox "Lose? No way!\nI'll show you what I do\nwhen I get serious!\n"
+  01bc:  speak 8 "Lose? No way!\nI'll show you what I do\nwhen I get serious!\n"
   0236:  playAnimation 8 0
-  023a:  setDialogOwner Player
-  023c:  showTextbox "Let's settle this\nonce and for all!\n"
+  023a:  speak Player "Let's settle this\nonce and for all!\n"
   0288:  setTrigger 1
-  028c:  setPStat 250 1
-  0290:  setPStat 251 9
-  0294:  setPStat 252 10
-  0298:  setPStat 253 8
+  028c:  pstat[250] = 1
+  0290:  pstat[251] = 9
+  0294:  pstat[252] = 10
+  0298:  pstat[253] = 8
   029c:  fadeOutHUD
   029e:  delay 1
   02a2:  startBattle
   02a4:  unsetTrigger 1
-  02a8:  setPStat 250 0
+  02a8:  pstat[250] = 0
   02ac:  playAnimation 9 43
   02b0:  playAnimation 10 43
   02b4:  entityWalkTo 8 89 -659 0
@@ -54,68 +48,53 @@ section_51(51):     ; len=2240
   02ca:  waitForEntity 8
   02cc:  playAnimation 8 28
   02d0:  delay 30
-  02d4:  setDialogOwner 8
-  02d6:  showTextbox "How come...I can't win?\n"
+  02d4:  speak 8 "How come...I can't win?\n"
   030a:  playAnimation 8 29
   030e:  playAnimation Player 19
   0312:  delay 20
-  0316:  setDialogOwner Player
-  0318:  showTextbox "What's wrong?\nAren't you going to run?\n"
+  0316:  speak Player "What's wrong?\nAren't you going to run?\n"
   036a:  playAnimation Player 0
-  036e:  setDialogOwner 8
-  0370:  showTextbox "I'm too tired.\n"
-  0392:  setDialogOwner Player
-  0394:  showTextbox "...\n"
-  03a0:  setDialogOwner 8
-  03a2:  showTextbox "I became a bandit cuz I\nthought this island was done\nfor, so I just did whatever.\n"
-  044a:  setDialogOwner Player
-  044c:  showTextbox "Did you know the island\nwas in trouble?\n"
-  04a0:  setDialogOwner 8
-  04a2:  showTextbox "Yes, then you showed up.\nI guess it's dumb to\nstart helping you now.\n"
+  036e:  speak 8 "I'm too tired.\n"
+  0392:  speak Player "...\n"
+  03a0:  speak 8 "I became a bandit cuz I\nthought this island was done\nfor, so I just did whatever.\n"
+  044a:  speak Player "Did you know the island\nwas in trouble?\n"
+  04a0:  speak 8 "Yes, then you showed up.\nI guess it's dumb to\nstart helping you now.\n"
   0530:  playAnimation Player 19
   0534:  delay 15
-  0538:  setDialogOwner Player
-  053a:  showTextbox "I don't think so.\nCome to the city.\n"
+  0538:  speak Player "I don't think so.\nCome to the city.\n"
   0586:  playAnimation Player 0
-  058a:  setDialogOwner 8
-  058c:  showTextbox "No, I can't. Plus, I don't\nthink anybody would forgive\nme for what I've done.\n"
+  058a:  speak 8 "No, I can't. Plus, I don't\nthink anybody would forgive\nme for what I've done.\n"
   062c:  playAnimation Player 7
   0630:  delay 15
-  0634:  setDialogOwner Player
-  0636:  showTextbox "Oh, just be quiet\nand come with me!\n"
+  0634:  speak Player "Oh, just be quiet\nand come with me!\n"
   0682:  playAnimation Player 0
   0686:  entityWalkToWithCamera Player 160 -193 1
   068e:  waitForEntity Player
   0690:  setRotation Player 100
   0694:  showTextbox "You can be helpful!\nEveryone has something\nto offer!\n"
-  0702:  setDialogOwner 8
-  0704:  showTextbox "!!!\n"
+  0702:  speak 8 "!!!\n"
   0710:  playAnimation 8 30
   0714:  lookAt 8 Player
-  0718:  setDialogOwner 8
-  071a:  showTextbox "Can this island be saved?\nYou're going to save it\nfor us, right?!\n"
+  0718:  speak 8 "Can this island be saved?\nYou're going to save it\nfor us, right?!\n"
   07a2:  entityWalkTo 8 119 -494 1
   07aa:  waitForEntity 8
   07ac:  lookAt 8 Player
-  07b0:  setDialogOwner Player
-  07b2:  showTextbox "Of course! You know\nwhere the city is, right?\n"
-  0812:  setDialogOwner 8
-  0814:  showTextbox "Ohhhhh!\nI'll be there!\n"
+  07b0:  speak Player "Of course! You know\nwhere the city is, right?\n"
+  0812:  speak 8 "Ohhhhh!\nI'll be there!\n"
   0846:  jump section_51+0x84a
   084a:  entityWalkTo 8 155 873 1
   0852:  if pstat[101] >= 6 then section_51+0x86e
-  085e:  addPStat 101 1
+  085e:  pstat[101] += 1
   0862:  delay 10
   0866:  lookAt Player 8
   086a:  lookAt Partner 8
   086e:  waitForEntity 8
   0870:  unloadEntity 8
-  0872:  setPStat 101 0
+  0872:  pstat[101] = 0
   0876:  playSound 8 8
-  087a:  setDialogOwner System
-  087c:  showTextbox "Ogremon joins the city!\n"
+  087a:  speak System "Ogremon joins the city!\n"
   08b0:  setTrigger 234
-  08b4:  addPStat 1 2
+  08b4:  pstat[1] += 2
   08b8:  moveCameraToEntity Player 10
   08bc:  waitForEntity 200
   08be:  endSection

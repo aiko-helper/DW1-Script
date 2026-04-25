@@ -1,20 +1,18 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG177.SCN, section 6
 
 section_6(6):     ; len=2086
   0000:  if pstat[44] != 0 then section_6+0x28e
-  000c:  setDialogOwner 6
-  000e:  showTextbox "I know about Items.\n"
+  000c:  speak 6 "I know about Items.\n"
   003a:  showTextbox "There are one hund and twenty\neight kinds of Items in all.\n"
   00b4:  showTextbox "Thirty two are food.\n"
   00e2:  showTextbox "Rare Items grow naturally\nin some areas and can't be\nfound in others.\n"
   0172:  showTextbox "For example, you can\nfind a Blue Apple in\nNative Forest.\n"
   01e8:  showTextbox "These foods have special\neffects, so be careful on\nthe timing of eating them.\n"
-  0288:  setPStat 44 1
+  0288:  pstat[44] = 1
   028c:  endSection
   028e:  if pstat[44] != 1 then section_6+0x824
-  029a:  setDialogOwner 6
-  029c:  showTextbox "Now I'll talk about\nDigivolution Items.\n"
+  029a:  speak 6 "Now I'll talk about\nDigivolution Items.\n"
   02f0:  showTextbox "Digivolution Items make\nDigimon digivolve, as the\nname suggests.\n"
   0376:  showTextbox "There are many different\nkinds of Digivolution Items.\n"
   03e6:  showTextbox "Each kind causes Digimon\nto digivolve into different\ntypes of Digimon.\n"
@@ -25,5 +23,5 @@ section_6(6):     ; len=2086
   06ae:  showTextbox "At the same time, it's nice\nto digivolve into the kind of\nDigimon you want to be.\n"
   0756:  showTextbox "You can only digivolve from\none generation before the\nDigimon you want to become.\n"
   07fe:  showTextbox "So be careful.\n"
-  0820:  setPStat 44 0
+  0820:  pstat[44] = 0
   0824:  endSection

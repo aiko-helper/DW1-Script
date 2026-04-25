@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG075.SCN, section 51
 
 section_51(51):     ; len=1644
@@ -13,47 +13,37 @@ section_51(51):     ; len=1644
   002c:  setTrigger 189
   0030:  moveCameraTo 30 -285 3964
   0036:  waitForEntity 200
-  0038:  setDialogOwner 5
-  003a:  showTextbox "I've heard about you.\n"
+  0038:  speak 5 "I've heard about you.\n"
   006a:  lookAt 5 Player
   006e:  waitForEntity 5
   0070:  playAnimation Player 19
   0074:  delay 15
-  0078:  setDialogOwner Player
-  007a:  showTextbox "If you've heard about us\nand the city, why don't you\ncome with me?\n"
+  0078:  speak Player "If you've heard about us\nand the city, why don't you\ncome with me?\n"
   0104:  playAnimation Player 0
-  0108:  setDialogOwner 5
-  010a:  showTextbox "I'm also thinking about the\nisland's future. I've been\nsearching for something.\n"
+  0108:  speak 5 "I'm also thinking about the\nisland's future. I've been\nsearching for something.\n"
   01ae:  setRotation 5 2560
   01b2:  waitForEntity 5
   01b4:  playAnimation 5 24
   01b8:  waitForEntity 5
-  01ba:  setDialogOwner Player
-  01bc:  showTextbox "What are you looking for?\n"
-  01f4:  setDialogOwner 5
-  01f6:  showTextbox "Something that my ancestors\nleft behind, but\nI don't know what it is.\n"
+  01ba:  speak Player "What are you looking for?\n"
+  01f4:  speak 5 "Something that my ancestors\nleft behind, but\nI don't know what it is.\n"
   0286:  if item[Leomonstone] < 1 then section_51+0x2a0
   0294:  removeItem Leomonstone 1
   0298:  jump section_51+0x3e6
   029c:  jump section_51+0x3e6
-  02a0:  setDialogOwner Player
-  02a2:  showTextbox "I see. If I find it,\nI'll let you know.\n"
-  02f6:  setDialogOwner 5
-  02f8:  showTextbox "I've been looking\na long time.\nIt won't be easy to find.\n"
-  036e:  setDialogOwner 5
-  0370:  showTextbox "But if you find it,\nI promise,\nI'll go to your city.\n"
+  02a0:  speak Player "I see. If I find it,\nI'll let you know.\n"
+  02f6:  speak 5 "I've been looking\na long time.\nIt won't be easy to find.\n"
+  036e:  speak 5 "But if you find it,\nI promise,\nI'll go to your city.\n"
   03de:  moveCameraToEntity Player 10
   03e2:  waitForEntity 200
   03e4:  endSection
   03e6:  playAnimation Player 19
   03ea:  delay 15
-  03ee:  setDialogOwner Player
-  03f0:  showTextbox "Is this it?\n"
+  03ee:  speak Player "Is this it?\n"
   040c:  playAnimation Player 0
   0410:  lookAt 5 Player
   0414:  waitForEntity 5
-  0416:  setDialogOwner 5
-  0418:  showTextbox "Oh, that's it!\n"
+  0416:  speak 5 "Oh, that's it!\n"
   043a:  moveCameraToEntity 5 20
   043e:  waitForEntity 200
   0440:  entityWalkToEntityWithCamera 5 1 Player
@@ -64,36 +54,30 @@ section_51(51):     ; len=1644
   0450:  waitForEntity Player
   0452:  playAnimation 5 25
   0456:  delay 30
-  045a:  setDialogOwner 5
-  045c:  showTextbox "This is what my ancestors\nhad written. Let me see.\n"
-  04c6:  setDialogOwner 5
-  04c8:  showTextbox "When danger comes to the\nisland, go to the city.\n"
+  045a:  speak 5 "This is what my ancestors\nhad written. Let me see.\n"
+  04c6:  speak 5 "When danger comes to the\nisland, go to the city.\n"
   052e:  playAnimation 5 24
   0532:  waitForEntity 5
-  0534:  setDialogOwner 5
-  0536:  showTextbox "My ancestors say\nthat I should go!\n"
-  0580:  setDialogOwner Player
-  0582:  showTextbox "You are going to help us?\n"
+  0534:  speak 5 "My ancestors say\nthat I should go!\n"
+  0580:  speak Player "You are going to help us?\n"
   05ba:  playAnimation 5 22
   05be:  waitForEntity 5
-  05c0:  setDialogOwner 5
-  05c2:  showTextbox "You can count on me!\n"
+  05c0:  speak 5 "You can count on me!\n"
   05f0:  jump section_51+0x5f4
   05f4:  entityWalkTo 5 -374 -1119 1
   05fc:  if pstat[101] >= 3 then section_51+0x61c
-  0608:  addPStat 101 1
+  0608:  pstat[101] += 1
   060c:  delay 20
   0610:  lookAt Player 5
   0614:  lookAt Partner 5
   0618:  jump section_51+0x5f4
   061c:  waitForEntity 5
   061e:  unloadEntity 5
-  0620:  setPStat 101 0
+  0620:  pstat[101] = 0
   0624:  playSound 8 17
-  0628:  setDialogOwner System
-  062a:  showTextbox "Leomon joins the city!\n"
+  0628:  speak System "Leomon joins the city!\n"
   065c:  moveCameraToEntity Player 10
   0660:  waitForEntity 200
   0662:  setTrigger 248
-  0666:  addPStat 1 2
+  0666:  pstat[1] += 2
   066a:  endSection

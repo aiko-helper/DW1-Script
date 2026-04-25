@@ -1,17 +1,15 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG219.SCN, section 51
 
 section_51(51):     ; len=6130
-  0000:  setDialogOwner Player
-  0002:  showTextbox "It's a Digimon card vending\nmachine. I think you can\nget a card for one hund bits.\n"
+  0000:  speak Player "It's a Digimon card vending\nmachine. I think you can\nget a card for one hund bits.\n"
   00ac:  setSelection section_51+0x106 section_51+0x1ac
   00b2:  showTextbox "Let's try it"
   00ce:  .string "??one hund bits.\nNot now\n"  ; dead string
   0102:  waitForSelectionChoice
   0104:  endSection
   0106:  if money >= 100 then section_51+0x152
-  0116:  setDialogOwner Player
-  0118:  showTextbox "I don't have enough bits.\n"
+  0116:  speak Player "I don't have enough bits.\n"
   0150:  endSection
   0152:  reduceMoney 100
   0158:  storeRandom 110 99
@@ -29,327 +27,263 @@ section_51(51):     ; len=6130
   01ae:  storeRandom 110 4
   01b2:  if pstat[110] > 0 then section_51+0x1f0
   01be:  giveCard 1
-  01c0:  setDialogOwner Player
-  01c2:  showTextbox "A Phoenixmon Card!\n"
+  01c0:  speak Player "A Phoenixmon Card!\n"
   01ec:  jump section_51+0x10f8
   01f0:  if pstat[110] > 1 then section_51+0x240
   01fc:  giveCard 2
-  01fe:  setDialogOwner Player
-  0200:  showTextbox "A HerculesKabuterimon Card!\n"
+  01fe:  speak Player "A HerculesKabuterimon Card!\n"
   023c:  jump section_51+0x10f8
   0240:  if pstat[110] > 2 then section_51+0x284
   024c:  giveCard 3
-  024e:  setDialogOwner Player
-  0250:  showTextbox "A MegaSeadramon Card!\n"
+  024e:  speak Player "A MegaSeadramon Card!\n"
   0280:  jump section_51+0x10f8
   0284:  if pstat[110] > 3 then section_51+0x2c8
   0290:  giveCard 4
-  0292:  setDialogOwner Player
-  0294:  showTextbox "A ShogunGekomon Card!\n"
+  0292:  speak Player "A ShogunGekomon Card!\n"
   02c4:  jump section_51+0x10f8
   02c8:  if pstat[110] > 4 then section_51+0x304
   02d4:  giveCard 5
-  02d6:  setDialogOwner Player
-  02d8:  showTextbox "A Myotismon Card!\n"
+  02d6:  speak Player "A Myotismon Card!\n"
   0300:  jump section_51+0x10f8
   0304:  storeRandom 110 19
   0308:  if pstat[110] > 0 then section_51+0x34a
   0314:  giveCard 6
-  0316:  setDialogOwner Player
-  0318:  showTextbox "A MetalGreymon Card!\n"
+  0316:  speak Player "A MetalGreymon Card!\n"
   0346:  jump section_51+0x10f8
   034a:  if pstat[110] > 1 then section_51+0x382
   0356:  giveCard 7
-  0358:  setDialogOwner Player
-  035a:  showTextbox "A Mamemon Card!\n"
+  0358:  speak Player "A Mamemon Card!\n"
   037e:  jump section_51+0x10f8
   0382:  if pstat[110] > 2 then section_51+0x3be
   038e:  giveCard 8
-  0390:  setDialogOwner Player
-  0392:  showTextbox "A Monzaemon Card!\n"
+  0390:  speak Player "A Monzaemon Card!\n"
   03ba:  jump section_51+0x10f8
   03be:  if pstat[110] > 3 then section_51+0x400
   03ca:  giveCard 9
-  03cc:  setDialogOwner Player
-  03ce:  showTextbox "A SkullGreymon Card!\n"
+  03cc:  speak Player "A SkullGreymon Card!\n"
   03fc:  jump section_51+0x10f8
   0400:  if pstat[110] > 4 then section_51+0x442
   040c:  giveCard 10
-  040e:  setDialogOwner Player
-  0410:  showTextbox "A MetalMamemon Card!\n"
+  040e:  speak Player "A MetalMamemon Card!\n"
   043e:  jump section_51+0x10f8
   0442:  if pstat[110] > 5 then section_51+0x47a
   044e:  giveCard 11
-  0450:  setDialogOwner Player
-  0452:  showTextbox "A Vademon Card!\n"
+  0450:  speak Player "A Vademon Card!\n"
   0476:  jump section_51+0x10f8
   047a:  if pstat[110] > 6 then section_51+0x4b6
   0486:  giveCard 12
-  0488:  setDialogOwner Player
-  048a:  showTextbox "An Andromon Card!\n"
+  0488:  speak Player "An Andromon Card!\n"
   04b2:  jump section_51+0x10f8
   04b6:  if pstat[110] > 7 then section_51+0x4ee
   04c2:  giveCard 13
-  04c4:  setDialogOwner Player
-  04c6:  showTextbox "A Giromon Card!\n"
+  04c4:  speak Player "A Giromon Card!\n"
   04ea:  jump section_51+0x10f8
   04ee:  if pstat[110] > 8 then section_51+0x526
   04fa:  giveCard 14
-  04fc:  setDialogOwner Player
-  04fe:  showTextbox "An Etemon Card!\n"
+  04fc:  speak Player "An Etemon Card!\n"
   0522:  jump section_51+0x10f8
   0526:  if pstat[110] > 9 then section_51+0x564
   0532:  giveCard 15
-  0534:  setDialogOwner Player
-  0536:  showTextbox "A Megadramon Card!\n"
+  0534:  speak Player "A Megadramon Card!\n"
   0560:  jump section_51+0x10f8
   0564:  if pstat[110] > 10 then section_51+0x59c
   0570:  giveCard 16
-  0572:  setDialogOwner Player
-  0574:  showTextbox "A Piximon Card!\n"
+  0572:  speak Player "A Piximon Card!\n"
   0598:  jump section_51+0x10f8
   059c:  if pstat[110] > 11 then section_51+0x5dc
   05a8:  giveCard 17
-  05aa:  setDialogOwner Player
-  05ac:  showTextbox "A Digitamamon Card!\n"
+  05aa:  speak Player "A Digitamamon Card!\n"
   05d8:  jump section_51+0x10f8
   05dc:  if pstat[110] > 12 then section_51+0x614
   05e8:  giveCard 18
-  05ea:  setDialogOwner Player
-  05ec:  showTextbox "A Gekomon Card!\n"
+  05ea:  speak Player "A Gekomon Card!\n"
   0610:  jump section_51+0x10f8
   0614:  if pstat[110] > 13 then section_51+0x658
   0620:  giveCard 19
-  0622:  setDialogOwner Player
-  0624:  showTextbox "A WaruMonzaemon Card!\n"
+  0622:  speak Player "A WaruMonzaemon Card!\n"
   0654:  jump section_51+0x10f8
   0658:  if pstat[110] > 14 then section_51+0x690
   0664:  giveCard 20
-  0666:  setDialogOwner Player
-  0668:  showTextbox "A Jijimon Card!\n"
+  0666:  speak Player "A Jijimon Card!\n"
   068c:  jump section_51+0x10f8
   0690:  if pstat[110] > 15 then section_51+0x6d8
   069c:  giveCard 21
-  069e:  setDialogOwner Player
-  06a0:  showTextbox "A King of Sukamon Card!\n"
+  069e:  speak Player "A King of Sukamon Card!\n"
   06d4:  jump section_51+0x10f8
   06d8:  if pstat[110] > 16 then section_51+0x714
   06e4:  giveCard 22
-  06e6:  setDialogOwner Player
-  06e8:  showTextbox "A Cherrymon Card!\n"
+  06e6:  speak Player "A Cherrymon Card!\n"
   0710:  jump section_51+0x10f8
   0714:  if pstat[110] > 17 then section_51+0x752
   0720:  giveCard 23
-  0722:  setDialogOwner Player
-  0724:  showTextbox "A Guardromon Card!\n"
+  0722:  speak Player "A Guardromon Card!\n"
   074e:  jump section_51+0x10f8
   0752:  if pstat[110] > 18 then section_51+0x78e
   075e:  giveCard 24
-  0760:  setDialogOwner Player
-  0762:  showTextbox "A Hagurumon Card!\n"
+  0760:  speak Player "A Hagurumon Card!\n"
   078a:  jump section_51+0x10f8
   078e:  if pstat[110] > 19 then section_51+0x7cc
   079a:  giveCard 25
-  079c:  setDialogOwner Player
-  079e:  showTextbox "A Brachiomon Card!\n"
+  079c:  speak Player "A Brachiomon Card!\n"
   07c8:  jump section_51+0x10f8
   07cc:  storeRandom 110 24
   07d0:  if pstat[110] > 0 then section_51+0x808
   07dc:  giveCard 26
-  07de:  setDialogOwner Player
-  07e0:  showTextbox "A Greymon Card!\n"
+  07de:  speak Player "A Greymon Card!\n"
   0804:  jump section_51+0x10f8
   0808:  if pstat[110] > 1 then section_51+0x840
   0814:  giveCard 27
-  0816:  setDialogOwner Player
-  0818:  showTextbox "A Devimon Card!\n"
+  0816:  speak Player "A Devimon Card!\n"
   083c:  jump section_51+0x10f8
   0840:  if pstat[110] > 2 then section_51+0x87e
   084c:  giveCard 28
-  084e:  setDialogOwner Player
-  0850:  showTextbox "An Airdramon Card!\n"
+  084e:  speak Player "An Airdramon Card!\n"
   087a:  jump section_51+0x10f8
   087e:  if pstat[110] > 3 then section_51+0x8bc
   088a:  giveCard 29
-  088c:  setDialogOwner Player
-  088e:  showTextbox "A Tyrannomon Card!\n"
+  088c:  speak Player "A Tyrannomon Card!\n"
   08b8:  jump section_51+0x10f8
   08bc:  if pstat[110] > 4 then section_51+0x8f4
   08c8:  giveCard 30
-  08ca:  setDialogOwner Player
-  08cc:  showTextbox "A Meramon Card!\n"
+  08ca:  speak Player "A Meramon Card!\n"
   08f0:  jump section_51+0x10f8
   08f4:  if pstat[110] > 5 then section_51+0x930
   0900:  giveCard 31
-  0902:  setDialogOwner Player
-  0904:  showTextbox "A Seadramon Card!\n"
+  0902:  speak Player "A Seadramon Card!\n"
   092c:  jump section_51+0x10f8
   0930:  if pstat[110] > 6 then section_51+0x970
   093c:  giveCard 32
-  093e:  setDialogOwner Player
-  0940:  showTextbox "A Kabuterimon Card!\n"
+  093e:  speak Player "A Kabuterimon Card!\n"
   096c:  jump section_51+0x10f8
   0970:  if pstat[110] > 7 then section_51+0x9aa
   097c:  giveCard 33
-  097e:  setDialogOwner Player
-  0980:  showTextbox "An Angemon Card!\n"
+  097e:  speak Player "An Angemon Card!\n"
   09a6:  jump section_51+0x10f8
   09aa:  if pstat[110] > 8 then section_51+0x9e6
   09b6:  giveCard 34
-  09b8:  setDialogOwner Player
-  09ba:  showTextbox "A Birdramon Card!\n"
+  09b8:  speak Player "A Birdramon Card!\n"
   09e2:  jump section_51+0x10f8
   09e6:  if pstat[110] > 9 then section_51+0xa22
   09f2:  giveCard 35
-  09f4:  setDialogOwner Player
-  09f6:  showTextbox "A Garurumon Card!\n"
+  09f4:  speak Player "A Garurumon Card!\n"
   0a1e:  jump section_51+0x10f8
   0a22:  if pstat[110] > 10 then section_51+0xa5c
   0a2e:  giveCard 36
-  0a30:  setDialogOwner Player
-  0a32:  showTextbox "A Frigimon Card!\n"
+  0a30:  speak Player "A Frigimon Card!\n"
   0a58:  jump section_51+0x10f8
   0a5c:  if pstat[110] > 11 then section_51+0xa92
   0a68:  giveCard 37
-  0a6a:  setDialogOwner Player
-  0a6c:  showTextbox "A Whamon Card!\n"
+  0a6a:  speak Player "A Whamon Card!\n"
   0a8e:  jump section_51+0x10f8
   0a92:  if pstat[110] > 12 then section_51+0xac8
   0a9e:  giveCard 38
-  0aa0:  setDialogOwner Player
-  0aa2:  showTextbox "A Unimon Card!\n"
+  0aa0:  speak Player "A Unimon Card!\n"
   0ac4:  jump section_51+0x10f8
   0ac8:  if pstat[110] > 13 then section_51+0xb00
   0ad4:  giveCard 39
-  0ad6:  setDialogOwner Player
-  0ad8:  showTextbox "A Ogremon Card!\n"
+  0ad6:  speak Player "A Ogremon Card!\n"
   0afc:  jump section_51+0x10f8
   0b00:  if pstat[110] > 14 then section_51+0xb3a
   0b0c:  giveCard 40
-  0b0e:  setDialogOwner Player
-  0b10:  showTextbox "A Shellmon Card!\n"
+  0b0e:  speak Player "A Shellmon Card!\n"
   0b36:  jump section_51+0x10f8
   0b3a:  if pstat[110] > 15 then section_51+0xb78
   0b46:  giveCard 41
-  0b48:  setDialogOwner Player
-  0b4a:  showTextbox "A Centarumon Card!\n"
+  0b48:  speak Player "A Centarumon Card!\n"
   0b74:  jump section_51+0x10f8
   0b78:  if pstat[110] > 16 then section_51+0xbb0
   0b84:  giveCard 42
-  0b86:  setDialogOwner Player
-  0b88:  showTextbox "A Bakemon Card!\n"
+  0b86:  speak Player "A Bakemon Card!\n"
   0bac:  jump section_51+0x10f8
   0bb0:  if pstat[110] > 17 then section_51+0xbee
   0bbc:  giveCard 43
-  0bbe:  setDialogOwner Player
-  0bc0:  showTextbox "A Drimogemon Card!\n"
+  0bbe:  speak Player "A Drimogemon Card!\n"
   0bea:  jump section_51+0x10f8
   0bee:  if pstat[110] > 18 then section_51+0xc2e
   0bfa:  giveCard 44
-  0bfc:  setDialogOwner Player
-  0bfe:  showTextbox "A Monochromon Card!\n"
+  0bfc:  speak Player "A Monochromon Card!\n"
   0c2a:  jump section_51+0x10f8
   0c2e:  if pstat[110] > 19 then section_51+0xc64
   0c3a:  giveCard 45
-  0c3c:  setDialogOwner Player
-  0c3e:  showTextbox "A Leomon Card!\n"
+  0c3c:  speak Player "A Leomon Card!\n"
   0c60:  jump section_51+0x10f8
   0c64:  if pstat[110] > 20 then section_51+0xc9e
   0c70:  giveCard 46
-  0c72:  setDialogOwner Player
-  0c74:  showTextbox "A Coelamon Card!\n"
+  0c72:  speak Player "A Coelamon Card!\n"
   0c9a:  jump section_51+0x10f8
   0c9e:  if pstat[110] > 21 then section_51+0xcde
   0caa:  giveCard 47
-  0cac:  setDialogOwner Player
-  0cae:  showTextbox "A Kokatorimon Card!\n"
+  0cac:  speak Player "A Kokatorimon Card!\n"
   0cda:  jump section_51+0x10f8
   0cde:  if pstat[110] > 22 then section_51+0xd1a
   0cea:  giveCard 48
-  0cec:  setDialogOwner Player
-  0cee:  showTextbox "A Kuwagamon Card!\n"
+  0cec:  speak Player "A Kuwagamon Card!\n"
   0d16:  jump section_51+0x10f8
   0d1a:  if pstat[110] > 23 then section_51+0xd54
   0d26:  giveCard 49
-  0d28:  setDialogOwner Player
-  0d2a:  showTextbox "A Mojyamon Card!\n"
+  0d28:  speak Player "A Mojyamon Card!\n"
   0d50:  jump section_51+0x10f8
   0d54:  if pstat[110] > 24 then section_51+0xd90
   0d60:  giveCard 50
-  0d62:  setDialogOwner Player
-  0d64:  showTextbox "An Ninjamon Card!\n"
+  0d62:  speak Player "An Ninjamon Card!\n"
   0d8c:  jump section_51+0x10f8
   0d90:  storeRandom 110 9
   0d94:  if pstat[110] > 0 then section_51+0xdd2
   0da0:  giveCard 51
-  0da2:  setDialogOwner Player
-  0da4:  showTextbox "A Penguinmon Card!\n"
+  0da2:  speak Player "A Penguinmon Card!\n"
   0dce:  jump section_51+0x10f8
   0dd2:  if pstat[110] > 1 then section_51+0xe0c
   0dde:  giveCard 52
-  0de0:  setDialogOwner Player
-  0de2:  showTextbox "A Otamamon Card!\n"
+  0de0:  speak Player "A Otamamon Card!\n"
   0e08:  jump section_51+0x10f8
   0e0c:  if pstat[110] > 2 then section_51+0xe46
   0e18:  giveCard 53
-  0e1a:  setDialogOwner Player
-  0e1c:  showTextbox "A Tentomon Card!\n"
+  0e1a:  speak Player "A Tentomon Card!\n"
   0e42:  jump section_51+0x10f8
   0e46:  if pstat[110] > 3 then section_51+0xe80
   0e52:  giveCard 54
-  0e54:  setDialogOwner Player
-  0e56:  showTextbox "A Yanmamon Card!\n"
+  0e54:  speak Player "A Yanmamon Card!\n"
   0e7c:  jump section_51+0x10f8
   0e80:  if pstat[110] > 4 then section_51+0xeba
   0e8c:  giveCard 55
-  0e8e:  setDialogOwner Player
-  0e90:  showTextbox "A Gotsumon Card!\n"
+  0e8e:  speak Player "A Gotsumon Card!\n"
   0eb6:  jump section_51+0x10f8
   0eba:  if pstat[110] > 5 then section_51+0xefc
   0ec6:  giveCard 56
-  0ec8:  setDialogOwner Player
-  0eca:  showTextbox "A Flarerizamon Card!\n"
+  0ec8:  speak Player "A Flarerizamon Card!\n"
   0ef8:  jump section_51+0x10f8
   0efc:  if pstat[110] > 6 then section_51+0xf38
   0f08:  giveCard 57
-  0f0a:  setDialogOwner Player
-  0f0c:  showTextbox "A ToyAgumon Card!\n"
+  0f0a:  speak Player "A ToyAgumon Card!\n"
   0f34:  jump section_51+0x10f8
   0f38:  if pstat[110] > 7 then section_51+0xf78
   0f44:  giveCard 58
-  0f46:  setDialogOwner Player
-  0f48:  showTextbox "A DemiMeramon Card!\n"
+  0f46:  speak Player "A DemiMeramon Card!\n"
   0f74:  jump section_51+0x10f8
   0f78:  if pstat[110] > 8 then section_51+0xfb0
   0f84:  giveCard 59
-  0f86:  setDialogOwner Player
-  0f88:  showTextbox "A Tankmon Card!\n"
+  0f86:  speak Player "A Tankmon Card!\n"
   0fac:  jump section_51+0x10f8
   0fb0:  if pstat[110] > 9 then section_51+0xfea
   0fbc:  giveCard 60
-  0fbe:  setDialogOwner Player
-  0fc0:  showTextbox "A Goburimon Card\n"
+  0fbe:  speak Player "A Goburimon Card\n"
   0fe6:  jump section_51+0x10f8
   0fea:  storeRandom 110 3
   0fee:  if pstat[110] > 0 then section_51+0x1030
   0ffa:  giveCard 61
-  0ffc:  setDialogOwner Player
-  0ffe:  showTextbox "It's a Numemon Card!\n"
+  0ffc:  speak Player "It's a Numemon Card!\n"
   102c:  jump section_51+0x10f8
   1030:  if pstat[110] > 1 then section_51+0x1074
   103c:  giveCard 62
-  103e:  setDialogOwner Player
-  1040:  showTextbox "It's a Vegiemon Card!\n"
+  103e:  speak Player "It's a Vegiemon Card!\n"
   1070:  jump section_51+0x10f8
   1074:  if pstat[110] > 2 then section_51+0x10b6
   1080:  giveCard 63
-  1082:  setDialogOwner Player
-  1084:  showTextbox "It's a Sukamon Card!\n"
+  1082:  speak Player "It's a Sukamon Card!\n"
   10b2:  jump section_51+0x10f8
   10b6:  if pstat[110] > 3 then section_51+0x10f8
   10c2:  giveCard 64
-  10c4:  setDialogOwner Player
-  10c6:  showTextbox "It's a Nanimon Card!\n"
+  10c4:  speak Player "It's a Nanimon Card!\n"
   10f4:  jump section_51+0x10f8
   10f8:  setDialogOwner Player
   10fa:  setSelection section_51+0x106 section_51+0x1ac

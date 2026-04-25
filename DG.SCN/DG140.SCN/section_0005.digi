@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG140.SCN, section 5
 
 section_5(5):     ; len=3554
@@ -12,16 +12,13 @@ section_5(5):     ; len=3554
   002c:  playSound 8 4
   0030:  playAnimation Player 16
   0034:  delay 15
-  0038:  setDialogOwner Player
-  003a:  showTextbox "What is it?!\n"
+  0038:  speak Player "What is it?!\n"
   0058:  playAnimation Player 0
   005c:  lookAt Player 6
   0060:  playSound 8 9
   0064:  delay 10
-  0068:  setDialogOwner 5
-  006a:  showTextbox "Oh, welcome back, Hagurumon!\n"
-  00a8:  setDialogOwner Player
-  00aa:  showTextbox "Hagurumon?!\n"
+  0068:  speak 5 "Oh, welcome back, Hagurumon!\n"
+  00a8:  speak Player "Hagurumon?!\n"
   00c6:  playSound 8 8
   00ca:  moveCameraTo 18 -80 1048
   00d0:  moveEntityTo 6 -100 1758 20
@@ -31,15 +28,14 @@ section_5(5):     ; len=3554
   00e2:  playAnimation 6 30
   00e6:  playAnimation Player 16
   00ea:  delay 15
-  00ee:  setDialogOwner Player
-  00f0:  showTextbox "What's going on?!\n"
+  00ee:  speak Player "What's going on?!\n"
   0118:  playAnimation Player 0
-  011c:  setPStat 254 1
+  011c:  pstat[254] = 1
   0120:  callSubroutine 42
   0122:  jump section_5+0x12a
   0126:  jump section_5+0x7bc
   012a:  moveCameraTo 18 -80 1048
-  0130:  setPStat 245 4
+  0130:  pstat[245] = 4
   0134:  setBGM 22
   0136:  entityWalkTo 7 248 -447 0
   013e:  entityWalkTo 8 -747 459 0
@@ -50,43 +46,37 @@ section_5(5):     ; len=3554
   0152:  playAnimation 8 29
   0156:  delay 10
   015a:  playSound 8 9
-  015e:  setDialogOwner System
-  0160:  showTextbox "<YELLOW>Toys <WHITE>\nIt's an old tale.\nA bad guy came from\nfar away to this island.\n"
+  015e:  speak System "<YELLOW>Toys <WHITE>\nIt's an old tale.\nA bad guy came from\nfar away to this island.\n"
   01f2:  playAnimation 5 29
   01f6:  playAnimation 7 29
   01fa:  playAnimation 8 29
   01fe:  delay 10
   0202:  playSound 8 9
-  0206:  setDialogOwner System
-  0208:  showTextbox "<YELLOW>Toys <WHITE>\nThe bad guys told Digimon:\nThis island is ours.\n"
+  0206:  speak System "<YELLOW>Toys <WHITE>\nThe bad guys told Digimon:\nThis island is ours.\n"
   027c:  playAnimation 5 29
   0280:  playAnimation 7 29
   0284:  playAnimation 8 29
   0288:  delay 10
   028c:  playSound 8 9
-  0290:  setDialogOwner System
-  0292:  showTextbox "<YELLOW>Toys <WHITE>\nDigimon told them:\nThat's not true. This island\nis for everybody.\n"
+  0290:  speak System "<YELLOW>Toys <WHITE>\nDigimon told them:\nThat's not true. This island\nis for everybody.\n"
   032a:  playAnimation 5 29
   032e:  playAnimation 7 29
   0332:  playAnimation 8 29
   0336:  delay 10
   033a:  playSound 8 9
-  033e:  setDialogOwner System
-  0340:  showTextbox "<YELLOW>Toys <WHITE>\nBecause Digimons unified and\nchallenged the bad guys, the\nbad guys were taught a lesson.\n"
+  033e:  speak System "<YELLOW>Toys <WHITE>\nBecause Digimons unified and\nchallenged the bad guys, the\nbad guys were taught a lesson.\n"
   0406:  playAnimation 5 29
   040a:  playAnimation 7 29
   040e:  playAnimation 8 29
   0412:  delay 10
   0416:  playSound 8 9
-  041a:  setDialogOwner System
-  041c:  showTextbox "<YELLOW>Toys <WHITE>\nBut the bad guys said:\nWait, we'll get you later.\n...and they disappeared.\n"
+  041a:  speak System "<YELLOW>Toys <WHITE>\nBut the bad guys said:\nWait, we'll get you later.\n...and they disappeared.\n"
   04c6:  playAnimation 5 29
   04ca:  playAnimation 7 29
   04ce:  playAnimation 8 29
   04d2:  delay 10
   04d6:  playSound 8 9
-  04da:  setDialogOwner System
-  04dc:  showTextbox "<YELLOW>Toys <WHITE>\nIt's an old tale.\n"
+  04da:  speak System "<YELLOW>Toys <WHITE>\nIt's an old tale.\n"
   0514:  playAnimation 5 0
   0518:  playAnimation 7 0
   051c:  playAnimation 8 0
@@ -94,73 +84,55 @@ section_5(5):     ; len=3554
   0524:  if !trigger(350) then section_5+0x532
   0530:  endSection
   0532:  setTrigger 350
-  0536:  setDialogOwner Player
-  0538:  showTextbox "Hmmm, I feel joyous...\nOh, wait up.\n"
+  0536:  speak Player "Hmmm, I feel joyous...\nOh, wait up.\n"
   0584:  showTextbox "That story from the song\nis an old tale of this\nisland, isn't it?\n"
   060c:  showTextbox "About the Digimon\ndefeating the bad guys...\n"
   0668:  showTextbox "Hmmm, I wonder who the\nbad guys were in the story?\n"
   06d2:  playSound 8 8
-  06d6:  setDialogOwner 5
-  06d8:  showTextbox "Thanks for helping me.\nThis is to show my gratitude.\n"
+  06d6:  speak 5 "Thanks for helping me.\nThis is to show my gratitude.\n"
   0746:  setTrigger 214
-  074a:  addPStat 1 3
+  074a:  pstat[1] += 3
   074e:  playSound 8 10
-  0752:  setDialogOwner System
-  0754:  showTextbox "Monzaemon's Stuffed\nAnimal joins the city!\n"
+  0752:  speak System "Monzaemon's Stuffed\nAnimal joins the city!\n"
   07ae:  moveCameraToEntity Player 15
   07b2:  waitForEntity 200
-  07b4:  setPStat 254 0
+  07b4:  pstat[254] = 0
   07b8:  callSubroutine 42
   07ba:  endSection
   07bc:  if !trigger(270) OR !trigger(350) OR item[Gear] >= 1 OR trigger(350) then section_5+0x834
-  07d6:  setDialogOwner 5
-  07d8:  showTextbox "Wait, didn't WaruMonzaemon\ndrop something?\n"
+  07d6:  speak 5 "Wait, didn't WaruMonzaemon\ndrop something?\n"
   0832:  endSection
   0834:  if !trigger(349) OR trigger(270) then section_5+0x896
-  0844:  setDialogOwner 5
-  0846:  showTextbox "Good luck!\nIt's the house next door!\n"
+  0844:  speak 5 "Good luck!\nIt's the house next door!\n"
   0894:  endSection
   0896:  storeDigimonType 103
   0898:  if pstat[103] != 14 OR trigger(349) then section_5+0x8b0
   08a8:  jump section_5+0x94e
   08ac:  jump section_5+0x8c6
-  08b0:  setDialogOwner 5
-  08b2:  showTextbox "......\n"
+  08b0:  speak 5 "......\n"
   08c4:  endSection
   08c6:  if !trigger(350) then section_5+0x94e
-  08d2:  setDialogOwner 5
-  08d4:  showTextbox "Are we going to listen\nto the chorus again?\n"
+  08d2:  speak 5 "Are we going to listen\nto the chorus again?\n"
   0930:  setDialogOwner Player
   0932:  setSelection section_5+0x12a section_5+0xde0
   0938:  showTextbox "Yes\nNo\n"
   094a:  waitForSelectionChoice
   094c:  endSection
   094e:  setTrigger 349
-  0952:  setDialogOwner 5
-  0954:  showTextbox "Oh, Monzaemon!\nYou're back alive!\n"
-  099c:  setDialogOwner Player
-  099e:  showTextbox "Wow, what is it?\n"
-  09c4:  setDialogOwner 5
-  09c6:  showTextbox "Go fight WaruMonzaemon!\nQuickly, everybody get\nmoving! Quick, quick!\n"
-  0a54:  setDialogOwner Player
-  0a56:  showTextbox "Wait...wait! He's not the\nMonzaemon you all know.\n"
-  0abe:  setDialogOwner 5
-  0ac0:  showTextbox "Huh? What do you mean? But \nhe is a Monzaemon, right?\n"
+  0952:  speak 5 "Oh, Monzaemon!\nYou're back alive!\n"
+  099c:  speak Player "Wow, what is it?\n"
+  09c4:  speak 5 "Go fight WaruMonzaemon!\nQuickly, everybody get\nmoving! Quick, quick!\n"
+  0a54:  speak Player "Wait...wait! He's not the\nMonzaemon you all know.\n"
+  0abe:  speak 5 "Huh? What do you mean? But \nhe is a Monzaemon, right?\n"
   0b30:  playAnimation Player 25
   0b34:  delay 15
-  0b38:  setDialogOwner Player
-  0b3a:  showTextbox "Yeah, it's true that\nhe's a Monzaemon.\n"
+  0b38:  speak Player "Yeah, it's true that\nhe's a Monzaemon.\n"
   0b8c:  playAnimation Player 0
-  0b90:  setDialogOwner 5
-  0b92:  showTextbox "A bad guy called WaruMonzaemon\nkidnapped my friends.\n"
-  0c00:  setDialogOwner 5
-  0c02:  showTextbox "I think the only one who can\ndefeat him is Monzaemon!\n"
-  0c72:  setDialogOwner Player
-  0c74:  showTextbox "Hmm, then we got to find that\nbad guy. Where is he?\n"
-  0ce0:  setDialogOwner 5
-  0ce2:  showTextbox "He's next door. I'll unlock\nthe seal at the door.\n"
+  0b90:  speak 5 "A bad guy called WaruMonzaemon\nkidnapped my friends.\n"
+  0c00:  speak 5 "I think the only one who can\ndefeat him is Monzaemon!\n"
+  0c72:  speak Player "Hmm, then we got to find that\nbad guy. Where is he?\n"
+  0ce0:  speak 5 "He's next door. I'll unlock\nthe seal at the door.\n"
   0d4a:  showTextbox "So please go and see\nwhat you can do.\n"
-  0d9a:  setDialogOwner Player
-  0d9c:  showTextbox "I see. Alright,\nI'll help you!\n"
+  0d9a:  speak Player "I see. Alright,\nI'll help you!\n"
   0dde:  endSection
   0de0:  endSection

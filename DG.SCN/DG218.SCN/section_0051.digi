@@ -1,18 +1,15 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG218.SCN, section 51
 
 section_51(51):     ; len=8178
   0000:  if !trigger(223) OR pstat[27] != 3 then section_51+0x40
-  0010:  setDialogOwner 5
-  0012:  showTextbox "What will you eat?\n"
+  0010:  speak 5 "What will you eat?\n"
   003c:  jump section_51+0xb6
   0040:  if !trigger(228) OR pstat[27] != 4 then section_51+0x8c
-  0050:  setDialogOwner 5
-  0052:  showTextbox "What do you want to eat?\n"
+  0050:  speak 5 "What do you want to eat?\n"
   0088:  jump section_51+0x6cc
   008c:  if !trigger(256) OR pstat[27] != 5 then section_51+0xb6
-  009c:  setDialogOwner 5
-  009e:  showTextbox "......?\n"
+  009c:  speak 5 "......?\n"
   00b2:  jump section_51+0xf5c
   00b6:  setDialogOwner System
   00b8:  setSelection section_51+0x172 section_51+0x31e section_51+0x4d0
@@ -21,12 +18,10 @@ section_51(51):     ; len=8178
   016e:  jump section_51+0x6a6
   0172:  if money < 300 then section_51+0x186
   0182:  jump section_51+0x1c6
-  0186:  setDialogOwner 5
-  0188:  showTextbox "You don't have enough bits.\n"
+  0186:  speak 5 "You don't have enough bits.\n"
   01c4:  endSection
   01c6:  if trigger(640) AND (cond & Hungry) == 0x00 then section_51+0x2ec
-  01d6:  setDialogOwner System
-  01d8:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed\na Snow Shake!\n"
+  01d6:  speak System "<ORANGE><DIGIMON><WHITE> enjoyed\na Snow Shake!\n"
   0210:  addStats Offense 0
   0214:  addStats Defense 0
   0218:  addStats Speed 1
@@ -39,25 +34,21 @@ section_51(51):     ; len=8178
   0234:  addStats Energy 12
   0238:  addStats Weight 2
   023c:  reduceMoney 300
-  0242:  setDialogOwner System
-  0244:  showTextbox "MP went up ten!\nSpeed went up one!\n"
+  0242:  speak System "MP went up ten!\nSpeed went up one!\n"
   028e:  showTextbox "Happiness went up!\nTiredness went down!\n"
   02e2:  playAnimation Partner 11
   02e6:  waitForEntity Partner
   02e8:  jump section_51+0x6a6
   02ec:  playAnimation Partner 13
   02f0:  waitForEntity System
-  02f2:  setDialogOwner 5
-  02f4:  showTextbox "<ORANGE><DIGIMON><WHITE> isn't hungry.\n"
+  02f2:  speak 5 "<ORANGE><DIGIMON><WHITE> isn't hungry.\n"
   031c:  endSection
   031e:  if money < 700 then section_51+0x332
   032e:  jump section_51+0x372
-  0332:  setDialogOwner 5
-  0334:  showTextbox "You don't have enough bits.\n"
+  0332:  speak 5 "You don't have enough bits.\n"
   0370:  endSection
   0372:  if trigger(640) AND (cond & Hungry) == 0x00 then section_51+0x49e
-  0382:  setDialogOwner System
-  0384:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed\nan Ice Cream!\n"
+  0382:  speak System "<ORANGE><DIGIMON><WHITE> enjoyed\nan Ice Cream!\n"
   03bc:  addStats Offense 0
   03c0:  addStats Defense 0
   03c4:  addStats Speed 2
@@ -70,25 +61,21 @@ section_51(51):     ; len=8178
   03e0:  addStats Energy 16
   03e4:  addStats Weight 3
   03e8:  reduceMoney 700
-  03ee:  setDialogOwner System
-  03f0:  showTextbox "MP went up thirty!\nSpeed went up two!\n"
+  03ee:  speak System "MP went up thirty!\nSpeed went up two!\n"
   0440:  showTextbox "Happiness went up!\nTiredness went down!\n"
   0494:  playAnimation Partner 11
   0498:  waitForEntity Partner
   049a:  jump section_51+0x6a6
   049e:  playAnimation Partner 13
   04a2:  waitForEntity System
-  04a4:  setDialogOwner 5
-  04a6:  showTextbox "<ORANGE><DIGIMON><WHITE> isn't hungry.\n"
+  04a4:  speak 5 "<ORANGE><DIGIMON><WHITE> isn't hungry.\n"
   04ce:  endSection
   04d0:  if money < 1600 then section_51+0x4e4
   04e0:  jump section_51+0x524
-  04e4:  setDialogOwner 5
-  04e6:  showTextbox "You don't have enough bits.\n"
+  04e4:  speak 5 "You don't have enough bits.\n"
   0522:  endSection
   0524:  if trigger(640) AND (cond & Hungry) == 0x00 then section_51+0x674
-  0534:  setDialogOwner System
-  0536:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed\na Snow Cone!\n"
+  0534:  speak System "<ORANGE><DIGIMON><WHITE> enjoyed\na Snow Cone!\n"
   056c:  addStats Offense 0
   0570:  addStats Defense 0
   0574:  addStats Speed 2
@@ -101,19 +88,16 @@ section_51(51):     ; len=8178
   0590:  addStats Energy 20
   0594:  addStats Weight 4
   0598:  reduceMoney 1600
-  059e:  setDialogOwner System
-  05a0:  showTextbox "MP went up fifty!\nSpeed went up two!\n"
+  059e:  speak System "MP went up fifty!\nSpeed went up two!\n"
   05ee:  showTextbox "Happiness went up!\nDiscipline went up!\nTiredness went down!\n"
   066a:  playAnimation Partner 11
   066e:  waitForEntity Partner
   0670:  jump section_51+0x6a6
   0674:  playAnimation Partner 13
   0678:  waitForEntity System
-  067a:  setDialogOwner 5
-  067c:  showTextbox "<ORANGE><DIGIMON><WHITE> isn't hungry.\n"
+  067a:  speak 5 "<ORANGE><DIGIMON><WHITE> isn't hungry.\n"
   06a4:  endSection
-  06a6:  setDialogOwner 5
-  06a8:  showTextbox "See you later!\n"
+  06a6:  speak 5 "See you later!\n"
   06ca:  endSection
   06cc:  setDialogOwner System
   06ce:  setSelection section_51+0x78e section_51+0xa0e section_51+0xc94
@@ -122,12 +106,10 @@ section_51(51):     ; len=8178
   078a:  jump section_51+0xf2c
   078e:  if money < 1500 then section_51+0x7a2
   079e:  jump section_51+0x7d6
-  07a2:  setDialogOwner 5
-  07a4:  showTextbox "You're short of bits.\n"
+  07a2:  speak 5 "You're short of bits.\n"
   07d4:  endSection
   07d6:  if trigger(640) AND (cond & Hungry) == 0x00 then section_51+0x9e6
-  07e6:  setDialogOwner System
-  07e8:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed\na Space Salad!\n"
+  07e6:  speak System "<ORANGE><DIGIMON><WHITE> enjoyed\na Space Salad!\n"
   0822:  addStats Offense 1
   0826:  addStats Defense 1
   082a:  addStats Speed 1
@@ -140,8 +122,7 @@ section_51(51):     ; len=8178
   0846:  addStats Energy 20
   084a:  addStats Weight 0
   084e:  reduceMoney 1500
-  0854:  setDialogOwner System
-  0856:  showTextbox "HP went up ten!\nMP went up ten!\nOffensive Power went up one!\n"
+  0854:  speak System "HP went up ten!\nMP went up ten!\nOffensive Power went up one!\n"
   08d4:  showTextbox "Defensive Power went up one!\nSpeed went up one!\nBrains went up one!\n"
   0960:  showTextbox "Happiness went up!\nDiscipline went up!\nTiredness went down!\n"
   09dc:  playAnimation Partner 11
@@ -149,17 +130,14 @@ section_51(51):     ; len=8178
   09e2:  jump section_51+0xf2c
   09e6:  playAnimation Partner 13
   09ea:  waitForEntity System
-  09ec:  setDialogOwner 5
-  09ee:  showTextbox "<ORANGE><DIGIMON><WHITE> is full.\n"
+  09ec:  speak 5 "<ORANGE><DIGIMON><WHITE> is full.\n"
   0a0c:  endSection
   0a0e:  if money < 4000 then section_51+0xa22
   0a1e:  jump section_51+0xa56
-  0a22:  setDialogOwner 5
-  0a24:  showTextbox "You're short of bits.\n"
+  0a22:  speak 5 "You're short of bits.\n"
   0a54:  endSection
   0a56:  if trigger(640) AND (cond & Hungry) == 0x00 then section_51+0xc6c
-  0a66:  setDialogOwner System
-  0a68:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed\na UFO Soup!\n"
+  0a66:  speak System "<ORANGE><DIGIMON><WHITE> enjoyed\na UFO Soup!\n"
   0a9c:  addStats Offense 2
   0aa0:  addStats Defense 2
   0aa4:  addStats Speed 2
@@ -172,8 +150,7 @@ section_51(51):     ; len=8178
   0ac0:  addStats Energy 30
   0ac4:  addStats Weight 1
   0ac8:  reduceMoney 4000
-  0ace:  setDialogOwner System
-  0ad0:  showTextbox "HP went up twenty!\nMP went up twenty!\nOffensive Power went up two!\n"
+  0ace:  speak System "HP went up twenty!\nMP went up twenty!\nOffensive Power went up two!\n"
   0b5a:  showTextbox "Defensive Power went up two!\nSpeed went up two!\nBrains went up two!\n"
   0be6:  showTextbox "Happiness went up!\nDiscipline went up!\nTiredness went down!\n"
   0c62:  playAnimation Partner 11
@@ -181,17 +158,14 @@ section_51(51):     ; len=8178
   0c68:  jump section_51+0xf2c
   0c6c:  playAnimation Partner 13
   0c70:  waitForEntity System
-  0c72:  setDialogOwner 5
-  0c74:  showTextbox "<ORANGE><DIGIMON><WHITE> is full.\n"
+  0c72:  speak 5 "<ORANGE><DIGIMON><WHITE> is full.\n"
   0c92:  endSection
   0c94:  if money < 9000 then section_51+0xca8
   0ca4:  jump section_51+0xcdc
-  0ca8:  setDialogOwner 5
-  0caa:  showTextbox "You're short of bits.\n"
+  0ca8:  speak 5 "You're short of bits.\n"
   0cda:  endSection
   0cdc:  if trigger(640) AND (cond & Hungry) == 0x00 then section_51+0xf04
-  0cec:  setDialogOwner System
-  0cee:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed\na Galaxy Course!\n"
+  0cec:  speak System "<ORANGE><DIGIMON><WHITE> enjoyed\na Galaxy Course!\n"
   0d2c:  addStats Offense 3
   0d30:  addStats Defense 3
   0d34:  addStats Speed 3
@@ -204,8 +178,7 @@ section_51(51):     ; len=8178
   0d50:  addStats Energy 45
   0d54:  addStats Weight 5
   0d58:  reduceMoney 9000
-  0d5e:  setDialogOwner System
-  0d60:  showTextbox "HP went up thirty!\nMP went up thirty!\nOffense Power went up three!\n"
+  0d5e:  speak System "HP went up thirty!\nMP went up thirty!\nOffense Power went up three!\n"
   0dea:  showTextbox "Defense Power went up three!\nSpeed went up three!\nBrains went up three!\n"
   0e7e:  showTextbox "Happiness went up!\nDiscipline went up!\nTiredness went down!\n"
   0efa:  playAnimation Partner 11
@@ -213,11 +186,9 @@ section_51(51):     ; len=8178
   0f00:  jump section_51+0xf2c
   0f04:  playAnimation Partner 13
   0f08:  waitForEntity System
-  0f0a:  setDialogOwner 5
-  0f0c:  showTextbox "<ORANGE><DIGIMON><WHITE> is full.\n"
+  0f0a:  speak 5 "<ORANGE><DIGIMON><WHITE> is full.\n"
   0f2a:  endSection
-  0f2c:  setDialogOwner 5
-  0f2e:  showTextbox "See you guys later.\n"
+  0f2c:  speak 5 "See you guys later.\n"
   0f5a:  endSection
   0f5c:  setDialogOwner System
   0f5e:  setSelection section_51+0x101e section_51+0x14e6 section_51+0x19f0
@@ -226,12 +197,10 @@ section_51(51):     ; len=8178
   101a:  jump section_51+0x1f24
   101e:  if money < 1000 then section_51+0x1032
   102e:  jump section_51+0x104a
-  1032:  setDialogOwner 5
-  1034:  showTextbox ".......\n"
+  1032:  speak 5 ".......\n"
   1048:  endSection
   104a:  if trigger(640) AND (cond & Hungry) == 0x00 then section_51+0x10a6
-  105a:  setDialogOwner System
-  105c:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed a\nWonder Boiled Egg!\n"
+  105a:  speak System "<ORANGE><DIGIMON><WHITE> enjoyed a\nWonder Boiled Egg!\n"
   10a2:  storeRandom 110 2
   10a6:  if pstat[110] > 0 then section_51+0x11c4
   10b2:  addStats Offense 1
@@ -246,10 +215,8 @@ section_51(51):     ; len=8178
   10d6:  addStats Energy 18
   10da:  addStats Weight 1
   10de:  reduceMoney 1000
-  10e4:  setDialogOwner System
-  10e6:  showTextbox "HP went up ten!\nOffensive Power went up one!\nSpeed went up one!\n"
-  116a:  setDialogOwner System
-  116c:  showTextbox "Happiness went up!\nTiredness went down!\n"
+  10e4:  speak System "HP went up ten!\nOffensive Power went up one!\nSpeed went up one!\n"
+  116a:  speak System "Happiness went up!\nTiredness went down!\n"
   11c0:  jump section_51+0x1f24
   11c4:  if pstat[110] > 1 then section_51+0x12e4
   11d0:  addStats Offense 0
@@ -264,10 +231,8 @@ section_51(51):     ; len=8178
   11f4:  addStats Energy 18
   11f8:  addStats Weight 1
   11fc:  reduceMoney 1000
-  1202:  setDialogOwner System
-  1204:  showTextbox "MP went up ten!\nDefensive Power went up one!\nBrains went up one!\n"
-  128a:  setDialogOwner System
-  128c:  showTextbox "Happiness went up!\nTiredness went down!\n"
+  1202:  speak System "MP went up ten!\nDefensive Power went up one!\nBrains went up one!\n"
+  128a:  speak System "Happiness went up!\nTiredness went down!\n"
   12e0:  jump section_51+0x1f24
   12e4:  if pstat[110] > 2 then section_51+0x14bc
   12f0:  addStats Offense 2
@@ -282,28 +247,23 @@ section_51(51):     ; len=8178
   1314:  addStats Energy 18
   1318:  addStats Weight 1
   131c:  reduceMoney 1000
-  1322:  setDialogOwner System
-  1324:  showTextbox "HP went up twenty!\nMP went up twenty!\nOffensive Power went up two!\n"
+  1322:  speak System "HP went up twenty!\nMP went up twenty!\nOffensive Power went up two!\n"
   13ae:  showTextbox "Defensive Power went up two!\nSpeed went up two!\nBrains went up two!\n"
-  143a:  setDialogOwner System
-  143c:  showTextbox "Happiness went up!\nDiscipline went up!\nTiredness went down!\n"
+  143a:  speak System "Happiness went up!\nDiscipline went up!\nTiredness went down!\n"
   14b8:  jump section_51+0x1f24
   14bc:  playAnimation Partner 11
   14c0:  waitForEntity Partner
   14c2:  jump section_51+0x1f24
   14c6:  playAnimation Partner 13
   14ca:  waitForEntity System
-  14cc:  setDialogOwner 5
-  14ce:  showTextbox ".......!\n"
+  14cc:  speak 5 ".......!\n"
   14e4:  endSection
   14e6:  if money < 2500 then section_51+0x14fa
   14f6:  jump section_51+0x1518
-  14fa:  setDialogOwner 5
-  14fc:  showTextbox "..........\n"
+  14fa:  speak 5 "..........\n"
   1516:  endSection
   1518:  if trigger(640) AND (cond & Hungry) == 0x00 then section_51+0x1574
-  1528:  setDialogOwner System
-  152a:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed a\nWonder Egg Omelet!\n"
+  1528:  speak System "<ORANGE><DIGIMON><WHITE> enjoyed a\nWonder Egg Omelet!\n"
   1570:  storeRandom 110 2
   1574:  if pstat[110] > 0 then section_51+0x16c0
   1580:  addStats Offense 2
@@ -318,10 +278,8 @@ section_51(51):     ; len=8178
   15a4:  addStats Energy 24
   15a8:  addStats Weight 2
   15ac:  reduceMoney 2500
-  15b2:  setDialogOwner System
-  15b4:  showTextbox "HP went up twenty!\nOffensive Power went up two!\nSpeed went up two!\n"
-  163e:  setDialogOwner System
-  1640:  showTextbox "Happiness went up!\nDiscipline went up!\nTiredness went down!\n"
+  15b2:  speak System "HP went up twenty!\nOffensive Power went up two!\nSpeed went up two!\n"
+  163e:  speak System "Happiness went up!\nDiscipline went up!\nTiredness went down!\n"
   16bc:  jump section_51+0x1f24
   16c0:  if pstat[110] > 1 then section_51+0x17e6
   16cc:  addStats Offense 0
@@ -336,10 +294,8 @@ section_51(51):     ; len=8178
   16f0:  addStats Energy 24
   16f4:  addStats Weight 2
   16f8:  reduceMoney 2500
-  16fe:  setDialogOwner System
-  1700:  showTextbox "MP went up twenty!\nDefensive Power went up two!\nBrains went up two!\n"
-  178c:  setDialogOwner System
-  178e:  showTextbox "Happiness went up!\nTiredness went down!\n"
+  16fe:  speak System "MP went up twenty!\nDefensive Power went up two!\nBrains went up two!\n"
+  178c:  speak System "Happiness went up!\nTiredness went down!\n"
   17e2:  jump section_51+0x1f24
   17e6:  if pstat[110] > 2 then section_51+0x19c6
   17f2:  addStats Offense 3
@@ -354,28 +310,23 @@ section_51(51):     ; len=8178
   1816:  addStats Energy 24
   181a:  addStats Weight 2
   181e:  reduceMoney 2500
-  1824:  setDialogOwner System
-  1826:  showTextbox "HP went up thirty!\nMP went up thirty!\nOffense Power went up three!\n"
+  1824:  speak System "HP went up thirty!\nMP went up thirty!\nOffense Power went up three!\n"
   18b0:  showTextbox "Defense Power went up three!\nSpeed went up three!\nBrains went up three!\n"
-  1944:  setDialogOwner System
-  1946:  showTextbox "Happiness went up!\nDiscipline went up!\nTiredness went down!\n"
+  1944:  speak System "Happiness went up!\nDiscipline went up!\nTiredness went down!\n"
   19c2:  jump section_51+0x1f24
   19c6:  playAnimation Partner 11
   19ca:  waitForEntity Partner
   19cc:  jump section_51+0x1f24
   19d0:  playAnimation Partner 13
   19d4:  waitForEntity System
-  19d6:  setDialogOwner 5
-  19d8:  showTextbox ".......!\n"
+  19d6:  speak 5 ".......!\n"
   19ee:  endSection
   19f0:  if money < 6000 then section_51+0x1a04
   1a00:  jump section_51+0x1a22
-  1a04:  setDialogOwner 5
-  1a06:  showTextbox "..........\n"
+  1a04:  speak 5 "..........\n"
   1a20:  endSection
   1a22:  if trigger(640) AND (cond & Hungry) == 0x00 then section_51+0x1a7a
-  1a32:  setDialogOwner System
-  1a34:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed a\nWonder Egg Bowl!\n"
+  1a32:  speak System "<ORANGE><DIGIMON><WHITE> enjoyed a\nWonder Egg Bowl!\n"
   1a76:  storeRandom 110 2
   1a7a:  if pstat[110] > 0 then section_51+0x1bce
   1a86:  addStats Offense 3
@@ -390,10 +341,8 @@ section_51(51):     ; len=8178
   1aaa:  addStats Energy 36
   1aae:  addStats Weight 3
   1ab2:  reduceMoney 6000
-  1ab8:  setDialogOwner System
-  1aba:  showTextbox "HP went up thirty!\nOffense Power went up thirty!\nSpeed went up thirty!\n"
-  1b4c:  setDialogOwner System
-  1b4e:  showTextbox "Happiness went up!\nDiscipline went up!\nTiredness went down!\n"
+  1ab8:  speak System "HP went up thirty!\nOffense Power went up thirty!\nSpeed went up thirty!\n"
+  1b4c:  speak System "Happiness went up!\nDiscipline went up!\nTiredness went down!\n"
   1bca:  jump section_51+0x1f24
   1bce:  if pstat[110] > 1 then section_51+0x1d24
   1bda:  addStats Offense 0
@@ -408,10 +357,8 @@ section_51(51):     ; len=8178
   1bfe:  addStats Energy 36
   1c02:  addStats Weight 3
   1c06:  reduceMoney 6000
-  1c0c:  setDialogOwner System
-  1c0e:  showTextbox "MP went up thirty!\nDefense Power went up three!\nBrains went up three!\n"
-  1c9e:  setDialogOwner System
-  1ca0:  showTextbox "Happiness went up!\nDiscipline went up!\nTiredness has went up!\n"
+  1c0c:  speak System "MP went up thirty!\nDefense Power went up three!\nBrains went up three!\n"
+  1c9e:  speak System "Happiness went up!\nDiscipline went up!\nTiredness has went up!\n"
   1d20:  jump section_51+0x1f24
   1d24:  if pstat[110] > 2 then section_51+0x1ef8
   1d30:  addStats Offense 4
@@ -426,21 +373,17 @@ section_51(51):     ; len=8178
   1d54:  addStats Energy 36
   1d58:  addStats Weight 3
   1d5c:  reduceMoney 6000
-  1d62:  setDialogOwner System
-  1d64:  showTextbox "HP went up forty!\nMP went up forty!\nOffense Power went up four!\n"
+  1d62:  speak System "HP went up forty!\nMP went up forty!\nOffense Power went up four!\n"
   1de8:  showTextbox "Defense Power went up four!\nSpeed went up four!\nBrains went up four!\n"
-  1e76:  setDialogOwner System
-  1e78:  showTextbox "Happiness went up!\nDiscipline went up!\nTiredness went down.\n"
+  1e76:  speak System "Happiness went up!\nDiscipline went up!\nTiredness went down.\n"
   1ef4:  jump section_51+0x1f24
   1ef8:  playAnimation Partner 11
   1efc:  waitForEntity Partner
   1efe:  jump section_51+0x1f24
   1f02:  playAnimation Partner 13
   1f06:  waitForEntity System
-  1f08:  setDialogOwner 5
-  1f0a:  showTextbox "........!\n"
+  1f08:  speak 5 "........!\n"
   1f22:  endSection
-  1f24:  setDialogOwner 5
-  1f26:  showTextbox "..........\n"
+  1f24:  speak 5 "..........\n"
   1f40:  endSection
   1f42:  garbage 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 19 00 00 00 df 00 88 00 1b 03 18 00 4e 00 19 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 40 82 97 82 89 82 8c 82 8c 81 40 82 99 82 8f 82 95 81 40 82 85 82 81 82 94 81 48 0d 00 00 00 16 00 c4 00 19 00 00 00 e4 00 88 00 1b 04 18 00 9a 00 19 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 85 82 81 82 94 81 48 0d 00 00 00 16 00 da 06 19 00 00 00 00 01 88 00 1b 05 18 00 c4 00 19 00 1b 05 1a 00

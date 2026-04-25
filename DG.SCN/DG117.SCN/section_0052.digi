@@ -1,13 +1,13 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG117.SCN, section 52
 
 section_52(52):     ; len=1340
   0000:  entityWalkTo Player -2600 4000 0
   0008:  if !trigger(114) AND !trigger(147) then section_52+0x1c
   0018:  warpTo MIST05 1 255
-  001c:  addPStat 120 1
+  001c:  pstat[120] += 1
   0020:  if pstat[120] != 10 then section_52+0x34
-  002c:  setPStat 120 0
+  002c:  pstat[120] = 0
   0030:  warpTo MIST05 1 255
   0034:  storeRandom 110 99
   0038:  if pstat[110] >= 69 then section_52+0x4c

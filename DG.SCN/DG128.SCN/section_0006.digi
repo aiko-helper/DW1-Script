@@ -1,27 +1,22 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG128.SCN, section 6
 
 section_6(6):     ; len=814
   0000:  if !trigger(11) OR !trigger(12) then section_6+0x2e
-  0010:  setDialogOwner 6
-  0012:  showTextbox "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n"
+  0010:  speak 6 "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n"
   002a:  jump section_6+0xfe
   002e:  if !trigger(12) OR !trigger(13) then section_6+0x5c
-  003e:  setDialogOwner 6
-  0040:  showTextbox "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n"
+  003e:  speak 6 "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n"
   0058:  jump section_6+0xfe
   005c:  if !trigger(12) OR !trigger(13) then section_6+0x8a
-  006c:  setDialogOwner 6
-  006e:  showTextbox "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n"
+  006c:  speak 6 "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n"
   0086:  jump section_6+0xfe
   008a:  if !trigger(11) AND !trigger(12) AND !trigger(13) then section_6+0xce
-  009e:  setDialogOwner 6
-  00a0:  showTextbox "Thanks for coming!\n"
+  009e:  speak 6 "Thanks for coming!\n"
   00ca:  jump section_6+0xfe
-  00ce:  setDialogOwner 6
-  00d0:  showTextbox "Hello, I'm Mojyamon!\n"
-  00fe:  setPStat 254 6
-  0102:  setPStat 249 2
+  00ce:  speak 6 "Hello, I'm Mojyamon!\n"
+  00fe:  pstat[254] = 6
+  0102:  pstat[249] = 2
   0106:  callSubroutine 2
   0108:  if !trigger(11) AND !trigger(12) AND !trigger(13) then section_6+0x120
   011c:  playAnimation 6 29
@@ -41,24 +36,22 @@ section_6(6):     ; len=814
   01b4:  endSection
   01b6:  if !trigger(252) then section_6+0x1c4
   01c2:  endSection
-  01c4:  setDialogOwner 6
-  01c6:  showTextbox "<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n"
+  01c4:  speak 6 "<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n"
   0228:  showTextbox "I've decided I'm going\nto the city. We'll work\ntogether, alright?\n"
   02b0:  jump section_6+0x2b4
   02b4:  entityWalkTo 6 -1605 -856 1
   02bc:  if pstat[101] >= 6 then section_6+0x2dc
-  02c8:  addPStat 101 1
+  02c8:  pstat[101] += 1
   02cc:  delay 10
   02d0:  lookAt Player 6
   02d4:  lookAt Partner 6
   02d8:  jump section_6+0x2b4
   02dc:  waitForEntity 6
   02de:  unloadEntity 6
-  02e0:  setPStat 101 0
+  02e0:  pstat[101] = 0
   02e4:  playSound 8 11
-  02e8:  setDialogOwner System
-  02ea:  showTextbox "Mojyamon joins the city!\n"
+  02e8:  speak System "Mojyamon joins the city!\n"
   0320:  setTrigger 252
   0324:  setTrigger 109
-  0328:  addPStat 1 2
+  0328:  pstat[1] += 2
   032c:  endSection

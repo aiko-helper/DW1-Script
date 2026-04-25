@@ -1,12 +1,11 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; MAP159.SCN, section 82
 
 section_82(82):     ; len=1366
   0000:  setRotation Player 2640
   0004:  setTextboxOrigin 1484 0 -241
   000c:  callSubroutine 39
-  000e:  setDialogOwner 200
-  0010:  showTextbox " <GREEN>Training: Hide In Trash <WHITE>\n"
+  000e:  speak 200 " <GREEN>Training: Hide In Trash <WHITE>\n"
   004c:  setSelection section_82+0x82 section_82+0xc0 section_82+0x1a6
   0054:  showTextbox "Begin\nExplain\nQuit\n"
   007e:  waitForSelectionChoice
@@ -16,24 +15,22 @@ section_82(82):     ; len=1366
   008c:  showTextbox "Normal\nBonus Try\nQuit\n"
   00bc:  waitForSelectionChoice
   00be:  endSection
-  00c0:  setDialogOwner 200
-  00c2:  showTextbox "Mental training by putting\nyourself in dirty trash.\nMax MP is greatly boosted.\n"
+  00c0:  speak 200 "Mental training by putting\nyourself in dirty trash.\nMax MP is greatly boosted.\n"
   0164:  setSelection section_82+0xc0 section_82+0x82 section_82+0x1a6
   016c:  showTextbox "Explain again\nBegin\nQuit\n"
   01a2:  waitForSelectionChoice
   01a4:  endSection
   01a6:  endSection
   01a8:  fadeOutHUD
-  01aa:  setPStat 254 4
-  01ae:  setPStat 246 0
+  01aa:  pstat[254] = 4
+  01ae:  pstat[246] = 0
   01b2:  callDigimonSubroutine 214
   01b4:  callSubroutine 7
   01b6:  endSection
   01b8:  setTexboxMode 1 0
-  01bc:  setDialogOwner System
-  01be:  showTextbox " <YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n"
-  0222:  setPStat 254 4
-  0226:  setPStat 246 1
+  01bc:  speak System " <YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n"
+  0222:  pstat[254] = 4
+  0226:  pstat[246] = 1
   022a:  callDigimonSubroutine 214
   022c:  callSubroutine 7
   022e:  setTexboxMode 0 0

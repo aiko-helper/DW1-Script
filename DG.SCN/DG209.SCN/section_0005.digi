@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG209.SCN, section 5
 
 section_5(5):     ; len=2322
@@ -12,10 +12,10 @@ section_5(5):     ; len=2322
   006a:  showTextbox "<LIGHTBLUE><PLAYER><WHITE>\n<ORANGE><DIGIMON><WHITE>\n"
   007e:  waitForSelectionChoice
   0080:  jump section_5+0x804
-  0084:  setPStat 254 2
+  0084:  pstat[254] = 2
   0088:  callSubroutine 32
   008a:  endSection
-  008c:  setPStat 254 3
+  008c:  pstat[254] = 3
   0090:  callSubroutine 32
   0092:  endSection
   0094:  setDialogOwner Player
@@ -86,14 +86,14 @@ section_5(5):     ; len=2322
   01bc:  setTrigger 424
   01c0:  setTrigger 417
   01c4:  unsetTrigger 3
-  01c8:  setPStat 254 7
+  01c8:  pstat[254] = 7
   01cc:  callSubroutine 8
   01ce:  jump section_5+0x804
   01d2:  setTrigger 3
-  01d6:  setPStat 254 7
+  01d6:  pstat[254] = 7
   01da:  callSubroutine 8
   01dc:  jump section_5+0x804
-  01e0:  setPStat 254 7
+  01e0:  pstat[254] = 7
   01e4:  callSubroutine 1
   01e6:  jump section_5+0x804
   01ea:  setDialogOwner Player
@@ -101,12 +101,11 @@ section_5(5):     ; len=2322
   01f4:  showTextbox "Card\nItem Keeper\nOther shops\n"
   0232:  waitForSelectionChoice
   0234:  jump section_5+0x804
-  0238:  setPStat 254 7
+  0238:  pstat[254] = 7
   023c:  callSubroutine 11
   023e:  endSection
-  0240:  setPStat 254 7
-  0244:  setDialogOwner 7
-  0246:  showTextbox "I have fresh cards today,\nas usual.\n"
+  0240:  pstat[254] = 7
+  0244:  speak 7 "I have fresh cards today,\nas usual.\n"
   0292:  callSubroutine 15
   0294:  setDialogOwner Player
   0296:  setSelection section_5+0x2e4 section_5+0x4bc section_5+0x504
@@ -123,8 +122,7 @@ section_5(5):     ; len=2322
   036e:  showTextbox "Buy a single card\nCancel\n"
   03a4:  waitForSelectionChoice
   03a6:  jump section_5+0x4c2
-  03aa:  setDialogOwner 7
-  03ac:  showTextbox "One pack will cost\nfive hund bits. What's\ninside is a surprise.\n"
+  03aa:  speak 7 "One pack will cost\nfive hund bits. What's\ninside is a surprise.\n"
   0430:  setDialogOwner Player
   0432:  setSelection section_5+0x458 section_5+0x4c2
   0438:  showTextbox "Buy\nCancel\n"
@@ -132,8 +130,7 @@ section_5(5):     ; len=2322
   0454:  jump section_5+0x4c2
   0458:  reduceMoney 500
   045e:  callSubroutine 15
-  0460:  setDialogOwner 7
-  0462:  showTextbox "Open your pack right away.\n"
+  0460:  speak 7 "Open your pack right away.\n"
   049c:  unsetTrigger 3
   04a0:  unsetTrigger 4
   04a4:  callSubroutine 14
@@ -146,26 +143,24 @@ section_5(5):     ; len=2322
   04b8:  jump section_5+0x4c2
   04bc:  setTrigger 3
   04c0:  callSubroutine 14
-  04c2:  setDialogOwner 7
-  04c4:  showTextbox "What else do ya need amigo?\n"
+  04c2:  speak 7 "What else do ya need amigo?\n"
   0500:  jump section_5+0x294
   0504:  callSubroutine 16
-  0506:  setDialogOwner 7
-  0508:  showTextbox "Come again.\n"
+  0506:  speak 7 "Come again.\n"
   0524:  endSection
   0526:  setDialogOwner Player
   0528:  setSelection section_5+0x576 section_5+0x57e section_5+0x586
   0530:  showTextbox "Sound Test\nWarp Shop\nExchange\n"
   0570:  waitForSelectionChoice
   0572:  jump section_5+0x804
-  0576:  setPStat 254 7
+  0576:  pstat[254] = 7
   057a:  callSubroutine 9
   057c:  endSection
-  057e:  setPStat 254 7
+  057e:  pstat[254] = 7
   0582:  callSubroutine 10
   0584:  endSection
-  0586:  setPStat 254 7
-  058a:  setPStat 249 2
+  0586:  pstat[254] = 7
+  058a:  pstat[249] = 2
   058e:  callSubroutine 2
   0590:  endSection
   0592:  setDialogOwner System
@@ -187,16 +182,13 @@ section_5(5):     ; len=2322
   0630:  setTrigger 3
   0634:  callSubroutine 0
   0636:  if !trigger(3) then section_5+0x67c
-  0642:  setDialogOwner Player
-  0644:  showTextbox "I didn't have anything.\n"
+  0642:  speak Player "I didn't have anything.\n"
   0678:  jump section_5+0x804
   067c:  if pstat[254] != 255 then section_5+0x6de
-  0688:  setDialogOwner 7
-  068a:  showTextbox "You're not going to\ngive me anything?\n"
+  0688:  speak 7 "You're not going to\ngive me anything?\n"
   06da:  jump section_5+0x6f6
   06de:  callSubroutine 12
-  06e0:  setDialogOwner 7
-  06e2:  showTextbox "Thanks.\n"
+  06e0:  speak 7 "Thanks.\n"
   06f6:  jump section_5+0x804
   06fa:  giveItem SuperSpeedDisk 1
   06fe:  if !trigger(0) then section_5+0x716
@@ -204,53 +196,46 @@ section_5(5):     ; len=2322
   070e:  callSubroutine 0
   0710:  callSubroutine 13
   0712:  giveItem SuperSpeedDisk 1
-  0716:  setDialogOwner Player
-  0718:  showTextbox "I got number twenty one.\n"
+  0716:  speak Player "I got number twenty one.\n"
   074e:  jump section_5+0x804
   0752:  storeDigimonType 200
   0754:  if pstat[200] != 39 then section_5+0x7a6
-  0760:  setDialogOwner Player
-  0762:  showTextbox "Digivolve to original form.\n"
+  0760:  speak Player "Digivolve to original form.\n"
   079e:  copyPStat 5 254
   07a2:  jump section_5+0x7de
-  07a6:  setDialogOwner Player
-  07a8:  showTextbox "Digivolve to Sukamon.\n"
+  07a6:  speak Player "Digivolve to Sukamon.\n"
   07d8:  storeDigimonType 5
-  07da:  setPStat 254 39
+  07da:  pstat[254] = 39
   07de:  fadeOutHUD
   07e0:  callDigimonSubroutine 2
   07e2:  waitForEntity 201
-  07e4:  setDialogOwner Player
-  07e6:  showTextbox "Complete.\n"
+  07e4:  speak Player "Complete.\n"
   07fe:  jump section_5+0x804
   0802:  callSubroutine 47
   0804:  endSection
   0806:  if trigger(37) then section_5+0x81c
-  0812:  setPStat 254 7
+  0812:  pstat[254] = 7
   0816:  callSubroutine 18
   0818:  jump section_5+0x852
-  081c:  setDialogOwner 7
-  081e:  showTextbox "Registering to ' - <SELECTED TOURNAMENT>- '\n"
+  081c:  speak 7 "Registering to ' - <SELECTED TOURNAMENT>- '\n"
   0852:  endSection
   0854:  if trigger(37) then section_5+0x88c
-  0860:  setDialogOwner 7
-  0862:  showTextbox "There's no entry.\n"
+  0860:  speak 7 "There's no entry.\n"
   088a:  endSection
-  088c:  setPStat 254 7
+  088c:  pstat[254] = 7
   0890:  callSubroutine 6
   0892:  warpTo TWNB01 0 255
   0896:  callSubroutine 22
   0898:  endSection
   089a:  jump section_5+0x8fe
-  089e:  setDialogOwner Player
-  08a0:  showTextbox "Currently, it's <DISCOUNT>bits.\n"
+  089e:  speak Player "Currently, it's <DISCOUNT>bits.\n"
   08d2:  setSelection section_5+0x8fe section_5+0x904 section_5+0x8fc
   08da:  showTextbox "Clear\nAdd\nEnd\n"
   08fa:  waitForSelectionChoice
   08fc:  endSection
   08fe:  callSubroutine 30
   0900:  jump section_5+0x89e
-  0904:  setPStat 243 19
-  0908:  setPStat 244 136
+  0904:  pstat[243] = 19
+  0908:  pstat[244] = 136
   090c:  callSubroutine 31
   090e:  jump section_5+0x89e

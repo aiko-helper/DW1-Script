@@ -1,24 +1,17 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG206.SCN, section 6
 
 section_6(6):     ; len=2218
-  0000:  setPStat 122 0
+  0000:  pstat[122] = 0
   0004:  if trigger(257) OR trigger(357) then section_6+0x358
-  0014:  setDialogOwner 6
-  0016:  showTextbox "Hey, do you want to play a\nmatch with me? If you win,\nI'll do whatever you say.\n"
-  00ba:  setDialogOwner Player
-  00bc:  showTextbox "What kind of match?\n"
-  00e8:  setDialogOwner 6
-  00ea:  showTextbox "What I call...\nDigimon Curling! \nI'll tell you more inside.\n"
-  0166:  setDialogOwner Player
-  0168:  showTextbox "Hmm, what happens if I lose?\n"
-  01a6:  setDialogOwner 6
-  01a8:  showTextbox "Nothing the first time.\nBut next time you have to\ngive me a fish first.\n"
-  023c:  setDialogOwner Player
-  023e:  showTextbox "Then if I win, you come to\nthe city with me. OK?"
+  0014:  speak 6 "Hey, do you want to play a\nmatch with me? If you win,\nI'll do whatever you say.\n"
+  00ba:  speak Player "What kind of match?\n"
+  00e8:  speak 6 "What I call...\nDigimon Curling! \nI'll tell you more inside.\n"
+  0166:  speak Player "Hmm, what happens if I lose?\n"
+  01a6:  speak 6 "Nothing the first time.\nBut next time you have to\ngive me a fish first.\n"
+  023c:  speak Player "Then if I win, you come to\nthe city with me. OK?"
   02a2:  .string "? to\nThen, let's do it.\n"  ; dead string
-  02d4:  setDialogOwner 6
-  02d6:  showTextbox "Alright, that's fine. \nLet's go inside.\n"
+  02d4:  speak 6 "Alright, that's fine. \nLet's go inside.\n"
   032a:  setTrigger 357
   032e:  entityWalkTo 6 1905 1667 0
   0336:  delay 10
@@ -29,8 +22,7 @@ section_6(6):     ; len=2218
   0352:  warpTo FRZL17 1 255
   0356:  endSection
   0358:  if trigger(257) then section_6+0x444
-  0364:  setDialogOwner 6
-  0366:  showTextbox "Hey, do you want to play a\nmatch with me? Give me a\nfish and you can play me.\n"
+  0364:  speak 6 "Hey, do you want to play a\nmatch with me? Give me a\nfish and you can play me.\n"
   0406:  setDialogOwner Player
   0408:  setSelection section_6+0x656 section_6+0x61e
   040e:  showTextbox "I'll get you\nNo thanks\n"
@@ -38,28 +30,23 @@ section_6(6):     ; len=2218
   0442:  endSection
   0444:  if trigger(92) then section_6+0x530
   0450:  setTrigger 92
-  0454:  setDialogOwner 6
-  0456:  showTextbox "Hey bro! I made a\nskating rink here.\n"
+  0454:  speak 6 "Hey bro! I made a\nskating rink here.\n"
   04a4:  showTextbox "One fish for one match.\nBut if you win, I'll give\nyou a nice prize.\n"
-  0530:  setPStat 122 0
-  0534:  setDialogOwner 6
-  0536:  showTextbox "Hey dude, don't you want to\nhave a match with me? You can\nchallenge me with one fish.\n"
+  0530:  pstat[122] = 0
+  0534:  speak 6 "Hey dude, don't you want to\nhave a match with me? You can\nchallenge me with one fish.\n"
   05e6:  setDialogOwner Player
   05e8:  setSelection section_6+0x656 section_6+0x61e
   05ee:  showTextbox "You're on\nNo thanks\n"
   061a:  waitForSelectionChoice
   061c:  endSection
-  061e:  setPStat 113 0
-  0622:  setDialogOwner 6
-  0624:  showTextbox "Shoot, that's no fun.\n"
+  061e:  pstat[113] = 0
+  0622:  speak 6 "Shoot, that's no fun.\n"
   0654:  endSection
-  0656:  setDialogOwner 6
-  0658:  showTextbox "Give me a fish!\n"
+  0656:  speak 6 "Give me a fish!\n"
   067c:  setTrigger 3
   0680:  callSubroutine 0
   0682:  if !trigger(3) then section_6+0x6d0
-  068e:  setDialogOwner Player
-  0690:  showTextbox "I don't got anything now...\n"
+  068e:  speak Player "I don't got anything now...\n"
   06cc:  jump section_6+0x81e
   06d0:  if pstat[254] != 62 AND pstat[254] != 63 AND pstat[254] != 64 AND pstat[254] != 65 then section_6+0x6ee
   06e8:  callSubroutine 12
@@ -70,15 +57,12 @@ section_6(6):     ; len=2218
   0704:  if pstat[254] != 255 then section_6+0x718
   0710:  jump section_6+0x81e
   0714:  jump section_6+0x77a
-  0718:  setDialogOwner Player
-  071a:  showTextbox "Oh no, giving you this\ndoesn't do any good.\n"
+  0718:  speak Player "Oh no, giving you this\ndoesn't do any good.\n"
   0776:  jump section_6+0x81e
-  077a:  setDialogOwner 6
-  077c:  showTextbox "Wow, it looks tasty. Ooops,\nwe have to have a match first.\nLet's go inside.\n"
+  077a:  speak 6 "Wow, it looks tasty. Ooops,\nwe have to have a match first.\nLet's go inside.\n"
   0818:  warpTo FRZL17 1 255
   081c:  endSection
-  081e:  setPStat 113 0
-  0822:  setDialogOwner 6
-  0824:  showTextbox "Oh come on, dude.\nWhy don't you go fishing\nat Dragon Eye Lake.\n"
+  081e:  pstat[113] = 0
+  0822:  speak 6 "Oh come on, dude.\nWhy don't you go fishing\nat Dragon Eye Lake.\n"
   08a6:  endSection
   08a8:  endSection

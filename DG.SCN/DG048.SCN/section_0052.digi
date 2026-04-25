@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG048.SCN, section 52
 
 section_52(52):     ; len=1022
@@ -11,48 +11,41 @@ section_52(52):     ; len=1022
   001e:  lookAt Partner 7
   0022:  playAnimation Player 7
   0026:  delay 15
-  002a:  setDialogOwner Player
-  002c:  showTextbox "Hey!\n"
+  002a:  speak Player "Hey!\n"
   003a:  playAnimation Player 0
   003e:  lookAt 7 Player
   0042:  lookAt 8 Player
   0046:  lookAt 9 Player
-  004a:  setDialogOwner 7
-  004c:  showTextbox "What?\n"
+  004a:  speak 7 "What?\n"
   005c:  showTextbox "Did you come here to lose?\n"
   0096:  playSound 8 11
   009a:  playAnimation Player 20
   009e:  delay 15
-  00a2:  setDialogOwner Player
-  00a4:  showTextbox "That's my line!\n"
+  00a2:  speak Player "That's my line!\n"
   00c8:  playAnimation Player 0
-  00cc:  setDialogOwner 7
-  00ce:  showTextbox "I'm holding nothing back\nthis time. I'll make you cry!\n"
+  00cc:  speak 7 "I'm holding nothing back\nthis time. I'll make you cry!\n"
   0140:  setTrigger 1
-  0144:  setPStat 250 1
-  0148:  setPStat 251 7
-  014c:  setPStat 252 8
-  0150:  setPStat 253 9
+  0144:  pstat[250] = 1
+  0148:  pstat[251] = 7
+  014c:  pstat[252] = 8
+  0150:  pstat[253] = 9
   0154:  fadeOutHUD
   0156:  delay 1
   015a:  startBattle
   015c:  unsetTrigger 1
-  0160:  setPStat 250 0
+  0160:  pstat[250] = 0
   0164:  lookAt Player 7
   0168:  lookAt 7 Player
   016c:  lookAt Partner 7
-  0170:  setDialogOwner 8
-  0172:  showTextbox "Wow!\n"
-  0180:  setDialogOwner 9
-  0182:  showTextbox "Oh no!\n"
+  0170:  speak 8 "Wow!\n"
+  0180:  speak 9 "Oh no!\n"
   0194:  entityWalkTo 8 224 -784 1
   019c:  entityWalkTo 9 116 -784 1
   01a4:  waitForEntity 8
   01a6:  waitForEntity 9
   01a8:  unloadEntity 8
   01aa:  unloadEntity 9
-  01ac:  setDialogOwner 7
-  01ae:  showTextbox "Darn it!\n"
+  01ac:  speak 7 "Darn it!\n"
   01c4:  playAnimation 7 46
   01c8:  delay 30
   01cc:  playSound 8 9
@@ -83,14 +76,13 @@ section_52(52):     ; len=1022
   0230:  setObjectVisibility 24 0
   0234:  setObjectVisibility 25 0
   0238:  delay 40
-  023c:  setPStat 254 40
+  023c:  pstat[254] = 40
   0240:  callSubroutine 45
   0242:  delay 40
   0246:  unloadEntity 7
   0248:  playAnimation Player 24
   024c:  delay 15
-  0250:  setDialogOwner Player
-  0252:  showTextbox "What is it?\n"
+  0250:  speak Player "What is it?\n"
   026e:  playAnimation Player 0
   0272:  setObjectVisibility 0 1
   0276:  setObjectVisibility 1 1
@@ -125,23 +117,20 @@ section_52(52):     ; len=1022
   02f0:  callSubroutine 46
   02f2:  delay 40
   02f6:  playSound 8 11
-  02fa:  setDialogOwner 10
-  02fc:  showTextbox "Bye, dumb guys!\n"
+  02fa:  speak 10 "Bye, dumb guys!\n"
   0320:  lookAt Player 10
   0324:  playSound 8 5
   0328:  waitForEntity 10
   032a:  unloadEntity 10
   032c:  setTrigger 176
-  0330:  setDialogOwner Player
-  0332:  showTextbox "Darn, he got away!\n"
+  0330:  speak Player "Darn, he got away!\n"
   035c:  entityWalkToWithCamera Player 1234 2267 1
   0364:  entityWalkTo Partner 774 2251 1
   036c:  waitForEntity Player
   036e:  waitForEntity Partner
   0370:  setRotation Player 2037
   0374:  setRotation Partner 2300
-  0378:  setDialogOwner Player
-  037a:  showTextbox "There is an escape elevator.\nChasing him will do no good.\n"
+  0378:  speak Player "There is an escape elevator.\nChasing him will do no good.\n"
   03f2:  setTrigger 175
   03f6:  moveCameraToEntity Player 10
   03fa:  waitForEntity 200

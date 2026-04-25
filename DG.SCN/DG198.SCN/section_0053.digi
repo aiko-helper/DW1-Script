@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG198.SCN, section 53
 
 section_53(53):     ; len=1576
@@ -6,53 +6,45 @@ section_53(53):     ; len=1576
   000c:  endSection
   000e:  lookAt Player 11
   0012:  delay 5
-  0016:  setDialogOwner Player
-  0018:  showTextbox "How scary! I feel it\nin my bones.\n"
-  0060:  setDialogOwner 11
-  0062:  showTextbox "...\n"
-  006e:  setDialogOwner Player
-  0070:  showTextbox "Why doesn't he attack me?\n"
-  00a8:  setDialogOwner 11
-  00aa:  showTextbox "...\n"
-  00b6:  setDialogOwner Player
-  00b8:  showTextbox "Don't you need to fight?\n"
+  0016:  speak Player "How scary! I feel it\nin my bones.\n"
+  0060:  speak 11 "...\n"
+  006e:  speak Player "Why doesn't he attack me?\n"
+  00a8:  speak 11 "...\n"
+  00b6:  speak Player "Don't you need to fight?\n"
   00ee:  setDialogOwner Player
   00f0:  setSelection section_53+0x232 section_53+0x16e
   00f6:  showTextbox "We should hurry up and go.\nWe have to test our skills.\n"
   0168:  waitForSelectionChoice
   016a:  jump section_53+0x16e
-  016e:  setDialogOwner Player
-  0170:  showTextbox "Let's go, <ORANGE><DIGIMON><WHITE>!\n"
+  016e:  speak Player "Let's go, <ORANGE><DIGIMON><WHITE>!\n"
   0192:  setTrigger 1
-  0196:  setPStat 250 1
-  019a:  setPStat 251 11
-  019e:  setPStat 252 255
-  01a2:  setPStat 253 255
+  0196:  pstat[250] = 1
+  019a:  pstat[251] = 11
+  019e:  pstat[252] = 255
+  01a2:  pstat[253] = 255
   01a6:  fadeOutHUD
   01a8:  delay 1
   01ac:  startBattle
   01ae:  unsetTrigger 1
-  01b2:  setPStat 250 0
+  01b2:  pstat[250] = 0
   01b6:  lookAt Player 11
   01ba:  lookAt 11 Player
   01be:  lookAt Partner 11
-  01c2:  setDialogOwner 11
-  01c4:  showTextbox "...\n"
+  01c2:  speak 11 "...\n"
   01d0:  jump section_53+0x1d4
   01d4:  entityWalkTo 11 0 0 1
   01dc:  if pstat[101] >= 3 then section_53+0x1fc
-  01e8:  addPStat 101 1
+  01e8:  pstat[101] += 1
   01ec:  delay 20
   01f0:  lookAt Player 11
   01f4:  lookAt Partner 11
   01f8:  jump section_53+0x1d4
   01fc:  waitForEntity 11
   01fe:  unloadEntity 11
-  0200:  setPStat 101 0
-  0204:  setDialogOwner Player
-  0206:  showTextbox "Did we win?\n"
+  0200:  pstat[101] = 0
+  0204:  speak Player "Did we win?\n"
   0222:  setTrigger 254
-  0226:  addPStat 1 3
+  0226:  pstat[1] += 3
   022a:  moveCameraToEntity Player 15
   022e:  waitForEntity 200
   0230:  endSection

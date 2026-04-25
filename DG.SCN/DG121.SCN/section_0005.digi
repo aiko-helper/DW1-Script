@@ -1,9 +1,8 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG121.SCN, section 5
 
 section_5(5):     ; len=2022
-  0000:  setDialogOwner 5
-  0002:  showTextbox "Hello there. Do you know\nabout Digimon cards?\n"
+  0000:  speak 5 "Hello there. Do you know\nabout Digimon cards?\n"
   0062:  showTextbox "I collect Meramon Cards.\nBring me one and I'll buy\nit for fifteen hund bits.\n"
   0100:  if card[30] < 1 then section_5+0x142
   010e:  setDialogOwner Player
@@ -12,8 +11,7 @@ section_5(5):     ; len=2022
   013e:  waitForSelectionChoice
   0140:  endSection
   0142:  endSection
-  0144:  setDialogOwner 5
-  0146:  showTextbox "Great! Thanks.\n"
+  0144:  speak 5 "Great! Thanks.\n"
   0168:  takeCard 30
   016a:  addMoney 1500
   0170:  endSection

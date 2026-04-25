@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG015.SCN, section 51
 
 section_51(51):     ; len=3738
@@ -11,25 +11,20 @@ section_51(51):     ; len=3738
   0028:  setRotation Player 1024
   002c:  delay 5
   0030:  if !trigger(186) then section_51+0xd2
-  003c:  setDialogOwner Player
-  003e:  showTextbox "Oh no, if I don't do\nanything, it will dry up...\n"
+  003c:  speak Player "Oh no, if I don't do\nanything, it will dry up...\n"
   00a4:  showTextbox "I hope it rains...\n"
   00ce:  jump section_51+0x244
   00d2:  setTrigger 186
-  00d6:  setDialogOwner Player
-  00d8:  showTextbox "Wow, interesting.\nIt's sprouting.\n"
+  00d6:  speak Player "Wow, interesting.\nIt's sprouting.\n"
   0120:  delay 20
   0124:  playAnimation Player 16
   0128:  delay 20
-  012c:  setDialogOwner Player
-  012e:  showTextbox "It moved a little bit.\nIs this the mysterious plant\neveryone is talking about?\n"
+  012c:  speak Player "It moved a little bit.\nIs this the mysterious plant\neveryone is talking about?\n"
   01d0:  playAnimation Player 22
   01d4:  delay 20
-  01d8:  setDialogOwner Player
-  01da:  showTextbox "It's wilting. If I don't\ndo anything, it'll die.\n"
+  01d8:  speak Player "It's wilting. If I don't\ndo anything, it'll die.\n"
   0240:  playAnimation Player 0
-  0244:  setDialogOwner System
-  0246:  showTextbox "Gonna use some Items?\n"
+  0244:  speak System "Gonna use some Items?\n"
   0276:  setDialogOwner Player
   0278:  setSelection section_51+0x296 section_51+0xbca
   027e:  showTextbox "Yes\nNo\n"
@@ -38,19 +33,16 @@ section_51(51):     ; len=3738
   0296:  setTrigger 3
   029a:  callSubroutine 0
   029c:  if !trigger(3) then section_51+0x2e8
-  02a8:  setDialogOwner Player
-  02aa:  showTextbox "I don't have anything now.\n"
+  02a8:  speak Player "I don't have anything now.\n"
   02e4:  jump section_51+0xbca
   02e8:  if pstat[254] != 255 then section_51+0x332
-  02f4:  setDialogOwner Player
-  02f6:  showTextbox "Nothing I have is useful.\n"
+  02f4:  speak Player "Nothing I have is useful.\n"
   032e:  jump section_51+0xbca
   0332:  if pstat[254] != 121 then section_51+0x346
   033e:  fadeOutHUD
   0340:  callSubroutine 12
   0342:  jump section_51+0x378
-  0346:  setDialogOwner Player
-  0348:  showTextbox "This won't work...\n"
+  0346:  speak Player "This won't work...\n"
   0372:  jump section_51+0xbca
   0376:  endSection
   0378:  loadDigimon NPCVegimon
@@ -67,15 +59,15 @@ section_51(51):     ; len=3738
   03a2:  setObjectVisibility 13 0
   03a6:  setObjectVisibility 14 0
   03aa:  setObjectVisibility 15 0
-  03ae:  setPStat 247 3
-  03b2:  setPStat 248 13
+  03ae:  pstat[247] = 3
+  03b2:  pstat[248] = 13
   03b6:  callSubroutine 21
   03b8:  setObjectVisibility 16 0
   03bc:  setObjectVisibility 17 0
   03c0:  setObjectVisibility 18 0
   03c4:  setObjectVisibility 19 0
-  03c8:  setPStat 247 16
-  03cc:  setPStat 248 4
+  03c8:  pstat[247] = 16
+  03cc:  pstat[248] = 4
   03d0:  callSubroutine 21
   03d2:  setObjectVisibility 20 0
   03d6:  setObjectVisibility 21 0
@@ -90,8 +82,8 @@ section_51(51):     ; len=3738
   03fa:  setObjectVisibility 30 0
   03fe:  setObjectVisibility 31 0
   0402:  setObjectVisibility 32 0
-  0406:  setPStat 247 20
-  040a:  setPStat 248 13
+  0406:  pstat[247] = 20
+  040a:  pstat[248] = 13
   040e:  callSubroutine 21
   0410:  delay 50
   0414:  playSound 8 1
@@ -170,8 +162,8 @@ section_51(51):     ; len=3738
   0538:  setObjectVisibility 74 0
   053c:  setObjectVisibility 75 0
   0540:  setObjectVisibility 76 0
-  0544:  setPStat 247 33
-  0548:  setPStat 248 44
+  0544:  pstat[247] = 33
+  0548:  pstat[248] = 44
   054c:  callSubroutine 21
   054e:  delay 30
   0552:  setObjectVisibility 0 1
@@ -252,79 +244,63 @@ section_51(51):     ; len=3738
   068c:  delay 20
   0690:  lookAt 6 Player
   0694:  delay 5
-  0698:  setDialogOwner 6
-  069a:  showTextbox "He he he.\n"
+  0698:  speak 6 "He he he.\n"
   06b2:  showTextbox "Hey, I'm Vegiemon!\n"
   06dc:  playAnimation Player 15
   06e0:  delay 20
-  06e4:  setDialogOwner Player
-  06e6:  showTextbox "What! A plant Digimon?\n"
-  0718:  setDialogOwner 6
-  071a:  showTextbox "By the way, do you like\nveggies?\n"
+  06e4:  speak Player "What! A plant Digimon?\n"
+  0718:  speak 6 "By the way, do you like\nveggies?\n"
   0760:  playSound 8 5
   0764:  playAnimation Player 16
   0768:  delay 20
-  076c:  setDialogOwner Player
-  076e:  showTextbox "Why are you asking me\nabout veggies? Well?\n"
+  076c:  speak Player "Why are you asking me\nabout veggies? Well?\n"
   07c8:  setTrigger 49
   07cc:  setSelection section_51+0x838 section_51+0x8a4
   07d2:  showTextbox "I like them\nI don't\n"
-  07fe:  setDialogOwner Player
-  0800:  showTextbox "Well, I changed my mind.\n"
+  07fe:  speak Player "Well, I changed my mind.\n"
   0836:  endSection
   0838:  unsetTrigger 49
   083c:  playSound 8 5
-  0840:  setDialogOwner 6
-  0842:  showTextbox "Anyone who likes veggies\nmust be a nice guy.\n"
+  0840:  speak 6 "Anyone who likes veggies\nmust be a nice guy.\n"
   08a0:  jump section_51+0x8ea
   08a4:  unsetTrigger 49
   08a8:  playSound 8 5
-  08ac:  setDialogOwner 6
-  08ae:  showTextbox "No, no!\nVeggies are good!\n"
+  08ac:  speak 6 "No, no!\nVeggies are good!\n"
   08e6:  jump section_51+0x8ea
-  08ea:  setDialogOwner Player
-  08ec:  showTextbox " ? ? ? \n"
-  0900:  setDialogOwner 6
-  0902:  showTextbox "Alright, I've decided.\nI'll come with you!\n"
+  08ea:  speak Player " ? ? ? \n"
+  0900:  speak 6 "Alright, I've decided.\nI'll come with you!\n"
   095c:  playAnimation Player 19
   0960:  delay 20
-  0964:  setDialogOwner Player
-  0966:  showTextbox "What a persistent guy...\nHey, wait!\n"
+  0964:  speak Player "What a persistent guy...\nHey, wait!\n"
   09b2:  playSound 8 5
-  09b6:  setDialogOwner 6
-  09b8:  showTextbox "Well, then I won't come!\nBye!\n"
-  09f8:  setDialogOwner Player
-  09fa:  showTextbox "Make up your mind!\n"
-  0a24:  setDialogOwner 6
-  0a26:  showTextbox "What do you want me to do?\n"
+  09b6:  speak 6 "Well, then I won't come!\nBye!\n"
+  09f8:  speak Player "Make up your mind!\n"
+  0a24:  speak 6 "What do you want me to do?\n"
   0a60:  playAnimation Player 20
   0a64:  delay 10
-  0a68:  setDialogOwner Player
-  0a6a:  showTextbox "Why don't you come to\nthe city and help us!\n"
+  0a68:  speak Player "Why don't you come to\nthe city and help us!\n"
   0ac6:  playAnimation Player 0
   0aca:  playSound 8 5
-  0ace:  setDialogOwner 6
-  0ad0:  showTextbox "Alright, sounds good.\nI've been here way too long.\n"
+  0ace:  speak 6 "Alright, sounds good.\nI've been here way too long.\n"
   0b3a:  entityWalkToWithCamera Player -1024 -1820 1
   0b42:  entityWalkTo Partner -741 -1923 1
   0b4a:  jump section_51+0xb4e
   0b4e:  entityWalkTo 6 911 -2266 1
   0b56:  if pstat[101] >= 10 then section_51+0xb76
-  0b62:  addPStat 101 1
+  0b62:  pstat[101] += 1
   0b66:  delay 10
   0b6a:  lookAt Player 6
   0b6e:  lookAt Partner 6
   0b72:  jump section_51+0xb4e
   0b76:  waitForEntity 6
   0b78:  unloadEntity 6
-  0b7a:  setPStat 101 0
+  0b7a:  pstat[101] = 0
   0b7e:  playSound 8 3
-  0b82:  setDialogOwner System
-  0b84:  showTextbox "Vegiemon joins the city!\n"
+  0b82:  speak System "Vegiemon joins the city!\n"
   0bba:  moveCameraToEntity Player 10
   0bbe:  waitForEntity 200
   0bc0:  setTrigger 225
-  0bc4:  addPStat 1 2
+  0bc4:  pstat[1] += 2
   0bc8:  endSection
   0bca:  entityWalkToWithCamera Player -61 -2273 0
   0bd2:  waitForEntity Player

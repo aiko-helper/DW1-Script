@@ -1,12 +1,11 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG043.SCN, section 53
 
 section_53(53):     ; len=486
   0000:  if trigger(143) OR trigger(141) then section_53+0xe0
   0010:  setTrigger 143
   0014:  setTrigger 141
-  0018:  setDialogOwner Player
-  001a:  showTextbox "What?\n"
+  0018:  speak Player "What?\n"
   002a:  entityWalkToWithCamera Player -1048 -498 0
   0032:  delay 20
   0036:  entityWalkTo Partner -1048 -498 0
@@ -23,8 +22,7 @@ section_53(53):     ; len=486
   0070:  lookAt Player Partner
   0074:  delay 20
   0078:  setRotation Player 1000
-  007c:  setDialogOwner Player
-  007e:  showTextbox "I felt the ground move.\nWas it my imagination?\n"
+  007c:  speak Player "I felt the ground move.\nWas it my imagination?\n"
   00e0:  if trigger(143) OR !trigger(141) then section_53+0x1e4
   00f0:  setTrigger 142
   00f4:  entityWalkToWithCamera Player -1048 -498 0
@@ -44,12 +42,11 @@ section_53(53):     ; len=486
   013e:  delay 20
   0142:  setRotation Player 1000
   0146:  playSound 8 8
-  014a:  setDialogOwner Player
-  014c:  showTextbox "What? No way!\n"
+  014a:  speak Player "What? No way!\n"
   016c:  lookAt Player Partner
   0170:  lookAt Partner Player
-  0174:  setPStat 247 2
-  0178:  setPStat 248 2
+  0174:  pstat[247] = 2
+  0178:  pstat[248] = 2
   017c:  callSubroutine 21
   017e:  setObjectVisibility 0 1
   0182:  setObjectVisibility 1 1
@@ -68,8 +65,7 @@ section_53(53):     ; len=486
   01b8:  moveEntityToAxis Player 5000 1 5
   01be:  playSound 8 0
   01c2:  setTexboxMode 2 20
-  01c6:  setDialogOwner System
-  01c8:  showTextbox "<LIGHTBLUE><PLAYER><WHITE>Wow!!\n"
+  01c6:  speak System "<LIGHTBLUE><PLAYER><WHITE>Wow!!\n"
   01de:  warpTo GCAN07 1 51
   01e2:  endSection
   01e4:  endSection

@@ -1,22 +1,19 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG024.SCN, section 51
 
 section_51(51):     ; len=1566
   0000:  if !trigger(150) OR trigger(234) then section_51+0x88
-  0010:  setDialogOwner Player
-  0012:  showTextbox "I got bad feeling.\n"
+  0010:  speak Player "I got bad feeling.\n"
   003c:  lookAt Player Partner
   0040:  lookAt Partner Player
   0044:  delay 5
-  0048:  setDialogOwner Player
-  004a:  showTextbox "You too? I thought so.\n"
+  0048:  speak Player "You too? I thought so.\n"
   007c:  entityWalkTo Player 1745 -1614 0
   0084:  waitForEntity Player
   0086:  endSection
   0088:  if !trigger(238) then section_51+0x136
   0094:  if trigger(150) AND !trigger(234) then section_51+0x136
-  00a4:  setDialogOwner Player
-  00a6:  showTextbox "There's nothing in the\ntunnel. Should we go thru?\n"
+  00a4:  speak Player "There's nothing in the\ntunnel. Should we go thru?\n"
   010e:  setSelection section_51+0x138 section_51+0x144
   0114:  showTextbox "Go\nDon't go\n"
   0130:  waitForSelectionChoice

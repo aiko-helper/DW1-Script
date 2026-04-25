@@ -1,8 +1,8 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG202.SCN, section 51
 
 section_51(51):     ; len=14322
-  0000:  addPStat 123 1
+  0000:  pstat[123] += 1
   0004:  loadDigimon Muchomon
   0006:  setDigimon Muchomon 4 0
   000a:  delay 20
@@ -16,89 +16,80 @@ section_51(51):     ; len=14322
   003c:  jump section_51+0xf90
   0040:  jump section_51+0x20fc
   0044:  endSection
-  0046:  setDialogOwner 9
-  0048:  showTextbox "Boy, I want some <LIGHTBLUE>Meat<WHITE>.\n"
-  007e:  setDialogOwner Player
-  0080:  showTextbox "Welcome, so you want some\n<LIGHTBLUE>Meat<WHITE>. Well, uh...\n"
-  00e0:  setPStat 247 9
-  00e4:  setPStat 248 5
+  0046:  speak 9 "Boy, I want some <LIGHTBLUE>Meat<WHITE>.\n"
+  007e:  speak Player "Welcome, so you want some\n<LIGHTBLUE>Meat<WHITE>. Well, uh...\n"
+  00e0:  pstat[247] = 9
+  00e4:  pstat[248] = 5
   00e8:  callSubroutine 28
   00ea:  delay 10
-  00ee:  setPStat 117 6
+  00ee:  pstat[117] = 6
   00f2:  setDialogOwner System
   00f4:  setSelection section_51+0x1d0 section_51+0x666 section_51+0x734
   00fc:  showTextbox "Raise price\nKeep price at fifty bits\nLower price\n"
   0162:  waitForSelectionChoice
-  0164:  setDialogOwner Player
-  0166:  showTextbox "Uh, you want a good deal on\n<LIGHTBLUE>Meat<WHITE>, right? Uh...\n"
+  0164:  speak Player "Uh, you want a good deal on\n<LIGHTBLUE>Meat<WHITE>, right? Uh...\n"
   01cc:  jump section_51+0xe0
   01d0:  storeRandom 110 4
   01d4:  if pstat[110] > 0 then section_51+0x2ca
-  01e0:  setPStat 247 9
-  01e4:  setPStat 248 3
+  01e0:  pstat[247] = 9
+  01e4:  pstat[248] = 3
   01e8:  callSubroutine 28
-  01ea:  setDialogOwner System
-  01ec:  showTextbox "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor seventy five bits?\n"
-  0254:  setPStat 117 1
+  01ea:  speak System "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor seventy five bits?\n"
+  0254:  pstat[117] = 1
   0258:  setDialogOwner System
   025a:  setSelection section_51+0x9f4 section_51+0xe0
   0260:  showTextbox "Raise fifty to seventy five\nLet me rethink this\n"
   02c4:  waitForSelectionChoice
   02c6:  jump section_51+0xe0
   02ca:  if pstat[110] > 1 then section_51+0x3ae
-  02d6:  setPStat 247 9
-  02da:  setPStat 248 2
+  02d6:  pstat[247] = 9
+  02da:  pstat[248] = 2
   02de:  callSubroutine 28
-  02e0:  setDialogOwner System
-  02e2:  showTextbox "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor seventy bits?\n"
-  0338:  setPStat 117 2
+  02e0:  speak System "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor seventy bits?\n"
+  0338:  pstat[117] = 2
   033c:  setDialogOwner System
   033e:  setSelection section_51+0xa0c section_51+0xe0
   0344:  showTextbox "Raise from fifty to seventy\nLet me rethink this\n"
   03a8:  waitForSelectionChoice
   03aa:  jump section_51+0xe0
   03ae:  if pstat[110] > 2 then section_51+0x49c
-  03ba:  setPStat 247 9
-  03be:  setPStat 248 2
+  03ba:  pstat[247] = 9
+  03be:  pstat[248] = 2
   03c2:  callSubroutine 28
-  03c4:  setDialogOwner System
-  03c6:  showTextbox "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor sixty five bits?\n"
-  042a:  setPStat 117 3
+  03c4:  speak System "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor sixty five bits?\n"
+  042a:  pstat[117] = 3
   042e:  setDialogOwner System
   0430:  setSelection section_51+0xa24 section_51+0xe0
   0436:  showTextbox "Raise fifty to sixty five\nLet me rethink this\n"
   0496:  waitForSelectionChoice
   0498:  jump section_51+0xe0
   049c:  if pstat[110] > 3 then section_51+0x578
-  04a8:  setPStat 247 9
-  04ac:  setPStat 248 1
+  04a8:  pstat[247] = 9
+  04ac:  pstat[248] = 1
   04b0:  callSubroutine 28
-  04b2:  setDialogOwner System
-  04b4:  showTextbox "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor sixty bits?\n"
-  0506:  setPStat 117 4
+  04b2:  speak System "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor sixty bits?\n"
+  0506:  pstat[117] = 4
   050a:  setDialogOwner System
   050c:  setSelection section_51+0xa3c section_51+0xe0
   0512:  showTextbox "Raise from fifty to sixty\nLet me rethink this\n"
   0572:  waitForSelectionChoice
   0574:  jump section_51+0xe0
   0578:  if pstat[110] > 4 then section_51+0x666
-  0584:  setPStat 247 9
-  0588:  setPStat 248 1
+  0584:  pstat[247] = 9
+  0588:  pstat[248] = 1
   058c:  callSubroutine 28
-  058e:  setDialogOwner System
-  0590:  showTextbox "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor fifty five bits?\n"
-  05f4:  setPStat 117 5
+  058e:  speak System "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor fifty five bits?\n"
+  05f4:  pstat[117] = 5
   05f8:  setDialogOwner System
   05fa:  setSelection section_51+0xa54 section_51+0xe0
   0600:  showTextbox "Raise fifty to fifty five\nLet me rethink this\n"
   0660:  waitForSelectionChoice
   0662:  jump section_51+0xe0
-  0666:  setPStat 247 9
-  066a:  setPStat 248 0
+  0666:  pstat[247] = 9
+  066a:  pstat[248] = 0
   066e:  callSubroutine 28
-  0670:  setDialogOwner System
-  0672:  showTextbox "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nat regular price?\n"
-  06c8:  setPStat 117 6
+  0670:  speak System "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nat regular price?\n"
+  06c8:  pstat[117] = 6
   06cc:  setDialogOwner System
   06ce:  setSelection section_51+0xa6c section_51+0xe0
   06d4:  showTextbox "Offer at regular price\nLet me rethink this\n"
@@ -106,36 +97,33 @@ section_51(51):     ; len=14322
   0730:  jump section_51+0xe0
   0734:  storeRandom 110 2
   0738:  if pstat[110] > 0 then section_51+0x826
-  0744:  setPStat 247 9
-  0748:  setPStat 248 0
+  0744:  pstat[247] = 9
+  0748:  pstat[248] = 0
   074c:  callSubroutine 28
-  074e:  setDialogOwner System
-  0750:  showTextbox "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor forty five bits?\n"
-  07b4:  setPStat 117 7
+  074e:  speak System "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor forty five bits?\n"
+  07b4:  pstat[117] = 7
   07b8:  setDialogOwner System
   07ba:  setSelection section_51+0xa84 section_51+0xe0
   07c0:  showTextbox "Lower fifty to forty five\nLet me rethink this\n"
   0820:  waitForSelectionChoice
   0822:  jump section_51+0xe0
   0826:  if pstat[110] > 1 then section_51+0x902
-  0832:  setPStat 247 9
-  0836:  setPStat 248 0
+  0832:  pstat[247] = 9
+  0836:  pstat[248] = 0
   083a:  callSubroutine 28
-  083c:  setDialogOwner System
-  083e:  showTextbox "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor forty bits?\n"
-  0890:  setPStat 117 8
+  083c:  speak System "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor forty bits?\n"
+  0890:  pstat[117] = 8
   0894:  setDialogOwner System
   0896:  setSelection section_51+0xa9c section_51+0xe0
   089c:  showTextbox "Lower fifty down to forty\nLet me rethink this\n"
   08fc:  waitForSelectionChoice
   08fe:  jump section_51+0xe0
   0902:  if pstat[110] > 2 then section_51+0x9f4
-  090e:  setPStat 247 9
-  0912:  setPStat 248 0
+  090e:  pstat[247] = 9
+  0912:  pstat[248] = 0
   0916:  callSubroutine 28
-  0918:  setDialogOwner System
-  091a:  showTextbox "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor thirty five bits?\n"
-  0980:  setPStat 117 9
+  0918:  speak System "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor thirty five bits?\n"
+  0980:  pstat[117] = 9
   0984:  setDialogOwner System
   0986:  setSelection section_51+0xab4 section_51+0xe0
   098c:  showTextbox "Lower fifty to thirty five\nLet me rethink this\n"
@@ -177,58 +165,57 @@ section_51(51):     ; len=14322
   0ab8:  if pstat[110] > 84 then section_51+0xac8
   0ac4:  jump section_51+0xacc
   0ac8:  jump section_51+0xe48
-  0acc:  setDialogOwner 9
-  0ace:  showTextbox "Okay, I'll buy it!\n"
+  0acc:  speak 9 "Okay, I'll buy it!\n"
   0af8:  playSound 8 6
   0afc:  delay 10
   0b00:  setTextboxSize 12 3
   0b04:  if pstat[117] != 1 then section_51+0xb5a
-  0b10:  setPStat 243 0
-  0b14:  setPStat 244 40
+  0b10:  pstat[243] = 0
+  0b14:  pstat[244] = 40
   0b18:  callSubroutine 31
   0b1a:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nforty\n"
   0b5a:  if pstat[117] != 2 then section_51+0xbbc
-  0b66:  setPStat 243 0
-  0b6a:  setPStat 244 35
+  0b66:  pstat[243] = 0
+  0b6a:  pstat[244] = 35
   0b6e:  callSubroutine 31
   0b70:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nthirty five\n"
   0bbc:  if pstat[117] != 3 then section_51+0xc14
-  0bc8:  setPStat 243 0
-  0bcc:  setPStat 244 30
+  0bc8:  pstat[243] = 0
+  0bcc:  pstat[244] = 30
   0bd0:  callSubroutine 31
   0bd2:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nthirty\n"
   0c14:  if pstat[117] != 4 then section_51+0xc76
-  0c20:  setPStat 243 0
-  0c24:  setPStat 244 25
+  0c20:  pstat[243] = 0
+  0c24:  pstat[244] = 25
   0c28:  callSubroutine 31
   0c2a:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\ntwenty five\n"
   0c76:  if pstat[117] != 5 then section_51+0xcce
-  0c82:  setPStat 243 0
-  0c86:  setPStat 244 20
+  0c82:  pstat[243] = 0
+  0c86:  pstat[244] = 20
   0c8a:  callSubroutine 31
   0c8c:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\ntwenty\n"
   0cce:  if pstat[117] != 6 then section_51+0xd28
-  0cda:  setPStat 243 0
-  0cde:  setPStat 244 15
+  0cda:  pstat[243] = 0
+  0cde:  pstat[244] = 15
   0ce2:  callSubroutine 31
   0ce4:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nfifteen\n"
   0d28:  if pstat[117] != 7 then section_51+0xd7a
-  0d34:  setPStat 243 0
-  0d38:  setPStat 244 10
+  0d34:  pstat[243] = 0
+  0d38:  pstat[244] = 10
   0d3c:  callSubroutine 31
   0d3e:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nten\n"
   0d7a:  if pstat[117] != 8 then section_51+0xdce
-  0d86:  setPStat 243 0
-  0d8a:  setPStat 244 5
+  0d86:  pstat[243] = 0
+  0d8a:  pstat[244] = 5
   0d8e:  callSubroutine 31
   0d90:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nfive\n"
   0dce:  if pstat[117] != 9 then section_51+0xe18
   0dda:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nzero\n"
-  0e18:  setPStat 119 0
+  0e18:  pstat[119] = 0
   0e1c:  playSound 0 23
   0e20:  delay 20
-  0e24:  setPStat 247 9
-  0e28:  setPStat 248 5
+  0e24:  pstat[247] = 9
+  0e28:  pstat[248] = 5
   0e2c:  callSubroutine 28
   0e2e:  entityWalkTo 9 -109 -853 0
   0e36:  waitForEntity 9
@@ -237,10 +224,10 @@ section_51(51):     ; len=14322
   0e3c:  delay 20
   0e40:  jumpToScriptSection GCAN11 82
   0e46:  endSection
-  0e48:  setPStat 247 9
-  0e4c:  setPStat 248 5
+  0e48:  pstat[247] = 9
+  0e4c:  pstat[248] = 5
   0e50:  callSubroutine 28
-  0e52:  addPStat 119 1
+  0e52:  pstat[119] += 1
   0e56:  storeRandom 110 99
   0e5a:  if pstat[110] > 99 OR pstat[119] < 3 then section_51+0xe6e
   0e6a:  jump section_51+0xe9a
@@ -249,112 +236,99 @@ section_51(51):     ; len=14322
   0e82:  if pstat[110] > 49 OR pstat[119] != 1 then section_51+0xe96
   0e92:  jump section_51+0xe9a
   0e96:  jump section_51+0xf22
-  0e9a:  setDialogOwner 9
-  0e9c:  showTextbox "I'm leaving!!\n"
-  0ebc:  setPStat 119 0
+  0e9a:  speak 9 "I'm leaving!!\n"
+  0ebc:  pstat[119] = 0
   0ec0:  playSound 8 7
   0ec4:  delay 10
-  0ec8:  setPStat 247 9
-  0ecc:  setPStat 248 5
+  0ec8:  pstat[247] = 9
+  0ecc:  pstat[248] = 5
   0ed0:  callSubroutine 28
   0ed2:  entityWalkTo 9 -109 -853 0
   0eda:  waitForEntity 9
   0edc:  unloadEntity 9
   0ede:  unloadModel Muchomon
   0ee0:  delay 40
-  0ee4:  setDialogOwner Player
-  0ee6:  showTextbox "No customers come...\n"
+  0ee4:  speak Player "No customers come...\n"
   0f14:  fadeOutHUD
-  0f16:  addPStat 123 1
+  0f16:  pstat[123] += 1
   0f1a:  jumpToScriptSection GCAN11 82
   0f20:  endSection
-  0f22:  setDialogOwner 9
-  0f24:  showTextbox "You're charging too much!\n"
-  0f5c:  setDialogOwner Player
-  0f5e:  showTextbox "Really? Well then...\n"
+  0f22:  speak 9 "You're charging too much!\n"
+  0f5c:  speak Player "Really? Well then...\n"
   0f8c:  jump section_51+0xe0
-  0f90:  setDialogOwner 9
-  0f92:  showTextbox "Boy, I gotta get a\n<LIGHTBLUE>Portable Potty<WHITE>.\n"
-  0fe0:  setDialogOwner Player
-  0fe2:  showTextbox "Uh... Welcome, you want a\n<LIGHTBLUE>Portable Potty<WHITE>?\n"
-  103e:  setPStat 247 9
-  1042:  setPStat 248 5
+  0f90:  speak 9 "Boy, I gotta get a\n<LIGHTBLUE>Portable Potty<WHITE>.\n"
+  0fe0:  speak Player "Uh... Welcome, you want a\n<LIGHTBLUE>Portable Potty<WHITE>?\n"
+  103e:  pstat[247] = 9
+  1042:  pstat[248] = 5
   1046:  callSubroutine 28
-  1048:  setPStat 117 6
+  1048:  pstat[117] = 6
   104c:  setDialogOwner System
   104e:  setSelection section_51+0x1136 section_51+0x171c section_51+0x1834
   1056:  showTextbox "Raise price\nKeep price at three hund bits\nLower price\n"
   10c6:  waitForSelectionChoice
-  10c8:  setDialogOwner Player
-  10ca:  showTextbox "Uh... you want a good deal\non a <LIGHTBLUE>Portable Potty<WHITE>?\n"
+  10c8:  speak Player "Uh... you want a good deal\non a <LIGHTBLUE>Portable Potty<WHITE>?\n"
   1132:  jump section_51+0x103e
   1136:  storeRandom 110 4
   113a:  if pstat[110] > 0 then section_51+0x1264
-  1146:  setPStat 247 9
-  114a:  setPStat 248 3
+  1146:  pstat[247] = 9
+  114a:  pstat[248] = 3
   114e:  callSubroutine 28
-  1150:  setDialogOwner System
-  1152:  showTextbox "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor four hundred fifty bits?\n"
-  11e8:  setPStat 117 1
+  1150:  speak System "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor four hundred fifty bits?\n"
+  11e8:  pstat[117] = 1
   11ec:  setDialogOwner System
   11ee:  setSelection section_51+0x1bb0 section_51+0x103e
   11f4:  showTextbox "Raise three hund to four fifty\nLet me rethink this\n"
   125e:  waitForSelectionChoice
   1260:  jump section_51+0x103e
   1264:  if pstat[110] > 1 then section_51+0x1394
-  1270:  setPStat 247 9
-  1274:  setPStat 248 2
+  1270:  pstat[247] = 9
+  1274:  pstat[248] = 2
   1278:  callSubroutine 28
-  127a:  setDialogOwner System
-  127c:  showTextbox "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor four hundred twenty bits?\n"
-  131c:  setPStat 117 2
+  127a:  speak System "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor four hundred twenty bits?\n"
+  131c:  pstat[117] = 2
   1320:  setDialogOwner System
   1322:  setSelection section_51+0x1bc8 section_51+0x103e
   1328:  showTextbox "Up three hund to four twenty\nLet me rethink this\n"
   138e:  waitForSelectionChoice
   1390:  jump section_51+0x103e
   1394:  if pstat[110] > 2 then section_51+0x14c0
-  13a0:  setPStat 247 9
-  13a4:  setPStat 248 2
+  13a0:  pstat[247] = 9
+  13a4:  pstat[248] = 2
   13a8:  callSubroutine 28
-  13aa:  setDialogOwner System
-  13ac:  showTextbox "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred ninety bits?\n"
-  1446:  setPStat 117 3
+  13aa:  speak System "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred ninety bits?\n"
+  1446:  pstat[117] = 3
   144a:  setDialogOwner System
   144c:  setSelection section_51+0x1be0 section_51+0x103e
   1452:  showTextbox "Up three hund to three ninety\nLet me rethink this\n"
   14ba:  waitForSelectionChoice
   14bc:  jump section_51+0x103e
   14c0:  if pstat[110] > 3 then section_51+0x15f0
-  14cc:  setPStat 247 9
-  14d0:  setPStat 248 1
+  14cc:  pstat[247] = 9
+  14d0:  pstat[248] = 1
   14d4:  callSubroutine 28
-  14d6:  setDialogOwner System
-  14d8:  showTextbox "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred sixty bits?\n"
-  1578:  setPStat 117 4
+  14d6:  speak System "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred sixty bits?\n"
+  1578:  pstat[117] = 4
   157c:  setDialogOwner System
   157e:  setSelection section_51+0x1bf8 section_51+0x103e
   1584:  showTextbox "Up three hund to three sixty\nLet me rethink this\n"
   15ea:  waitForSelectionChoice
   15ec:  jump section_51+0x103e
   15f0:  if pstat[110] > 4 then section_51+0x171c
-  15fc:  setPStat 247 9
-  1600:  setPStat 248 1
+  15fc:  pstat[247] = 9
+  1600:  pstat[248] = 1
   1604:  callSubroutine 28
-  1606:  setDialogOwner System
-  1608:  showTextbox "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred thirty bits?\n"
-  16a2:  setPStat 117 5
+  1606:  speak System "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred thirty bits?\n"
+  16a2:  pstat[117] = 5
   16a6:  setDialogOwner System
   16a8:  setSelection section_51+0x1c10 section_51+0x103e
   16ae:  showTextbox "Up three hund to three thirty\nLet me rethink this\n"
   1716:  waitForSelectionChoice
   1718:  jump section_51+0x103e
-  171c:  setPStat 247 9
-  1720:  setPStat 248 0
+  171c:  pstat[247] = 9
+  1720:  pstat[248] = 0
   1724:  callSubroutine 28
-  1726:  setDialogOwner System
-  1728:  showTextbox "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nat regular price: three hund?\n"
-  17c8:  setPStat 117 6
+  1726:  speak System "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nat regular price: three hund?\n"
+  17c8:  pstat[117] = 6
   17cc:  setDialogOwner System
   17ce:  setSelection section_51+0x1c28 section_51+0x103e
   17d4:  showTextbox "Offer at regular price\nLet me rethink this\n"
@@ -362,36 +336,33 @@ section_51(51):     ; len=14322
   1830:  jump section_51+0x103e
   1834:  storeRandom 110 2
   1838:  if pstat[110] > 0 then section_51+0x1964
-  1844:  setPStat 247 9
-  1848:  setPStat 248 0
+  1844:  pstat[247] = 9
+  1848:  pstat[248] = 0
   184c:  callSubroutine 28
-  184e:  setDialogOwner System
-  1850:  showTextbox "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred seventy bits?\n"
-  18e8:  setPStat 117 7
+  184e:  speak System "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred seventy bits?\n"
+  18e8:  pstat[117] = 7
   18ec:  setDialogOwner System
   18ee:  setSelection section_51+0x1c40 section_51+0x103e
   18f4:  showTextbox "drop three hund to two seventy\nLet me rethink this\n"
   195e:  waitForSelectionChoice
   1960:  jump section_51+0x103e
   1964:  if pstat[110] > 1 then section_51+0x1a92
-  1970:  setPStat 247 9
-  1974:  setPStat 248 0
+  1970:  pstat[247] = 9
+  1974:  pstat[248] = 0
   1978:  callSubroutine 28
-  197a:  setDialogOwner System
-  197c:  showTextbox "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred forty bits?\n"
-  1a18:  setPStat 117 8
+  197a:  speak System "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred forty bits?\n"
+  1a18:  pstat[117] = 8
   1a1c:  setDialogOwner System
   1a1e:  setSelection section_51+0x1c58 section_51+0x103e
   1a24:  showTextbox "Lower three hund to two forty\nLet me rethink this\n"
   1a8c:  waitForSelectionChoice
   1a8e:  jump section_51+0x103e
   1a92:  if pstat[110] > 2 then section_51+0x1bb0
-  1a9e:  setPStat 247 9
-  1aa2:  setPStat 248 0
+  1a9e:  pstat[247] = 9
+  1aa2:  pstat[248] = 0
   1aa6:  callSubroutine 28
-  1aa8:  setDialogOwner System
-  1aaa:  showTextbox "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred ten bits?\n"
-  1b3a:  setPStat 117 9
+  1aa8:  speak System "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred ten bits?\n"
+  1b3a:  pstat[117] = 9
   1b3e:  setDialogOwner System
   1b40:  setSelection section_51+0x1c70 section_51+0x103e
   1b46:  showTextbox "Lower three hund to two ten\nLet me rethink this\n"
@@ -433,58 +404,57 @@ section_51(51):     ; len=14322
   1c74:  if pstat[110] > 84 then section_51+0x1c84
   1c80:  jump section_51+0x1c88
   1c84:  jump section_51+0x203a
-  1c88:  setDialogOwner 9
-  1c8a:  showTextbox "Okay, I'll buy it!\n"
+  1c88:  speak 9 "Okay, I'll buy it!\n"
   1cb4:  playSound 8 6
   1cb8:  delay 10
   1cbc:  setTextboxSize 12 3
   1cc0:  if pstat[117] != 1 then section_51+0x1d2e
-  1ccc:  setPStat 243 0
-  1cd0:  setPStat 244 240
+  1ccc:  pstat[243] = 0
+  1cd0:  pstat[244] = 240
   1cd4:  callSubroutine 31
   1cd6:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\ntwo hundred forty\n"
   1d2e:  if pstat[117] != 2 then section_51+0x1d98
-  1d3a:  setPStat 243 0
-  1d3e:  setPStat 244 210
+  1d3a:  pstat[243] = 0
+  1d3e:  pstat[244] = 210
   1d42:  callSubroutine 31
   1d44:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\ntwo hundred ten\n"
   1d98:  if pstat[117] != 3 then section_51+0x1e08
-  1da4:  setPStat 243 0
-  1da8:  setPStat 244 180
+  1da4:  pstat[243] = 0
+  1da8:  pstat[244] = 180
   1dac:  callSubroutine 31
   1dae:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\none hundred eighty\n"
   1e08:  if pstat[117] != 4 then section_51+0x1e76
-  1e14:  setPStat 243 0
-  1e18:  setPStat 244 150
+  1e14:  pstat[243] = 0
+  1e18:  pstat[244] = 150
   1e1c:  callSubroutine 31
   1e1e:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\none hundred fifty\n"
   1e76:  if pstat[117] != 5 then section_51+0x1ee6
-  1e82:  setPStat 243 0
-  1e86:  setPStat 244 120
+  1e82:  pstat[243] = 0
+  1e86:  pstat[244] = 120
   1e8a:  callSubroutine 31
   1e8c:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\none hundred twenty\n"
   1ee6:  if pstat[117] != 6 then section_51+0x1f3e
-  1ef2:  setPStat 243 0
-  1ef6:  setPStat 244 90
+  1ef2:  pstat[243] = 0
+  1ef6:  pstat[244] = 90
   1efa:  callSubroutine 31
   1efc:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nninety\n"
   1f3e:  if pstat[117] != 7 then section_51+0x1f94
-  1f4a:  setPStat 243 0
-  1f4e:  setPStat 244 60
+  1f4a:  pstat[243] = 0
+  1f4e:  pstat[244] = 60
   1f52:  callSubroutine 31
   1f54:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nsixty\n"
   1f94:  if pstat[117] != 8 then section_51+0x1fec
-  1fa0:  setPStat 243 0
-  1fa4:  setPStat 244 30
+  1fa0:  pstat[243] = 0
+  1fa4:  pstat[244] = 30
   1fa8:  callSubroutine 31
   1faa:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nthirty\n"
   1fec:  if pstat[117] != 9 then section_51+0x2036
   1ff8:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nzero\n"
   2036:  jump section_51+0xe18
-  203a:  setPStat 247 9
-  203e:  setPStat 248 5
+  203a:  pstat[247] = 9
+  203e:  pstat[248] = 5
   2042:  callSubroutine 28
-  2044:  addPStat 119 1
+  2044:  pstat[119] += 1
   2048:  storeRandom 110 99
   204c:  if pstat[110] > 99 OR pstat[119] < 3 then section_51+0x2060
   205c:  jump section_51+0xe9a
@@ -493,93 +463,82 @@ section_51(51):     ; len=14322
   2074:  if pstat[110] > 49 OR pstat[119] != 1 then section_51+0x2088
   2084:  jump section_51+0xe9a
   2088:  jump section_51+0x208c
-  208c:  setDialogOwner 9
-  208e:  showTextbox "That's just too much?\n"
-  20be:  setDialogOwner Player
-  20c0:  showTextbox "Nah? Well... Well then...\n"
+  208c:  speak 9 "That's just too much?\n"
+  20be:  speak Player "Nah? Well... Well then...\n"
   20f8:  jump section_51+0x103e
-  20fc:  setDialogOwner 9
-  20fe:  showTextbox "Boy, I want some\n<LIGHTBLUE>Medicine<WHITE>.\n"
-  213c:  setDialogOwner Player
-  213e:  showTextbox "Uh... Welcome, you want some\n<LIGHTBLUE>Medicine<WHITE>?\n"
-  2194:  setPStat 247 9
-  2198:  setPStat 248 5
+  20fc:  speak 9 "Boy, I want some\n<LIGHTBLUE>Medicine<WHITE>.\n"
+  213c:  speak Player "Uh... Welcome, you want some\n<LIGHTBLUE>Medicine<WHITE>?\n"
+  2194:  pstat[247] = 9
+  2198:  pstat[248] = 5
   219c:  callSubroutine 28
-  219e:  setPStat 117 6
+  219e:  pstat[117] = 6
   21a2:  setDialogOwner System
   21a4:  setSelection section_51+0x2288 section_51+0x27ea section_51+0x28ea
   21ac:  showTextbox "Raise price\nKeep price at one thous bits\nLower price\n"
   221a:  waitForSelectionChoice
-  221c:  setDialogOwner Player
-  221e:  showTextbox "Uh, you wanted a good deal\non <LIGHTBLUE>Medicine<WHITE>, right?\n"
+  221c:  speak Player "Uh, you wanted a good deal\non <LIGHTBLUE>Medicine<WHITE>, right?\n"
   2284:  jump section_51+0x2194
   2288:  storeRandom 110 4
   228c:  if pstat[110] > 0 then section_51+0x23a2
-  2298:  setPStat 247 9
-  229c:  setPStat 248 3
+  2298:  pstat[247] = 9
+  229c:  pstat[248] = 3
   22a0:  callSubroutine 28
-  22a2:  setDialogOwner System
-  22a4:  showTextbox "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor fifteen hundred bits?\n"
-  232a:  setPStat 117 1
+  22a2:  speak System "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor fifteen hundred bits?\n"
+  232a:  pstat[117] = 1
   232e:  setDialogOwner System
   2330:  setSelection section_51+0x2c1a section_51+0x2194
   2336:  showTextbox "Up one thous to fifteen hund\nLet me rethink this\n"
   239c:  waitForSelectionChoice
   239e:  jump section_51+0x2194
   23a2:  if pstat[110] > 1 then section_51+0x24b4
-  23ae:  setPStat 247 9
-  23b2:  setPStat 248 2
+  23ae:  pstat[247] = 9
+  23b2:  pstat[248] = 2
   23b6:  callSubroutine 28
-  23b8:  setDialogOwner System
-  23ba:  showTextbox "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor fourteen hundred bits?\n"
-  243a:  setPStat 117 2
+  23b8:  speak System "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor fourteen hundred bits?\n"
+  243a:  pstat[117] = 2
   243e:  setDialogOwner System
   2440:  setSelection section_51+0x2c32 section_51+0x2194
   2446:  showTextbox "Up one thous to fourteen hund\nLet me rethink this\n"
   24ae:  waitForSelectionChoice
   24b0:  jump section_51+0x2194
   24b4:  if pstat[110] > 2 then section_51+0x25ce
-  24c0:  setPStat 247 9
-  24c4:  setPStat 248 2
+  24c0:  pstat[247] = 9
+  24c4:  pstat[248] = 2
   24c8:  callSubroutine 28
-  24ca:  setDialogOwner System
-  24cc:  showTextbox "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor thirteen hundred bits?\n"
-  2554:  setPStat 117 3
+  24ca:  speak System "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor thirteen hundred bits?\n"
+  2554:  pstat[117] = 3
   2558:  setDialogOwner System
   255a:  setSelection section_51+0x2c4a section_51+0x2194
   2560:  showTextbox "Up one thous to thirteen hund\nLet me rethink this\n"
   25c8:  waitForSelectionChoice
   25ca:  jump section_51+0x2194
   25ce:  if pstat[110] > 3 then section_51+0x26d8
-  25da:  setPStat 247 9
-  25de:  setPStat 248 1
+  25da:  pstat[247] = 9
+  25de:  pstat[248] = 1
   25e2:  callSubroutine 28
-  25e4:  setDialogOwner System
-  25e6:  showTextbox "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor twelve hundred bits?\n"
-  2662:  setPStat 117 4
+  25e4:  speak System "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor twelve hundred bits?\n"
+  2662:  pstat[117] = 4
   2666:  setDialogOwner System
   2668:  setSelection section_51+0x2c62 section_51+0x2194
   266e:  showTextbox "Up one thous to twelve hund\nLet me rethink this\n"
   26d2:  waitForSelectionChoice
   26d4:  jump section_51+0x2194
   26d8:  if pstat[110] > 4 then section_51+0x27ea
-  26e4:  setPStat 247 9
-  26e8:  setPStat 248 1
+  26e4:  pstat[247] = 9
+  26e8:  pstat[248] = 1
   26ec:  callSubroutine 28
-  26ee:  setDialogOwner System
-  26f0:  showTextbox "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor eleven hundred bits?\n"
-  2774:  setPStat 117 5
+  26ee:  speak System "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor eleven hundred bits?\n"
+  2774:  pstat[117] = 5
   2778:  setDialogOwner System
   277a:  setSelection section_51+0x2c7a section_51+0x2194
   2780:  showTextbox "Up one thous to eleven hund\nLet me rethink this\n"
   27e4:  waitForSelectionChoice
   27e6:  jump section_51+0x2194
-  27ea:  setPStat 247 9
-  27ee:  setPStat 248 0
+  27ea:  pstat[247] = 9
+  27ee:  pstat[248] = 0
   27f2:  callSubroutine 28
-  27f4:  setDialogOwner System
-  27f6:  showTextbox "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nat regular price of one thous?\n"
-  287e:  setPStat 117 6
+  27f4:  speak System "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nat regular price of one thous?\n"
+  287e:  pstat[117] = 6
   2882:  setDialogOwner System
   2884:  setSelection section_51+0x2c92 section_51+0x2194
   288a:  showTextbox "Offer at regular price\nLet me rethink this\n"
@@ -587,35 +546,32 @@ section_51(51):     ; len=14322
   28e6:  jump section_51+0x2194
   28ea:  storeRandom 110 2
   28ee:  if pstat[110] > 0 then section_51+0x29fa
-  28fa:  setPStat 247 9
-  28fe:  setPStat 248 0
+  28fa:  pstat[247] = 9
+  28fe:  pstat[248] = 0
   2902:  callSubroutine 28
-  2904:  setDialogOwner System
-  2906:  showTextbox "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor nine hundred bits?\n"
+  2904:  speak System "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor nine hundred bits?\n"
   2986:  setDialogOwner System
   2988:  setSelection section_51+0x2caa section_51+0x2194
   298e:  showTextbox "Lower one thous to nine hund\nLet me rethink this\n"
   29f4:  waitForSelectionChoice
   29f6:  jump section_51+0x2194
   29fa:  if pstat[110] > 1 then section_51+0x2b06
-  2a06:  setPStat 247 9
-  2a0a:  setPStat 248 0
+  2a06:  pstat[247] = 9
+  2a0a:  pstat[248] = 0
   2a0e:  callSubroutine 28
-  2a10:  setDialogOwner System
-  2a12:  showTextbox "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor eight hundred bits?\n"
-  2a8c:  setPStat 117 8
+  2a10:  speak System "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor eight hundred bits?\n"
+  2a8c:  pstat[117] = 8
   2a90:  setDialogOwner System
   2a92:  setSelection section_51+0x2cc2 section_51+0x2194
   2a98:  showTextbox "Lower one thous to eight hund\nLet me rethink this\n"
   2b00:  waitForSelectionChoice
   2b02:  jump section_51+0x2194
   2b06:  if pstat[110] > 2 then section_51+0x2c1a
-  2b12:  setPStat 247 9
-  2b16:  setPStat 248 0
+  2b12:  pstat[247] = 9
+  2b16:  pstat[248] = 0
   2b1a:  callSubroutine 28
-  2b1c:  setDialogOwner System
-  2b1e:  showTextbox "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor seven hundred bits?\n"
-  2ba0:  setPStat 117 9
+  2b1c:  speak System "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor seven hundred bits?\n"
+  2ba0:  pstat[117] = 9
   2ba4:  setDialogOwner System
   2ba6:  setSelection section_51+0x2cda section_51+0x2194
   2bac:  showTextbox "Lower one thous to seven hund\nLet me rethink this\n"
@@ -662,52 +618,52 @@ section_51(51):     ; len=14322
   2cf8:  delay 10
   2cfc:  setTextboxSize 12 3
   2d00:  if pstat[117] != 1 then section_51+0x2d66
-  2d0c:  setPStat 243 3
-  2d10:  setPStat 244 32
+  2d0c:  pstat[243] = 3
+  2d10:  pstat[244] = 32
   2d14:  callSubroutine 31
   2d16:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\neight hundred\n"
   2d66:  if pstat[117] != 2 then section_51+0x2dcc
-  2d72:  setPStat 243 2
-  2d76:  setPStat 244 188
+  2d72:  pstat[243] = 2
+  2d76:  pstat[244] = 188
   2d7a:  callSubroutine 31
   2d7c:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nseven hundred\n"
   2dcc:  if pstat[117] != 3 then section_51+0x2e2e
-  2dd8:  setPStat 243 2
-  2ddc:  setPStat 244 88
+  2dd8:  pstat[243] = 2
+  2ddc:  pstat[244] = 88
   2de0:  callSubroutine 31
   2de2:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nsix hundred\n"
   2e2e:  if pstat[117] != 4 then section_51+0x2e92
-  2e3a:  setPStat 243 1
-  2e3e:  setPStat 244 244
+  2e3a:  pstat[243] = 1
+  2e3e:  pstat[244] = 244
   2e42:  callSubroutine 31
   2e44:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nfive hundred\n"
   2e92:  if pstat[117] != 5 then section_51+0x2ef6
-  2e9e:  setPStat 243 1
-  2ea2:  setPStat 244 144
+  2e9e:  pstat[243] = 1
+  2ea2:  pstat[244] = 144
   2ea6:  callSubroutine 31
   2ea8:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nfour hundred\n"
   2ef6:  if pstat[117] != 6 then section_51+0x2f5c
-  2f02:  setPStat 243 1
-  2f06:  setPStat 244 44
+  2f02:  pstat[243] = 1
+  2f06:  pstat[244] = 44
   2f0a:  callSubroutine 31
   2f0c:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nthree hundred\n"
   2f5c:  if pstat[117] != 7 then section_51+0x2fbe
-  2f68:  setPStat 243 0
-  2f6c:  setPStat 244 200
+  2f68:  pstat[243] = 0
+  2f6c:  pstat[244] = 200
   2f70:  callSubroutine 31
   2f72:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\ntwo hundred\n"
   2fbe:  if pstat[117] != 8 then section_51+0x3020
-  2fca:  setPStat 243 0
-  2fce:  setPStat 244 100
+  2fca:  pstat[243] = 0
+  2fce:  pstat[244] = 100
   2fd2:  callSubroutine 31
   2fd4:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\none hundred\n"
   3020:  if pstat[117] != 9 then section_51+0x306a
   302c:  showTextbox "Total Profit: <DISCOUNT>\nProfit:\nzero\n"
   306a:  jump section_51+0xe18
-  306e:  setPStat 247 9
-  3072:  setPStat 248 5
+  306e:  pstat[247] = 9
+  3072:  pstat[248] = 5
   3076:  callSubroutine 28
-  3078:  addPStat 119 1
+  3078:  pstat[119] += 1
   307c:  storeRandom 110 99
   3080:  if pstat[110] > 99 OR pstat[119] < 3 then section_51+0x3094
   3090:  jump section_51+0xe9a
@@ -716,9 +672,7 @@ section_51(51):     ; len=14322
   30a8:  if pstat[110] > 49 OR pstat[119] != 1 then section_51+0x30bc
   30b8:  jump section_51+0xe9a
   30bc:  jump section_51+0x30c0
-  30c0:  setDialogOwner 9
-  30c2:  showTextbox "That's a bit high.\n"
-  30ec:  setDialogOwner Player
-  30ee:  showTextbox "Do you think so? Well then...\n"
+  30c0:  speak 9 "That's a bit high.\n"
+  30ec:  speak Player "Do you think so? Well then...\n"
   312e:  jump section_51+0x2194
   3132:  garbage 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 1f 00 7b 01 46 5d 47 5d 04 00 67 00 14 00 4e 09 0b fe 04 fe 00 00 4a 09 4c 00 09 fd 24 00 6e 63 19 00 0b 00 6e 1f 18 00 3e 00 19 00 16 00 54 00 19 00 0b 00 6e 42 18 00 4e 00 19 00 16 00 9e 0f 16 00 0a 21 fe 00 1b 09 1a 00 82 61 82 8f 82 99 81 43 81 40 82 68 81 40 82 97 82 81 82 8e 82 94 81 40 82 93 82 8f 82 8d 82 85 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 85 82 8c 82 83 82 8f 82 8d 82 85 81 43 81 40 82 93 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 93 82 8f 82 8d 82 85 0d 00 01 06 82 6c 82 85 82 81 82 94 01 01 81 42 81 40 82 76 82 85 82 8c 82 8c 81 43 81 40 82 95 82 88 81 42 81 42 81 42 0d 00 00 00 1e 00 f7 09 1e 00 f8 05 64 1c 67 00 0a 00 1e 00 75 06 1b ff 10 03 de 01 74 06 42 07 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 90 82 92 82 89 82 83 82 85 0d 00 82 6a 82 85 82 85 82 90 81 40 82 90 82 92 82 89 82 83 82 85 81 40 82 81 82 94 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 82 93 0d 00 82 6b 82 8f 82 97 82 85 82 92 81 40 82 90 82 92 82 89 82 83 82 85 0d 00 00 00 12 00 1b fd 1a 00 82 74 82 88 81 43 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 81 81 40 82 87 82 8f 82 8f 82 84 81 40 82 84 82 85 82 81 82 8c 81 40 82 8f 82 8e 0d 00 01 06 82 6c 82 85 82 81 82 94 01 01 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 81 40 82 74 82 88 81 42 81 42 81 42 0d 00 00 00 16 00 ee 00 24 00 6e 04 19 00 0b 00 6e 00 18 00 d8 02 19 00 1e 00 f7 09 1e 00 f8 03 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 93 82 85 82 96 82 85 82 8e 82 94 82 99 81 40 82 86 82 89 82 96 82 85 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 01 1b ff 10 02 02 0a ee 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 93 82 85 82 96 82 85 82 8e 82 94 82 99 81 40 82 86 82 89 82 96 82 85 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 0d 00 00 00 12 00 16 00 ee 00 19 00 0b 00 6e 01 18 00 bc 03 19 00 1e 00 f7 09 1e 00 f8 02 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 75 82 93 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 93 82 85 82 96 82 85 82 8e 82 94 82 99 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 02 1b ff 10 02 1a 0a ee 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 92 82 8f 82 8d 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 93 82 85 82 96 82 85 82 8e 82 94 82 99 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 0d 00 00 00 12 00 16 00 ee 00 19 00 0b 00 6e 02 18 00 aa 04 19 00 1e 00 f7 09 1e 00 f8 02 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 93 82 89 82 98 82 94 82 99 81 40 82 86 82 89 82 96 82 85 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 03 1b ff 10 02 32 0a ee 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 93 82 89 82 98 82 94 82 99 81 40 82 86 82 89 82 96 82 85 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 0d 00 00 00 12 00 16 00 ee 00 19 00 0b 00 6e 03 18 00 86 05 19 00 1e 00 f7 09 1e 00 f8 01 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 75 82 93 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 93 82 89 82 98 82 94 82 99 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 04 1b ff 10 02 4a 0a ee 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 92 82 8f 82 8d 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 93 82 89 82 98 82 94 82 99 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 0d 00 00 00 12 00 16 00 ee 00 19 00 0b 00 6e 04 18 00 74 06 19 00 1e 00 f7 09 1e 00 f8 01 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 86 82 89 82 96 82 85 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 05 1b ff 10 02 62 0a ee 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 86 82 89 82 96 82 85 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 0d 00 00 00 12 00 16 00 ee 00 1e 00 f7 09 1e 00 f8 00 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 75 82 93 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 81 82 94 81 40 82 92 82 85 82 87 82 95

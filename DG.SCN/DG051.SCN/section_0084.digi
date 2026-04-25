@@ -1,12 +1,11 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG051.SCN, section 84
 
 section_84(84):     ; len=220
   0000:  if item[MansionKey] < 1 OR trigger(111) then section_84+0x5c
   0012:  setRotation Player 1024
   0016:  playSound 8 3
-  001a:  setDialogOwner System
-  001c:  showTextbox "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n"
+  001a:  speak System "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n"
   0054:  setTrigger 111
   0058:  jump section_84+0xc2
   005c:  if item[MansionKey] >= 1 OR trigger(111) then section_84+0xc2
@@ -14,8 +13,7 @@ section_84(84):     ; len=220
   0072:  playSound 8 2
   0076:  delay 5
   007a:  playSound 8 2
-  007e:  setDialogOwner System
-  0080:  showTextbox "It doesn't open.\nIt's locked.\n"
+  007e:  speak System "It doesn't open.\nIt's locked.\n"
   00c0:  endSection
   00c2:  rotate3DObject 4 1
   00c6:  playSound 8 1

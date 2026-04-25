@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; MAP135.SCN, section 81
 
 section_81(81):     ; len=792
@@ -10,33 +10,28 @@ section_81(81):     ; len=792
   0014:  playSound 8 1
   0018:  storeDigimonType 103
   001a:  if !trigger(116) OR pstat[103] == 14 then section_81+0x1f2
-  002a:  setDialogOwner 5
-  002c:  showTextbox "Looks like you got a problem.\nAbout the costume, right?\n"
-  00a0:  setDialogOwner Player
-  00a2:  showTextbox "You know about it?\n"
-  00cc:  setDialogOwner 5
-  00ce:  showTextbox "Don't underrate me. Numemon\nwill be able to wear it.\n"
+  002a:  speak 5 "Looks like you got a problem.\nAbout the costume, right?\n"
+  00a0:  speak Player "You know about it?\n"
+  00cc:  speak 5 "Don't underrate me. Numemon\nwill be able to wear it.\n"
   013c:  showTextbox "Shocked? Not only that, once\nhe wears it... You won't\nbelieve... Well, try it out.\n"
   01e6:  unsetTrigger 116
   01ea:  moveCameraToEntity Player 10
   01ee:  waitForEntity 200
   01f0:  endSection
   01f2:  if !trigger(122) then section_81+0x2e4
-  01fe:  setPStat 254 5
+  01fe:  pstat[254] = 5
   0202:  callSubroutine 1
   0204:  moveCameraToEntity Player 10
   0208:  waitForEntity 200
   020a:  if item[AmazingRod] < 1 then section_81+0x2e2
   0218:  removeItem AmazingRod 1
   021c:  setTrigger 46
-  0220:  setDialogOwner 5
-  0222:  showTextbox "By the way, I'll remove the\n<LIGHTBLUE>Amazing Rod <WHITE>for\nFishing from your Items.\n"
+  0220:  speak 5 "By the way, I'll remove the\n<LIGHTBLUE>Amazing Rod <WHITE>for\nFishing from your Items.\n"
   02b4:  showTextbox "It's a Special Item.\n"
   02e2:  endSection
   02e4:  if !trigger(319) then section_6
   02f0:  playSound 8 1
-  02f4:  setDialogOwner 5
-  02f6:  showTextbox "Good luck!\n"
+  02f4:  speak 5 "Good luck!\n"
   0310:  moveCameraToEntity Player 10
   0314:  waitForEntity 200
   0316:  endSection

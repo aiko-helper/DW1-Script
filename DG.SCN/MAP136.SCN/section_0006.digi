@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; MAP136.SCN, section 6
 
 section_6(6):     ; len=3090
@@ -7,22 +7,19 @@ section_6(6):     ; len=3090
   0008:  setObjectVisibility 107 0
   000c:  setObjectVisibility 108 0
   0010:  setObjectVisibility 109 0
-  0014:  setPStat 247 105
-  0018:  setPStat 248 5
+  0014:  pstat[247] = 105
+  0018:  pstat[248] = 5
   001c:  callSubroutine 21
   001e:  loadDigimon NPCOgremon
   0020:  setDigimon NPCOgremon 1 0
   0024:  moveEntityTo 5 1457 2916 1
   002c:  lookAt Player 5
   0030:  delay 5
-  0034:  setDialogOwner Player
-  0036:  showTextbox "Wait!\n"
-  0046:  setDialogOwner 6
-  0048:  showTextbox "Why should I wait?!\n"
+  0034:  speak Player "Wait!\n"
+  0046:  speak 6 "Why should I wait?!\n"
   0074:  lookAt 6 Player
   0078:  delay 5
-  007c:  setDialogOwner 6
-  007e:  showTextbox "Ha ha ha!\n"
+  007c:  speak 6 "Ha ha ha!\n"
   0096:  moveCameraTo 15 1116 2183
   009c:  waitForEntity 200
   009e:  setObjectVisibility 105 1
@@ -41,17 +38,15 @@ section_6(6):     ; len=3090
   00d0:  setObjectVisibility 107 0
   00d4:  setObjectVisibility 108 0
   00d8:  setObjectVisibility 109 0
-  00dc:  setPStat 247 105
-  00e0:  setPStat 248 5
+  00dc:  pstat[247] = 105
+  00e0:  pstat[248] = 5
   00e4:  callSubroutine 21
   00e6:  moveEntityTo 5 1457 2916 1
   00ee:  playAnimation 6 40
   00f2:  delay 20
   00f6:  playAnimation 6 0
-  00fa:  setDialogOwner 6
-  00fc:  showTextbox "Wow, what a surprise!\n"
-  012c:  setDialogOwner Player
-  012e:  showTextbox "Whamon, nice! Wow!\n"
+  00fa:  speak 6 "Wow, what a surprise!\n"
+  012c:  speak Player "Whamon, nice! Wow!\n"
   0158:  entityWalkTo Player 830 813 1
   0160:  entityWalkTo Partner 473 481 1
   0168:  waitForEntity Player
@@ -60,24 +55,19 @@ section_6(6):     ; len=3090
   0170:  lookAt Partner 6
   0174:  moveCameraTo 10 212 958
   017a:  waitForEntity 200
-  017c:  setDialogOwner Player
-  017e:  showTextbox "Give up!\n"
+  017c:  speak Player "Give up!\n"
   0194:  entityWalkTo 6 212 958 0
   019c:  waitForEntity 6
   019e:  lookAt 6 Player
-  01a2:  setDialogOwner 6
-  01a4:  showTextbox "Ugghh!\n"
-  01b6:  setDialogOwner Player
-  01b8:  showTextbox "Come to the city and work,\nso you can repay your sins.\n"
-  022a:  setDialogOwner 6
-  022c:  showTextbox "Alright, got it.\nI'll go to the city.\n"
+  01a2:  speak 6 "Ugghh!\n"
+  01b6:  speak Player "Come to the city and work,\nso you can repay your sins.\n"
+  022a:  speak 6 "Alright, got it.\nI'll go to the city.\n"
   027c:  playSound 8 6
   0280:  entityWalkTo 6 -381 1112 1
   0288:  waitForEntity 6
   028a:  lookAt 6 Player
   028e:  waitForEntity 6
-  0290:  setDialogOwner 6
-  0292:  showTextbox "Ha ha ha, Just kidding! Bye.\n"
+  0290:  speak 6 "Ha ha ha, Just kidding! Bye.\n"
   02d0:  moveCameraTo 30 -28 1976
   02d6:  waitForEntity 200
   02d8:  waitForEntity 6
@@ -226,34 +216,22 @@ section_6(6):     ; len=3090
   072e:  delay 80
   0732:  moveCameraToEntity Player 10
   0736:  waitForEntity 200
-  0738:  setDialogOwner Player
-  073a:  showTextbox "Darn, he tricked me!\n"
-  0768:  setDialogOwner Player
-  076a:  showTextbox "Well, we got the cave back.\nI guess it's OK.\n"
+  0738:  speak Player "Darn, he tricked me!\n"
+  0768:  speak Player "Well, we got the cave back.\nI guess it's OK.\n"
   07c8:  entityWalkToWithCamera Player 705 1585 0
   07d0:  entityWalkTo Partner 740 1100 0
-  07d8:  setDialogOwner Player
-  07da:  showTextbox "I think this cave is OK now.\n"
-  0818:  setDialogOwner 5
-  081a:  showTextbox "You seem to be a really nice\nperson. I'm sure they'll\nrealize their mistake someday.\n"
-  08c8:  setDialogOwner 5
-  08ca:  showTextbox "I'll give you my treasure.\nIt's in the back.\n"
-  0928:  setDialogOwner Player
-  092a:  showTextbox "Wait, wait.\nThat's your treasure, right?\nI can't accept it.\n"
-  09a6:  setDialogOwner 5
-  09a8:  showTextbox "No, I don't need it. I want\nto go to your city.\n"
-  0a0c:  setDialogOwner Player
-  0a0e:  showTextbox "Then what did we have to\nget this cave back for?\nFor nothing...?\n"
-  0a94:  setDialogOwner 5
-  0a96:  showTextbox "I'm sorry, but I really\nwant to help you now.\n"
-  0af6:  setDialogOwner Player
-  0af8:  showTextbox "I see. Thanks.\nYou're really nice.\n"
-  0b42:  setDialogOwner 5
-  0b44:  showTextbox "I'm going straight to\nthe city. I'll give you\na ride if you want.\n"
+  07d8:  speak Player "I think this cave is OK now.\n"
+  0818:  speak 5 "You seem to be a really nice\nperson. I'm sure they'll\nrealize their mistake someday.\n"
+  08c8:  speak 5 "I'll give you my treasure.\nIt's in the back.\n"
+  0928:  speak Player "Wait, wait.\nThat's your treasure, right?\nI can't accept it.\n"
+  09a6:  speak 5 "No, I don't need it. I want\nto go to your city.\n"
+  0a0c:  speak Player "Then what did we have to\nget this cave back for?\nFor nothing...?\n"
+  0a94:  speak 5 "I'm sorry, but I really\nwant to help you now.\n"
+  0af6:  speak Player "I see. Thanks.\nYou're really nice.\n"
+  0b42:  speak 5 "I'm going straight to\nthe city. I'll give you\na ride if you want.\n"
   0bcc:  playSound 8 11
-  0bd0:  setDialogOwner System
-  0bd2:  showTextbox "Whamon joins the city!\n"
+  0bd0:  speak System "Whamon joins the city!\n"
   0c04:  setTrigger 224
-  0c08:  addPStat 1 2
+  0c08:  pstat[1] += 2
   0c0c:  warpTo FRZL16 0 255
   0c10:  endSection

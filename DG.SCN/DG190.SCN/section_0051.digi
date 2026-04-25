@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG190.SCN, section 51
 
 section_51(51):     ; len=1786
@@ -10,36 +10,30 @@ section_51(51):     ; len=1786
   0038:  jump section_51+0x1ba
   003c:  jump section_51+0x44
   0040:  jump section_51+0x540
-  0044:  setDialogOwner System
-  0046:  showTextbox "There are weird drawings\non the ground.\n"
-  009a:  setDialogOwner Player
-  009c:  showTextbox "Are they one of those strange\ncircles? They still look new.\n"
+  0044:  speak System "There are weird drawings\non the ground.\n"
+  009a:  speak Player "Are they one of those strange\ncircles? They still look new.\n"
   0118:  setTrigger 118
   011c:  endSection
   011e:  entityWalkToWithCamera Player 350 -50 0
   0126:  waitForEntity Player
   0128:  playAnimation Player 24
   012c:  delay 20
-  0130:  setDialogOwner Player
-  0132:  showTextbox "There are more of them now.\nDo you think they're\nfrom the UFO?\n"
+  0130:  speak Player "There are more of them now.\nDo you think they're\nfrom the UFO?\n"
   01b4:  setTrigger 154
   01b8:  endSection
   01ba:  entityWalkToWithCamera Player 350 50 1
   01c2:  waitForEntity Player
   01c4:  playAnimation Player 24
   01c8:  delay 20
-  01cc:  setDialogOwner Player
-  01ce:  showTextbox "Ugghh!?\n"
+  01cc:  speak Player "Ugghh!?\n"
   01e2:  entityWalkToWithCamera Player -550 50 1
   01ea:  waitForEntity Player
-  01ec:  setDialogOwner Player
-  01ee:  showTextbox "I see a lot more now.\n"
+  01ec:  speak Player "I see a lot more now.\n"
   021e:  playAnimation Player 16
   0222:  delay 20
   0226:  showTextbox "Well, I guess it means...\n"
   025e:  playSound 8 5
-  0262:  setDialogOwner Player
-  0264:  showTextbox "What?\n"
+  0262:  speak Player "What?\n"
   0274:  setDigimon NPCVademon 0 0
   0278:  lookAt Player 5
   027c:  entityWalkTo Partner -750 -50 1
@@ -58,50 +52,38 @@ section_51(51):     ; len=1786
   02b8:  entityWalkTo 5 -126 409 0
   02c0:  lookAt Player 5
   02c4:  delay 20
-  02c8:  setDialogOwner Player
-  02ca:  showTextbox "An Alien?!\n"
-  02e4:  setDialogOwner 5
-  02e6:  showTextbox "...\n"
-  02f2:  setDialogOwner Player
-  02f4:  showTextbox "Are you a Digimon?\n"
-  031e:  setDialogOwner 5
-  0320:  showTextbox "...\n"
-  032c:  setDialogOwner Player
-  032e:  showTextbox "Are you?\n"
-  0344:  setDialogOwner 5
-  0346:  showTextbox "...\n"
+  02c8:  speak Player "An Alien?!\n"
+  02e4:  speak 5 "...\n"
+  02f2:  speak Player "Are you a Digimon?\n"
+  031e:  speak 5 "...\n"
+  032c:  speak Player "Are you?\n"
+  0344:  speak 5 "...\n"
   0352:  playSound 8 6
   0356:  delay 10
   035a:  playAnimation 5 28
   035e:  delay 10
   0362:  playAnimation Player 15
   0366:  delay 10
-  036a:  setDialogOwner Player
-  036c:  showTextbox "I'm not your enemy!\n"
+  036a:  speak Player "I'm not your enemy!\n"
   0398:  delay 40
   039c:  playAnimation 5 0
-  03a0:  setDialogOwner Player
-  03a2:  showTextbox "Good, now you understand.\n"
+  03a0:  speak Player "Good, now you understand.\n"
   03da:  playAnimation Player 19
   03de:  delay 20
-  03e2:  setDialogOwner System
-  03e4:  showTextbox "<LIGHTBLUE><PLAYER><WHITE> tried\nto convince him.\n"
-  041e:  setDialogOwner 5
-  0420:  showTextbox "...\n"
-  042c:  setDialogOwner Player
-  042e:  showTextbox "Maybe he doesn't understand.\n"
+  03e2:  speak System "<LIGHTBLUE><PLAYER><WHITE> tried\nto convince him.\n"
+  041e:  speak 5 "...\n"
+  042c:  speak Player "Maybe he doesn't understand.\n"
   046c:  playAnimation 5 22
   0470:  delay 15
   0474:  playAnimation 5 22
   0478:  delay 15
   047c:  playAnimation 5 0
-  0480:  setDialogOwner 5
-  0482:  showTextbox "Ok.\n"
+  0480:  speak 5 "Ok.\n"
   048e:  fadeOutHUD
   0490:  jump section_51+0x494
   0494:  entityWalkTo 5 155 -1177 1
   049c:  if pstat[101] >= 3 then section_51+0x4c0
-  04a8:  addPStat 101 1
+  04a8:  pstat[101] += 1
   04ac:  playSound 8 5
   04b0:  delay 20
   04b4:  lookAt Player 5
@@ -109,15 +91,13 @@ section_51(51):     ; len=1786
   04bc:  jump section_51+0x494
   04c0:  waitForEntity 5
   04c2:  unloadEntity 5
-  04c4:  setPStat 101 0
+  04c4:  pstat[101] = 0
   04c8:  playSound 8 8
-  04cc:  setDialogOwner System
-  04ce:  showTextbox "Vademon joins the city!\n"
-  0502:  setDialogOwner Player
-  0504:  showTextbox "Huh?\n"
+  04cc:  speak System "Vademon joins the city!\n"
+  0502:  speak Player "Huh?\n"
   0512:  showTextbox "He can talk!\n"
   0530:  setTrigger 228
-  0534:  addPStat 1 3
+  0534:  pstat[1] += 3
   0538:  moveCameraToEntity Player 10
   053c:  waitForEntity 200
   053e:  endSection

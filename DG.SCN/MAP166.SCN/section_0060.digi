@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; MAP166.SCN, section 60
 
 section_60(60):     ; len=448
@@ -8,14 +8,10 @@ section_60(60):     ; len=448
   0006:  setDigimon Jijimon 3 0
   000a:  lookAt 8 Player
   000e:  delay 20
-  0012:  setDialogOwner 8
-  0014:  showTextbox "I think all is OK now.\n"
-  0046:  setDialogOwner Player
-  0048:  showTextbox "I'm glad.\n"
-  0060:  setDialogOwner 8
-  0062:  showTextbox "We must defeat the boss\nas soon as possible.\n"
-  00c0:  setDialogOwner Player
-  00c2:  showTextbox "I know...\n"
+  0012:  speak 8 "I think all is OK now.\n"
+  0046:  speak Player "I'm glad.\n"
+  0060:  speak 8 "We must defeat the boss\nas soon as possible.\n"
+  00c0:  speak Player "I know...\n"
   00da:  delay 40
   00de:  if !trigger(220) AND !trigger(214) AND pstat[1] < 50 then section_60+0xfa
   00f2:  jump section_60+0x15e

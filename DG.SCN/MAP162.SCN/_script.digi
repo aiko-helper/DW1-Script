@@ -8,7 +8,7 @@ onEnter:     ; len=1052
   0018:  unsetTrigger 215
   001c:  storeRandom 16 2
   0020:  if pstat[16] != 0 then onEnter+0x4c
-  002c:  setPStat 16 3
+  002c:  pstat[16] = 3
   0030:  unsetTrigger 707
   0034:  unsetTrigger 708
   0038:  unsetTrigger 709
@@ -16,13 +16,13 @@ onEnter:     ; len=1052
   0040:  unsetTrigger 711
   0044:  unsetTrigger 712
   0048:  unsetTrigger 713
-  004c:  setPStat 254 0
+  004c:  pstat[254] = 0
   0050:  callSubroutine 25
   0052:  unsetTrigger 2
   0056:  if pstat[17] < 3 then onEnter+0x66
-  0062:  addPStat 18 1
+  0062:  pstat[18] += 1
   0066:  if pstat[17] < 1 then onEnter+0x76
-  0072:  setPStat 17 1
+  0072:  pstat[17] = 1
   0076:  storeDate 105
   0078:  if pstat[106] == 14 then onEnter+0x88
   0084:  unsetTrigger 76
@@ -31,14 +31,12 @@ onEnter:     ; len=1052
   00a0:  waitForEntity Partner
   00a2:  setRotation Partner 2048
   00a6:  delay 40
-  00aa:  setDialogOwner Player
-  00ac:  showTextbox "I'm back!\n"
+  00aa:  speak Player "I'm back!\n"
   00c4:  playAnimation Player 11
   00c8:  delay 20
   00cc:  lookAt Player Partner
   00d0:  delay 5
-  00d4:  setDialogOwner Player
-  00d6:  showTextbox "Thanks for inviting me.\nI hope we can work\ntogether <ORANGE><DIGIMON><WHITE>.\n"
+  00d4:  speak Player "Thanks for inviting me.\nI hope we can work\ntogether <ORANGE><DIGIMON><WHITE>.\n"
   014c:  playAnimation Player 5
   0150:  delay 10
   0154:  playAnimation Partner 11
@@ -48,15 +46,12 @@ onEnter:     ; len=1052
   0164:  waitForEntity 200
   0166:  if stat[TamerLevel] == 10 then onEnter+0x1b6
   0174:  addStats TamerLevel 1
-  0178:  setDialogOwner System
-  017a:  showTextbox "<YELLOW>Tamer Level\nhas gone up! <WHITE>\n"
+  0178:  speak System "<YELLOW>Tamer Level\nhas gone up! <WHITE>\n"
   01b6:  setTrigger 374
   01ba:  playSound 0 7
-  01be:  setDialogOwner System
-  01c0:  showTextbox "<YELLOW>Congratulations!\nHere's a medal\nfor you. <WHITE>\n"
+  01be:  speak System "<YELLOW>Congratulations!\nHere's a medal\nfor you. <WHITE>\n"
   021c:  giveCard 65
-  021e:  setDialogOwner System
-  0220:  showTextbox "I got a Machinedramon card!\n"
+  021e:  speak System "I got a Machinedramon card!\n"
   025c:  if !trigger(238) then onEnter+0x274
   0268:  setObjectVisibility 0 0
   026c:  setObjectVisibility 1 0

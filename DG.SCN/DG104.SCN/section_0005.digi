@@ -1,44 +1,37 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG104.SCN, section 5
 
 section_5(5):     ; len=828
-  0000:  setDialogOwner 5
-  0002:  showTextbox "I want to beat Kabuterimon.\nWhat do I need to do to win?\n"
+  0000:  speak 5 "I want to beat Kabuterimon.\nWhat do I need to do to win?\n"
   0078:  setDialogOwner Player
   007a:  setSelection section_5+0x13e section_5+0x17e section_5+0x2e4
   0082:  showTextbox "Hmm. You gotta get stronger.\nActually, there is a sure fire\nway.... well, hang in there.\n"
   0138:  waitForSelectionChoice
   013a:  jump section_5+0x2e4
-  013e:  setDialogOwner 5
-  0140:  showTextbox "I see. Alright, I'll train.\n"
+  013e:  speak 5 "I see. Alright, I'll train.\n"
   017c:  endSection
-  017e:  setDialogOwner 5
-  0180:  showTextbox "Really?! Then I'll train you!\n"
+  017e:  speak 5 "Really?! Then I'll train you!\n"
   01c0:  playAnimation Player 19
   01c4:  delay 15
-  01c8:  setDialogOwner Player
-  01ca:  showTextbox "Just come to the city.\n"
+  01c8:  speak Player "Just come to the city.\n"
   01fc:  playAnimation Player 0
-  0200:  setDialogOwner 5
-  0202:  showTextbox "...\n"
+  0200:  speak 5 "...\n"
   020e:  showTextbox "You're really nice.\nI'll go to the city.\n"
   0264:  jump section_5+0x268
   0268:  entityWalkTo 5 664 -1963 1
   0270:  if pstat[101] >= 3 then section_5+0x290
-  027c:  addPStat 101 1
+  027c:  pstat[101] += 1
   0280:  delay 20
   0284:  lookAt Player 5
   0288:  lookAt Partner 5
   028c:  jump section_5+0x268
   0290:  waitForEntity 5
   0292:  unloadEntity 5
-  0294:  setPStat 101 0
+  0294:  pstat[101] = 0
   0298:  playSound 8 17
-  029c:  setDialogOwner System
-  029e:  showTextbox "Kuwagamon went to the city!\n"
+  029c:  speak System "Kuwagamon went to the city!\n"
   02da:  setTrigger 251
-  02de:  addPStat 1 2
+  02de:  pstat[1] += 2
   02e2:  endSection
-  02e4:  setDialogOwner 5
-  02e6:  showTextbox "Man, you're not nice.\nI'm disappointed!\n"
+  02e4:  speak 5 "Man, you're not nice.\nI'm disappointed!\n"
   033a:  endSection

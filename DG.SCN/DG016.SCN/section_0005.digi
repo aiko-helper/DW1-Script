@@ -1,9 +1,8 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG016.SCN, section 5
 
 section_5(5):     ; len=890
-  0000:  setDialogOwner 5
-  0002:  showTextbox "Gruun.\n"
+  0000:  speak 5 "Gruun.\n"
   0014:  showTextbox "Gruun.ru.ru..\n"
   0034:  playAnimation Player 16
   0038:  showTextbox "Something came back to life!\n"
@@ -11,41 +10,34 @@ section_5(5):     ; len=890
   007a:  lookAt Player Partner
   007e:  lookAt Partner Player
   0082:  delay 20
-  0086:  setDialogOwner Player
-  0088:  showTextbox " ? \n"
-  0094:  setDialogOwner 5
-  0096:  showTextbox "I used to live in the city.\nYou smell like the city.\n"
+  0086:  speak Player " ? \n"
+  0094:  speak 5 "I used to live in the city.\nYou smell like the city.\n"
   0104:  lookAt Player 5
   0108:  lookAt Partner 5
   010c:  waitForEntity Player
-  010e:  setDialogOwner Player
-  0110:  showTextbox "Wow!\n"
-  011e:  setDialogOwner 5
-  0120:  showTextbox "It's scary. I left the city\nand lost my memory.\n"
+  010e:  speak Player "Wow!\n"
+  011e:  speak 5 "It's scary. I left the city\nand lost my memory.\n"
   0184:  showTextbox "But thanks to you,\nI remember everything now.\n"
   01e4:  showTextbox "I'm going back to the city,\nOK?\n"
   0228:  playAnimation Player 19
-  022c:  setDialogOwner Player
-  022e:  showTextbox "Of course. I'm sure\nthe city is now more lively\nthan before.\n"
+  022c:  speak Player "Of course. I'm sure\nthe city is now more lively\nthan before.\n"
   02ac:  playSound 8 4
-  02b0:  setDialogOwner 5
-  02b2:  showTextbox "Really? Alright!\nI'll try my best!\n"
+  02b0:  speak 5 "Really? Alright!\nI'll try my best!\n"
   02fc:  jump section_5+0x300
   0300:  entityWalkTo 5 421 -1390 1
   0308:  if pstat[101] >= 10 then section_5+0x328
-  0314:  addPStat 101 1
+  0314:  pstat[101] += 1
   0318:  delay 10
   031c:  lookAt Player 5
   0320:  lookAt Partner 5
   0324:  jump section_5+0x300
   0328:  waitForEntity 5
   032a:  unloadEntity 5
-  032c:  setPStat 101 0
+  032c:  pstat[101] = 0
   0330:  playSound 8 3
-  0334:  setDialogOwner System
-  0336:  showTextbox "Betamon joins the city!\n"
+  0334:  speak System "Betamon joins the city!\n"
   036a:  setTrigger 204
-  036e:  addPStat 1 1
+  036e:  pstat[1] += 1
   0372:  moveCameraToEntity Player 10
   0376:  waitForEntity 200
   0378:  endSection

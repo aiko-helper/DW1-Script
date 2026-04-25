@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG018.SCN, section 51
 
 section_51(51):     ; len=290
@@ -12,17 +12,17 @@ section_51(51):     ; len=290
   0024:  endSection
   0026:  storeRandom 110 2
   002a:  if pstat[110] != 0 then section_51+0x46
-  0036:  setPStat 116 0
+  0036:  pstat[116] = 0
   003a:  setObjectVisibility 38 0
   003e:  setObjectVisibility 42 0
   0042:  setObjectVisibility 43 0
   0046:  if pstat[110] != 1 then section_51+0x62
-  0052:  setPStat 116 1
+  0052:  pstat[116] = 1
   0056:  setObjectVisibility 39 0
   005a:  setObjectVisibility 41 0
   005e:  setObjectVisibility 43 0
   0062:  if pstat[110] != 2 then section_51+0x7e
-  006e:  setPStat 116 2
+  006e:  pstat[116] = 2
   0072:  setObjectVisibility 40 0
   0076:  setObjectVisibility 41 0
   007a:  setObjectVisibility 42 0
@@ -35,8 +35,7 @@ section_51(51):     ; len=290
   009e:  delay 20
   00a2:  playSound 8 0
   00a6:  delay 20
-  00aa:  setDialogOwner System
-  00ac:  showTextbox "Trespasser Alert!\n"
+  00aa:  speak System "Trespasser Alert!\n"
   00d4:  showTextbox "Trespasser Alert!\n"
   00fc:  showTextbox "I will shoot!\n"
   011c:  jumpAndLink section_10

@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG213.SCN, section 81
 
 section_81(81):     ; len=3588
@@ -9,8 +9,7 @@ section_81(81):     ; len=3588
   0012:  waitForEntity 200
   0014:  if trigger(91) then section_81+0x294
   0020:  setTrigger 91
-  0024:  setDialogOwner 5
-  0026:  showTextbox "Oh, <LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>\nyou came. Look at this great\nFile City Arena. Cool, huh!\n"
+  0024:  speak 5 "Oh, <LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>\nyou came. Look at this great\nFile City Arena. Cool, huh!\n"
   00b6:  showTextbox "Soon contestants and fans will\nfill this up. You will also\nbring joy to the fans, right?!\n"
   016e:  showTextbox "They'll prepare money and\nprizes for tournament winners.\nYou got nothing to lose.\n"
   0216:  showTextbox "For details on the tournament,\ncheck out the machine there.\n"
@@ -19,16 +18,13 @@ section_81(81):     ; len=3588
   0298:  endSection
   029a:  storeDigimonType 103
   029c:  if pstat[103] != 1 AND pstat[103] != 2 AND pstat[103] != 15 AND pstat[103] != 16 then section_81+0x358
-  02b4:  setDialogOwner 5
-  02b6:  showTextbox "Oh yeah, In-Training\nDigimon can't enter though.\nShall I check the schedule?\n"
+  02b4:  speak 5 "Oh yeah, In-Training\nDigimon can't enter though.\nShall I check the schedule?\n"
   0354:  jump section_81+0x49a
   0358:  if pstat[103] != 29 AND pstat[103] != 30 AND pstat[103] != 43 AND pstat[103] != 44 then section_81+0x414
-  0370:  setDialogOwner 5
-  0372:  showTextbox "Oh yeah, In-Training\nDigimon can't enter though.\nShall I check the schedule?\n"
+  0370:  speak 5 "Oh yeah, In-Training\nDigimon can't enter though.\nShall I check the schedule?\n"
   0410:  jump section_81+0x49a
   0414:  if trigger(37) then section_81+0x496
-  0420:  setDialogOwner 5
-  0422:  showTextbox "I'm glad you came. Do you\nwanna enter the tournament?\n"
+  0420:  speak 5 "I'm glad you came. Do you\nwanna enter the tournament?\n"
   0492:  jump section_81+0x49a
   0496:  jump section_81+0x4ec
   049a:  setDialogOwner Player
@@ -36,7 +32,7 @@ section_81(81):     ; len=3588
   04a4:  showTextbox "Yes\nNo\nWhat do you mean?\n"
   04da:  waitForSelectionChoice
   04dc:  endSection
-  04de:  setPStat 254 5
+  04de:  pstat[254] = 5
   04e2:  callSubroutine 18
   04e4:  moveCameraToEntity Player 10
   04e8:  waitForEntity 200
@@ -45,8 +41,7 @@ section_81(81):     ; len=3588
   04f8:  jump section_81+0x504
   04fc:  jump section_81+0x504
   0500:  jump section_81+0x624
-  0504:  setDialogOwner 5
-  0506:  showTextbox "So you're entering\ntommorrow's\ncompetition, right?\n"
+  0504:  speak 5 "So you're entering\ntommorrow's\ncompetition, right?\n"
   0570:  showTextbox "Are you going to cancel\nyour entry?\n"
   05bc:  setDialogOwner Player
   05be:  setSelection section_81+0x298 section_81+0x8d6
@@ -58,8 +53,7 @@ section_81(81):     ; len=3588
   0622:  endSection
   0624:  storeDate 105
   0626:  if pstat[107] < 0 OR pstat[107] >= 10 then section_81+0x78e
-  0636:  setDialogOwner 5
-  0638:  showTextbox "So you've entered today's\ncompetition, right?\nYou can go in from ten am.\n"
+  0636:  speak 5 "So you've entered today's\ncompetition, right?\nYou can go in from ten am.\n"
   06ce:  showTextbox "You're not planning to cancel,\nare you?!\n"
   0724:  setDialogOwner Player
   0726:  setSelection section_81+0x298 section_81+0x8d6
@@ -69,8 +63,7 @@ section_81(81):     ; len=3588
   0784:  moveCameraToEntity Player 10
   0788:  waitForEntity 200
   078a:  jump section_81+0x8d4
-  078e:  setDialogOwner 5
-  0790:  showTextbox "So you've entered today's\ncompetition, right?\nGo in by eleven pm.\n"
+  078e:  speak 5 "So you've entered today's\ncompetition, right?\nGo in by eleven pm.\n"
   0818:  showTextbox "You're not planning to\ncancel, are you?!\n"
   086e:  setDialogOwner Player
   0870:  setSelection section_81+0x298 section_81+0x8d6
@@ -81,11 +74,9 @@ section_81(81):     ; len=3588
   08d2:  waitForEntity 200
   08d4:  endSection
   08d6:  unsetTrigger 37
-  08da:  setDialogOwner 5
-  08dc:  showTextbox "Well, I'll cancel for you.\n"
+  08da:  speak 5 "Well, I'll cancel for you.\n"
   0916:  endSection
-  0918:  setDialogOwner 5
-  091a:  showTextbox "Once inside, at start time,\ngo down the left stairs in\norder to compete in battle.\n"
+  0918:  speak 5 "Once inside, at start time,\ngo down the left stairs in\norder to compete in battle.\n"
   09c4:  showTextbox "Registration is free. You can\nregister for only today's and\ntommorrow's competition.\n"
   0a72:  showTextbox "However, for that day's\ncompetition, you have to\nregister by ten am.\n"
   0b00:  showTextbox "You can check the schedule\nfive days ahead, so check it\nand make your plans.\n"

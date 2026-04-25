@@ -1,59 +1,50 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG070.SCN, section 5
 
 section_5(5):     ; len=1030
   0000:  if pstat[111] < 1 then section_5+0x118
-  000c:  setDialogOwner 5
-  000e:  showTextbox "I'm here again.\n"
+  000c:  speak 5 "I'm here again.\n"
   0032:  jumpAndLink section_5+0x1b6
   0036:  playSound 8 6
-  003a:  setDialogOwner 5
-  003c:  showTextbox "Bye!\n"
+  003a:  speak 5 "Bye!\n"
   004a:  lookAt Player 5
   004e:  lookAt Partner 5
   0052:  waitForEntity Player
   0054:  waitForEntity Partner
   0056:  playAnimation Player 16
-  005a:  setDialogOwner Player
-  005c:  showTextbox "If we go on like this, we'll\njust repeat ourselves.\n"
-  00c8:  setDialogOwner Player
-  00ca:  showTextbox "Maybe I should wait here.\n"
-  0102:  setPStat 111 2
+  005a:  speak Player "If we go on like this, we'll\njust repeat ourselves.\n"
+  00c8:  speak Player "Maybe I should wait here.\n"
+  0102:  pstat[111] = 2
   0106:  setTrigger 191
   010a:  setTrigger 192
   010e:  setTrigger 193
   0112:  setTrigger 194
   0116:  endSection
   0118:  if pstat[111] != 0 then section_5+0x1b4
-  0124:  setDialogOwner 5
-  0126:  showTextbox "Who is it?\n"
-  0140:  setDialogOwner 5
-  0142:  showTextbox "No way.\n"
+  0124:  speak 5 "Who is it?\n"
+  0140:  speak 5 "No way.\n"
   0156:  entityWalkTo 5 -240 -1076 1
   015e:  delay 20
   0162:  playSound 8 6
-  0166:  setDialogOwner 5
-  0168:  showTextbox "Ahhh!\n"
+  0166:  speak 5 "Ahhh!\n"
   0178:  lookAt Player 5
   017c:  lookAt Partner 5
   0180:  waitForEntity Player
   0182:  waitForEntity Partner
   0184:  playAnimation Player 14
-  0188:  setDialogOwner Player
-  018a:  showTextbox "Wait up!\n"
+  0188:  speak Player "Wait up!\n"
   01a0:  entityWalkTo 5 -240 -1076 1
   01a8:  waitForEntity 5
-  01aa:  addPStat 111 1
-  01ae:  setPStat 112 1
+  01aa:  pstat[111] += 1
+  01ae:  pstat[112] = 1
   01b2:  endSection
   01b4:  endSection
   01b6:  storeRandom 110 3
   01ba:  if pstat[110] != 0 OR pstat[112] == 0 then section_5+0x216
   01ca:  entityWalkTo 5 -1055 2740 1
   01d2:  delay 20
-  01d6:  setPStat 112 0
-  01da:  setDialogOwner Player
-  01dc:  showTextbox "Not again! Wait!\n"
+  01d6:  pstat[112] = 0
+  01da:  speak Player "Not again! Wait!\n"
   0202:  lookAt Player 5
   0206:  lookAt Partner 5
   020a:  entityWalkTo 5 -1025 2740 1
@@ -62,9 +53,8 @@ section_5(5):     ; len=1030
   0216:  if pstat[110] != 1 OR pstat[112] == 1 then section_5+0x272
   0226:  entityWalkTo 5 -566 -350 1
   022e:  delay 20
-  0232:  setPStat 112 1
-  0236:  setDialogOwner Player
-  0238:  showTextbox "Not again! Wait!\n"
+  0232:  pstat[112] = 1
+  0236:  speak Player "Not again! Wait!\n"
   025e:  lookAt Player 5
   0262:  lookAt Partner 5
   0266:  entityWalkTo 5 -566 -320 1
@@ -73,9 +63,8 @@ section_5(5):     ; len=1030
   0272:  if pstat[110] != 2 OR pstat[112] == 2 then section_5+0x2ce
   0282:  entityWalkTo 5 1869 -939 1
   028a:  delay 20
-  028e:  setPStat 112 2
-  0292:  setDialogOwner Player
-  0294:  showTextbox "Not again! Wait!\n"
+  028e:  pstat[112] = 2
+  0292:  speak Player "Not again! Wait!\n"
   02ba:  lookAt Player 5
   02be:  lookAt Partner 5
   02c2:  entityWalkTo 5 1869 -939 1
@@ -84,9 +73,8 @@ section_5(5):     ; len=1030
   02ce:  if pstat[110] != 3 OR pstat[112] == 3 then section_5+0x32a
   02de:  entityWalkTo 5 1664 3155 1
   02e6:  delay 20
-  02ea:  setPStat 112 3
-  02ee:  setDialogOwner Player
-  02f0:  showTextbox "Not again! Wait!\n"
+  02ea:  pstat[112] = 3
+  02ee:  speak Player "Not again! Wait!\n"
   0316:  lookAt Player 5
   031a:  lookAt Partner 5
   031e:  entityWalkTo 5 1664 3125 1
@@ -97,7 +85,7 @@ section_5(5):     ; len=1030
   0332:  if pstat[110] != 0 OR pstat[112] == 0 then section_5+0x366
   0342:  entityWalkTo 5 -1025 2740 1
   034a:  delay 20
-  034e:  setPStat 112 0
+  034e:  pstat[112] = 0
   0352:  lookAt Player 5
   0356:  lookAt Partner 5
   035a:  entityWalkTo 5 -1025 2740 1
@@ -106,7 +94,7 @@ section_5(5):     ; len=1030
   0366:  if pstat[110] != 1 OR pstat[112] == 1 then section_5+0x39a
   0376:  entityWalkTo 5 -566 -320 1
   037e:  delay 20
-  0382:  setPStat 112 1
+  0382:  pstat[112] = 1
   0386:  lookAt Player 5
   038a:  lookAt Partner 5
   038e:  entityWalkTo 5 -566 -320 1
@@ -115,7 +103,7 @@ section_5(5):     ; len=1030
   039a:  if pstat[110] != 2 OR pstat[112] == 2 then section_5+0x3ce
   03aa:  entityWalkTo 5 1869 -939 1
   03b2:  delay 20
-  03b6:  setPStat 112 2
+  03b6:  pstat[112] = 2
   03ba:  lookAt Player 5
   03be:  lookAt Partner 5
   03c2:  entityWalkTo 5 1869 -939 1
@@ -124,7 +112,7 @@ section_5(5):     ; len=1030
   03ce:  if pstat[110] != 3 OR pstat[112] == 3 then section_5+0x402
   03de:  entityWalkTo 5 1664 3125 1
   03e6:  delay 20
-  03ea:  setPStat 112 3
+  03ea:  pstat[112] = 3
   03ee:  lookAt Player 5
   03f2:  lookAt Partner 5
   03f6:  entityWalkTo 5 1664 3125 1

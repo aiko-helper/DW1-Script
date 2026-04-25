@@ -1,22 +1,20 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG212.SCN, section 71
 
 section_71(71):     ; len=610
   0000:  unsetTrigger 1
-  0004:  setPStat 250 0
+  0004:  pstat[250] = 0
   0008:  waitForEntity 213
-  000a:  setDialogOwner 5
-  000c:  showTextbox "It seems <ORANGE><DIGIMON><WHITE> has\nfaded away...\n"
+  000a:  speak 5 "It seems <ORANGE><DIGIMON><WHITE> has\nfaded away...\n"
   004e:  showTextbox "Before fading away, he gave\nbirth to a Digitama. He will\nbe reborn with his abilities.\n"
   0100:  showTextbox "Which egg do you want?\n"
   0132:  callSubroutine 29
   0134:  fadeOutHUD
   0136:  callDigimonSubroutine 4
   0138:  waitForEntity System
-  013a:  setPStat 245 0
+  013a:  pstat[245] = 0
   013e:  setBGM 28
-  0140:  setDialogOwner 5
-  0142:  showTextbox "You can change the name\n<ORANGE><DIGIMON><WHITE> if you want.\n"
+  0140:  speak 5 "You can change the name\n<ORANGE><DIGIMON><WHITE> if you want.\n"
   0198:  setDialogOwner Player
   019a:  setSelection section_71+0x1f2 section_71+0x260
   01a0:  showTextbox "I want a new name\nI'll keep his name\n"
@@ -24,10 +22,9 @@ section_71(71):     ; len=610
   01f0:  endSection
   01f2:  callSubroutine 35
   01f4:  waitForEntity 214
-  01f6:  setPStat 254 3
+  01f6:  pstat[254] = 3
   01fa:  callSubroutine 32
-  01fc:  setDialogOwner 5
-  01fe:  showTextbox "Is <ORANGE><DIGIMON><WHITE> okay?\n"
+  01fc:  speak 5 "Is <ORANGE><DIGIMON><WHITE> okay?\n"
   021c:  setDialogOwner Player
   021e:  setSelection section_71+0x1f2 section_71+0x260
   0224:  showTextbox "I want another name\nOkay\n"

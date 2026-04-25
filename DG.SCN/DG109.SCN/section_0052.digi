@@ -1,12 +1,11 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG109.SCN, section 52
 
 section_52(52):     ; len=558
   0000:  if trigger(135) then section_52+0x22c
   000c:  setRotation Player 1900
   0010:  waitForEntity Player
-  0012:  setDialogOwner Player
-  0014:  showTextbox "Hey, there's a stone tablet.\nLet's see...\n"
+  0012:  speak Player "Hey, there's a stone tablet.\nLet's see...\n"
   006c:  entityWalkToWithCamera Player -477 2801 0
   0074:  waitForEntity Player
   0076:  setRotation Player 1900
@@ -16,8 +15,7 @@ section_52(52):     ; len=558
   0086:  playSound 8 7
   008a:  setObjectVisibility 2 1
   008e:  delay 10
-  0092:  setDialogOwner Player
-  0094:  showTextbox "It says Leomon.\nI can't read the rest.\n"
+  0092:  speak Player "It says Leomon.\nI can't read the rest.\n"
   00e6:  playAnimation Player 16
   00ea:  delay 15
   00ee:  showTextbox "I can understand speech,\nbut not writing...\n"
@@ -25,15 +23,13 @@ section_52(52):     ; len=558
   014e:  showTextbox "Let's take it.\n"
   0170:  giveItem Leomonstone 1
   0174:  if !trigger(0) then section_52+0x1de
-  0180:  setDialogOwner Player
-  0182:  showTextbox "Oops, I have to throw\nsomething away.\n"
+  0180:  speak Player "Oops, I have to throw\nsomething away.\n"
   01d2:  unsetTrigger 3
   01d6:  callSubroutine 0
   01d8:  callSubroutine 13
   01da:  giveItem Leomonstone 1
   01de:  playSound 0 7
-  01e2:  setDialogOwner System
-  01e4:  showTextbox "I got <LIGHTBLUE>Leomon's\nStone<WHITE> Tablet!\n"
+  01e2:  speak System "I got <LIGHTBLUE>Leomon's\nStone<WHITE> Tablet!\n"
   0226:  setTrigger 135
   022a:  endSection
   022c:  endSection

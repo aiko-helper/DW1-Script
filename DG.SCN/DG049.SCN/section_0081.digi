@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG049.SCN, section 81
 
 section_81(81):     ; len=1642
@@ -8,36 +8,21 @@ section_81(81):     ; len=1642
   0012:  if !trigger(136) then section_81+0x22
   001e:  jump section_81+0x63a
   0022:  setTrigger 136
-  0026:  setDialogOwner 5
-  0028:  showTextbox "Welcome. I've never seen you\nbefore. Where are you from?\n"
-  009e:  setDialogOwner Player
-  00a0:  showTextbox "The city. Actually, I'm\nfrom another world.\n"
-  00fc:  setDialogOwner 5
-  00fe:  showTextbox "You understand my language?\n"
-  013a:  setDialogOwner Player
-  013c:  showTextbox "Yes, I do.\n"
-  0156:  setDialogOwner 5
-  0158:  showTextbox "Sometimes it's hard and\nI don't sell much here.\n"
-  01bc:  setDialogOwner Player
-  01be:  showTextbox "I see.\n"
-  01d0:  setDialogOwner 5
-  01d2:  showTextbox "Many shoppers stopped coming.\n"
-  0212:  setDialogOwner Player
-  0214:  showTextbox "It must be the trouble\non the island.\n"
-  0264:  setDialogOwner 5
-  0266:  showTextbox "Help me do something.\n"
-  0296:  setDialogOwner Player
-  0298:  showTextbox "What is it?\n"
-  02b4:  setDialogOwner 5
-  02b6:  showTextbox "Can you work in my shop?\n"
-  02ec:  setDialogOwner Player
-  02ee:  showTextbox "Your shop?\n"
-  0308:  setDialogOwner 5
-  030a:  showTextbox "Half day? The more you sell,\nthe more I'll pay you.\nYou know our language.\n"
-  03a4:  setDialogOwner Player
-  03a6:  showTextbox "You might lose money.\n"
-  03d6:  setDialogOwner 5
-  03d8:  showTextbox "Don't worry. It'll be good\nfor me. How about eight hours?\n"
+  0026:  speak 5 "Welcome. I've never seen you\nbefore. Where are you from?\n"
+  009e:  speak Player "The city. Actually, I'm\nfrom another world.\n"
+  00fc:  speak 5 "You understand my language?\n"
+  013a:  speak Player "Yes, I do.\n"
+  0156:  speak 5 "Sometimes it's hard and\nI don't sell much here.\n"
+  01bc:  speak Player "I see.\n"
+  01d0:  speak 5 "Many shoppers stopped coming.\n"
+  0212:  speak Player "It must be the trouble\non the island.\n"
+  0264:  speak 5 "Help me do something.\n"
+  0296:  speak Player "What is it?\n"
+  02b4:  speak 5 "Can you work in my shop?\n"
+  02ec:  speak Player "Your shop?\n"
+  0308:  speak 5 "Half day? The more you sell,\nthe more I'll pay you.\nYou know our language.\n"
+  03a4:  speak Player "You might lose money.\n"
+  03d6:  speak 5 "Don't worry. It'll be good\nfor me. How about eight hours?\n"
   0450:  setDialogOwner Player
   0452:  setSelection section_81+0x488 section_81+0x5d6
   0458:  showTextbox "I'll try\nNo thanks\n"
@@ -48,8 +33,8 @@ section_81(81):     ; len=1642
   0492:  entityWalkTo Player -980 -432 0
   049a:  waitForEntity Player
   049c:  waitForEntity 5
-  049e:  setPStat 247 9
-  04a2:  setPStat 248 12
+  049e:  pstat[247] = 9
+  04a2:  pstat[248] = 12
   04a6:  callSubroutine 21
   04a8:  setObjectVisibility 33 1
   04ac:  setObjectVisibility 34 1
@@ -76,8 +61,8 @@ section_81(81):     ; len=1642
   0508:  entityWalkTo Partner -980 292 0
   0510:  waitForEntity Player
   0512:  waitForEntity Partner
-  0514:  setPStat 247 21
-  0518:  setPStat 248 12
+  0514:  pstat[247] = 21
+  0518:  pstat[248] = 12
   051c:  callSubroutine 21
   051e:  setObjectVisibility 9 1
   0522:  setObjectVisibility 10 1
@@ -123,13 +108,11 @@ section_81(81):     ; len=1642
   05c0:  setObjectVisibility 34 0
   05c4:  setObjectVisibility 35 0
   05c8:  callSubroutine 30
-  05ca:  setPStat 123 0
+  05ca:  pstat[123] = 0
   05ce:  unsetTrigger 101
   05d2:  jump section_82
-  05d6:  setDialogOwner 5
-  05d8:  showTextbox "That's too bad. Come back\nwhen you have time.\n"
+  05d6:  speak 5 "That's too bad. Come back\nwhen you have time.\n"
   0638:  endSection
-  063a:  setDialogOwner 5
-  063c:  showTextbox "You want to work?\n"
+  063a:  speak 5 "You want to work?\n"
   0664:  jump section_81+0x450
   0668:  endSection

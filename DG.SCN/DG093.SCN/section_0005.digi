@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG093.SCN, section 5
 
 section_5(5):     ; len=1574
@@ -10,58 +10,45 @@ section_5(5):     ; len=1574
   001a:  delay 10
   001e:  setRotation Player 2560
   0022:  delay 20
-  0026:  setDialogOwner Player
-  0028:  showTextbox "Oh? About that statue...\n"
+  0026:  speak Player "Oh? About that statue...\n"
   005e:  setRotation Player 2048
   0062:  playAnimation Player 23
   0066:  delay 20
   006a:  moveCameraTo 20 -831 2975
   0070:  waitForEntity 200
-  0072:  setDialogOwner Player
-  0074:  showTextbox "Ah!\n"
+  0072:  speak Player "Ah!\n"
   0080:  loadDigimon NPCAngemon
   0082:  setDigimon NPCAngemon 0 0
   0086:  playSound 8 10
   008a:  playAnimation 5 28
   008e:  delay 60
   0092:  playAnimation 5 0
-  0096:  setDialogOwner 5
-  0098:  showTextbox "Phew, well\n"
-  00b2:  setDialogOwner Player
-  00b4:  showTextbox "You came back to life.\nAlright!\n"
-  00f8:  setDialogOwner 5
-  00fa:  showTextbox "I'm Angemon, an angel to\nprotect you. I've awakened\nto fulfill my duty.\n"
-  018e:  setDialogOwner Player
-  0190:  showTextbox "What's he talking about...?\n"
-  01cc:  setDialogOwner 5
-  01ce:  showTextbox "I know the truth of heaven.\n"
+  0096:  speak 5 "Phew, well\n"
+  00b2:  speak Player "You came back to life.\nAlright!\n"
+  00f8:  speak 5 "I'm Angemon, an angel to\nprotect you. I've awakened\nto fulfill my duty.\n"
+  018e:  speak Player "What's he talking about...?\n"
+  01cc:  speak 5 "I know the truth of heaven.\n"
   020a:  showTextbox "I offer my soul to follow\nearthly instructions.\n"
-  026e:  setDialogOwner Player
-  0270:  showTextbox "What's he talking about...?\nAre you coming to the city?\n"
-  02e4:  setDialogOwner 5
-  02e6:  showTextbox "Thine mission is mine duty.\nI go.\n"
-  032e:  setDialogOwner Player
-  0330:  showTextbox "I'm sorry, but can you\nspeak in words I understand?\n"
-  039c:  setDialogOwner 5
-  039e:  showTextbox "I'll go to the city, so\nyou must keep trying.\n"
-  03fe:  setDialogOwner Player
-  0400:  showTextbox "I see. Thanks!\n"
+  026e:  speak Player "What's he talking about...?\nAre you coming to the city?\n"
+  02e4:  speak 5 "Thine mission is mine duty.\nI go.\n"
+  032e:  speak Player "I'm sorry, but can you\nspeak in words I understand?\n"
+  039c:  speak 5 "I'll go to the city, so\nyou must keep trying.\n"
+  03fe:  speak Player "I see. Thanks!\n"
   0422:  jump section_5+0x426
   0426:  entityWalkTo 5 47 -2650 1
   042e:  if pstat[101] >= 3 then section_5+0x44e
-  043a:  addPStat 101 1
+  043a:  pstat[101] += 1
   043e:  delay 20
   0442:  lookAt Player 5
   0446:  lookAt Partner 5
   044a:  jump section_5+0x426
   044e:  waitForEntity 5
   0450:  unloadEntity 5
-  0452:  setPStat 101 0
+  0452:  pstat[101] = 0
   0456:  playSound 8 11
-  045a:  setDialogOwner System
-  045c:  showTextbox "Angemon joins the city!\n"
+  045a:  speak System "Angemon joins the city!\n"
   0490:  setTrigger 220
-  0494:  addPStat 1 2
+  0494:  pstat[1] += 2
   0498:  moveCameraToEntity Player 10
   049c:  waitForEntity 200
   049e:  endSection

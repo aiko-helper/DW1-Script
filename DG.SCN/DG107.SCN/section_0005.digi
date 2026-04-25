@@ -1,21 +1,17 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG107.SCN, section 5
 
 section_5(5):     ; len=400
   0000:  storeDate 105
-  0002:  setDialogOwner 5
-  0004:  showTextbox "The present time is\n<YEAR>month, <DAY>day,\n<HOUR>hours, <MINUTE>minutes.\n"
+  0002:  speak 5 "The present time is\n<YEAR>month, <DAY>day,\n<HOUR>hours, <MINUTE>minutes.\n"
   0070:  storeDigimonType 103
   0072:  storeDigimonTypus 103 109
   0076:  if pstat[109] != 1 then section_5+0xce
-  0082:  setDialogOwner 5
-  0084:  showTextbox "<ORANGE><DIGIMON><WHITE> is a Data\nType Digimon, right?\n"
+  0082:  speak 5 "<ORANGE><DIGIMON><WHITE> is a Data\nType Digimon, right?\n"
   00ce:  if pstat[109] != 2 then section_5+0x12c
-  00da:  setDialogOwner 5
-  00dc:  showTextbox "<ORANGE><DIGIMON><WHITE> is a Vaccine\nType Digimon, right?\n"
+  00da:  speak 5 "<ORANGE><DIGIMON><WHITE> is a Vaccine\nType Digimon, right?\n"
   012c:  if pstat[109] != 3 then section_5+0x186
-  0138:  setDialogOwner 5
-  013a:  showTextbox "<ORANGE><DIGIMON><WHITE> is a Virus\nType Digimon, right?\n"
+  0138:  speak 5 "<ORANGE><DIGIMON><WHITE> is a Virus\nType Digimon, right?\n"
   0186:  addStats Tiredness 10
   018a:  reduceStats Happiness 10
   018e:  endSection

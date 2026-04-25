@@ -1,41 +1,34 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG206.SCN, section 10
 
 section_10(10):     ; len=1020
   0000:  if pstat[121] != 0 then section_10+0xbc
-  000c:  setDialogOwner 6
-  000e:  showTextbox "Sorry bro. Come back again\nto challenge me. And don't\nforget to bring another fish.\n"
+  000c:  speak 6 "Sorry bro. Come back again\nto challenge me. And don't\nforget to bring another fish.\n"
   00ba:  endSection
   00bc:  if pstat[121] != 2 then section_10+0x1ee
-  00c8:  setDialogOwner 6
-  00ca:  showTextbox "Impressive! Perfect score!\nAre you by any chance...\na professional?\n"
+  00c8:  speak 6 "Impressive! Perfect score!\nAre you by any chance...\na professional?\n"
   0156:  if trigger(372) then section_10+0x1ee
   0162:  setTrigger 372
   0166:  playSound 0 7
-  016a:  setDialogOwner System
-  016c:  showTextbox "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n"
-  01ee:  setDialogOwner 6
-  01f0:  showTextbox "Amazing dude. I lost a\nmatch for the first time.\n"
-  0256:  setDialogOwner Player
-  0258:  showTextbox "Alright, now come to the city\nwith me as you promised.\n"
-  02ca:  setDialogOwner 6
-  02cc:  showTextbox "Oh well, I guess I have to.\nBut I already decided what\nI'm going to do in the city.\n"
+  016a:  speak System "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n"
+  01ee:  speak 6 "Amazing dude. I lost a\nmatch for the first time.\n"
+  0256:  speak Player "Alright, now come to the city\nwith me as you promised.\n"
+  02ca:  speak 6 "Oh well, I guess I have to.\nBut I already decided what\nI'm going to do in the city.\n"
   0378:  jump section_10+0x37c
   037c:  entityWalkTo 6 -105 1821 1
   0384:  if pstat[101] >= 3 then section_10+0x3a4
-  0390:  addPStat 101 1
+  0390:  pstat[101] += 1
   0394:  delay 20
   0398:  lookAt Player 6
   039c:  lookAt Partner 6
   03a0:  jump section_10+0x37c
   03a4:  waitForEntity 6
   03a6:  unloadEntity 6
-  03a8:  setPStat 101 0
+  03a8:  pstat[101] = 0
   03ac:  playSound 8 11
-  03b0:  setDialogOwner System
-  03b2:  showTextbox "Penguinmon joins the city!\n"
+  03b0:  speak System "Penguinmon joins the city!\n"
   03ec:  moveCameraToEntity Player 10
   03f0:  waitForEntity 200
   03f2:  setTrigger 257
-  03f6:  addPStat 1 1
+  03f6:  pstat[1] += 1
   03fa:  endSection

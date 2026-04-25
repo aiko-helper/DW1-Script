@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG126.SCN, section 81
 
 section_81(81):     ; len=1282
@@ -7,29 +7,20 @@ section_81(81):     ; len=1282
   0008:  if trigger(139) then section_81+0x1f2
   0014:  setTrigger 139
   0018:  playSound 8 4
-  001c:  setDialogOwner 5
-  001e:  showTextbox "This is a Digimon Card Shop.\n"
-  005c:  setDialogOwner Player
-  005e:  showTextbox "What's a Digimon Card?\n"
-  0090:  setDialogOwner 5
-  0092:  showTextbox "Everyone's collecting them.\nYou can't lose with them.\n"
-  0102:  setDialogOwner Player
-  0104:  showTextbox "Oh?\n"
+  001c:  speak 5 "This is a Digimon Card Shop.\n"
+  005c:  speak Player "What's a Digimon Card?\n"
+  0090:  speak 5 "Everyone's collecting them.\nYou can't lose with them.\n"
+  0102:  speak Player "Oh?\n"
   0110:  playSound 8 4
-  0114:  setDialogOwner 5
-  0116:  showTextbox "I'll give you one free for\nstarters. It's a good one.\n"
-  0186:  setDialogOwner Player
-  0188:  showTextbox "Hey! This card's about ME!\n"
-  01c2:  setDialogOwner System
-  01c4:  showTextbox "Got a card of <LIGHTBLUE><PLAYER><WHITE>!\n"
+  0114:  speak 5 "I'll give you one free for\nstarters. It's a good one.\n"
+  0186:  speak Player "Hey! This card's about ME!\n"
+  01c2:  speak System "Got a card of <LIGHTBLUE><PLAYER><WHITE>!\n"
   01ee:  giveCard 0
   01f0:  endSection
-  01f2:  setDialogOwner 5
-  01f4:  showTextbox "This is a Digimon Card Shop.\n"
-  0232:  setPStat 254 5
+  01f2:  speak 5 "This is a Digimon Card Shop.\n"
+  0232:  pstat[254] = 5
   0236:  playSound 8 4
-  023a:  setDialogOwner 5
-  023c:  showTextbox "We have really cool cards\nin stock today.\n"
+  023a:  speak 5 "We have really cool cards\nin stock today.\n"
   0294:  callSubroutine 15
   0296:  setDialogOwner Player
   0298:  setSelection section_81+0x2f6 section_81+0x49e section_81+0x4e0
@@ -46,8 +37,7 @@ section_81(81):     ; len=1282
   0364:  showTextbox "Buy one\nQuit\n"
   0382:  waitForSelectionChoice
   0384:  jump section_81+0x4a4
-  0388:  setDialogOwner 5
-  038a:  showTextbox "Five hundred bits for a pack.\nNo telling what's inside.\n"
+  0388:  speak 5 "Five hundred bits for a pack.\nNo telling what's inside.\n"
   03fe:  setDialogOwner Player
   0400:  setSelection section_81+0x43c section_81+0x4a4
   0406:  showTextbox "I'll buy it\nNo thanks\n"
@@ -55,8 +45,7 @@ section_81(81):     ; len=1282
   0438:  jump section_81+0x4a4
   043c:  reduceMoney 500
   0442:  callSubroutine 15
-  0444:  setDialogOwner 5
-  0446:  showTextbox "Open the pack right away.\n"
+  0444:  speak 5 "Open the pack right away.\n"
   047e:  unsetTrigger 3
   0482:  unsetTrigger 4
   0486:  callSubroutine 14
@@ -69,10 +58,8 @@ section_81(81):     ; len=1282
   049a:  jump section_81+0x4a4
   049e:  setTrigger 3
   04a2:  callSubroutine 14
-  04a4:  setDialogOwner 5
-  04a6:  showTextbox "You want something else?\n"
+  04a4:  speak 5 "You want something else?\n"
   04dc:  jump section_81+0x296
   04e0:  callSubroutine 16
-  04e2:  setDialogOwner 5
-  04e4:  showTextbox "Come again.\n"
+  04e2:  speak 5 "Come again.\n"
   0500:  endSection

@@ -1,4 +1,4 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG182.SCN, section 53
 
 section_53(53):     ; len=1998
@@ -9,57 +9,48 @@ section_53(53):     ; len=1998
   0018:  waitForEntity 200
   001a:  lookAt 5 Player
   001e:  delay 5
-  0022:  setDialogOwner 5
-  0024:  showTextbox "We're here at last.\n"
+  0022:  speak 5 "We're here at last.\n"
   0050:  playAnimation Player 20
   0054:  delay 15
-  0058:  setDialogOwner Player
-  005a:  showTextbox "Are you the boss?\n"
+  0058:  speak Player "Are you the boss?\n"
   0082:  playAnimation Player 0
-  0086:  setDialogOwner 5
-  0088:  showTextbox "I'm sorry, I'm not.\nI'm MetalGreymon!\n"
+  0086:  speak 5 "I'm sorry, I'm not.\nI'm MetalGreymon!\n"
   00d8:  setDialogOwner Player
   00da:  playAnimation Player 19
   00de:  delay 15
   00e2:  showTextbox "I'll deal with you later!\nMove!\n"
   0126:  playAnimation Player 0
-  012a:  setDialogOwner 5
-  012c:  showTextbox "I will not move for you.\nYou won't get past me.\n"
-  0190:  setDialogOwner Player
-  0192:  showTextbox "I want to save energy.\nFighting him won't help me.\n"
-  01fc:  setDialogOwner 5
-  01fe:  showTextbox "I'm coming to get you!\n"
+  012a:  speak 5 "I will not move for you.\nYou won't get past me.\n"
+  0190:  speak Player "I want to save energy.\nFighting him won't help me.\n"
+  01fc:  speak 5 "I'm coming to get you!\n"
   0230:  setTrigger 1
-  0234:  setPStat 250 1
-  0238:  setPStat 251 5
-  023c:  setPStat 252 255
-  0240:  setPStat 253 255
+  0234:  pstat[250] = 1
+  0238:  pstat[251] = 5
+  023c:  pstat[252] = 255
+  0240:  pstat[253] = 255
   0244:  fadeOutHUD
   0246:  delay 1
   024a:  startBattle
   024c:  unsetTrigger 1
-  0250:  setPStat 250 0
+  0250:  pstat[250] = 0
   0254:  lookAt Player 5
   0258:  lookAt 5 Player
   025c:  lookAt Partner 5
-  0260:  setDialogOwner 5
-  0262:  showTextbox "Huh? Where am I?\n"
-  0288:  setDialogOwner Player
-  028a:  showTextbox "You regained your senses!\n"
-  02c2:  setDialogOwner 5
-  02c4:  showTextbox "I guess so...\n"
+  0260:  speak 5 "Huh? Where am I?\n"
+  0288:  speak Player "You regained your senses!\n"
+  02c2:  speak 5 "I guess so...\n"
   02e4:  showTextbox "If you beat them\nmaybe I'll see you again.\nUntil then, I'm gone.\n"
   036a:  jump section_53+0x36e
   036e:  entityWalkTo 5 -400 -500 0
   0376:  if pstat[101] >= 3 then section_53+0x396
-  0382:  addPStat 101 1
+  0382:  pstat[101] += 1
   0386:  delay 20
   038a:  lookAt Player 5
   038e:  lookAt Partner 5
   0392:  jump section_53+0x36e
   0396:  waitForEntity 5
   0398:  unloadEntity 5
-  039a:  setPStat 101 0
+  039a:  pstat[101] = 0
   039e:  moveCameraToEntity Player 10
   03a2:  waitForEntity 200
   03a4:  setTrigger 326

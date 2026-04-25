@@ -1,145 +1,115 @@
-; source: extract/DIGIMON/SCN/DG.SCN
+; source: ./extract/DIGIMON/SCN/DG.SCN
 ; DG205.SCN, section 6
 
 section_6(6):     ; len=8178
-  0000:  setDialogOwner 6
-  0002:  showTextbox "Which shop would you want?\n"
+  0000:  speak 6 "Which shop would you want?\n"
   003c:  setDialogOwner Player
   003e:  setSelection section_6+0x9a section_6+0x108c section_6+0x1b1e
   0046:  showTextbox "Clinic\nTreasure Hunter\nFortune Teller\n"
   0096:  waitForSelectionChoice
   0098:  endSection
-  009a:  setDialogOwner 6
-  009c:  showTextbox "I changed it into a hospital.\n"
+  009a:  speak 6 "I changed it into a hospital.\n"
   00dc:  if (cond & Injured) == 0x01 OR (cond & Sick) == 0x01 then section_6+0xf0
   00ec:  jump section_6+0x354
-  00f0:  setDialogOwner 6
-  00f2:  showTextbox "He doesn't feel well,\ndoes he? You have to take\ncare of his health!\n"
+  00f0:  speak 6 "He doesn't feel well,\ndoes he? You have to take\ncare of his health!\n"
   017e:  showTextbox "Let me treat him right away.\nFee will be discounted\nto three hundred bits.\n"
   0218:  if money < 300 then section_6+0x232
   0228:  reduceMoney 300
   022e:  jump section_6+0x2e4
-  0232:  setDialogOwner 6
-  0234:  showTextbox "You don't have enough bits?!\nPay me what you can. Save\nyour money for a rainy day.\n"
+  0232:  speak 6 "You don't have enough bits?!\nPay me what you can. Save\nyour money for a rainy day.\n"
   02de:  reduceMoney 300
   02e4:  removeCondition Injured
   02e6:  removeCondition Sick
   02e8:  showTextbox "Everything is OK now.\nJust be careful from now on.\n"
   0352:  endSection
-  0354:  setDialogOwner 6
-  0356:  showTextbox "He doesn't look sick or\ninjured. What do you need?\n"
+  0354:  speak 6 "He doesn't look sick or\ninjured. What do you need?\n"
   03c0:  setDialogOwner Player
   03c2:  setSelection section_6+0x41c section_6+0xcde section_6+0xdba
   03ca:  showTextbox "Check him out\nSell me Medicine\nNothing\n"
-  041c:  setDialogOwner 6
-  041e:  showTextbox "OK, let me look at\nhow <ORANGE><DIGIMON><WHITE> is doing.\n"
+  041c:  speak 6 "OK, let me look at\nhow <ORANGE><DIGIMON><WHITE> is doing.\n"
   046c:  if stat[Tiredness] < 80 then section_6+0x522
-  047a:  setDialogOwner 6
-  047c:  showTextbox "Oh no. <ORANGE><DIGIMON><WHITE>'s Tiredness\nis at a very dangerous level.\nHe has to rest right now!\n"
+  047a:  speak 6 "Oh no. <ORANGE><DIGIMON><WHITE>'s Tiredness\nis at a very dangerous level.\nHe has to rest right now!\n"
   051e:  jump section_6+0x6ee
   0522:  if stat[Tiredness] < 50 then section_6+0x5bc
-  0530:  setDialogOwner 6
-  0532:  showTextbox "<ORANGE><DIGIMON><WHITE> has too much\nTiredness. He should rest\nbefore it's too late.\n"
+  0530:  speak 6 "<ORANGE><DIGIMON><WHITE> has too much\nTiredness. He should rest\nbefore it's too late.\n"
   05b8:  jump section_6+0x6ee
   05bc:  if stat[Tiredness] < 20 then section_6+0x654
-  05ca:  setDialogOwner 6
-  05cc:  showTextbox "<ORANGE><DIGIMON><WHITE> seems to be a bit\ntired. He shouldn't push\nhimself so much.\n"
+  05ca:  speak 6 "<ORANGE><DIGIMON><WHITE> seems to be a bit\ntired. He shouldn't push\nhimself so much.\n"
   0650:  jump section_6+0x6ee
-  0654:  setDialogOwner 6
-  0656:  showTextbox "<ORANGE><DIGIMON><WHITE> is fine, but\nTiredness can cause all kinds\nof bad things. Be careful.\n"
-  06ee:  setDialogOwner 6
-  06f0:  showTextbox "Well, how does he feel?\n"
+  0654:  speak 6 "<ORANGE><DIGIMON><WHITE> is fine, but\nTiredness can cause all kinds\nof bad things. Be careful.\n"
+  06ee:  speak 6 "Well, how does he feel?\n"
   0724:  if stat[Happiness] < 100 then section_6+0x7bc
-  0732:  setDialogOwner 6
-  0734:  showTextbox "Mentally, <ORANGE><DIGIMON><WHITE> is at\nmax relaxation. He'll\nlive for a long time.\n"
+  0732:  speak 6 "Mentally, <ORANGE><DIGIMON><WHITE> is at\nmax relaxation. He'll\nlive for a long time.\n"
   07b8:  jump section_6+0xbd4
   07bc:  if stat[Happiness] < 70 then section_6+0x862
-  07ca:  setDialogOwner 6
-  07cc:  showTextbox "<ORANGE><DIGIMON><WHITE>'s mental state is\nexcellent. It's the sign\nof a healthy lifestyle.\n"
+  07ca:  speak 6 "<ORANGE><DIGIMON><WHITE>'s mental state is\nexcellent. It's the sign\nof a healthy lifestyle.\n"
   085e:  jump section_6+0xbd4
   0862:  if stat[Happiness] < 30 then section_6+0x8fa
-  0870:  setDialogOwner 6
-  0872:  showTextbox "<ORANGE><DIGIMON><WHITE> seems to be very\nrelaxed. Did something\nnice happen to him?\n"
+  0870:  speak 6 "<ORANGE><DIGIMON><WHITE> seems to be very\nrelaxed. Did something\nnice happen to him?\n"
   08f6:  jump section_6+0xbd4
   08fa:  if stat[Happiness] < 0 then section_6+0x9a0
-  0908:  setDialogOwner 6
-  090a:  showTextbox "I don't think <ORANGE><DIGIMON><WHITE> is\nfeeling really stressed.\nI would say he's normal.\n"
+  0908:  speak 6 "I don't think <ORANGE><DIGIMON><WHITE> is\nfeeling really stressed.\nI would say he's normal.\n"
   099c:  jump section_6+0xbd4
   09a0:  if stat[Happiness] < -20 then section_6+0xa22
-  09ae:  setDialogOwner 6
-  09b0:  showTextbox "<ORANGE><DIGIMON><WHITE> seems to be stressed\na bit. Go easy on training.\n"
+  09ae:  speak 6 "<ORANGE><DIGIMON><WHITE> seems to be stressed\na bit. Go easy on training.\n"
   0a1e:  jump section_6+0xbd4
   0a22:  if stat[Happiness] < -50 then section_6+0xa8e
-  0a30:  setDialogOwner 6
-  0a32:  showTextbox "<ORANGE><DIGIMON><WHITE> has excess stress.\nHe needs some fun.\n"
+  0a30:  speak 6 "<ORANGE><DIGIMON><WHITE> has excess stress.\nHe needs some fun.\n"
   0a8a:  jump section_6+0xbd4
   0a8e:  if stat[Happiness] < -80 then section_6+0xb3e
-  0a9c:  setDialogOwner 6
-  0a9e:  showTextbox "<ORANGE><DIGIMON><WHITE> has too much stress\nand isn't happy. He shouldn't\npush himself so much.\n"
+  0a9c:  speak 6 "<ORANGE><DIGIMON><WHITE> has too much stress\nand isn't happy. He shouldn't\npush himself so much.\n"
   0b3a:  jump section_6+0xbd4
-  0b3e:  setDialogOwner 6
-  0b40:  showTextbox "<ORANGE><DIGIMON><WHITE> has too much stress!\nIf he goes on like this,\nhe won't live long!\n"
+  0b3e:  speak 6 "<ORANGE><DIGIMON><WHITE> has too much stress!\nIf he goes on like this,\nhe won't live long!\n"
   0bd0:  jump section_6+0xbd4
-  0bd4:  setDialogOwner 6
-  0bd6:  showTextbox "Hmmm.... This is the best\nI can do for <ORANGE><DIGIMON><WHITE>.\n"
+  0bd4:  speak 6 "Hmmm.... This is the best\nI can do for <ORANGE><DIGIMON><WHITE>.\n"
   0c32:  showTextbox "Do you still need me\nfor something?\n"
   0c7e:  setDialogOwner Player
   0c80:  setSelection section_6+0x41c section_6+0xcde section_6+0xdba
   0c88:  showTextbox "Check him out\nSell me Medicine\nNothing\n"
   0cda:  waitForSelectionChoice
   0cdc:  endSection
-  0cde:  setDialogOwner 6
-  0ce0:  showTextbox "Hmmm, he should be fine.\n"
+  0cde:  speak 6 "Hmmm, he should be fine.\n"
   0d16:  setDialogOwner Player
   0d18:  setSelection section_6+0xe2e section_6+0xf06 section_6+0xdba
   0d20:  showTextbox "Bandage:    four hund bits\nMedicine: twelve hund bits\nDon't buy anything\n"
   0db6:  waitForSelectionChoice
   0db8:  endSection
-  0dba:  setDialogOwner 6
-  0dbc:  showTextbox "When he doesn't feel well,\ncome to see me right away.\n"
+  0dba:  speak 6 "When he doesn't feel well,\ncome to see me right away.\n"
   0e2c:  endSection
   0e2e:  if item[Bandage] >= 1 OR !trigger(0) then section_6+0xe7a
-  0e40:  setDialogOwner 6
-  0e42:  showTextbox "You have a lot of stuff.\n"
+  0e40:  speak 6 "You have a lot of stuff.\n"
   0e78:  endSection
   0e7a:  if money < 400 then section_6+0xe98
   0e8a:  reduceMoney 400
   0e90:  giveItem Bandage 1
   0e94:  jump section_6+0xfde
-  0e98:  setDialogOwner 6
-  0e9a:  showTextbox "You don't have enough bits.\nI can't sell you that.\n"
+  0e98:  speak 6 "You don't have enough bits.\nI can't sell you that.\n"
   0f04:  endSection
   0f06:  if item[Medicine] >= 1 OR !trigger(0) then section_6+0xf52
-  0f18:  setDialogOwner 6
-  0f1a:  showTextbox "You have a lot of stuff.\n"
+  0f18:  speak 6 "You have a lot of stuff.\n"
   0f50:  endSection
   0f52:  if money < 1200 then section_6+0xf70
   0f62:  reduceMoney 1200
   0f68:  giveItem Medicine 1
   0f6c:  jump section_6+0xfde
-  0f70:  setDialogOwner 6
-  0f72:  showTextbox "You don't have enough bits.\nI can't sell you that.\n"
+  0f70:  speak 6 "You don't have enough bits.\nI can't sell you that.\n"
   0fdc:  endSection
-  0fde:  setDialogOwner 6
-  0fe0:  showTextbox "Do you still need me\nfor something?\n"
+  0fde:  speak 6 "Do you still need me\nfor something?\n"
   102c:  setDialogOwner Player
   102e:  setSelection section_6+0x41c section_6+0xcde section_6+0xdba
   1036:  showTextbox "Check him out\nSell me Medicine\nNothing\n"
   1088:  waitForSelectionChoice
   108a:  endSection
-  108c:  setDialogOwner 6
-  108e:  showTextbox "I changed jobs to become\nthe Treasure Hunter.\n"
+  108c:  speak 6 "I changed jobs to become\nthe Treasure Hunter.\n"
   10ee:  if !trigger(178) AND !trigger(178) then section_6+0x1102
   10fe:  jump section_6+0x16f8
-  1102:  setDialogOwner 6
-  1104:  showTextbox "Do you have a request for\nTreasure Hunting? Do you\nwant some information?\n"
+  1102:  speak 6 "Do you have a request for\nTreasure Hunting? Do you\nwant some information?\n"
   119c:  setDialogOwner Player
   119e:  setSelection section_6+0x120c section_6+0x144a section_6+0x1508
   11a6:  showTextbox "Want some info\nDon't need any info\nNever mind\n"
   1206:  waitForSelectionChoice
   1208:  jump section_6+0x1508
-  120c:  setDialogOwner 6
-  120e:  showTextbox "There are two courses with\ndifferent times and prices.\n"
+  120c:  speak 6 "There are two courses with\ndifferent times and prices.\n"
   1280:  showTextbox "Reg:three day, one thous bits\nSpec:ten day, five thous bits\n"
   12fc:  showTextbox "The chances of finding\nbetter treasure is higher\nwith the Special Plan.\n"
   1390:  showTextbox "That's about it.\nSo, what do you want to do?\n"
@@ -148,23 +118,20 @@ section_6(6):     ; len=8178
   13f8:  showTextbox "Explain again\nFind treasure\nNothing\n"
   1444:  waitForSelectionChoice
   1446:  jump section_6+0x1508
-  144a:  setDialogOwner 6
-  144c:  showTextbox "Choose a plan!\n"
+  144a:  speak 6 "Choose a plan!\n"
   146e:  setDialogOwner Player
   1470:  setSelection section_6+0x1534 section_6+0x15d2 section_6+0x1508
   1478:  showTextbox "Reg:three day, one thous bits\nSpec:ten day, five thous bits\nCancel\n"
   1502:  waitForSelectionChoice
   1504:  jump section_6+0x1508
-  1508:  setDialogOwner 6
-  150a:  showTextbox "OK then, goodbye.\n"
+  1508:  speak 6 "OK then, goodbye.\n"
   1532:  endSection
   1534:  if money >= 1000 then section_6+0x1548
   1544:  jump section_6+0x1670
   1548:  reduceMoney 1000
   154e:  setTrigger 178
   1552:  storeDate 30
-  1554:  setDialogOwner 6
-  1556:  showTextbox "Alright, you'll get results\nin three days. Wish me luck.\n"
+  1554:  speak 6 "Alright, you'll get results\nin three days. Wish me luck.\n"
   15cc:  storeRandom 22 49
   15d0:  endSection
   15d2:  if money >= 5000 then section_6+0x15e6
@@ -172,23 +139,19 @@ section_6(6):     ; len=8178
   15e6:  reduceMoney 5000
   15ec:  setTrigger 179
   15f0:  storeDate 30
-  15f2:  setDialogOwner 6
-  15f4:  showTextbox "Alright, you'll get results\nin three days. Wish me luck.\n"
+  15f2:  speak 6 "Alright, you'll get results\nin three days. Wish me luck.\n"
   166a:  storeRandom 23 49
   166e:  endSection
-  1670:  setDialogOwner 6
-  1672:  showTextbox "You don't have enough bits.\nI need some money to\nfind treasure.\n"
+  1670:  speak 6 "You don't have enough bits.\nI need some money to\nfind treasure.\n"
   16f6:  endSection
   16f8:  if pstat[30] >= 3 OR !trigger(178) then section_6+0x170c
   1708:  jump section_6+0x1724
   170c:  if pstat[30] >= 10 OR !trigger(179) then section_6+0x1720
   171c:  jump section_6+0x1724
   1720:  jump section_6+0x17c6
-  1724:  setDialogOwner System
-  1726:  showTextbox "<YELLOW>Sign <WHITE>\nI'm looking for treasure\nright now. Please wait\na while: Drimogemon.\n"
+  1724:  speak System "<YELLOW>Sign <WHITE>\nI'm looking for treasure\nright now. Please wait\na while: Drimogemon.\n"
   17c4:  endSection
-  17c6:  setDialogOwner 6
-  17c8:  showTextbox "You know what?\nWe got some treasure.\n"
+  17c6:  speak 6 "You know what?\nWe got some treasure.\n"
   1816:  if !trigger(178) then section_6+0x1826
   1822:  jump section_6+0x183a
   1826:  if !trigger(179) then section_6+0x183a
@@ -196,55 +159,54 @@ section_6(6):     ; len=8178
   1836:  jump section_6+0x19c2
   183a:  if pstat[22] > 0 then section_6+0x1852
   1846:  giveItem KogaLaws 1
-  184a:  setPStat 110 90
+  184a:  pstat[110] = 90
   184e:  jump section_6+0x195a
   1852:  if pstat[22] > 1 then section_6+0x186a
   185e:  giveItem FlameWing 1
-  1862:  setPStat 110 73
+  1862:  pstat[110] = 73
   1866:  jump section_6+0x195a
   186a:  if pstat[22] > 2 then section_6+0x1882
   1876:  giveItem TornTatter 1
-  187a:  setPStat 110 82
+  187a:  pstat[110] = 82
   187e:  jump section_6+0x195a
   1882:  if pstat[22] > 12 then section_6+0x189a
   188e:  giveItem SuperRecovery 1
-  1892:  setPStat 110 3
+  1892:  pstat[110] = 3
   1896:  jump section_6+0x195a
   189a:  if pstat[22] > 15 then section_6+0x18b2
   18a6:  giveItem Restore 1
-  18aa:  setPStat 110 11
+  18aa:  pstat[110] = 11
   18ae:  jump section_6+0x195a
   18b2:  if pstat[22] > 19 then section_6+0x18ca
   18be:  giveItem Omnipotent 1
-  18c2:  setPStat 110 9
+  18c2:  pstat[110] = 9
   18c6:  jump section_6+0x195a
   18ca:  if pstat[22] > 23 then section_6+0x18e2
   18d6:  giveItem Protection 1
-  18da:  setPStat 110 10
+  18da:  pstat[110] = 10
   18de:  jump section_6+0x195a
   18e2:  if pstat[22] > 33 then section_6+0x18fa
   18ee:  giveItem LargeMP 1
-  18f2:  setPStat 110 6
+  18f2:  pstat[110] = 6
   18f6:  jump section_6+0x195a
   18fa:  if pstat[22] > 37 then section_6+0x1912
   1906:  giveItem SuperOffenseDisk 1
-  190a:  setPStat 110 19
+  190a:  pstat[110] = 19
   190e:  jump section_6+0x195a
   1912:  if pstat[22] > 41 then section_6+0x192a
   191e:  giveItem SuperDefenseDisk 1
-  1922:  setPStat 110 20
+  1922:  pstat[110] = 20
   1926:  jump section_6+0x195a
   192a:  if pstat[22] > 45 then section_6+0x1942
   1936:  giveItem SuperSpeedDisk 1
-  193a:  setPStat 110 21
+  193a:  pstat[110] = 21
   193e:  jump section_6+0x195a
   1942:  if pstat[22] > 49 then section_6+0x195a
   194e:  giveItem OmniDisk 1
-  1952:  setPStat 110 18
+  1952:  pstat[110] = 18
   1956:  jump section_6+0x195a
   195a:  if !trigger(0) then section_6+0x199c
-  1966:  setDialogOwner 6
-  1968:  showTextbox "Empty your belongings!\n"
+  1966:  speak 6 "Empty your belongings!\n"
   199a:  endSection
   199c:  showTextbox "I got <LIGHTBLUE><TREASURE ITEM><WHITE>!\n"
   19b6:  unsetTrigger 178
@@ -252,54 +214,53 @@ section_6(6):     ; len=8178
   19be:  jump section_6+0x1ae2
   19c2:  if pstat[23] > 0 then section_6+0x19da
   19ce:  giveItem OffenseChip 1
-  19d2:  setPStat 110 23
+  19d2:  pstat[110] = 23
   19d6:  jump section_6+0x195a
   19da:  if pstat[23] > 1 then section_6+0x19f2
   19e6:  giveItem HPChip 1
-  19ea:  setPStat 110 27
+  19ea:  pstat[110] = 27
   19ee:  jump section_6+0x195a
   19f2:  if pstat[23] > 2 then section_6+0x1a0a
   19fe:  giveItem BrainChip 1
-  1a02:  setPStat 110 25
+  1a02:  pstat[110] = 25
   1a06:  jump section_6+0x195a
   1a0a:  if pstat[23] > 3 then section_6+0x1a22
   1a16:  giveItem DefenseChip 1
-  1a1a:  setPStat 110 24
+  1a1a:  pstat[110] = 24
   1a1e:  jump section_6+0x195a
   1a22:  if pstat[23] > 4 then section_6+0x1a3a
   1a2e:  giveItem MPChip 1
-  1a32:  setPStat 110 28
+  1a32:  pstat[110] = 28
   1a36:  jump section_6+0x195a
   1a3a:  if pstat[23] > 5 then section_6+0x1a52
   1a46:  giveItem SpeedChip 1
-  1a4a:  setPStat 110 26
+  1a4a:  pstat[110] = 26
   1a4e:  jump section_6+0x195a
   1a52:  if pstat[23] > 6 then section_6+0x1a6a
   1a5e:  giveItem KogaLaws 1
-  1a62:  setPStat 110 90
+  1a62:  pstat[110] = 90
   1a66:  jump section_6+0x195a
   1a6a:  if pstat[23] > 7 then section_6+0x1a82
   1a76:  giveItem FlameWing 1
-  1a7a:  setPStat 110 73
+  1a7a:  pstat[110] = 73
   1a7e:  jump section_6+0x195a
   1a82:  if pstat[23] > 8 then section_6+0x1a9a
   1a8e:  giveItem TornTatter 1
-  1a92:  setPStat 110 82
+  1a92:  pstat[110] = 82
   1a96:  jump section_6+0x195a
   1a9a:  if pstat[23] > 20 then section_6+0x1ab2
   1aa6:  giveItem SuperRecovery 1
-  1aaa:  setPStat 110 3
+  1aaa:  pstat[110] = 3
   1aae:  jump section_6+0x195a
   1ab2:  if pstat[23] > 29 then section_6+0x1aca
   1abe:  giveItem Restore 1
-  1ac2:  setPStat 110 11
+  1ac2:  pstat[110] = 11
   1ac6:  jump section_6+0x195a
   1aca:  if pstat[23] > 49 then section_6+0x1ae2
   1ad6:  giveItem Omnipotent 1
-  1ada:  setPStat 110 9
+  1ada:  pstat[110] = 9
   1ade:  jump section_6+0x195a
-  1ae2:  setDialogOwner 6
-  1ae4:  showTextbox "Thanks for your business!\n"
+  1ae2:  speak 6 "Thanks for your business!\n"
   1b1c:  endSection
   1b1e:  jumpToScriptSection ROOM05B 6
   1b24:  endSection
