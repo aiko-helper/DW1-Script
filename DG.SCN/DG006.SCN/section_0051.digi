@@ -1,15 +1,15 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG006.SCN, section 51
 
-section_51:     ; len=3510
+section_51(51):     ; len=3510
   0000:  if !trigger(185) OR trigger(249) then section_51+0x398
   0010:  moveCameraTo 20 2214 865
   0016:  waitForEntity 200
   0018:  setPStat 247 13
   001c:  setPStat 248 16
   0020:  callSubroutine 21
-  0022:  entityWalkTo 253 1642 -107 0
-  002a:  entityWalkTo 252 1252 -547 1
+  0022:  entityWalkTo Player 1642 -107 0
+  002a:  entityWalkTo Partner 1252 -547 1
   0032:  delay 80
   0036:  setObjectVisibility 13 1
   003a:  setObjectVisibility 14 1
@@ -27,7 +27,7 @@ section_51:     ; len=3510
   006a:  setObjectVisibility 26 1
   006e:  setObjectVisibility 27 1
   0072:  setObjectVisibility 28 1
-  0076:  setDigimon 49 0 0
+  0076:  setDigimon Coelamon 0 0
   007a:  playSound 8 7
   007e:  setObjectVisibility 31 0
   0082:  setPStat 247 31
@@ -36,23 +36,23 @@ section_51:     ; len=3510
   008c:  delay 10
   0090:  setObjectVisibility 31 1
   0094:  setObjectVisibility 34 0
-  0098:  lookAt 253 5
-  009c:  lookAt 252 5
+  0098:  lookAt Player 5
+  009c:  lookAt Partner 5
   00a0:  delay 20
-  00a4:  lookAt 5 253
+  00a4:  lookAt 5 Player
   00a8:  setDialogOwner 5
   00aa:  showTextbox "Oh, it's you, <LIGHTBLUE><PLAYER><WHITE>.\nThe bridge is fixed.\n"
   00fe:  showTextbox "I hear you're making a city.\n"
   013c:  showTextbox "I got a request.\nI want you to help me\njust like I helped you.\n"
-  01be:  setDialogOwner 253
+  01be:  setDialogOwner Player
   01c0:  showTextbox "?\n"
   01c8:  setDialogOwner 5
   01ca:  showTextbox "Making a city means\nsaving this island.\nEveryone will be saved.\n"
-  024e:  playAnimation 253 19
+  024e:  playAnimation Player 19
   0252:  delay 15
-  0256:  setDialogOwner 253
+  0256:  setDialogOwner Player
   0258:  showTextbox "Does that mean you'll\ncome to the city?\n"
-  02ac:  playAnimation 253 0
+  02ac:  playAnimation Player 0
   02b0:  setDialogOwner 5
   02b2:  showTextbox "Yes. I'll go to your city.\n"
   02ec:  delay 10
@@ -77,10 +77,10 @@ section_51:     ; len=3510
   033e:  setObjectVisibility 30 1
   0342:  delay 10
   0346:  playSound 8 11
-  034a:  setDialogOwner 255
+  034a:  setDialogOwner System
   034c:  showTextbox "Coelamon joins the city!\n"
-  0382:  entityWalkTo 253 1000 -461 1
-  038a:  moveCameraToEntity 253 10
+  0382:  entityWalkTo Player 1000 -461 1
+  038a:  moveCameraToEntity Player 10
   038e:  setTrigger 249
   0392:  addPStat 1 2
   0396:  endSection
@@ -93,8 +93,8 @@ section_51:     ; len=3510
   03bc:  setPStat 247 13
   03c0:  setPStat 248 16
   03c4:  callSubroutine 21
-  03c6:  entityWalkTo 253 1642 -107 0
-  03ce:  entityWalkTo 252 1252 -547 1
+  03c6:  entityWalkTo Player 1642 -107 0
+  03ce:  entityWalkTo Partner 1252 -547 1
   03d6:  delay 80
   03da:  setObjectVisibility 13 1
   03de:  setObjectVisibility 14 1
@@ -112,7 +112,7 @@ section_51:     ; len=3510
   040e:  setObjectVisibility 26 1
   0412:  setObjectVisibility 27 1
   0416:  setObjectVisibility 28 1
-  041a:  setDigimon 49 0 0
+  041a:  setDigimon Coelamon 0 0
   041e:  playSound 8 7
   0422:  setObjectVisibility 31 0
   0426:  setPStat 247 31
@@ -121,11 +121,11 @@ section_51:     ; len=3510
   0430:  delay 10
   0434:  setObjectVisibility 31 1
   0438:  setObjectVisibility 34 0
-  043c:  lookAt 253 5
-  0440:  lookAt 252 5
+  043c:  lookAt Player 5
+  0440:  lookAt Partner 5
   0444:  delay 20
-  0448:  lookAt 5 253
-  044c:  playAnimation 253 15
+  0448:  lookAt 5 Player
+  044c:  playAnimation Player 15
   0450:  delay 20
   0454:  if !trigger(96) then section_51+0x464
   0460:  jump section_51+0x6e4
@@ -133,16 +133,16 @@ section_51:     ; len=3510
   0466:  showTextbox "Hey, are you human?\n"
   0492:  showTextbox "I am Coelamon,\nthe fish Digimon.\nDid you come to see me?\n"
   0508:  setTrigger 49
-  050c:  setDialogOwner 253
+  050c:  setDialogOwner Player
   050e:  setSelection section_51+0x578 section_51+0x5b4
   0514:  showTextbox "Yes, we looked all over\nNow that you mention it\n"
-  0578:  playAnimation 253 19
+  0578:  playAnimation Player 19
   057c:  delay 20
   0580:  unsetTrigger 49
   0584:  setDialogOwner 5
   0586:  showTextbox "Ha-ha, is that so!\n"
   05b0:  jump section_51+0x602
-  05b4:  playAnimation 253 19
+  05b4:  playAnimation Player 19
   05b8:  delay 20
   05bc:  unsetTrigger 49
   05c0:  setDialogOwner 5
@@ -150,11 +150,11 @@ section_51:     ; len=3510
   0602:  setDialogOwner 5
   0604:  showTextbox "The bridge upstream is\nbroken and you want to go\nacross. Right?\n"
   0688:  playSound 8 8
-  068c:  playAnimation 253 22
+  068c:  playAnimation Player 22
   0690:  delay 8
-  0694:  playAnimation 253 22
+  0694:  playAnimation Player 22
   0698:  delay 8
-  069c:  playAnimation 253 0
+  069c:  playAnimation Player 0
   06a0:  delay 3
   06a4:  playSound 8 14
   06a8:  showTextbox "I see.\nFine, I'll help you.\n"
@@ -172,7 +172,7 @@ section_51:     ; len=3510
   0746:  callSubroutine 21
   0748:  delay 60
   074c:  setObjectVisibility 37 1
-  0750:  setDigimon 49 0 0
+  0750:  setDigimon Coelamon 0 0
   0754:  playSound 8 7
   0758:  setObjectVisibility 31 0
   075c:  setPStat 247 31
@@ -181,7 +181,7 @@ section_51:     ; len=3510
   0766:  delay 15
   076a:  setObjectVisibility 31 1
   076e:  setObjectVisibility 34 0
-  0772:  setDigimon 49 6 0
+  0772:  setDigimon Coelamon 6 0
   0776:  playSound 8 7
   077a:  setObjectVisibility 32 0
   077e:  setPStat 247 32
@@ -190,7 +190,7 @@ section_51:     ; len=3510
   0788:  delay 15
   078c:  setObjectVisibility 32 1
   0790:  setObjectVisibility 35 0
-  0794:  setDigimon 49 7 0
+  0794:  setDigimon Coelamon 7 0
   0798:  playSound 8 7
   079c:  setObjectVisibility 33 0
   07a0:  setPStat 247 33
@@ -199,7 +199,7 @@ section_51:     ; len=3510
   07aa:  delay 15
   07ae:  setObjectVisibility 33 1
   07b2:  setObjectVisibility 36 0
-  07b6:  lookAt 5 253
+  07b6:  lookAt 5 Player
   07ba:  delay 20
   07be:  setDialogOwner 5
   07c0:  showTextbox "Now, walk on our heads.\nDon't worry.\n"
@@ -209,14 +209,14 @@ section_51:     ; len=3510
   081a:  delay 10
   081e:  playSound 8 14
   0822:  delay 10
-  0826:  playAnimation 253 11
+  0826:  playAnimation Player 11
   082a:  delay 20
-  082e:  setDialogOwner 253
+  082e:  setDialogOwner Player
   0830:  showTextbox "Okay, here we go!\n"
-  0858:  lookAt 253 5
+  0858:  lookAt Player 5
   085c:  delay 3
-  0860:  playAnimation 253 21
-  0864:  moveEntityTo 253 2214 865 15
+  0860:  playAnimation Player 21
+  0864:  moveEntityTo Player 2214 865 15
   086c:  delay 5
   0870:  playSound 8 9
   0874:  delay 12
@@ -225,10 +225,10 @@ section_51:     ; len=3510
   0880:  setPStat 247 31
   0884:  setPStat 248 1
   0888:  callSubroutine 21
-  088a:  lookAt 253 11
+  088a:  lookAt Player 11
   088e:  delay 3
-  0892:  playAnimation 253 21
-  0896:  moveEntityTo 253 2900 1300 14
+  0892:  playAnimation Player 21
+  0896:  moveEntityTo Player 2900 1300 14
   089e:  delay 5
   08a2:  playSound 8 9
   08a6:  delay 12
@@ -238,10 +238,10 @@ section_51:     ; len=3510
   08b6:  setPStat 247 32
   08ba:  setPStat 248 1
   08be:  callSubroutine 21
-  08c0:  lookAt 253 12
+  08c0:  lookAt Player 12
   08c4:  delay 3
-  08c8:  playAnimation 253 21
-  08cc:  moveEntityTo 253 3967 3068 15
+  08c8:  playAnimation Player 21
+  08cc:  moveEntityTo Player 3967 3068 15
   08d4:  delay 5
   08d8:  playSound 8 9
   08dc:  delay 12
@@ -251,16 +251,16 @@ section_51:     ; len=3510
   08ec:  setPStat 247 33
   08f0:  setPStat 248 1
   08f4:  callSubroutine 21
-  08f6:  lookAt 253 12
+  08f6:  lookAt Player 12
   08fa:  delay 3
-  08fe:  playAnimation 253 21
-  0902:  moveEntityTo 253 5009 4260 15
+  08fe:  playAnimation Player 21
+  0902:  moveEntityTo Player 5009 4260 15
   090a:  delay 5
   090e:  playSound 8 9
   0912:  delay 12
   0916:  playSound 8 7
   091a:  setObjectVisibility 33 1
-  091e:  lookAt 5 253
+  091e:  lookAt 5 Player
   0922:  playSound 8 7
   0926:  setObjectVisibility 31 0
   092a:  setPStat 247 31
@@ -268,14 +268,14 @@ section_51:     ; len=3510
   0932:  callSubroutine 21
   0934:  delay 15
   0938:  setObjectVisibility 31 1
-  093c:  lookAt 11 253
-  0940:  lookAt 12 253
+  093c:  lookAt 11 Player
+  0940:  lookAt 12 Player
   0944:  delay 20
   0948:  setDialogOwner 5
   094a:  showTextbox "This world needs more\nteamwork. Let's meet again.\n"
   09b2:  playSound 8 14
   09b6:  setTrigger 96
-  09ba:  entityWalkTo 252 3500 2500 0
-  09c2:  warpTo 12 4 255
+  09ba:  entityWalkTo Partner 3500 2500 0
+  09c2:  warpTo TROP01 4 255
   09c6:  endSection
   09c8:  garbage 20 00 fe 00 20 00 06 00 20 01 07 00 4e 01 08 00 92 01 09 00 ce 01 0a 00 12 02 33 00 4a 02 ff ff 24 00 6e 63 19 00 0b 00 6e 1d 18 00 36 00 19 00 74 2c 2a 00 36 00 24 00 6e 63 19 00 0b 00 6e 3b 18 00 4c 00 19 00 74 2c 22 00 1e 00 24 00 6e 63 19 00 0b 00 6e 09 18 00 62 00 19 00 74 2c 35 00 2f 00 24 00 6e 63 19 00 0b 00 6e 13 18 00 78 00 19 00 74 2c 45 00 3c 00 19 00 00 00 b9 00 81 00 f9 00 18 00 c8 00 19 00 57 00 0d 00 57 00 0e 00 57 00 0f 00 57 00 10 00 57 00 11 00 57 00 12 00 57 00 13 00 57 00 14 00 57 00 15 00 57 00 16 00 57 00 17 00 57 00 18 00 57 00 19 00 57 00 1a 00 57 00 1b 00 57 00 1c 00 25 69 19 00 0a 00 6b 0f 8b 00 6b 13 81 00 f9 00 18 00 1e 01 19 00 57 00 0d 00 57 00 0e 00 57 00 0f 00 57 00 10 00 57 00 11 00 57 00 12 00 57 00 13 00 57 00 14 00 57 00 15 00 57 00 16 00 57 00 17 00 57 00 18 00 57 00 19 00 57 00 1a 00 57 00 1b 00 57 00 1c 00 fe 00 1b 06 1a 00 82 68 81 75 82 8d 81 40 82 87 82 8f 82 8e 82 8e 82 81 81 40 82 97 82 89 82 8e 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 07 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 83 82 8f 82 8d 82 85 81 40 82 88 82 85 82 92 82 85 81 49 81 40 82 66 82 8f 81 40 82 81 82 97 82 81 82 99 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 08 1a 00 82 6d 82 8f 82 97 81 40 82 68 81 75 82 8d 81 40 82 92 82 85 82 81 82 8c 82 8c 82 99 81 40 82 81 82 8e 82 87 82 92 82 99 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 09 1a 00 82 67 82 89 82 94 81 40 82 8d 82 85 81 40 82 81 82 8e 82 84 81 40 82 68 81 75 82 8c 82 8c 81 40 82 88 82 89 82 94 81 40 82 82 82 81 82 83 82 8b 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 0a 1a 00 82 73 82 92 82 99 81 40 82 89 82 94 81 43 81 40 82 89 82 86 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 19 00 00 00 b9 00 81 00 f9 00 18 00 e2 05 19 00 4f 14 a6 08 61 03 4a c8 1e 00 f7 0d 1e 00 f8 10 64 15 4e fd 6a 06 95 ff 00 00 4e fc e4 04 dd fd 01 00 67 00 50 00 57 00 0d 01 57 00 0e 01 57 00 0f 01 57 00 10 01 57 00 11 01 57 00 12 01 57 00 13 01 57 00 14 01 57 00 15 01 57 00 16 01 57 00 17 01 57 00 18 01 57 00 19 01 57 00 1a 01 57 00 1b 01 57 00 1c 01 47 31 00 00 5a 00 08 07 57 00 1f 00 1e 00 f7 1f 1e 00 f8 01 64 15 67 00 0a 00 57 00 1f 01 57 00 22 00 4c 00 fd 05 4c 00 fc 05 67 00 14 00 4c 00 05 fd 1b 05 1a 00 82 6e 82 88 81 43 81 40 82 89 82 94 81 75 82 93 81 40 82 99 82 8f 82 95 81 43 81 40 01 06 05 00 01 01 81 42 0d 00 82 73 82 88 82 85 81 40 82 82 82 92 82 89 82 84 82 87 82 85 81 40 82 89 82 93 81 40 82 86 82 89 82 98 82 85 82 84 81 42 0d 00 00 00 1a 00 82 68 81 40 82 88 82 85 82 81 82 92 81 40 82 99 82 8f 82 95 81 75 82 92 82 85 81 40 82 8d 82 81 82 8b 82 89 82 8e 82 87 81 40 82 81 81 40 82 83 82 89 82 94 82 99 81 42 0d 00 00 00 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 81 81 40 82 92 82 85 82 91 82 95 82 85 82 93 82 94 81 42 0d 00 82 68 81 40 82 97 82 81 82 8e 82 94 81 40 82 99 82 8f 82 95 81 40 82 94 82 8f 81 40 82 88 82 85 82 8c 82 90 81 40 82 8d 82 85 0d 00 82 8a 82 95 82 93 82 94 81 40 82 8c 82 89 82 8b 82 85 81 40 82 68

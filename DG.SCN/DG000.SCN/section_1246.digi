@@ -1,25 +1,25 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG000.SCN, section 1246
 
-section_1246:     ; len=94
+section_1246(1246):     ; len=94
   0000:  unsetTrigger 1
   0004:  setTrigger 41
-  0008:  if stat[22] != 0 OR stat[6] != 0 then section_1246+0x24
+  0008:  if stat[Lives] != 0 OR stat[CurrentHP] != 0 then section_1246+0x24
   001c:  sectionOnExit 73
   001e:  callDigimonSubroutine 7
-  0020:  waitForEntity 255
+  0020:  waitForEntity System
   0022:  endSection
-  0024:  if stat[22] != 0 OR stat[6] == 0 then section_1246+0x40
+  0024:  if stat[Lives] != 0 OR stat[CurrentHP] == 0 then section_1246+0x40
   0038:  sectionOnExit 73
   003a:  callDigimonSubroutine 7
-  003c:  waitForEntity 255
+  003c:  waitForEntity System
   003e:  endSection
-  0040:  if stat[13] > 0 then section_1246+0x56
+  0040:  if stat[Lifetime] > 0 then section_1246+0x56
   004e:  sectionOnExit 71
   0050:  callDigimonSubroutine 3
-  0052:  waitForEntity 255
+  0052:  waitForEntity System
   0054:  endSection
   0056:  sectionOnExit 72
   0058:  callDigimonSubroutine 9
-  005a:  waitForEntity 255
+  005a:  waitForEntity System
   005c:  endSection

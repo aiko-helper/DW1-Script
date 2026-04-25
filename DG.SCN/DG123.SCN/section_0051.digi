@@ -1,28 +1,28 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG123.SCN, section 51
 
-section_51:     ; len=1074
+section_51(51):     ; len=1074
   0000:  if trigger(197) then section_51+0xe
   000c:  endSection
   000e:  if !trigger(198) then section_51+0x1c
   001a:  endSection
   001c:  if !trigger(98) then section_51+0x2a
   0028:  endSection
-  002a:  setRotation 253 1944
+  002a:  setRotation Player 1944
   002e:  moveCameraTo 30 2000 173
   0034:  waitForEntity 200
-  0036:  setDialogOwner 253
+  0036:  setDialogOwner Player
   0038:  showTextbox "Rumor is that this is the\nroad where bandits attack.\n"
   00a6:  showTextbox "Alright, let's go <ORANGE><DIGIMON><WHITE>.\n"
-  00d8:  entityWalkTo 253 1925 468 0
-  00e0:  entityWalkTo 252 1925 78 0
-  00e8:  waitForEntity 253
-  00ea:  waitForEntity 252
-  00ec:  loadDigimon 154
-  00ee:  loadDigimon 3
-  00f0:  setDigimon 154 3 0
-  00f4:  setDigimon 3 4 0
-  00f8:  setDigimon 3 5 0
+  00d8:  entityWalkTo Player 1925 468 0
+  00e0:  entityWalkTo Partner 1925 78 0
+  00e8:  waitForEntity Player
+  00ea:  waitForEntity Partner
+  00ec:  loadDigimon NPCOgremon
+  00ee:  loadDigimon Agumon
+  00f0:  setDigimon NPCOgremon 3 0
+  00f4:  setDigimon Agumon 4 0
+  00f8:  setDigimon Agumon 5 0
   00fc:  setDialogOwner 9
   00fe:  showTextbox "Yoo-hoo!\n"
   0114:  playSound 8 11
@@ -39,20 +39,20 @@ section_51:     ; len=1074
   016e:  waitForEntity 8
   0170:  waitForEntity 9
   0172:  waitForEntity 10
-  0174:  lookAt 8 253
-  0178:  lookAt 9 253
-  017c:  lookAt 10 253
-  0180:  lookAt 253 8
-  0184:  lookAt 252 9
+  0174:  lookAt 8 Player
+  0178:  lookAt 9 Player
+  017c:  lookAt 10 Player
+  0180:  lookAt Player 8
+  0184:  lookAt Partner 9
   0188:  delay 10
   018c:  playSound 8 11
   0190:  setDialogOwner 8
   0192:  showTextbox "Give up and leave your stuff\nhere or you'll regret it!\n"
-  0204:  playAnimation 253 20
+  0204:  playAnimation Player 20
   0208:  delay 15
-  020c:  setDialogOwner 253
+  020c:  setDialogOwner Player
   020e:  showTextbox "Give up!\n"
-  0224:  playAnimation 253 0
+  0224:  playAnimation Player 0
   0228:  setDialogOwner 8
   022a:  showTextbox "What?! You...\n"
   024a:  setDialogOwner 8
@@ -73,9 +73,9 @@ section_51:     ; len=1074
   0348:  startBattle
   034a:  unsetTrigger 1
   034e:  setPStat 250 0
-  0352:  lookAt 253 8
-  0356:  lookAt 8 253
-  035a:  lookAt 252 8
+  0352:  lookAt Player 8
+  0356:  lookAt 8 Player
+  035a:  lookAt Partner 8
   035e:  entityWalkTo 9 1350 2350 1
   0366:  entityWalkTo 10 1850 2350 1
   036e:  waitForEntity 9
@@ -87,9 +87,9 @@ section_51:     ; len=1074
   03aa:  entityWalkTo 8 1650 2350 1
   03b2:  waitForEntity 8
   03b4:  unloadEntity 8
-  03b6:  setDialogOwner 253
+  03b6:  setDialogOwner Player
   03b8:  showTextbox "Look at them go! They won't\nbe back for a while.\n"
-  041e:  moveCameraToEntity 253 10
+  041e:  moveCameraToEntity Player 10
   0422:  waitForEntity 200
   0424:  setTrigger 198
   0428:  setTrigger 142

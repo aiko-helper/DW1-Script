@@ -1,15 +1,15 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG073.SCN, section 51
 
-section_51:     ; len=902
+section_51(51):     ; len=902
   0000:  if !trigger(196) AND !trigger(338) then section_51+0x12
   0010:  endSection
-  0012:  setRotation 253 2048
-  0016:  setRotation 252 2048
+  0012:  setRotation Player 2048
+  0016:  setRotation Partner 2048
   001a:  delay 5
   001e:  setTrigger 196
-  0022:  setDigimon 151 0 0
-  0026:  setDigimon 125 1 0
+  0022:  setDigimon NPCPatamon 0 0
+  0026:  setDigimon NPCGobiromon 1 0
   002a:  moveCameraTo 15 -205 1478
   0030:  waitForEntity 200
   0032:  entityWalkTo 5 -254 439 1
@@ -19,31 +19,31 @@ section_51:     ; len=902
   004a:  setRotation 6 0
   004e:  moveCameraToEntity 5 25
   0052:  waitForEntity 200
-  0054:  setDialogOwner 253
+  0054:  setDialogOwner Player
   0056:  showTextbox "What is it?\n"
   0072:  waitForEntity 5
-  0074:  lookAt 5 253
+  0074:  lookAt 5 Player
   0078:  delay 5
   007c:  setDialogOwner 5
   007e:  showTextbox "HELP ME!\n"
-  0094:  playAnimation 253 7
+  0094:  playAnimation Player 7
   0098:  delay 15
-  009c:  setDialogOwner 253
+  009c:  setDialogOwner Player
   009e:  showTextbox "He's in trouble,\nI gotta help him!\n"
-  00e8:  playAnimation 253 0
-  00ec:  entityWalkTo 253 -150 -550 1
-  00f4:  entityWalkTo 252 -80 -300 1
-  00fc:  setDialogOwner 255
+  00e8:  playAnimation Player 0
+  00ec:  entityWalkTo Player -150 -550 1
+  00f4:  entityWalkTo Partner -80 -300 1
+  00fc:  setDialogOwner System
   00fe:  showTextbox "<YELLOW>??? <WHITE>\nPick on someone\nyour own size!\n"
   014e:  setPStat 245 3
   0152:  setBGM 11
-  0154:  setDigimon 166 2 0
+  0154:  setDigimon NPCLeomon 2 0
   0158:  moveCameraTo 20 -677 509
   015e:  waitForEntity 200
   0160:  lookAt 7 6
-  0164:  lookAt 253 7
+  0164:  lookAt Player 7
   0168:  delay 10
-  016c:  setDialogOwner 253
+  016c:  setDialogOwner Player
   016e:  showTextbox "Who is that?\n"
   018c:  lookAt 5 7
   0190:  lookAt 6 7
@@ -57,10 +57,10 @@ section_51:     ; len=902
   01b6:  delay 20
   01ba:  playAnimation 7 0
   01be:  playSound 8 1
-  01c2:  lookAt 253 7
+  01c2:  lookAt Player 7
   01c6:  lookAt 5 7
   01ca:  lookAt 6 7
-  01ce:  waitForEntity 253
+  01ce:  waitForEntity Player
   01d0:  waitForEntity 5
   01d2:  waitForEntity 6
   01d4:  playAnimation 6 40
@@ -89,10 +89,10 @@ section_51:     ; len=902
   0316:  waitForEntity 7
   0318:  unloadEntity 7
   031a:  unloadEntity 5
-  031c:  moveCameraToEntity 253 10
+  031c:  moveCameraToEntity Player 10
   0320:  waitForEntity 200
-  0322:  setDialogOwner 253
+  0322:  setDialogOwner Player
   0324:  showTextbox "He's like a hero.\nHe gets all the credit.\n"
-  037c:  playAnimation 253 0
+  037c:  playAnimation Player 0
   0380:  setTrigger 196
   0384:  endSection

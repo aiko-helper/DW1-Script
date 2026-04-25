@@ -1,7 +1,7 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG030.SCN, section 5
 
-section_5:     ; len=1980
+section_5(5):     ; len=1980
   0000:  if trigger(120) then section_5+0x14
   000c:  jump section_5+0x1a
   0010:  jump section_5+0x18
@@ -10,26 +10,26 @@ section_5:     ; len=1980
   001a:  setDialogOwner 5
   001c:  showTextbox "Shoot! We hit a big rock!\n"
   0054:  showTextbox "I can't drill thru.\n"
-  0080:  setDialogOwner 253
+  0080:  setDialogOwner Player
   0082:  showTextbox "You can't? Oh no!\n"
   00aa:  setDialogOwner 5
   00ac:  showTextbox "We gotta figure out how to\nmove it. Can you do it?\n"
-  0116:  playAnimation 253 19
+  0116:  playAnimation Player 19
   011a:  delay 20
-  011e:  setDialogOwner 253
+  011e:  setDialogOwner Player
   0120:  showTextbox "I don't know.\n"
-  0140:  lookAt 253 252
-  0144:  playAnimation 253 14
+  0140:  lookAt Player Partner
+  0144:  playAnimation Player 14
   0148:  delay 20
-  014c:  setDialogOwner 253
+  014c:  setDialogOwner Player
   014e:  showTextbox "<ORANGE><DIGIMON><WHITE>,\nI need your help.\n"
-  0180:  entityWalkTo 252 -337 170 0
-  0188:  lookAt 253 252
-  018c:  waitForEntity 252
+  0180:  entityWalkTo Partner -337 170 0
+  0188:  lookAt Player Partner
+  018c:  waitForEntity Partner
   018e:  delay 20
-  0192:  setRotation 252 2000
-  0196:  lookAt 5 252
-  019a:  lookAt 253 252
+  0192:  setRotation Partner 2000
+  0196:  lookAt 5 Partner
+  019a:  lookAt Player Partner
   019e:  storeDigimonType 103
   01a0:  if pstat[103] != 1 AND pstat[103] != 2 AND pstat[103] != 3 AND pstat[103] != 4 AND pstat[103] != 15 then section_5+0x1c0
   01bc:  jump section_5+0x51c
@@ -39,25 +39,25 @@ section_5:     ; len=1980
   01fc:  jump section_5+0x51c
   0200:  if pstat[103] != 46 AND pstat[103] != 57 then section_5+0x214
   0210:  jump section_5+0x51c
-  0214:  playAnimation 252 27
+  0214:  playAnimation Partner 27
   0218:  setObjectVisibility 0 0
   021c:  moveBoulder 0 50
   0222:  playSound 8 3
   0226:  delay 20
   022a:  moveBoulder 0 100
-  0230:  entityWalkTo 252 -337 270 0
+  0230:  entityWalkTo Partner -337 270 0
   0238:  playSound 8 3
   023c:  delay 20
   0240:  moveBoulder 0 100
-  0246:  entityWalkTo 252 -337 370 0
+  0246:  entityWalkTo Partner -337 370 0
   024e:  playSound 8 3
   0252:  delay 20
   0256:  moveBoulder 0 100
-  025c:  entityWalkTo 252 -337 470 0
+  025c:  entityWalkTo Partner -337 470 0
   0264:  playSound 8 3
   0268:  delay 20
   026c:  moveBoulder 10 200
-  0272:  entityWalkTo 252 -337 670 0
+  0272:  entityWalkTo Partner -337 670 0
   027a:  playSound 8 3
   027e:  delay 5
   0282:  moveBoulder 50 300
@@ -87,38 +87,38 @@ section_5:     ; len=1980
   02f2:  despawnBoulder
   02f4:  playSound 8 3
   02f8:  delay 20
-  02fc:  playAnimation 252 0
+  02fc:  playAnimation Partner 0
   0300:  delay 5
   0304:  setObjectVisibility 0 1
-  0308:  setDialogOwner 253
+  0308:  setDialogOwner Player
   030a:  showTextbox "We did it!\n"
   0324:  setDialogOwner 5
   0326:  showTextbox "Wow, amazing power!\nWe moved the rock!\n"
-  0378:  setDialogOwner 253
+  0378:  setDialogOwner Player
   037a:  showTextbox "I think it's empty past\nthis point.\n"
-  03c6:  setRotation 253 2000
-  03ca:  entityWalkTo 253 -131 1250 0
-  03d2:  waitForEntity 253
-  03d4:  setRotation 253 2000
-  03d8:  setDialogOwner 253
+  03c6:  setRotation Player 2000
+  03ca:  entityWalkTo Player -131 1250 0
+  03d2:  waitForEntity Player
+  03d4:  setRotation Player 2000
+  03d8:  setDialogOwner Player
   03da:  showTextbox "It's a lava river!\nIt's dangerous!\n"
   0424:  showTextbox "There's a path along\nthe river. Let's go!\n"
   047c:  setDialogOwner 5
   047e:  showTextbox "Are you going inside?\nBe careful!\n"
   04c6:  setTrigger 120
-  04ca:  warpTo 30 0 255
+  04ca:  warpTo TUNN07 0 255
   04ce:  endSection
   04d0:  setDialogOwner 5
   04d2:  showTextbox "Are you going inside?\nBe careful!\n"
   051a:  endSection
   051c:  delay 20
-  0520:  playAnimation 252 27
+  0520:  playAnimation Partner 27
   0524:  delay 20
-  0528:  playAnimation 252 1
+  0528:  playAnimation Partner 1
   052c:  delay 30
   0530:  setDialogOwner 5
   0532:  showTextbox "Come back <ORANGE><DIGIMON><WHITE>\nwhen you grow more.\n"
-  057a:  entityWalkTo 253 -337 0 0
-  0582:  waitForEntity 253
+  057a:  entityWalkTo Player -337 0 0
+  0582:  waitForEntity Player
   0584:  endSection
   0586:  garbage 10 00 fe 00 10 00 33 00 2c 00 05 00 44 00 ff ff 19 00 01 00 78 00 18 00 26 00 19 00 76 00 7c 00 2a 00 27 00 09 06 57 00 00 01 fe 00 19 00 01 00 d1 00 18 00 3e 00 19 00 4b 1e 00 ff fe 00 4b 7a 00 ff fe 00 19 00 01 00 78 00 18 00 58 00 19 00 16 00 5e 00 16 00 5c 00 16 00 14 05 fe 00 1b 05 1a 00 82 72 82 88 82 8f 82 8f 82 94 81 49 81 40 82 76 82 85 81 40 82 88 82 89 82 94 81 40 82 81 81 40 82 82 82 89 82 87 81 40 82 92 82 8f 82 83 82 8b 81 49 0d 00 00 00 1a 00 82 68 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 84 82 92 82 89 82 8c 82 8c 81 40 82 94 82 88 82 92 82 95 81 42 0d 00 00 00 1b fd 1a 00 82 78 82 8f 82 95 81 40 82 83 82 81 82 8e 81 75 82 94 81 48 81 40 82 6e 82 88 81 40 82 8e 82 8f 81 49 0d 00 00 00 1b 05 1a 00 82 76 82 85 81 40 82 87 82 8f 82 94 82 94 82 81 81 40 82 86 82 89 82 87 82 95 82 92 82 85 81 40 82 8f 82 95 82 94 81 40 82 88 82 8f 82 97 81 40 82 94 82 8f 0d 00 82 8d 82 8f 82 96 82 85 81 40 82 89 82 94 81 42 81 40 82 62 82 81 82 8e 81 40 82 99 82 8f 82 95 81 40 82 84 82 8f 81 40 82 89 82 94 81 48 0d 00 00 00 56 00 fd 13 67 00 14 00 1b fd 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 8b 82 8e 82 8f 82 97 81 42 0d 00 00 00 4c 00 fd fc 56 00 fd 0e 67 00 14 00 1b fd 1a 00 01 0a 06 00 01 01 81 43 0d 00 82 68 81 40 82 8e 82 85 82 85 82 84 81 40 82 99 82 8f 82 95 82 92 81 40 82 88 82 85 82 8c 82 90 81 42 0d 00 00 00 4e fc af fe aa 00 00 00 4c 00 fd fc 4a fc 67 00 14 00 4d fc d0 07 4c 00 05 fc 4c 00 fd fc 22 67 19 00 08 00 67 01 48 00 67 02 48 00 67 03 48 00 67 04 48 00 67 0f 18 00 04 02 19 00 16 00 60 05 19 00 08 00 67 10 48 00 67 11 48 00 67 12 48 00 67 1d 48 00 67 1e 18 00 24 02 19 00 16 00 60 05 19 00 08 00 67 1f 48 00 67 20 48 00 67 2b 48 00

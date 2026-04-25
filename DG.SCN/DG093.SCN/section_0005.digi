@@ -1,68 +1,68 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG093.SCN, section 5
 
-section_5:     ; len=1574
+section_5(5):     ; len=1574
   0000:  if !trigger(220) then section_5+0xe
   000c:  endSection
-  000e:  setRotation 253 2048
+  000e:  setRotation Player 2048
   0012:  delay 20
-  0016:  setRotation 253 1536
+  0016:  setRotation Player 1536
   001a:  delay 10
-  001e:  setRotation 253 2560
+  001e:  setRotation Player 2560
   0022:  delay 20
-  0026:  setDialogOwner 253
+  0026:  setDialogOwner Player
   0028:  showTextbox "Oh? About that statue...\n"
-  005e:  setRotation 253 2048
-  0062:  playAnimation 253 23
+  005e:  setRotation Player 2048
+  0062:  playAnimation Player 23
   0066:  delay 20
   006a:  moveCameraTo 20 -831 2975
   0070:  waitForEntity 200
-  0072:  setDialogOwner 253
+  0072:  setDialogOwner Player
   0074:  showTextbox "Ah!\n"
-  0080:  loadDigimon 142
-  0082:  setDigimon 142 0 0
+  0080:  loadDigimon NPCAngemon
+  0082:  setDigimon NPCAngemon 0 0
   0086:  playSound 8 10
   008a:  playAnimation 5 28
   008e:  delay 60
   0092:  playAnimation 5 0
   0096:  setDialogOwner 5
   0098:  showTextbox "Phew, well\n"
-  00b2:  setDialogOwner 253
+  00b2:  setDialogOwner Player
   00b4:  showTextbox "You came back to life.\nAlright!\n"
   00f8:  setDialogOwner 5
   00fa:  showTextbox "I'm Angemon, an angel to\nprotect you. I've awakened\nto fulfill my duty.\n"
-  018e:  setDialogOwner 253
+  018e:  setDialogOwner Player
   0190:  showTextbox "What's he talking about...?\n"
   01cc:  setDialogOwner 5
   01ce:  showTextbox "I know the truth of heaven.\n"
   020a:  showTextbox "I offer my soul to follow\nearthly instructions.\n"
-  026e:  setDialogOwner 253
+  026e:  setDialogOwner Player
   0270:  showTextbox "What's he talking about...?\nAre you coming to the city?\n"
   02e4:  setDialogOwner 5
   02e6:  showTextbox "Thine mission is mine duty.\nI go.\n"
-  032e:  setDialogOwner 253
+  032e:  setDialogOwner Player
   0330:  showTextbox "I'm sorry, but can you\nspeak in words I understand?\n"
   039c:  setDialogOwner 5
   039e:  showTextbox "I'll go to the city, so\nyou must keep trying.\n"
-  03fe:  setDialogOwner 253
+  03fe:  setDialogOwner Player
   0400:  showTextbox "I see. Thanks!\n"
   0422:  jump section_5+0x426
   0426:  entityWalkTo 5 47 -2650 1
   042e:  if pstat[101] >= 3 then section_5+0x44e
   043a:  addPStat 101 1
   043e:  delay 20
-  0442:  lookAt 253 5
-  0446:  lookAt 252 5
+  0442:  lookAt Player 5
+  0446:  lookAt Partner 5
   044a:  jump section_5+0x426
   044e:  waitForEntity 5
   0450:  unloadEntity 5
   0452:  setPStat 101 0
   0456:  playSound 8 11
-  045a:  setDialogOwner 255
+  045a:  setDialogOwner System
   045c:  showTextbox "Angemon joins the city!\n"
   0490:  setTrigger 220
   0494:  addPStat 1 2
-  0498:  moveCameraToEntity 253 10
+  0498:  moveCameraToEntity Player 10
   049c:  waitForEntity 200
   049e:  endSection
   04a0:  garbage 14 00 fe 00 14 00 33 00 36 00 34 00 0c 01 05 00 da 01 ff ff 19 00 00 00 42 01 18 00 24 00 19 00 57 00 07 01 64 31 19 00 00 00 43 01 18 00 34 00 19 00 64 32 fe 00 19 00 00 00 43 01 18 00 48 00 19 00 4b 62 00 ff fe 00 19 00 01 00 44 01 18 00 0a 01 19 00 4d fd 00 08 67 00 05 00 56 00 fd 17 67 00 05 00 1b fd 1a 00 82 76 82 8f 82 97 81 43 81 40 82 89 82 94 81 40 82 8c 82 8f 82 8f 82 8b 82 93 81 40 82 81 82 8c 82 89 82 96 82 85 81 49 0d 00 00 00 1b fd 1a 00 82 60 82 83 82 94 82 95 82 81 82 8c 82 8c 82 99 81 43 81 40 82 89 82 94 81 40 82 93 82 94 82 81 82 92 82 94 82 93 81 40 82 94 82 8f 81 40 82 8d 82 8f 82 96 82 85 0d 00 82 97 82 88 82 85 82 8e 81 40 82 97 82 85 81 40 82 8d 82 8f 82 96 82 85 81 42 81 40 82 67 82 8f 82 8c 82 84 81 40 82 8f 82 8e 81 49 0d 00 00 00 56 00 fd 00 1c 00 44 01 fe 00 fe 00 19 00 00 00 42 01 80 00 dc 00 18 00 20 01 19 00 16 00 da 01 19 00 01 00 43 01 80 00 44 01 18 00 d8 01 19 00 4e fc 32 00 1a 04 00 00 4a fc 67 00 0a 00 4c 00 fd fc 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 89 82 93 81 40 82 89 82 94 81 43 81 40 01 0a 06 00 01 01 81 48 0d 00 82 63 82 89 82 84 81 40 82 99 82 8f 82 95 81 40 82 86 82 89 82 8e 82 84 81 40 82 81

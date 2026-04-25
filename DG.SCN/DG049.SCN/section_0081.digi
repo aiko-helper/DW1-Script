@@ -1,52 +1,52 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG049.SCN, section 81
 
-section_81:     ; len=1642
+section_81(81):     ; len=1642
   0000:  if !trigger(247) then section_81+0xe
   000c:  endSection
-  000e:  lookAt 253 5
+  000e:  lookAt Player 5
   0012:  if !trigger(136) then section_81+0x22
   001e:  jump section_81+0x63a
   0022:  setTrigger 136
   0026:  setDialogOwner 5
   0028:  showTextbox "Welcome. I've never seen you\nbefore. Where are you from?\n"
-  009e:  setDialogOwner 253
+  009e:  setDialogOwner Player
   00a0:  showTextbox "The city. Actually, I'm\nfrom another world.\n"
   00fc:  setDialogOwner 5
   00fe:  showTextbox "You understand my language?\n"
-  013a:  setDialogOwner 253
+  013a:  setDialogOwner Player
   013c:  showTextbox "Yes, I do.\n"
   0156:  setDialogOwner 5
   0158:  showTextbox "Sometimes it's hard and\nI don't sell much here.\n"
-  01bc:  setDialogOwner 253
+  01bc:  setDialogOwner Player
   01be:  showTextbox "I see.\n"
   01d0:  setDialogOwner 5
   01d2:  showTextbox "Many shoppers stopped coming.\n"
-  0212:  setDialogOwner 253
+  0212:  setDialogOwner Player
   0214:  showTextbox "It must be the trouble\non the island.\n"
   0264:  setDialogOwner 5
   0266:  showTextbox "Help me do something.\n"
-  0296:  setDialogOwner 253
+  0296:  setDialogOwner Player
   0298:  showTextbox "What is it?\n"
   02b4:  setDialogOwner 5
   02b6:  showTextbox "Can you work in my shop?\n"
-  02ec:  setDialogOwner 253
+  02ec:  setDialogOwner Player
   02ee:  showTextbox "Your shop?\n"
   0308:  setDialogOwner 5
   030a:  showTextbox "Half day? The more you sell,\nthe more I'll pay you.\nYou know our language.\n"
-  03a4:  setDialogOwner 253
+  03a4:  setDialogOwner Player
   03a6:  showTextbox "You might lose money.\n"
   03d6:  setDialogOwner 5
   03d8:  showTextbox "Don't worry. It'll be good\nfor me. How about eight hours?\n"
-  0450:  setDialogOwner 253
+  0450:  setDialogOwner Player
   0452:  setSelection section_81+0x488 section_81+0x5d6
   0458:  showTextbox "I'll try\nNo thanks\n"
   0482:  waitForSelectionChoice
   0484:  jump section_81+0x5d6
   0488:  fadeOutHUD
   048a:  entityWalkTo 5 133 292 0
-  0492:  entityWalkTo 253 -980 -432 0
-  049a:  waitForEntity 253
+  0492:  entityWalkTo Player -980 -432 0
+  049a:  waitForEntity Player
   049c:  waitForEntity 5
   049e:  setPStat 247 9
   04a2:  setPStat 248 12
@@ -66,16 +66,16 @@ section_81:     ; len=1642
   04d8:  setObjectVisibility 18 0
   04dc:  setObjectVisibility 19 0
   04e0:  setObjectVisibility 20 0
-  04e4:  lookAt 5 253
-  04e8:  entityWalkTo 253 -980 292 0
-  04f0:  entityWalkTo 252 -980 -432 0
-  04f8:  waitForEntity 253
-  04fa:  waitForEntity 252
-  04fc:  lookAt 5 253
-  0500:  entityWalkTo 253 -341 292 0
-  0508:  entityWalkTo 252 -980 292 0
-  0510:  waitForEntity 253
-  0512:  waitForEntity 252
+  04e4:  lookAt 5 Player
+  04e8:  entityWalkTo Player -980 292 0
+  04f0:  entityWalkTo Partner -980 -432 0
+  04f8:  waitForEntity Player
+  04fa:  waitForEntity Partner
+  04fc:  lookAt 5 Player
+  0500:  entityWalkTo Player -341 292 0
+  0508:  entityWalkTo Partner -980 292 0
+  0510:  waitForEntity Player
+  0512:  waitForEntity Partner
   0514:  setPStat 247 21
   0518:  setPStat 248 12
   051c:  callSubroutine 21
@@ -104,9 +104,9 @@ section_81:     ; len=1642
   0576:  setObjectVisibility 31 0
   057a:  setObjectVisibility 32 0
   057e:  delay 60
-  0582:  setRotation 253 0
-  0586:  lookAt 252 253
-  058a:  waitForEntity 253
+  0582:  setRotation Player 0
+  0586:  lookAt Partner Player
+  058a:  waitForEntity Player
   058c:  setObjectVisibility 21 1
   0590:  setObjectVisibility 22 1
   0594:  setObjectVisibility 23 1

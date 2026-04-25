@@ -1,7 +1,7 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; MAP134.SCN, section 9
 
-section_9:     ; len=1672
+section_9(9):     ; len=1672
   0000:  setDialogOwner 9
   0002:  showTextbox "Bird brain!\n"
   001e:  setDialogOwner 9
@@ -14,7 +14,7 @@ section_9:     ; len=1672
   0074:  showTextbox "Dumb, dumb!\n"
   0090:  setDialogOwner 9
   0092:  showTextbox "Eau de Geek!\n"
-  00b0:  setDialogOwner 253
+  00b0:  setDialogOwner Player
   00b2:  showTextbox "What did you say?!\n"
   00dc:  setSelection section_9+0x134 section_9+0x2be
   00e2:  showTextbox "That gets me mad\nI'll just ignore them\n"
@@ -28,12 +28,12 @@ section_9:     ; len=1672
   014e:  startBattle
   0150:  unsetTrigger 1
   0154:  setPStat 250 0
-  0158:  lookAt 253 9
-  015c:  lookAt 9 253
-  0160:  lookAt 252 9
+  0158:  lookAt Player 9
+  015c:  lookAt 9 Player
+  0160:  lookAt Partner 9
   0164:  setDialogOwner 9
   0166:  showTextbox "They aren't nice!\n"
-  018e:  playAnimation 253 15
+  018e:  playAnimation Player 15
   0192:  delay 20
   0196:  setTrigger 309
   019a:  jump section_9+0x19e
@@ -41,41 +41,41 @@ section_9:     ; len=1672
   01a6:  if pstat[101] >= 3 then section_9+0x1c6
   01b2:  addPStat 101 1
   01b6:  delay 20
-  01ba:  lookAt 253 9
-  01be:  lookAt 252 9
+  01ba:  lookAt Player 9
+  01be:  lookAt Partner 9
   01c2:  jump section_9+0x19e
   01c6:  waitForEntity 9
   01c8:  unloadEntity 9
   01ca:  setPStat 101 0
-  01ce:  moveCameraToEntity 253 10
+  01ce:  moveCameraToEntity Player 10
   01d2:  waitForEntity 200
-  01d4:  setDialogOwner 253
+  01d4:  setDialogOwner Player
   01d6:  showTextbox "Wait, what is it?\n"
-  01fe:  loadDigimon 110
-  0200:  setDigimon 110 3 0
-  0204:  setDigimon 110 5 0
-  0208:  setDigimon 110 6 0
-  020c:  setDigimon 110 7 0
+  01fe:  loadDigimon Gekomon
+  0200:  setDigimon Gekomon 3 0
+  0204:  setDigimon Gekomon 5 0
+  0208:  setDigimon Gekomon 6 0
+  020c:  setDigimon Gekomon 7 0
   0210:  delay 40
-  0214:  playAnimation 253 24
+  0214:  playAnimation Player 24
   0218:  delay 20
-  021c:  setDialogOwner 253
+  021c:  setDialogOwner Player
   021e:  showTextbox "!\n"
-  0226:  entityWalkToEntity 8 1 253
-  022a:  entityWalkToEntity 10 1 253
-  022e:  entityWalkToEntity 11 1 253
-  0232:  entityWalkToEntity 12 1 253
+  0226:  entityWalkToEntity 8 1 Player
+  022a:  entityWalkToEntity 10 1 Player
+  022e:  entityWalkToEntity 11 1 Player
+  0232:  entityWalkToEntity 12 1 Player
   0236:  delay 40
   023a:  setDialogOwner 8
   023c:  showTextbox "My master is calling me.\nCome with me. Ribbit.\n"
-  029e:  playAnimation 253 25
+  029e:  playAnimation Player 25
   02a2:  delay 20
-  02a6:  setDialogOwner 253
+  02a6:  setDialogOwner Player
   02a8:  showTextbox "Oh no!\n"
-  02ba:  warpTo 141 0 5
-  02be:  playAnimation 253 25
+  02ba:  warpTo GKYO02 0 5
+  02be:  playAnimation Player 25
   02c2:  delay 20
-  02c6:  setDialogOwner 253
+  02c6:  setDialogOwner Player
   02c8:  showTextbox "Ha ha ha, he's bluffing.\nI won't deal with kids.\n"
   032e:  endSection
   0330:  fadeOutHUD

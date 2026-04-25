@@ -1,23 +1,23 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG010.SCN, section 51
 
-section_51:     ; len=1678
+section_51(51):     ; len=1678
   0000:  if !trigger(258) then section_51+0xe
   000c:  endSection
   000e:  if !trigger(206) AND !trigger(211) AND !trigger(252) AND !trigger(213) then section_51+0x2a
   0026:  jump section_51+0x2c
   002a:  endSection
-  002c:  setDialogOwner 255
+  002c:  setDialogOwner System
   002e:  showTextbox "<YELLOW>? ? ? <WHITE>\nWait!\n"
-  0050:  playAnimation 253 16
+  0050:  playAnimation Player 16
   0054:  delay 20
-  0058:  playAnimation 253 0
-  005c:  entityWalkTo 253 -1050 -1473 1
-  0064:  entityWalkTo 252 -709 -1473 1
-  006c:  waitForEntity 253
-  006e:  waitForEntity 252
-  0070:  setRotation 253 2048
-  0074:  setRotation 252 2048
+  0058:  playAnimation Player 0
+  005c:  entityWalkTo Player -1050 -1473 1
+  0064:  entityWalkTo Partner -709 -1473 1
+  006c:  waitForEntity Player
+  006e:  waitForEntity Partner
+  0070:  setRotation Player 2048
+  0074:  setRotation Partner 2048
   0078:  callSubroutine 38
   007a:  playSound 8 0
   007e:  moveCameraTo 20 -836 -663
@@ -33,7 +33,7 @@ section_51:     ; len=1678
   00be:  delay 12
   00c2:  moveObjectTo 1 41 1 7 0 153 475
   00cc:  delay 12
-  00d0:  setDigimon 175 1 1
+  00d0:  setDigimon NPCNinjamon 1 1
   00d4:  setObjectVisibility 42 0
   00d8:  setObjectVisibility 43 0
   00dc:  setObjectVisibility 44 0
@@ -97,16 +97,16 @@ section_51:     ; len=1678
   01c2:  delay 10
   01c6:  setDialogOwner 6
   01c8:  showTextbox "I'm called Ninjamon!\n"
-  01f6:  playAnimation 253 15
+  01f6:  playAnimation Player 15
   01fa:  delay 20
-  01fe:  lookAt 6 253
+  01fe:  lookAt 6 Player
   0202:  delay 10
-  0206:  lookAt 6 252
+  0206:  lookAt 6 Partner
   020a:  delay 10
-  020e:  lookAt 6 253
+  020e:  lookAt 6 Player
   0212:  showTextbox "You're <LIGHTBLUE><PLAYER><WHITE>?\nAnd you must be <ORANGE><DIGIMON><WHITE>!\n"
   0258:  showTextbox "You're famous, even as far\nas Ninja Village.  Accept\nmy challenge to fight.\n"
-  02f4:  setDialogOwner 253
+  02f4:  setDialogOwner Player
   02f6:  setSelection section_51+0x36a section_51+0x32a
   02fc:  showTextbox "Sure\nAnother time\n"
   0324:  waitForSelectionChoice
@@ -124,19 +124,19 @@ section_51:     ; len=1678
   0384:  startBattle
   0386:  unsetTrigger 1
   038a:  setPStat 250 0
-  038e:  entityWalkTo 252 -633 -581 1
-  0396:  entityWalkTo 252 -1033 -481 1
+  038e:  entityWalkTo Partner -633 -581 1
+  0396:  entityWalkTo Partner -1033 -481 1
   039e:  entityWalkTo 6 -905 -1096 1
   03a6:  waitForEntity 20
-  03a8:  lookAt 253 6
-  03ac:  lookAt 6 253
-  03b0:  lookAt 252 6
-  03b4:  waitForEntity 253
+  03a8:  lookAt Player 6
+  03ac:  lookAt 6 Player
+  03b0:  lookAt Partner 6
+  03b4:  waitForEntity Player
   03b6:  setDialogOwner 6
   03b8:  showTextbox "You're just as strong as\nthey say you are. Please\nmake me your disciple!\n"
-  044e:  playAnimation 253 19
+  044e:  playAnimation Player 19
   0452:  delay 20
-  0456:  setDialogOwner 253
+  0456:  setDialogOwner Player
   0458:  showTextbox "Disciple? Well, I don't\ndo that. But you can help us\nmake a city.\n"
   04e0:  setDialogOwner 6
   04e2:  showTextbox "Okay.\nThat's good training too.\nI'll work hard.\n"
@@ -204,10 +204,10 @@ section_51:     ; len=1678
   0636:  setObjectVisibility 67 1
   063a:  delay 10
   063e:  playSound 8 11
-  0642:  setDialogOwner 255
+  0642:  setDialogOwner System
   0644:  showTextbox "Ninjamon joins the city!\n"
   067a:  unsetTrigger 1
-  067e:  moveCameraToEntity 253 10
+  067e:  moveCameraToEntity Player 10
   0682:  waitForEntity 200
   0684:  setTrigger 258
   0688:  addPStat 1 2

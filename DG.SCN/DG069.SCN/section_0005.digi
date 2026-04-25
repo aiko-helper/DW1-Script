@@ -1,7 +1,7 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG069.SCN, section 5
 
-section_5:     ; len=1172
+section_5(5):     ; len=1172
   0000:  playSound 8 7
   0004:  setDialogOwner 5
   0006:  showTextbox "I'm gonna knock you out!\n"
@@ -15,12 +15,12 @@ section_5:     ; len=1172
   0056:  startBattle
   0058:  unsetTrigger 1
   005c:  setPStat 250 0
-  0060:  lookAt 253 5
-  0064:  lookAt 5 253
-  0068:  lookAt 252 5
+  0060:  lookAt Player 5
+  0064:  lookAt 5 Player
+  0068:  lookAt Partner 5
   006c:  setDialogOwner 5
   006e:  showTextbox "Let's do it again.\n"
-  0098:  setDialogOwner 253
+  0098:  setDialogOwner Player
   009a:  setSelection section_5+0xb6 section_5+0x466
   00a0:  showTextbox "OK\nNo\n"
   00b0:  waitForSelectionChoice
@@ -35,13 +35,13 @@ section_5:     ; len=1172
   00d0:  startBattle
   00d2:  unsetTrigger 1
   00d6:  setPStat 250 0
-  00da:  lookAt 253 5
-  00de:  lookAt 5 253
-  00e2:  lookAt 252 5
+  00da:  lookAt Player 5
+  00de:  lookAt 5 Player
+  00e2:  lookAt Partner 5
   00e6:  setDialogOwner 5
   00e8:  showTextbox "Just a little more...\nCome on, one more time!\n"
-  0148:  playAnimation 253 16
-  014c:  setDialogOwner 253
+  0148:  playAnimation Player 16
+  014c:  setDialogOwner Player
   014e:  setSelection section_5+0x16a section_5+0x466
   0154:  showTextbox "OK\nNo\n"
   0164:  waitForSelectionChoice
@@ -56,28 +56,28 @@ section_5:     ; len=1172
   0184:  startBattle
   0186:  unsetTrigger 1
   018a:  setPStat 250 0
-  018e:  lookAt 253 5
-  0192:  lookAt 5 253
-  0196:  lookAt 252 5
+  018e:  lookAt Player 5
+  0192:  lookAt 5 Player
+  0196:  lookAt Partner 5
   019a:  delay 5
   019e:  playAnimation 5 28
   01a2:  playSound 8 7
   01a6:  delay 40
   01aa:  setDialogOwner 5
   01ac:  showTextbox "I can't win!\n"
-  01ca:  playAnimation 253 8
-  01ce:  setDialogOwner 253
+  01ca:  playAnimation Player 8
+  01ce:  setDialogOwner Player
   01d0:  showTextbox "Why do you want to win?\n"
   0204:  playAnimation 5 0
-  0208:  playAnimation 253 0
+  0208:  playAnimation Player 0
   020c:  setDialogOwner 5
   020e:  showTextbox "What should I do?\n"
-  0236:  setDialogOwner 253
+  0236:  setDialogOwner Player
   0238:  showTextbox "What do you mean?\nYou don't have anything?\n"
   0292:  setDialogOwner 5
   0294:  showTextbox "I've got lots of time.\n"
-  02c6:  playAnimation 253 19
-  02ca:  setDialogOwner 253
+  02c6:  playAnimation Player 19
+  02ca:  setDialogOwner Player
   02cc:  showTextbox "If you have too much time,\ncome to the city. There're\nall kinds of Digimon there.\n"
   0374:  setDialogOwner 5
   0376:  showTextbox "Sounds good. I'll go.\nMy name's Patamon.\nSee ya later.\n"
@@ -86,22 +86,22 @@ section_5:     ; len=1172
   03f4:  if pstat[101] >= 10 then section_5+0x414
   0400:  addPStat 101 1
   0404:  delay 10
-  0408:  lookAt 253 5
-  040c:  lookAt 252 5
+  0408:  lookAt Player 5
+  040c:  lookAt Partner 5
   0410:  jump section_5+0x3ec
   0414:  waitForEntity 5
   0416:  unloadEntity 5
   0418:  setPStat 101 0
   041c:  playSound 8 5
-  0420:  setDialogOwner 255
+  0420:  setDialogOwner System
   0422:  showTextbox "Patamon joins the city!\n"
-  0456:  moveCameraToEntity 253 10
+  0456:  moveCameraToEntity Player 10
   045a:  waitForEntity 200
   045c:  setTrigger 231
   0460:  addPStat 1 1
   0464:  endSection
   0466:  setDialogOwner 5
   0468:  showTextbox "That's not fun!\n"
-  048c:  moveCameraToEntity 253 10
+  048c:  moveCameraToEntity Player 10
   0490:  waitForEntity 200
   0492:  endSection

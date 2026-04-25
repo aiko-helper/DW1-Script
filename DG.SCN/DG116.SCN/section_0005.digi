@@ -1,7 +1,7 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG116.SCN, section 5
 
-section_5:     ; len=1734
+section_5(5):     ; len=1734
   0000:  setDialogOwner 5
   0002:  showTextbox "...!\n"
   0010:  setTrigger 1
@@ -14,27 +14,27 @@ section_5:     ; len=1734
   002a:  startBattle
   002c:  unsetTrigger 1
   0030:  setPStat 250 0
-  0034:  lookAt 5 253
-  0038:  lookAt 253 5
-  003c:  lookAt 252 5
-  0040:  waitForEntity 253
-  0042:  waitForEntity 252
+  0034:  lookAt 5 Player
+  0038:  lookAt Player 5
+  003c:  lookAt Partner 5
+  0040:  waitForEntity Player
+  0042:  waitForEntity Partner
   0044:  setDialogOwner 5
   0046:  showTextbox "No, I don't want to!\nI don't want to fight!\n"
-  00a2:  setDialogOwner 253
+  00a2:  setDialogOwner Player
   00a4:  showTextbox "If you don't want to\nfight, then run away.\n"
   00fe:  setDialogOwner 5
   0100:  showTextbox "That's too bad.\n"
-  0124:  playAnimation 253 16
+  0124:  playAnimation Player 16
   0128:  delay 20
-  012c:  setDialogOwner 253
+  012c:  setDialogOwner Player
   012e:  showTextbox "I don't understand you.\n"
   0162:  showTextbox "Oh well, why don't you come\nto our city? Better than\nhiding out here.\n"
   01f2:  setDialogOwner 5
   01f4:  showTextbox "Uh, city?\n"
-  020c:  playAnimation 253 19
+  020c:  playAnimation Player 19
   0210:  delay 20
-  0214:  setDialogOwner 253
+  0214:  setDialogOwner Player
   0216:  showTextbox "We are not going to\nforce you.\n"
   0258:  setDialogOwner 5
   025a:  showTextbox "That makes me want to go.\nOkay, I'll go!\n"
@@ -44,20 +44,20 @@ section_5:     ; len=1734
   02be:  if pstat[101] >= 5 then section_5+0x2de
   02ca:  addPStat 101 1
   02ce:  delay 20
-  02d2:  lookAt 253 5
-  02d6:  lookAt 252 5
+  02d2:  lookAt Player 5
+  02d6:  lookAt Partner 5
   02da:  jump section_5+0x2b6
   02de:  waitForEntity 5
   02e0:  unloadEntity 5
   02e2:  setPStat 101 0
   02e6:  playSound 8 10
-  02ea:  setDialogOwner 255
+  02ea:  setDialogOwner System
   02ec:  showTextbox "Gabumon joins the city!\n"
-  0320:  playAnimation 253 16
+  0320:  playAnimation Player 16
   0324:  delay 20
-  0328:  setDialogOwner 253
+  0328:  setDialogOwner Player
   032a:  showTextbox "What a weird fellow.\n"
-  0358:  moveCameraToEntity 253 10
+  0358:  moveCameraToEntity Player 10
   035c:  waitForEntity 200
   035e:  setTrigger 217
   0362:  addPStat 1 1

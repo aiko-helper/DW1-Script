@@ -1,25 +1,25 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG003.SCN, section 7
 
-section_7:     ; len=1790
+section_7(7):     ; len=1790
   0000:  setTrigger 44
   0004:  switch pstat[32] { 0 => section_7+0x10, 1 => section_7+0x38, 2 => section_7+0x6e, 3 => section_7+0xaa }
-  0010:  setDialogOwner 255
+  0010:  setDialogOwner System
   0012:  showTextbox "<YELLOW>? ? ? <WHITE>\n...\n"
   0030:  addPStat 32 1
   0034:  jump section_7+0x30a
-  0038:  setDialogOwner 255
+  0038:  setDialogOwner System
   003a:  showTextbox "<YELLOW>? ? ? <WHITE>. A flower.\n"
   0066:  addPStat 32 1
   006a:  jump section_7+0x30a
-  006e:  setDialogOwner 255
+  006e:  setDialogOwner System
   0070:  showTextbox "<YELLOW>? ? ? <WHITE>\nI'm a flower.\n"
   00a2:  addPStat 32 1
   00a6:  jump section_7+0x30a
-  00aa:  setDialogOwner 255
+  00aa:  setDialogOwner System
   00ac:  showTextbox "<YELLOW>? ? ? <WHITE>\nI said I'm a flower!\nAren't you listening!?\n"
   011a:  playSound 8 12
-  011e:  lookAt 7 253
+  011e:  lookAt 7 Player
   0122:  delay 20
   0126:  setTrigger 1
   012a:  setPStat 250 1
@@ -31,20 +31,20 @@ section_7:     ; len=1790
   0140:  startBattle
   0142:  unsetTrigger 1
   0146:  setPStat 250 0
-  014a:  lookAt 7 253
-  014e:  lookAt 253 7
-  0152:  lookAt 252 7
-  0156:  waitForEntity 253
-  0158:  waitForEntity 252
+  014a:  lookAt 7 Player
+  014e:  lookAt Player 7
+  0152:  lookAt Partner 7
+  0156:  waitForEntity Player
+  0158:  waitForEntity Partner
   015a:  playSound 8 12
   015e:  setDialogOwner 7
   0160:  showTextbox "I hate fighting.\n"
-  0186:  playAnimation 253 19
-  018a:  setDialogOwner 253
+  0186:  playAnimation Player 19
+  018a:  setDialogOwner Player
   018c:  showTextbox "In that case,\ncome to the city.\n"
-  01d0:  playAnimation 253 19
+  01d0:  playAnimation Player 19
   01d4:  showTextbox "It's peaceful there.\n"
-  0202:  playAnimation 253 0
+  0202:  playAnimation Player 0
   0206:  setDialogOwner 7
   0208:  showTextbox "The city?\n"
   0220:  showTextbox "Sounds like fun.\nI'm Palmon.\nYou'll find me useful!\n"
@@ -53,15 +53,15 @@ section_7:     ; len=1790
   0298:  if pstat[101] >= 3 then section_7+0x2b8
   02a4:  addPStat 101 1
   02a8:  delay 18
-  02ac:  lookAt 253 7
-  02b0:  lookAt 252 7
+  02ac:  lookAt Player 7
+  02b0:  lookAt Partner 7
   02b4:  jump section_7+0x290
   02b8:  waitForEntity 7
   02ba:  unloadEntity 7
   02bc:  setPStat 101 0
-  02c0:  moveCameraToEntity 253 10
+  02c0:  moveCameraToEntity Player 10
   02c4:  playSound 8 11
-  02c8:  setDialogOwner 255
+  02c8:  setDialogOwner System
   02ca:  showTextbox "Palmon joins the city!\n"
   02fc:  setPStat 32 0
   0300:  setTrigger 246

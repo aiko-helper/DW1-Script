@@ -1,7 +1,7 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG212.SCN, section 73
 
-section_73:     ; len=2670
+section_73(73):     ; len=2670
   0000:  unsetTrigger 1
   0004:  setPStat 250 0
   0008:  waitForEntity 213
@@ -9,18 +9,18 @@ section_73:     ; len=2670
   000c:  showTextbox "Oh no! <ORANGE><DIGIMON><WHITE>\nhas lost all life.\n"
   004c:  showTextbox "Before fading away,\n<ORANGE><DIGIMON><WHITE> gave\nbirth to a Digitama.\n"
   00b4:  showTextbox "Due to the danger,\nDigitama did not inherit\nall abilities...\n"
-  0132:  if stat[21] == 0 then section_73+0x186
-  0140:  reduceStats 21 1
-  0144:  setDialogOwner 255
+  0132:  if stat[TamerLevel] == 0 then section_73+0x186
+  0140:  reduceStats TamerLevel 1
+  0144:  setDialogOwner System
   0146:  showTextbox "<PINK>Tamer Level\nhas gone down! <WHITE>\n"
   0186:  callSubroutine 47
   0188:  callDigimonSubroutine 4
-  018a:  waitForEntity 255
+  018a:  waitForEntity System
   018c:  setPStat 245 0
   0190:  setBGM 28
   0192:  setDialogOwner 5
   0194:  showTextbox "If you want,\nyou can change the name\n<ORANGE><DIGIMON><WHITE>.\n"
-  01ec:  setDialogOwner 253
+  01ec:  setDialogOwner Player
   01ee:  setSelection section_71+0x1f2 section_71+0x260
   01f4:  showTextbox "I want a new name\nI'll keep his name\n"
   0242:  waitForSelectionChoice
@@ -48,7 +48,7 @@ section_73:     ; len=2670
   02d4:  setPStat 254 37
   02d8:  callDigimonSubroutine 10
   02da:  delay 550
-  02de:  setDialogOwner 255
+  02de:  setDialogOwner System
   02e0:  showTextbox "<ORANGE><DIGIMON><WHITE> has digivolved!\n"
   030c:  endSection
   030e:  endSection
@@ -57,7 +57,7 @@ section_73:     ; len=2670
   0320:  setPStat 254 26
   0324:  callDigimonSubroutine 10
   0326:  delay 550
-  032a:  setDialogOwner 255
+  032a:  setDialogOwner System
   032c:  showTextbox "<ORANGE><DIGIMON><WHITE> has digivolved!\n"
   0358:  endSection
   035a:  endSection
@@ -66,16 +66,16 @@ section_73:     ; len=2670
   036c:  setPStat 254 59
   0370:  callDigimonSubroutine 10
   0372:  delay 550
-  0376:  setDialogOwner 255
+  0376:  setDialogOwner System
   0378:  showTextbox "<ORANGE><DIGIMON><WHITE> has digivolved!\n"
   03a4:  endSection
   03a6:  endSection
   03a8:  storeRandom 110 99
-  03ac:  if pstat[110] > 49 OR stat[10] > 49 then section_73+0x3f8
+  03ac:  if pstat[110] > 49 OR stat[Discipline] > 49 then section_73+0x3f8
   03be:  setPStat 254 6
   03c2:  callDigimonSubroutine 10
   03c4:  delay 550
-  03c8:  setDialogOwner 255
+  03c8:  setDialogOwner System
   03ca:  showTextbox "<ORANGE><DIGIMON><WHITE> has digivolved!\n"
   03f6:  endSection
   03f8:  endSection

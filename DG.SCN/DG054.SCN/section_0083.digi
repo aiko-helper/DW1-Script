@@ -1,25 +1,25 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG054.SCN, section 83
 
-section_83:     ; len=220
-  0000:  if item[119] < 1 OR trigger(113) then section_83+0x5c
-  0012:  setRotation 253 2954
+section_83(83):     ; len=220
+  0000:  if item[MansionKey] < 1 OR trigger(113) then section_83+0x5c
+  0012:  setRotation Player 2954
   0016:  playSound 8 3
-  001a:  setDialogOwner 255
+  001a:  setDialogOwner System
   001c:  showTextbox "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n"
   0054:  setTrigger 113
   0058:  jump section_83+0xc2
-  005c:  if item[119] >= 1 OR trigger(113) then section_83+0xc2
-  006e:  setRotation 253 2954
+  005c:  if item[MansionKey] >= 1 OR trigger(113) then section_83+0xc2
+  006e:  setRotation Player 2954
   0072:  playSound 8 2
   0076:  delay 5
   007a:  playSound 8 2
-  007e:  setDialogOwner 255
+  007e:  setDialogOwner System
   0080:  showTextbox "It doesn't open.\nIt's locked.\n"
   00c0:  endSection
   00c2:  rotate3DObject 2 1
   00c6:  playSound 8 1
   00ca:  delay 10
-  00ce:  entityWalkTo 253 1600 -1546 0
-  00d6:  warpTo 52 5 255
+  00ce:  entityWalkTo Player 1600 -1546 0
+  00d6:  warpTo YAKA11A 5 255
   00da:  endSection

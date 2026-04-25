@@ -1,10 +1,10 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG102.SCN, section 81
 
-section_81@0x22:     ; len=1892
+section_81(81@0x22):     ; len=1892
   0000:  storeDate 105
-  0002:  lookAt 253 5
-  0006:  lookAt 5 253
+  0002:  lookAt Player 5
+  0006:  lookAt 5 Player
   000a:  delay 5
   000e:  if trigger(37) then section_81@0x22+0x22
   001a:  jump section_81@0x22+0x26
@@ -57,7 +57,7 @@ section_81@0x22:     ; len=1892
   05ae:  showTextbox "The tournament just ended.\nWait another year.\n"
   060e:  setDialogOwner 5
   0610:  showTextbox "You're scheduled to\nregister in  ' - <SELECTED TOURNAMENT>- '.\nDo you want to cancel?\n"
-  0698:  setDialogOwner 253
+  0698:  setDialogOwner Player
   069a:  setSelection section_81@0x22+0x702 section_81@0x22+0x6de
   06a0:  showTextbox "I won't cancel\nI'll cancel\n"
   06da:  waitForSelectionChoice

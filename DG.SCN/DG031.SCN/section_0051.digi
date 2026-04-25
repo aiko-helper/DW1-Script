@@ -1,14 +1,14 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG031.SCN, section 51
 
-section_51:     ; len=2376
+section_51(51):     ; len=2376
   0000:  if !trigger(230) then section_51+0x10
   000c:  jump section_51+0x80a
   0010:  setTrigger 230
-  0014:  setDialogOwner 253
+  0014:  setDialogOwner Player
   0016:  showTextbox "!\n"
-  001e:  lookAt 253 5
-  0022:  lookAt 252 5
+  001e:  lookAt Player 5
+  0022:  lookAt Partner 5
   0026:  moveCameraToEntity 5 20
   002a:  waitForEntity 200
   002c:  setDialogOwner 5
@@ -25,20 +25,20 @@ section_51:     ; len=2376
   01b8:  delay 20
   01bc:  playSound 8 4
   01c0:  delay 10
-  01c4:  entityWalkTo 253 -1210 -193 1
-  01cc:  entityWalkTo 252 -1468 -473 1
-  01d4:  waitForEntity 253
-  01d6:  waitForEntity 252
-  01d8:  lookAt 253 5
-  01dc:  lookAt 252 5
+  01c4:  entityWalkTo Player -1210 -193 1
+  01cc:  entityWalkTo Partner -1468 -473 1
+  01d4:  waitForEntity Player
+  01d6:  waitForEntity Partner
+  01d8:  lookAt Player 5
+  01dc:  lookAt Partner 5
   01e0:  setTrigger 106
   01e4:  delay 20
-  01e8:  playAnimation 253 7
+  01e8:  playAnimation Player 7
   01ec:  delay 20
-  01f0:  setDialogOwner 253
+  01f0:  setDialogOwner Player
   01f2:  showTextbox "Stop! Do you want to\nruin the island?!\n"
   0244:  delay 20
-  0248:  lookAt 5 253
+  0248:  lookAt 5 Player
   024c:  setDialogOwner 5
   024e:  showTextbox "Who are you? Move out of my\nway! This is the only way!\n"
   02c0:  setTrigger 1
@@ -51,33 +51,33 @@ section_51:     ; len=2376
   02da:  startBattle
   02dc:  unsetTrigger 1
   02e0:  setPStat 250 0
-  02e4:  lookAt 253 5
-  02e8:  lookAt 5 253
-  02ec:  lookAt 252 5
+  02e4:  lookAt Player 5
+  02e8:  lookAt 5 Player
+  02ec:  lookAt Partner 5
   02f0:  setDialogOwner 5
   02f2:  showTextbox "Are you telling me\nthere's another way?\n"
-  0346:  playAnimation 253 7
+  0346:  playAnimation Player 7
   034a:  delay 20
-  034e:  setDialogOwner 253
+  034e:  setDialogOwner Player
   0350:  showTextbox "If the island is ruined,\nit defeats the purpose!\nListen to me.\n"
   03d2:  setDialogOwner 5
   03d4:  showTextbox "What?\n"
-  03e4:  playAnimation 253 19
+  03e4:  playAnimation Player 19
   03e8:  delay 20
-  03ec:  setDialogOwner 253
+  03ec:  setDialogOwner Player
   03ee:  showTextbox "We're building a city for\nthe island by gathering all\nDigimon.\n"
   0470:  showTextbox "I heard that we can\nsave the island from this\ndanger by uniting Digimon.\n"
   0506:  setDialogOwner 5
   0508:  showTextbox "I think you are right, but\ngathering all the Digimon,\nthat's a big...\n"
-  0598:  playAnimation 253 7
+  0598:  playAnimation Player 7
   059c:  delay 20
-  05a0:  setDialogOwner 253
+  05a0:  setDialogOwner Player
   05a2:  showTextbox "We're working on it right\nnow. Nothing is impossible!\n"
   0612:  setDialogOwner 5
   0614:  showTextbox "That's a big job!\nBut I'm moved...\nMaybe, you guys can do it.\n"
-  0694:  playAnimation 253 19
+  0694:  playAnimation Player 19
   0698:  delay 20
-  069c:  setDialogOwner 253
+  069c:  setDialogOwner Player
   069e:  showTextbox "If you believe in us, I want\nyou to come to the city.\n"
   070e:  delay 20
   0712:  setDialogOwner 5
@@ -87,18 +87,18 @@ section_51:     ; len=2376
   0798:  if pstat[101] >= 10 then section_51+0x7b8
   07a4:  addPStat 101 1
   07a8:  delay 10
-  07ac:  lookAt 253 5
-  07b0:  lookAt 252 5
+  07ac:  lookAt Player 5
+  07b0:  lookAt Partner 5
   07b4:  jump section_51+0x790
   07b8:  waitForEntity 5
   07ba:  unloadEntity 5
   07bc:  setPStat 101 0
   07c0:  playSound 8 8
-  07c4:  setDialogOwner 255
+  07c4:  setDialogOwner System
   07c6:  showTextbox "Meramon joins the city!\n"
   07fa:  setTrigger 209
   07fe:  addPStat 1 2
-  0802:  moveCameraToEntity 253 10
+  0802:  moveCameraToEntity Player 10
   0806:  waitForEntity 200
   0808:  endSection
   080a:  if !trigger(209) then section_51+0x818
@@ -107,9 +107,9 @@ section_51:     ; len=2376
   081c:  waitForEntity 200
   081e:  setDialogOwner 5
   0820:  showTextbox "I knew you'd come back.\nI need to know the answer!\n"
-  088a:  lookAt 5 253
-  088e:  entityWalkToEntity 252 1 253
-  0892:  waitForEntity 252
+  088a:  lookAt 5 Player
+  088e:  entityWalkToEntity Partner 1 Player
+  0892:  waitForEntity Partner
   0894:  setTrigger 1
   0898:  setPStat 250 1
   089c:  setPStat 251 5
@@ -120,12 +120,12 @@ section_51:     ; len=2376
   08ae:  startBattle
   08b0:  unsetTrigger 1
   08b4:  setPStat 250 0
-  08b8:  lookAt 253 5
-  08bc:  lookAt 5 253
-  08c0:  lookAt 252 5
+  08b8:  lookAt Player 5
+  08bc:  lookAt 5 Player
+  08c0:  lookAt Partner 5
   08c4:  setDialogOwner 5
   08c6:  showTextbox "I guess, I lose...\n"
-  08f0:  setDialogOwner 253
+  08f0:  setDialogOwner Player
   08f2:  showTextbox "There's something\nI need to tell you.\n"
   0942:  jump section_51+0x3e4
   0946:  endSection

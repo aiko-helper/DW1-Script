@@ -1,7 +1,7 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG194.SCN, section 53
 
-section_53:     ; len=1660
+section_53(53):     ; len=1660
   0000:  if !trigger(321) then section_53+0xe
   000c:  endSection
   000e:  setDialogOwner 10
@@ -9,7 +9,7 @@ section_53:     ; len=1660
   0028:  playAnimation 10 28
   002c:  moveEntityToAxis 10 0 1 20
   0032:  delay 60
-  0036:  setDialogOwner 253
+  0036:  setDialogOwner Player
   0038:  showTextbox "You!\n"
   0046:  setDialogOwner 10
   0048:  showTextbox "You will lose!\n"
@@ -23,14 +23,14 @@ section_53:     ; len=1660
   0084:  startBattle
   0086:  unsetTrigger 1
   008a:  setPStat 250 0
-  008e:  lookAt 253 10
-  0092:  lookAt 10 253
-  0096:  lookAt 252 10
+  008e:  lookAt Player 10
+  0092:  lookAt 10 Player
+  0096:  lookAt Partner 10
   009a:  setDialogOwner 10
   009c:  showTextbox "I can't believe I was\nbrain washed by him.\n"
   00f6:  setDialogOwner 10
   00f8:  showTextbox "He's strong.\nCan you defeat him?\nWhy are you doing this?\n"
-  016e:  setDialogOwner 253
+  016e:  setDialogOwner Player
   0170:  showTextbox "I'll fight for the island\nLet's settle this now.\n"
   01d6:  setDialogOwner 10
   01d8:  showTextbox "We don't want a ruler,\nyou're our only hope.\n"
@@ -40,13 +40,13 @@ section_53:     ; len=1660
   0246:  if pstat[101] >= 3 then section_53+0x266
   0252:  addPStat 101 1
   0256:  delay 20
-  025a:  lookAt 253 10
-  025e:  lookAt 252 10
+  025a:  lookAt Player 10
+  025e:  lookAt Partner 10
   0262:  jump section_53+0x23a
   0266:  waitForEntity 10
   0268:  unloadEntity 10
   026a:  setPStat 101 0
-  026e:  moveCameraToEntity 253 10
+  026e:  moveCameraToEntity Player 10
   0272:  waitForEntity 200
   0274:  setTrigger 321
   0278:  endSection

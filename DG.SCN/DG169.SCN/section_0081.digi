@@ -1,9 +1,9 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG169.SCN, section 81
 
-section_81:     ; len=3482
-  0000:  lookAt 5 253
-  0004:  lookAt 253 5
+section_81(81):     ; len=3482
+  0000:  lookAt 5 Player
+  0004:  lookAt Player 5
   0008:  delay 5
   000c:  moveCameraTo 10 184 686
   0012:  waitForEntity 200
@@ -14,13 +14,13 @@ section_81:     ; len=3482
   004e:  showTextbox "We are treasure hunters.\nWe find underground treasure\nusing our digging skills.\n"
   00f2:  showTextbox "Trust me to find treasure.\n"
   012c:  endSection
-  012e:  moveCameraToEntity 253 10
+  012e:  moveCameraToEntity Player 10
   0132:  waitForEntity 200
   0134:  if !trigger(178) AND !trigger(179) then section_81+0x148
   0144:  jump section_81+0x720
   0148:  setDialogOwner 5
   014a:  showTextbox "Do you want me to find\nsomething? Do you want me to\nexplain how we do it?\n"
-  01e2:  setDialogOwner 253
+  01e2:  setDialogOwner Player
   01e4:  setSelection section_81+0x238 section_81+0x462 section_81+0x520
   01ec:  showTextbox "Explain\nDon't explain\nNever mind\n"
   0232:  waitForSelectionChoice
@@ -37,14 +37,14 @@ section_81:     ; len=3482
   045e:  jump section_81+0x520
   0462:  setDialogOwner 5
   0464:  showTextbox "Choose a plan!\n"
-  0486:  setDialogOwner 253
+  0486:  setDialogOwner Player
   0488:  setSelection section_81+0x554 section_81+0x5fa section_81+0x520
   0490:  showTextbox "Reg:three day, one thous bits\nSpec:ten day, five thous bits\nCancel\n"
   051a:  waitForSelectionChoice
   051c:  jump section_81+0x520
   0520:  setDialogOwner 5
   0522:  showTextbox "OK then, good bye.\n"
-  054c:  moveCameraToEntity 253 10
+  054c:  moveCameraToEntity Player 10
   0550:  waitForEntity 200
   0552:  endSection
   0554:  if money >= 1000 then section_81+0x568
@@ -57,7 +57,7 @@ section_81:     ; len=3482
   05e4:  storeRandom 22 49
   05e8:  entityWalkTo 5 169 2232 1
   05f0:  waitForEntity 5
-  05f2:  moveCameraToEntity 253 10
+  05f2:  moveCameraToEntity Player 10
   05f6:  waitForEntity 200
   05f8:  endSection
   05fa:  if money >= 5000 then section_81+0x60e
@@ -70,12 +70,12 @@ section_81:     ; len=3482
   0686:  storeRandom 23 49
   068a:  entityWalkTo 5 169 2232 1
   0692:  waitForEntity 5
-  0694:  moveCameraToEntity 253 10
+  0694:  moveCameraToEntity Player 10
   0698:  waitForEntity 200
   069a:  endSection
   069c:  setDialogOwner 5
   069e:  showTextbox "You don't have enough bits.\nI need money to\nfind treasure.\n"
-  0718:  moveCameraToEntity 253 10
+  0718:  moveCameraToEntity Player 10
   071c:  waitForEntity 200
   071e:  endSection
   0720:  if pstat[30] >= 3 OR !trigger(178) then section_81+0x734
@@ -89,7 +89,7 @@ section_81:     ; len=3482
   0758:  showTextbox "I'm looking for treasure\nright now. Please be patient.\n"
   07ca:  entityWalkTo 5 169 2232 1
   07d2:  waitForEntity 5
-  07d4:  moveCameraToEntity 253 10
+  07d4:  moveCameraToEntity Player 10
   07d8:  waitForEntity 200
   07da:  endSection
   07dc:  setDialogOwner 5
@@ -102,108 +102,108 @@ section_81:     ; len=3482
   0856:  if !trigger(217) then section_81+0x866
   0862:  jump section_81+0x986
   0866:  if pstat[22] > 0 then section_81+0x87e
-  0872:  giveItem 90 1
+  0872:  giveItem KogaLaws 1
   0876:  setPStat 110 90
   087a:  jump section_81+0xaa6
   087e:  if pstat[22] > 1 then section_81+0x896
-  088a:  giveItem 73 1
+  088a:  giveItem FlameWing 1
   088e:  setPStat 110 73
   0892:  jump section_81+0xaa6
   0896:  if pstat[22] > 2 then section_81+0x8ae
-  08a2:  giveItem 82 1
+  08a2:  giveItem TornTatter 1
   08a6:  setPStat 110 82
   08aa:  jump section_81+0xaa6
   08ae:  if pstat[22] > 12 then section_81+0x8c6
-  08ba:  giveItem 3 1
+  08ba:  giveItem SuperRecovery 1
   08be:  setPStat 110 3
   08c2:  jump section_81+0xaa6
   08c6:  if pstat[22] > 15 then section_81+0x8de
-  08d2:  giveItem 11 1
+  08d2:  giveItem Restore 1
   08d6:  setPStat 110 11
   08da:  jump section_81+0xaa6
   08de:  if pstat[22] > 19 then section_81+0x8f6
-  08ea:  giveItem 9 1
+  08ea:  giveItem Omnipotent 1
   08ee:  setPStat 110 9
   08f2:  jump section_81+0xaa6
   08f6:  if pstat[22] > 23 then section_81+0x90e
-  0902:  giveItem 10 1
+  0902:  giveItem Protection 1
   0906:  setPStat 110 10
   090a:  jump section_81+0xaa6
   090e:  if pstat[22] > 33 then section_81+0x926
-  091a:  giveItem 6 1
+  091a:  giveItem LargeMP 1
   091e:  setPStat 110 6
   0922:  jump section_81+0xaa6
   0926:  if pstat[22] > 37 then section_81+0x93e
-  0932:  giveItem 19 1
+  0932:  giveItem SuperOffenseDisk 1
   0936:  setPStat 110 19
   093a:  jump section_81+0xaa6
   093e:  if pstat[22] > 41 then section_81+0x956
-  094a:  giveItem 20 1
+  094a:  giveItem SuperDefenseDisk 1
   094e:  setPStat 110 20
   0952:  jump section_81+0xaa6
   0956:  if pstat[22] > 45 then section_81+0x96e
-  0962:  giveItem 21 1
+  0962:  giveItem SuperSpeedDisk 1
   0966:  setPStat 110 21
   096a:  jump section_81+0xaa6
   096e:  if pstat[22] > 49 then section_81+0x986
-  097a:  giveItem 18 1
+  097a:  giveItem OmniDisk 1
   097e:  setPStat 110 18
   0982:  jump section_81+0xaa6
   0986:  if pstat[22] > 0 then section_81+0x99e
-  0992:  giveItem 90 1
+  0992:  giveItem KogaLaws 1
   0996:  setPStat 110 90
   099a:  jump section_81+0xaa6
   099e:  if pstat[22] > 2 then section_81+0x9b6
-  09aa:  giveItem 73 1
+  09aa:  giveItem FlameWing 1
   09ae:  setPStat 110 73
   09b2:  jump section_81+0xaa6
   09b6:  if pstat[22] > 4 then section_81+0x9ce
-  09c2:  giveItem 82 1
+  09c2:  giveItem TornTatter 1
   09c6:  setPStat 110 82
   09ca:  jump section_81+0xaa6
   09ce:  if pstat[22] > 12 then section_81+0x9e6
-  09da:  giveItem 3 1
+  09da:  giveItem SuperRecovery 1
   09de:  setPStat 110 3
   09e2:  jump section_81+0xaa6
   09e6:  if pstat[22] > 15 then section_81+0x9fe
-  09f2:  giveItem 11 1
+  09f2:  giveItem Restore 1
   09f6:  setPStat 110 11
   09fa:  jump section_81+0xaa6
   09fe:  if pstat[22] > 19 then section_81+0xa16
-  0a0a:  giveItem 9 1
+  0a0a:  giveItem Omnipotent 1
   0a0e:  setPStat 110 9
   0a12:  jump section_81+0xaa6
   0a16:  if pstat[22] > 23 then section_81+0xa2e
-  0a22:  giveItem 10 1
+  0a22:  giveItem Protection 1
   0a26:  setPStat 110 10
   0a2a:  jump section_81+0xaa6
   0a2e:  if pstat[22] > 33 then section_81+0xa46
-  0a3a:  giveItem 6 1
+  0a3a:  giveItem LargeMP 1
   0a3e:  setPStat 110 6
   0a42:  jump section_81+0xaa6
   0a46:  if pstat[22] > 37 then section_81+0xa5e
-  0a52:  giveItem 19 1
+  0a52:  giveItem SuperOffenseDisk 1
   0a56:  setPStat 110 19
   0a5a:  jump section_81+0xaa6
   0a5e:  if pstat[22] > 41 then section_81+0xa76
-  0a6a:  giveItem 20 1
+  0a6a:  giveItem SuperDefenseDisk 1
   0a6e:  setPStat 110 20
   0a72:  jump section_81+0xaa6
   0a76:  if pstat[22] > 45 then section_81+0xa8e
-  0a82:  giveItem 21 1
+  0a82:  giveItem SuperSpeedDisk 1
   0a86:  setPStat 110 21
   0a8a:  jump section_81+0xaa6
   0a8e:  if pstat[22] > 49 then section_81+0xaa6
-  0a9a:  giveItem 18 1
+  0a9a:  giveItem OmniDisk 1
   0a9e:  setPStat 110 18
   0aa2:  jump section_81+0xaa6
   0aa6:  if !trigger(0) then section_81+0xae4
   0ab2:  setDialogOwner 5
   0ab4:  showTextbox "Empty your stuff!\n"
-  0adc:  moveCameraToEntity 253 10
+  0adc:  moveCameraToEntity Player 10
   0ae0:  waitForEntity 200
   0ae2:  endSection
-  0ae4:  setDialogOwner 255
+  0ae4:  setDialogOwner System
   0ae6:  showTextbox "I got a <LIGHTBLUE><TREASURE ITEM><WHITE>!\n"
   0b04:  unsetTrigger 178
   0b08:  unsetTrigger 179
@@ -211,103 +211,103 @@ section_81:     ; len=3482
   0b10:  if !trigger(217) then section_81+0xb20
   0b1c:  jump section_81+0xc40
   0b20:  if pstat[23] > 0 then section_81+0xb38
-  0b2c:  giveItem 23 1
+  0b2c:  giveItem OffenseChip 1
   0b30:  setPStat 110 23
   0b34:  jump section_81+0xaa6
   0b38:  if pstat[23] > 1 then section_81+0xb50
-  0b44:  giveItem 27 1
+  0b44:  giveItem HPChip 1
   0b48:  setPStat 110 27
   0b4c:  jump section_81+0xaa6
   0b50:  if pstat[23] > 2 then section_81+0xb68
-  0b5c:  giveItem 25 1
+  0b5c:  giveItem BrainChip 1
   0b60:  setPStat 110 25
   0b64:  jump section_81+0xaa6
   0b68:  if pstat[23] > 3 then section_81+0xb80
-  0b74:  giveItem 24 1
+  0b74:  giveItem DefenseChip 1
   0b78:  setPStat 110 24
   0b7c:  jump section_81+0xaa6
   0b80:  if pstat[23] > 4 then section_81+0xb98
-  0b8c:  giveItem 28 1
+  0b8c:  giveItem MPChip 1
   0b90:  setPStat 110 28
   0b94:  jump section_81+0xaa6
   0b98:  if pstat[23] > 5 then section_81+0xbb0
-  0ba4:  giveItem 26 1
+  0ba4:  giveItem SpeedChip 1
   0ba8:  setPStat 110 26
   0bac:  jump section_81+0xaa6
   0bb0:  if pstat[23] > 6 then section_81+0xbc8
-  0bbc:  giveItem 90 1
+  0bbc:  giveItem KogaLaws 1
   0bc0:  setPStat 110 90
   0bc4:  jump section_81+0xaa6
   0bc8:  if pstat[23] > 7 then section_81+0xbe0
-  0bd4:  giveItem 73 1
+  0bd4:  giveItem FlameWing 1
   0bd8:  setPStat 110 73
   0bdc:  jump section_81+0xaa6
   0be0:  if pstat[23] > 8 then section_81+0xbf8
-  0bec:  giveItem 82 1
+  0bec:  giveItem TornTatter 1
   0bf0:  setPStat 110 82
   0bf4:  jump section_81+0xaa6
   0bf8:  if pstat[23] > 20 then section_81+0xc10
-  0c04:  giveItem 3 1
+  0c04:  giveItem SuperRecovery 1
   0c08:  setPStat 110 3
   0c0c:  jump section_81+0xaa6
   0c10:  if pstat[23] > 29 then section_81+0xc28
-  0c1c:  giveItem 11 1
+  0c1c:  giveItem Restore 1
   0c20:  setPStat 110 11
   0c24:  jump section_81+0xaa6
   0c28:  if pstat[23] > 49 then section_81+0xc40
-  0c34:  giveItem 9 1
+  0c34:  giveItem Omnipotent 1
   0c38:  setPStat 110 9
   0c3c:  jump section_81+0xaa6
   0c40:  if pstat[23] > 1 then section_81+0xc58
-  0c4c:  giveItem 23 1
+  0c4c:  giveItem OffenseChip 1
   0c50:  setPStat 110 23
   0c54:  jump section_81+0xaa6
   0c58:  if pstat[23] > 3 then section_81+0xc70
-  0c64:  giveItem 27 1
+  0c64:  giveItem HPChip 1
   0c68:  setPStat 110 27
   0c6c:  jump section_81+0xaa6
   0c70:  if pstat[23] > 5 then section_81+0xc88
-  0c7c:  giveItem 25 1
+  0c7c:  giveItem BrainChip 1
   0c80:  setPStat 110 25
   0c84:  jump section_81+0xaa6
   0c88:  if pstat[23] > 7 then section_81+0xca0
-  0c94:  giveItem 24 1
+  0c94:  giveItem DefenseChip 1
   0c98:  setPStat 110 24
   0c9c:  jump section_81+0xaa6
   0ca0:  if pstat[23] > 9 then section_81+0xcb8
-  0cac:  giveItem 28 1
+  0cac:  giveItem MPChip 1
   0cb0:  setPStat 110 28
   0cb4:  jump section_81+0xaa6
   0cb8:  if pstat[23] > 11 then section_81+0xcd0
-  0cc4:  giveItem 26 1
+  0cc4:  giveItem SpeedChip 1
   0cc8:  setPStat 110 26
   0ccc:  jump section_81+0xaa6
   0cd0:  if pstat[23] > 13 then section_81+0xce8
-  0cdc:  giveItem 90 1
+  0cdc:  giveItem KogaLaws 1
   0ce0:  setPStat 110 90
   0ce4:  jump section_81+0xaa6
   0ce8:  if pstat[23] > 15 then section_81+0xd00
-  0cf4:  giveItem 73 1
+  0cf4:  giveItem FlameWing 1
   0cf8:  setPStat 110 73
   0cfc:  jump section_81+0xaa6
   0d00:  if pstat[23] > 17 then section_81+0xd18
-  0d0c:  giveItem 82 1
+  0d0c:  giveItem TornTatter 1
   0d10:  setPStat 110 82
   0d14:  jump section_81+0xaa6
   0d18:  if pstat[23] > 21 then section_81+0xd30
-  0d24:  giveItem 12 1
+  0d24:  giveItem SuperRestore 1
   0d28:  setPStat 110 12
   0d2c:  jump section_81+0xaa6
   0d30:  if pstat[23] > 33 then section_81+0xd48
-  0d3c:  giveItem 11 1
+  0d3c:  giveItem Restore 1
   0d40:  setPStat 110 11
   0d44:  jump section_81+0xaa6
   0d48:  if pstat[23] > 49 then section_81+0xd60
-  0d54:  giveItem 9 1
+  0d54:  giveItem Omnipotent 1
   0d58:  setPStat 110 9
   0d5c:  jump section_81+0xaa6
   0d60:  setDialogOwner 5
   0d62:  showTextbox "Thank you for coming!\n"
-  0d92:  moveCameraToEntity 253 10
+  0d92:  moveCameraToEntity Player 10
   0d96:  waitForEntity 200
   0d98:  endSection

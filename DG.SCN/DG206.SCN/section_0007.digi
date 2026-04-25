@@ -1,12 +1,12 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG206.SCN, section 7
 
-section_7:     ; len=1046
+section_7(7):     ; len=1046
   0000:  setPStat 122 1
   0004:  setDialogOwner 6
   0006:  showTextbox "Hey <LIGHTBLUE><PLAYER><WHITE>. I'm watching\nthe shop now as a favor for\nPenguinmon.\n"
   0086:  showTextbox "Have a match with me!\nIf you win, I'll give you my\nspecial prize. How's that?\n"
-  0126:  setDialogOwner 253
+  0126:  setDialogOwner Player
   0128:  setSelection section_7+0x174 section_7+0x3d0
   012e:  showTextbox "Alright, let's do it\nNo thanks\n"
   0170:  waitForSelectionChoice
@@ -16,7 +16,7 @@ section_7:     ; len=1046
   01c6:  setTrigger 3
   01ca:  callSubroutine 0
   01cc:  if !trigger(3) then section_7+0x22c
-  01d8:  setDialogOwner 253
+  01d8:  setDialogOwner Player
   01da:  showTextbox "Oh, I don't have\nanything right now.\n"
   0228:  jump section_7+0x338
   022c:  if pstat[254] != 62 AND pstat[254] != 63 AND pstat[254] != 64 AND pstat[254] != 65 then section_7+0x24a
@@ -28,12 +28,12 @@ section_7:     ; len=1046
   0260:  if pstat[254] != 255 then section_7+0x274
   026c:  jump section_7+0x338
   0270:  jump section_7+0x2ca
-  0274:  setDialogOwner 253
+  0274:  setDialogOwner Player
   0276:  showTextbox "Giving this to you\nwon't do any good.\n"
   02c6:  jump section_7+0x338
   02ca:  setDialogOwner 6
   02cc:  showTextbox "Well, this time, I'm gonna\nwin. Let's go inside.\n"
-  0332:  warpTo 136 1 255
+  0332:  warpTo FRZL17 1 255
   0336:  endSection
   0338:  setPStat 113 0
   033c:  setDialogOwner 6

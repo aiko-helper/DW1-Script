@@ -1,22 +1,22 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG018.SCN, section 68
 
-section_68:     ; len=844
+section_68(68):     ; len=844
   0000:  if !trigger(236) then section_68+0xe
   000c:  endSection
   000e:  if pstat[116] != 0 then section_68+0x32c
-  001a:  setDialogOwner 253
+  001a:  setDialogOwner Player
   001c:  showTextbox " !!! \n"
   002c:  playSound 8 2
   0030:  delay 20
   0034:  setObjectVisibility 38 1
-  0038:  entityWalkToWithCamera 253 -1750 3600 1
-  0040:  entityWalkTo 252 -1450 3600 1
-  0048:  waitForEntity 252
-  004a:  waitForEntity 253
-  004c:  setRotation 253 2048
-  0050:  setRotation 252 2048
-  0054:  setDigimon 156 0 0
+  0038:  entityWalkToWithCamera Player -1750 3600 1
+  0040:  entityWalkTo Partner -1450 3600 1
+  0048:  waitForEntity Partner
+  004a:  waitForEntity Player
+  004c:  setRotation Player 2048
+  0050:  setRotation Partner 2048
+  0054:  setDigimon NPCCentarumon 0 0
   0058:  entityWalkTo 5 -1600 4300 0
   0060:  waitForEntity 5
   0062:  setDialogOwner 5
@@ -31,34 +31,34 @@ section_68:     ; len=844
   0208:  if pstat[101] >= 4 then section_68+0x228
   0214:  addPStat 101 1
   0218:  delay 20
-  021c:  lookAt 253 5
-  0220:  lookAt 252 5
+  021c:  lookAt Player 5
+  0220:  lookAt Partner 5
   0224:  jump section_68+0x200
   0228:  waitForEntity 5
   022a:  unloadEntity 5
   022c:  setPStat 101 0
   0230:  playSound 8 9
-  0234:  setDialogOwner 255
+  0234:  setDialogOwner System
   0236:  showTextbox "Centarumon joins the city!\n"
-  0270:  moveCameraToEntity 253 10
+  0270:  moveCameraToEntity Player 10
   0274:  waitForEntity 200
-  0276:  lookAt 253 252
-  027a:  lookAt 252 253
+  0276:  lookAt Player Partner
+  027a:  lookAt Partner Player
   027e:  delay 5
-  0282:  setDialogOwner 253
+  0282:  setDialogOwner Player
   0284:  showTextbox "<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous!\n"
-  02dc:  playAnimation 253 11
-  02e0:  setDialogOwner 253
+  02dc:  playAnimation Player 11
+  02e0:  setDialogOwner Player
   02e2:  showTextbox "Let's keep it up!\n"
-  030a:  entityWalkTo 253 -1600 5200 0
+  030a:  entityWalkTo Player -1600 5200 0
   0312:  delay 20
-  0316:  entityWalkTo 252 -1600 5200 0
+  0316:  entityWalkTo Partner -1600 5200 0
   031e:  delay 20
-  0322:  warpTo 79 0 255
+  0322:  warpTo KODA00 0 255
   0326:  endSection
   0328:  jump section_68+0x34a
   032c:  playSound 0 11
-  0330:  setDialogOwner 255
+  0330:  setDialogOwner System
   0332:  showTextbox "Missed!\n"
-  0346:  warpTo 17 0 255
+  0346:  warpTo TROP06 0 255
   034a:  endSection

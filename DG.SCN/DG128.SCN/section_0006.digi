@@ -1,7 +1,7 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG128.SCN, section 6
 
-section_6:     ; len=814
+section_6(6):     ; len=814
   0000:  if !trigger(11) OR !trigger(12) then section_6+0x2e
   0010:  setDialogOwner 6
   0012:  showTextbox "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n"
@@ -49,14 +49,14 @@ section_6:     ; len=814
   02bc:  if pstat[101] >= 6 then section_6+0x2dc
   02c8:  addPStat 101 1
   02cc:  delay 10
-  02d0:  lookAt 253 6
-  02d4:  lookAt 252 6
+  02d0:  lookAt Player 6
+  02d4:  lookAt Partner 6
   02d8:  jump section_6+0x2b4
   02dc:  waitForEntity 6
   02de:  unloadEntity 6
   02e0:  setPStat 101 0
   02e4:  playSound 8 11
-  02e8:  setDialogOwner 255
+  02e8:  setDialogOwner System
   02ea:  showTextbox "Mojyamon joins the city!\n"
   0320:  setTrigger 252
   0324:  setTrigger 109

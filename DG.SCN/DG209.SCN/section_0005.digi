@@ -1,13 +1,13 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG209.SCN, section 5
 
-section_5:     ; len=2322
-  0000:  setDialogOwner 255
+section_5(5):     ; len=2322
+  0000:  setDialogOwner System
   0002:  setSelection section_5+0x94 section_5+0x1ea section_5+0x592 section_5+0x62
   000c:  showTextbox "Store one\nStore two\nOthers\nEnter Name\n"
   005c:  waitForSelectionChoice
   005e:  jump section_5+0x804
-  0062:  setDialogOwner 255
+  0062:  setDialogOwner System
   0064:  setSelection section_5+0x84 section_5+0x8c
   006a:  showTextbox "<LIGHTBLUE><PLAYER><WHITE>\n<ORANGE><DIGIMON><WHITE>\n"
   007e:  waitForSelectionChoice
@@ -18,7 +18,7 @@ section_5:     ; len=2322
   008c:  setPStat 254 3
   0090:  callSubroutine 32
   0092:  endSection
-  0094:  setDialogOwner 253
+  0094:  setDialogOwner Player
   0096:  setSelection section_5+0xcc section_5+0x1d2 section_5+0x1e0
   009e:  showTextbox "Shop\nMarket\nPoint\n"
   00c6:  waitForSelectionChoice
@@ -96,7 +96,7 @@ section_5:     ; len=2322
   01e0:  setPStat 254 7
   01e4:  callSubroutine 1
   01e6:  jump section_5+0x804
-  01ea:  setDialogOwner 253
+  01ea:  setDialogOwner Player
   01ec:  setSelection section_5+0x240 section_5+0x238 section_5+0x526
   01f4:  showTextbox "Card\nItem Keeper\nOther shops\n"
   0232:  waitForSelectionChoice
@@ -108,7 +108,7 @@ section_5:     ; len=2322
   0244:  setDialogOwner 7
   0246:  showTextbox "I have fresh cards today,\nas usual.\n"
   0292:  callSubroutine 15
-  0294:  setDialogOwner 253
+  0294:  setDialogOwner Player
   0296:  setSelection section_5+0x2e4 section_5+0x4bc section_5+0x504
   029e:  showTextbox "Buy a card\nSell a card\nCancel\n"
   02de:  waitForSelectionChoice
@@ -125,7 +125,7 @@ section_5:     ; len=2322
   03a6:  jump section_5+0x4c2
   03aa:  setDialogOwner 7
   03ac:  showTextbox "One pack will cost\nfive hund bits. What's\ninside is a surprise.\n"
-  0430:  setDialogOwner 253
+  0430:  setDialogOwner Player
   0432:  setSelection section_5+0x458 section_5+0x4c2
   0438:  showTextbox "Buy\nCancel\n"
   0452:  waitForSelectionChoice
@@ -153,7 +153,7 @@ section_5:     ; len=2322
   0506:  setDialogOwner 7
   0508:  showTextbox "Come again.\n"
   0524:  endSection
-  0526:  setDialogOwner 253
+  0526:  setDialogOwner Player
   0528:  setSelection section_5+0x576 section_5+0x57e section_5+0x586
   0530:  showTextbox "Sound Test\nWarp Shop\nExchange\n"
   0570:  waitForSelectionChoice
@@ -168,26 +168,26 @@ section_5:     ; len=2322
   058a:  setPStat 249 2
   058e:  callSubroutine 2
   0590:  endSection
-  0592:  setDialogOwner 255
+  0592:  setDialogOwner System
   0594:  setSelection section_5+0x806 section_5+0x854 section_5+0x5dc section_5+0x89a
   059e:  showTextbox "Entry\nArena\nVarious\nPrice\n"
   05d6:  waitForSelectionChoice
   05d8:  jump section_5+0x804
-  05dc:  setDialogOwner 255
+  05dc:  setDialogOwner System
   05de:  setSelection section_5+0x624 section_5+0x62a section_5+0x752 section_5+0x802
   05e8:  showTextbox "Opening\nEnding\nMorph\nGone\n"
   0620:  waitForSelectionChoice
   0622:  endSection
   0624:  callDigimonSubroutine 5
-  0626:  waitForEntity 255
+  0626:  waitForEntity System
   0628:  endSection
   062a:  callDigimonSubroutine 6
-  062c:  waitForEntity 255
+  062c:  waitForEntity System
   062e:  endSection
   0630:  setTrigger 3
   0634:  callSubroutine 0
   0636:  if !trigger(3) then section_5+0x67c
-  0642:  setDialogOwner 253
+  0642:  setDialogOwner Player
   0644:  showTextbox "I didn't have anything.\n"
   0678:  jump section_5+0x804
   067c:  if pstat[254] != 255 then section_5+0x6de
@@ -198,29 +198,29 @@ section_5:     ; len=2322
   06e0:  setDialogOwner 7
   06e2:  showTextbox "Thanks.\n"
   06f6:  jump section_5+0x804
-  06fa:  giveItem 21 1
+  06fa:  giveItem SuperSpeedDisk 1
   06fe:  if !trigger(0) then section_5+0x716
   070a:  unsetTrigger 3
   070e:  callSubroutine 0
   0710:  callSubroutine 13
-  0712:  giveItem 21 1
-  0716:  setDialogOwner 253
+  0712:  giveItem SuperSpeedDisk 1
+  0716:  setDialogOwner Player
   0718:  showTextbox "I got number twenty one.\n"
   074e:  jump section_5+0x804
   0752:  storeDigimonType 200
   0754:  if pstat[200] != 39 then section_5+0x7a6
-  0760:  setDialogOwner 253
+  0760:  setDialogOwner Player
   0762:  showTextbox "Digivolve to original form.\n"
   079e:  copyPStat 5 254
   07a2:  jump section_5+0x7de
-  07a6:  setDialogOwner 253
+  07a6:  setDialogOwner Player
   07a8:  showTextbox "Digivolve to Sukamon.\n"
   07d8:  storeDigimonType 5
   07da:  setPStat 254 39
   07de:  fadeOutHUD
   07e0:  callDigimonSubroutine 2
   07e2:  waitForEntity 201
-  07e4:  setDialogOwner 253
+  07e4:  setDialogOwner Player
   07e6:  showTextbox "Complete.\n"
   07fe:  jump section_5+0x804
   0802:  callSubroutine 47
@@ -238,11 +238,11 @@ section_5:     ; len=2322
   088a:  endSection
   088c:  setPStat 254 7
   0890:  callSubroutine 6
-  0892:  warpTo 180 0 255
+  0892:  warpTo TWNB01 0 255
   0896:  callSubroutine 22
   0898:  endSection
   089a:  jump section_5+0x8fe
-  089e:  setDialogOwner 253
+  089e:  setDialogOwner Player
   08a0:  showTextbox "Currently, it's <DISCOUNT>bits.\n"
   08d2:  setSelection section_5+0x8fe section_5+0x904 section_5+0x8fc
   08da:  showTextbox "Clear\nAdd\nEnd\n"

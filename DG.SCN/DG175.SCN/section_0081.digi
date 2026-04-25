@@ -1,9 +1,9 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG175.SCN, section 81
 
-section_81:     ; len=2180
-  0000:  lookAt 253 5
-  0004:  lookAt 5 253
+section_81(81):     ; len=2180
+  0000:  lookAt Player 5
+  0004:  lookAt 5 Player
   0008:  if !trigger(58) AND !trigger(61) AND !trigger(60) AND !trigger(59) then section_81+0x24
   0020:  jump section_81+0x41e
   0024:  if !trigger(209) OR trigger(58) OR pstat[27] != 0 then section_81+0x154
@@ -57,6 +57,6 @@ section_81:     ; len=2180
   084a:  setTrigger 59
   084e:  endSection
   0850:  if pstat[27] != 0 AND pstat[27] != 1 AND pstat[27] != 2 then section_81+0x86a
-  0864:  jumpToScriptSection 217 51
+  0864:  jumpToScriptSection ROOM07 51
   086a:  if pstat[27] != 3 AND pstat[27] != 4 AND pstat[27] != 5 then section_6
-  087e:  jumpToScriptSection 218 51
+  087e:  jumpToScriptSection ROOM08 51

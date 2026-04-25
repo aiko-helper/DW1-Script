@@ -1,26 +1,26 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG088.SCN, section 51
 
-section_51:     ; len=210
+section_51(51):     ; len=210
   0000:  if pstat[16] != 1 then section_51+0x18
-  000c:  entityWalkTo 253 170 -956 0
-  0014:  warpTo 226 0 60
+  000c:  entityWalkTo Player 170 -956 0
+  0014:  warpTo MGEN11 0 60
   0018:  storeDigimonType 103
   001a:  storeDigimonTypus 103 109
   001e:  if pstat[109] != 2 then section_51+0x30
   002a:  endSection
   002c:  jump section_51+0xd0
-  0030:  setDialogOwner 255
+  0030:  setDialogOwner System
   0032:  showTextbox "Stopped by a strange\nwhite force!\n"
   007a:  fadeOutHUD
-  007c:  entityWalkToWithCamera 253 45 -850 1
-  0084:  entityWalkTo 252 349 -753 1
-  008c:  waitForEntity 253
-  008e:  waitForEntity 252
+  007c:  entityWalkToWithCamera Player 45 -850 1
+  0084:  entityWalkTo Partner 349 -753 1
+  008c:  waitForEntity Player
+  008e:  waitForEntity Partner
   0090:  delay 10
-  0094:  setRotation 253 2949
+  0094:  setRotation Player 2949
   0098:  delay 10
-  009c:  setRotation 253 1925
-  00a0:  setDialogOwner 253
+  009c:  setRotation Player 1925
+  00a0:  setDialogOwner Player
   00a2:  showTextbox "What? My legs are...\n"
   00d0:  endSection

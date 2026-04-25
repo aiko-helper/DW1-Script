@@ -1,24 +1,24 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG022.SCN, section 5
 
-section_5:     ; len=1412
+section_5(5):     ; len=1412
   0000:  setDialogOwner 5
   0002:  showTextbox "My wing hurts.\n"
-  0024:  playAnimation 253 19
+  0024:  playAnimation Player 19
   0028:  delay 20
-  002c:  setDialogOwner 253
+  002c:  setDialogOwner Player
   002e:  showTextbox "What happened?\n"
   0050:  setDialogOwner 5
   0052:  showTextbox "I injured my wing... Do you\nhave anything to treat it?\n"
-  00c4:  playAnimation 253 4
+  00c4:  playAnimation Player 4
   00c8:  delay 20
-  00cc:  setDialogOwner 253
+  00cc:  setDialogOwner Player
   00ce:  showTextbox "Wow, it looks pretty bad!\nHold on. Let me see.\n"
-  0130:  playAnimation 253 0
+  0130:  playAnimation Player 0
   0134:  setTrigger 3
   0138:  callSubroutine 0
   013a:  if !trigger(3) then section_5+0x192
-  0146:  setDialogOwner 253
+  0146:  setDialogOwner Player
   0148:  showTextbox "I don't have anything\nright now.\n"
   018e:  jump section_5+0x4ba
   0192:  if pstat[254] != 0 AND pstat[254] != 1 AND pstat[254] != 2 AND pstat[254] != 3 then section_5+0x1b0
@@ -28,26 +28,26 @@ section_5:     ; len=1412
   01c8:  callSubroutine 12
   01ca:  jump section_5+0x1fa
   01ce:  jump section_5+0x1fa
-  01d2:  setDialogOwner 253
+  01d2:  setDialogOwner Player
   01d4:  showTextbox "This won't do.\n"
   01f6:  jump section_5+0x4ba
   01fa:  setDialogOwner 5
   01fc:  showTextbox "It's much better. Thank you.\n"
   023a:  playAnimation 5 29
   023e:  waitForEntity 5
-  0240:  playAnimation 253 25
+  0240:  playAnimation Player 25
   0244:  delay 20
-  0248:  setDialogOwner 253
+  0248:  setDialogOwner Player
   024a:  showTextbox "Can you fly now?\n"
   0270:  setDialogOwner 5
   0272:  showTextbox "I don't think I can fly far.\n"
-  02b0:  playAnimation 253 19
+  02b0:  playAnimation Player 19
   02b4:  delay 20
-  02b8:  setDialogOwner 253
+  02b8:  setDialogOwner Player
   02ba:  showTextbox "There's a clinic in the city.\nYou should go there.\nIt's not far.\n"
   0340:  setDialogOwner 5
   0342:  showTextbox "I heard about the city.\nIt's bigger than I thought.\n"
-  03ae:  setDialogOwner 253
+  03ae:  setDialogOwner Player
   03b0:  showTextbox "Go to the city and rest.\n"
   03e6:  setDialogOwner 5
   03e8:  showTextbox "Thank you. Maybe\nI can help you someday.\n"
@@ -57,19 +57,19 @@ section_5:     ; len=1412
   0456:  addPStat 101 1
   045a:  playSound 8 0
   045e:  delay 15
-  0462:  lookAt 253 5
-  0466:  lookAt 252 5
+  0462:  lookAt Player 5
+  0466:  lookAt Partner 5
   046a:  jump section_5+0x442
   046e:  waitForEntity 5
   0470:  unloadEntity 5
   0472:  setPStat 101 0
   0476:  playSound 8 9
-  047a:  setDialogOwner 255
+  047a:  setDialogOwner System
   047c:  showTextbox "Unimon joins the city!\n"
   04ae:  setTrigger 233
   04b2:  addPStat 1 2
   04b6:  jump section_5+0x582
-  04ba:  setDialogOwner 253
+  04ba:  setDialogOwner Player
   04bc:  showTextbox "I don't have anything to\ntreat your wound.\nI'll get you something.\n"
   0546:  setDialogOwner 5
   0548:  showTextbox "I'm sorry, please hurry.\n"

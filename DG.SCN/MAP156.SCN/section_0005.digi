@@ -1,9 +1,9 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; MAP156.SCN, section 5
 
-section_5:     ; len=788
-  0000:  entityWalkToEntity 252 1 253
-  0004:  waitForEntity 253
+section_5(5):     ; len=788
+  0000:  entityWalkToEntity Partner 1 Player
+  0004:  waitForEntity Player
   0006:  setDialogOwner 5
   0008:  showTextbox "We are going to remodel.\nThe fee is two thous bits.\n"
   0074:  storeDigimonType 103
@@ -11,7 +11,7 @@ section_5:     ; len=788
   0082:  setDialogOwner 5
   0084:  showTextbox "The style is different.\nWe can't remodel.\n"
   00dc:  endSection
-  00de:  setDialogOwner 253
+  00de:  setDialogOwner Player
   00e0:  setSelection section_5+0x10e section_5+0x312
   00e6:  showTextbox "Do it\nNo thanks\n"
   010a:  waitForSelectionChoice
@@ -31,7 +31,7 @@ section_5:     ; len=788
   01ce:  setPStat 254 41
   01d2:  callDigimonSubroutine 10
   01d4:  delay 570
-  01d8:  setDialogOwner 253
+  01d8:  setDialogOwner Player
   01da:  showTextbox "Wow, it turned into Giromon!\n"
   0218:  endSection
   021a:  if pstat[110] > 5 then section_5+0x2aa
@@ -41,12 +41,12 @@ section_5:     ; len=788
   0254:  setPStat 254 27
   0258:  callDigimonSubroutine 10
   025a:  delay 570
-  025e:  setDialogOwner 253
+  025e:  setDialogOwner Player
   0260:  showTextbox "Wow, it turned into\nMetalMamemon!\n"
   02a8:  endSection
   02aa:  setDialogOwner 5
   02ac:  showTextbox "It didn't work.\n"
-  02d0:  setDialogOwner 253
+  02d0:  setDialogOwner Player
   02d2:  showTextbox "That's awful!\n"
   02f2:  setDialogOwner 5
   02f4:  showTextbox "I'm sorry...\n"

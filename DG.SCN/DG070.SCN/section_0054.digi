@@ -1,71 +1,71 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG070.SCN, section 54
 
-section_54:     ; len=1062
+section_54(54):     ; len=1062
   0000:  if pstat[111] < 2 OR pstat[112] == 3 OR trigger(194) OR trigger(245) then section_54+0x66
   0018:  setTrigger 194
-  001c:  playAnimation 253 16
-  0020:  setDialogOwner 253
+  001c:  playAnimation Player 16
+  0020:  setDialogOwner Player
   0022:  showTextbox "Maybe I'll wait.\n"
   0048:  setSelection section_54+0x68 section_51+0x14a
   004e:  showTextbox "Wait\nGo\n"
   0062:  waitForSelectionChoice
   0064:  endSection
   0066:  endSection
-  0068:  entityWalkToEntity 252 1 253
-  006c:  waitForEntity 252
-  006e:  lookAt 252 253
-  0072:  lookAt 253 252
-  0076:  waitForEntity 252
-  0078:  waitForEntity 253
-  007a:  setDialogOwner 253
-  007c:  playAnimation 253 8
+  0068:  entityWalkToEntity Partner 1 Player
+  006c:  waitForEntity Partner
+  006e:  lookAt Partner Player
+  0072:  lookAt Player Partner
+  0076:  waitForEntity Partner
+  0078:  waitForEntity Player
+  007a:  setDialogOwner Player
+  007c:  playAnimation Player 8
   0080:  showTextbox "Alright, <ORANGE><DIGIMON><WHITE>,\nget rid of Biyomon!\n"
-  00c8:  playAnimation 252 22
+  00c8:  playAnimation Partner 22
   00cc:  delay 20
-  00d0:  entityWalkTo 253 1753 3341 1
-  00d8:  entityWalkToEntity 252 1 5
-  00dc:  waitForEntity 252
-  00de:  lookAt 253 5
+  00d0:  entityWalkTo Player 1753 3341 1
+  00d8:  entityWalkToEntity Partner 1 5
+  00dc:  waitForEntity Partner
+  00de:  lookAt Player 5
   00e2:  jumpAndLink section_5+0x32e
   00e6:  if pstat[112] != 3 then section_54+0x100
-  00f2:  entityWalkToEntity 252 1 5
-  00f6:  waitForEntity 252
+  00f2:  entityWalkToEntity Partner 1 5
+  00f6:  waitForEntity Partner
   00f8:  jump section_54+0x14a
   00fc:  jump section_54+0x142
-  0100:  playAnimation 253 16
-  0104:  setDialogOwner 253
+  0100:  playAnimation Player 16
+  0104:  setDialogOwner Player
   0106:  showTextbox "He went to the wrong place!\n"
-  0142:  moveCameraToEntity 253 10
+  0142:  moveCameraToEntity Player 10
   0146:  waitForEntity 200
   0148:  endSection
-  014a:  playAnimation 253 11
+  014a:  playAnimation Player 11
   014e:  delay 10
-  0152:  lookAt 253 5
-  0156:  lookAt 252 5
-  015a:  lookAt 5 253
-  015e:  waitForEntity 253
-  0160:  waitForEntity 252
+  0152:  lookAt Player 5
+  0156:  lookAt Partner 5
+  015a:  lookAt 5 Player
+  015e:  waitForEntity Player
+  0160:  waitForEntity Partner
   0162:  waitForEntity 5
-  0164:  setDialogOwner 253
+  0164:  setDialogOwner Player
   0166:  showTextbox "The ambush is a success!\n"
   019c:  playSound 8 6
   01a0:  setDialogOwner 5
   01a2:  showTextbox "Help me out!\n"
-  01c0:  playAnimation 253 19
-  01c4:  setDialogOwner 253
+  01c0:  playAnimation Player 19
+  01c4:  setDialogOwner Player
   01c6:  showTextbox "Don't panic. We're not\nthe bad guys here.\n"
   021e:  playAnimation 5 28
   0222:  delay 20
   0226:  setDialogOwner 5
   0228:  showTextbox "Are you the famous\nDigimon kidnapper?\n"
-  0278:  playAnimation 253 16
-  027c:  setDialogOwner 253
+  0278:  playAnimation Player 16
+  027c:  setDialogOwner Player
   027e:  showTextbox "I think everyone has\nthe wrong idea.\n"
   02cc:  playAnimation 5 19
   02d0:  delay 40
-  02d4:  playAnimation 253 19
-  02d8:  setDialogOwner 255
+  02d4:  playAnimation Player 19
+  02d8:  setDialogOwner System
   02da:  showTextbox "<LIGHTBLUE><PLAYER><WHITE> tried\nto convince them.\n"
   0316:  playAnimation 5 0
   031a:  setDialogOwner 5
@@ -77,23 +77,23 @@ section_54:     ; len=1062
   038c:  if pstat[101] >= 6 OR pstat[112] == 0 then section_54+0x3b0
   039c:  addPStat 101 1
   03a0:  delay 10
-  03a4:  lookAt 253 5
-  03a8:  lookAt 252 5
+  03a4:  lookAt Player 5
+  03a8:  lookAt Partner 5
   03ac:  jump section_54+0x384
   03b0:  if pstat[101] >= 4 OR pstat[112] != 0 then section_54+0x3d4
   03c0:  addPStat 101 1
   03c4:  delay 5
-  03c8:  lookAt 253 5
-  03cc:  lookAt 252 5
+  03c8:  lookAt Player 5
+  03cc:  lookAt Partner 5
   03d0:  jump section_54+0x384
   03d4:  waitForEntity 5
   03d6:  unloadEntity 5
   03d8:  setPStat 101 0
   03dc:  playSound 8 5
-  03e0:  setDialogOwner 255
+  03e0:  setDialogOwner System
   03e2:  showTextbox "Biyomon joins the city!\n"
   0416:  setTrigger 245
   041a:  addPStat 1 1
-  041e:  moveCameraToEntity 253 10
+  041e:  moveCameraToEntity Player 10
   0422:  waitForEntity 200
   0424:  endSection

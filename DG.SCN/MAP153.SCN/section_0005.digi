@@ -1,15 +1,15 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; MAP153.SCN, section 5
 
-section_5:     ; len=2034
+section_5(5):     ; len=2034
   0000:  setDialogOwner 5
   0002:  showTextbox "I was waiting for you!\n"
-  0034:  setDialogOwner 253
+  0034:  setDialogOwner Player
   0036:  showTextbox "Are you returning\nto your senses?\n"
   007e:  playSound 8 11
   0082:  setDialogOwner 5
   0084:  showTextbox "I'm feeling\na little bit funky.\n"
-  00c8:  setDialogOwner 253
+  00c8:  setDialogOwner Player
   00ca:  showTextbox "Hey,\nthis is serious, you know?\n"
   010e:  setDialogOwner 5
   0110:  showTextbox "The factory's closed now, so\nI have lots of free time.\nI'll help you!\n"
@@ -23,16 +23,16 @@ section_5:     ; len=2034
   029a:  if pstat[101] >= 3 then section_5+0x2ba
   02a6:  addPStat 101 1
   02aa:  delay 20
-  02ae:  lookAt 253 5
-  02b2:  lookAt 252 5
+  02ae:  lookAt Player 5
+  02b2:  lookAt Partner 5
   02b6:  jump section_5+0x292
   02ba:  waitForEntity 5
   02bc:  unloadEntity 5
   02be:  setPStat 101 0
   02c2:  playSound 8 10
-  02c6:  setDialogOwner 255
+  02c6:  setDialogOwner System
   02c8:  showTextbox "Giromon joins the city!\n"
-  02fc:  moveCameraToEntity 253 10
+  02fc:  moveCameraToEntity Player 10
   0300:  waitForEntity 200
   0302:  setTrigger 241
   0306:  addPStat 1 3

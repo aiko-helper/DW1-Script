@@ -1,12 +1,12 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG002.SCN, section 6
 
-section_6:     ; len=1000
+section_6(6):     ; len=1000
   0000:  setTrigger 44
   0004:  playAnimation 6 29
   0008:  setDialogOwner 6
   000a:  showTextbox "I'm hungry.\n"
-  0026:  setDialogOwner 253
+  0026:  setDialogOwner Player
   0028:  setSelection section_6+0x6c section_6+0x3a8
   002e:  showTextbox "Give food\nDon't give food\n"
   0066:  waitForSelectionChoice
@@ -14,7 +14,7 @@ section_6:     ; len=1000
   006c:  setTrigger 3
   0070:  callSubroutine 0
   0072:  if !trigger(3) then section_6+0xb6
-  007e:  setDialogOwner 253
+  007e:  setDialogOwner Player
   0080:  showTextbox "I don't have food now.\n"
   00b2:  jump section_6+0x3a8
   00b6:  if pstat[254] != 255 then section_6+0xc6
@@ -26,7 +26,7 @@ section_6:     ; len=1000
   00fc:  callSubroutine 12
   00fe:  jump section_6+0x14a
   0102:  jump section_6+0x14a
-  0106:  setDialogOwner 253
+  0106:  setDialogOwner Player
   0108:  showTextbox "Oops, I can't give you this.\n"
   0146:  jump section_6+0x3a8
   014a:  playAnimation 6 30
@@ -47,16 +47,16 @@ section_6:     ; len=1000
   01b8:  startBattle
   01ba:  unsetTrigger 1
   01be:  setPStat 250 0
-  01c2:  lookAt 253 6
-  01c6:  lookAt 6 253
-  01ca:  lookAt 252 6
+  01c2:  lookAt Player 6
+  01c6:  lookAt 6 Player
+  01ca:  lookAt Partner 6
   01ce:  setDialogOwner 6
   01d0:  showTextbox "This isn't good.\nWhat should I do?\n"
-  021a:  playAnimation 253 20
-  021e:  waitForEntity 253
-  0220:  setDialogOwner 253
+  021a:  playAnimation Player 20
+  021e:  waitForEntity Player
+  0220:  setDialogOwner Player
   0222:  showTextbox "Come to the city and work\noff what you ate!\n"
-  027e:  playAnimation 253 0
+  027e:  playAnimation Player 0
   0282:  delay 10
   0286:  setDialogOwner 6
   0288:  showTextbox "Okay, I'll do that. I'm an\nInsectoid-Digimon named\nKunemon. Nice meeting you.\n"
@@ -65,16 +65,16 @@ section_6:     ; len=1000
   0334:  if pstat[101] >= 3 then section_6+0x354
   0340:  addPStat 101 1
   0344:  delay 20
-  0348:  lookAt 253 6
-  034c:  lookAt 252 6
+  0348:  lookAt Player 6
+  034c:  lookAt Partner 6
   0350:  jump section_6+0x32c
   0354:  waitForEntity 6
   0356:  unloadEntity 6
   0358:  setPStat 101 0
   035c:  playSound 8 11
-  0360:  setDialogOwner 255
+  0360:  setDialogOwner System
   0362:  showTextbox "Kunemon joins the city!\n"
-  0396:  moveCameraToEntity 253 10
+  0396:  moveCameraToEntity Player 10
   039a:  waitForEntity 200
   039c:  setTrigger 232
   03a0:  addPStat 1 1

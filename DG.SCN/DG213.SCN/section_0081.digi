@@ -1,9 +1,9 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG213.SCN, section 81
 
-section_81:     ; len=3588
-  0000:  lookAt 253 5
-  0004:  lookAt 5 253
+section_81(81):     ; len=3588
+  0000:  lookAt Player 5
+  0004:  lookAt 5 Player
   0008:  delay 5
   000c:  moveCameraTo 20 83 1113
   0012:  waitForEntity 200
@@ -31,14 +31,14 @@ section_81:     ; len=3588
   0422:  showTextbox "I'm glad you came. Do you\nwanna enter the tournament?\n"
   0492:  jump section_81+0x49a
   0496:  jump section_81+0x4ec
-  049a:  setDialogOwner 253
+  049a:  setDialogOwner Player
   049c:  setSelection section_81+0x4de section_81+0x298 section_81+0x918
   04a4:  showTextbox "Yes\nNo\nWhat do you mean?\n"
   04da:  waitForSelectionChoice
   04dc:  endSection
   04de:  setPStat 254 5
   04e2:  callSubroutine 18
-  04e4:  moveCameraToEntity 253 10
+  04e4:  moveCameraToEntity Player 10
   04e8:  waitForEntity 200
   04ea:  endSection
   04ec:  if pstat[2] < 128 then section_81+0x500
@@ -48,12 +48,12 @@ section_81:     ; len=3588
   0504:  setDialogOwner 5
   0506:  showTextbox "So you're entering\ntommorrow's\ncompetition, right?\n"
   0570:  showTextbox "Are you going to cancel\nyour entry?\n"
-  05bc:  setDialogOwner 253
+  05bc:  setDialogOwner Player
   05be:  setSelection section_81+0x298 section_81+0x8d6
   05c4:  showTextbox "No, I won't cancel\nYes, I'm cancelling\n"
   0616:  waitForSelectionChoice
   0618:  jump section_81+0x298
-  061c:  moveCameraToEntity 253 10
+  061c:  moveCameraToEntity Player 10
   0620:  waitForEntity 200
   0622:  endSection
   0624:  storeDate 105
@@ -61,23 +61,23 @@ section_81:     ; len=3588
   0636:  setDialogOwner 5
   0638:  showTextbox "So you've entered today's\ncompetition, right?\nYou can go in from ten am.\n"
   06ce:  showTextbox "You're not planning to cancel,\nare you?!\n"
-  0724:  setDialogOwner 253
+  0724:  setDialogOwner Player
   0726:  setSelection section_81+0x298 section_81+0x8d6
   072c:  showTextbox "No, I won't cancel\nYes, I'm cancelling\n"
   077e:  waitForSelectionChoice
   0780:  jump section_81+0x298
-  0784:  moveCameraToEntity 253 10
+  0784:  moveCameraToEntity Player 10
   0788:  waitForEntity 200
   078a:  jump section_81+0x8d4
   078e:  setDialogOwner 5
   0790:  showTextbox "So you've entered today's\ncompetition, right?\nGo in by eleven pm.\n"
   0818:  showTextbox "You're not planning to\ncancel, are you?!\n"
-  086e:  setDialogOwner 253
+  086e:  setDialogOwner Player
   0870:  setSelection section_81+0x298 section_81+0x8d6
   0876:  showTextbox "No, I won't cancel\nYes, I'm cancelling\n"
   08c8:  waitForSelectionChoice
   08ca:  jump section_81+0x298
-  08ce:  moveCameraToEntity 253 10
+  08ce:  moveCameraToEntity Player 10
   08d2:  waitForEntity 200
   08d4:  endSection
   08d6:  unsetTrigger 37
@@ -94,7 +94,7 @@ section_81:     ; len=3588
   0c86:  showTextbox "Even for competitions with\nQualifications: None,\n"
   0cec:  showTextbox "In-Training Digimon\ncannot compete.\n"
   0d38:  showTextbox "Well, that's about it for\nregistration. Do you want\nto enter?\n"
-  0db8:  setDialogOwner 253
+  0db8:  setDialogOwner Player
   0dba:  setSelection section_81+0x4de section_81+0x298 section_81+0x918
   0dc2:  showTextbox "Yes\nNo\nSorry, explain again\n"
   0dfe:  waitForSelectionChoice

@@ -1,40 +1,40 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG103.SCN, section 7
 
-section_7:     ; len=910
-  0000:  if hasTech(33) == 0 then section_7+0x6e
+section_7(7):     ; len=910
+  0000:  if hasTech(MassMorph) == 0 then section_7+0x6e
   000c:  setDialogOwner 7
   000e:  showTextbox "You're strong.\nThere's nothing to teach you.\n"
   006c:  endSection
   006e:  setDialogOwner 7
   0070:  showTextbox "We're researching Techniques.\nIt's difficult to master\nhard Techniques.\n"
   0104:  showTextbox "If you have ability, you\nmight master the Techniques.\nWant to master the hard ones?\n"
-  01b0:  setDialogOwner 253
+  01b0:  setDialogOwner Player
   01b2:  setSelection section_7+0x1ee section_7+0x38c
   01b8:  showTextbox "Of course!\nNo, I don't\n"
   01ea:  waitForSelectionChoice
   01ec:  endSection
   01ee:  setDialogOwner 7
   01f0:  showTextbox "Then I'll try it.\n"
-  0218:  if stat[1] >= 500 then section_7+0x27a
+  0218:  if stat[Defense] >= 500 then section_7+0x27a
   0226:  setDialogOwner 7
   0228:  showTextbox "You lack Defensive Power.\nTrain more.\n"
   0278:  endSection
-  027a:  if stat[2] >= 500 then section_7+0x2c8
+  027a:  if stat[Speed] >= 500 then section_7+0x2c8
   0288:  setDialogOwner 7
   028a:  showTextbox "You lack Speed.\nTrain more.\n"
   02c6:  endSection
-  02c8:  if stat[4] >= 500 then section_7+0x310
+  02c8:  if stat[MaxHP] >= 500 then section_7+0x310
   02d6:  setDialogOwner 7
   02d8:  showTextbox "You lack HP.\nTrain more.\n"
   030e:  endSection
-  0310:  learnMove 33
+  0310:  learnMove MassMorph
   0312:  setDialogOwner 7
   0314:  showTextbox "You mastered a Technique.\n"
-  034c:  setDialogOwner 255
+  034c:  setDialogOwner System
   034e:  showTextbox "You mastered the 'Bug'!\n"
   0382:  waitForEntity 7
-  0384:  moveCameraToEntity 253 10
+  0384:  moveCameraToEntity Player 10
   0388:  waitForEntity 200
   038a:  endSection
   038c:  endSection

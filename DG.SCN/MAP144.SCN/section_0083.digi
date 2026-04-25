@@ -1,20 +1,20 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; MAP144.SCN, section 83
 
-section_83:     ; len=342
-  0000:  entityWalkTo 253 1019 712 0
-  0008:  waitForEntity 253
+section_83(83):     ; len=342
+  0000:  entityWalkTo Player 1019 712 0
+  0008:  waitForEntity Player
   000a:  if pstat[110] != 2 AND pstat[110] != 3 then section_83+0x36
-  001a:  setRotation 253 2048
+  001a:  setRotation Player 2048
   001e:  delay 5
   0022:  rotate3DObject 2 1
   0026:  delay 20
-  002a:  entityWalkTo 253 1464 2634 0
-  0032:  warpTo 151 0 255
-  0036:  entityWalkToEntity 252 1 253
-  003a:  waitForEntity 252
-  003c:  setRotation 253 2048
-  0040:  setRotation 252 2048
+  002a:  entityWalkTo Player 1464 2634 0
+  0032:  warpTo OMOC08 0 255
+  0036:  entityWalkToEntity Partner 1 Player
+  003a:  waitForEntity Partner
+  003c:  setRotation Player 2048
+  0040:  setRotation Partner 2048
   0044:  delay 5
   0048:  playSound 0 11
   004c:  delay 10
@@ -24,8 +24,8 @@ section_83:     ; len=342
   005c:  callSubroutine 21
   005e:  moveObjectTo 2 2 1 8 0 328 155
   0068:  delay 5
-  006c:  playAnimation 253 17
-  0070:  playAnimation 252 40
+  006c:  playAnimation Player 17
+  0070:  playAnimation Partner 40
   0074:  playSound 8 13
   0078:  setObjectVisibility 2 1
   007c:  moveObjectTo 2 2 1 2 0 328 -32

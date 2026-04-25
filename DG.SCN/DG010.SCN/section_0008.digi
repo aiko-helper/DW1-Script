@@ -1,7 +1,7 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG010.SCN, section 8
 
-section_8:     ; len=956
+section_8(8):     ; len=956
   0000:  setDialogOwner 8
   0002:  showTextbox "Hey, you!\n"
   001a:  showTextbox "What do you mean?\nWhy are you here?\n"
@@ -13,25 +13,25 @@ section_8:     ; len=956
   0118:  showTextbox "I hear you're doing\nreal good these days.\nI'll sell you something good!\n"
   01ac:  showTextbox "It's the extremely valuable\n<LIGHTBLUE>Golden Banana<WHITE>.\n"
   020a:  showTextbox "That'll be fifty thous bits.\nNo loans, please.\n"
-  026c:  setDialogOwner 253
+  026c:  setDialogOwner Player
   026e:  setSelection section_8+0x29a section_8+0x378
   0274:  showTextbox "Pay\nDon't pay\n"
   0294:  waitForSelectionChoice
   0296:  jump section_8+0x378
   029a:  reduceMoney 50000
-  02a0:  giveItem 109 1
+  02a0:  giveItem GoldBanana 1
   02a4:  if !trigger(0) then section_8+0x346
-  02b0:  if item[109] < 99 then section_8+0x306
+  02b0:  if item[GoldBanana] < 99 then section_8+0x306
   02be:  setDialogOwner 8
   02c0:  showTextbox "You fool! You have too much!\n"
   02fe:  addMoney 50000
   0304:  endSection
-  0306:  setDialogOwner 253
+  0306:  setDialogOwner Player
   0308:  showTextbox "Oops, I have too much!\n"
   033a:  setTrigger 3
   033e:  callSubroutine 0
   0340:  callSubroutine 13
-  0342:  giveItem 109 1
+  0342:  giveItem GoldBanana 1
   0346:  setDialogOwner 8
   0348:  showTextbox "Thank you very much!\n"
   0376:  endSection

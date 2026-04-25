@@ -1,38 +1,37 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG206.SCN, section 6
 
-section_6:     ; len=2218
+section_6(6):     ; len=2218
   0000:  setPStat 122 0
   0004:  if trigger(257) OR trigger(357) then section_6+0x358
   0014:  setDialogOwner 6
   0016:  showTextbox "Hey, do you want to play a\nmatch with me? If you win,\nI'll do whatever you say.\n"
-  00ba:  setDialogOwner 253
+  00ba:  setDialogOwner Player
   00bc:  showTextbox "What kind of match?\n"
   00e8:  setDialogOwner 6
   00ea:  showTextbox "What I call...\nDigimon Curling! \nI'll tell you more inside.\n"
-  0166:  setDialogOwner 253
+  0166:  setDialogOwner Player
   0168:  showTextbox "Hmm, what happens if I lose?\n"
   01a6:  setDialogOwner 6
   01a8:  showTextbox "Nothing the first time.\nBut next time you have to\ngive me a fish first.\n"
-  023c:  setDialogOwner 253
+  023c:  setDialogOwner Player
   023e:  showTextbox "Then if I win, you come to\nthe city with me. OK?"
   02a2:  .string "? to\nThen, let's do it.\n"  ; dead string
-  02d2:  .db 0x00, 0x00
   02d4:  setDialogOwner 6
   02d6:  showTextbox "Alright, that's fine. \nLet's go inside.\n"
   032a:  setTrigger 357
   032e:  entityWalkTo 6 1905 1667 0
   0336:  delay 10
-  033a:  entityWalkTo 253 1905 1667 0
+  033a:  entityWalkTo Player 1905 1667 0
   0342:  delay 10
-  0346:  entityWalkTo 252 1905 1667 0
+  0346:  entityWalkTo Partner 1905 1667 0
   034e:  delay 10
-  0352:  warpTo 136 1 255
+  0352:  warpTo FRZL17 1 255
   0356:  endSection
   0358:  if trigger(257) then section_6+0x444
   0364:  setDialogOwner 6
   0366:  showTextbox "Hey, do you want to play a\nmatch with me? Give me a\nfish and you can play me.\n"
-  0406:  setDialogOwner 253
+  0406:  setDialogOwner Player
   0408:  setSelection section_6+0x656 section_6+0x61e
   040e:  showTextbox "I'll get you\nNo thanks\n"
   0440:  waitForSelectionChoice
@@ -45,7 +44,7 @@ section_6:     ; len=2218
   0530:  setPStat 122 0
   0534:  setDialogOwner 6
   0536:  showTextbox "Hey dude, don't you want to\nhave a match with me? You can\nchallenge me with one fish.\n"
-  05e6:  setDialogOwner 253
+  05e6:  setDialogOwner Player
   05e8:  setSelection section_6+0x656 section_6+0x61e
   05ee:  showTextbox "You're on\nNo thanks\n"
   061a:  waitForSelectionChoice
@@ -59,7 +58,7 @@ section_6:     ; len=2218
   067c:  setTrigger 3
   0680:  callSubroutine 0
   0682:  if !trigger(3) then section_6+0x6d0
-  068e:  setDialogOwner 253
+  068e:  setDialogOwner Player
   0690:  showTextbox "I don't got anything now...\n"
   06cc:  jump section_6+0x81e
   06d0:  if pstat[254] != 62 AND pstat[254] != 63 AND pstat[254] != 64 AND pstat[254] != 65 then section_6+0x6ee
@@ -71,12 +70,12 @@ section_6:     ; len=2218
   0704:  if pstat[254] != 255 then section_6+0x718
   0710:  jump section_6+0x81e
   0714:  jump section_6+0x77a
-  0718:  setDialogOwner 253
+  0718:  setDialogOwner Player
   071a:  showTextbox "Oh no, giving you this\ndoesn't do any good.\n"
   0776:  jump section_6+0x81e
   077a:  setDialogOwner 6
   077c:  showTextbox "Wow, it looks tasty. Ooops,\nwe have to have a match first.\nLet's go inside.\n"
-  0818:  warpTo 136 1 255
+  0818:  warpTo FRZL17 1 255
   081c:  endSection
   081e:  setPStat 113 0
   0822:  setDialogOwner 6

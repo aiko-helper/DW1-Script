@@ -1,9 +1,9 @@
-; source: ./extract/DIGIMON/SCN/DG.SCN
+; source: extract/DIGIMON/SCN/DG.SCN
 ; DG180.SCN, section 6
 
-section_6:     ; len=1398
+section_6(6):     ; len=1398
   0000:  delay 20
-  0004:  setDialogOwner 253
+  0004:  setDialogOwner Player
   0006:  showTextbox "Good, the sewer is\nback to normal.\n"
   0050:  showTextbox "He'll be alright now.\nI solved the problem.\n"
   00ac:  moveCameraTo 20 2381 -698
@@ -11,9 +11,9 @@ section_6:     ; len=1398
   00b4:  playSound 8 13
   00b8:  playAnimation 6 15
   00bc:  delay 20
-  00c0:  setDialogOwner 253
+  00c0:  setDialogOwner Player
   00c2:  showTextbox "Something's wrong!\n"
-  00ec:  lookAt 6 253
+  00ec:  lookAt 6 Player
   00f0:  delay 10
   00f4:  playSound 8 11
   00f8:  playAnimation 6 28
@@ -31,36 +31,36 @@ section_6:     ; len=1398
   0138:  startBattle
   013a:  unsetTrigger 1
   013e:  setPStat 250 0
-  0142:  entityWalkTo 253 2387 -771 0
-  014a:  entityWalkTo 252 1865 -772 0
+  0142:  entityWalkTo Player 2387 -771 0
+  014a:  entityWalkTo Partner 1865 -772 0
   0152:  entityWalkTo 6 2795 -771 0
-  015a:  waitForEntity 253
-  015c:  waitForEntity 252
+  015a:  waitForEntity Player
+  015c:  waitForEntity Partner
   015e:  waitForEntity 6
-  0160:  lookAt 253 6
-  0164:  lookAt 6 253
-  0168:  lookAt 252 6
+  0160:  lookAt Player 6
+  0164:  lookAt 6 Player
+  0168:  lookAt Partner 6
   016c:  delay 5
   0170:  setDialogOwner 6
   0172:  showTextbox "I'm tired.\nWhat happened to you guys?\n"
-  01c2:  setDialogOwner 253
+  01c2:  setDialogOwner Player
   01c4:  showTextbox "He sounds dumber!\nMaybe he regained his senses.\n"
   0228:  setDialogOwner 6
   022a:  showTextbox "Are you calling me dumb?\nHow rude! My name is Numemon.\n"
-  029c:  setDialogOwner 253
+  029c:  setDialogOwner Player
   029e:  showTextbox "If you're not dumb,\nwhat are you?\n"
   02e6:  showTextbox "Excuse me, Numemon. Do you\nknow who saved your life?\n"
   0354:  setDialogOwner 6
   0356:  showTextbox "Huh? Do you want me to\nsave your life? OK.\n"
-  03b0:  setDialogOwner 253
+  03b0:  setDialogOwner Player
   03b2:  showTextbox "Ugghh. He doesn't get it\nat all! Well, no matter.\n"
   041a:  setDialogOwner 6
   041c:  showTextbox "Hey, I'll be a savior. Cool!\n"
-  045a:  setDialogOwner 253
-  045c:  playAnimation 253 19
+  045a:  setDialogOwner Player
+  045c:  playAnimation Player 19
   0460:  delay 15
   0464:  showTextbox "Please come to our city.\nDo you know where it is?\n"
-  04cc:  playAnimation 253 0
+  04cc:  playAnimation Player 0
   04d0:  setDialogOwner 6
   04d2:  showTextbox "I know a little.\n"
   04f8:  jump section_6+0x4fc
@@ -68,16 +68,16 @@ section_6:     ; len=1398
   0504:  if pstat[101] >= 6 then section_6+0x524
   0510:  addPStat 101 1
   0514:  delay 10
-  0518:  lookAt 253 6
-  051c:  lookAt 252 6
+  0518:  lookAt Player 6
+  051c:  lookAt Partner 6
   0520:  jump section_6+0x4fc
   0524:  waitForEntity 6
   0526:  unloadEntity 6
   0528:  setPStat 101 0
   052c:  playSound 8 10
-  0530:  setDialogOwner 255
+  0530:  setDialogOwner System
   0532:  showTextbox "Numemon joins the city!\n"
-  0566:  moveCameraToEntity 253 10
+  0566:  moveCameraToEntity Player 10
   056a:  waitForEntity 200
   056c:  setTrigger 211
   0570:  addPStat 1 1
