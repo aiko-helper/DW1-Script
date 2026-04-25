@@ -1,0 +1,78 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG126.SCN, section 81
+
+section_81:     ; len=1282
+  0000:  lookAt 5 253
+  0004:  lookAt 253 5
+  0008:  if trigger(139) then section_81+0x1f2
+  0014:  setTrigger 139
+  0018:  playSound 8 4
+  001c:  setDialogOwner 5
+  001e:  showTextbox "This is a Digimon Card Shop.\n"
+  005c:  setDialogOwner 253
+  005e:  showTextbox "What's a Digimon Card?\n"
+  0090:  setDialogOwner 5
+  0092:  showTextbox "Everyone's collecting them.\nYou can't lose with them.\n"
+  0102:  setDialogOwner 253
+  0104:  showTextbox "Oh?\n"
+  0110:  playSound 8 4
+  0114:  setDialogOwner 5
+  0116:  showTextbox "I'll give you one free for\nstarters. It's a good one.\n"
+  0186:  setDialogOwner 253
+  0188:  showTextbox "Hey! This card's about ME!\n"
+  01c2:  setDialogOwner 255
+  01c4:  showTextbox "Got a card of <LIGHTBLUE><PLAYER><WHITE>!\n"
+  01ee:  giveCard 0
+  01f0:  endSection
+  01f2:  setDialogOwner 5
+  01f4:  showTextbox "This is a Digimon Card Shop.\n"
+  0232:  setPStat 254 5
+  0236:  playSound 8 4
+  023a:  setDialogOwner 5
+  023c:  showTextbox "We have really cool cards\nin stock today.\n"
+  0294:  callSubroutine 15
+  0296:  setDialogOwner 253
+  0298:  setSelection section_81+0x2f6 section_81+0x49e section_81+0x4e0
+  02a0:  showTextbox "I'll buy a card\nI'll sell a card\nQuit\n"
+  02f0:  waitForSelectionChoice
+  02f2:  jump section_81+0x4e0
+  02f6:  if money < 500 then section_81+0x35e
+  0306:  setSelection section_81+0x388 section_81+0x48e section_81+0x4a4
+  030e:  showTextbox "Buy a pack of three\nBuy one\nQuit\n"
+  0354:  waitForSelectionChoice
+  0356:  jump section_81+0x4a4
+  035a:  jump section_81+0x388
+  035e:  setSelection section_81+0x48e section_81+0x4a4
+  0364:  showTextbox "Buy one\nQuit\n"
+  0382:  waitForSelectionChoice
+  0384:  jump section_81+0x4a4
+  0388:  setDialogOwner 5
+  038a:  showTextbox "Five hundred bits for a pack.\nNo telling what's inside.\n"
+  03fe:  setDialogOwner 253
+  0400:  setSelection section_81+0x43c section_81+0x4a4
+  0406:  showTextbox "I'll buy it\nNo thanks\n"
+  0436:  waitForSelectionChoice
+  0438:  jump section_81+0x4a4
+  043c:  reduceMoney 500
+  0442:  callSubroutine 15
+  0444:  setDialogOwner 5
+  0446:  showTextbox "Open the pack right away.\n"
+  047e:  unsetTrigger 3
+  0482:  unsetTrigger 4
+  0486:  callSubroutine 14
+  0488:  callSubroutine 22
+  048a:  jump section_81+0x4a4
+  048e:  unsetTrigger 3
+  0492:  setTrigger 4
+  0496:  callSubroutine 14
+  0498:  callSubroutine 22
+  049a:  jump section_81+0x4a4
+  049e:  setTrigger 3
+  04a2:  callSubroutine 14
+  04a4:  setDialogOwner 5
+  04a6:  showTextbox "You want something else?\n"
+  04dc:  jump section_81+0x296
+  04e0:  callSubroutine 16
+  04e2:  setDialogOwner 5
+  04e4:  showTextbox "Come again.\n"
+  0500:  endSection

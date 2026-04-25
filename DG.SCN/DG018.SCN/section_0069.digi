@@ -1,0 +1,64 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG018.SCN, section 69
+
+section_69:     ; len=810
+  0000:  if !trigger(236) then section_69+0xe
+  000c:  endSection
+  000e:  if pstat[116] != 1 then section_69+0x30a
+  001a:  setDialogOwner 253
+  001c:  showTextbox " !!! \n"
+  002c:  playSound 8 2
+  0030:  delay 20
+  0034:  setObjectVisibility 39 1
+  0038:  entityWalkToWithCamera 253 -241 3600 1
+  0040:  entityWalkTo 252 200 3600 1
+  0048:  waitForEntity 252
+  004a:  waitForEntity 253
+  004c:  setRotation 253 2048
+  0050:  setRotation 252 2048
+  0054:  setDigimon 156 1 0
+  0058:  entityWalkTo 6 0 4300 0
+  0060:  waitForEntity 6
+  0062:  setDialogOwner 6
+  0064:  showTextbox "It's amazing that you made it\nthrough the forest!\n"
+  00cc:  showTextbox "I am Centarumon.\nI'm sorry for what I did.\n"
+  0126:  showTextbox "I didn't test you for fun.\nI want to work with you.\n"
+  0192:  setTrigger 236
+  0196:  addPStat 1 2
+  019a:  showTextbox "Go on, I'll stay in the city.\n"
+  01da:  jump section_69+0x1de
+  01de:  entityWalkTo 6 0 1000 1
+  01e6:  if pstat[101] >= 4 then section_69+0x206
+  01f2:  addPStat 101 1
+  01f6:  delay 20
+  01fa:  lookAt 253 6
+  01fe:  lookAt 252 6
+  0202:  jump section_69+0x1de
+  0206:  waitForEntity 6
+  0208:  unloadEntity 6
+  020a:  setPStat 101 0
+  020e:  playSound 8 9
+  0212:  setDialogOwner 255
+  0214:  showTextbox "Centarumon joins the city!\n"
+  024e:  moveCameraToEntity 253 10
+  0252:  waitForEntity 200
+  0254:  lookAt 253 252
+  0258:  lookAt 252 253
+  025c:  delay 5
+  0260:  setDialogOwner 253
+  0262:  showTextbox "<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous.\n"
+  02ba:  playAnimation 253 11
+  02be:  setDialogOwner 253
+  02c0:  showTextbox "Let's keep it up!\n"
+  02e8:  entityWalkTo 253 0 5200 0
+  02f0:  delay 20
+  02f4:  entityWalkTo 252 0 5200 0
+  02fc:  delay 20
+  0300:  warpTo 79 0 255
+  0304:  endSection
+  0306:  jump section_69+0x328
+  030a:  playSound 0 11
+  030e:  setDialogOwner 255
+  0310:  showTextbox "Missed!\n"
+  0324:  warpTo 17 0 255
+  0328:  endSection

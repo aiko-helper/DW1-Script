@@ -1,0 +1,103 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG022.SCN, section 51
+
+section_51:     ; len=1460
+  0000:  if trigger(118) then section_51+0x10
+  000c:  jump section_51+0x44
+  0010:  if trigger(154) OR !trigger(152) OR trigger(153) then section_51+0x28
+  0024:  jump section_51+0x12c
+  0028:  if !trigger(153) OR trigger(228) then section_51+0x40
+  0038:  jump section_51+0x1c2
+  003c:  jump section_51+0x44
+  0040:  jump section_51+0x5b2
+  0044:  setDialogOwner 255
+  0046:  showTextbox "There are some strange\ndrawings on the ground.\n"
+  00a8:  setDialogOwner 253
+  00aa:  showTextbox "Is that one of those\nMystery Circles?\nIt still looks new.\n"
+  0122:  setTrigger 118
+  0126:  setTrigger 152
+  012a:  endSection
+  012c:  setDialogOwner 253
+  012e:  showTextbox "I see more of them now!\nI wonder if this is\nrelated to the UFO...?\n"
+  01b8:  setTrigger 154
+  01bc:  setTrigger 153
+  01c0:  endSection
+  01c2:  setDialogOwner 253
+  01c4:  showTextbox "Wow!? There are more\nof them than before!\n"
+  021c:  showTextbox "What does this mean?\n"
+  024a:  playSound 8 5
+  024e:  setDialogOwner 253
+  0250:  showTextbox "What?\n"
+  0260:  setRotation 253 2560
+  0264:  setDigimon 153 1 0
+  0268:  moveCameraTo 20 -335 285
+  026e:  waitForEntity 200
+  0270:  entityWalkTo 6 1139 1029 1
+  0278:  playSound 8 5
+  027c:  waitForEntity 6
+  027e:  entityWalkTo 6 -327 459 1
+  0286:  playSound 8 5
+  028a:  waitForEntity 6
+  028c:  entityWalkTo 6 269 -973 1
+  0294:  playSound 8 5
+  0298:  waitForEntity 6
+  029a:  moveCameraToEntity 253 10
+  029e:  entityWalkTo 6 -747 -1106 0
+  02a6:  playSound 8 5
+  02aa:  waitForEntity 6
+  02ac:  lookAt 6 253
+  02b0:  setDialogOwner 255
+  02b2:  showTextbox "Vademon's UFO appears.\n"
+  02e4:  setDialogOwner 253
+  02e6:  showTextbox "A...an alien?!\n"
+  0308:  setDialogOwner 6
+  030a:  showTextbox "...\n"
+  0316:  setDialogOwner 253
+  0318:  showTextbox "Are you... a Digimon?\n"
+  0348:  setDialogOwner 6
+  034a:  showTextbox "...\n"
+  0356:  setDialogOwner 253
+  0358:  showTextbox "Well...\n"
+  036c:  setDialogOwner 6
+  036e:  showTextbox "...\n"
+  037a:  playSound 8 6
+  037e:  delay 10
+  0382:  setDialogOwner 255
+  0384:  showTextbox "Vademon holds a gun.\n"
+  03b2:  setDialogOwner 253
+  03b4:  showTextbox "No, stop!\nI'm not your enemy!\n"
+  03f4:  setDialogOwner 255
+  03f6:  showTextbox "Vademon drops the gun.\n"
+  0428:  setDialogOwner 253
+  042a:  showTextbox "Good you understand.\n"
+  0458:  setDialogOwner 255
+  045a:  showTextbox "<LIGHTBLUE><PLAYER><WHITE> desperately\ntries to convince him.\n"
+  04ac:  setDialogOwner 6
+  04ae:  showTextbox "...\n"
+  04ba:  setDialogOwner 253
+  04bc:  showTextbox "Maybe he doesn't get it?\n"
+  04f2:  setDialogOwner 6
+  04f4:  showTextbox "Okay.\n"
+  0504:  fadeOutHUD
+  0506:  jump section_51+0x50a
+  050a:  entityWalkTo 6 199 -3166 1
+  0512:  if pstat[101] >= 2 then section_51+0x536
+  051e:  addPStat 101 1
+  0522:  playSound 8 5
+  0526:  delay 40
+  052a:  lookAt 253 6
+  052e:  lookAt 252 6
+  0532:  jump section_51+0x50a
+  0536:  waitForEntity 6
+  0538:  unloadEntity 6
+  053a:  setPStat 101 0
+  053e:  playSound 8 9
+  0542:  setDialogOwner 255
+  0544:  showTextbox "Vademon joins the city!\n"
+  0578:  setDialogOwner 253
+  057a:  showTextbox "He...\n"
+  058a:  showTextbox "He can talk!\n"
+  05a8:  setTrigger 228
+  05ac:  addPStat 1 3
+  05b0:  endSection
+  05b2:  endSection

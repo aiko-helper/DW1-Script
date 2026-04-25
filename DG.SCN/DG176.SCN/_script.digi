@@ -1,0 +1,18 @@
+; DG176.SCN
+;!script index=176 start=0x84800 end=0x86000 headerU16=0x20 sentinelOff=0x19
+;!sections onEnter section_51 section_81 section_82 section_83 section_7 section_52
+
+onEnter:     ; len=90
+  0000:  if !trigger(206) AND !trigger(211) AND !trigger(213) AND !trigger(252) then onEnter+0x20
+  0018:  setObjectVisibility 21 1
+  001c:  jump onEnter+0x28
+  0020:  setRectImpassible 35 45 2 16
+  0028:  if pstat[25] != 3 then onEnter+0x38
+  0034:  playAnimation 5 28
+  0038:  if pstat[26] >= 3 then onEnter+0x50
+  0044:  setObjectVisibility 18 0
+  0048:  setObjectVisibility 20 0
+  004c:  jump onEnter+0x58
+  0050:  setObjectVisibility 18 1
+  0054:  setObjectVisibility 20 1
+  0058:  endSection

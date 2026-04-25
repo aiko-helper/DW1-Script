@@ -1,0 +1,63 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG032.SCN, section 52
+
+section_52:     ; len=976
+  0000:  if !trigger(238) then section_52+0xe
+  000c:  endSection
+  000e:  lookAt 5 253
+  0012:  lookAt 253 5
+  0016:  delay 5
+  001a:  if trigger(353) then section_52+0x7e
+  0026:  setDialogOwner 5
+  0028:  showTextbox "Hey, it'll be open soon!\n"
+  005e:  setRotation 5 512
+  0062:  delay 5
+  0066:  playAnimation 5 29
+  006a:  setTrigger 353
+  006e:  setPStat 30 0
+  0072:  entityWalkTo 253 -334 -853 0
+  007a:  waitForEntity 253
+  007c:  endSection
+  007e:  if !trigger(353) OR pstat[30] < 3 then section_52+0x30a
+  008e:  setDialogOwner 5
+  0090:  showTextbox "We've been waiting for this!\nThe tunnel is open!\n"
+  00f6:  setDialogOwner 253
+  00f8:  showTextbox "We don't have to go over the\nmountain anymore. Thanks.\n"
+  016a:  setDialogOwner 5
+  016c:  showTextbox "Thanks. I couldn't have\nmoved the big rock by myself.\n"
+  01dc:  setDialogOwner 5
+  01de:  showTextbox "What should I do now?\n"
+  020e:  playAnimation 253 19
+  0212:  delay 15
+  0216:  setDialogOwner 253
+  0218:  showTextbox "You should come to the city.\nYou'll find things to do!\n"
+  028a:  playAnimation 253 0
+  028e:  setDialogOwner 5
+  0290:  showTextbox "I still have lots of energy.\nI gladly accept your offer.\n"
+  0306:  jump section_52+0x350
+  030a:  setDialogOwner 5
+  030c:  showTextbox "It'll be open soon!\n"
+  0338:  setRotation 5 512
+  033c:  playAnimation 5 29
+  0340:  delay 5
+  0344:  entityWalkTo 253 -334 -853 0
+  034c:  waitForEntity 253
+  034e:  endSection
+  0350:  entityWalkTo 5 600 1700 1
+  0358:  if pstat[101] >= 3 then section_52+0x378
+  0364:  addPStat 101 1
+  0368:  delay 25
+  036c:  lookAt 253 5
+  0370:  lookAt 252 5
+  0374:  jump section_52+0x350
+  0378:  waitForEntity 5
+  037a:  unloadEntity 5
+  037c:  setPStat 101 0
+  0380:  playSound 8 8
+  0384:  setDialogOwner 255
+  0386:  showTextbox "Drimogemon joins the city!\n"
+  03c0:  moveCameraToEntity 253 10
+  03c4:  waitForEntity 200
+  03c6:  setTrigger 238
+  03ca:  addPStat 1 2
+  03ce:  endSection

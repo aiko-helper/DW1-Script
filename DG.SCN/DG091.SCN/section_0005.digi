@@ -1,0 +1,114 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG091.SCN, section 5
+
+section_5:     ; len=1826
+  0000:  if !trigger(195) then section_5+0x10
+  000c:  jump section_5+0x362
+  0010:  setDialogOwner 5
+  0012:  showTextbox "If you want to go thru,\nyou must accept my challenge.\n"
+  0082:  setTrigger 1
+  0086:  setPStat 250 1
+  008a:  setPStat 251 5
+  008e:  setPStat 252 255
+  0092:  setPStat 253 255
+  0096:  fadeOutHUD
+  0098:  delay 1
+  009c:  startBattle
+  009e:  unsetTrigger 1
+  00a2:  setPStat 250 0
+  00a6:  lookAt 253 5
+  00aa:  lookAt 5 253
+  00ae:  lookAt 252 5
+  00b2:  setDialogOwner 5
+  00b4:  showTextbox "I let my guard down,\nbut two on one isn't fair.\n"
+  0118:  playAnimation 253 16
+  011c:  setTrigger 49
+  0120:  setDialogOwner 253
+  0122:  setSelection section_5+0x180 section_5+0x180
+  0128:  showTextbox "Well, that maybe so\nDon't be a sore loser\n"
+  0180:  setDialogOwner 5
+  0182:  showTextbox "I never lose to anybody\nwhen it's a fair fight.\n"
+  01e6:  showTextbox "Let's fight one on one. Come\nback tomorrow at four O'clock.\nOnly Digimon will fight.\n"
+  0294:  setDialogOwner 253
+  0296:  setSelection section_5+0x2c4 section_5+0x2c4
+  029c:  showTextbox "Alright\nNo thanks\n"
+  02c4:  playAnimation 253 16
+  02c8:  unsetTrigger 49
+  02cc:  setDialogOwner 5
+  02ce:  showTextbox "It's a promise then.\nSee you tomorrow!\n"
+  0320:  setTrigger 195
+  0324:  storeDate 29
+  0326:  jump section_5+0x32a
+  032a:  entityWalkTo 5 -2050 -150 1
+  0332:  if pstat[101] >= 6 then section_5+0x352
+  033e:  addPStat 101 1
+  0342:  delay 10
+  0346:  lookAt 253 5
+  034a:  lookAt 252 5
+  034e:  jump section_5+0x32a
+  0352:  waitForEntity 5
+  0354:  unloadEntity 5
+  0356:  setPStat 101 0
+  035a:  moveCameraToEntity 253 10
+  035e:  waitForEntity 200
+  0360:  endSection
+  0362:  storeDate 105
+  0364:  if !trigger(195) OR pstat[107] < 15 OR pstat[107] > 17 OR pstat[29] != 1 then section_5+0x3e6
+  037c:  setDialogOwner 5
+  037e:  showTextbox "You came back, good.\nToday, we'll fight fair!\n"
+  03de:  jump section_5+0x488
+  03e2:  jump section_5+0x488
+  03e6:  setDialogOwner 5
+  03e8:  showTextbox "You're late, but that gave\nme time to nurse my injury.\nNow let's go for it.\n"
+  0484:  jump section_5+0x488
+  0488:  setDialogOwner 253
+  048a:  showTextbox "I'll just watch. Start!\n"
+  04be:  lookAt 253 252
+  04c2:  waitForEntity 253
+  04c4:  playAnimation 253 20
+  04c8:  showTextbox "Go <ORANGE><DIGIMON><WHITE>!\n"
+  04dc:  setTrigger 2
+  04e0:  setTrigger 1
+  04e4:  setPStat 250 1
+  04e8:  setPStat 251 5
+  04ec:  setPStat 252 255
+  04f0:  setPStat 253 255
+  04f4:  fadeOutHUD
+  04f6:  delay 1
+  04fa:  startBattle
+  04fc:  unsetTrigger 1
+  0500:  setPStat 250 0
+  0504:  unsetTrigger 2
+  0508:  lookAt 253 5
+  050c:  lookAt 5 253
+  0510:  lookAt 252 5
+  0514:  setDialogOwner 5
+  0516:  showTextbox "You're good! Who are you?\n"
+  054e:  setDialogOwner 253
+  0550:  showTextbox "We're exploring and trying to\nsave the island from danger.\n"
+  05ca:  setDialogOwner 5
+  05cc:  showTextbox "What?\n"
+  05dc:  setDialogOwner 255
+  05de:  showTextbox "<LIGHTBLUE><PLAYER><WHITE> tries so hard\nto convince him!\n"
+  0628:  playAnimation 253 19
+  062c:  delay 40
+  0630:  setDialogOwner 5
+  0632:  showTextbox "I'll help you. But, I'll\nhave to see that city first.\n"
+  06a2:  jump section_5+0x6a6
+  06a6:  entityWalkTo 5 -2000 -100 1
+  06ae:  if pstat[101] >= 6 then section_5+0x6ce
+  06ba:  addPStat 101 1
+  06be:  delay 10
+  06c2:  lookAt 253 5
+  06c6:  lookAt 252 5
+  06ca:  jump section_5+0x6a6
+  06ce:  waitForEntity 5
+  06d0:  unloadEntity 5
+  06d2:  setPStat 101 0
+  06d6:  playSound 8 11
+  06da:  setDialogOwner 255
+  06dc:  showTextbox "Garurumon joins the city!\n"
+  0714:  setTrigger 222
+  0718:  addPStat 1 2
+  071c:  moveCameraToEntity 253 10
+  0720:  waitForEntity 200

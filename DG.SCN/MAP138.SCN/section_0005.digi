@@ -1,0 +1,29 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; MAP138.SCN, section 5
+
+section_5:     ; len=480
+  0000:  setDialogOwner 5
+  0002:  showTextbox "I'm a Digimon card collector.\n"
+  0042:  showTextbox "Give me Hagurumon,\nToyAgumon and WaruMonzaemon,\nthen I'll give you one.\n"
+  00d6:  if card[19] < 1 OR card[24] < 1 OR card[57] < 1 then section_5+0x120
+  00f0:  setDialogOwner 253
+  00f2:  setSelection section_5+0x15a section_5+0x1de
+  00f8:  showTextbox "Give\nDon't give\n"
+  011c:  waitForSelectionChoice
+  011e:  endSection
+  0120:  setDialogOwner 253
+  0122:  showTextbox "Sorry, I don't have any.\n"
+  0158:  endSection
+  015a:  giveItem 107 1
+  015e:  setDialogOwner 5
+  0160:  showTextbox "Here. An <LIGHTBLUE>X Bandage<WHITE>.\n"
+  0190:  if !trigger(0) then section_5+0x1d2
+  019c:  setDialogOwner 253
+  019e:  showTextbox "I have too many Items.\n"
+  01d0:  endSection
+  01d2:  playSound 0 7
+  01d6:  takeCard 19
+  01d8:  takeCard 24
+  01da:  takeCard 57
+  01dc:  endSection
+  01de:  endSection

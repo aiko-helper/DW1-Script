@@ -1,0 +1,41 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG103.SCN, section 5
+
+section_5:     ; len=778
+  0000:  setDialogOwner 5
+  0002:  showTextbox "I'm tired of training here.\nWhat should I do?\n"
+  0062:  setDialogOwner 253
+  0064:  showTextbox "What to do?\n"
+  0080:  setDialogOwner 5
+  0082:  showTextbox "Where do you train?\n"
+  00ae:  if trigger(205) then section_5+0x160
+  00ba:  setDialogOwner 253
+  00bc:  showTextbox "Is that a training ground?\n"
+  00f6:  setDialogOwner 5
+  00f8:  showTextbox "I'm tired of training.\nI want to do live battle.\n"
+  015e:  endSection
+  0160:  setDialogOwner 253
+  0162:  setSelection section_5+0x1ce section_5+0x238
+  0168:  showTextbox "Maybe it's a training ground\nMaybe it's an Arena\n"
+  01ce:  setDialogOwner 5
+  01d0:  showTextbox "I'm tired of training.\nI want to do live battle.\n"
+  0236:  endSection
+  0238:  setDialogOwner 5
+  023a:  showTextbox "I want to go there.\nI'll train there.\n"
+  028a:  jump section_5+0x28e
+  028e:  entityWalkTo 5 -1342 -2147 1
+  0296:  if pstat[101] >= 3 then section_5+0x2b6
+  02a2:  addPStat 101 1
+  02a6:  delay 20
+  02aa:  lookAt 253 5
+  02ae:  lookAt 252 5
+  02b2:  jump section_5+0x28e
+  02b6:  waitForEntity 5
+  02b8:  unloadEntity 5
+  02ba:  setPStat 101 0
+  02be:  playSound 8 17
+  02c2:  setDialogOwner 255
+  02c4:  showTextbox "Kabuterimon joins the city!\n"
+  0300:  setTrigger 219
+  0304:  addPStat 1 2
+  0308:  endSection

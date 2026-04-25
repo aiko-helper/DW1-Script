@@ -1,0 +1,125 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG190.SCN, section 51
+
+section_51:     ; len=1786
+  0000:  if trigger(118) then section_51+0x10
+  000c:  jump section_51+0x44
+  0010:  if trigger(154) OR !trigger(152) OR trigger(153) then section_51+0x28
+  0024:  jump section_51+0x11e
+  0028:  if !trigger(153) OR trigger(228) then section_51+0x40
+  0038:  jump section_51+0x1ba
+  003c:  jump section_51+0x44
+  0040:  jump section_51+0x540
+  0044:  setDialogOwner 255
+  0046:  showTextbox "There are weird drawings\non the ground.\n"
+  009a:  setDialogOwner 253
+  009c:  showTextbox "Are they one of those strange\ncircles? They still look new.\n"
+  0118:  setTrigger 118
+  011c:  endSection
+  011e:  entityWalkToWithCamera 253 350 -50 0
+  0126:  waitForEntity 253
+  0128:  playAnimation 253 24
+  012c:  delay 20
+  0130:  setDialogOwner 253
+  0132:  showTextbox "There are more of them now.\nDo you think they're\nfrom the UFO?\n"
+  01b4:  setTrigger 154
+  01b8:  endSection
+  01ba:  entityWalkToWithCamera 253 350 50 1
+  01c2:  waitForEntity 253
+  01c4:  playAnimation 253 24
+  01c8:  delay 20
+  01cc:  setDialogOwner 253
+  01ce:  showTextbox "Ugghh!?\n"
+  01e2:  entityWalkToWithCamera 253 -550 50 1
+  01ea:  waitForEntity 253
+  01ec:  setDialogOwner 253
+  01ee:  showTextbox "I see a lot more now.\n"
+  021e:  playAnimation 253 16
+  0222:  delay 20
+  0226:  showTextbox "Well, I guess it means...\n"
+  025e:  playSound 8 5
+  0262:  setDialogOwner 253
+  0264:  showTextbox "What?\n"
+  0274:  setDigimon 150 0 0
+  0278:  lookAt 253 5
+  027c:  entityWalkTo 252 -750 -50 1
+  0284:  moveCameraTo 20 -183 723
+  028a:  waitForEntity 200
+  028c:  waitForEntity 252
+  028e:  entityWalkTo 5 225 1066 1
+  0296:  playSound 8 5
+  029a:  waitForEntity 5
+  029c:  entityWalkTo 5 -275 1066 0
+  02a4:  playSound 8 5
+  02a8:  waitForEntity 5
+  02aa:  entityWalkTo 5 -63 453 0
+  02b2:  playSound 8 5
+  02b6:  waitForEntity 5
+  02b8:  entityWalkTo 5 -126 409 0
+  02c0:  lookAt 253 5
+  02c4:  delay 20
+  02c8:  setDialogOwner 253
+  02ca:  showTextbox "An Alien?!\n"
+  02e4:  setDialogOwner 5
+  02e6:  showTextbox "...\n"
+  02f2:  setDialogOwner 253
+  02f4:  showTextbox "Are you a Digimon?\n"
+  031e:  setDialogOwner 5
+  0320:  showTextbox "...\n"
+  032c:  setDialogOwner 253
+  032e:  showTextbox "Are you?\n"
+  0344:  setDialogOwner 5
+  0346:  showTextbox "...\n"
+  0352:  playSound 8 6
+  0356:  delay 10
+  035a:  playAnimation 5 28
+  035e:  delay 10
+  0362:  playAnimation 253 15
+  0366:  delay 10
+  036a:  setDialogOwner 253
+  036c:  showTextbox "I'm not your enemy!\n"
+  0398:  delay 40
+  039c:  playAnimation 5 0
+  03a0:  setDialogOwner 253
+  03a2:  showTextbox "Good, now you understand.\n"
+  03da:  playAnimation 253 19
+  03de:  delay 20
+  03e2:  setDialogOwner 255
+  03e4:  showTextbox "<LIGHTBLUE><PLAYER><WHITE> tried\nto convince him.\n"
+  041e:  setDialogOwner 5
+  0420:  showTextbox "...\n"
+  042c:  setDialogOwner 253
+  042e:  showTextbox "Maybe he doesn't understand.\n"
+  046c:  playAnimation 5 22
+  0470:  delay 15
+  0474:  playAnimation 5 22
+  0478:  delay 15
+  047c:  playAnimation 5 0
+  0480:  setDialogOwner 5
+  0482:  showTextbox "Ok.\n"
+  048e:  fadeOutHUD
+  0490:  jump section_51+0x494
+  0494:  entityWalkTo 5 155 -1177 1
+  049c:  if pstat[101] >= 3 then section_51+0x4c0
+  04a8:  addPStat 101 1
+  04ac:  playSound 8 5
+  04b0:  delay 20
+  04b4:  lookAt 253 5
+  04b8:  lookAt 252 5
+  04bc:  jump section_51+0x494
+  04c0:  waitForEntity 5
+  04c2:  unloadEntity 5
+  04c4:  setPStat 101 0
+  04c8:  playSound 8 8
+  04cc:  setDialogOwner 255
+  04ce:  showTextbox "Vademon joins the city!\n"
+  0502:  setDialogOwner 253
+  0504:  showTextbox "Huh?\n"
+  0512:  showTextbox "He can talk!\n"
+  0530:  setTrigger 228
+  0534:  addPStat 1 3
+  0538:  moveCameraToEntity 253 10
+  053c:  waitForEntity 200
+  053e:  endSection
+  0540:  endSection
+  0542:  garbage 10 00 fe 00 10 00 34 00 d0 00 33 00 06 01 ff ff 24 00 6e 63 19 00 0b 00 6e 04 18 00 32 00 19 00 74 2c 27 00 2f 00 74 2c 27 00 2d 00 74 2c 27 00 31 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 48 00 19 00 74 2c 2c 00 42 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 5e 00 19 00 74 45 3b 00 2a 00 75 01 aa 03 00 00 d7 04 00 04 b8 02 75 05 d9 03 00 00 58 03 00 04 b9 02 75 08 00 04 00 00 bc f9 00 04 ba 02 19 00 00 00 98 00 18 00 9e 00 19 00 57 00 06 00 57 00 07 00 57 00 08 00 57 00 09 00 19 00 00 00 99 00 18 00 ce 00 19 00 57 00 0a 00 57 00 0b 00 57 00 0c 00 57 00 0d 00 57 00 0e 00 57 00 0f 00 57 00 10 00 57 00 11 00 57 00 12 00 fe 00 19 00 01 00 9a 00 80 00 98 00 81 00 99 00 18 00 e8 00 19 00 16 00 24 02 19 00 00 00 99 00 81 00 e4 00 18 00 00 01 19 00 16 00 c0 02 16 00 04 01 16 00 46 06 fe 00 19 00 01 00 76 00 18 00 16 01 19 00 16 00 4a 01 19 00 01 00 9a 00 80 00 98 00 81 00 99 00 18 00 2e 01 19 00 16 00 24 02 19 00 00 00 99 00 81 00 e4 00 18 00 46 01 19 00 16 00 c0 02 16 00 4a 01 16 00 46 06 1b ff 1a 00 82 73 82 88 82 85 82 92 82 85 81 40 82 81 82 92 82 85 81 40 82 97 82 85 82 89 82 92 82 84 81 40 82 84 82 92 82 81 82 97 82 89 82 8e 82 87 82 93 0d 00 82 8f 82 8e 81 40 82 94 82 88 82 85 81 40 82 87 82 92 82 8f 82 95 82 8e 82 84 81 42 0d 00 00 00 1b fd 1a 00 82 60 82 92 82 85 81 40 82 94 82 88 82 85 82 99 81 40

@@ -1,0 +1,51 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG016.SCN, section 5
+
+section_5:     ; len=890
+  0000:  setDialogOwner 5
+  0002:  showTextbox "Gruun.\n"
+  0014:  showTextbox "Gruun.ru.ru..\n"
+  0034:  playAnimation 253 16
+  0038:  showTextbox "Something came back to life!\n"
+  0076:  playSound 8 0
+  007a:  lookAt 253 252
+  007e:  lookAt 252 253
+  0082:  delay 20
+  0086:  setDialogOwner 253
+  0088:  showTextbox " ? \n"
+  0094:  setDialogOwner 5
+  0096:  showTextbox "I used to live in the city.\nYou smell like the city.\n"
+  0104:  lookAt 253 5
+  0108:  lookAt 252 5
+  010c:  waitForEntity 253
+  010e:  setDialogOwner 253
+  0110:  showTextbox "Wow!\n"
+  011e:  setDialogOwner 5
+  0120:  showTextbox "It's scary. I left the city\nand lost my memory.\n"
+  0184:  showTextbox "But thanks to you,\nI remember everything now.\n"
+  01e4:  showTextbox "I'm going back to the city,\nOK?\n"
+  0228:  playAnimation 253 19
+  022c:  setDialogOwner 253
+  022e:  showTextbox "Of course. I'm sure\nthe city is now more lively\nthan before.\n"
+  02ac:  playSound 8 4
+  02b0:  setDialogOwner 5
+  02b2:  showTextbox "Really? Alright!\nI'll try my best!\n"
+  02fc:  jump section_5+0x300
+  0300:  entityWalkTo 5 421 -1390 1
+  0308:  if pstat[101] >= 10 then section_5+0x328
+  0314:  addPStat 101 1
+  0318:  delay 10
+  031c:  lookAt 253 5
+  0320:  lookAt 252 5
+  0324:  jump section_5+0x300
+  0328:  waitForEntity 5
+  032a:  unloadEntity 5
+  032c:  setPStat 101 0
+  0330:  playSound 8 3
+  0334:  setDialogOwner 255
+  0336:  showTextbox "Betamon joins the city!\n"
+  036a:  setTrigger 204
+  036e:  addPStat 1 1
+  0372:  moveCameraToEntity 253 10
+  0376:  waitForEntity 200
+  0378:  endSection

@@ -1,0 +1,110 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG082.SCN, section 5
+
+section_5:     ; len=2382
+  0000:  setTrigger 44
+  0004:  setDialogOwner 253
+  0006:  showTextbox "This must be it!\nNo matter how I look at it,\nit looks a plain meteorite.\n"
+  009c:  setSelection section_5+0xea section_5+0x82c
+  00a2:  showTextbox "Crack it and check\nLeave it alone\n"
+  00ea:  playAnimation 253 5
+  00ee:  delay 20
+  00f2:  setDialogOwner 253
+  00f4:  showTextbox "Hmmm\n"
+  0102:  playAnimation 253 16
+  0106:  delay 5
+  010a:  showTextbox "Looks like a plain\nold meteorite to me.\n"
+  015e:  setDialogOwner 255
+  0160:  showTextbox "<YELLOW>???mon <WHITE>\nSorry to look\nso plain and old.\n"
+  01b8:  jump section_5+0x1bc
+  01bc:  playAnimation 5 29
+  01c0:  delay 10
+  01c4:  setDialogOwner 253
+  01c6:  showTextbox "Wow!\n"
+  01d4:  setDialogOwner 253
+  01d6:  showTextbox "You're a Digimon?!\nWho are you?\n"
+  021a:  lookAt 5 253
+  021e:  lookAt 253 5
+  0222:  delay 5
+  0226:  setDialogOwner 255
+  0228:  showTextbox "<YELLOW>???mon <WHITE>\nMy name is Meteormon.\n"
+  026c:  setDialogOwner 253
+  026e:  showTextbox "Do you know about\nthe island's danger?\n"
+  02c0:  setDialogOwner 5
+  02c2:  showTextbox "I know nothing!\n"
+  02e6:  setDialogOwner 253
+  02e8:  showTextbox "You know nothing?! You sure\nyou're not hiding something?\n"
+  035e:  setDialogOwner 5
+  0360:  showTextbox "How rude! Alright!\nWhy don't we battle\nto prove who is right!\n"
+  03e0:  setDialogOwner 253
+  03e2:  showTextbox "Alright! Let's go for it.\n"
+  041a:  setTrigger 1
+  041e:  setPStat 250 1
+  0422:  setPStat 251 5
+  0426:  setPStat 252 255
+  042a:  setPStat 253 255
+  042e:  fadeOutHUD
+  0430:  delay 1
+  0434:  startBattle
+  0436:  unsetTrigger 1
+  043a:  setPStat 250 0
+  043e:  lookAt 253 5
+  0442:  lookAt 5 253
+  0446:  lookAt 252 5
+  044a:  setDialogOwner 5
+  044c:  showTextbox "I give up. You're so strong.\n"
+  048a:  setDialogOwner 253
+  048c:  showTextbox "Whatever you know, tell me\nabout the island's danger.\n"
+  04fc:  playAnimation 253 19
+  0500:  delay 5
+  0504:  setDialogOwner 5
+  0506:  showTextbox "I was just born, so\nI don't know anything!\n"
+  0560:  setDialogOwner 253
+  0562:  showTextbox "What?!\n"
+  0574:  playAnimation 253 0
+  0578:  delay 5
+  057c:  setDialogOwner 5
+  057e:  showTextbox "The Meteorite Tribe is\nborn in the sky and then\nfalls to the ground.\n"
+  060c:  setDialogOwner 5
+  060e:  showTextbox "Then we sleep for a long time.\nActually, I was supposed to\nsleep much longer, but...\n"
+  06bc:  setDialogOwner 253
+  06be:  showTextbox "Time goes much faster here.\n"
+  06fa:  setDialogOwner 5
+  06fc:  showTextbox "Probably. Anyway, I'll go\ncheck out the island."
+  075e:  .string "?o\nSee ya!\n"  ; dead string
+  0774:  .db 0x00, 0x00
+  0776:  playAnimation 5 30
+  077a:  delay 10
+  077e:  jump section_5+0x782
+  0782:  moveEntityTo 5 1 -1050 40
+  078a:  if pstat[101] >= 3 then section_5+0x7ae
+  0796:  addPStat 101 1
+  079a:  delay 20
+  079e:  playSound 8 5
+  07a2:  lookAt 253 5
+  07a6:  lookAt 252 5
+  07aa:  jump section_5+0x782
+  07ae:  waitForEntity 5
+  07b0:  unloadEntity 5
+  07b2:  setPStat 101 0
+  07b6:  setDialogOwner 253
+  07b8:  showTextbox "We couldn't find any clues.\nLet's get out fast.\n"
+  081c:  unsetTrigger 1
+  0820:  setTrigger 313
+  0824:  moveCameraToEntity 253 15
+  0828:  waitForEntity 200
+  082a:  endSection
+  082c:  setDialogOwner 253
+  082e:  showTextbox "We looked at it, and\nwe can't tell anything.\nLet's crack it!\n"
+  08ac:  entityWalkToEntity 252 0 5
+  08b0:  waitForEntity 252
+  08b2:  playAnimation 252 46
+  08b6:  delay 20
+  08ba:  setDialogOwner 255
+  08bc:  showTextbox "<YELLOW>???mon <WHITE>\nWhadda ya think you're doing?\nYou reckless clod!\n"
+  0936:  playAnimation 5 29
+  093a:  delay 20
+  093e:  lookAt 5 253
+  0942:  lookAt 253 5
+  0946:  delay 5
+  094a:  jump section_5+0x1bc

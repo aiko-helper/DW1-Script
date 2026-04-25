@@ -1,0 +1,48 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG102.SCN, section 51
+
+section_51:     ; len=606
+  0000:  storeDate 105
+  0002:  if pstat[106] == 21 then section_51+0x66
+  000e:  lookAt 5 253
+  0012:  lookAt 253 5
+  0016:  delay 5
+  001a:  setDialogOwner 5
+  001c:  showTextbox "There's no tournament today.\n"
+  005a:  entityWalkTo 253 -126 546 1
+  0062:  waitForEntity 253
+  0064:  endSection
+  0066:  if trigger(37) then section_51+0xe6
+  0072:  lookAt 5 253
+  0076:  lookAt 253 5
+  007a:  delay 5
+  007e:  setDialogOwner 5
+  0080:  showTextbox "Those who aren't registered\ncan't come in.\n"
+  00da:  entityWalkTo 253 -126 546 1
+  00e2:  waitForEntity 253
+  00e4:  endSection
+  00e6:  if pstat[107] >= 10 then section_51+0x1b0
+  00f2:  lookAt 5 253
+  00f6:  lookAt 253 5
+  00fa:  delay 5
+  00fe:  setDialogOwner 5
+  0100:  showTextbox "It's not open yet. Register\non the twenty second, between\nten am and eleven pm.\n"
+  01a4:  entityWalkTo 253 -126 546 1
+  01ac:  waitForEntity 253
+  01ae:  endSection
+  01b0:  if pstat[107] < 23 then section_51+0x248
+  01bc:  lookAt 5 253
+  01c0:  lookAt 253 5
+  01c4:  delay 5
+  01c8:  setDialogOwner 5
+  01ca:  showTextbox "Too bad, the tournament is\nover. Come again next year.\n"
+  023c:  entityWalkTo 253 -126 546 1
+  0244:  waitForEntity 253
+  0246:  endSection
+  0248:  setPStat 254 5
+  024c:  callSubroutine 6
+  024e:  storeDate 105
+  0250:  addMinutesToDate 105 360
+  0256:  advanceToDate 105
+  0258:  warpTo 106 3 82
+  025c:  endSection

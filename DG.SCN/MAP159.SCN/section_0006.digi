@@ -1,0 +1,106 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; MAP159.SCN, section 6
+
+section_6:     ; len=3620
+  0000:  if !trigger(362) then section_6+0x176
+  000c:  setDialogOwner 6
+  000e:  showTextbox "I am collecting\nDigimon cards myself.\n"
+  005e:  showTextbox "I really want a King of\nSukamon card. Will you trade\nfor my Etemon card?\n"
+  00f4:  if card[21] < 1 then section_6+0x136
+  0102:  setDialogOwner 253
+  0104:  setSelection section_6+0xd7e section_6+0xe22
+  010a:  showTextbox "Trade\nDon't trade\n"
+  0132:  waitForSelectionChoice
+  0134:  endSection
+  0136:  setDialogOwner 253
+  0138:  showTextbox "Sorry, but I don't have it.\n"
+  0174:  endSection
+  0176:  playAnimation 253 24
+  017a:  delay 15
+  017e:  setDialogOwner 253
+  0180:  showTextbox "Wow it stinks! Is this\nTrash Pile?\n"
+  01ca:  showTextbox "I didn't know there's one\nin Digimon World.\n"
+  0226:  playAnimation 253 0
+  022a:  storeDigimonType 103
+  022c:  if trigger(362) OR pstat[103] != 39 then section_6+0x604
+  023c:  entityWalkTo 6 192 -2979 0
+  0244:  waitForEntity 6
+  0246:  setDialogOwner 6
+  0248:  showTextbox "I'm glad you came.\nWe welcome new friends.\n"
+  02a2:  setDialogOwner 253
+  02a4:  showTextbox "Is this a community for\nthe Sukamon Tribe?\n"
+  02fe:  setDialogOwner 6
+  0300:  showTextbox "Exactly. This is a paradise\nfor the Sukamon Tribe,\nit's called Dust Kingdom.\n"
+  039e:  showTextbox "King of Sukamon is here, too.\n"
+  03de:  setDialogOwner 253
+  03e0:  showTextbox "King of Sukamon...?\n"
+  040c:  setDialogOwner 6
+  040e:  showTextbox "King of Sukamon is amazing!\nIf you don't listen to him,\nyou'll be digivolved!\n"
+  04ae:  setDialogOwner 253
+  04b0:  showTextbox "Do you mean we turn into\nsomething besides Sukamon?\n"
+  051c:  showTextbox "That means we return\nto our original form?!\n"
+  0578:  setDialogOwner 6
+  057a:  showTextbox "Yeah, it's scary. Creepy.\n"
+  05b2:  setDialogOwner 253
+  05b4:  showTextbox "I learned something useful...\n"
+  05f4:  entityWalkTo 6 189 -1273 0
+  05fc:  waitForEntity 6
+  05fe:  setTrigger 362
+  0602:  endSection
+  0604:  if trigger(362) OR !trigger(550) then section_6+0x704
+  0614:  entityWalkTo 6 192 -2979 0
+  061c:  waitForEntity 6
+  061e:  setDialogOwner 253
+  0620:  showTextbox "Oh, Sukamon?!\n"
+  0640:  setDialogOwner 6
+  0642:  showTextbox "Huh? Do you know about me?\n"
+  067c:  setDialogOwner 253
+  067e:  showTextbox "Well, kind of.\nDo we need to take Sukamon\nto the city as well?\n"
+  0700:  jump section_6+0x9bc
+  0704:  entityWalkTo 6 192 -2979 0
+  070c:  waitForEntity 6
+  070e:  setDialogOwner 6
+  0710:  showTextbox "Wow, this is interesting!\nI've never seen anything\nlike this!\n"
+  0790:  setDialogOwner 253
+  0792:  showTextbox "Oh my goodness! The poop\nare moving and talking!\n"
+  07f8:  setDialogOwner 6
+  07fa:  showTextbox "Are you talking about me?\nI'm Sukamon...\nI'm a Mutant Digimon.\n"
+  087c:  setDialogOwner 253
+  087e:  showTextbox "You are not poop?\n"
+  08a6:  setDialogOwner 6
+  08a8:  showTextbox "In a way, you are right,\ncuz we are made from\nDigital Waste.\n"
+  0926:  setDialogOwner 253
+  0928:  showTextbox "Should we ask him to come\nto the city, too? We\nshouldn't be prejudiced.\n"
+  09bc:  setDialogOwner 6
+  09be:  showTextbox "Are you planning to\nlive here?\n"
+  0a00:  setDialogOwner 253
+  0a02:  showTextbox "What? I never thought\nabout it.\n"
+  0a46:  setDialogOwner 6
+  0a48:  showTextbox "Well, this is a paradise\nonly for the Sukamon Tribe.\nOthers can't live here.\n"
+  0ae6:  setDialogOwner 253
+  0ae8:  showTextbox "Then you can't live\nin other places?\n"
+  0b36:  setDialogOwner 6
+  0b38:  showTextbox "Of course not!\nWhat do you think?\n"
+  0b80:  setDialogOwner 253
+  0b82:  showTextbox "I see. That's\nwhat I thought.\n"
+  0bc2:  setDialogOwner 6
+  0bc4:  showTextbox "Well, although you\ncan't live here,\nyou can look around.\n"
+  0c3a:  setDialogOwner 253
+  0c3c:  showTextbox "Oh, just to look.Okay.\n"
+  0c6e:  setDialogOwner 6
+  0c70:  showTextbox "Oh, by the way, don't\never make the King mad.\n"
+  0cd0:  showTextbox "You'll be turned into\nsomething miserable by the\nKing's Digivolve technique.\n"
+  0d6e:  entityWalkTo 6 189 -1273 0
+  0d76:  waitForEntity 6
+  0d78:  setTrigger 362
+  0d7c:  endSection
+  0d7e:  if card[14] < 9 then section_6+0xdf8
+  0d8c:  setDialogOwner 6
+  0d8e:  showTextbox "Hey, you have too many\nEtemon cards!\nDon't do it.\n"
+  0df6:  endSection
+  0df8:  setDialogOwner 6
+  0dfa:  showTextbox "Oh, thank you!\n"
+  0e1c:  takeCard 21
+  0e1e:  giveCard 14
+  0e20:  endSection
+  0e22:  endSection

@@ -1,0 +1,102 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG213.SCN, section 81
+
+section_81:     ; len=3588
+  0000:  lookAt 253 5
+  0004:  lookAt 5 253
+  0008:  delay 5
+  000c:  moveCameraTo 20 83 1113
+  0012:  waitForEntity 200
+  0014:  if trigger(91) then section_81+0x294
+  0020:  setTrigger 91
+  0024:  setDialogOwner 5
+  0026:  showTextbox "Oh, <LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>\nyou came. Look at this great\nFile City Arena. Cool, huh!\n"
+  00b6:  showTextbox "Soon contestants and fans will\nfill this up. You will also\nbring joy to the fans, right?!\n"
+  016e:  showTextbox "They'll prepare money and\nprizes for tournament winners.\nYou got nothing to lose.\n"
+  0216:  showTextbox "For details on the tournament,\ncheck out the machine there.\n"
+  0292:  endSection
+  0294:  jump section_81+0x29a
+  0298:  endSection
+  029a:  storeDigimonType 103
+  029c:  if pstat[103] != 1 AND pstat[103] != 2 AND pstat[103] != 15 AND pstat[103] != 16 then section_81+0x358
+  02b4:  setDialogOwner 5
+  02b6:  showTextbox "Oh yeah, In-Training\nDigimon can't enter though.\nShall I check the schedule?\n"
+  0354:  jump section_81+0x49a
+  0358:  if pstat[103] != 29 AND pstat[103] != 30 AND pstat[103] != 43 AND pstat[103] != 44 then section_81+0x414
+  0370:  setDialogOwner 5
+  0372:  showTextbox "Oh yeah, In-Training\nDigimon can't enter though.\nShall I check the schedule?\n"
+  0410:  jump section_81+0x49a
+  0414:  if trigger(37) then section_81+0x496
+  0420:  setDialogOwner 5
+  0422:  showTextbox "I'm glad you came. Do you\nwanna enter the tournament?\n"
+  0492:  jump section_81+0x49a
+  0496:  jump section_81+0x4ec
+  049a:  setDialogOwner 253
+  049c:  setSelection section_81+0x4de section_81+0x298 section_81+0x918
+  04a4:  showTextbox "Yes\nNo\nWhat do you mean?\n"
+  04da:  waitForSelectionChoice
+  04dc:  endSection
+  04de:  setPStat 254 5
+  04e2:  callSubroutine 18
+  04e4:  moveCameraToEntity 253 10
+  04e8:  waitForEntity 200
+  04ea:  endSection
+  04ec:  if pstat[2] < 128 then section_81+0x500
+  04f8:  jump section_81+0x504
+  04fc:  jump section_81+0x504
+  0500:  jump section_81+0x624
+  0504:  setDialogOwner 5
+  0506:  showTextbox "So you're entering\ntommorrow's\ncompetition, right?\n"
+  0570:  showTextbox "Are you going to cancel\nyour entry?\n"
+  05bc:  setDialogOwner 253
+  05be:  setSelection section_81+0x298 section_81+0x8d6
+  05c4:  showTextbox "No, I won't cancel\nYes, I'm cancelling\n"
+  0616:  waitForSelectionChoice
+  0618:  jump section_81+0x298
+  061c:  moveCameraToEntity 253 10
+  0620:  waitForEntity 200
+  0622:  endSection
+  0624:  storeDate 105
+  0626:  if pstat[107] < 0 OR pstat[107] >= 10 then section_81+0x78e
+  0636:  setDialogOwner 5
+  0638:  showTextbox "So you've entered today's\ncompetition, right?\nYou can go in from ten am.\n"
+  06ce:  showTextbox "You're not planning to cancel,\nare you?!\n"
+  0724:  setDialogOwner 253
+  0726:  setSelection section_81+0x298 section_81+0x8d6
+  072c:  showTextbox "No, I won't cancel\nYes, I'm cancelling\n"
+  077e:  waitForSelectionChoice
+  0780:  jump section_81+0x298
+  0784:  moveCameraToEntity 253 10
+  0788:  waitForEntity 200
+  078a:  jump section_81+0x8d4
+  078e:  setDialogOwner 5
+  0790:  showTextbox "So you've entered today's\ncompetition, right?\nGo in by eleven pm.\n"
+  0818:  showTextbox "You're not planning to\ncancel, are you?!\n"
+  086e:  setDialogOwner 253
+  0870:  setSelection section_81+0x298 section_81+0x8d6
+  0876:  showTextbox "No, I won't cancel\nYes, I'm cancelling\n"
+  08c8:  waitForSelectionChoice
+  08ca:  jump section_81+0x298
+  08ce:  moveCameraToEntity 253 10
+  08d2:  waitForEntity 200
+  08d4:  endSection
+  08d6:  unsetTrigger 37
+  08da:  setDialogOwner 5
+  08dc:  showTextbox "Well, I'll cancel for you.\n"
+  0916:  endSection
+  0918:  setDialogOwner 5
+  091a:  showTextbox "Once inside, at start time,\ngo down the left stairs in\norder to compete in battle.\n"
+  09c4:  showTextbox "Registration is free. You can\nregister for only today's and\ntommorrow's competition.\n"
+  0a72:  showTextbox "However, for that day's\ncompetition, you have to\nregister by ten am.\n"
+  0b00:  showTextbox "You can check the schedule\nfive days ahead, so check it\nand make your plans.\n"
+  0b9e:  showTextbox "The competitions in red mean\nyou that you can't take part.\n"
+  0c18:  showTextbox "But press the start button\nto check what it's about.\n"
+  0c86:  showTextbox "Even for competitions with\nQualifications: None,\n"
+  0cec:  showTextbox "In-Training Digimon\ncannot compete.\n"
+  0d38:  showTextbox "Well, that's about it for\nregistration. Do you want\nto enter?\n"
+  0db8:  setDialogOwner 253
+  0dba:  setSelection section_81+0x4de section_81+0x298 section_81+0x918
+  0dc2:  showTextbox "Yes\nNo\nSorry, explain again\n"
+  0dfe:  waitForSelectionChoice
+  0e00:  endSection
+  0e02:  endSection

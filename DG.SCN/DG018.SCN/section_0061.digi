@@ -1,0 +1,52 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG018.SCN, section 61
+
+section_61:     ; len=254
+  0000:  if !trigger(236) then section_61+0xe
+  000c:  endSection
+  000e:  setTrigger 167
+  0012:  storeRandom 110 1
+  0016:  if !trigger(161) OR !trigger(165) then section_61+0x2a
+  0026:  jump section_61+0x3c
+  002a:  if !trigger(171) then section_61+0x3a
+  0036:  jump section_61+0x3c
+  003a:  endSection
+  003c:  setRotation 253 2048
+  0040:  setRotation 252 2048
+  0044:  jumpAndLink section_10+0x102
+  0048:  playSound 8 2
+  004c:  setObjectVisibility 46 0
+  0050:  setObjectVisibility 47 0
+  0054:  setObjectVisibility 48 0
+  0058:  setPStat 247 46
+  005c:  setPStat 248 3
+  0060:  callSubroutine 21
+  0062:  moveObjectTo 0 46 1 0 0 165 0
+  006c:  moveObjectTo 1 47 1 0 0 165 4
+  0076:  moveObjectTo 2 48 1 0 0 165 8
+  0080:  delay 1
+  0084:  moveObjectTo 0 46 1 25 0 52 765
+  008e:  moveObjectTo 1 47 1 25 0 52 769
+  0098:  moveObjectTo 2 48 1 25 0 52 773
+  00a2:  delay 3
+  00a6:  playAnimation 252 40
+  00aa:  setPStat 200 50
+  00ae:  dealMapDamage 200
+  00b0:  if pstat[110] != 0 then section_61+0xdc
+  00bc:  playAnimation 253 17
+  00c0:  moveEntityToAxisWithCamera 253 2000 2 10
+  00c6:  delay 40
+  00ca:  jumpAndLink section_10+0x168
+  00ce:  jumpAndLink section_10
+  00d2:  moveCameraToEntity 253 10
+  00d6:  waitForEntity 200
+  00d8:  jump section_61+0xf8
+  00dc:  playAnimation 253 17
+  00e0:  moveEntityToAxisWithCamera 253 0 2 10
+  00e6:  delay 40
+  00ea:  jumpAndLink section_10+0x168
+  00ee:  jumpAndLink section_10
+  00f2:  moveCameraToEntity 253 10
+  00f6:  waitForEntity 200
+  00f8:  jumpAndLink section_10+0x42
+  00fc:  endSection

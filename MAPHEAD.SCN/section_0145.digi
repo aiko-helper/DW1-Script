@@ -1,0 +1,17 @@
+; source: ./extract/DIGIMON/SCN/MAPHEAD.SCN
+; MAPHEAD.SCN, section 145
+
+section_145:     ; len=62
+  0000:  setScript 139 145
+  0006:  if !trigger(350) then section_145+0x1c
+  0012:  setPStat 245 6
+  0016:  setBGM 21
+  0018:  jump section_145+0x22
+  001c:  setPStat 245 5
+  0020:  setBGM 21
+  0022:  storeDigimonType 103
+  0024:  if !trigger(350) AND pstat[103] != 14 then section_145+0x36
+  0034:  endSection
+  0036:  loadDigimon 138
+  0038:  setDigimon 138 0 0
+  003c:  endSection

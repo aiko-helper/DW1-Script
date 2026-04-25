@@ -1,0 +1,320 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG217.SCN, section 51
+
+section_51:     ; len=6130
+  0000:  if !trigger(209) OR pstat[27] != 0 then section_51+0x60
+  0010:  setDialogOwner 5
+  0012:  showTextbox "Well, what are you going\nto order?\n"
+  005c:  jump section_51+0x100
+  0060:  if !trigger(208) OR pstat[27] != 1 then section_51+0xac
+  0070:  setDialogOwner 5
+  0072:  showTextbox "What do you want to eat?\n"
+  00a8:  jump section_51+0x832
+  00ac:  if !trigger(222) OR pstat[27] != 2 then section_51+0x100
+  00bc:  setDialogOwner 5
+  00be:  showTextbox "Hey, what are you gonna eat?\n"
+  00fc:  jump section_51+0xf2a
+  0100:  setDialogOwner 255
+  0102:  setSelection section_51+0x1bc section_51+0x3bc section_51+0x5ce
+  010a:  showTextbox "Red Ramen: four hund bits\nHot Curry: twelve hund bits\nHot pot:thirty five hund bits\n"
+  01b6:  waitForSelectionChoice
+  01b8:  jump section_51+0x804
+  01bc:  if money < 400 then section_51+0x1d0
+  01cc:  jump section_51+0x226
+  01d0:  setDialogOwner 5
+  01d2:  showTextbox "Looks like you\ndon't have enough bits.\n"
+  0224:  endSection
+  0226:  if trigger(640) AND (cond & 0x04) == 0x00 then section_51+0x370
+  0236:  setDialogOwner 255
+  0238:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed\nRed Hot Ramen!\n"
+  0272:  addStats 0 1
+  0276:  addStats 1 0
+  027a:  addStats 2 0
+  027e:  addStats 3 1
+  0282:  addStats 4 0
+  0286:  addStats 5 0
+  028a:  reduceStats 8 5
+  028e:  addStats 9 2
+  0292:  addStats 10 0
+  0296:  addStats 11 20
+  029a:  addStats 20 2
+  029e:  reduceMoney 400
+  02a4:  setDialogOwner 255
+  02a6:  showTextbox "Offensive Power went up one!\nBrains went up by one!\n"
+  0312:  showTextbox "Happiness went up!\nTiredness went down!\n"
+  0366:  playAnimation 252 11
+  036a:  waitForEntity 252
+  036c:  jump section_51+0x804
+  0370:  playAnimation 252 13
+  0374:  waitForEntity 255
+  0376:  setDialogOwner 5
+  0378:  showTextbox "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n"
+  03ba:  endSection
+  03bc:  if money < 1200 then section_51+0x3d0
+  03cc:  jump section_51+0x426
+  03d0:  setDialogOwner 5
+  03d2:  showTextbox "Looks like you\ndon't have enough bits.\n"
+  0424:  endSection
+  0426:  if trigger(640) AND (cond & 0x04) == 0x00 then section_51+0x582
+  0436:  setDialogOwner 255
+  0438:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed\nBurning Hot Curry!\n"
+  047a:  addStats 0 3
+  047e:  addStats 1 0
+  0482:  addStats 2 0
+  0486:  addStats 3 2
+  048a:  addStats 4 0
+  048e:  addStats 5 0
+  0492:  reduceStats 8 5
+  0496:  addStats 9 4
+  049a:  addStats 10 0
+  049e:  addStats 11 26
+  04a2:  addStats 20 3
+  04a6:  reduceMoney 1200
+  04ac:  setDialogOwner 255
+  04ae:  showTextbox "Offensive Power went\nup by three!\nBrains went up by two!\n"
+  0524:  showTextbox "Happiness went up!\nTiredness went down.\n"
+  0578:  playAnimation 252 11
+  057c:  waitForEntity 252
+  057e:  jump section_51+0x804
+  0582:  playAnimation 252 13
+  0586:  waitForEntity 255
+  0588:  setDialogOwner 5
+  058a:  showTextbox "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n"
+  05cc:  endSection
+  05ce:  if money < 3500 then section_51+0x5e2
+  05de:  jump section_51+0x638
+  05e2:  setDialogOwner 5
+  05e4:  showTextbox "Looks like you\ndon't have enough bits.\n"
+  0636:  endSection
+  0638:  if trigger(640) AND (cond & 0x04) == 0x00 then section_51+0x7b8
+  0648:  setDialogOwner 255
+  064a:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed\nLava Hot Pot!\n"
+  0682:  addStats 0 5
+  0686:  addStats 1 0
+  068a:  addStats 2 0
+  068e:  addStats 3 3
+  0692:  addStats 4 0
+  0696:  addStats 5 0
+  069a:  reduceStats 8 5
+  069e:  addStats 9 6
+  06a2:  addStats 10 1
+  06a6:  addStats 11 20
+  06aa:  addStats 20 4
+  06ae:  reduceMoney 3500
+  06b4:  setDialogOwner 255
+  06b6:  showTextbox "Offensive Power\nwent up by five!\nBrains went up by three!\n"
+  072e:  showTextbox "Happiness went up!\nDiscipline went down!\nTiredness went down!\n"
+  07ae:  playAnimation 252 11
+  07b2:  waitForEntity 252
+  07b4:  jump section_51+0x804
+  07b8:  playAnimation 252 13
+  07bc:  waitForEntity 255
+  07be:  setDialogOwner 5
+  07c0:  showTextbox "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n"
+  0802:  endSection
+  0804:  setDialogOwner 5
+  0806:  showTextbox "Come back anytime.\n"
+  0830:  endSection
+  0832:  setDialogOwner 255
+  0834:  setSelection section_51+0x8f6 section_51+0xae8 section_51+0xccc
+  083c:  showTextbox "Dragon Noodle:four hund bits\nZaurus Pizza:one thous bits\nj.burger:twenty five hund bits\n"
+  08f0:  waitForSelectionChoice
+  08f2:  jump section_51+0xef4
+  08f6:  if money < 400 then section_51+0x90a
+  0906:  jump section_51+0x94a
+  090a:  setDialogOwner 5
+  090c:  showTextbox "You don't have enough bits.\n"
+  0948:  endSection
+  094a:  if trigger(640) AND (cond & 0x04) == 0x00 then section_51+0xa9c
+  095a:  setDialogOwner 255
+  095c:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed\nWild Dragon Noodle.\n"
+  09a0:  addStats 0 0
+  09a4:  addStats 1 1
+  09a8:  addStats 2 1
+  09ac:  addStats 3 0
+  09b0:  addStats 4 10
+  09b4:  addStats 5 0
+  09b8:  reduceStats 8 5
+  09bc:  addStats 9 2
+  09c0:  addStats 10 0
+  09c4:  addStats 11 18
+  09c8:  addStats 20 2
+  09cc:  reduceMoney 400
+  09d2:  setDialogOwner 255
+  09d4:  showTextbox "Defensive Power went up one!\nSpeed went up by one!\n"
+  0a3e:  showTextbox "Happiness went up!\nTiredness went down.\n"
+  0a92:  playAnimation 252 11
+  0a96:  waitForEntity 252
+  0a98:  jump section_51+0xef4
+  0a9c:  playAnimation 252 13
+  0aa0:  waitForEntity 255
+  0aa2:  setDialogOwner 5
+  0aa4:  showTextbox "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n"
+  0ae6:  endSection
+  0ae8:  if money < 1000 then section_51+0xafc
+  0af8:  jump section_51+0xb3c
+  0afc:  setDialogOwner 5
+  0afe:  showTextbox "You don't have enough bits.\n"
+  0b3a:  endSection
+  0b3c:  if trigger(640) AND (cond & 0x04) == 0x00 then section_51+0xc80
+  0b4c:  setDialogOwner 255
+  0b4e:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed\nZaurus Pizza!\n"
+  0b86:  addStats 0 0
+  0b8a:  addStats 1 3
+  0b8e:  addStats 2 2
+  0b92:  addStats 3 0
+  0b96:  addStats 4 30
+  0b9a:  addStats 5 0
+  0b9e:  reduceStats 8 5
+  0ba2:  addStats 9 4
+  0ba6:  addStats 10 0
+  0baa:  addStats 11 28
+  0bae:  addStats 20 3
+  0bb2:  reduceMoney 1000
+  0bb8:  setDialogOwner 255
+  0bba:  showTextbox "Defensive Power went\nup three!\nSpeed went up two!\n"
+  0c22:  showTextbox "Happiness went up!\nTiredness went down.\n"
+  0c76:  playAnimation 252 11
+  0c7a:  waitForEntity 252
+  0c7c:  jump section_51+0xef4
+  0c80:  playAnimation 252 13
+  0c84:  waitForEntity 255
+  0c86:  setDialogOwner 5
+  0c88:  showTextbox "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n"
+  0cca:  endSection
+  0ccc:  if money < 2500 then section_51+0xce0
+  0cdc:  jump section_51+0xd20
+  0ce0:  setDialogOwner 5
+  0ce2:  showTextbox "You don't have enough bits.\n"
+  0d1e:  endSection
+  0d20:  if trigger(640) AND (cond & 0x04) == 0x00 then section_51+0xea8
+  0d30:  setDialogOwner 255
+  0d32:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed a\nJurassic Burger!\n"
+  0d74:  addStats 0 0
+  0d78:  addStats 1 5
+  0d7c:  addStats 2 3
+  0d80:  addStats 3 0
+  0d84:  addStats 4 50
+  0d88:  addStats 5 0
+  0d8c:  reduceStats 8 5
+  0d90:  addStats 9 8
+  0d94:  addStats 10 1
+  0d98:  addStats 11 35
+  0d9c:  addStats 20 4
+  0da0:  reduceMoney 2500
+  0da6:  setDialogOwner 255
+  0da8:  showTextbox "Defensive Power went\nwent up by five!\nSpeed went up three!\n"
+  0e22:  showTextbox "Happiness went up!\nDiscipline went up!\nTiredness went down.\n"
+  0e9e:  playAnimation 252 11
+  0ea2:  waitForEntity 252
+  0ea4:  jump section_51+0xef4
+  0ea8:  playAnimation 252 13
+  0eac:  waitForEntity 255
+  0eae:  setDialogOwner 5
+  0eb0:  showTextbox "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n"
+  0ef2:  endSection
+  0ef4:  setDialogOwner 5
+  0ef6:  showTextbox "Oh, it's over already.\n"
+  0f28:  endSection
+  0f2a:  setDialogOwner 255
+  0f2c:  setSelection section_51+0xfee section_51+0x11b6 section_51+0x13be
+  0f34:  showTextbox "T-bone Steak:one thous bits\nDx-steak:twenty five hun bits\nPhantom steak:five thous bits\n"
+  0fe8:  waitForSelectionChoice
+  0fea:  jump section_51+0x15ce
+  0fee:  if money < 1000 then section_51+0x1002
+  0ffe:  jump section_51+0x1042
+  1002:  setDialogOwner 5
+  1004:  showTextbox "You don't have enough bits.\n"
+  1040:  endSection
+  1042:  if trigger(640) AND (cond & 0x04) == 0x00 then section_51+0x116a
+  1052:  setDialogOwner 255
+  1054:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed\nT-bone steak!\n"
+  108c:  addStats 0 0
+  1090:  addStats 1 0
+  1094:  addStats 2 0
+  1098:  addStats 3 1
+  109c:  addStats 4 10
+  10a0:  addStats 5 0
+  10a4:  reduceStats 8 5
+  10a8:  addStats 9 0
+  10ac:  addStats 10 1
+  10b0:  addStats 11 30
+  10b4:  addStats 20 3
+  10b8:  reduceMoney 1000
+  10be:  setDialogOwner 255
+  10c0:  showTextbox "HP went up ten!\nBrains went up one!\n"
+  110c:  showTextbox "Discipline went up\nTiredness went down.\n"
+  1160:  playAnimation 252 11
+  1164:  waitForEntity 252
+  1166:  jump section_51+0x15ce
+  116a:  playAnimation 252 13
+  116e:  waitForEntity 255
+  1170:  setDialogOwner 5
+  1172:  showTextbox "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n"
+  11b4:  endSection
+  11b6:  if money < 2500 then section_51+0x11ca
+  11c6:  jump section_51+0x120a
+  11ca:  setDialogOwner 5
+  11cc:  showTextbox "You don't have enough bits.\n"
+  1208:  endSection
+  120a:  if trigger(640) AND (cond & 0x04) == 0x00 then section_51+0x1372
+  121a:  setDialogOwner 255
+  121c:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed\na DX-bone Steak!\n"
+  125a:  addStats 0 0
+  125e:  addStats 1 0
+  1262:  addStats 2 0
+  1266:  addStats 3 2
+  126a:  addStats 4 30
+  126e:  addStats 5 0
+  1272:  reduceStats 8 5
+  1276:  addStats 9 1
+  127a:  addStats 10 2
+  127e:  addStats 11 40
+  1282:  addStats 20 4
+  1286:  reduceMoney 2500
+  128c:  setDialogOwner 255
+  128e:  showTextbox "HP went up by thirty!\nBrains went up by two!\n"
+  12ec:  showTextbox "Happiness went up!\nDiscipline went up!\nTiredness went down!\n"
+  1368:  playAnimation 252 11
+  136c:  waitForEntity 252
+  136e:  jump section_51+0x15ce
+  1372:  playAnimation 252 13
+  1376:  waitForEntity 255
+  1378:  setDialogOwner 5
+  137a:  showTextbox "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n"
+  13bc:  endSection
+  13be:  if money < 5000 then section_51+0x13d2
+  13ce:  jump section_51+0x1412
+  13d2:  setDialogOwner 5
+  13d4:  showTextbox "You don't have enough bits.\n"
+  1410:  endSection
+  1412:  if trigger(640) AND (cond & 0x04) == 0x00 then section_51+0x1582
+  1422:  setDialogOwner 255
+  1424:  showTextbox "<ORANGE><DIGIMON><WHITE> enjoyed a\nPhantom-bone Steak!\n"
+  146c:  addStats 0 0
+  1470:  addStats 1 0
+  1474:  addStats 2 0
+  1478:  addStats 3 3
+  147c:  addStats 4 50
+  1480:  addStats 5 0
+  1484:  reduceStats 8 5
+  1488:  addStats 9 2
+  148c:  addStats 10 3
+  1490:  addStats 11 50
+  1494:  addStats 20 5
+  1498:  reduceMoney 5000
+  149e:  setDialogOwner 255
+  14a0:  showTextbox "HP has went up fifty!\nBrains went up three!\n"
+  14fc:  showTextbox "Happiness went up!\nDiscipline went up!\nTiredness went down!\n"
+  1578:  playAnimation 252 11
+  157c:  waitForEntity 252
+  157e:  jump section_51+0x15ce
+  1582:  playAnimation 252 13
+  1586:  waitForEntity 255
+  1588:  setDialogOwner 5
+  158a:  showTextbox "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n"
+  15cc:  endSection
+  15ce:  setDialogOwner 5
+  15d0:  showTextbox "Come back again!\n"
+  15f6:  endSection
+  15f8:  garbage 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 19 00 00 00 d1 00 88 00 1b 00 18 00 6e 00 19 00 1b 05 1a 00 82 76 82 85 82 8c 82 8c 81 43 81 40 82 97 82 88 82 81 82 94 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 87 82 8f 82 89 82 8e 82 87 0d 00 82 94 82 8f 81 40 82 8f 82 92 82 84 82 85 82 92 81 48 0d 00 00 00 16 00 0e 01 19 00 00 00 d0 00 88 00 1b 01 18 00 ba 00 19 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 85 82 81 82 94 81 48 0d 00 00 00 16 00 40 08 19 00 00 00 de 00 88 00 1b 02 18 00 0e 01 19 00 1b 05 1a 00 82 67 82 85 82 99 81 43 81 40 82 97 82 88 82 81 82 94 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 87 82 8f 82 8e 82 8e 82 81 81 40 82 85 82 81 82 94 81 48 0d 00 00 00 16 00 38 0f 1b ff 10 03 ca 01 ca 03 dc 05 1a 00 82 71 82 85 82 84 81 40 82 71 82 81 82 8d 82 85 82 8e 81 46 81 40 82 86 82 8f 82 95 82 92 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 0d 00 82 67 82 8f 82 94 81 40 82 62 82 95 82 92 82 92 82 99 81 46 81 40 82 94 82 97 82 85 82 8c 82 96 82 85 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 0d 00 82 67 82 8f 82 94 81 40 82 90 82 8f 82 94 81 46 82 94 82 88 82 89 82 92 82 94 82 99 81 40 82 86 82 89 82 96 82 85 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 0d 00 00 00 12 00 16 00 12 08 19 00 25 00 00 02 90 01 00 00 18 00 de 01 19 00 16 00 34 02 1b 05 1a 00 82 6b 82 8f 82 8f 82 8b 82 93 81 40 82 8c 82 89 82 8b 82 85 81 40

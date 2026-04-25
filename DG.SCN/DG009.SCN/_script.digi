@@ -1,0 +1,13 @@
+; DG009.SCN
+;!script index=9 start=0xc000 end=0xd000 headerU16=0x10 sentinelOff=0x575
+;!sections onEnter section_81 section_82
+
+onEnter:     ; len=58
+  0000:  spawnChest 5 -1511 1093 0 706
+  000c:  storeRandom 110 99
+  0010:  if pstat[110] > 14 then onEnter+0x22
+  001c:  spawnItem 44 74 62
+  0022:  storeRandom 110 99
+  0026:  if pstat[110] > 24 then onEnter+0x38
+  0032:  spawnItem 44 31 45
+  0038:  endSection

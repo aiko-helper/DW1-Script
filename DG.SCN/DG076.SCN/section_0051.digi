@@ -1,0 +1,104 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG076.SCN, section 51
+
+section_51:     ; len=3852
+  0000:  if trigger(144) then section_51+0x90e
+  000c:  entityWalkTo 5 -421 374 1
+  0014:  waitForEntity 5
+  0016:  lookAt 5 253
+  001a:  lookAt 253 5
+  001e:  lookAt 252 5
+  0022:  waitForEntity 5
+  0024:  playSound 8 10
+  0028:  setDialogOwner 5
+  002a:  showTextbox "Who are you? I won't let\nanyone mess up this place!\n"
+  0096:  playAnimation 253 19
+  009a:  delay 15
+  009e:  setDialogOwner 253
+  00a0:  showTextbox "Don't worry. We're just\ntravelling through\nto save the island.\n"
+  0122:  playAnimation 253 0
+  0126:  playSound 8 10
+  012a:  setDialogOwner 5
+  012c:  showTextbox "I don't trust you, get lost!\n"
+  016a:  setDialogOwner 253
+  016c:  showTextbox "Wait a sec.\n"
+  0188:  setTrigger 1
+  018c:  setPStat 250 1
+  0190:  setPStat 251 5
+  0194:  setPStat 252 255
+  0198:  setPStat 253 255
+  019c:  fadeOutHUD
+  019e:  delay 1
+  01a2:  startBattle
+  01a4:  unsetTrigger 1
+  01a8:  setPStat 250 0
+  01ac:  entityWalkTo 253 -97 -448 0
+  01b4:  entityWalkTo 252 -597 -443 0
+  01bc:  entityWalkTo 5 -421 374 1
+  01c4:  waitForEntity 253
+  01c6:  waitForEntity 252
+  01c8:  waitForEntity 5
+  01ca:  lookAt 253 5
+  01ce:  lookAt 5 253
+  01d2:  lookAt 252 5
+  01d6:  setDialogOwner 5
+  01d8:  showTextbox "Are you by any chance...?\n"
+  0210:  playAnimation 253 7
+  0214:  delay 15
+  0218:  setDialogOwner 253
+  021a:  showTextbox "I told you so!\n"
+  023c:  playAnimation 253 0
+  0240:  setDialogOwner 5
+  0242:  showTextbox "I'm sorry. We don't get\nvisitors often, so I get\nexcited about my new job.\n"
+  02dc:  setDialogOwner 253
+  02de:  showTextbox "Job?\n"
+  02ec:  setDialogOwner 5
+  02ee:  showTextbox "I'm guarding a place called\nAncient Dino Region.\n"
+  0354:  showTextbox "It's an unexplored region.\n"
+  038e:  setDialogOwner 253
+  0390:  showTextbox "Will you show me around?\n"
+  03c6:  setDialogOwner 5
+  03c8:  showTextbox "Ancient Dino Region is\ndivided in two sections.\n"
+  042c:  showTextbox "Where we live is called\nGlacial Time Zone.\n"
+  0486:  showTextbox "It's a special place\nwhere time goes slow.\n"
+  04e0:  playAnimation 253 16
+  04e4:  delay 15
+  04e8:  setDialogOwner 253
+  04ea:  showTextbox "Time goes slow?\n"
+  050e:  playAnimation 253 0
+  0512:  setDialogOwner 5
+  0514:  showTextbox "The other place is\nSpeedy Time Zone.\n"
+  0562:  showTextbox "It's dangerous and further\nthan the Glacial Time Zone.\n"
+  05d4:  showTextbox "It's dangerous cuz\ntime goes very fast.\n"
+  0628:  showTextbox "The land is bare. Bones\nand fossils everywhere.\n"
+  068c:  setDialogOwner 253
+  068e:  showTextbox "That's cuz time passes faster\nthere than in other places?\n"
+  0706:  setDialogOwner 5
+  0708:  showTextbox "Right. Don't stay there long.\n"
+  0748:  showTextbox "Since I'm blocking your\nway, you can't go there.\n"
+  07ae:  setDialogOwner 253
+  07b0:  showTextbox "You lost.\n"
+  07c8:  playSound 8 10
+  07cc:  setDialogOwner 5
+  07ce:  showTextbox "I was unlucky! It doesn't\nhappen often.\n"
+  0822:  setDialogOwner 253
+  0824:  showTextbox "Is that right?\n"
+  0846:  setDialogOwner 5
+  0848:  showTextbox "I have to go back home.\nAsk other Digimon\nif you have questions.\n"
+  08ce:  setTrigger 144
+  08d2:  jump section_51+0x8d6
+  08d6:  entityWalkTo 5 -293 1172 1
+  08de:  if pstat[101] >= 3 then section_51+0x8fe
+  08ea:  addPStat 101 1
+  08ee:  delay 20
+  08f2:  lookAt 253 5
+  08f6:  lookAt 252 5
+  08fa:  jump section_51+0x8d6
+  08fe:  waitForEntity 5
+  0900:  unloadEntity 5
+  0902:  setPStat 101 0
+  0906:  moveCameraToEntity 253 10
+  090a:  waitForEntity 200
+  090c:  endSection
+  090e:  endSection
+  0910:  garbage 1c 00 fe 00 1c 00 06 00 50 00 07 00 70 00 08 00 ac 00 09 00 d0 00 33 00 f4 00 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 32 00 19 00 74 2c 22 00 38 00 24 00 6e 63 19 00 0b 00 6e 05 18 00 48 00 19 00 74 2c 25 00 2b 00 1e 00 fe 02 64 19 fe 00 1b 06 1a 00 82 73 82 81 82 81 82 81 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 20 01 fe 00 1b 07 1a 00 82 60 82 8c 82 92 82 89 82 87 82 88 82 94 81 43 81 40 82 94 82 81 82 8b 82 85 81 40 82 94 82 88 82 81 82 94 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 20 01 fe 00 1b 08 1a 00 82 72 82 88 82 81 82 81 82 81 82 81 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 0b 01 fe 00 1b 09 1a 00 82 61 82 95 82 8f 82 8f 82 8f 82 8e 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 0b 01 fe 00 19 00 01 00 90 00 18 00 02 0a 19 00 4e 05 5b fe 76 01 01 00 4a 05 4c 00 05 fd 4c 00 fd 05 4c 00 fc 05 4a 05 5a 00 08 0a 1b 05 1a 00 82 76 82 88 82 8f 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 48 81 40 82 68 81 40 82 97 82 8f 82 8e 81 75 82 94 81 40 82 8c 82 85 82 94 0d 00 82 81 82 8e 82 99 82 8f 82 8e 82 85 81 40 82 8d 82 85 82 93 82 93 81 40 82 95 82 90 81 40 82 94 82 88 82 89 82 93 81 40 82 90 82 8c 82 81 82 83 82 85 81 49 0d 00 00 00 56 00 fd 13 67 00 0f 00 1b fd 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 97 82 8f 82 92 82 92 82 99 81 42 81 40 82 76 82 85 81 75 82 92 82 85 81 40 82 8a 82 95 82 93 82 94 0d 00 82 94 82 92 82 81 82 96 82 85 82 8c 82 8c 82 89 82 8e 82 87 81 40 82 94 82 88 82 92 82 8f 82 95 82 87 82 88 0d 00 82 94 82 8f 81 40 82 93 82 81 82 96 82 85 81 40 82 94 82 88 82 85 81 40 82 89 82 93 82 8c 82 81 82 8e 82 84 81 42 0d 00 00 00 56 00 fd 00 5a 00 08 0a 1b 05 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 94 82 92 82 95 82 93 82 94 81 40 82 99 82 8f 82 95 81 43 81 40 82 87 82 85 82 94 81 40 82 8c 82 8f 82 93 82 94 81 49 0d 00 00 00 1b fd 1a 00 82 76 82 81 82 89 82 94 81 40 82 81 81 40 82 93 82 85 82 83 81 42 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4e fd 9f ff 40 fe 00 00 4e fc ab fd 45 fe 00 00 4e 05 5b fe 76 01 01 00 4a fd 4a fc 4a 05 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 1b 05 1a 00 82 60 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 82 82 99 81 40 82 81 82 8e 82 99 81 40 82 83 82 88 82 81 82 8e 82 83 82 85 81 42 81 42 81 42 81 48 0d 00 00 00 56 00 fd 07 67 00 0f 00 1b fd 1a 00 82 68 81 40 82 94 82 8f 82 8c 82 84 81 40 82 99 82 8f 82 95 81 40 82 93 82 8f 81 49 0d 00 00 00 56 00 fd 00 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 93 82 8f 82 92 82 92 82 99 81 42 81 40 82 76 82 85 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 87 82 85 82 94 0d 00 82 96 82 89 82 93 82 89 82 94 82 8f 82 92 82 93 81 40 82 8f 82 86 82 94 82 85 82 8e 81 43 81 40 82 93 82 8f 81 40 82 68 81 40 82 87 82 85 82 94 0d 00 82 85 82 98 82 83 82 89 82 94 82 85 82 84 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 8d 82 99 81 40 82 8e 82 85 82 97 81 40 82 8a 82 8f 82 82 81 42 0d 00 00 00 1b fd 1a 00 82 69 82 8f 82 82 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 87 82 95 82 81 82 92 82 84 82 89 82 8e 82 87 81 40 82 81 81 40 82 90 82 8c 82 81 82 83 82 85 81 40 82 83 82 81 82 8c 82 8c 82 85 82 84 0d 00 82 60 82 8e 82 83 82 89 82 85 82 8e 82 94 81 40 82 63 82 89 82 8e 82 8f 81 40 82 71 82 85 82 87 82 89 82 8f 82 8e 81 42 0d 00 00 00 1a 00 82 68 82 94 81 75 82 93 81 40 82 81 82 8e 81 40 82 95 82 8e 82 85 82 98 82 90 82 8c 82 8f 82 92 82 85 82 84 81 40 82 92 82 85 82 87 82 89 82 8f 82 8e 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 89 82 8c 82 8c 81 40 82 99 82 8f 82 95 81 40 82 93 82 88 82 8f 82 97 81 40 82 8d 82 85 81 40 82 81 82 92 82 8f 82 95 82 8e 82 84 81 48 0d 00 00 00 1b 05 1a 00 82 60 82 8e 82 83 82 89 82 85 82 8e 82 94 81 40 82 63 82 89 82 8e 82 8f 81 40 82 71 82 85 82 87 82 89 82 8f 82 8e 81 40 82 89 82 93 0d 00 82 84 82 89 82 96 82 89 82 84 82 85 82 84 81 40 82 89 82 8e 81 40 82 94 82 97 82 8f 81 40 82 93 82 85 82 83 82 94 82 89 82 8f 82 8e 82 93 81 42 0d 00 00 00 1a 00 82 76 82 88 82 85 82 92 82 85 81 40 82 97 82 85 81 40 82 8c 82 89 82 96 82 85 81 40 82 89 82 93 81 40 82 83 82 81 82 8c 82 8c 82 85 82 84 0d 00 82 66 82 8c 82 81 82 83 82 89 82 81 82 8c 81 40 82 73 82 89 82 8d 82 85 81 40 82 79 82 8f 82 8e 82 85 81 42 0d 00 00 00 1a 00 82 68 82 94 81 75 82 93 81 40 82 81 81 40 82 93 82 90 82 85 82 83 82 89 82 81 82 8c 81 40 82 90 82 8c 82 81 82 83 82 85 0d 00 82 97 82 88 82 85 82 92 82 85 81 40 82 94 82 89 82 8d 82 85 81 40 82 87 82 8f 82 85 82 93 81 40 82 93 82 8c 82 8f 82 97 81 42 0d 00 00 00 56 00 fd 10 67 00 0f 00 1b fd 1a 00 82 73 82 89 82 8d 82 85 81 40 82 87 82 8f 82 85 82 93 81 40 82 93 82 8c 82 8f

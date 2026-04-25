@@ -1,0 +1,22 @@
+; DG037.SCN
+;!script index=37 start=0x1f000 end=0x1f800 headerU16=0x30 sentinelOff=0x24
+;!sections onEnter section_5 section_6 section_7 section_8 section_9 section_10 section_81 section_53 section_51 section_52
+
+onEnter:     ; len=112
+  0000:  storeRandom 110 99
+  0004:  if pstat[110] > 9 then onEnter+0x16
+  0010:  spawnItem 44 35 9
+  0016:  storeRandom 110 99
+  001a:  if pstat[110] > 4 then onEnter+0x2c
+  0026:  spawnItem 44 19 31
+  002c:  storeRandom 110 99
+  0030:  if pstat[110] > 0 then onEnter+0x42
+  003c:  spawnItem 69 11 10
+  0042:  storeRandom 110 99
+  0046:  if pstat[110] > 0 then onEnter+0x58
+  0052:  spawnItem 46 46 46
+  0058:  if trigger(180) then onEnter+0x6a
+  0064:  setObjectVisibility 2 0
+  0068:  endSection
+  006a:  setObjectVisibility 2 1
+  006e:  endSection

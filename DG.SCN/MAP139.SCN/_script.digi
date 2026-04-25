@@ -1,0 +1,12 @@
+; MAP139.SCN
+;!script index=139 start=0x62800 end=0x63000 headerU16=0x10 sentinelOff=0x1d
+;!sections onEnter section_5 section_81
+
+onEnter:     ; len=36
+  0000:  unsetTrigger 116
+  0004:  storeDigimonType 103
+  0006:  if pstat[103] != 14 AND !trigger(214) then onEnter+0x1a
+  0016:  jump onEnter+0x22
+  001a:  playAnimation 5 31
+  001e:  delay 5
+  0022:  endSection

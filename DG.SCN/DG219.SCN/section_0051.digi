@@ -1,0 +1,361 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG219.SCN, section 51
+
+section_51:     ; len=6130
+  0000:  setDialogOwner 253
+  0002:  showTextbox "It's a Digimon card vending\nmachine. I think you can\nget a card for one hund bits.\n"
+  00ac:  setSelection section_51+0x106 section_51+0x1ac
+  00b2:  showTextbox "Let's try it"
+  00ce:  .string "??one hund bits.\nNot now\n"  ; dead string
+  0100:  .db 0x00, 0x00
+  0102:  waitForSelectionChoice
+  0104:  endSection
+  0106:  if money >= 100 then section_51+0x152
+  0116:  setDialogOwner 253
+  0118:  showTextbox "I don't have enough bits.\n"
+  0150:  endSection
+  0152:  reduceMoney 100
+  0158:  storeRandom 110 99
+  015c:  if pstat[110] > 0 then section_51+0x16c
+  0168:  jump section_51+0x1ae
+  016c:  if pstat[110] > 2 then section_51+0x17c
+  0178:  jump section_51+0x304
+  017c:  if pstat[110] > 9 then section_51+0x18c
+  0188:  jump section_51+0x7cc
+  018c:  if pstat[110] > 29 then section_51+0x19c
+  0198:  jump section_51+0xd90
+  019c:  if pstat[110] > 99 then section_51+0x1ac
+  01a8:  jump section_51+0xfea
+  01ac:  endSection
+  01ae:  storeRandom 110 4
+  01b2:  if pstat[110] > 0 then section_51+0x1f0
+  01be:  giveCard 1
+  01c0:  setDialogOwner 253
+  01c2:  showTextbox "A Phoenixmon Card!\n"
+  01ec:  jump section_51+0x10f8
+  01f0:  if pstat[110] > 1 then section_51+0x240
+  01fc:  giveCard 2
+  01fe:  setDialogOwner 253
+  0200:  showTextbox "A HerculesKabuterimon Card!\n"
+  023c:  jump section_51+0x10f8
+  0240:  if pstat[110] > 2 then section_51+0x284
+  024c:  giveCard 3
+  024e:  setDialogOwner 253
+  0250:  showTextbox "A MegaSeadramon Card!\n"
+  0280:  jump section_51+0x10f8
+  0284:  if pstat[110] > 3 then section_51+0x2c8
+  0290:  giveCard 4
+  0292:  setDialogOwner 253
+  0294:  showTextbox "A ShogunGekomon Card!\n"
+  02c4:  jump section_51+0x10f8
+  02c8:  if pstat[110] > 4 then section_51+0x304
+  02d4:  giveCard 5
+  02d6:  setDialogOwner 253
+  02d8:  showTextbox "A Myotismon Card!\n"
+  0300:  jump section_51+0x10f8
+  0304:  storeRandom 110 19
+  0308:  if pstat[110] > 0 then section_51+0x34a
+  0314:  giveCard 6
+  0316:  setDialogOwner 253
+  0318:  showTextbox "A MetalGreymon Card!\n"
+  0346:  jump section_51+0x10f8
+  034a:  if pstat[110] > 1 then section_51+0x382
+  0356:  giveCard 7
+  0358:  setDialogOwner 253
+  035a:  showTextbox "A Mamemon Card!\n"
+  037e:  jump section_51+0x10f8
+  0382:  if pstat[110] > 2 then section_51+0x3be
+  038e:  giveCard 8
+  0390:  setDialogOwner 253
+  0392:  showTextbox "A Monzaemon Card!\n"
+  03ba:  jump section_51+0x10f8
+  03be:  if pstat[110] > 3 then section_51+0x400
+  03ca:  giveCard 9
+  03cc:  setDialogOwner 253
+  03ce:  showTextbox "A SkullGreymon Card!\n"
+  03fc:  jump section_51+0x10f8
+  0400:  if pstat[110] > 4 then section_51+0x442
+  040c:  giveCard 10
+  040e:  setDialogOwner 253
+  0410:  showTextbox "A MetalMamemon Card!\n"
+  043e:  jump section_51+0x10f8
+  0442:  if pstat[110] > 5 then section_51+0x47a
+  044e:  giveCard 11
+  0450:  setDialogOwner 253
+  0452:  showTextbox "A Vademon Card!\n"
+  0476:  jump section_51+0x10f8
+  047a:  if pstat[110] > 6 then section_51+0x4b6
+  0486:  giveCard 12
+  0488:  setDialogOwner 253
+  048a:  showTextbox "An Andromon Card!\n"
+  04b2:  jump section_51+0x10f8
+  04b6:  if pstat[110] > 7 then section_51+0x4ee
+  04c2:  giveCard 13
+  04c4:  setDialogOwner 253
+  04c6:  showTextbox "A Giromon Card!\n"
+  04ea:  jump section_51+0x10f8
+  04ee:  if pstat[110] > 8 then section_51+0x526
+  04fa:  giveCard 14
+  04fc:  setDialogOwner 253
+  04fe:  showTextbox "An Etemon Card!\n"
+  0522:  jump section_51+0x10f8
+  0526:  if pstat[110] > 9 then section_51+0x564
+  0532:  giveCard 15
+  0534:  setDialogOwner 253
+  0536:  showTextbox "A Megadramon Card!\n"
+  0560:  jump section_51+0x10f8
+  0564:  if pstat[110] > 10 then section_51+0x59c
+  0570:  giveCard 16
+  0572:  setDialogOwner 253
+  0574:  showTextbox "A Piximon Card!\n"
+  0598:  jump section_51+0x10f8
+  059c:  if pstat[110] > 11 then section_51+0x5dc
+  05a8:  giveCard 17
+  05aa:  setDialogOwner 253
+  05ac:  showTextbox "A Digitamamon Card!\n"
+  05d8:  jump section_51+0x10f8
+  05dc:  if pstat[110] > 12 then section_51+0x614
+  05e8:  giveCard 18
+  05ea:  setDialogOwner 253
+  05ec:  showTextbox "A Gekomon Card!\n"
+  0610:  jump section_51+0x10f8
+  0614:  if pstat[110] > 13 then section_51+0x658
+  0620:  giveCard 19
+  0622:  setDialogOwner 253
+  0624:  showTextbox "A WaruMonzaemon Card!\n"
+  0654:  jump section_51+0x10f8
+  0658:  if pstat[110] > 14 then section_51+0x690
+  0664:  giveCard 20
+  0666:  setDialogOwner 253
+  0668:  showTextbox "A Jijimon Card!\n"
+  068c:  jump section_51+0x10f8
+  0690:  if pstat[110] > 15 then section_51+0x6d8
+  069c:  giveCard 21
+  069e:  setDialogOwner 253
+  06a0:  showTextbox "A King of Sukamon Card!\n"
+  06d4:  jump section_51+0x10f8
+  06d8:  if pstat[110] > 16 then section_51+0x714
+  06e4:  giveCard 22
+  06e6:  setDialogOwner 253
+  06e8:  showTextbox "A Cherrymon Card!\n"
+  0710:  jump section_51+0x10f8
+  0714:  if pstat[110] > 17 then section_51+0x752
+  0720:  giveCard 23
+  0722:  setDialogOwner 253
+  0724:  showTextbox "A Guardromon Card!\n"
+  074e:  jump section_51+0x10f8
+  0752:  if pstat[110] > 18 then section_51+0x78e
+  075e:  giveCard 24
+  0760:  setDialogOwner 253
+  0762:  showTextbox "A Hagurumon Card!\n"
+  078a:  jump section_51+0x10f8
+  078e:  if pstat[110] > 19 then section_51+0x7cc
+  079a:  giveCard 25
+  079c:  setDialogOwner 253
+  079e:  showTextbox "A Brachiomon Card!\n"
+  07c8:  jump section_51+0x10f8
+  07cc:  storeRandom 110 24
+  07d0:  if pstat[110] > 0 then section_51+0x808
+  07dc:  giveCard 26
+  07de:  setDialogOwner 253
+  07e0:  showTextbox "A Greymon Card!\n"
+  0804:  jump section_51+0x10f8
+  0808:  if pstat[110] > 1 then section_51+0x840
+  0814:  giveCard 27
+  0816:  setDialogOwner 253
+  0818:  showTextbox "A Devimon Card!\n"
+  083c:  jump section_51+0x10f8
+  0840:  if pstat[110] > 2 then section_51+0x87e
+  084c:  giveCard 28
+  084e:  setDialogOwner 253
+  0850:  showTextbox "An Airdramon Card!\n"
+  087a:  jump section_51+0x10f8
+  087e:  if pstat[110] > 3 then section_51+0x8bc
+  088a:  giveCard 29
+  088c:  setDialogOwner 253
+  088e:  showTextbox "A Tyrannomon Card!\n"
+  08b8:  jump section_51+0x10f8
+  08bc:  if pstat[110] > 4 then section_51+0x8f4
+  08c8:  giveCard 30
+  08ca:  setDialogOwner 253
+  08cc:  showTextbox "A Meramon Card!\n"
+  08f0:  jump section_51+0x10f8
+  08f4:  if pstat[110] > 5 then section_51+0x930
+  0900:  giveCard 31
+  0902:  setDialogOwner 253
+  0904:  showTextbox "A Seadramon Card!\n"
+  092c:  jump section_51+0x10f8
+  0930:  if pstat[110] > 6 then section_51+0x970
+  093c:  giveCard 32
+  093e:  setDialogOwner 253
+  0940:  showTextbox "A Kabuterimon Card!\n"
+  096c:  jump section_51+0x10f8
+  0970:  if pstat[110] > 7 then section_51+0x9aa
+  097c:  giveCard 33
+  097e:  setDialogOwner 253
+  0980:  showTextbox "An Angemon Card!\n"
+  09a6:  jump section_51+0x10f8
+  09aa:  if pstat[110] > 8 then section_51+0x9e6
+  09b6:  giveCard 34
+  09b8:  setDialogOwner 253
+  09ba:  showTextbox "A Birdramon Card!\n"
+  09e2:  jump section_51+0x10f8
+  09e6:  if pstat[110] > 9 then section_51+0xa22
+  09f2:  giveCard 35
+  09f4:  setDialogOwner 253
+  09f6:  showTextbox "A Garurumon Card!\n"
+  0a1e:  jump section_51+0x10f8
+  0a22:  if pstat[110] > 10 then section_51+0xa5c
+  0a2e:  giveCard 36
+  0a30:  setDialogOwner 253
+  0a32:  showTextbox "A Frigimon Card!\n"
+  0a58:  jump section_51+0x10f8
+  0a5c:  if pstat[110] > 11 then section_51+0xa92
+  0a68:  giveCard 37
+  0a6a:  setDialogOwner 253
+  0a6c:  showTextbox "A Whamon Card!\n"
+  0a8e:  jump section_51+0x10f8
+  0a92:  if pstat[110] > 12 then section_51+0xac8
+  0a9e:  giveCard 38
+  0aa0:  setDialogOwner 253
+  0aa2:  showTextbox "A Unimon Card!\n"
+  0ac4:  jump section_51+0x10f8
+  0ac8:  if pstat[110] > 13 then section_51+0xb00
+  0ad4:  giveCard 39
+  0ad6:  setDialogOwner 253
+  0ad8:  showTextbox "A Ogremon Card!\n"
+  0afc:  jump section_51+0x10f8
+  0b00:  if pstat[110] > 14 then section_51+0xb3a
+  0b0c:  giveCard 40
+  0b0e:  setDialogOwner 253
+  0b10:  showTextbox "A Shellmon Card!\n"
+  0b36:  jump section_51+0x10f8
+  0b3a:  if pstat[110] > 15 then section_51+0xb78
+  0b46:  giveCard 41
+  0b48:  setDialogOwner 253
+  0b4a:  showTextbox "A Centarumon Card!\n"
+  0b74:  jump section_51+0x10f8
+  0b78:  if pstat[110] > 16 then section_51+0xbb0
+  0b84:  giveCard 42
+  0b86:  setDialogOwner 253
+  0b88:  showTextbox "A Bakemon Card!\n"
+  0bac:  jump section_51+0x10f8
+  0bb0:  if pstat[110] > 17 then section_51+0xbee
+  0bbc:  giveCard 43
+  0bbe:  setDialogOwner 253
+  0bc0:  showTextbox "A Drimogemon Card!\n"
+  0bea:  jump section_51+0x10f8
+  0bee:  if pstat[110] > 18 then section_51+0xc2e
+  0bfa:  giveCard 44
+  0bfc:  setDialogOwner 253
+  0bfe:  showTextbox "A Monochromon Card!\n"
+  0c2a:  jump section_51+0x10f8
+  0c2e:  if pstat[110] > 19 then section_51+0xc64
+  0c3a:  giveCard 45
+  0c3c:  setDialogOwner 253
+  0c3e:  showTextbox "A Leomon Card!\n"
+  0c60:  jump section_51+0x10f8
+  0c64:  if pstat[110] > 20 then section_51+0xc9e
+  0c70:  giveCard 46
+  0c72:  setDialogOwner 253
+  0c74:  showTextbox "A Coelamon Card!\n"
+  0c9a:  jump section_51+0x10f8
+  0c9e:  if pstat[110] > 21 then section_51+0xcde
+  0caa:  giveCard 47
+  0cac:  setDialogOwner 253
+  0cae:  showTextbox "A Kokatorimon Card!\n"
+  0cda:  jump section_51+0x10f8
+  0cde:  if pstat[110] > 22 then section_51+0xd1a
+  0cea:  giveCard 48
+  0cec:  setDialogOwner 253
+  0cee:  showTextbox "A Kuwagamon Card!\n"
+  0d16:  jump section_51+0x10f8
+  0d1a:  if pstat[110] > 23 then section_51+0xd54
+  0d26:  giveCard 49
+  0d28:  setDialogOwner 253
+  0d2a:  showTextbox "A Mojyamon Card!\n"
+  0d50:  jump section_51+0x10f8
+  0d54:  if pstat[110] > 24 then section_51+0xd90
+  0d60:  giveCard 50
+  0d62:  setDialogOwner 253
+  0d64:  showTextbox "An Ninjamon Card!\n"
+  0d8c:  jump section_51+0x10f8
+  0d90:  storeRandom 110 9
+  0d94:  if pstat[110] > 0 then section_51+0xdd2
+  0da0:  giveCard 51
+  0da2:  setDialogOwner 253
+  0da4:  showTextbox "A Penguinmon Card!\n"
+  0dce:  jump section_51+0x10f8
+  0dd2:  if pstat[110] > 1 then section_51+0xe0c
+  0dde:  giveCard 52
+  0de0:  setDialogOwner 253
+  0de2:  showTextbox "A Otamamon Card!\n"
+  0e08:  jump section_51+0x10f8
+  0e0c:  if pstat[110] > 2 then section_51+0xe46
+  0e18:  giveCard 53
+  0e1a:  setDialogOwner 253
+  0e1c:  showTextbox "A Tentomon Card!\n"
+  0e42:  jump section_51+0x10f8
+  0e46:  if pstat[110] > 3 then section_51+0xe80
+  0e52:  giveCard 54
+  0e54:  setDialogOwner 253
+  0e56:  showTextbox "A Yanmamon Card!\n"
+  0e7c:  jump section_51+0x10f8
+  0e80:  if pstat[110] > 4 then section_51+0xeba
+  0e8c:  giveCard 55
+  0e8e:  setDialogOwner 253
+  0e90:  showTextbox "A Gotsumon Card!\n"
+  0eb6:  jump section_51+0x10f8
+  0eba:  if pstat[110] > 5 then section_51+0xefc
+  0ec6:  giveCard 56
+  0ec8:  setDialogOwner 253
+  0eca:  showTextbox "A Flarerizamon Card!\n"
+  0ef8:  jump section_51+0x10f8
+  0efc:  if pstat[110] > 6 then section_51+0xf38
+  0f08:  giveCard 57
+  0f0a:  setDialogOwner 253
+  0f0c:  showTextbox "A ToyAgumon Card!\n"
+  0f34:  jump section_51+0x10f8
+  0f38:  if pstat[110] > 7 then section_51+0xf78
+  0f44:  giveCard 58
+  0f46:  setDialogOwner 253
+  0f48:  showTextbox "A DemiMeramon Card!\n"
+  0f74:  jump section_51+0x10f8
+  0f78:  if pstat[110] > 8 then section_51+0xfb0
+  0f84:  giveCard 59
+  0f86:  setDialogOwner 253
+  0f88:  showTextbox "A Tankmon Card!\n"
+  0fac:  jump section_51+0x10f8
+  0fb0:  if pstat[110] > 9 then section_51+0xfea
+  0fbc:  giveCard 60
+  0fbe:  setDialogOwner 253
+  0fc0:  showTextbox "A Goburimon Card\n"
+  0fe6:  jump section_51+0x10f8
+  0fea:  storeRandom 110 3
+  0fee:  if pstat[110] > 0 then section_51+0x1030
+  0ffa:  giveCard 61
+  0ffc:  setDialogOwner 253
+  0ffe:  showTextbox "It's a Numemon Card!\n"
+  102c:  jump section_51+0x10f8
+  1030:  if pstat[110] > 1 then section_51+0x1074
+  103c:  giveCard 62
+  103e:  setDialogOwner 253
+  1040:  showTextbox "It's a Vegiemon Card!\n"
+  1070:  jump section_51+0x10f8
+  1074:  if pstat[110] > 2 then section_51+0x10b6
+  1080:  giveCard 63
+  1082:  setDialogOwner 253
+  1084:  showTextbox "It's a Sukamon Card!\n"
+  10b2:  jump section_51+0x10f8
+  10b6:  if pstat[110] > 3 then section_51+0x10f8
+  10c2:  giveCard 64
+  10c4:  setDialogOwner 253
+  10c6:  showTextbox "It's a Nanimon Card!\n"
+  10f4:  jump section_51+0x10f8
+  10f8:  setDialogOwner 253
+  10fa:  setSelection section_51+0x106 section_51+0x1ac
+  1100:  showTextbox "Try again\nNo more\n"
+  1128:  waitForSelectionChoice
+  112a:  endSection
+  112c:  endSection
+  112e:  garbage 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 1b fd 1a 00 82 68 82 94 81 75 82 93 81 40 82 81 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 40 82 83 82 81 82 92 82 84 81 40 82 96 82 85 82 8e 82 84 82 89 82 8e 82 87 0d 00 82 8d 82 81 82 83 82 88 82 89 82 8e 82 85 81 42 81 40 82 68 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 0d 00 82 87 82 85 82 94 81 40 82 81 81 40 82 83 82 81 82 92 82 84 81 40 82 86 82 8f 82 92 81 40 82 8f 82 8e 82 85 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 42 0d 00 00 00 10 02 14 01 ba 01 1a 00 82 6b 82 85 82 94 81 75 82 93 81 40 82 94 82 92 82 99 81 40 82 89 82 94 00 00 81 48 81 48 82 8f 82 8e 82 85 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 42 0d 00 82 6d 82 8f 82 94 81 40 82 8e 82 8f 82 97 0d 00 00 00 12 00 fe 00 19 00 25 00 00 05 64 00 00 00 18 00 60 01 19 00 1b fd 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 81 40 82 85 82 8e 82 8f 82 95 82 87 82 88 81 40 82 82 82 89 82 94 82 93 81 42 0d 00 00 00 fe 00 2b 00 64 00 00 00 24 00 6e 63 19 00 0b 00 6e 00 18 00 7a 01 19 00 16 00 bc 01 19 00 0b 00 6e 02 18 00 8a 01 19 00 16 00 12 03 19 00 0b 00 6e 09 18 00 9a 01 19 00 16 00 da 07 19 00 0b 00 6e 1d 18 00 aa 01 19 00 16 00 9e 0d 19 00 0b 00 6e 63 18 00 ba 01 19 00 16 00 f8 0f fe 00 24 00 6e 04 19 00 0b 00 6e 00 18 00 fe 01 19 00 2f 01 1b fd 1a 00 82 60 81 40 82 6f 82 88 82 8f 82 85 82 8e 82 89 82 98 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 01 18 00 4e 02 19 00 2f 02 1b fd 1a 00 82 60 81 40 82 67 82 85 82 92 82 83 82 95 82 8c 82 85 82 93 82 6a 82 81 82 82 82 95 82 94 82 85 82 92 82 89 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 02 18 00 92 02 19 00 2f 03 1b fd 1a 00 82 60 81 40 82 6c 82 85 82 87 82 81 82 72 82 85 82 81 82 84 82 92 82 81 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 03 18 00 d6 02 19 00 2f 04 1b fd 1a 00 82 60 81 40 82 72 82 88 82 8f 82 87 82 95 82 8e 82 66 82 85 82 8b 82 8f 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 04 18 00 12 03 19 00 2f 05 1b fd 1a 00 82 60 81 40 82 6c 82 99 82 8f 82 94 82 89 82 93 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 24 00 6e 13 19 00 0b 00 6e 00 18 00 58 03 19 00 2f 06 1b fd 1a 00 82 60 81 40 82 6c 82 85 82 94 82 81 82 8c 82 66 82 92 82 85 82 99 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 01 18 00 90 03 19 00 2f 07 1b fd 1a 00 82 60 81 40 82 6c 82 81 82 8d 82 85 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 02 18 00 cc 03 19 00 2f 08 1b fd 1a 00 82 60 81 40 82 6c 82 8f 82 8e 82 9a 82 81 82 85 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 03 18 00 0e 04 19 00 2f 09 1b fd 1a 00 82 60 81 40 82 72 82 8b 82 95 82 8c 82 8c 82 66 82 92 82 85 82 99 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 04 18 00 50 04 19 00 2f 0a 1b fd 1a 00 82 60 81 40 82 6c 82 85 82 94 82 81 82 8c 82 6c 82 81 82 8d 82 85 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 05 18 00 88 04 19 00 2f 0b 1b fd 1a 00 82 60 81 40 82 75 82 81 82 84 82 85 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 06 18 00 c4 04 19 00 2f 0c 1b fd 1a 00 82 60 82 8e 81 40 82 60 82 8e 82 84 82 92 82 8f 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 07 18 00 fc 04 19 00 2f 0d 1b fd 1a 00 82 60 81 40 82 66 82 89 82 92 82 8f 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 08 18 00 34 05 19 00 2f 0e 1b fd 1a 00 82 60 82 8e 81 40 82 64 82 94 82 85 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 09 18 00 72 05 19 00 2f 0f 1b fd 1a 00 82 60 81 40 82 6c 82 85 82 87 82 81 82 84 82 92 82 81 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 0a 18 00 aa 05 19 00 2f 10 1b fd 1a 00 82 60 81 40 82 6f 82 89 82 98 82 89 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 0b 18 00 ea 05 19 00 2f 11 1b fd 1a 00 82 60 81 40 82 63 82 89 82 87 82 89 82 94 82 81 82 8d 82 81 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 0c 18 00 22 06 19 00 2f 12 1b fd 1a 00 82 60 81 40 82 66 82 85 82 8b 82 8f 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 0d 18 00 66 06 19 00 2f 13 1b fd 1a 00 82 60 81 40 82 76 82 81 82 92 82 95 82 6c 82 8f 82 8e 82 9a 82 81 82 85 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 0e 18 00 9e 06 19 00 2f 14 1b fd 1a 00 82 60 81 40 82 69 82 89 82 8a 82 89 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 0f 18 00 e6 06 19 00 2f 15 1b fd 1a 00 82 60 81 40 82 6a 82 89 82 8e 82 87 81 40 82 8f 82 86

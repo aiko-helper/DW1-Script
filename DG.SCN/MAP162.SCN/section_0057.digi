@@ -1,0 +1,158 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; MAP162.SCN, section 57
+
+section_57:     ; len=1810
+  0000:  if !trigger(87) OR trigger(205) then section_57+0x14
+  0010:  jump section_57+0x2a
+  0014:  if !trigger(354) OR trigger(88) then section_57+0x28
+  0024:  jump section_57+0x498
+  0028:  endSection
+  002a:  unsetTrigger 87
+  002e:  loadDigimon 129
+  0030:  setDigimon 129 4 0
+  0034:  lookAt 253 9
+  0038:  lookAt 252 9
+  003c:  setRotation 9 2048
+  0040:  delay 20
+  0044:  moveCameraToEntity 9 20
+  0048:  waitForEntity 200
+  004a:  entityWalkTo 9 256 -3385 0
+  0052:  setDialogOwner 9
+  0054:  showTextbox "I found you!\n"
+  0072:  moveCameraToEntity 253 20
+  0076:  waitForEntity 200
+  0078:  playAnimation 253 15
+  007c:  delay 5
+  0080:  setDialogOwner 253
+  0082:  showTextbox "Oh no, he's coming\nright for us!\n"
+  00c8:  entityWalkTo 9 432 -2236 0
+  00d0:  waitForEntity 9
+  00d2:  lookAt 9 253
+  00d6:  delay 5
+  00da:  setDialogOwner 9
+  00dc:  showTextbox "I finally met you!\nI'm Greymon.\nNow let's settle things!\n"
+  0152:  playAnimation 253 1
+  0156:  delay 5
+  015a:  setDialogOwner 253
+  015c:  showTextbox "What?!\n"
+  016e:  setDialogOwner 9
+  0170:  showTextbox "I got here by following\nthe rumors about you.\nI want to fight you!\n"
+  01fa:  showTextbox "If I win,\nI want this street sign!\n"
+  0244:  playAnimation 253 16
+  0248:  delay 30
+  024c:  setDialogOwner 253
+  024e:  showTextbox "There's no sign.\n"
+  0274:  setDialogOwner 9
+  0276:  showTextbox "I don't care,\nlet's fight anyway!\n"
+  02be:  entityWalkTo 252 50 -1950 1
+  02c6:  waitForEntity 252
+  02c8:  lookAt 252 9
+  02cc:  delay 5
+  02d0:  setTrigger 1
+  02d4:  setPStat 250 1
+  02d8:  setPStat 251 9
+  02dc:  setPStat 252 255
+  02e0:  setPStat 253 255
+  02e4:  fadeOutHUD
+  02e6:  delay 1
+  02ea:  startBattle
+  02ec:  unsetTrigger 1
+  02f0:  setPStat 250 0
+  02f4:  lookAt 253 9
+  02f8:  lookAt 9 253
+  02fc:  lookAt 252 9
+  0300:  setDialogOwner 9
+  0302:  showTextbox "Hey, you guys are good!\nBut to finish your goal,\nyou're still amateurs.\n"
+  0396:  playAnimation 253 1
+  039a:  delay 5
+  039e:  setDialogOwner 253
+  03a0:  showTextbox "Hmmm\n"
+  03ae:  setDialogOwner 9
+  03b0:  showTextbox "I'll stay and train you.\nYou'll get much better!\n"
+  0416:  jump section_57+0x41a
+  041a:  entityWalkTo 9 412 -4500 1
+  0422:  if pstat[101] >= 3 then section_57+0x442
+  042e:  addPStat 101 1
+  0432:  delay 20
+  0436:  lookAt 253 9
+  043a:  lookAt 252 9
+  043e:  jump section_57+0x41a
+  0442:  waitForEntity 9
+  0444:  unloadEntity 9
+  0446:  setPStat 101 0
+  044a:  playSound 8 12
+  044e:  setDialogOwner 255
+  0450:  showTextbox "Greymon joins the city!\n"
+  0484:  setTrigger 87
+  0488:  setTrigger 205
+  048c:  addPStat 1 2
+  0490:  moveCameraToEntity 253 20
+  0494:  waitForEntity 200
+  0496:  endSection
+  0498:  unsetTrigger 354
+  049c:  loadDigimon 131
+  049e:  setDigimon 131 5 0
+  04a2:  lookAt 253 10
+  04a6:  lookAt 252 10
+  04aa:  lookAt 10 253
+  04ae:  delay 20
+  04b2:  moveCameraToEntity 10 20
+  04b6:  waitForEntity 200
+  04b8:  moveEntityTo 10 2084 -211 30
+  04c0:  moveCameraToEntity 253 20
+  04c4:  delay 20
+  04c8:  playAnimation 253 17
+  04cc:  playAnimation 252 40
+  04d0:  setPStat 200 10
+  04d4:  dealMapDamage 200
+  04d6:  delay 15
+  04da:  entityWalkTo 10 432 -2236 1
+  04e2:  moveCameraTo 2 410 -1474
+  04e8:  waitForEntity 200
+  04ea:  entityWalkTo 10 432 -2236 1
+  04f2:  waitForEntity 10
+  04f4:  lookAt 253 10
+  04f8:  lookAt 252 10
+  04fc:  lookAt 10 253
+  0500:  delay 5
+  0504:  setDialogOwner 10
+  0506:  showTextbox "Alright, I found you, <LIGHTBLUE><PLAYER><WHITE>!\n"
+  0540:  setDialogOwner 253
+  0542:  showTextbox "Ambush!\n"
+  0556:  setDialogOwner 10
+  0558:  showTextbox "My goal is to beat you.\n"
+  058c:  setDialogOwner 253
+  058e:  showTextbox "Those eyes! He must be\nbrain washed!\n"
+  05dc:  entityWalkTo 252 50 -1950 1
+  05e4:  waitForEntity 252
+  05e6:  lookAt 252 10
+  05ea:  delay 5
+  05ee:  setTrigger 1
+  05f2:  setPStat 250 1
+  05f6:  setPStat 251 10
+  05fa:  setPStat 252 255
+  05fe:  setPStat 253 255
+  0602:  fadeOutHUD
+  0604:  delay 1
+  0608:  startBattle
+  060a:  unsetTrigger 1
+  060e:  setPStat 250 0
+  0612:  lookAt 253 10
+  0616:  lookAt 10 253
+  061a:  lookAt 252 10
+  061e:  setDialogOwner 10
+  0620:  showTextbox "No matter what I do,\nI must defeat him.\n"
+  0674:  playAnimation 10 29
+  0678:  delay 30
+  067c:  playAnimation 253 7
+  0680:  delay 5
+  0684:  setDialogOwner 253
+  0686:  showTextbox "What are you talking about?\nYou gotta get treatment.\n"
+  06f4:  entityWalkToEntity 253 1 10
+  06f8:  entityWalkToEntity 252 1 10
+  06fc:  delay 40
+  0700:  setTrigger 88
+  0704:  setTrigger 355
+  0708:  setTrigger 354
+  070c:  warpTo 206 1 60
+  0710:  endSection

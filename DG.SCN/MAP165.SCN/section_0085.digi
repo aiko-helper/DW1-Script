@@ -1,0 +1,28 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; MAP165.SCN, section 85
+
+section_85:     ; len=666
+  0000:  if trigger(94) then section_85+0x1f4
+  000c:  setTrigger 94
+  0010:  setDialogOwner 253
+  0012:  showTextbox "What's this machine?\n"
+  0040:  lookAt 5 253
+  0044:  lookAt 253 5
+  0048:  delay 5
+  004c:  setDialogOwner 5
+  004e:  showTextbox "That's a <PINK>Save Machine\nfor Memory Card Battle\nData<WHITE>.\n"
+  00bc:  showTextbox "Using that machine, you can\nsave your current partner's\ndata for battle.\n"
+  0152:  showTextbox "All you have to do is press\n<LIGHTBLUE><X> <WHITE>and the machine\nwill tell you what to do.\n"
+  01ea:  setRotation 253 0
+  01ee:  delay 5
+  01f2:  endSection
+  01f4:  setDialogOwner 255
+  01f6:  showTextbox "Do you want to use the\n<PINK>Save Machine for\nMemory Card Battle<WHITE>?\n"
+  0276:  setSelection section_85+0x292 section_85+0x298
+  027c:  showTextbox "Yes\nNo\n"
+  028e:  waitForSelectionChoice
+  0290:  endSection
+  0292:  fadeOutHUD
+  0294:  callSubroutine 48
+  0296:  endSection
+  0298:  endSection

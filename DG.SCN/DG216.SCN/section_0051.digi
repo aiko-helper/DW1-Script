@@ -1,0 +1,71 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG216.SCN, section 51
+
+section_51:     ; len=1568
+  0000:  if trigger(53) then section_51+0x108
+  000c:  setTrigger 53
+  0010:  setDialogOwner 5
+  0012:  showTextbox "Hello, <LIGHTBLUE><PLAYER><WHITE>.\nSurprise! I opened\na clinic!\n"
+  0068:  showTextbox "It's for treating sickness\nand injuries. It's not free,\nbut it will be cheap.\n"
+  0108:  if (cond & 0x20) == 0x01 OR (cond & 0x40) == 0x01 then section_51+0x11c
+  0118:  jump section_51+0x376
+  011c:  setDialogOwner 5
+  011e:  showTextbox "Your Digimon doesn't look\nwell. You need to take\ncare of his health.\n"
+  01ac:  showTextbox "I'll treat him now and\ngive you a discount.\nThree hundred bits.\n"
+  0230:  if money < 300 then section_51+0x24a
+  0240:  reduceMoney 300
+  0246:  jump section_51+0x2b8
+  024a:  setDialogOwner 5
+  024c:  showTextbox "You don't have enough bits?\nPay me what you can.\n"
+  02b2:  reduceMoney 300
+  02b8:  entityWalkTo 252 -200 -1039 0
+  02c0:  waitForEntity 252
+  02c2:  lookAt 5 252
+  02c6:  lookAt 253 252
+  02ca:  delay 10
+  02ce:  moveCameraToEntity 252 20
+  02d2:  waitForEntity 200
+  02d4:  playSound 8 2
+  02d8:  delay 40
+  02dc:  playSound 8 3
+  02e0:  delay 20
+  02e4:  removeCondition 32
+  02e6:  removeCondition 64
+  02e8:  playAnimation 252 11
+  02ec:  delay 20
+  02f0:  setDialogOwner 5
+  02f2:  showTextbox "Everything is OK now.\nJust be careful from now on.\n"
+  035c:  if stat[8] < 50 then section_51+0x36e
+  036a:  setStats 8 50
+  036e:  moveCameraToEntity 253 10
+  0372:  waitForEntity 200
+  0374:  endSection
+  0376:  setDialogOwner 5
+  0378:  showTextbox "Your Digimon looks fine.\nWhat do you need?\n"
+  03d2:  setDialogOwner 253
+  03d4:  setSelection section_51+0x44a section_52+0xd2 section_52+0x18c
+  03dc:  showTextbox "Get rid of his Tiredness\nSell me Medicine\nNothing\n"
+  0444:  waitForSelectionChoice
+  0446:  jump section_52+0x18c
+  044a:  if stat[8] < 80 then section_51+0x4ca
+  0458:  setDialogOwner 5
+  045a:  showTextbox "<ORANGE><DIGIMON><WHITE>'s Tiredness is very\nhigh, he needs to rest now.\n"
+  04c6:  jump section_51+0x604
+  04ca:  if stat[8] < 50 then section_51+0x526
+  04d8:  setDialogOwner 5
+  04da:  showTextbox "<ORANGE><DIGIMON><WHITE> is tired.\nHe should rest now.\n"
+  0522:  jump section_51+0x604
+  0526:  if stat[8] < 20 then section_51+0x5ae
+  0534:  setDialogOwner 5
+  0536:  showTextbox "<ORANGE><DIGIMON><WHITE> seems to be a\nbit tired. He shouldn't\npush himself.\n"
+  05aa:  jump section_51+0x604
+  05ae:  setDialogOwner 5
+  05b0:  showTextbox "<ORANGE><DIGIMON><WHITE> is fine.\nWatch his Tiredness level.\n"
+  0604:  storeDate 105
+  0606:  addMinutesToDate 105 60
+  060c:  advanceToDate 105
+  060e:  addStats 6 500
+  0612:  addStats 7 500
+  0616:  reduceStats 8 20
+  061a:  warpTo 213 1 255
+  061e:  endSection

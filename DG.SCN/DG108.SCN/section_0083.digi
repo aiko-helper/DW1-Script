@@ -1,0 +1,44 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG108.SCN, section 83
+
+section_83:     ; len=632
+  0000:  setRotation 253 2048
+  0004:  setTextboxOrigin -506 0 -1937
+  000c:  callSubroutine 39
+  000e:  if !trigger(219) then section_83+0x6a
+  001a:  setDialogOwner 200
+  001c:  showTextbox "<GREEN>Training:\nTree Striking, revise <WHITE>\n"
+  0066:  jump section_83+0xa6
+  006a:  setDialogOwner 200
+  006c:  showTextbox "<GREEN>Training: Tree Striking <WHITE>\n"
+  00a6:  setSelection section_83+0xdc section_83+0x11a section_83+0x1ee
+  00ae:  showTextbox "Begin\nExplain\nQuit\n"
+  00d8:  waitForSelectionChoice
+  00da:  endSection
+  00dc:  setDialogOwner 200
+  00de:  setSelection section_83+0x1f0 section_83+0x200 section_83+0x1ee
+  00e6:  showTextbox "Normal\nBonus Try\nQuit\n"
+  0116:  waitForSelectionChoice
+  0118:  endSection
+  011a:  setDialogOwner 200
+  011c:  showTextbox "Strike a tree for practice.\nGreatly boosts Offensive\nPower and Speed.\n"
+  01ac:  setSelection section_83+0x11a section_83+0xdc section_83+0x1ee
+  01b4:  showTextbox "Explain again\nBegin\nQuit\n"
+  01ea:  waitForSelectionChoice
+  01ec:  endSection
+  01ee:  endSection
+  01f0:  fadeOutHUD
+  01f2:  setPStat 254 1
+  01f6:  setPStat 246 0
+  01fa:  callDigimonSubroutine 214
+  01fc:  callSubroutine 7
+  01fe:  endSection
+  0200:  setTexboxMode 1 0
+  0204:  setDialogOwner 255
+  0206:  showTextbox "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures\n"
+  0266:  setPStat 254 1
+  026a:  setPStat 246 1
+  026e:  callDigimonSubroutine 214
+  0270:  callSubroutine 7
+  0272:  setTexboxMode 0 0
+  0276:  endSection

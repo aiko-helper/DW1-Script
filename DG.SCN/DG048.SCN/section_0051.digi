@@ -1,0 +1,24 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG048.SCN, section 51
+
+section_51:     ; len=224
+  0000:  if !trigger(182) OR trigger(235) then section_51+0x6e
+  0010:  setDialogOwner 253
+  0012:  showTextbox "Is the elevator causing\nthe ground to rise?\n"
+  006e:  if trigger(175) then section_51+0x7c
+  007a:  endSection
+  007c:  setDialogOwner 253
+  007e:  setSelection section_51+0xb6 section_51+0xd4
+  0084:  showTextbox "Get in\nDon't get in\n"
+  00b0:  waitForSelectionChoice
+  00b2:  jump section_51+0xd4
+  00b6:  entityWalkTo 253 1220 3988 0
+  00be:  entityWalkTo 252 1201 3486 0
+  00c6:  waitForEntity 253
+  00c8:  waitForEntity 252
+  00ca:  playSound 8 5
+  00ce:  warpTo 37 3 53
+  00d2:  endSection
+  00d4:  entityWalkTo 253 1152 2851 0
+  00dc:  waitForEntity 253
+  00de:  endSection

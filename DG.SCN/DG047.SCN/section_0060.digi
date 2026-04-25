@@ -1,0 +1,104 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG047.SCN, section 60
+
+section_60:     ; len=1614
+  0000:  delay 40
+  0004:  moveCameraTo 20 -200 320
+  000a:  playAnimation 253 15
+  000e:  delay 20
+  0012:  setDialogOwner 253
+  0014:  showTextbox "Uggh!\n"
+  0024:  setDialogOwner 9
+  0026:  showTextbox "...\n"
+  0032:  setDialogOwner 253
+  0034:  showTextbox "Are you serious?!\n"
+  005c:  waitForEntity 9
+  005e:  unloadEntity 9
+  0060:  delay 20
+  0064:  setDialogOwner 253
+  0066:  showTextbox "He's gone.\nWas that my imagination?\n"
+  00b2:  playAnimation 8 28
+  00b6:  delay 40
+  00ba:  setTrigger 1
+  00be:  setPStat 250 1
+  00c2:  setPStat 251 8
+  00c6:  setPStat 252 255
+  00ca:  setPStat 253 255
+  00ce:  fadeOutHUD
+  00d0:  delay 1
+  00d4:  startBattle
+  00d6:  unsetTrigger 1
+  00da:  setPStat 250 0
+  00de:  entityWalkTo 8 -156 1092 0
+  00e6:  waitForEntity 8
+  00e8:  playAnimation 8 43
+  00ec:  delay 40
+  00f0:  setDialogOwner 253
+  00f2:  showTextbox "We dealt with him?!\n"
+  011e:  lookAt 253 8
+  0122:  waitForEntity 8
+  0124:  waitForEntity 253
+  0126:  unloadEntity 8
+  0128:  setDialogOwner 253
+  012a:  showTextbox "What?!\n"
+  013c:  loadDigimon 93
+  013e:  setDigimon 93 5 0
+  0142:  setDialogOwner 10
+  0144:  showTextbox "What?\n"
+  0154:  lookAt 10 253
+  0158:  delay 20
+  015c:  setDialogOwner 10
+  015e:  showTextbox "All of a sudden, I passed out.\nI'm sorry.\n"
+  01b6:  setTrigger 202
+  01ba:  setPStat 16 0
+  01be:  setTrigger 243
+  01c2:  setPStat 28 0
+  01c6:  entityWalkTo 10 320 -1546 1
+  01ce:  if pstat[101] >= 3 then section_60+0x1ee
+  01da:  addPStat 101 1
+  01de:  delay 20
+  01e2:  lookAt 253 10
+  01e6:  lookAt 252 10
+  01ea:  jump section_60+0x1c6
+  01ee:  waitForEntity 10
+  01f0:  unloadEntity 10
+  01f2:  setPStat 101 0
+  01f6:  playAnimation 253 16
+  01fa:  delay 40
+  01fe:  setDialogOwner 253
+  0200:  showTextbox "Is it the curse of Analogman?\nI don't care.\n"
+  025c:  delay 20
+  0260:  if !trigger(220) AND !trigger(214) AND pstat[1] < 50 then section_60+0x27c
+  0274:  jump section_60+0x2e0
+  0278:  jump section_60+0x280
+  027c:  jump section_60+0x280
+  0280:  if !trigger(221) then section_60+0x294
+  028c:  jump section_60+0x2bc
+  0290:  jump section_60+0x298
+  0294:  jump section_60+0x298
+  0298:  if !trigger(225) then section_60+0x2a8
+  02a4:  warpTo 170 0 255
+  02a8:  if !trigger(246) then section_60+0x2b8
+  02b4:  warpTo 169 0 255
+  02b8:  warpTo 168 0 255
+  02bc:  if !trigger(225) then section_60+0x2cc
+  02c8:  warpTo 173 0 255
+  02cc:  if !trigger(246) then section_60+0x2dc
+  02d8:  warpTo 172 0 255
+  02dc:  warpTo 171 0 255
+  02e0:  if !trigger(221) then section_60+0x2f4
+  02ec:  jump section_60+0x31c
+  02f0:  jump section_60+0x2f8
+  02f4:  jump section_60+0x2f8
+  02f8:  if !trigger(225) then section_60+0x308
+  0304:  warpTo 176 0 255
+  0308:  if !trigger(246) then section_60+0x318
+  0314:  warpTo 175 0 255
+  0318:  warpTo 174 0 255
+  031c:  if !trigger(225) then section_60+0x32c
+  0328:  warpTo 179 0 255
+  032c:  if !trigger(246) then section_60+0x33c
+  0338:  warpTo 178 0 255
+  033c:  warpTo 177 0 255
+  0340:  endSection
+  0342:  garbage 18 00 fe 00 18 00 05 00 1a 00 06 00 a2 00 07 00 2a 01 3c 00 b2 01 ff ff fe 00 1b 05 1a 00 82 65 82 8f 82 92 82 8d 82 81 82 94 82 89 82 8f 82 8e 81 40 82 62 81 49 0d 00 00 00 4e 06 1a ff 23 02 01 00 4e 07 e3 01 46 00 01 00 4a 06 4a 07 67 00 0a 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc 06 1e 00 fd 07 27 00 67 00 01 00 66 00 1e 00 fa 00 1d 00 01 00 4e 05 26 02 fe f7 01 00 4e 06 26 02 fe f7 01 00 4e 07 26 02 fe f7 01 00 4a 05 4a 06 4a 07 48 05 48 06 48 07 50 00 fd 0a 4a c8 fe 00 1b 06 1a 00 82 65 82 8f 82 92 82 8d 82 81 82 94 82 89 82 8f 82 8e 81 40 82 60 81 49 0d 00 00 00 4e 05 d1 fc 38 01 01 00 4e 07 ae 02 38 01 01 00 4a 05 4a 07 67 00 0a 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc 06 1e 00 fd 07 27 00 67 00 01 00 66 00 1e 00 fa 00 1d 00 01 00 4e 05 26 02 fe f7 01 00 4e 06 26 02 fe f7 01 00 4e 07 26 02 fe f7 01 00 4a 05 4a 06 4a 07 48 05 48 06 48 07 50 00 fd 0a 4a c8 fe 00 1b 07 1a 00 82 65 82 8f 82 92 82 8d 82 81 82 94 82 89 82 8f 82 8e 81 40 82 61 81 49 0d 00 00 00 4e 06 be 02 57 03 01 00 4e 05 1d 00 4a 02 01 00 4a 05 4a 06 67 00 0a 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc 06 1e 00 fd 07 27 00 67 00 01 00 66 00 1e 00 fa 00 1d 00 01 00 4e 05 26 02 fe f7 01 00 4e 06 26 02 fe f7 01 00 4e 07 26 02 fe f7 01 00 4a 05 4a 06 4a 07 48 05 48 06 48 07 50 00 fd 0a 4a c8 fe 00 67 00 28 00 4f 14 38 ff 40 01 56 00 fd 0f 67 00 14 00 1b fd 1a 00 82 74 82 87 82 87 82 88 81 49 0d 00 00 00 1b 09 1a 00 81 42 81 42 81 42 0d 00 00 00 1b fd 1a 00 82 60 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 93 82 85 82 92 82 89 82 8f 82 95 82 93 81 48 81 49 0d 00 00 00 4a 09 48 09 67 00 14 00 1b fd 1a 00 82 67 82 85 81 75 82 93 81 40 82 87 82 8f 82 8e 82 85 81 42 0d 00 82 76 82 81 82 93 81 40 82 94 82 88 82 81 82 94 81 40 82 8d 82 99 81 40 82 89 82 8d 82 81 82 87 82 89 82 8e 82 81 82 94 82 89 82 8f 82 8e 81 48 0d 00 00 00 56 00 08 1c 67 00 28 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 08 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4e 08 64 ff 44 04 00 00 4a 08 56 00 08 2b 67 00 28 00 1b fd 1a 00 82 76 82 85 81 40 82 84 82 85 82 81 82 8c 82 94 81 40 82 97 82 89 82 94 82 88 81 40 82 88 82 89 82 8d 81 48 81 49 0d 00 00 00 4c 00 fd 08 4a 08 4a fd 48 08 1b fd 1a 00 82 76 82 88 82 81 82 94 81 48 81 49 0d 00 00 00 46 5d 47 5d 05 00 1b 0a 1a 00 82 76 82 88 82 81 82 94 81 48 0d 00 00 00 4c 00 0a fd

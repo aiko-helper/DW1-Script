@@ -1,0 +1,12 @@
+; DG012.SCN
+;!script index=12 start=0xe800 end=0xf000 headerU16=0x20 sentinelOff=0x24
+;!sections onEnter section_81 section_53 section_5 section_6 section_7 section_8
+
+onEnter:     ; len=46
+  0000:  storeRandom 110 99
+  0004:  if pstat[110] > 9 then onEnter+0x16
+  0010:  spawnItem 44 55 43
+  0016:  storeRandom 110 99
+  001a:  if pstat[110] > 4 then onEnter+0x2c
+  0026:  spawnItem 44 68 46
+  002c:  endSection

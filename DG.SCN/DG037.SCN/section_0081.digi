@@ -1,0 +1,41 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG037.SCN, section 81
+
+section_81:     ; len=284
+  0000:  setRotation 253 1844
+  0004:  setDialogOwner 255
+  0006:  showTextbox "Elevator\n"
+  001c:  setDialogOwner 253
+  001e:  setSelection section_81+0x60 section_81+0x11a
+  0024:  showTextbox "Press DOWN\nDon't get in\n"
+  0058:  waitForSelectionChoice
+  005a:  jump section_81+0x11a
+  005e:  endSection
+  0060:  if !trigger(176) then section_81+0xca
+  006c:  playSound 8 4
+  0070:  rotate3DObject 0 1
+  0074:  delay 1
+  0078:  rotate3DObject 1 1
+  007c:  delay 1
+  0080:  rotate3DObject 0 1
+  0084:  delay 1
+  0088:  rotate3DObject 1 1
+  008c:  delay 1
+  0090:  rotate3DObject 0 1
+  0094:  delay 1
+  0098:  rotate3DObject 1 1
+  009c:  delay 1
+  00a0:  rotate3DObject 0 1
+  00a4:  delay 1
+  00a8:  rotate3DObject 1 1
+  00ac:  delay 1
+  00b0:  playSound 8 5
+  00b4:  if pstat[16] != 3 then section_81+0xc4
+  00c0:  warpTo 226 0 60
+  00c4:  warpTo 48 1 54
+  00c8:  endSection
+  00ca:  delay 20
+  00ce:  setDialogOwner 253
+  00d0:  showTextbox "Nothing happens.\nThat's not good.\n"
+  0118:  endSection
+  011a:  endSection

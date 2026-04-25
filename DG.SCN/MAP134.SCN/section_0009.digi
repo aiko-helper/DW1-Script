@@ -1,0 +1,85 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; MAP134.SCN, section 9
+
+section_9:     ; len=1672
+  0000:  setDialogOwner 9
+  0002:  showTextbox "Bird brain!\n"
+  001e:  setDialogOwner 9
+  0020:  showTextbox "Numbskull!\n"
+  003a:  setDialogOwner 9
+  003c:  showTextbox "Dimwit!\n"
+  0050:  setDialogOwner 9
+  0052:  showTextbox "Chowder head!\n"
+  0072:  setDialogOwner 9
+  0074:  showTextbox "Dumb, dumb!\n"
+  0090:  setDialogOwner 9
+  0092:  showTextbox "Eau de Geek!\n"
+  00b0:  setDialogOwner 253
+  00b2:  showTextbox "What did you say?!\n"
+  00dc:  setSelection section_9+0x134 section_9+0x2be
+  00e2:  showTextbox "That gets me mad\nI'll just ignore them\n"
+  0134:  setTrigger 1
+  0138:  setPStat 250 1
+  013c:  setPStat 251 9
+  0140:  setPStat 252 255
+  0144:  setPStat 253 255
+  0148:  fadeOutHUD
+  014a:  delay 1
+  014e:  startBattle
+  0150:  unsetTrigger 1
+  0154:  setPStat 250 0
+  0158:  lookAt 253 9
+  015c:  lookAt 9 253
+  0160:  lookAt 252 9
+  0164:  setDialogOwner 9
+  0166:  showTextbox "They aren't nice!\n"
+  018e:  playAnimation 253 15
+  0192:  delay 20
+  0196:  setTrigger 309
+  019a:  jump section_9+0x19e
+  019e:  entityWalkTo 9 -174 -388 1
+  01a6:  if pstat[101] >= 3 then section_9+0x1c6
+  01b2:  addPStat 101 1
+  01b6:  delay 20
+  01ba:  lookAt 253 9
+  01be:  lookAt 252 9
+  01c2:  jump section_9+0x19e
+  01c6:  waitForEntity 9
+  01c8:  unloadEntity 9
+  01ca:  setPStat 101 0
+  01ce:  moveCameraToEntity 253 10
+  01d2:  waitForEntity 200
+  01d4:  setDialogOwner 253
+  01d6:  showTextbox "Wait, what is it?\n"
+  01fe:  loadDigimon 110
+  0200:  setDigimon 110 3 0
+  0204:  setDigimon 110 5 0
+  0208:  setDigimon 110 6 0
+  020c:  setDigimon 110 7 0
+  0210:  delay 40
+  0214:  playAnimation 253 24
+  0218:  delay 20
+  021c:  setDialogOwner 253
+  021e:  showTextbox "!\n"
+  0226:  entityWalkToEntity 8 1 253
+  022a:  entityWalkToEntity 10 1 253
+  022e:  entityWalkToEntity 11 1 253
+  0232:  entityWalkToEntity 12 1 253
+  0236:  delay 40
+  023a:  setDialogOwner 8
+  023c:  showTextbox "My master is calling me.\nCome with me. Ribbit.\n"
+  029e:  playAnimation 253 25
+  02a2:  delay 20
+  02a6:  setDialogOwner 253
+  02a8:  showTextbox "Oh no!\n"
+  02ba:  warpTo 141 0 5
+  02be:  playAnimation 253 25
+  02c2:  delay 20
+  02c6:  setDialogOwner 253
+  02c8:  showTextbox "Ha ha ha, he's bluffing.\nI won't deal with kids.\n"
+  032e:  endSection
+  0330:  fadeOutHUD
+  0332:  delay 1
+  0336:  startBattle
+  0338:  endSection
+  033a:  garbage 1c 00 fe 00 1c 00 05 00 90 00 06 00 be 00 07 00 e2 00 08 00 02 01 09 00 78 01 ff ff 24 00 6e 63 19 00 0b 00 6e 0b 18 00 32 00 19 00 74 2c 3b 00 32 00 24 00 6e 63 19 00 0b 00 6e 11 18 00 48 00 19 00 74 2c 21 00 2a 00 24 00 6e 63 19 00 0b 00 6e 02 18 00 5e 00 19 00 74 45 25 00 3d 00 19 00 00 00 3f 01 18 00 7e 00 19 00 57 00 18 01 57 00 19 01 57 00 1a 01 57 00 1b 01 16 00 8e 00 7c 00 20 00 27 00 09 08 7c 00 23 00 22 00 08 08 fe 00 1b 05 1a 00 82 72 82 88 82 81 82 8b 82 81 81 40 82 93 82 88 82 81 82 8b 82 81 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 0b 01 fe 00 1b 06 1a 00 82 72 82 88 82 92 82 85 82 81 82 95 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 0b 01 fe 00 1b 07 1a 00 82 71 82 89 82 82 82 82 82 89 82 94 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 08 1a 00 82 68 82 86 81 40 82 97 82 85 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 8b 82 8e 82 8f 82 83 82 8b 81 40 82 94 82 88 82 85 82 8d 81 40 82 8f 82 95 82 94 81 43 0d 00 82 97 82 85 81 75 82 8c 82 8c 81 40 82 87 82 85 82 94 81 40 82 8b 82 8e 82 8f 82 83 82 8b 82 85 82 84 81 40 82 8f 82 95 82 94 81 42 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 09 1a 00 82 61 82 89 82 92 82 84 81 40 82 82 82 92 82 81 82 89 82 8e 81 49 0d 00 00 00 1b 09 1a 00 82 6d 82 95 82 8d 82 82 82 93 82 8b 82 95 82 8c 82 8c 81 49 0d 00 00 00 1b 09 1a 00 82 63 82 89 82 8d 82 97 82 89 82 94 81 49 0d 00 00 00 1b 09 1a 00 82 62 82 88 82 8f 82 97 82 84 82 85 82 92 81 40 82 88 82 85 82 81 82 84 81 49 0d 00 00 00 1b 09 1a 00 82 63 82 95 82 8d 82 82 81 43 81 40 82 84 82 95 82 8d 82 82 81 49 0d 00 00 00 1b 09 1a 00 82 64 82 81 82 95 81 40 82 84 82 85 81 40 82 66 82 85 82 85 82 8b 81 49 0d 00 00 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 84 82 89 82 84 81 40 82 99 82 8f 82 95 81 40 82 93 82 81 82 99 81 48 81 49 0d 00 00 00 10 02 ac 02 36 04 1a 00 82 73 82 88 82 81 82 94 81 40 82 87 82 85 82 94 82 93 81 40 82 8d 82 85 81 40 82 8d 82 81 82 84 0d 00 82 68 81 75 82 8c 82 8c 81 40 82 8a 82 95 82 93 82 94 81 40 82 89 82 87 82 8e 82 8f 82 92 82 85 81 40 82 94 82 88 82 85 82 8d 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 09 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 09 4c 00 09 fd 4c 00 fc 09 1b 09 1a 00 82 73 82 88 82 85 82 99 81 40 82 81 82 92 82 85 82 8e 81 75 82 94 81 40 82 8e 82 89 82 83 82 85 81 49 0d 00 00 00 56 00 fd 0f 67 00 14 00 1c 00 35 01 16 00 16 03 4e 09 52 ff 7c fe 01 00 19 00 0d 00 65 03 18 00 3e 03 19 00 1f 00 65 01 67 00 14 00 4c 00 fd 09 4c 00 fc 09 16 00 16 03 4a 09 48 09 1e 00 65 00 50 00 fd 0a 4a c8

@@ -1,0 +1,26 @@
+; MAP149.SCN
+;!script index=149 start=0x69000 end=0x6a000 headerU16=0x30 sentinelOff=0x6925
+;!sections onEnter section_51 section_52 section_12 section_11 section_5 section_6 section_7 section_8 section_9 section_10
+
+onEnter:     ; len=166
+  0000:  storeDate 105
+  0002:  if pstat[107] != 11 OR pstat[108] < 55 then onEnter+0x16
+  0012:  jump onEnter+0x54
+  0016:  if pstat[107] != 12 OR pstat[108] > 5 then onEnter+0x2a
+  0026:  jump onEnter+0x54
+  002a:  if pstat[107] != 23 OR pstat[108] < 55 then onEnter+0x3e
+  003a:  jump onEnter+0x54
+  003e:  if pstat[107] != 0 OR pstat[108] > 5 then onEnter+0x52
+  004e:  jump onEnter+0x54
+  0052:  endSection
+  0054:  if trigger(332) then onEnter+0xa4
+  0060:  playAnimation 253 24
+  0064:  delay 15
+  0068:  setDialogOwner 253
+  006a:  showTextbox "There's no guard!\n"
+  0092:  playAnimation 253 0
+  0096:  moveCameraTo 20 2799 74
+  009c:  waitForEntity 200
+  009e:  moveCameraToEntity 253 15
+  00a2:  waitForEntity 200
+  00a4:  endSection

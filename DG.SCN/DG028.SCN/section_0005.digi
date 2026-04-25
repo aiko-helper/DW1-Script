@@ -1,0 +1,78 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG028.SCN, section 5
+
+section_5:     ; len=2018
+  0000:  if !trigger(234) then section_5+0x4a
+  000c:  setDialogOwner 5
+  000e:  showTextbox "I fixed the entrance sign.\n"
+  0048:  endSection
+  004a:  if trigger(140) then section_5+0x5a
+  0056:  jump section_5+0x5e
+  005a:  jump section_5+0x4ee
+  005e:  playAnimation 5 28
+  0062:  playSound 8 10
+  0066:  setDialogOwner 5
+  0068:  showTextbox "It's hot! Do something!\n"
+  009c:  playAnimation 5 28
+  00a0:  playAnimation 253 16
+  00a4:  delay 20
+  00a8:  setDialogOwner 253
+  00aa:  showTextbox "What's going on?\n"
+  00d0:  playSound 8 10
+  00d4:  setDialogOwner 5
+  00d6:  showTextbox "It's too hot!\nI can't take it anymore!\n"
+  0128:  setTrigger 1
+  012c:  setPStat 250 1
+  0130:  setPStat 251 5
+  0134:  setPStat 252 255
+  0138:  setPStat 253 255
+  013c:  fadeOutHUD
+  013e:  delay 1
+  0142:  startBattle
+  0144:  unsetTrigger 1
+  0148:  setPStat 250 0
+  014c:  lookAt 253 5
+  0150:  lookAt 5 253
+  0154:  lookAt 252 5
+  0158:  setDialogOwner 5
+  015a:  showTextbox "I got weird\nbecause of the heat.\n"
+  01a0:  playAnimation 253 25
+  01a4:  delay 20
+  01a8:  setDialogOwner 253
+  01aa:  showTextbox "I know it's hot, but...\nbe cool man!\n"
+  01f8:  setDialogOwner 5
+  01fa:  showTextbox "The more we dig, the hotter\nit gets. The tunnel\nis in a volcano.\n"
+  0280:  setDialogOwner 5
+  0282:  showTextbox "I don't think it's the only\nreason. Maybe there's\na fire nearby.\n"
+  0308:  playAnimation 253 16
+  030c:  delay 20
+  0310:  setDialogOwner 253
+  0312:  showTextbox "Hmmm\n"
+  0320:  setDialogOwner 5
+  0322:  showTextbox "I don't got a choice.\nI must bear this heat\nand keep on digging.\n"
+  03a8:  playAnimation 253 19
+  03ac:  delay 20
+  03b0:  setDialogOwner 253
+  03b2:  showTextbox "We'll check out the cause.\nIt'd be great if\nthe tunnel goes thru.\n"
+  043a:  setDialogOwner 5
+  043c:  showTextbox "You are a nice guy.\nI'll hurry and\ndig this tunnel!\n"
+  04a8:  delay 10
+  04ac:  playAnimation 253 0
+  04b0:  jump section_5+0x4b4
+  04b4:  entityWalkTo 5 1061 -767 0
+  04bc:  if pstat[101] >= 3 then section_5+0x4dc
+  04c8:  addPStat 101 1
+  04cc:  delay 20
+  04d0:  lookAt 253 5
+  04d4:  lookAt 252 5
+  04d8:  jump section_5+0x4b4
+  04dc:  setPStat 101 0
+  04e0:  waitForEntity 5
+  04e2:  moveCameraToEntity 253 10
+  04e6:  waitForEntity 200
+  04e8:  setTrigger 140
+  04ec:  endSection
+  04ee:  setDialogOwner 5
+  04f0:  showTextbox "Today, I'm in charge\nof cooking.\n"
+  0536:  endSection
+  0538:  garbage 0c 00 fe 00 0c 00 05 00 1e 00 ff ff 19 00 01 00 8c 00 18 00 1c 00 19 00 56 00 05 1c fe 00 19 00 00 00 ea 00 18 00 68 00 19 00 1b 05 1a 00 82 68 81 40 82 86 82 89 82 98 82 85 82 84 81 40 82 94 82 88 82 85 81 40 82 85 82 8e 82 94 82 92 82 81 82 8e 82 83 82 85 81 40 82 93 82 89 82 87 82 8e 81 42 0d 00 00 00 fe 00 19 00 01 00 8c 00 18 00 78 00 19 00 16 00 7c 00 16 00 0c 05 56 00 05 1c 5a 00 08 0a 1b 05 1a 00 82 68 82 94 81 75 82 93 81 40 82 88 82 8f 82 94 81 49 81 40 82 63 82 8f 81 40 82 93 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 49 0d 00 00 00 56 00 05 1c 56 00 fd 10 67 00 14 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 75 82 93 81 40 82 87 82 8f 82 89 82 8e 82 87 81 40 82 8f 82 8e 81 48 0d 00 00 00 5a 00 08 0a 1b 05 1a 00 82 68 82 94 81 75 82 93 81 40 82 94 82 8f 82 8f 81 40 82 88 82 8f 82 94 81 49 0d 00 82 68 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 94 82 81 82 8b 82 85 81 40 82 89 82 94 81 40 82 81 82 8e 82 99 82 8d 82 8f 82 92 82 85 81 49 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 1b 05 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 97 82 85 82 89 82 92 82 84 0d 00 82 82 82 85 82 83 82 81 82 95 82 93 82 85 81 40 82 8f 82 86 81 40 82 94 82 88 82 85 81 40 82 88 82 85 82 81 82 94 81 42 0d 00 00 00 56 00 fd 19 67 00 14 00 1b fd 1a 00 82 68 81 40 82 8b 82 8e 82 8f 82 97 81 40 82 89 82 94 81 75 82 93 81 40 82 88 82 8f 82 94 81 43 81 40 82 82 82 95 82 94 81 42 81 42 81 42 0d 00 82 82 82 85 81 40 82 83 82 8f 82 8f 82 8c 81 40 82 8d 82 81 82 8e 81 49 0d 00 00 00 1b 05 1a 00 82 73 82 88 82 85 81 40 82 8d 82 8f 82 92 82 85 81 40 82 97 82 85 81 40 82 84 82 89 82 87 81 43 81 40 82 94 82 88 82 85 81 40 82 88 82 8f 82 94 82 94 82 85 82 92 0d 00 82 89 82 94 81 40 82 87 82 85 82 94 82 93 81 42 81 40 82 73 82 88 82 85 81 40 82 94 82 95 82 8e 82 8e 82 85 82 8c 0d 00 82 89 82 93 81 40 82 89 82 8e 81 40 82 81 81 40 82 96 82 8f 82 8c 82 83 82 81 82 8e 82 8f 81 42 0d 00 00 00 1b 05 1a 00 82 68 81 40 82 84

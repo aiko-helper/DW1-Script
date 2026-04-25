@@ -1,0 +1,18 @@
+; DG140.SCN
+;!script index=140 start=0x63000 end=0x64000 headerU16=0x1c sentinelOff=0x2964
+;!sections onEnter section_51 section_5 section_6 section_7 section_8
+
+onEnter:     ; len=52
+  0000:  callSubroutine 41
+  0002:  if !trigger(350) then onEnter+0x32
+  000e:  setPStat 245 4
+  0012:  setBGM 22
+  0014:  setPStat 254 0
+  0018:  callSubroutine 42
+  001a:  loadDigimon 122
+  001c:  setDigimon 122 1 0
+  0020:  moveEntityTo 6 -100 1758 1
+  0028:  waitForEntity 6
+  002a:  playAnimation 6 29
+  002e:  setRotation 6 0
+  0032:  endSection

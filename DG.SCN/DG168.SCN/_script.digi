@@ -1,0 +1,26 @@
+; DG168.SCN
+;!script index=168 start=0x7b800 end=0x7e800 headerU16=0x38 sentinelOff=0x1e
+;!sections onEnter section_81 section_54 section_61 section_51 section_82 section_83 section_84 section_6 section_53 section_52 section_10 section_11
+
+onEnter:     ; len=122
+  0000:  setPStat 122 255
+  0004:  if trigger(257) then onEnter+0x24
+  0010:  setObjectVisibility 0 0
+  0014:  setObjectVisibility 1 0
+  0018:  setObjectVisibility 2 0
+  001c:  setObjectVisibility 3 0
+  0020:  jump onEnter+0x3c
+  0024:  setObjectVisibility 0 1
+  0028:  setObjectVisibility 1 1
+  002c:  setObjectVisibility 2 1
+  0030:  setObjectVisibility 3 1
+  0034:  setObjectVisibility 5 0
+  0038:  setObjectVisibility 6 0
+  003c:  if !trigger(257) OR trigger(50) then onEnter+0x50
+  004c:  setObjectVisibility 4 0
+  0050:  if !trigger(257) OR !trigger(50) then onEnter+0x64
+  0060:  setObjectVisibility 4 1
+  0064:  if !trigger(50) then onEnter+0x78
+  0070:  setObjectVisibility 7 0
+  0074:  setObjectVisibility 8 0
+  0078:  endSection

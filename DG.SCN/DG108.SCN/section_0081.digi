@@ -1,0 +1,42 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG108.SCN, section 81
+
+section_81:     ; len=648
+  0000:  setRotation 253 2048
+  0004:  setTextboxOrigin 1010 0 -975
+  000c:  callSubroutine 39
+  000e:  if !trigger(219) then section_81+0x70
+  001a:  setDialogOwner 200
+  001c:  showTextbox "<GREEN>Training:\nBoulder Moving, revision <WHITE>\n"
+  006c:  jump section_81+0xae
+  0070:  setDialogOwner 200
+  0072:  showTextbox "<GREEN>Training:\nBoulder Moving <WHITE>\n"
+  00ae:  setSelection section_81+0xe4 section_81+0x120 section_81+0x1fc
+  00b6:  showTextbox "Begin\nExplain\nQuit\n"
+  00e0:  waitForSelectionChoice
+  00e2:  endSection
+  00e4:  setSelection section_81+0x1fe section_81+0x20e section_81+0x1fc
+  00ec:  showTextbox "Normal\nBonus Try\nQuit\n"
+  011c:  waitForSelectionChoice
+  011e:  endSection
+  0120:  showTextbox "Boost power by pushing\nagainst boulder. Boosts Max\nHP and Offensive Power.\n"
+  01ba:  setSelection section_81+0x120 section_81+0xe4 section_81+0x1fc
+  01c2:  showTextbox "Explain again\nBegin\nQuit\n"
+  01f8:  waitForSelectionChoice
+  01fa:  endSection
+  01fc:  endSection
+  01fe:  fadeOutHUD
+  0200:  setPStat 254 0
+  0204:  setPStat 246 0
+  0208:  callDigimonSubroutine 214
+  020a:  callSubroutine 7
+  020c:  endSection
+  020e:  setTexboxMode 1 0
+  0212:  setDialogOwner 255
+  0214:  showTextbox "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n"
+  0276:  setPStat 254 0
+  027a:  setPStat 246 1
+  027e:  callDigimonSubroutine 214
+  0280:  callSubroutine 7
+  0282:  setTexboxMode 0 0
+  0286:  endSection

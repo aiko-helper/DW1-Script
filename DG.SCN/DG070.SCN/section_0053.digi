@@ -1,0 +1,41 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG070.SCN, section 53
+
+section_53:     ; len=330
+  0000:  if pstat[111] < 2 OR pstat[112] == 2 OR trigger(193) OR trigger(245) then section_53+0x66
+  0018:  setTrigger 193
+  001c:  playAnimation 253 16
+  0020:  setDialogOwner 253
+  0022:  showTextbox "Maybe I'll wait.\n"
+  0048:  setSelection section_53+0x68 section_51+0x14a
+  004e:  showTextbox "Wait\nGo\n"
+  0062:  waitForSelectionChoice
+  0064:  endSection
+  0066:  endSection
+  0068:  entityWalkToEntity 252 1 253
+  006c:  waitForEntity 252
+  006e:  lookAt 252 253
+  0072:  lookAt 253 252
+  0076:  waitForEntity 252
+  0078:  waitForEntity 253
+  007a:  playAnimation 253 8
+  007e:  setDialogOwner 253
+  0080:  showTextbox "Alright, <ORANGE><DIGIMON><WHITE>,\nget rid of Biyomon!\n"
+  00c8:  playAnimation 252 22
+  00cc:  delay 20
+  00d0:  entityWalkTo 253 2143 -1254 1
+  00d8:  entityWalkToEntity 252 1 5
+  00dc:  waitForEntity 252
+  00de:  lookAt 253 5
+  00e2:  jumpAndLink section_5+0x32e
+  00e6:  if pstat[112] != 2 then section_53+0x100
+  00f2:  entityWalkToEntity 252 1 5
+  00f6:  waitForEntity 252
+  00f8:  jump section_54+0x14a
+  00fc:  jump section_53+0x142
+  0100:  playAnimation 253 16
+  0104:  setDialogOwner 253
+  0106:  showTextbox "He went to the wrong place!\n"
+  0142:  moveCameraToEntity 253 10
+  0146:  waitForEntity 200
+  0148:  endSection

@@ -1,0 +1,13 @@
+; DG169.SCN
+;!script index=169 start=0x7e800 end=0x7f800 headerU16=0x14 sentinelOff=0x19
+;!sections onEnter section_81 section_6 section_51
+
+onEnter:     ; len=56
+  0000:  if pstat[30] >= 3 OR !trigger(178) then onEnter+0x1a
+  0010:  moveEntityTo 5 169 2232 5
+  0018:  waitForEntity 5
+  001a:  if pstat[30] >= 10 OR !trigger(179) then onEnter+0x36
+  002a:  moveEntityTo 5 169 2232 5
+  0032:  waitForEntity 5
+  0034:  endSection
+  0036:  endSection

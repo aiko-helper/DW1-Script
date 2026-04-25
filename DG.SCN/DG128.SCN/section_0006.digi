@@ -1,0 +1,64 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG128.SCN, section 6
+
+section_6:     ; len=814
+  0000:  if !trigger(11) OR !trigger(12) then section_6+0x2e
+  0010:  setDialogOwner 6
+  0012:  showTextbox "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n"
+  002a:  jump section_6+0xfe
+  002e:  if !trigger(12) OR !trigger(13) then section_6+0x5c
+  003e:  setDialogOwner 6
+  0040:  showTextbox "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n"
+  0058:  jump section_6+0xfe
+  005c:  if !trigger(12) OR !trigger(13) then section_6+0x8a
+  006c:  setDialogOwner 6
+  006e:  showTextbox "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n"
+  0086:  jump section_6+0xfe
+  008a:  if !trigger(11) AND !trigger(12) AND !trigger(13) then section_6+0xce
+  009e:  setDialogOwner 6
+  00a0:  showTextbox "Thanks for coming!\n"
+  00ca:  jump section_6+0xfe
+  00ce:  setDialogOwner 6
+  00d0:  showTextbox "Hello, I'm Mojyamon!\n"
+  00fe:  setPStat 254 6
+  0102:  setPStat 249 2
+  0106:  callSubroutine 2
+  0108:  if !trigger(11) AND !trigger(12) AND !trigger(13) then section_6+0x120
+  011c:  playAnimation 6 29
+  0120:  if !trigger(11) OR !trigger(12) then section_6+0x134
+  0130:  playAnimation 6 30
+  0134:  if !trigger(11) OR !trigger(13) then section_6+0x148
+  0144:  playAnimation 6 30
+  0148:  if !trigger(12) OR !trigger(13) then section_6+0x15c
+  0158:  playAnimation 6 30
+  015c:  if (!trigger(11) ?? !trigger(12)) OR !trigger(13) then section_6+0x174
+  0170:  playAnimation 6 31
+  0174:  if trigger(5) AND trigger(6) AND trigger(7) then section_6+0x18a
+  0188:  endSection
+  018a:  if trigger(8) AND trigger(9) AND trigger(10) then section_6+0x1a0
+  019e:  endSection
+  01a0:  if trigger(11) AND trigger(12) AND trigger(13) then section_6+0x1b6
+  01b4:  endSection
+  01b6:  if !trigger(252) then section_6+0x1c4
+  01c2:  endSection
+  01c4:  setDialogOwner 6
+  01c6:  showTextbox "<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n"
+  0228:  showTextbox "I've decided I'm going\nto the city. We'll work\ntogether, alright?\n"
+  02b0:  jump section_6+0x2b4
+  02b4:  entityWalkTo 6 -1605 -856 1
+  02bc:  if pstat[101] >= 6 then section_6+0x2dc
+  02c8:  addPStat 101 1
+  02cc:  delay 10
+  02d0:  lookAt 253 6
+  02d4:  lookAt 252 6
+  02d8:  jump section_6+0x2b4
+  02dc:  waitForEntity 6
+  02de:  unloadEntity 6
+  02e0:  setPStat 101 0
+  02e4:  playSound 8 11
+  02e8:  setDialogOwner 255
+  02ea:  showTextbox "Mojyamon joins the city!\n"
+  0320:  setTrigger 252
+  0324:  setTrigger 109
+  0328:  addPStat 1 2
+  032c:  endSection

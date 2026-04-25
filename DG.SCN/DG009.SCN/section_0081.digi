@@ -1,0 +1,56 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG009.SCN, section 81
+
+section_81:     ; len=738
+  0000:  setDialogOwner 255
+  0002:  showTextbox "Vending Machine\n"
+  0026:  setRotation 253 2048
+  002a:  delay 5
+  002e:  setDialogOwner 253
+  0030:  showTextbox "My gosh, it's so expensive!\n"
+  006c:  setSelection section_81+0xfa section_81+0x14e section_81+0x1a2
+  0074:  showTextbox "Meat : three hund bits\nDigiMushrooms:six hund bits\nDon't buy\n"
+  00f2:  waitForSelectionChoice
+  00f4:  jump section_81+0x1a2
+  00f8:  endSection
+  00fa:  if money < 300 then section_81+0x112
+  010a:  jump section_81+0x1a4
+  010e:  jump section_81+0x14e
+  0112:  setDialogOwner 253
+  0114:  showTextbox "I don't got enough money.\n"
+  014c:  endSection
+  014e:  if money < 600 then section_81+0x166
+  015e:  jump section_81+0x234
+  0162:  jump section_81+0x1a2
+  0166:  setDialogOwner 253
+  0168:  showTextbox "I don't got enough money.\n"
+  01a0:  endSection
+  01a2:  endSection
+  01a4:  reduceMoney 300
+  01aa:  setDialogOwner 255
+  01ac:  showTextbox "<LIGHTBLUE>Meat <WHITE>came out!\n"
+  01d2:  giveItem 38 1
+  01d6:  if !trigger(0) then section_81+0x232
+  01e2:  if item[38] < 99 then section_81+0x1f2
+  01f0:  endSection
+  01f2:  setDialogOwner 253
+  01f4:  showTextbox "Oops, too many things.\n"
+  0226:  setTrigger 3
+  022a:  callSubroutine 0
+  022c:  callSubroutine 13
+  022e:  giveItem 38 1
+  0232:  endSection
+  0234:  reduceMoney 600
+  023a:  setDialogOwner 255
+  023c:  showTextbox "A <LIGHTBLUE>Digital Mushroom <WHITE>\ncame out!\n"
+  0280:  giveItem 44 1
+  0284:  if !trigger(0) then section_81+0x2e0
+  0290:  if item[44] < 99 then section_81+0x2a0
+  029e:  endSection
+  02a0:  setDialogOwner 253
+  02a2:  showTextbox "Oops, too many things.\n"
+  02d4:  setTrigger 3
+  02d8:  callSubroutine 0
+  02da:  callSubroutine 13
+  02dc:  giveItem 44 1
+  02e0:  endSection

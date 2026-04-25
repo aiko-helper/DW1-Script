@@ -1,0 +1,53 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG000.SCN, section 179
+
+section_179:     ; len=296
+  0000:  setScript 162 179
+  0006:  setPStat 245 0
+  000a:  setBGM 28
+  000c:  setPStat 42 0
+  0010:  loadDigimon 147
+  0012:  setDigimon 147 6 0
+  0016:  addPStat 42 1
+  001a:  if !trigger(224) then section_179+0x30
+  0026:  loadDigimon 146
+  0028:  setDigimon 146 7 0
+  002c:  addPStat 42 1
+  0030:  if !trigger(87) OR trigger(205) then section_179+0x42
+  0040:  endSection
+  0042:  if !trigger(354) OR trigger(355) then section_179+0x54
+  0052:  endSection
+  0054:  if trigger(84) OR !trigger(250) then section_179+0x6e
+  0064:  loadDigimon 168
+  0066:  setDigimon 168 3 0
+  006a:  addPStat 42 1
+  006e:  if pstat[42] != 3 then section_179+0x7c
+  007a:  endSection
+  007c:  storeDate 105
+  007e:  if pstat[107] < 7 OR pstat[107] >= 19 then section_179+0x96
+  008e:  jump section_179+0x9a
+  0092:  jump section_179+0x9a
+  0096:  jump section_179+0xd2
+  009a:  storeRandom 110 3
+  009e:  if !trigger(240) OR pstat[110] > 0 OR pstat[42] > 2 then section_179+0xbc
+  00b2:  loadDigimon 160
+  00b4:  setDigimon 160 2 0
+  00b8:  addPStat 42 1
+  00bc:  if pstat[42] != 3 then section_179+0xca
+  00c8:  endSection
+  00ca:  loadDigimon 43
+  00cc:  setDigimon 43 0 0
+  00d0:  endSection
+  00d2:  if pstat[42] > 2 then section_179+0xe2
+  00de:  jump section_179+0xe4
+  00e2:  endSection
+  00e4:  if !trigger(250) OR !trigger(84) OR pstat[107] < 4 OR pstat[107] >= 8 then section_179+0x106
+  00fc:  loadDigimon 168
+  00fe:  setDigimon 168 3 0
+  0102:  addPStat 42 1
+  0106:  if pstat[42] != 3 then section_179+0x114
+  0112:  endSection
+  0114:  if !trigger(239) then section_179+0x126
+  0120:  loadDigimon 159
+  0122:  setDigimon 159 1 0
+  0126:  endSection

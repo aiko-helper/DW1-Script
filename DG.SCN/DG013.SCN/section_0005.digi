@@ -1,0 +1,71 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG013.SCN, section 5
+
+section_5:     ; len=828
+  0000:  setDialogOwner 5
+  0002:  showTextbox "Hey, are you the one\nbuilding a city?\n"
+  0052:  setDialogOwner 253
+  0054:  showTextbox "Yes.\n"
+  0062:  playSound 8 6
+  0066:  setDialogOwner 5
+  0068:  showTextbox "Uh, you're real lucky\nto meet me.\n"
+  00b0:  showTextbox "I don't look it, but I'm an\nUltimate Digimon. If you\nbeat me, I'll help you.\n"
+  014e:  playAnimation 253 16
+  0152:  setDialogOwner 253
+  0154:  setSelection section_5+0x196 section_5+0x2b6
+  015a:  showTextbox "Okay, I accept\nNo thanks\n"
+  0190:  waitForSelectionChoice
+  0192:  jump section_5+0x2b6
+  0196:  setTrigger 1
+  019a:  setPStat 250 1
+  019e:  setPStat 251 5
+  01a2:  setPStat 252 255
+  01a6:  setPStat 253 255
+  01aa:  fadeOutHUD
+  01ac:  delay 1
+  01b0:  startBattle
+  01b2:  unsetTrigger 1
+  01b6:  setPStat 250 0
+  01ba:  lookAt 253 5
+  01be:  lookAt 5 253
+  01c2:  lookAt 252 5
+  01c6:  lookAt 253 5
+  01ca:  lookAt 252 5
+  01ce:  lookAt 5 253
+  01d2:  waitForEntity 253
+  01d4:  setDialogOwner 5
+  01d6:  showTextbox "Wow, I lost! Well, I'll\nsee you in the city.\n"
+  0234:  jump section_5+0x238
+  0238:  entityWalkTo 5 -2444 -3233 1
+  0240:  if pstat[101] >= 10 then section_5+0x260
+  024c:  addPStat 101 1
+  0250:  delay 10
+  0254:  lookAt 253 5
+  0258:  lookAt 252 5
+  025c:  jump section_5+0x238
+  0260:  waitForEntity 5
+  0262:  unloadEntity 5
+  0264:  setPStat 101 0
+  0268:  playSound 8 3
+  026c:  setDialogOwner 255
+  026e:  showTextbox "Piximon joins the city!\n"
+  02a2:  unsetTrigger 1
+  02a6:  setTrigger 255
+  02aa:  addPStat 1 3
+  02ae:  moveCameraToEntity 253 10
+  02b2:  waitForEntity 200
+  02b4:  endSection
+  02b6:  setDialogOwner 5
+  02b8:  showTextbox "Oh, what a coward!\nLet's meet again!\n"
+  0306:  jump section_5+0x30a
+  030a:  entityWalkTo 5 -2444 -3233 1
+  0312:  if pstat[101] >= 10 then section_5+0x332
+  031e:  addPStat 101 1
+  0322:  delay 10
+  0326:  lookAt 253 5
+  032a:  lookAt 252 5
+  032e:  jump section_5+0x30a
+  0332:  waitForEntity 5
+  0334:  unloadEntity 5
+  0336:  setPStat 101 0
+  033a:  endSection

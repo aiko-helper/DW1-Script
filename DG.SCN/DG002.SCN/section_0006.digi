@@ -1,0 +1,87 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG002.SCN, section 6
+
+section_6:     ; len=1000
+  0000:  setTrigger 44
+  0004:  playAnimation 6 29
+  0008:  setDialogOwner 6
+  000a:  showTextbox "I'm hungry.\n"
+  0026:  setDialogOwner 253
+  0028:  setSelection section_6+0x6c section_6+0x3a8
+  002e:  showTextbox "Give food\nDon't give food\n"
+  0066:  waitForSelectionChoice
+  0068:  jump section_6+0x3a8
+  006c:  setTrigger 3
+  0070:  callSubroutine 0
+  0072:  if !trigger(3) then section_6+0xb6
+  007e:  setDialogOwner 253
+  0080:  showTextbox "I don't have food now.\n"
+  00b2:  jump section_6+0x3a8
+  00b6:  if pstat[254] != 255 then section_6+0xc6
+  00c2:  jump section_6+0x3a8
+  00c6:  if pstat[254] != 38 AND pstat[254] != 39 AND pstat[254] != 40 AND pstat[254] != 41 then section_6+0xe4
+  00de:  callSubroutine 12
+  00e0:  jump section_6+0x14a
+  00e4:  if pstat[254] != 42 AND pstat[254] != 44 AND pstat[254] != 62 AND pstat[254] != 68 then section_6+0x106
+  00fc:  callSubroutine 12
+  00fe:  jump section_6+0x14a
+  0102:  jump section_6+0x14a
+  0106:  setDialogOwner 253
+  0108:  showTextbox "Oops, I can't give you this.\n"
+  0146:  jump section_6+0x3a8
+  014a:  playAnimation 6 30
+  014e:  delay 20
+  0152:  playAnimation 6 8
+  0156:  waitForEntity 6
+  0158:  setDialogOwner 6
+  015a:  showTextbox "That's good...\n"
+  017c:  playAnimation 6 0
+  0180:  showTextbox "Let's fight!\n"
+  019e:  setTrigger 1
+  01a2:  setPStat 250 1
+  01a6:  setPStat 251 6
+  01aa:  setPStat 252 255
+  01ae:  setPStat 253 255
+  01b2:  fadeOutHUD
+  01b4:  delay 1
+  01b8:  startBattle
+  01ba:  unsetTrigger 1
+  01be:  setPStat 250 0
+  01c2:  lookAt 253 6
+  01c6:  lookAt 6 253
+  01ca:  lookAt 252 6
+  01ce:  setDialogOwner 6
+  01d0:  showTextbox "This isn't good.\nWhat should I do?\n"
+  021a:  playAnimation 253 20
+  021e:  waitForEntity 253
+  0220:  setDialogOwner 253
+  0222:  showTextbox "Come to the city and work\noff what you ate!\n"
+  027e:  playAnimation 253 0
+  0282:  delay 10
+  0286:  setDialogOwner 6
+  0288:  showTextbox "Okay, I'll do that. I'm an\nInsectoid-Digimon named\nKunemon. Nice meeting you.\n"
+  0328:  jump section_6+0x32c
+  032c:  entityWalkTo 6 1219 984 1
+  0334:  if pstat[101] >= 3 then section_6+0x354
+  0340:  addPStat 101 1
+  0344:  delay 20
+  0348:  lookAt 253 6
+  034c:  lookAt 252 6
+  0350:  jump section_6+0x32c
+  0354:  waitForEntity 6
+  0356:  unloadEntity 6
+  0358:  setPStat 101 0
+  035c:  playSound 8 11
+  0360:  setDialogOwner 255
+  0362:  showTextbox "Kunemon joins the city!\n"
+  0396:  moveCameraToEntity 253 10
+  039a:  waitForEntity 200
+  039c:  setTrigger 232
+  03a0:  addPStat 1 1
+  03a4:  jump section_6+0x3e6
+  03a8:  setDialogOwner 6
+  03aa:  showTextbox "Bring some next time.\n"
+  03da:  playAnimation 6 28
+  03de:  delay 20
+  03e2:  jump section_6+0x3e6
+  03e6:  endSection

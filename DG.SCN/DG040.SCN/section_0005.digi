@@ -1,0 +1,125 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG040.SCN, section 5
+
+section_5:     ; len=1804
+  0000:  if trigger(199) OR trigger(198) then section_5+0x14
+  0010:  jump section_5+0x40
+  0014:  if trigger(199) OR !trigger(198) then section_5+0x28
+  0024:  jump section_5+0x3de
+  0028:  if !trigger(199) OR !trigger(198) then section_5+0x3c
+  0038:  jump section_5+0x540
+  003c:  jump section_5+0x638
+  0040:  setTrigger 199
+  0044:  setDialogOwner 5
+  0046:  showTextbox "Who are you? Go away!\n"
+  0076:  playAnimation 253 24
+  007a:  delay 15
+  007e:  setDialogOwner 253
+  0080:  showTextbox "Is this where you live?\n"
+  00b4:  playAnimation 253 0
+  00b8:  setDialogOwner 5
+  00ba:  showTextbox "I can't tell you!\n"
+  00e2:  setDialogOwner 253
+  00e4:  showTextbox "Are you a guard or something?\n"
+  0124:  setDialogOwner 5
+  0126:  showTextbox "Want to fight? I'll beat you!\n"
+  0166:  setDialogOwner 253
+  0168:  setSelection section_5+0x1c4 section_5+0x3a4
+  016e:  showTextbox "I guess I'll fight\nYou can't bully me\n"
+  01be:  waitForSelectionChoice
+  01c0:  jump section_5+0x3a4
+  01c4:  setTrigger 1
+  01c8:  setPStat 250 1
+  01cc:  setPStat 251 5
+  01d0:  setPStat 252 255
+  01d4:  setPStat 253 255
+  01d8:  fadeOutHUD
+  01da:  delay 1
+  01de:  startBattle
+  01e0:  unsetTrigger 1
+  01e4:  setPStat 250 0
+  01e8:  setDialogOwner 5
+  01ea:  showTextbox "Wow!\n"
+  01f8:  entityWalkTo 5 -356 -1058 1
+  0200:  delay 40
+  0204:  entityWalkTo 253 -349 -1355 1
+  020c:  entityWalkTo 252 -345 -1751 1
+  0214:  waitForEntity 253
+  0216:  waitForEntity 252
+  0218:  lookAt 253 5
+  021c:  lookAt 252 5
+  0220:  entityWalkTo 5 -250 -950 1
+  0228:  waitForEntity 5
+  022a:  unloadEntity 5
+  022c:  playSound 8 2
+  0230:  rotate3DObject 0 255
+  0234:  delay 40
+  0238:  playSound 8 3
+  023c:  delay 10
+  0240:  entityWalkTo 253 -350 -1145 1
+  0248:  entityWalkTo 252 -359 -1355 1
+  0250:  setDialogOwner 253
+  0252:  showTextbox "Oh no! Hey!\n"
+  026e:  setDialogOwner 255
+  0270:  showTextbox "<YELLOW>???mon <WHITE>\nHa ha ha.\n"
+  029c:  setDialogOwner 253
+  029e:  showTextbox "Who is it?\n"
+  02b8:  setDialogOwner 255
+  02ba:  showTextbox "<YELLOW>???mon <WHITE>\nI have done nothing wrong.\nDon't come in my house\nwithout permission!\n"
+  035e:  setDialogOwner 253
+  0360:  showTextbox "I guess I should leave now.\n"
+  039c:  moveCameraToEntity 253 10
+  03a0:  waitForEntity 200
+  03a2:  endSection
+  03a4:  setDialogOwner 253
+  03a6:  showTextbox "Keep up your guard work!\n"
+  03dc:  endSection
+  03de:  setDialogOwner 253
+  03e0:  showTextbox "You are an Ogremon bandit!\nThis is your hideout!\n"
+  0446:  setDialogOwner 5
+  0448:  showTextbox "What are you talking about?\n"
+  0484:  playAnimation 253 7
+  0488:  delay 15
+  048c:  setDialogOwner 253
+  048e:  showTextbox "You were lucky last time!\nGive up!\n"
+  04d8:  playAnimation 253 0
+  04dc:  jump section_5+0x4e0
+  04e0:  setDialogOwner 5
+  04e2:  showTextbox "Wow!\n"
+  04f0:  entityWalkTo 5 -356 -1058 1
+  04f8:  delay 40
+  04fc:  entityWalkTo 253 -349 -1375 1
+  0504:  entityWalkTo 252 -355 -1761 1
+  050c:  waitForEntity 253
+  050e:  waitForEntity 252
+  0510:  lookAt 253 5
+  0514:  lookAt 252 5
+  0518:  entityWalkTo 5 -250 -930 1
+  0520:  waitForEntity 5
+  0522:  unloadEntity 5
+  0524:  entityWalkTo 253 -250 -930 1
+  052c:  waitForEntity 253
+  052e:  entityWalkTo 252 -250 -930 1
+  0536:  waitForEntity 252
+  0538:  setTrigger 200
+  053c:  warpTo 45 0 255
+  0540:  setDialogOwner 253
+  0542:  showTextbox "You tricked me last time,\nbut now I'll get you.\n"
+  05a6:  setDialogOwner 5
+  05a8:  showTextbox "What are you talking about?\n"
+  05e4:  playAnimation 253 7
+  05e8:  delay 15
+  05ec:  setDialogOwner 253
+  05ee:  showTextbox "You won't get away this time!\n"
+  062e:  playAnimation 253 0
+  0632:  jump section_5+0x4e0
+  0636:  endSection
+  0638:  setDialogOwner 253
+  063a:  showTextbox "Come on, let me in.\n"
+  0666:  setDialogOwner 5
+  0668:  showTextbox "You want a piece of me?\nI'll knock you out!\n"
+  06c4:  setDialogOwner 253
+  06c6:  setSelection section_5+0x1c4 section_5+0x3a4
+  06cc:  showTextbox "Let's fight\nDon't bully me\n"
+  0706:  waitForSelectionChoice
+  0708:  jump section_5+0x3a4

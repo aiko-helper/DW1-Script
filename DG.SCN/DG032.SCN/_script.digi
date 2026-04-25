@@ -1,0 +1,15 @@
+; DG032.SCN
+;!script index=32 start=0x1c800 end=0x1d000 headerU16=0x14 sentinelOff=0x19
+;!sections onEnter section_52 section_5 section_51
+
+onEnter:     ; len=66
+  0000:  if !trigger(353) OR pstat[30] < 3 then onEnter+0x2c
+  0010:  setTrigger 126
+  0014:  setObjectVisibility 4 1
+  0018:  moveEntityTo 5 -1134 -566 3
+  0020:  delay 5
+  0024:  setRotation 5 3072
+  0028:  delay 5
+  002c:  if pstat[30] >= 3 OR trigger(238) then onEnter+0x40
+  003c:  playAnimation 5 29
+  0040:  endSection

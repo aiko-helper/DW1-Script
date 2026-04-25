@@ -1,0 +1,68 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG035.SCN, section 5
+
+section_5:     ; len=684
+  0000:  playAnimation 5 11
+  0004:  delay 50
+  0008:  playAnimation 5 0
+  000c:  setDialogOwner 5
+  000e:  showTextbox "Bakke-bakke?\n"
+  002c:  playAnimation 253 16
+  0030:  setDialogOwner 253
+  0032:  showTextbox "Looks like he's\nasking something.\n"
+  007a:  setTrigger 49
+  007e:  setSelection section_5+0xa6 section_5+0x264
+  0084:  showTextbox "?...Yes\n?...No\n"
+  00a6:  playAnimation 5 11
+  00aa:  delay 45
+  00ae:  playAnimation 5 0
+  00b2:  setDialogOwner 5
+  00b4:  showTextbox "Bakke! Bakke bakke?\n"
+  00e0:  setDialogOwner 253
+  00e2:  setSelection section_5+0xfa section_5+0x264
+  00e8:  showTextbox "Yes\nNo\n"
+  00fa:  playAnimation 5 12
+  00fe:  delay 58
+  0102:  playAnimation 5 0
+  0106:  playAnimation 253 15
+  010a:  setDialogOwner 5
+  010c:  showTextbox "Bakkeee...bakke bakke?\n"
+  013e:  playAnimation 253 16
+  0142:  setDialogOwner 253
+  0144:  setSelection section_5+0x264 section_5+0x15c
+  014a:  showTextbox "Yes\nNo\n"
+  015c:  playAnimation 5 13
+  0160:  delay 34
+  0164:  playAnimation 5 13
+  0168:  setDialogOwner 5
+  016a:  showTextbox "Bakke bakke!\nBakkeee bakke bakkeee!\n"
+  01b6:  jump section_5+0x1ba
+  01ba:  unsetTrigger 49
+  01be:  entityWalkTo 5 1299 -1074 1
+  01c6:  if pstat[101] >= 10 then section_5+0x1e6
+  01d2:  addPStat 101 1
+  01d6:  delay 5
+  01da:  lookAt 253 5
+  01de:  lookAt 252 5
+  01e2:  jump section_5+0x1ba
+  01e6:  waitForEntity 5
+  01e8:  unloadEntity 5
+  01ea:  setPStat 101 0
+  01ee:  playSound 8 11
+  01f2:  setDialogOwner 255
+  01f4:  showTextbox "Bakemon joins the city!\n"
+  0228:  playAnimation 253 16
+  022c:  setDialogOwner 253
+  022e:  showTextbox "I think it went OK.\n"
+  025a:  setTrigger 237
+  025e:  addPStat 1 2
+  0262:  endSection
+  0264:  unsetTrigger 49
+  0268:  playAnimation 5 29
+  026c:  playSound 8 0
+  0270:  delay 40
+  0274:  waitForEntity 5
+  0276:  unloadEntity 5
+  0278:  setDialogOwner 253
+  027a:  showTextbox "Maybe I made him mad?\n"
+  02aa:  endSection

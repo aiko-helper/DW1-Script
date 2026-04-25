@@ -1,0 +1,61 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; MAP165.SCN, section 5
+
+section_5:     ; len=1948
+  0000:  if trigger(202) OR trigger(215) OR pstat[16] == 0 then section_5+0x236
+  0014:  if !trigger(201) OR !trigger(243) then section_5+0x236
+  0024:  setDialogOwner 5
+  0026:  showTextbox "You came here at the perfect\ntime! I have a big favor to\nask that only you can do.\n"
+  00d0:  setDialogOwner 253
+  00d2:  showTextbox "What is it?\n"
+  00ee:  setDialogOwner 5
+  00f0:  showTextbox "It's the same evil\nI felt from Analogman\nand Machinedramon.\n"
+  016c:  showTextbox "But I can't tell\nwhere it's coming from.\n"
+  01c2:  setDialogOwner 253
+  01c4:  showTextbox "Alright, leave it to me!\n"
+  01fa:  setDialogOwner 5
+  01fc:  showTextbox "Thank you. By the way...\n"
+  0232:  jump section_5+0x788
+  0236:  if !trigger(202) OR trigger(215) then section_5+0x57c
+  0246:  setDialogOwner 5
+  0248:  showTextbox "I heard that you\nbeat Machinedramon!\n"
+  0296:  setDialogOwner 253
+  0298:  showTextbox "Yeah, but I don't get it.\nIt seemed like the\ncurse of Analogman.\n"
+  031e:  setDialogOwner 5
+  0320:  showTextbox "His grudge was so strong.\nMaybe we can have peace now.\n"
+  0392:  setDialogOwner 253
+  0394:  showTextbox "If Machinedramon returns,\nwe can beat him again.\n"
+  03fa:  setDialogOwner 5
+  03fc:  showTextbox "You are trustworthy. Here's\na sign of my gratitude.\nIt grew in our Meat farm.\n"
+  049c:  setDialogOwner 253
+  049e:  showTextbox "Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n"
+  04d4:  giveItem 70 1
+  04d8:  if !trigger(0) then section_5+0x534
+  04e4:  if item[79] < 99 then section_5+0x4f4
+  04f2:  endSection
+  04f4:  setDialogOwner 253
+  04f6:  showTextbox "I have too many Items.\n"
+  0528:  setTrigger 3
+  052c:  callSubroutine 0
+  052e:  callSubroutine 13
+  0530:  giveItem 70 1
+  0534:  setDialogOwner 253
+  0536:  showTextbox "I gladly accept, thank you!\n"
+  0572:  setPStat 28 0
+  0576:  setTrigger 215
+  057a:  endSection
+  057c:  if !trigger(50) OR trigger(201) then section_5+0x788
+  058c:  setDialogOwner 5
+  058e:  showTextbox "Oh, you're back!\nThis is something I can't\nask anybody else.\n"
+  060c:  setDialogOwner 253
+  060e:  showTextbox "Okay. Do you mean\nAnalogman is back?\n"
+  065c:  setDialogOwner 5
+  065e:  showTextbox "I felt his evil, but\nI can't tell where it is.\n"
+  06c0:  setDialogOwner 253
+  06c2:  showTextbox "Alright, leave it to me!\nI'll go find him and\ntake care of it.\n"
+  0744:  setDialogOwner 5
+  0746:  showTextbox "Oh, thank you. By the way...\n"
+  0784:  setTrigger 201
+  0788:  if !trigger(203) then section_5+0x79a
+  0794:  jumpToScriptSection 210 51
+  079a:  endSection

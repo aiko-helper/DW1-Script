@@ -1,0 +1,46 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG055.SCN, section 83
+
+section_83:     ; len=810
+  0000:  setRotation 253 1024
+  0004:  delay 5
+  0008:  if !trigger(348) then section_83+0xe8
+  0014:  if trigger(100) then section_83+0x28
+  0020:  rotate3DObject 2 1
+  0024:  rotate3DObject 3 1
+  0028:  delay 20
+  002c:  setDialogOwner 253
+  002e:  showTextbox "What does it say?\n"
+  0056:  setDialogOwner 255
+  0058:  showTextbox "Return to the position\nwhere you got the points\nfrom the dumb one.\n"
+  00e2:  setTrigger 100
+  00e6:  endSection
+  00e8:  if item[123] < 1 OR trigger(348) then section_83+0x282
+  00fa:  setTrigger 100
+  00fe:  playSound 8 3
+  0102:  setDialogOwner 255
+  0104:  showTextbox "I used a <LIGHTBLUE>\nrefrigerator key. <WHITE>\n"
+  0146:  rotate3DObject 2 1
+  014a:  rotate3DObject 3 1
+  014e:  delay 60
+  0152:  removeItem 123 1
+  0156:  playAnimation 253 24
+  015a:  delay 15
+  015e:  setDialogOwner 253
+  0160:  showTextbox "I don't see it.\n"
+  0184:  playAnimation 253 0
+  0188:  setDialogOwner 253
+  018a:  showTextbox "There's a memo.\n"
+  01ae:  setDialogOwner 255
+  01b0:  showTextbox "Return to the position\nwhere you got the points\nfrom the dumb one.\n"
+  023a:  setDialogOwner 253
+  023c:  showTextbox "I should listen to this memo.\n"
+  027c:  setTrigger 348
+  0280:  endSection
+  0282:  if item[123] >= 1 OR trigger(348) then section_83+0x328
+  0294:  setDialogOwner 253
+  0296:  showTextbox "It's a refrigerator.\n"
+  02c4:  setDialogOwner 253
+  02c6:  showTextbox "It's locked. I've never seen\na locked fridge.\n"
+  0326:  endSection
+  0328:  endSection

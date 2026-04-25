@@ -1,0 +1,88 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG189.SCN, section 5
+
+section_5:     ; len=1904
+  0000:  setTrigger 44
+  0004:  if !trigger(229) then section_5+0xb6
+  0010:  playSound 8 9
+  0014:  setDialogOwner 5
+  0016:  showTextbox "Did you bring something\nto treat the wound?\n"
+  0072:  setDialogOwner 253
+  0074:  showTextbox "Wait a second. Let me see...\n"
+  00b2:  jump section_5+0x1d0
+  00b6:  playSound 8 9
+  00ba:  setDialogOwner 5
+  00bc:  showTextbox "My wing hurts!\n"
+  00de:  setDialogOwner 253
+  00e0:  showTextbox "What happened?\n"
+  0102:  setDialogOwner 5
+  0104:  showTextbox "I hurt my wing. Do you got\nsomething to treat my wound?\n"
+  0178:  setDialogOwner 253
+  017a:  showTextbox "It looks bad. Hold on.\nWhat should I do?\n"
+  01d0:  playAnimation 253 4
+  01d4:  delay 10
+  01d8:  setTrigger 3
+  01dc:  callSubroutine 0
+  01de:  if !trigger(3) then section_5+0x226
+  01ea:  setDialogOwner 253
+  01ec:  showTextbox "I got nothing right now.\n"
+  0222:  jump section_5+0x570
+  0226:  if pstat[254] != 0 AND pstat[254] != 1 AND pstat[254] != 2 AND pstat[254] != 3 then section_5+0x244
+  023e:  callSubroutine 12
+  0240:  jump section_5+0x2a0
+  0244:  if pstat[254] != 7 AND pstat[254] != 9 AND pstat[254] != 13 AND pstat[254] != 14 then section_5+0x266
+  025c:  callSubroutine 12
+  025e:  jump section_5+0x2a0
+  0262:  jump section_5+0x2a0
+  0266:  setDialogOwner 253
+  0268:  showTextbox "No good. This won't do!\n"
+  029c:  jump section_5+0x570
+  02a0:  playAnimation 253 5
+  02a4:  delay 20
+  02a8:  playAnimation 253 0
+  02ac:  delay 5
+  02b0:  playSound 8 9
+  02b4:  setDialogOwner 5
+  02b6:  showTextbox "It's much better. Thanks.\n"
+  02ee:  playAnimation 5 29
+  02f2:  waitForEntity 5
+  02f4:  setDialogOwner 253
+  02f6:  showTextbox "Can you fly already?\n"
+  0324:  setDialogOwner 5
+  0326:  showTextbox "I don't think I can fly far.\n"
+  0364:  setDialogOwner 253
+  0366:  showTextbox "There's a clinic in city.\nYou should go there.\nIt isn't far from here.\n"
+  03f8:  setDialogOwner 5
+  03fa:  showTextbox "I heard about the city.\nIt's bigger than I thought.\n"
+  0466:  setDialogOwner 253
+  0468:  showTextbox "Go to the city and rest.\n"
+  049e:  playSound 8 9
+  04a2:  setDialogOwner 5
+  04a4:  showTextbox "Thanks. Maybe\nI can help you someday.\n"
+  04f4:  jump section_5+0x4f8
+  04f8:  entityWalkTo 5 -93 -1821 1
+  0500:  if pstat[101] >= 3 then section_5+0x524
+  050c:  addPStat 101 1
+  0510:  playSound 8 0
+  0514:  delay 20
+  0518:  lookAt 253 5
+  051c:  lookAt 252 5
+  0520:  jump section_5+0x4f8
+  0524:  waitForEntity 5
+  0526:  unloadEntity 5
+  0528:  setPStat 101 0
+  052c:  playSound 8 8
+  0530:  setDialogOwner 255
+  0532:  showTextbox "Unimon joins the city!\n"
+  0564:  setTrigger 233
+  0568:  addPStat 1 2
+  056c:  jump section_5+0x620
+  0570:  setDialogOwner 253
+  0572:  showTextbox "I'll bring something to cure\nyour wound. Wait for me.\n"
+  05e2:  playSound 8 9
+  05e6:  setDialogOwner 5
+  05e8:  showTextbox "Thanks. Please hurry!\n"
+  0618:  setTrigger 229
+  061c:  jump section_5+0x620
+  0620:  endSection
+  0622:  garbage 0c 00 fe 00 0c 00 05 00 90 00 ff ff 24 00 6e 63 19 00 0b 00 6e 0e 18 00 22 00 19 00 74 2c 35 00 40 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 38 00 19 00 74 2c 38 00 3d 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 4e 00 19 00 74 2c 3c 00 3b 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 64 00 19 00 74 2c 3f 00 37 00 24 00 6e 63 19 00 0b 00 6e 05 18 00 7a 00 19 00 74 45 38 00 41 00 19 00 01 00 e9 00 80 00 35 00 18 00 8e 00 19 00 56 00 05 1c fe 00 1c 00 2c 00 19 00 00 00 e5 00 18 00 46 01 19 00 5a 00 08 09 1b 05 1a 00 82 63 82 89 82 84 81 40 82 99 82 8f 82 95 81 40 82 82 82 92 82 89 82 8e 82 87 81 40 82 93 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 0d 00 82 94 82 8f 81 40 82 94 82 92 82 85 82 81 82 94 81 40 82 94 82 88 82 85 81 40 82 97 82 8f 82 95 82 8e 82 84 81 48 0d 00 00 00 1b fd 1a 00 82 76 82 81 82 89 82 94 81 40 82 81 81 40 82 93 82 85 82 83 82 8f 82 8e 82 84 81 42 81 40 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 93 82 85 82 85 81 42 81 42 81 42 0d 00 00 00 16 00 60 02 5a 00 08 09 1b 05

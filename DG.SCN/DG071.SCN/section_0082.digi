@@ -1,0 +1,36 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG071.SCN, section 82
+
+section_82:     ; len=548
+  0000:  setDialogOwner 255
+  0002:  showTextbox "MP Stand\n"
+  0018:  setRotation 253 2048
+  001c:  setDialogOwner 253
+  001e:  showTextbox "Can this machine recover MP?\n"
+  005c:  setSelection section_82+0xea section_82+0x182 section_82+0x21a
+  0064:  showTextbox "Hund MP: two hund bits\nThous MP:eighteen hund bits\nDon't use\n"
+  00e2:  waitForSelectionChoice
+  00e4:  jump section_82+0x21a
+  00e8:  endSection
+  00ea:  if money < 200 then section_82+0x146
+  00fa:  addStats 7 100
+  00fe:  reduceMoney 200
+  0104:  setDialogOwner 255
+  0106:  showTextbox "Our MP level has recovered!\n"
+  0142:  jump section_82+0x180
+  0146:  setDialogOwner 253
+  0148:  showTextbox "I don't got enough bits.\n"
+  017e:  endSection
+  0180:  endSection
+  0182:  if money < 1800 then section_82+0x1de
+  0192:  addStats 7 1000
+  0196:  reduceMoney 1800
+  019c:  setDialogOwner 255
+  019e:  showTextbox "Our MP level has recovered!\n"
+  01da:  jump section_82+0x218
+  01de:  setDialogOwner 253
+  01e0:  showTextbox "I don't got enough bits.\n"
+  0216:  endSection
+  0218:  endSection
+  021a:  endSection
+  021c:  garbage 28 00 fe 00 28 00

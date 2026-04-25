@@ -1,0 +1,102 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; MAP159.SCN, section 81
+
+section_81:     ; len=2094
+  0000:  moveCameraTo 10 -1143 1558
+  0006:  lookAt 253 5
+  000a:  lookAt 252 5
+  000e:  lookAt 5 253
+  0012:  delay 5
+  0016:  storeDigimonType 103
+  0018:  if !trigger(363) OR pstat[103] != 39 then section_81+0xee
+  0028:  playSound 8 20
+  002c:  setDialogOwner 5
+  002e:  showTextbox "You again! Get out of here!\n"
+  006a:  playAnimation 253 16
+  006e:  delay 15
+  0072:  setDialogOwner 253
+  0074:  showTextbox "Uhh...\n"
+  0086:  playAnimation 253 0
+  008a:  setDialogOwner 5
+  008c:  showTextbox "You... you're a pest!\nIs that okay now?!\n"
+  00e2:  jump section_81+0x628
+  00e6:  moveCameraToEntity 253 10
+  00ea:  waitForEntity 200
+  00ec:  endSection
+  00ee:  if !trigger(363) then section_81+0x158
+  00fa:  playSound 8 20
+  00fe:  setDialogOwner 5
+  0100:  showTextbox "You again! Get out of here\nright now!\n"
+  0150:  moveCameraToEntity 253 10
+  0154:  waitForEntity 200
+  0156:  endSection
+  0158:  if pstat[103] != 39 then section_81+0x264
+  0164:  setDialogOwner 5
+  0166:  showTextbox "Good to see you, my friends.\nIf you want to live here,\nI give you permission.\n"
+  0206:  setTrigger 49
+  020a:  setDialogOwner 253
+  020c:  setSelection section_81+0x268 section_81+0x384
+  0212:  showTextbox "We want to live here\nWe want to return\n"
+  0264:  jump section_81+0x6d2
+  0268:  unsetTrigger 49
+  026c:  playSound 8 20
+  0270:  setDialogOwner 5
+  0272:  showTextbox "Hmmm, that's good. What?\nBut you are analog,\nso you can't live here.\n"
+  0300:  setDialogOwner 253
+  0302:  showTextbox "We have to be together!\n"
+  0336:  setDialogOwner 5
+  0338:  showTextbox "Then, get out of here\nwith him!\n"
+  037c:  moveCameraToEntity 253 10
+  0380:  waitForEntity 200
+  0382:  endSection
+  0384:  unsetTrigger 49
+  0388:  setDialogOwner 5
+  038a:  showTextbox "What? What are you saying?\n"
+  03c4:  playAnimation 253 16
+  03c8:  delay 15
+  03cc:  setDialogOwner 253
+  03ce:  showTextbox "He's not originally Sukamon.\nKing, please return him\nto his original form!\n"
+  0468:  playAnimation 253 0
+  046c:  setDialogOwner 5
+  046e:  showTextbox "Isn't it great that\nhe became Sukamon?\n"
+  04c0:  setDialogOwner 253
+  04c2:  showTextbox "No, it's not very good\nright now. Please.\n"
+  051a:  setDialogOwner 5
+  051c:  showTextbox "Only way to become Sukamon\nis to try hard.\n"
+  0576:  setDialogOwner 253
+  0578:  showTextbox "He became a Sukamon\nnaturally and\nthat's the problem.\n"
+  05e8:  playSound 8 20
+  05ec:  setDialogOwner 5
+  05ee:  showTextbox "You guys are unbelievable!\n"
+  0628:  if pstat[200] != 39 then section_81+0x63a
+  0634:  storeDigimonType 200
+  0636:  copyPStat 5 254
+  063a:  fadeOutHUD
+  063c:  playAnimation 5 30
+  0640:  playSound 8 19
+  0644:  delay 60
+  0648:  callDigimonSubroutine 2
+  064a:  waitForEntity 201
+  064c:  playAnimation 5 0
+  0650:  delay 5
+  0654:  setDialogOwner 253
+  0656:  showTextbox "Wow! King, thank you!\n"
+  0686:  playSound 8 20
+  068a:  setDialogOwner 5
+  068c:  showTextbox "Get out of here right now!\n"
+  06c6:  setTrigger 363
+  06ca:  moveCameraToEntity 253 10
+  06ce:  waitForEntity 200
+  06d0:  endSection
+  06d2:  playSound 8 20
+  06d6:  setDialogOwner 5
+  06d8:  showTextbox "Did you come here for\nsomething?\n"
+  071e:  setDialogOwner 253
+  0720:  showTextbox "Well...\n"
+  0734:  setDialogOwner 5
+  0736:  showTextbox "If you have a request,\nforget it. Because\nI am King of Sukamon!\n"
+  07ba:  setDialogOwner 253
+  07bc:  showTextbox "I guess I won't be able\nto invite him to the city.\n"
+  0826:  moveCameraToEntity 253 10
+  082a:  waitForEntity 200
+  082c:  endSection

@@ -1,0 +1,36 @@
+; source: ./extract/DIGIMON/SCN/DG.SCN
+; DG012.SCN, section 81
+
+section_81:     ; len=588
+  0000:  setDialogOwner 255
+  0002:  showTextbox "MP Vending Machine\n"
+  002c:  setRotation 253 2048
+  0030:  setDialogOwner 253
+  0032:  showTextbox "This machine recovers MP.\n"
+  006a:  setSelection section_81+0xf6 section_81+0x18c section_81+0x222
+  0072:  showTextbox "Hund MP: two hund bits\nThous MP:eighteen hund bits\nDon't use\n"
+  00f0:  waitForSelectionChoice
+  00f2:  jump section_81+0x222
+  00f6:  if money < 200 then section_81+0x14e
+  0106:  addStats 7 100
+  010a:  reduceMoney 200
+  0110:  setDialogOwner 255
+  0112:  showTextbox "My MP level went back up!\n"
+  014a:  jump section_81+0x18a
+  014e:  setDialogOwner 253
+  0150:  showTextbox "I don't have enough bits.\n"
+  0188:  endSection
+  018a:  endSection
+  018c:  if money < 1800 then section_81+0x1e4
+  019c:  addStats 7 1000
+  01a0:  reduceMoney 1800
+  01a6:  setDialogOwner 255
+  01a8:  showTextbox "My MP level went back up!\n"
+  01e0:  jump section_81+0x220
+  01e4:  setDialogOwner 253
+  01e6:  showTextbox "I don't have enough bits.\n"
+  021e:  endSection
+  0220:  endSection
+  0222:  setDialogOwner 253
+  0224:  showTextbox "Forget about it.\n"
+  024a:  endSection
