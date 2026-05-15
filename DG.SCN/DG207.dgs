@@ -1,21 +1,6 @@
 // DG207.SCN
 #pragma script index=207 start=0xa9800 end=0xab800 headerU16=0xc sentinelOff=0xfe
 
-function speakThenGiveItemThenSpeakThenSetTriggerThenSetPStat(a, b, c, d) {
-    speak(11, a);
-    giveItem(b, c);
-    speak(Entity.System, d);
-    setTrigger(74);
-    setPStat(31, 0);
-}
-
-function speakThenSpeakThenSetPStat(a, b) {
-    speak(Entity.System, a);
-    speak(11, b);
-    setPStat(31, 0);
-}
-
-
 section onEnter(254) {
     return;
 }
@@ -49,7 +34,11 @@ L3:
 
 L4:
     if (item[Item.Meat] < 97) goto L5;
-    speakThenGiveItemThenSpeakThenSetTriggerThenSetPStat("You got too much Meat. I'll\ntake what you can't hold.\n", Item.Meat, 3, "I got three pieces\nof <LIGHTBLUE>Meat<WHITE>!\n");
+    speak(11, "You got too much Meat. I'll\ntake what you can't hold.\n");
+    giveItem(Item.Meat, 3);
+    speak(Entity.System, "I got three pieces\nof <LIGHTBLUE>Meat<WHITE>!\n");
+    setTrigger(74);
+    setPStat(31, 0);
     return;
 
 L5:
@@ -79,7 +68,11 @@ L9:
 
 L10:
     if (item[Item.Meat] < 95) goto L11;
-    speakThenGiveItemThenSpeakThenSetTriggerThenSetPStat("You got too much Meat. I'll\ntake what you can't hold.\n", Item.Meat, 5, "I got a five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    speak(11, "You got too much Meat. I'll\ntake what you can't hold.\n");
+    giveItem(Item.Meat, 5);
+    speak(Entity.System, "I got a five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    setTrigger(74);
+    setPStat(31, 0);
     return;
 
 L11:
@@ -89,7 +82,9 @@ L11:
     return;
 
 L12:
-    speakThenSpeakThenSetPStat("I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n", "You'll get more tomorrow.\n");
+    speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    speak(11, "You'll get more tomorrow.\n");
+    setPStat(31, 0);
     return;
 
 L13:
@@ -107,7 +102,11 @@ L15:
 
 L16:
     if (item[Item.Meat] < 97) goto L17;
-    speakThenGiveItemThenSpeakThenSetTriggerThenSetPStat("You got too much Meat. I'll\ntake what you can't hold.\n", Item.Meat, 3, "I got <LIGHTBLUE>Meat<WHITE>!\n");
+    speak(11, "You got too much Meat. I'll\ntake what you can't hold.\n");
+    giveItem(Item.Meat, 3);
+    speak(Entity.System, "I got <LIGHTBLUE>Meat<WHITE>!\n");
+    setTrigger(74);
+    setPStat(31, 0);
     return;
 
 L17:
@@ -117,7 +116,9 @@ L17:
     return;
 
 L18:
-    speakThenSpeakThenSetPStat("I got <LIGHTBLUE>Meat<WHITE>!\n", "I'll give you more tomorrow.\n");
+    speak(Entity.System, "I got <LIGHTBLUE>Meat<WHITE>!\n");
+    speak(11, "I'll give you more tomorrow.\n");
+    setPStat(31, 0);
     return;
 
 L19:
@@ -149,7 +150,11 @@ L23:
 
 L24:
     if (item[Item.GiantMeat] < 95) goto L25;
-    speakThenGiveItemThenSpeakThenSetTriggerThenSetPStat("You got too much Giant Meat.\nYou don't need any today.\n", Item.GiantMeat, 5, "I got <LIGHTBLUE>Giant Meat<WHITE>!\n");
+    speak(11, "You got too much Giant Meat.\nYou don't need any today.\n");
+    giveItem(Item.GiantMeat, 5);
+    speak(Entity.System, "I got <LIGHTBLUE>Giant Meat<WHITE>!\n");
+    setTrigger(74);
+    setPStat(31, 0);
     return;
 
 L25:
@@ -159,7 +164,9 @@ L25:
     return;
 
 L26:
-    speakThenSpeakThenSetPStat("I got five pieces of\n<LIGHTBLUE>Giant Meat<WHITE>!\n", "I'll give you more tomorrow.\n");
+    speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Giant Meat<WHITE>!\n");
+    speak(11, "I'll give you more tomorrow.\n");
+    setPStat(31, 0);
     return;
 
 L27:
@@ -177,7 +184,11 @@ L29:
 
 L30:
     if (item[Item.GiantMeat] < 97) goto L31;
-    speakThenGiveItemThenSpeakThenSetTriggerThenSetPStat("You got too much\nGiant Meat. I'll take\nwhat you can't hold.\n", Item.GiantMeat, 3, "I got <LIGHTBLUE>Giant Meat<WHITE>!\n");
+    speak(11, "You got too much\nGiant Meat. I'll take\nwhat you can't hold.\n");
+    giveItem(Item.GiantMeat, 3);
+    speak(Entity.System, "I got <LIGHTBLUE>Giant Meat<WHITE>!\n");
+    setTrigger(74);
+    setPStat(31, 0);
     return;
 
 L31:
@@ -249,7 +260,11 @@ L41:
 
 L42:
     if (item[Item.Sirloin] < 95) goto L43;
-    speakThenGiveItemThenSpeakThenSetTriggerThenSetPStat("You got too much Sirloin.\n", Item.Sirloin, 5, "I got <LIGHTBLUE>Sirloin<WHITE>!\n");
+    speak(11, "You got too much Sirloin.\n");
+    giveItem(Item.Sirloin, 5);
+    speak(Entity.System, "I got <LIGHTBLUE>Sirloin<WHITE>!\n");
+    setTrigger(74);
+    setPStat(31, 0);
     return;
 
 L43:
@@ -259,7 +274,9 @@ L43:
     return;
 
 L44:
-    speakThenSpeakThenSetPStat("I got five pieces of\n<LIGHTBLUE>Sirloin<WHITE>!\n", "See you tomorrow!\n");
+    speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Sirloin<WHITE>!\n");
+    speak(11, "See you tomorrow!\n");
+    setPStat(31, 0);
     return;
 
 L45:
@@ -277,7 +294,11 @@ L47:
 
 L48:
     if (item[Item.Sirloin] < 97) goto L49;
-    speakThenGiveItemThenSpeakThenSetTriggerThenSetPStat("You got too much Sirloin.\n", Item.Sirloin, 3, "I got <LIGHTBLUE>Sirloin<WHITE>!\n");
+    speak(11, "You got too much Sirloin.\n");
+    giveItem(Item.Sirloin, 3);
+    speak(Entity.System, "I got <LIGHTBLUE>Sirloin<WHITE>!\n");
+    setTrigger(74);
+    setPStat(31, 0);
     return;
 
 L49:

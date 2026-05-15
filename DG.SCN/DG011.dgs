@@ -1,13 +1,6 @@
 // DG011.SCN
 #pragma script index=11 start=0xe000 end=0xe800 headerU16=0x24 sentinelOff=0x19
 
-function speakThenStartBattleThenSetTrigger(a, b, c) {
-    speak(a, b);
-    startBattle();
-    setTrigger(c);
-}
-
-
 section onEnter(254) {
     if (!trigger(232)) goto L1;
     for id in 68..70 { setObjectVisibility(id, 1); }
@@ -35,32 +28,44 @@ L5:
 }
 
 section(5) {
-    speakThenStartBattleThenSetTrigger(5, "I can beat you in one blow!\n", 283);
+    speak(5, "I can beat you in one blow!\n");
+    startBattle();
+    setTrigger(283);
     return;
 }
 
 section(7) {
-    speakThenStartBattleThenSetTrigger(7, "You don't know anything.\n", 286);
+    speak(7, "You don't know anything.\n");
+    startBattle();
+    setTrigger(286);
     return;
 }
 
 section(8) {
-    speakThenStartBattleThenSetTrigger(8, "Stop it already!\n", 296);
+    speak(8, "Stop it already!\n");
+    startBattle();
+    setTrigger(296);
     return;
 }
 
 section(9) {
-    speakThenStartBattleThenSetTrigger(9, "Bullies aren't cool!\n", 296);
+    speak(9, "Bullies aren't cool!\n");
+    startBattle();
+    setTrigger(296);
     return;
 }
 
 section(10) {
-    speakThenStartBattleThenSetTrigger(10, "Listen to me, will you?!\n", 296);
+    speak(10, "Listen to me, will you?!\n");
+    startBattle();
+    setTrigger(296);
     return;
 }
 
 section(6) {
-    speakThenStartBattleThenSetTrigger(6, "I think I can beat you!\n", 283);
+    speak(6, "I think I can beat you!\n");
+    startBattle();
+    setTrigger(283);
     return;
 }
 

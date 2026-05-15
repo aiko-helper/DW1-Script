@@ -1,13 +1,6 @@
 // DG028.SCN
 #pragma script index=28 start=0x19800 end=0x1a000 headerU16=0xc sentinelOff=0x19
 
-function playAnimationThenDelayThenSpeak(a, b) {
-    playAnimation(Entity.Player, a);
-    delay(20);
-    speak(Entity.Player, b);
-}
-
-
 section onEnter(254) {
     if (trigger(140)) goto L1;
     playAnimation(5, 28);
@@ -33,7 +26,9 @@ L3:
     playSound(8, 10);
     speak(5, "It's hot! Do something!\n");
     playAnimation(5, 28);
-    playAnimationThenDelayThenSpeak(16, "What's going on?\n");
+    playAnimation(Entity.Player, 16);
+    delay(20);
+    speak(Entity.Player, "What's going on?\n");
     playSound(8, 10);
     speak(5, "It's too hot!\nI can't take it anymore!\n");
     setTrigger(1);
@@ -48,12 +43,18 @@ L3:
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Partner, at: 5);
     speak(5, "I got weird\nbecause of the heat.\n");
-    playAnimationThenDelayThenSpeak(25, "I know it's hot, but...\nbe cool man!\n");
+    playAnimation(Entity.Player, 25);
+    delay(20);
+    speak(Entity.Player, "I know it's hot, but...\nbe cool man!\n");
     speak(5, "The more we dig, the hotter\nit gets. The tunnel\nis in a volcano.\n");
     speak(5, "I don't think it's the only\nreason. Maybe there's\na fire nearby.\n");
-    playAnimationThenDelayThenSpeak(16, "Hmmm\n");
+    playAnimation(Entity.Player, 16);
+    delay(20);
+    speak(Entity.Player, "Hmmm\n");
     speak(5, "I don't got a choice.\nI must bear this heat\nand keep on digging.\n");
-    playAnimationThenDelayThenSpeak(19, "We'll check out the cause.\nIt'd be great if\nthe tunnel goes thru.\n");
+    playAnimation(Entity.Player, 19);
+    delay(20);
+    speak(Entity.Player, "We'll check out the cause.\nIt'd be great if\nthe tunnel goes thru.\n");
     speak(5, "You are a nice guy.\nI'll hurry and\ndig this tunnel!\n");
     delay(10);
     playAnimation(Entity.Player, 0);

@@ -1,13 +1,6 @@
 // DG190.SCN
 #pragma script index=190 start=0x91000 end=0x91800 headerU16=0x10 sentinelOff=0x24
 
-function playAnimationThenDelayThenSpeak(a, b, c, d) {
-    playAnimation(Entity.Player, a);
-    delay(b);
-    speak(c, d);
-}
-
-
 section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 4) goto L1;
@@ -81,14 +74,18 @@ L4:
 L5:
     move(entity: Entity.Player, to: (350, -50), sprint: 0, withCamera: true);
     waitForEntity(Entity.Player);
-    playAnimationThenDelayThenSpeak(24, 20, Entity.Player, "There are more of them now.\nDo you think they're\nfrom the UFO?\n");
+    playAnimation(Entity.Player, 24);
+    delay(20);
+    speak(Entity.Player, "There are more of them now.\nDo you think they're\nfrom the UFO?\n");
     setTrigger(154);
     return;
 
 L6:
     move(entity: Entity.Player, to: (350, 50), sprint: 1, withCamera: true);
     waitForEntity(Entity.Player);
-    playAnimationThenDelayThenSpeak(24, 20, Entity.Player, "Ugghh!?\n");
+    playAnimation(Entity.Player, 24);
+    delay(20);
+    speak(Entity.Player, "Ugghh!?\n");
     move(entity: Entity.Player, to: (-550, 50), sprint: 1, withCamera: true);
     waitForEntity(Entity.Player);
     speak(Entity.Player, "I see a lot more now.\n");
@@ -125,11 +122,15 @@ L6:
     delay(10);
     playAnimation(5, 28);
     delay(10);
-    playAnimationThenDelayThenSpeak(15, 10, Entity.Player, "I'm not your enemy!\n");
+    playAnimation(Entity.Player, 15);
+    delay(10);
+    speak(Entity.Player, "I'm not your enemy!\n");
     delay(40);
     playAnimation(5, 0);
     speak(Entity.Player, "Good, now you understand.\n");
-    playAnimationThenDelayThenSpeak(19, 20, Entity.System, "<LIGHTBLUE><PLAYER><WHITE> tried\nto convince him.\n");
+    playAnimation(Entity.Player, 19);
+    delay(20);
+    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> tried\nto convince him.\n");
     speak(5, "...\n");
     speak(Entity.Player, "Maybe he doesn't understand.\n");
     playAnimation(5, 22);

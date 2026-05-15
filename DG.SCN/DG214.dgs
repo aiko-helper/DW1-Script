@@ -1,18 +1,11 @@
 // DG214.SCN
 #pragma script index=214 start=0xb6800 end=0xba000 headerU16=0xc sentinelOff=0xfe
 
-function speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(a, b) {
-    speak(5, "You got too much stuff.\n");
+function setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(a, b) {
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(a, b);
-}
-
-function addMoneyThenSpeakThenGiveItem(a, b, c, d) {
-    addMoney(a);
-    speak(Entity.System, b);
-    giveItem(c, d);
 }
 
 
@@ -34,34 +27,44 @@ L2:
     speak(Entity.System, "Participation Award :\n   <LIGHTBLUE>Giant Meat<WHITE>!\n");
     giveItem(Item.GiantMeat, 1);
     if (!trigger(0)) goto L3;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.GiantMeat, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.GiantMeat, 1);
 
 L3:
     return;
 
 L4:
     if (pstat[3] != 0) goto L6;
-    addMoneyThenSpeakThenGiveItem(2000, "Victory Reward :\n   two thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Double Floppy<WHITE>!\n", Item.DoubleFloppy, 1);
+    addMoney(2000);
+    speak(Entity.System, "Victory Reward :\n   two thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Double Floppy<WHITE>!\n");
+    giveItem(Item.DoubleFloppy, 1);
     if (!trigger(0)) goto L5;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.DoubleFloppy, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.DoubleFloppy, 1);
 
 L5:
     jumpToScriptSection(204, 51);
 
 L6:
     if (pstat[3] != 1) goto L8;
-    addMoneyThenSpeakThenGiveItem(4000, "Victory Reward :\n   four thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Three Sirloins<WHITE>!\n", Item.Sirloin, 3);
+    addMoney(4000);
+    speak(Entity.System, "Victory Reward :\n   four thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Three Sirloins<WHITE>!\n");
+    giveItem(Item.Sirloin, 3);
     if (!trigger(0)) goto L7;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Sirloin, 3);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Sirloin, 3);
 
 L7:
     jumpToScriptSection(204, 51);
 
 L8:
     if (pstat[3] != 2) goto L9;
-    addMoneyThenSpeakThenGiveItem(6000, "Victory Reward :\n   six thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Restore Floppy<WHITE>!\n", Item.Restore, 1);
+    addMoney(6000);
+    speak(Entity.System, "Victory Reward :\n   six thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Restore Floppy<WHITE>!\n");
+    giveItem(Item.Restore, 1);
     if (!trigger(0)) goto L9;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Restore, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Restore, 1);
 
 L9:
     roll(pstat: 110, max: 99);
@@ -77,9 +80,12 @@ L10:
 
 L11:
     if (pstat[3] != 3) goto L12;
-    addMoneyThenSpeakThenGiveItem(8000, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Flaming Mane <WHITE>!\n", Item.FlamingMane, 1);
+    addMoney(8000);
+    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Flaming Mane <WHITE>!\n");
+    giveItem(Item.FlamingMane, 1);
     if (!trigger(0)) goto L12;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.FlamingMane, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.FlamingMane, 1);
 
 L12:
     roll(pstat: 110, max: 99);
@@ -96,9 +102,12 @@ L13:
 L14:
     roll(pstat: 110, max: 2);
     if (pstat[3] != 4 || pstat[110] != 0) goto L16;
-    addMoneyThenSpeakThenGiveItem(10000, "Victory Reward :\n   ten thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Metal Part<WHITE>!\n", Item.MetalPart, 1);
+    addMoney(10000);
+    speak(Entity.System, "Victory Reward :\n   ten thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Metal Part<WHITE>!\n");
+    giveItem(Item.MetalPart, 1);
     if (!trigger(0)) goto L15;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.MetalPart, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.MetalPart, 1);
 
 L15:
     goto L20;
@@ -106,18 +115,24 @@ L15:
 
 L16:
     if (pstat[3] != 4 || pstat[110] != 1) goto L18;
-    addMoneyThenSpeakThenGiveItem(10000, "Victory Reward :\n   ten thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Fatal Bone<WHITE>!\n", Item.FatalBone, 1);
+    addMoney(10000);
+    speak(Entity.System, "Victory Reward :\n   ten thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Fatal Bone<WHITE>!\n");
+    giveItem(Item.FatalBone, 1);
     if (!trigger(0)) goto L17;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.FatalBone, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.FatalBone, 1);
 
 L17:
     goto L20;
 
 L18:
     if (pstat[3] != 4 || pstat[110] != 2) goto L20;
-    addMoneyThenSpeakThenGiveItem(10000, "Victory Reward :\n   ten thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Mega Hand<WHITE>!\n", Item.MegaHand, 1);
+    addMoney(10000);
+    speak(Entity.System, "Victory Reward :\n   ten thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Mega Hand<WHITE>!\n");
+    giveItem(Item.MegaHand, 1);
     if (!trigger(0)) goto L19;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.MegaHand, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.MegaHand, 1);
 
 L19:
     goto L20;
@@ -136,333 +151,444 @@ L21:
 
 L22:
     if (pstat[3] != 6) goto L24;
-    addMoneyThenSpeakThenGiveItem(5000, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>White Fang<WHITE>!\n", Item.WhiteFang, 1);
+    addMoney(5000);
+    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>White Fang<WHITE>!\n");
+    giveItem(Item.WhiteFang, 1);
     if (!trigger(0)) goto L23;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.WhiteFang, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.WhiteFang, 1);
 
 L23:
     jumpToScriptSection(204, 51);
 
 L24:
     if (pstat[3] != 7) goto L26;
-    addMoneyThenSpeakThenGiveItem(5000, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Blue Crystal<WHITE>!\n", Item.BlueCrystal, 1);
+    addMoney(5000);
+    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Blue Crystal<WHITE>!\n");
+    giveItem(Item.BlueCrystal, 1);
     if (!trigger(0)) goto L25;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.BlueCrystal, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.BlueCrystal, 1);
 
 L25:
     jumpToScriptSection(204, 51);
 
 L26:
     if (pstat[3] != 8) goto L28;
-    addMoneyThenSpeakThenGiveItem(5000, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Iron Hoof <WHITE>!\n", Item.IronHoof, 1);
+    addMoney(5000);
+    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Iron Hoof <WHITE>!\n");
+    giveItem(Item.IronHoof, 1);
     if (!trigger(0)) goto L27;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.IronHoof, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.IronHoof, 1);
 
 L27:
     jumpToScriptSection(204, 51);
 
 L28:
     if (pstat[3] != 9) goto L30;
-    addMoneyThenSpeakThenGiveItem(5000, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Monochrome Stone<WHITE>!\n", Item.MonoStone, 1);
+    addMoney(5000);
+    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Monochrome Stone<WHITE>!\n");
+    giveItem(Item.MonoStone, 1);
     if (!trigger(0)) goto L29;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.MonoStone, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.MonoStone, 1);
 
 L29:
     jumpToScriptSection(204, 51);
 
 L30:
     if (pstat[3] != 10) goto L32;
-    addMoneyThenSpeakThenGiveItem(5000, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Red Ruby<WHITE>!\n", Item.RedRuby, 1);
+    addMoney(5000);
+    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Red Ruby<WHITE>!\n");
+    giveItem(Item.RedRuby, 1);
     if (!trigger(0)) goto L31;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.RedRuby, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.RedRuby, 1);
 
 L31:
     jumpToScriptSection(204, 51);
 
 L32:
     if (pstat[3] != 11) goto L34;
-    addMoneyThenSpeakThenGiveItem(8000, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Fireball<WHITE>!\n", Item.Fireball, 1);
+    addMoney(8000);
+    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Fireball<WHITE>!\n");
+    giveItem(Item.Fireball, 1);
     if (!trigger(0)) goto L33;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Fireball, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Fireball, 1);
 
 L33:
     jumpToScriptSection(204, 51);
 
 L34:
     if (pstat[3] != 12) goto L36;
-    addMoneyThenSpeakThenGiveItem(8000, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Spike Club<WHITE>!\n", Item.SpikeClub, 1);
+    addMoney(8000);
+    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Spike Club<WHITE>!\n");
+    giveItem(Item.SpikeClub, 1);
     if (!trigger(0)) goto L35;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SpikeClub, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SpikeClub, 1);
 
 L35:
     jumpToScriptSection(204, 51);
 
 L36:
     if (pstat[3] != 13) goto L38;
-    addMoneyThenSpeakThenGiveItem(8000, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Unihorn<WHITE>!\n", Item.Unihorn, 1);
+    addMoney(8000);
+    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Unihorn<WHITE>!\n");
+    giveItem(Item.Unihorn, 1);
     if (!trigger(0)) goto L37;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Unihorn, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Unihorn, 1);
 
 L37:
     jumpToScriptSection(204, 51);
 
 L38:
     if (pstat[3] != 14) goto L40;
-    addMoneyThenSpeakThenGiveItem(8000, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>North Star<WHITE>!\n", Item.NorthStar, 1);
+    addMoney(8000);
+    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>North Star<WHITE>!\n");
+    giveItem(Item.NorthStar, 1);
     if (!trigger(0)) goto L39;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.NorthStar, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.NorthStar, 1);
 
 L39:
     jumpToScriptSection(204, 51);
 
 L40:
     if (pstat[3] != 15) goto L42;
-    addMoneyThenSpeakThenGiveItem(8000, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Fertilizer<WHITE>!\n", Item.Fertilizer, 1);
+    addMoney(8000);
+    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Fertilizer<WHITE>!\n");
+    giveItem(Item.Fertilizer, 1);
     if (!trigger(0)) goto L41;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Fertilizer, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Fertilizer, 1);
 
 L41:
     jumpToScriptSection(204, 51);
 
 L42:
     if (pstat[3] != 16) goto L44;
-    addMoneyThenSpeakThenGiveItem(8000, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Cyber Parts<WHITE>!\n", Item.CyberPart, 1);
+    addMoney(8000);
+    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Cyber Parts<WHITE>!\n");
+    giveItem(Item.CyberPart, 1);
     if (!trigger(0)) goto L43;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.CyberPart, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.CyberPart, 1);
 
 L43:
     jumpToScriptSection(204, 51);
 
 L44:
     if (pstat[3] != 17) goto L46;
-    addMoneyThenSpeakThenGiveItem(8000, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Sunglasses<WHITE>!\n", Item.Sunglasses, 1);
+    addMoney(8000);
+    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Sunglasses<WHITE>!\n");
+    giveItem(Item.Sunglasses, 1);
     if (!trigger(0)) goto L45;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Sunglasses, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Sunglasses, 1);
 
 L45:
     jumpToScriptSection(204, 51);
 
 L46:
     if (pstat[3] != 18) goto L48;
-    addMoneyThenSpeakThenGiveItem(5000, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Grew Claws<WHITE>!\n", Item.GreyClaws, 1);
+    addMoney(5000);
+    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Grew Claws<WHITE>!\n");
+    giveItem(Item.GreyClaws, 1);
     if (!trigger(0)) goto L47;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.GreyClaws, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.GreyClaws, 1);
 
 L47:
     jumpToScriptSection(204, 51);
 
 L48:
     if (pstat[3] != 19) goto L50;
-    addMoneyThenSpeakThenGiveItem(5000, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>White Wing<WHITE>!\n", Item.WhiteWing, 1);
+    addMoney(5000);
+    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>White Wing<WHITE>!\n");
+    giveItem(Item.WhiteWing, 1);
     if (!trigger(0)) goto L49;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.WhiteWing, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.WhiteWing, 1);
 
 L49:
     jumpToScriptSection(204, 51);
 
 L50:
     if (pstat[3] != 20) goto L52;
-    addMoneyThenSpeakThenGiveItem(5000, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Steel Drill<WHITE>!\n", Item.SteelDrill, 1);
+    addMoney(5000);
+    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Steel Drill<WHITE>!\n");
+    giveItem(Item.SteelDrill, 1);
     if (!trigger(0)) goto L51;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SteelDrill, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SteelDrill, 1);
 
 L51:
     jumpToScriptSection(204, 51);
 
 L52:
     if (pstat[3] != 21) goto L54;
-    addMoneyThenSpeakThenGiveItem(5000, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Black Wing<WHITE>!\n", Item.BlackWing, 1);
+    addMoney(5000);
+    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Black Wing<WHITE>!\n");
+    giveItem(Item.BlackWing, 1);
     if (!trigger(0)) goto L53;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.BlackWing, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.BlackWing, 1);
 
 L53:
     jumpToScriptSection(204, 51);
 
 L54:
     if (pstat[3] != 0) goto L56;
-    addMoneyThenSpeakThenGiveItem(500, "Second Place Reward :\n   five hund bits!\nSecond Place Prize :\n   <LIGHTBLUE>Two Giant Meat<WHITE>!\n", Item.GiantMeat, 2);
+    addMoney(500);
+    speak(Entity.System, "Second Place Reward :\n   five hund bits!\nSecond Place Prize :\n   <LIGHTBLUE>Two Giant Meat<WHITE>!\n");
+    giveItem(Item.GiantMeat, 2);
     if (!trigger(0)) goto L55;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.GiantMeat, 2);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.GiantMeat, 2);
 
 L55:
     return;
 
 L56:
     if (pstat[3] != 1) goto L58;
-    addMoneyThenSpeakThenGiveItem(1000, "Second Place Reward :\n   one thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Sirloin<WHITE>!\n", Item.Sirloin, 1);
+    addMoney(1000);
+    speak(Entity.System, "Second Place Reward :\n   one thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Sirloin<WHITE>!\n");
+    giveItem(Item.Sirloin, 1);
     if (!trigger(0)) goto L57;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Sirloin, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Sirloin, 1);
 
 L57:
     return;
 
 L58:
     if (pstat[3] != 2) goto L60;
-    addMoneyThenSpeakThenGiveItem(2000, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Large MP Floppy<WHITE>!\n", Item.LargeMP, 1);
+    addMoney(2000);
+    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Large MP Floppy<WHITE>!\n");
+    giveItem(Item.LargeMP, 1);
     if (!trigger(0)) goto L59;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.LargeMP, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.LargeMP, 1);
 
 L59:
     return;
 
 L60:
     if (pstat[3] != 3) goto L62;
-    addMoneyThenSpeakThenGiveItem(3000, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Restore Floppy<WHITE>!\n", Item.Restore, 1);
+    addMoney(3000);
+    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Restore Floppy<WHITE>!\n");
+    giveItem(Item.Restore, 1);
     if (!trigger(0)) goto L61;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Restore, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Restore, 1);
 
 L61:
     return;
 
 L62:
     if (pstat[3] != 4) goto L64;
-    addMoneyThenSpeakThenGiveItem(4000, "Second Place Reward :\n   four thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Restore Floppy<WHITE>!\n", Item.SuperRestore, 1);
+    addMoney(4000);
+    speak(Entity.System, "Second Place Reward :\n   four thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Restore Floppy<WHITE>!\n");
+    giveItem(Item.SuperRestore, 1);
     if (!trigger(0)) goto L63;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SuperRestore, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SuperRestore, 1);
 
 L63:
     return;
 
 L64:
     if (pstat[3] != 6) goto L66;
-    addMoneyThenSpeakThenGiveItem(2000, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n", Item.SuperRecovery, 1);
+    addMoney(2000);
+    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
+    giveItem(Item.SuperRecovery, 1);
     if (!trigger(0)) goto L65;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SuperRecovery, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SuperRecovery, 1);
 
 L65:
     return;
 
 L66:
     if (pstat[3] != 7) goto L68;
-    addMoneyThenSpeakThenGiveItem(2000, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n", Item.SuperRecovery, 1);
+    addMoney(2000);
+    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
+    giveItem(Item.SuperRecovery, 1);
     if (!trigger(0)) goto L67;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SuperRecovery, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SuperRecovery, 1);
 
 L67:
     return;
 
 L68:
     if (pstat[3] != 8) goto L70;
-    addMoneyThenSpeakThenGiveItem(2000, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n", Item.SuperRecovery, 1);
+    addMoney(2000);
+    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
+    giveItem(Item.SuperRecovery, 1);
     if (!trigger(0)) goto L69;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SuperRecovery, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SuperRecovery, 1);
 
 L69:
     return;
 
 L70:
     if (pstat[3] != 9) goto L72;
-    addMoneyThenSpeakThenGiveItem(2000, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n", Item.SuperRecovery, 1);
+    addMoney(2000);
+    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
+    giveItem(Item.SuperRecovery, 1);
     if (!trigger(0)) goto L71;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SuperRecovery, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SuperRecovery, 1);
 
 L71:
     return;
 
 L72:
     if (pstat[3] != 10) goto L74;
-    addMoneyThenSpeakThenGiveItem(2000, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n", Item.SuperRecovery, 1);
+    addMoney(2000);
+    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
+    giveItem(Item.SuperRecovery, 1);
     if (!trigger(0)) goto L73;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SuperRecovery, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SuperRecovery, 1);
 
 L73:
     return;
 
 L74:
     if (pstat[3] != 11) goto L76;
-    addMoneyThenSpeakThenGiveItem(3000, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n", Item.Omnipotent, 1);
+    addMoney(3000);
+    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
+    giveItem(Item.Omnipotent, 1);
     if (!trigger(0)) goto L75;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Omnipotent, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Omnipotent, 1);
 
 L75:
     return;
 
 L76:
     if (pstat[3] != 12) goto L78;
-    addMoneyThenSpeakThenGiveItem(3000, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n", Item.Omnipotent, 1);
+    addMoney(3000);
+    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
+    giveItem(Item.Omnipotent, 1);
     if (!trigger(0)) goto L77;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Omnipotent, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Omnipotent, 1);
 
 L77:
     return;
 
 L78:
     if (pstat[3] != 13) goto L80;
-    addMoneyThenSpeakThenGiveItem(3000, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n", Item.Omnipotent, 1);
+    addMoney(3000);
+    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
+    giveItem(Item.Omnipotent, 1);
     if (!trigger(0)) goto L79;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Omnipotent, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Omnipotent, 1);
 
 L79:
     return;
 
 L80:
     if (pstat[3] != 14) goto L82;
-    addMoneyThenSpeakThenGiveItem(3000, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n", Item.Omnipotent, 1);
+    addMoney(3000);
+    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
+    giveItem(Item.Omnipotent, 1);
     if (!trigger(0)) goto L81;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Omnipotent, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Omnipotent, 1);
 
 L81:
     return;
 
 L82:
     if (pstat[3] != 15) goto L84;
-    addMoneyThenSpeakThenGiveItem(3000, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n", Item.Omnipotent, 1);
+    addMoney(3000);
+    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
+    giveItem(Item.Omnipotent, 1);
     if (!trigger(0)) goto L83;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Omnipotent, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Omnipotent, 1);
 
 L83:
     return;
 
 L84:
     if (pstat[3] != 16) goto L86;
-    addMoneyThenSpeakThenGiveItem(3000, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n", Item.Omnipotent, 1);
+    addMoney(3000);
+    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
+    giveItem(Item.Omnipotent, 1);
     if (!trigger(0)) goto L85;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Omnipotent, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Omnipotent, 1);
 
 L85:
     return;
 
 L86:
     if (pstat[3] != 17) goto L88;
-    addMoneyThenSpeakThenGiveItem(3000, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy <WHITE>!\n", Item.Omnipotent, 1);
+    addMoney(3000);
+    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy <WHITE>!\n");
+    giveItem(Item.Omnipotent, 1);
     if (!trigger(0)) goto L87;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Omnipotent, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Omnipotent, 1);
 
 L87:
     return;
 
 L88:
     if (pstat[3] != 18) goto L90;
-    addMoneyThenSpeakThenGiveItem(2000, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n", Item.OmniDisk, 1);
+    addMoney(2000);
+    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
+    giveItem(Item.OmniDisk, 1);
     if (!trigger(0)) goto L89;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.OmniDisk, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.OmniDisk, 1);
 
 L89:
     return;
 
 L90:
     if (pstat[3] != 19) goto L92;
-    addMoneyThenSpeakThenGiveItem(2000, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n", Item.OmniDisk, 1);
+    addMoney(2000);
+    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
+    giveItem(Item.OmniDisk, 1);
     if (!trigger(0)) goto L91;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.OmniDisk, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.OmniDisk, 1);
 
 L91:
     return;
 
 L92:
     if (pstat[3] != 20) goto L94;
-    addMoneyThenSpeakThenGiveItem(2000, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n", Item.OmniDisk, 1);
+    addMoney(2000);
+    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
+    giveItem(Item.OmniDisk, 1);
     if (!trigger(0)) goto L93;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.OmniDisk, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.OmniDisk, 1);
 
 L93:
     return;
 
 L94:
     if (pstat[3] != 21) goto L96;
-    addMoneyThenSpeakThenGiveItem(2000, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n", Item.OmniDisk, 1);
+    addMoney(2000);
+    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
+    giveItem(Item.OmniDisk, 1);
     if (!trigger(0)) goto L95;
-    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.OmniDisk, 1);
+    speak(5, "You got too much stuff.\n");
+    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.OmniDisk, 1);
 
 L95:
     return;

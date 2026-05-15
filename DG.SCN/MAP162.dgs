@@ -1,19 +1,6 @@
 // MAP162.SCN
 #pragma script index=162 start=0x73000 end=0x75800 headerU16=0x4c sentinelOff=0x19
 
-function speakThenShowTextboxThenShowTextbox(a, b, c, d) {
-    speak(a, b);
-    showTextbox(c);
-    showTextbox(d);
-}
-
-function playAnimationThenDelayThenSpeak(a, b, c) {
-    playAnimation(Entity.Player, a);
-    delay(b);
-    speak(Entity.Player, c);
-}
-
-
 section onEnter(254) {
     if (!trigger(202) || !trigger(215) || pstat[28] < 20) goto L1;
     unsetTrigger(202);
@@ -458,7 +445,9 @@ L7:
     return;
 
 L8:
-    speakThenShowTextboxThenShowTextbox(5, "I'll explain the city\nsurroundings to you.\n", "Native Forest\nsurrounds the city.\n", "The Digimon around there\naren't too strong.\n");
+    speak(5, "I'll explain the city\nsurroundings to you.\n");
+    showTextbox("Native Forest\nsurrounds the city.\n");
+    showTextbox("The Digimon around there\naren't too strong.\n");
     showTextbox("To the west there's a\nTraining Camp.\n");
     showTextbox("Tropical Jungle is\neast across the river.\n");
     showTextbox("I don't know\nwhat's beyond that.\n");
@@ -477,14 +466,18 @@ section(6) {
 }
 
 section(7) {
-    speakThenShowTextboxThenShowTextbox(7, "It looks pretty lively.\n", "Don't I have to go back\nto Factorial Town?\n", "My scheduling function is\nworking. No problem.\n");
+    speak(7, "It looks pretty lively.\n");
+    showTextbox("Don't I have to go back\nto Factorial Town?\n");
+    showTextbox("My scheduling function is\nworking. No problem.\n");
     return;
 }
 
 section(8) {
     if (trigger(84)) goto L1;
     setTrigger(84);
-    speakThenShowTextboxThenShowTextbox(8, "You came at the right time!\n", "Look at this sculpture!\nWhat do you think?\n", "What a masterpiece.\nI amaze myself.\n");
+    speak(8, "You came at the right time!\n");
+    showTextbox("Look at this sculpture!\nWhat do you think?\n");
+    showTextbox("What a masterpiece.\nI amaze myself.\n");
     showTextbox("What do you mean?\nYou're making fun of me!\n");
     showTextbox("What were we talking about?\nWell, whatever.\n");
     return;
@@ -520,7 +513,9 @@ L3:
 
 L4:
     if (pstat[1] < 20) goto L5;
-    speakThenShowTextboxThenShowTextbox(204, "Oh yeah,\n", "I planted a <LIGHTBLUE>Rain Plant\n<WHITE>right there.\n", "It bears fruit every year\naround the fifteenth.\nYou may take those.\n");
+    speak(204, "Oh yeah,\n");
+    showTextbox("I planted a <LIGHTBLUE>Rain Plant\n<WHITE>right there.\n");
+    showTextbox("It bears fruit every year\naround the fifteenth.\nYou may take those.\n");
     showTextbox("For what?\n");
     return;
 
@@ -608,7 +603,9 @@ L1:
     delay(5);
     if (trigger(83)) goto L2;
     setTrigger(83);
-    speakThenShowTextboxThenShowTextbox(12, "I'll take you to the ocean.\nThat's my job.\n", "I'll take you to a place you\ncan only go to by sea.\n", "Well, then...\n");
+    speak(12, "I'll take you to the ocean.\nThat's my job.\n");
+    showTextbox("I'll take you to a place you\ncan only go to by sea.\n");
+    showTextbox("Well, then...\n");
 
 L2:
     speak(12, "Hmmm, where should we go?\nFactorial Town or maybe\nBeach Cave.\n");
@@ -664,16 +661,22 @@ L3:
     speak(9, "I found you!\n");
     moveCamera(to: Entity.Player, speed: 20);
     waitForEntity(200);
-    playAnimationThenDelayThenSpeak(15, 5, "Oh no, he's coming\nright for us!\n");
+    playAnimation(Entity.Player, 15);
+    delay(5);
+    speak(Entity.Player, "Oh no, he's coming\nright for us!\n");
     move(entity: 9, to: (432, -2236), sprint: 0);
     waitForEntity(9);
     look(entity: 9, at: Entity.Player);
     delay(5);
     speak(9, "I finally met you!\nI'm Greymon.\nNow let's settle things!\n");
-    playAnimationThenDelayThenSpeak(1, 5, "What?!\n");
+    playAnimation(Entity.Player, 1);
+    delay(5);
+    speak(Entity.Player, "What?!\n");
     speak(9, "I got here by following\nthe rumors about you.\nI want to fight you!\n");
     showTextbox("If I win,\nI want this street sign!\n");
-    playAnimationThenDelayThenSpeak(16, 30, "There's no sign.\n");
+    playAnimation(Entity.Player, 16);
+    delay(30);
+    speak(Entity.Player, "There's no sign.\n");
     speak(9, "I don't care,\nlet's fight anyway!\n");
     move(entity: Entity.Partner, to: (50, -1950), sprint: 1);
     waitForEntity(Entity.Partner);
@@ -691,7 +694,9 @@ L3:
     look(entity: 9, at: Entity.Player);
     look(entity: Entity.Partner, at: 9);
     speak(9, "Hey, you guys are good!\nBut to finish your goal,\nyou're still amateurs.\n");
-    playAnimationThenDelayThenSpeak(1, 5, "Hmmm\n");
+    playAnimation(Entity.Player, 1);
+    delay(5);
+    speak(Entity.Player, "Hmmm\n");
     speak(9, "I'll stay and train you.\nYou'll get much better!\n");
     goto L4;
 
@@ -766,7 +771,9 @@ L6:
     speak(10, "No matter what I do,\nI must defeat him.\n");
     playAnimation(10, 29);
     delay(30);
-    playAnimationThenDelayThenSpeak(7, 5, "What are you talking about?\nYou gotta get treatment.\n");
+    playAnimation(Entity.Player, 7);
+    delay(5);
+    speak(Entity.Player, "What are you talking about?\nYou gotta get treatment.\n");
     move(entity: Entity.Player, to: 10, sprint: 1);
     move(entity: Entity.Partner, to: 10, sprint: 1);
     delay(40);

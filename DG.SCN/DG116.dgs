@@ -1,13 +1,6 @@
 // DG116.SCN
 #pragma script index=116 start=0x54000 end=0x54800 headerU16=0x1c sentinelOff=0x24
 
-function speakThenStartBattleThenSetTrigger(a, b, c) {
-    speak(a, b);
-    startBattle();
-    setTrigger(c);
-}
-
-
 section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 13) goto L1;
@@ -28,22 +21,30 @@ L3:
 }
 
 section(6) {
-    speakThenStartBattleThenSetTrigger(6, "Wow!\n", 280);
+    speak(6, "Wow!\n");
+    startBattle();
+    setTrigger(280);
     return;
 }
 
 section(7) {
-    speakThenStartBattleThenSetTrigger(7, "Mmmm.\n", 280);
+    speak(7, "Mmmm.\n");
+    startBattle();
+    setTrigger(280);
     return;
 }
 
 section(8) {
-    speakThenStartBattleThenSetTrigger(8, "Uh, let's call it quits.\n", 296);
+    speak(8, "Uh, let's call it quits.\n");
+    startBattle();
+    setTrigger(296);
     return;
 }
 
 section(9) {
-    speakThenStartBattleThenSetTrigger(9, "We can't let our\nguard down yet.\n", 301);
+    speak(9, "We can't let our\nguard down yet.\n");
+    startBattle();
+    setTrigger(301);
     return;
 }
 

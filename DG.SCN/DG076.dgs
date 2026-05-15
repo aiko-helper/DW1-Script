@@ -1,13 +1,6 @@
 // DG076.SCN
 #pragma script index=76 start=0x36000 end=0x37000 headerU16=0x1c sentinelOff=0x24
 
-function speakThenStartBattleThenSetTrigger(a, b, c) {
-    speak(a, b);
-    startBattle();
-    setTrigger(c);
-}
-
-
 section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
@@ -25,22 +18,30 @@ L2:
 }
 
 section(6) {
-    speakThenStartBattleThenSetTrigger(6, "Taaa!\n", 288);
+    speak(6, "Taaa!\n");
+    startBattle();
+    setTrigger(288);
     return;
 }
 
 section(7) {
-    speakThenStartBattleThenSetTrigger(7, "Alright, take that!\n", 288);
+    speak(7, "Alright, take that!\n");
+    startBattle();
+    setTrigger(288);
     return;
 }
 
 section(8) {
-    speakThenStartBattleThenSetTrigger(8, "Shaaaa!\n", 267);
+    speak(8, "Shaaaa!\n");
+    startBattle();
+    setTrigger(267);
     return;
 }
 
 section(9) {
-    speakThenStartBattleThenSetTrigger(9, "Buooon!\n", 267);
+    speak(9, "Buooon!\n");
+    startBattle();
+    setTrigger(267);
     return;
 }
 

@@ -1,13 +1,6 @@
 // DG086.SCN
 #pragma script index=86 start=0x3d800 end=0x3e000 headerU16=0x1c sentinelOff=0x24
 
-function speakThenStartBattleThenSetTrigger(a, b, c) {
-    speak(a, b);
-    startBattle();
-    setTrigger(c);
-}
-
-
 section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 16) goto L1;
@@ -28,22 +21,30 @@ L3:
 }
 
 section(5) {
-    speakThenStartBattleThenSetTrigger(5, "Let's settle this!\n", 271);
+    speak(5, "Let's settle this!\n");
+    startBattle();
+    setTrigger(271);
     return;
 }
 
 section(6) {
-    speakThenStartBattleThenSetTrigger(6, "Darn it!\n", 271);
+    speak(6, "Darn it!\n");
+    startBattle();
+    setTrigger(271);
     return;
 }
 
 section(7) {
-    speakThenStartBattleThenSetTrigger(7, "Do you wanna be beat?!\n", 303);
+    speak(7, "Do you wanna be beat?!\n");
+    startBattle();
+    setTrigger(303);
     return;
 }
 
 section(8) {
-    speakThenStartBattleThenSetTrigger(8, "My one blow will finish you!\n", 303);
+    speak(8, "My one blow will finish you!\n");
+    startBattle();
+    setTrigger(303);
     return;
 }
 

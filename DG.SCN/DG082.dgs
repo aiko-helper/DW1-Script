@@ -1,14 +1,6 @@
 // DG082.SCN
 #pragma script index=82 start=0x3b000 end=0x3c000 headerU16=0x10 sentinelOff=0x24
 
-function playAnimationThenDelayThenSpeakThenSpeak(a, b, c, d, e, f, g) {
-    playAnimation(a, b);
-    delay(c);
-    speak(d, e);
-    speak(f, g);
-}
-
-
 section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 0) goto L1;
@@ -40,7 +32,10 @@ L1:
     goto L2;
 
 L2:
-    playAnimationThenDelayThenSpeakThenSpeak(5, 29, 10, Entity.Player, "Wow!\n", Entity.Player, "You're a Digimon?!\nWho are you?\n");
+    playAnimation(5, 29);
+    delay(10);
+    speak(Entity.Player, "Wow!\n");
+    speak(Entity.Player, "You're a Digimon?!\nWho are you?\n");
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Player, at: 5);
     delay(5);
@@ -63,8 +58,14 @@ L2:
     look(entity: Entity.Partner, at: 5);
     speak(5, "I give up. You're so strong.\n");
     speak(Entity.Player, "Whatever you know, tell me\nabout the island's danger.\n");
-    playAnimationThenDelayThenSpeakThenSpeak(Entity.Player, 19, 5, 5, "I was just born, so\nI don't know anything!\n", Entity.Player, "What?!\n");
-    playAnimationThenDelayThenSpeakThenSpeak(Entity.Player, 0, 5, 5, "The Meteorite Tribe is\nborn in the sky and then\nfalls to the ground.\n", 5, "Then we sleep for a long time.\nActually, I was supposed to\nsleep much longer, but...\n");
+    playAnimation(Entity.Player, 19);
+    delay(5);
+    speak(5, "I was just born, so\nI don't know anything!\n");
+    speak(Entity.Player, "What?!\n");
+    playAnimation(Entity.Player, 0);
+    delay(5);
+    speak(5, "The Meteorite Tribe is\nborn in the sky and then\nfalls to the ground.\n");
+    speak(5, "Then we sleep for a long time.\nActually, I was supposed to\nsleep much longer, but...\n");
     speak(Entity.Player, "Time goes much faster here.\n");
     speak(5, "Probably. Anyway, I'll go\ncheck out the island.");
     dead_string("?o\nSee ya!\n");
@@ -110,7 +111,10 @@ L5:
 
 section(6) {
     delay(10);
-    playAnimationThenDelayThenSpeakThenSpeak(6, 28, 10, Entity.Player, "Huh? Who are you?!\n", 6, "Who am I? Who are you?!\n");
+    playAnimation(6, 28);
+    delay(10);
+    speak(Entity.Player, "Huh? Who are you?!\n");
+    speak(6, "Who am I? Who are you?!\n");
     rotate(entity: 6, to: 1276);
     delay(5);
     rotate(entity: 6, to: 2300);

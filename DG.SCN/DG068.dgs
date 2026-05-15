@@ -1,13 +1,6 @@
 // DG068.SCN
 #pragma script index=68 start=0x31000 end=0x31800 headerU16=0x28 sentinelOff=0x24
 
-function speakThenStartBattleThenSetTrigger(a, b, c) {
-    speak(a, b);
-    startBattle();
-    setTrigger(c);
-}
-
-
 section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 8) goto L1;
@@ -133,32 +126,44 @@ L5:
 }
 
 section(6) {
-    speakThenStartBattleThenSetTrigger(6, "Ugghh!\n", 295);
+    speak(6, "Ugghh!\n");
+    startBattle();
+    setTrigger(295);
     return;
 }
 
 section(7) {
-    speakThenStartBattleThenSetTrigger(7, "Ahhh!\n", 295);
+    speak(7, "Ahhh!\n");
+    startBattle();
+    setTrigger(295);
     return;
 }
 
 section(8) {
-    speakThenStartBattleThenSetTrigger(8, "You're dead meat!\n", 297);
+    speak(8, "You're dead meat!\n");
+    startBattle();
+    setTrigger(297);
     return;
 }
 
 section(9) {
-    speakThenStartBattleThenSetTrigger(9, "Not Bad.\n", 282);
+    speak(9, "Not Bad.\n");
+    startBattle();
+    setTrigger(282);
     return;
 }
 
 section(10) {
-    speakThenStartBattleThenSetTrigger(10, "You got poor taste.\n", 282);
+    speak(10, "You got poor taste.\n");
+    startBattle();
+    setTrigger(282);
     return;
 }
 
 section(11) {
-    speakThenStartBattleThenSetTrigger(11, "You're cocky! I'll teach you.\n", 295);
+    speak(11, "You're cocky! I'll teach you.\n");
+    startBattle();
+    setTrigger(295);
     return;
 }
 

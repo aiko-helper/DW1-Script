@@ -15,12 +15,6 @@ function waitForEntityThenWaitForEntityThenDelay() {
     delay(20);
 }
 
-function speakThenPlayAnimationThenSpeak(a, b, c, d, e) {
-    speak(a, b);
-    playAnimation(Entity.Player, c);
-    speak(d, e);
-}
-
 
 section onEnter(254) {
     return;
@@ -88,14 +82,20 @@ L1:
     delay(40);
     speak(5, "You're good.\n");
     speak(Entity.Player, "So it was your nest.\n");
-    speakThenPlayAnimationThenSpeak(5, "Yeah.\n", 20, Entity.Player, "Sorry to enter without asking.\n");
+    speak(5, "Yeah.\n");
+    playAnimation(Entity.Player, 20);
+    speak(Entity.Player, "Sorry to enter without asking.\n");
     playAnimation(Entity.Player, 0);
     speak(5, "Oh, don't worry about it.\n");
     speak(Entity.Player, "?\n");
     speak(5, "I've heard of you.\n");
     speak(Entity.Player, "I didn't know I was famous.\n");
-    speakThenPlayAnimationThenSpeak(5, "You're probably the only\nhuman left on the island.\n", 16, Entity.Player, "Left...? There've been\nothers before me?\n");
-    speakThenPlayAnimationThenSpeak(5, "Aren't you going to\ninvite me to the city?\n", 19, Entity.Player, "Oh, yeah, won't you come\nto the city?\n");
+    speak(5, "You're probably the only\nhuman left on the island.\n");
+    playAnimation(Entity.Player, 16);
+    speak(Entity.Player, "Left...? There've been\nothers before me?\n");
+    speak(5, "Aren't you going to\ninvite me to the city?\n");
+    playAnimation(Entity.Player, 19);
+    speak(Entity.Player, "Oh, yeah, won't you come\nto the city?\n");
     speak(5, "Okay. Then let's get down\nto business. Hold on tight.\n");
     move(entity: 5, to: (167, -665), sprint: 0);
     waitForEntity(5);

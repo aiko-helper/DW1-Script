@@ -1,13 +1,6 @@
 // DG067.SCN
 #pragma script index=67 start=0x30800 end=0x31000 headerU16=0x24 sentinelOff=0x24
 
-function speakThenStartBattleThenSetTrigger(a, b, c) {
-    speak(a, b);
-    startBattle();
-    setTrigger(c);
-}
-
-
 section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
@@ -33,32 +26,44 @@ L4:
 }
 
 section(5) {
-    speakThenStartBattleThenSetTrigger(5, "You have good sense.\n", 282);
+    speak(5, "You have good sense.\n");
+    startBattle();
+    setTrigger(282);
     return;
 }
 
 section(6) {
-    speakThenStartBattleThenSetTrigger(6, "Looks like some good points.\n", 282);
+    speak(6, "Looks like some good points.\n");
+    startBattle();
+    setTrigger(282);
     return;
 }
 
 section(7) {
-    speakThenStartBattleThenSetTrigger(7, "Hey you're that....\nHow interesting!\n", 275);
+    speak(7, "Hey you're that....\nHow interesting!\n");
+    startBattle();
+    setTrigger(275);
     return;
 }
 
 section(8) {
-    speakThenStartBattleThenSetTrigger(8, "Do you want this? He he...\n", 279);
+    speak(8, "Do you want this? He he...\n");
+    startBattle();
+    setTrigger(279);
     return;
 }
 
 section(9) {
-    speakThenStartBattleThenSetTrigger(9, "We're friends already.\n", 279);
+    speak(9, "We're friends already.\n");
+    startBattle();
+    setTrigger(279);
     return;
 }
 
 section(10) {
-    speakThenStartBattleThenSetTrigger(10, "Are you my enemy?\nDo you want to fight?\n", 297);
+    speak(10, "Are you my enemy?\nDo you want to fight?\n");
+    startBattle();
+    setTrigger(297);
     return;
 }
 

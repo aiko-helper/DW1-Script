@@ -1,20 +1,6 @@
 // DG113.SCN
 #pragma script index=113 start=0x51000 end=0x52000 headerU16=0x38 sentinelOff=0x24
 
-function speakThenPlayAnimationThenDelayThenSpeak(a, b, c, d, e, f, g) {
-    speak(a, b);
-    playAnimation(c, d);
-    delay(e);
-    speak(f, g);
-}
-
-function speakThenStartBattleThenSetTrigger(a, b, c) {
-    speak(a, b);
-    startBattle();
-    setTrigger(c);
-}
-
-
 section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 19) goto L1;
@@ -40,37 +26,51 @@ L4:
 }
 
 section(6) {
-    speakThenStartBattleThenSetTrigger(6, "Go straight ahead and\nmake a right. He he he...\n", 280);
+    speak(6, "Go straight ahead and\nmake a right. He he he...\n");
+    startBattle();
+    setTrigger(280);
     return;
 }
 
 section(7) {
-    speakThenStartBattleThenSetTrigger(7, "Make a right and\na quick left. He he...\n", 280);
+    speak(7, "Make a right and\na quick left. He he...\n");
+    startBattle();
+    setTrigger(280);
     return;
 }
 
 section(8) {
-    speakThenStartBattleThenSetTrigger(8, "You won't get out of\nthis forest. He he he...\n", 280);
+    speak(8, "You won't get out of\nthis forest. He he he...\n");
+    startBattle();
+    setTrigger(280);
     return;
 }
 
 section(9) {
-    speakThenStartBattleThenSetTrigger(9, "I got lost!\n", 291);
+    speak(9, "I got lost!\n");
+    startBattle();
+    setTrigger(291);
     return;
 }
 
 section(10) {
-    speakThenStartBattleThenSetTrigger(10, "Lately, I've been tired.\n", 291);
+    speak(10, "Lately, I've been tired.\n");
+    startBattle();
+    setTrigger(291);
     return;
 }
 
 section(11) {
-    speakThenStartBattleThenSetTrigger(11, "You? No way!?\n", 280);
+    speak(11, "You? No way!?\n");
+    startBattle();
+    setTrigger(280);
     return;
 }
 
 section(12) {
-    speakThenStartBattleThenSetTrigger(12, "Be careful where you walk.\n", 280);
+    speak(12, "Be careful where you walk.\n");
+    startBattle();
+    setTrigger(280);
     return;
 }
 
@@ -89,14 +89,23 @@ section(5) {
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
     delay(10);
-    speakThenPlayAnimationThenDelayThenSpeak(5, "Hmm, you're something else!\nThat was pretty good for\nso early in the morning.\n", Entity.Player, 16, 20, Entity.Player, "Hey, hey, don't act like it's\nsomebody else's business!\n");
+    speak(5, "Hmm, you're something else!\nThat was pretty good for\nso early in the morning.\n");
+    playAnimation(Entity.Player, 16);
+    delay(20);
+    speak(Entity.Player, "Hey, hey, don't act like it's\nsomebody else's business!\n");
     speak(5, "I know! I know what you're\ntalking about.\n");
     showTextbox("I hear you're working\nhard for the island\nby gathering Digimons.\n");
     playAnimation(Entity.Player, 19);
     delay(20);
     speak(Entity.Player, "So you know. Well,\nwhy don't you help me.\n");
-    speakThenPlayAnimationThenDelayThenSpeak(5, "And, where am I supposed\nto do what?\n", Entity.Player, 7, 20, Entity.Player, "Oh you just don't get it!\nYou're supposed to work\nin the city, remember?!\n");
-    speakThenPlayAnimationThenDelayThenSpeak(5, "Well, like they say...\nthe early bird gets the bug.\n", Entity.Player, 7, 20, Entity.Player, "That has nothing to do with\nanything! On top of that,\nit's a worm not a bug!\n");
+    speak(5, "And, where am I supposed\nto do what?\n");
+    playAnimation(Entity.Player, 7);
+    delay(20);
+    speak(Entity.Player, "Oh you just don't get it!\nYou're supposed to work\nin the city, remember?!\n");
+    speak(5, "Well, like they say...\nthe early bird gets the bug.\n");
+    playAnimation(Entity.Player, 7);
+    delay(20);
+    speak(Entity.Player, "That has nothing to do with\nanything! On top of that,\nit's a worm not a bug!\n");
     playAnimation(Entity.Partner, 11);
     delay(5);
     speak(5, "I'm just joking. Well,\nI'll see you in the city...\n");
@@ -117,7 +126,10 @@ L2:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 10);
-    speakThenPlayAnimationThenDelayThenSpeak(Entity.System, "Kokatorimon joins the city!\n", Entity.Player, 16, 20, Entity.Player, "Can we really trust him?\nI wonder...\n");
+    speak(Entity.System, "Kokatorimon joins the city!\n");
+    playAnimation(Entity.Player, 16);
+    delay(20);
+    speak(Entity.Player, "Can we really trust him?\nI wonder...\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     setTrigger(250);

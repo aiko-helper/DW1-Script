@@ -1,14 +1,6 @@
 // DG132.SCN
 #pragma script index=132 start=0x5d000 end=0x5e000 headerU16=0x10 sentinelOff=0xfe
 
-function playAnimationThenDelayThenSpeakThenPlayAnimation(a, b) {
-    playAnimation(Entity.Player, a);
-    delay(15);
-    speak(Entity.Player, b);
-    playAnimation(Entity.Player, 0);
-}
-
-
 section onEnter(254) {
     return;
 }
@@ -18,13 +10,19 @@ section(51) {
     removeCondition(Condition.Sick);
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Partner, at: Entity.Player);
-    playAnimationThenDelayThenSpeakThenPlayAnimation(24, "Where are we?\nIs this a dream?\n");
+    playAnimation(Entity.Player, 24);
+    delay(15);
+    speak(Entity.Player, "Where are we?\nIs this a dream?\n");
+    playAnimation(Entity.Player, 0);
     rotate(entity: Entity.Player, to: 1050);
     delay(20);
     rotate(entity: Entity.Player, to: 1561);
     delay(20);
     look(entity: Entity.Player, at: 5);
-    playAnimationThenDelayThenSpeakThenPlayAnimation(15, "Wow! Who are you?\nWhere is <ORANGE><DIGIMON><WHITE>?\n");
+    playAnimation(Entity.Player, 15);
+    delay(15);
+    speak(Entity.Player, "Wow! Who are you?\nWhere is <ORANGE><DIGIMON><WHITE>?\n");
+    playAnimation(Entity.Player, 0);
     rotate(entity: Entity.Player, to: 1050);
     delay(5);
     look(entity: Entity.Player, at: 5);
@@ -36,16 +34,25 @@ section(51) {
     speak(Entity.Player, "Oh, <ORANGE><DIGIMON><WHITE>.\nI'm glad you're safe!\n");
     speak(5, "Hey, are you listening?\nIf I didn't find you,\nyou'd be dead by now!\n");
     look(entity: Entity.Player, at: 5);
-    playAnimationThenDelayThenSpeakThenPlayAnimation(25, "Oh, sorry. Gee thanks.\n");
+    playAnimation(Entity.Player, 25);
+    delay(15);
+    speak(Entity.Player, "Oh, sorry. Gee thanks.\n");
+    playAnimation(Entity.Player, 0);
     delay(30);
     look(entity: Entity.Player, at: Entity.Partner);
-    playAnimationThenDelayThenSpeakThenPlayAnimation(7, "Hey, <ORANGE><DIGIMON><WHITE>,\nI even hit my head when\nyou suddenly fell down.\n");
+    playAnimation(Entity.Player, 7);
+    delay(15);
+    speak(Entity.Player, "Hey, <ORANGE><DIGIMON><WHITE>,\nI even hit my head when\nyou suddenly fell down.\n");
+    playAnimation(Entity.Player, 0);
     storeDigimonType(103);
     speak(5, "<DIGIMONTYPE2>can't stand cold.\nYou are so reckless.\nIt's all your fault.\n");
     look(entity: Entity.Player, at: 5);
     delay(20);
     look(entity: Entity.Player, at: Entity.Partner);
-    playAnimationThenDelayThenSpeakThenPlayAnimation(19, "I didn't know.\nI'm sorry, <ORANGE><DIGIMON><WHITE>.\n");
+    playAnimation(Entity.Player, 19);
+    delay(15);
+    speak(Entity.Player, "I didn't know.\nI'm sorry, <ORANGE><DIGIMON><WHITE>.\n");
+    playAnimation(Entity.Player, 0);
     look(entity: Entity.Player, at: 5);
     speak(Entity.Player, "Thanks, Frigimon. Can I ask\nyou one more favor?\n");
     speak(5, "What will you do if\n<DIGIMONTYPE2>falls down again?\nYou'd better go home soon!\n");
@@ -89,7 +96,10 @@ L4:
     look(entity: 5, at: Entity.Player);
     speak(Entity.Player, "I came here cuz I have\na favor to ask. I want you\nto come to the city.\n");
     speak(5, "What's there for me?\nSomething interesting?\n");
-    playAnimationThenDelayThenSpeakThenPlayAnimation(19, "Well, you can open\nany shop you want.\n");
+    playAnimation(Entity.Player, 19);
+    delay(15);
+    speak(Entity.Player, "Well, you can open\nany shop you want.\n");
+    playAnimation(Entity.Player, 0);
     playAnimation(5, 11);
     delay(5);
     speak(5, "Wow, I always wanted to do\nthat. Alright, I'll go!\n");
@@ -120,7 +130,10 @@ L6:
 
 L7:
     speak(5, "That Digimon can't stand\ncold very well!\n");
-    playAnimationThenDelayThenSpeakThenPlayAnimation(15, "I'll be back!\n");
+    playAnimation(Entity.Player, 15);
+    delay(15);
+    speak(Entity.Player, "I'll be back!\n");
+    playAnimation(Entity.Player, 0);
     return;
     garbage { 10 00 fe 00 10 00 33 00 12 00 05 00 50 06 ff ff fe 00 65 20 65 40 4c 00 05 fd 4c 00 fc fd 56 00 fd 18 67 00 0f 00 1b fd 1a 00 82 76 82 88 82 85 82 92 82 85 81 40 82 81 82 92 82 85 81 40 82 97 82 85 81 48 0d 00 82 68 82 93 81 40 82 94 82 88 82 89 82 93 81 40 82 81 81 40 82 84 82 92 82 85 82 81 82 8d 81 48 0d 00 00 00 56 00 fd 00 4d fd 1a 04 67 00 14 00 4d fd 19 06 67 00 14 00 4c 00 fd 05 56 00 fd 0f 67 00 0f 00 1b fd 1a 00 82 76 82 8f 82 97 81 49 81 40 82 76 82 88 82 8f 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 48 0d 00 82 76 82 88 82 85 82 92 82 85 81 40 82 89 82 93 81 40 01 0a 06 00 01 01 81 48 0d 00 00 00 56 00 fd 00 4d fd 1a 04 67 00 05 00 4c 00 fd 05 1b 05 1a 00 82 62 82 81 82 8c 82 8d 81 40 82 84 82 8f 82 97 82 8e 81 42 81 40 82 6c 82 99 81 40 82 8e 82 81 82 8d 82 85 81 40 82 89 82 93 0d 00 82 65 82 92 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 42 81 40 82 73 82 88 82 89 82 93 81 40 82 89 82 93 81 40 82 8d 82 99 81 40 82 88 82 8f 82 95 82 93 82 85 81 42 0d 00 82 68 81 75 82 8d 81 40 82 81 82 8e 81 40 82 68 82 83 82 85 81 40 82 72 82 8e 82 8f 82 97 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 42 0d 00 00 00 1a 00 82 78 82 8f 82 95 81 40 82 97 82 85 82 92 82 85 81 40 82 8f 82 95 82 94 81 40 82 83 82 8f 82 8c 82 84 81 40 82 89 82 8e 81 40 82 94 82 88 82 85 0d 00 82 93 82 8e 82 8f 82 97 81 42 81 40 82 68 81 40 82 90 82 89 82 83 82 8b 82 85 82 84 81 40 82 99 82 8f 82 95 81 40 82 95 82 90 0d 00 82 81 82 8e 82 84 81 40 82 94 82 8f 82 8f 82 8b 81 40 82 83 82 81 82 92 82 85 81 40 82 8f 82 86 81 40 82 99 82 8f 82 95 81 42 0d 00 00 00 4d fd 19 00 67 00 05 00 4c 00 fd fc 1b fd 1a 00 82 6e 82 88 81 43 81 40 01 0a 06 00 01 01 81 42 0d 00 82 68 81 75 82 8d 81 40 82 87 82 8c 82 81 82 84 81 40 82 99 82 8f 82 95 81 75 82 92 82 85 81 40 82 93 82 81 82 86 82 85 81 49 0d 00 00 00 1b 05 1a 00 82 67 82 85 82 99 81 43 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 8c 82 89 82 93 82 94 82 85 82 8e 82 89 82 8e 82 87 81 48 0d 00 82 68 82 86 81 40 82 68 81 40 82 84 82 89 82 84 82 8e 81 75 82 94 81 40 82 86 82 89 82 8e 82 84 81 40 82 99 82 8f 82 95 81 43 0d 00 82 99 82 8f 82 95 81 75 82 84 81 40 82 82 82 85 81 40 82 84 82 85 82 81 82 84 81 40 82 82 82 99 81 40 82 8e 82 8f 82 97 81 49 0d 00 00 00 4c 00 fd 05 56 00 fd 19 67 00 0f 00 1b fd 1a 00 82 6e 82 88 81 43 81 40 82 93 82 8f 82 92 82 92 82 99 81 42 81 40 82 66 82 85 82 85 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 81 42 0d 00 00 00 56 00 fd 00 67 00 1e 00 4c 00 fd fc 56 00 fd 07 67 00 0f 00 1b fd 1a 00 82 67 82 85 82 99 81 43 81 40 01 0a 06 00 01 01 81 43 0d 00 82 68 81 40 82 85 82 96 82 85 82 8e 81 40 82 88 82 89 82 94 81 40 82 8d 82 99 81 40 82 88 82 85 82 81 82 84 81 40 82 97 82 88 82 85 82 8e 0d 00 82 99 82 8f 82 95 81 40 82 93 82 95 82 84 82 84 82 85 82 8e 82 8c 82 99 81 40 82 86 82 85 82 8c 82 8c 81 40 82 84 82 8f 82 97 82 8e 81 42 0d 00 00 00 56 00 fd 00 22 67 1b 05 1a 00 07 67 82 83 82 81 82 8e 81 75 82 94 81 40 82 93 82 94 82 81 82 8e 82 84 81 40 82 83 82 8f 82 8c 82 84 81 42 0d 00 82 78 82 8f 82 95 81 40 82 81 82 92 82 85 81 40 82 93 82 8f 81 40 82 92 82 85 82 83 82 8b 82 8c 82 85 82 93 82 93 81 42 0d 00 82 68 82 94 81 75 82 93 81 40 82 81 82 8c 82 8c 81 40 82 99 82 8f 82 95 82 92 81 40 82 86 82 81 82 95 82 8c 82 94 81 42 0d 00 00 00 4c 00 fd 05 67 00 14 00 4c 00 fd fc 56 00 fd 13 67 00 0f 00 1b fd 1a 00 82 68 81 40 82 84 82 89 82 84 82 8e 81 75 82 94 81 40 82 8b 82 8e 82 8f 82 97 81 42 0d 00 82 68 81 75 82 8d 81 40 82 93 82 8f 82 92 82 92 82 99 81 43 81 40 01 0a 06 00 01 01 81 42 0d 00 00 00 56 00 fd 00 4c 00 fd 05 1b fd 1a 00 82 73 }
 }

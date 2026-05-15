@@ -1,13 +1,6 @@
 // DG112.SCN
 #pragma script index=112 start=0x50800 end=0x51000 headerU16=0x2c sentinelOff=0x24
 
-function speakThenStartBattleThenSetTrigger(a, b, c) {
-    speak(a, b);
-    startBattle();
-    setTrigger(c);
-}
-
-
 section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 11) goto L1;
@@ -28,37 +21,51 @@ L3:
 }
 
 section(5) {
-    speakThenStartBattleThenSetTrigger(5, "Do you want something?\n", 291);
+    speak(5, "Do you want something?\n");
+    startBattle();
+    setTrigger(291);
     return;
 }
 
 section(6) {
-    speakThenStartBattleThenSetTrigger(6, "Ha ha, don't be too hasty.\n", 291);
+    speak(6, "Ha ha, don't be too hasty.\n");
+    startBattle();
+    setTrigger(291);
     return;
 }
 
 section(7) {
-    speakThenStartBattleThenSetTrigger(7, "Make yourself at home.\n", 291);
+    speak(7, "Make yourself at home.\n");
+    startBattle();
+    setTrigger(291);
     return;
 }
 
 section(8) {
-    speakThenStartBattleThenSetTrigger(8, "Wanna be turned into\nfertilizer!?\n", 289);
+    speak(8, "Wanna be turned into\nfertilizer!?\n");
+    startBattle();
+    setTrigger(289);
     return;
 }
 
 section(9) {
-    speakThenStartBattleThenSetTrigger(9, "Who are you?\n", 289);
+    speak(9, "Who are you?\n");
+    startBattle();
+    setTrigger(289);
     return;
 }
 
 section(10) {
-    speakThenStartBattleThenSetTrigger(10, "You should give up.\n", 301);
+    speak(10, "You should give up.\n");
+    startBattle();
+    setTrigger(301);
     return;
 }
 
 section(11) {
-    speakThenStartBattleThenSetTrigger(11, "Don't waste your energy!\n", 301);
+    speak(11, "Don't waste your energy!\n");
+    startBattle();
+    setTrigger(301);
     return;
 }
 

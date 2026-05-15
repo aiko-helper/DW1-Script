@@ -1,13 +1,6 @@
 // DG008.SCN
 #pragma script index=8 start=0xb800 end=0xc000 headerU16=0x18 sentinelOff=0x24
 
-function waitForEntityThenDelayThenSpeak(a, b, c, d) {
-    waitForEntity(a);
-    delay(b);
-    speak(c, d);
-}
-
-
 section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 1) goto L1;
@@ -21,7 +14,9 @@ section(51) {
     if (trigger(149)) goto L1;
     moveCamera(to: (-5000, 2000), slowdown: 30);
     rotate(entity: Entity.Player, to: 1117);
-    waitForEntityThenDelayThenSpeak(200, 50, Entity.Player, "Drill Tunnel\n");
+    waitForEntity(200);
+    delay(50);
+    speak(Entity.Player, "Drill Tunnel\n");
     moveCamera(to: Entity.Player, speed: 20);
     waitForEntity(200);
     setTrigger(149);
@@ -46,15 +41,21 @@ L4:
     setObjectVisibility(6, 0);
     moveCamera(to: (-5000, 2000), slowdown: 30);
     rotate(entity: Entity.Player, to: 1117);
-    waitForEntityThenDelayThenSpeak(200, 50, Entity.Player, "Oh that jerk! How rude!\n");
+    waitForEntity(200);
+    delay(50);
+    speak(Entity.Player, "Oh that jerk! How rude!\n");
     moveCamera(to: (-2900, 0), slowdown: 30);
-    waitForEntityThenDelayThenSpeak(200, 20, Entity.Player, "Huh?\n");
+    waitForEntity(200);
+    delay(20);
+    speak(Entity.Player, "Huh?\n");
     setDigimon(Digimon.MarketManager, 0, 0);
     move(entity: 5, to: (-2028, -842), sprint: 0);
     rotate(entity: Entity.Player, to: 1117);
     waitForEntity(5);
     rotate(entity: 5, to: 1117);
-    waitForEntityThenDelayThenSpeak(5, 10, Entity.System, "<YELLOW>Market manager <WHITE>\nI didn't know we'd have to\npay to get thru!\n");
+    waitForEntity(5);
+    delay(10);
+    speak(Entity.System, "<YELLOW>Market manager <WHITE>\nI didn't know we'd have to\npay to get thru!\n");
     move(entity: 5, to: (-1323, -815), sprint: 0);
     waitForEntity(5);
     look(entity: 5, at: Entity.Player);

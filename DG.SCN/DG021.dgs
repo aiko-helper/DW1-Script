@@ -1,13 +1,6 @@
 // DG021.SCN
 #pragma script index=21 start=0x15000 end=0x15800 headerU16=0x1c sentinelOff=0x24
 
-function speakThenStartBattleThenSetTrigger(a, b, c) {
-    speak(a, b);
-    startBattle();
-    setTrigger(c);
-}
-
-
 section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 6) goto L1;
@@ -28,22 +21,30 @@ L3:
 }
 
 section(5) {
-    speakThenStartBattleThenSetTrigger(5, "No way!\n", 268);
+    speak(5, "No way!\n");
+    startBattle();
+    setTrigger(268);
     return;
 }
 
 section(6) {
-    speakThenStartBattleThenSetTrigger(6, "Leave something before you go.\n", 280);
+    speak(6, "Leave something before you go.\n");
+    startBattle();
+    setTrigger(280);
     return;
 }
 
 section(7) {
-    speakThenStartBattleThenSetTrigger(7, "I accept your challenge!\n", 268);
+    speak(7, "I accept your challenge!\n");
+    startBattle();
+    setTrigger(268);
     return;
 }
 
 section(8) {
-    speakThenStartBattleThenSetTrigger(8, "Wait!\n", 280);
+    speak(8, "Wait!\n");
+    startBattle();
+    setTrigger(280);
     return;
 }
 

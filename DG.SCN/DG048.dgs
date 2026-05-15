@@ -1,13 +1,6 @@
 // DG048.SCN
 #pragma script index=48 start=0x24800 end=0x25000 headerU16=0x24 sentinelOff=0x2075
 
-function playAnimationThenDelayThenSpeak(a, b, c, d) {
-    playAnimation(a, b);
-    delay(c);
-    speak(Entity.Player, d);
-}
-
-
 section onEnter(254) {
     spawnChest(Item.PortaPotty, -1455, 184, 3072, 671);
     if (!trigger(175)) goto L1;
@@ -72,7 +65,9 @@ L2:
     waitForEntity(200);
     look(entity: Entity.Player, at: 7);
     look(entity: Entity.Partner, at: 7);
-    playAnimationThenDelayThenSpeak(Entity.Player, 7, 15, "Hey!\n");
+    playAnimation(Entity.Player, 7);
+    delay(15);
+    speak(Entity.Player, "Hey!\n");
     playAnimation(Entity.Player, 0);
     look(entity: 7, at: Entity.Player);
     look(entity: 8, at: Entity.Player);
@@ -80,7 +75,9 @@ L2:
     speak(7, "What?\n");
     showTextbox("Did you come here to lose?\n");
     playSound(8, 11);
-    playAnimationThenDelayThenSpeak(Entity.Player, 20, 15, "That's my line!\n");
+    playAnimation(Entity.Player, 20);
+    delay(15);
+    speak(Entity.Player, "That's my line!\n");
     playAnimation(Entity.Player, 0);
     speak(7, "I'm holding nothing back\nthis time. I'll make you cry!\n");
     setTrigger(1);
@@ -112,7 +109,9 @@ L2:
     callSubroutine(45);
     delay(40);
     unloadEntity(7);
-    playAnimationThenDelayThenSpeak(Entity.Player, 24, 15, "What is it?\n");
+    playAnimation(Entity.Player, 24);
+    delay(15);
+    speak(Entity.Player, "What is it?\n");
     playAnimation(Entity.Player, 0);
     for id in 0..25 { setObjectVisibility(id, 1); }
     setDigimon(Digimon.NPCOgremon, 5, 0);
@@ -164,7 +163,9 @@ section(54) {
 
 section(11) {
     delay(10);
-    playAnimationThenDelayThenSpeak(11, 28, 10, "Who are you?\n");
+    playAnimation(11, 28);
+    delay(10);
+    speak(Entity.Player, "Who are you?\n");
     speak(11, "Who am I? Who are you?\n");
     rotate(entity: 11, to: 1276);
     delay(5);

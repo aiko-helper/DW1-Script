@@ -1,13 +1,6 @@
 // DG174.SCN
 #pragma script index=174 start=0x82800 end=0x83800 headerU16=0x10 sentinelOff=0xfe
 
-function speakThenShowTextboxThenSetTrigger(a, b, c) {
-    speak(5, a);
-    showTextbox(b);
-    setTrigger(c);
-}
-
-
 section onEnter(254) {
     return;
 }
@@ -28,32 +21,44 @@ L1:
 
 L2:
     if (!trigger(208) || trigger(61) || pstat[27] != 1) goto L3;
-    speakThenShowTextboxThenSetTrigger("<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>, won't\nyou try my home cooking?\n", "Unlike Items you get, this\nis true cooking. It's my\nsecret talent.\n", 61);
+    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>, won't\nyou try my home cooking?\n");
+    showTextbox("Unlike Items you get, this\nis true cooking. It's my\nsecret talent.\n");
+    setTrigger(61);
     return;
 
 L3:
     if (!trigger(222) || trigger(60) || pstat[27] != 2) goto L4;
-    speakThenShowTextboxThenSetTrigger("<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\nI decided to make a living\nwith cooking. I'm good!\n", "You should relax and eat at\nmy restaurant sometime.\n", 60);
+    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\nI decided to make a living\nwith cooking. I'm good!\n");
+    showTextbox("You should relax and eat at\nmy restaurant sometime.\n");
+    setTrigger(60);
     return;
 
 L4:
     if (!trigger(223) || trigger(59) || pstat[27] != 3) goto L5;
-    speakThenShowTextboxThenSetTrigger("C???NC?? , C???MC?? .\nMy restaurant finally opened!\n", "Try the frozen dessert!\nIt's my specialty.\n", 59);
+    speak(5, "C???NC?? , C???MC?? .\nMy restaurant finally opened!\n");
+    showTextbox("Try the frozen dessert!\nIt's my specialty.\n");
+    setTrigger(59);
     return;
 
 L5:
     if (!trigger(209) || trigger(58) || pstat[27] != 0) goto L6;
-    speakThenShowTextboxThenSetTrigger("<LIGHTBLUE><PLAYER><WHITE>, I've decided\nto work as a chef\nin this restaurant.\n", "Enjoy a hot meal here.\n", 58);
+    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, I've decided\nto work as a chef\nin this restaurant.\n");
+    showTextbox("Enjoy a hot meal here.\n");
+    setTrigger(58);
     return;
 
 L6:
     if (!trigger(208) || trigger(61) || pstat[27] != 1) goto L7;
-    speakThenShowTextboxThenSetTrigger("Alright!\n<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>\nI'm a cook now!\n", "My cooking is so much\nbetter than what you can\nget anywhere else. Try it!\n", 61);
+    speak(5, "Alright!\n<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>\nI'm a cook now!\n");
+    showTextbox("My cooking is so much\nbetter than what you can\nget anywhere else. Try it!\n");
+    setTrigger(61);
     return;
 
 L7:
     if (!trigger(222) || trigger(60) || pstat[27] != 2) goto L8;
-    speakThenShowTextboxThenSetTrigger("<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\nI decided to give my life\nto cooking!\n", "My special home cooking\nis very healthy! So come\nand visit me when I cook.\n", 60);
+    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\nI decided to give my life\nto cooking!\n");
+    showTextbox("My special home cooking\nis very healthy! So come\nand visit me when I cook.\n");
+    setTrigger(60);
     return;
 
 L8:

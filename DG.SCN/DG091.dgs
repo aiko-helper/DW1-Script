@@ -1,13 +1,6 @@
 // DG091.SCN
 #pragma script index=91 start=0x40000 end=0x41000 headerU16=0x20 sentinelOff=0x24
 
-function speakThenStartBattleThenSetTrigger(a, b, c) {
-    speak(a, b);
-    startBattle();
-    setTrigger(c);
-}
-
-
 section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 5) goto L1;
@@ -33,22 +26,30 @@ L4:
 }
 
 section(6) {
-    speakThenStartBattleThenSetTrigger(6, "I'm gonna win!\n", 271);
+    speak(6, "I'm gonna win!\n");
+    startBattle();
+    setTrigger(271);
     return;
 }
 
 section(7) {
-    speakThenStartBattleThenSetTrigger(7, "You'll never beat me!\n", 271);
+    speak(7, "You'll never beat me!\n");
+    startBattle();
+    setTrigger(271);
     return;
 }
 
 section(8) {
-    speakThenStartBattleThenSetTrigger(8, "He he! I'm so sorry!\n", 272);
+    speak(8, "He he! I'm so sorry!\n");
+    startBattle();
+    setTrigger(272);
     return;
 }
 
 section(9) {
-    speakThenStartBattleThenSetTrigger(9, "Are you ignoring me?\n", 272);
+    speak(9, "Are you ignoring me?\n");
+    startBattle();
+    setTrigger(272);
     return;
 }
 

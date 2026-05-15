@@ -9,13 +9,6 @@ function moveObjectToThenDelayThenPlaySoundThenMoveObjectToThenMoveObjectTo(a, b
     moveObjectTo(1, 1, 1, e, 0, b, h);
 }
 
-function playAnimationThenDelayThenSpeakThenSpeak(a, b, c, d, e, f) {
-    playAnimation(a, b);
-    delay(c);
-    speak(Entity.Player, d);
-    speak(e, f);
-}
-
 function setPStatThenSetPStatThenCallSubroutine(a, b) {
     setPStat(247, a);
     setPStat(248, b);
@@ -130,7 +123,10 @@ L3:
 L4:
     speak(Entity.Player, "Darn, what's so funny?\n");
     speak(5, "Wow, don't get excited.\nWhy are you here today?\nDo you want to work for me?\n");
-    playAnimationThenDelayThenSpeakThenSpeak(Entity.Player, 20, 5, "Give us back my friend\nyou kidnapped!\n", 5, "Friend? What are you talking\nabout. Do I look like I\nwould do such a thing?\n");
+    playAnimation(Entity.Player, 20);
+    delay(5);
+    speak(Entity.Player, "Give us back my friend\nyou kidnapped!\n");
+    speak(5, "Friend? What are you talking\nabout. Do I look like I\nwould do such a thing?\n");
     playAnimation(Entity.Player, 0);
     speak(Entity.Player, "Yeah!\n");
     speak(5, "Wow, you're correct again!\nYes, I'm the one! I did it!\n");
@@ -166,7 +162,10 @@ L4:
     look(entity: Entity.Partner, at: 5);
     waitForEntity(Entity.Player);
     waitForEntity(Entity.Partner);
-    playAnimationThenDelayThenSpeakThenSpeak(Entity.Player, 20, 5, "Come on!\n", 5, "Well... I guess\nI don't have choice. Here.\n");
+    playAnimation(Entity.Player, 20);
+    delay(5);
+    speak(Entity.Player, "Come on!\n");
+    speak(5, "Well... I guess\nI don't have choice. Here.\n");
     playAnimation(Entity.Player, 0);
     playSound(8, 6);
     setObjectVisibility(0, 0);
@@ -197,12 +196,18 @@ L4:
     delay(10);
     speak(Entity.Player, "What is this?\nThis is a Gear.\n");
     speak(5, "Yeah, that's right.\n");
-    playAnimationThenDelayThenSpeakThenSpeak(Entity.Player, 16, 20, "This is the friend???\n", 5, "Well, I didn't take\nanything else. Really.\n");
+    playAnimation(Entity.Player, 16);
+    delay(20);
+    speak(Entity.Player, "This is the friend???\n");
+    speak(5, "Well, I didn't take\nanything else. Really.\n");
     speak(Entity.Player, "I guess I'll take\nthis back for now.\n");
     playAnimation(Entity.Player, 12);
     delay(20);
     unloadEntity(7);
-    playAnimationThenDelayThenSpeakThenSpeak(Entity.Player, 20, 5, "You! Don't do anything bad\nany more, alright?!\n", 5, "Alright. I don't think\nit will happen again.\n");
+    playAnimation(Entity.Player, 20);
+    delay(5);
+    speak(Entity.Player, "You! Don't do anything bad\nany more, alright?!\n");
+    speak(5, "Alright. I don't think\nit will happen again.\n");
     playAnimation(Entity.Player, 1);
     speak(Entity.Player, "Somehow I don't believe you,\nbut I have so much stuff\nto take care of.\n");
     giveItem(Item.Gear, 1);
@@ -221,7 +226,10 @@ L5:
 
 section(6) {
     delay(10);
-    playAnimationThenDelayThenSpeakThenSpeak(6, 28, 10, "What? Who are you?\n", 6, "Who am I? Who are you?!\n");
+    playAnimation(6, 28);
+    delay(10);
+    speak(Entity.Player, "What? Who are you?\n");
+    speak(6, "Who am I? Who are you?!\n");
     rotate(entity: 6, to: 1276);
     delay(5);
     rotate(entity: 6, to: 2300);

@@ -1,17 +1,16 @@
 // DG051.SCN
 #pragma script index=51 start=0x26800 end=0x27800 headerU16=0x24 sentinelOff=0xfe
 
-function playSoundThenDelayThenPlaySoundThenSpeak(a) {
-    playSound(8, 2);
-    delay(5);
-    playSound(8, 2);
-    speak(Entity.System, a);
-}
-
 function rotate3DObjectThenPlaySoundThenDelay(a) {
     rotate3DObject(a, 1);
     playSound(8, 1);
     delay(10);
+}
+
+function playSoundThenDelayThenPlaySound() {
+    playSound(8, 2);
+    delay(5);
+    playSound(8, 2);
 }
 
 
@@ -153,7 +152,8 @@ section(84) {
 L1:
     if (item[Item.MansionKey] >= 1 || trigger(111)) goto L2;
     rotate(entity: Entity.Player, to: 1024);
-    playSoundThenDelayThenPlaySoundThenSpeak("It doesn't open.\nIt's locked.\n");
+    playSoundThenDelayThenPlaySound();
+    speak(Entity.System, "It doesn't open.\nIt's locked.\n");
     return;
 
 L2:
@@ -174,7 +174,8 @@ section(85) {
 L1:
     if (item[Item.MansionKey] >= 1 || trigger(113)) goto L2;
     rotate(entity: Entity.Player, to: 1024);
-    playSoundThenDelayThenPlaySoundThenSpeak("It doesn't open.\nIt's locked.\n");
+    playSoundThenDelayThenPlaySound();
+    speak(Entity.System, "It doesn't open.\nIt's locked.\n");
     return;
 
 L2:
@@ -195,7 +196,8 @@ section(82) {
 L1:
     if (item[Item.MansionKey] >= 1 || trigger(123)) goto L2;
     rotate(entity: Entity.Player, to: 3072);
-    playSoundThenDelayThenPlaySoundThenSpeak("It doesn't open.\nIt's locked.\n");
+    playSoundThenDelayThenPlaySound();
+    speak(Entity.System, "It doesn't open.\nIt's locked.\n");
     return;
 
 L2:
@@ -215,7 +217,8 @@ section(58) {
 section(81) {
     if (trigger(360)) goto L1;
     rotate(entity: Entity.Player, to: 3072);
-    playSoundThenDelayThenPlaySoundThenSpeak("It doesn't open. It's sealed\nwith a weird force.\n");
+    playSoundThenDelayThenPlaySound();
+    speak(Entity.System, "It doesn't open. It's sealed\nwith a weird force.\n");
     return;
 
 L1:

@@ -1,13 +1,6 @@
 // DG114.SCN
 #pragma script index=114 start=0x52000 end=0x52800 headerU16=0x24 sentinelOff=0x24
 
-function speakThenStartBattleThenSetTrigger(a, b, c) {
-    speak(a, b);
-    startBattle();
-    setTrigger(c);
-}
-
-
 section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 7) goto L1;
@@ -28,27 +21,37 @@ L3:
 }
 
 section(5) {
-    speakThenStartBattleThenSetTrigger(5, "So you're lost, <LIGHTBLUE><PLAYER><WHITE>?\n", 280);
+    speak(5, "So you're lost, <LIGHTBLUE><PLAYER><WHITE>?\n");
+    startBattle();
+    setTrigger(280);
     return;
 }
 
 section(6) {
-    speakThenStartBattleThenSetTrigger(6, "Huh?\n", 289);
+    speak(6, "Huh?\n");
+    startBattle();
+    setTrigger(289);
     return;
 }
 
 section(7) {
-    speakThenStartBattleThenSetTrigger(7, "I'm not trying to get\nin your way.\n", 291);
+    speak(7, "I'm not trying to get\nin your way.\n");
+    startBattle();
+    setTrigger(291);
     return;
 }
 
 section(8) {
-    speakThenStartBattleThenSetTrigger(8, "'Misty Trees.' Okay, say it.\n", 306);
+    speak(8, "'Misty Trees.' Okay, say it.\n");
+    startBattle();
+    setTrigger(306);
     return;
 }
 
 section(9) {
-    speakThenStartBattleThenSetTrigger(9, "Okay! Showtime!!\n", 306);
+    speak(9, "Okay! Showtime!!\n");
+    startBattle();
+    setTrigger(306);
     return;
 }
 

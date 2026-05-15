@@ -1,25 +1,6 @@
 // DG218.SCN
 #pragma script index=218 start=0xbd800 end=0xbf800 headerU16=0xc sentinelOff=0xfe
 
-function playAnimationThenWaitForEntityThenSpeak(a) {
-    playAnimation(Entity.Partner, 13);
-    waitForEntity(Entity.System);
-    speak(5, a);
-}
-
-function reduceMoneyThenSpeakThenShowTextbox(a, b, c) {
-    reduceMoney(a);
-    speak(Entity.System, b);
-    showTextbox(c);
-}
-
-function reduceMoneyThenSpeakThenSpeak(a, b, c) {
-    reduceMoney(a);
-    speak(Entity.System, b);
-    speak(Entity.System, c);
-}
-
-
 section onEnter(254) {
     return;
 }
@@ -58,13 +39,17 @@ L6:
     addStats(offense: 0, defense: 0, speed: 1, brains: 0, maxHP: 0, maxMP: 10);
     reduceStats(tiredness: 2);
     addStats(happiness: 3, discipline: 0, energy: 12, weight: 2);
-    reduceMoneyThenSpeakThenShowTextbox(300, "MP went up ten!\nSpeed went up one!\n", "Happiness went up!\nTiredness went down!\n");
+    reduceMoney(300);
+    speak(Entity.System, "MP went up ten!\nSpeed went up one!\n");
+    showTextbox("Happiness went up!\nTiredness went down!\n");
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
     goto L16;
 
 L7:
-    playAnimationThenWaitForEntityThenSpeak("<ORANGE><DIGIMON><WHITE> isn't hungry.\n");
+    playAnimation(Entity.Partner, 13);
+    waitForEntity(Entity.System);
+    speak(5, "<ORANGE><DIGIMON><WHITE> isn't hungry.\n");
     return;
 
 L8:
@@ -81,13 +66,17 @@ L10:
     addStats(offense: 0, defense: 0, speed: 2, brains: 0, maxHP: 0, maxMP: 30);
     reduceStats(tiredness: 2);
     addStats(happiness: 5, discipline: 0, energy: 16, weight: 3);
-    reduceMoneyThenSpeakThenShowTextbox(700, "MP went up thirty!\nSpeed went up two!\n", "Happiness went up!\nTiredness went down!\n");
+    reduceMoney(700);
+    speak(Entity.System, "MP went up thirty!\nSpeed went up two!\n");
+    showTextbox("Happiness went up!\nTiredness went down!\n");
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
     goto L16;
 
 L11:
-    playAnimationThenWaitForEntityThenSpeak("<ORANGE><DIGIMON><WHITE> isn't hungry.\n");
+    playAnimation(Entity.Partner, 13);
+    waitForEntity(Entity.System);
+    speak(5, "<ORANGE><DIGIMON><WHITE> isn't hungry.\n");
     return;
 
 L12:
@@ -104,13 +93,17 @@ L14:
     addStats(offense: 0, defense: 0, speed: 2, brains: 0, maxHP: 0, maxMP: 50);
     reduceStats(tiredness: 2);
     addStats(happiness: 7, discipline: 1, energy: 20, weight: 4);
-    reduceMoneyThenSpeakThenShowTextbox(1600, "MP went up fifty!\nSpeed went up two!\n", "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
+    reduceMoney(1600);
+    speak(Entity.System, "MP went up fifty!\nSpeed went up two!\n");
+    showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
     goto L16;
 
 L15:
-    playAnimationThenWaitForEntityThenSpeak("<ORANGE><DIGIMON><WHITE> isn't hungry.\n");
+    playAnimation(Entity.Partner, 13);
+    waitForEntity(Entity.System);
+    speak(5, "<ORANGE><DIGIMON><WHITE> isn't hungry.\n");
     return;
 
 L16:
@@ -136,14 +129,18 @@ L20:
     addStats(offense: 1, defense: 1, speed: 1, brains: 1, maxHP: 10, maxMP: 10);
     reduceStats(tiredness: 5);
     addStats(happiness: 1, discipline: 1, energy: 20, weight: 0);
-    reduceMoneyThenSpeakThenShowTextbox(1500, "HP went up ten!\nMP went up ten!\nOffensive Power went up one!\n", "Defensive Power went up one!\nSpeed went up one!\nBrains went up one!\n");
+    reduceMoney(1500);
+    speak(Entity.System, "HP went up ten!\nMP went up ten!\nOffensive Power went up one!\n");
+    showTextbox("Defensive Power went up one!\nSpeed went up one!\nBrains went up one!\n");
     showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
     goto L30;
 
 L21:
-    playAnimationThenWaitForEntityThenSpeak("<ORANGE><DIGIMON><WHITE> is full.\n");
+    playAnimation(Entity.Partner, 13);
+    waitForEntity(Entity.System);
+    speak(5, "<ORANGE><DIGIMON><WHITE> is full.\n");
     return;
 
 L22:
@@ -160,14 +157,18 @@ L24:
     addStats(offense: 2, defense: 2, speed: 2, brains: 2, maxHP: 20, maxMP: 20);
     reduceStats(tiredness: 5);
     addStats(happiness: 2, discipline: 2, energy: 30, weight: 1);
-    reduceMoneyThenSpeakThenShowTextbox(4000, "HP went up twenty!\nMP went up twenty!\nOffensive Power went up two!\n", "Defensive Power went up two!\nSpeed went up two!\nBrains went up two!\n");
+    reduceMoney(4000);
+    speak(Entity.System, "HP went up twenty!\nMP went up twenty!\nOffensive Power went up two!\n");
+    showTextbox("Defensive Power went up two!\nSpeed went up two!\nBrains went up two!\n");
     showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
     goto L30;
 
 L25:
-    playAnimationThenWaitForEntityThenSpeak("<ORANGE><DIGIMON><WHITE> is full.\n");
+    playAnimation(Entity.Partner, 13);
+    waitForEntity(Entity.System);
+    speak(5, "<ORANGE><DIGIMON><WHITE> is full.\n");
     return;
 
 L26:
@@ -184,14 +185,18 @@ L28:
     addStats(offense: 3, defense: 3, speed: 3, brains: 3, maxHP: 30, maxMP: 30);
     reduceStats(tiredness: 5);
     addStats(happiness: 3, discipline: 3, energy: 45, weight: 5);
-    reduceMoneyThenSpeakThenShowTextbox(9000, "HP went up thirty!\nMP went up thirty!\nOffense Power went up three!\n", "Defense Power went up three!\nSpeed went up three!\nBrains went up three!\n");
+    reduceMoney(9000);
+    speak(Entity.System, "HP went up thirty!\nMP went up thirty!\nOffense Power went up three!\n");
+    showTextbox("Defense Power went up three!\nSpeed went up three!\nBrains went up three!\n");
     showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
     goto L30;
 
 L29:
-    playAnimationThenWaitForEntityThenSpeak("<ORANGE><DIGIMON><WHITE> is full.\n");
+    playAnimation(Entity.Partner, 13);
+    waitForEntity(Entity.System);
+    speak(5, "<ORANGE><DIGIMON><WHITE> is full.\n");
     return;
 
 L30:
@@ -221,7 +226,9 @@ L35:
     addStats(offense: 1, defense: 0, speed: 1, brains: 0, maxHP: 10, maxMP: 0);
     reduceStats(tiredness: 5);
     addStats(happiness: 1, discipline: 0, energy: 18, weight: 1);
-    reduceMoneyThenSpeakThenSpeak(1000, "HP went up ten!\nOffensive Power went up one!\nSpeed went up one!\n", "Happiness went up!\nTiredness went down!\n");
+    reduceMoney(1000);
+    speak(Entity.System, "HP went up ten!\nOffensive Power went up one!\nSpeed went up one!\n");
+    speak(Entity.System, "Happiness went up!\nTiredness went down!\n");
     goto L53;
 
 L36:
@@ -229,7 +236,9 @@ L36:
     addStats(offense: 0, defense: 1, speed: 0, brains: 1, maxHP: 0, maxMP: 10);
     reduceStats(tiredness: 5);
     addStats(happiness: 1, discipline: 0, energy: 18, weight: 1);
-    reduceMoneyThenSpeakThenSpeak(1000, "MP went up ten!\nDefensive Power went up one!\nBrains went up one!\n", "Happiness went up!\nTiredness went down!\n");
+    reduceMoney(1000);
+    speak(Entity.System, "MP went up ten!\nDefensive Power went up one!\nBrains went up one!\n");
+    speak(Entity.System, "Happiness went up!\nTiredness went down!\n");
     goto L53;
 
 L37:
@@ -237,7 +246,9 @@ L37:
     addStats(offense: 2, defense: 2, speed: 2, brains: 2, maxHP: 20, maxMP: 20);
     reduceStats(tiredness: 5);
     addStats(happiness: 2, discipline: 1, energy: 18, weight: 1);
-    reduceMoneyThenSpeakThenShowTextbox(1000, "HP went up twenty!\nMP went up twenty!\nOffensive Power went up two!\n", "Defensive Power went up two!\nSpeed went up two!\nBrains went up two!\n");
+    reduceMoney(1000);
+    speak(Entity.System, "HP went up twenty!\nMP went up twenty!\nOffensive Power went up two!\n");
+    showTextbox("Defensive Power went up two!\nSpeed went up two!\nBrains went up two!\n");
     speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
     goto L53;
 
@@ -245,7 +256,9 @@ L38:
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
     goto L53;
-    playAnimationThenWaitForEntityThenSpeak(".......!\n");
+    playAnimation(Entity.Partner, 13);
+    waitForEntity(Entity.System);
+    speak(5, ".......!\n");
     return;
 
 L39:
@@ -266,7 +279,9 @@ L42:
     addStats(offense: 2, defense: 0, speed: 2, brains: 0, maxHP: 20, maxMP: 0);
     reduceStats(tiredness: 5);
     addStats(happiness: 2, discipline: 0, energy: 24, weight: 2);
-    reduceMoneyThenSpeakThenSpeak(2500, "HP went up twenty!\nOffensive Power went up two!\nSpeed went up two!\n", "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
+    reduceMoney(2500);
+    speak(Entity.System, "HP went up twenty!\nOffensive Power went up two!\nSpeed went up two!\n");
+    speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
     goto L53;
 
 L43:
@@ -274,7 +289,9 @@ L43:
     addStats(offense: 0, defense: 2, speed: 0, brains: 2, maxHP: 0, maxMP: 20);
     reduceStats(tiredness: 5);
     addStats(happiness: 2, discipline: 0, energy: 24, weight: 2);
-    reduceMoneyThenSpeakThenSpeak(2500, "MP went up twenty!\nDefensive Power went up two!\nBrains went up two!\n", "Happiness went up!\nTiredness went down!\n");
+    reduceMoney(2500);
+    speak(Entity.System, "MP went up twenty!\nDefensive Power went up two!\nBrains went up two!\n");
+    speak(Entity.System, "Happiness went up!\nTiredness went down!\n");
     goto L53;
 
 L44:
@@ -282,7 +299,9 @@ L44:
     addStats(offense: 3, defense: 3, speed: 3, brains: 3, maxHP: 30, maxMP: 30);
     reduceStats(tiredness: 5);
     addStats(happiness: 3, discipline: 1, energy: 24, weight: 2);
-    reduceMoneyThenSpeakThenShowTextbox(2500, "HP went up thirty!\nMP went up thirty!\nOffense Power went up three!\n", "Defense Power went up three!\nSpeed went up three!\nBrains went up three!\n");
+    reduceMoney(2500);
+    speak(Entity.System, "HP went up thirty!\nMP went up thirty!\nOffense Power went up three!\n");
+    showTextbox("Defense Power went up three!\nSpeed went up three!\nBrains went up three!\n");
     speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
     goto L53;
 
@@ -290,7 +309,9 @@ L45:
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
     goto L53;
-    playAnimationThenWaitForEntityThenSpeak(".......!\n");
+    playAnimation(Entity.Partner, 13);
+    waitForEntity(Entity.System);
+    speak(5, ".......!\n");
     return;
 
 L46:
@@ -311,7 +332,9 @@ L49:
     addStats(offense: 3, defense: 0, speed: 3, brains: 0, maxHP: 30, maxMP: 0);
     reduceStats(tiredness: 5);
     addStats(happiness: 3, discipline: 1, energy: 36, weight: 3);
-    reduceMoneyThenSpeakThenSpeak(6000, "HP went up thirty!\nOffense Power went up thirty!\nSpeed went up thirty!\n", "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
+    reduceMoney(6000);
+    speak(Entity.System, "HP went up thirty!\nOffense Power went up thirty!\nSpeed went up thirty!\n");
+    speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
     goto L53;
 
 L50:
@@ -319,7 +342,9 @@ L50:
     addStats(offense: 0, defense: 3, speed: 0, brains: 3, maxHP: 0, maxMP: 30);
     reduceStats(tiredness: 5);
     addStats(happiness: 3, discipline: 1, energy: 36, weight: 3);
-    reduceMoneyThenSpeakThenSpeak(6000, "MP went up thirty!\nDefense Power went up three!\nBrains went up three!\n", "Happiness went up!\nDiscipline went up!\nTiredness has went up!\n");
+    reduceMoney(6000);
+    speak(Entity.System, "MP went up thirty!\nDefense Power went up three!\nBrains went up three!\n");
+    speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness has went up!\n");
     goto L53;
 
 L51:
@@ -327,7 +352,9 @@ L51:
     addStats(offense: 4, defense: 4, speed: 4, brains: 4, maxHP: 40, maxMP: 40);
     reduceStats(tiredness: 5);
     addStats(happiness: 4, discipline: 3, energy: 36, weight: 3);
-    reduceMoneyThenSpeakThenShowTextbox(6000, "HP went up forty!\nMP went up forty!\nOffense Power went up four!\n", "Defense Power went up four!\nSpeed went up four!\nBrains went up four!\n");
+    reduceMoney(6000);
+    speak(Entity.System, "HP went up forty!\nMP went up forty!\nOffense Power went up four!\n");
+    showTextbox("Defense Power went up four!\nSpeed went up four!\nBrains went up four!\n");
     speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down.\n");
     goto L53;
 
@@ -335,7 +362,9 @@ L52:
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
     goto L53;
-    playAnimationThenWaitForEntityThenSpeak("........!\n");
+    playAnimation(Entity.Partner, 13);
+    waitForEntity(Entity.System);
+    speak(5, "........!\n");
     return;
 
 L53:

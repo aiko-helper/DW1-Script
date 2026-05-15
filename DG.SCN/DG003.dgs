@@ -1,13 +1,6 @@
 // DG003.SCN
 #pragma script index=3 start=0x8000 end=0x8800 headerU16=0x1c sentinelOff=0x24
 
-function speakThenStartBattleThenSetTrigger(a, b) {
-    speak(a, b);
-    startBattle();
-    setTrigger(280);
-}
-
-
 section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 3) goto L1;
@@ -28,22 +21,30 @@ L3:
 }
 
 section(5) {
-    speakThenStartBattleThenSetTrigger(5, "Get away!\n");
+    speak(5, "Get away!\n");
+    startBattle();
+    setTrigger(280);
     return;
 }
 
 section(6) {
-    speakThenStartBattleThenSetTrigger(6, "Get lost!\n");
+    speak(6, "Get lost!\n");
+    startBattle();
+    setTrigger(280);
     return;
 }
 
 section(8) {
-    speakThenStartBattleThenSetTrigger(8, "It's mine!\n");
+    speak(8, "It's mine!\n");
+    startBattle();
+    setTrigger(280);
     return;
 }
 
 section(9) {
-    speakThenStartBattleThenSetTrigger(9, "I got it!\n");
+    speak(9, "I got it!\n");
+    startBattle();
+    setTrigger(280);
     return;
 }
 

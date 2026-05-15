@@ -1,19 +1,6 @@
 // DG176.SCN
 #pragma script index=176 start=0x84800 end=0x86000 headerU16=0x20 sentinelOff=0x19
 
-function speakThenSetTriggerThenAddPStat(a, b) {
-    speak(5, a);
-    setTrigger(b);
-    addPStat(26, 1);
-}
-
-function showTextboxThenSetTriggerThenAddPStat(a, b) {
-    showTextbox(a);
-    setTrigger(b);
-    addPStat(26, 1);
-}
-
-
 section onEnter(254) {
     if (!trigger(206) && !trigger(211) && !trigger(213) && !trigger(252)) goto L1;
     setObjectVisibility(21, 1);
@@ -336,7 +323,9 @@ L2:
     if (!trigger(231) || trigger(65) || pstat[25] != 0) goto L4;
     speak(5, "Welcome to my shop.\n");
     showTextbox("Look, <LIGHTBLUE><PLAYER><WHITE>. This is\nmy shop. I'm going to sell\nall kinds of Items.\n");
-    showTextboxThenSetTriggerThenAddPStat("I'll have more stuff soon.\nBut I need Digimon who can\nhelp me here.\n", 65);
+    showTextbox("I'll have more stuff soon.\nBut I need Digimon who can\nhelp me here.\n");
+    setTrigger(65);
+    addPStat(26, 1);
     if (pstat[26] < 3) goto L3;
     setObjectVisibility(18, 1);
     setObjectVisibility(20, 1);
@@ -347,7 +336,9 @@ L3:
 L4:
     if (!trigger(245) || trigger(66) || pstat[25] != 1) goto L6;
     speak(5, "I'm gonna buy and sell\nItems. Come and visit me\nwhen you need my services.\n");
-    showTextboxThenSetTriggerThenAddPStat("We don't have much variety,\nbut if I can find a helper,\nmaybe I can do better.\n", 66);
+    showTextbox("We don't have much variety,\nbut if I can find a helper,\nmaybe I can do better.\n");
+    setTrigger(66);
+    addPStat(26, 1);
     if (pstat[26] < 3) goto L5;
     setObjectVisibility(18, 1);
     setObjectVisibility(20, 1);
@@ -358,7 +349,9 @@ L5:
 L6:
     if (!trigger(233) || trigger(67) || pstat[25] != 2) goto L8;
     speak(5, "I've decided\nto open a shop for Items.\nI hope you come here often.\n");
-    showTextboxThenSetTriggerThenAddPStat("We are not well stocked yet,\nbut we want to expand soon.\nPlease bear with us for now.\n", 67);
+    showTextbox("We are not well stocked yet,\nbut we want to expand soon.\nPlease bear with us for now.\n");
+    setTrigger(67);
+    addPStat(26, 1);
     if (pstat[26] < 3) goto L7;
     setObjectVisibility(18, 1);
     setObjectVisibility(20, 1);
@@ -369,7 +362,9 @@ L7:
 L8:
     if (!trigger(247) || trigger(68) || pstat[25] != 3) goto L10;
     speak(5, "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>,\nI opened my Item shop.\nI think I'll do well!\n");
-    showTextboxThenSetTriggerThenAddPStat("With more Digimon in the\ncity, we can get more stuff.\n", 68);
+    showTextbox("With more Digimon in the\ncity, we can get more stuff.\n");
+    setTrigger(68);
+    addPStat(26, 1);
     if (pstat[26] < 3) goto L9;
     setObjectVisibility(18, 1);
     setObjectVisibility(20, 1);
@@ -379,7 +374,9 @@ L9:
 
 L10:
     if (!trigger(231) || trigger(65) || pstat[25] != 0) goto L12;
-    speakThenSetTriggerThenAddPStat("<LIGHTBLUE><PLAYER><WHITE>, I just started to\nhelp running this shop.\nPlease buy lots of stuff!\n", 65);
+    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, I just started to\nhelp running this shop.\nPlease buy lots of stuff!\n");
+    setTrigger(65);
+    addPStat(26, 1);
     if (pstat[26] < 3) goto L11;
     setObjectVisibility(18, 1);
     setObjectVisibility(20, 1);
@@ -389,7 +386,9 @@ L11:
 
 L12:
     if (!trigger(245) || trigger(66) || pstat[25] != 1) goto L14;
-    speakThenSetTriggerThenAddPStat("Welcome. Starting today,\nI'm going to work here.\nPlease come here often.\n", 66);
+    speak(5, "Welcome. Starting today,\nI'm going to work here.\nPlease come here often.\n");
+    setTrigger(66);
+    addPStat(26, 1);
     if (pstat[26] < 3) goto L13;
     setObjectVisibility(18, 1);
     setObjectVisibility(20, 1);
@@ -399,7 +398,9 @@ L13:
 
 L14:
     if (!trigger(233) || trigger(67) || pstat[25] != 2) goto L16;
-    speakThenSetTriggerThenAddPStat("I have decided to help\nrun this shop.\nPlease come by anytime.\n", 67);
+    speak(5, "I have decided to help\nrun this shop.\nPlease come by anytime.\n");
+    setTrigger(67);
+    addPStat(26, 1);
     if (pstat[26] < 3) goto L15;
     setObjectVisibility(18, 1);
     setObjectVisibility(20, 1);
@@ -409,7 +410,9 @@ L15:
 
 L16:
     if (!trigger(247) || trigger(68) || pstat[25] != 3) goto L18;
-    speakThenSetTriggerThenAddPStat("Oh, <LIGHTBLUE><PLAYER><WHITE>. This is the\nperfect place for me.\nI will work hard here.\n", 68);
+    speak(5, "Oh, <LIGHTBLUE><PLAYER><WHITE>. This is the\nperfect place for me.\nI will work hard here.\n");
+    setTrigger(68);
+    addPStat(26, 1);
     if (pstat[26] < 3) goto L17;
     setObjectVisibility(18, 1);
     setObjectVisibility(20, 1);
