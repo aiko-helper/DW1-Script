@@ -160,6 +160,78 @@ function setScript(scriptId, mapId: Map) {
   raw(0xfb, 0, s16(scriptId), s16(mapId));
 }
 
+function setStats(stat: Stat, value) {
+  raw(0x34, stat, s16(value));
+}
+
+function addStats(stat: Stat, value) {
+  raw(0x35, stat, s16(value));
+}
+
+function reduceStats(stat: Stat, value) {
+  raw(0x36, stat, s16(value));
+}
+
+function rotate(entity: Entity, to) {
+  raw(0x4d, entity, s16(to));
+}
+
+function setTextboxOrigin(x, z, y) {
+  raw(0x55, 0, s16(x), s16(z), s16(y));
+}
+
+function dealMapDamage(pstat: PStat) {
+  raw(0x69, pstat);
+}
+
+function setAutotalk(entity: Entity, value) {
+  raw(0x6a, 0, entity, value);
+}
+
+function rotate3DObject(modelId, rotation) {
+  raw(0x70, modelId, 0, rotation);
+}
+
+function moveObjectTo(v1, v2, v3, v4, v5, x, y) {
+  raw(0x71, v1, v2, v3, v4, v5, s16(x), s16(y));
+}
+
+function spawnBoulder() {
+  raw(0x76, 0);
+}
+
+function moveBoulder(translateZ, translateY) {
+  raw(0x77, 0, s16(translateZ), s16(translateY));
+}
+
+function despawnBoulder() {
+  raw(0x78, 0);
+}
+
+function unloadModel(digimon: Digimon) {
+  raw(0x79, digimon);
+}
+
+function copyPStat(source: PStat, target: PStat) {
+  raw(0x7a, 0, source, target);
+}
+
+function sectionOnExit(trigger) {
+  raw(0x7b, trigger);
+}
+
+function setRectImpassible(x, y, width, height) {
+  raw(0x7c, 0, s16(x), s16(y), width, height);
+}
+
+function spawnSpriteAtLocation(sprite, x, y, z, unk) {
+  raw(0x7d, sprite, s16(x), s16(y), s16(z), s16(unk));
+}
+
+function spawnSpriteAtEntity(entity: Entity, sprite) {
+  raw(0x7e, entity, s16(sprite));
+}
+
 // Named-arg synonyms (disasm emits with `field: value` form).
 
 function teleport(pstat: PStat) {
