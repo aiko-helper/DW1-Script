@@ -75,7 +75,7 @@ L11:
     return;
 
 L12:
-    storeDate(105);
+    pstat[:SavedTime] = time();
     if (pstat[107] not in 0..10) goto L13;
     speak(5, "So you've entered today's\ncompetition, right?\nYou can go in from ten am.\n");
     showTextbox("You're not planning to cancel,\nare you?!\n");
@@ -144,7 +144,7 @@ L1:
     return;
 
 L2:
-    storeDate(105);
+    pstat[:SavedTime] = time();
     if (pstat[107] >= 10) goto L3;
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Player, at: 5);
@@ -167,9 +167,9 @@ L3:
 L4:
     setPStat(254, 5);
     callSubroutine(6);
-    storeDate(105);
-    addMinutesToDate(105, 360);
-    advanceToDate(105);
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 360);
+    advanceToDate(PStat.SavedTime);
     if (!trigger(50)) goto L5;
     warp(to: Map.ROOM19, spawn: 3, trigger: 61);
     return;

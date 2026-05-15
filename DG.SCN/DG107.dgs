@@ -30,7 +30,7 @@ L1:
 }
 
 section(5) {
-    storeDate(105);
+    pstat[:SavedTime] = time();
     speak(5, "The present time is\n<YEAR>month, <DAY>day,\n<HOUR>hours, <MINUTE>minutes.\n");
     storeDigimonType(103);
     storeDigimonTypus(103, 109);
@@ -68,21 +68,21 @@ L2:
     return;
 
 L3:
-    storeDate(105);
-    addMinutesToDate(105, 60);
-    advanceToDate(105);
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 60);
+    advanceToDate(PStat.SavedTime);
     return;
 
 L4:
-    storeDate(105);
-    addMinutesToDate(105, 360);
-    advanceToDate(105);
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 360);
+    advanceToDate(PStat.SavedTime);
     return;
 
 L5:
-    storeDate(105);
-    addMinutesToDate(105, 1440);
-    advanceToDate(105);
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 1440);
+    advanceToDate(PStat.SavedTime);
     return;
 
 L6:

@@ -2,7 +2,7 @@
 #pragma script index=149 start=0x69000 end=0x6a000 headerU16=0x30 sentinelOff=0x6925
 
 section onEnter(254) {
-    storeDate(105);
+    pstat[:SavedTime] = time();
     if (pstat[107] != 11 || pstat[108] < 55) goto L1;
     goto L5;
 
@@ -57,7 +57,7 @@ section(12) {
 section(11) {
     playSound(8, 9);
     speak(11, "You can't get thru here.\n");
-    storeDate(105);
+    pstat[:SavedTime] = time();
     if (!trigger(331) || pstat[107] != 11 || pstat[108] < 55) goto L1;
     goto L14;
 

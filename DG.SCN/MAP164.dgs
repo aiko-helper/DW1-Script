@@ -328,7 +328,7 @@ section(52) {
 section(5) {
     setStats(tournamentsWon: 99, tournamentWins: 99, tournamentsLost: 99);
     speak(5, "<WHITE>White White White\n<BLUE>Blue Blue Blue\n<RED>Red Red Red\n<PINK>Pink <GREEN>Green\n<LIGHTBLUE>LightBlue LightBlue\n<YELLOW>Yellow <ORANGE>Orange\n<ORANGE>a <LIGHTBLUE>b <PINK>c <GREEN>d\n");
-    storeDate(105);
+    pstat[:SavedTime] = time();
     speak(5, "Right now, <HOUR>: <MINUTE>on\nthe <DAY>th day of\nthe <YEAR>th month.\n");
     speak(5, "I'm Mr. Warp.\nWhere do you want to go?\n");
     setDialogOwner(Entity.Player);
@@ -480,21 +480,21 @@ L3:
     return;
 
 L4:
-    storeDate(105);
-    addMinutesToDate(105, 60);
-    advanceToDate(105);
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 60);
+    advanceToDate(PStat.SavedTime);
     return;
 
 L5:
-    storeDate(105);
-    addMinutesToDate(105, 360);
-    advanceToDate(105);
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 360);
+    advanceToDate(PStat.SavedTime);
     return;
 
 L6:
-    storeDate(105);
-    addMinutesToDate(105, 14400);
-    advanceToDate(105);
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 14400);
+    advanceToDate(PStat.SavedTime);
     return;
 }
 
