@@ -1,26 +1,6 @@
 // DG006.SCN
+#include "functions.dgs"
 #pragma script index=6 start=0x9800 end=0xa800 headerU16=0x20 sentinelOff=0x24
-
-function playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(a) {
-    playSound(8, 7);
-    setObjectVisibility(a, 0);
-    setPStat(247, a);
-    setPStat(248, 1);
-    callSubroutine(21);
-}
-
-function delayThenSetObjectVisibilityThenSetObjectVisibility(a, b, c, d) {
-    delay(a);
-    setObjectVisibility(b, 1);
-    setObjectVisibility(c, d);
-}
-
-function delayThenPlaySoundThenDelay(a, b, c) {
-    delay(a);
-    playSound(8, b);
-    delay(c);
-}
-
 
 section onEnter(254) {
     roll(pstat: 110, max: 99);

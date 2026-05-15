@@ -1,41 +1,6 @@
 // DG018.SCN
+#include "functions.dgs"
 #pragma script index=18 start=0x12000 end=0x14000 headerU16=0x70 sentinelOff=0x1e
-
-function moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(a, b, c, d, e) {
-    moveObjectTo(1, 47, 1, 0, 0, a, b);
-    moveObjectTo(2, 48, 1, 0, 0, a, c);
-    delay(1);
-    moveObjectTo(0, 46, 1, d, 0, e, 765);
-    moveObjectTo(1, 47, 1, d, 0, e, 769);
-}
-
-function moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(a, b, c) {
-    moveObjectTo(2, 48, 1, a, 0, b, 773);
-    delay(c);
-    playAnimation(Entity.Partner, 40);
-    setPStat(200, 50);
-    dealMapDamage(200);
-}
-
-function setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(a, b) {
-    setPStat(247, 46);
-    setPStat(248, 3);
-    callSubroutine(21);
-    moveObjectTo(0, 46, 1, 0, 0, a, b);
-}
-
-function delayThenJumpAndLinkThenJumpAndLink() {
-    delay(40);
-    jumpAndLink(section_10.L_0168);
-    jumpAndLink(section_10);
-}
-
-function delayThenSetObjectVisibilityThenSetObjectVisibility(a) {
-    delay(4);
-    setObjectVisibility(44, a);
-    setObjectVisibility(45, a);
-}
-
 
 section onEnter(254) {
     setPStat(254, 0);
@@ -191,15 +156,15 @@ L5:
     setObjectVisibility(45, 0);
     spawnSpriteAtEntity(253, 11274);
     spawnSpriteAtEntity(253, 11530);
-    delayThenSetObjectVisibilityThenSetObjectVisibility(1);
-    delayThenSetObjectVisibilityThenSetObjectVisibility(0);
+    delayThenSetObjectVisibilityThenSetObjectVisibility_v2(1);
+    delayThenSetObjectVisibilityThenSetObjectVisibility_v2(0);
     spawnSpriteAtEntity(253, 11274);
     spawnSpriteAtEntity(253, 11530);
-    delayThenSetObjectVisibilityThenSetObjectVisibility(1);
-    delayThenSetObjectVisibilityThenSetObjectVisibility(0);
+    delayThenSetObjectVisibilityThenSetObjectVisibility_v2(1);
+    delayThenSetObjectVisibilityThenSetObjectVisibility_v2(0);
     spawnSpriteAtEntity(253, 11274);
     spawnSpriteAtEntity(253, 11530);
-    delayThenSetObjectVisibilityThenSetObjectVisibility(1);
+    delayThenSetObjectVisibilityThenSetObjectVisibility_v2(1);
     delay(10);
     jumpReturn();
 

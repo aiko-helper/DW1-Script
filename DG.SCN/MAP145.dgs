@@ -1,20 +1,6 @@
 // MAP145.SCN
+#include "functions.dgs"
 #pragma script index=145 start=0x66000 end=0x67800 headerU16=0x14 sentinelOff=0x1b75
-
-function moveObjectToThenDelayThenPlaySoundThenMoveObjectToThenMoveObjectTo(a, b, c, d, e, f, g, h) {
-    moveObjectTo(1, 1, 1, a, 0, b, c);
-    delay(d);
-    playSound(8, 14);
-    moveObjectTo(0, 0, 1, e, 0, f, g);
-    moveObjectTo(1, 1, 1, e, 0, b, h);
-}
-
-function setPStatThenSetPStatThenCallSubroutine(a, b) {
-    setPStat(247, a);
-    setPStat(248, b);
-    callSubroutine(21);
-}
-
 
 section onEnter(254) {
     spawnChest(Item.HPChip, -857, 483, 0, 668);

@@ -1,18 +1,6 @@
 // DG015.SCN
+#include "functions.dgs"
 #pragma script index=15 start=0x10000 end=0x11000 headerU16=0x1c sentinelOff=0x24
-
-function delayThenPlaySoundThenPlayAnimation(a) {
-    delay(a);
-    playSound(8, 2);
-    playAnimation(6, 28);
-}
-
-function setPStatThenSetPStatThenCallSubroutine(a, b) {
-    setPStat(247, a);
-    setPStat(248, b);
-    callSubroutine(21);
-}
-
 
 section onEnter(254) {
     roll(pstat: 110, max: 99);

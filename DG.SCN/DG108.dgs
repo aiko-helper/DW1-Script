@@ -1,22 +1,6 @@
 // DG108.SCN
+#include "functions.dgs"
 #pragma script index=108 start=0x4d000 end=0x4f000 headerU16=0x30 sentinelOff=0xfe
-
-function setPStatThenSetPStatThenCallDigimonSubroutineThenCallSubroutineThenSetTexboxMode(a) {
-    setPStat(254, a);
-    setPStat(246, 1);
-    callDigimonSubroutine(214);
-    callSubroutine(7);
-    setTexboxMode(0, 0);
-}
-
-function fadeOutHUDThenSetPStatThenSetPStatThenCallDigimonSubroutineThenCallSubroutine(a) {
-    fadeOutHUD();
-    setPStat(254, a);
-    setPStat(246, 0);
-    callDigimonSubroutine(214);
-    callSubroutine(7);
-}
-
 
 section onEnter(254) {
     return;
