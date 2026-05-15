@@ -3,143 +3,143 @@
 #pragma script index=69 start=0x31800 end=0x32000 headerU16=0x1c sentinelOff=0x24
 
 section onEnter(254) {
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 12) goto L1;
-    spawnItem(Item.Digimushroom, x: 44, y: 56);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 12) goto L1;
+  spawnItem(Item.Digimushroom, x: 44, y: 56);
 
 L1:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 8) goto L2;
-    spawnItem(Item.Digimushroom, x: 74, y: 50);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 8) goto L2;
+  spawnItem(Item.Digimushroom, x: 74, y: 50);
 
 L2:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 1) goto L3;
-    spawnItem(Item.Happymushroom, x: 45, y: 46);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 1) goto L3;
+  spawnItem(Item.Happymushroom, x: 45, y: 46);
 
 L3:
-    return;
+  return;
 }
 
 section(5) {
-    playSound(8, 7);
-    speak(5, "I'm gonna knock you out!\n");
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 255);
-    setPStat(253, 255);
-    startBattle();
-    unsetTrigger(1);
-    setPStat(250, 0);
-    look(entity: Entity.Player, at: 5);
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Partner, at: 5);
-    speak(5, "Let's do it again.\n");
-    setDialogOwner(Entity.Player);
-    choice { "OK" -> L1, "No" -> L5 }
-    goto L5;
+  playSound(8, 7);
+  speak(5, "I'm gonna knock you out!\n");
+  setTrigger(1);
+  setPStat(250, 1);
+  setPStat(251, 5);
+  setPStat(252, 255);
+  setPStat(253, 255);
+  startBattle();
+  unsetTrigger(1);
+  setPStat(250, 0);
+  look(entity: Entity.Player, at: 5);
+  look(entity: 5, at: Entity.Player);
+  look(entity: Entity.Partner, at: 5);
+  speak(5, "Let's do it again.\n");
+  setDialogOwner(Entity.Player);
+  choice { "OK" -> L1, "No" -> L5 }
+  goto L5;
 
 L1:
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 255);
-    setPStat(253, 255);
-    startBattle();
-    unsetTrigger(1);
-    setPStat(250, 0);
-    look(entity: Entity.Player, at: 5);
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Partner, at: 5);
-    speak(5, "Just a little more...\nCome on, one more time!\n");
-    playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    choice { "OK" -> L2, "No" -> L5 }
-    goto L5;
+  setTrigger(1);
+  setPStat(250, 1);
+  setPStat(251, 5);
+  setPStat(252, 255);
+  setPStat(253, 255);
+  startBattle();
+  unsetTrigger(1);
+  setPStat(250, 0);
+  look(entity: Entity.Player, at: 5);
+  look(entity: 5, at: Entity.Player);
+  look(entity: Entity.Partner, at: 5);
+  speak(5, "Just a little more...\nCome on, one more time!\n");
+  playAnimation(Entity.Player, 16);
+  setDialogOwner(Entity.Player);
+  choice { "OK" -> L2, "No" -> L5 }
+  goto L5;
 
 L2:
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 255);
-    setPStat(253, 255);
-    startBattle();
-    unsetTrigger(1);
-    setPStat(250, 0);
-    look(entity: Entity.Player, at: 5);
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Partner, at: 5);
-    delay(5);
-    playAnimation(5, 28);
-    playSound(8, 7);
-    delay(40);
-    speak(5, "I can't win!\n");
-    playAnimation(Entity.Player, 8);
-    speak(Entity.Player, "Why do you want to win?\n");
-    playAnimation(5, 0);
-    playAnimation(Entity.Player, 0);
-    speak(5, "What should I do?\n");
-    speak(Entity.Player, "What do you mean?\nYou don't have anything?\n");
-    speak(5, "I've got lots of time.\n");
-    playAnimation(Entity.Player, 19);
-    speak(Entity.Player, "If you have too much time,\ncome to the city. There're\nall kinds of Digimon there.\n");
-    speak(5, "Sounds good. I'll go.\nMy name's Patamon.\nSee ya later.\n");
-    goto L3;
+  setTrigger(1);
+  setPStat(250, 1);
+  setPStat(251, 5);
+  setPStat(252, 255);
+  setPStat(253, 255);
+  startBattle();
+  unsetTrigger(1);
+  setPStat(250, 0);
+  look(entity: Entity.Player, at: 5);
+  look(entity: 5, at: Entity.Player);
+  look(entity: Entity.Partner, at: 5);
+  delay(5);
+  playAnimation(5, 28);
+  playSound(8, 7);
+  delay(40);
+  speak(5, "I can't win!\n");
+  playAnimation(Entity.Player, 8);
+  speak(Entity.Player, "Why do you want to win?\n");
+  playAnimation(5, 0);
+  playAnimation(Entity.Player, 0);
+  speak(5, "What should I do?\n");
+  speak(Entity.Player, "What do you mean?\nYou don't have anything?\n");
+  speak(5, "I've got lots of time.\n");
+  playAnimation(Entity.Player, 19);
+  speak(Entity.Player, "If you have too much time,\ncome to the city. There're\nall kinds of Digimon there.\n");
+  speak(5, "Sounds good. I'll go.\nMy name's Patamon.\nSee ya later.\n");
+  goto L3;
 
 L3:
-    move(entity: 5, to: (-1673, 122), sprint: 1);
-    if (pstat[101] >= 10) goto L4;
-    addPStat(101, 1);
-    delay(10);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
-    goto L3;
+  move(entity: 5, to: (-1673, 122), sprint: 1);
+  if (pstat[101] >= 10) goto L4;
+  addPStat(101, 1);
+  delay(10);
+  look(entity: Entity.Player, at: 5);
+  look(entity: Entity.Partner, at: 5);
+  goto L3;
 
 L4:
-    waitForEntity(5);
-    unloadEntity(5);
-    setPStat(101, 0);
-    playSound(8, 5);
-    speak(Entity.System, "Patamon joins the city!\n");
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    setTrigger(231);
-    addPStat(1, 1);
-    return;
+  waitForEntity(5);
+  unloadEntity(5);
+  setPStat(101, 0);
+  playSound(8, 5);
+  speak(Entity.System, "Patamon joins the city!\n");
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  setTrigger(231);
+  addPStat(1, 1);
+  return;
 
 L5:
-    speak(5, "That's not fun!\n");
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    return;
+  speak(5, "That's not fun!\n");
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  return;
 }
 
 section(6) {
-    speak(6, "Are you coming?\n");
-    startBattle();
-    setTrigger(275);
-    return;
+  speak(6, "Are you coming?\n");
+  startBattle();
+  setTrigger(275);
+  return;
 }
 
 section(7) {
-    speak(7, "You don't smell!\n");
-    startBattle();
-    setTrigger(297);
-    return;
+  speak(7, "You don't smell!\n");
+  startBattle();
+  setTrigger(297);
+  return;
 }
 
 section(8) {
-    speak(8, "Looks yummy.\nI'll gobble you up!\n");
-    startBattle();
-    setTrigger(297);
-    return;
+  speak(8, "Looks yummy.\nI'll gobble you up!\n");
+  startBattle();
+  setTrigger(297);
+  return;
 }
 
 section(9) {
-    speak(9, "Ha ha, you're funny!\n");
-    startBattle();
-    setTrigger(297);
-    return;
-    garbage { 1c 00 fe 00 1c 00 05 00 60 00 06 00 f4 04 07 00 28 05 08 00 5e 05 09 00 b4 05 ff ff 24 00 6e 63 19 00 0b 00 6e 0c 18 00 32 00 19 00 74 2c 2c 00 38 00 24 00 6e 63 19 00 0b 00 6e 08 18 00 48 00 19 00 74 2c 4a 00 32 00 24 00 6e 63 19 00 0b 00 6e 01 18 00 5e 00 19 00 74 45 2d 00 2e 00 fe 00 5a 00 08 07 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 87 82 8f 82 8e 82 8e 82 81 81 40 82 8b 82 8e 82 8f 82 83 82 8b 81 40 82 99 82 8f 82 95 81 40 82 8f 82 95 82 94 81 49 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 1b 05 1a 00 82 6b 82 85 82 94 81 75 82 93 81 40 82 84 82 8f 81 40 82 89 82 94 81 40 82 81 82 87 82 81 82 89 82 8e 81 42 0d 00 00 00 1b fd 10 02 16 01 c6 04 1a 00 82 6e 82 6a 0d 00 82 6d 82 8f 0d 00 00 00 12 00 16 00 c6 04 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 1b 05 1a 00 82 69 82 95 82 93 82 94 81 40 82 81 81 40 82 8c 82 89 82 94 82 94 82 8c 82 85 81 40 82 8d 82 8f 82 92 82 85 81 42 81 42 81 42 0d 00 82 62 82 8f 82 8d 82 85 81 40 82 8f 82 8e 81 43 81 40 82 8f 82 8e 82 85 81 40 82 8d 82 8f 82 92 82 85 81 40 82 94 82 89 82 8d 82 85 81 49 0d 00 00 00 56 00 fd 10 1b fd 10 02 ca 01 c6 04 1a 00 82 6e 82 6a 0d 00 82 6d 82 8f 0d 00 00 00 12 00 16 00 c6 04 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 67 00 05 00 56 00 05 1c 5a 00 08 07 67 00 28 00 1b 05 }
+  speak(9, "Ha ha, you're funny!\n");
+  startBattle();
+  setTrigger(297);
+  return;
+  garbage { 1c 00 fe 00 1c 00 05 00 60 00 06 00 f4 04 07 00 28 05 08 00 5e 05 09 00 b4 05 ff ff 24 00 6e 63 19 00 0b 00 6e 0c 18 00 32 00 19 00 74 2c 2c 00 38 00 24 00 6e 63 19 00 0b 00 6e 08 18 00 48 00 19 00 74 2c 4a 00 32 00 24 00 6e 63 19 00 0b 00 6e 01 18 00 5e 00 19 00 74 45 2d 00 2e 00 fe 00 5a 00 08 07 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 87 82 8f 82 8e 82 8e 82 81 81 40 82 8b 82 8e 82 8f 82 83 82 8b 81 40 82 99 82 8f 82 95 81 40 82 8f 82 95 82 94 81 49 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 1b 05 1a 00 82 6b 82 85 82 94 81 75 82 93 81 40 82 84 82 8f 81 40 82 89 82 94 81 40 82 81 82 87 82 81 82 89 82 8e 81 42 0d 00 00 00 1b fd 10 02 16 01 c6 04 1a 00 82 6e 82 6a 0d 00 82 6d 82 8f 0d 00 00 00 12 00 16 00 c6 04 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 1b 05 1a 00 82 69 82 95 82 93 82 94 81 40 82 81 81 40 82 8c 82 89 82 94 82 94 82 8c 82 85 81 40 82 8d 82 8f 82 92 82 85 81 42 81 42 81 42 0d 00 82 62 82 8f 82 8d 82 85 81 40 82 8f 82 8e 81 43 81 40 82 8f 82 8e 82 85 81 40 82 8d 82 8f 82 92 82 85 81 40 82 94 82 89 82 8d 82 85 81 49 0d 00 00 00 56 00 fd 10 1b fd 10 02 ca 01 c6 04 1a 00 82 6e 82 6a 0d 00 82 6d 82 8f 0d 00 00 00 12 00 16 00 c6 04 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 67 00 05 00 56 00 05 1c 5a 00 08 07 67 00 28 00 1b 05 }
 }

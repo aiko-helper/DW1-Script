@@ -3,75 +3,75 @@
 #pragma script index=61 start=0x2d000 end=0x2d800 headerU16=0x14 sentinelOff=0xe75
 
 section onEnter(254) {
-    spawnChest(Item.Medicine, -503, -2215, 3072, 656);
-    return;
+  spawnChest(Item.Medicine, -503, -2215, 3072, 656);
+  return;
 }
 
 section(81) {
-    rotate3DObject(1, 1);
-    playSound(8, 1);
-    delay(10);
-    move(entity: Entity.Player, to: (336, 1300), sprint: 0);
-    warp(to: Map.YAKA22, spawn: 0, trigger: 255);
-    return;
+  rotate3DObject(1, 1);
+  playSound(8, 1);
+  delay(10);
+  move(entity: Entity.Player, to: (336, 1300), sprint: 0);
+  warp(to: Map.YAKA22, spawn: 0, trigger: 255);
+  return;
 }
 
 section(82) {
-    if (trigger(117)) goto L1;
-    rotate(entity: Entity.Player, to: 3072);
-    playSound(8, 2);
-    delay(5);
-    playSound(8, 2);
-    playAnimation(Entity.Player, 16);
-    delay(15);
-    speak(Entity.Player, "I think it's locked.\n");
-    playAnimation(Entity.Player, 0);
-    showTextbox("Will the knob open?\n");
-    playSound(8, 3);
-    speak(Entity.Player, "It opened!\n");
-    setTrigger(117);
+  if (trigger(117)) goto L1;
+  rotate(entity: Entity.Player, to: 3072);
+  playSound(8, 2);
+  delay(5);
+  playSound(8, 2);
+  playAnimation(Entity.Player, 16);
+  delay(15);
+  speak(Entity.Player, "I think it's locked.\n");
+  playAnimation(Entity.Player, 0);
+  showTextbox("Will the knob open?\n");
+  playSound(8, 3);
+  speak(Entity.Player, "It opened!\n");
+  setTrigger(117);
 
 L1:
-    rotate3DObject(0, 1);
-    playSound(8, 1);
-    delay(10);
-    move(entity: Entity.Player, to: (1700, 226), sprint: 0);
-    warp(to: Map.YAKA11B, spawn: 2, trigger: 255);
-    return;
+  rotate3DObject(0, 1);
+  playSound(8, 1);
+  delay(10);
+  move(entity: Entity.Player, to: (1700, 226), sprint: 0);
+  warp(to: Map.YAKA11B, spawn: 2, trigger: 255);
+  return;
 }
 
 section(52) {
-    if (trigger(132)) goto L1;
-    playAnimation(Entity.Player, 18);
-    playAnimation(Entity.Partner, 43);
-    delay(20);
-    playAnimation(Entity.Partner, 44);
-    setPStat(200, 30);
-    dealMapDamage(200);
-    setPStat(254, 253);
-    callSubroutine(55);
-    speak(Entity.Player, "Are you alright, <ORANGE><DIGIMON><WHITE>?\n");
-    playAnimation(Entity.Player, 24);
-    delay(15);
-    showTextbox("What kind of place is this?\n");
-    playAnimation(Entity.Player, 0);
-    move(entity: Entity.Player, to: (150, -340), sprint: 0, withCamera: true);
-    waitForEntity(Entity.Player);
-    rotate(entity: Entity.Player, to: 1260);
-    delay(10);
-    rotate(entity: Entity.Player, to: 2796);
-    delay(10);
-    look(entity: Entity.Player, at: Entity.Partner);
-    speak(Entity.Player, "Looks like we entered a room\nwe've never been to before.\n");
-    setTrigger(132);
-    return;
-    goto L2;
+  if (trigger(132)) goto L1;
+  playAnimation(Entity.Player, 18);
+  playAnimation(Entity.Partner, 43);
+  delay(20);
+  playAnimation(Entity.Partner, 44);
+  setPStat(200, 30);
+  dealMapDamage(200);
+  setPStat(254, 253);
+  callSubroutine(55);
+  speak(Entity.Player, "Are you alright, <ORANGE><DIGIMON><WHITE>?\n");
+  playAnimation(Entity.Player, 24);
+  delay(15);
+  showTextbox("What kind of place is this?\n");
+  playAnimation(Entity.Player, 0);
+  move(entity: Entity.Player, to: (150, -340), sprint: 0, withCamera: true);
+  waitForEntity(Entity.Player);
+  rotate(entity: Entity.Player, to: 1260);
+  delay(10);
+  rotate(entity: Entity.Player, to: 2796);
+  delay(10);
+  look(entity: Entity.Player, at: Entity.Partner);
+  speak(Entity.Player, "Looks like we entered a room\nwe've never been to before.\n");
+  setTrigger(132);
+  return;
+  goto L2;
 
 L1:
-    speak(Entity.Player, "Good landing!\n");
-    return;
+  speak(Entity.Player, "Good landing!\n");
+  return;
 
 L2:
-    return;
-    garbage { 14 00 fe 00 14 00 51 00 22 00 52 00 3c 00 34 00 fe 00 ff ff 75 0e 09 fe 00 00 59 f7 00 0c 90 02 fe 00 70 01 00 01 5a 00 08 01 67 00 0a 00 4e fd 50 01 14 05 00 00 4b 3e 00 ff fe 00 19 00 01 00 75 00 18 00 e4 00 19 00 4d fd 00 0c 5a 00 08 02 67 00 05 00 5a 00 08 02 56 00 fd 10 67 00 0f 00 1b fd 1a 00 82 68 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 89 82 94 81 75 82 93 81 40 82 8c 82 8f 82 83 82 8b 82 85 82 84 81 42 0d 00 00 00 56 00 fd 00 1a 00 82 76 82 89 82 8c 82 8c 81 40 82 94 82 88 82 85 81 40 82 8b 82 8e 82 8f 82 82 81 40 82 8f 82 90 82 85 82 8e 81 48 0d 00 00 00 5a 00 08 03 1b fd 1a 00 82 68 82 94 81 40 82 8f 82 90 82 85 82 8e 82 85 82 84 81 49 0d 00 00 00 1c 00 75 00 70 00 00 01 5a 00 08 01 67 00 0a 00 4e fd a4 06 e2 00 00 00 4b 35 02 ff fe 00 19 00 01 00 84 00 18 00 40 02 19 00 56 00 fd 12 56 00 fc 2b 67 00 14 00 56 00 fc 2c 1e 00 c8 1e 69 c8 1e 00 fe fd 64 37 1b fd 1a 00 82 60 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 81 82 8c 82 92 82 89 82 87 82 88 82 94 81 43 81 40 01 0a 06 00 01 01 81 48 0d 00 00 00 56 00 fd 18 67 00 0f 00 1a 00 82 76 82 88 82 81 82 94 81 40 82 8b 82 89 82 8e 82 84 81 40 82 8f 82 86 81 40 82 90 82 8c 82 81 82 83 82 85 81 40 82 89 82 93 81 40 82 94 82 88 82 89 82 93 81 48 0d 00 00 00 56 00 fd 00 52 fd 96 00 ac fe 00 00 4a fd 4d fd ec 04 67 00 0a 00 4d fd ec 0a 67 00 0a 00 4c 00 fd fc 1b fd 1a 00 82 6b 82 8f 82 8f 82 8b 82 93 81 40 82 8c 82 89 82 8b 82 85 81 40 82 97 82 85 81 40 82 85 82 8e 82 94 82 85 82 92 82 85 82 84 81 40 82 81 81 40 82 92 82 8f 82 8f 82 8d 0d 00 82 97 82 85 81 75 82 96 82 85 81 40 82 8e 82 85 82 96 82 85 82 92 81 40 82 82 82 85 82 85 82 8e 81 40 82 94 82 8f 81 40 82 82 82 85 82 86 82 8f 82 92 82 85 81 42 0d 00 00 00 1c 00 84 00 fe 00 16 00 64 02 1b fd 1a 00 82 66 82 8f 82 8f 82 84 81 40 82 8c 82 81 82 8e 82 84 82 89 82 8e 82 87 81 49 0d 00 00 00 fe 00 fe 00 ff 00 82 85 81 75 82 93 81 40 82 81 81 40 82 8d 82 85 82 8d 82 8f 81 42 0d 00 00 00 1b ff 1a 00 82 71 82 85 82 94 82 95 82 92 82 8e 81 40 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 90 82 8f 82 93 82 89 82 94 82 89 82 8f 82 8e 0d 00 82 97 82 88 82 85 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 88 82 85 81 40 82 90 82 8f 82 89 82 8e 82 94 82 93 0d 00 82 86 82 92 82 8f 82 8d 81 40 82 94 82 88 82 85 81 40 82 84 82 95 82 8d 82 82 81 40 82 8f 82 8e 82 85 81 42 0d 00 00 00 1b fd 1a 00 82 68 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 8c 82 89 82 93 82 94 82 85 82 8e 81 40 82 94 82 8f 81 40 82 94 82 88 82 89 82 93 81 40 82 8d 82 85 82 8d 82 8f 81 42 0d 00 00 00 1c 00 5c 01 fe 00 19 00 24 00 7b 05 01 00 81 00 5c 01 18 00 fc 03 19 00 1b fd 1a 00 82 68 82 94 81 75 82 93 81 40 82 81 81 40 82 92 82 85 82 86 82 92 82 89 82 87 82 85 82 92 82 81 82 94 82 8f 82 92 81 42 0d 00 00 00 1b fd 1a 00 82 68 82 94 81 75 82 93 81 40 82 8c 82 8f 82 83 82 8b 82 85 82 84 81 42 81 40 82 68 81 75 82 96 82 85 81 40 82 8e 82 85 82 96 82 85 82 92 81 40 82 93 82 85 82 85 82 8e 0d 00 82 81 81 40 82 8c 82 8f 82 83 82 8b 82 85 82 84 81 40 82 86 82 92 82 89 82 84 82 87 82 85 81 42 0d 00 00 00 fe 00 fe 00 70 01 00 01 5a 00 08 01 67 00 0a 00 4e fd 51 00 c0 f9 00 00 4b 36 00 ff fe 00 70 00 00 01 5a 00 08 01 67 00 0a 00 4e fd 8b ff b0 04 00 00 4b 39 01 ff fe 00 ff 00 82 99 81 40 82 87 82 95 82 99 82 93 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 82 82 85 82 88 82 81 82 96 82 85 81 40 82 81 82 8e 82 99 82 8d 82 8f 82 92 82 85 81 42 0d 00 00 00 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 85 82 99 81 40 82 83 82 81 82 8e 0d 00 82 92 82 85 82 8d 82 85 82 8d 82 82 82 85 82 92 81 40 82 8d 82 99 81 40 82 8f 82 92 82 84 82 85 82 92 82 93 81 42 0d 00 00 00 1a 00 82 73 82 88 82 85 82 99 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 95 82 8e 82 84 82 85 82 92 82 93 82 94 82 81 82 8e 82 84 81 40 82 8e 82 8f 82 97 81 42 0d 00 82 73 82 88 82 85 82 99 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 82 82 85 81 40 82 82 82 92 82 89 82 8e 82 87 82 89 82 8e 82 87 0d 00 82 8d 82 85 81 40 82 8d 82 99 81 40 82 8d 82 85 82 81 82 8c 82 93 81 43 81 40 82 82 82 95 82 94 81 42 81 42 81 42 81 42 0d 00 00 00 1b fd 1a 00 82 78 82 95 82 8d 81 43 81 40 82 99 82 95 82 8d 81 42 81 42 81 42 81 42 0d 00 00 00 1b 05 1a 00 82 76 82 88 82 89 82 8c 82 85 81 40 82 68 81 40 82 97 82 81 82 93 }
+  return;
+  garbage { 14 00 fe 00 14 00 51 00 22 00 52 00 3c 00 34 00 fe 00 ff ff 75 0e 09 fe 00 00 59 f7 00 0c 90 02 fe 00 70 01 00 01 5a 00 08 01 67 00 0a 00 4e fd 50 01 14 05 00 00 4b 3e 00 ff fe 00 19 00 01 00 75 00 18 00 e4 00 19 00 4d fd 00 0c 5a 00 08 02 67 00 05 00 5a 00 08 02 56 00 fd 10 67 00 0f 00 1b fd 1a 00 82 68 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 89 82 94 81 75 82 93 81 40 82 8c 82 8f 82 83 82 8b 82 85 82 84 81 42 0d 00 00 00 56 00 fd 00 1a 00 82 76 82 89 82 8c 82 8c 81 40 82 94 82 88 82 85 81 40 82 8b 82 8e 82 8f 82 82 81 40 82 8f 82 90 82 85 82 8e 81 48 0d 00 00 00 5a 00 08 03 1b fd 1a 00 82 68 82 94 81 40 82 8f 82 90 82 85 82 8e 82 85 82 84 81 49 0d 00 00 00 1c 00 75 00 70 00 00 01 5a 00 08 01 67 00 0a 00 4e fd a4 06 e2 00 00 00 4b 35 02 ff fe 00 19 00 01 00 84 00 18 00 40 02 19 00 56 00 fd 12 56 00 fc 2b 67 00 14 00 56 00 fc 2c 1e 00 c8 1e 69 c8 1e 00 fe fd 64 37 1b fd 1a 00 82 60 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 81 82 8c 82 92 82 89 82 87 82 88 82 94 81 43 81 40 01 0a 06 00 01 01 81 48 0d 00 00 00 56 00 fd 18 67 00 0f 00 1a 00 82 76 82 88 82 81 82 94 81 40 82 8b 82 89 82 8e 82 84 81 40 82 8f 82 86 81 40 82 90 82 8c 82 81 82 83 82 85 81 40 82 89 82 93 81 40 82 94 82 88 82 89 82 93 81 48 0d 00 00 00 56 00 fd 00 52 fd 96 00 ac fe 00 00 4a fd 4d fd ec 04 67 00 0a 00 4d fd ec 0a 67 00 0a 00 4c 00 fd fc 1b fd 1a 00 82 6b 82 8f 82 8f 82 8b 82 93 81 40 82 8c 82 89 82 8b 82 85 81 40 82 97 82 85 81 40 82 85 82 8e 82 94 82 85 82 92 82 85 82 84 81 40 82 81 81 40 82 92 82 8f 82 8f 82 8d 0d 00 82 97 82 85 81 75 82 96 82 85 81 40 82 8e 82 85 82 96 82 85 82 92 81 40 82 82 82 85 82 85 82 8e 81 40 82 94 82 8f 81 40 82 82 82 85 82 86 82 8f 82 92 82 85 81 42 0d 00 00 00 1c 00 84 00 fe 00 16 00 64 02 1b fd 1a 00 82 66 82 8f 82 8f 82 84 81 40 82 8c 82 81 82 8e 82 84 82 89 82 8e 82 87 81 49 0d 00 00 00 fe 00 fe 00 ff 00 82 85 81 75 82 93 81 40 82 81 81 40 82 8d 82 85 82 8d 82 8f 81 42 0d 00 00 00 1b ff 1a 00 82 71 82 85 82 94 82 95 82 92 82 8e 81 40 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 90 82 8f 82 93 82 89 82 94 82 89 82 8f 82 8e 0d 00 82 97 82 88 82 85 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 88 82 85 81 40 82 90 82 8f 82 89 82 8e 82 94 82 93 0d 00 82 86 82 92 82 8f 82 8d 81 40 82 94 82 88 82 85 81 40 82 84 82 95 82 8d 82 82 81 40 82 8f 82 8e 82 85 81 42 0d 00 00 00 1b fd 1a 00 82 68 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 8c 82 89 82 93 82 94 82 85 82 8e 81 40 82 94 82 8f 81 40 82 94 82 88 82 89 82 93 81 40 82 8d 82 85 82 8d 82 8f 81 42 0d 00 00 00 1c 00 5c 01 fe 00 19 00 24 00 7b 05 01 00 81 00 5c 01 18 00 fc 03 19 00 1b fd 1a 00 82 68 82 94 81 75 82 93 81 40 82 81 81 40 82 92 82 85 82 86 82 92 82 89 82 87 82 85 82 92 82 81 82 94 82 8f 82 92 81 42 0d 00 00 00 1b fd 1a 00 82 68 82 94 81 75 82 93 81 40 82 8c 82 8f 82 83 82 8b 82 85 82 84 81 42 81 40 82 68 81 75 82 96 82 85 81 40 82 8e 82 85 82 96 82 85 82 92 81 40 82 93 82 85 82 85 82 8e 0d 00 82 81 81 40 82 8c 82 8f 82 83 82 8b 82 85 82 84 81 40 82 86 82 92 82 89 82 84 82 87 82 85 81 42 0d 00 00 00 fe 00 fe 00 70 01 00 01 5a 00 08 01 67 00 0a 00 4e fd 51 00 c0 f9 00 00 4b 36 00 ff fe 00 70 00 00 01 5a 00 08 01 67 00 0a 00 4e fd 8b ff b0 04 00 00 4b 39 01 ff fe 00 ff 00 82 99 81 40 82 87 82 95 82 99 82 93 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 82 82 85 82 88 82 81 82 96 82 85 81 40 82 81 82 8e 82 99 82 8d 82 8f 82 92 82 85 81 42 0d 00 00 00 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 85 82 99 81 40 82 83 82 81 82 8e 0d 00 82 92 82 85 82 8d 82 85 82 8d 82 82 82 85 82 92 81 40 82 8d 82 99 81 40 82 8f 82 92 82 84 82 85 82 92 82 93 81 42 0d 00 00 00 1a 00 82 73 82 88 82 85 82 99 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 95 82 8e 82 84 82 85 82 92 82 93 82 94 82 81 82 8e 82 84 81 40 82 8e 82 8f 82 97 81 42 0d 00 82 73 82 88 82 85 82 99 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 82 82 85 81 40 82 82 82 92 82 89 82 8e 82 87 82 89 82 8e 82 87 0d 00 82 8d 82 85 81 40 82 8d 82 99 81 40 82 8d 82 85 82 81 82 8c 82 93 81 43 81 40 82 82 82 95 82 94 81 42 81 42 81 42 81 42 0d 00 00 00 1b fd 1a 00 82 78 82 95 82 8d 81 43 81 40 82 99 82 95 82 8d 81 42 81 42 81 42 81 42 0d 00 00 00 1b 05 1a 00 82 76 82 88 82 89 82 8c 82 85 81 40 82 68 81 40 82 97 82 81 82 93 }
 }

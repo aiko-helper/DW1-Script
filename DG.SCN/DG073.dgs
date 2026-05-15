@@ -3,133 +3,133 @@
 #pragma script index=73 start=0x34000 end=0x34800 headerU16=0x18 sentinelOff=0x24
 
 section onEnter(254) {
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 5) goto L1;
-    spawnItem(Item.Digimushroom, x: 39, y: 59);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 5) goto L1;
+  spawnItem(Item.Digimushroom, x: 39, y: 59);
 
 L1:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 14) goto L2;
-    spawnItem(Item.Digimushroom, x: 62, y: 89);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 14) goto L2;
+  spawnItem(Item.Digimushroom, x: 62, y: 89);
 
 L2:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 11) goto L3;
-    spawnItem(Item.Digimushroom, x: 40, y: 24);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 11) goto L3;
+  spawnItem(Item.Digimushroom, x: 40, y: 24);
 
 L3:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 6) goto L4;
-    spawnItem(Item.Digimushroom, x: 61, y: 35);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 6) goto L4;
+  spawnItem(Item.Digimushroom, x: 61, y: 35);
 
 L4:
-    unsetTrigger(338);
-    return;
+  unsetTrigger(338);
+  return;
 }
 
 section(51) {
-    if (!trigger(196) && !trigger(338)) goto L1;
-    return;
+  if (!trigger(196) && !trigger(338)) goto L1;
+  return;
 
 L1:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    delay(5);
-    setTrigger(196);
-    setDigimon(Digimon.NPCPatamon, 0, 0);
-    setDigimon(Digimon.NPCGobiromon, 1, 0);
-    moveCamera(to: (-205, 1478), slowdown: 15);
-    waitForEntity(200);
-    move(entity: 5, to: (-254, 439), sprint: 1);
-    move(entity: 6, to: (-254, 1039), sprint: 1);
-    delay(45);
-    rotate(entity: 5, to: 0);
-    rotate(entity: 6, to: 0);
-    moveCamera(to: 5, speed: 25);
-    waitForEntity(200);
-    speak(Entity.Player, "What is it?\n");
-    waitForEntity(5);
-    look(entity: 5, at: Entity.Player);
-    delay(5);
-    speak(5, "HELP ME!\n");
-    playAnimation(Entity.Player, 7);
-    delay(15);
-    speak(Entity.Player, "He's in trouble,\nI gotta help him!\n");
-    playAnimation(Entity.Player, 0);
-    move(entity: Entity.Player, to: (-150, -550), sprint: 1);
-    move(entity: Entity.Partner, to: (-80, -300), sprint: 1);
-    speak(Entity.System, "<YELLOW>??? <WHITE>\nPick on someone\nyour own size!\n");
-    setPStat(245, 3);
-    setBGM(11);
-    setDigimon(Digimon.NPCLeomon, 2, 0);
-    moveCamera(to: (-677, 509), slowdown: 20);
-    waitForEntity(200);
-    look(entity: 7, at: 6);
-    look(entity: Entity.Player, at: 7);
-    delay(10);
-    speak(Entity.Player, "Who is that?\n");
-    look(entity: 5, at: 7);
-    look(entity: 6, at: 7);
-    delay(10);
-    look(entity: 7, at: 6);
-    move(entity: 6, to: (-254, 1039), sprint: 1);
-    delay(5);
-    move(entity: 7, axis: 1, to: 0, speed: 1);
-    delay(2);
-    playAnimation(7, 28);
-    delay(20);
-    playAnimation(7, 0);
-    playSound(8, 1);
-    look(entity: Entity.Player, at: 7);
-    look(entity: 5, at: 7);
-    look(entity: 6, at: 7);
-    for x in [Entity.Player, 5, 6] { waitForEntity(x); }
-    playAnimation(6, 40);
-    delay(20);
-    move(entity: 6, to: (0, 4000), sprint: 1);
-    waitForEntity(6);
-    unloadEntity(6);
-    look(entity: 5, at: 7);
-    delay(5);
-    look(entity: 7, at: 5);
-    delay(5);
-    speak(7, "Are you alright?\n");
-    speak(5, "Thank you.\n");
-    speak(7, "Call me anytime you're\nin trouble. I will\ncome right away!\n");
-    showTextbox("See you again!\n");
-    move(entity: 7, to: (-2323, 1264), sprint: 1);
-    delay(20);
-    speak(5, "Hey, wait up!\n");
-    move(entity: 5, to: (-2323, 1264), sprint: 1);
-    delay(40);
-    waitForEntity(5);
-    waitForEntity(7);
-    unloadEntity(7);
-    unloadEntity(5);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    speak(Entity.Player, "He's like a hero.\nHe gets all the credit.\n");
-    playAnimation(Entity.Player, 0);
-    setTrigger(196);
-    return;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  delay(5);
+  setTrigger(196);
+  setDigimon(Digimon.NPCPatamon, 0, 0);
+  setDigimon(Digimon.NPCGobiromon, 1, 0);
+  moveCamera(to: (-205, 1478), slowdown: 15);
+  waitForEntity(200);
+  move(entity: 5, to: (-254, 439), sprint: 1);
+  move(entity: 6, to: (-254, 1039), sprint: 1);
+  delay(45);
+  rotate(entity: 5, to: 0);
+  rotate(entity: 6, to: 0);
+  moveCamera(to: 5, speed: 25);
+  waitForEntity(200);
+  speak(Entity.Player, "What is it?\n");
+  waitForEntity(5);
+  look(entity: 5, at: Entity.Player);
+  delay(5);
+  speak(5, "HELP ME!\n");
+  playAnimation(Entity.Player, 7);
+  delay(15);
+  speak(Entity.Player, "He's in trouble,\nI gotta help him!\n");
+  playAnimation(Entity.Player, 0);
+  move(entity: Entity.Player, to: (-150, -550), sprint: 1);
+  move(entity: Entity.Partner, to: (-80, -300), sprint: 1);
+  speak(Entity.System, "<YELLOW>??? <WHITE>\nPick on someone\nyour own size!\n");
+  setPStat(245, 3);
+  setBGM(11);
+  setDigimon(Digimon.NPCLeomon, 2, 0);
+  moveCamera(to: (-677, 509), slowdown: 20);
+  waitForEntity(200);
+  look(entity: 7, at: 6);
+  look(entity: Entity.Player, at: 7);
+  delay(10);
+  speak(Entity.Player, "Who is that?\n");
+  look(entity: 5, at: 7);
+  look(entity: 6, at: 7);
+  delay(10);
+  look(entity: 7, at: 6);
+  move(entity: 6, to: (-254, 1039), sprint: 1);
+  delay(5);
+  move(entity: 7, axis: 1, to: 0, speed: 1);
+  delay(2);
+  playAnimation(7, 28);
+  delay(20);
+  playAnimation(7, 0);
+  playSound(8, 1);
+  look(entity: Entity.Player, at: 7);
+  look(entity: 5, at: 7);
+  look(entity: 6, at: 7);
+  for x in [Entity.Player, 5, 6] { waitForEntity(x); }
+  playAnimation(6, 40);
+  delay(20);
+  move(entity: 6, to: (0, 4000), sprint: 1);
+  waitForEntity(6);
+  unloadEntity(6);
+  look(entity: 5, at: 7);
+  delay(5);
+  look(entity: 7, at: 5);
+  delay(5);
+  speak(7, "Are you alright?\n");
+  speak(5, "Thank you.\n");
+  speak(7, "Call me anytime you're\nin trouble. I will\ncome right away!\n");
+  showTextbox("See you again!\n");
+  move(entity: 7, to: (-2323, 1264), sprint: 1);
+  delay(20);
+  speak(5, "Hey, wait up!\n");
+  move(entity: 5, to: (-2323, 1264), sprint: 1);
+  delay(40);
+  waitForEntity(5);
+  waitForEntity(7);
+  unloadEntity(7);
+  unloadEntity(5);
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  speak(Entity.Player, "He's like a hero.\nHe gets all the credit.\n");
+  playAnimation(Entity.Player, 0);
+  setTrigger(196);
+  return;
 }
 
 section(52) {
-    setTrigger(338);
-    return;
+  setTrigger(338);
+  return;
 }
 
 section(8) {
-    speak(8, "This is my house. Leave!\n");
-    startBattle();
-    setTrigger(297);
-    return;
+  speak(8, "This is my house. Leave!\n");
+  startBattle();
+  setTrigger(297);
+  return;
 }
 
 section(9) {
-    speak(9, "I'm Sharmamon. Who are you?\n");
-    startBattle();
-    setTrigger(297);
-    return;
-    garbage { 18 00 fe 00 18 00 33 00 76 00 34 00 fc 03 08 00 02 04 09 00 48 04 ff ff 24 00 6e 63 19 00 0b 00 6e 05 18 00 2e 00 19 00 74 2c 27 00 3b 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 44 00 19 00 74 2c 3e 00 59 00 24 00 6e 63 19 00 0b 00 6e 0b 18 00 5a 00 19 00 74 2c 28 00 18 00 24 00 6e 63 19 00 0b 00 6e 06 18 00 70 00 19 00 74 2c 3d 00 23 00 1d 00 52 01 fe 00 19 00 00 00 c4 00 40 00 52 01 18 00 88 00 19 00 fe 00 4d fd 00 08 4d fc 00 08 67 00 05 00 1c 00 c4 00 47 97 00 00 47 7d 01 00 4f 0f 33 ff c6 05 4a c8 4e 05 02 ff b7 01 01 00 4e 06 02 ff 0f 04 01 00 67 00 2d 00 4d 05 00 00 4d 06 00 00 50 00 05 19 4a c8 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 89 82 93 81 40 82 89 82 94 81 48 0d 00 00 00 4a 05 4c 00 05 fd 67 00 05 00 1b 05 1a 00 82 67 82 64 82 6b 82 6f 81 40 82 6c 82 64 81 49 0d 00 00 00 56 00 fd 07 67 00 0f 00 1b fd 1a 00 82 67 82 85 81 75 82 93 81 40 82 89 82 8e 81 40 82 94 82 92 82 8f 82 95 82 82 82 8c 82 85 81 43 0d 00 82 68 81 40 82 87 82 8f 82 94 82 94 82 81 81 40 82 88 82 85 82 8c 82 90 81 40 82 88 82 89 82 8d 81 49 0d 00 00 00 56 00 fd 00 4e fd 6a ff da fd 01 00 4e fc b0 ff d4 fe 01 00 1b ff 1a 00 01 07 81 48 81 48 81 48 81 40 01 01 0d 00 82 6f 82 89 82 83 82 8b 81 40 82 8f 82 8e 81 40 82 93 82 8f 82 8d 82 85 82 8f 82 8e 82 85 0d 00 82 99 82 8f 82 95 82 92 81 40 82 8f 82 97 82 8e 81 40 82 93 82 89 82 9a 82 85 81 49 0d 00 00 00 1e 00 f5 03 5d 0b 47 a6 02 00 4f 14 5b fd fd 01 4a c8 4c 00 07 06 4c 00 fd 07 67 00 0a 00 1b fd 1a 00 82 76 82 88 82 8f 81 40 82 89 82 93 81 40 82 94 82 88 82 81 82 94 81 48 0d 00 00 00 4c 00 05 07 4c 00 06 07 67 00 0a 00 4c 00 07 06 4e 06 02 ff 0f 04 01 00 67 00 05 00 72 07 00 00 01 01 67 00 02 00 56 00 07 1c 67 00 14 00 56 00 07 00 5a 00 08 01 4c 00 fd 07 4c 00 05 07 4c 00 06 07 4a fd 4a 05 4a 06 56 00 06 28 67 00 14 00 4e 06 00 00 a0 0f 01 00 4a 06 48 06 4c 00 05 07 67 00 05 00 4c 00 07 05 67 00 05 00 1b 07 1a 00 82 60 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 81 82 8c 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 1b 05 1a 00 82 73 82 88 82 81 82 8e 82 8b 81 40 82 99 82 8f 82 95 81 42 0d 00 00 00 1b 07 1a 00 82 62 82 81 82 8c 82 8c 81 40 82 8d 82 85 81 40 82 81 82 8e 82 99 82 94 82 89 82 8d 82 85 81 40 82 99 82 8f 82 95 81 75 82 92 82 85 0d 00 82 89 82 8e 81 40 82 94 82 92 82 8f 82 95 82 82 82 8c 82 85 81 42 81 40 82 68 81 40 82 97 82 89 82 8c 82 8c 0d 00 82 83 82 8f 82 8d 82 85 81 40 82 92 82 89 82 87 82 88 82 94 81 40 82 81 82 97 82 81 82 99 81 49 0d 00 00 00 1a 00 82 72 82 85 82 85 81 40 82 99 82 8f 82 95 81 40 82 81 82 87 82 81 82 89 82 8e 81 49 0d 00 00 00 4e 07 ed f6 f0 04 01 00 67 00 14 00 1b 05 1a 00 82 67 82 85 82 99 81 43 81 40 }
+  speak(9, "I'm Sharmamon. Who are you?\n");
+  startBattle();
+  setTrigger(297);
+  return;
+  garbage { 18 00 fe 00 18 00 33 00 76 00 34 00 fc 03 08 00 02 04 09 00 48 04 ff ff 24 00 6e 63 19 00 0b 00 6e 05 18 00 2e 00 19 00 74 2c 27 00 3b 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 44 00 19 00 74 2c 3e 00 59 00 24 00 6e 63 19 00 0b 00 6e 0b 18 00 5a 00 19 00 74 2c 28 00 18 00 24 00 6e 63 19 00 0b 00 6e 06 18 00 70 00 19 00 74 2c 3d 00 23 00 1d 00 52 01 fe 00 19 00 00 00 c4 00 40 00 52 01 18 00 88 00 19 00 fe 00 4d fd 00 08 4d fc 00 08 67 00 05 00 1c 00 c4 00 47 97 00 00 47 7d 01 00 4f 0f 33 ff c6 05 4a c8 4e 05 02 ff b7 01 01 00 4e 06 02 ff 0f 04 01 00 67 00 2d 00 4d 05 00 00 4d 06 00 00 50 00 05 19 4a c8 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 89 82 93 81 40 82 89 82 94 81 48 0d 00 00 00 4a 05 4c 00 05 fd 67 00 05 00 1b 05 1a 00 82 67 82 64 82 6b 82 6f 81 40 82 6c 82 64 81 49 0d 00 00 00 56 00 fd 07 67 00 0f 00 1b fd 1a 00 82 67 82 85 81 75 82 93 81 40 82 89 82 8e 81 40 82 94 82 92 82 8f 82 95 82 82 82 8c 82 85 81 43 0d 00 82 68 81 40 82 87 82 8f 82 94 82 94 82 81 81 40 82 88 82 85 82 8c 82 90 81 40 82 88 82 89 82 8d 81 49 0d 00 00 00 56 00 fd 00 4e fd 6a ff da fd 01 00 4e fc b0 ff d4 fe 01 00 1b ff 1a 00 01 07 81 48 81 48 81 48 81 40 01 01 0d 00 82 6f 82 89 82 83 82 8b 81 40 82 8f 82 8e 81 40 82 93 82 8f 82 8d 82 85 82 8f 82 8e 82 85 0d 00 82 99 82 8f 82 95 82 92 81 40 82 8f 82 97 82 8e 81 40 82 93 82 89 82 9a 82 85 81 49 0d 00 00 00 1e 00 f5 03 5d 0b 47 a6 02 00 4f 14 5b fd fd 01 4a c8 4c 00 07 06 4c 00 fd 07 67 00 0a 00 1b fd 1a 00 82 76 82 88 82 8f 81 40 82 89 82 93 81 40 82 94 82 88 82 81 82 94 81 48 0d 00 00 00 4c 00 05 07 4c 00 06 07 67 00 0a 00 4c 00 07 06 4e 06 02 ff 0f 04 01 00 67 00 05 00 72 07 00 00 01 01 67 00 02 00 56 00 07 1c 67 00 14 00 56 00 07 00 5a 00 08 01 4c 00 fd 07 4c 00 05 07 4c 00 06 07 4a fd 4a 05 4a 06 56 00 06 28 67 00 14 00 4e 06 00 00 a0 0f 01 00 4a 06 48 06 4c 00 05 07 67 00 05 00 4c 00 07 05 67 00 05 00 1b 07 1a 00 82 60 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 81 82 8c 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 1b 05 1a 00 82 73 82 88 82 81 82 8e 82 8b 81 40 82 99 82 8f 82 95 81 42 0d 00 00 00 1b 07 1a 00 82 62 82 81 82 8c 82 8c 81 40 82 8d 82 85 81 40 82 81 82 8e 82 99 82 94 82 89 82 8d 82 85 81 40 82 99 82 8f 82 95 81 75 82 92 82 85 0d 00 82 89 82 8e 81 40 82 94 82 92 82 8f 82 95 82 82 82 8c 82 85 81 42 81 40 82 68 81 40 82 97 82 89 82 8c 82 8c 0d 00 82 83 82 8f 82 8d 82 85 81 40 82 92 82 89 82 87 82 88 82 94 81 40 82 81 82 97 82 81 82 99 81 49 0d 00 00 00 1a 00 82 72 82 85 82 85 81 40 82 99 82 8f 82 95 81 40 82 81 82 87 82 81 82 89 82 8e 81 49 0d 00 00 00 4e 07 ed f6 f0 04 01 00 67 00 14 00 1b 05 1a 00 82 67 82 85 82 99 81 43 81 40 }
 }

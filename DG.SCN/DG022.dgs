@@ -3,221 +3,221 @@
 #pragma script index=22 start=0x15800 end=0x16800 headerU16=0x18 sentinelOff=0x24
 
 section onEnter(254) {
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 14) goto L1;
-    spawnItem(Item.Digimushroom, x: 15, y: 41);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 14) goto L1;
+  spawnItem(Item.Digimushroom, x: 15, y: 41);
 
 L1:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 14) goto L2;
-    spawnItem(Item.Digimushroom, x: 49, y: 28);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 14) goto L2;
+  spawnItem(Item.Digimushroom, x: 49, y: 28);
 
 L2:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 14) goto L3;
-    spawnItem(Item.Digimushroom, x: 63, y: 67);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 14) goto L3;
+  spawnItem(Item.Digimushroom, x: 63, y: 67);
 
 L3:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 14) goto L4;
-    spawnItem(Item.Digimushroom, x: 25, y: 64);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 14) goto L4;
+  spawnItem(Item.Digimushroom, x: 25, y: 64);
 
 L4:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 5) goto L5;
-    spawnItem(Item.Happymushroom, x: 84, y: 49);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 5) goto L5;
+  spawnItem(Item.Happymushroom, x: 84, y: 49);
 
 L5:
-    spawnChest(Item.MediumRecovery, 3545, 855, 1024, 696);
-    spawnChest(Item.MediumMP, 3545, 455, 1024, 697);
-    spawnChest(Item.Various, 3545, 155, 1024, 698);
-    if (trigger(233) || !trigger(53)) goto L6;
-    playAnimation(5, 28);
+  spawnChest(Item.MediumRecovery, 3545, 855, 1024, 696);
+  spawnChest(Item.MediumMP, 3545, 455, 1024, 697);
+  spawnChest(Item.Various, 3545, 155, 1024, 698);
+  if (trigger(233) || !trigger(53)) goto L6;
+  playAnimation(5, 28);
 
 L6:
-    return;
+  return;
 }
 
 section(5) {
-    speak(5, "My wing hurts.\n");
-    playAnimation(Entity.Player, 19);
-    delay(20);
-    speak(Entity.Player, "What happened?\n");
-    speak(5, "I injured my wing... Do you\nhave anything to treat it?\n");
-    playAnimation(Entity.Player, 4);
-    delay(20);
-    speak(Entity.Player, "Wow, it looks pretty bad!\nHold on. Let me see.\n");
-    playAnimation(Entity.Player, 0);
-    setTrigger(3);
-    callSubroutine(0);
-    if (!trigger(3)) goto L1;
-    speak(Entity.Player, "I don't have anything\nright now.\n");
-    goto L7;
+  speak(5, "My wing hurts.\n");
+  playAnimation(Entity.Player, 19);
+  delay(20);
+  speak(Entity.Player, "What happened?\n");
+  speak(5, "I injured my wing... Do you\nhave anything to treat it?\n");
+  playAnimation(Entity.Player, 4);
+  delay(20);
+  speak(Entity.Player, "Wow, it looks pretty bad!\nHold on. Let me see.\n");
+  playAnimation(Entity.Player, 0);
+  setTrigger(3);
+  callSubroutine(0);
+  if (!trigger(3)) goto L1;
+  speak(Entity.Player, "I don't have anything\nright now.\n");
+  goto L7;
 
 L1:
-    if (pstat[254] != 0 && pstat[254] != 1 && pstat[254] != 2 && pstat[254] != 3) goto L2;
-    callSubroutine(12);
-    goto L4;
+  if (pstat[254] != 0 && pstat[254] != 1 && pstat[254] != 2 && pstat[254] != 3) goto L2;
+  callSubroutine(12);
+  goto L4;
 
 L2:
-    if (pstat[254] != 7 && pstat[254] != 9 && pstat[254] != 13 && pstat[254] != 14) goto L3;
-    callSubroutine(12);
-    goto L4;
-    goto L4;
+  if (pstat[254] != 7 && pstat[254] != 9 && pstat[254] != 13 && pstat[254] != 14) goto L3;
+  callSubroutine(12);
+  goto L4;
+  goto L4;
 
 L3:
-    speak(Entity.Player, "This won't do.\n");
-    goto L7;
+  speak(Entity.Player, "This won't do.\n");
+  goto L7;
 
 L4:
-    speak(5, "It's much better. Thank you.\n");
-    playAnimation(5, 29);
-    waitForEntity(5);
-    playAnimation(Entity.Player, 25);
-    delay(20);
-    speak(Entity.Player, "Can you fly now?\n");
-    speak(5, "I don't think I can fly far.\n");
-    playAnimation(Entity.Player, 19);
-    delay(20);
-    speak(Entity.Player, "There's a clinic in the city.\nYou should go there.\nIt's not far.\n");
-    speak(5, "I heard about the city.\nIt's bigger than I thought.\n");
-    speak(Entity.Player, "Go to the city and rest.\n");
-    speak(5, "Thank you. Maybe\nI can help you someday.\n");
-    goto L5;
+  speak(5, "It's much better. Thank you.\n");
+  playAnimation(5, 29);
+  waitForEntity(5);
+  playAnimation(Entity.Player, 25);
+  delay(20);
+  speak(Entity.Player, "Can you fly now?\n");
+  speak(5, "I don't think I can fly far.\n");
+  playAnimation(Entity.Player, 19);
+  delay(20);
+  speak(Entity.Player, "There's a clinic in the city.\nYou should go there.\nIt's not far.\n");
+  speak(5, "I heard about the city.\nIt's bigger than I thought.\n");
+  speak(Entity.Player, "Go to the city and rest.\n");
+  speak(5, "Thank you. Maybe\nI can help you someday.\n");
+  goto L5;
 
 L5:
-    move(entity: 5, to: (-192, -1849), sprint: 1);
-    if (pstat[101] >= 10) goto L6;
-    addPStat(101, 1);
-    playSound(8, 0);
-    delay(15);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
-    goto L5;
+  move(entity: 5, to: (-192, -1849), sprint: 1);
+  if (pstat[101] >= 10) goto L6;
+  addPStat(101, 1);
+  playSound(8, 0);
+  delay(15);
+  look(entity: Entity.Player, at: 5);
+  look(entity: Entity.Partner, at: 5);
+  goto L5;
 
 L6:
-    waitForEntity(5);
-    unloadEntity(5);
-    setPStat(101, 0);
-    playSound(8, 9);
-    speak(Entity.System, "Unimon joins the city!\n");
-    setTrigger(233);
-    addPStat(1, 2);
-    goto L8;
+  waitForEntity(5);
+  unloadEntity(5);
+  setPStat(101, 0);
+  playSound(8, 9);
+  speak(Entity.System, "Unimon joins the city!\n");
+  setTrigger(233);
+  addPStat(1, 2);
+  goto L8;
 
 L7:
-    speak(Entity.Player, "I don't have anything to\ntreat your wound.\nI'll get you something.\n");
-    speak(5, "I'm sorry, please hurry.\n");
-    goto L8;
+  speak(Entity.Player, "I don't have anything to\ntreat your wound.\nI'll get you something.\n");
+  speak(5, "I'm sorry, please hurry.\n");
+  goto L8;
 
 L8:
-    return;
+  return;
 }
 
 section(6) {
-    return;
+  return;
 }
 
 section(51) {
-    if (trigger(118)) goto L1;
-    goto L4;
+  if (trigger(118)) goto L1;
+  goto L4;
 
 L1:
-    if (trigger(154) || !trigger(152) || trigger(153)) goto L2;
-    goto L5;
+  if (trigger(154) || !trigger(152) || trigger(153)) goto L2;
+  goto L5;
 
 L2:
-    if (!trigger(153) || trigger(228)) goto L3;
-    goto L6;
-    goto L4;
+  if (!trigger(153) || trigger(228)) goto L3;
+  goto L6;
+  goto L4;
 
 L3:
-    goto L9;
+  goto L9;
 
 L4:
-    speak(Entity.System, "There are some strange\ndrawings on the ground.\n");
-    speak(Entity.Player, "Is that one of those\nMystery Circles?\nIt still looks new.\n");
-    setTrigger(118);
-    setTrigger(152);
-    return;
+  speak(Entity.System, "There are some strange\ndrawings on the ground.\n");
+  speak(Entity.Player, "Is that one of those\nMystery Circles?\nIt still looks new.\n");
+  setTrigger(118);
+  setTrigger(152);
+  return;
 
 L5:
-    speak(Entity.Player, "I see more of them now!\nI wonder if this is\nrelated to the UFO...?\n");
-    setTrigger(154);
-    setTrigger(153);
-    return;
+  speak(Entity.Player, "I see more of them now!\nI wonder if this is\nrelated to the UFO...?\n");
+  setTrigger(154);
+  setTrigger(153);
+  return;
 
 L6:
-    speak(Entity.Player, "Wow!? There are more\nof them than before!\n");
-    showTextbox("What does this mean?\n");
-    playSound(8, 5);
-    speak(Entity.Player, "What?\n");
-    rotate(entity: Entity.Player, to: 2560);
-    setDigimon(Digimon.NPCUnimon, 1, 0);
-    moveCamera(to: (-335, 285), slowdown: 20);
-    waitForEntity(200);
-    move(entity: 6, to: (1139, 1029), sprint: 1);
-    playSound(8, 5);
-    waitForEntity(6);
-    move(entity: 6, to: (-327, 459), sprint: 1);
-    playSound(8, 5);
-    waitForEntity(6);
-    move(entity: 6, to: (269, -973), sprint: 1);
-    playSound(8, 5);
-    waitForEntity(6);
-    moveCamera(to: Entity.Player, speed: 10);
-    move(entity: 6, to: (-747, -1106), sprint: 0);
-    playSound(8, 5);
-    waitForEntity(6);
-    look(entity: 6, at: Entity.Player);
-    speak(Entity.System, "Vademon's UFO appears.\n");
-    speak(Entity.Player, "A...an alien?!\n");
-    speak(6, "...\n");
-    speak(Entity.Player, "Are you... a Digimon?\n");
-    speak(6, "...\n");
-    speak(Entity.Player, "Well...\n");
-    speak(6, "...\n");
-    playSound(8, 6);
-    delay(10);
-    speak(Entity.System, "Vademon holds a gun.\n");
-    speak(Entity.Player, "No, stop!\nI'm not your enemy!\n");
-    speak(Entity.System, "Vademon drops the gun.\n");
-    speak(Entity.Player, "Good you understand.\n");
-    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> desperately\ntries to convince him.\n");
-    speak(6, "...\n");
-    speak(Entity.Player, "Maybe he doesn't get it?\n");
-    speak(6, "Okay.\n");
-    fadeOutHUD();
-    goto L7;
+  speak(Entity.Player, "Wow!? There are more\nof them than before!\n");
+  showTextbox("What does this mean?\n");
+  playSound(8, 5);
+  speak(Entity.Player, "What?\n");
+  rotate(entity: Entity.Player, to: 2560);
+  setDigimon(Digimon.NPCUnimon, 1, 0);
+  moveCamera(to: (-335, 285), slowdown: 20);
+  waitForEntity(200);
+  move(entity: 6, to: (1139, 1029), sprint: 1);
+  playSound(8, 5);
+  waitForEntity(6);
+  move(entity: 6, to: (-327, 459), sprint: 1);
+  playSound(8, 5);
+  waitForEntity(6);
+  move(entity: 6, to: (269, -973), sprint: 1);
+  playSound(8, 5);
+  waitForEntity(6);
+  moveCamera(to: Entity.Player, speed: 10);
+  move(entity: 6, to: (-747, -1106), sprint: 0);
+  playSound(8, 5);
+  waitForEntity(6);
+  look(entity: 6, at: Entity.Player);
+  speak(Entity.System, "Vademon's UFO appears.\n");
+  speak(Entity.Player, "A...an alien?!\n");
+  speak(6, "...\n");
+  speak(Entity.Player, "Are you... a Digimon?\n");
+  speak(6, "...\n");
+  speak(Entity.Player, "Well...\n");
+  speak(6, "...\n");
+  playSound(8, 6);
+  delay(10);
+  speak(Entity.System, "Vademon holds a gun.\n");
+  speak(Entity.Player, "No, stop!\nI'm not your enemy!\n");
+  speak(Entity.System, "Vademon drops the gun.\n");
+  speak(Entity.Player, "Good you understand.\n");
+  speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> desperately\ntries to convince him.\n");
+  speak(6, "...\n");
+  speak(Entity.Player, "Maybe he doesn't get it?\n");
+  speak(6, "Okay.\n");
+  fadeOutHUD();
+  goto L7;
 
 L7:
-    move(entity: 6, to: (199, -3166), sprint: 1);
-    if (pstat[101] >= 2) goto L8;
-    addPStat(101, 1);
-    playSound(8, 5);
-    delay(40);
-    look(entity: Entity.Player, at: 6);
-    look(entity: Entity.Partner, at: 6);
-    goto L7;
+  move(entity: 6, to: (199, -3166), sprint: 1);
+  if (pstat[101] >= 2) goto L8;
+  addPStat(101, 1);
+  playSound(8, 5);
+  delay(40);
+  look(entity: Entity.Player, at: 6);
+  look(entity: Entity.Partner, at: 6);
+  goto L7;
 
 L8:
-    waitForEntity(6);
-    unloadEntity(6);
-    setPStat(101, 0);
-    playSound(8, 9);
-    speak(Entity.System, "Vademon joins the city!\n");
-    speak(Entity.Player, "He...\n");
-    showTextbox("He can talk!\n");
-    setTrigger(228);
-    addPStat(1, 3);
-    return;
+  waitForEntity(6);
+  unloadEntity(6);
+  setPStat(101, 0);
+  playSound(8, 9);
+  speak(Entity.System, "Vademon joins the city!\n");
+  speak(Entity.Player, "He...\n");
+  showTextbox("He can talk!\n");
+  setTrigger(228);
+  addPStat(1, 3);
+  return;
 
 L9:
-    return;
+  return;
 }
 
 section(61) {
-    warp(to: Map.MIHA02, spawn: 0, trigger: 255);
-    return;
-    garbage { 18 00 fe 00 18 00 05 00 c0 00 06 00 44 06 33 00 46 06 3d 00 fa 0b ff ff 24 00 6e 63 19 00 0b 00 6e 0e 18 00 2e 00 19 00 74 2c 0f 00 29 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 44 00 19 00 74 2c 31 00 1c 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 5a 00 19 00 74 2c 3f 00 43 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 70 00 19 00 74 2c 19 00 40 00 24 00 6e 63 19 00 0b 00 6e 05 18 00 86 00 19 00 74 45 54 00 31 00 75 01 d9 0d 00 00 57 03 00 04 b8 02 75 05 d9 0d 00 00 c7 01 00 04 b9 02 75 08 d9 0d 00 00 9b 00 00 04 ba 02 19 00 01 00 e9 00 80 00 35 00 18 00 be 00 19 00 56 00 05 1c fe 00 1b 05 1a 00 82 6c 82 99 81 40 82 97 82 89 82 8e 82 87 81 40 82 88 82 95 82 92 82 94 82 93 81 42 0d 00 00 00 56 00 fd 13 67 00 14 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 88 82 81 82 90 82 90 82 85 82 8e 82 85 82 84 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 40 82 89 82 8e 82 8a 82 95 82 92 82 85 82 84 81 40 82 8d 82 99 81 40 82 97 82 89 82 8e 82 87 81 42 81 42 81 42 81 40 82 63 82 8f 81 40 82 99 82 8f 82 95 0d 00 82 88 82 81 82 96 82 85 81 40 82 81 82 8e 82 99 82 94 82 88 82 89 82 8e 82 87 81 40 82 94 82 8f 81 40 82 94 82 92 82 85 82 81 82 94 81 40 82 89 82 94 81 48 0d 00 00 00 56 00 fd 04 67 00 14 00 1b fd 1a 00 82 76 82 8f 82 97 81 43 81 40 82 89 82 94 81 40 82 8c 82 8f 82 8f 82 8b 82 93 81 40 82 90 82 92 82 85 82 94 82 94 82 99 81 40 82 82 82 81 82 84 81 49 0d 00 82 67 82 8f 82 8c 82 84 81 40 82 8f 82 8e 81 42 81 40 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 93 82 85 82 85 81 42 0d 00 00 00 56 00 fd 00 1c 00 03 00 64 00 19 00 00 00 03 00 18 00 52 02 19 00 1b fd 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 81 40 82 81 82 8e 82 99 82 94 82 88 82 89 82 8e 82 87 0d 00 82 92 82 89 82 87 82 88 82 94 81 40 82 8e 82 8f 82 97 81 42 0d 00 00 00 16 00 7a 05 19 00 08 00 fe 00 48 00 fe 01 48 00 fe 02 48 00 fe 03 18 00 70 02 19 00 64 0c 16 00 ba 02 19 00 08 00 fe 07 48 00 fe 09 48 00 fe 0d 48 00 fe 0e 18 00 92 02 19 00 64 0c 16 00 ba 02 16 00 ba 02 1b fd 1a 00 82 73 82 88 82 89 82 93 81 40 82 97 82 8f 82 8e 81 75 82 94 81 40 82 84 82 8f 81 42 0d 00 00 00 16 00 7a 05 1b 05 1a 00 82 68 82 94 81 75 82 93 81 40 82 8d 82 95 82 83 82 88 81 40 82 82 82 85 82 94 82 94 82 85 82 92 81 42 81 40 82 73 82 88 82 81 82 8e 82 8b 81 40 82 99 82 8f 82 95 81 42 0d 00 00 00 56 00 05 1d 4a 05 56 00 fd 19 67 00 14 00 1b fd 1a 00 82 62 82 81 82 8e 81 40 82 99 82 8f 82 95 81 40 82 86 82 8c 82 99 81 40 82 8e 82 8f 82 97 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 68 81 40 82 83 82 81 82 8e 81 40 82 86 82 8c 82 99 81 40 82 86 82 81 82 92 81 42 0d 00 00 00 56 00 fd 13 67 00 14 00 1b fd 1a 00 82 73 82 88 82 85 82 92 82 85 81 75 82 93 81 40 82 81 81 40 82 83 82 8c 82 89 82 8e 82 89 82 83 81 40 82 89 82 8e 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 42 0d 00 82 78 82 8f 82 95 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 87 82 8f 81 40 82 94 82 88 82 85 82 92 82 85 81 42 0d 00 82 68 82 94 81 75 82 93 81 40 82 8e 82 8f 82 94 81 40 82 86 82 81 82 92 81 42 0d 00 }
+  warp(to: Map.MIHA02, spawn: 0, trigger: 255);
+  return;
+  garbage { 18 00 fe 00 18 00 05 00 c0 00 06 00 44 06 33 00 46 06 3d 00 fa 0b ff ff 24 00 6e 63 19 00 0b 00 6e 0e 18 00 2e 00 19 00 74 2c 0f 00 29 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 44 00 19 00 74 2c 31 00 1c 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 5a 00 19 00 74 2c 3f 00 43 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 70 00 19 00 74 2c 19 00 40 00 24 00 6e 63 19 00 0b 00 6e 05 18 00 86 00 19 00 74 45 54 00 31 00 75 01 d9 0d 00 00 57 03 00 04 b8 02 75 05 d9 0d 00 00 c7 01 00 04 b9 02 75 08 d9 0d 00 00 9b 00 00 04 ba 02 19 00 01 00 e9 00 80 00 35 00 18 00 be 00 19 00 56 00 05 1c fe 00 1b 05 1a 00 82 6c 82 99 81 40 82 97 82 89 82 8e 82 87 81 40 82 88 82 95 82 92 82 94 82 93 81 42 0d 00 00 00 56 00 fd 13 67 00 14 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 88 82 81 82 90 82 90 82 85 82 8e 82 85 82 84 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 40 82 89 82 8e 82 8a 82 95 82 92 82 85 82 84 81 40 82 8d 82 99 81 40 82 97 82 89 82 8e 82 87 81 42 81 42 81 42 81 40 82 63 82 8f 81 40 82 99 82 8f 82 95 0d 00 82 88 82 81 82 96 82 85 81 40 82 81 82 8e 82 99 82 94 82 88 82 89 82 8e 82 87 81 40 82 94 82 8f 81 40 82 94 82 92 82 85 82 81 82 94 81 40 82 89 82 94 81 48 0d 00 00 00 56 00 fd 04 67 00 14 00 1b fd 1a 00 82 76 82 8f 82 97 81 43 81 40 82 89 82 94 81 40 82 8c 82 8f 82 8f 82 8b 82 93 81 40 82 90 82 92 82 85 82 94 82 94 82 99 81 40 82 82 82 81 82 84 81 49 0d 00 82 67 82 8f 82 8c 82 84 81 40 82 8f 82 8e 81 42 81 40 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 93 82 85 82 85 81 42 0d 00 00 00 56 00 fd 00 1c 00 03 00 64 00 19 00 00 00 03 00 18 00 52 02 19 00 1b fd 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 81 40 82 81 82 8e 82 99 82 94 82 88 82 89 82 8e 82 87 0d 00 82 92 82 89 82 87 82 88 82 94 81 40 82 8e 82 8f 82 97 81 42 0d 00 00 00 16 00 7a 05 19 00 08 00 fe 00 48 00 fe 01 48 00 fe 02 48 00 fe 03 18 00 70 02 19 00 64 0c 16 00 ba 02 19 00 08 00 fe 07 48 00 fe 09 48 00 fe 0d 48 00 fe 0e 18 00 92 02 19 00 64 0c 16 00 ba 02 16 00 ba 02 1b fd 1a 00 82 73 82 88 82 89 82 93 81 40 82 97 82 8f 82 8e 81 75 82 94 81 40 82 84 82 8f 81 42 0d 00 00 00 16 00 7a 05 1b 05 1a 00 82 68 82 94 81 75 82 93 81 40 82 8d 82 95 82 83 82 88 81 40 82 82 82 85 82 94 82 94 82 85 82 92 81 42 81 40 82 73 82 88 82 81 82 8e 82 8b 81 40 82 99 82 8f 82 95 81 42 0d 00 00 00 56 00 05 1d 4a 05 56 00 fd 19 67 00 14 00 1b fd 1a 00 82 62 82 81 82 8e 81 40 82 99 82 8f 82 95 81 40 82 86 82 8c 82 99 81 40 82 8e 82 8f 82 97 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 68 81 40 82 83 82 81 82 8e 81 40 82 86 82 8c 82 99 81 40 82 86 82 81 82 92 81 42 0d 00 00 00 56 00 fd 13 67 00 14 00 1b fd 1a 00 82 73 82 88 82 85 82 92 82 85 81 75 82 93 81 40 82 81 81 40 82 83 82 8c 82 89 82 8e 82 89 82 83 81 40 82 89 82 8e 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 42 0d 00 82 78 82 8f 82 95 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 87 82 8f 81 40 82 94 82 88 82 85 82 92 82 85 81 42 0d 00 82 68 82 94 81 75 82 93 81 40 82 8e 82 8f 82 94 81 40 82 86 82 81 82 92 81 42 0d 00 }
 }

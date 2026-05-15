@@ -3,228 +3,228 @@
 #pragma script index=63 start=0x2e000 end=0x2f000 headerU16=0x10 sentinelOff=0x19
 
 section onEnter(254) {
-    if (trigger(104) && trigger(128)) goto L1;
-    playAnimation(5, 28);
+  if (trigger(104) && trigger(128)) goto L1;
+  playAnimation(5, 28);
 
 L1:
-    if (trigger(129) || !trigger(356)) goto L2;
-    delay(20);
-    rotate(entity: Entity.Player, to: 2048);
-    delay(5);
-    speak(Entity.Player, "Myotismon isn't here.\n");
-    setTrigger(359);
+  if (trigger(129) || !trigger(356)) goto L2;
+  delay(20);
+  rotate(entity: Entity.Player, to: 2048);
+  delay(5);
+  speak(Entity.Player, "Myotismon isn't here.\n");
+  setTrigger(359);
 
 L2:
-    return;
+  return;
 }
 
 section(5) {
-    setTrigger(44);
-    move(entity: Entity.Player, to: (-253, -1358), sprint: 1, withCamera: true);
-    waitForEntity(Entity.Player);
-    look(entity: Entity.Player, at: 5);
-    playAnimation(5, 29);
-    delay(5);
-    if (item[Item.Steak] < 1) goto L1;
-    goto L7;
+  setTrigger(44);
+  move(entity: Entity.Player, to: (-253, -1358), sprint: 1, withCamera: true);
+  waitForEntity(Entity.Player);
+  look(entity: Entity.Player, at: 5);
+  playAnimation(5, 29);
+  delay(5);
+  if (item[Item.Steak] < 1) goto L1;
+  goto L7;
 
 L1:
-    if (!trigger(104)) goto L2;
-    speak(5, "Uh... my Meat fridge key?\n");
-    goto L6;
+  if (!trigger(104)) goto L2;
+  speak(5, "Uh... my Meat fridge key?\n");
+  goto L6;
 
 L2:
-    setTrigger(104);
-    speak(Entity.Player, " ! \n");
-    speak(5, "Someone came to help me?\n");
-    speak(Entity.Player, "Digimon? Are you ok?\n");
-    speak(5, "Who are you? Give me food!\n");
-    speak(Entity.Player, "Hungry? What do you want?\n");
-    speak(5, "Meat.\n");
-    if (item[Item.Meat] < 1 && item[Item.GiantMeat] < 1 && item[Item.Sirloin] < 1) goto L3;
-    speak(Entity.Player, "I got Meat!\n");
-    speak(5, "Meat.\n");
-    speak(Entity.Player, "What?\n");
-    goto L4;
+  setTrigger(104);
+  speak(Entity.Player, " ! \n");
+  speak(5, "Someone came to help me?\n");
+  speak(Entity.Player, "Digimon? Are you ok?\n");
+  speak(5, "Who are you? Give me food!\n");
+  speak(Entity.Player, "Hungry? What do you want?\n");
+  speak(5, "Meat.\n");
+  if (item[Item.Meat] < 1 && item[Item.GiantMeat] < 1 && item[Item.Sirloin] < 1) goto L3;
+  speak(Entity.Player, "I got Meat!\n");
+  speak(5, "Meat.\n");
+  speak(Entity.Player, "What?\n");
+  goto L4;
 
 L3:
-    speak(Entity.Player, "Meat? No, I don't got any.\n");
+  speak(Entity.Player, "Meat? No, I don't got any.\n");
 
 L4:
-    speak(5, "Here.\n");
-    giveItem(Item.FridgeKey, 1);
-    speak(Entity.Player, "A key?\n");
-    if (!trigger(0)) goto L5;
-    speak(Entity.Player, "I gotta get rid of something.\n");
-    unsetTrigger(3);
-    callSubroutine(0);
-    callSubroutine(13);
-    giveItem(Item.FridgeKey, 1);
+  speak(5, "Here.\n");
+  giveItem(Item.FridgeKey, 1);
+  speak(Entity.Player, "A key?\n");
+  if (!trigger(0)) goto L5;
+  speak(Entity.Player, "I gotta get rid of something.\n");
+  unsetTrigger(3);
+  callSubroutine(0);
+  callSubroutine(13);
+  giveItem(Item.FridgeKey, 1);
 
 L5:
-    speak(Entity.System, "I got a <LIGHTBLUE>Frige Key<WHITE>!\n");
-    speak(5, "Okay...\n");
+  speak(Entity.System, "I got a <LIGHTBLUE>Frige Key<WHITE>!\n");
+  speak(5, "Okay...\n");
 
 L6:
-    speak(Entity.Player, "I don't have much time!\n");
-    showTextbox("I'll bring something soon.\nHang on little more.\n");
-    playAnimation(5, 28);
-    return;
+  speak(Entity.Player, "I don't have much time!\n");
+  showTextbox("I'll bring something soon.\nHang on little more.\n");
+  playAnimation(5, 28);
+  return;
 
 L7:
-    removeItem(Item.Steak, 1);
-    speak(5, "Phew!\n");
-    playAnimation(5, 30);
-    delay(40);
-    playAnimation(5, 0);
-    look(entity: 5, at: Entity.Player);
-    speak(5, "I'm saved. Thanks so much.\nSorry for the trouble.\n");
-    speak(Entity.Player, "What happened?\n");
-    speak(5, "I'm Myotismon, master of\nthis mansion.\n");
-    speak(Entity.Player, "I'm <LIGHTBLUE><PLAYER><WHITE>, a human from\nanother world. This is\nmy partner, <ORANGE><DIGIMON><WHITE>.\n");
-    showTextbox("We're here to\nsave the island.\n");
-    speak(5, "Looks like we have lot to\ntalk about. I welcome you.\n");
-    setTrigger(128);
-    move(entity: 5, to: (-29, -2765), animDuration: 30);
-    delay(30);
-    move(entity: Entity.Player, to: (-29, -2765), sprint: 0);
-    waitForEntity(5);
-    unloadEntity(5);
-    delay(10);
-    move(entity: Entity.Partner, to: (-29, -2765), sprint: 0);
-    delay(10);
-    warp(to: Map.YAKA26, spawn: 0, trigger: 60);
-    return;
+  removeItem(Item.Steak, 1);
+  speak(5, "Phew!\n");
+  playAnimation(5, 30);
+  delay(40);
+  playAnimation(5, 0);
+  look(entity: 5, at: Entity.Player);
+  speak(5, "I'm saved. Thanks so much.\nSorry for the trouble.\n");
+  speak(Entity.Player, "What happened?\n");
+  speak(5, "I'm Myotismon, master of\nthis mansion.\n");
+  speak(Entity.Player, "I'm <LIGHTBLUE><PLAYER><WHITE>, a human from\nanother world. This is\nmy partner, <ORANGE><DIGIMON><WHITE>.\n");
+  showTextbox("We're here to\nsave the island.\n");
+  speak(5, "Looks like we have lot to\ntalk about. I welcome you.\n");
+  setTrigger(128);
+  move(entity: 5, to: (-29, -2765), animDuration: 30);
+  delay(30);
+  move(entity: Entity.Player, to: (-29, -2765), sprint: 0);
+  waitForEntity(5);
+  unloadEntity(5);
+  delay(10);
+  move(entity: Entity.Partner, to: (-29, -2765), sprint: 0);
+  delay(10);
+  warp(to: Map.YAKA26, spawn: 0, trigger: 60);
+  return;
 }
 
 section(60) {
-    delay(40);
-    moveCamera(to: (-1455, 1463), slowdown: 20);
-    playAnimation(Entity.Player, 15);
-    delay(20);
-    speak(Entity.Player, "Wow!\n");
-    speak(7, "...\n");
-    speak(Entity.Player, "Are you serious?\n");
-    waitForEntity(7);
-    unloadEntity(7);
-    delay(20);
-    speak(Entity.Player, "It's gone. Is this a dream?\n");
-    playAnimation(6, 28);
-    delay(40);
-    delay(40);
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 6);
-    setPStat(252, 255);
-    setPStat(253, 255);
-    startBattle();
-    unsetTrigger(1);
-    setPStat(250, 0);
-    move(entity: 6, to: (-100, 800), sprint: 0);
-    waitForEntity(6);
-    playAnimation(6, 43);
-    delay(40);
-    speak(Entity.Player, "I think we took care of it.\n");
-    look(entity: Entity.Player, at: 6);
-    waitForEntity(6);
-    waitForEntity(Entity.Player);
-    unloadEntity(6);
-    speak(Entity.Player, "What?\n");
-    loadDigimon(Digimon.Soulmon);
-    setDigimon(Digimon.Soulmon, 3, 0);
-    speak(8, "Huh? What?\n");
-    look(entity: 8, at: Entity.Player);
-    delay(20);
-    speak(8, "I passed out. I'm sorry.\n");
-    setTrigger(202);
-    setPStat(16, 0);
-    setPStat(28, 0);
-    setTrigger(243);
-    goto L1;
+  delay(40);
+  moveCamera(to: (-1455, 1463), slowdown: 20);
+  playAnimation(Entity.Player, 15);
+  delay(20);
+  speak(Entity.Player, "Wow!\n");
+  speak(7, "...\n");
+  speak(Entity.Player, "Are you serious?\n");
+  waitForEntity(7);
+  unloadEntity(7);
+  delay(20);
+  speak(Entity.Player, "It's gone. Is this a dream?\n");
+  playAnimation(6, 28);
+  delay(40);
+  delay(40);
+  setTrigger(1);
+  setPStat(250, 1);
+  setPStat(251, 6);
+  setPStat(252, 255);
+  setPStat(253, 255);
+  startBattle();
+  unsetTrigger(1);
+  setPStat(250, 0);
+  move(entity: 6, to: (-100, 800), sprint: 0);
+  waitForEntity(6);
+  playAnimation(6, 43);
+  delay(40);
+  speak(Entity.Player, "I think we took care of it.\n");
+  look(entity: Entity.Player, at: 6);
+  waitForEntity(6);
+  waitForEntity(Entity.Player);
+  unloadEntity(6);
+  speak(Entity.Player, "What?\n");
+  loadDigimon(Digimon.Soulmon);
+  setDigimon(Digimon.Soulmon, 3, 0);
+  speak(8, "Huh? What?\n");
+  look(entity: 8, at: Entity.Player);
+  delay(20);
+  speak(8, "I passed out. I'm sorry.\n");
+  setTrigger(202);
+  setPStat(16, 0);
+  setPStat(28, 0);
+  setTrigger(243);
+  goto L1;
 
 L1:
-    move(entity: 8, to: (-40, -2800), sprint: 1);
-    if (pstat[101] >= 3) goto L2;
-    addPStat(101, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 8);
-    look(entity: Entity.Partner, at: 8);
-    goto L1;
+  move(entity: 8, to: (-40, -2800), sprint: 1);
+  if (pstat[101] >= 3) goto L2;
+  addPStat(101, 1);
+  delay(20);
+  look(entity: Entity.Player, at: 8);
+  look(entity: Entity.Partner, at: 8);
+  goto L1;
 
 L2:
-    waitForEntity(8);
-    unloadEntity(8);
-    setPStat(101, 0);
-    playAnimation(Entity.Player, 16);
-    delay(40);
-    speak(Entity.Player, "The curse of Analogman!\nDon't worry, it'll be OK.\n");
-    delay(20);
-    if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L3;
-    goto L12;
-    goto L4;
+  waitForEntity(8);
+  unloadEntity(8);
+  setPStat(101, 0);
+  playAnimation(Entity.Player, 16);
+  delay(40);
+  speak(Entity.Player, "The curse of Analogman!\nDon't worry, it'll be OK.\n");
+  delay(20);
+  if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L3;
+  goto L12;
+  goto L4;
 
 L3:
-    goto L4;
+  goto L4;
 
 L4:
-    if (!trigger(221)) goto L5;
-    goto L9;
-    goto L6;
+  if (!trigger(221)) goto L5;
+  goto L9;
+  goto L6;
 
 L5:
-    goto L6;
+  goto L6;
 
 L6:
-    if (!trigger(225)) goto L7;
-    warp(to: Map.TWNA04, spawn: 0, trigger: 255);
+  if (!trigger(225)) goto L7;
+  warp(to: Map.TWNA04, spawn: 0, trigger: 255);
 
 L7:
-    if (!trigger(246)) goto L8;
-    warp(to: Map.TWNA03, spawn: 0, trigger: 255);
+  if (!trigger(246)) goto L8;
+  warp(to: Map.TWNA03, spawn: 0, trigger: 255);
 
 L8:
-    warp(to: Map.TWNA02, spawn: 0, trigger: 255);
+  warp(to: Map.TWNA02, spawn: 0, trigger: 255);
 
 L9:
-    if (!trigger(225)) goto L10;
-    warp(to: Map.TWNA07, spawn: 0, trigger: 255);
+  if (!trigger(225)) goto L10;
+  warp(to: Map.TWNA07, spawn: 0, trigger: 255);
 
 L10:
-    if (!trigger(246)) goto L11;
-    warp(to: Map.TWNA06, spawn: 0, trigger: 255);
+  if (!trigger(246)) goto L11;
+  warp(to: Map.TWNA06, spawn: 0, trigger: 255);
 
 L11:
-    warp(to: Map.TWNA05, spawn: 0, trigger: 255);
+  warp(to: Map.TWNA05, spawn: 0, trigger: 255);
 
 L12:
-    if (!trigger(221)) goto L13;
-    goto L17;
-    goto L14;
+  if (!trigger(221)) goto L13;
+  goto L17;
+  goto L14;
 
 L13:
-    goto L14;
+  goto L14;
 
 L14:
-    if (!trigger(225)) goto L15;
-    warp(to: Map.TWNA10, spawn: 0, trigger: 255);
+  if (!trigger(225)) goto L15;
+  warp(to: Map.TWNA10, spawn: 0, trigger: 255);
 
 L15:
-    if (!trigger(246)) goto L16;
-    warp(to: Map.TWNA09, spawn: 0, trigger: 255);
+  if (!trigger(246)) goto L16;
+  warp(to: Map.TWNA09, spawn: 0, trigger: 255);
 
 L16:
-    warp(to: Map.TWNA08, spawn: 0, trigger: 255);
+  warp(to: Map.TWNA08, spawn: 0, trigger: 255);
 
 L17:
-    if (!trigger(225)) goto L18;
-    warp(to: Map.TWNA13, spawn: 0, trigger: 255);
+  if (!trigger(225)) goto L18;
+  warp(to: Map.TWNA13, spawn: 0, trigger: 255);
 
 L18:
-    if (!trigger(246)) goto L19;
-    warp(to: Map.TWNA12, spawn: 0, trigger: 255);
+  if (!trigger(246)) goto L19;
+  warp(to: Map.TWNA12, spawn: 0, trigger: 255);
 
 L19:
-    warp(to: Map.TWNA11, spawn: 0, trigger: 255);
-    return;
-    garbage { 10 00 fe 00 10 00 05 00 78 00 3c 00 64 06 ff ff 19 00 01 00 68 00 41 00 80 00 18 00 24 00 19 00 56 00 05 1c 19 00 01 00 81 00 80 00 64 01 18 00 76 00 19 00 67 00 14 00 4d fd 00 08 67 00 05 00 1b fd 1a 00 82 6c 82 99 82 8f 82 94 82 89 82 93 82 8d 82 8f 82 8e 81 40 82 89 82 93 82 8e 81 75 82 94 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 00 00 1c 00 67 01 fe 00 1c 00 2c 00 52 fd 03 ff b2 fa 01 00 4a fd 4c 00 fd 05 56 00 05 1d 67 00 05 00 19 00 24 00 7a 02 01 00 18 00 a4 00 19 00 16 00 f6 03 19 00 00 00 68 00 18 00 ee 00 19 00 1b 05 1a 00 82 74 82 88 81 42 81 42 81 42 81 40 82 8d 82 99 81 40 82 6c 82 85 82 81 82 94 81 40 82 86 82 92 82 89 82 84 82 87 82 85 81 40 82 8b 82 85 82 99 81 48 0d 00 00 00 16 00 56 03 1c 00 68 00 1b fd 1a 00 81 40 81 49 81 40 0d 00 00 00 1b 05 1a 00 82 72 82 8f 82 8d 82 85 82 8f 82 8e 82 85 81 40 82 83 82 81 82 8d 82 85 81 40 82 94 82 8f 81 40 82 88 82 85 82 8c 82 90 81 40 82 8d 82 85 81 48 0d 00 00 00 1b fd 1a 00 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 48 81 40 82 60 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 8f 82 8b 81 48 0d 00 00 00 1b 05 1a 00 82 76 82 88 82 8f 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 48 81 40 82 66 82 89 82 96 82 85 81 40 82 8d 82 85 81 40 82 86 82 8f 82 8f 82 84 81 49 0d 00 00 00 1b fd 1a 00 82 67 82 95 82 8e 82 87 82 92 82 99 81 48 81 40 82 76 82 88 82 81 82 94 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 48 0d 00 00 00 1b 05 1a 00 82 6c 82 85 82 81 82 94 81 42 0d 00 00 00 19 00 24 00 26 02 01 00 64 00 27 02 01 00 64 00 28 02 01 00 18 00 50 02 19 00 1b fd 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 6c 82 85 82 81 82 94 81 49 0d 00 00 00 1b 05 1a 00 82 6c 82 85 82 81 82 94 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 48 0d 00 00 00 16 00 8c 02 1b fd 1a 00 82 6c 82 85 82 81 82 94 81 48 81 40 82 6d 82 8f 81 43 81 40 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 87 82 8f 82 94 81 40 82 81 82 8e 82 99 81 42 0d 00 00 00 1b 05 1a 00 82 67 82 85 82 92 82 85 81 42 0d 00 00 00 28 00 7b 01 1b fd 1a 00 82 60 81 40 82 8b 82 85 82 99 81 48 0d 00 00 00 19 00 00 00 00 00 18 00 10 03 19 00 1b fd 1a 00 82 68 81 40 82 87 82 8f 82 94 82 94 82 81 81 40 82 87 82 85 82 94 81 40 82 92 82 89 82 84 81 40 82 8f 82 86 81 40 82 93 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 42 0d 00 00 00 1d 00 03 00 64 00 64 0d 28 00 7b 01 1b ff 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 81 81 40 01 06 82 65 82 92 82 89 82 87 82 85 81 40 82 6a 82 85 82 99 01 01 81 49 0d 00 00 00 1b 05 1a 00 82 6e 82 8b 82 81 82 99 81 42 81 42 81 42 0d 00 00 00 1b fd 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 81 40 82 8d 82 95 82 83 82 88 81 40 82 94 82 89 82 8d 82 85 81 49 0d 00 00 00 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 82 82 92 82 89 82 8e 82 87 81 40 82 93 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 40 82 93 82 8f 82 8f 82 8e 81 42 0d 00 82 67 82 81 82 8e 82 87 81 40 82 8f 82 8e 81 40 82 8c 82 89 82 94 82 94 82 8c 82 85 81 40 82 8d 82 8f 82 92 82 85 81 42 0d 00 00 00 56 00 05 1c fe 00 29 00 7a 01 1b 05 1a 00 82 6f 82 88 82 85 82 97 81 49 0d 00 00 00 56 00 05 1e 67 00 28 00 56 00 05 00 4c 00 05 fd 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 93 82 81 82 96 82 85 82 84 81 42 81 40 82 73 82 88 82 81 82 8e 82 8b 82 93 81 40 82 93 82 8f 81 40 82 8d 82 95 82 83 82 88 81 42 0d 00 82 72 82 8f 82 92 82 92 82 99 81 40 82 86 82 8f 82 92 81 40 82 94 82 88 82 85 81 40 82 94 82 92 82 8f 82 95 82 82 82 8c 82 85 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 88 82 81 82 90 82 90 82 85 82 8e 82 85 82 84 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 6c 82 99 82 8f 82 94 82 89 82 93 82 8d 82 8f 82 8e 81 43 81 40 82 8d 82 81 82 93 82 94 82 85 82 92 81 40 82 8f 82 86 0d 00 82 94 82 88 82 89 82 93 81 40 82 8d 82 81 82 8e 82 93 82 89 82 8f 82 8e 81 42 0d 00 00 00 1b fd 1a 00 82 68 81 75 82 8d 81 40 01 06 05 00 01 01 81 43 81 40 82 81 81 40 82 88 82 95 82 8d 82 81 82 8e 81 40 82 86 82 92 82 8f 82 8d 0d 00 82 81 82 8e 82 8f 82 94 82 88 82 85 82 92 81 40 82 97 82 8f 82 92 82 8c 82 84 81 42 81 40 82 73 82 88 82 89 82 93 81 40 82 89 82 93 0d 00 82 8d 82 99 81 40 82 90 82 81 82 92 82 94 82 8e 82 85 82 92 81 43 81 40 01 0a 06 00 01 01 81 42 0d 00 00 00 1a 00 82 76 82 85 81 75 82 92 82 85 81 40 82 88 82 85 82 92 82 85 81 40 82 94 82 8f 0d 00 82 93 82 81 82 96 82 85 81 40 82 94 82 88 82 85 81 40 82 89 82 93 82 8c 82 81 82 8e 82 84 81 42 0d 00 00 00 1b 05 1a 00 82 6b 82 8f 82 8f 82 8b 82 93 81 40 82 8c 82 89 82 8b 82 85 81 40 82 97 82 85 81 40 82 88 82 81 82 96 82 85 81 40 82 8c 82 8f 82 94 81 40 82 94 82 8f 0d 00 82 94 82 81 82 8c 82 8b 81 40 82 81 82 82 82 8f 82 95 82 94 81 42 81 40 82 68 81 40 82 97 82 85 82 8c 82 83 82 8f 82 8d 82 85 81 40 82 99 82 8f 82 95 81 42 0d 00 00 00 1c 00 80 00 6c 05 e3 ff 33 f5 1e 00 67 00 1e 00 4e fd e3 ff 33 f5 00 00 4a 05 48 05 67 00 0a 00 4e fc e3 ff 33 f5 00 00 67 00 0a 00 4b e0 00 3c }
+  warp(to: Map.TWNA11, spawn: 0, trigger: 255);
+  return;
+  garbage { 10 00 fe 00 10 00 05 00 78 00 3c 00 64 06 ff ff 19 00 01 00 68 00 41 00 80 00 18 00 24 00 19 00 56 00 05 1c 19 00 01 00 81 00 80 00 64 01 18 00 76 00 19 00 67 00 14 00 4d fd 00 08 67 00 05 00 1b fd 1a 00 82 6c 82 99 82 8f 82 94 82 89 82 93 82 8d 82 8f 82 8e 81 40 82 89 82 93 82 8e 81 75 82 94 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 00 00 1c 00 67 01 fe 00 1c 00 2c 00 52 fd 03 ff b2 fa 01 00 4a fd 4c 00 fd 05 56 00 05 1d 67 00 05 00 19 00 24 00 7a 02 01 00 18 00 a4 00 19 00 16 00 f6 03 19 00 00 00 68 00 18 00 ee 00 19 00 1b 05 1a 00 82 74 82 88 81 42 81 42 81 42 81 40 82 8d 82 99 81 40 82 6c 82 85 82 81 82 94 81 40 82 86 82 92 82 89 82 84 82 87 82 85 81 40 82 8b 82 85 82 99 81 48 0d 00 00 00 16 00 56 03 1c 00 68 00 1b fd 1a 00 81 40 81 49 81 40 0d 00 00 00 1b 05 1a 00 82 72 82 8f 82 8d 82 85 82 8f 82 8e 82 85 81 40 82 83 82 81 82 8d 82 85 81 40 82 94 82 8f 81 40 82 88 82 85 82 8c 82 90 81 40 82 8d 82 85 81 48 0d 00 00 00 1b fd 1a 00 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 48 81 40 82 60 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 8f 82 8b 81 48 0d 00 00 00 1b 05 1a 00 82 76 82 88 82 8f 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 48 81 40 82 66 82 89 82 96 82 85 81 40 82 8d 82 85 81 40 82 86 82 8f 82 8f 82 84 81 49 0d 00 00 00 1b fd 1a 00 82 67 82 95 82 8e 82 87 82 92 82 99 81 48 81 40 82 76 82 88 82 81 82 94 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 48 0d 00 00 00 1b 05 1a 00 82 6c 82 85 82 81 82 94 81 42 0d 00 00 00 19 00 24 00 26 02 01 00 64 00 27 02 01 00 64 00 28 02 01 00 18 00 50 02 19 00 1b fd 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 6c 82 85 82 81 82 94 81 49 0d 00 00 00 1b 05 1a 00 82 6c 82 85 82 81 82 94 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 48 0d 00 00 00 16 00 8c 02 1b fd 1a 00 82 6c 82 85 82 81 82 94 81 48 81 40 82 6d 82 8f 81 43 81 40 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 87 82 8f 82 94 81 40 82 81 82 8e 82 99 81 42 0d 00 00 00 1b 05 1a 00 82 67 82 85 82 92 82 85 81 42 0d 00 00 00 28 00 7b 01 1b fd 1a 00 82 60 81 40 82 8b 82 85 82 99 81 48 0d 00 00 00 19 00 00 00 00 00 18 00 10 03 19 00 1b fd 1a 00 82 68 81 40 82 87 82 8f 82 94 82 94 82 81 81 40 82 87 82 85 82 94 81 40 82 92 82 89 82 84 81 40 82 8f 82 86 81 40 82 93 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 42 0d 00 00 00 1d 00 03 00 64 00 64 0d 28 00 7b 01 1b ff 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 81 81 40 01 06 82 65 82 92 82 89 82 87 82 85 81 40 82 6a 82 85 82 99 01 01 81 49 0d 00 00 00 1b 05 1a 00 82 6e 82 8b 82 81 82 99 81 42 81 42 81 42 0d 00 00 00 1b fd 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 81 40 82 8d 82 95 82 83 82 88 81 40 82 94 82 89 82 8d 82 85 81 49 0d 00 00 00 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 82 82 92 82 89 82 8e 82 87 81 40 82 93 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 40 82 93 82 8f 82 8f 82 8e 81 42 0d 00 82 67 82 81 82 8e 82 87 81 40 82 8f 82 8e 81 40 82 8c 82 89 82 94 82 94 82 8c 82 85 81 40 82 8d 82 8f 82 92 82 85 81 42 0d 00 00 00 56 00 05 1c fe 00 29 00 7a 01 1b 05 1a 00 82 6f 82 88 82 85 82 97 81 49 0d 00 00 00 56 00 05 1e 67 00 28 00 56 00 05 00 4c 00 05 fd 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 93 82 81 82 96 82 85 82 84 81 42 81 40 82 73 82 88 82 81 82 8e 82 8b 82 93 81 40 82 93 82 8f 81 40 82 8d 82 95 82 83 82 88 81 42 0d 00 82 72 82 8f 82 92 82 92 82 99 81 40 82 86 82 8f 82 92 81 40 82 94 82 88 82 85 81 40 82 94 82 92 82 8f 82 95 82 82 82 8c 82 85 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 88 82 81 82 90 82 90 82 85 82 8e 82 85 82 84 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 6c 82 99 82 8f 82 94 82 89 82 93 82 8d 82 8f 82 8e 81 43 81 40 82 8d 82 81 82 93 82 94 82 85 82 92 81 40 82 8f 82 86 0d 00 82 94 82 88 82 89 82 93 81 40 82 8d 82 81 82 8e 82 93 82 89 82 8f 82 8e 81 42 0d 00 00 00 1b fd 1a 00 82 68 81 75 82 8d 81 40 01 06 05 00 01 01 81 43 81 40 82 81 81 40 82 88 82 95 82 8d 82 81 82 8e 81 40 82 86 82 92 82 8f 82 8d 0d 00 82 81 82 8e 82 8f 82 94 82 88 82 85 82 92 81 40 82 97 82 8f 82 92 82 8c 82 84 81 42 81 40 82 73 82 88 82 89 82 93 81 40 82 89 82 93 0d 00 82 8d 82 99 81 40 82 90 82 81 82 92 82 94 82 8e 82 85 82 92 81 43 81 40 01 0a 06 00 01 01 81 42 0d 00 00 00 1a 00 82 76 82 85 81 75 82 92 82 85 81 40 82 88 82 85 82 92 82 85 81 40 82 94 82 8f 0d 00 82 93 82 81 82 96 82 85 81 40 82 94 82 88 82 85 81 40 82 89 82 93 82 8c 82 81 82 8e 82 84 81 42 0d 00 00 00 1b 05 1a 00 82 6b 82 8f 82 8f 82 8b 82 93 81 40 82 8c 82 89 82 8b 82 85 81 40 82 97 82 85 81 40 82 88 82 81 82 96 82 85 81 40 82 8c 82 8f 82 94 81 40 82 94 82 8f 0d 00 82 94 82 81 82 8c 82 8b 81 40 82 81 82 82 82 8f 82 95 82 94 81 42 81 40 82 68 81 40 82 97 82 85 82 8c 82 83 82 8f 82 8d 82 85 81 40 82 99 82 8f 82 95 81 42 0d 00 00 00 1c 00 80 00 6c 05 e3 ff 33 f5 1e 00 67 00 1e 00 4e fd e3 ff 33 f5 00 00 4a 05 48 05 67 00 0a 00 4e fc e3 ff 33 f5 00 00 67 00 0a 00 4b e0 00 3c }
 }

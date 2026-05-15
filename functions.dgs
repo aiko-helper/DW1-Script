@@ -2,126 +2,245 @@
 // by macro-expanding to a `raw(...)` byte sequence.  Auto-emitted by
 // digi-disasm; do not edit by hand.
 
-function waitForSelectionChoice()    { raw(0x12, 0); }
-function jumpReturn()                { raw(0x15, 0); }
-function setDialogOwner(v)           { raw(0x1b, Entity!v); }
-function setPStat(p, v)              { raw(0x1e, 0, PStat!p, v); }
-function addPStat(p, v)              { raw(0x1f, 0, PStat!p, v); }
-function reducePStat(p, v)           { raw(0x20, 0, PStat!p, v); }
-function storeMapID(p)               { raw(0x21, PStat!p); }
-function storeDigimonType(p)         { raw(0x22, PStat!p); }
-function setInventorySize(s)         { raw(0x23, s); }
-function setTextboxSize(w, h)        { raw(0x26, 0, w, h); }
-function fadeOutHUD()                { raw(0x27, 0); }
-function giveItem(i, a)              { raw(0x28, 0, Item!i, a); }
-function removeItem(i, a)            { raw(0x29, 0, Item!i, a); }
-function learnMove(m)                { raw(0x2d, Move!m); }
-function giveCard(c)                 { raw(0x2f, c); }
-function takeCard(c)                 { raw(0x30, c); }
-function advanceToDate(p)            { raw(0x37, PStat!p); }
-function storeDigimonTypus(v, p)     { raw(0x3f, 0, v, PStat!p); }
-function loadDigimon(d)              { raw(0x46, Digimon!d); }
-function setDigimon(t, e, a)         { raw(0x47, Digimon!t, Entity!e, a); }
-function unloadEntity(e)             { raw(0x48, Entity!e); }
-function callDigimonSubroutine(r)    { raw(0x49, r); }
-function waitForEntity(e)            { raw(0x4a, Entity!e); }
-function playAnimation(e, a)         { raw(0x56, 0, Entity!e, a); }
-function setObjectVisibility(o, i)   { raw(0x57, 0, o, i); }
-function playSound(r, s)             { raw(0x5a, 0, r, s); }
-function setBGM(m)                   { raw(0x5d, m); }
-function callSubroutine(r)           { raw(0x64, r); }
-function removeCondition(m)          { raw(0x65, Condition!m); }
-function startBattle()               { raw(0x66, 0); }
-function setTexboxMode(m, d)         { raw(0x68, 0, m, d); }
+function waitForSelectionChoice() {
+  raw(0x12, 0);
+}
+
+function jumpReturn() {
+  raw(0x15, 0);
+}
+
+function setDialogOwner(v: Entity) {
+  raw(0x1b, v);
+}
+
+function setPStat(p: PStat, v) {
+  raw(0x1e, 0, p, v);
+}
+
+function addPStat(p: PStat, v) {
+  raw(0x1f, 0, p, v);
+}
+
+function reducePStat(p: PStat, v) {
+  raw(0x20, 0, p, v);
+}
+
+function storeMapID(p: PStat) {
+  raw(0x21, p);
+}
+
+function storeDigimonType(p: PStat) {
+  raw(0x22, p);
+}
+
+function setInventorySize(s) {
+  raw(0x23, s);
+}
+
+function setTextboxSize(w, h) {
+  raw(0x26, 0, w, h);
+}
+
+function fadeOutHUD() {
+  raw(0x27, 0);
+}
+
+function giveItem(i: Item, a) {
+  raw(0x28, 0, i, a);
+}
+
+function removeItem(i: Item, a) {
+  raw(0x29, 0, i, a);
+}
+
+function learnMove(m: Move) {
+  raw(0x2d, m);
+}
+
+function giveCard(c) {
+  raw(0x2f, c);
+}
+
+function takeCard(c) {
+  raw(0x30, c);
+}
+
+function advanceToDate(p: PStat) {
+  raw(0x37, p);
+}
+
+function storeDigimonTypus(v, p: PStat) {
+  raw(0x3f, 0, v, p);
+}
+
+function loadDigimon(d: Digimon) {
+  raw(0x46, d);
+}
+
+function setDigimon(t: Digimon, e: Entity, a) {
+  raw(0x47, t, e, a);
+}
+
+function unloadEntity(e: Entity) {
+  raw(0x48, e);
+}
+
+function callDigimonSubroutine(r) {
+  raw(0x49, r);
+}
+
+function waitForEntity(e: Entity) {
+  raw(0x4a, e);
+}
+
+function playAnimation(e: Entity, a) {
+  raw(0x56, 0, e, a);
+}
+
+function setObjectVisibility(o, i) {
+  raw(0x57, 0, o, i);
+}
+
+function playSound(r, s) {
+  raw(0x5a, 0, r, s);
+}
+
+function setBGM(m) {
+  raw(0x5d, m);
+}
+
+function callSubroutine(r) {
+  raw(0x64, r);
+}
+
+function removeCondition(m: Condition) {
+  raw(0x65, m);
+}
+
+function setTexboxMode(m, d) {
+  raw(0x68, 0, m, d);
+}
+
+// Named-arg synonyms (disasm emits with `field: value` form).
+
+function teleport(pstat: PStat) {
+  raw(0x58, pstat);
+}
+
+function roll(pstat: PStat, max) {
+  raw(0x24, 0, pstat, max);
+}
+
+function warp(to: Map, spawn, trigger) {
+  raw(0x4b, to, spawn, trigger);
+}
+
+// Multi-opcode composites (previously built-in C++ sugars).
+
+function startBattle() {
+  fadeOutHUD();
+  delay(1);
+  raw(0x66, 0);
+}
+
+function speak(o, t) {
+  setDialogOwner(o);
+  showTextbox(t);
+}
+
+function learnMoves(moves) {
+  for m in moves { learnMove(m); }
+}
 
 // Auto-extracted repeated-pattern functions.
 
 function loadDigimonThenLoadDigimonThenSetDigimonThenSetDigimonThenSetDigimon(a, b, c, d, e, f, g, h, i) {
-    loadDigimon(a);
-    loadDigimon(b);
-    setDigimon(c, d, e);
-    setDigimon(f, g, e);
-    setDigimon(h, i, e);
+  loadDigimon(a);
+  loadDigimon(b);
+  setDigimon(c, d, e);
+  setDigimon(f, g, e);
+  setDigimon(h, i, e);
 }
 
 function setScriptThenSetPStatThenSetBGMThenLoadDigimonThenSetDigimon(a, b, c, d, e, f, g) {
-    setScript(a, b);
-    setPStat(245, c);
-    setBGM(d);
-    loadDigimon(e);
-    setDigimon(e, f, g);
+  setScript(a, b);
+  setPStat(245, c);
+  setBGM(d);
+  loadDigimon(e);
+  setDigimon(e, f, g);
 }
 
 function setScriptThenSetPStatThenSetBGMThenLoadDigimonThenLoadDigimon(a, b, c, d, e, f) {
-    setScript(a, b);
-    setPStat(245, c);
-    setBGM(d);
-    loadDigimon(e);
-    loadDigimon(f);
+  setScript(a, b);
+  setPStat(245, c);
+  setBGM(d);
+  loadDigimon(e);
+  loadDigimon(f);
 }
 
 function loadDigimonThenSetDigimonThenSetDigimonThenLoadDigimonThenSetDigimon(a, b, c, d, e) {
-    loadDigimon(a);
-    setDigimon(a, b, 1);
-    setDigimon(a, c, 1);
-    loadDigimon(d);
-    setDigimon(d, e, 1);
+  loadDigimon(a);
+  setDigimon(a, b, 1);
+  setDigimon(a, c, 1);
+  loadDigimon(d);
+  setDigimon(d, e, 1);
 }
 
 function setScriptThenSetPStatThenSetBGMThenSetPStat(a, b) {
-    setScript(163, a);
-    setPStat(245, 0);
-    setBGM(28);
-    setPStat(43, b);
+  setScript(163, a);
+  setPStat(245, 0);
+  setBGM(28);
+  setPStat(43, b);
 }
 
 function loadDigimonThenLoadDigimonThenSetDigimonThenSetDigimon(a, b, c, d, e, f, g) {
-    loadDigimon(a);
-    loadDigimon(b);
-    setDigimon(c, d, e);
-    setDigimon(f, g, e);
+  loadDigimon(a);
+  loadDigimon(b);
+  setDigimon(c, d, e);
+  setDigimon(f, g, e);
 }
 
 function setScriptThenSetPStatThenSetBGMThenLoadDigimon(a, b, c, d, e) {
-    setScript(a, b);
-    setPStat(245, c);
-    setBGM(d);
-    loadDigimon(e);
+  setScript(a, b);
+  setPStat(245, c);
+  setBGM(d);
+  loadDigimon(e);
 }
 
 function setScriptThenSetPStatThenSetBGM(a, b, c, d) {
-    setScript(a, b);
-    setPStat(245, c);
-    setBGM(d);
+  setScript(a, b);
+  setPStat(245, c);
+  setBGM(d);
 }
 
 function loadDigimonThenSetDigimonThenSetDigimon(a, b, c, d) {
-    loadDigimon(a);
-    setDigimon(a, b, c);
-    setDigimon(a, d, c);
+  loadDigimon(a);
+  setDigimon(a, b, c);
+  setDigimon(a, d, c);
 }
 
 function loadDigimonThenSetDigimonThenSetPStat(a, b, c) {
-    loadDigimon(a);
-    setDigimon(a, b, 0);
-    setPStat(c, b);
+  loadDigimon(a);
+  setDigimon(a, b, 0);
+  setPStat(c, b);
 }
 
 function addPStatThenLoadDigimonThenSetDigimon(a, b) {
-    addPStat(38, 1);
-    loadDigimon(a);
-    setDigimon(a, b, 0);
+  addPStat(38, 1);
+  loadDigimon(a);
+  setDigimon(a, b, 0);
 }
 
 function loadDigimonThenSetDigimonThenAddPStat(a, b) {
-    loadDigimon(a);
-    setDigimon(a, b, 0);
-    addPStat(42, 1);
+  loadDigimon(a);
+  setDigimon(a, b, 0);
+  addPStat(42, 1);
 }
 
 function sectionOnExitThenCallDigimonSubroutineThenWaitForEntity(a, b) {
-    sectionOnExit(a);
-    callDigimonSubroutine(b);
-    waitForEntity(Entity.System);
+  sectionOnExit(a);
+  callDigimonSubroutine(b);
+  waitForEntity(Entity.System);
 }
 

@@ -3,142 +3,142 @@
 #pragma script index=4 start=0x8800 end=0x9000 headerU16=0x24 sentinelOff=0x24
 
 section onEnter(254) {
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 2) goto L1;
-    spawnItem(Item.BlueApple, x: 44, y: 31);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 2) goto L1;
+  spawnItem(Item.BlueApple, x: 44, y: 31);
 
 L1:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 24) goto L2;
-    spawnItem(Item.Digimushroom, x: 42, y: 57);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 24) goto L2;
+  spawnItem(Item.Digimushroom, x: 42, y: 57);
 
 L2:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 2) goto L3;
-    spawnItem(Item.DeluxeMushroom, x: 52, y: 51);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 2) goto L3;
+  spawnItem(Item.DeluxeMushroom, x: 52, y: 51);
 
 L3:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 59) goto L4;
-    spawnItem(Item.Digimushroom, x: 65, y: 41);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 59) goto L4;
+  spawnItem(Item.Digimushroom, x: 65, y: 41);
 
 L4:
-    return;
+  return;
 }
 
 section(81) {
-    rotate(entity: Entity.Player, to: 2048);
-    delay(5);
-    playAnimation(Entity.Player, 16);
-    delay(15);
-    speak(Entity.Player, "There are engraved\nletters here.\n");
-    playAnimation(Entity.Player, 0);
-    speak(Entity.System, "No one's here! Go home!\n");
-    if (trigger(242)) goto L1;
-    speak(Entity.Player, "Is someone living here?\n");
+  rotate(entity: Entity.Player, to: 2048);
+  delay(5);
+  playAnimation(Entity.Player, 16);
+  delay(15);
+  speak(Entity.Player, "There are engraved\nletters here.\n");
+  playAnimation(Entity.Player, 0);
+  speak(Entity.System, "No one's here! Go home!\n");
+  if (trigger(242)) goto L1;
+  speak(Entity.Player, "Is someone living here?\n");
 
 L1:
-    return;
+  return;
 }
 
 section(51) {
-    if (!trigger(242) && pstat[1] >= 50) goto L1;
-    return;
+  if (!trigger(242) && pstat[1] >= 50) goto L1;
+  return;
 
 L1:
-    move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
-    waitForEntity(Entity.Partner);
-    rotate(entity: Entity.Partner, to: 2048);
-    delay(5);
-    speak(Entity.System, "<YELLOW>? ? ? <WHITE>\nEven monkeys fall from trees.\n");
-    showTextbox("<YELLOW>? ? ? <WHITE>\nFlying knee drop!\n");
-    playSound(8, 5);
-    playAnimation(5, 29);
-    move(entity: 5, axis: 1, to: 0, speed: 12);
-    waitForEntity(5);
-    playAnimation(5, 0);
-    playSound(8, 6);
-    setPStat(200, 30);
-    dealMapDamage(200);
-    playAnimation(Entity.Player, 15);
-    playAnimation(Entity.Partner, 40);
-    delay(30);
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 255);
-    setPStat(253, 255);
-    startBattle();
-    unsetTrigger(1);
-    setPStat(250, 0);
-    look(entity: Entity.Player, at: 5);
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Partner, at: 5);
-    speak(5, "I lost, but\nyou guys are nothing!\n");
-    playSound(8, 13);
-    playAnimation(Entity.Player, 20);
-    delay(15);
-    speak(Entity.Player, "Don't be a sore loser.\nYou even sneak attacked us\nby surprise.\n");
-    playAnimation(Entity.Player, 0);
-    playSound(8, 13);
-    playAnimation(5, 7);
-    speak(5, "Ugh! You leave me\nno choice but to...\n");
-    showTextbox("In that city of yours,\nI'll show you how strong\nI am! Just you watch!\n");
-    goto L2;
+  move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
+  waitForEntity(Entity.Partner);
+  rotate(entity: Entity.Partner, to: 2048);
+  delay(5);
+  speak(Entity.System, "<YELLOW>? ? ? <WHITE>\nEven monkeys fall from trees.\n");
+  showTextbox("<YELLOW>? ? ? <WHITE>\nFlying knee drop!\n");
+  playSound(8, 5);
+  playAnimation(5, 29);
+  move(entity: 5, axis: 1, to: 0, speed: 12);
+  waitForEntity(5);
+  playAnimation(5, 0);
+  playSound(8, 6);
+  setPStat(200, 30);
+  dealMapDamage(200);
+  playAnimation(Entity.Player, 15);
+  playAnimation(Entity.Partner, 40);
+  delay(30);
+  setTrigger(1);
+  setPStat(250, 1);
+  setPStat(251, 5);
+  setPStat(252, 255);
+  setPStat(253, 255);
+  startBattle();
+  unsetTrigger(1);
+  setPStat(250, 0);
+  look(entity: Entity.Player, at: 5);
+  look(entity: 5, at: Entity.Player);
+  look(entity: Entity.Partner, at: 5);
+  speak(5, "I lost, but\nyou guys are nothing!\n");
+  playSound(8, 13);
+  playAnimation(Entity.Player, 20);
+  delay(15);
+  speak(Entity.Player, "Don't be a sore loser.\nYou even sneak attacked us\nby surprise.\n");
+  playAnimation(Entity.Player, 0);
+  playSound(8, 13);
+  playAnimation(5, 7);
+  speak(5, "Ugh! You leave me\nno choice but to...\n");
+  showTextbox("In that city of yours,\nI'll show you how strong\nI am! Just you watch!\n");
+  goto L2;
 
 L2:
-    move(entity: 5, to: (0, 0), sprint: 1);
-    if (pstat[101] >= 4) goto L3;
-    addPStat(101, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
-    goto L2;
+  move(entity: 5, to: (0, 0), sprint: 1);
+  if (pstat[101] >= 4) goto L3;
+  addPStat(101, 1);
+  delay(20);
+  look(entity: Entity.Player, at: 5);
+  look(entity: Entity.Partner, at: 5);
+  goto L2;
 
 L3:
-    waitForEntity(5);
-    unloadEntity(5);
-    setPStat(101, 0);
-    moveCamera(to: Entity.Player, speed: 10);
-    playSound(8, 11);
-    speak(Entity.System, "Etemon joins the city!\n");
-    setTrigger(242);
-    addPStat(1, 3);
-    return;
+  waitForEntity(5);
+  unloadEntity(5);
+  setPStat(101, 0);
+  moveCamera(to: Entity.Player, speed: 10);
+  playSound(8, 11);
+  speak(Entity.System, "Etemon joins the city!\n");
+  setTrigger(242);
+  addPStat(1, 3);
+  return;
 }
 
 section(6, 0x049e) {
-    speak(6, "You'll only get hurt.\n");
-    startBattle();
-    setTrigger(286);
-    return;
+  speak(6, "You'll only get hurt.\n");
+  startBattle();
+  setTrigger(286);
+  return;
 }
 
 section(6, 0x04de) {
-    speak(6, "You're such a baby!\n");
-    startBattle();
-    setTrigger(286);
-    return;
+  speak(6, "You're such a baby!\n");
+  startBattle();
+  setTrigger(286);
+  return;
 }
 
 section(7) {
-    speak(7, "I guess I can play with you.\n");
-    startBattle();
-    setTrigger(286);
-    return;
+  speak(7, "I guess I can play with you.\n");
+  startBattle();
+  setTrigger(286);
+  return;
 }
 
 section(8) {
-    speak(8, "I'll break your nose!\n");
-    startBattle();
-    setTrigger(280);
-    return;
+  speak(8, "I'll break your nose!\n");
+  startBattle();
+  setTrigger(280);
+  return;
 }
 
 section(9) {
-    speak(9, "I'll break you in half!\n");
-    startBattle();
-    setTrigger(280);
-    return;
-    garbage { 24 00 fe 00 24 00 51 00 7e 00 33 00 54 01 06 00 9e 04 06 00 de 04 07 00 1a 05 08 00 68 05 09 00 a8 05 ff ff 24 00 6e 63 19 00 0b 00 6e 02 18 00 3a 00 19 00 74 30 2c 00 1f 00 24 00 6e 63 19 00 0b 00 6e 18 18 00 50 00 19 00 74 2c 2a 00 39 00 24 00 6e 63 19 00 0b 00 6e 02 18 00 66 00 19 00 74 2e 34 00 33 00 24 00 6e 63 19 00 0b 00 6e 3b 18 00 7c 00 19 00 74 2c 41 00 29 00 fe 00 4d fd 00 08 67 00 05 00 56 00 fd 10 67 00 0f 00 1b fd 1a 00 82 73 82 88 82 85 82 92 82 85 81 40 82 81 82 92 82 85 81 40 82 85 82 8e 82 87 82 92 82 81 82 96 82 85 82 84 0d 00 82 8c 82 85 82 94 82 94 82 85 82 92 82 93 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 00 00 56 00 fd 00 1b ff 1a 00 82 6d 82 8f 81 40 82 8f 82 8e 82 85 81 75 82 93 81 40 82 88 82 85 82 92 82 85 81 49 81 40 82 66 82 8f 81 40 82 88 82 8f 82 8d 82 85 81 49 0d 00 00 00 19 00 01 00 f2 00 18 00 52 01 19 00 1b fd 1a 00 82 68 82 93 81 40 82 93 82 8f 82 8d 82 85 82 8f 82 8e 82 85 81 40 82 8c 82 89 82 96 82 89 82 8e 82 87 81 40 82 88 82 85 82 92 82 85 81 48 0d 00 00 00 fe 00 19 00 00 00 f2 00 4d 00 01 32 18 00 66 01 19 00 fe 00 51 fc 01 fd 4a fc 4d fc 00 08 67 00 05 00 1b ff 1a 00 01 07 81 48 81 40 81 48 81 40 81 48 81 40 01 01 0d 00 82 64 82 96 82 85 82 8e 81 40 82 8d 82 8f 82 8e 82 8b 82 85 82 99 82 93 81 40 82 86 82 81 82 8c 82 8c 81 40 82 86 82 92 82 8f 82 8d 81 40 82 94 82 92 82 85 82 85 82 93 81 42 0d 00 00 00 1a 00 01 07 81 48 81 40 81 48 81 40 81 48 81 40 01 01 0d 00 82 65 82 8c 82 99 82 89 82 8e 82 87 81 40 82 8b 82 8e 82 85 82 85 81 40 82 84 82 92 82 8f 82 90 81 49 0d 00 00 00 5a 00 08 05 56 00 05 1d 72 05 00 00 01 0c 4a 05 }
+  speak(9, "I'll break you in half!\n");
+  startBattle();
+  setTrigger(280);
+  return;
+  garbage { 24 00 fe 00 24 00 51 00 7e 00 33 00 54 01 06 00 9e 04 06 00 de 04 07 00 1a 05 08 00 68 05 09 00 a8 05 ff ff 24 00 6e 63 19 00 0b 00 6e 02 18 00 3a 00 19 00 74 30 2c 00 1f 00 24 00 6e 63 19 00 0b 00 6e 18 18 00 50 00 19 00 74 2c 2a 00 39 00 24 00 6e 63 19 00 0b 00 6e 02 18 00 66 00 19 00 74 2e 34 00 33 00 24 00 6e 63 19 00 0b 00 6e 3b 18 00 7c 00 19 00 74 2c 41 00 29 00 fe 00 4d fd 00 08 67 00 05 00 56 00 fd 10 67 00 0f 00 1b fd 1a 00 82 73 82 88 82 85 82 92 82 85 81 40 82 81 82 92 82 85 81 40 82 85 82 8e 82 87 82 92 82 81 82 96 82 85 82 84 0d 00 82 8c 82 85 82 94 82 94 82 85 82 92 82 93 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 00 00 56 00 fd 00 1b ff 1a 00 82 6d 82 8f 81 40 82 8f 82 8e 82 85 81 75 82 93 81 40 82 88 82 85 82 92 82 85 81 49 81 40 82 66 82 8f 81 40 82 88 82 8f 82 8d 82 85 81 49 0d 00 00 00 19 00 01 00 f2 00 18 00 52 01 19 00 1b fd 1a 00 82 68 82 93 81 40 82 93 82 8f 82 8d 82 85 82 8f 82 8e 82 85 81 40 82 8c 82 89 82 96 82 89 82 8e 82 87 81 40 82 88 82 85 82 92 82 85 81 48 0d 00 00 00 fe 00 19 00 00 00 f2 00 4d 00 01 32 18 00 66 01 19 00 fe 00 51 fc 01 fd 4a fc 4d fc 00 08 67 00 05 00 1b ff 1a 00 01 07 81 48 81 40 81 48 81 40 81 48 81 40 01 01 0d 00 82 64 82 96 82 85 82 8e 81 40 82 8d 82 8f 82 8e 82 8b 82 85 82 99 82 93 81 40 82 86 82 81 82 8c 82 8c 81 40 82 86 82 92 82 8f 82 8d 81 40 82 94 82 92 82 85 82 85 82 93 81 42 0d 00 00 00 1a 00 01 07 81 48 81 40 81 48 81 40 81 48 81 40 01 01 0d 00 82 65 82 8c 82 99 82 89 82 8e 82 87 81 40 82 8b 82 8e 82 85 82 85 81 40 82 84 82 92 82 8f 82 90 81 49 0d 00 00 00 5a 00 08 05 56 00 05 1d 72 05 00 00 01 0c 4a 05 }
 }

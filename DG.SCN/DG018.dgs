@@ -3,1062 +3,1062 @@
 #pragma script index=18 start=0x12000 end=0x14000 headerU16=0x70 sentinelOff=0x1e
 
 section onEnter(254) {
-    setPStat(254, 0);
-    callSubroutine(25);
-    if (!trigger(236)) goto L1;
-    return;
+  setPStat(254, 0);
+  callSubroutine(25);
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 29) goto L2;
-    spawnItem(Item.GiantMeat, x: 33, y: 49);
-    goto L3;
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 29) goto L2;
+  spawnItem(Item.GiantMeat, x: 33, y: 49);
+  goto L3;
 
 L2:
-    if (pstat[110] > 49) goto L3;
-    spawnItem(Item.OffenseDisk, x: 33, y: 49);
+  if (pstat[110] > 49) goto L3;
+  spawnItem(Item.OffenseDisk, x: 33, y: 49);
 
 L3:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 29) goto L4;
-    spawnItem(Item.MPFloppy, x: 49, y: 53);
-    goto L5;
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 29) goto L4;
+  spawnItem(Item.MPFloppy, x: 49, y: 53);
+  goto L5;
 
 L4:
-    if (pstat[110] > 49) goto L5;
-    spawnItem(Item.SmallRecovery, x: 49, y: 53);
+  if (pstat[110] > 49) goto L5;
+  spawnItem(Item.SmallRecovery, x: 49, y: 53);
 
 L5:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 29) goto L6;
-    spawnItem(Item.DefenseDisk, x: 67, y: 42);
-    goto L7;
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 29) goto L6;
+  spawnItem(Item.DefenseDisk, x: 67, y: 42);
+  goto L7;
 
 L6:
-    if (pstat[110] > 49) goto L7;
-    spawnItem(Item.Meat, x: 67, y: 42);
+  if (pstat[110] > 49) goto L7;
+  spawnItem(Item.Meat, x: 67, y: 42);
 
 L7:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 9) goto L8;
-    spawnItem(Item.PortaPotty, x: 34, y: 29);
-    goto L9;
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 9) goto L8;
+  spawnItem(Item.PortaPotty, x: 34, y: 29);
+  goto L9;
 
 L8:
-    if (pstat[110] > 29) goto L9;
-    spawnItem(Item.SpeedDisk, x: 34, y: 29);
+  if (pstat[110] > 29) goto L9;
+  spawnItem(Item.SpeedDisk, x: 34, y: 29);
 
 L9:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 9) goto L10;
-    spawnItem(Item.MediumRecovery, x: 50, y: 34);
-    goto L11;
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 9) goto L10;
+  spawnItem(Item.MediumRecovery, x: 50, y: 34);
+  goto L11;
 
 L10:
-    if (pstat[110] > 29) goto L11;
-    spawnItem(Item.MoldyMeat, x: 50, y: 34);
+  if (pstat[110] > 29) goto L11;
+  spawnItem(Item.MoldyMeat, x: 50, y: 34);
 
 L11:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 1) goto L12;
-    spawnItem(Item.OrangeBanana, x: 49, y: 18);
-    goto L14;
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 1) goto L12;
+  spawnItem(Item.OrangeBanana, x: 49, y: 18);
+  goto L14;
 
 L12:
-    if (pstat[110] > 9) goto L13;
-    spawnItem(Item.Happymushroom, x: 49, y: 18);
-    goto L14;
+  if (pstat[110] > 9) goto L13;
+  spawnItem(Item.Happymushroom, x: 49, y: 18);
+  goto L14;
 
 L13:
-    if (pstat[110] > 29) goto L14;
-    spawnItem(Item.Autopilot, x: 49, y: 18);
+  if (pstat[110] > 29) goto L14;
+  spawnItem(Item.Autopilot, x: 49, y: 18);
 
 L14:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 4) goto L15;
-    spawnItem(Item.OmniDisk, x: 65, y: 22);
-    return;
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 4) goto L15;
+  spawnItem(Item.OmniDisk, x: 65, y: 22);
+  return;
 
 L15:
-    if (pstat[110] > 29) goto L16;
-    spawnItem(Item.MediumMP, x: 65, y: 22);
+  if (pstat[110] > 29) goto L16;
+  spawnItem(Item.MediumMP, x: 65, y: 22);
 
 L16:
-    return;
+  return;
 }
 
 section(51) {
-    for id in 38..43 { setObjectVisibility(id, 1); }
-    if (!trigger(236)) goto L1;
-    return;
+  for id in 38..43 { setObjectVisibility(id, 1); }
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    roll(pstat: 110, max: 2);
-    if (pstat[110] != 0) goto L2;
-    setPStat(116, 0);
-    for x in [38, 42, 43] { setObjectVisibility(x, 0); }
+  roll(pstat: 110, max: 2);
+  if (pstat[110] != 0) goto L2;
+  setPStat(116, 0);
+  for x in [38, 42, 43] { setObjectVisibility(x, 0); }
 
 L2:
-    if (pstat[110] != 1) goto L3;
-    setPStat(116, 1);
-    for x in [39, 41, 43] { setObjectVisibility(x, 0); }
+  if (pstat[110] != 1) goto L3;
+  setPStat(116, 1);
+  for x in [39, 41, 43] { setObjectVisibility(x, 0); }
 
 L3:
-    if (pstat[110] != 2) goto L4;
-    setPStat(116, 2);
-    for id in 40..42 { setObjectVisibility(id, 0); }
+  if (pstat[110] != 2) goto L4;
+  setPStat(116, 2);
+  for id in 40..42 { setObjectVisibility(id, 0); }
 
 L4:
-    if (trigger(137)) goto L5;
-    setTrigger(137);
-    rotate(entity: Entity.Player, to: 2048);
-    playSound(8, 0);
-    delay(20);
-    playSound(8, 0);
-    delay(20);
-    playSound(8, 0);
-    delay(20);
-    speak(Entity.System, "Trespasser Alert!\n");
-    showTextbox("Trespasser Alert!\n");
-    showTextbox("I will shoot!\n");
+  if (trigger(137)) goto L5;
+  setTrigger(137);
+  rotate(entity: Entity.Player, to: 2048);
+  playSound(8, 0);
+  delay(20);
+  playSound(8, 0);
+  delay(20);
+  playSound(8, 0);
+  delay(20);
+  speak(Entity.System, "Trespasser Alert!\n");
+  showTextbox("Trespasser Alert!\n");
+  showTextbox("I will shoot!\n");
 
 L5:
-    jumpAndLink(section_10);
-    return;
+  jumpAndLink(section_10);
+  return;
 }
 
 section(10) {
-    for id in 158..173 { unsetTrigger(id); }
-    jumpReturn();
+  for id in 158..173 { unsetTrigger(id); }
+  jumpReturn();
 
 L1:
-    if (stat[Stat.CurrentHP] != 1) goto L2;
-    look(entity: Entity.Player, at: Entity.Partner);
-    speak(Entity.Player, "Are you alright <ORANGE><DIGIMON><WHITE>?!\n");
-    showTextbox("Let's go back.\n");
-    warp(to: Map.TROP06, spawn: 0, trigger: 51);
+  if (stat[Stat.CurrentHP] != 1) goto L2;
+  look(entity: Entity.Player, at: Entity.Partner);
+  speak(Entity.Player, "Are you alright <ORANGE><DIGIMON><WHITE>?!\n");
+  showTextbox("Let's go back.\n");
+  warp(to: Map.TROP06, spawn: 0, trigger: 51);
 
 L2:
-    jumpReturn();
+  jumpReturn();
 
 L3:
-    if (stat[Stat.CurrentHP] != 1) goto L4;
-    look(entity: Entity.Player, at: Entity.Partner);
-    speak(Entity.Player, "Oh no! I gotta revive\n<ORANGE><DIGIMON><WHITE>.\n");
-    warp(to: Map.TROP06, spawn: 0, trigger: 51);
+  if (stat[Stat.CurrentHP] != 1) goto L4;
+  look(entity: Entity.Player, at: Entity.Partner);
+  speak(Entity.Player, "Oh no! I gotta revive\n<ORANGE><DIGIMON><WHITE>.\n");
+  warp(to: Map.TROP06, spawn: 0, trigger: 51);
 
 L4:
-    jumpReturn();
+  jumpReturn();
 
 L5:
-    playSound(8, 1);
-    setObjectVisibility(44, 0);
-    setObjectVisibility(45, 0);
-    spawnSpriteAtEntity(253, 11274);
-    spawnSpriteAtEntity(253, 11530);
-    delayThenSetObjectVisibilityThenSetObjectVisibility_v2(1);
-    delayThenSetObjectVisibilityThenSetObjectVisibility_v2(0);
-    spawnSpriteAtEntity(253, 11274);
-    spawnSpriteAtEntity(253, 11530);
-    delayThenSetObjectVisibilityThenSetObjectVisibility_v2(1);
-    delayThenSetObjectVisibilityThenSetObjectVisibility_v2(0);
-    spawnSpriteAtEntity(253, 11274);
-    spawnSpriteAtEntity(253, 11530);
-    delayThenSetObjectVisibilityThenSetObjectVisibility_v2(1);
-    delay(10);
-    jumpReturn();
+  playSound(8, 1);
+  setObjectVisibility(44, 0);
+  setObjectVisibility(45, 0);
+  spawnSpriteAtEntity(253, 11274);
+  spawnSpriteAtEntity(253, 11530);
+  delayThenSetObjectVisibilityThenSetObjectVisibility_v2(1);
+  delayThenSetObjectVisibilityThenSetObjectVisibility_v2(0);
+  spawnSpriteAtEntity(253, 11274);
+  spawnSpriteAtEntity(253, 11530);
+  delayThenSetObjectVisibilityThenSetObjectVisibility_v2(1);
+  delayThenSetObjectVisibilityThenSetObjectVisibility_v2(0);
+  spawnSpriteAtEntity(253, 11274);
+  spawnSpriteAtEntity(253, 11530);
+  delayThenSetObjectVisibilityThenSetObjectVisibility_v2(1);
+  delay(10);
+  jumpReturn();
 
 L6:
-    for id in 46..48 { setObjectVisibility(id, 1); }
-    moveObjectTo(0, 46, 1, 0, 0, 600, 900);
-    moveObjectTo(1, 47, 1, 0, 0, 600, 900);
-    moveObjectTo(2, 48, 1, 0, 0, 600, 900);
-    delay(1);
-    jumpReturn();
+  for id in 46..48 { setObjectVisibility(id, 1); }
+  moveObjectTo(0, 46, 1, 0, 0, 600, 900);
+  moveObjectTo(1, 47, 1, 0, 0, 600, 900);
+  moveObjectTo(2, 48, 1, 0, 0, 600, 900);
+  delay(1);
+  jumpReturn();
 }
 
 section(52) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    jumpAndLink(section_10.L3);
-    setTrigger(158);
-    unsetTrigger(159);
-    unsetTrigger(160);
-    if (!trigger(161)) goto L2;
-    goto L3;
+  jumpAndLink(section_10.L3);
+  setTrigger(158);
+  unsetTrigger(159);
+  unsetTrigger(160);
+  if (!trigger(161)) goto L2;
+  goto L3;
 
 L2:
-    return;
+  return;
 
 L3:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(109, 428);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(109, 432, 436, 10, 52);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(10, 52, 3);
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
-    delay(40);
-    jumpAndLink(section_10.L6);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    jumpAndLink(section_10);
-    jumpAndLink(section_10.L1);
-    return;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(109, 428);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(109, 432, 436, 10, 52);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(10, 52, 3);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+  delay(40);
+  jumpAndLink(section_10.L6);
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  jumpAndLink(section_10);
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(53) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    jumpAndLink(section_10.L3);
-    setTrigger(159);
-    unsetTrigger(158);
-    unsetTrigger(160);
-    if (!trigger(162)) goto L2;
-    goto L3;
+  jumpAndLink(section_10.L3);
+  setTrigger(159);
+  unsetTrigger(158);
+  unsetTrigger(160);
+  if (!trigger(162)) goto L2;
+  goto L3;
 
 L2:
-    return;
+  return;
 
 L3:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(300, 430);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(300, 434, 438, 10, 300);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(10, 300, 3);
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
-    delay(40);
-    jumpAndLink(section_10.L6);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    jumpAndLink(section_10);
-    jumpAndLink(section_10.L1);
-    return;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(300, 430);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(300, 434, 438, 10, 300);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(10, 300, 3);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+  delay(40);
+  jumpAndLink(section_10.L6);
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  jumpAndLink(section_10);
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(54) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    jumpAndLink(section_10.L3);
-    setTrigger(160);
-    unsetTrigger(158);
-    unsetTrigger(159);
-    if (!trigger(164)) goto L2;
-    goto L3;
+  jumpAndLink(section_10.L3);
+  setTrigger(160);
+  unsetTrigger(158);
+  unsetTrigger(159);
+  if (!trigger(164)) goto L2;
+  goto L3;
 
 L2:
-    return;
+  return;
 
 L3:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(495, 430);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(495, 434, 438, 10, 540);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(10, 540, 3);
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
-    delay(40);
-    jumpAndLink(section_10.L6);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    jumpAndLink(section_10);
-    jumpAndLink(section_10.L1);
-    return;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(495, 430);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(495, 434, 438, 10, 540);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(10, 540, 3);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+  delay(40);
+  jumpAndLink(section_10.L6);
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  jumpAndLink(section_10);
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(55) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    setTrigger(161);
-    roll(pstat: 110, max: 1);
-    if (!trigger(165)) goto L2;
-    goto L3;
+  setTrigger(161);
+  roll(pstat: 110, max: 1);
+  if (!trigger(165)) goto L2;
+  goto L3;
 
 L2:
-    return;
+  return;
 
 L3:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(135, 215);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(135, 219, 223, 17, 52);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(17, 52, 5);
-    if (pstat[110] != 0) goto L4;
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    goto L5;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(135, 215);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(135, 219, 223, 17, 52);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(17, 52, 5);
+  if (pstat[110] != 0) goto L4;
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  goto L5;
 
 L4:
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
 
 L5:
-    jumpAndLink(section_10.L1);
-    return;
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(56) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    setTrigger(162);
-    roll(pstat: 110, max: 1);
-    if (!trigger(163)) goto L2;
-    goto L3;
+  setTrigger(162);
+  roll(pstat: 110, max: 1);
+  if (!trigger(163)) goto L2;
+  goto L3;
 
 L2:
-    return;
+  return;
 
 L3:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(300, 225);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(300, 229, 233, 17, 300);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(17, 300, 5);
-    if (pstat[110] != 0) goto L4;
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    goto L5;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(300, 225);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(300, 229, 233, 17, 300);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(17, 300, 5);
+  if (pstat[110] != 0) goto L4;
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  goto L5;
 
 L4:
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
 
 L5:
-    jumpAndLink(section_10.L1);
-    return;
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(57) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    setTrigger(163);
-    roll(pstat: 110, max: 1);
-    if (!trigger(159) || !trigger(162)) goto L2;
-    goto L4;
+  setTrigger(163);
+  roll(pstat: 110, max: 1);
+  if (!trigger(159) || !trigger(162)) goto L2;
+  goto L4;
 
 L2:
-    if (!trigger(166)) goto L3;
-    goto L4;
+  if (!trigger(166)) goto L3;
+  goto L4;
 
 L3:
-    return;
+  return;
 
 L4:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(300, 200);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(300, 204, 208, 19, 300);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(19, 300, 4);
-    if (pstat[110] != 0) goto L5;
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -1000, speed: 5, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    goto L6;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(300, 200);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(300, 204, 208, 19, 300);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(19, 300, 4);
+  if (pstat[110] != 0) goto L5;
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -1000, speed: 5, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  goto L6;
 
 L5:
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
 
 L6:
-    jumpAndLink(section_10.L1);
-    return;
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(58) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    setTrigger(164);
-    roll(pstat: 110, max: 1);
-    if (!trigger(169)) goto L2;
-    goto L3;
+  setTrigger(164);
+  roll(pstat: 110, max: 1);
+  if (!trigger(169)) goto L2;
+  goto L3;
 
 L2:
-    return;
+  return;
 
 L3:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(470, 225);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(470, 229, 223, 19, 540);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(19, 540, 4);
-    if (pstat[110] != 0) goto L4;
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    goto L5;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(470, 225);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(470, 229, 223, 19, 540);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(19, 540, 4);
+  if (pstat[110] != 0) goto L4;
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  goto L5;
 
 L4:
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -3650, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -3650, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
 
 L5:
-    jumpAndLink(section_10.L1);
-    return;
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(59) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    setTrigger(165);
-    roll(pstat: 110, max: 1);
-    if (!trigger(158) || !trigger(161)) goto L2;
-    goto L4;
+  setTrigger(165);
+  roll(pstat: 110, max: 1);
+  if (!trigger(158) || !trigger(161)) goto L2;
+  goto L4;
 
 L2:
-    if (!trigger(167)) goto L3;
-    goto L4;
+  if (!trigger(167)) goto L3;
+  goto L4;
 
 L3:
-    return;
+  return;
 
 L4:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(150, 95);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(150, 99, 103, 21, 52);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(21, 52, 3);
-    if (pstat[110] != 0) goto L5;
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -400, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    goto L6;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(150, 95);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(150, 99, 103, 21, 52);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(21, 52, 3);
+  if (pstat[110] != 0) goto L5;
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -400, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  goto L6;
 
 L5:
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
 
 L6:
-    jumpAndLink(section_10.L1);
-    return;
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(60) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    setTrigger(166);
-    roll(pstat: 110, max: 1);
-    if (!trigger(163) || !trigger(162)) goto L2;
-    goto L4;
+  setTrigger(166);
+  roll(pstat: 110, max: 1);
+  if (!trigger(163) || !trigger(162)) goto L2;
+  goto L4;
 
 L2:
-    if (!trigger(168)) goto L3;
-    goto L4;
+  if (!trigger(168)) goto L3;
+  goto L4;
 
 L3:
-    return;
+  return;
 
 L4:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(300, 95);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(300, 99, 103, 21, 300);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(21, 300, 3);
-    if (pstat[110] != 0) goto L5;
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -1100, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    goto L6;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(300, 95);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(300, 99, 103, 21, 300);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(21, 300, 3);
+  if (pstat[110] != 0) goto L5;
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -1100, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  goto L6;
 
 L5:
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
 
 L6:
-    jumpAndLink(section_10.L1);
-    return;
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(61) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    setTrigger(167);
-    roll(pstat: 110, max: 1);
-    if (!trigger(161) || !trigger(165)) goto L2;
-    goto L4;
+  setTrigger(167);
+  roll(pstat: 110, max: 1);
+  if (!trigger(161) || !trigger(165)) goto L2;
+  goto L4;
 
 L2:
-    if (!trigger(171)) goto L3;
-    goto L4;
+  if (!trigger(171)) goto L3;
+  goto L4;
 
 L3:
-    return;
+  return;
 
 L4:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(165, 0);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(165, 4, 8, 25, 52);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(25, 52, 3);
-    if (pstat[110] != 0) goto L5;
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: 2000, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    goto L6;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(165, 0);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(165, 4, 8, 25, 52);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(25, 52, 3);
+  if (pstat[110] != 0) goto L5;
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: 2000, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  goto L6;
 
 L5:
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: 0, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: 0, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
 
 L6:
-    jumpAndLink(section_10.L1);
-    return;
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(62) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    setTrigger(168);
-    roll(pstat: 110, max: 1);
-    if (!trigger(163) || !trigger(166)) goto L2;
-    goto L4;
+  setTrigger(168);
+  roll(pstat: 110, max: 1);
+  if (!trigger(163) || !trigger(166)) goto L2;
+  goto L4;
 
 L2:
-    if (!trigger(170)) goto L3;
-    goto L4;
+  if (!trigger(170)) goto L3;
+  goto L4;
 
 L3:
-    return;
+  return;
 
 L4:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(300, 0);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(300, 4, 8, 25, 300);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(25, 300, 3);
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: 1400, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    jumpAndLink(section_10.L1);
-    return;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(300, 0);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(300, 4, 8, 25, 300);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(25, 300, 3);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: 1400, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(63) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    setTrigger(169);
-    roll(pstat: 110, max: 1);
-    if (!trigger(160) || !trigger(164)) goto L2;
-    goto L4;
+  setTrigger(169);
+  roll(pstat: 110, max: 1);
+  if (!trigger(160) || !trigger(164)) goto L2;
+  goto L4;
 
 L2:
-    if (!trigger(173)) goto L3;
-    goto L4;
+  if (!trigger(173)) goto L3;
+  goto L4;
 
 L3:
-    return;
+  return;
 
 L4:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(445, 0);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(445, 4, 8, 25, 540);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(25, 540, 5);
-    if (pstat[110] != 0) goto L5;
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: 800, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    goto L6;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(445, 0);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(445, 4, 8, 25, 540);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(25, 540, 5);
+  if (pstat[110] != 0) goto L5;
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: 800, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  goto L6;
 
 L5:
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -2000, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -2000, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
 
 L6:
-    jumpAndLink(section_10.L1);
-    return;
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(64) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    setTrigger(170);
-    roll(pstat: 110, max: 1);
-    if (!trigger(166) || !trigger(168)) goto L2;
-    goto L4;
+  setTrigger(170);
+  roll(pstat: 110, max: 1);
+  if (!trigger(166) || !trigger(168)) goto L2;
+  goto L4;
 
 L2:
-    if (!trigger(172)) goto L3;
-    goto L4;
+  if (!trigger(172)) goto L3;
+  goto L4;
 
 L3:
-    return;
+  return;
 
 L4:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(300, 0);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(300, 4, 8, 29, 300);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(29, 300, 3);
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: 1500, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    jumpAndLink(section_10.L1);
-    return;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(300, 0);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(300, 4, 8, 29, 300);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(29, 300, 3);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: 1500, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(65) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    setTrigger(171);
-    roll(pstat: 110, max: 1);
-    if (!trigger(165) || !trigger(167)) goto L2;
-    goto L3;
+  setTrigger(171);
+  roll(pstat: 110, max: 1);
+  if (!trigger(165) || !trigger(167)) goto L2;
+  goto L3;
 
 L2:
-    return;
+  return;
 
 L3:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(158, 0);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(158, 4, 8, 29, 25);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(29, 25, 3);
-    if (pstat[110] != 0) goto L4;
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: 1800, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    goto L5;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(158, 0);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(158, 4, 8, 29, 25);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(29, 25, 3);
+  if (pstat[110] != 0) goto L4;
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: 1800, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  goto L5;
 
 L4:
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -400, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -400, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
 
 L5:
-    jumpAndLink(section_10.L1);
-    return;
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(66) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    setTrigger(172);
-    roll(pstat: 110, max: 1);
-    if (!trigger(170) || !trigger(168)) goto L2;
-    goto L3;
+  setTrigger(172);
+  roll(pstat: 110, max: 1);
+  if (!trigger(170) || !trigger(168)) goto L2;
+  goto L3;
 
 L2:
-    return;
+  return;
 
 L3:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(300, 0);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(300, 4, 8, 29, 300);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(29, 300, 3);
-    if (pstat[110] != 0) goto L4;
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: 2550, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    goto L5;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(300, 0);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(300, 4, 8, 29, 300);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(29, 300, 3);
+  if (pstat[110] != 0) goto L4;
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: 2550, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  goto L5;
 
 L4:
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: 1400, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: 1400, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
 
 L5:
-    jumpAndLink(section_10.L1);
-    return;
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(67) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    setTrigger(173);
-    roll(pstat: 110, max: 1);
-    if (!trigger(169) || !trigger(164)) goto L2;
-    goto L3;
+  setTrigger(173);
+  roll(pstat: 110, max: 1);
+  if (!trigger(169) || !trigger(164)) goto L2;
+  goto L3;
 
 L2:
-    return;
+  return;
 
 L3:
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    jumpAndLink(section_10.L5);
-    playSound(8, 2);
-    playSound(8, 2);
-    for id in 46..48 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(445, 0);
-    moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(445, 4, 8, 25, 540);
-    moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(25, 540, 3);
-    if (pstat[110] != 0) goto L4;
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: 1000, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    goto L5;
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L5);
+  playSound(8, 2);
+  playSound(8, 2);
+  for id in 46..48 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(445, 0);
+  moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(445, 4, 8, 25, 540);
+  moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(25, 540, 3);
+  if (pstat[110] != 0) goto L4;
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: 1000, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  goto L5;
 
 L4:
-    playAnimation(Entity.Player, 17);
-    move(entity: Entity.Player, axis: 2, to: -1800, speed: 10, withCamera: true);
-    delayThenJumpAndLinkThenJumpAndLink();
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+  playAnimation(Entity.Player, 17);
+  move(entity: Entity.Player, axis: 2, to: -1800, speed: 10, withCamera: true);
+  delayThenJumpAndLinkThenJumpAndLink();
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
 
 L5:
-    jumpAndLink(section_10.L1);
-    return;
+  jumpAndLink(section_10.L1);
+  return;
 }
 
 section(68) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    if (pstat[116] != 0) goto L4;
-    speak(Entity.Player, " !!! \n");
-    playSound(8, 2);
-    delay(20);
-    setObjectVisibility(38, 1);
-    move(entity: Entity.Player, to: (-1750, 3600), sprint: 1, withCamera: true);
-    move(entity: Entity.Partner, to: (-1450, 3600), sprint: 1);
-    waitForEntity(Entity.Partner);
-    waitForEntity(Entity.Player);
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    setDigimon(Digimon.NPCCentarumon, 0, 0);
-    move(entity: 5, to: (-1600, 4300), sprint: 0);
-    waitForEntity(5);
-    speak(5, "It's amazing that you made it\nthrough the forest!\n");
-    showTextbox("I am Centarumon.\nI'm sorry for what I did.\n");
-    showTextbox("I didn't test you for fun.\nI want to work with you.\n");
-    setTrigger(236);
-    addPStat(1, 2);
-    showTextbox("Go on. I'll stay in the\ncity and wait for you.\n");
-    goto L2;
+  if (pstat[116] != 0) goto L4;
+  speak(Entity.Player, " !!! \n");
+  playSound(8, 2);
+  delay(20);
+  setObjectVisibility(38, 1);
+  move(entity: Entity.Player, to: (-1750, 3600), sprint: 1, withCamera: true);
+  move(entity: Entity.Partner, to: (-1450, 3600), sprint: 1);
+  waitForEntity(Entity.Partner);
+  waitForEntity(Entity.Player);
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  setDigimon(Digimon.NPCCentarumon, 0, 0);
+  move(entity: 5, to: (-1600, 4300), sprint: 0);
+  waitForEntity(5);
+  speak(5, "It's amazing that you made it\nthrough the forest!\n");
+  showTextbox("I am Centarumon.\nI'm sorry for what I did.\n");
+  showTextbox("I didn't test you for fun.\nI want to work with you.\n");
+  setTrigger(236);
+  addPStat(1, 2);
+  showTextbox("Go on. I'll stay in the\ncity and wait for you.\n");
+  goto L2;
 
 L2:
-    move(entity: 5, to: (-1600, 1000), sprint: 1);
-    if (pstat[101] >= 4) goto L3;
-    addPStat(101, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
-    goto L2;
+  move(entity: 5, to: (-1600, 1000), sprint: 1);
+  if (pstat[101] >= 4) goto L3;
+  addPStat(101, 1);
+  delay(20);
+  look(entity: Entity.Player, at: 5);
+  look(entity: Entity.Partner, at: 5);
+  goto L2;
 
 L3:
-    waitForEntity(5);
-    unloadEntity(5);
-    setPStat(101, 0);
-    playSound(8, 9);
-    speak(Entity.System, "Centarumon joins the city!\n");
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    look(entity: Entity.Player, at: Entity.Partner);
-    look(entity: Entity.Partner, at: Entity.Player);
-    delay(5);
-    speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous!\n");
-    playAnimation(Entity.Player, 11);
-    speak(Entity.Player, "Let's keep it up!\n");
-    move(entity: Entity.Player, to: (-1600, 5200), sprint: 0);
-    delay(20);
-    move(entity: Entity.Partner, to: (-1600, 5200), sprint: 0);
-    delay(20);
-    warp(to: Map.KODA00, spawn: 0, trigger: 255);
-    return;
-    goto L5;
+  waitForEntity(5);
+  unloadEntity(5);
+  setPStat(101, 0);
+  playSound(8, 9);
+  speak(Entity.System, "Centarumon joins the city!\n");
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  look(entity: Entity.Player, at: Entity.Partner);
+  look(entity: Entity.Partner, at: Entity.Player);
+  delay(5);
+  speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous!\n");
+  playAnimation(Entity.Player, 11);
+  speak(Entity.Player, "Let's keep it up!\n");
+  move(entity: Entity.Player, to: (-1600, 5200), sprint: 0);
+  delay(20);
+  move(entity: Entity.Partner, to: (-1600, 5200), sprint: 0);
+  delay(20);
+  warp(to: Map.KODA00, spawn: 0, trigger: 255);
+  return;
+  goto L5;
 
 L4:
-    playSound(0, 11);
-    speak(Entity.System, "Missed!\n");
-    warp(to: Map.TROP06, spawn: 0, trigger: 255);
+  playSound(0, 11);
+  speak(Entity.System, "Missed!\n");
+  warp(to: Map.TROP06, spawn: 0, trigger: 255);
 
 L5:
-    return;
+  return;
 }
 
 section(69) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    if (pstat[116] != 1) goto L4;
-    speak(Entity.Player, " !!! \n");
-    playSound(8, 2);
-    delay(20);
-    setObjectVisibility(39, 1);
-    move(entity: Entity.Player, to: (-241, 3600), sprint: 1, withCamera: true);
-    move(entity: Entity.Partner, to: (200, 3600), sprint: 1);
-    waitForEntity(Entity.Partner);
-    waitForEntity(Entity.Player);
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    setDigimon(Digimon.NPCCentarumon, 1, 0);
-    move(entity: 6, to: (0, 4300), sprint: 0);
-    waitForEntity(6);
-    speak(6, "It's amazing that you made it\nthrough the forest!\n");
-    showTextbox("I am Centarumon.\nI'm sorry for what I did.\n");
-    showTextbox("I didn't test you for fun.\nI want to work with you.\n");
-    setTrigger(236);
-    addPStat(1, 2);
-    showTextbox("Go on, I'll stay in the city.\n");
-    goto L2;
+  if (pstat[116] != 1) goto L4;
+  speak(Entity.Player, " !!! \n");
+  playSound(8, 2);
+  delay(20);
+  setObjectVisibility(39, 1);
+  move(entity: Entity.Player, to: (-241, 3600), sprint: 1, withCamera: true);
+  move(entity: Entity.Partner, to: (200, 3600), sprint: 1);
+  waitForEntity(Entity.Partner);
+  waitForEntity(Entity.Player);
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  setDigimon(Digimon.NPCCentarumon, 1, 0);
+  move(entity: 6, to: (0, 4300), sprint: 0);
+  waitForEntity(6);
+  speak(6, "It's amazing that you made it\nthrough the forest!\n");
+  showTextbox("I am Centarumon.\nI'm sorry for what I did.\n");
+  showTextbox("I didn't test you for fun.\nI want to work with you.\n");
+  setTrigger(236);
+  addPStat(1, 2);
+  showTextbox("Go on, I'll stay in the city.\n");
+  goto L2;
 
 L2:
-    move(entity: 6, to: (0, 1000), sprint: 1);
-    if (pstat[101] >= 4) goto L3;
-    addPStat(101, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 6);
-    look(entity: Entity.Partner, at: 6);
-    goto L2;
+  move(entity: 6, to: (0, 1000), sprint: 1);
+  if (pstat[101] >= 4) goto L3;
+  addPStat(101, 1);
+  delay(20);
+  look(entity: Entity.Player, at: 6);
+  look(entity: Entity.Partner, at: 6);
+  goto L2;
 
 L3:
-    waitForEntity(6);
-    unloadEntity(6);
-    setPStat(101, 0);
-    playSound(8, 9);
-    speak(Entity.System, "Centarumon joins the city!\n");
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    look(entity: Entity.Player, at: Entity.Partner);
-    look(entity: Entity.Partner, at: Entity.Player);
-    delay(5);
-    speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous.\n");
-    playAnimation(Entity.Player, 11);
-    speak(Entity.Player, "Let's keep it up!\n");
-    move(entity: Entity.Player, to: (0, 5200), sprint: 0);
-    delay(20);
-    move(entity: Entity.Partner, to: (0, 5200), sprint: 0);
-    delay(20);
-    warp(to: Map.KODA00, spawn: 0, trigger: 255);
-    return;
-    goto L5;
+  waitForEntity(6);
+  unloadEntity(6);
+  setPStat(101, 0);
+  playSound(8, 9);
+  speak(Entity.System, "Centarumon joins the city!\n");
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  look(entity: Entity.Player, at: Entity.Partner);
+  look(entity: Entity.Partner, at: Entity.Player);
+  delay(5);
+  speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous.\n");
+  playAnimation(Entity.Player, 11);
+  speak(Entity.Player, "Let's keep it up!\n");
+  move(entity: Entity.Player, to: (0, 5200), sprint: 0);
+  delay(20);
+  move(entity: Entity.Partner, to: (0, 5200), sprint: 0);
+  delay(20);
+  warp(to: Map.KODA00, spawn: 0, trigger: 255);
+  return;
+  goto L5;
 
 L4:
-    playSound(0, 11);
-    speak(Entity.System, "Missed!\n");
-    warp(to: Map.TROP06, spawn: 0, trigger: 255);
+  playSound(0, 11);
+  speak(Entity.System, "Missed!\n");
+  warp(to: Map.TROP06, spawn: 0, trigger: 255);
 
 L5:
-    return;
+  return;
 }
 
 section(70) {
-    if (!trigger(236)) goto L1;
-    return;
+  if (!trigger(236)) goto L1;
+  return;
 
 L1:
-    if (pstat[116] != 2) goto L4;
-    speak(Entity.Player, " !!! \n");
-    playSound(8, 2);
-    delay(20);
-    setObjectVisibility(40, 1);
-    move(entity: Entity.Player, to: (1450, 3600), sprint: 1, withCamera: true);
-    move(entity: Entity.Partner, to: (1667, 3600), sprint: 1);
-    waitForEntity(Entity.Partner);
-    waitForEntity(Entity.Player);
-    rotate(entity: Entity.Player, to: 2048);
-    rotate(entity: Entity.Partner, to: 2048);
-    setDigimon(Digimon.NPCCentarumon, 2, 0);
-    move(entity: 7, to: (1600, 4300), sprint: 0);
-    waitForEntity(7);
-    speak(7, "It's amazing that you made it\nthrough the forest!\n");
-    showTextbox("I am Centarumon.\nI'm sorry for what I did.\n");
-    showTextbox("I didn't test you for fun.\nI want to work with you.\n");
-    setTrigger(236);
-    addPStat(1, 2);
-    showTextbox("Go on, I'll stay in the city.\n");
-    goto L2;
+  if (pstat[116] != 2) goto L4;
+  speak(Entity.Player, " !!! \n");
+  playSound(8, 2);
+  delay(20);
+  setObjectVisibility(40, 1);
+  move(entity: Entity.Player, to: (1450, 3600), sprint: 1, withCamera: true);
+  move(entity: Entity.Partner, to: (1667, 3600), sprint: 1);
+  waitForEntity(Entity.Partner);
+  waitForEntity(Entity.Player);
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  setDigimon(Digimon.NPCCentarumon, 2, 0);
+  move(entity: 7, to: (1600, 4300), sprint: 0);
+  waitForEntity(7);
+  speak(7, "It's amazing that you made it\nthrough the forest!\n");
+  showTextbox("I am Centarumon.\nI'm sorry for what I did.\n");
+  showTextbox("I didn't test you for fun.\nI want to work with you.\n");
+  setTrigger(236);
+  addPStat(1, 2);
+  showTextbox("Go on, I'll stay in the city.\n");
+  goto L2;
 
 L2:
-    move(entity: 7, to: (1600, 1000), sprint: 1);
-    if (pstat[101] >= 4) goto L3;
-    addPStat(101, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 7);
-    look(entity: Entity.Partner, at: 7);
-    goto L2;
+  move(entity: 7, to: (1600, 1000), sprint: 1);
+  if (pstat[101] >= 4) goto L3;
+  addPStat(101, 1);
+  delay(20);
+  look(entity: Entity.Player, at: 7);
+  look(entity: Entity.Partner, at: 7);
+  goto L2;
 
 L3:
-    waitForEntity(7);
-    unloadEntity(7);
-    setPStat(101, 0);
-    playSound(8, 9);
-    speak(Entity.System, "Centarumon joins the city!\n");
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    look(entity: Entity.Player, at: Entity.Partner);
-    look(entity: Entity.Partner, at: Entity.Player);
-    delay(5);
-    speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous.\n");
-    playAnimation(Entity.Player, 11);
-    speak(Entity.Player, "Let's keep it up!\n");
-    move(entity: Entity.Player, to: (1600, 5200), sprint: 0);
-    delay(20);
-    move(entity: Entity.Partner, to: (1600, 5200), sprint: 0);
-    delay(20);
-    warp(to: Map.KODA00, spawn: 0, trigger: 255);
-    return;
-    goto L5;
+  waitForEntity(7);
+  unloadEntity(7);
+  setPStat(101, 0);
+  playSound(8, 9);
+  speak(Entity.System, "Centarumon joins the city!\n");
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  look(entity: Entity.Player, at: Entity.Partner);
+  look(entity: Entity.Partner, at: Entity.Player);
+  delay(5);
+  speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous.\n");
+  playAnimation(Entity.Player, 11);
+  speak(Entity.Player, "Let's keep it up!\n");
+  move(entity: Entity.Player, to: (1600, 5200), sprint: 0);
+  delay(20);
+  move(entity: Entity.Partner, to: (1600, 5200), sprint: 0);
+  delay(20);
+  warp(to: Map.KODA00, spawn: 0, trigger: 255);
+  return;
+  goto L5;
 
 L4:
-    playSound(0, 11);
-    speak(Entity.System, "Missed!\n");
-    warp(to: Map.TROP06, spawn: 0, trigger: 255);
+  playSound(0, 11);
+  speak(Entity.System, "Missed!\n");
+  warp(to: Map.TROP06, spawn: 0, trigger: 255);
 
 L5:
-    return;
+  return;
 }
 
 section(5) {
-    return;
+  return;
 }
 
 section(6) {
-    return;
+  return;
 }
 
 section(71) {
-    move(entity: Entity.Player, to: (-1600, 5200), sprint: 0);
-    warp(to: Map.KODA00, spawn: 0, trigger: 255);
-    return;
+  move(entity: Entity.Player, to: (-1600, 5200), sprint: 0);
+  warp(to: Map.KODA00, spawn: 0, trigger: 255);
+  return;
 }
 
 section(72) {
-    move(entity: Entity.Player, to: (0, 5200), sprint: 0);
-    warp(to: Map.KODA00, spawn: 0, trigger: 255);
-    return;
+  move(entity: Entity.Player, to: (0, 5200), sprint: 0);
+  warp(to: Map.KODA00, spawn: 0, trigger: 255);
+  return;
 }
 
 section(73) {
-    move(entity: Entity.Player, to: (1600, 5200), sprint: 0);
-    warp(to: Map.KODA00, spawn: 0, trigger: 255);
-    return;
-    garbage { 70 00 fe 00 70 00 33 00 ce 01 0a 00 f0 02 34 00 88 04 35 00 4e 05 36 00 14 06 37 00 da 06 38 00 c4 07 39 00 ae 08 3a 00 ac 09 3b 00 96 0a 3c 00 94 0b 3d 00 92 0c 3e 00 90 0d 3f 00 62 0e 40 00 60 0f 41 00 32 10 42 00 20 11 43 00 0e 12 44 00 00 13 45 00 4c 16 46 00 76 19 05 00 a0 1c 06 00 a2 1c 47 00 a4 1c 48 00 b2 1c 49 00 c0 1c ff ff 1e 00 fe 00 64 19 19 00 00 00 ec 00 18 00 84 00 19 00 fe 00 24 00 6e 63 19 00 0b 00 6e 1d 18 00 9e 00 19 00 74 27 21 00 31 00 16 00 b0 00 19 00 0b 00 6e 31 18 00 b0 00 19 00 74 0f 21 00 31 00 24 00 6e 63 19 00 0b 00 6e 1d 18 00 ca 00 19 00 74 04 31 00 35 00 16 00 dc 00 19 00 0b 00 6e 31 18 00 dc 00 19 00 74 00 31 00 35 00 24 00 6e 63 19 00 0b 00 6e 1d 18 00 f6 00 19 00 74 10 43 00 2a 00 16 00 08 01 19 00 0b 00 6e 31 18 00 08 01 19 00 74 26 43 00 2a 00 24 00 6e 63 19 00 0b 00 6e 09 18 00 22 01 19 00 74 20 22 00 1d 00 16 00 34 01 19 00 0b 00 6e 1d 18 00 34 01 19 00 74 11 22 00 1d 00 24 00 6e 63 19 00 0b 00 6e 09 18 00 4e 01 19 00 74 01 32 00 22 00 16 00 60 01 19 00 0b 00 6e 1d 18 00 60 01 19 00 74 44 32 00 22 00 24 00 6e 63 19 00 0b 00 6e 01 18 00 7a 01 19 00 74 37 31 00 12 00 16 00 a2 01 19 00 0b 00 6e 09 18 00 90 01 19 00 74 45 31 00 12 00 16 00 a2 01 19 00 0b 00 6e 1d 18 00 a2 01 19 00 74 16 31 00 12 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 ba 01 19 00 74 12 41 00 16 00 fe 00 19 00 0b 00 6e 1d 18 00 cc 01 19 00 74 05 41 00 16 00 fe 00 57 00 26 01 57 00 27 01 57 00 28 01 57 00 29 01 57 00 2a 01 57 00 2b 01 19 00 00 00 ec 00 18 00 f4 01 19 00 fe 00 24 00 6e 02 19 00 08 00 6e 00 18 00 14 02 19 00 1e 00 74 00 57 00 26 00 57 00 2a 00 57 00 2b 00 19 00 08 00 6e 01 18 00 30 02 19 00 1e 00 74 01 57 00 27 00 57 00 29 00 57 00 2b 00 19 00 08 00 6e 02 18 00 4c 02 19 00 1e 00 74 02 57 00 28 00 57 00 29 00 57 00 2a 00 19 00 01 00 89 00 18 00 ea 02 19 00 1c 00 89 00 4d fd 00 08 5a 00 08 00 67 00 14 00 5a 00 08 00 67 00 14 00 5a 00 08 00 67 00 14 00 1b ff 1a 00 82 73 82 92 82 85 82 93 82 90 82 81 82 93 82 93 82 85 82 92 81 40 82 60 82 8c 82 85 82 92 82 94 81 49 0d 00 00 00 1a 00 82 73 82 92 82 85 82 93 82 90 82 81 82 93 82 93 82 85 82 92 81 40 82 60 82 8c 82 85 82 92 82 94 81 49 0d 00 00 00 1a 00 82 68 81 40 82 97 82 89 82 8c 82 8c 81 40 82 93 82 88 82 8f 82 8f 82 94 81 49 0d 00 00 00 13 00 f0 02 fe 00 1d 00 9e 00 1d 00 9f 00 1d 00 a0 00 1d 00 a1 00 1d 00 a2 00 1d 00 a3 00 1d 00 a4 00 1d 00 a5 00 1d 00 a6 00 1d 00 a7 00 1d 00 a8 00 1d 00 a9 00 1d 00 aa 00 1d 00 ab 00 1d 00 ac 00 1d 00 ad 00 }
+  move(entity: Entity.Player, to: (1600, 5200), sprint: 0);
+  warp(to: Map.KODA00, spawn: 0, trigger: 255);
+  return;
+  garbage { 70 00 fe 00 70 00 33 00 ce 01 0a 00 f0 02 34 00 88 04 35 00 4e 05 36 00 14 06 37 00 da 06 38 00 c4 07 39 00 ae 08 3a 00 ac 09 3b 00 96 0a 3c 00 94 0b 3d 00 92 0c 3e 00 90 0d 3f 00 62 0e 40 00 60 0f 41 00 32 10 42 00 20 11 43 00 0e 12 44 00 00 13 45 00 4c 16 46 00 76 19 05 00 a0 1c 06 00 a2 1c 47 00 a4 1c 48 00 b2 1c 49 00 c0 1c ff ff 1e 00 fe 00 64 19 19 00 00 00 ec 00 18 00 84 00 19 00 fe 00 24 00 6e 63 19 00 0b 00 6e 1d 18 00 9e 00 19 00 74 27 21 00 31 00 16 00 b0 00 19 00 0b 00 6e 31 18 00 b0 00 19 00 74 0f 21 00 31 00 24 00 6e 63 19 00 0b 00 6e 1d 18 00 ca 00 19 00 74 04 31 00 35 00 16 00 dc 00 19 00 0b 00 6e 31 18 00 dc 00 19 00 74 00 31 00 35 00 24 00 6e 63 19 00 0b 00 6e 1d 18 00 f6 00 19 00 74 10 43 00 2a 00 16 00 08 01 19 00 0b 00 6e 31 18 00 08 01 19 00 74 26 43 00 2a 00 24 00 6e 63 19 00 0b 00 6e 09 18 00 22 01 19 00 74 20 22 00 1d 00 16 00 34 01 19 00 0b 00 6e 1d 18 00 34 01 19 00 74 11 22 00 1d 00 24 00 6e 63 19 00 0b 00 6e 09 18 00 4e 01 19 00 74 01 32 00 22 00 16 00 60 01 19 00 0b 00 6e 1d 18 00 60 01 19 00 74 44 32 00 22 00 24 00 6e 63 19 00 0b 00 6e 01 18 00 7a 01 19 00 74 37 31 00 12 00 16 00 a2 01 19 00 0b 00 6e 09 18 00 90 01 19 00 74 45 31 00 12 00 16 00 a2 01 19 00 0b 00 6e 1d 18 00 a2 01 19 00 74 16 31 00 12 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 ba 01 19 00 74 12 41 00 16 00 fe 00 19 00 0b 00 6e 1d 18 00 cc 01 19 00 74 05 41 00 16 00 fe 00 57 00 26 01 57 00 27 01 57 00 28 01 57 00 29 01 57 00 2a 01 57 00 2b 01 19 00 00 00 ec 00 18 00 f4 01 19 00 fe 00 24 00 6e 02 19 00 08 00 6e 00 18 00 14 02 19 00 1e 00 74 00 57 00 26 00 57 00 2a 00 57 00 2b 00 19 00 08 00 6e 01 18 00 30 02 19 00 1e 00 74 01 57 00 27 00 57 00 29 00 57 00 2b 00 19 00 08 00 6e 02 18 00 4c 02 19 00 1e 00 74 02 57 00 28 00 57 00 29 00 57 00 2a 00 19 00 01 00 89 00 18 00 ea 02 19 00 1c 00 89 00 4d fd 00 08 5a 00 08 00 67 00 14 00 5a 00 08 00 67 00 14 00 5a 00 08 00 67 00 14 00 1b ff 1a 00 82 73 82 92 82 85 82 93 82 90 82 81 82 93 82 93 82 85 82 92 81 40 82 60 82 8c 82 85 82 92 82 94 81 49 0d 00 00 00 1a 00 82 73 82 92 82 85 82 93 82 90 82 81 82 93 82 93 82 85 82 92 81 40 82 60 82 8c 82 85 82 92 82 94 81 49 0d 00 00 00 1a 00 82 68 81 40 82 97 82 89 82 8c 82 8c 81 40 82 93 82 88 82 8f 82 8f 82 94 81 49 0d 00 00 00 13 00 f0 02 fe 00 1d 00 9e 00 1d 00 9f 00 1d 00 a0 00 1d 00 a1 00 1d 00 a2 00 1d 00 a3 00 1d 00 a4 00 1d 00 a5 00 1d 00 a6 00 1d 00 a7 00 1d 00 a8 00 1d 00 a9 00 1d 00 aa 00 1d 00 ab 00 1d 00 ac 00 1d 00 ad 00 }
 }

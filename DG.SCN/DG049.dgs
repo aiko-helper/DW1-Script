@@ -3,188 +3,188 @@
 #pragma script index=49 start=0x25000 end=0x26000 headerU16=0x10 sentinelOff=0x19
 
 section onEnter(254) {
-    if (trigger(247)) goto L1;
-    playAnimation(5, 28);
+  if (trigger(247)) goto L1;
+  playAnimation(5, 28);
 
 L1:
-    return;
+  return;
 }
 
 section(81) {
-    if (!trigger(247)) goto L1;
-    return;
+  if (!trigger(247)) goto L1;
+  return;
 
 L1:
-    look(entity: Entity.Player, at: 5);
-    if (!trigger(136)) goto L2;
-    goto L6;
+  look(entity: Entity.Player, at: 5);
+  if (!trigger(136)) goto L2;
+  goto L6;
 
 L2:
-    setTrigger(136);
-    speak(5, "Welcome. I've never seen you\nbefore. Where are you from?\n");
-    speak(Entity.Player, "The city. Actually, I'm\nfrom another world.\n");
-    speak(5, "You understand my language?\n");
-    speak(Entity.Player, "Yes, I do.\n");
-    speak(5, "Sometimes it's hard and\nI don't sell much here.\n");
-    speak(Entity.Player, "I see.\n");
-    speak(5, "Many shoppers stopped coming.\n");
-    speak(Entity.Player, "It must be the trouble\non the island.\n");
-    speak(5, "Help me do something.\n");
-    speak(Entity.Player, "What is it?\n");
-    speak(5, "Can you work in my shop?\n");
-    speak(Entity.Player, "Your shop?\n");
-    speak(5, "Half day? The more you sell,\nthe more I'll pay you.\nYou know our language.\n");
-    speak(Entity.Player, "You might lose money.\n");
-    speak(5, "Don't worry. It'll be good\nfor me. How about eight hours?\n");
+  setTrigger(136);
+  speak(5, "Welcome. I've never seen you\nbefore. Where are you from?\n");
+  speak(Entity.Player, "The city. Actually, I'm\nfrom another world.\n");
+  speak(5, "You understand my language?\n");
+  speak(Entity.Player, "Yes, I do.\n");
+  speak(5, "Sometimes it's hard and\nI don't sell much here.\n");
+  speak(Entity.Player, "I see.\n");
+  speak(5, "Many shoppers stopped coming.\n");
+  speak(Entity.Player, "It must be the trouble\non the island.\n");
+  speak(5, "Help me do something.\n");
+  speak(Entity.Player, "What is it?\n");
+  speak(5, "Can you work in my shop?\n");
+  speak(Entity.Player, "Your shop?\n");
+  speak(5, "Half day? The more you sell,\nthe more I'll pay you.\nYou know our language.\n");
+  speak(Entity.Player, "You might lose money.\n");
+  speak(5, "Don't worry. It'll be good\nfor me. How about eight hours?\n");
 
 L3:
-    setDialogOwner(Entity.Player);
-    choice { "I'll try" -> L4, "No thanks" -> L5 }
-    goto L5;
+  setDialogOwner(Entity.Player);
+  choice { "I'll try" -> L4, "No thanks" -> L5 }
+  goto L5;
 
 L4:
-    fadeOutHUD();
-    move(entity: 5, to: (133, 292), sprint: 0);
-    move(entity: Entity.Player, to: (-980, -432), sprint: 0);
-    waitForEntity(Entity.Player);
-    waitForEntity(5);
-    setPStat(247, 9);
-    setPStat(248, 12);
-    callSubroutine(21);
-    for id in 33..35 { setObjectVisibility(id, 1); }
-    for id in 9..20 { setObjectVisibility(id, 0); }
-    look(entity: 5, at: Entity.Player);
-    move(entity: Entity.Player, to: (-980, 292), sprint: 0);
-    move(entity: Entity.Partner, to: (-980, -432), sprint: 0);
-    waitForEntity(Entity.Player);
-    waitForEntity(Entity.Partner);
-    look(entity: 5, at: Entity.Player);
-    move(entity: Entity.Player, to: (-341, 292), sprint: 0);
-    move(entity: Entity.Partner, to: (-980, 292), sprint: 0);
-    waitForEntity(Entity.Player);
-    waitForEntity(Entity.Partner);
-    setPStat(247, 21);
-    setPStat(248, 12);
-    callSubroutine(21);
-    for id in 9..20 { setObjectVisibility(id, 1); }
-    for id in 21..32 { setObjectVisibility(id, 0); }
-    delay(60);
-    rotate(entity: Entity.Player, to: 0);
-    look(entity: Entity.Partner, at: Entity.Player);
-    waitForEntity(Entity.Player);
-    for id in 21..32 { setObjectVisibility(id, 1); }
-    for id in 33..35 { setObjectVisibility(id, 0); }
-    callSubroutine(30);
-    setPStat(123, 0);
-    unsetTrigger(101);
-    goto section_82;
+  fadeOutHUD();
+  move(entity: 5, to: (133, 292), sprint: 0);
+  move(entity: Entity.Player, to: (-980, -432), sprint: 0);
+  waitForEntity(Entity.Player);
+  waitForEntity(5);
+  setPStat(247, 9);
+  setPStat(248, 12);
+  callSubroutine(21);
+  for id in 33..35 { setObjectVisibility(id, 1); }
+  for id in 9..20 { setObjectVisibility(id, 0); }
+  look(entity: 5, at: Entity.Player);
+  move(entity: Entity.Player, to: (-980, 292), sprint: 0);
+  move(entity: Entity.Partner, to: (-980, -432), sprint: 0);
+  waitForEntity(Entity.Player);
+  waitForEntity(Entity.Partner);
+  look(entity: 5, at: Entity.Player);
+  move(entity: Entity.Player, to: (-341, 292), sprint: 0);
+  move(entity: Entity.Partner, to: (-980, 292), sprint: 0);
+  waitForEntity(Entity.Player);
+  waitForEntity(Entity.Partner);
+  setPStat(247, 21);
+  setPStat(248, 12);
+  callSubroutine(21);
+  for id in 9..20 { setObjectVisibility(id, 1); }
+  for id in 21..32 { setObjectVisibility(id, 0); }
+  delay(60);
+  rotate(entity: Entity.Player, to: 0);
+  look(entity: Entity.Partner, at: Entity.Player);
+  waitForEntity(Entity.Player);
+  for id in 21..32 { setObjectVisibility(id, 1); }
+  for id in 33..35 { setObjectVisibility(id, 0); }
+  callSubroutine(30);
+  setPStat(123, 0);
+  unsetTrigger(101);
+  goto section_82;
 
 L5:
-    speak(5, "That's too bad. Come back\nwhen you have time.\n");
-    return;
+  speak(5, "That's too bad. Come back\nwhen you have time.\n");
+  return;
 
 L6:
-    speak(5, "You want to work?\n");
-    goto L3;
-    return;
+  speak(5, "You want to work?\n");
+  goto L3;
+  return;
 }
 
 section(82) {
-    if (pstat[123] < 20) goto L1;
-    goto L9;
+  if (pstat[123] < 20) goto L1;
+  goto L9;
 
 L1:
-    if (pstat[123] < 10 || trigger(101)) goto L2;
-    setTrigger(101);
-    speak(5, "Well, it's half way done.\n \n");
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Player, at: 5);
-    delay(10);
-    goto L6;
+  if (pstat[123] < 10 || trigger(101)) goto L2;
+  setTrigger(101);
+  speak(5, "Well, it's half way done.\n \n");
+  look(entity: 5, at: Entity.Player);
+  look(entity: Entity.Player, at: 5);
+  delay(10);
+  goto L6;
 
 L2:
-    roll(pstat: 110, max: 8);
-    if (pstat[110] > 2) goto L3;
-    jumpToScriptSection(199, 51);
+  roll(pstat: 110, max: 8);
+  if (pstat[110] > 2) goto L3;
+  jumpToScriptSection(199, 51);
 
 L3:
-    if (pstat[110] > 5) goto L4;
-    jumpToScriptSection(200, 51);
+  if (pstat[110] > 5) goto L4;
+  jumpToScriptSection(200, 51);
 
 L4:
-    if (pstat[110] > 7) goto L5;
-    jumpToScriptSection(201, 51);
+  if (pstat[110] > 7) goto L5;
+  jumpToScriptSection(201, 51);
 
 L5:
-    jumpToScriptSection(202, 51);
-    return;
+  jumpToScriptSection(202, 51);
+  return;
 
 L6:
-    callSubroutine(56);
-    if (pstat[243] > 2) goto L7;
-    speak(5, "The way it's going, we won't\nmake any money. Try harder.\n \n");
-    rotate(entity: Entity.Player, to: 80);
-    fadeOutHUD();
-    goto L2;
+  callSubroutine(56);
+  if (pstat[243] > 2) goto L7;
+  speak(5, "The way it's going, we won't\nmake any money. Try harder.\n \n");
+  rotate(entity: Entity.Player, to: 80);
+  fadeOutHUD();
+  goto L2;
 
 L7:
-    if (pstat[243] > 5) goto L8;
-    speak(5, "The sales are good.\nWe can make some money.\n");
-    rotate(entity: Entity.Player, to: 80);
-    fadeOutHUD();
-    goto L2;
+  if (pstat[243] > 5) goto L8;
+  speak(5, "The sales are good.\nWe can make some money.\n");
+  rotate(entity: Entity.Player, to: 80);
+  fadeOutHUD();
+  goto L2;
 
 L8:
-    speak(5, "I haven't had this much\nbusiness in a long time.\nKeep it up!\n");
-    rotate(entity: Entity.Player, to: 80);
-    fadeOutHUD();
-    goto L2;
+  speak(5, "I haven't had this much\nbusiness in a long time.\nKeep it up!\n");
+  rotate(entity: Entity.Player, to: 80);
+  fadeOutHUD();
+  goto L2;
 
 L9:
-    delay(40);
-    speak(5, "I think it's time.\nThank you for your work.\n");
-    callSubroutine(56);
-    if (pstat[243] > 6) goto L10;
-    speak(5, "It could have been better,\nbut it wasn't that bad.\nDon't give up.\n");
-    addMoney(500);
-    speak(Entity.System, "I got five hund bits!\n");
-    pstat[:SavedTime] = time();
-    addMinutesToDate(PStat.SavedTime, 480);
-    advanceToDate(PStat.SavedTime);
-    warp(to: Map.GCAN09, spawn: 2, trigger: 255);
-    return;
+  delay(40);
+  speak(5, "I think it's time.\nThank you for your work.\n");
+  callSubroutine(56);
+  if (pstat[243] > 6) goto L10;
+  speak(5, "It could have been better,\nbut it wasn't that bad.\nDon't give up.\n");
+  addMoney(500);
+  speak(Entity.System, "I got five hund bits!\n");
+  pstat[:SavedTime] = time();
+  addMinutesToDate(PStat.SavedTime, 480);
+  advanceToDate(PStat.SavedTime);
+  warp(to: Map.GCAN09, spawn: 2, trigger: 255);
+  return;
 
 L10:
-    if (pstat[243] > 11) goto L11;
-    speak(5, "You can do better.\nI want you to work more.\n");
-    addMoney(1500);
-    speak(Entity.System, "I got fifteen hund bits!\n");
-    pstat[:SavedTime] = time();
-    addMinutesToDate(PStat.SavedTime, 480);
-    advanceToDate(PStat.SavedTime);
-    warp(to: Map.GCAN09, spawn: 2, trigger: 255);
-    return;
+  if (pstat[243] > 11) goto L11;
+  speak(5, "You can do better.\nI want you to work more.\n");
+  addMoney(1500);
+  speak(Entity.System, "I got fifteen hund bits!\n");
+  pstat[:SavedTime] = time();
+  addMinutesToDate(PStat.SavedTime, 480);
+  advanceToDate(PStat.SavedTime);
+  warp(to: Map.GCAN09, spawn: 2, trigger: 255);
+  return;
 
 L11:
-    speak(5, "Your wisdom, character and\nguts are what we need to\nsave this island.\n");
-    speak(Entity.Player, "What are you talking about?\n");
-    speak(5, "I was testing you to see if\nyou are capable of saving us.\n");
-    speak(5, "It's important to be\ngood in battle.\n");
-    speak(5, "Besides power, courage and\nwisdom are also needed.\n");
-    speak(Entity.Player, "Did we pass the test?\n");
-    speak(5, "Yes, I'll help you\nas much as I can.\n");
-    speak(Entity.Player, "Will you come to the city?\nWhat will you do\nwith the shop?\n");
-    speak(5, "I can open a shop later.\nThis shop's duty is done.\n");
-    playSound(8, 10);
-    speak(Entity.System, "Monochromon joins the city!\n");
-    showTextbox("I got two thous bits!\n");
-    addMoney(2000);
-    addPStat(1, 2);
-    setTrigger(247);
-    pstat[:SavedTime] = time();
-    addMinutesToDate(PStat.SavedTime, 480);
-    advanceToDate(PStat.SavedTime);
-    warp(to: Map.GCAN09, spawn: 2, trigger: 255);
-    return;
-    garbage { 10 00 fe 00 10 00 51 00 22 00 52 00 8c 06 ff ff 19 00 01 00 f7 00 18 00 20 00 19 00 56 00 05 1c fe 00 19 00 00 00 f7 00 18 00 30 00 19 00 fe 00 4c 00 fd 05 19 00 00 00 88 00 18 00 44 00 19 00 16 00 5c 06 1c 00 88 00 1b 05 1a 00 82 76 82 85 82 8c 82 83 82 8f 82 8d 82 85 81 42 81 40 82 68 81 75 82 96 82 85 81 40 82 8e 82 85 82 96 82 85 82 92 81 40 82 93 82 85 82 85 82 8e 81 40 82 99 82 8f 82 95 0d 00 82 82 82 85 82 86 82 8f 82 92 82 85 81 42 81 40 82 76 82 88 82 85 82 92 82 85 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 86 82 92 82 8f 82 8d 81 48 0d 00 00 00 1b fd 1a 00 82 73 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 42 81 40 82 60 82 83 82 94 82 95 82 81 82 8c 82 8c 82 99 81 43 81 40 82 68 81 75 82 8d 0d 00 82 86 82 92 82 8f 82 8d 81 40 82 81 82 8e 82 8f 82 94 82 88 82 85 82 92 81 40 82 97 82 8f 82 92 82 8c 82 84 81 42 0d 00 00 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 95 82 8e 82 84 82 85 }
+  speak(5, "Your wisdom, character and\nguts are what we need to\nsave this island.\n");
+  speak(Entity.Player, "What are you talking about?\n");
+  speak(5, "I was testing you to see if\nyou are capable of saving us.\n");
+  speak(5, "It's important to be\ngood in battle.\n");
+  speak(5, "Besides power, courage and\nwisdom are also needed.\n");
+  speak(Entity.Player, "Did we pass the test?\n");
+  speak(5, "Yes, I'll help you\nas much as I can.\n");
+  speak(Entity.Player, "Will you come to the city?\nWhat will you do\nwith the shop?\n");
+  speak(5, "I can open a shop later.\nThis shop's duty is done.\n");
+  playSound(8, 10);
+  speak(Entity.System, "Monochromon joins the city!\n");
+  showTextbox("I got two thous bits!\n");
+  addMoney(2000);
+  addPStat(1, 2);
+  setTrigger(247);
+  pstat[:SavedTime] = time();
+  addMinutesToDate(PStat.SavedTime, 480);
+  advanceToDate(PStat.SavedTime);
+  warp(to: Map.GCAN09, spawn: 2, trigger: 255);
+  return;
+  garbage { 10 00 fe 00 10 00 51 00 22 00 52 00 8c 06 ff ff 19 00 01 00 f7 00 18 00 20 00 19 00 56 00 05 1c fe 00 19 00 00 00 f7 00 18 00 30 00 19 00 fe 00 4c 00 fd 05 19 00 00 00 88 00 18 00 44 00 19 00 16 00 5c 06 1c 00 88 00 1b 05 1a 00 82 76 82 85 82 8c 82 83 82 8f 82 8d 82 85 81 42 81 40 82 68 81 75 82 96 82 85 81 40 82 8e 82 85 82 96 82 85 82 92 81 40 82 93 82 85 82 85 82 8e 81 40 82 99 82 8f 82 95 0d 00 82 82 82 85 82 86 82 8f 82 92 82 85 81 42 81 40 82 76 82 88 82 85 82 92 82 85 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 86 82 92 82 8f 82 8d 81 48 0d 00 00 00 1b fd 1a 00 82 73 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 42 81 40 82 60 82 83 82 94 82 95 82 81 82 8c 82 8c 82 99 81 43 81 40 82 68 81 75 82 8d 0d 00 82 86 82 92 82 8f 82 8d 81 40 82 81 82 8e 82 8f 82 94 82 88 82 85 82 92 81 40 82 97 82 8f 82 92 82 8c 82 84 81 42 0d 00 00 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 95 82 8e 82 84 82 85 }
 }

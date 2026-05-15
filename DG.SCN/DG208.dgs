@@ -3,181 +3,181 @@
 #pragma script index=208 start=0xab800 end=0xac800 headerU16=0xc sentinelOff=0xfe
 
 section onEnter(254) {
-    return;
+  return;
 }
 
 section(82) {
-    rotate(entity: Entity.Player, to: 3152);
-    delay(5);
+  rotate(entity: Entity.Player, to: 3152);
+  delay(5);
 
 L1:
-    if (!trigger(154) || pstat[1] < 45) goto L2;
-    setTrigger(153);
-    setTextboxSize(21, 8);
-    showTextbox("Shell Newspaper Eigth\nAlien Digimon Appears:\nWe have found the UFO.\nThe creature showed its body\nand spoke unknown words.\nIs the creature an Alien?\nWill it appear again?\n");
-    fadeOutHUD();
-    setDialogOwner(Entity.System);
-    choice { "Back" -> L2, "Stop" -> L35 }
-    return;
+  if (!trigger(154) || pstat[1] < 45) goto L2;
+  setTrigger(153);
+  setTextboxSize(21, 8);
+  showTextbox("Shell Newspaper Eigth\nAlien Digimon Appears:\nWe have found the UFO.\nThe creature showed its body\nand spoke unknown words.\nIs the creature an Alien?\nWill it appear again?\n");
+  fadeOutHUD();
+  setDialogOwner(Entity.System);
+  choice { "Back" -> L2, "Stop" -> L35 }
+  return;
 
 L2:
-    if (!trigger(226)) goto L3;
-    setTextboxSize(21, 10);
-    showTextbox("Shell Newspaper Seven\nMyotismon Denies His\nRetirement:\nIn an interview,\nhe denied the rumors.\nHe is still working hard.\nHe loves his fans.\nHe also announced that\nhis pupil, SkullGreymon,\nwill make his debut.\n");
-    fadeOutHUD();
-    setTrigger(325);
-    setDialogOwner(Entity.System);
-    choice { "Back" -> L6, "Forward" -> L4, "Stop" -> L35 }
-    return;
+  if (!trigger(226)) goto L3;
+  setTextboxSize(21, 10);
+  showTextbox("Shell Newspaper Seven\nMyotismon Denies His\nRetirement:\nIn an interview,\nhe denied the rumors.\nHe is still working hard.\nHe loves his fans.\nHe also announced that\nhis pupil, SkullGreymon,\nwill make his debut.\n");
+  fadeOutHUD();
+  setTrigger(325);
+  setDialogOwner(Entity.System);
+  choice { "Back" -> L6, "Forward" -> L4, "Stop" -> L35 }
+  return;
 
 L3:
-    goto L6;
+  goto L6;
 
 L4:
-    if (!trigger(154) || pstat[1] < 45) goto L5;
-    goto L1;
-    goto L6;
+  if (!trigger(154) || pstat[1] < 45) goto L5;
+  goto L1;
+  goto L6;
 
 L5:
-    goto L2;
+  goto L2;
 
 L6:
-    if (pstat[1] < 35 || !trigger(128)) goto L8;
-    setTextboxSize(21, 8);
-    showTextbox("Shell Newspaper Six\nMyotismon to Retire?:\nRumor is that popular and \nable Myotismon will retire.\nNo one at the arena has\nseen him. His career is at\nits end. He is too old.\n");
-    fadeOutHUD();
-    if (trigger(226)) goto L7;
-    unsetTrigger(266);
-    setTrigger(356);
+  if (pstat[1] < 35 || !trigger(128)) goto L8;
+  setTextboxSize(21, 8);
+  showTextbox("Shell Newspaper Six\nMyotismon to Retire?:\nRumor is that popular and \nable Myotismon will retire.\nNo one at the arena has\nseen him. His career is at\nits end. He is too old.\n");
+  fadeOutHUD();
+  if (trigger(226)) goto L7;
+  unsetTrigger(266);
+  setTrigger(356);
 
 L7:
-    setDialogOwner(Entity.System);
-    choice { "Back" -> L12, "Forward" -> L9, "Stop" -> L35 }
-    return;
+  setDialogOwner(Entity.System);
+  choice { "Back" -> L12, "Forward" -> L9, "Stop" -> L35 }
+  return;
 
 L8:
-    goto L12;
+  goto L12;
 
 L9:
-    if (!trigger(226)) goto L10;
-    goto L2;
+  if (!trigger(226)) goto L10;
+  goto L2;
 
 L10:
-    if (!trigger(154) || pstat[1] < 45) goto L11;
-    goto L1;
+  if (!trigger(154) || pstat[1] < 45) goto L11;
+  goto L1;
 
 L11:
-    goto L6;
+  goto L6;
 
 L12:
-    if (pstat[1] < 25) goto L13;
-    setTextboxSize(21, 9);
-    showTextbox("Shell Newspaper Five\nHidden Treasure:\nA cool shop in Gear Savanna.\nThis shop is only open from\nfirst to fifteenth each year.\nThe shop manager is proud of\nhis rare Items.\n");
-    fadeOutHUD();
-    setDialogOwner(Entity.System);
-    choice { "Back" -> L18, "Forward" -> L14, "Stop" -> L35 }
-    return;
+  if (pstat[1] < 25) goto L13;
+  setTextboxSize(21, 9);
+  showTextbox("Shell Newspaper Five\nHidden Treasure:\nA cool shop in Gear Savanna.\nThis shop is only open from\nfirst to fifteenth each year.\nThe shop manager is proud of\nhis rare Items.\n");
+  fadeOutHUD();
+  setDialogOwner(Entity.System);
+  choice { "Back" -> L18, "Forward" -> L14, "Stop" -> L35 }
+  return;
 
 L13:
-    goto L18;
+  goto L18;
 
 L14:
-    if (pstat[1] < 35 || !trigger(128)) goto L15;
-    goto L6;
+  if (pstat[1] < 35 || !trigger(128)) goto L15;
+  goto L6;
 
 L15:
-    if (!trigger(226)) goto L16;
-    goto L2;
+  if (!trigger(226)) goto L16;
+  goto L2;
 
 L16:
-    if (!trigger(154) || pstat[1] < 45) goto L17;
-    goto L1;
+  if (!trigger(154) || pstat[1] < 45) goto L17;
+  goto L1;
 
 L17:
-    goto L12;
+  goto L12;
 
 L18:
-    if (pstat[1] < 20) goto L19;
-    setTextboxSize(21, 10);
-    showTextbox("Shell Newspaper Four\nA Legendary Digimon?:\nRumor is that there is\na cold weather Digimon\nin Freezeland. Mr. M was\nsaved by this monster. It\nlooked like a big snowball.\nDigimon who are not use to\nthe cold, be careful!\n");
-    fadeOutHUD();
-    setDialogOwner(Entity.System);
-    choice { "Back" -> L22, "Forward" -> L20, "Stop" -> L35 }
-    return;
+  if (pstat[1] < 20) goto L19;
+  setTextboxSize(21, 10);
+  showTextbox("Shell Newspaper Four\nA Legendary Digimon?:\nRumor is that there is\na cold weather Digimon\nin Freezeland. Mr. M was\nsaved by this monster. It\nlooked like a big snowball.\nDigimon who are not use to\nthe cold, be careful!\n");
+  fadeOutHUD();
+  setDialogOwner(Entity.System);
+  choice { "Back" -> L22, "Forward" -> L20, "Stop" -> L35 }
+  return;
 
 L19:
-    goto L22;
+  goto L22;
 
 L20:
-    if (pstat[1] < 25) goto L21;
-    goto L12;
+  if (pstat[1] < 25) goto L21;
+  goto L12;
 
 L21:
-    goto L18;
+  goto L18;
 
 L22:
-    if (pstat[1] < 15) goto L23;
-    setTextboxSize(21, 10);
-    showTextbox("Shell Newspaper Three\nA Guardian for the Lake?:\nLake Guardian is at\nDragon Eye Lake.\nThe Digimon-like creature\nwas called by someone.\nCan this Guardian make\nwishes come true?\n");
-    fadeOutHUD();
-    setDialogOwner(Entity.System);
-    choice { "Back" -> L27, "Forward" -> L24, "Stop" -> L35 }
-    return;
+  if (pstat[1] < 15) goto L23;
+  setTextboxSize(21, 10);
+  showTextbox("Shell Newspaper Three\nA Guardian for the Lake?:\nLake Guardian is at\nDragon Eye Lake.\nThe Digimon-like creature\nwas called by someone.\nCan this Guardian make\nwishes come true?\n");
+  fadeOutHUD();
+  setDialogOwner(Entity.System);
+  choice { "Back" -> L27, "Forward" -> L24, "Stop" -> L35 }
+  return;
 
 L23:
-    goto L27;
+  goto L27;
 
 L24:
-    if (pstat[1] < 20) goto L25;
-    goto L18;
+  if (pstat[1] < 20) goto L25;
+  goto L18;
 
 L25:
-    if (!trigger(154) || pstat[1] < 45) goto L26;
-    goto L1;
+  if (!trigger(154) || pstat[1] < 45) goto L26;
+  goto L1;
 
 L26:
-    goto L22;
+  goto L22;
 
 L27:
-    if (!trigger(118)) goto L28;
-    setTextboxSize(21, 9);
-    showTextbox("Shell Newspaper Two\nA UFO!:\nA report says the UFO\nis near Mt. Panorama.\nThe UFO looks like a\nsilver dish with light\ncoming from the bottom.\nIs it an alien?\nMore information to come.\n");
-    fadeOutHUD();
-    setTrigger(152);
-    setDialogOwner(Entity.System);
-    choice { "Back" -> L31, "Forward" -> L29, "Stop" -> L35 }
-    return;
+  if (!trigger(118)) goto L28;
+  setTextboxSize(21, 9);
+  showTextbox("Shell Newspaper Two\nA UFO!:\nA report says the UFO\nis near Mt. Panorama.\nThe UFO looks like a\nsilver dish with light\ncoming from the bottom.\nIs it an alien?\nMore information to come.\n");
+  fadeOutHUD();
+  setTrigger(152);
+  setDialogOwner(Entity.System);
+  choice { "Back" -> L31, "Forward" -> L29, "Stop" -> L35 }
+  return;
 
 L28:
-    goto L31;
+  goto L31;
 
 L29:
-    if (pstat[1] < 15) goto L30;
-    goto L22;
+  if (pstat[1] < 15) goto L30;
+  goto L22;
 
 L30:
-    goto L27;
+  goto L27;
 
 L31:
-    setTextboxSize(21, 9);
-    showTextbox("Shell Newspaper One\nBandits Are Gone!:\n<LIGHTBLUE><PLAYER><WHITE> found the\nhide out, led by Ogremon.\nHowever, Ogremon is \nloose and people\nare still worried.\n");
-    fadeOutHUD();
-    if (!trigger(118) && pstat[1] < 15) goto L32;
-    setDialogOwner(Entity.System);
-    choice { "Forward" -> L33, "Stop" -> L35 }
-    return;
+  setTextboxSize(21, 9);
+  showTextbox("Shell Newspaper One\nBandits Are Gone!:\n<LIGHTBLUE><PLAYER><WHITE> found the\nhide out, led by Ogremon.\nHowever, Ogremon is \nloose and people\nare still worried.\n");
+  fadeOutHUD();
+  if (!trigger(118) && pstat[1] < 15) goto L32;
+  setDialogOwner(Entity.System);
+  choice { "Forward" -> L33, "Stop" -> L35 }
+  return;
 
 L32:
-    return;
+  return;
 
 L33:
-    if (!trigger(118)) goto L34;
-    goto L27;
+  if (!trigger(118)) goto L34;
+  goto L27;
 
 L34:
-    goto L22;
+  goto L22;
 
 L35:
-    return;
-    garbage { 0c 00 fe 00 0c 00 52 00 0e 00 ff ff fe 00 4d fd 50 0c 67 00 05 00 19 00 00 00 9a 00 8a 00 01 2d 18 00 ac 01 19 00 1c 00 99 00 26 00 15 08 1a 00 82 72 82 88 82 85 82 8c 82 8c 81 40 82 6d 82 85 82 97 82 93 82 90 82 81 82 90 82 85 82 92 81 40 82 64 82 89 82 87 82 94 82 88 0d 00 82 60 82 8c 82 89 82 85 82 8e 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 40 82 60 82 90 82 90 82 85 82 81 82 92 82 93 81 46 0d 00 82 76 82 85 81 40 82 88 82 81 82 96 82 85 81 40 82 86 82 8f 82 95 82 8e 82 84 81 40 82 94 82 88 82 85 81 40 82 74 82 65 82 6e 81 42 0d 00 82 73 82 88 82 85 81 40 82 83 82 92 82 85 82 81 82 94 82 95 82 92 82 85 81 40 82 93 82 88 82 8f 82 97 82 85 82 84 81 40 82 89 82 94 82 93 81 40 82 82 82 8f 82 84 82 99 0d 00 82 81 82 8e 82 84 81 40 82 93 82 90 82 8f 82 8b 82 85 81 40 82 95 82 8e 82 8b 82 8e 82 8f 82 97 82 8e 81 40 82 97 82 8f 82 92 82 84 82 93 81 42 0d 00 82 68 82 93 81 40 82 94 82 88 82 85 81 40 82 83 82 92 82 85 82 81 82 94 82 95 82 92 82 85 81 40 82 81 82 8e 81 40 82 60 82 8c }
+  return;
+  garbage { 0c 00 fe 00 0c 00 52 00 0e 00 ff ff fe 00 4d fd 50 0c 67 00 05 00 19 00 00 00 9a 00 8a 00 01 2d 18 00 ac 01 19 00 1c 00 99 00 26 00 15 08 1a 00 82 72 82 88 82 85 82 8c 82 8c 81 40 82 6d 82 85 82 97 82 93 82 90 82 81 82 90 82 85 82 92 81 40 82 64 82 89 82 87 82 94 82 88 0d 00 82 60 82 8c 82 89 82 85 82 8e 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 40 82 60 82 90 82 90 82 85 82 81 82 92 82 93 81 46 0d 00 82 76 82 85 81 40 82 88 82 81 82 96 82 85 81 40 82 86 82 8f 82 95 82 8e 82 84 81 40 82 94 82 88 82 85 81 40 82 74 82 65 82 6e 81 42 0d 00 82 73 82 88 82 85 81 40 82 83 82 92 82 85 82 81 82 94 82 95 82 92 82 85 81 40 82 93 82 88 82 8f 82 97 82 85 82 84 81 40 82 89 82 94 82 93 81 40 82 82 82 8f 82 84 82 99 0d 00 82 81 82 8e 82 84 81 40 82 93 82 90 82 8f 82 8b 82 85 81 40 82 95 82 8e 82 8b 82 8e 82 8f 82 97 82 8e 81 40 82 97 82 8f 82 92 82 84 82 93 81 42 0d 00 82 68 82 93 81 40 82 94 82 88 82 85 81 40 82 83 82 92 82 85 82 81 82 94 82 95 82 92 82 85 81 40 82 81 82 8e 81 40 82 60 82 8c }
 }

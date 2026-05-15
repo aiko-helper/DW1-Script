@@ -3,216 +3,216 @@
 #pragma script index=78 start=0x37800 end=0x38800 headerU16=0x20 sentinelOff=0x24
 
 section onEnter(254) {
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 10) goto L1;
-    spawnItem(Item.Digimushroom, x: 31, y: 84);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 10) goto L1;
+  spawnItem(Item.Digimushroom, x: 31, y: 84);
 
 L1:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 7) goto L2;
-    spawnItem(Item.Digimushroom, x: 48, y: 27);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 7) goto L2;
+  spawnItem(Item.Digimushroom, x: 48, y: 27);
 
 L2:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 3) goto L3;
-    spawnItem(Item.RedBerry, x: 25, y: 55);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 3) goto L3;
+  spawnItem(Item.RedBerry, x: 25, y: 55);
 
 L3:
-    return;
+  return;
 }
 
 section(5) {
-    switch (pstat[34]) { case 0: goto L1; case 1: goto L2; }
+  switch (pstat[34]) { case 0: goto L1; case 1: goto L2; }
 
 L1:
-    speak(5, "There was someone who wanted\nto become a merchant. I heard\nhe has a store somewhere.\n");
-    showTextbox("He's more useful than me.\n");
-    addPStat(34, 1);
-    return;
+  speak(5, "There was someone who wanted\nto become a merchant. I heard\nhe has a store somewhere.\n");
+  showTextbox("He's more useful than me.\n");
+  addPStat(34, 1);
+  return;
 
 L2:
-    speak(5, "Why is time different here\nthan other areas?\n");
-    showTextbox("I'm sure this place is\neasy to live in, but...\n");
-    setPStat(34, 0);
-    return;
+  speak(5, "Why is time different here\nthan other areas?\n");
+  showTextbox("I'm sure this place is\neasy to live in, but...\n");
+  setPStat(34, 0);
+  return;
 }
 
 section(6) {
-    look(entity: Entity.Player, at: 6);
-    playSound(8, 3);
-    delay(15);
-    switch (pstat[35]) { case 0: goto L1; case 1: goto L2; case 2: goto L3; case 3: goto L4; case 4: goto L5; case 5: goto L6; }
+  look(entity: Entity.Player, at: 6);
+  playSound(8, 3);
+  delay(15);
+  switch (pstat[35]) { case 0: goto L1; case 1: goto L2; case 2: goto L3; case 3: goto L4; case 4: goto L5; case 5: goto L6; }
 
 L1:
-    speak(6, "I've been looking around\nfrom the sky.\n");
-    showTextbox("To the north, there's ice\nand snow. Living in such a\ncold place is crazy.\n");
-    addPStat(35, 1);
-    return;
+  speak(6, "I've been looking around\nfrom the sky.\n");
+  showTextbox("To the north, there's ice\nand snow. Living in such a\ncold place is crazy.\n");
+  addPStat(35, 1);
+  return;
 
 L2:
-    speak(6, "I've been looking around\nfrom the sky.\n");
-    showTextbox("There's a small city made\nof iron to the west.\n");
-    showTextbox("But the entrance and exit\nare closed. I can fly there.\n");
-    addPStat(35, 1);
-    return;
+  speak(6, "I've been looking around\nfrom the sky.\n");
+  showTextbox("There's a small city made\nof iron to the west.\n");
+  showTextbox("But the entrance and exit\nare closed. I can fly there.\n");
+  addPStat(35, 1);
+  return;
 
 L3:
-    speak(6, "I've been looking around\nfrom the sky.\n");
-    showTextbox("There are groups of Digimon\nthat have horns or claws.\n");
-    showTextbox("I heard they make their\nhomes by carving out wood.\n");
-    addPStat(35, 1);
-    return;
+  speak(6, "I've been looking around\nfrom the sky.\n");
+  showTextbox("There are groups of Digimon\nthat have horns or claws.\n");
+  showTextbox("I heard they make their\nhomes by carving out wood.\n");
+  addPStat(35, 1);
+  return;
 
 L4:
-    speak(6, "I've been looking around\nfrom the sky.\n");
-    showTextbox("In the northwest is a forest\nwith buildings.\n");
-    showTextbox("It's very far.\n");
-    addPStat(35, 1);
-    return;
+  speak(6, "I've been looking around\nfrom the sky.\n");
+  showTextbox("In the northwest is a forest\nwith buildings.\n");
+  showTextbox("It's very far.\n");
+  addPStat(35, 1);
+  return;
 
 L5:
-    speak(6, "I've been looking around\nfrom the sky.\n");
-    showTextbox("Have you been past the Great\nCanyon? It's like a maze.\n");
-    addPStat(35, 1);
-    return;
+  speak(6, "I've been looking around\nfrom the sky.\n");
+  showTextbox("Have you been past the Great\nCanyon? It's like a maze.\n");
+  addPStat(35, 1);
+  return;
 
 L6:
-    speak(6, "I've been looking around\nfrom the sky.\n");
-    showTextbox("I can't see the middle of the\nisland. I see only clouds.\n");
-    setPStat(35, 0);
-    return;
+  speak(6, "I've been looking around\nfrom the sky.\n");
+  showTextbox("I can't see the middle of the\nisland. I see only clouds.\n");
+  setPStat(35, 0);
+  return;
 }
 
 section(82) {
-    playAnimation(7, 29);
-    delay(5);
-    speak(7, "You heard this already.\n");
-    switch (pstat[36]) { case 0: goto L1; case 1: goto L2; }
+  playAnimation(7, 29);
+  delay(5);
+  speak(7, "You heard this already.\n");
+  switch (pstat[36]) { case 0: goto L1; case 1: goto L2; }
 
 L1:
-    playAnimation(7, 30);
-    delay(5);
-    speak(7, "Time is slow here.\nHalf a day here is\nlike a day out there.\n");
-    playAnimation(7, 30);
-    delay(5);
-    speak(7, "For those who want to rest,\nit's perfect.\n");
-    addPStat(36, 1);
-    playAnimation(7, 31);
-    delay(5);
-    return;
+  playAnimation(7, 30);
+  delay(5);
+  speak(7, "Time is slow here.\nHalf a day here is\nlike a day out there.\n");
+  playAnimation(7, 30);
+  delay(5);
+  speak(7, "For those who want to rest,\nit's perfect.\n");
+  addPStat(36, 1);
+  playAnimation(7, 31);
+  delay(5);
+  return;
 
 L2:
-    playAnimation(7, 30);
-    delay(5);
-    speak(7, "Time goes fast in the\nSpeedy Time Zone.\nIt's just beyond here.\n");
-    showTextbox("Two days pass instead\nof one there.\n");
-    playAnimation(7, 30);
-    delay(5);
-    speak(7, "Your Digimon grows faster,\nbut fades away faster too.\n");
-    setPStat(36, 0);
-    playAnimation(7, 31);
-    delay(5);
-    return;
+  playAnimation(7, 30);
+  delay(5);
+  speak(7, "Time goes fast in the\nSpeedy Time Zone.\nIt's just beyond here.\n");
+  showTextbox("Two days pass instead\nof one there.\n");
+  playAnimation(7, 30);
+  delay(5);
+  speak(7, "Your Digimon grows faster,\nbut fades away faster too.\n");
+  setPStat(36, 0);
+  playAnimation(7, 31);
+  delay(5);
+  return;
 }
 
 section(7) {
-    return;
+  return;
 }
 
 section(8) {
-    return;
+  return;
 }
 
 section(81) {
-    speak(Entity.System, "Vending Machine\n");
-    speak(Entity.Player, "I wonder what'll come out?\nTwo hund bits each?\nShould I buy it?\n");
-    choice { "Try" -> L1, "Cancel" -> L4 }
-    goto L4;
-    return;
+  speak(Entity.System, "Vending Machine\n");
+  speak(Entity.Player, "I wonder what'll come out?\nTwo hund bits each?\nShould I buy it?\n");
+  choice { "Try" -> L1, "Cancel" -> L4 }
+  goto L4;
+  return;
 
 L1:
-    if (money < 200) goto L2;
-    goto L5;
-    goto L3;
+  if (money < 200) goto L2;
+  goto L5;
+  goto L3;
 
 L2:
-    speak(Entity.Player, "I don't got enough money.\n");
-    return;
+  speak(Entity.Player, "I don't got enough money.\n");
+  return;
 
 L3:
-    return;
+  return;
 
 L4:
-    return;
+  return;
 
 L5:
-    roll(pstat: 102, max: 99);
-    if (pstat[102] >= 29) goto L7;
-    reduceMoney(200);
-    speak(Entity.System, "<LIGHTBLUE>Meat <WHITE>came out!\n");
-    giveItem(Item.Meat, 1);
-    if (!trigger(0)) goto L6;
-    speak(Entity.Player, "I got too many Items.\nMust get rid of some.\n");
-    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Meat);
+  roll(pstat: 102, max: 99);
+  if (pstat[102] >= 29) goto L7;
+  reduceMoney(200);
+  speak(Entity.System, "<LIGHTBLUE>Meat <WHITE>came out!\n");
+  giveItem(Item.Meat, 1);
+  if (!trigger(0)) goto L6;
+  speak(Entity.Player, "I got too many Items.\nMust get rid of some.\n");
+  setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Meat);
 
 L6:
-    goto L8;
+  goto L8;
 
 L7:
-    goto L9;
+  goto L9;
 
 L8:
-    return;
+  return;
 
 L9:
-    if (pstat[102] >= 59) goto L11;
-    setDialogOwner(Entity.System);
-    reduceMoney(200);
-    speak(Entity.System, "A <LIGHTBLUE>Small Recovery\nFloppy <WHITE>came out!\n");
-    giveItem(Item.SmallRecovery, 1);
-    if (!trigger(0)) goto L10;
-    speak(Entity.Player, "I got too many Items.\nMust get rid of some.\n");
-    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SmallRecovery);
+  if (pstat[102] >= 59) goto L11;
+  setDialogOwner(Entity.System);
+  reduceMoney(200);
+  speak(Entity.System, "A <LIGHTBLUE>Small Recovery\nFloppy <WHITE>came out!\n");
+  giveItem(Item.SmallRecovery, 1);
+  if (!trigger(0)) goto L10;
+  speak(Entity.Player, "I got too many Items.\nMust get rid of some.\n");
+  setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SmallRecovery);
 
 L10:
-    goto L12;
+  goto L12;
 
 L11:
-    goto L13;
+  goto L13;
 
 L12:
-    return;
+  return;
 
 L13:
-    if (pstat[102] >= 79) goto L15;
-    setDialogOwner(Entity.System);
-    reduceMoney(200);
-    speak(Entity.System, "<LIGHTBLUE>Steak <WHITE>\ncame out!\n");
-    giveItem(Item.MoldyMeat, 1);
-    if (!trigger(0)) goto L14;
-    speak(Entity.Player, "I got too many Items.\nMust get rid of some.\n");
-    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.MoldyMeat);
+  if (pstat[102] >= 79) goto L15;
+  setDialogOwner(Entity.System);
+  reduceMoney(200);
+  speak(Entity.System, "<LIGHTBLUE>Steak <WHITE>\ncame out!\n");
+  giveItem(Item.MoldyMeat, 1);
+  if (!trigger(0)) goto L14;
+  speak(Entity.Player, "I got too many Items.\nMust get rid of some.\n");
+  setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.MoldyMeat);
 
 L14:
-    goto L16;
+  goto L16;
 
 L15:
-    goto L17;
+  goto L17;
 
 L16:
-    return;
+  return;
 
 L17:
-    if (pstat[102] > 99) goto L18;
-    setDialogOwner(Entity.System);
-    reduceMoney(200);
-    speak(Entity.System, "An <LIGHTBLUE>MP floppy <WHITE>\ncame out!\n");
-    if (!trigger(0)) goto L18;
-    speak(Entity.Player, "I got too many Items.\nMust get rid of some.\n");
-    setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.MPFloppy);
-    return;
+  if (pstat[102] > 99) goto L18;
+  setDialogOwner(Entity.System);
+  reduceMoney(200);
+  speak(Entity.System, "An <LIGHTBLUE>MP floppy <WHITE>\ncame out!\n");
+  if (!trigger(0)) goto L18;
+  speak(Entity.Player, "I got too many Items.\nMust get rid of some.\n");
+  setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.MPFloppy);
+  return;
 
 L18:
-    return;
-    garbage { 20 00 fe 00 20 00 05 00 64 00 06 00 22 02 52 00 08 08 07 00 a4 0a 08 00 a6 0a 51 00 a8 0a ff ff 24 00 6e 63 19 00 0b 00 6e 0a 18 00 36 00 19 00 74 2c 1f 00 54 00 24 00 6e 63 19 00 0b 00 6e 07 18 00 4c 00 19 00 74 2c 30 00 1b 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 62 00 19 00 74 31 19 00 37 00 fe 00 18 22 02 00 6c 00 5a 01 1b 05 1a 00 82 73 82 88 82 85 82 92 82 85 81 40 82 97 82 81 82 93 81 40 82 93 82 8f 82 8d 82 85 82 8f 82 8e 82 85 81 40 82 97 82 88 82 8f 81 40 82 97 82 81 82 8e 82 94 82 85 82 84 0d 00 82 94 82 8f 81 40 82 82 82 85 82 83 82 8f 82 8d 82 85 81 40 82 81 81 40 82 8d 82 85 82 92 82 83 82 88 82 81 82 8e 82 94 81 42 81 40 82 68 81 40 82 88 82 85 82 81 82 92 82 84 0d 00 82 88 82 85 81 40 82 88 82 81 82 93 81 40 82 81 }
+  return;
+  garbage { 20 00 fe 00 20 00 05 00 64 00 06 00 22 02 52 00 08 08 07 00 a4 0a 08 00 a6 0a 51 00 a8 0a ff ff 24 00 6e 63 19 00 0b 00 6e 0a 18 00 36 00 19 00 74 2c 1f 00 54 00 24 00 6e 63 19 00 0b 00 6e 07 18 00 4c 00 19 00 74 2c 30 00 1b 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 62 00 19 00 74 31 19 00 37 00 fe 00 18 22 02 00 6c 00 5a 01 1b 05 1a 00 82 73 82 88 82 85 82 92 82 85 81 40 82 97 82 81 82 93 81 40 82 93 82 8f 82 8d 82 85 82 8f 82 8e 82 85 81 40 82 97 82 88 82 8f 81 40 82 97 82 81 82 8e 82 94 82 85 82 84 0d 00 82 94 82 8f 81 40 82 82 82 85 82 83 82 8f 82 8d 82 85 81 40 82 81 81 40 82 8d 82 85 82 92 82 83 82 88 82 81 82 8e 82 94 81 42 81 40 82 68 81 40 82 88 82 85 82 81 82 92 82 84 0d 00 82 88 82 85 81 40 82 88 82 81 82 93 81 40 82 81 }
 }

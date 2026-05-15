@@ -3,110 +3,110 @@
 #pragma script index=147 start=0x68000 end=0x68800 headerU16=0x20 sentinelOff=0xfe
 
 section onEnter(254) {
-    return;
+  return;
 }
 
 section(51) {
-    move(entity: Entity.Player, to: (1591, 607), sprint: 0);
-    waitForEntity(Entity.Player);
-    move(entity: Entity.Player, to: (1593, -343), sprint: 0);
-    warp(to: Map.FACT03, spawn: 0, trigger: 255);
-    return;
+  move(entity: Entity.Player, to: (1591, 607), sprint: 0);
+  waitForEntity(Entity.Player);
+  move(entity: Entity.Player, to: (1593, -343), sprint: 0);
+  warp(to: Map.FACT03, spawn: 0, trigger: 255);
+  return;
 }
 
 section(5) {
-    speak(5, "Where are you going?\n");
-    startBattle();
-    setTrigger(292);
-    return;
+  speak(5, "Where are you going?\n");
+  startBattle();
+  setTrigger(292);
+  return;
 }
 
 section(6) {
-    speak(6, "Wait!\n");
-    startBattle();
-    setTrigger(292);
-    return;
+  speak(6, "Wait!\n");
+  startBattle();
+  setTrigger(292);
+  return;
 }
 
 section(7) {
-    speak(7, "Dopeeee!\n");
-    startBattle();
-    setTrigger(287);
-    return;
+  speak(7, "Dopeeee!\n");
+  startBattle();
+  setTrigger(287);
+  return;
 }
 
 section(8) {
-    speak(8, "Gguhh Heyee Hee!\n");
-    startBattle();
-    setTrigger(287);
-    return;
+  speak(8, "Gguhh Heyee Hee!\n");
+  startBattle();
+  setTrigger(287);
+  return;
 }
 
 section(9) {
-    speak(9, "Who are you?\n");
-    showTextbox("I'm MetalMamemon, unbeaten\nin ninety nine battles!\nYou will be one hundred!\n");
-    showTextbox("I don't believe anyone like\n<LIGHTBLUE><PLAYER><WHITE>would run away.\n");
-    setDialogOwner(Entity.Player);
-    choice { "OK, let's fight" -> L1, "Sorry, laters" -> L4 }
-    goto L4;
+  speak(9, "Who are you?\n");
+  showTextbox("I'm MetalMamemon, unbeaten\nin ninety nine battles!\nYou will be one hundred!\n");
+  showTextbox("I don't believe anyone like\n<LIGHTBLUE><PLAYER><WHITE>would run away.\n");
+  setDialogOwner(Entity.Player);
+  choice { "OK, let's fight" -> L1, "Sorry, laters" -> L4 }
+  goto L4;
 
 L1:
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 9);
-    setPStat(252, 255);
-    setPStat(253, 255);
-    startBattle();
-    unsetTrigger(1);
-    setPStat(250, 0);
-    look(entity: Entity.Player, at: 9);
-    look(entity: 9, at: Entity.Player);
-    look(entity: Entity.Partner, at: 9);
-    waitForEntity(Entity.Player);
-    speak(9, "You're better than\nI thought.\n");
-    showTextbox("You're a worthy rival!\n");
-    showTextbox("I'll beat you someday!\n");
-    goto L2;
+  setTrigger(1);
+  setPStat(250, 1);
+  setPStat(251, 9);
+  setPStat(252, 255);
+  setPStat(253, 255);
+  startBattle();
+  unsetTrigger(1);
+  setPStat(250, 0);
+  look(entity: Entity.Player, at: 9);
+  look(entity: 9, at: Entity.Player);
+  look(entity: Entity.Partner, at: 9);
+  waitForEntity(Entity.Player);
+  speak(9, "You're better than\nI thought.\n");
+  showTextbox("You're a worthy rival!\n");
+  showTextbox("I'll beat you someday!\n");
+  goto L2;
 
 L2:
-    move(entity: 9, to: (-3120, 1836), sprint: 1);
-    if (pstat[101] >= 3) goto L3;
-    addPStat(101, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 9);
-    look(entity: Entity.Partner, at: 9);
-    goto L2;
+  move(entity: 9, to: (-3120, 1836), sprint: 1);
+  if (pstat[101] >= 3) goto L3;
+  addPStat(101, 1);
+  delay(20);
+  look(entity: Entity.Player, at: 9);
+  look(entity: Entity.Partner, at: 9);
+  goto L2;
 
 L3:
-    waitForEntity(9);
-    unloadEntity(9);
-    setPStat(101, 0);
-    playSound(8, 10);
-    speak(Entity.System, "MetalMamemon joins the city!\n");
-    unsetTrigger(1);
-    setTrigger(227);
-    addPStat(1, 3);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    return;
+  waitForEntity(9);
+  unloadEntity(9);
+  setPStat(101, 0);
+  playSound(8, 10);
+  speak(Entity.System, "MetalMamemon joins the city!\n");
+  unsetTrigger(1);
+  setTrigger(227);
+  addPStat(1, 3);
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  return;
 
 L4:
-    speak(9, "I knew you would chicken out.\nWell, let's meet when you\nget more guts.\n");
-    goto L5;
+  speak(9, "I knew you would chicken out.\nWell, let's meet when you\nget more guts.\n");
+  goto L5;
 
 L5:
-    move(entity: 9, to: (-3120, 1836), sprint: 1);
-    if (pstat[101] >= 3) goto L6;
-    addPStat(101, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 9);
-    look(entity: Entity.Partner, at: 9);
-    goto L5;
+  move(entity: 9, to: (-3120, 1836), sprint: 1);
+  if (pstat[101] >= 3) goto L6;
+  addPStat(101, 1);
+  delay(20);
+  look(entity: Entity.Player, at: 9);
+  look(entity: Entity.Partner, at: 9);
+  goto L5;
 
 L6:
-    waitForEntity(9);
-    unloadEntity(9);
-    setPStat(101, 0);
-    return;
-    garbage { 20 00 fe 00 20 00 33 00 22 00 05 00 3a 00 06 00 78 00 07 00 98 00 08 00 be 00 09 00 f4 00 ff ff fe 00 4e fd 37 06 5f 02 00 00 4a fd 4e fd 39 06 a9 fe 00 00 4b 9a 00 ff fe 00 1b 05 1a 00 82 76 82 88 82 85 82 92 82 85 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 87 82 8f 82 89 82 8e 82 87 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 24 01 fe 00 1b 06 1a 00 82 76 82 81 82 89 82 94 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 24 01 fe 00 1b 07 1a 00 82 63 82 8f 82 90 82 85 82 85 82 85 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1f 01 fe 00 1b 08 1a 00 82 66 82 87 82 95 82 88 82 88 81 40 82 67 82 85 82 99 82 85 82 85 81 40 82 67 82 85 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1f 01 fe 00 1b 09 1a 00 82 76 82 88 82 8f 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 48 0d 00 00 00 1a 00 82 68 81 75 82 8d 81 40 82 6c 82 85 82 94 82 81 82 8c 82 6c 82 81 82 8d 82 85 82 8d 82 8f 82 8e 81 43 81 40 82 95 82 8e 82 82 82 85 82 81 82 94 82 85 82 8e 0d 00 82 89 82 8e 81 40 82 8e 82 89 82 8e 82 85 82 94 82 99 81 40 82 8e 82 89 82 8e 82 85 81 40 82 82 82 81 82 94 82 94 82 8c 82 85 82 93 81 49 0d 00 82 78 82 8f 82 95 81 40 82 97 82 89 82 8c 82 8c 81 40 82 82 82 85 81 40 82 8f 82 8e 82 85 81 40 82 88 82 95 82 8e 82 84 82 92 82 85 82 84 81 49 0d 00 00 00 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 82 82 85 82 8c 82 89 82 85 82 96 82 85 81 40 82 81 82 8e 82 99 82 8f 82 8e 82 85 81 40 82 8c 82 89 82 8b 82 85 0d 00 01 06 05 00 01 01 82 97 82 8f 82 95 82 8c 82 84 81 40 82 92 82 95 82 8e 81 40 82 81 82 97 82 81 82 99 81 42 0d 00 00 00 1b fd 10 02 60 02 c4 03 1a 00 82 6e 82 6a 81 43 81 40 82 8c 82 85 82 94 81 75 82 93 81 40 82 86 82 89 82 87 82 88 82 94 0d 00 82 72 82 8f 82 92 82 92 82 99 81 43 81 40 82 8c 82 81 82 94 82 85 82 92 82 93 0d 00 00 00 12 00 16 00 c4 03 1c 00 01 00 1e 00 fa 01 1e 00 fb 09 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 09 4c 00 09 fd 4c 00 fc 09 4a fd 1b 09 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 82 82 85 82 94 82 94 82 85 82 92 81 40 82 94 82 88 82 81 82 8e 0d 00 82 68 81 40 82 94 82 88 82 8f 82 95 82 87 82 88 82 94 81 42 0d 00 00 00 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 81 81 40 82 97 82 8f 82 92 82 94 82 88 82 99 81 40 82 92 82 89 82 96 82 81 82 8c 81 49 0d 00 00 00 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 82 82 85 82 81 82 94 81 40 82 99 82 8f 82 95 81 40 82 93 82 8f 82 8d 82 85 82 84 82 81 82 99 81 49 0d 00 00 00 16 00 3c 03 4e 09 d0 f3 2c 07 01 00 19 00 0d 00 65 03 18 00 64 03 19 00 1f 00 65 01 67 00 14 00 4c 00 fd 09 4c 00 fc 09 16 00 3c 03 4a 09 48 09 1e 00 65 00 5a 00 08 0a }
+  waitForEntity(9);
+  unloadEntity(9);
+  setPStat(101, 0);
+  return;
+  garbage { 20 00 fe 00 20 00 33 00 22 00 05 00 3a 00 06 00 78 00 07 00 98 00 08 00 be 00 09 00 f4 00 ff ff fe 00 4e fd 37 06 5f 02 00 00 4a fd 4e fd 39 06 a9 fe 00 00 4b 9a 00 ff fe 00 1b 05 1a 00 82 76 82 88 82 85 82 92 82 85 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 87 82 8f 82 89 82 8e 82 87 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 24 01 fe 00 1b 06 1a 00 82 76 82 81 82 89 82 94 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 24 01 fe 00 1b 07 1a 00 82 63 82 8f 82 90 82 85 82 85 82 85 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1f 01 fe 00 1b 08 1a 00 82 66 82 87 82 95 82 88 82 88 81 40 82 67 82 85 82 99 82 85 82 85 81 40 82 67 82 85 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1f 01 fe 00 1b 09 1a 00 82 76 82 88 82 8f 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 48 0d 00 00 00 1a 00 82 68 81 75 82 8d 81 40 82 6c 82 85 82 94 82 81 82 8c 82 6c 82 81 82 8d 82 85 82 8d 82 8f 82 8e 81 43 81 40 82 95 82 8e 82 82 82 85 82 81 82 94 82 85 82 8e 0d 00 82 89 82 8e 81 40 82 8e 82 89 82 8e 82 85 82 94 82 99 81 40 82 8e 82 89 82 8e 82 85 81 40 82 82 82 81 82 94 82 94 82 8c 82 85 82 93 81 49 0d 00 82 78 82 8f 82 95 81 40 82 97 82 89 82 8c 82 8c 81 40 82 82 82 85 81 40 82 8f 82 8e 82 85 81 40 82 88 82 95 82 8e 82 84 82 92 82 85 82 84 81 49 0d 00 00 00 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 82 82 85 82 8c 82 89 82 85 82 96 82 85 81 40 82 81 82 8e 82 99 82 8f 82 8e 82 85 81 40 82 8c 82 89 82 8b 82 85 0d 00 01 06 05 00 01 01 82 97 82 8f 82 95 82 8c 82 84 81 40 82 92 82 95 82 8e 81 40 82 81 82 97 82 81 82 99 81 42 0d 00 00 00 1b fd 10 02 60 02 c4 03 1a 00 82 6e 82 6a 81 43 81 40 82 8c 82 85 82 94 81 75 82 93 81 40 82 86 82 89 82 87 82 88 82 94 0d 00 82 72 82 8f 82 92 82 92 82 99 81 43 81 40 82 8c 82 81 82 94 82 85 82 92 82 93 0d 00 00 00 12 00 16 00 c4 03 1c 00 01 00 1e 00 fa 01 1e 00 fb 09 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 09 4c 00 09 fd 4c 00 fc 09 4a fd 1b 09 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 82 82 85 82 94 82 94 82 85 82 92 81 40 82 94 82 88 82 81 82 8e 0d 00 82 68 81 40 82 94 82 88 82 8f 82 95 82 87 82 88 82 94 81 42 0d 00 00 00 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 81 81 40 82 97 82 8f 82 92 82 94 82 88 82 99 81 40 82 92 82 89 82 96 82 81 82 8c 81 49 0d 00 00 00 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 82 82 85 82 81 82 94 81 40 82 99 82 8f 82 95 81 40 82 93 82 8f 82 8d 82 85 82 84 82 81 82 99 81 49 0d 00 00 00 16 00 3c 03 4e 09 d0 f3 2c 07 01 00 19 00 0d 00 65 03 18 00 64 03 19 00 1f 00 65 01 67 00 14 00 4c 00 fd 09 4c 00 fc 09 16 00 3c 03 4a 09 48 09 1e 00 65 00 5a 00 08 0a }
 }

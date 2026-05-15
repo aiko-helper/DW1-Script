@@ -3,103 +3,103 @@
 #pragma script index=107 start=0x4c800 end=0x4d000 headerU16=0x14 sentinelOff=0x24
 
 section onEnter(254) {
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 19) goto L1;
-    spawnItem(Item.Digimushroom, x: 61, y: 54);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 19) goto L1;
+  spawnItem(Item.Digimushroom, x: 61, y: 54);
 
 L1:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 4) goto L2;
-    spawnItem(Item.Happymushroom, x: 39, y: 46);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 4) goto L2;
+  spawnItem(Item.Happymushroom, x: 39, y: 46);
 
 L2:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 14) goto L3;
-    spawnItem(Item.Digimushroom, x: 55, y: 63);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 14) goto L3;
+  spawnItem(Item.Digimushroom, x: 55, y: 63);
 
 L3:
-    return;
+  return;
 }
 
 section(51) {
-    if (trigger(105) || !trigger(230)) goto L1;
-    speak(Entity.System, "During the last earthquake,\nthe dirt and sand disappeared!\n");
-    setTrigger(105);
+  if (trigger(105) || !trigger(230)) goto L1;
+  speak(Entity.System, "During the last earthquake,\nthe dirt and sand disappeared!\n");
+  setTrigger(105);
 
 L1:
-    return;
+  return;
 }
 
 section(5) {
-    pstat[:SavedTime] = time();
-    speak(5, "The present time is\n<YEAR>month, <DAY>day,\n<HOUR>hours, <MINUTE>minutes.\n");
-    storeDigimonType(103);
-    storeDigimonTypus(103, 109);
-    if (pstat[109] != 1) goto L1;
-    speak(5, "<ORANGE><DIGIMON><WHITE> is a Data\nType Digimon, right?\n");
+  pstat[:SavedTime] = time();
+  speak(5, "The present time is\n<YEAR>month, <DAY>day,\n<HOUR>hours, <MINUTE>minutes.\n");
+  storeDigimonType(103);
+  storeDigimonTypus(103, 109);
+  if (pstat[109] != 1) goto L1;
+  speak(5, "<ORANGE><DIGIMON><WHITE> is a Data\nType Digimon, right?\n");
 
 L1:
-    if (pstat[109] != 2) goto L2;
-    speak(5, "<ORANGE><DIGIMON><WHITE> is a Vaccine\nType Digimon, right?\n");
+  if (pstat[109] != 2) goto L2;
+  speak(5, "<ORANGE><DIGIMON><WHITE> is a Vaccine\nType Digimon, right?\n");
 
 L2:
-    if (pstat[109] != 3) goto L3;
-    speak(5, "<ORANGE><DIGIMON><WHITE> is a Virus\nType Digimon, right?\n");
+  if (pstat[109] != 3) goto L3;
+  speak(5, "<ORANGE><DIGIMON><WHITE> is a Virus\nType Digimon, right?\n");
 
 L3:
-    addStats(tiredness: 10);
-    reduceStats(happiness: 10);
-    return;
+  addStats(tiredness: 10);
+  reduceStats(happiness: 10);
+  return;
 }
 
 section(6) {
-    speak(6, "I am useful for many things.\nWhat do you want me to do?\n");
-    setDialogOwner(Entity.Player);
-    choice { "Change his Parameters" -> L1, "Speed up time for us" -> L2, "Change this into a store" -> L9 }
-    return;
+  speak(6, "I am useful for many things.\nWhat do you want me to do?\n");
+  setDialogOwner(Entity.Player);
+  choice { "Change his Parameters" -> L1, "Speed up time for us" -> L2, "Change this into a store" -> L9 }
+  return;
 
 L1:
-    setDialogOwner(Entity.Player);
-    choice { "Make him most powerful" -> L6, "Make him super weak" -> L7, "Make him average" -> L8 }
-    return;
+  setDialogOwner(Entity.Player);
+  choice { "Make him most powerful" -> L6, "Make him super weak" -> L7, "Make him average" -> L8 }
+  return;
 
 L2:
-    setDialogOwner(Entity.Player);
-    choice { "Make one hour pass" -> L3, "Make six hours pass" -> L4, "Make twenty four hours pass" -> L5 }
-    return;
+  setDialogOwner(Entity.Player);
+  choice { "Make one hour pass" -> L3, "Make six hours pass" -> L4, "Make twenty four hours pass" -> L5 }
+  return;
 
 L3:
-    pstat[:SavedTime] = time();
-    addMinutesToDate(PStat.SavedTime, 60);
-    advanceToDate(PStat.SavedTime);
-    return;
+  pstat[:SavedTime] = time();
+  addMinutesToDate(PStat.SavedTime, 60);
+  advanceToDate(PStat.SavedTime);
+  return;
 
 L4:
-    pstat[:SavedTime] = time();
-    addMinutesToDate(PStat.SavedTime, 360);
-    advanceToDate(PStat.SavedTime);
-    return;
+  pstat[:SavedTime] = time();
+  addMinutesToDate(PStat.SavedTime, 360);
+  advanceToDate(PStat.SavedTime);
+  return;
 
 L5:
-    pstat[:SavedTime] = time();
-    addMinutesToDate(PStat.SavedTime, 1440);
-    advanceToDate(PStat.SavedTime);
-    return;
+  pstat[:SavedTime] = time();
+  addMinutesToDate(PStat.SavedTime, 1440);
+  advanceToDate(PStat.SavedTime);
+  return;
 
 L6:
-    setStats(offense: 999, defense: 999, speed: 999, brains: 999, maxHP: 9999, maxMP: 9999, currentHP: 9999, currentMP: 9999);
-    return;
+  setStats(offense: 999, defense: 999, speed: 999, brains: 999, maxHP: 9999, maxMP: 9999, currentHP: 9999, currentMP: 9999);
+  return;
 
 L7:
-    setStats(offense: 1, defense: 1, speed: 1, brains: 1, maxHP: 1, maxMP: 1, currentHP: 1, currentMP: 1);
-    return;
+  setStats(offense: 1, defense: 1, speed: 1, brains: 1, maxHP: 1, maxMP: 1, currentHP: 1, currentMP: 1);
+  return;
 
 L8:
-    setStats(offense: 500, defense: 500, speed: 500, brains: 500, maxHP: 5000, maxMP: 5000, currentHP: 5000, currentMP: 5000);
-    return;
+  setStats(offense: 500, defense: 500, speed: 500, brains: 500, maxHP: 5000, maxMP: 5000, currentHP: 5000, currentMP: 5000);
+  return;
 
 L9:
-    jumpToScriptSection(205, 6);
-    return;
-    garbage { 14 00 fe 00 14 00 33 00 58 00 05 00 ea 00 06 00 7a 02 ff ff 24 00 6e 63 19 00 0b 00 6e 13 18 00 2a 00 19 00 74 2c 3d 00 36 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 40 00 19 00 74 45 27 00 2e 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 56 00 19 00 74 2c 37 00 3f 00 fe 00 19 00 01 00 69 00 80 00 e6 00 18 00 e8 00 19 00 1b ff 1a 00 82 63 82 95 82 92 82 89 82 8e 82 87 81 40 82 94 82 88 82 85 81 40 82 8c 82 81 82 93 82 94 81 40 82 85 82 81 82 92 82 94 82 88 82 91 82 95 82 81 82 8b 82 85 81 43 0d 00 82 94 82 88 82 85 81 40 82 84 82 89 82 92 82 94 81 40 82 81 82 8e 82 84 81 40 82 93 82 81 82 8e 82 84 81 40 82 84 82 89 82 93 82 81 82 90 82 90 82 85 82 81 82 92 82 85 82 84 81 49 0d 00 00 00 1c 00 69 00 fe 00 25 69 1b 05 1a 00 82 73 82 88 82 85 81 40 82 90 82 92 82 85 82 93 82 85 82 8e 82 94 81 40 82 94 82 89 82 8d 82 85 81 40 82 89 82 93 0d 00 04 69 82 8d 82 8f 82 8e 82 94 82 88 81 43 81 40 04 6a 82 84 82 81 82 99 81 43 0d 00 04 6b 82 88 82 8f 82 95 82 92 82 93 81 43 81 40 04 6c 82 8d 82 89 82 8e 82 95 82 94 82 85 82 93 81 42 0d 00 00 00 22 67 3f 00 67 6d 19 00 08 00 6d 01 18 00 b8 01 19 00 1b 05 1a 00 01 0a 06 00 01 01 81 40 82 89 82 93 81 40 82 81 81 40 82 63 82 81 82 94 82 81 0d 00 82 73 82 99 82 90 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 19 00 08 00 6d 02 18 00 16 02 19 00 1b 05 1a 00 01 0a 06 00 01 01 81 40 82 89 82 93 81 40 82 81 81 40 82 75 82 81 82 83 82 83 82 89 82 8e 82 85 0d 00 82 73 82 99 82 90 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 19 00 08 00 6d 03 18 00 70 02 19 00 1b 05 1a 00 01 0a 06 00 01 01 81 40 82 89 82 93 81 40 82 81 81 40 82 75 82 89 82 92 82 95 82 93 0d 00 82 73 82 99 82 90 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 35 08 0a 00 36 09 0a 00 fe 00 1b 06 1a 00 82 68 81 40 82 81 82 8d 81 40 82 95 82 93 82 85 82 86 82 95 82 8c 81 40 82 86 82 8f 82 92 81 40 82 8d 82 81 82 8e 82 99 81 40 82 94 82 88 82 89 82 8e 82 87 82 93 81 42 0d 00 82 76 82 88 82 81 82 94 }
+  jumpToScriptSection(205, 6);
+  return;
+  garbage { 14 00 fe 00 14 00 33 00 58 00 05 00 ea 00 06 00 7a 02 ff ff 24 00 6e 63 19 00 0b 00 6e 13 18 00 2a 00 19 00 74 2c 3d 00 36 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 40 00 19 00 74 45 27 00 2e 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 56 00 19 00 74 2c 37 00 3f 00 fe 00 19 00 01 00 69 00 80 00 e6 00 18 00 e8 00 19 00 1b ff 1a 00 82 63 82 95 82 92 82 89 82 8e 82 87 81 40 82 94 82 88 82 85 81 40 82 8c 82 81 82 93 82 94 81 40 82 85 82 81 82 92 82 94 82 88 82 91 82 95 82 81 82 8b 82 85 81 43 0d 00 82 94 82 88 82 85 81 40 82 84 82 89 82 92 82 94 81 40 82 81 82 8e 82 84 81 40 82 93 82 81 82 8e 82 84 81 40 82 84 82 89 82 93 82 81 82 90 82 90 82 85 82 81 82 92 82 85 82 84 81 49 0d 00 00 00 1c 00 69 00 fe 00 25 69 1b 05 1a 00 82 73 82 88 82 85 81 40 82 90 82 92 82 85 82 93 82 85 82 8e 82 94 81 40 82 94 82 89 82 8d 82 85 81 40 82 89 82 93 0d 00 04 69 82 8d 82 8f 82 8e 82 94 82 88 81 43 81 40 04 6a 82 84 82 81 82 99 81 43 0d 00 04 6b 82 88 82 8f 82 95 82 92 82 93 81 43 81 40 04 6c 82 8d 82 89 82 8e 82 95 82 94 82 85 82 93 81 42 0d 00 00 00 22 67 3f 00 67 6d 19 00 08 00 6d 01 18 00 b8 01 19 00 1b 05 1a 00 01 0a 06 00 01 01 81 40 82 89 82 93 81 40 82 81 81 40 82 63 82 81 82 94 82 81 0d 00 82 73 82 99 82 90 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 19 00 08 00 6d 02 18 00 16 02 19 00 1b 05 1a 00 01 0a 06 00 01 01 81 40 82 89 82 93 81 40 82 81 81 40 82 75 82 81 82 83 82 83 82 89 82 8e 82 85 0d 00 82 73 82 99 82 90 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 19 00 08 00 6d 03 18 00 70 02 19 00 1b 05 1a 00 01 0a 06 00 01 01 81 40 82 89 82 93 81 40 82 81 81 40 82 75 82 89 82 92 82 95 82 93 0d 00 82 73 82 99 82 90 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 35 08 0a 00 36 09 0a 00 fe 00 1b 06 1a 00 82 68 81 40 82 81 82 8d 81 40 82 95 82 93 82 85 82 86 82 95 82 8c 81 40 82 86 82 8f 82 92 81 40 82 8d 82 81 82 8e 82 99 81 40 82 94 82 88 82 89 82 8e 82 87 82 93 81 42 0d 00 82 76 82 88 82 81 82 94 }
 }

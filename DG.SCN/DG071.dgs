@@ -3,184 +3,184 @@
 #pragma script index=71 start=0x33000 end=0x33800 headerU16=0x28 sentinelOff=0x24
 
 section onEnter(254) {
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 11) goto L1;
-    spawnItem(Item.Digimushroom, x: 68, y: 50);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 11) goto L1;
+  spawnItem(Item.Digimushroom, x: 68, y: 50);
 
 L1:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 17) goto L2;
-    spawnItem(Item.Digimushroom, x: 46, y: 29);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 17) goto L2;
+  spawnItem(Item.Digimushroom, x: 46, y: 29);
 
 L2:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 3) goto L3;
-    spawnItem(Item.SweetNut, x: 46, y: 73);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 3) goto L3;
+  spawnItem(Item.SweetNut, x: 46, y: 73);
 
 L3:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 0) goto L4;
-    spawnItem(Item.ChainMelon, x: 57, y: 83);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 0) goto L4;
+  spawnItem(Item.ChainMelon, x: 57, y: 83);
 
 L4:
-    return;
+  return;
 }
 
 section(5) {
-    speak(5, "Well, I see your point.\n");
-    startBattle();
-    setTrigger(282);
-    return;
+  speak(5, "Well, I see your point.\n");
+  startBattle();
+  setTrigger(282);
+  return;
 }
 
 section(6) {
-    speak(6, "Can you see its beauty?\n");
-    startBattle();
-    setTrigger(282);
-    return;
+  speak(6, "Can you see its beauty?\n");
+  startBattle();
+  setTrigger(282);
+  return;
 }
 
 section(7) {
-    speak(7, "Uggghhhh!!\n");
-    startBattle();
-    setTrigger(295);
-    return;
+  speak(7, "Uggghhhh!!\n");
+  startBattle();
+  setTrigger(295);
+  return;
 }
 
 section(8) {
-    speak(8, "I'm desperate now!\n");
-    startBattle();
-    setTrigger(296);
-    return;
+  speak(8, "I'm desperate now!\n");
+  startBattle();
+  setTrigger(296);
+  return;
 }
 
 section(9) {
-    speak(9, "Shoooot! Awh heck.\n");
-    startBattle();
-    setTrigger(296);
-    return;
+  speak(9, "Shoooot! Awh heck.\n");
+  startBattle();
+  setTrigger(296);
+  return;
 }
 
 section(10) {
-    speak(10, "I have a tummy ache.\n");
-    startBattle();
-    setTrigger(297);
-    return;
+  speak(10, "I have a tummy ache.\n");
+  startBattle();
+  setTrigger(297);
+  return;
 }
 
 section(81) {
-    speak(Entity.System, "Vending Machine\n");
-    rotate(entity: Entity.Player, to: 1536);
-    speak(Entity.Player, "A vending machine with\nspecial prizes.\nShould I buy something?\n");
-    choice { "Small Recovery:two hund bits" -> L1, "Portable potty:five hund bits" -> L3, "Don't buy" -> L5 }
-    goto L5;
-    return;
+  speak(Entity.System, "Vending Machine\n");
+  rotate(entity: Entity.Player, to: 1536);
+  speak(Entity.Player, "A vending machine with\nspecial prizes.\nShould I buy something?\n");
+  choice { "Small Recovery:two hund bits" -> L1, "Portable potty:five hund bits" -> L3, "Don't buy" -> L5 }
+  goto L5;
+  return;
 
 L1:
-    if (money < 200) goto L2;
-    goto L6;
-    goto L3;
+  if (money < 200) goto L2;
+  goto L6;
+  goto L3;
 
 L2:
-    speak(Entity.Player, "I don't got enough bits.\n");
-    return;
+  speak(Entity.Player, "I don't got enough bits.\n");
+  return;
 
 L3:
-    if (money < 500) goto L4;
-    goto L9;
-    goto L5;
+  if (money < 500) goto L4;
+  goto L9;
+  goto L5;
 
 L4:
-    speak(Entity.Player, "I don't got enough bits.\n");
-    return;
+  speak(Entity.Player, "I don't got enough bits.\n");
+  return;
 
 L5:
-    return;
+  return;
 
 L6:
-    giveItem(Item.SmallRecovery, 1);
-    if (!trigger(0)) goto L7;
-    speak(Entity.Player, "I got too many Items.\n");
-    return;
+  giveItem(Item.SmallRecovery, 1);
+  if (!trigger(0)) goto L7;
+  speak(Entity.Player, "I got too many Items.\n");
+  return;
 
 L7:
-    speak(Entity.System, "A <LIGHTBLUE>Small Recovery\nFloppy<WHITE>came out!\n");
-    reduceMoney(200);
-    roll(pstat: 102, max: 99);
-    if (pstat[102] >= 9) goto L8;
-    goto L12;
+  speak(Entity.System, "A <LIGHTBLUE>Small Recovery\nFloppy<WHITE>came out!\n");
+  reduceMoney(200);
+  roll(pstat: 102, max: 99);
+  if (pstat[102] >= 9) goto L8;
+  goto L12;
 
 L8:
-    return;
+  return;
 
 L9:
-    giveItem(Item.PortaPotty, 1);
-    if (!trigger(0)) goto L10;
-    speak(Entity.Player, "I got too many Items.\n");
-    return;
+  giveItem(Item.PortaPotty, 1);
+  if (!trigger(0)) goto L10;
+  speak(Entity.Player, "I got too many Items.\n");
+  return;
 
 L10:
-    speak(Entity.System, "A <LIGHTBLUE>Portable Potty <WHITE>\ncame out!\n");
-    reduceMoney(500);
-    roll(pstat: 102, max: 99);
-    if (pstat[102] >= 9) goto L11;
-    goto L12;
+  speak(Entity.System, "A <LIGHTBLUE>Portable Potty <WHITE>\ncame out!\n");
+  reduceMoney(500);
+  roll(pstat: 102, max: 99);
+  if (pstat[102] >= 9) goto L11;
+  goto L12;
 
 L11:
-    return;
+  return;
 
 L12:
-    speak(Entity.Player, "Alright, I won!\n");
-    speak(Entity.System, "A <LIGHTBLUE>Double Floppy <WHITE>\ncame out!\n");
-    giveItem(Item.DoubleFloppy, 1);
-    if (!trigger(0)) goto L13;
-    setTrigger(3);
-    speak(Entity.Player, "I got too many Items.\n");
-    callSubroutine(0);
-    callSubroutine(13);
-    giveItem(Item.SuperSpeedDisk, 1);
+  speak(Entity.Player, "Alright, I won!\n");
+  speak(Entity.System, "A <LIGHTBLUE>Double Floppy <WHITE>\ncame out!\n");
+  giveItem(Item.DoubleFloppy, 1);
+  if (!trigger(0)) goto L13;
+  setTrigger(3);
+  speak(Entity.Player, "I got too many Items.\n");
+  callSubroutine(0);
+  callSubroutine(13);
+  giveItem(Item.SuperSpeedDisk, 1);
 
 L13:
-    return;
+  return;
 }
 
 section(82) {
-    speak(Entity.System, "MP Stand\n");
-    rotate(entity: Entity.Player, to: 2048);
-    speak(Entity.Player, "Can this machine recover MP?\n");
-    choice { "Hund MP: two hund bits" -> L1, "Thous MP:eighteen hund bits" -> L4, "Don't use" -> L7 }
-    goto L7;
-    return;
+  speak(Entity.System, "MP Stand\n");
+  rotate(entity: Entity.Player, to: 2048);
+  speak(Entity.Player, "Can this machine recover MP?\n");
+  choice { "Hund MP: two hund bits" -> L1, "Thous MP:eighteen hund bits" -> L4, "Don't use" -> L7 }
+  goto L7;
+  return;
 
 L1:
-    if (money < 200) goto L2;
-    addStats(currentMP: 100);
-    reduceMoney(200);
-    speak(Entity.System, "Our MP level has recovered!\n");
-    goto L3;
+  if (money < 200) goto L2;
+  addStats(currentMP: 100);
+  reduceMoney(200);
+  speak(Entity.System, "Our MP level has recovered!\n");
+  goto L3;
 
 L2:
-    speak(Entity.Player, "I don't got enough bits.\n");
-    return;
+  speak(Entity.Player, "I don't got enough bits.\n");
+  return;
 
 L3:
-    return;
+  return;
 
 L4:
-    if (money < 1800) goto L5;
-    addStats(currentMP: 1000);
-    reduceMoney(1800);
-    speak(Entity.System, "Our MP level has recovered!\n");
-    goto L6;
+  if (money < 1800) goto L5;
+  addStats(currentMP: 1000);
+  reduceMoney(1800);
+  speak(Entity.System, "Our MP level has recovered!\n");
+  goto L6;
 
 L5:
-    speak(Entity.Player, "I don't got enough bits.\n");
-    return;
+  speak(Entity.Player, "I don't got enough bits.\n");
+  return;
 
 L6:
-    return;
+  return;
 
 L7:
-    return;
-    garbage { 28 00 fe 00 28 00 }
+  return;
+  garbage { 28 00 fe 00 28 00 }
 }

@@ -3,91 +3,91 @@
 #pragma script index=55 start=0x2a000 end=0x2a800 headerU16=0x20 sentinelOff=0x2875
 
 section onEnter(254) {
-    spawnChest(Item.Sirloin, 500, 567, 0, 653);
-    unsetTrigger(100);
-    return;
+  spawnChest(Item.Sirloin, 500, 567, 0, 653);
+  unsetTrigger(100);
+  return;
 }
 
 section(5) {
-    speak(5, "I'll handle you!\n");
-    startBattle();
-    setTrigger(307);
-    return;
+  speak(5, "I'll handle you!\n");
+  startBattle();
+  setTrigger(307);
+  return;
 }
 
 section(6) {
-    speak(6, "I'll handle you!\n");
-    startBattle();
-    setTrigger(307);
-    return;
+  speak(6, "I'll handle you!\n");
+  startBattle();
+  setTrigger(307);
+  return;
 }
 
 section(7) {
-    speak(7, "I'll handle you!\n");
-    startBattle();
-    setTrigger(307);
-    return;
+  speak(7, "I'll handle you!\n");
+  startBattle();
+  setTrigger(307);
+  return;
 }
 
 section(83) {
-    rotate(entity: Entity.Player, to: 1024);
-    delay(5);
-    if (!trigger(348)) goto L2;
-    if (trigger(100)) goto L1;
-    rotate3DObject(2, 1);
-    rotate3DObject(3, 1);
+  rotate(entity: Entity.Player, to: 1024);
+  delay(5);
+  if (!trigger(348)) goto L2;
+  if (trigger(100)) goto L1;
+  rotate3DObject(2, 1);
+  rotate3DObject(3, 1);
 
 L1:
-    delay(20);
-    speak(Entity.Player, "What does it say?\n");
-    speak(Entity.System, "Return to the position\nwhere you got the points\nfrom the dumb one.\n");
-    setTrigger(100);
-    return;
+  delay(20);
+  speak(Entity.Player, "What does it say?\n");
+  speak(Entity.System, "Return to the position\nwhere you got the points\nfrom the dumb one.\n");
+  setTrigger(100);
+  return;
 
 L2:
-    if (item[Item.FridgeKey] < 1 || trigger(348)) goto L3;
-    setTrigger(100);
-    playSound(8, 3);
-    speak(Entity.System, "I used a <LIGHTBLUE>\nrefrigerator key. <WHITE>\n");
-    rotate3DObject(2, 1);
-    rotate3DObject(3, 1);
-    delay(60);
-    removeItem(Item.FridgeKey, 1);
-    playAnimation(Entity.Player, 24);
-    delay(15);
-    speak(Entity.Player, "I don't see it.\n");
-    playAnimation(Entity.Player, 0);
-    speak(Entity.Player, "There's a memo.\n");
-    speak(Entity.System, "Return to the position\nwhere you got the points\nfrom the dumb one.\n");
-    speak(Entity.Player, "I should listen to this memo.\n");
-    setTrigger(348);
-    return;
+  if (item[Item.FridgeKey] < 1 || trigger(348)) goto L3;
+  setTrigger(100);
+  playSound(8, 3);
+  speak(Entity.System, "I used a <LIGHTBLUE>\nrefrigerator key. <WHITE>\n");
+  rotate3DObject(2, 1);
+  rotate3DObject(3, 1);
+  delay(60);
+  removeItem(Item.FridgeKey, 1);
+  playAnimation(Entity.Player, 24);
+  delay(15);
+  speak(Entity.Player, "I don't see it.\n");
+  playAnimation(Entity.Player, 0);
+  speak(Entity.Player, "There's a memo.\n");
+  speak(Entity.System, "Return to the position\nwhere you got the points\nfrom the dumb one.\n");
+  speak(Entity.Player, "I should listen to this memo.\n");
+  setTrigger(348);
+  return;
 
 L3:
-    if (item[Item.FridgeKey] >= 1 || trigger(348)) goto L4;
-    speak(Entity.Player, "It's a refrigerator.\n");
-    speak(Entity.Player, "It's locked. I've never seen\na locked fridge.\n");
-    return;
+  if (item[Item.FridgeKey] >= 1 || trigger(348)) goto L4;
+  speak(Entity.Player, "It's a refrigerator.\n");
+  speak(Entity.Player, "It's locked. I've never seen\na locked fridge.\n");
+  return;
 
 L4:
-    return;
+  return;
 }
 
 section(81) {
-    rotate3DObject(1, 1);
-    playSound(8, 1);
-    delay(10);
-    move(entity: Entity.Player, to: (81, -1600), sprint: 0);
-    warp(to: Map.YAKA12, spawn: 0, trigger: 255);
-    return;
+  rotate3DObject(1, 1);
+  playSound(8, 1);
+  delay(10);
+  move(entity: Entity.Player, to: (81, -1600), sprint: 0);
+  warp(to: Map.YAKA12, spawn: 0, trigger: 255);
+  return;
 }
 
 section(82) {
-    rotate3DObject(0, 1);
-    playSound(8, 1);
-    delay(10);
-    move(entity: Entity.Player, to: (-117, 1200), sprint: 0);
-    warp(to: Map.YAKA15, spawn: 1, trigger: 255);
-    return;
-    garbage { 20 00 fe 00 20 00 05 00 32 00 06 00 68 00 07 00 9e 00 53 00 d4 00 51 00 fe 03 52 00 18 04 ff ff 75 28 f4 01 00 00 37 02 00 00 8d 02 1d 00 64 00 fe 00 1b 05 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 88 82 81 82 8e 82 84 82 8c 82 85 81 40 82 99 82 8f 82 95 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 33 01 fe 00 1b 06 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 88 82 81 82 8e 82 84 82 8c 82 85 81 40 82 99 82 8f 82 95 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 33 01 fe 00 1b 07 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 88 82 81 82 8e 82 84 82 8c 82 85 81 40 82 99 82 8f 82 95 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 33 01 fe 00 4d fd 00 04 67 00 05 00 19 00 00 00 5c 01 18 00 bc 01 19 00 19 00 01 00 64 00 18 00 fc 00 19 00 70 02 00 01 70 03 00 01 67 00 14 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 84 82 8f 82 85 82 93 81 40 82 89 82 94 81 40 82 93 82 81 82 99 81 48 0d 00 00 00 1b ff 1a 00 82 71 82 85 82 94 82 95 82 92 82 8e 81 40 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 90 82 8f 82 93 82 89 82 94 82 89 82 8f 82 8e 0d 00 82 97 82 88 82 85 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 88 82 85 81 40 82 90 82 8f 82 89 82 8e 82 94 82 93 0d 00 82 86 82 92 82 8f 82 8d 81 40 82 94 82 88 82 85 81 40 82 84 82 95 82 8d 82 82 81 40 82 8f 82 8e 82 85 81 42 0d 00 00 00 1c 00 64 00 fe 00 19 00 24 00 7b 02 01 00 81 00 5c 01 18 00 56 03 19 00 1c 00 64 00 5a 00 08 03 1b ff 1a 00 82 68 81 40 82 95 82 93 82 85 82 84 81 40 82 81 81 40 01 06 0d 00 82 92 82 85 82 86 82 92 82 89 82 87 82 85 82 92 82 81 82 94 82 8f 82 92 81 40 82 8b 82 85 82 99 81 42 81 40 01 01 0d 00 00 00 70 02 00 01 70 03 00 01 67 00 3c 00 29 00 7b 01 56 00 fd 18 67 00 0f 00 1b fd 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 93 82 85 82 85 81 40 82 89 82 94 81 42 0d 00 00 00 56 00 fd 00 1b fd 1a 00 82 73 82 88 82 85 82 92 82 85 81 75 82 93 81 40 82 81 81 40 82 8d 82 85 82 8d 82 8f 81 42 0d 00 00 00 1b ff 1a 00 82 71 82 85 82 94 82 95 82 92 82 8e 81 40 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 90 82 8f 82 93 82 89 82 94 82 89 82 8f 82 8e 0d 00 82 97 82 88 82 85 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 88 82 85 81 40 82 90 82 8f 82 89 82 8e 82 94 82 93 0d 00 82 86 82 92 82 8f 82 8d 81 40 82 94 82 88 82 85 81 40 82 84 82 95 82 8d 82 82 81 40 82 8f 82 8e 82 85 81 42 0d 00 00 00 1b fd 1a 00 82 68 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 8c 82 89 82 93 82 94 82 85 82 8e 81 40 82 94 82 8f 81 40 82 94 82 88 82 89 82 93 81 40 82 8d 82 85 82 8d 82 8f 81 42 0d 00 00 00 1c 00 5c 01 fe 00 19 00 24 00 7b 05 01 00 81 00 5c 01 18 00 fc 03 19 00 1b fd 1a 00 82 68 82 94 81 75 82 93 81 40 82 81 81 40 82 92 82 85 82 86 82 92 82 89 82 87 82 85 82 92 82 81 82 94 82 8f 82 92 81 42 0d 00 00 00 1b fd 1a 00 82 68 82 94 81 75 82 93 81 40 82 8c 82 8f 82 83 82 8b 82 85 82 84 81 42 81 40 82 68 81 75 82 96 82 85 81 40 82 8e 82 85 82 96 82 85 82 92 81 40 }
+  rotate3DObject(0, 1);
+  playSound(8, 1);
+  delay(10);
+  move(entity: Entity.Player, to: (-117, 1200), sprint: 0);
+  warp(to: Map.YAKA15, spawn: 1, trigger: 255);
+  return;
+  garbage { 20 00 fe 00 20 00 05 00 32 00 06 00 68 00 07 00 9e 00 53 00 d4 00 51 00 fe 03 52 00 18 04 ff ff 75 28 f4 01 00 00 37 02 00 00 8d 02 1d 00 64 00 fe 00 1b 05 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 88 82 81 82 8e 82 84 82 8c 82 85 81 40 82 99 82 8f 82 95 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 33 01 fe 00 1b 06 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 88 82 81 82 8e 82 84 82 8c 82 85 81 40 82 99 82 8f 82 95 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 33 01 fe 00 1b 07 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 88 82 81 82 8e 82 84 82 8c 82 85 81 40 82 99 82 8f 82 95 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 33 01 fe 00 4d fd 00 04 67 00 05 00 19 00 00 00 5c 01 18 00 bc 01 19 00 19 00 01 00 64 00 18 00 fc 00 19 00 70 02 00 01 70 03 00 01 67 00 14 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 84 82 8f 82 85 82 93 81 40 82 89 82 94 81 40 82 93 82 81 82 99 81 48 0d 00 00 00 1b ff 1a 00 82 71 82 85 82 94 82 95 82 92 82 8e 81 40 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 90 82 8f 82 93 82 89 82 94 82 89 82 8f 82 8e 0d 00 82 97 82 88 82 85 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 88 82 85 81 40 82 90 82 8f 82 89 82 8e 82 94 82 93 0d 00 82 86 82 92 82 8f 82 8d 81 40 82 94 82 88 82 85 81 40 82 84 82 95 82 8d 82 82 81 40 82 8f 82 8e 82 85 81 42 0d 00 00 00 1c 00 64 00 fe 00 19 00 24 00 7b 02 01 00 81 00 5c 01 18 00 56 03 19 00 1c 00 64 00 5a 00 08 03 1b ff 1a 00 82 68 81 40 82 95 82 93 82 85 82 84 81 40 82 81 81 40 01 06 0d 00 82 92 82 85 82 86 82 92 82 89 82 87 82 85 82 92 82 81 82 94 82 8f 82 92 81 40 82 8b 82 85 82 99 81 42 81 40 01 01 0d 00 00 00 70 02 00 01 70 03 00 01 67 00 3c 00 29 00 7b 01 56 00 fd 18 67 00 0f 00 1b fd 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 93 82 85 82 85 81 40 82 89 82 94 81 42 0d 00 00 00 56 00 fd 00 1b fd 1a 00 82 73 82 88 82 85 82 92 82 85 81 75 82 93 81 40 82 81 81 40 82 8d 82 85 82 8d 82 8f 81 42 0d 00 00 00 1b ff 1a 00 82 71 82 85 82 94 82 95 82 92 82 8e 81 40 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 90 82 8f 82 93 82 89 82 94 82 89 82 8f 82 8e 0d 00 82 97 82 88 82 85 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 88 82 85 81 40 82 90 82 8f 82 89 82 8e 82 94 82 93 0d 00 82 86 82 92 82 8f 82 8d 81 40 82 94 82 88 82 85 81 40 82 84 82 95 82 8d 82 82 81 40 82 8f 82 8e 82 85 81 42 0d 00 00 00 1b fd 1a 00 82 68 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 8c 82 89 82 93 82 94 82 85 82 8e 81 40 82 94 82 8f 81 40 82 94 82 88 82 89 82 93 81 40 82 8d 82 85 82 8d 82 8f 81 42 0d 00 00 00 1c 00 5c 01 fe 00 19 00 24 00 7b 05 01 00 81 00 5c 01 18 00 fc 03 19 00 1b fd 1a 00 82 68 82 94 81 75 82 93 81 40 82 81 81 40 82 92 82 85 82 86 82 92 82 89 82 87 82 85 82 92 82 81 82 94 82 8f 82 92 81 42 0d 00 00 00 1b fd 1a 00 82 68 82 94 81 75 82 93 81 40 82 8c 82 8f 82 83 82 8b 82 85 82 84 81 42 81 40 82 68 81 75 82 96 82 85 81 40 82 8e 82 85 82 96 82 85 82 92 81 40 }
 }

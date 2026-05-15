@@ -3,220 +3,220 @@
 #pragma script index=15 start=0x10000 end=0x11000 headerU16=0x1c sentinelOff=0x24
 
 section onEnter(254) {
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 14) goto L1;
-    spawnItem(Item.Digimushroom, x: 48, y: 80);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 14) goto L1;
+  spawnItem(Item.Digimushroom, x: 48, y: 80);
 
 L1:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 6) goto L2;
-    spawnItem(Item.Happymushroom, x: 40, y: 60);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 6) goto L2;
+  spawnItem(Item.Happymushroom, x: 40, y: 60);
 
 L2:
-    if (!trigger(86) || trigger(225)) goto L3;
-    for id in 0..3 { setObjectVisibility(id, 0); }
+  if (!trigger(86) || trigger(225)) goto L3;
+  for id in 0..3 { setObjectVisibility(id, 0); }
 
 L3:
-    return;
+  return;
 }
 
 section(5) {
-    speak(5, "Are you a Digimon?\n");
-    startBattle();
-    setTrigger(277);
-    return;
+  speak(5, "Are you a Digimon?\n");
+  startBattle();
+  setTrigger(277);
+  return;
 }
 
 section(7) {
-    speak(7, "Where you from Homie?!\n");
-    startBattle();
-    setTrigger(277);
-    return;
+  speak(7, "Where you from Homie?!\n");
+  startBattle();
+  setTrigger(277);
+  return;
 }
 
 section(8) {
-    speak(8, "Don't make fun of me!\n");
-    startBattle();
-    setTrigger(296);
-    return;
+  speak(8, "Don't make fun of me!\n");
+  startBattle();
+  setTrigger(296);
+  return;
 }
 
 section(9) {
-    speak(9, "I'm gonna gobble you!\n");
-    startBattle();
-    setTrigger(278);
-    return;
+  speak(9, "I'm gonna gobble you!\n");
+  startBattle();
+  setTrigger(278);
+  return;
 }
 
 section(51) {
-    if (!trigger(225)) goto L1;
-    return;
+  if (!trigger(225)) goto L1;
+  return;
 
 L1:
-    if (trigger(86)) goto L2;
-    return;
+  if (trigger(86)) goto L2;
+  return;
 
 L2:
-    move(entity: Entity.Player, to: (-715, -2329), sprint: 0, withCamera: true);
-    delay(20);
-    rotate(entity: Entity.Player, to: 1024);
-    delay(5);
-    if (!trigger(186)) goto L3;
-    speak(Entity.Player, "Oh no, if I don't do\nanything, it will dry up...\n");
-    showTextbox("I hope it rains...\n");
-    goto L4;
+  move(entity: Entity.Player, to: (-715, -2329), sprint: 0, withCamera: true);
+  delay(20);
+  rotate(entity: Entity.Player, to: 1024);
+  delay(5);
+  if (!trigger(186)) goto L3;
+  speak(Entity.Player, "Oh no, if I don't do\nanything, it will dry up...\n");
+  showTextbox("I hope it rains...\n");
+  goto L4;
 
 L3:
-    setTrigger(186);
-    speak(Entity.Player, "Wow, interesting.\nIt's sprouting.\n");
-    delay(20);
-    playAnimation(Entity.Player, 16);
-    delay(20);
-    speak(Entity.Player, "It moved a little bit.\nIs this the mysterious plant\neveryone is talking about?\n");
-    playAnimation(Entity.Player, 22);
-    delay(20);
-    speak(Entity.Player, "It's wilting. If I don't\ndo anything, it'll die.\n");
-    playAnimation(Entity.Player, 0);
+  setTrigger(186);
+  speak(Entity.Player, "Wow, interesting.\nIt's sprouting.\n");
+  delay(20);
+  playAnimation(Entity.Player, 16);
+  delay(20);
+  speak(Entity.Player, "It moved a little bit.\nIs this the mysterious plant\neveryone is talking about?\n");
+  playAnimation(Entity.Player, 22);
+  delay(20);
+  speak(Entity.Player, "It's wilting. If I don't\ndo anything, it'll die.\n");
+  playAnimation(Entity.Player, 0);
 
 L4:
-    speak(Entity.System, "Gonna use some Items?\n");
-    setDialogOwner(Entity.Player);
-    choice { "Yes" -> L5, "No" -> L15 }
-    goto L15;
+  speak(Entity.System, "Gonna use some Items?\n");
+  setDialogOwner(Entity.Player);
+  choice { "Yes" -> L5, "No" -> L15 }
+  goto L15;
 
 L5:
-    setTrigger(3);
-    callSubroutine(0);
-    if (!trigger(3)) goto L6;
-    speak(Entity.Player, "I don't have anything now.\n");
-    goto L15;
+  setTrigger(3);
+  callSubroutine(0);
+  if (!trigger(3)) goto L6;
+  speak(Entity.Player, "I don't have anything now.\n");
+  goto L15;
 
 L6:
-    if (pstat[254] != 255) goto L7;
-    speak(Entity.Player, "Nothing I have is useful.\n");
-    goto L15;
+  if (pstat[254] != 255) goto L7;
+  speak(Entity.Player, "Nothing I have is useful.\n");
+  goto L15;
 
 L7:
-    if (pstat[254] != 121) goto L8;
-    fadeOutHUD();
-    callSubroutine(12);
-    goto L9;
+  if (pstat[254] != 121) goto L8;
+  fadeOutHUD();
+  callSubroutine(12);
+  goto L9;
 
 L8:
-    speak(Entity.Player, "This won't work...\n");
-    goto L15;
-    return;
+  speak(Entity.Player, "This won't work...\n");
+  goto L15;
+  return;
 
 L9:
-    loadDigimon(Digimon.NPCVegimon);
-    for id in 3..15 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutine(3, 13);
-    for id in 16..19 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutine(16, 4);
-    for id in 20..32 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutine(20, 13);
-    delay(50);
-    playSound(8, 1);
-    delay(100);
-    for id in 3..32 { setObjectVisibility(id, 1); }
-    for id in 33..76 { setObjectVisibility(id, 0); }
-    setPStatThenSetPStatThenCallSubroutine(33, 44);
-    delay(30);
-    for id in 0..3 { setObjectVisibility(id, 1); }
-    delay(40);
-    playSound(8, 2);
-    setDigimon(Digimon.NPCVegimon, 1, 0);
-    delay(5);
-    playAnimation(6, 28);
-    waitForEntity(6);
-    playAnimation(6, 0);
-    delay(20);
-    for id in 33..75 { setObjectVisibility(id, 1); }
-    playAnimation(Entity.Player, 15);
-    delayThenPlaySoundThenPlayAnimation(10);
-    delayThenPlaySoundThenPlayAnimation(20);
-    move(entity: 6, to: (-977, -1946), animDuration: 3);
-    delayThenPlaySoundThenPlayAnimation(20);
-    move(entity: 6, to: (-1254, -2263), animDuration: 3);
-    delayThenPlaySoundThenPlayAnimation(20);
-    move(entity: 6, to: (-1025, -2799), animDuration: 3);
-    delayThenPlaySoundThenPlayAnimation(20);
-    move(entity: 6, to: (-1025, -2349), animDuration: 3);
-    delay(20);
-    look(entity: 6, at: Entity.Player);
-    delay(5);
-    speak(6, "He he he.\n");
-    showTextbox("Hey, I'm Vegiemon!\n");
-    playAnimation(Entity.Player, 15);
-    delay(20);
-    speak(Entity.Player, "What! A plant Digimon?\n");
-    speak(6, "By the way, do you like\nveggies?\n");
-    playSound(8, 5);
-    playAnimation(Entity.Player, 16);
-    delay(20);
-    speak(Entity.Player, "Why are you asking me\nabout veggies? Well?\n");
-    setTrigger(49);
-    setSelection(L10, L11);
-    showTextbox("I like them\nI don't\n");
-    speak(Entity.Player, "Well, I changed my mind.\n");
-    return;
+  loadDigimon(Digimon.NPCVegimon);
+  for id in 3..15 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutine(3, 13);
+  for id in 16..19 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutine(16, 4);
+  for id in 20..32 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutine(20, 13);
+  delay(50);
+  playSound(8, 1);
+  delay(100);
+  for id in 3..32 { setObjectVisibility(id, 1); }
+  for id in 33..76 { setObjectVisibility(id, 0); }
+  setPStatThenSetPStatThenCallSubroutine(33, 44);
+  delay(30);
+  for id in 0..3 { setObjectVisibility(id, 1); }
+  delay(40);
+  playSound(8, 2);
+  setDigimon(Digimon.NPCVegimon, 1, 0);
+  delay(5);
+  playAnimation(6, 28);
+  waitForEntity(6);
+  playAnimation(6, 0);
+  delay(20);
+  for id in 33..75 { setObjectVisibility(id, 1); }
+  playAnimation(Entity.Player, 15);
+  delayThenPlaySoundThenPlayAnimation(10);
+  delayThenPlaySoundThenPlayAnimation(20);
+  move(entity: 6, to: (-977, -1946), animDuration: 3);
+  delayThenPlaySoundThenPlayAnimation(20);
+  move(entity: 6, to: (-1254, -2263), animDuration: 3);
+  delayThenPlaySoundThenPlayAnimation(20);
+  move(entity: 6, to: (-1025, -2799), animDuration: 3);
+  delayThenPlaySoundThenPlayAnimation(20);
+  move(entity: 6, to: (-1025, -2349), animDuration: 3);
+  delay(20);
+  look(entity: 6, at: Entity.Player);
+  delay(5);
+  speak(6, "He he he.\n");
+  showTextbox("Hey, I'm Vegiemon!\n");
+  playAnimation(Entity.Player, 15);
+  delay(20);
+  speak(Entity.Player, "What! A plant Digimon?\n");
+  speak(6, "By the way, do you like\nveggies?\n");
+  playSound(8, 5);
+  playAnimation(Entity.Player, 16);
+  delay(20);
+  speak(Entity.Player, "Why are you asking me\nabout veggies? Well?\n");
+  setTrigger(49);
+  setSelection(L10, L11);
+  showTextbox("I like them\nI don't\n");
+  speak(Entity.Player, "Well, I changed my mind.\n");
+  return;
 
 L10:
-    unsetTrigger(49);
-    playSound(8, 5);
-    speak(6, "Anyone who likes veggies\nmust be a nice guy.\n");
-    goto L12;
+  unsetTrigger(49);
+  playSound(8, 5);
+  speak(6, "Anyone who likes veggies\nmust be a nice guy.\n");
+  goto L12;
 
 L11:
-    unsetTrigger(49);
-    playSound(8, 5);
-    speak(6, "No, no!\nVeggies are good!\n");
-    goto L12;
+  unsetTrigger(49);
+  playSound(8, 5);
+  speak(6, "No, no!\nVeggies are good!\n");
+  goto L12;
 
 L12:
-    speak(Entity.Player, " ? ? ? \n");
-    speak(6, "Alright, I've decided.\nI'll come with you!\n");
-    playAnimation(Entity.Player, 19);
-    delay(20);
-    speak(Entity.Player, "What a persistent guy...\nHey, wait!\n");
-    playSound(8, 5);
-    speak(6, "Well, then I won't come!\nBye!\n");
-    speak(Entity.Player, "Make up your mind!\n");
-    speak(6, "What do you want me to do?\n");
-    playAnimation(Entity.Player, 20);
-    delay(10);
-    speak(Entity.Player, "Why don't you come to\nthe city and help us!\n");
-    playAnimation(Entity.Player, 0);
-    playSound(8, 5);
-    speak(6, "Alright, sounds good.\nI've been here way too long.\n");
-    move(entity: Entity.Player, to: (-1024, -1820), sprint: 1, withCamera: true);
-    move(entity: Entity.Partner, to: (-741, -1923), sprint: 1);
-    goto L13;
+  speak(Entity.Player, " ? ? ? \n");
+  speak(6, "Alright, I've decided.\nI'll come with you!\n");
+  playAnimation(Entity.Player, 19);
+  delay(20);
+  speak(Entity.Player, "What a persistent guy...\nHey, wait!\n");
+  playSound(8, 5);
+  speak(6, "Well, then I won't come!\nBye!\n");
+  speak(Entity.Player, "Make up your mind!\n");
+  speak(6, "What do you want me to do?\n");
+  playAnimation(Entity.Player, 20);
+  delay(10);
+  speak(Entity.Player, "Why don't you come to\nthe city and help us!\n");
+  playAnimation(Entity.Player, 0);
+  playSound(8, 5);
+  speak(6, "Alright, sounds good.\nI've been here way too long.\n");
+  move(entity: Entity.Player, to: (-1024, -1820), sprint: 1, withCamera: true);
+  move(entity: Entity.Partner, to: (-741, -1923), sprint: 1);
+  goto L13;
 
 L13:
-    move(entity: 6, to: (911, -2266), sprint: 1);
-    if (pstat[101] >= 10) goto L14;
-    addPStat(101, 1);
-    delay(10);
-    look(entity: Entity.Player, at: 6);
-    look(entity: Entity.Partner, at: 6);
-    goto L13;
+  move(entity: 6, to: (911, -2266), sprint: 1);
+  if (pstat[101] >= 10) goto L14;
+  addPStat(101, 1);
+  delay(10);
+  look(entity: Entity.Player, at: 6);
+  look(entity: Entity.Partner, at: 6);
+  goto L13;
 
 L14:
-    waitForEntity(6);
-    unloadEntity(6);
-    setPStat(101, 0);
-    playSound(8, 3);
-    speak(Entity.System, "Vegiemon joins the city!\n");
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    setTrigger(225);
-    addPStat(1, 2);
-    return;
+  waitForEntity(6);
+  unloadEntity(6);
+  setPStat(101, 0);
+  playSound(8, 3);
+  speak(Entity.System, "Vegiemon joins the city!\n");
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  setTrigger(225);
+  addPStat(1, 2);
+  return;
 
 L15:
-    move(entity: Entity.Player, to: (-61, -2273), sprint: 0, withCamera: true);
-    waitForEntity(Entity.Player);
-    return;
-    garbage { 1c 00 fe 00 1c 00 05 00 6a 00 07 00 a4 00 08 00 e6 00 09 00 26 01 33 00 66 01 ff ff 24 00 6e 63 19 00 0b 00 6e 0e 18 00 32 00 19 00 74 2c 30 00 50 00 24 00 6e 63 19 00 0b 00 6e 06 18 00 48 00 19 00 74 45 28 00 3c 00 19 00 00 00 56 00 81 00 e1 00 18 00 68 00 19 00 57 00 00 00 57 00 01 00 57 00 02 00 57 00 03 00 fe 00 1b 05 1a 00 82 60 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 81 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 15 01 fe 00 1b 07 1a 00 82 76 82 88 82 85 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 86 82 92 82 8f 82 8d 81 40 82 67 82 8f 82 8d 82 89 82 85 81 48 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 15 01 fe 00 1b 08 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 8d 82 81 82 8b 82 85 81 40 82 86 82 95 82 8e 81 40 82 8f 82 86 81 40 82 8d 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 09 1a 00 82 68 81 75 82 8d 81 40 82 87 82 8f 82 8e 82 8e 82 81 81 40 82 87 82 8f 82 82 82 82 82 8c 82 85 81 40 82 99 82 8f 82 95 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 16 01 fe 00 19 00 00 00 e1 00 18 00 74 01 19 00 fe 00 19 00 01 00 56 00 18 00 82 01 19 00 fe 00 52 fd 35 fd e7 f6 00 00 67 00 14 00 4d fd 00 04 67 00 05 00 19 00 00 00 ba 00 18 00 38 02 19 00 1b fd 1a 00 82 6e 82 88 81 40 82 8e 82 8f 81 43 81 40 82 89 82 86 81 40 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 84 82 8f 0d 00 82 81 82 8e 82 99 82 94 82 88 82 89 82 8e 82 87 81 43 81 40 82 89 82 94 81 40 82 97 82 89 82 8c 82 8c 81 40 82 84 82 92 82 99 81 40 82 95 82 90 81 42 81 42 81 42 0d 00 00 00 1a 00 82 68 81 40 82 88 82 8f 82 90 82 85 81 40 82 89 82 94 81 40 82 92 82 81 82 89 82 8e 82 93 81 42 81 42 81 42 0d 00 00 00 16 00 aa 03 1c 00 ba 00 1b fd 1a 00 82 76 82 8f 82 97 81 43 81 40 82 89 82 8e 82 94 82 85 82 92 82 85 82 93 82 94 82 89 82 8e 82 87 81 42 0d 00 82 68 82 94 81 75 82 93 81 40 82 93 82 90 82 92 82 8f 82 95 82 94 82 89 82 8e 82 87 81 42 0d 00 00 00 67 00 14 00 56 00 fd 10 67 00 14 00 1b fd 1a 00 82 68 82 94 81 40 82 8d 82 8f 82 96 82 85 82 84 81 40 82 81 81 40 82 8c 82 89 82 94 82 94 82 8c 82 85 81 40 82 82 82 89 82 94 81 42 }
+  move(entity: Entity.Player, to: (-61, -2273), sprint: 0, withCamera: true);
+  waitForEntity(Entity.Player);
+  return;
+  garbage { 1c 00 fe 00 1c 00 05 00 6a 00 07 00 a4 00 08 00 e6 00 09 00 26 01 33 00 66 01 ff ff 24 00 6e 63 19 00 0b 00 6e 0e 18 00 32 00 19 00 74 2c 30 00 50 00 24 00 6e 63 19 00 0b 00 6e 06 18 00 48 00 19 00 74 45 28 00 3c 00 19 00 00 00 56 00 81 00 e1 00 18 00 68 00 19 00 57 00 00 00 57 00 01 00 57 00 02 00 57 00 03 00 fe 00 1b 05 1a 00 82 60 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 81 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 15 01 fe 00 1b 07 1a 00 82 76 82 88 82 85 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 86 82 92 82 8f 82 8d 81 40 82 67 82 8f 82 8d 82 89 82 85 81 48 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 15 01 fe 00 1b 08 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 8d 82 81 82 8b 82 85 81 40 82 86 82 95 82 8e 81 40 82 8f 82 86 81 40 82 8d 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 09 1a 00 82 68 81 75 82 8d 81 40 82 87 82 8f 82 8e 82 8e 82 81 81 40 82 87 82 8f 82 82 82 82 82 8c 82 85 81 40 82 99 82 8f 82 95 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 16 01 fe 00 19 00 00 00 e1 00 18 00 74 01 19 00 fe 00 19 00 01 00 56 00 18 00 82 01 19 00 fe 00 52 fd 35 fd e7 f6 00 00 67 00 14 00 4d fd 00 04 67 00 05 00 19 00 00 00 ba 00 18 00 38 02 19 00 1b fd 1a 00 82 6e 82 88 81 40 82 8e 82 8f 81 43 81 40 82 89 82 86 81 40 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 84 82 8f 0d 00 82 81 82 8e 82 99 82 94 82 88 82 89 82 8e 82 87 81 43 81 40 82 89 82 94 81 40 82 97 82 89 82 8c 82 8c 81 40 82 84 82 92 82 99 81 40 82 95 82 90 81 42 81 42 81 42 0d 00 00 00 1a 00 82 68 81 40 82 88 82 8f 82 90 82 85 81 40 82 89 82 94 81 40 82 92 82 81 82 89 82 8e 82 93 81 42 81 42 81 42 0d 00 00 00 16 00 aa 03 1c 00 ba 00 1b fd 1a 00 82 76 82 8f 82 97 81 43 81 40 82 89 82 8e 82 94 82 85 82 92 82 85 82 93 82 94 82 89 82 8e 82 87 81 42 0d 00 82 68 82 94 81 75 82 93 81 40 82 93 82 90 82 92 82 8f 82 95 82 94 82 89 82 8e 82 87 81 42 0d 00 00 00 67 00 14 00 56 00 fd 10 67 00 14 00 1b fd 1a 00 82 68 82 94 81 40 82 8d 82 8f 82 96 82 85 82 84 81 40 82 81 81 40 82 8c 82 89 82 94 82 94 82 8c 82 85 81 40 82 82 82 89 82 94 81 42 }
 }

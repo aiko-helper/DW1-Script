@@ -3,128 +3,128 @@
 #pragma script index=134 start=0x5e800 end=0x5f000 headerU16=0x1c sentinelOff=0x24
 
 section onEnter(254) {
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 11) goto L1;
-    spawnItem(Item.Digimushroom, x: 59, y: 50);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 11) goto L1;
+  spawnItem(Item.Digimushroom, x: 59, y: 50);
 
 L1:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 17) goto L2;
-    spawnItem(Item.Digimushroom, x: 33, y: 42);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 17) goto L2;
+  spawnItem(Item.Digimushroom, x: 33, y: 42);
 
 L2:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 2) goto L3;
-    spawnItem(Item.Happymushroom, x: 37, y: 61);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 2) goto L3;
+  spawnItem(Item.Happymushroom, x: 37, y: 61);
 
 L3:
-    if (!trigger(319)) goto L4;
-    for id in 24..27 { setObjectVisibility(id, 1); }
-    goto L5;
+  if (!trigger(319)) goto L4;
+  for id in 24..27 { setObjectVisibility(id, 1); }
+  goto L5;
 
 L4:
-    setRectImpassible(32, 39, 9, 8);
-    setRectImpassible(35, 34, 8, 8);
+  setRectImpassible(32, 39, 9, 8);
+  setRectImpassible(35, 34, 8, 8);
 
 L5:
-    return;
+  return;
 }
 
 section(5) {
-    speak(5, "Shaka shaka!\n");
-    startBattle();
-    setTrigger(267);
-    return;
+  speak(5, "Shaka shaka!\n");
+  startBattle();
+  setTrigger(267);
+  return;
 }
 
 section(6) {
-    speak(6, "Shreau!\n");
-    startBattle();
-    setTrigger(267);
-    return;
+  speak(6, "Shreau!\n");
+  startBattle();
+  setTrigger(267);
+  return;
 }
 
 section(7) {
-    speak(7, "Ribbit!\n");
-    startBattle();
-    return;
+  speak(7, "Ribbit!\n");
+  startBattle();
+  return;
 }
 
 section(8) {
-    speak(8, "If we don't knock them out,\nwe'll get knocked out.\n");
-    startBattle();
-    return;
+  speak(8, "If we don't knock them out,\nwe'll get knocked out.\n");
+  startBattle();
+  return;
 }
 
 section(9) {
-    speak(9, "Bird brain!\n");
-    speak(9, "Numbskull!\n");
-    speak(9, "Dimwit!\n");
-    speak(9, "Chowder head!\n");
-    speak(9, "Dumb, dumb!\n");
-    speak(9, "Eau de Geek!\n");
-    speak(Entity.Player, "What did you say?!\n");
-    setSelection(L1, L4);
-    showTextbox("That gets me mad\nI'll just ignore them\n");
+  speak(9, "Bird brain!\n");
+  speak(9, "Numbskull!\n");
+  speak(9, "Dimwit!\n");
+  speak(9, "Chowder head!\n");
+  speak(9, "Dumb, dumb!\n");
+  speak(9, "Eau de Geek!\n");
+  speak(Entity.Player, "What did you say?!\n");
+  setSelection(L1, L4);
+  showTextbox("That gets me mad\nI'll just ignore them\n");
 
 L1:
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 9);
-    setPStat(252, 255);
-    setPStat(253, 255);
-    startBattle();
-    unsetTrigger(1);
-    setPStat(250, 0);
-    look(entity: Entity.Player, at: 9);
-    look(entity: 9, at: Entity.Player);
-    look(entity: Entity.Partner, at: 9);
-    speak(9, "They aren't nice!\n");
-    playAnimation(Entity.Player, 15);
-    delay(20);
-    setTrigger(309);
-    goto L2;
+  setTrigger(1);
+  setPStat(250, 1);
+  setPStat(251, 9);
+  setPStat(252, 255);
+  setPStat(253, 255);
+  startBattle();
+  unsetTrigger(1);
+  setPStat(250, 0);
+  look(entity: Entity.Player, at: 9);
+  look(entity: 9, at: Entity.Player);
+  look(entity: Entity.Partner, at: 9);
+  speak(9, "They aren't nice!\n");
+  playAnimation(Entity.Player, 15);
+  delay(20);
+  setTrigger(309);
+  goto L2;
 
 L2:
-    move(entity: 9, to: (-174, -388), sprint: 1);
-    if (pstat[101] >= 3) goto L3;
-    addPStat(101, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 9);
-    look(entity: Entity.Partner, at: 9);
-    goto L2;
+  move(entity: 9, to: (-174, -388), sprint: 1);
+  if (pstat[101] >= 3) goto L3;
+  addPStat(101, 1);
+  delay(20);
+  look(entity: Entity.Player, at: 9);
+  look(entity: Entity.Partner, at: 9);
+  goto L2;
 
 L3:
-    waitForEntity(9);
-    unloadEntity(9);
-    setPStat(101, 0);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    speak(Entity.Player, "Wait, what is it?\n");
-    loadDigimon(Digimon.Gekomon);
-    setDigimon(Digimon.Gekomon, 3, 0);
-    for id in 5..7 { setDigimon(Digimon.Gekomon, id, 0); }
-    delay(40);
-    playAnimation(Entity.Player, 24);
-    delay(20);
-    speak(Entity.Player, "!\n");
-    move(entity: 8, to: Entity.Player, sprint: 1);
-    move(entity: 10, to: Entity.Player, sprint: 1);
-    move(entity: 11, to: Entity.Player, sprint: 1);
-    move(entity: 12, to: Entity.Player, sprint: 1);
-    delay(40);
-    speak(8, "My master is calling me.\nCome with me. Ribbit.\n");
-    playAnimation(Entity.Player, 25);
-    delay(20);
-    speak(Entity.Player, "Oh no!\n");
-    warp(to: Map.GKYO02, spawn: 0, trigger: 5);
+  waitForEntity(9);
+  unloadEntity(9);
+  setPStat(101, 0);
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  speak(Entity.Player, "Wait, what is it?\n");
+  loadDigimon(Digimon.Gekomon);
+  setDigimon(Digimon.Gekomon, 3, 0);
+  for id in 5..7 { setDigimon(Digimon.Gekomon, id, 0); }
+  delay(40);
+  playAnimation(Entity.Player, 24);
+  delay(20);
+  speak(Entity.Player, "!\n");
+  move(entity: 8, to: Entity.Player, sprint: 1);
+  move(entity: 10, to: Entity.Player, sprint: 1);
+  move(entity: 11, to: Entity.Player, sprint: 1);
+  move(entity: 12, to: Entity.Player, sprint: 1);
+  delay(40);
+  speak(8, "My master is calling me.\nCome with me. Ribbit.\n");
+  playAnimation(Entity.Player, 25);
+  delay(20);
+  speak(Entity.Player, "Oh no!\n");
+  warp(to: Map.GKYO02, spawn: 0, trigger: 5);
 
 L4:
-    playAnimation(Entity.Player, 25);
-    delay(20);
-    speak(Entity.Player, "Ha ha ha, he's bluffing.\nI won't deal with kids.\n");
-    return;
-    startBattle();
-    return;
-    garbage { 1c 00 fe 00 1c 00 05 00 90 00 06 00 be 00 07 00 e2 00 08 00 02 01 09 00 78 01 ff ff 24 00 6e 63 19 00 0b 00 6e 0b 18 00 32 00 19 00 74 2c 3b 00 32 00 24 00 6e 63 19 00 0b 00 6e 11 18 00 48 00 19 00 74 2c 21 00 2a 00 24 00 6e 63 19 00 0b 00 6e 02 18 00 5e 00 19 00 74 45 25 00 3d 00 19 00 00 00 3f 01 18 00 7e 00 19 00 57 00 18 01 57 00 19 01 57 00 1a 01 57 00 1b 01 16 00 8e 00 7c 00 20 00 27 00 09 08 7c 00 23 00 22 00 08 08 fe 00 1b 05 1a 00 82 72 82 88 82 81 82 8b 82 81 81 40 82 93 82 88 82 81 82 8b 82 81 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 0b 01 fe 00 1b 06 1a 00 82 72 82 88 82 92 82 85 82 81 82 95 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 0b 01 fe 00 1b 07 1a 00 82 71 82 89 82 82 82 82 82 89 82 94 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 08 1a 00 82 68 82 86 81 40 82 97 82 85 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 8b 82 8e 82 8f 82 83 82 8b 81 40 82 94 82 88 82 85 82 8d 81 40 82 8f 82 95 82 94 81 43 0d 00 82 97 82 85 81 75 82 8c 82 8c 81 40 82 87 82 85 82 94 81 40 82 8b 82 8e 82 8f 82 83 82 8b 82 85 82 84 81 40 82 8f 82 95 82 94 81 42 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 09 1a 00 82 61 82 89 82 92 82 84 81 40 82 82 82 92 82 81 82 89 82 8e 81 49 0d 00 00 00 1b 09 1a 00 82 6d 82 95 82 8d 82 82 82 93 82 8b 82 95 82 8c 82 8c 81 49 0d 00 00 00 1b 09 1a 00 82 63 82 89 82 8d 82 97 82 89 82 94 81 49 0d 00 00 00 1b 09 1a 00 82 62 82 88 82 8f 82 97 82 84 82 85 82 92 81 40 82 88 82 85 82 81 82 84 81 49 0d 00 00 00 1b 09 1a 00 82 63 82 95 82 8d 82 82 81 43 81 40 82 84 82 95 82 8d 82 82 81 49 0d 00 00 00 1b 09 1a 00 82 64 82 81 82 95 81 40 82 84 82 85 81 40 82 66 82 85 82 85 82 8b 81 49 0d 00 00 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 84 82 89 82 84 81 40 82 99 82 8f 82 95 81 40 82 93 82 81 82 99 81 48 81 49 0d 00 00 00 10 02 ac 02 36 04 1a 00 82 73 82 88 82 81 82 94 81 40 82 87 82 85 82 94 82 93 81 40 82 8d 82 85 81 40 82 8d 82 81 82 84 0d 00 82 68 81 75 82 8c 82 8c 81 40 82 8a 82 95 82 93 82 94 81 40 82 89 82 87 82 8e 82 8f 82 92 82 85 81 40 82 94 82 88 82 85 82 8d 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 09 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 09 4c 00 09 fd 4c 00 fc 09 1b 09 1a 00 82 73 82 88 82 85 82 99 81 40 82 81 82 92 82 85 82 8e 81 75 82 94 81 40 82 8e 82 89 82 83 82 85 81 49 0d 00 00 00 56 00 fd 0f 67 00 14 00 1c 00 35 01 16 00 16 03 4e 09 52 ff 7c fe 01 00 19 00 0d 00 65 03 18 00 3e 03 19 00 1f 00 65 01 67 00 14 00 4c 00 fd 09 4c 00 fc 09 16 00 16 03 4a 09 48 09 1e 00 65 00 50 00 fd 0a 4a c8 }
+  playAnimation(Entity.Player, 25);
+  delay(20);
+  speak(Entity.Player, "Ha ha ha, he's bluffing.\nI won't deal with kids.\n");
+  return;
+  startBattle();
+  return;
+  garbage { 1c 00 fe 00 1c 00 05 00 90 00 06 00 be 00 07 00 e2 00 08 00 02 01 09 00 78 01 ff ff 24 00 6e 63 19 00 0b 00 6e 0b 18 00 32 00 19 00 74 2c 3b 00 32 00 24 00 6e 63 19 00 0b 00 6e 11 18 00 48 00 19 00 74 2c 21 00 2a 00 24 00 6e 63 19 00 0b 00 6e 02 18 00 5e 00 19 00 74 45 25 00 3d 00 19 00 00 00 3f 01 18 00 7e 00 19 00 57 00 18 01 57 00 19 01 57 00 1a 01 57 00 1b 01 16 00 8e 00 7c 00 20 00 27 00 09 08 7c 00 23 00 22 00 08 08 fe 00 1b 05 1a 00 82 72 82 88 82 81 82 8b 82 81 81 40 82 93 82 88 82 81 82 8b 82 81 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 0b 01 fe 00 1b 06 1a 00 82 72 82 88 82 92 82 85 82 81 82 95 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 0b 01 fe 00 1b 07 1a 00 82 71 82 89 82 82 82 82 82 89 82 94 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 08 1a 00 82 68 82 86 81 40 82 97 82 85 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 8b 82 8e 82 8f 82 83 82 8b 81 40 82 94 82 88 82 85 82 8d 81 40 82 8f 82 95 82 94 81 43 0d 00 82 97 82 85 81 75 82 8c 82 8c 81 40 82 87 82 85 82 94 81 40 82 8b 82 8e 82 8f 82 83 82 8b 82 85 82 84 81 40 82 8f 82 95 82 94 81 42 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 09 1a 00 82 61 82 89 82 92 82 84 81 40 82 82 82 92 82 81 82 89 82 8e 81 49 0d 00 00 00 1b 09 1a 00 82 6d 82 95 82 8d 82 82 82 93 82 8b 82 95 82 8c 82 8c 81 49 0d 00 00 00 1b 09 1a 00 82 63 82 89 82 8d 82 97 82 89 82 94 81 49 0d 00 00 00 1b 09 1a 00 82 62 82 88 82 8f 82 97 82 84 82 85 82 92 81 40 82 88 82 85 82 81 82 84 81 49 0d 00 00 00 1b 09 1a 00 82 63 82 95 82 8d 82 82 81 43 81 40 82 84 82 95 82 8d 82 82 81 49 0d 00 00 00 1b 09 1a 00 82 64 82 81 82 95 81 40 82 84 82 85 81 40 82 66 82 85 82 85 82 8b 81 49 0d 00 00 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 84 82 89 82 84 81 40 82 99 82 8f 82 95 81 40 82 93 82 81 82 99 81 48 81 49 0d 00 00 00 10 02 ac 02 36 04 1a 00 82 73 82 88 82 81 82 94 81 40 82 87 82 85 82 94 82 93 81 40 82 8d 82 85 81 40 82 8d 82 81 82 84 0d 00 82 68 81 75 82 8c 82 8c 81 40 82 8a 82 95 82 93 82 94 81 40 82 89 82 87 82 8e 82 8f 82 92 82 85 81 40 82 94 82 88 82 85 82 8d 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 09 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 09 4c 00 09 fd 4c 00 fc 09 1b 09 1a 00 82 73 82 88 82 85 82 99 81 40 82 81 82 92 82 85 82 8e 81 75 82 94 81 40 82 8e 82 89 82 83 82 85 81 49 0d 00 00 00 56 00 fd 0f 67 00 14 00 1c 00 35 01 16 00 16 03 4e 09 52 ff 7c fe 01 00 19 00 0d 00 65 03 18 00 3e 03 19 00 1f 00 65 01 67 00 14 00 4c 00 fd 09 4c 00 fc 09 16 00 16 03 4a 09 48 09 1e 00 65 00 50 00 fd 0a 4a c8 }
 }

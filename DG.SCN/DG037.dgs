@@ -3,138 +3,138 @@
 #pragma script index=37 start=0x1f000 end=0x1f800 headerU16=0x30 sentinelOff=0x24
 
 section onEnter(254) {
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 9) goto L1;
-    spawnItem(Item.Digimushroom, x: 35, y: 9);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 9) goto L1;
+  spawnItem(Item.Digimushroom, x: 35, y: 9);
 
 L1:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 4) goto L2;
-    spawnItem(Item.Digimushroom, x: 19, y: 31);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 4) goto L2;
+  spawnItem(Item.Digimushroom, x: 19, y: 31);
 
 L2:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 0) goto L3;
-    spawnItem(Item.Happymushroom, x: 11, y: 10);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 0) goto L3;
+  spawnItem(Item.Happymushroom, x: 11, y: 10);
 
 L3:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 0) goto L4;
-    spawnItem(Item.DeluxeMushroom, x: 46, y: 46);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 0) goto L4;
+  spawnItem(Item.DeluxeMushroom, x: 46, y: 46);
 
 L4:
-    if (trigger(180)) goto L5;
-    setObjectVisibility(2, 0);
-    return;
+  if (trigger(180)) goto L5;
+  setObjectVisibility(2, 0);
+  return;
 
 L5:
-    setObjectVisibility(2, 1);
-    return;
+  setObjectVisibility(2, 1);
+  return;
 }
 
 section(5) {
-    speak(5, "I'll knock you out!\n");
-    startBattle();
-    setTrigger(280);
-    return;
+  speak(5, "I'll knock you out!\n");
+  startBattle();
+  setTrigger(280);
+  return;
 }
 
 section(6) {
-    speak(6, "Hey, don't push me!\n");
-    startBattle();
-    setTrigger(280);
-    return;
+  speak(6, "Hey, don't push me!\n");
+  startBattle();
+  setTrigger(280);
+  return;
 }
 
 section(7) {
-    speak(7, "It's peaceful up here!\n");
-    startBattle();
-    setTrigger(280);
-    return;
+  speak(7, "It's peaceful up here!\n");
+  startBattle();
+  setTrigger(280);
+  return;
 }
 
 section(8) {
-    speak(8, "I'll fall! It's dangerous!\n");
-    startBattle();
-    setTrigger(299);
-    return;
+  speak(8, "I'll fall! It's dangerous!\n");
+  startBattle();
+  setTrigger(299);
+  return;
 }
 
 section(9) {
-    speak(9, "Don't do that up here!\n");
-    startBattle();
-    setTrigger(299);
-    return;
+  speak(9, "Don't do that up here!\n");
+  startBattle();
+  setTrigger(299);
+  return;
 }
 
 section(10) {
-    speak(10, "Don't even try to fight me!\n");
-    startBattle();
-    setTrigger(299);
-    return;
+  speak(10, "Don't even try to fight me!\n");
+  startBattle();
+  setTrigger(299);
+  return;
 }
 
 section(81) {
-    rotate(entity: Entity.Player, to: 1844);
-    speak(Entity.System, "Elevator\n");
-    setDialogOwner(Entity.Player);
-    choice { "Press DOWN" -> L1, "Don't get in" -> L4 }
-    goto L4;
-    return;
+  rotate(entity: Entity.Player, to: 1844);
+  speak(Entity.System, "Elevator\n");
+  setDialogOwner(Entity.Player);
+  choice { "Press DOWN" -> L1, "Don't get in" -> L4 }
+  goto L4;
+  return;
 
 L1:
-    if (!trigger(176)) goto L3;
-    playSound(8, 4);
-    rotate3DObject(0, 1);
-    delayThenRotate3DObjectThenDelayThenRotate3DObjectThenDelay(1, 0);
-    rotate3DObject(1, 1);
-    delayThenRotate3DObjectThenDelayThenRotate3DObjectThenDelay(0, 1);
-    rotate3DObject(0, 1);
-    delay(1);
-    rotate3DObject(1, 1);
-    delay(1);
-    playSound(8, 5);
-    if (pstat[16] != 3) goto L2;
-    warp(to: Map.MGEN11, spawn: 0, trigger: 60);
+  if (!trigger(176)) goto L3;
+  playSound(8, 4);
+  rotate3DObject(0, 1);
+  delayThenRotate3DObjectThenDelayThenRotate3DObjectThenDelay(1, 0);
+  rotate3DObject(1, 1);
+  delayThenRotate3DObjectThenDelayThenRotate3DObjectThenDelay(0, 1);
+  rotate3DObject(0, 1);
+  delay(1);
+  rotate3DObject(1, 1);
+  delay(1);
+  playSound(8, 5);
+  if (pstat[16] != 3) goto L2;
+  warp(to: Map.MGEN11, spawn: 0, trigger: 60);
 
 L2:
-    warp(to: Map.OGRE03, spawn: 1, trigger: 54);
-    return;
+  warp(to: Map.OGRE03, spawn: 1, trigger: 54);
+  return;
 
 L3:
-    delay(20);
-    speak(Entity.Player, "Nothing happens.\nThat's not good.\n");
-    return;
+  delay(20);
+  speak(Entity.Player, "Nothing happens.\nThat's not good.\n");
+  return;
 
 L4:
-    return;
+  return;
 }
 
 section(53) {
-    rotate(entity: Entity.Player, to: 3892);
-    playSound(8, 5);
-    setTrigger(180);
-    unsetTrigger(181);
-    return;
+  rotate(entity: Entity.Player, to: 3892);
+  playSound(8, 5);
+  setTrigger(180);
+  unsetTrigger(181);
+  return;
 }
 
 section(51) {
-    move(entity: Entity.Player, to: (4173, 2349), sprint: 0);
-    if (trigger(180)) goto L1;
-    warp(to: Map.GCAN04_2, spawn: 0, trigger: 255);
-    return;
+  move(entity: Entity.Player, to: (4173, 2349), sprint: 0);
+  if (trigger(180)) goto L1;
+  warp(to: Map.GCAN04_2, spawn: 0, trigger: 255);
+  return;
 
 L1:
-    warp(to: Map.GCAN04, spawn: 0, trigger: 255);
-    return;
+  warp(to: Map.GCAN04, spawn: 0, trigger: 255);
+  return;
 }
 
 section(52) {
-    move(entity: Entity.Player, to: (-517, -4524), sprint: 0);
-    if (!trigger(142)) goto L1;
-    warp(to: Map.GCAN08_2, spawn: 2, trigger: 255);
+  move(entity: Entity.Player, to: (-517, -4524), sprint: 0);
+  if (!trigger(142)) goto L1;
+  warp(to: Map.GCAN08_2, spawn: 2, trigger: 255);
 
 L1:
-    warp(to: Map.GCAN08_1, spawn: 2, trigger: 255);
-    garbage { 30 00 fe 00 30 00 05 00 a0 00 06 00 dc 00 07 00 18 01 08 00 5a 01 09 00 a4 01 0a 00 e6 01 51 00 32 02 35 00 4e 03 33 00 60 03 34 00 80 03 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 46 00 19 00 74 2c 23 00 09 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 5c 00 19 00 74 2c 13 00 1f 00 24 00 6e 63 19 00 0b 00 6e 00 18 00 72 00 19 00 74 45 0b 00 0a 00 24 00 6e 63 19 00 0b 00 6e 00 18 00 88 00 19 00 74 2e 2e 00 2e 00 19 00 01 00 b4 00 18 00 9a 00 19 00 57 00 02 00 fe 00 57 00 02 01 fe 00 1b 05 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 8b 82 8e 82 8f 82 83 82 8b 81 40 82 99 82 8f 82 95 81 40 82 8f 82 95 82 94 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 06 1a 00 82 67 82 85 82 99 81 43 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 90 82 95 82 93 82 88 81 40 82 8d 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 07 1a 00 82 68 82 94 81 75 82 93 81 40 82 90 82 85 82 81 82 83 82 85 82 86 82 95 82 8c 81 40 82 95 82 90 81 40 82 88 82 85 82 92 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 08 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 86 82 81 82 8c 82 8c 81 49 81 40 82 68 82 94 81 75 82 93 81 40 82 84 82 81 82 8e 82 87 82 85 82 92 82 8f 82 95 82 93 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2b 01 fe 00 1b 09 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 84 82 8f 81 40 82 94 82 88 82 81 82 94 81 40 82 95 82 90 81 40 82 88 82 85 82 92 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2b 01 fe 00 1b 0a 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 85 82 96 82 85 82 8e 81 40 82 94 82 92 82 99 81 40 82 94 82 8f 81 40 82 86 82 89 82 87 82 88 82 94 81 40 82 8d 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2b 01 fe 00 4d fd 34 07 1b ff 1a 00 82 64 82 8c 82 85 82 96 82 81 82 94 82 8f 82 92 0d 00 00 00 1b fd 10 02 92 02 4c 03 1a 00 82 6f 82 92 82 85 82 93 82 93 81 40 82 63 82 6e 82 76 82 6d 0d 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 87 82 85 82 94 81 40 82 89 82 8e 0d 00 00 00 12 00 16 00 4c 03 fe 00 19 00 00 00 b0 00 18 00 fc 02 19 00 5a 00 08 04 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 5a 00 08 05 19 00 08 00 10 03 18 00 f6 02 19 00 4b e2 00 3c 4b 30 01 36 fe 00 67 00 14 00 1b fd 1a 00 82 6d 82 8f 82 94 82 88 82 89 82 8e 82 87 81 40 82 88 82 81 82 90 82 90 82 85 82 8e 82 93 81 42 0d 00 82 73 82 88 82 81 82 94 81 75 82 93 81 40 82 8e 82 8f 82 94 81 40 82 87 82 8f 82 8f 82 84 81 42 0d 00 00 00 fe 00 fe 00 4d fd 34 0f 5a 00 08 05 1c 00 b4 00 1d 00 b5 00 fe 00 4e fd 4d 10 2d 09 00 00 19 00 01 00 b4 00 18 00 7a 03 19 00 4b 7f 00 ff fe 00 4b 27 00 ff fe 00 4e fd fb fd 54 ee 00 00 19 00 00 00 8e 00 18 00 98 03 19 00 4b 80 02 ff 4b 2b 02 ff ff 00 82 85 82 85 82 85 81 49 0d 00 00 00 16 00 ae 03 1d 00 31 00 4e 05 13 05 ce fb 01 00 19 00 0d 00 65 0a 18 00 da 03 19 00 1f 00 65 01 67 00 05 00 4c 00 fd 05 4c 00 fc 05 16 00 ae 03 4a 05 48 05 1e 00 65 00 5a 00 08 0b 1b ff 1a 00 82 61 82 81 82 8b 82 85 82 8d 82 8f 82 8e 81 40 82 8a 82 8f 82 89 82 8e 82 93 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 49 0d 00 00 00 56 00 fd 10 1b fd 1a 00 82 68 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 89 82 94 81 40 82 97 82 85 82 8e 82 94 81 40 82 6e 82 6a 81 42 0d 00 00 00 1c 00 ed 00 1f 00 01 02 fe 00 1d 00 31 00 56 00 05 1d 5a 00 }
+  warp(to: Map.GCAN08_1, spawn: 2, trigger: 255);
+  garbage { 30 00 fe 00 30 00 05 00 a0 00 06 00 dc 00 07 00 18 01 08 00 5a 01 09 00 a4 01 0a 00 e6 01 51 00 32 02 35 00 4e 03 33 00 60 03 34 00 80 03 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 46 00 19 00 74 2c 23 00 09 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 5c 00 19 00 74 2c 13 00 1f 00 24 00 6e 63 19 00 0b 00 6e 00 18 00 72 00 19 00 74 45 0b 00 0a 00 24 00 6e 63 19 00 0b 00 6e 00 18 00 88 00 19 00 74 2e 2e 00 2e 00 19 00 01 00 b4 00 18 00 9a 00 19 00 57 00 02 00 fe 00 57 00 02 01 fe 00 1b 05 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 8b 82 8e 82 8f 82 83 82 8b 81 40 82 99 82 8f 82 95 81 40 82 8f 82 95 82 94 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 06 1a 00 82 67 82 85 82 99 81 43 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 90 82 95 82 93 82 88 81 40 82 8d 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 07 1a 00 82 68 82 94 81 75 82 93 81 40 82 90 82 85 82 81 82 83 82 85 82 86 82 95 82 8c 81 40 82 95 82 90 81 40 82 88 82 85 82 92 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 08 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 86 82 81 82 8c 82 8c 81 49 81 40 82 68 82 94 81 75 82 93 81 40 82 84 82 81 82 8e 82 87 82 85 82 92 82 8f 82 95 82 93 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2b 01 fe 00 1b 09 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 84 82 8f 81 40 82 94 82 88 82 81 82 94 81 40 82 95 82 90 81 40 82 88 82 85 82 92 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2b 01 fe 00 1b 0a 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 85 82 96 82 85 82 8e 81 40 82 94 82 92 82 99 81 40 82 94 82 8f 81 40 82 86 82 89 82 87 82 88 82 94 81 40 82 8d 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2b 01 fe 00 4d fd 34 07 1b ff 1a 00 82 64 82 8c 82 85 82 96 82 81 82 94 82 8f 82 92 0d 00 00 00 1b fd 10 02 92 02 4c 03 1a 00 82 6f 82 92 82 85 82 93 82 93 81 40 82 63 82 6e 82 76 82 6d 0d 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 87 82 85 82 94 81 40 82 89 82 8e 0d 00 00 00 12 00 16 00 4c 03 fe 00 19 00 00 00 b0 00 18 00 fc 02 19 00 5a 00 08 04 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 5a 00 08 05 19 00 08 00 10 03 18 00 f6 02 19 00 4b e2 00 3c 4b 30 01 36 fe 00 67 00 14 00 1b fd 1a 00 82 6d 82 8f 82 94 82 88 82 89 82 8e 82 87 81 40 82 88 82 81 82 90 82 90 82 85 82 8e 82 93 81 42 0d 00 82 73 82 88 82 81 82 94 81 75 82 93 81 40 82 8e 82 8f 82 94 81 40 82 87 82 8f 82 8f 82 84 81 42 0d 00 00 00 fe 00 fe 00 4d fd 34 0f 5a 00 08 05 1c 00 b4 00 1d 00 b5 00 fe 00 4e fd 4d 10 2d 09 00 00 19 00 01 00 b4 00 18 00 7a 03 19 00 4b 7f 00 ff fe 00 4b 27 00 ff fe 00 4e fd fb fd 54 ee 00 00 19 00 00 00 8e 00 18 00 98 03 19 00 4b 80 02 ff 4b 2b 02 ff ff 00 82 85 82 85 82 85 81 49 0d 00 00 00 16 00 ae 03 1d 00 31 00 4e 05 13 05 ce fb 01 00 19 00 0d 00 65 0a 18 00 da 03 19 00 1f 00 65 01 67 00 05 00 4c 00 fd 05 4c 00 fc 05 16 00 ae 03 4a 05 48 05 1e 00 65 00 5a 00 08 0b 1b ff 1a 00 82 61 82 81 82 8b 82 85 82 8d 82 8f 82 8e 81 40 82 8a 82 8f 82 89 82 8e 82 93 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 49 0d 00 00 00 56 00 fd 10 1b fd 1a 00 82 68 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 89 82 94 81 40 82 97 82 85 82 8e 82 94 81 40 82 6e 82 6a 81 42 0d 00 00 00 1c 00 ed 00 1f 00 01 02 fe 00 1d 00 31 00 56 00 05 1d 5a 00 }
 }

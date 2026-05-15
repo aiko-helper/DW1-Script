@@ -3,250 +3,250 @@
 #pragma script index=6 start=0x9800 end=0xa800 headerU16=0x20 sentinelOff=0x24
 
 section onEnter(254) {
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 29) goto L1;
-    spawnItem(Item.Digimushroom, x: 42, y: 54);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 29) goto L1;
+  spawnItem(Item.Digimushroom, x: 42, y: 54);
 
 L1:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 59) goto L2;
-    spawnItem(Item.Digimushroom, x: 34, y: 30);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 59) goto L2;
+  spawnItem(Item.Digimushroom, x: 34, y: 30);
 
 L2:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 9) goto L3;
-    spawnItem(Item.Digimushroom, x: 53, y: 47);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 9) goto L3;
+  spawnItem(Item.Digimushroom, x: 53, y: 47);
 
 L3:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 19) goto L4;
-    spawnItem(Item.Digimushroom, x: 69, y: 60);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 19) goto L4;
+  spawnItem(Item.Digimushroom, x: 69, y: 60);
 
 L4:
-    if (!trigger(185) || trigger(249)) goto L5;
-    for id in 13..28 { setObjectVisibility(id, 0); }
+  if (!trigger(185) || trigger(249)) goto L5;
+  for id in 13..28 { setObjectVisibility(id, 0); }
 
 L5:
-    pstat[:SavedTime] = time();
-    if (pstat[107] < 15 || pstat[107] > 19 || trigger(249)) goto L6;
-    for id in 13..28 { setObjectVisibility(id, 0); }
+  pstat[:SavedTime] = time();
+  if (pstat[107] < 15 || pstat[107] > 19 || trigger(249)) goto L6;
+  for id in 13..28 { setObjectVisibility(id, 0); }
 
 L6:
-    return;
+  return;
 }
 
 section(6) {
-    speak(6, "I'm gonna win!\n");
-    startBattle();
-    return;
+  speak(6, "I'm gonna win!\n");
+  startBattle();
+  return;
 }
 
 section(7) {
-    speak(7, "Don't come here! Go away!\n");
-    startBattle();
-    return;
+  speak(7, "Don't come here! Go away!\n");
+  startBattle();
+  return;
 }
 
 section(8) {
-    speak(8, "Now I'm really angry!\n");
-    startBattle();
-    return;
+  speak(8, "Now I'm really angry!\n");
+  startBattle();
+  return;
 }
 
 section(9) {
-    speak(9, "Hit me and I'll hit back!\n");
-    startBattle();
-    return;
+  speak(9, "Hit me and I'll hit back!\n");
+  startBattle();
+  return;
 }
 
 section(10) {
-    speak(10, "Try it, if you can!\n");
-    startBattle();
-    return;
+  speak(10, "Try it, if you can!\n");
+  startBattle();
+  return;
 }
 
 section(51) {
-    if (!trigger(185) || trigger(249)) goto L1;
-    moveCamera(to: (2214, 865), slowdown: 20);
-    waitForEntity(200);
-    setPStat(247, 13);
-    setPStat(248, 16);
-    callSubroutine(21);
-    move(entity: Entity.Player, to: (1642, -107), sprint: 0);
-    move(entity: Entity.Partner, to: (1252, -547), sprint: 1);
-    delay(80);
-    for id in 13..28 { setObjectVisibility(id, 1); }
-    setDigimon(Digimon.Coelamon, 0, 0);
-    playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(31);
-    delayThenSetObjectVisibilityThenSetObjectVisibility(10, 31, 34, 0);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
-    delay(20);
-    look(entity: 5, at: Entity.Player);
-    speak(5, "Oh, it's you, <LIGHTBLUE><PLAYER><WHITE>.\nThe bridge is fixed.\n");
-    showTextbox("I hear you're making a city.\n");
-    showTextbox("I got a request.\nI want you to help me\njust like I helped you.\n");
-    speak(Entity.Player, "?\n");
-    speak(5, "Making a city means\nsaving this island.\nEveryone will be saved.\n");
-    playAnimation(Entity.Player, 19);
-    delay(15);
-    speak(Entity.Player, "Does that mean you'll\ncome to the city?\n");
-    playAnimation(Entity.Player, 0);
-    speak(5, "Yes. I'll go to your city.\n");
-    delay(10);
-    setObjectVisibility(34, 1);
-    unloadEntity(5);
-    playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(37);
-    delayThenSetObjectVisibilityThenSetObjectVisibility(10, 37, 29, 0);
-    setObjectVisibility(30, 0);
-    setPStat(247, 29);
-    setPStat(248, 2);
-    callSubroutine(21);
-    moveObjectTo(0, 29, 1, 30, 0, 640, 130);
-    moveObjectTo(1, 30, 1, 30, 0, 640, 130);
-    delayThenSetObjectVisibilityThenSetObjectVisibility(40, 29, 30, 1);
-    delay(10);
-    playSound(8, 11);
-    speak(Entity.System, "Coelamon joins the city!\n");
-    move(entity: Entity.Player, to: (1000, -461), sprint: 1);
-    moveCamera(to: Entity.Player, speed: 10);
-    setTrigger(249);
-    addPStat(1, 2);
-    return;
+  if (!trigger(185) || trigger(249)) goto L1;
+  moveCamera(to: (2214, 865), slowdown: 20);
+  waitForEntity(200);
+  setPStat(247, 13);
+  setPStat(248, 16);
+  callSubroutine(21);
+  move(entity: Entity.Player, to: (1642, -107), sprint: 0);
+  move(entity: Entity.Partner, to: (1252, -547), sprint: 1);
+  delay(80);
+  for id in 13..28 { setObjectVisibility(id, 1); }
+  setDigimon(Digimon.Coelamon, 0, 0);
+  playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(31);
+  delayThenSetObjectVisibilityThenSetObjectVisibility(10, 31, 34, 0);
+  look(entity: Entity.Player, at: 5);
+  look(entity: Entity.Partner, at: 5);
+  delay(20);
+  look(entity: 5, at: Entity.Player);
+  speak(5, "Oh, it's you, <LIGHTBLUE><PLAYER><WHITE>.\nThe bridge is fixed.\n");
+  showTextbox("I hear you're making a city.\n");
+  showTextbox("I got a request.\nI want you to help me\njust like I helped you.\n");
+  speak(Entity.Player, "?\n");
+  speak(5, "Making a city means\nsaving this island.\nEveryone will be saved.\n");
+  playAnimation(Entity.Player, 19);
+  delay(15);
+  speak(Entity.Player, "Does that mean you'll\ncome to the city?\n");
+  playAnimation(Entity.Player, 0);
+  speak(5, "Yes. I'll go to your city.\n");
+  delay(10);
+  setObjectVisibility(34, 1);
+  unloadEntity(5);
+  playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(37);
+  delayThenSetObjectVisibilityThenSetObjectVisibility(10, 37, 29, 0);
+  setObjectVisibility(30, 0);
+  setPStat(247, 29);
+  setPStat(248, 2);
+  callSubroutine(21);
+  moveObjectTo(0, 29, 1, 30, 0, 640, 130);
+  moveObjectTo(1, 30, 1, 30, 0, 640, 130);
+  delayThenSetObjectVisibilityThenSetObjectVisibility(40, 29, 30, 1);
+  delay(10);
+  playSound(8, 11);
+  speak(Entity.System, "Coelamon joins the city!\n");
+  move(entity: Entity.Player, to: (1000, -461), sprint: 1);
+  moveCamera(to: Entity.Player, speed: 10);
+  setTrigger(249);
+  addPStat(1, 2);
+  return;
 
 L1:
-    pstat[:SavedTime] = time();
-    if (pstat[107] < 15 || pstat[107] > 19 || trigger(249)) goto L2;
-    goto L3;
+  pstat[:SavedTime] = time();
+  if (pstat[107] < 15 || pstat[107] > 19 || trigger(249)) goto L2;
+  goto L3;
 
 L2:
-    return;
+  return;
 
 L3:
-    moveCamera(to: (2214, 865), slowdown: 20);
-    waitForEntity(200);
-    setPStat(247, 13);
-    setPStat(248, 16);
-    callSubroutine(21);
-    move(entity: Entity.Player, to: (1642, -107), sprint: 0);
-    move(entity: Entity.Partner, to: (1252, -547), sprint: 1);
-    delay(80);
-    for id in 13..28 { setObjectVisibility(id, 1); }
-    setDigimon(Digimon.Coelamon, 0, 0);
-    playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(31);
-    delayThenSetObjectVisibilityThenSetObjectVisibility(10, 31, 34, 0);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
-    delay(20);
-    look(entity: 5, at: Entity.Player);
-    playAnimation(Entity.Player, 15);
-    delay(20);
-    if (!trigger(96)) goto L4;
-    goto L8;
+  moveCamera(to: (2214, 865), slowdown: 20);
+  waitForEntity(200);
+  setPStat(247, 13);
+  setPStat(248, 16);
+  callSubroutine(21);
+  move(entity: Entity.Player, to: (1642, -107), sprint: 0);
+  move(entity: Entity.Partner, to: (1252, -547), sprint: 1);
+  delay(80);
+  for id in 13..28 { setObjectVisibility(id, 1); }
+  setDigimon(Digimon.Coelamon, 0, 0);
+  playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(31);
+  delayThenSetObjectVisibilityThenSetObjectVisibility(10, 31, 34, 0);
+  look(entity: Entity.Player, at: 5);
+  look(entity: Entity.Partner, at: 5);
+  delay(20);
+  look(entity: 5, at: Entity.Player);
+  playAnimation(Entity.Player, 15);
+  delay(20);
+  if (!trigger(96)) goto L4;
+  goto L8;
 
 L4:
-    speak(5, "Hey, are you human?\n");
-    showTextbox("I am Coelamon,\nthe fish Digimon.\nDid you come to see me?\n");
-    setTrigger(49);
-    setDialogOwner(Entity.Player);
-    setSelection(L5, L6);
-    showTextbox("Yes, we looked all over\nNow that you mention it\n");
+  speak(5, "Hey, are you human?\n");
+  showTextbox("I am Coelamon,\nthe fish Digimon.\nDid you come to see me?\n");
+  setTrigger(49);
+  setDialogOwner(Entity.Player);
+  setSelection(L5, L6);
+  showTextbox("Yes, we looked all over\nNow that you mention it\n");
 
 L5:
-    playAnimation(Entity.Player, 19);
-    delay(20);
-    unsetTrigger(49);
-    speak(5, "Ha-ha, is that so!\n");
-    goto L7;
+  playAnimation(Entity.Player, 19);
+  delay(20);
+  unsetTrigger(49);
+  speak(5, "Ha-ha, is that so!\n");
+  goto L7;
 
 L6:
-    playAnimation(Entity.Player, 19);
-    delay(20);
-    unsetTrigger(49);
-    speak(5, "I already know what\nyou want.\n");
+  playAnimation(Entity.Player, 19);
+  delay(20);
+  unsetTrigger(49);
+  speak(5, "I already know what\nyou want.\n");
 
 L7:
-    speak(5, "The bridge upstream is\nbroken and you want to go\nacross. Right?\n");
-    playSound(8, 8);
-    playAnimation(Entity.Player, 22);
-    delay(8);
-    playAnimation(Entity.Player, 22);
-    delay(8);
-    playAnimation(Entity.Player, 0);
-    delay(3);
-    playSound(8, 14);
-    showTextbox("I see.\nFine, I'll help you.\n");
+  speak(5, "The bridge upstream is\nbroken and you want to go\nacross. Right?\n");
+  playSound(8, 8);
+  playAnimation(Entity.Player, 22);
+  delay(8);
+  playAnimation(Entity.Player, 22);
+  delay(8);
+  playAnimation(Entity.Player, 0);
+  delay(3);
+  playSound(8, 14);
+  showTextbox("I see.\nFine, I'll help you.\n");
 
 L8:
-    if (!trigger(96)) goto L9;
-    speak(5, "Aa-ha, you've come again.\n");
+  if (!trigger(96)) goto L9;
+  speak(5, "Aa-ha, you've come again.\n");
 
 L9:
-    moveCamera(to: 5, speed: 10);
-    waitForEntity(200);
-    setObjectVisibility(34, 1);
-    unloadEntity(5);
-    playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(37);
-    delay(60);
-    setObjectVisibility(37, 1);
-    setDigimon(Digimon.Coelamon, 0, 0);
-    playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(31);
-    delayThenSetObjectVisibilityThenSetObjectVisibility(15, 31, 34, 0);
-    setDigimon(Digimon.Coelamon, 6, 0);
-    playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(32);
-    delayThenSetObjectVisibilityThenSetObjectVisibility(15, 32, 35, 0);
-    setDigimon(Digimon.Coelamon, 7, 0);
-    playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(33);
-    delayThenSetObjectVisibilityThenSetObjectVisibility(15, 33, 36, 0);
-    look(entity: 5, at: Entity.Player);
-    delay(20);
-    speak(5, "Now, walk on our heads.\nDon't worry.\n");
-    playSound(8, 14);
-    delayThenPlaySoundThenDelay(10, 14, 10);
-    playSound(8, 14);
-    delay(10);
-    playAnimation(Entity.Player, 11);
-    delay(20);
-    speak(Entity.Player, "Okay, here we go!\n");
-    look(entity: Entity.Player, at: 5);
-    delay(3);
-    playAnimation(Entity.Player, 21);
-    move(entity: Entity.Player, to: (2214, 865), animDuration: 15);
-    delayThenPlaySoundThenDelay(5, 9, 12);
-    playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(31);
-    look(entity: Entity.Player, at: 11);
-    delay(3);
-    playAnimation(Entity.Player, 21);
-    move(entity: Entity.Player, to: (2900, 1300), animDuration: 14);
-    delayThenPlaySoundThenDelay(5, 9, 12);
-    setObjectVisibility(31, 1);
-    playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(32);
-    look(entity: Entity.Player, at: 12);
-    delay(3);
-    playAnimation(Entity.Player, 21);
-    move(entity: Entity.Player, to: (3967, 3068), animDuration: 15);
-    delayThenPlaySoundThenDelay(5, 9, 12);
-    setObjectVisibility(32, 1);
-    playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(33);
-    look(entity: Entity.Player, at: 12);
-    delay(3);
-    playAnimation(Entity.Player, 21);
-    move(entity: Entity.Player, to: (5009, 4260), animDuration: 15);
-    delayThenPlaySoundThenDelay(5, 9, 12);
-    playSound(8, 7);
-    setObjectVisibility(33, 1);
-    look(entity: 5, at: Entity.Player);
-    playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(31);
-    delay(15);
-    setObjectVisibility(31, 1);
-    look(entity: 11, at: Entity.Player);
-    look(entity: 12, at: Entity.Player);
-    delay(20);
-    speak(5, "This world needs more\nteamwork. Let's meet again.\n");
-    playSound(8, 14);
-    setTrigger(96);
-    move(entity: Entity.Partner, to: (3500, 2500), sprint: 0);
-    warp(to: Map.TROP01, spawn: 4, trigger: 255);
-    return;
-    garbage { 20 00 fe 00 20 00 06 00 20 01 07 00 4e 01 08 00 92 01 09 00 ce 01 0a 00 12 02 33 00 4a 02 ff ff 24 00 6e 63 19 00 0b 00 6e 1d 18 00 36 00 19 00 74 2c 2a 00 36 00 24 00 6e 63 19 00 0b 00 6e 3b 18 00 4c 00 19 00 74 2c 22 00 1e 00 24 00 6e 63 19 00 0b 00 6e 09 18 00 62 00 19 00 74 2c 35 00 2f 00 24 00 6e 63 19 00 0b 00 6e 13 18 00 78 00 19 00 74 2c 45 00 3c 00 19 00 00 00 b9 00 81 00 f9 00 18 00 c8 00 19 00 57 00 0d 00 57 00 0e 00 57 00 0f 00 57 00 10 00 57 00 11 00 57 00 12 00 57 00 13 00 57 00 14 00 57 00 15 00 57 00 16 00 57 00 17 00 57 00 18 00 57 00 19 00 57 00 1a 00 57 00 1b 00 57 00 1c 00 25 69 19 00 0a 00 6b 0f 8b 00 6b 13 81 00 f9 00 18 00 1e 01 19 00 57 00 0d 00 57 00 0e 00 57 00 0f 00 57 00 10 00 57 00 11 00 57 00 12 00 57 00 13 00 57 00 14 00 57 00 15 00 57 00 16 00 57 00 17 00 57 00 18 00 57 00 19 00 57 00 1a 00 57 00 1b 00 57 00 1c 00 fe 00 1b 06 1a 00 82 68 81 75 82 8d 81 40 82 87 82 8f 82 8e 82 8e 82 81 81 40 82 97 82 89 82 8e 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 07 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 83 82 8f 82 8d 82 85 81 40 82 88 82 85 82 92 82 85 81 49 81 40 82 66 82 8f 81 40 82 81 82 97 82 81 82 99 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 08 1a 00 82 6d 82 8f 82 97 81 40 82 68 81 75 82 8d 81 40 82 92 82 85 82 81 82 8c 82 8c 82 99 81 40 82 81 82 8e 82 87 82 92 82 99 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 09 1a 00 82 67 82 89 82 94 81 40 82 8d 82 85 81 40 82 81 82 8e 82 84 81 40 82 68 81 75 82 8c 82 8c 81 40 82 88 82 89 82 94 81 40 82 82 82 81 82 83 82 8b 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 0a 1a 00 82 73 82 92 82 99 81 40 82 89 82 94 81 43 81 40 82 89 82 86 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 19 00 00 00 b9 00 81 00 f9 00 18 00 e2 05 19 00 4f 14 a6 08 61 03 4a c8 1e 00 f7 0d 1e 00 f8 10 64 15 4e fd 6a 06 95 ff 00 00 4e fc e4 04 dd fd 01 00 67 00 50 00 57 00 0d 01 57 00 0e 01 57 00 0f 01 57 00 10 01 57 00 11 01 57 00 12 01 57 00 13 01 57 00 14 01 57 00 15 01 57 00 16 01 57 00 17 01 57 00 18 01 57 00 19 01 57 00 1a 01 57 00 1b 01 57 00 1c 01 47 31 00 00 5a 00 08 07 57 00 1f 00 1e 00 f7 1f 1e 00 f8 01 64 15 67 00 0a 00 57 00 1f 01 57 00 22 00 4c 00 fd 05 4c 00 fc 05 67 00 14 00 4c 00 05 fd 1b 05 1a 00 82 6e 82 88 81 43 81 40 82 89 82 94 81 75 82 93 81 40 82 99 82 8f 82 95 81 43 81 40 01 06 05 00 01 01 81 42 0d 00 82 73 82 88 82 85 81 40 82 82 82 92 82 89 82 84 82 87 82 85 81 40 82 89 82 93 81 40 82 86 82 89 82 98 82 85 82 84 81 42 0d 00 00 00 1a 00 82 68 81 40 82 88 82 85 82 81 82 92 81 40 82 99 82 8f 82 95 81 75 82 92 82 85 81 40 82 8d 82 81 82 8b 82 89 82 8e 82 87 81 40 82 81 81 40 82 83 82 89 82 94 82 99 81 42 0d 00 00 00 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 81 81 40 82 92 82 85 82 91 82 95 82 85 82 93 82 94 81 42 0d 00 82 68 81 40 82 97 82 81 82 8e 82 94 81 40 82 99 82 8f 82 95 81 40 82 94 82 8f 81 40 82 88 82 85 82 8c 82 90 81 40 82 8d 82 85 0d 00 82 8a 82 95 82 93 82 94 81 40 82 8c 82 89 82 8b 82 85 81 40 82 68 }
+  moveCamera(to: 5, speed: 10);
+  waitForEntity(200);
+  setObjectVisibility(34, 1);
+  unloadEntity(5);
+  playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(37);
+  delay(60);
+  setObjectVisibility(37, 1);
+  setDigimon(Digimon.Coelamon, 0, 0);
+  playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(31);
+  delayThenSetObjectVisibilityThenSetObjectVisibility(15, 31, 34, 0);
+  setDigimon(Digimon.Coelamon, 6, 0);
+  playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(32);
+  delayThenSetObjectVisibilityThenSetObjectVisibility(15, 32, 35, 0);
+  setDigimon(Digimon.Coelamon, 7, 0);
+  playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(33);
+  delayThenSetObjectVisibilityThenSetObjectVisibility(15, 33, 36, 0);
+  look(entity: 5, at: Entity.Player);
+  delay(20);
+  speak(5, "Now, walk on our heads.\nDon't worry.\n");
+  playSound(8, 14);
+  delayThenPlaySoundThenDelay(10, 14, 10);
+  playSound(8, 14);
+  delay(10);
+  playAnimation(Entity.Player, 11);
+  delay(20);
+  speak(Entity.Player, "Okay, here we go!\n");
+  look(entity: Entity.Player, at: 5);
+  delay(3);
+  playAnimation(Entity.Player, 21);
+  move(entity: Entity.Player, to: (2214, 865), animDuration: 15);
+  delayThenPlaySoundThenDelay(5, 9, 12);
+  playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(31);
+  look(entity: Entity.Player, at: 11);
+  delay(3);
+  playAnimation(Entity.Player, 21);
+  move(entity: Entity.Player, to: (2900, 1300), animDuration: 14);
+  delayThenPlaySoundThenDelay(5, 9, 12);
+  setObjectVisibility(31, 1);
+  playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(32);
+  look(entity: Entity.Player, at: 12);
+  delay(3);
+  playAnimation(Entity.Player, 21);
+  move(entity: Entity.Player, to: (3967, 3068), animDuration: 15);
+  delayThenPlaySoundThenDelay(5, 9, 12);
+  setObjectVisibility(32, 1);
+  playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(33);
+  look(entity: Entity.Player, at: 12);
+  delay(3);
+  playAnimation(Entity.Player, 21);
+  move(entity: Entity.Player, to: (5009, 4260), animDuration: 15);
+  delayThenPlaySoundThenDelay(5, 9, 12);
+  playSound(8, 7);
+  setObjectVisibility(33, 1);
+  look(entity: 5, at: Entity.Player);
+  playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(31);
+  delay(15);
+  setObjectVisibility(31, 1);
+  look(entity: 11, at: Entity.Player);
+  look(entity: 12, at: Entity.Player);
+  delay(20);
+  speak(5, "This world needs more\nteamwork. Let's meet again.\n");
+  playSound(8, 14);
+  setTrigger(96);
+  move(entity: Entity.Partner, to: (3500, 2500), sprint: 0);
+  warp(to: Map.TROP01, spawn: 4, trigger: 255);
+  return;
+  garbage { 20 00 fe 00 20 00 06 00 20 01 07 00 4e 01 08 00 92 01 09 00 ce 01 0a 00 12 02 33 00 4a 02 ff ff 24 00 6e 63 19 00 0b 00 6e 1d 18 00 36 00 19 00 74 2c 2a 00 36 00 24 00 6e 63 19 00 0b 00 6e 3b 18 00 4c 00 19 00 74 2c 22 00 1e 00 24 00 6e 63 19 00 0b 00 6e 09 18 00 62 00 19 00 74 2c 35 00 2f 00 24 00 6e 63 19 00 0b 00 6e 13 18 00 78 00 19 00 74 2c 45 00 3c 00 19 00 00 00 b9 00 81 00 f9 00 18 00 c8 00 19 00 57 00 0d 00 57 00 0e 00 57 00 0f 00 57 00 10 00 57 00 11 00 57 00 12 00 57 00 13 00 57 00 14 00 57 00 15 00 57 00 16 00 57 00 17 00 57 00 18 00 57 00 19 00 57 00 1a 00 57 00 1b 00 57 00 1c 00 25 69 19 00 0a 00 6b 0f 8b 00 6b 13 81 00 f9 00 18 00 1e 01 19 00 57 00 0d 00 57 00 0e 00 57 00 0f 00 57 00 10 00 57 00 11 00 57 00 12 00 57 00 13 00 57 00 14 00 57 00 15 00 57 00 16 00 57 00 17 00 57 00 18 00 57 00 19 00 57 00 1a 00 57 00 1b 00 57 00 1c 00 fe 00 1b 06 1a 00 82 68 81 75 82 8d 81 40 82 87 82 8f 82 8e 82 8e 82 81 81 40 82 97 82 89 82 8e 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 07 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 83 82 8f 82 8d 82 85 81 40 82 88 82 85 82 92 82 85 81 49 81 40 82 66 82 8f 81 40 82 81 82 97 82 81 82 99 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 08 1a 00 82 6d 82 8f 82 97 81 40 82 68 81 75 82 8d 81 40 82 92 82 85 82 81 82 8c 82 8c 82 99 81 40 82 81 82 8e 82 87 82 92 82 99 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 09 1a 00 82 67 82 89 82 94 81 40 82 8d 82 85 81 40 82 81 82 8e 82 84 81 40 82 68 81 75 82 8c 82 8c 81 40 82 88 82 89 82 94 81 40 82 82 82 81 82 83 82 8b 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 0a 1a 00 82 73 82 92 82 99 81 40 82 89 82 94 81 43 81 40 82 89 82 86 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 19 00 00 00 b9 00 81 00 f9 00 18 00 e2 05 19 00 4f 14 a6 08 61 03 4a c8 1e 00 f7 0d 1e 00 f8 10 64 15 4e fd 6a 06 95 ff 00 00 4e fc e4 04 dd fd 01 00 67 00 50 00 57 00 0d 01 57 00 0e 01 57 00 0f 01 57 00 10 01 57 00 11 01 57 00 12 01 57 00 13 01 57 00 14 01 57 00 15 01 57 00 16 01 57 00 17 01 57 00 18 01 57 00 19 01 57 00 1a 01 57 00 1b 01 57 00 1c 01 47 31 00 00 5a 00 08 07 57 00 1f 00 1e 00 f7 1f 1e 00 f8 01 64 15 67 00 0a 00 57 00 1f 01 57 00 22 00 4c 00 fd 05 4c 00 fc 05 67 00 14 00 4c 00 05 fd 1b 05 1a 00 82 6e 82 88 81 43 81 40 82 89 82 94 81 75 82 93 81 40 82 99 82 8f 82 95 81 43 81 40 01 06 05 00 01 01 81 42 0d 00 82 73 82 88 82 85 81 40 82 82 82 92 82 89 82 84 82 87 82 85 81 40 82 89 82 93 81 40 82 86 82 89 82 98 82 85 82 84 81 42 0d 00 00 00 1a 00 82 68 81 40 82 88 82 85 82 81 82 92 81 40 82 99 82 8f 82 95 81 75 82 92 82 85 81 40 82 8d 82 81 82 8b 82 89 82 8e 82 87 81 40 82 81 81 40 82 83 82 89 82 94 82 99 81 42 0d 00 00 00 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 81 81 40 82 92 82 85 82 91 82 95 82 85 82 93 82 94 81 42 0d 00 82 68 81 40 82 97 82 81 82 8e 82 94 81 40 82 99 82 8f 82 95 81 40 82 94 82 8f 81 40 82 88 82 85 82 8c 82 90 81 40 82 8d 82 85 0d 00 82 8a 82 95 82 93 82 94 81 40 82 8c 82 89 82 8b 82 85 81 40 82 68 }
 }

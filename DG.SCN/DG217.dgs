@@ -3,292 +3,292 @@
 #pragma script index=217 start=0xbc000 end=0xbd800 headerU16=0xc sentinelOff=0xfe
 
 section onEnter(254) {
-    return;
+  return;
 }
 
 section(51) {
-    if (!trigger(209) || pstat[27] != 0) goto L1;
-    speak(5, "Well, what are you going\nto order?\n");
-    goto L3;
+  if (!trigger(209) || pstat[27] != 0) goto L1;
+  speak(5, "Well, what are you going\nto order?\n");
+  goto L3;
 
 L1:
-    if (!trigger(208) || pstat[27] != 1) goto L2;
-    speak(5, "What do you want to eat?\n");
-    goto L17;
+  if (!trigger(208) || pstat[27] != 1) goto L2;
+  speak(5, "What do you want to eat?\n");
+  goto L17;
 
 L2:
-    if (!trigger(222) || pstat[27] != 2) goto L3;
-    speak(5, "Hey, what are you gonna eat?\n");
-    goto L31;
+  if (!trigger(222) || pstat[27] != 2) goto L3;
+  speak(5, "Hey, what are you gonna eat?\n");
+  goto L31;
 
 L3:
-    setDialogOwner(Entity.System);
-    choice { "Red Ramen: four hund bits" -> L4, "Hot Curry: twelve hund bits" -> L8, "Hot pot:thirty five hund bits" -> L12 }
-    goto L16;
+  setDialogOwner(Entity.System);
+  choice { "Red Ramen: four hund bits" -> L4, "Hot Curry: twelve hund bits" -> L8, "Hot pot:thirty five hund bits" -> L12 }
+  goto L16;
 
 L4:
-    if (money < 400) goto L5;
-    goto L6;
+  if (money < 400) goto L5;
+  goto L6;
 
 L5:
-    speak(5, "Looks like you\ndon't have enough bits.\n");
-    return;
+  speak(5, "Looks like you\ndon't have enough bits.\n");
+  return;
 
 L6:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L7;
-    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\nRed Hot Ramen!\n");
-    addStats(offense: 1, defense: 0, speed: 0, brains: 1, maxHP: 0, maxMP: 0);
-    reduceStats(tiredness: 5);
-    addStats(happiness: 2, discipline: 0, energy: 20, weight: 2);
-    reduceMoney(400);
-    speak(Entity.System, "Offensive Power went up one!\nBrains went up by one!\n");
-    showTextbox("Happiness went up!\nTiredness went down!\n");
-    playAnimation(Entity.Partner, 11);
-    waitForEntity(Entity.Partner);
-    goto L16;
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L7;
+  speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\nRed Hot Ramen!\n");
+  addStats(offense: 1, defense: 0, speed: 0, brains: 1, maxHP: 0, maxMP: 0);
+  reduceStats(tiredness: 5);
+  addStats(happiness: 2, discipline: 0, energy: 20, weight: 2);
+  reduceMoney(400);
+  speak(Entity.System, "Offensive Power went up one!\nBrains went up by one!\n");
+  showTextbox("Happiness went up!\nTiredness went down!\n");
+  playAnimation(Entity.Partner, 11);
+  waitForEntity(Entity.Partner);
+  goto L16;
 
 L7:
-    playAnimation(Entity.Partner, 13);
-    waitForEntity(Entity.System);
-    speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
-    return;
+  playAnimation(Entity.Partner, 13);
+  waitForEntity(Entity.System);
+  speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
+  return;
 
 L8:
-    if (money < 1200) goto L9;
-    goto L10;
+  if (money < 1200) goto L9;
+  goto L10;
 
 L9:
-    speak(5, "Looks like you\ndon't have enough bits.\n");
-    return;
+  speak(5, "Looks like you\ndon't have enough bits.\n");
+  return;
 
 L10:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L11;
-    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\nBurning Hot Curry!\n");
-    addStats(offense: 3, defense: 0, speed: 0, brains: 2, maxHP: 0, maxMP: 0);
-    reduceStats(tiredness: 5);
-    addStats(happiness: 4, discipline: 0, energy: 26, weight: 3);
-    reduceMoney(1200);
-    speak(Entity.System, "Offensive Power went\nup by three!\nBrains went up by two!\n");
-    showTextbox("Happiness went up!\nTiredness went down.\n");
-    playAnimation(Entity.Partner, 11);
-    waitForEntity(Entity.Partner);
-    goto L16;
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L11;
+  speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\nBurning Hot Curry!\n");
+  addStats(offense: 3, defense: 0, speed: 0, brains: 2, maxHP: 0, maxMP: 0);
+  reduceStats(tiredness: 5);
+  addStats(happiness: 4, discipline: 0, energy: 26, weight: 3);
+  reduceMoney(1200);
+  speak(Entity.System, "Offensive Power went\nup by three!\nBrains went up by two!\n");
+  showTextbox("Happiness went up!\nTiredness went down.\n");
+  playAnimation(Entity.Partner, 11);
+  waitForEntity(Entity.Partner);
+  goto L16;
 
 L11:
-    playAnimation(Entity.Partner, 13);
-    waitForEntity(Entity.System);
-    speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
-    return;
+  playAnimation(Entity.Partner, 13);
+  waitForEntity(Entity.System);
+  speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
+  return;
 
 L12:
-    if (money < 3500) goto L13;
-    goto L14;
+  if (money < 3500) goto L13;
+  goto L14;
 
 L13:
-    speak(5, "Looks like you\ndon't have enough bits.\n");
-    return;
+  speak(5, "Looks like you\ndon't have enough bits.\n");
+  return;
 
 L14:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L15;
-    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\nLava Hot Pot!\n");
-    addStats(offense: 5, defense: 0, speed: 0, brains: 3, maxHP: 0, maxMP: 0);
-    reduceStats(tiredness: 5);
-    addStats(happiness: 6, discipline: 1, energy: 20, weight: 4);
-    reduceMoney(3500);
-    speak(Entity.System, "Offensive Power\nwent up by five!\nBrains went up by three!\n");
-    showTextbox("Happiness went up!\nDiscipline went down!\nTiredness went down!\n");
-    playAnimation(Entity.Partner, 11);
-    waitForEntity(Entity.Partner);
-    goto L16;
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L15;
+  speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\nLava Hot Pot!\n");
+  addStats(offense: 5, defense: 0, speed: 0, brains: 3, maxHP: 0, maxMP: 0);
+  reduceStats(tiredness: 5);
+  addStats(happiness: 6, discipline: 1, energy: 20, weight: 4);
+  reduceMoney(3500);
+  speak(Entity.System, "Offensive Power\nwent up by five!\nBrains went up by three!\n");
+  showTextbox("Happiness went up!\nDiscipline went down!\nTiredness went down!\n");
+  playAnimation(Entity.Partner, 11);
+  waitForEntity(Entity.Partner);
+  goto L16;
 
 L15:
-    playAnimation(Entity.Partner, 13);
-    waitForEntity(Entity.System);
-    speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
-    return;
+  playAnimation(Entity.Partner, 13);
+  waitForEntity(Entity.System);
+  speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
+  return;
 
 L16:
-    speak(5, "Come back anytime.\n");
-    return;
+  speak(5, "Come back anytime.\n");
+  return;
 
 L17:
-    setDialogOwner(Entity.System);
-    choice { "Dragon Noodle:four hund bits" -> L18, "Zaurus Pizza:one thous bits" -> L22, "j.burger:twenty five hund bits" -> L26 }
-    goto L30;
+  setDialogOwner(Entity.System);
+  choice { "Dragon Noodle:four hund bits" -> L18, "Zaurus Pizza:one thous bits" -> L22, "j.burger:twenty five hund bits" -> L26 }
+  goto L30;
 
 L18:
-    if (money < 400) goto L19;
-    goto L20;
+  if (money < 400) goto L19;
+  goto L20;
 
 L19:
-    speak(5, "You don't have enough bits.\n");
-    return;
+  speak(5, "You don't have enough bits.\n");
+  return;
 
 L20:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L21;
-    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\nWild Dragon Noodle.\n");
-    addStats(offense: 0, defense: 1, speed: 1, brains: 0, maxHP: 10, maxMP: 0);
-    reduceStats(tiredness: 5);
-    addStats(happiness: 2, discipline: 0, energy: 18, weight: 2);
-    reduceMoney(400);
-    speak(Entity.System, "Defensive Power went up one!\nSpeed went up by one!\n");
-    showTextbox("Happiness went up!\nTiredness went down.\n");
-    playAnimation(Entity.Partner, 11);
-    waitForEntity(Entity.Partner);
-    goto L30;
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L21;
+  speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\nWild Dragon Noodle.\n");
+  addStats(offense: 0, defense: 1, speed: 1, brains: 0, maxHP: 10, maxMP: 0);
+  reduceStats(tiredness: 5);
+  addStats(happiness: 2, discipline: 0, energy: 18, weight: 2);
+  reduceMoney(400);
+  speak(Entity.System, "Defensive Power went up one!\nSpeed went up by one!\n");
+  showTextbox("Happiness went up!\nTiredness went down.\n");
+  playAnimation(Entity.Partner, 11);
+  waitForEntity(Entity.Partner);
+  goto L30;
 
 L21:
-    playAnimation(Entity.Partner, 13);
-    waitForEntity(Entity.System);
-    speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
-    return;
+  playAnimation(Entity.Partner, 13);
+  waitForEntity(Entity.System);
+  speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
+  return;
 
 L22:
-    if (money < 1000) goto L23;
-    goto L24;
+  if (money < 1000) goto L23;
+  goto L24;
 
 L23:
-    speak(5, "You don't have enough bits.\n");
-    return;
+  speak(5, "You don't have enough bits.\n");
+  return;
 
 L24:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L25;
-    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\nZaurus Pizza!\n");
-    addStats(offense: 0, defense: 3, speed: 2, brains: 0, maxHP: 30, maxMP: 0);
-    reduceStats(tiredness: 5);
-    addStats(happiness: 4, discipline: 0, energy: 28, weight: 3);
-    reduceMoney(1000);
-    speak(Entity.System, "Defensive Power went\nup three!\nSpeed went up two!\n");
-    showTextbox("Happiness went up!\nTiredness went down.\n");
-    playAnimation(Entity.Partner, 11);
-    waitForEntity(Entity.Partner);
-    goto L30;
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L25;
+  speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\nZaurus Pizza!\n");
+  addStats(offense: 0, defense: 3, speed: 2, brains: 0, maxHP: 30, maxMP: 0);
+  reduceStats(tiredness: 5);
+  addStats(happiness: 4, discipline: 0, energy: 28, weight: 3);
+  reduceMoney(1000);
+  speak(Entity.System, "Defensive Power went\nup three!\nSpeed went up two!\n");
+  showTextbox("Happiness went up!\nTiredness went down.\n");
+  playAnimation(Entity.Partner, 11);
+  waitForEntity(Entity.Partner);
+  goto L30;
 
 L25:
-    playAnimation(Entity.Partner, 13);
-    waitForEntity(Entity.System);
-    speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
-    return;
+  playAnimation(Entity.Partner, 13);
+  waitForEntity(Entity.System);
+  speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
+  return;
 
 L26:
-    if (money < 2500) goto L27;
-    goto L28;
+  if (money < 2500) goto L27;
+  goto L28;
 
 L27:
-    speak(5, "You don't have enough bits.\n");
-    return;
+  speak(5, "You don't have enough bits.\n");
+  return;
 
 L28:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L29;
-    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed a\nJurassic Burger!\n");
-    addStats(offense: 0, defense: 5, speed: 3, brains: 0, maxHP: 50, maxMP: 0);
-    reduceStats(tiredness: 5);
-    addStats(happiness: 8, discipline: 1, energy: 35, weight: 4);
-    reduceMoney(2500);
-    speak(Entity.System, "Defensive Power went\nwent up by five!\nSpeed went up three!\n");
-    showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down.\n");
-    playAnimation(Entity.Partner, 11);
-    waitForEntity(Entity.Partner);
-    goto L30;
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L29;
+  speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed a\nJurassic Burger!\n");
+  addStats(offense: 0, defense: 5, speed: 3, brains: 0, maxHP: 50, maxMP: 0);
+  reduceStats(tiredness: 5);
+  addStats(happiness: 8, discipline: 1, energy: 35, weight: 4);
+  reduceMoney(2500);
+  speak(Entity.System, "Defensive Power went\nwent up by five!\nSpeed went up three!\n");
+  showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down.\n");
+  playAnimation(Entity.Partner, 11);
+  waitForEntity(Entity.Partner);
+  goto L30;
 
 L29:
-    playAnimation(Entity.Partner, 13);
-    waitForEntity(Entity.System);
-    speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
-    return;
+  playAnimation(Entity.Partner, 13);
+  waitForEntity(Entity.System);
+  speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
+  return;
 
 L30:
-    speak(5, "Oh, it's over already.\n");
-    return;
+  speak(5, "Oh, it's over already.\n");
+  return;
 
 L31:
-    setDialogOwner(Entity.System);
-    choice { "T-bone Steak:one thous bits" -> L32, "Dx-steak:twenty five hun bits" -> L36, "Phantom steak:five thous bits" -> L40 }
-    goto L44;
+  setDialogOwner(Entity.System);
+  choice { "T-bone Steak:one thous bits" -> L32, "Dx-steak:twenty five hun bits" -> L36, "Phantom steak:five thous bits" -> L40 }
+  goto L44;
 
 L32:
-    if (money < 1000) goto L33;
-    goto L34;
+  if (money < 1000) goto L33;
+  goto L34;
 
 L33:
-    speak(5, "You don't have enough bits.\n");
-    return;
+  speak(5, "You don't have enough bits.\n");
+  return;
 
 L34:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L35;
-    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\nT-bone steak!\n");
-    addStats(offense: 0, defense: 0, speed: 0, brains: 1, maxHP: 10, maxMP: 0);
-    reduceStats(tiredness: 5);
-    addStats(happiness: 0, discipline: 1, energy: 30, weight: 3);
-    reduceMoney(1000);
-    speak(Entity.System, "HP went up ten!\nBrains went up one!\n");
-    showTextbox("Discipline went up\nTiredness went down.\n");
-    playAnimation(Entity.Partner, 11);
-    waitForEntity(Entity.Partner);
-    goto L44;
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L35;
+  speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\nT-bone steak!\n");
+  addStats(offense: 0, defense: 0, speed: 0, brains: 1, maxHP: 10, maxMP: 0);
+  reduceStats(tiredness: 5);
+  addStats(happiness: 0, discipline: 1, energy: 30, weight: 3);
+  reduceMoney(1000);
+  speak(Entity.System, "HP went up ten!\nBrains went up one!\n");
+  showTextbox("Discipline went up\nTiredness went down.\n");
+  playAnimation(Entity.Partner, 11);
+  waitForEntity(Entity.Partner);
+  goto L44;
 
 L35:
-    playAnimation(Entity.Partner, 13);
-    waitForEntity(Entity.System);
-    speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
-    return;
+  playAnimation(Entity.Partner, 13);
+  waitForEntity(Entity.System);
+  speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
+  return;
 
 L36:
-    if (money < 2500) goto L37;
-    goto L38;
+  if (money < 2500) goto L37;
+  goto L38;
 
 L37:
-    speak(5, "You don't have enough bits.\n");
-    return;
+  speak(5, "You don't have enough bits.\n");
+  return;
 
 L38:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L39;
-    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\na DX-bone Steak!\n");
-    addStats(offense: 0, defense: 0, speed: 0, brains: 2, maxHP: 30, maxMP: 0);
-    reduceStats(tiredness: 5);
-    addStats(happiness: 1, discipline: 2, energy: 40, weight: 4);
-    reduceMoney(2500);
-    speak(Entity.System, "HP went up by thirty!\nBrains went up by two!\n");
-    showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
-    playAnimation(Entity.Partner, 11);
-    waitForEntity(Entity.Partner);
-    goto L44;
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L39;
+  speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\na DX-bone Steak!\n");
+  addStats(offense: 0, defense: 0, speed: 0, brains: 2, maxHP: 30, maxMP: 0);
+  reduceStats(tiredness: 5);
+  addStats(happiness: 1, discipline: 2, energy: 40, weight: 4);
+  reduceMoney(2500);
+  speak(Entity.System, "HP went up by thirty!\nBrains went up by two!\n");
+  showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
+  playAnimation(Entity.Partner, 11);
+  waitForEntity(Entity.Partner);
+  goto L44;
 
 L39:
-    playAnimation(Entity.Partner, 13);
-    waitForEntity(Entity.System);
-    speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
-    return;
+  playAnimation(Entity.Partner, 13);
+  waitForEntity(Entity.System);
+  speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
+  return;
 
 L40:
-    if (money < 5000) goto L41;
-    goto L42;
+  if (money < 5000) goto L41;
+  goto L42;
 
 L41:
-    speak(5, "You don't have enough bits.\n");
-    return;
+  speak(5, "You don't have enough bits.\n");
+  return;
 
 L42:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L43;
-    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed a\nPhantom-bone Steak!\n");
-    addStats(offense: 0, defense: 0, speed: 0, brains: 3, maxHP: 50, maxMP: 0);
-    reduceStats(tiredness: 5);
-    addStats(happiness: 2, discipline: 3, energy: 50, weight: 5);
-    reduceMoney(5000);
-    speak(Entity.System, "HP has went up fifty!\nBrains went up three!\n");
-    showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
-    playAnimation(Entity.Partner, 11);
-    waitForEntity(Entity.Partner);
-    goto L44;
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L43;
+  speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed a\nPhantom-bone Steak!\n");
+  addStats(offense: 0, defense: 0, speed: 0, brains: 3, maxHP: 50, maxMP: 0);
+  reduceStats(tiredness: 5);
+  addStats(happiness: 2, discipline: 3, energy: 50, weight: 5);
+  reduceMoney(5000);
+  speak(Entity.System, "HP has went up fifty!\nBrains went up three!\n");
+  showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
+  playAnimation(Entity.Partner, 11);
+  waitForEntity(Entity.Partner);
+  goto L44;
 
 L43:
-    playAnimation(Entity.Partner, 13);
-    waitForEntity(Entity.System);
-    speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
-    return;
+  playAnimation(Entity.Partner, 13);
+  waitForEntity(Entity.System);
+  speak(5, "<ORANGE><DIGIMON><WHITE> doesn't seem\nto be hungry.\n");
+  return;
 
 L44:
-    speak(5, "Come back again!\n");
-    return;
-    garbage { 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 19 00 00 00 d1 00 88 00 1b 00 18 00 6e 00 19 00 1b 05 1a 00 82 76 82 85 82 8c 82 8c 81 43 81 40 82 97 82 88 82 81 82 94 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 87 82 8f 82 89 82 8e 82 87 0d 00 82 94 82 8f 81 40 82 8f 82 92 82 84 82 85 82 92 81 48 0d 00 00 00 16 00 0e 01 19 00 00 00 d0 00 88 00 1b 01 18 00 ba 00 19 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 85 82 81 82 94 81 48 0d 00 00 00 16 00 40 08 19 00 00 00 de 00 88 00 1b 02 18 00 0e 01 19 00 1b 05 1a 00 82 67 82 85 82 99 81 43 81 40 82 97 82 88 82 81 82 94 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 87 82 8f 82 8e 82 8e 82 81 81 40 82 85 82 81 82 94 81 48 0d 00 00 00 16 00 38 0f 1b ff 10 03 ca 01 ca 03 dc 05 1a 00 82 71 82 85 82 84 81 40 82 71 82 81 82 8d 82 85 82 8e 81 46 81 40 82 86 82 8f 82 95 82 92 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 0d 00 82 67 82 8f 82 94 81 40 82 62 82 95 82 92 82 92 82 99 81 46 81 40 82 94 82 97 82 85 82 8c 82 96 82 85 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 0d 00 82 67 82 8f 82 94 81 40 82 90 82 8f 82 94 81 46 82 94 82 88 82 89 82 92 82 94 82 99 81 40 82 86 82 89 82 96 82 85 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 0d 00 00 00 12 00 16 00 12 08 19 00 25 00 00 02 90 01 00 00 18 00 de 01 19 00 16 00 34 02 1b 05 1a 00 82 6b 82 8f 82 8f 82 8b 82 93 81 40 82 8c 82 89 82 8b 82 85 81 40 }
+  speak(5, "Come back again!\n");
+  return;
+  garbage { 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 19 00 00 00 d1 00 88 00 1b 00 18 00 6e 00 19 00 1b 05 1a 00 82 76 82 85 82 8c 82 8c 81 43 81 40 82 97 82 88 82 81 82 94 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 87 82 8f 82 89 82 8e 82 87 0d 00 82 94 82 8f 81 40 82 8f 82 92 82 84 82 85 82 92 81 48 0d 00 00 00 16 00 0e 01 19 00 00 00 d0 00 88 00 1b 01 18 00 ba 00 19 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 85 82 81 82 94 81 48 0d 00 00 00 16 00 40 08 19 00 00 00 de 00 88 00 1b 02 18 00 0e 01 19 00 1b 05 1a 00 82 67 82 85 82 99 81 43 81 40 82 97 82 88 82 81 82 94 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 87 82 8f 82 8e 82 8e 82 81 81 40 82 85 82 81 82 94 81 48 0d 00 00 00 16 00 38 0f 1b ff 10 03 ca 01 ca 03 dc 05 1a 00 82 71 82 85 82 84 81 40 82 71 82 81 82 8d 82 85 82 8e 81 46 81 40 82 86 82 8f 82 95 82 92 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 0d 00 82 67 82 8f 82 94 81 40 82 62 82 95 82 92 82 92 82 99 81 46 81 40 82 94 82 97 82 85 82 8c 82 96 82 85 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 0d 00 82 67 82 8f 82 94 81 40 82 90 82 8f 82 94 81 46 82 94 82 88 82 89 82 92 82 94 82 99 81 40 82 86 82 89 82 96 82 85 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 0d 00 00 00 12 00 16 00 12 08 19 00 25 00 00 02 90 01 00 00 18 00 de 01 19 00 16 00 34 02 1b 05 1a 00 82 6b 82 8f 82 8f 82 8b 82 93 81 40 82 8c 82 89 82 8b 82 85 81 40 }
 }

@@ -3,156 +3,156 @@
 #pragma script index=129 start=0x5b000 end=0x5b800 headerU16=0x18 sentinelOff=0x24
 
 section onEnter(254) {
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 10) goto L1;
-    spawnItem(Item.Digimushroom, x: 40, y: 54);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 10) goto L1;
+  spawnItem(Item.Digimushroom, x: 40, y: 54);
 
 L1:
-    setPStat(113, 0);
-    if (!trigger(5) && !trigger(6) && !trigger(7)) goto L2;
-    playAnimation(5, 29);
+  setPStat(113, 0);
+  if (!trigger(5) && !trigger(6) && !trigger(7)) goto L2;
+  playAnimation(5, 29);
 
 L2:
-    if (!trigger(5) || !trigger(6)) goto L3;
-    playAnimation(5, 30);
+  if (!trigger(5) || !trigger(6)) goto L3;
+  playAnimation(5, 30);
 
 L3:
-    if (!trigger(5) || !trigger(7)) goto L4;
-    playAnimation(5, 30);
+  if (!trigger(5) || !trigger(7)) goto L4;
+  playAnimation(5, 30);
 
 L4:
-    if (!trigger(6) || !trigger(7)) goto L5;
-    playAnimation(5, 30);
+  if (!trigger(6) || !trigger(7)) goto L5;
+  playAnimation(5, 30);
 
 L5:
-    if ((!trigger(5) ?? !trigger(6)) || !trigger(7)) goto L6;
-    playAnimation(5, 31);
+  if ((!trigger(5) ?? !trigger(6)) || !trigger(7)) goto L6;
+  playAnimation(5, 31);
 
 L6:
-    return;
+  return;
 }
 
 section(6) {
-    setPStat(113, 1);
-    jumpToScriptSection(206, 6);
-    return;
+  setPStat(113, 1);
+  jumpToScriptSection(206, 6);
+  return;
 }
 
 section(10) {
-    jumpToScriptSection(206, 10);
-    return;
+  jumpToScriptSection(206, 10);
+  return;
 }
 
 section(7) {
-    if (!trigger(5) || !trigger(6)) goto L1;
-    speak(7, "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
-    goto L5;
+  if (!trigger(5) || !trigger(6)) goto L1;
+  speak(7, "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+  goto L5;
 
 L1:
-    if (!trigger(5) || !trigger(7)) goto L2;
-    speak(7, "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
-    goto L5;
+  if (!trigger(5) || !trigger(7)) goto L2;
+  speak(7, "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+  goto L5;
 
 L2:
-    if (!trigger(6) || !trigger(7)) goto L3;
-    speak(7, "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
-    goto L5;
+  if (!trigger(6) || !trigger(7)) goto L3;
+  speak(7, "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+  goto L5;
 
 L3:
-    if (!trigger(5) && !trigger(6) && !trigger(7)) goto L4;
-    speak(7, "Thanks for coming again.\n");
-    goto L5;
+  if (!trigger(5) && !trigger(6) && !trigger(7)) goto L4;
+  speak(7, "Thanks for coming again.\n");
+  goto L5;
 
 L4:
-    speak(7, "Hi, I'm Mojyamon!\n");
+  speak(7, "Hi, I'm Mojyamon!\n");
 
 L5:
-    setPStat(254, 7);
-    setPStat(249, 0);
-    callSubroutine(2);
-    if (!trigger(5) && !trigger(6) && !trigger(7)) goto L6;
-    playAnimation(5, 29);
+  setPStat(254, 7);
+  setPStat(249, 0);
+  callSubroutine(2);
+  if (!trigger(5) && !trigger(6) && !trigger(7)) goto L6;
+  playAnimation(5, 29);
 
 L6:
-    if (!trigger(5) || !trigger(6)) goto L7;
-    playAnimation(5, 30);
+  if (!trigger(5) || !trigger(6)) goto L7;
+  playAnimation(5, 30);
 
 L7:
-    if (!trigger(5) || !trigger(7)) goto L8;
-    playAnimation(5, 30);
+  if (!trigger(5) || !trigger(7)) goto L8;
+  playAnimation(5, 30);
 
 L8:
-    if (!trigger(6) || !trigger(7)) goto L9;
-    playAnimation(5, 30);
+  if (!trigger(6) || !trigger(7)) goto L9;
+  playAnimation(5, 30);
 
 L9:
-    if ((!trigger(5) ?? !trigger(6)) || !trigger(7)) goto L10;
-    playAnimation(5, 31);
+  if ((!trigger(5) ?? !trigger(6)) || !trigger(7)) goto L10;
+  playAnimation(5, 31);
 
 L10:
-    if (trigger(5) && trigger(6) && trigger(7)) goto L11;
-    return;
+  if (trigger(5) && trigger(6) && trigger(7)) goto L11;
+  return;
 
 L11:
-    if (trigger(8) && trigger(9) && trigger(10)) goto L12;
-    return;
+  if (trigger(8) && trigger(9) && trigger(10)) goto L12;
+  return;
 
 L12:
-    if (trigger(11) && trigger(12) && trigger(13)) goto L13;
-    return;
+  if (trigger(11) && trigger(12) && trigger(13)) goto L13;
+  return;
 
 L13:
-    if (!trigger(252)) goto L14;
-    return;
+  if (!trigger(252)) goto L14;
+  return;
 
 L14:
-    speak(7, "<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n");
-    showTextbox("I've decided I'm going\nto the city. We'll work\ntogether, alright?\n");
-    goto L15;
+  speak(7, "<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n");
+  showTextbox("I've decided I'm going\nto the city. We'll work\ntogether, alright?\n");
+  goto L15;
 
 L15:
-    move(entity: 7, to: (-1300, -1351), sprint: 1);
-    if (pstat[101] >= 3) goto L16;
-    addPStat(101, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 7);
-    look(entity: Entity.Partner, at: 7);
-    goto L15;
+  move(entity: 7, to: (-1300, -1351), sprint: 1);
+  if (pstat[101] >= 3) goto L16;
+  addPStat(101, 1);
+  delay(20);
+  look(entity: Entity.Player, at: 7);
+  look(entity: Entity.Partner, at: 7);
+  goto L15;
 
 L16:
-    waitForEntity(7);
-    unloadEntity(7);
-    setPStat(101, 0);
-    playSound(8, 11);
-    speak(Entity.System, "Mojyamon joins the city!\n");
-    setTrigger(252);
-    setTrigger(107);
-    addPStat(1, 2);
-    return;
+  waitForEntity(7);
+  unloadEntity(7);
+  setPStat(101, 0);
+  playSound(8, 11);
+  speak(Entity.System, "Mojyamon joins the city!\n");
+  setTrigger(252);
+  setTrigger(107);
+  addPStat(1, 2);
+  return;
 }
 
 section(51) {
-    if ((cond & 0x40) == 0x01 && !trigger(133)) goto L1;
-    return;
+  if ((cond & 0x40) == 0x01 && !trigger(133)) goto L1;
+  return;
 
 L1:
-    storeDigimonType(103);
-    if (pstat[103] != 3 && pstat[103] != 5 && pstat[103] != 8 && pstat[103] != 9 && pstat[103] != 47) goto L2;
-    jumpToScriptSection(203, 51);
+  storeDigimonType(103);
+  if (pstat[103] != 3 && pstat[103] != 5 && pstat[103] != 8 && pstat[103] != 9 && pstat[103] != 47) goto L2;
+  jumpToScriptSection(203, 51);
 
 L2:
-    if (pstat[103] != 19 && pstat[103] != 32 && pstat[103] != 51 && pstat[103] != 1 && pstat[103] != 2) goto L3;
-    jumpToScriptSection(203, 51);
+  if (pstat[103] != 19 && pstat[103] != 32 && pstat[103] != 51 && pstat[103] != 1 && pstat[103] != 2) goto L3;
+  jumpToScriptSection(203, 51);
 
 L3:
-    if (pstat[103] != 15 && pstat[103] != 16 && pstat[103] != 29 && pstat[103] != 30 && pstat[103] != 43) goto L4;
-    jumpToScriptSection(203, 51);
+  if (pstat[103] != 15 && pstat[103] != 16 && pstat[103] != 29 && pstat[103] != 30 && pstat[103] != 43) goto L4;
+  jumpToScriptSection(203, 51);
 
 L4:
-    if (pstat[103] != 44) goto L5;
-    jumpToScriptSection(203, 51);
+  if (pstat[103] != 44) goto L5;
+  jumpToScriptSection(203, 51);
 
 L5:
-    return;
-    garbage { 18 00 fe 00 18 00 06 00 a0 00 0a 00 ac 00 07 00 b4 00 33 00 e8 03 ff ff 24 00 6e 63 19 00 0b 00 6e 0a 18 00 2e 00 19 00 74 2c 28 00 36 00 1e 00 71 00 19 00 00 00 05 00 40 00 06 00 40 00 07 00 18 00 4a 00 19 00 56 00 05 1d 19 00 00 00 05 00 80 00 06 00 18 00 5e 00 19 00 56 00 05 1e 19 00 00 00 05 00 80 00 07 00 18 00 72 00 19 00 56 00 05 1e 19 00 00 00 06 00 80 00 07 00 18 00 86 00 19 00 56 00 05 1e 19 00 00 00 05 00 00 00 06 00 80 00 07 00 18 00 9e 00 19 00 56 00 05 1f fe 00 1e 00 71 01 17 00 ce 00 06 00 fe 00 17 00 ce 00 0a 00 fe 00 19 00 00 00 05 00 80 00 06 00 18 00 e2 00 19 00 1b 07 1a 00 82 67 82 85 82 99 81 43 81 40 01 06 05 00 01 01 81 49 0d 00 00 00 16 00 b8 01 19 00 00 00 05 00 80 00 07 00 18 00 10 01 19 00 1b 07 1a 00 82 67 82 85 82 99 81 43 81 40 01 06 05 00 01 01 81 49 0d 00 00 00 16 00 b8 01 19 00 00 00 06 00 80 00 07 00 18 00 3e 01 19 00 1b 07 1a 00 82 67 82 85 82 99 81 43 81 40 01 06 05 00 01 01 81 49 0d 00 00 00 16 00 b8 01 19 00 00 00 05 00 40 00 06 00 40 00 07 00 18 00 8e 01 19 00 1b 07 1a 00 82 73 82 88 82 81 82 8e 82 8b 82 93 81 40 82 86 82 8f 82 92 81 40 82 83 82 8f 82 8d 82 89 82 8e 82 87 81 40 82 81 82 87 82 81 82 89 82 8e 81 42 0d 00 00 00 16 00 b8 01 1b 07 1a 00 82 67 82 89 81 43 81 40 82 68 81 75 82 8d 81 40 82 6c 82 8f 82 8a 82 99 82 81 82 8d 82 8f 82 8e 81 49 0d 00 00 00 1e 00 fe 07 1e 00 f9 00 64 02 19 00 00 00 05 00 40 00 06 00 40 00 07 00 18 00 da 01 19 00 56 00 05 1d 19 00 00 00 05 00 80 00 06 00 18 00 ee 01 19 00 56 00 05 1e 19 00 00 00 05 00 80 00 07 00 18 00 02 02 19 00 56 00 05 1e 19 00 00 00 06 00 80 00 07 00 18 00 16 02 19 00 56 00 05 1e 19 00 00 00 05 00 00 00 06 00 80 00 07 00 18 00 2e 02 19 00 56 00 05 1f 19 00 01 00 05 00 41 00 06 00 41 00 07 00 18 00 44 02 19 00 fe 00 19 00 01 00 08 00 41 00 09 00 41 00 0a 00 18 00 5a 02 19 00 fe 00 19 00 01 00 0b 00 41 00 0c 00 41 00 0d 00 18 00 70 02 19 00 fe 00 19 00 00 00 fc 00 18 00 7e 02 19 00 fe 00 1b 07 1a 00 01 06 05 00 01 01 81 43 81 40 82 68 81 75 82 8d 81 40 82 93 82 8f 81 40 82 88 82 81 82 90 82 90 82 99 81 49 0d 00 82 78 82 8f 82 95 81 75 82 96 82 85 81 40 82 84 82 8f 82 8e 82 85 81 40 82 93 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 86 82 8f 82 92 81 40 82 95 82 93 81 42 0d 00 00 00 1a 00 82 68 81 75 82 96 82 85 81 40 82 84 82 85 82 83 82 89 82 84 82 85 82 84 81 40 82 68 81 75 82 8d 81 40 82 87 82 8f 82 89 82 8e 82 87 0d 00 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 42 81 40 82 76 82 85 81 75 82 8c 82 8c 81 40 82 97 82 8f 82 92 82 8b 0d 00 82 94 82 8f 82 87 82 85 82 94 82 88 82 85 82 92 81 43 81 40 82 81 82 8c 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 16 00 6e 03 4e 07 ec fa b9 fa 01 00 19 00 0d 00 65 03 18 00 96 03 19 00 1f 00 65 01 67 00 }
+  return;
+  garbage { 18 00 fe 00 18 00 06 00 a0 00 0a 00 ac 00 07 00 b4 00 33 00 e8 03 ff ff 24 00 6e 63 19 00 0b 00 6e 0a 18 00 2e 00 19 00 74 2c 28 00 36 00 1e 00 71 00 19 00 00 00 05 00 40 00 06 00 40 00 07 00 18 00 4a 00 19 00 56 00 05 1d 19 00 00 00 05 00 80 00 06 00 18 00 5e 00 19 00 56 00 05 1e 19 00 00 00 05 00 80 00 07 00 18 00 72 00 19 00 56 00 05 1e 19 00 00 00 06 00 80 00 07 00 18 00 86 00 19 00 56 00 05 1e 19 00 00 00 05 00 00 00 06 00 80 00 07 00 18 00 9e 00 19 00 56 00 05 1f fe 00 1e 00 71 01 17 00 ce 00 06 00 fe 00 17 00 ce 00 0a 00 fe 00 19 00 00 00 05 00 80 00 06 00 18 00 e2 00 19 00 1b 07 1a 00 82 67 82 85 82 99 81 43 81 40 01 06 05 00 01 01 81 49 0d 00 00 00 16 00 b8 01 19 00 00 00 05 00 80 00 07 00 18 00 10 01 19 00 1b 07 1a 00 82 67 82 85 82 99 81 43 81 40 01 06 05 00 01 01 81 49 0d 00 00 00 16 00 b8 01 19 00 00 00 06 00 80 00 07 00 18 00 3e 01 19 00 1b 07 1a 00 82 67 82 85 82 99 81 43 81 40 01 06 05 00 01 01 81 49 0d 00 00 00 16 00 b8 01 19 00 00 00 05 00 40 00 06 00 40 00 07 00 18 00 8e 01 19 00 1b 07 1a 00 82 73 82 88 82 81 82 8e 82 8b 82 93 81 40 82 86 82 8f 82 92 81 40 82 83 82 8f 82 8d 82 89 82 8e 82 87 81 40 82 81 82 87 82 81 82 89 82 8e 81 42 0d 00 00 00 16 00 b8 01 1b 07 1a 00 82 67 82 89 81 43 81 40 82 68 81 75 82 8d 81 40 82 6c 82 8f 82 8a 82 99 82 81 82 8d 82 8f 82 8e 81 49 0d 00 00 00 1e 00 fe 07 1e 00 f9 00 64 02 19 00 00 00 05 00 40 00 06 00 40 00 07 00 18 00 da 01 19 00 56 00 05 1d 19 00 00 00 05 00 80 00 06 00 18 00 ee 01 19 00 56 00 05 1e 19 00 00 00 05 00 80 00 07 00 18 00 02 02 19 00 56 00 05 1e 19 00 00 00 06 00 80 00 07 00 18 00 16 02 19 00 56 00 05 1e 19 00 00 00 05 00 00 00 06 00 80 00 07 00 18 00 2e 02 19 00 56 00 05 1f 19 00 01 00 05 00 41 00 06 00 41 00 07 00 18 00 44 02 19 00 fe 00 19 00 01 00 08 00 41 00 09 00 41 00 0a 00 18 00 5a 02 19 00 fe 00 19 00 01 00 0b 00 41 00 0c 00 41 00 0d 00 18 00 70 02 19 00 fe 00 19 00 00 00 fc 00 18 00 7e 02 19 00 fe 00 1b 07 1a 00 01 06 05 00 01 01 81 43 81 40 82 68 81 75 82 8d 81 40 82 93 82 8f 81 40 82 88 82 81 82 90 82 90 82 99 81 49 0d 00 82 78 82 8f 82 95 81 75 82 96 82 85 81 40 82 84 82 8f 82 8e 82 85 81 40 82 93 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 86 82 8f 82 92 81 40 82 95 82 93 81 42 0d 00 00 00 1a 00 82 68 81 75 82 96 82 85 81 40 82 84 82 85 82 83 82 89 82 84 82 85 82 84 81 40 82 68 81 75 82 8d 81 40 82 87 82 8f 82 89 82 8e 82 87 0d 00 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 42 81 40 82 76 82 85 81 75 82 8c 82 8c 81 40 82 97 82 8f 82 92 82 8b 0d 00 82 94 82 8f 82 87 82 85 82 94 82 88 82 85 82 92 81 43 81 40 82 81 82 8c 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 16 00 6e 03 4e 07 ec fa b9 fa 01 00 19 00 0d 00 65 03 18 00 96 03 19 00 1f 00 65 01 67 00 }
 }

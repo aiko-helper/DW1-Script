@@ -3,278 +3,278 @@
 #pragma script index=136 start=0x60800 end=0x61800 headerU16=0x18 sentinelOff=0x19
 
 section onEnter(254) {
-    if (!trigger(224)) goto L1;
-    for id in 105..109 { setObjectVisibility(id, 1); }
-    for id in 39..56 { setObjectVisibility(id, 1); }
-    for id in 24..28 { setObjectVisibility(id, 0); }
+  if (!trigger(224)) goto L1;
+  for id in 105..109 { setObjectVisibility(id, 1); }
+  for id in 39..56 { setObjectVisibility(id, 1); }
+  for id in 24..28 { setObjectVisibility(id, 0); }
 
 L1:
-    if (!trigger(224)) goto L2;
-    move(entity: 5, to: (1457, 2916), animDuration: 2);
-    delay(10);
+  if (!trigger(224)) goto L2;
+  move(entity: 5, to: (1457, 2916), animDuration: 2);
+  delay(10);
 
 L2:
-    return;
+  return;
 }
 
 section(61) {
-    move(entity: 5, to: (1457, 2916), animDuration: 2);
-    delay(10);
-    return;
+  move(entity: 5, to: (1457, 2916), animDuration: 2);
+  delay(10);
+  return;
 }
 
 section(60) {
-    move(entity: Entity.Player, axis: 1, to: -150, speed: 1);
-    move(entity: Entity.Partner, axis: 1, to: -150, speed: 1);
-    delay(20);
-    playSound(8, 3);
-    move(entity: 5, to: (1457, 2916), animDuration: 30);
-    delay(10);
-    moveCamera(to: (651, 406), slowdown: 99);
-    delay(40);
-    for id in 105..109 { setObjectVisibility(id, 0); }
-    setPStat(247, 105);
-    setPStat(248, 5);
-    callSubroutine(21);
-    delay(30);
-    move(entity: Entity.Player, axis: 1, to: 0, speed: 1);
-    move(entity: Entity.Partner, axis: 1, to: 0, speed: 1);
-    waitForEntity(Entity.Player);
-    waitForEntity(Entity.Partner);
-    move(entity: Entity.Player, to: (734, 2222), animDuration: 1);
-    move(entity: Entity.Partner, to: (839, 2689), animDuration: 1);
-    delay(20);
-    move(entity: Entity.Player, to: (832, 804), sprint: 1);
-    move(entity: Entity.Partner, to: (300, 805), sprint: 1);
-    waitForEntity(Entity.Player);
-    waitForEntity(Entity.Partner);
-    delay(10);
-    moveCamera(to: Entity.Player, speed: 20);
-    waitForEntity(200);
-    speak(Entity.Player, "I hear a voice coming from\nbehind. The voice is...!\n");
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    return;
+  move(entity: Entity.Player, axis: 1, to: -150, speed: 1);
+  move(entity: Entity.Partner, axis: 1, to: -150, speed: 1);
+  delay(20);
+  playSound(8, 3);
+  move(entity: 5, to: (1457, 2916), animDuration: 30);
+  delay(10);
+  moveCamera(to: (651, 406), slowdown: 99);
+  delay(40);
+  for id in 105..109 { setObjectVisibility(id, 0); }
+  setPStat(247, 105);
+  setPStat(248, 5);
+  callSubroutine(21);
+  delay(30);
+  move(entity: Entity.Player, axis: 1, to: 0, speed: 1);
+  move(entity: Entity.Partner, axis: 1, to: 0, speed: 1);
+  waitForEntity(Entity.Player);
+  waitForEntity(Entity.Partner);
+  move(entity: Entity.Player, to: (734, 2222), animDuration: 1);
+  move(entity: Entity.Partner, to: (839, 2689), animDuration: 1);
+  delay(20);
+  move(entity: Entity.Player, to: (832, 804), sprint: 1);
+  move(entity: Entity.Partner, to: (300, 805), sprint: 1);
+  waitForEntity(Entity.Player);
+  waitForEntity(Entity.Partner);
+  delay(10);
+  moveCamera(to: Entity.Player, speed: 20);
+  waitForEntity(200);
+  speak(Entity.Player, "I hear a voice coming from\nbehind. The voice is...!\n");
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  return;
 }
 
 section(6) {
-    for id in 105..109 { setObjectVisibility(id, 0); }
-    setPStat(247, 105);
-    setPStat(248, 5);
-    callSubroutine(21);
-    loadDigimon(Digimon.NPCOgremon);
-    setDigimon(Digimon.NPCOgremon, 1, 0);
-    move(entity: 5, to: (1457, 2916), animDuration: 1);
-    look(entity: Entity.Player, at: 5);
-    delay(5);
-    speak(Entity.Player, "Wait!\n");
-    speak(6, "Why should I wait?!\n");
-    look(entity: 6, at: Entity.Player);
-    delay(5);
-    speak(6, "Ha ha ha!\n");
-    moveCamera(to: (1116, 2183), slowdown: 15);
-    waitForEntity(200);
-    for id in 105..109 { setObjectVisibility(id, 1); }
-    playSound(8, 5);
-    playAnimation(5, 31);
-    delay(20);
-    playAnimation(6, 0);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    for id in 105..109 { setObjectVisibility(id, 0); }
-    setPStat(247, 105);
-    setPStat(248, 5);
-    callSubroutine(21);
-    move(entity: 5, to: (1457, 2916), animDuration: 1);
-    playAnimation(6, 40);
-    delay(20);
-    playAnimation(6, 0);
-    speak(6, "Wow, what a surprise!\n");
-    speak(Entity.Player, "Whamon, nice! Wow!\n");
-    move(entity: Entity.Player, to: (830, 813), sprint: 1);
-    move(entity: Entity.Partner, to: (473, 481), sprint: 1);
-    waitForEntity(Entity.Player);
-    waitForEntity(Entity.Partner);
-    look(entity: Entity.Player, at: 6);
-    look(entity: Entity.Partner, at: 6);
-    moveCamera(to: (212, 958), slowdown: 10);
-    waitForEntity(200);
-    speak(Entity.Player, "Give up!\n");
-    move(entity: 6, to: (212, 958), sprint: 0);
-    waitForEntity(6);
-    look(entity: 6, at: Entity.Player);
-    speak(6, "Ugghh!\n");
-    speak(Entity.Player, "Come to the city and work,\nso you can repay your sins.\n");
-    speak(6, "Alright, got it.\nI'll go to the city.\n");
-    playSound(8, 6);
-    move(entity: 6, to: (-381, 1112), sprint: 1);
-    waitForEntity(6);
-    look(entity: 6, at: Entity.Player);
-    waitForEntity(6);
-    speak(6, "Ha ha ha, Just kidding! Bye.\n");
-    moveCamera(to: (-28, 1976), slowdown: 30);
-    waitForEntity(200);
-    waitForEntity(6);
-    move(entity: 6, to: (-28, 1976), sprint: 1);
-    waitForEntity(6);
-    playSound(8, 2);
-    unloadEntity(6);
-    delay(25);
-    for id in 39..56 { setObjectVisibility(id, 1); }
-    for id in 24..38 { setObjectVisibility(id, 0); }
-    delay(40);
-    playSoundThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(3, 5, 80, 197, 96, 133, 160, 277, 112, 101);
-    moveObjectTo(4, 33, 1, 5, 0, 160, 149);
-    moveObjectTo(5, 34, 1, 5, 0, 64, 213);
-    moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 277, 160, 369, 176, 181, 224, 261, 6);
-    moveObjectTo(0, 29, 1, 5, 0, 80, 192);
-    moveObjectTo(1, 30, 1, 5, 0, 96, 128);
-    moveObjectTo(2, 31, 1, 5, 0, 160, 272);
-    moveObjectTo(3, 32, 1, 5, 0, 112, 96);
-    moveObjectTo(4, 33, 1, 5, 0, 160, 144);
-    moveObjectTo(5, 34, 1, 5, 0, 64, 208);
-    moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 272, 160, 364, 176, 176, 224, 256, 6);
-    playSoundThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(3, 5, 80, 197, 96, 133, 160, 277, 112, 101);
-    moveObjectTo(4, 33, 1, 5, 0, 160, 149);
-    moveObjectTo(5, 34, 1, 5, 0, 64, 213);
-    moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 277, 160, 369, 176, 181, 224, 261, 6);
-    moveObjectTo(0, 29, 1, 5, 0, 80, 192);
-    moveObjectTo(1, 30, 1, 5, 0, 96, 128);
-    moveObjectTo(2, 31, 1, 5, 0, 160, 272);
-    moveObjectTo(3, 32, 1, 5, 0, 112, 96);
-    moveObjectTo(4, 33, 1, 5, 0, 160, 144);
-    moveObjectTo(5, 34, 1, 5, 0, 64, 208);
-    moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 272, 160, 364, 176, 176, 224, 256, 6);
-    playSoundThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(3, 5, 80, 197, 96, 133, 160, 277, 112, 101);
-    moveObjectTo(4, 33, 1, 5, 0, 160, 149);
-    moveObjectTo(5, 34, 1, 5, 0, 64, 213);
-    moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 277, 160, 369, 176, 181, 224, 261, 6);
-    moveObjectTo(0, 29, 1, 5, 0, 80, 192);
-    moveObjectTo(1, 30, 1, 5, 0, 96, 128);
-    moveObjectTo(2, 31, 1, 5, 0, 160, 272);
-    moveObjectTo(3, 32, 1, 5, 0, 112, 96);
-    moveObjectTo(4, 33, 1, 5, 0, 160, 144);
-    moveObjectTo(5, 34, 1, 5, 0, 64, 208);
-    moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 272, 160, 364, 176, 176, 224, 256, 6);
-    playSoundThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(4, 5, 80, 197, 96, 133, 160, 277, 112, 101);
-    moveObjectTo(4, 33, 1, 5, 0, 160, 149);
-    moveObjectTo(5, 34, 1, 5, 0, 64, 213);
-    moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 277, 160, 369, 176, 181, 224, 261, 6);
-    moveObjectTo(0, 29, 1, 5, 0, 80, 192);
-    moveObjectTo(1, 30, 1, 5, 0, 96, 128);
-    moveObjectTo(2, 31, 1, 5, 0, 160, 272);
-    moveObjectTo(3, 32, 1, 5, 0, 112, 96);
-    moveObjectTo(4, 33, 1, 5, 0, 160, 144);
-    moveObjectTo(5, 34, 1, 5, 0, 64, 208);
-    moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 272, 160, 364, 176, 176, 224, 256, 10);
-    playSoundThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(4, 100, -420, 392, -404, 328, -340, 472, -388, 296);
-    moveObjectTo(4, 33, 1, 100, 0, -340, 344);
-    moveObjectTo(5, 34, 1, 100, 0, -436, 408);
-    moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(100, -404, 472, -340, 564, -424, 376, -276, 556, 80);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    speak(Entity.Player, "Darn, he tricked me!\n");
-    speak(Entity.Player, "Well, we got the cave back.\nI guess it's OK.\n");
-    move(entity: Entity.Player, to: (705, 1585), sprint: 0, withCamera: true);
-    move(entity: Entity.Partner, to: (740, 1100), sprint: 0);
-    speak(Entity.Player, "I think this cave is OK now.\n");
-    speak(5, "You seem to be a really nice\nperson. I'm sure they'll\nrealize their mistake someday.\n");
-    speak(5, "I'll give you my treasure.\nIt's in the back.\n");
-    speak(Entity.Player, "Wait, wait.\nThat's your treasure, right?\nI can't accept it.\n");
-    speak(5, "No, I don't need it. I want\nto go to your city.\n");
-    speak(Entity.Player, "Then what did we have to\nget this cave back for?\nFor nothing...?\n");
-    speak(5, "I'm sorry, but I really\nwant to help you now.\n");
-    speak(Entity.Player, "I see. Thanks.\nYou're really nice.\n");
-    speak(5, "I'm going straight to\nthe city. I'll give you\na ride if you want.\n");
-    playSound(8, 11);
-    speak(Entity.System, "Whamon joins the city!\n");
-    setTrigger(224);
-    addPStat(1, 2);
-    warp(to: Map.FRZL16, spawn: 0, trigger: 255);
-    return;
+  for id in 105..109 { setObjectVisibility(id, 0); }
+  setPStat(247, 105);
+  setPStat(248, 5);
+  callSubroutine(21);
+  loadDigimon(Digimon.NPCOgremon);
+  setDigimon(Digimon.NPCOgremon, 1, 0);
+  move(entity: 5, to: (1457, 2916), animDuration: 1);
+  look(entity: Entity.Player, at: 5);
+  delay(5);
+  speak(Entity.Player, "Wait!\n");
+  speak(6, "Why should I wait?!\n");
+  look(entity: 6, at: Entity.Player);
+  delay(5);
+  speak(6, "Ha ha ha!\n");
+  moveCamera(to: (1116, 2183), slowdown: 15);
+  waitForEntity(200);
+  for id in 105..109 { setObjectVisibility(id, 1); }
+  playSound(8, 5);
+  playAnimation(5, 31);
+  delay(20);
+  playAnimation(6, 0);
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  for id in 105..109 { setObjectVisibility(id, 0); }
+  setPStat(247, 105);
+  setPStat(248, 5);
+  callSubroutine(21);
+  move(entity: 5, to: (1457, 2916), animDuration: 1);
+  playAnimation(6, 40);
+  delay(20);
+  playAnimation(6, 0);
+  speak(6, "Wow, what a surprise!\n");
+  speak(Entity.Player, "Whamon, nice! Wow!\n");
+  move(entity: Entity.Player, to: (830, 813), sprint: 1);
+  move(entity: Entity.Partner, to: (473, 481), sprint: 1);
+  waitForEntity(Entity.Player);
+  waitForEntity(Entity.Partner);
+  look(entity: Entity.Player, at: 6);
+  look(entity: Entity.Partner, at: 6);
+  moveCamera(to: (212, 958), slowdown: 10);
+  waitForEntity(200);
+  speak(Entity.Player, "Give up!\n");
+  move(entity: 6, to: (212, 958), sprint: 0);
+  waitForEntity(6);
+  look(entity: 6, at: Entity.Player);
+  speak(6, "Ugghh!\n");
+  speak(Entity.Player, "Come to the city and work,\nso you can repay your sins.\n");
+  speak(6, "Alright, got it.\nI'll go to the city.\n");
+  playSound(8, 6);
+  move(entity: 6, to: (-381, 1112), sprint: 1);
+  waitForEntity(6);
+  look(entity: 6, at: Entity.Player);
+  waitForEntity(6);
+  speak(6, "Ha ha ha, Just kidding! Bye.\n");
+  moveCamera(to: (-28, 1976), slowdown: 30);
+  waitForEntity(200);
+  waitForEntity(6);
+  move(entity: 6, to: (-28, 1976), sprint: 1);
+  waitForEntity(6);
+  playSound(8, 2);
+  unloadEntity(6);
+  delay(25);
+  for id in 39..56 { setObjectVisibility(id, 1); }
+  for id in 24..38 { setObjectVisibility(id, 0); }
+  delay(40);
+  playSoundThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(3, 5, 80, 197, 96, 133, 160, 277, 112, 101);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 149);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 213);
+  moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 277, 160, 369, 176, 181, 224, 261, 6);
+  moveObjectTo(0, 29, 1, 5, 0, 80, 192);
+  moveObjectTo(1, 30, 1, 5, 0, 96, 128);
+  moveObjectTo(2, 31, 1, 5, 0, 160, 272);
+  moveObjectTo(3, 32, 1, 5, 0, 112, 96);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 144);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 208);
+  moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 272, 160, 364, 176, 176, 224, 256, 6);
+  playSoundThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(3, 5, 80, 197, 96, 133, 160, 277, 112, 101);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 149);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 213);
+  moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 277, 160, 369, 176, 181, 224, 261, 6);
+  moveObjectTo(0, 29, 1, 5, 0, 80, 192);
+  moveObjectTo(1, 30, 1, 5, 0, 96, 128);
+  moveObjectTo(2, 31, 1, 5, 0, 160, 272);
+  moveObjectTo(3, 32, 1, 5, 0, 112, 96);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 144);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 208);
+  moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 272, 160, 364, 176, 176, 224, 256, 6);
+  playSoundThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(3, 5, 80, 197, 96, 133, 160, 277, 112, 101);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 149);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 213);
+  moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 277, 160, 369, 176, 181, 224, 261, 6);
+  moveObjectTo(0, 29, 1, 5, 0, 80, 192);
+  moveObjectTo(1, 30, 1, 5, 0, 96, 128);
+  moveObjectTo(2, 31, 1, 5, 0, 160, 272);
+  moveObjectTo(3, 32, 1, 5, 0, 112, 96);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 144);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 208);
+  moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 272, 160, 364, 176, 176, 224, 256, 6);
+  playSoundThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(4, 5, 80, 197, 96, 133, 160, 277, 112, 101);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 149);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 213);
+  moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 277, 160, 369, 176, 181, 224, 261, 6);
+  moveObjectTo(0, 29, 1, 5, 0, 80, 192);
+  moveObjectTo(1, 30, 1, 5, 0, 96, 128);
+  moveObjectTo(2, 31, 1, 5, 0, 160, 272);
+  moveObjectTo(3, 32, 1, 5, 0, 112, 96);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 144);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 208);
+  moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(5, 96, 272, 160, 364, 176, 176, 224, 256, 10);
+  playSoundThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(4, 100, -420, 392, -404, 328, -340, 472, -388, 296);
+  moveObjectTo(4, 33, 1, 100, 0, -340, 344);
+  moveObjectTo(5, 34, 1, 100, 0, -436, 408);
+  moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(100, -404, 472, -340, 564, -424, 376, -276, 556, 80);
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  speak(Entity.Player, "Darn, he tricked me!\n");
+  speak(Entity.Player, "Well, we got the cave back.\nI guess it's OK.\n");
+  move(entity: Entity.Player, to: (705, 1585), sprint: 0, withCamera: true);
+  move(entity: Entity.Partner, to: (740, 1100), sprint: 0);
+  speak(Entity.Player, "I think this cave is OK now.\n");
+  speak(5, "You seem to be a really nice\nperson. I'm sure they'll\nrealize their mistake someday.\n");
+  speak(5, "I'll give you my treasure.\nIt's in the back.\n");
+  speak(Entity.Player, "Wait, wait.\nThat's your treasure, right?\nI can't accept it.\n");
+  speak(5, "No, I don't need it. I want\nto go to your city.\n");
+  speak(Entity.Player, "Then what did we have to\nget this cave back for?\nFor nothing...?\n");
+  speak(5, "I'm sorry, but I really\nwant to help you now.\n");
+  speak(Entity.Player, "I see. Thanks.\nYou're really nice.\n");
+  speak(5, "I'm going straight to\nthe city. I'll give you\na ride if you want.\n");
+  playSound(8, 11);
+  speak(Entity.System, "Whamon joins the city!\n");
+  setTrigger(224);
+  addPStat(1, 2);
+  warp(to: Map.FRZL16, spawn: 0, trigger: 255);
+  return;
 }
 
 section(81) {
-    speak(5, "Going back to the city?\n");
-    setDialogOwner(Entity.Player);
-    choice { "I'm going back" -> L1, "I'm not" -> L20 }
-    goto L20;
+  speak(5, "Going back to the city?\n");
+  setDialogOwner(Entity.Player);
+  choice { "I'm going back" -> L1, "I'm not" -> L20 }
+  goto L20;
 
 L1:
-    if (trigger(203)) goto L2;
-    warp(to: Map.TWNA01, spawn: 0, trigger: 255);
+  if (trigger(203)) goto L2;
+  warp(to: Map.TWNA01, spawn: 0, trigger: 255);
 
 L2:
-    if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L3;
-    goto L12;
-    goto L4;
+  if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L3;
+  goto L12;
+  goto L4;
 
 L3:
-    goto L4;
+  goto L4;
 
 L4:
-    if (!trigger(221)) goto L5;
-    goto L9;
-    goto L6;
+  if (!trigger(221)) goto L5;
+  goto L9;
+  goto L6;
 
 L5:
-    goto L6;
+  goto L6;
 
 L6:
-    if (!trigger(225)) goto L7;
-    warp(to: Map.TWNA04, spawn: 0, trigger: 255);
+  if (!trigger(225)) goto L7;
+  warp(to: Map.TWNA04, spawn: 0, trigger: 255);
 
 L7:
-    if (!trigger(246)) goto L8;
-    warp(to: Map.TWNA03, spawn: 0, trigger: 255);
+  if (!trigger(246)) goto L8;
+  warp(to: Map.TWNA03, spawn: 0, trigger: 255);
 
 L8:
-    warp(to: Map.TWNA02, spawn: 0, trigger: 255);
+  warp(to: Map.TWNA02, spawn: 0, trigger: 255);
 
 L9:
-    if (!trigger(225)) goto L10;
-    warp(to: Map.TWNA07, spawn: 0, trigger: 255);
+  if (!trigger(225)) goto L10;
+  warp(to: Map.TWNA07, spawn: 0, trigger: 255);
 
 L10:
-    if (!trigger(246)) goto L11;
-    warp(to: Map.TWNA06, spawn: 0, trigger: 255);
+  if (!trigger(246)) goto L11;
+  warp(to: Map.TWNA06, spawn: 0, trigger: 255);
 
 L11:
-    warp(to: Map.TWNA05, spawn: 0, trigger: 255);
+  warp(to: Map.TWNA05, spawn: 0, trigger: 255);
 
 L12:
-    if (!trigger(221)) goto L13;
-    goto L17;
-    goto L14;
+  if (!trigger(221)) goto L13;
+  goto L17;
+  goto L14;
 
 L13:
-    goto L14;
+  goto L14;
 
 L14:
-    if (!trigger(225)) goto L15;
-    warp(to: Map.TWNA10, spawn: 0, trigger: 255);
+  if (!trigger(225)) goto L15;
+  warp(to: Map.TWNA10, spawn: 0, trigger: 255);
 
 L15:
-    if (!trigger(246)) goto L16;
-    warp(to: Map.TWNA09, spawn: 0, trigger: 255);
+  if (!trigger(246)) goto L16;
+  warp(to: Map.TWNA09, spawn: 0, trigger: 255);
 
 L16:
-    warp(to: Map.TWNA08, spawn: 0, trigger: 255);
+  warp(to: Map.TWNA08, spawn: 0, trigger: 255);
 
 L17:
-    if (!trigger(225)) goto L18;
-    warp(to: Map.TWNA13, spawn: 0, trigger: 255);
+  if (!trigger(225)) goto L18;
+  warp(to: Map.TWNA13, spawn: 0, trigger: 255);
 
 L18:
-    if (!trigger(246)) goto L19;
-    warp(to: Map.TWNA12, spawn: 0, trigger: 255);
+  if (!trigger(246)) goto L19;
+  warp(to: Map.TWNA12, spawn: 0, trigger: 255);
 
 L19:
-    warp(to: Map.TWNA11, spawn: 0, trigger: 255);
-    return;
+  warp(to: Map.TWNA11, spawn: 0, trigger: 255);
+  return;
 
 L20:
-    return;
-    return;
-    garbage { 18 00 fe 00 18 00 3d 00 ae 00 3c 00 bc 00 06 00 c0 01 51 00 d2 0d ff ff 19 00 00 00 e0 00 18 00 94 00 19 00 57 00 69 01 57 00 6a 01 57 00 6b 01 57 00 6c 01 57 00 6d 01 57 00 27 01 57 00 28 01 57 00 29 01 57 00 2a 01 57 00 2b 01 57 00 2c 01 57 00 2d 01 57 00 2e 01 57 00 2f 01 57 00 30 01 57 00 31 01 57 00 32 01 57 00 33 01 57 00 34 01 57 00 35 01 57 00 36 01 57 00 37 01 57 00 38 01 57 00 18 00 57 00 19 00 57 00 1a 00 57 00 1b 00 57 00 1c 00 19 00 00 00 e0 00 18 00 ac 00 19 00 6c 05 b1 05 64 0b 02 00 67 00 0a 00 fe 00 6c 05 b1 05 64 0b 02 00 67 00 0a 00 fe 00 72 fd 6a ff }
+  return;
+  return;
+  garbage { 18 00 fe 00 18 00 3d 00 ae 00 3c 00 bc 00 06 00 c0 01 51 00 d2 0d ff ff 19 00 00 00 e0 00 18 00 94 00 19 00 57 00 69 01 57 00 6a 01 57 00 6b 01 57 00 6c 01 57 00 6d 01 57 00 27 01 57 00 28 01 57 00 29 01 57 00 2a 01 57 00 2b 01 57 00 2c 01 57 00 2d 01 57 00 2e 01 57 00 2f 01 57 00 30 01 57 00 31 01 57 00 32 01 57 00 33 01 57 00 34 01 57 00 35 01 57 00 36 01 57 00 37 01 57 00 38 01 57 00 18 00 57 00 19 00 57 00 1a 00 57 00 1b 00 57 00 1c 00 19 00 00 00 e0 00 18 00 ac 00 19 00 6c 05 b1 05 64 0b 02 00 67 00 0a 00 fe 00 6c 05 b1 05 64 0b 02 00 67 00 0a 00 fe 00 72 fd 6a ff }
 }

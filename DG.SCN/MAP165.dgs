@@ -3,221 +3,221 @@
 #pragma script index=165 start=0x79800 end=0x7a800 headerU16=0x30 sentinelOff=0xfe
 
 section onEnter(254) {
-    return;
+  return;
 }
 
 section(54) {
-    jumpToScriptSection(193, 55);
-    return;
+  jumpToScriptSection(193, 55);
+  return;
 }
 
 section(5) {
-    if (trigger(202) || trigger(215) || pstat[16] == 0) goto L1;
-    if (!trigger(201) || !trigger(243)) goto L1;
-    speak(5, "You came here at the perfect\ntime! I have a big favor to\nask that only you can do.\n");
-    speak(Entity.Player, "What is it?\n");
-    speak(5, "It's the same evil\nI felt from Analogman\nand Machinedramon.\n");
-    showTextbox("But I can't tell\nwhere it's coming from.\n");
-    speak(Entity.Player, "Alright, leave it to me!\n");
-    speak(5, "Thank you. By the way...\n");
-    goto L5;
+  if (trigger(202) || trigger(215) || pstat[16] == 0) goto L1;
+  if (!trigger(201) || !trigger(243)) goto L1;
+  speak(5, "You came here at the perfect\ntime! I have a big favor to\nask that only you can do.\n");
+  speak(Entity.Player, "What is it?\n");
+  speak(5, "It's the same evil\nI felt from Analogman\nand Machinedramon.\n");
+  showTextbox("But I can't tell\nwhere it's coming from.\n");
+  speak(Entity.Player, "Alright, leave it to me!\n");
+  speak(5, "Thank you. By the way...\n");
+  goto L5;
 
 L1:
-    if (!trigger(202) || trigger(215)) goto L4;
-    speak(5, "I heard that you\nbeat Machinedramon!\n");
-    speak(Entity.Player, "Yeah, but I don't get it.\nIt seemed like the\ncurse of Analogman.\n");
-    speak(5, "His grudge was so strong.\nMaybe we can have peace now.\n");
-    speak(Entity.Player, "If Machinedramon returns,\nwe can beat him again.\n");
-    speak(5, "You are trustworthy. Here's\na sign of my gratitude.\nIt grew in our Meat farm.\n");
-    speak(Entity.Player, "Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
-    giveItem(Item.ChainMelon, 1);
-    if (!trigger(0)) goto L3;
-    if (item[Item.SpikeClub] < 99) goto L2;
-    return;
+  if (!trigger(202) || trigger(215)) goto L4;
+  speak(5, "I heard that you\nbeat Machinedramon!\n");
+  speak(Entity.Player, "Yeah, but I don't get it.\nIt seemed like the\ncurse of Analogman.\n");
+  speak(5, "His grudge was so strong.\nMaybe we can have peace now.\n");
+  speak(Entity.Player, "If Machinedramon returns,\nwe can beat him again.\n");
+  speak(5, "You are trustworthy. Here's\na sign of my gratitude.\nIt grew in our Meat farm.\n");
+  speak(Entity.Player, "Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
+  giveItem(Item.ChainMelon, 1);
+  if (!trigger(0)) goto L3;
+  if (item[Item.SpikeClub] < 99) goto L2;
+  return;
 
 L2:
-    speak(Entity.Player, "I have too many Items.\n");
-    setTrigger(3);
-    callSubroutine(0);
-    callSubroutine(13);
-    giveItem(Item.ChainMelon, 1);
+  speak(Entity.Player, "I have too many Items.\n");
+  setTrigger(3);
+  callSubroutine(0);
+  callSubroutine(13);
+  giveItem(Item.ChainMelon, 1);
 
 L3:
-    speak(Entity.Player, "I gladly accept, thank you!\n");
-    setPStat(28, 0);
-    setTrigger(215);
-    return;
+  speak(Entity.Player, "I gladly accept, thank you!\n");
+  setPStat(28, 0);
+  setTrigger(215);
+  return;
 
 L4:
-    if (!trigger(50) || trigger(201)) goto L5;
-    speak(5, "Oh, you're back!\nThis is something I can't\nask anybody else.\n");
-    speak(Entity.Player, "Okay. Do you mean\nAnalogman is back?\n");
-    speak(5, "I felt his evil, but\nI can't tell where it is.\n");
-    speak(Entity.Player, "Alright, leave it to me!\nI'll go find him and\ntake care of it.\n");
-    speak(5, "Oh, thank you. By the way...\n");
-    setTrigger(201);
+  if (!trigger(50) || trigger(201)) goto L5;
+  speak(5, "Oh, you're back!\nThis is something I can't\nask anybody else.\n");
+  speak(Entity.Player, "Okay. Do you mean\nAnalogman is back?\n");
+  speak(5, "I felt his evil, but\nI can't tell where it is.\n");
+  speak(Entity.Player, "Alright, leave it to me!\nI'll go find him and\ntake care of it.\n");
+  speak(5, "Oh, thank you. By the way...\n");
+  setTrigger(201);
 
 L5:
-    if (!trigger(203)) goto L6;
-    jumpToScriptSection(210, 51);
+  if (!trigger(203)) goto L6;
+  jumpToScriptSection(210, 51);
 
 L6:
-    return;
+  return;
 }
 
 section(6) {
-    jumpToScriptSection(211, 8);
-    return;
+  jumpToScriptSection(211, 8);
+  return;
 }
 
 section(20) {
-    moveCamera(to: (183, 221), slowdown: 20);
-    waitForEntity(200);
-    delay(20);
-    addStats(currentHP: 9999, currentMP: 9999);
-    unsetTrigger(1);
-    playAnimation(5, 29);
-    delay(5);
-    speak(5, "You woke up. I'm so sorry.\n");
-    playAnimation(5, 0);
-    return;
+  moveCamera(to: (183, 221), slowdown: 20);
+  waitForEntity(200);
+  delay(20);
+  addStats(currentHP: 9999, currentMP: 9999);
+  unsetTrigger(1);
+  playAnimation(5, 29);
+  delay(5);
+  speak(5, "You woke up. I'm so sorry.\n");
+  playAnimation(5, 0);
+  return;
 }
 
 section(71) {
-    jumpToScriptSection(212, 71);
-    return;
+  jumpToScriptSection(212, 71);
+  return;
 }
 
 section(72) {
-    jumpToScriptSection(212, 72);
-    return;
+  jumpToScriptSection(212, 72);
+  return;
 }
 
 section(73) {
-    jumpToScriptSection(212, 73);
-    return;
+  jumpToScriptSection(212, 73);
+  return;
 }
 
 section(85) {
-    if (trigger(94)) goto L1;
-    setTrigger(94);
-    speak(Entity.Player, "What's this machine?\n");
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Player, at: 5);
-    delay(5);
-    speak(5, "That's a <PINK>Save Machine\nfor Memory Card Battle\nData<WHITE>.\n");
-    showTextbox("Using that machine, you can\nsave your current partner's\ndata for battle.\n");
-    showTextbox("All you have to do is press\n<LIGHTBLUE><X> <WHITE>and the machine\nwill tell you what to do.\n");
-    rotate(entity: Entity.Player, to: 0);
-    delay(5);
-    return;
+  if (trigger(94)) goto L1;
+  setTrigger(94);
+  speak(Entity.Player, "What's this machine?\n");
+  look(entity: 5, at: Entity.Player);
+  look(entity: Entity.Player, at: 5);
+  delay(5);
+  speak(5, "That's a <PINK>Save Machine\nfor Memory Card Battle\nData<WHITE>.\n");
+  showTextbox("Using that machine, you can\nsave your current partner's\ndata for battle.\n");
+  showTextbox("All you have to do is press\n<LIGHTBLUE><X> <WHITE>and the machine\nwill tell you what to do.\n");
+  rotate(entity: Entity.Player, to: 0);
+  delay(5);
+  return;
 
 L1:
-    speak(Entity.System, "Do you want to use the\n<PINK>Save Machine for\nMemory Card Battle<WHITE>?\n");
-    choice { "Yes" -> L2, "No" -> L3 }
-    return;
+  speak(Entity.System, "Do you want to use the\n<PINK>Save Machine for\nMemory Card Battle<WHITE>?\n");
+  choice { "Yes" -> L2, "No" -> L3 }
+  return;
 
 L2:
-    fadeOutHUD();
-    callSubroutine(48);
-    return;
+  fadeOutHUD();
+  callSubroutine(48);
+  return;
 
 L3:
-    return;
+  return;
 }
 
 section(7) {
-    if (trigger(224) || !trigger(175)) goto L1;
-    speak(7, "Sounds like Yuramon has\ngathered more rumors.\n");
-    return;
+  if (trigger(224) || !trigger(175)) goto L1;
+  speak(7, "Sounds like Yuramon has\ngathered more rumors.\n");
+  return;
 
 L1:
-    if (!trigger(124) || !trigger(103)) goto L2;
-    speak(7, "I heard Yuramon\nknows some new rumors.\n");
-    return;
+  if (!trigger(124) || !trigger(103)) goto L2;
+  speak(7, "I heard Yuramon\nknows some new rumors.\n");
+  return;
 
 L2:
-    if (pstat[1] < 6) goto L3;
-    speak(7, "The city's starting to\ngrow and change\nnow that we're here.\n");
-    return;
+  if (pstat[1] < 6) goto L3;
+  speak(7, "The city's starting to\ngrow and change\nnow that we're here.\n");
+  return;
 
 L3:
-    speak(7, "<LIGHTBLUE><PLAYER><WHITE>, you have a\nway different\napproach to adventure.\n");
-    return;
+  speak(7, "<LIGHTBLUE><PLAYER><WHITE>, you have a\nway different\napproach to adventure.\n");
+  return;
 }
 
 section(51) {
-    move(entity: Entity.Player, to: (-470, -1970), sprint: 0);
-    if (trigger(203)) goto L1;
-    warp(to: Map.TWNA01, spawn: 2, trigger: 255);
+  move(entity: Entity.Player, to: (-470, -1970), sprint: 0);
+  if (trigger(203)) goto L1;
+  warp(to: Map.TWNA01, spawn: 2, trigger: 255);
 
 L1:
-    if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L2;
-    goto L11;
-    goto L3;
+  if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L2;
+  goto L11;
+  goto L3;
 
 L2:
-    goto L3;
+  goto L3;
 
 L3:
-    if (!trigger(221)) goto L4;
-    goto L8;
-    goto L5;
+  if (!trigger(221)) goto L4;
+  goto L8;
+  goto L5;
 
 L4:
-    goto L5;
+  goto L5;
 
 L5:
-    if (!trigger(225)) goto L6;
-    warp(to: Map.TWNA04, spawn: 2, trigger: 255);
+  if (!trigger(225)) goto L6;
+  warp(to: Map.TWNA04, spawn: 2, trigger: 255);
 
 L6:
-    if (!trigger(246)) goto L7;
-    warp(to: Map.TWNA03, spawn: 2, trigger: 255);
+  if (!trigger(246)) goto L7;
+  warp(to: Map.TWNA03, spawn: 2, trigger: 255);
 
 L7:
-    warp(to: Map.TWNA02, spawn: 2, trigger: 255);
+  warp(to: Map.TWNA02, spawn: 2, trigger: 255);
 
 L8:
-    if (!trigger(225)) goto L9;
-    warp(to: Map.TWNA07, spawn: 2, trigger: 255);
+  if (!trigger(225)) goto L9;
+  warp(to: Map.TWNA07, spawn: 2, trigger: 255);
 
 L9:
-    if (!trigger(246)) goto L10;
-    warp(to: Map.TWNA06, spawn: 2, trigger: 255);
+  if (!trigger(246)) goto L10;
+  warp(to: Map.TWNA06, spawn: 2, trigger: 255);
 
 L10:
-    warp(to: Map.TWNA05, spawn: 2, trigger: 255);
+  warp(to: Map.TWNA05, spawn: 2, trigger: 255);
 
 L11:
-    if (!trigger(221)) goto L12;
-    goto L16;
-    goto L13;
+  if (!trigger(221)) goto L12;
+  goto L16;
+  goto L13;
 
 L12:
-    goto L13;
+  goto L13;
 
 L13:
-    if (!trigger(225)) goto L14;
-    warp(to: Map.TWNA10, spawn: 2, trigger: 255);
+  if (!trigger(225)) goto L14;
+  warp(to: Map.TWNA10, spawn: 2, trigger: 255);
 
 L14:
-    if (!trigger(246)) goto L15;
-    warp(to: Map.TWNA09, spawn: 2, trigger: 255);
+  if (!trigger(246)) goto L15;
+  warp(to: Map.TWNA09, spawn: 2, trigger: 255);
 
 L15:
-    warp(to: Map.TWNA08, spawn: 2, trigger: 255);
+  warp(to: Map.TWNA08, spawn: 2, trigger: 255);
 
 L16:
-    if (!trigger(225)) goto L17;
-    warp(to: Map.TWNA13, spawn: 2, trigger: 255);
+  if (!trigger(225)) goto L17;
+  warp(to: Map.TWNA13, spawn: 2, trigger: 255);
 
 L17:
-    if (!trigger(246)) goto L18;
-    warp(to: Map.TWNA12, spawn: 2, trigger: 255);
+  if (!trigger(246)) goto L18;
+  warp(to: Map.TWNA12, spawn: 2, trigger: 255);
 
 L18:
-    warp(to: Map.TWNA11, spawn: 2, trigger: 255);
-    return;
-    garbage { 30 00 fe 00 30 00 36 00 32 00 05 00 3a 00 06 00 d6 07 14 00 de 07 47 00 40 08 48 00 48 08 49 00 50 08 55 00 58 08 07 00 f2 0a 33 00 ca 0c ff ff fe 00 17 00 c1 00 37 00 fe 00 19 00 01 00 ca 00 81 00 d7 00 89 00 10 00 18 00 70 02 19 00 19 00 00 00 c9 00 80 00 f3 00 18 00 70 02 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 83 82 81 82 8d 82 85 81 40 82 88 82 85 82 92 82 85 81 40 82 81 82 94 81 40 82 94 82 88 82 85 81 40 82 90 82 85 82 92 82 86 82 85 82 83 82 94 0d 00 82 94 82 89 82 8d 82 85 81 49 81 40 82 68 81 40 82 88 82 81 82 96 82 85 81 40 82 81 81 40 82 82 82 89 82 87 81 40 82 86 82 81 82 96 82 8f 82 92 81 40 82 94 82 8f 0d 00 82 81 82 93 82 8b 81 40 82 94 82 88 82 81 82 94 81 40 82 8f 82 8e 82 8c 82 99 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 40 82 84 82 8f 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 89 82 93 81 40 82 89 82 94 81 48 0d 00 00 00 1b 05 1a 00 82 68 82 94 81 75 82 93 81 40 82 94 82 88 82 85 81 40 82 93 82 81 82 8d 82 85 81 40 82 85 82 96 82 89 82 8c 0d 00 82 68 81 40 82 86 82 85 82 8c 82 94 81 40 82 86 82 92 82 8f 82 8d 81 40 82 60 82 8e 82 81 82 8c 82 8f 82 87 82 8d 82 81 82 8e 0d 00 82 81 82 8e 82 84 81 40 82 6c 82 81 82 83 82 88 82 89 82 8e 82 85 82 84 82 92 82 81 82 8d 82 8f 82 8e 81 42 0d 00 00 00 1a 00 82 61 82 95 82 94 81 40 82 68 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 94 82 85 82 8c 82 8c 0d 00 82 97 82 88 82 85 82 92 82 85 81 40 82 89 82 94 81 75 82 93 81 40 82 83 82 8f 82 8d 82 89 82 8e 82 87 81 40 82 86 82 92 82 8f 82 8d 81 42 0d 00 00 00 1b fd 1a 00 82 60 82 8c 82 92 82 89 82 87 82 88 82 94 81 43 81 40 82 8c 82 85 82 81 82 96 82 85 81 40 82 89 82 94 81 40 82 94 82 8f 81 40 82 8d 82 85 81 49 0d 00 00 00 1b 05 1a 00 82 73 }
+  warp(to: Map.TWNA11, spawn: 2, trigger: 255);
+  return;
+  garbage { 30 00 fe 00 30 00 36 00 32 00 05 00 3a 00 06 00 d6 07 14 00 de 07 47 00 40 08 48 00 48 08 49 00 50 08 55 00 58 08 07 00 f2 0a 33 00 ca 0c ff ff fe 00 17 00 c1 00 37 00 fe 00 19 00 01 00 ca 00 81 00 d7 00 89 00 10 00 18 00 70 02 19 00 19 00 00 00 c9 00 80 00 f3 00 18 00 70 02 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 83 82 81 82 8d 82 85 81 40 82 88 82 85 82 92 82 85 81 40 82 81 82 94 81 40 82 94 82 88 82 85 81 40 82 90 82 85 82 92 82 86 82 85 82 83 82 94 0d 00 82 94 82 89 82 8d 82 85 81 49 81 40 82 68 81 40 82 88 82 81 82 96 82 85 81 40 82 81 81 40 82 82 82 89 82 87 81 40 82 86 82 81 82 96 82 8f 82 92 81 40 82 94 82 8f 0d 00 82 81 82 93 82 8b 81 40 82 94 82 88 82 81 82 94 81 40 82 8f 82 8e 82 8c 82 99 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 40 82 84 82 8f 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 89 82 93 81 40 82 89 82 94 81 48 0d 00 00 00 1b 05 1a 00 82 68 82 94 81 75 82 93 81 40 82 94 82 88 82 85 81 40 82 93 82 81 82 8d 82 85 81 40 82 85 82 96 82 89 82 8c 0d 00 82 68 81 40 82 86 82 85 82 8c 82 94 81 40 82 86 82 92 82 8f 82 8d 81 40 82 60 82 8e 82 81 82 8c 82 8f 82 87 82 8d 82 81 82 8e 0d 00 82 81 82 8e 82 84 81 40 82 6c 82 81 82 83 82 88 82 89 82 8e 82 85 82 84 82 92 82 81 82 8d 82 8f 82 8e 81 42 0d 00 00 00 1a 00 82 61 82 95 82 94 81 40 82 68 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 94 82 85 82 8c 82 8c 0d 00 82 97 82 88 82 85 82 92 82 85 81 40 82 89 82 94 81 75 82 93 81 40 82 83 82 8f 82 8d 82 89 82 8e 82 87 81 40 82 86 82 92 82 8f 82 8d 81 42 0d 00 00 00 1b fd 1a 00 82 60 82 8c 82 92 82 89 82 87 82 88 82 94 81 43 81 40 82 8c 82 85 82 81 82 96 82 85 81 40 82 89 82 94 81 40 82 94 82 8f 81 40 82 8d 82 85 81 49 0d 00 00 00 1b 05 1a 00 82 73 }
 }

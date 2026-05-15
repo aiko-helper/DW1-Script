@@ -3,159 +3,159 @@
 #pragma script index=40 start=0x20800 end=0x21000 headerU16=0x10 sentinelOff=0x24
 
 section onEnter(254) {
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 9) goto L1;
-    spawnItem(Item.Digimushroom, x: 76, y: 78);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 9) goto L1;
+  spawnItem(Item.Digimushroom, x: 76, y: 78);
 
 L1:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 4) goto L2;
-    spawnItem(Item.Digimushroom, x: 31, y: 68);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 4) goto L2;
+  spawnItem(Item.Digimushroom, x: 31, y: 68);
 
 L2:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 6) goto L3;
-    spawnItem(Item.Pricklypear, x: 66, y: 68);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 6) goto L3;
+  spawnItem(Item.Pricklypear, x: 66, y: 68);
 
 L3:
-    roll(pstat: 110, max: 99);
-    if (pstat[110] > 2) goto L4;
-    spawnItem(Item.Happymushroom, x: 22, y: 75);
+  roll(pstat: 110, max: 99);
+  if (pstat[110] > 2) goto L4;
+  spawnItem(Item.Happymushroom, x: 22, y: 75);
 
 L4:
-    rotate3DObject(0, 1);
-    delay(20);
-    return;
+  rotate3DObject(0, 1);
+  delay(20);
+  return;
 }
 
 section(5) {
-    if (trigger(199) || trigger(198)) goto L1;
-    goto L4;
+  if (trigger(199) || trigger(198)) goto L1;
+  goto L4;
 
 L1:
-    if (trigger(199) || !trigger(198)) goto L2;
-    goto L7;
+  if (trigger(199) || !trigger(198)) goto L2;
+  goto L7;
 
 L2:
-    if (!trigger(199) || !trigger(198)) goto L3;
-    goto L9;
+  if (!trigger(199) || !trigger(198)) goto L3;
+  goto L9;
 
 L3:
-    goto L10;
+  goto L10;
 
 L4:
-    setTrigger(199);
-    speak(5, "Who are you? Go away!\n");
-    playAnimation(Entity.Player, 24);
-    delay(15);
-    speak(Entity.Player, "Is this where you live?\n");
-    playAnimation(Entity.Player, 0);
-    speak(5, "I can't tell you!\n");
-    speak(Entity.Player, "Are you a guard or something?\n");
-    speak(5, "Want to fight? I'll beat you!\n");
-    setDialogOwner(Entity.Player);
-    choice { "I guess I'll fight" -> L5, "You can't bully me" -> L6 }
-    goto L6;
+  setTrigger(199);
+  speak(5, "Who are you? Go away!\n");
+  playAnimation(Entity.Player, 24);
+  delay(15);
+  speak(Entity.Player, "Is this where you live?\n");
+  playAnimation(Entity.Player, 0);
+  speak(5, "I can't tell you!\n");
+  speak(Entity.Player, "Are you a guard or something?\n");
+  speak(5, "Want to fight? I'll beat you!\n");
+  setDialogOwner(Entity.Player);
+  choice { "I guess I'll fight" -> L5, "You can't bully me" -> L6 }
+  goto L6;
 
 L5:
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 255);
-    setPStat(253, 255);
-    startBattle();
-    unsetTrigger(1);
-    setPStat(250, 0);
-    speak(5, "Wow!\n");
-    move(entity: 5, to: (-356, -1058), sprint: 1);
-    delay(40);
-    move(entity: Entity.Player, to: (-349, -1355), sprint: 1);
-    move(entity: Entity.Partner, to: (-345, -1751), sprint: 1);
-    waitForEntity(Entity.Player);
-    waitForEntity(Entity.Partner);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
-    move(entity: 5, to: (-250, -950), sprint: 1);
-    waitForEntity(5);
-    unloadEntity(5);
-    playSound(8, 2);
-    rotate3DObject(0, 255);
-    delay(40);
-    playSound(8, 3);
-    delay(10);
-    move(entity: Entity.Player, to: (-350, -1145), sprint: 1);
-    move(entity: Entity.Partner, to: (-359, -1355), sprint: 1);
-    speak(Entity.Player, "Oh no! Hey!\n");
-    speak(Entity.System, "<YELLOW>???mon <WHITE>\nHa ha ha.\n");
-    speak(Entity.Player, "Who is it?\n");
-    speak(Entity.System, "<YELLOW>???mon <WHITE>\nI have done nothing wrong.\nDon't come in my house\nwithout permission!\n");
-    speak(Entity.Player, "I guess I should leave now.\n");
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    return;
+  setTrigger(1);
+  setPStat(250, 1);
+  setPStat(251, 5);
+  setPStat(252, 255);
+  setPStat(253, 255);
+  startBattle();
+  unsetTrigger(1);
+  setPStat(250, 0);
+  speak(5, "Wow!\n");
+  move(entity: 5, to: (-356, -1058), sprint: 1);
+  delay(40);
+  move(entity: Entity.Player, to: (-349, -1355), sprint: 1);
+  move(entity: Entity.Partner, to: (-345, -1751), sprint: 1);
+  waitForEntity(Entity.Player);
+  waitForEntity(Entity.Partner);
+  look(entity: Entity.Player, at: 5);
+  look(entity: Entity.Partner, at: 5);
+  move(entity: 5, to: (-250, -950), sprint: 1);
+  waitForEntity(5);
+  unloadEntity(5);
+  playSound(8, 2);
+  rotate3DObject(0, 255);
+  delay(40);
+  playSound(8, 3);
+  delay(10);
+  move(entity: Entity.Player, to: (-350, -1145), sprint: 1);
+  move(entity: Entity.Partner, to: (-359, -1355), sprint: 1);
+  speak(Entity.Player, "Oh no! Hey!\n");
+  speak(Entity.System, "<YELLOW>???mon <WHITE>\nHa ha ha.\n");
+  speak(Entity.Player, "Who is it?\n");
+  speak(Entity.System, "<YELLOW>???mon <WHITE>\nI have done nothing wrong.\nDon't come in my house\nwithout permission!\n");
+  speak(Entity.Player, "I guess I should leave now.\n");
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  return;
 
 L6:
-    speak(Entity.Player, "Keep up your guard work!\n");
-    return;
+  speak(Entity.Player, "Keep up your guard work!\n");
+  return;
 
 L7:
-    speak(Entity.Player, "You are an Ogremon bandit!\nThis is your hideout!\n");
-    speak(5, "What are you talking about?\n");
-    playAnimation(Entity.Player, 7);
-    delay(15);
-    speak(Entity.Player, "You were lucky last time!\nGive up!\n");
-    playAnimation(Entity.Player, 0);
-    goto L8;
+  speak(Entity.Player, "You are an Ogremon bandit!\nThis is your hideout!\n");
+  speak(5, "What are you talking about?\n");
+  playAnimation(Entity.Player, 7);
+  delay(15);
+  speak(Entity.Player, "You were lucky last time!\nGive up!\n");
+  playAnimation(Entity.Player, 0);
+  goto L8;
 
 L8:
-    speak(5, "Wow!\n");
-    move(entity: 5, to: (-356, -1058), sprint: 1);
-    delay(40);
-    move(entity: Entity.Player, to: (-349, -1375), sprint: 1);
-    move(entity: Entity.Partner, to: (-355, -1761), sprint: 1);
-    waitForEntity(Entity.Player);
-    waitForEntity(Entity.Partner);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
-    move(entity: 5, to: (-250, -930), sprint: 1);
-    waitForEntity(5);
-    unloadEntity(5);
-    move(entity: Entity.Player, to: (-250, -930), sprint: 1);
-    waitForEntity(Entity.Player);
-    move(entity: Entity.Partner, to: (-250, -930), sprint: 1);
-    waitForEntity(Entity.Partner);
-    setTrigger(200);
-    warp(to: Map.OGRE00, spawn: 0, trigger: 255);
+  speak(5, "Wow!\n");
+  move(entity: 5, to: (-356, -1058), sprint: 1);
+  delay(40);
+  move(entity: Entity.Player, to: (-349, -1375), sprint: 1);
+  move(entity: Entity.Partner, to: (-355, -1761), sprint: 1);
+  waitForEntity(Entity.Player);
+  waitForEntity(Entity.Partner);
+  look(entity: Entity.Player, at: 5);
+  look(entity: Entity.Partner, at: 5);
+  move(entity: 5, to: (-250, -930), sprint: 1);
+  waitForEntity(5);
+  unloadEntity(5);
+  move(entity: Entity.Player, to: (-250, -930), sprint: 1);
+  waitForEntity(Entity.Player);
+  move(entity: Entity.Partner, to: (-250, -930), sprint: 1);
+  waitForEntity(Entity.Partner);
+  setTrigger(200);
+  warp(to: Map.OGRE00, spawn: 0, trigger: 255);
 
 L9:
-    speak(Entity.Player, "You tricked me last time,\nbut now I'll get you.\n");
-    speak(5, "What are you talking about?\n");
-    playAnimation(Entity.Player, 7);
-    delay(15);
-    speak(Entity.Player, "You won't get away this time!\n");
-    playAnimation(Entity.Player, 0);
-    goto L8;
-    return;
+  speak(Entity.Player, "You tricked me last time,\nbut now I'll get you.\n");
+  speak(5, "What are you talking about?\n");
+  playAnimation(Entity.Player, 7);
+  delay(15);
+  speak(Entity.Player, "You won't get away this time!\n");
+  playAnimation(Entity.Player, 0);
+  goto L8;
+  return;
 
 L10:
-    speak(Entity.Player, "Come on, let me in.\n");
-    speak(5, "You want a piece of me?\nI'll knock you out!\n");
-    setDialogOwner(Entity.Player);
-    choice { "Let's fight" -> L5, "Don't bully me" -> L6 }
-    goto L6;
+  speak(Entity.Player, "Come on, let me in.\n");
+  speak(5, "You want a piece of me?\nI'll knock you out!\n");
+  setDialogOwner(Entity.Player);
+  choice { "Let's fight" -> L5, "Don't bully me" -> L6 }
+  goto L6;
 }
 
 section(51) {
-    if (pstat[16] != 3) goto L1;
-    move(entity: Entity.Player, to: (-250, -250), sprint: 0);
-    warp(to: Map.MGEN11, spawn: 0, trigger: 60);
+  if (pstat[16] != 3) goto L1;
+  move(entity: Entity.Player, to: (-250, -250), sprint: 0);
+  warp(to: Map.MGEN11, spawn: 0, trigger: 60);
 
 L1:
-    if (!trigger(200)) goto L2;
-    move(entity: Entity.Player, to: (-250, -250), sprint: 0);
-    warp(to: Map.OGRE00, spawn: 0, trigger: 255);
+  if (!trigger(200)) goto L2;
+  move(entity: Entity.Player, to: (-250, -250), sprint: 0);
+  warp(to: Map.OGRE00, spawn: 0, trigger: 255);
 
 L2:
-    return;
-    garbage { 10 00 fe 00 10 00 05 00 72 00 33 00 7e 07 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 26 00 19 00 74 2c 4c 00 4e 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 3c 00 19 00 74 2c 1f 00 44 00 24 00 6e 63 19 00 0b 00 6e 06 18 00 52 00 19 00 74 36 }
+  return;
+  garbage { 10 00 fe 00 10 00 05 00 72 00 33 00 7e 07 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 26 00 19 00 74 2c 4c 00 4e 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 3c 00 19 00 74 2c 1f 00 44 00 24 00 6e 63 19 00 0b 00 6e 06 18 00 52 00 19 00 74 36 }
 }

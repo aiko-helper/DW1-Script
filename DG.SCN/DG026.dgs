@@ -3,216 +3,216 @@
 #pragma script index=26 start=0x18000 end=0x19000 headerU16=0x28 sentinelOff=0x1a64
 
 section onEnter(254) {
-    callSubroutine(26);
-    if (pstat[17] != 3) goto L1;
-    setPStat(254, 0);
-    callSubroutine(19);
-    for id in 5..7 { setAutotalk(id, 0); }
+  callSubroutine(26);
+  if (pstat[17] != 3) goto L1;
+  setPStat(254, 0);
+  callSubroutine(19);
+  for id in 5..7 { setAutotalk(id, 0); }
 
 L1:
-    if (pstat[17] != 4) goto L2;
-    setPStat(254, 1);
-    callSubroutine(19);
-    for id in 5..7 { setAutotalk(id, 0); }
+  if (pstat[17] != 4) goto L2;
+  setPStat(254, 1);
+  callSubroutine(19);
+  for id in 5..7 { setAutotalk(id, 0); }
 
 L2:
-    return;
+  return;
 }
 
 section(5) {
-    if (pstat[17] < 3) goto L1;
-    speak(5, "Oh, thanks so much!\n");
-    return;
+  if (pstat[17] < 3) goto L1;
+  speak(5, "Oh, thanks so much!\n");
+  return;
 
 L1:
-    speak(5, "What? You wanna fight?\n");
-    startBattle();
-    setTrigger(280);
-    return;
+  speak(5, "What? You wanna fight?\n");
+  startBattle();
+  setTrigger(280);
+  return;
 }
 
 section(6) {
-    if (pstat[17] < 3) goto L1;
-    speak(6, "Oh, thanks a lot!\n");
-    return;
+  if (pstat[17] < 3) goto L1;
+  speak(6, "Oh, thanks a lot!\n");
+  return;
 
 L1:
-    speak(6, "Leave it!\n");
-    startBattle();
-    setTrigger(280);
-    return;
+  speak(6, "Leave it!\n");
+  startBattle();
+  setTrigger(280);
+  return;
 }
 
 section(7) {
-    if (pstat[17] < 3) goto L1;
-    speak(7, "Don't push yourself!\n");
-    return;
+  if (pstat[17] < 3) goto L1;
+  speak(7, "Don't push yourself!\n");
+  return;
 
 L1:
-    speak(7, "Let's fight, punk!\n");
-    startBattle();
-    setTrigger(280);
-    return;
+  speak(7, "Let's fight, punk!\n");
+  startBattle();
+  setTrigger(280);
+  return;
 }
 
 section(9) {
-    speak(9, "I give up!\n");
-    return;
+  speak(9, "I give up!\n");
+  return;
 }
 
 section(10) {
-    speak(10, "The boss is gone.\n");
-    return;
+  speak(10, "The boss is gone.\n");
+  return;
 }
 
 section(51) {
-    if (trigger(150) && !trigger(234)) goto L1;
-    return;
+  if (trigger(150) && !trigger(234)) goto L1;
+  return;
 
 L1:
-    move(entity: Entity.Player, to: (-165, 221), sprint: 0, withCamera: true);
-    move(entity: Entity.Partner, to: (171, 615), sprint: 0);
-    waitForEntity(Entity.Player);
-    waitForEntity(Entity.Partner);
-    move(entity: 9, to: (-323, 93), sprint: 0);
-    move(entity: 10, to: (498, -51), sprint: 0);
-    move(entity: 8, to: (160, -193), sprint: 0);
-    for x in [5, 6, 8] { waitForEntity(x); }
-    rotate(entity: Entity.Player, to: 100);
-    rotate(entity: Entity.Partner, to: 100);
-    look(entity: 9, at: Entity.Player);
-    look(entity: 10, at: Entity.Player);
-    look(entity: 8, at: Entity.Player);
-    speak(8, "Hey guys, if you want\nto get thru here,");
-    dead_string("?nt\nleave all your stuff!\n");
-    speak(Entity.Player, "Long time no see.\n");
-    speak(8, "Mmm. You guys again!\n");
-    speak(Entity.Player, "That's my line!\nIt was so easy to find you.\nReady to lose?\n");
-    playAnimation(8, 32);
-    speak(8, "Lose? No way!\nI'll show you what I do\nwhen I get serious!\n");
-    playAnimation(8, 0);
-    speak(Entity.Player, "Let's settle this\nonce and for all!\n");
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 9);
-    setPStat(252, 10);
-    setPStat(253, 8);
-    startBattle();
-    unsetTrigger(1);
-    setPStat(250, 0);
-    playAnimation(9, 43);
-    playAnimation(10, 43);
-    move(entity: 8, to: (89, -659), sprint: 0);
-    waitForEntity(8);
-    rotate(entity: 8, to: 100);
-    look(entity: Entity.Player, at: 8);
-    look(entity: Entity.Partner, at: 8);
-    waitForEntity(8);
-    playAnimation(8, 28);
-    delay(30);
-    speak(8, "How come...I can't win?\n");
-    playAnimation(8, 29);
-    playAnimation(Entity.Player, 19);
-    delay(20);
-    speak(Entity.Player, "What's wrong?\nAren't you going to run?\n");
-    playAnimation(Entity.Player, 0);
-    speak(8, "I'm too tired.\n");
-    speak(Entity.Player, "...\n");
-    speak(8, "I became a bandit cuz I\nthought this island was done\nfor, so I just did whatever.\n");
-    speak(Entity.Player, "Did you know the island\nwas in trouble?\n");
-    speak(8, "Yes, then you showed up.\nI guess it's dumb to\nstart helping you now.\n");
-    playAnimation(Entity.Player, 19);
-    delay(15);
-    speak(Entity.Player, "I don't think so.\nCome to the city.\n");
-    playAnimation(Entity.Player, 0);
-    speak(8, "No, I can't. Plus, I don't\nthink anybody would forgive\nme for what I've done.\n");
-    playAnimation(Entity.Player, 7);
-    delay(15);
-    speak(Entity.Player, "Oh, just be quiet\nand come with me!\n");
-    playAnimation(Entity.Player, 0);
-    move(entity: Entity.Player, to: (160, -193), sprint: 1, withCamera: true);
-    waitForEntity(Entity.Player);
-    rotate(entity: Entity.Player, to: 100);
-    showTextbox("You can be helpful!\nEveryone has something\nto offer!\n");
-    speak(8, "!!!\n");
-    playAnimation(8, 30);
-    look(entity: 8, at: Entity.Player);
-    speak(8, "Can this island be saved?\nYou're going to save it\nfor us, right?!\n");
-    move(entity: 8, to: (119, -494), sprint: 1);
-    waitForEntity(8);
-    look(entity: 8, at: Entity.Player);
-    speak(Entity.Player, "Of course! You know\nwhere the city is, right?\n");
-    speak(8, "Ohhhhh!\nI'll be there!\n");
-    goto L2;
+  move(entity: Entity.Player, to: (-165, 221), sprint: 0, withCamera: true);
+  move(entity: Entity.Partner, to: (171, 615), sprint: 0);
+  waitForEntity(Entity.Player);
+  waitForEntity(Entity.Partner);
+  move(entity: 9, to: (-323, 93), sprint: 0);
+  move(entity: 10, to: (498, -51), sprint: 0);
+  move(entity: 8, to: (160, -193), sprint: 0);
+  for x in [5, 6, 8] { waitForEntity(x); }
+  rotate(entity: Entity.Player, to: 100);
+  rotate(entity: Entity.Partner, to: 100);
+  look(entity: 9, at: Entity.Player);
+  look(entity: 10, at: Entity.Player);
+  look(entity: 8, at: Entity.Player);
+  speak(8, "Hey guys, if you want\nto get thru here,");
+  dead_string("?nt\nleave all your stuff!\n");
+  speak(Entity.Player, "Long time no see.\n");
+  speak(8, "Mmm. You guys again!\n");
+  speak(Entity.Player, "That's my line!\nIt was so easy to find you.\nReady to lose?\n");
+  playAnimation(8, 32);
+  speak(8, "Lose? No way!\nI'll show you what I do\nwhen I get serious!\n");
+  playAnimation(8, 0);
+  speak(Entity.Player, "Let's settle this\nonce and for all!\n");
+  setTrigger(1);
+  setPStat(250, 1);
+  setPStat(251, 9);
+  setPStat(252, 10);
+  setPStat(253, 8);
+  startBattle();
+  unsetTrigger(1);
+  setPStat(250, 0);
+  playAnimation(9, 43);
+  playAnimation(10, 43);
+  move(entity: 8, to: (89, -659), sprint: 0);
+  waitForEntity(8);
+  rotate(entity: 8, to: 100);
+  look(entity: Entity.Player, at: 8);
+  look(entity: Entity.Partner, at: 8);
+  waitForEntity(8);
+  playAnimation(8, 28);
+  delay(30);
+  speak(8, "How come...I can't win?\n");
+  playAnimation(8, 29);
+  playAnimation(Entity.Player, 19);
+  delay(20);
+  speak(Entity.Player, "What's wrong?\nAren't you going to run?\n");
+  playAnimation(Entity.Player, 0);
+  speak(8, "I'm too tired.\n");
+  speak(Entity.Player, "...\n");
+  speak(8, "I became a bandit cuz I\nthought this island was done\nfor, so I just did whatever.\n");
+  speak(Entity.Player, "Did you know the island\nwas in trouble?\n");
+  speak(8, "Yes, then you showed up.\nI guess it's dumb to\nstart helping you now.\n");
+  playAnimation(Entity.Player, 19);
+  delay(15);
+  speak(Entity.Player, "I don't think so.\nCome to the city.\n");
+  playAnimation(Entity.Player, 0);
+  speak(8, "No, I can't. Plus, I don't\nthink anybody would forgive\nme for what I've done.\n");
+  playAnimation(Entity.Player, 7);
+  delay(15);
+  speak(Entity.Player, "Oh, just be quiet\nand come with me!\n");
+  playAnimation(Entity.Player, 0);
+  move(entity: Entity.Player, to: (160, -193), sprint: 1, withCamera: true);
+  waitForEntity(Entity.Player);
+  rotate(entity: Entity.Player, to: 100);
+  showTextbox("You can be helpful!\nEveryone has something\nto offer!\n");
+  speak(8, "!!!\n");
+  playAnimation(8, 30);
+  look(entity: 8, at: Entity.Player);
+  speak(8, "Can this island be saved?\nYou're going to save it\nfor us, right?!\n");
+  move(entity: 8, to: (119, -494), sprint: 1);
+  waitForEntity(8);
+  look(entity: 8, at: Entity.Player);
+  speak(Entity.Player, "Of course! You know\nwhere the city is, right?\n");
+  speak(8, "Ohhhhh!\nI'll be there!\n");
+  goto L2;
 
 L2:
-    move(entity: 8, to: (155, 873), sprint: 1);
-    if (pstat[101] >= 6) goto L3;
-    addPStat(101, 1);
-    delay(10);
-    look(entity: Entity.Player, at: 8);
-    look(entity: Entity.Partner, at: 8);
+  move(entity: 8, to: (155, 873), sprint: 1);
+  if (pstat[101] >= 6) goto L3;
+  addPStat(101, 1);
+  delay(10);
+  look(entity: Entity.Player, at: 8);
+  look(entity: Entity.Partner, at: 8);
 
 L3:
-    waitForEntity(8);
-    unloadEntity(8);
-    setPStat(101, 0);
-    playSound(8, 8);
-    speak(Entity.System, "Ogremon joins the city!\n");
-    setTrigger(234);
-    addPStat(1, 2);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    return;
+  waitForEntity(8);
+  unloadEntity(8);
+  setPStat(101, 0);
+  playSound(8, 8);
+  speak(Entity.System, "Ogremon joins the city!\n");
+  setTrigger(234);
+  addPStat(1, 2);
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  return;
 }
 
 section(52) {
-    if (pstat[17] != 3) goto L1;
-    speak(Entity.Player, "Ooops!\nExit isn't this way!\n");
-    move(entity: Entity.Player, to: (-51, -1550), sprint: 1);
-    waitForEntity(Entity.Player);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    return;
+  if (pstat[17] != 3) goto L1;
+  speak(Entity.Player, "Ooops!\nExit isn't this way!\n");
+  move(entity: Entity.Player, to: (-51, -1550), sprint: 1);
+  waitForEntity(Entity.Player);
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  return;
 
 L1:
-    if (pstat[17] != 4) goto L2;
-    speak(Entity.Player, "Oh no! I have to return\nthe dirt box to Drimogemon!\n");
-    move(entity: Entity.Player, to: (-51, -1550), sprint: 1);
-    waitForEntity(Entity.Player);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    return;
+  if (pstat[17] != 4) goto L2;
+  speak(Entity.Player, "Oh no! I have to return\nthe dirt box to Drimogemon!\n");
+  move(entity: Entity.Player, to: (-51, -1550), sprint: 1);
+  waitForEntity(Entity.Player);
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  return;
 
 L2:
-    if (!trigger(209) || pstat[1] < 45) goto L3;
-    move(entity: Entity.Player, to: (-105, -2200), sprint: 0);
-    warp(to: Map.TUNN03_2, spawn: 0, trigger: 255);
+  if (!trigger(209) || pstat[1] < 45) goto L3;
+  move(entity: Entity.Player, to: (-105, -2200), sprint: 0);
+  warp(to: Map.TUNN03_2, spawn: 0, trigger: 255);
 
 L3:
-    move(entity: Entity.Player, to: (-105, -2200), sprint: 0);
-    warp(to: Map.TUNN03, spawn: 0, trigger: 255);
+  move(entity: Entity.Player, to: (-105, -2200), sprint: 0);
+  warp(to: Map.TUNN03, spawn: 0, trigger: 255);
 }
 
 section(53) {
-    if (pstat[17] != 3) goto L1;
-    speak(Entity.Player, "Ooops! Exit isn't this way!\n");
-    move(entity: Entity.Player, to: (-2253, 359), sprint: 1);
-    waitForEntity(Entity.Player);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    return;
+  if (pstat[17] != 3) goto L1;
+  speak(Entity.Player, "Ooops! Exit isn't this way!\n");
+  move(entity: Entity.Player, to: (-2253, 359), sprint: 1);
+  waitForEntity(Entity.Player);
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  return;
 
 L1:
-    if (pstat[17] != 4) goto L2;
-    speak(Entity.Player, "Oh no! I have to return\nthe dirt box to Drimogemon!\n");
-    move(entity: Entity.Player, to: (-2253, 359), sprint: 1);
-    waitForEntity(Entity.Player);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
-    return;
+  if (pstat[17] != 4) goto L2;
+  speak(Entity.Player, "Oh no! I have to return\nthe dirt box to Drimogemon!\n");
+  move(entity: Entity.Player, to: (-2253, 359), sprint: 1);
+  waitForEntity(Entity.Player);
+  moveCamera(to: Entity.Player, speed: 10);
+  waitForEntity(200);
+  return;
 
 L2:
-    return;
-    garbage { 28 00 fe 00 28 00 05 00 68 00 06 00 e6 00 07 00 46 01 09 00 be 01 0a 00 dc 01 33 00 08 02 34 00 c8 0a 35 00 d8 0b ff ff 64 1a 19 00 08 00 11 03 18 00 48 00 19 00 1e 00 fe 00 64 13 6a 00 05 00 6a 00 06 00 6a 00 07 00 19 00 08 00 11 04 18 00 66 00 19 00 1e 00 fe 01 64 13 6a 00 05 00 6a 00 06 00 6a 00 07 00 fe 00 19 00 0a 00 11 03 18 00 a4 00 19 00 1b 05 1a 00 82 6e 82 88 81 43 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 81 40 82 93 82 8f 81 40 82 8d 82 95 82 83 82 88 81 49 0d 00 00 00 fe 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 48 81 40 82 78 82 8f 82 95 81 40 82 97 82 81 82 8e 82 8e 82 81 81 40 82 86 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 19 00 0a 00 11 03 18 00 1e 01 19 00 1b 06 1a 00 82 6e 82 88 81 43 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 81 40 82 81 81 40 82 8c 82 8f 82 94 81 49 0d 00 00 00 fe 00 1b 06 1a 00 82 6b 82 85 82 81 82 96 82 85 81 40 82 89 82 94 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 19 00 0a 00 11 03 18 00 84 01 19 00 1b 07 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 90 82 95 82 93 82 88 81 40 82 99 82 8f 82 95 82 92 82 93 82 85 82 8c 82 86 81 49 0d 00 00 00 fe 00 1b 07 1a 00 82 6b 82 85 82 94 81 75 82 93 81 40 82 86 82 89 82 87 82 88 82 94 81 43 81 40 82 90 82 95 82 8e 82 8b 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 09 1a 00 82 68 81 40 82 87 82 89 82 96 82 85 81 40 82 95 82 90 81 49 0d 00 00 00 fe 00 1b 0a 1a 00 82 73 82 88 82 85 81 40 82 82 82 8f 82 93 82 93 81 40 82 89 82 93 81 40 82 87 82 8f 82 8e 82 85 81 42 0d 00 00 00 fe 00 19 00 01 00 96 00 40 00 ea 00 18 00 1a 02 19 00 fe 00 52 fd 5b ff dd 00 00 00 4e fc ab 00 67 02 00 00 4a fd 4a fc 4e 09 bd fe 5d 00 00 00 4e 0a f2 01 cd ff 00 00 4e 08 a0 00 3f ff 00 00 4a 05 4a 06 4a 08 4d fd 64 00 4d fc 64 00 4c 00 09 fd 4c 00 0a fd 4c 00 08 fd 1b 08 1a 00 82 67 82 85 82 99 81 40 82 87 82 95 82 99 82 93 81 43 81 40 82 89 82 86 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 0d 00 82 94 82 8f 81 40 82 87 82 85 82 94 81 40 82 94 82 88 82 92 82 95 81 40 82 88 82 85 82 92 82 85 81 43 00 00 81 48 82 8e 82 94 0d 00 82 8c 82 85 82 81 82 96 82 85 81 40 82 81 82 8c 82 8c 81 40 82 99 82 8f 82 95 82 92 81 40 82 93 82 94 82 95 82 86 82 86 81 49 0d 00 00 00 1b fd 1a 00 82 6b 82 8f 82 8e 82 87 81 40 82 94 82 89 82 8d 82 85 81 40 82 8e 82 8f 81 40 82 93 82 85 82 85 81 42 0d 00 00 00 1b 08 1a 00 82 6c 82 8d 82 8d 81 42 81 40 82 78 82 8f 82 95 81 40 82 87 82 95 82 99 82 93 81 40 82 81 82 87 82 81 82 89 }
+  return;
+  garbage { 28 00 fe 00 28 00 05 00 68 00 06 00 e6 00 07 00 46 01 09 00 be 01 0a 00 dc 01 33 00 08 02 34 00 c8 0a 35 00 d8 0b ff ff 64 1a 19 00 08 00 11 03 18 00 48 00 19 00 1e 00 fe 00 64 13 6a 00 05 00 6a 00 06 00 6a 00 07 00 19 00 08 00 11 04 18 00 66 00 19 00 1e 00 fe 01 64 13 6a 00 05 00 6a 00 06 00 6a 00 07 00 fe 00 19 00 0a 00 11 03 18 00 a4 00 19 00 1b 05 1a 00 82 6e 82 88 81 43 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 81 40 82 93 82 8f 81 40 82 8d 82 95 82 83 82 88 81 49 0d 00 00 00 fe 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 48 81 40 82 78 82 8f 82 95 81 40 82 97 82 81 82 8e 82 8e 82 81 81 40 82 86 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 19 00 0a 00 11 03 18 00 1e 01 19 00 1b 06 1a 00 82 6e 82 88 81 43 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 81 40 82 81 81 40 82 8c 82 8f 82 94 81 49 0d 00 00 00 fe 00 1b 06 1a 00 82 6b 82 85 82 81 82 96 82 85 81 40 82 89 82 94 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 19 00 0a 00 11 03 18 00 84 01 19 00 1b 07 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 90 82 95 82 93 82 88 81 40 82 99 82 8f 82 95 82 92 82 93 82 85 82 8c 82 86 81 49 0d 00 00 00 fe 00 1b 07 1a 00 82 6b 82 85 82 94 81 75 82 93 81 40 82 86 82 89 82 87 82 88 82 94 81 43 81 40 82 90 82 95 82 8e 82 8b 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 09 1a 00 82 68 81 40 82 87 82 89 82 96 82 85 81 40 82 95 82 90 81 49 0d 00 00 00 fe 00 1b 0a 1a 00 82 73 82 88 82 85 81 40 82 82 82 8f 82 93 82 93 81 40 82 89 82 93 81 40 82 87 82 8f 82 8e 82 85 81 42 0d 00 00 00 fe 00 19 00 01 00 96 00 40 00 ea 00 18 00 1a 02 19 00 fe 00 52 fd 5b ff dd 00 00 00 4e fc ab 00 67 02 00 00 4a fd 4a fc 4e 09 bd fe 5d 00 00 00 4e 0a f2 01 cd ff 00 00 4e 08 a0 00 3f ff 00 00 4a 05 4a 06 4a 08 4d fd 64 00 4d fc 64 00 4c 00 09 fd 4c 00 0a fd 4c 00 08 fd 1b 08 1a 00 82 67 82 85 82 99 81 40 82 87 82 95 82 99 82 93 81 43 81 40 82 89 82 86 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 0d 00 82 94 82 8f 81 40 82 87 82 85 82 94 81 40 82 94 82 88 82 92 82 95 81 40 82 88 82 85 82 92 82 85 81 43 00 00 81 48 82 8e 82 94 0d 00 82 8c 82 85 82 81 82 96 82 85 81 40 82 81 82 8c 82 8c 81 40 82 99 82 8f 82 95 82 92 81 40 82 93 82 94 82 95 82 86 82 86 81 49 0d 00 00 00 1b fd 1a 00 82 6b 82 8f 82 8e 82 87 81 40 82 94 82 89 82 8d 82 85 81 40 82 8e 82 8f 81 40 82 93 82 85 82 85 81 42 0d 00 00 00 1b 08 1a 00 82 6c 82 8d 82 8d 81 42 81 40 82 78 82 8f 82 95 81 40 82 87 82 95 82 99 82 93 81 40 82 81 82 87 82 81 82 89 }
 }

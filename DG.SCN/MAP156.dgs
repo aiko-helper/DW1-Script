@@ -3,74 +3,74 @@
 #pragma script index=156 start=0x6e800 end=0x6f000 headerU16=0x14 sentinelOff=0x1875
 
 section onEnter(254) {
-    spawnChest(Item.DefenseChip, 82, -1000, 3072, 714);
-    spawnChest(Item.Autopilot, 32, -1535, 3072, 715);
-    spawnChest(Item.BrainChip, 1889, -2267, 1024, 716);
-    return;
+  spawnChest(Item.DefenseChip, 82, -1000, 3072, 714);
+  spawnChest(Item.Autopilot, 32, -1535, 3072, 715);
+  spawnChest(Item.BrainChip, 1889, -2267, 1024, 716);
+  return;
 }
 
 section(5) {
-    move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
-    waitForEntity(Entity.Player);
-    speak(5, "We are going to remodel.\nThe fee is two thous bits.\n");
-    storeDigimonType(103);
-    if (pstat[103] == 13) goto L1;
-    speak(5, "The style is different.\nWe can't remodel.\n");
-    return;
+  move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
+  waitForEntity(Entity.Player);
+  speak(5, "We are going to remodel.\nThe fee is two thous bits.\n");
+  storeDigimonType(103);
+  if (pstat[103] == 13) goto L1;
+  speak(5, "The style is different.\nWe can't remodel.\n");
+  return;
 
 L1:
-    setDialogOwner(Entity.Player);
-    choice { "Do it" -> L2, "No thanks" -> L6 }
-    return;
+  setDialogOwner(Entity.Player);
+  choice { "Do it" -> L2, "No thanks" -> L6 }
+  return;
 
 L2:
-    if (money >= 2000) goto L3;
-    speak(5, "You don't have enough bits.\n");
-    return;
+  if (money >= 2000) goto L3;
+  speak(5, "You don't have enough bits.\n");
+  return;
 
 L3:
-    reduceMoney(2000);
-    speak(5, "Wait a minute.\n");
-    roll(pstat: 110, max: 10);
-    if (pstat[110] > 0) goto L4;
-    speak(5, "It didn't work, but...\n");
-    fadeOutHUD();
-    setPStat(254, 41);
-    callDigimonSubroutine(10);
-    delay(570);
-    speak(Entity.Player, "Wow, it turned into Giromon!\n");
-    return;
+  reduceMoney(2000);
+  speak(5, "Wait a minute.\n");
+  roll(pstat: 110, max: 10);
+  if (pstat[110] > 0) goto L4;
+  speak(5, "It didn't work, but...\n");
+  fadeOutHUD();
+  setPStat(254, 41);
+  callDigimonSubroutine(10);
+  delay(570);
+  speak(Entity.Player, "Wow, it turned into Giromon!\n");
+  return;
 
 L4:
-    if (pstat[110] > 5) goto L5;
-    speak(5, "It was successful!\n");
-    fadeOutHUD();
-    setPStat(254, 27);
-    callDigimonSubroutine(10);
-    delay(570);
-    speak(Entity.Player, "Wow, it turned into\nMetalMamemon!\n");
-    return;
+  if (pstat[110] > 5) goto L5;
+  speak(5, "It was successful!\n");
+  fadeOutHUD();
+  setPStat(254, 27);
+  callDigimonSubroutine(10);
+  delay(570);
+  speak(Entity.Player, "Wow, it turned into\nMetalMamemon!\n");
+  return;
 
 L5:
-    speak(5, "It didn't work.\n");
-    speak(Entity.Player, "That's awful!\n");
-    speak(5, "I'm sorry...\n");
+  speak(5, "It didn't work.\n");
+  speak(Entity.Player, "That's awful!\n");
+  speak(5, "I'm sorry...\n");
 
 L6:
-    return;
+  return;
 }
 
 section(6) {
-    speak(6, "Addition, elimination!\n");
-    startBattle();
-    setTrigger(292);
-    return;
+  speak(6, "Addition, elimination!\n");
+  startBattle();
+  setTrigger(292);
+  return;
 }
 
 section(7) {
-    speak(7, "The number one goal is\nto destroy hardware.\n");
-    startBattle();
-    setTrigger(292);
-    return;
-    garbage { 14 00 fe 00 14 00 05 00 3a 00 06 00 4e 03 07 00 90 03 ff ff 75 18 52 00 00 00 18 fc 00 0c ca 02 75 16 20 00 00 00 01 fa 00 0c cb 02 75 19 61 07 00 00 25 f7 00 04 cc 02 fe 00 51 fc 01 fd 4a fd 1b 05 1a 00 82 76 82 85 81 40 82 81 82 92 82 85 81 40 82 87 82 8f 82 89 82 8e 82 87 81 40 82 94 82 8f 81 40 82 92 82 85 82 8d 82 8f 82 84 82 85 82 8c 81 42 0d 00 82 73 82 88 82 85 81 40 82 86 82 85 82 85 81 40 82 89 82 93 81 40 82 94 82 97 82 8f 81 40 82 94 82 88 82 8f 82 95 82 93 81 40 82 82 82 89 82 94 82 93 81 42 0d 00 00 00 22 67 19 00 09 00 67 0d 18 00 18 01 19 00 1b 05 1a 00 82 73 82 88 82 85 81 40 82 93 82 94 82 99 82 8c 82 85 81 40 82 89 82 93 81 40 82 84 82 89 82 86 82 86 82 85 82 92 82 85 82 8e 82 94 81 42 0d 00 82 76 82 85 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 92 82 85 82 8d 82 8f 82 84 82 85 82 8c 81 42 0d 00 00 00 fe 00 1b fd 10 02 48 01 4c 03 1a 00 82 63 82 8f 81 40 82 89 82 94 0d 00 82 6d 82 8f 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 0d 00 00 00 12 00 fe 00 19 00 25 00 00 05 d0 07 00 00 18 00 98 01 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 81 40 82 85 82 8e 82 8f 82 95 82 87 82 88 81 40 82 82 82 89 82 94 82 93 81 42 0d 00 00 00 fe 00 2b 00 d0 07 00 00 1b 05 1a 00 82 76 82 81 82 89 82 94 81 40 82 81 81 40 82 8d 82 89 82 8e 82 95 82 94 82 85 81 42 0d 00 00 00 24 00 6e 0a 19 00 0b 00 6e 00 18 00 54 02 19 00 1b 05 1a 00 82 68 82 94 81 40 82 84 82 89 82 84 82 8e 81 75 82 94 81 40 82 97 82 8f 82 92 82 8b 81 43 81 40 82 82 82 95 82 94 81 42 81 42 81 42 0d 00 00 00 27 00 1e 00 fe 29 49 0a 67 00 3a 02 1b fd 1a 00 82 76 82 8f 82 97 81 43 81 40 82 89 82 94 81 40 82 94 82 95 82 92 82 8e 82 85 82 84 81 40 82 89 82 8e 82 94 82 8f 81 40 82 66 82 89 82 92 82 8f 82 8d 82 8f 82 8e 81 49 0d 00 00 00 fe 00 19 00 0b 00 6e 05 18 00 e4 02 19 00 1b 05 1a 00 82 68 82 94 81 40 82 97 82 81 82 93 81 40 82 93 82 95 82 83 82 83 82 85 82 93 82 93 82 86 82 95 82 8c 81 49 0d 00 00 00 27 00 1e 00 fe 1b 49 0a 67 00 3a 02 1b fd 1a 00 82 76 82 8f 82 97 81 43 81 40 82 89 82 94 81 40 82 94 82 95 82 92 82 8e 82 85 82 84 81 40 82 89 82 8e 82 94 82 8f 0d 00 82 6c 82 85 82 94 82 81 82 8c 82 6c 82 81 82 8d 82 85 82 8d 82 8f 82 8e 81 49 0d 00 00 00 fe 00 1b 05 1a 00 82 68 82 94 81 40 82 84 82 89 82 84 82 8e 81 75 82 94 81 40 82 97 82 8f 82 92 82 8b 81 42 0d 00 00 00 1b fd 1a 00 82 73 82 88 82 81 82 94 81 75 82 93 81 40 82 81 82 97 82 86 82 95 82 8c 81 49 0d 00 00 00 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 93 82 8f 82 92 82 92 82 99 81 42 81 42 81 42 0d 00 00 00 fe 00 1b 06 1a 00 82 60 82 84 82 84 82 89 82 94 82 89 82 8f 82 8e 81 43 81 40 82 85 82 8c 82 89 82 8d 82 89 82 8e 82 81 82 94 82 89 82 8f 82 8e 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 24 01 fe 00 1b 07 1a 00 82 73 82 88 82 85 81 40 82 8e 82 95 82 8d 82 82 82 85 82 92 81 40 82 8f 82 8e 82 85 81 40 82 87 82 8f 82 81 82 8c 81 40 82 89 82 93 0d 00 82 94 82 8f 81 40 82 84 82 85 82 93 82 94 82 92 82 8f 82 99 81 40 82 88 82 81 82 92 82 84 82 97 82 81 82 92 82 85 81 42 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 24 01 fe 00 ff 00 67 00 06 00 }
+  speak(7, "The number one goal is\nto destroy hardware.\n");
+  startBattle();
+  setTrigger(292);
+  return;
+  garbage { 14 00 fe 00 14 00 05 00 3a 00 06 00 4e 03 07 00 90 03 ff ff 75 18 52 00 00 00 18 fc 00 0c ca 02 75 16 20 00 00 00 01 fa 00 0c cb 02 75 19 61 07 00 00 25 f7 00 04 cc 02 fe 00 51 fc 01 fd 4a fd 1b 05 1a 00 82 76 82 85 81 40 82 81 82 92 82 85 81 40 82 87 82 8f 82 89 82 8e 82 87 81 40 82 94 82 8f 81 40 82 92 82 85 82 8d 82 8f 82 84 82 85 82 8c 81 42 0d 00 82 73 82 88 82 85 81 40 82 86 82 85 82 85 81 40 82 89 82 93 81 40 82 94 82 97 82 8f 81 40 82 94 82 88 82 8f 82 95 82 93 81 40 82 82 82 89 82 94 82 93 81 42 0d 00 00 00 22 67 19 00 09 00 67 0d 18 00 18 01 19 00 1b 05 1a 00 82 73 82 88 82 85 81 40 82 93 82 94 82 99 82 8c 82 85 81 40 82 89 82 93 81 40 82 84 82 89 82 86 82 86 82 85 82 92 82 85 82 8e 82 94 81 42 0d 00 82 76 82 85 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 92 82 85 82 8d 82 8f 82 84 82 85 82 8c 81 42 0d 00 00 00 fe 00 1b fd 10 02 48 01 4c 03 1a 00 82 63 82 8f 81 40 82 89 82 94 0d 00 82 6d 82 8f 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 0d 00 00 00 12 00 fe 00 19 00 25 00 00 05 d0 07 00 00 18 00 98 01 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 81 40 82 85 82 8e 82 8f 82 95 82 87 82 88 81 40 82 82 82 89 82 94 82 93 81 42 0d 00 00 00 fe 00 2b 00 d0 07 00 00 1b 05 1a 00 82 76 82 81 82 89 82 94 81 40 82 81 81 40 82 8d 82 89 82 8e 82 95 82 94 82 85 81 42 0d 00 00 00 24 00 6e 0a 19 00 0b 00 6e 00 18 00 54 02 19 00 1b 05 1a 00 82 68 82 94 81 40 82 84 82 89 82 84 82 8e 81 75 82 94 81 40 82 97 82 8f 82 92 82 8b 81 43 81 40 82 82 82 95 82 94 81 42 81 42 81 42 0d 00 00 00 27 00 1e 00 fe 29 49 0a 67 00 3a 02 1b fd 1a 00 82 76 82 8f 82 97 81 43 81 40 82 89 82 94 81 40 82 94 82 95 82 92 82 8e 82 85 82 84 81 40 82 89 82 8e 82 94 82 8f 81 40 82 66 82 89 82 92 82 8f 82 8d 82 8f 82 8e 81 49 0d 00 00 00 fe 00 19 00 0b 00 6e 05 18 00 e4 02 19 00 1b 05 1a 00 82 68 82 94 81 40 82 97 82 81 82 93 81 40 82 93 82 95 82 83 82 83 82 85 82 93 82 93 82 86 82 95 82 8c 81 49 0d 00 00 00 27 00 1e 00 fe 1b 49 0a 67 00 3a 02 1b fd 1a 00 82 76 82 8f 82 97 81 43 81 40 82 89 82 94 81 40 82 94 82 95 82 92 82 8e 82 85 82 84 81 40 82 89 82 8e 82 94 82 8f 0d 00 82 6c 82 85 82 94 82 81 82 8c 82 6c 82 81 82 8d 82 85 82 8d 82 8f 82 8e 81 49 0d 00 00 00 fe 00 1b 05 1a 00 82 68 82 94 81 40 82 84 82 89 82 84 82 8e 81 75 82 94 81 40 82 97 82 8f 82 92 82 8b 81 42 0d 00 00 00 1b fd 1a 00 82 73 82 88 82 81 82 94 81 75 82 93 81 40 82 81 82 97 82 86 82 95 82 8c 81 49 0d 00 00 00 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 93 82 8f 82 92 82 92 82 99 81 42 81 42 81 42 0d 00 00 00 fe 00 1b 06 1a 00 82 60 82 84 82 84 82 89 82 94 82 89 82 8f 82 8e 81 43 81 40 82 85 82 8c 82 89 82 8d 82 89 82 8e 82 81 82 94 82 89 82 8f 82 8e 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 24 01 fe 00 1b 07 1a 00 82 73 82 88 82 85 81 40 82 8e 82 95 82 8d 82 82 82 85 82 92 81 40 82 8f 82 8e 82 85 81 40 82 87 82 8f 82 81 82 8c 81 40 82 89 82 93 0d 00 82 94 82 8f 81 40 82 84 82 85 82 93 82 94 82 92 82 8f 82 99 81 40 82 88 82 81 82 92 82 84 82 97 82 81 82 92 82 85 81 42 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 24 01 fe 00 ff 00 67 00 06 00 }
 }
