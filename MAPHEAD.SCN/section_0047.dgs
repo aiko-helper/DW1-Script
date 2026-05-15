@@ -1,0 +1,22 @@
+// source: extract/DIGIMON/SCN/MAPHEAD.SCN
+// MAPHEAD.SCN, section 47
+
+section section_47(47) {  // len=66
+    setScript(47, Map.OGRE02);
+    setPStat(245, 1);
+    setBGM(8);
+    if (pstat[16] != 3) goto L_0026;
+    loadDigimon(Digimon.Machinedramon);
+    loadDigimon(Digimon.Analogman);
+    setDigimon(Digimon.Machinedramon, 3, 1);
+    setDigimon(Digimon.Analogman, 4, 1);
+    return;
+L_0026:
+    if (trigger(175)) goto L_0040;
+    loadDigimon(Digimon.Agumon);
+    setDigimon(Digimon.Agumon, 0, 1);
+    setDigimon(Digimon.Agumon, 1, 1);
+    setDigimon(Digimon.Agumon, 2, 1);
+L_0040:
+    return;
+}

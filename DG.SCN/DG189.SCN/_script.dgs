@@ -1,0 +1,30 @@
+// DG189.SCN
+#pragma script index=189 start=0x90800 end=0x91000 headerU16=0xc sentinelOff=0x24
+#pragma sections section_0254 section_0005
+
+section onEnter(254) {  // len=132
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 14) goto L_0016;
+    spawnItem(Item.Digimushroom, 53, 64);
+L_0016:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 14) goto L_002c;
+    spawnItem(Item.Digimushroom, 56, 61);
+L_002c:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 14) goto L_0042;
+    spawnItem(Item.Digimushroom, 60, 59);
+L_0042:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 14) goto L_0058;
+    spawnItem(Item.Digimushroom, 63, 55);
+L_0058:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 5) goto L_006e;
+    spawnItem(Item.Happymushroom, 56, 65);
+L_006e:
+    if (trigger(233) || !trigger(53)) goto L_0082;
+    playAnimation(5, 28);
+L_0082:
+    return;
+}

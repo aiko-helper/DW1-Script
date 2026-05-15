@@ -1,0 +1,46 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG206.SCN, section 10
+
+section section_10(10) {  // len=1020
+    if (pstat[121] != 0) goto L_00bc;
+    setDialogOwner(6);
+    showTextbox("Sorry bro. Come back again\nto challenge me. And don't\nforget to bring another fish.\n");
+    return;
+L_00bc:
+    if (pstat[121] != 2) goto L_01ee;
+    setDialogOwner(6);
+    showTextbox("Impressive! Perfect score!\nAre you by any chance...\na professional?\n");
+    if (trigger(372)) goto L_01ee;
+    setTrigger(372);
+    playSound(0, 7);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
+L_01ee:
+    setDialogOwner(6);
+    showTextbox("Amazing dude. I lost a\nmatch for the first time.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Alright, now come to the city\nwith me as you promised.\n");
+    setDialogOwner(6);
+    showTextbox("Oh well, I guess I have to.\nBut I already decided what\nI'm going to do in the city.\n");
+    goto L_037c;
+L_037c:
+    move(entity: 6, to: (-105, 1821), sprint: 1);
+    if (pstat[101] >= 3) goto L_03a4;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 6);
+    look(entity: Entity.Partner, at: 6);
+    goto L_037c;
+L_03a4:
+    waitForEntity(6);
+    unloadEntity(6);
+    setPStat(101, 0);
+    playSound(8, 11);
+    setDialogOwner(Entity.System);
+    showTextbox("Penguinmon joins the city!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    setTrigger(257);
+    addPStat(1, 1);
+    return;
+}

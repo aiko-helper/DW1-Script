@@ -1,0 +1,72 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG093.SCN, section 5
+
+section section_5(5) {  // len=1574
+    if (!trigger(220)) goto L_000e;
+    return;
+L_000e:
+    rotate(entity: Entity.Player, to: 2048);
+    delay(20);
+    rotate(entity: Entity.Player, to: 1536);
+    delay(10);
+    rotate(entity: Entity.Player, to: 2560);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh? About that statue...\n");
+    rotate(entity: Entity.Player, to: 2048);
+    playAnimation(Entity.Player, 23);
+    delay(20);
+    moveCamera(to: (-831, 2975), slowdown: 20);
+    waitForEntity(200);
+    setDialogOwner(Entity.Player);
+    showTextbox("Ah!\n");
+    loadDigimon(Digimon.NPCAngemon);
+    setDigimon(Digimon.NPCAngemon, 0, 0);
+    playSound(8, 10);
+    playAnimation(5, 28);
+    delay(60);
+    playAnimation(5, 0);
+    setDialogOwner(5);
+    showTextbox("Phew, well\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("You came back to life.\nAlright!\n");
+    setDialogOwner(5);
+    showTextbox("I'm Angemon, an angel to\nprotect you. I've awakened\nto fulfill my duty.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What's he talking about...?\n");
+    setDialogOwner(5);
+    showTextbox("I know the truth of heaven.\n");
+    showTextbox("I offer my soul to follow\nearthly instructions.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What's he talking about...?\nAre you coming to the city?\n");
+    setDialogOwner(5);
+    showTextbox("Thine mission is mine duty.\nI go.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("I'm sorry, but can you\nspeak in words I understand?\n");
+    setDialogOwner(5);
+    showTextbox("I'll go to the city, so\nyou must keep trying.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("I see. Thanks!\n");
+    goto L_0426;
+L_0426:
+    move(entity: 5, to: (47, -2650), sprint: 1);
+    if (pstat[101] >= 3) goto L_044e;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_0426;
+L_044e:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    playSound(8, 11);
+    setDialogOwner(Entity.System);
+    showTextbox("Angemon joins the city!\n");
+    setTrigger(220);
+    addPStat(1, 2);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+    garbage { 14 00 fe 00 14 00 33 00 36 00 34 00 0c 01 05 00 da 01 ff ff 19 00 00 00 42 01 18 00 24 00 19 00 57 00 07 01 64 31 19 00 00 00 43 01 18 00 34 00 19 00 64 32 fe 00 19 00 00 00 43 01 18 00 48 00 19 00 4b 62 00 ff fe 00 19 00 01 00 44 01 18 00 0a 01 19 00 4d fd 00 08 67 00 05 00 56 00 fd 17 67 00 05 00 1b fd 1a 00 82 76 82 8f 82 97 81 43 81 40 82 89 82 94 81 40 82 8c 82 8f 82 8f 82 8b 82 93 81 40 82 81 82 8c 82 89 82 96 82 85 81 49 0d 00 00 00 1b fd 1a 00 82 60 82 83 82 94 82 95 82 81 82 8c 82 8c 82 99 81 43 81 40 82 89 82 94 81 40 82 93 82 94 82 81 82 92 82 94 82 93 81 40 82 94 82 8f 81 40 82 8d 82 8f 82 96 82 85 0d 00 82 97 82 88 82 85 82 8e 81 40 82 97 82 85 81 40 82 8d 82 8f 82 96 82 85 81 42 81 40 82 67 82 8f 82 8c 82 84 81 40 82 8f 82 8e 81 49 0d 00 00 00 56 00 fd 00 1c 00 44 01 fe 00 fe 00 19 00 00 00 42 01 80 00 dc 00 18 00 20 01 19 00 16 00 da 01 19 00 01 00 43 01 80 00 44 01 18 00 d8 01 19 00 4e fc 32 00 1a 04 00 00 4a fc 67 00 0a 00 4c 00 fd fc 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 89 82 93 81 40 82 89 82 94 81 43 81 40 01 0a 06 00 01 01 81 48 0d 00 82 63 82 89 82 84 81 40 82 99 82 8f 82 95 81 40 82 86 82 89 82 8e 82 84 81 40 82 81 };
+}

@@ -1,0 +1,19 @@
+// DG064.SCN
+#pragma script index=64 start=0x2f000 end=0x2f800 headerU16=0x14 sentinelOff=0x19
+#pragma sections section_0254 section_0081 section_0006 section_0005
+
+section onEnter(254) {  // len=58
+    if (!trigger(345)) goto L_001c;
+    setObjectVisibility(0, 1);
+    setObjectVisibility(1, 1);
+    setObjectVisibility(2, 1);
+    goto L_0024;
+L_001c:
+    setRectImpassible(62, 39, 2, 13);
+L_0024:
+    if (trigger(129)) goto L_0038;
+    playAnimation(5, 28);
+    playAnimation(6, 28);
+L_0038:
+    return;
+}

@@ -1,0 +1,57 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG062.SCN, section 81
+
+section section_81(81) {  // len=564
+    if (trigger(131)) goto L_0232;
+    rotate(entity: Entity.Player, to: 91);
+    delay(10);
+    setDialogOwner(Entity.Player);
+    showTextbox("What are those?\nAny books I can read?\n");
+    rotate(entity: Entity.Player, to: 3675);
+    delay(10);
+    rotate(entity: Entity.Player, to: 91);
+    delay(10);
+    rotate(entity: Entity.Player, to: 603);
+    delay(10);
+    rotate(entity: Entity.Player, to: 1115);
+    delay(10);
+    rotate(entity: Entity.Player, to: 1627);
+    delay(10);
+    rotate(entity: Entity.Player, to: 1115);
+    delay(10);
+    setDialogOwner(Entity.Player);
+    showTextbox("No. None I can read.\n");
+    showTextbox("Wow! A book with\na cool cover!\n");
+    setSelection(L_0150, L_01ea);
+    showTextbox("I'll take it\nI'd better not\n");
+    waitForSelectionChoice();
+    goto L_01ea;
+L_0150:
+    move(entity: Entity.Player, to: (-314, -603), sprint: 0);
+    move(entity: Entity.Partner, to: (-298, -335), sprint: 0);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    rotate(entity: Entity.Player, to: 1115);
+    rotate(entity: Entity.Partner, to: 91);
+    setDialogOwner(Entity.System);
+    showTextbox("Touched a cool book.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Huh?\n");
+    playSound(8, 4);
+    setObjectVisibility(3, 1);
+    setObjectVisibility(4, 0);
+    setTrigger(131);
+    playAnimation(Entity.Player, 26);
+    move(entity: Entity.Player, to: (655, -663), animDuration: 4);
+    move(entity: Entity.Partner, to: (694, -377), animDuration: 4);
+    playSound(8, 5);
+    setDialogOwner(Entity.Player);
+    showTextbox("Wow!\n");
+    warp(to: Map.YAKA15, spawn: 4, trigger: 53);
+    return;
+L_01ea:
+    setDialogOwner(Entity.Player);
+    showTextbox("It might be a trap....\nLeave it!\n");
+L_0232:
+    return;
+}

@@ -1,0 +1,53 @@
+// DG029.SCN
+#pragma script index=29 start=0x1a000 end=0x1b000 headerU16=0x18 sentinelOff=0x1a64
+#pragma sections section_0254 section_0052 section_0051 section_0081 section_0005
+
+section onEnter(254) {  // len=198
+    callSubroutine(26);
+    callSubroutine(27);
+    if (pstat[30] < 5 || pstat[17] >= 3 || pstat[17] < 1) goto L_0044;
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    setPStat(254, 2);
+    callSubroutine(19);
+    setPStat(19, 2);
+    setObjectVisibility(19, 1);
+    setObjectVisibility(18, 1);
+    setPStat(18, 10);
+    return;
+L_0044:
+    playAnimation(5, 29);
+    setObjectVisibility(19, 1);
+    setObjectVisibility(18, 0);
+    if (pstat[18] < 5) goto L_0068;
+    setObjectVisibility(19, 0);
+    setObjectVisibility(18, 1);
+    setPStat(19, 1);
+L_0068:
+    if (pstat[18] < 10) goto L_008c;
+    if (pstat[17] >= 3) goto L_008c;
+    setObjectVisibility(19, 1);
+    setObjectVisibility(18, 1);
+    setPStat(19, 2);
+L_008c:
+    if (pstat[17] != 3) goto L_009e;
+    setPStat(254, 0);
+    callSubroutine(19);
+L_009e:
+    if (pstat[17] != 4) goto L_00b0;
+    setPStat(254, 1);
+    callSubroutine(19);
+L_00b0:
+    if (pstat[18] >= 8) goto L_00c4;
+    setRectImpassible(69, 41, 3, 2);
+L_00c4:
+    return;
+}

@@ -1,0 +1,53 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG102.SCN, section 51
+
+section section_51(51) {  // len=606
+    storeDate(105);
+    if (pstat[106] == 21) goto L_0066;
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("There's no tournament today.\n");
+    move(entity: Entity.Player, to: (-126, 546), sprint: 1);
+    waitForEntity(Entity.Player);
+    return;
+L_0066:
+    if (trigger(37)) goto L_00e6;
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("Those who aren't registered\ncan't come in.\n");
+    move(entity: Entity.Player, to: (-126, 546), sprint: 1);
+    waitForEntity(Entity.Player);
+    return;
+L_00e6:
+    if (pstat[107] >= 10) goto L_01b0;
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("It's not open yet. Register\non the twenty second, between\nten am and eleven pm.\n");
+    move(entity: Entity.Player, to: (-126, 546), sprint: 1);
+    waitForEntity(Entity.Player);
+    return;
+L_01b0:
+    if (pstat[107] < 23) goto L_0248;
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("Too bad, the tournament is\nover. Come again next year.\n");
+    move(entity: Entity.Player, to: (-126, 546), sprint: 1);
+    waitForEntity(Entity.Player);
+    return;
+L_0248:
+    setPStat(254, 5);
+    callSubroutine(6);
+    storeDate(105);
+    addMinutesToDate(105, 360);
+    advanceToDate(105);
+    warp(to: Map.BETL02, spawn: 3, trigger: 82);
+    return;
+}

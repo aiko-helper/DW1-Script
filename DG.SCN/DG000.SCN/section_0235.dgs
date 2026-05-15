@@ -1,0 +1,32 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG000.SCN, section 235
+
+section section_235(235) {  // len=110
+    setScript(191, Map.ROOM20);
+    setPStat(245, 0);
+    setBGM(28);
+    if (pstat[122] != 1) goto L_0020;
+    loadDigimon(Digimon.NPCMetalMamemon);
+    setDigimon(Digimon.NPCMetalMamemon, 1, 0);
+    return;
+L_0020:
+    if (pstat[122] != 0) goto L_0034;
+    loadDigimon(Digimon.NPCPenguinmon);
+    setDigimon(Digimon.NPCPenguinmon, 0, 0);
+    return;
+L_0034:
+    roll(pstat: 110, max: 7);
+    if (!trigger(227) || pstat[110] > 0) goto L_0054;
+    setPStat(122, 1);
+    loadDigimon(Digimon.NPCMetalMamemon);
+    setDigimon(Digimon.NPCMetalMamemon, 1, 0);
+    return;
+L_0054:
+    if (!trigger(257)) goto L_006a;
+    setPStat(122, 0);
+    loadDigimon(Digimon.NPCPenguinmon);
+    setDigimon(Digimon.NPCPenguinmon, 0, 0);
+L_006a:
+    return;
+    return;
+}

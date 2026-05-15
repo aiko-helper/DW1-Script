@@ -1,0 +1,11 @@
+// DG008.SCN
+#pragma script index=8 start=0xb800 end=0xc000 headerU16=0x18 sentinelOff=0x24
+#pragma sections section_0254 section_0051 section_0005 section_0052 section_0053
+
+section onEnter(254) {  // len=24
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 1) goto L_0016;
+    spawnItem(Item.Happymushroom, 22, 69);
+L_0016:
+    return;
+}

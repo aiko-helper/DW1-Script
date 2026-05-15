@@ -1,0 +1,44 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG071.SCN, section 82
+
+section section_82(82) {  // len=548
+    setDialogOwner(Entity.System);
+    showTextbox("MP Stand\n");
+    rotate(entity: Entity.Player, to: 2048);
+    setDialogOwner(Entity.Player);
+    showTextbox("Can this machine recover MP?\n");
+    setSelection(L_00ea, L_0182, L_021a);
+    showTextbox("Hund MP: two hund bits\nThous MP:eighteen hund bits\nDon't use\n");
+    waitForSelectionChoice();
+    goto L_021a;
+    return;
+L_00ea:
+    if (money < 200) goto L_0146;
+    addStats(Stat.CurrentMP, 100);
+    reduceMoney(200);
+    setDialogOwner(Entity.System);
+    showTextbox("Our MP level has recovered!\n");
+    goto L_0180;
+L_0146:
+    setDialogOwner(Entity.Player);
+    showTextbox("I don't got enough bits.\n");
+    return;
+L_0180:
+    return;
+L_0182:
+    if (money < 1800) goto L_01de;
+    addStats(Stat.CurrentMP, 1000);
+    reduceMoney(1800);
+    setDialogOwner(Entity.System);
+    showTextbox("Our MP level has recovered!\n");
+    goto L_0218;
+L_01de:
+    setDialogOwner(Entity.Player);
+    showTextbox("I don't got enough bits.\n");
+    return;
+L_0218:
+    return;
+L_021a:
+    return;
+    garbage { 28 00 fe 00 28 00 };
+}

@@ -1,0 +1,38 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// MAP162.SCN, section 81
+
+section section_81(81) {  // len=682
+    if (trigger(246)) goto L_000e;
+    return;
+L_000e:
+    setTextboxOrigin(944, 0, 1158);
+    storeDate(105);
+    if (!trigger(225) || pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+L_002c:
+    if (pstat[107] >= 7 && pstat[107] < 19) goto L_005c;
+    setDialogOwner(204);
+    showTextbox("sleeping...\n");
+    return;
+L_005c:
+    if (pstat[1] < 10 || trigger(225)) goto L_0100;
+    setTrigger(86);
+    setDialogOwner(204);
+    showTextbox("Have you heard? There is\na strange plant growing\nin Tropical Jungle.\n");
+L_0100:
+    if (pstat[1] < 20) goto L_021a;
+    setDialogOwner(204);
+    showTextbox("Oh yeah,\n");
+    showTextbox("I planted a <LIGHTBLUE>Rain Plant\n<WHITE>right there.\n");
+    showTextbox("It bears fruit every year\naround the fifteenth.\nYou may take those.\n");
+    showTextbox("For what?\n");
+    return;
+L_021a:
+    if (pstat[1] >= 10) goto L_0268;
+    setDialogOwner(204);
+    showTextbox("Oh, it feels good!\nSun rays.\n");
+    return;
+L_0268:
+    setDialogOwner(204);
+    showTextbox("Oh, it feels good!\nSun rays.\n");
+    return;
+}

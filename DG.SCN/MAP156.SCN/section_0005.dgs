@@ -1,0 +1,60 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// MAP156.SCN, section 5
+
+section section_5(5) {  // len=788
+    move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
+    waitForEntity(Entity.Player);
+    setDialogOwner(5);
+    showTextbox("We are going to remodel.\nThe fee is two thous bits.\n");
+    storeDigimonType(103);
+    if (pstat[103] == 13) goto L_00de;
+    setDialogOwner(5);
+    showTextbox("The style is different.\nWe can't remodel.\n");
+    return;
+L_00de:
+    setDialogOwner(Entity.Player);
+    setSelection(L_010e, L_0312);
+    showTextbox("Do it\nNo thanks\n");
+    waitForSelectionChoice();
+    return;
+L_010e:
+    if (money >= 2000) goto L_015e;
+    setDialogOwner(5);
+    showTextbox("You don't have enough bits.\n");
+    return;
+L_015e:
+    reduceMoney(2000);
+    setDialogOwner(5);
+    showTextbox("Wait a minute.\n");
+    roll(pstat: 110, max: 10);
+    if (pstat[110] > 0) goto L_021a;
+    setDialogOwner(5);
+    showTextbox("It didn't work, but...\n");
+    fadeOutHUD();
+    setPStat(254, 41);
+    callDigimonSubroutine(10);
+    delay(570);
+    setDialogOwner(Entity.Player);
+    showTextbox("Wow, it turned into Giromon!\n");
+    return;
+L_021a:
+    if (pstat[110] > 5) goto L_02aa;
+    setDialogOwner(5);
+    showTextbox("It was successful!\n");
+    fadeOutHUD();
+    setPStat(254, 27);
+    callDigimonSubroutine(10);
+    delay(570);
+    setDialogOwner(Entity.Player);
+    showTextbox("Wow, it turned into\nMetalMamemon!\n");
+    return;
+L_02aa:
+    setDialogOwner(5);
+    showTextbox("It didn't work.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("That's awful!\n");
+    setDialogOwner(5);
+    showTextbox("I'm sorry...\n");
+L_0312:
+    return;
+}

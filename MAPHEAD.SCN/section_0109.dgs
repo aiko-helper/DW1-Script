@@ -1,0 +1,25 @@
+// source: extract/DIGIMON/SCN/MAPHEAD.SCN
+// MAPHEAD.SCN, section 109
+
+section section_109(109) {  // len=76
+    setScript(105, Map.MAYO00);
+    setPStat(245, 0);
+    setBGM(1);
+    if (trigger(203)) goto L_0020;
+    loadDigimon(Digimon.Agumon);
+    setDigimon(Digimon.Agumon, 2, 1);
+    return;
+L_0020:
+    storeDate(105);
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0040;
+    loadDigimon(Digimon.ModokiBetamon);
+    setDigimon(Digimon.ModokiBetamon, 3, 1);
+    setDigimon(Digimon.ModokiBetamon, 4, 1);
+    goto L_004a;
+L_0040:
+    loadDigimon(Digimon.Dokunemon);
+    setDigimon(Digimon.Dokunemon, 0, 1);
+    setDigimon(Digimon.Dokunemon, 1, 1);
+L_004a:
+    return;
+}

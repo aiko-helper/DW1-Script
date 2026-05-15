@@ -1,0 +1,98 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG212.SCN, section 73
+
+section section_73(73) {  // len=2670
+    unsetTrigger(1);
+    setPStat(250, 0);
+    waitForEntity(213);
+    setDialogOwner(5);
+    showTextbox("Oh no! <ORANGE><DIGIMON><WHITE>\nhas lost all life.\n");
+    showTextbox("Before fading away,\n<ORANGE><DIGIMON><WHITE> gave\nbirth to a Digitama.\n");
+    showTextbox("Due to the danger,\nDigitama did not inherit\nall abilities...\n");
+    if (stat[Stat.TamerLevel] == 0) goto L_0186;
+    reduceStats(Stat.TamerLevel, 1);
+    setDialogOwner(Entity.System);
+    showTextbox("<PINK>Tamer Level\nhas gone down! <WHITE>\n");
+L_0186:
+    callSubroutine(47);
+    callDigimonSubroutine(4);
+    waitForEntity(Entity.System);
+    setPStat(245, 0);
+    setBGM(28);
+    setDialogOwner(5);
+    showTextbox("If you want,\nyou can change the name\n<ORANGE><DIGIMON><WHITE>.\n");
+    setDialogOwner(Entity.Player);
+    setSelection(section_71.L_01f2, section_71.L_0260);
+    showTextbox("I want a new name\nI'll keep his name\n");
+    waitForSelectionChoice();
+    return;
+    setPStat(254, 3);
+    callSubroutine(32);
+    callSubroutine(35);
+    waitForEntity(214);
+    return;
+L_0252:
+    fadeOutHUD();
+    storeDigimonType(103);
+    if (pstat[103] != 3 && pstat[103] != 4 && pstat[103] != 17 && pstat[103] != 18) goto L_0272;
+    goto L_02c4;
+L_0272:
+    if (pstat[103] != 31 && pstat[103] != 32 && pstat[103] != 45 && pstat[103] != 46) goto L_028e;
+    goto L_02c4;
+L_028e:
+    if (pstat[103] != 12 && pstat[103] != 54) goto L_02a2;
+    goto L_0310;
+L_02a2:
+    if (pstat[103] != 50) goto L_02b2;
+    goto L_035c;
+L_02b2:
+    if (pstat[103] != 20) goto L_02c2;
+    goto L_03a8;
+L_02c2:
+    return;
+L_02c4:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 9) goto L_030e;
+    setPStat(254, 37);
+    callDigimonSubroutine(10);
+    delay(550);
+    setDialogOwner(Entity.System);
+    showTextbox("<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+    return;
+L_030e:
+    return;
+L_0310:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 9) goto L_035a;
+    setPStat(254, 26);
+    callDigimonSubroutine(10);
+    delay(550);
+    setDialogOwner(Entity.System);
+    showTextbox("<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+    return;
+L_035a:
+    return;
+L_035c:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 9) goto L_03a6;
+    setPStat(254, 59);
+    callDigimonSubroutine(10);
+    delay(550);
+    setDialogOwner(Entity.System);
+    showTextbox("<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+    return;
+L_03a6:
+    return;
+L_03a8:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 49 || stat[Stat.Discipline] > 49) goto L_03f8;
+    setPStat(254, 6);
+    callDigimonSubroutine(10);
+    delay(550);
+    setDialogOwner(Entity.System);
+    showTextbox("<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+    return;
+L_03f8:
+    return;
+    garbage { 14 00 fe 00 14 00 47 00 16 00 48 00 78 02 49 00 92 05 ff ff fe 00 1d 00 01 00 1e 00 fa 00 4a d5 1b 05 1a 00 82 68 82 94 81 40 82 93 82 85 82 85 82 8d 82 93 81 40 01 0a 06 00 01 01 81 40 82 88 82 81 82 93 0d 00 82 86 82 81 82 84 82 85 82 84 81 40 82 81 82 97 82 81 82 99 81 42 81 42 81 42 0d 00 00 00 1a 00 82 61 82 85 82 86 82 8f 82 92 82 85 81 40 82 86 82 81 82 84 82 89 82 8e 82 87 81 40 82 81 82 97 82 81 82 99 81 43 81 40 82 88 82 85 81 40 82 87 82 81 82 96 82 85 0d 00 82 82 82 89 82 92 82 94 82 88 81 40 82 94 82 8f 81 40 82 81 81 40 82 63 82 89 82 87 82 89 82 94 82 81 82 8d 82 81 81 42 81 40 82 67 82 85 81 40 82 97 82 89 82 8c 82 8c 0d 00 82 82 82 85 81 40 82 92 82 85 82 82 82 8f 82 92 82 8e 81 40 82 97 82 89 82 94 82 88 81 40 82 88 82 89 82 93 81 40 82 81 82 82 82 89 82 8c 82 89 82 94 82 89 82 85 82 93 81 42 0d 00 00 00 1a 00 82 76 82 88 82 89 82 83 82 88 81 40 82 85 82 87 82 87 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 48 0d 00 00 00 64 1d 27 00 49 04 4a ff 1e 00 f5 00 5d 1c 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 83 82 81 82 8e 81 40 82 83 82 88 82 81 82 8e 82 87 82 85 81 40 82 94 82 88 82 85 81 40 82 8e 82 81 82 8d 82 85 0d 00 01 0a 06 00 01 01 81 40 82 89 82 86 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 42 0d 00 00 00 1b fd 10 02 08 02 76 02 1a 00 82 68 81 40 82 97 82 81 82 8e 82 94 81 40 82 81 81 40 82 8e 82 85 82 97 81 40 82 8e 82 81 82 8d 82 85 0d 00 82 68 81 75 82 8c 82 8c 81 40 82 8b 82 85 82 85 82 90 81 40 82 88 82 89 82 93 81 40 82 8e 82 81 82 8d 82 85 0d 00 00 00 12 00 fe 00 64 23 4a d6 1e 00 fe 03 64 20 1b 05 1a 00 82 68 82 93 81 40 01 0a 06 00 01 01 81 40 82 8f 82 8b 82 81 82 99 81 48 0d 00 00 00 1b fd 10 02 08 02 76 02 1a 00 82 68 81 40 82 97 82 81 82 8e 82 94 81 40 82 81 82 8e 82 8f 82 94 82 88 82 85 82 92 81 40 82 8e 82 81 82 8d 82 85 0d 00 82 6e 82 8b 82 81 82 99 0d 00 00 00 12 00 16 00 08 02 fe 00 1d 00 01 00 1e 00 fa 00 4a d5 64 23 19 00 20 00 06 01 00 00 18 00 7a 03 19 00 65 20 65 40 35 06 0f 27 35 07 0f 27 1b 05 1a 00 82 67 82 85 82 99 81 43 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 87 82 85 82 94 81 40 82 93 82 89 82 83 82 8b 81 49 0d 00 00 00 1a 00 82 76 82 89 82 94 82 88 81 40 82 94 82 88 82 85 81 40 82 93 82 8d 82 81 82 8c 82 8c 81 40 82 82 82 89 82 94 81 40 82 8f 82 86 81 40 82 8c 82 89 82 86 82 85 0d 00 82 8c 82 85 82 86 82 94 81 43 81 40 01 0a 06 00 01 01 81 40 82 97 82 81 82 93 81 40 82 81 82 82 82 8c 82 85 0d 00 82 94 82 8f 81 40 82 93 82 95 82 92 82 96 82 89 82 96 82 85 81 42 0d 00 00 00 1a 00 82 78 82 8f 82 95 81 40 82 8d 82 95 82 93 82 94 81 40 82 82 82 85 81 40 82 83 82 81 82 92 82 85 82 86 82 95 82 8c 81 42 0d 00 00 00 4a d6 16 00 e4 07 35 06 0f 27 35 07 0f 27 1b 05 1a 00 82 6e 82 88 81 40 82 8d 82 99 81 40 82 87 82 8f 82 93 82 88 81 49 0d 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 82 82 81 82 83 82 8b 81 40 82 81 82 86 82 94 82 85 82 92 81 40 82 8c 82 8f 82 93 82 89 82 8e 82 87 81 42 0d 00 00 00 1a 00 82 76 82 89 82 94 82 88 81 40 82 94 82 88 82 85 81 40 82 93 82 8d 82 81 82 8c 82 8c 81 40 82 82 82 89 82 94 81 40 82 8f 82 86 81 40 82 8c 82 89 82 86 82 85 0d 00 82 8c 82 85 82 86 82 94 81 43 81 40 01 0a 06 00 01 01 81 40 82 97 82 81 82 93 81 40 82 81 82 82 82 8c 82 85 0d 00 82 94 82 8f 81 40 82 93 82 95 82 92 82 96 82 89 82 96 82 85 81 42 0d 00 00 00 1a 00 82 6c 82 81 82 99 82 82 82 85 81 40 82 99 82 8f 82 95 82 92 81 40 82 94 82 88 82 89 82 8e 82 87 82 93 81 40 82 97 82 85 82 92 82 85 81 40 82 93 82 94 82 8f 82 8c 82 85 82 8e 81 42 0d 00 00 00 1a 00 82 73 82 88 82 8f 82 93 82 85 81 40 82 97 82 88 82 8f 81 40 82 8c 82 8f 82 93 82 85 81 40 82 81 81 40 82 82 82 81 82 94 82 94 82 8c 82 85 81 40 82 8d 82 89 82 87 82 88 82 94 0d 00 82 88 82 81 82 96 82 85 81 40 82 94 82 88 82 85 82 89 82 92 81 40 82 94 82 88 82 89 82 8e 82 87 82 93 81 40 82 93 82 94 82 8f 82 8c 82 85 82 8e 81 42 0d 00 00 00 1a 00 82 72 82 94 82 8f 82 8c 82 85 82 8e 81 40 82 8f 82 82 82 8a 82 85 82 83 82 94 82 93 81 40 82 8d 82 81 82 99 81 40 82 82 82 85 81 40 82 93 82 8f 82 8c 82 84 0d 00 82 93 82 8f 82 8d 82 85 82 97 82 88 82 85 82 92 82 85 81 42 81 40 82 63 82 8f 82 8e 81 75 82 94 81 40 82 87 82 89 82 96 82 85 81 40 82 95 82 90 0d 00 82 86 82 89 82 8e 82 84 82 89 82 8e 82 87 81 40 82 94 82 88 82 85 82 8d 81 49 0d 00 00 00 4a d6 16 00 e4 07 fe 00 1d 00 01 00 1e 00 fa 00 4a d5 1b 05 1a 00 82 6e 82 88 81 40 82 8e 82 8f 81 49 81 40 01 0a 06 00 01 01 0d 00 82 88 82 81 82 93 81 40 82 8c 82 8f 82 93 82 94 81 40 82 81 82 8c 82 8c 81 40 82 8c 82 89 82 86 82 85 81 42 0d 00 00 00 1a 00 82 61 82 85 82 86 82 8f 82 92 82 85 81 40 82 86 82 81 82 84 82 89 82 8e 82 87 81 40 82 81 82 97 82 81 82 99 81 43 0d 00 01 0a 06 00 01 01 81 40 82 87 82 81 82 96 82 85 0d 00 82 82 82 89 82 92 82 94 82 88 81 40 82 94 82 8f 81 40 82 81 81 40 82 63 82 89 82 87 82 89 82 94 82 81 82 8d 82 81 81 42 0d 00 00 00 1a 00 82 63 82 95 82 85 81 40 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 84 82 81 82 8e 82 87 82 85 82 92 81 43 0d 00 82 63 82 89 };
+}

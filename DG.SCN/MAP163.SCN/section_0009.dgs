@@ -1,0 +1,43 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// MAP163.SCN, section 9
+
+section section_9(9) {  // len=1504
+    if (pstat[1] < 20 || !trigger(185)) goto L_007a;
+    setDialogOwner(9);
+    showTextbox("I got something to say.\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_04a4, L_05c8);
+    showTextbox("What is it?\nLaters!\n");
+L_007a:
+    if (!trigger(185)) goto L_0100;
+    setDialogOwner(9);
+    showTextbox("Did you see the Eastern\nBridge fixed?\nWe worked so hard.\n");
+    return;
+L_0100:
+    if (pstat[1] < 2 || trigger(185)) goto L_0276;
+    setDialogOwner(9);
+    showTextbox("We're fixing Digital Bridge\nnow. Please wait a while.\n");
+    showTextbox("I hear there's a rare Digimon\nat Coela Point in the south.\n");
+    showTextbox("Rumor has it is that he shows\nup late afternoon everyday.\n");
+    return;
+L_0276:
+    setDialogOwner(9);
+    showTextbox("Say, did you know there's\na broken bridge in\nthe east part of the city?\n");
+    showTextbox("We didn't think anyone\nwould ever use it, so we\ndidn't do anything about it.\n");
+    showTextbox("We're thinking about\nfixing it on our own.\n");
+    showTextbox("Until then, go check the\nwest and south sections.\nThen come back and see me.\n");
+    return;
+L_04a4:
+    if (pstat[1] < 25) goto L_0536;
+    setDialogOwner(9);
+    showTextbox("Did you go to Geko Swamp?\nA mischievous\nDigimon may trick you.\n");
+    return;
+L_0536:
+    setDialogOwner(9);
+    showTextbox("Once a Digimon digivolves,\nremember, his Technique\nSets will change.\n");
+    return;
+L_05c8:
+    setDialogOwner(9);
+    showTextbox("Well...\n");
+    return;
+}

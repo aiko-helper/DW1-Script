@@ -1,0 +1,23 @@
+// MAP133.SCN
+#pragma script index=133 start=0x5e000 end=0x5e800 headerU16=0x20 sentinelOff=0x24
+#pragma sections section_0254 section_0005 section_0006 section_0007 section_0008 section_0009 section_0010
+
+section onEnter(254) {  // len=90
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 15) goto L_0016;
+    spawnItem(Item.Digimushroom, 58, 71);
+L_0016:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 6) goto L_002c;
+    spawnItem(Item.Digimushroom, 32, 37);
+L_002c:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 3) goto L_0042;
+    spawnItem(Item.SpinyGreen, 31, 48);
+L_0042:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 0) goto L_0058;
+    spawnItem(Item.MuscleYam, 84, 35);
+L_0058:
+    return;
+}

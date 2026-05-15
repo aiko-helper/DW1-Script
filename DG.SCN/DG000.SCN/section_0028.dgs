@@ -1,0 +1,22 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG000.SCN, section 28
+
+section section_28(28) {  // len=76
+    setScript(29, Map.TUNN05);
+    setPStat(245, 1);
+    setBGM(4);
+    if (pstat[30] < 5 || pstat[17] >= 3 || pstat[17] < 1) goto L_0022;
+    return;
+L_0022:
+    if (pstat[18] < 10) goto L_0030;
+    return;
+L_0030:
+    if (pstat[18] < 5) goto L_0044;
+    loadDigimon(Digimon.NPCDrimogemon);
+    setDigimon(Digimon.NPCDrimogemon, 1, 0);
+    return;
+L_0044:
+    loadDigimon(Digimon.NPCDrimogemon);
+    setDigimon(Digimon.NPCDrimogemon, 0, 0);
+    return;
+}

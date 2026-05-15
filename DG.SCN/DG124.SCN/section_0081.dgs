@@ -1,0 +1,68 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG124.SCN, section 81
+
+section section_81(81) {  // len=412
+    rotate(entity: Entity.Player, to: 1271);
+    setDialogOwner(Entity.System);
+    showTextbox("Elevator\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_008c, L_00da, L_0186);
+    showTextbox("Press Down once\nPress Down twice\nDon't get on\n");
+    waitForSelectionChoice();
+    goto L_0186;
+L_008c:
+    playSound(8, 4);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    playSound(8, 5);
+    warp(to: Map.GCAN03, spawn: 2, trigger: 55);
+    return;
+L_00da:
+    fadeOutHUD();
+    if (trigger(155)) goto L_0136;
+    setDialogOwner(Entity.Player);
+    showTextbox("Huh?\n");
+    showTextbox("No good. It doesn't work.\n");
+    return;
+    goto L_0184;
+L_0136:
+    playSound(8, 4);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    playSound(8, 5);
+    warp(to: Map.GCAN06, spawn: 2, trigger: 53);
+    return;
+L_0184:
+    return;
+L_0186:
+    return;
+    garbage { 14 00 fe 00 14 00 33 00 16 00 34 00 5e 06 51 00 64 06 };
+}

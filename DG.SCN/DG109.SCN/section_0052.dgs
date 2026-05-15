@@ -1,0 +1,42 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG109.SCN, section 52
+
+section section_52(52) {  // len=558
+    if (trigger(135)) goto L_022c;
+    rotate(entity: Entity.Player, to: 1900);
+    waitForEntity(Entity.Player);
+    setDialogOwner(Entity.Player);
+    showTextbox("Hey, there's a stone tablet.\nLet's see...\n");
+    move(entity: Entity.Player, to: (-477, 2801), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 1900);
+    delay(10);
+    playAnimation(Entity.Player, 25);
+    delay(10);
+    playSound(8, 7);
+    setObjectVisibility(2, 1);
+    delay(10);
+    setDialogOwner(Entity.Player);
+    showTextbox("It says Leomon.\nI can't read the rest.\n");
+    playAnimation(Entity.Player, 16);
+    delay(15);
+    showTextbox("I can understand speech,\nbut not writing...\n");
+    playAnimation(Entity.Player, 0);
+    showTextbox("Let's take it.\n");
+    giveItem(Item.Leomonstone, 1);
+    if (!trigger(0)) goto L_01de;
+    setDialogOwner(Entity.Player);
+    showTextbox("Oops, I have to throw\nsomething away.\n");
+    unsetTrigger(3);
+    callSubroutine(0);
+    callSubroutine(13);
+    giveItem(Item.Leomonstone, 1);
+L_01de:
+    playSound(0, 7);
+    setDialogOwner(Entity.System);
+    showTextbox("I got <LIGHTBLUE>Leomon's\nStone<WHITE> Tablet!\n");
+    setTrigger(135);
+    return;
+L_022c:
+    return;
+}

@@ -1,0 +1,61 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG079.SCN, section 51
+
+section section_51(51) {  // len=1612
+    if (!trigger(187)) goto L_000e;
+    return;
+L_000e:
+    move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    setDialogOwner(5);
+    showTextbox("It's the Speedy Time Zone\nbeyond this point.\nDon't get too close.\n");
+    playAnimation(Entity.Player, 19);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("There are two goals for me.\nOne is to find the\nIsland's danger.\n");
+    showTextbox("The other is to get\nDigimon into the city.\n");
+    playAnimation(Entity.Player, 0);
+    setDialogOwner(5);
+    showTextbox("And your point is?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_0208, L_05f4);
+    showTextbox("Please help me\nOh, never mind\n");
+L_0208:
+    setDialogOwner(5);
+    showTextbox("I can't. I gotta guard\nthis forest.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Then, do you know anything\nabout the island's danger?\n");
+    setDialogOwner(5);
+    showTextbox("I know nothing. Wait up.\n");
+    showTextbox("I remember a big rock\nfalling from the sky\nnot too long ago.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Where did it fall?\n");
+    setDialogOwner(5);
+    showTextbox("In Speedy Time Zone. On\nthe other side of the forest.\n");
+    playAnimation(Entity.Player, 19);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("Let me go! I may be able\nto find some clues!\n");
+    playAnimation(Entity.Player, 0);
+    setDialogOwner(5);
+    showTextbox("...\n");
+    showTextbox("If you insist.\nGo ahead and check it out.\n");
+    move(entity: 5, to: (-740, 2145), sprint: 1);
+    waitForEntity(5);
+    look(entity: 5, at: Entity.Player);
+    setTrigger(187);
+L_0500:
+    setDialogOwner(5);
+    showTextbox("Beyond this point,\ntime goes twice as fast.\nTake enough food with you.\n");
+    showTextbox("You must also watch out\nfor growing too old.\n");
+    return;
+L_05f4:
+    setDialogOwner(5);
+    showTextbox("You should check\nout other places.\n");
+    move(entity: Entity.Player, to: (-326, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    return;
+}

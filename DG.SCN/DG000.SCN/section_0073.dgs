@@ -1,0 +1,30 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG000.SCN, section 73
+
+section section_73(73) {  // len=92
+    setScript(70, Map.GIAS04);
+    setPStat(245, 0);
+    setBGM(11);
+    if (trigger(245)) goto L_0024;
+    setPStat(111, 0);
+    loadDigimon(Digimon.NPCBiyomon);
+    setDigimon(Digimon.NPCBiyomon, 0, 1);
+    return;
+L_0024:
+    storeDate(105);
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L_004a;
+    loadDigimon(Digimon.ShimaUnimon);
+    loadDigimon(Digimon.Akatorimon);
+    setDigimon(Digimon.ShimaUnimon, 1, 1);
+    setDigimon(Digimon.ShimaUnimon, 2, 1);
+    setDigimon(Digimon.Akatorimon, 3, 1);
+    goto L_005a;
+L_004a:
+    loadDigimon(Digimon.Sharmamon);
+    loadDigimon(Digimon.Tsukaimon);
+    setDigimon(Digimon.Sharmamon, 4, 1);
+    setDigimon(Digimon.Sharmamon, 5, 1);
+    setDigimon(Digimon.Tsukaimon, 6, 1);
+L_005a:
+    return;
+}

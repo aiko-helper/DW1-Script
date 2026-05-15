@@ -1,0 +1,49 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG018.SCN, section 51
+
+section section_51(51) {  // len=290
+    setObjectVisibility(38, 1);
+    setObjectVisibility(39, 1);
+    setObjectVisibility(40, 1);
+    setObjectVisibility(41, 1);
+    setObjectVisibility(42, 1);
+    setObjectVisibility(43, 1);
+    if (!trigger(236)) goto L_0026;
+    return;
+L_0026:
+    roll(pstat: 110, max: 2);
+    if (pstat[110] != 0) goto L_0046;
+    setPStat(116, 0);
+    setObjectVisibility(38, 0);
+    setObjectVisibility(42, 0);
+    setObjectVisibility(43, 0);
+L_0046:
+    if (pstat[110] != 1) goto L_0062;
+    setPStat(116, 1);
+    setObjectVisibility(39, 0);
+    setObjectVisibility(41, 0);
+    setObjectVisibility(43, 0);
+L_0062:
+    if (pstat[110] != 2) goto L_007e;
+    setPStat(116, 2);
+    setObjectVisibility(40, 0);
+    setObjectVisibility(41, 0);
+    setObjectVisibility(42, 0);
+L_007e:
+    if (trigger(137)) goto L_011c;
+    setTrigger(137);
+    rotate(entity: Entity.Player, to: 2048);
+    playSound(8, 0);
+    delay(20);
+    playSound(8, 0);
+    delay(20);
+    playSound(8, 0);
+    delay(20);
+    setDialogOwner(Entity.System);
+    showTextbox("Trespasser Alert!\n");
+    showTextbox("Trespasser Alert!\n");
+    showTextbox("I will shoot!\n");
+L_011c:
+    jumpAndLink(section_10);
+    return;
+}

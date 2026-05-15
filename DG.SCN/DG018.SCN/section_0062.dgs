@@ -1,0 +1,48 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG018.SCN, section 62
+
+section section_62(62) {  // len=210
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    setTrigger(168);
+    roll(pstat: 110, max: 1);
+    if (!trigger(163) || !trigger(166)) goto L_002a;
+    goto L_003c;
+L_002a:
+    if (!trigger(170)) goto L_003a;
+    goto L_003c;
+L_003a:
+    return;
+L_003c:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 300, 0);
+    moveObjectTo(1, 47, 1, 0, 0, 300, 4);
+    moveObjectTo(2, 48, 1, 0, 0, 300, 8);
+    delay(1);
+    moveObjectTo(0, 46, 1, 25, 0, 300, 765);
+    moveObjectTo(1, 47, 1, 25, 0, 300, 769);
+    moveObjectTo(2, 48, 1, 25, 0, 300, 773);
+    delay(3);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: 1400, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    jumpAndLink(section_10.L_0042);
+    return;
+}

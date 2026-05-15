@@ -1,0 +1,20 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG052.SCN, section 83
+
+section section_83(83) {  // len=164
+    if (trigger(117)) goto L_008a;
+    rotate(entity: Entity.Player, to: 1024);
+    playSound(8, 2);
+    delay(5);
+    playSound(8, 2);
+    setDialogOwner(Entity.System);
+    showTextbox("It doesn't open.\nIt's locked.\nThere's no key hole.\n");
+    return;
+L_008a:
+    move(entity: Entity.Player, to: (-2000, 554), sprint: 0);
+    rotate3DObject(2, 1);
+    playSound(8, 1);
+    delay(10);
+    warp(to: Map.YAKA23, spawn: 0, trigger: 255);
+    return;
+}

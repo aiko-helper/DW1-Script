@@ -1,0 +1,19 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG004.SCN, section 81
+
+section section_81(81) {  // len=214
+    rotate(entity: Entity.Player, to: 2048);
+    delay(5);
+    playAnimation(Entity.Player, 16);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("There are engraved\nletters here.\n");
+    playAnimation(Entity.Player, 0);
+    setDialogOwner(Entity.System);
+    showTextbox("No one's here! Go home!\n");
+    if (trigger(242)) goto L_00d4;
+    setDialogOwner(Entity.Player);
+    showTextbox("Is someone living here?\n");
+L_00d4:
+    return;
+}

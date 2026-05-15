@@ -1,0 +1,24 @@
+// DG013.SCN
+#pragma script index=13 start=0xf000 end=0xf800 headerU16=0x1c sentinelOff=0x175
+#pragma sections section_0254 section_0005 section_0006 section_0007 section_0008 section_0009
+
+section onEnter(254) {  // len=102
+    spawnChest(Item.MediumRecovery, 1941, 142, 0, 693);
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 14) goto L_0022;
+    spawnItem(Item.Digimushroom, 79, 34);
+L_0022:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 17) goto L_0038;
+    spawnItem(Item.Digimushroom, 56, 61);
+L_0038:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 5) goto L_004e;
+    spawnItem(Item.Digimushroom, 87, 67);
+L_004e:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 2) goto L_0064;
+    spawnItem(Item.OrangeBanana, 21, 57);
+L_0064:
+    return;
+}

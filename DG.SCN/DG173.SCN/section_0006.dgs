@@ -1,0 +1,41 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG173.SCN, section 6
+
+section section_6(6) {  // len=2416
+    roll(pstat: 110, max: 3);
+    if (pstat[110] != 0) goto L_009e;
+    setDialogOwner(6);
+    showTextbox("Rest as much as possible.\nThat's the key to\nyour Digimon's health.\n");
+    return;
+L_009e:
+    if (pstat[110] != 1) goto L_03b2;
+    setDialogOwner(6);
+    showTextbox("Alright. Let me tell you\nhow the city will\ngrow and prosper...\n");
+    showTextbox("When a Rookie Digimon\ncomes to the city,\nit's plus one point.\n");
+    showTextbox("And when a Champion\nDigimon comes to the city,\nit's plus two points.\n");
+    showTextbox("If an Ultimate Digimon\ncomes to city,\nit's plus three points.\n");
+    showTextbox("However, there are three\nChampion Digimon that\nare not very useful.\n");
+    showTextbox("When one of them comes,\nit's only plus one point.\n");
+    return;
+L_03b2:
+    if (pstat[110] != 2) goto L_05c6;
+    setDialogOwner(6);
+    showTextbox("Let me tell you a little\nbit about Types.\n");
+    showTextbox("If an opponent is the\nsame Type as your Digimon\npartner, he may not battle.\n");
+    showTextbox("And if your Digimon's Type\nis not compatible, he can be\nrefused at a door.\n");
+    showTextbox("Other than that, maybe\nyou don't have to\nworry about it.\n");
+    return;
+L_05c6:
+    if (pstat[110] != 3) goto L_096e;
+    setDialogOwner(6);
+    showTextbox("Let me tell you about\nTamer Level.\n");
+    showTextbox("Tamer Level will increase\nif you can raise Digimon\nto Ultimate Digimon.\n");
+    showTextbox("And winning a championship\nin a high level tournament\nis very good.\n");
+    showTextbox("It will go up naturally.\nYou don't have to worry\nabout it too much.\n");
+    showTextbox("On the other hand,\nyou have to pay attention\nnot to let it go down.\n");
+    showTextbox("If your Digimon fades away,\nyour Tamer Level\nwill go down for sure.\n");
+    showTextbox("If you regularly have\ncare mistakes, it might\ngo down. Be careful.\n");
+    return;
+L_096e:
+    return;
+}

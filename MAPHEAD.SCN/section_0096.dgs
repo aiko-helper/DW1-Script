@@ -1,0 +1,20 @@
+// source: extract/DIGIMON/SCN/MAPHEAD.SCN
+// MAPHEAD.SCN, section 96
+
+section section_96(96) {  // len=56
+    setScript(92, Map.FRZL12);
+    setPStat(245, 0);
+    setBGM(15);
+    storeDate(105);
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+    loadDigimon(Digimon.SnowAgumon);
+    setDigimon(Digimon.SnowAgumon, 0, 1);
+    setDigimon(Digimon.SnowAgumon, 1, 1);
+    goto L_0036;
+L_002c:
+    loadDigimon(Digimon.SnowGoburimon);
+    setDigimon(Digimon.SnowGoburimon, 2, 1);
+    setDigimon(Digimon.SnowGoburimon, 3, 1);
+L_0036:
+    return;
+}

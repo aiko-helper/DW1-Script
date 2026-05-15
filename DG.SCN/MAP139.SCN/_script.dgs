@@ -1,0 +1,15 @@
+// MAP139.SCN
+#pragma script index=139 start=0x62800 end=0x63000 headerU16=0x10 sentinelOff=0x1d
+#pragma sections section_0254 section_0005 section_0081
+
+section onEnter(254) {  // len=36
+    unsetTrigger(116);
+    storeDigimonType(103);
+    if (pstat[103] != 14 && !trigger(214)) goto L_001a;
+    goto L_0022;
+L_001a:
+    playAnimation(5, 31);
+    delay(5);
+L_0022:
+    return;
+}

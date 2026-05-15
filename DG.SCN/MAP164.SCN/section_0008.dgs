@@ -1,0 +1,40 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// MAP164.SCN, section 8
+
+section section_8(8) {  // len=282
+    setDialogOwner(8);
+    setSelection(L_0064, L_006e, L_007c);
+    showTextbox("Half dead\nOpening mode\nFast forward time\n");
+    waitForSelectionChoice();
+    return;
+L_0064:
+    setStats(Stat.CurrentHP, 1);
+    setStats(Stat.Lifetime, 1);
+    return;
+L_006e:
+    setTrigger(54);
+    setTrigger(55);
+    warp(to: Map.TOPN01, spawn: 9, trigger: 255);
+    return;
+L_007c:
+    setDialogOwner(Entity.Player);
+    setSelection(L_00f6, L_0102, L_010e);
+    showTextbox("Forward one hour\nForward six hours\nForward ten days\n");
+    waitForSelectionChoice();
+    return;
+L_00f6:
+    storeDate(105);
+    addMinutesToDate(105, 60);
+    advanceToDate(105);
+    return;
+L_0102:
+    storeDate(105);
+    addMinutesToDate(105, 360);
+    advanceToDate(105);
+    return;
+L_010e:
+    storeDate(105);
+    addMinutesToDate(105, 14400);
+    advanceToDate(105);
+    return;
+}

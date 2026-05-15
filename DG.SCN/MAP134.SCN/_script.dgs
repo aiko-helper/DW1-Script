@@ -1,0 +1,29 @@
+// MAP134.SCN
+#pragma script index=134 start=0x5e800 end=0x5f000 headerU16=0x1c sentinelOff=0x24
+#pragma sections section_0254 section_0005 section_0006 section_0007 section_0008 section_0009
+
+section onEnter(254) {  // len=116
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 11) goto L_0016;
+    spawnItem(Item.Digimushroom, 59, 50);
+L_0016:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 17) goto L_002c;
+    spawnItem(Item.Digimushroom, 33, 42);
+L_002c:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 2) goto L_0042;
+    spawnItem(Item.Happymushroom, 37, 61);
+L_0042:
+    if (!trigger(319)) goto L_0062;
+    setObjectVisibility(24, 1);
+    setObjectVisibility(25, 1);
+    setObjectVisibility(26, 1);
+    setObjectVisibility(27, 1);
+    goto L_0072;
+L_0062:
+    setRectImpassible(32, 39, 9, 8);
+    setRectImpassible(35, 34, 8, 8);
+L_0072:
+    return;
+}

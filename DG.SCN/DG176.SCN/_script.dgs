@@ -1,0 +1,24 @@
+// DG176.SCN
+#pragma script index=176 start=0x84800 end=0x86000 headerU16=0x20 sentinelOff=0x19
+#pragma sections section_0254 section_0051 section_0081 section_0082 section_0083 section_0007 section_0052
+
+section onEnter(254) {  // len=90
+    if (!trigger(206) && !trigger(211) && !trigger(213) && !trigger(252)) goto L_0020;
+    setObjectVisibility(21, 1);
+    goto L_0028;
+L_0020:
+    setRectImpassible(35, 45, 2, 16);
+L_0028:
+    if (pstat[25] != 3) goto L_0038;
+    playAnimation(5, 28);
+L_0038:
+    if (pstat[26] >= 3) goto L_0050;
+    setObjectVisibility(18, 0);
+    setObjectVisibility(20, 0);
+    goto L_0058;
+L_0050:
+    setObjectVisibility(18, 1);
+    setObjectVisibility(20, 1);
+L_0058:
+    return;
+}

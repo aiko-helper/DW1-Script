@@ -1,0 +1,146 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG070.SCN, section 5
+
+section section_5(5) {  // len=1030
+    if (pstat[111] < 1) goto L_0118;
+    setDialogOwner(5);
+    showTextbox("I'm here again.\n");
+    jumpAndLink(L_01b6);
+    playSound(8, 6);
+    setDialogOwner(5);
+    showTextbox("Bye!\n");
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    playAnimation(Entity.Player, 16);
+    setDialogOwner(Entity.Player);
+    showTextbox("If we go on like this, we'll\njust repeat ourselves.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Maybe I should wait here.\n");
+    setPStat(111, 2);
+    setTrigger(191);
+    setTrigger(192);
+    setTrigger(193);
+    setTrigger(194);
+    return;
+L_0118:
+    if (pstat[111] != 0) goto L_01b4;
+    setDialogOwner(5);
+    showTextbox("Who is it?\n");
+    setDialogOwner(5);
+    showTextbox("No way.\n");
+    move(entity: 5, to: (-240, -1076), sprint: 1);
+    delay(20);
+    playSound(8, 6);
+    setDialogOwner(5);
+    showTextbox("Ahhh!\n");
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    playAnimation(Entity.Player, 14);
+    setDialogOwner(Entity.Player);
+    showTextbox("Wait up!\n");
+    move(entity: 5, to: (-240, -1076), sprint: 1);
+    waitForEntity(5);
+    addPStat(111, 1);
+    setPStat(112, 1);
+    return;
+L_01b4:
+    return;
+L_01b6:
+    roll(pstat: 110, max: 3);
+    if (pstat[110] != 0 || pstat[112] == 0) goto L_0216;
+    move(entity: 5, to: (-1055, 2740), sprint: 1);
+    delay(20);
+    setPStat(112, 0);
+    setDialogOwner(Entity.Player);
+    showTextbox("Not again! Wait!\n");
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    move(entity: 5, to: (-1025, 2740), sprint: 1);
+    waitForEntity(5);
+    jumpReturn();
+L_0216:
+    if (pstat[110] != 1 || pstat[112] == 1) goto L_0272;
+    move(entity: 5, to: (-566, -350), sprint: 1);
+    delay(20);
+    setPStat(112, 1);
+    setDialogOwner(Entity.Player);
+    showTextbox("Not again! Wait!\n");
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    move(entity: 5, to: (-566, -320), sprint: 1);
+    waitForEntity(5);
+    jumpReturn();
+L_0272:
+    if (pstat[110] != 2 || pstat[112] == 2) goto L_02ce;
+    move(entity: 5, to: (1869, -939), sprint: 1);
+    delay(20);
+    setPStat(112, 2);
+    setDialogOwner(Entity.Player);
+    showTextbox("Not again! Wait!\n");
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    move(entity: 5, to: (1869, -939), sprint: 1);
+    waitForEntity(5);
+    jumpReturn();
+L_02ce:
+    if (pstat[110] != 3 || pstat[112] == 3) goto L_032a;
+    move(entity: 5, to: (1664, 3155), sprint: 1);
+    delay(20);
+    setPStat(112, 3);
+    setDialogOwner(Entity.Player);
+    showTextbox("Not again! Wait!\n");
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    move(entity: 5, to: (1664, 3125), sprint: 1);
+    waitForEntity(5);
+    jumpReturn();
+L_032a:
+    goto L_01b6;
+L_032e:
+    roll(pstat: 110, max: 3);
+    if (pstat[110] != 0 || pstat[112] == 0) goto L_0366;
+    move(entity: 5, to: (-1025, 2740), sprint: 1);
+    delay(20);
+    setPStat(112, 0);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    move(entity: 5, to: (-1025, 2740), sprint: 1);
+    waitForEntity(5);
+    jumpReturn();
+L_0366:
+    if (pstat[110] != 1 || pstat[112] == 1) goto L_039a;
+    move(entity: 5, to: (-566, -320), sprint: 1);
+    delay(20);
+    setPStat(112, 1);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    move(entity: 5, to: (-566, -320), sprint: 1);
+    waitForEntity(5);
+    jumpReturn();
+L_039a:
+    if (pstat[110] != 2 || pstat[112] == 2) goto L_03ce;
+    move(entity: 5, to: (1869, -939), sprint: 1);
+    delay(20);
+    setPStat(112, 2);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    move(entity: 5, to: (1869, -939), sprint: 1);
+    waitForEntity(5);
+    jumpReturn();
+L_03ce:
+    if (pstat[110] != 3 || pstat[112] == 3) goto L_0402;
+    move(entity: 5, to: (1664, 3125), sprint: 1);
+    delay(20);
+    setPStat(112, 3);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    move(entity: 5, to: (1664, 3125), sprint: 1);
+    waitForEntity(5);
+    jumpReturn();
+L_0402:
+    goto L_032e;
+}

@@ -1,0 +1,53 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG206.SCN, section 7
+
+section section_7(7) {  // len=1046
+    setPStat(122, 1);
+    setDialogOwner(6);
+    showTextbox("Hey <LIGHTBLUE><PLAYER><WHITE>. I'm watching\nthe shop now as a favor for\nPenguinmon.\n");
+    showTextbox("Have a match with me!\nIf you win, I'll give you my\nspecial prize. How's that?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_0174, L_03d0);
+    showTextbox("Alright, let's do it\nNo thanks\n");
+    waitForSelectionChoice();
+    return;
+L_0174:
+    setDialogOwner(6);
+    showTextbox("Let me get the fish\nbefore the match.\n");
+    setTrigger(3);
+    callSubroutine(0);
+    if (!trigger(3)) goto L_022c;
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh, I don't have\nanything right now.\n");
+    goto L_0338;
+L_022c:
+    if (pstat[254] != 62 && pstat[254] != 63 && pstat[254] != 64 && pstat[254] != 65) goto L_024a;
+    callSubroutine(12);
+    goto L_02ca;
+L_024a:
+    if (pstat[254] != 66 && pstat[254] != 67) goto L_0260;
+    callSubroutine(12);
+    goto L_02ca;
+L_0260:
+    if (pstat[254] != 255) goto L_0274;
+    goto L_0338;
+    goto L_02ca;
+L_0274:
+    setDialogOwner(Entity.Player);
+    showTextbox("Giving this to you\nwon't do any good.\n");
+    goto L_0338;
+L_02ca:
+    setDialogOwner(6);
+    showTextbox("Well, this time, I'm gonna\nwin. Let's go inside.\n");
+    warp(to: Map.FRZL17, spawn: 1, trigger: 255);
+    return;
+L_0338:
+    setPStat(113, 0);
+    setDialogOwner(6);
+    showTextbox("I can't have a match\nwithout a fish. Come back\nagain some other time.\n");
+    return;
+L_03d0:
+    setDialogOwner(6);
+    showTextbox("What? Are you\nturning me down?\n");
+    return;
+}

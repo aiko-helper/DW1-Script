@@ -1,0 +1,50 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG108.SCN, section 81
+
+section section_81(81) {  // len=648
+    rotate(entity: Entity.Player, to: 2048);
+    setTextboxOrigin(1010, 0, -975);
+    callSubroutine(39);
+    if (!trigger(219)) goto L_0070;
+    setDialogOwner(200);
+    showTextbox("<GREEN>Training:\nBoulder Moving, revision <WHITE>\n");
+    goto L_00ae;
+L_0070:
+    setDialogOwner(200);
+    showTextbox("<GREEN>Training:\nBoulder Moving <WHITE>\n");
+L_00ae:
+    setSelection(L_00e4, L_0120, L_01fc);
+    showTextbox("Begin\nExplain\nQuit\n");
+    waitForSelectionChoice();
+    return;
+L_00e4:
+    setSelection(L_01fe, L_020e, L_01fc);
+    showTextbox("Normal\nBonus Try\nQuit\n");
+    waitForSelectionChoice();
+    return;
+L_0120:
+    showTextbox("Boost power by pushing\nagainst boulder. Boosts Max\nHP and Offensive Power.\n");
+    setSelection(L_0120, L_00e4, L_01fc);
+    showTextbox("Explain again\nBegin\nQuit\n");
+    waitForSelectionChoice();
+    return;
+L_01fc:
+    return;
+L_01fe:
+    fadeOutHUD();
+    setPStat(254, 0);
+    setPStat(246, 0);
+    callDigimonSubroutine(214);
+    callSubroutine(7);
+    return;
+L_020e:
+    setTexboxMode(1, 0);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
+    setPStat(254, 0);
+    setPStat(246, 1);
+    callDigimonSubroutine(214);
+    callSubroutine(7);
+    setTexboxMode(0, 0);
+    return;
+}

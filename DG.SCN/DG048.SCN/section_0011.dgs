@@ -1,0 +1,64 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG048.SCN, section 11
+
+section section_11(11) {  // len=614
+    delay(10);
+    playAnimation(11, 28);
+    delay(10);
+    setDialogOwner(Entity.Player);
+    showTextbox("Who are you?\n");
+    setDialogOwner(11);
+    showTextbox("Who am I? Who are you?\n");
+    rotate(entity: 11, to: 1276);
+    delay(5);
+    rotate(entity: 11, to: 2300);
+    delay(5);
+    rotate(entity: 11, to: 3324);
+    delay(5);
+    rotate(entity: 11, to: 252);
+    delay(5);
+    rotate(entity: 11, to: 1276);
+    delay(5);
+    rotate(entity: 11, to: 2300);
+    delay(5);
+    rotate(entity: 11, to: 3324);
+    delay(5);
+    rotate(entity: 11, to: 252);
+    delay(5);
+    move(entity: 11, to: (179, -74), sprint: 1);
+    waitForEntity(11);
+    unloadEntity(11);
+    if (pstat[21] != 0) goto L_015c;
+    setObjectVisibility(43, 0);
+    move(entity: Entity.Player, to: (32, 829), sprint: 1);
+    waitForEntity(Entity.Player);
+    playAnimation(Entity.Player, 12);
+    delay(10);
+    setObjectVisibility(43, 1);
+    playSound(0, 7);
+    setDialogOwner(Entity.System);
+    showTextbox("I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry twenty Items!\n");
+    playSound(0, 7);
+    setInventorySize(20);
+    setTrigger(47);
+L_015c:
+    if (pstat[21] != 4) goto L_0210;
+    setObjectVisibility(42, 0);
+    move(entity: Entity.Player, to: (32, 829), sprint: 1);
+    waitForEntity(Entity.Player);
+    playAnimation(Entity.Player, 12);
+    delay(10);
+    setObjectVisibility(42, 1);
+    playSound(0, 7);
+    setDialogOwner(Entity.System);
+    showTextbox("I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry thirty Items!\n");
+    setInventorySize(30);
+    setTrigger(48);
+    setTrigger(253);
+    addPStat(1, 1);
+L_0210:
+    addPStat(21, 1);
+    setTrigger(334);
+    return;
+    garbage { 24 00 fe 00 24 00 05 00 4c 00 06 00 68 00 33 00 84 00 34 00 64 01 35 00 62 05 36 00 88 05 0b 00 9a 05 ff ff 75 20 51 fa 00 00 b8 00 00 0c 9f 02 19 00 00 00 af 00 18 00 4a 00 19 00 71 00 2d 01 0a 00 81 01 ce ff 67 00 0a 00 };
+}

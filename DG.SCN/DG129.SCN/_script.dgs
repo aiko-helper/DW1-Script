@@ -1,0 +1,27 @@
+// DG129.SCN
+#pragma script index=129 start=0x5b000 end=0x5b800 headerU16=0x18 sentinelOff=0x24
+#pragma sections section_0254 section_0006 section_0010 section_0007 section_0051
+
+section onEnter(254) {  // len=136
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 10) goto L_0016;
+    spawnItem(Item.Digimushroom, 40, 54);
+L_0016:
+    setPStat(113, 0);
+    if (!trigger(5) && !trigger(6) && !trigger(7)) goto L_0032;
+    playAnimation(5, 29);
+L_0032:
+    if (!trigger(5) || !trigger(6)) goto L_0046;
+    playAnimation(5, 30);
+L_0046:
+    if (!trigger(5) || !trigger(7)) goto L_005a;
+    playAnimation(5, 30);
+L_005a:
+    if (!trigger(6) || !trigger(7)) goto L_006e;
+    playAnimation(5, 30);
+L_006e:
+    if ((!trigger(5) ?? !trigger(6)) || !trigger(7)) goto L_0086;
+    playAnimation(5, 31);
+L_0086:
+    return;
+}

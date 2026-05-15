@@ -1,0 +1,70 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG018.SCN, section 68
+
+section section_68(68) {  // len=844
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    if (pstat[116] != 0) goto L_032c;
+    setDialogOwner(Entity.Player);
+    showTextbox(" !!! \n");
+    playSound(8, 2);
+    delay(20);
+    setObjectVisibility(38, 1);
+    move(entity: Entity.Player, to: (-1750, 3600), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (-1450, 3600), sprint: 1);
+    waitForEntity(Entity.Partner);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    setDigimon(Digimon.NPCCentarumon, 0, 0);
+    move(entity: 5, to: (-1600, 4300), sprint: 0);
+    waitForEntity(5);
+    setDialogOwner(5);
+    showTextbox("It's amazing that you made it\nthrough the forest!\n");
+    showTextbox("I am Centarumon.\nI'm sorry for what I did.\n");
+    showTextbox("I didn't test you for fun.\nI want to work with you.\n");
+    setTrigger(236);
+    addPStat(1, 2);
+    showTextbox("Go on. I'll stay in the\ncity and wait for you.\n");
+    goto L_0200;
+L_0200:
+    move(entity: 5, to: (-1600, 1000), sprint: 1);
+    if (pstat[101] >= 4) goto L_0228;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_0200;
+L_0228:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    playSound(8, 9);
+    setDialogOwner(Entity.System);
+    showTextbox("Centarumon joins the city!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    look(entity: Entity.Player, at: Entity.Partner);
+    look(entity: Entity.Partner, at: Entity.Player);
+    delay(5);
+    setDialogOwner(Entity.Player);
+    showTextbox("<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous!\n");
+    playAnimation(Entity.Player, 11);
+    setDialogOwner(Entity.Player);
+    showTextbox("Let's keep it up!\n");
+    move(entity: Entity.Player, to: (-1600, 5200), sprint: 0);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1600, 5200), sprint: 0);
+    delay(20);
+    warp(to: Map.KODA00, spawn: 0, trigger: 255);
+    return;
+    goto L_034a;
+L_032c:
+    playSound(0, 11);
+    setDialogOwner(Entity.System);
+    showTextbox("Missed!\n");
+    warp(to: Map.TROP06, spawn: 0, trigger: 255);
+L_034a:
+    return;
+}

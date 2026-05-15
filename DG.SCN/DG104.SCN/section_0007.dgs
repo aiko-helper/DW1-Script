@@ -1,0 +1,24 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG104.SCN, section 7
+
+section section_7(7) {  // len=232
+    setDialogOwner(7);
+    showTextbox("We will train hard, but\nwe must rest too.\n");
+    showTextbox("Shall we rest for an hour?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_00ca, L_00e6);
+    showTextbox("Let's rest\nNo rest\n");
+    waitForSelectionChoice();
+    return;
+L_00ca:
+    storeDate(105);
+    addMinutesToDate(105, 60);
+    advanceToDate(105);
+    addStats(Stat.CurrentHP, 300);
+    addStats(Stat.CurrentMP, 300);
+    reduceStats(Stat.Tiredness, 5);
+    warp(to: Map.BETL04, spawn: 0, trigger: 255);
+    return;
+L_00e6:
+    return;
+}

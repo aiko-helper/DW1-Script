@@ -1,0 +1,97 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG043.SCN, section 51
+
+section section_51(51) {  // len=1020
+    if (trigger(197)) goto L_000e;
+    return;
+L_000e:
+    if (!trigger(198)) goto L_001c;
+    return;
+L_001c:
+    if (!trigger(98)) goto L_002a;
+    return;
+L_002a:
+    rotate(entity: Entity.Player, to: 1944);
+    moveCamera(to: (2000, 173), slowdown: 30);
+    waitForEntity(200);
+    setDialogOwner(Entity.Player);
+    showTextbox("I heard this road is where\nthe bandits attack.\n");
+    showTextbox("Let's go, <ORANGE><DIGIMON><WHITE>.\n");
+    move(entity: Entity.Player, to: (1925, 468), sprint: 0);
+    move(entity: Entity.Partner, to: (1925, 78), sprint: 0);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    loadDigimon(Digimon.NPCOgremon);
+    loadDigimon(Digimon.Agumon);
+    setDigimon(Digimon.NPCOgremon, 3, 0);
+    setDigimon(Digimon.Agumon, 4, 0);
+    setDigimon(Digimon.Agumon, 5, 0);
+    setDialogOwner(9);
+    showTextbox("You-hoo!\n");
+    playSound(8, 11);
+    setDialogOwner(8);
+    showTextbox("Ha ha!\n");
+    setDialogOwner(10);
+    showTextbox("Yaa-hoo!\n");
+    delay(10);
+    playSound(8, 1);
+    playAnimation(8, 31);
+    move(entity: 8, to: (1000, 1288), animDuration: 30);
+    move(entity: 9, to: (2067, 1561), sprint: 1);
+    move(entity: 10, to: (2059, -383), sprint: 1);
+    waitForEntity(8);
+    waitForEntity(9);
+    waitForEntity(10);
+    look(entity: 8, at: Entity.Player);
+    look(entity: 9, at: Entity.Player);
+    look(entity: 10, at: Entity.Player);
+    look(entity: Entity.Player, at: 8);
+    look(entity: Entity.Partner, at: 9);
+    delay(10);
+    playSound(8, 11);
+    setDialogOwner(8);
+    showTextbox("Give up and leave your stuff!\nOr else!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("No, you give up!\n");
+    setDialogOwner(8);
+    showTextbox("What?! You...?\n");
+    setDialogOwner(8);
+    showTextbox("It can't be.\n");
+    setDialogOwner(9);
+    showTextbox("Boss, what'll we do?\n");
+    look(entity: 9, at: 8);
+    setDialogOwner(8);
+    showTextbox("Don't worry, we're stronger\nand there's more of us.\nGo get'um!\n");
+    look(entity: 8, at: 9);
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 8);
+    setPStat(252, 9);
+    setPStat(253, 10);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: Entity.Player, at: 8);
+    look(entity: 8, at: Entity.Player);
+    look(entity: Entity.Partner, at: 8);
+    move(entity: 9, to: (1350, 2350), sprint: 1);
+    move(entity: 10, to: (1850, 2350), sprint: 1);
+    waitForEntity(9);
+    waitForEntity(10);
+    unloadEntity(9);
+    unloadEntity(10);
+    setDialogOwner(8);
+    showTextbox("I'll get even with\nyou someday!\n");
+    move(entity: 8, to: (1650, 2350), sprint: 1);
+    waitForEntity(8);
+    unloadEntity(8);
+    setDialogOwner(Entity.Player);
+    showTextbox("Look at them go! They won't\nbe back for a while.\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    setTrigger(198);
+    setTrigger(155);
+    return;
+}

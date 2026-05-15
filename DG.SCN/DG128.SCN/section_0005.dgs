@@ -1,0 +1,81 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG128.SCN, section 5
+
+section section_5(5) {  // len=814
+    if (!trigger(8) || !trigger(9)) goto L_002e;
+    setDialogOwner(5);
+    showTextbox("Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+    goto L_00fe;
+L_002e:
+    if (!trigger(8) || !trigger(10)) goto L_005c;
+    setDialogOwner(5);
+    showTextbox("Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+    goto L_00fe;
+L_005c:
+    if (!trigger(9) || !trigger(10)) goto L_008a;
+    setDialogOwner(5);
+    showTextbox("Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+    goto L_00fe;
+L_008a:
+    if (!trigger(8) && !trigger(9) && !trigger(10)) goto L_00ce;
+    setDialogOwner(5);
+    showTextbox("Thanks for coming!\n");
+    goto L_00fe;
+L_00ce:
+    setDialogOwner(5);
+    showTextbox("Hello, I'm Mojyamon!\n");
+L_00fe:
+    setPStat(254, 5);
+    setPStat(249, 1);
+    callSubroutine(2);
+    if (!trigger(8) && !trigger(9) && !trigger(10)) goto L_0120;
+    playAnimation(5, 29);
+L_0120:
+    if (!trigger(8) || !trigger(9)) goto L_0134;
+    playAnimation(5, 30);
+L_0134:
+    if (!trigger(8) || !trigger(10)) goto L_0148;
+    playAnimation(5, 30);
+L_0148:
+    if (!trigger(9) || !trigger(10)) goto L_015c;
+    playAnimation(5, 30);
+L_015c:
+    if ((!trigger(8) ?? !trigger(9)) || !trigger(10)) goto L_0174;
+    playAnimation(5, 31);
+L_0174:
+    if (trigger(5) && trigger(6) && trigger(7)) goto L_018a;
+    return;
+L_018a:
+    if (trigger(8) && trigger(9) && trigger(10)) goto L_01a0;
+    return;
+L_01a0:
+    if (trigger(11) && trigger(12) && trigger(13)) goto L_01b6;
+    return;
+L_01b6:
+    if (!trigger(252)) goto L_01c4;
+    return;
+L_01c4:
+    setDialogOwner(5);
+    showTextbox("<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n");
+    showTextbox("I've decided I'm going\nto the city. We'll work\ntogether, alright?\n");
+    goto L_02b4;
+L_02b4:
+    move(entity: 5, to: (1931, -1543), sprint: 1);
+    if (pstat[101] >= 6) goto L_02dc;
+    addPStat(101, 1);
+    delay(10);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_02b4;
+L_02dc:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    playSound(8, 11);
+    setDialogOwner(Entity.System);
+    showTextbox("Mojyamon joins the city!\n");
+    setTrigger(252);
+    setTrigger(108);
+    addPStat(1, 2);
+    return;
+}

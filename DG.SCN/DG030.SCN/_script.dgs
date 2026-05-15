@@ -1,0 +1,12 @@
+// DG030.SCN
+#pragma script index=30 start=0x1b000 end=0x1b800 headerU16=0x10 sentinelOff=0x19
+#pragma sections section_0254 section_0051 section_0005
+
+section onEnter(254) {  // len=28
+    if (trigger(120)) goto L_0016;
+    spawnBoulder();
+    setRectImpassible(42, 39, 9, 6);
+L_0016:
+    setObjectVisibility(0, 1);
+    return;
+}

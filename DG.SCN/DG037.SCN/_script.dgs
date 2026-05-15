@@ -1,0 +1,28 @@
+// DG037.SCN
+#pragma script index=37 start=0x1f000 end=0x1f800 headerU16=0x30 sentinelOff=0x24
+#pragma sections section_0254 section_0005 section_0006 section_0007 section_0008 section_0009 section_0010 section_0081 section_0053 section_0051 section_0052
+
+section onEnter(254) {  // len=112
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 9) goto L_0016;
+    spawnItem(Item.Digimushroom, 35, 9);
+L_0016:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 4) goto L_002c;
+    spawnItem(Item.Digimushroom, 19, 31);
+L_002c:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 0) goto L_0042;
+    spawnItem(Item.Happymushroom, 11, 10);
+L_0042:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 0) goto L_0058;
+    spawnItem(Item.DeluxeMushroom, 46, 46);
+L_0058:
+    if (trigger(180)) goto L_006a;
+    setObjectVisibility(2, 0);
+    return;
+L_006a:
+    setObjectVisibility(2, 1);
+    return;
+}

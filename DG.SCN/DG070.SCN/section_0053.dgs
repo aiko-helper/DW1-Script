@@ -1,0 +1,46 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG070.SCN, section 53
+
+section section_53(53) {  // len=330
+    if (pstat[111] < 2 || pstat[112] == 2 || trigger(193) || trigger(245)) goto L_0066;
+    setTrigger(193);
+    playAnimation(Entity.Player, 16);
+    setDialogOwner(Entity.Player);
+    showTextbox("Maybe I'll wait.\n");
+    setSelection(L_0068, section_51.L_014a);
+    showTextbox("Wait\nGo\n");
+    waitForSelectionChoice();
+    return;
+L_0066:
+    return;
+L_0068:
+    move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
+    waitForEntity(Entity.Partner);
+    look(entity: Entity.Partner, at: Entity.Player);
+    look(entity: Entity.Player, at: Entity.Partner);
+    waitForEntity(Entity.Partner);
+    waitForEntity(Entity.Player);
+    playAnimation(Entity.Player, 8);
+    setDialogOwner(Entity.Player);
+    showTextbox("Alright, <ORANGE><DIGIMON><WHITE>,\nget rid of Biyomon!\n");
+    playAnimation(Entity.Partner, 22);
+    delay(20);
+    move(entity: Entity.Player, to: (2143, -1254), sprint: 1);
+    move(entity: Entity.Partner, to: 5, sprint: 1);
+    waitForEntity(Entity.Partner);
+    look(entity: Entity.Player, at: 5);
+    jumpAndLink(section_5.L_032e);
+    if (pstat[112] != 2) goto L_0100;
+    move(entity: Entity.Partner, to: 5, sprint: 1);
+    waitForEntity(Entity.Partner);
+    goto section_54.L_014a;
+    goto L_0142;
+L_0100:
+    playAnimation(Entity.Player, 16);
+    setDialogOwner(Entity.Player);
+    showTextbox("He went to the wrong place!\n");
+L_0142:
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+}

@@ -1,0 +1,81 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG105.SCN, section 6
+
+section section_6(6) {  // len=912
+    setDialogOwner(Entity.Player);
+    showTextbox("Wow!\n");
+    playAnimation(Entity.Player, 15);
+    delay(20);
+    playAnimation(Entity.Player, 0);
+    setDialogOwner(6);
+    showTextbox("...? ...!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What? Now?!\nOkay, let's fight!\n");
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 6);
+    setPStat(252, 255);
+    setPStat(253, 255);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: 6, at: Entity.Player);
+    look(entity: Entity.Player, at: 6);
+    look(entity: Entity.Partner, at: 6);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    setDialogOwner(6);
+    showTextbox("I lost. Rats!\n");
+    playAnimation(6, 18);
+    setDialogOwner(Entity.Player);
+    showTextbox("I should invite him\nto the city.\n");
+    playAnimation(Entity.Player, 25);
+    showTextbox("Uh, excuse me.\n");
+    playAnimation(Entity.Player, 19);
+    showTextbox("Could you...\ncome to the city...?\n");
+    playAnimation(Entity.Player, 0);
+    playAnimation(6, 0);
+    setDialogOwner(6);
+    showTextbox("What? City?!\n");
+    showTextbox("You mean that...old place?\n");
+    playAnimation(6, 19);
+    setDialogOwner(6);
+    showTextbox("Well...\n");
+    showTextbox("Uh......\n");
+    showTextbox("Uhm.........\n");
+    fadeOutHUD();
+    playAnimation(6, 22);
+    waitForEntity(6);
+    playAnimation(6, 22);
+    setDialogOwner(6);
+    showTextbox("Well, okay.\nI'm Agumon.\nNice meeting you.\n");
+    fadeOutHUD();
+    goto L_02aa;
+L_02aa:
+    move(entity: 6, to: (2400, 1663), sprint: 1);
+    if (pstat[101] >= 3) goto L_02d2;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 6);
+    look(entity: Entity.Partner, at: 6);
+    goto L_02aa;
+L_02d2:
+    waitForEntity(6);
+    unloadEntity(6);
+    setPStat(101, 0);
+    playSound(8, 11);
+    setDialogOwner(Entity.System);
+    showTextbox("Agumon joins the city!\n");
+    setTrigger(203);
+    addPStat(1, 1);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    setDialogOwner(Entity.Player);
+    showTextbox("Alright, it pays to try.\nI'll keep on asking!\n");
+    playAnimation(Entity.Player, 11);
+    delay(20);
+    playAnimation(Entity.Player, 0);
+    return;
+}

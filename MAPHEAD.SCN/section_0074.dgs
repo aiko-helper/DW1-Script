@@ -1,0 +1,24 @@
+// source: extract/DIGIMON/SCN/MAPHEAD.SCN
+// MAPHEAD.SCN, section 74
+
+section section_74(74) {  // len=68
+    setScript(71, Map.GIAS05);
+    setPStat(245, 0);
+    setBGM(11);
+    storeDate(105);
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    loadDigimon(Digimon.Psychemon);
+    loadDigimon(Digimon.Akatorimon);
+    setDigimon(Digimon.Psychemon, 0, 1);
+    setDigimon(Digimon.Psychemon, 1, 1);
+    setDigimon(Digimon.Akatorimon, 2, 1);
+    goto L_0042;
+L_0032:
+    loadDigimon(Digimon.Tsukaimon);
+    loadDigimon(Digimon.Sharmamon);
+    setDigimon(Digimon.Tsukaimon, 3, 1);
+    setDigimon(Digimon.Tsukaimon, 4, 1);
+    setDigimon(Digimon.Sharmamon, 5, 1);
+L_0042:
+    return;
+}

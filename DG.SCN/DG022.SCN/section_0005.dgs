@@ -1,0 +1,86 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG022.SCN, section 5
+
+section section_5(5) {  // len=1412
+    setDialogOwner(5);
+    showTextbox("My wing hurts.\n");
+    playAnimation(Entity.Player, 19);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("What happened?\n");
+    setDialogOwner(5);
+    showTextbox("I injured my wing... Do you\nhave anything to treat it?\n");
+    playAnimation(Entity.Player, 4);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("Wow, it looks pretty bad!\nHold on. Let me see.\n");
+    playAnimation(Entity.Player, 0);
+    setTrigger(3);
+    callSubroutine(0);
+    if (!trigger(3)) goto L_0192;
+    setDialogOwner(Entity.Player);
+    showTextbox("I don't have anything\nright now.\n");
+    goto L_04ba;
+L_0192:
+    if (pstat[254] != 0 && pstat[254] != 1 && pstat[254] != 2 && pstat[254] != 3) goto L_01b0;
+    callSubroutine(12);
+    goto L_01fa;
+L_01b0:
+    if (pstat[254] != 7 && pstat[254] != 9 && pstat[254] != 13 && pstat[254] != 14) goto L_01d2;
+    callSubroutine(12);
+    goto L_01fa;
+    goto L_01fa;
+L_01d2:
+    setDialogOwner(Entity.Player);
+    showTextbox("This won't do.\n");
+    goto L_04ba;
+L_01fa:
+    setDialogOwner(5);
+    showTextbox("It's much better. Thank you.\n");
+    playAnimation(5, 29);
+    waitForEntity(5);
+    playAnimation(Entity.Player, 25);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("Can you fly now?\n");
+    setDialogOwner(5);
+    showTextbox("I don't think I can fly far.\n");
+    playAnimation(Entity.Player, 19);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("There's a clinic in the city.\nYou should go there.\nIt's not far.\n");
+    setDialogOwner(5);
+    showTextbox("I heard about the city.\nIt's bigger than I thought.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Go to the city and rest.\n");
+    setDialogOwner(5);
+    showTextbox("Thank you. Maybe\nI can help you someday.\n");
+    goto L_0442;
+L_0442:
+    move(entity: 5, to: (-192, -1849), sprint: 1);
+    if (pstat[101] >= 10) goto L_046e;
+    addPStat(101, 1);
+    playSound(8, 0);
+    delay(15);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_0442;
+L_046e:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    playSound(8, 9);
+    setDialogOwner(Entity.System);
+    showTextbox("Unimon joins the city!\n");
+    setTrigger(233);
+    addPStat(1, 2);
+    goto L_0582;
+L_04ba:
+    setDialogOwner(Entity.Player);
+    showTextbox("I don't have anything to\ntreat your wound.\nI'll get you something.\n");
+    setDialogOwner(5);
+    showTextbox("I'm sorry, please hurry.\n");
+    goto L_0582;
+L_0582:
+    return;
+}

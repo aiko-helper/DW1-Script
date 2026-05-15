@@ -1,0 +1,75 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG035.SCN, section 5
+
+section section_5(5) {  // len=684
+    playAnimation(5, 11);
+    delay(50);
+    playAnimation(5, 0);
+    setDialogOwner(5);
+    showTextbox("Bakke-bakke?\n");
+    playAnimation(Entity.Player, 16);
+    setDialogOwner(Entity.Player);
+    showTextbox("Looks like he's\nasking something.\n");
+    setTrigger(49);
+    setSelection(L_00a6, L_0264);
+    showTextbox("?...Yes\n?...No\n");
+L_00a6:
+    playAnimation(5, 11);
+    delay(45);
+    playAnimation(5, 0);
+    setDialogOwner(5);
+    showTextbox("Bakke! Bakke bakke?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_00fa, L_0264);
+    showTextbox("Yes\nNo\n");
+L_00fa:
+    playAnimation(5, 12);
+    delay(58);
+    playAnimation(5, 0);
+    playAnimation(Entity.Player, 15);
+    setDialogOwner(5);
+    showTextbox("Bakkeee...bakke bakke?\n");
+    playAnimation(Entity.Player, 16);
+    setDialogOwner(Entity.Player);
+    setSelection(L_0264, L_015c);
+    showTextbox("Yes\nNo\n");
+L_015c:
+    playAnimation(5, 13);
+    delay(34);
+    playAnimation(5, 13);
+    setDialogOwner(5);
+    showTextbox("Bakke bakke!\nBakkeee bakke bakkeee!\n");
+    goto L_01ba;
+L_01ba:
+    unsetTrigger(49);
+    move(entity: 5, to: (1299, -1074), sprint: 1);
+    if (pstat[101] >= 10) goto L_01e6;
+    addPStat(101, 1);
+    delay(5);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_01ba;
+L_01e6:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    playSound(8, 11);
+    setDialogOwner(Entity.System);
+    showTextbox("Bakemon joins the city!\n");
+    playAnimation(Entity.Player, 16);
+    setDialogOwner(Entity.Player);
+    showTextbox("I think it went OK.\n");
+    setTrigger(237);
+    addPStat(1, 2);
+    return;
+L_0264:
+    unsetTrigger(49);
+    playAnimation(5, 29);
+    playSound(8, 0);
+    delay(40);
+    waitForEntity(5);
+    unloadEntity(5);
+    setDialogOwner(Entity.Player);
+    showTextbox("Maybe I made him mad?\n");
+    return;
+}

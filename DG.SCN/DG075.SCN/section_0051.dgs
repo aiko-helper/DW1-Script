@@ -1,0 +1,107 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG075.SCN, section 51
+
+section section_51(51) {  // len=1644
+    if (!trigger(189)) goto L_000e;
+    return;
+L_000e:
+    if (!trigger(248) && trigger(196)) goto L_0020;
+    return;
+L_0020:
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    setTrigger(189);
+    moveCamera(to: (-285, 3964), slowdown: 30);
+    waitForEntity(200);
+    setDialogOwner(5);
+    showTextbox("I've heard about you.\n");
+    look(entity: 5, at: Entity.Player);
+    waitForEntity(5);
+    playAnimation(Entity.Player, 19);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("If you've heard about us\nand the city, why don't you\ncome with me?\n");
+    playAnimation(Entity.Player, 0);
+    setDialogOwner(5);
+    showTextbox("I'm also thinking about the\nisland's future. I've been\nsearching for something.\n");
+    rotate(entity: 5, to: 2560);
+    waitForEntity(5);
+    playAnimation(5, 24);
+    waitForEntity(5);
+    setDialogOwner(Entity.Player);
+    showTextbox("What are you looking for?\n");
+    setDialogOwner(5);
+    showTextbox("Something that my ancestors\nleft behind, but\nI don't know what it is.\n");
+L_0286:
+    if (item[Item.Leomonstone] < 1) goto L_02a0;
+    removeItem(Item.Leomonstone, 1);
+    goto L_03e6;
+    goto L_03e6;
+L_02a0:
+    setDialogOwner(Entity.Player);
+    showTextbox("I see. If I find it,\nI'll let you know.\n");
+    setDialogOwner(5);
+    showTextbox("I've been looking\na long time.\nIt won't be easy to find.\n");
+    setDialogOwner(5);
+    showTextbox("But if you find it,\nI promise,\nI'll go to your city.\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+L_03e6:
+    playAnimation(Entity.Player, 19);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("Is this it?\n");
+    playAnimation(Entity.Player, 0);
+    look(entity: 5, at: Entity.Player);
+    waitForEntity(5);
+    setDialogOwner(5);
+    showTextbox("Oh, that's it!\n");
+    moveCamera(to: 5, speed: 20);
+    waitForEntity(200);
+    move(entity: 5, to: Entity.Player, sprint: 1, withCamera: true);
+    waitForEntity(5);
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    waitForEntity(5);
+    waitForEntity(Entity.Player);
+    playAnimation(5, 25);
+    delay(30);
+    setDialogOwner(5);
+    showTextbox("This is what my ancestors\nhad written. Let me see.\n");
+    setDialogOwner(5);
+    showTextbox("When danger comes to the\nisland, go to the city.\n");
+    playAnimation(5, 24);
+    waitForEntity(5);
+    setDialogOwner(5);
+    showTextbox("My ancestors say\nthat I should go!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("You are going to help us?\n");
+    playAnimation(5, 22);
+    waitForEntity(5);
+    setDialogOwner(5);
+    showTextbox("You can count on me!\n");
+    goto L_05f4;
+L_05f4:
+    move(entity: 5, to: (-374, -1119), sprint: 1);
+    if (pstat[101] >= 3) goto L_061c;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_05f4;
+L_061c:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    playSound(8, 17);
+    setDialogOwner(Entity.System);
+    showTextbox("Leomon joins the city!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    setTrigger(248);
+    addPStat(1, 2);
+    return;
+}

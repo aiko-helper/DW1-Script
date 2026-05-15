@@ -1,0 +1,98 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG002.SCN, section 6
+
+section section_6(6) {  // len=1000
+    setTrigger(44);
+    playAnimation(6, 29);
+    setDialogOwner(6);
+    showTextbox("I'm hungry.\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_006c, L_03a8);
+    showTextbox("Give food\nDon't give food\n");
+    waitForSelectionChoice();
+    goto L_03a8;
+L_006c:
+    setTrigger(3);
+    callSubroutine(0);
+    if (!trigger(3)) goto L_00b6;
+    setDialogOwner(Entity.Player);
+    showTextbox("I don't have food now.\n");
+    goto L_03a8;
+L_00b6:
+    if (pstat[254] != 255) goto L_00c6;
+    goto L_03a8;
+L_00c6:
+    if (pstat[254] != 38 && pstat[254] != 39 && pstat[254] != 40 && pstat[254] != 41) goto L_00e4;
+    callSubroutine(12);
+    goto L_014a;
+L_00e4:
+    if (pstat[254] != 42 && pstat[254] != 44 && pstat[254] != 62 && pstat[254] != 68) goto L_0106;
+    callSubroutine(12);
+    goto L_014a;
+    goto L_014a;
+L_0106:
+    setDialogOwner(Entity.Player);
+    showTextbox("Oops, I can't give you this.\n");
+    goto L_03a8;
+L_014a:
+    playAnimation(6, 30);
+    delay(20);
+    playAnimation(6, 8);
+    waitForEntity(6);
+    setDialogOwner(6);
+    showTextbox("That's good...\n");
+    playAnimation(6, 0);
+    showTextbox("Let's fight!\n");
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 6);
+    setPStat(252, 255);
+    setPStat(253, 255);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: Entity.Player, at: 6);
+    look(entity: 6, at: Entity.Player);
+    look(entity: Entity.Partner, at: 6);
+    setDialogOwner(6);
+    showTextbox("This isn't good.\nWhat should I do?\n");
+    playAnimation(Entity.Player, 20);
+    waitForEntity(Entity.Player);
+    setDialogOwner(Entity.Player);
+    showTextbox("Come to the city and work\noff what you ate!\n");
+    playAnimation(Entity.Player, 0);
+    delay(10);
+    setDialogOwner(6);
+    showTextbox("Okay, I'll do that. I'm an\nInsectoid-Digimon named\nKunemon. Nice meeting you.\n");
+    goto L_032c;
+L_032c:
+    move(entity: 6, to: (1219, 984), sprint: 1);
+    if (pstat[101] >= 3) goto L_0354;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 6);
+    look(entity: Entity.Partner, at: 6);
+    goto L_032c;
+L_0354:
+    waitForEntity(6);
+    unloadEntity(6);
+    setPStat(101, 0);
+    playSound(8, 11);
+    setDialogOwner(Entity.System);
+    showTextbox("Kunemon joins the city!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    setTrigger(232);
+    addPStat(1, 1);
+    goto L_03e6;
+L_03a8:
+    setDialogOwner(6);
+    showTextbox("Bring some next time.\n");
+    playAnimation(6, 28);
+    delay(20);
+    goto L_03e6;
+L_03e6:
+    return;
+}

@@ -1,0 +1,33 @@
+// DG022.SCN
+#pragma script index=22 start=0x15800 end=0x16800 headerU16=0x18 sentinelOff=0x24
+#pragma sections section_0254 section_0005 section_0006 section_0051 section_0061
+
+section onEnter(254) {  // len=168
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 14) goto L_0016;
+    spawnItem(Item.Digimushroom, 15, 41);
+L_0016:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 14) goto L_002c;
+    spawnItem(Item.Digimushroom, 49, 28);
+L_002c:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 14) goto L_0042;
+    spawnItem(Item.Digimushroom, 63, 67);
+L_0042:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 14) goto L_0058;
+    spawnItem(Item.Digimushroom, 25, 64);
+L_0058:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 5) goto L_006e;
+    spawnItem(Item.Happymushroom, 84, 49);
+L_006e:
+    spawnChest(Item.MediumRecovery, 3545, 855, 1024, 696);
+    spawnChest(Item.MediumMP, 3545, 455, 1024, 697);
+    spawnChest(Item.Various, 3545, 155, 1024, 698);
+    if (trigger(233) || !trigger(53)) goto L_00a6;
+    playAnimation(5, 28);
+L_00a6:
+    return;
+}

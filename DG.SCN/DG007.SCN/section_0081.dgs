@@ -1,0 +1,93 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG007.SCN, section 81
+
+section section_81(81) {  // len=640
+    if (item[Item.BlueFlute] < 1) goto L_00ca;
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh, yes!\n");
+    setDialogOwner(Entity.System);
+    showTextbox("Will you play the Lake\nGuardian's <LIGHTBLUE>Blue Flute<WHITE>?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_00ce, L_00cc);
+    showTextbox("I'll play\nI won't play\n");
+    waitForSelectionChoice();
+    return;
+L_00ca:
+    return;
+L_00cc:
+    return;
+L_00ce:
+    playSound(8, 13);
+    delay(60);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    move(entity: Entity.Player, to: (445, -1448), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (743, -2280), sprint: 1);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    rotate(entity: Entity.Player, to: 1536);
+    rotate(entity: Entity.Partner, to: 1536);
+    moveCamera(to: (242, -1810), slowdown: 10);
+    waitForEntity(200);
+    loadDigimon(Digimon.NPCSeadramon);
+    setDigimon(Digimon.NPCSeadramon, 0, 0);
+    playAnimation(5, 28);
+    setObjectVisibility(38, 0);
+    setObjectVisibility(39, 0);
+    setObjectVisibility(40, 0);
+    setObjectVisibility(41, 0);
+    setObjectVisibility(42, 0);
+    setObjectVisibility(43, 0);
+    setObjectVisibility(44, 0);
+    setPStat(247, 40);
+    setPStat(248, 5);
+    callSubroutine(21);
+    playAnimation(Entity.Player, 15);
+    waitForEntity(5);
+    playSound(8, 12);
+    delay(60);
+    setObjectVisibility(40, 1);
+    setObjectVisibility(41, 1);
+    setObjectVisibility(42, 1);
+    setObjectVisibility(43, 1);
+    setObjectVisibility(44, 1);
+    setObjectVisibility(45, 0);
+    playAnimation(5, 32);
+    playSound(8, 7);
+    setDialogOwner(5);
+    showTextbox("Do you need help my friend?\n");
+    playAnimation(Entity.Player, 19);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("Take me to the other side.\n");
+    playAnimation(Entity.Player, 0);
+    setDialogOwner(5);
+    showTextbox("Sure. Get on.\n");
+    playAnimation(5, 29);
+    setObjectVisibility(45, 1);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setPStat(247, 46);
+    setPStat(248, 2);
+    callSubroutine(21);
+    delay(20);
+    setObjectVisibility(46, 1);
+    setObjectVisibility(47, 1);
+    playAnimation(5, 30);
+    delay(10);
+    moveCamera(to: (-310, -1980), slowdown: 15);
+    waitForEntity(200);
+    move(entity: Entity.Player, axis: 1, to: -200, speed: 2);
+    delay(5);
+    playAnimation(Entity.Player, 21);
+    move(entity: Entity.Player, to: (-194, -1810), animDuration: 50);
+    move(entity: Entity.Partner, to: (50, -2538), sprint: 1);
+    waitForEntity(Entity.Partner);
+    move(entity: 5, to: (-791, 74), animDuration: 30);
+    move(entity: Entity.Player, to: (-791, 74), animDuration: 30);
+    move(entity: Entity.Partner, to: (-791, 74), animDuration: 30);
+    delay(20);
+    warp(to: Map.BETL01, spawn: 0, trigger: 255);
+    return;
+    return;
+}

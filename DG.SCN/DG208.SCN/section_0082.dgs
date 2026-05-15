@@ -1,0 +1,159 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG208.SCN, section 82
+
+section section_82(82) {  // len=4082
+    rotate(entity: Entity.Player, to: 3152);
+    delay(5);
+L_0008:
+    if (!trigger(154) || pstat[1] < 45) goto L_019e;
+    setTrigger(153);
+    setTextboxSize(21, 8);
+    showTextbox("Shell Newspaper Eigth\nAlien Digimon Appears:\nWe have found the UFO.\nThe creature showed its body\nand spoke unknown words.\nIs the creature an Alien?\nWill it appear again?\n");
+    fadeOutHUD();
+    setDialogOwner(Entity.System);
+    setSelection(L_019e, L_0ea0);
+    showTextbox("Back\nStop\n");
+    waitForSelectionChoice();
+    return;
+L_019e:
+    if (!trigger(226)) goto L_038e;
+    setTextboxSize(21, 10);
+    showTextbox("Shell Newspaper Seven\nMyotismon Denies His\nRetirement:\nIn an interview,\nhe denied the rumors.\nHe is still working hard.\nHe loves his fans.\nHe also announced that\nhis pupil, SkullGreymon,\nwill make his debut.\n");
+    fadeOutHUD();
+    setTrigger(325);
+    setDialogOwner(Entity.System);
+    setSelection(L_03ae, L_0392, L_0ea0);
+    showTextbox("Back\nForward\nStop\n");
+    waitForSelectionChoice();
+    return;
+L_038e:
+    goto L_03ae;
+L_0392:
+    if (!trigger(154) || pstat[1] < 45) goto L_03aa;
+    goto L_0008;
+    goto L_03ae;
+L_03aa:
+    goto L_019e;
+L_03ae:
+    if (pstat[1] < 35 || !trigger(128)) goto L_056a;
+    setTextboxSize(21, 8);
+    showTextbox("Shell Newspaper Six\nMyotismon to Retire?:\nRumor is that popular and \nable Myotismon will retire.\nNo one at the arena has\nseen him. His career is at\nits end. He is too old.\n");
+    fadeOutHUD();
+    if (trigger(226)) goto L_0534;
+    unsetTrigger(266);
+    setTrigger(356);
+L_0534:
+    setDialogOwner(Entity.System);
+    setSelection(L_0596, L_056e, L_0ea0);
+    showTextbox("Back\nForward\nStop\n");
+    waitForSelectionChoice();
+    return;
+L_056a:
+    goto L_0596;
+L_056e:
+    if (!trigger(226)) goto L_057e;
+    goto L_019e;
+L_057e:
+    if (!trigger(154) || pstat[1] < 45) goto L_0592;
+    goto L_0008;
+L_0592:
+    goto L_03ae;
+L_0596:
+    if (pstat[1] < 25) goto L_0736;
+    setTextboxSize(21, 9);
+    showTextbox("Shell Newspaper Five\nHidden Treasure:\nA cool shop in Gear Savanna.\nThis shop is only open from\nfirst to fifteenth each year.\nThe shop manager is proud of\nhis rare Items.\n");
+    fadeOutHUD();
+    setDialogOwner(Entity.System);
+    setSelection(L_0776, L_073a, L_0ea0);
+    showTextbox("Back\nForward\nStop\n");
+    waitForSelectionChoice();
+    return;
+L_0736:
+    goto L_0776;
+L_073a:
+    if (pstat[1] < 35 || !trigger(128)) goto L_074e;
+    goto L_03ae;
+L_074e:
+    if (!trigger(226)) goto L_075e;
+    goto L_019e;
+L_075e:
+    if (!trigger(154) || pstat[1] < 45) goto L_0772;
+    goto L_0008;
+L_0772:
+    goto L_0596;
+L_0776:
+    if (pstat[1] < 20) goto L_0974;
+    setTextboxSize(21, 10);
+    showTextbox("Shell Newspaper Four\nA Legendary Digimon?:\nRumor is that there is\na cold weather Digimon\nin Freezeland. Mr. M was\nsaved by this monster. It\nlooked like a big snowball.\nDigimon who are not use to\nthe cold, be careful!\n");
+    fadeOutHUD();
+    setDialogOwner(Entity.System);
+    setSelection(L_098c, L_0978, L_0ea0);
+    showTextbox("Back\nForward\nStop\n");
+    waitForSelectionChoice();
+    return;
+L_0974:
+    goto L_098c;
+L_0978:
+    if (pstat[1] < 25) goto L_0988;
+    goto L_0596;
+L_0988:
+    goto L_0776;
+L_098c:
+    if (pstat[1] < 15) goto L_0b36;
+    setTextboxSize(21, 10);
+    showTextbox("Shell Newspaper Three\nA Guardian for the Lake?:\nLake Guardian is at\nDragon Eye Lake.\nThe Digimon-like creature\nwas called by someone.\nCan this Guardian make\nwishes come true?\n");
+    fadeOutHUD();
+    setDialogOwner(Entity.System);
+    setSelection(L_0b62, L_0b3a, L_0ea0);
+    showTextbox("Back\nForward\nStop\n");
+    waitForSelectionChoice();
+    return;
+L_0b36:
+    goto L_0b62;
+L_0b3a:
+    if (pstat[1] < 20) goto L_0b4a;
+    goto L_0776;
+L_0b4a:
+    if (!trigger(154) || pstat[1] < 45) goto L_0b5e;
+    goto L_0008;
+L_0b5e:
+    goto L_098c;
+L_0b62:
+    if (!trigger(118)) goto L_0d1e;
+    setTextboxSize(21, 9);
+    showTextbox("Shell Newspaper Two\nA UFO!:\nA report says the UFO\nis near Mt. Panorama.\nThe UFO looks like a\nsilver dish with light\ncoming from the bottom.\nIs it an alien?\nMore information to come.\n");
+    fadeOutHUD();
+    setTrigger(152);
+    setDialogOwner(Entity.System);
+    setSelection(L_0d36, L_0d22, L_0ea0);
+    showTextbox("Back\nForward\nStop\n");
+    waitForSelectionChoice();
+    return;
+L_0d1e:
+    goto L_0d36;
+L_0d22:
+    if (pstat[1] < 15) goto L_0d32;
+    goto L_098c;
+L_0d32:
+    goto L_0b62;
+L_0d36:
+    setTextboxSize(21, 9);
+    showTextbox("Shell Newspaper One\nBandits Are Gone!:\n<LIGHTBLUE><PLAYER><WHITE> found the\nhide out, led by Ogremon.\nHowever, Ogremon is \nloose and people\nare still worried.\n");
+    fadeOutHUD();
+    if (!trigger(118) && pstat[1] < 15) goto L_0e8a;
+    setDialogOwner(Entity.System);
+    setSelection(L_0e8c, L_0ea0);
+    showTextbox("Forward\nStop\n");
+    waitForSelectionChoice();
+    return;
+L_0e8a:
+    return;
+L_0e8c:
+    if (!trigger(118)) goto L_0e9c;
+    goto L_0b62;
+L_0e9c:
+    goto L_098c;
+L_0ea0:
+    return;
+    garbage { 0c 00 fe 00 0c 00 52 00 0e 00 ff ff fe 00 4d fd 50 0c 67 00 05 00 19 00 00 00 9a 00 8a 00 01 2d 18 00 ac 01 19 00 1c 00 99 00 26 00 15 08 1a 00 82 72 82 88 82 85 82 8c 82 8c 81 40 82 6d 82 85 82 97 82 93 82 90 82 81 82 90 82 85 82 92 81 40 82 64 82 89 82 87 82 94 82 88 0d 00 82 60 82 8c 82 89 82 85 82 8e 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 40 82 60 82 90 82 90 82 85 82 81 82 92 82 93 81 46 0d 00 82 76 82 85 81 40 82 88 82 81 82 96 82 85 81 40 82 86 82 8f 82 95 82 8e 82 84 81 40 82 94 82 88 82 85 81 40 82 74 82 65 82 6e 81 42 0d 00 82 73 82 88 82 85 81 40 82 83 82 92 82 85 82 81 82 94 82 95 82 92 82 85 81 40 82 93 82 88 82 8f 82 97 82 85 82 84 81 40 82 89 82 94 82 93 81 40 82 82 82 8f 82 84 82 99 0d 00 82 81 82 8e 82 84 81 40 82 93 82 90 82 8f 82 8b 82 85 81 40 82 95 82 8e 82 8b 82 8e 82 8f 82 97 82 8e 81 40 82 97 82 8f 82 92 82 84 82 93 81 42 0d 00 82 68 82 93 81 40 82 94 82 88 82 85 81 40 82 83 82 92 82 85 82 81 82 94 82 95 82 92 82 85 81 40 82 81 82 8e 81 40 82 60 82 8c };
+}

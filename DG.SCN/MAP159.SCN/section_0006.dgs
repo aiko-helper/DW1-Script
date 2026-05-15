@@ -1,0 +1,115 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// MAP159.SCN, section 6
+
+section section_6(6) {  // len=3620
+    if (!trigger(362)) goto L_0176;
+    setDialogOwner(6);
+    showTextbox("I am collecting\nDigimon cards myself.\n");
+    showTextbox("I really want a King of\nSukamon card. Will you trade\nfor my Etemon card?\n");
+    if (card[21] < 1) goto L_0136;
+    setDialogOwner(Entity.Player);
+    setSelection(L_0d7e, L_0e22);
+    showTextbox("Trade\nDon't trade\n");
+    waitForSelectionChoice();
+    return;
+L_0136:
+    setDialogOwner(Entity.Player);
+    showTextbox("Sorry, but I don't have it.\n");
+    return;
+L_0176:
+    playAnimation(Entity.Player, 24);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("Wow it stinks! Is this\nTrash Pile?\n");
+    showTextbox("I didn't know there's one\nin Digimon World.\n");
+    playAnimation(Entity.Player, 0);
+    storeDigimonType(103);
+    if (trigger(362) || pstat[103] != 39) goto L_0604;
+    move(entity: 6, to: (192, -2979), sprint: 0);
+    waitForEntity(6);
+    setDialogOwner(6);
+    showTextbox("I'm glad you came.\nWe welcome new friends.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Is this a community for\nthe Sukamon Tribe?\n");
+    setDialogOwner(6);
+    showTextbox("Exactly. This is a paradise\nfor the Sukamon Tribe,\nit's called Dust Kingdom.\n");
+    showTextbox("King of Sukamon is here, too.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("King of Sukamon...?\n");
+    setDialogOwner(6);
+    showTextbox("King of Sukamon is amazing!\nIf you don't listen to him,\nyou'll be digivolved!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Do you mean we turn into\nsomething besides Sukamon?\n");
+    showTextbox("That means we return\nto our original form?!\n");
+    setDialogOwner(6);
+    showTextbox("Yeah, it's scary. Creepy.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("I learned something useful...\n");
+    move(entity: 6, to: (189, -1273), sprint: 0);
+    waitForEntity(6);
+    setTrigger(362);
+    return;
+L_0604:
+    if (trigger(362) || !trigger(550)) goto L_0704;
+    move(entity: 6, to: (192, -2979), sprint: 0);
+    waitForEntity(6);
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh, Sukamon?!\n");
+    setDialogOwner(6);
+    showTextbox("Huh? Do you know about me?\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Well, kind of.\nDo we need to take Sukamon\nto the city as well?\n");
+    goto L_09bc;
+L_0704:
+    move(entity: 6, to: (192, -2979), sprint: 0);
+    waitForEntity(6);
+    setDialogOwner(6);
+    showTextbox("Wow, this is interesting!\nI've never seen anything\nlike this!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh my goodness! The poop\nare moving and talking!\n");
+    setDialogOwner(6);
+    showTextbox("Are you talking about me?\nI'm Sukamon...\nI'm a Mutant Digimon.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("You are not poop?\n");
+    setDialogOwner(6);
+    showTextbox("In a way, you are right,\ncuz we are made from\nDigital Waste.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Should we ask him to come\nto the city, too? We\nshouldn't be prejudiced.\n");
+L_09bc:
+    setDialogOwner(6);
+    showTextbox("Are you planning to\nlive here?\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What? I never thought\nabout it.\n");
+    setDialogOwner(6);
+    showTextbox("Well, this is a paradise\nonly for the Sukamon Tribe.\nOthers can't live here.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Then you can't live\nin other places?\n");
+    setDialogOwner(6);
+    showTextbox("Of course not!\nWhat do you think?\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("I see. That's\nwhat I thought.\n");
+    setDialogOwner(6);
+    showTextbox("Well, although you\ncan't live here,\nyou can look around.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh, just to look.Okay.\n");
+    setDialogOwner(6);
+    showTextbox("Oh, by the way, don't\never make the King mad.\n");
+    showTextbox("You'll be turned into\nsomething miserable by the\nKing's Digivolve technique.\n");
+    move(entity: 6, to: (189, -1273), sprint: 0);
+    waitForEntity(6);
+    setTrigger(362);
+    return;
+L_0d7e:
+    if (card[14] < 9) goto L_0df8;
+    setDialogOwner(6);
+    showTextbox("Hey, you have too many\nEtemon cards!\nDon't do it.\n");
+    return;
+L_0df8:
+    setDialogOwner(6);
+    showTextbox("Oh, thank you!\n");
+    takeCard(21);
+    giveCard(14);
+    return;
+L_0e22:
+    return;
+}

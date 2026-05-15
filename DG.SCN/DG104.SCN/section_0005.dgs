@@ -1,0 +1,50 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG104.SCN, section 5
+
+section section_5(5) {  // len=828
+    setDialogOwner(5);
+    showTextbox("I want to beat Kabuterimon.\nWhat do I need to do to win?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_013e, L_017e, L_02e4);
+    showTextbox("Hmm. You gotta get stronger.\nActually, there is a sure fire\nway.... well, hang in there.\n");
+    waitForSelectionChoice();
+    goto L_02e4;
+L_013e:
+    setDialogOwner(5);
+    showTextbox("I see. Alright, I'll train.\n");
+    return;
+L_017e:
+    setDialogOwner(5);
+    showTextbox("Really?! Then I'll train you!\n");
+    playAnimation(Entity.Player, 19);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("Just come to the city.\n");
+    playAnimation(Entity.Player, 0);
+    setDialogOwner(5);
+    showTextbox("...\n");
+    showTextbox("You're really nice.\nI'll go to the city.\n");
+    goto L_0268;
+L_0268:
+    move(entity: 5, to: (664, -1963), sprint: 1);
+    if (pstat[101] >= 3) goto L_0290;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_0268;
+L_0290:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    playSound(8, 17);
+    setDialogOwner(Entity.System);
+    showTextbox("Kuwagamon went to the city!\n");
+    setTrigger(251);
+    addPStat(1, 2);
+    return;
+L_02e4:
+    setDialogOwner(5);
+    showTextbox("Man, you're not nice.\nI'm disappointed!\n");
+    return;
+}

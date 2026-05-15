@@ -1,0 +1,30 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG000.SCN, section 35
+
+section section_35(35) {  // len=100
+    setScript(35, Map.DGHA02);
+    setPStat(245, 1);
+    setBGM(5);
+    if (trigger(237)) goto L_002a;
+    loadDigimon(Digimon.NPCBakemon);
+    setDigimon(Digimon.NPCBakemon, 0, 1);
+    loadDigimon(Digimon.Tsukaimon);
+    setDigimon(Digimon.Tsukaimon, 1, 1);
+    setDigimon(Digimon.Tsukaimon, 2, 1);
+    return;
+L_002a:
+    roll(pstat: 110, max: 1);
+    if (pstat[110] != 0) goto L_0048;
+    loadDigimon(Digimon.Tsukaimon);
+    setDigimon(Digimon.Tsukaimon, 1, 1);
+    setDigimon(Digimon.Tsukaimon, 2, 1);
+    setDigimon(Digimon.Tsukaimon, 3, 1);
+L_0048:
+    if (pstat[110] != 1) goto L_0062;
+    loadDigimon(Digimon.Soulmon);
+    setDigimon(Digimon.Soulmon, 4, 1);
+    setDigimon(Digimon.Soulmon, 5, 1);
+    setDigimon(Digimon.Soulmon, 6, 1);
+L_0062:
+    return;
+}

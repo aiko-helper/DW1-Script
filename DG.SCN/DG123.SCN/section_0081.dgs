@@ -1,0 +1,23 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG123.SCN, section 81
+
+section section_81(81) {  // len=206
+    rotate(entity: Entity.Player, to: 1944);
+    waitForEntity(Entity.Player);
+    setDialogOwner(Entity.System);
+    showTextbox("East: Elevator\nWest: Danger!!\nBeware of cliff.\n");
+    if (!trigger(54)) goto L_0078;
+    return;
+L_0078:
+    setDialogOwner(Entity.System);
+    setSelection(L_00ba, L_00c4);
+    showTextbox("Ogre Mode:ON\nOgre Mode:OFF\n");
+L_00ba:
+    setTrigger(197);
+    warp(to: Map.GCAN08_2, spawn: 0, trigger: 255);
+    return;
+L_00c4:
+    unsetTrigger(197);
+    warp(to: Map.GCAN08_2, spawn: 0, trigger: 255);
+    return;
+}

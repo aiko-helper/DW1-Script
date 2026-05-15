@@ -1,0 +1,41 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG126.SCN, section 82
+
+section section_82(82) {  // len=290
+    look(entity: 6, at: Entity.Player);
+    look(entity: Entity.Player, at: 6);
+    playSound(8, 4);
+    setDialogOwner(6);
+    showTextbox("This's a Recycled Goods shop.\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_00d0, L_0114, L_0120);
+    showTextbox("I want a regular item\nI want a recycled item\nNext time\n");
+    waitForSelectionChoice();
+    goto L_0120;
+L_00d0:
+    setTrigger(385);
+    setTrigger(389);
+    setTrigger(406);
+    setTrigger(423);
+    setTrigger(399);
+    setTrigger(400);
+    setTrigger(401);
+    unsetTrigger(3);
+    setPStat(254, 6);
+    callSubroutine(8);
+    unsetTrigger(385);
+    unsetTrigger(389);
+    unsetTrigger(406);
+    unsetTrigger(423);
+    unsetTrigger(399);
+    unsetTrigger(400);
+    unsetTrigger(401);
+    return;
+L_0114:
+    setTrigger(3);
+    setPStat(254, 6);
+    callSubroutine(8);
+    return;
+L_0120:
+    return;
+}

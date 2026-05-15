@@ -1,0 +1,85 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG178.SCN, section 5
+
+section section_5(5) {  // len=2296
+    if (trigger(202) || trigger(215) || pstat[16] == 0) goto L_0224;
+    if (!trigger(201) || !trigger(243)) goto L_0224;
+    setDialogOwner(5);
+    showTextbox("You had perfect timing in\ncoming here! I have a favor\nthat only you can do.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What is it?\n");
+    setDialogOwner(5);
+    showTextbox("I just got the same evil\nfeeling that Analogman\nand Machinedramon give.\n");
+    showTextbox("I know where it comes from.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Again? Ok, leave it to me!\n");
+    setDialogOwner(5);
+    showTextbox("Thanks. By the way...\n");
+    goto L_073c;
+L_0224:
+    if (!trigger(202) || trigger(215)) goto L_052a;
+    setDialogOwner(5);
+    showTextbox("I heard you beat\nMachinedramon!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Yeah, but I don't get it.\nIt seemed like the curse\nof Analogman.\n");
+    setDialogOwner(5);
+    showTextbox("His grudge was so strong.\nMaybe we can have peace now.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("If Machinedramon returns,\nwe'll beat him again.\n");
+    setDialogOwner(5);
+    showTextbox("You're trustworthy. This was\ngrowing in our Meat farm,\nit's for you.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
+    giveItem(Item.ChainMelon, 1);
+    if (!trigger(0)) goto L_0504;
+    if (item[Item.SpikeClub] < 99) goto L_04c4;
+    return;
+L_04c4:
+    setDialogOwner(Entity.Player);
+    showTextbox("I have too many Items.\n");
+    setTrigger(3);
+    callSubroutine(0);
+    callSubroutine(13);
+    giveItem(Item.ChainMelon, 1);
+L_0504:
+    setDialogOwner(Entity.Player);
+    showTextbox("Thank you!\n");
+    setPStat(28, 0);
+    setTrigger(215);
+    return;
+L_052a:
+    if (!trigger(50) || trigger(201)) goto L_073c;
+    setDialogOwner(5);
+    showTextbox("You're here!\nThis is something I can't\nask anybody else.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Never fear, I'm here.\nDo you mean\nAnalogman is back?\n");
+    setDialogOwner(5);
+    showTextbox("I can feel his evil, but\nI can't tell where it is.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Leave it up to me! I'll find\nhim and take care of it.\n");
+    setDialogOwner(5);
+    showTextbox("Thank you.\nBy the way...\n");
+    setTrigger(201);
+L_073c:
+    if (!trigger(203)) goto L_074e;
+    jumpToScriptSection(210, 51);
+L_074e:
+    if (trigger(55)) goto section_6;
+    playAnimation(5, 0);
+    playAnimation(5, 29);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("I'm back and I'm planning\nto rebuild File City with\nhelp from <ORANGE><DIGIMON><WHITE>.\n");
+    playAnimation(5, 0);
+    playAnimation(5, 29);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("I want to build\nshops that are useful\nto you and <ORANGE><DIGIMON><WHITE>.\n");
+    playAnimation(5, 0);
+    playAnimation(5, 29);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("You should explore Native\nForest just outside the city.\n");
+    playAnimation(5, 0);
+    return;
+}

@@ -1,0 +1,89 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG126.SCN, section 81
+
+section section_81(81) {  // len=1282
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    if (trigger(139)) goto L_01f2;
+    setTrigger(139);
+    playSound(8, 4);
+    setDialogOwner(5);
+    showTextbox("This is a Digimon Card Shop.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What's a Digimon Card?\n");
+    setDialogOwner(5);
+    showTextbox("Everyone's collecting them.\nYou can't lose with them.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh?\n");
+    playSound(8, 4);
+    setDialogOwner(5);
+    showTextbox("I'll give you one free for\nstarters. It's a good one.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Hey! This card's about ME!\n");
+    setDialogOwner(Entity.System);
+    showTextbox("Got a card of <LIGHTBLUE><PLAYER><WHITE>!\n");
+    giveCard(0);
+    return;
+L_01f2:
+    setDialogOwner(5);
+    showTextbox("This is a Digimon Card Shop.\n");
+    setPStat(254, 5);
+    playSound(8, 4);
+    setDialogOwner(5);
+    showTextbox("We have really cool cards\nin stock today.\n");
+    callSubroutine(15);
+L_0296:
+    setDialogOwner(Entity.Player);
+    setSelection(L_02f6, L_049e, L_04e0);
+    showTextbox("I'll buy a card\nI'll sell a card\nQuit\n");
+    waitForSelectionChoice();
+    goto L_04e0;
+L_02f6:
+    if (money < 500) goto L_035e;
+    setSelection(L_0388, L_048e, L_04a4);
+    showTextbox("Buy a pack of three\nBuy one\nQuit\n");
+    waitForSelectionChoice();
+    goto L_04a4;
+    goto L_0388;
+L_035e:
+    setSelection(L_048e, L_04a4);
+    showTextbox("Buy one\nQuit\n");
+    waitForSelectionChoice();
+    goto L_04a4;
+L_0388:
+    setDialogOwner(5);
+    showTextbox("Five hundred bits for a pack.\nNo telling what's inside.\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_043c, L_04a4);
+    showTextbox("I'll buy it\nNo thanks\n");
+    waitForSelectionChoice();
+    goto L_04a4;
+L_043c:
+    reduceMoney(500);
+    callSubroutine(15);
+    setDialogOwner(5);
+    showTextbox("Open the pack right away.\n");
+    unsetTrigger(3);
+    unsetTrigger(4);
+    callSubroutine(14);
+    callSubroutine(22);
+    goto L_04a4;
+L_048e:
+    unsetTrigger(3);
+    setTrigger(4);
+    callSubroutine(14);
+    callSubroutine(22);
+    goto L_04a4;
+L_049e:
+    setTrigger(3);
+    callSubroutine(14);
+L_04a4:
+    setDialogOwner(5);
+    showTextbox("You want something else?\n");
+    goto L_0296;
+L_04e0:
+    callSubroutine(16);
+    setDialogOwner(5);
+    showTextbox("Come again.\n");
+    return;
+}

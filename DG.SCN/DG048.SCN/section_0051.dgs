@@ -1,0 +1,29 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG048.SCN, section 51
+
+section section_51(51) {  // len=224
+    if (!trigger(182) || trigger(235)) goto L_006e;
+    setDialogOwner(Entity.Player);
+    showTextbox("Is the elevator causing\nthe ground to rise?\n");
+L_006e:
+    if (trigger(175)) goto L_007c;
+    return;
+L_007c:
+    setDialogOwner(Entity.Player);
+    setSelection(L_00b6, L_00d4);
+    showTextbox("Get in\nDon't get in\n");
+    waitForSelectionChoice();
+    goto L_00d4;
+L_00b6:
+    move(entity: Entity.Player, to: (1220, 3988), sprint: 0);
+    move(entity: Entity.Partner, to: (1201, 3486), sprint: 0);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    playSound(8, 5);
+    warp(to: Map.GCAN02, spawn: 3, trigger: 53);
+    return;
+L_00d4:
+    move(entity: Entity.Player, to: (1152, 2851), sprint: 0);
+    waitForEntity(Entity.Player);
+    return;
+}

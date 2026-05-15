@@ -1,0 +1,46 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG104.SCN, section 84
+
+section section_84(84) {  // len=578
+    rotate(entity: Entity.Player, to: 2048);
+    setTextboxOrigin(-162, 0, 2558);
+    callSubroutine(39);
+    setDialogOwner(200);
+    showTextbox("<GREEN>Training :\nHammer Machine <WHITE>\n");
+    setSelection(L_0084, L_00ce, L_01b0);
+    showTextbox("Start\nExplain\nQuit\n");
+    waitForSelectionChoice();
+    return;
+L_0084:
+    setDialogOwner(200);
+    setSelection(L_01b2, L_01c2, L_01b0);
+    showTextbox("Normal\nBonus Try\nNever mind\n");
+    waitForSelectionChoice();
+    return;
+L_00ce:
+    setDialogOwner(200);
+    showTextbox("Getting hit by the Hammer\nMachine makes you strong.\nDefensive Power goes up.\n");
+    setSelection(L_00ce, L_0084, L_01b0);
+    showTextbox("Explain again\nStart\nQuit\n");
+    waitForSelectionChoice();
+    return;
+L_01b0:
+    return;
+L_01b2:
+    fadeOutHUD();
+    setPStat(254, 3);
+    setPStat(246, 0);
+    callDigimonSubroutine(214);
+    callSubroutine(7);
+    return;
+L_01c2:
+    setTexboxMode(1, 0);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> C?? \nto match three pictures.\n");
+    setPStat(254, 3);
+    setPStat(246, 1);
+    callDigimonSubroutine(214);
+    callSubroutine(7);
+    setTexboxMode(0, 0);
+    return;
+}

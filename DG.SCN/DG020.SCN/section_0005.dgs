@@ -1,0 +1,86 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG020.SCN, section 5
+
+section section_5(5) {  // len=826
+    playSound(8, 11);
+    setDialogOwner(5);
+    showTextbox("Are we gonna battle?\nChicken?!\n");
+    playAnimation(Entity.Player, 16);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    setSelection(L_00a2, L_02be);
+    showTextbox("Okay, let's fight\nWait a minute\n");
+    waitForSelectionChoice();
+    goto L_02be;
+L_00a2:
+    setTrigger(1);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    look(entity: 5, at: Entity.Player);
+    waitForEntity(Entity.Player);
+    setDialogOwner(5);
+    showTextbox("Oh no! I lost!\n");
+    playAnimation(5, 29);
+    delay(40);
+    playAnimation(Entity.Player, 20);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("He was pretty tough.\n");
+    playAnimation(Entity.Player, 0);
+    playAnimation(5, 28);
+    delay(20);
+    playAnimation(5, 0);
+    look(entity: 5, at: Entity.Player);
+    playSound(8, 11);
+    setDialogOwner(5);
+    showTextbox("You're nice. I'm Mamemon.\nI'll go with you.\n");
+    playAnimation(Entity.Player, 19);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("Coming with us? Well, why\ndon't you go to the city?\n");
+    playSound(8, 11);
+    setDialogOwner(5);
+    showTextbox("OK. I'll go there.\n");
+    goto L_0240;
+L_0240:
+    move(entity: 5, to: (3800, -3100), sprint: 1);
+    if (pstat[101] >= 10) goto L_0268;
+    addPStat(101, 1);
+    delay(10);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_0240;
+L_0268:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    playSound(8, 8);
+    setDialogOwner(Entity.System);
+    showTextbox("Mamemon joins the city!\n");
+    unsetTrigger(1);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    addPStat(1, 3);
+    setTrigger(213);
+    return;
+L_02be:
+    setDialogOwner(5);
+    showTextbox("Come back when\nyou get tougher.\n");
+    goto L_0308;
+L_0308:
+    move(entity: 5, to: (3800, -3100), sprint: 1);
+    if (pstat[101] >= 10) goto L_0330;
+    addPStat(101, 1);
+    delay(10);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_0308;
+L_0330:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    return;
+}

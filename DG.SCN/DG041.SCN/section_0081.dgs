@@ -1,0 +1,106 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG041.SCN, section 81
+
+section section_81(81) {  // len=928
+    rotate(entity: Entity.Player, to: 2128);
+    delay(5);
+    setDialogOwner(Entity.System);
+    showTextbox("Elevator\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_0074, L_0202, L_039e);
+    showTextbox("Hit Rooftop\nHit Up\nDon't get on\n");
+    waitForSelectionChoice();
+    goto L_039e;
+L_0074:
+    if (trigger(155)) goto L_01b2;
+    playAnimation(Entity.Player, 16);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("It doesn't do anything.\n");
+    playAnimation(Entity.Player, 0);
+    rotate(entity: Entity.Player, to: 2297);
+    delay(10);
+    rotate(entity: Entity.Player, to: 1785);
+    delay(10);
+    rotate(entity: Entity.Player, to: 2297);
+    showTextbox("There's a rock stuck in\nthe machine. Maybe this is...\n");
+    playAnimation(Entity.Player, 25);
+    delay(20);
+    setDialogOwner(Entity.System);
+    showTextbox("I removed the rock!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("That should do it!\n");
+    setTrigger(155);
+    return;
+    goto L_0200;
+L_01b2:
+    playSound(8, 4);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    playSound(8, 5);
+    warp(to: Map.GCAN10, spawn: 0, trigger: 52);
+    return;
+L_0200:
+    return;
+L_0202:
+    fadeOutHUD();
+    if (trigger(155)) goto L_034e;
+    playAnimation(Entity.Player, 16);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("It doesn't do anything.\n");
+    playAnimation(Entity.Player, 0);
+    rotate(entity: Entity.Player, to: 2297);
+    delay(10);
+    rotate(entity: Entity.Player, to: 1785);
+    delay(10);
+    rotate(entity: Entity.Player, to: 2297);
+    showTextbox("There's a rock stuck in\nthe machine. Maybe this is...\n");
+    setDialogOwner(Entity.System);
+    showTextbox("I removed the rock!");
+    dead_string("?is is...\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("That should do it.\n");
+    setTrigger(155);
+    return;
+    goto L_039c;
+L_034e:
+    playSound(8, 4);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    playSound(8, 5);
+    warp(to: Map.GCAN03, spawn: 2, trigger: 55);
+    return;
+L_039c:
+    return;
+L_039e:
+    return;
+}

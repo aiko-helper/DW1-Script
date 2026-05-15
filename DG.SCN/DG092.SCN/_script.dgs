@@ -1,0 +1,15 @@
+// DG092.SCN
+#pragma script index=92 start=0x41000 end=0x41800 headerU16=0x1c sentinelOff=0x24
+#pragma sections section_0254 section_0005 section_0006 section_0007 section_0008 section_0051
+
+section onEnter(254) {  // len=46
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 9) goto L_0016;
+    spawnItem(Item.Digimushroom, 57, 76);
+L_0016:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 4) goto L_002c;
+    spawnItem(Item.Digimushroom, 51, 36);
+L_002c:
+    return;
+}

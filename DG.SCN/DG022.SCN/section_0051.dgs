@@ -1,0 +1,113 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG022.SCN, section 51
+
+section section_51(51) {  // len=1460
+    if (trigger(118)) goto L_0010;
+    goto L_0044;
+L_0010:
+    if (trigger(154) || !trigger(152) || trigger(153)) goto L_0028;
+    goto L_012c;
+L_0028:
+    if (!trigger(153) || trigger(228)) goto L_0040;
+    goto L_01c2;
+    goto L_0044;
+L_0040:
+    goto L_05b2;
+L_0044:
+    setDialogOwner(Entity.System);
+    showTextbox("There are some strange\ndrawings on the ground.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Is that one of those\nMystery Circles?\nIt still looks new.\n");
+    setTrigger(118);
+    setTrigger(152);
+    return;
+L_012c:
+    setDialogOwner(Entity.Player);
+    showTextbox("I see more of them now!\nI wonder if this is\nrelated to the UFO...?\n");
+    setTrigger(154);
+    setTrigger(153);
+    return;
+L_01c2:
+    setDialogOwner(Entity.Player);
+    showTextbox("Wow!? There are more\nof them than before!\n");
+    showTextbox("What does this mean?\n");
+    playSound(8, 5);
+    setDialogOwner(Entity.Player);
+    showTextbox("What?\n");
+    rotate(entity: Entity.Player, to: 2560);
+    setDigimon(Digimon.NPCUnimon, 1, 0);
+    moveCamera(to: (-335, 285), slowdown: 20);
+    waitForEntity(200);
+    move(entity: 6, to: (1139, 1029), sprint: 1);
+    playSound(8, 5);
+    waitForEntity(6);
+    move(entity: 6, to: (-327, 459), sprint: 1);
+    playSound(8, 5);
+    waitForEntity(6);
+    move(entity: 6, to: (269, -973), sprint: 1);
+    playSound(8, 5);
+    waitForEntity(6);
+    moveCamera(to: Entity.Player, speed: 10);
+    move(entity: 6, to: (-747, -1106), sprint: 0);
+    playSound(8, 5);
+    waitForEntity(6);
+    look(entity: 6, at: Entity.Player);
+    setDialogOwner(Entity.System);
+    showTextbox("Vademon's UFO appears.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("A...an alien?!\n");
+    setDialogOwner(6);
+    showTextbox("...\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Are you... a Digimon?\n");
+    setDialogOwner(6);
+    showTextbox("...\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Well...\n");
+    setDialogOwner(6);
+    showTextbox("...\n");
+    playSound(8, 6);
+    delay(10);
+    setDialogOwner(Entity.System);
+    showTextbox("Vademon holds a gun.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("No, stop!\nI'm not your enemy!\n");
+    setDialogOwner(Entity.System);
+    showTextbox("Vademon drops the gun.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Good you understand.\n");
+    setDialogOwner(Entity.System);
+    showTextbox("<LIGHTBLUE><PLAYER><WHITE> desperately\ntries to convince him.\n");
+    setDialogOwner(6);
+    showTextbox("...\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Maybe he doesn't get it?\n");
+    setDialogOwner(6);
+    showTextbox("Okay.\n");
+    fadeOutHUD();
+    goto L_050a;
+L_050a:
+    move(entity: 6, to: (199, -3166), sprint: 1);
+    if (pstat[101] >= 2) goto L_0536;
+    addPStat(101, 1);
+    playSound(8, 5);
+    delay(40);
+    look(entity: Entity.Player, at: 6);
+    look(entity: Entity.Partner, at: 6);
+    goto L_050a;
+L_0536:
+    waitForEntity(6);
+    unloadEntity(6);
+    setPStat(101, 0);
+    playSound(8, 9);
+    setDialogOwner(Entity.System);
+    showTextbox("Vademon joins the city!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("He...\n");
+    showTextbox("He can talk!\n");
+    setTrigger(228);
+    addPStat(1, 3);
+    return;
+L_05b2:
+    return;
+}

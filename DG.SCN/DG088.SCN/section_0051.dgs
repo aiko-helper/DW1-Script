@@ -1,0 +1,30 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG088.SCN, section 51
+
+section section_51(51) {  // len=210
+    if (pstat[16] != 1) goto L_0018;
+    move(entity: Entity.Player, to: (170, -956), sprint: 0);
+    warp(to: Map.MGEN11, spawn: 0, trigger: 60);
+L_0018:
+    storeDigimonType(103);
+    storeDigimonTypus(103, 109);
+    if (pstat[109] != 2) goto L_0030;
+    return;
+    goto L_00d0;
+L_0030:
+    setDialogOwner(Entity.System);
+    showTextbox("Stopped by a strange\nwhite force!\n");
+    fadeOutHUD();
+    move(entity: Entity.Player, to: (45, -850), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (349, -753), sprint: 1);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    delay(10);
+    rotate(entity: Entity.Player, to: 2949);
+    delay(10);
+    rotate(entity: Entity.Player, to: 1925);
+    setDialogOwner(Entity.Player);
+    showTextbox("What? My legs are...\n");
+L_00d0:
+    return;
+}

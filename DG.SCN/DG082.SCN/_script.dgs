@@ -1,0 +1,15 @@
+// DG082.SCN
+#pragma script index=82 start=0x3b000 end=0x3c000 headerU16=0x10 sentinelOff=0x24
+#pragma sections section_0254 section_0005 section_0006
+
+section onEnter(254) {  // len=44
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 0) goto L_0016;
+    spawnItem(Item.SageFruit, 60, 53);
+L_0016:
+    if (trigger(313)) goto L_002a;
+    delay(5);
+    playAnimation(5, 28);
+L_002a:
+    return;
+}

@@ -1,0 +1,125 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// MAP164.SCN, section 11
+
+section section_11(11) {  // len=2742
+    if (trigger(74)) goto L_0276;
+    setDialogOwner(11);
+    showTextbox("Would you like some Meat?\n");
+    showTextbox("Oh, I'm sorry.\nI forgot to explain.\n");
+    showTextbox("This is a Meat Farm.\nWe grow Meat for everyone.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("You grow Meat on a farm?\n");
+    setDialogOwner(11);
+    showTextbox("Yes, what's wrong?\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Nothing...it's alright.\nPlease continue...\n");
+    setDialogOwner(11);
+    showTextbox("Jiji and I decided to give\nyou three pieces of Meat\na day, <LIGHTBLUE><PLAYER><WHITE>.\n");
+    showTextbox("So, here's today's Meat.\n");
+    goto L_027a;
+L_0276:
+    goto L_046c;
+L_027a:
+    giveItem(Item.Meat, 3);
+    if (item[Item.Meat] < 99) goto L_030a;
+    setDialogOwner(11);
+    showTextbox("You got too much Meat.\nI guess you don't\nneed any today.\n");
+    setPStat(31, 1);
+    return;
+L_030a:
+    if (item[Item.Meat] < 97) goto L_03dc;
+    setDialogOwner(11);
+    showTextbox("You got too much Meat.\nI will take what\nyou can't carry.\n");
+    setDialogOwner(Entity.System);
+    showTextbox("I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    setTrigger(74);
+    setPStat(31, 0);
+    return;
+L_03dc:
+    if (!trigger(0)) goto L_0420;
+    setDialogOwner(11);
+    showTextbox("You got too many Items.\n");
+    return;
+L_0420:
+    setDialogOwner(Entity.System);
+    showTextbox("I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    setTrigger(74);
+    setPStat(31, 0);
+    return;
+L_046c:
+    roll(pstat: 110, max: 9);
+    if (pstat[31] < 1 || pstat[110] > 0) goto L_050c;
+    setDialogOwner(11);
+    showTextbox("We harvested lots of Meat!\nSo I'll give you\nfive pieces of Meat.\n");
+    goto L_0510;
+L_050c:
+    goto L_0762;
+L_0510:
+    if (item[Item.Meat] < 99) goto L_0598;
+    setDialogOwner(11);
+    showTextbox("You got too much Meat.\nI guess you don't\nneed any today.\n");
+    return;
+L_0598:
+    if (item[Item.Meat] < 95) goto L_0676;
+    setDialogOwner(11);
+    showTextbox("You got too much Meat.\nI'm happy to take\nwhat you can't carry\n");
+    setDialogOwner(Entity.System);
+    showTextbox("I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    giveItem(Item.Meat, 5);
+    setTrigger(74);
+    setPStat(31, 0);
+    return;
+L_0676:
+    giveItem(Item.Meat, 5);
+    if (!trigger(0)) goto L_06dc;
+    setDialogOwner(11);
+    showTextbox("I'm sorry, but\nyou got too many Items.\n");
+    return;
+L_06dc:
+    setDialogOwner(Entity.System);
+    showTextbox("I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    setDialogOwner(11);
+    showTextbox("I'll give you more tomorrow.\n");
+    setPStat(31, 0);
+    return;
+L_0762:
+    if (pstat[31] < 1) goto L_07a2;
+    setDialogOwner(11);
+    showTextbox("Here's today's Meat.\n");
+    goto L_07a6;
+L_07a2:
+    goto L_09e2;
+L_07a6:
+    if (item[Item.Meat] < 99) goto L_082e;
+    setDialogOwner(11);
+    showTextbox("You got too much Meat.\nI guess you don't\nneed any today.\n");
+    return;
+L_082e:
+    if (item[Item.Meat] < 97) goto L_0910;
+    setDialogOwner(11);
+    showTextbox("You got too much Meat.\nI'm happy to take\nwhat you can't carry.\n");
+    setDialogOwner(Entity.System);
+    showTextbox("I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    giveItem(Item.Meat, 3);
+    setTrigger(74);
+    setPStat(31, 0);
+    return;
+L_0910:
+    giveItem(Item.Meat, 3);
+    if (!trigger(0)) goto L_095a;
+    setDialogOwner(11);
+    showTextbox("You have too many Items.\n");
+    return;
+L_095a:
+    setDialogOwner(Entity.System);
+    showTextbox("I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    setDialogOwner(11);
+    showTextbox("I'll give you more tomorrow.\n");
+    setPStat(31, 0);
+    return;
+L_09e2:
+    setDialogOwner(11);
+    showTextbox("What? I gave you Meat today,\nremember?\n");
+    showTextbox("If you run out of food,\nlook for mushrooms\nin Native Forest.\n");
+    return;
+}

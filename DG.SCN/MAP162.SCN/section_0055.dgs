@@ -1,0 +1,42 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// MAP162.SCN, section 55
+
+section section_55(55) {  // len=566
+    if (trigger(224)) goto L_000e;
+    return;
+L_000e:
+    move(entity: Entity.Player, to: (2594, 630), sprint: 1);
+    move(entity: Entity.Partner, to: (2189, 545), sprint: 1);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    rotate(entity: Entity.Player, to: 2128);
+    rotate(entity: Entity.Partner, to: 2128);
+    delay(5);
+    if (trigger(83)) goto L_0126;
+    setTrigger(83);
+    setDialogOwner(12);
+    showTextbox("I'll take you to the ocean.\nThat's my job.\n");
+    showTextbox("I'll take you to a place you\ncan only go to by sea.\n");
+    showTextbox("Well, then...\n");
+L_0126:
+    setDialogOwner(12);
+    showTextbox("Hmmm, where should we go?\nFactorial Town or maybe\nBeach Cave.\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_020e, L_0212, L_0216);
+    showTextbox("Factorial Town\nSecret Beach Cave\nNowhere\n");
+    waitForSelectionChoice();
+    goto L_0216;
+L_020e:
+    warp(to: Map.FACT01, spawn: 1, trigger: 255);
+L_0212:
+    warp(to: Map.OGRE10, spawn: 2, trigger: 61);
+L_0216:
+    move(entity: Entity.Partner, to: (1184, 316), sprint: 1);
+    delay(10);
+    move(entity: Entity.Player, to: (1556, 348), sprint: 1);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+}

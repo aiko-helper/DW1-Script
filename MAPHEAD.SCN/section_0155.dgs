@@ -1,0 +1,41 @@
+// source: extract/DIGIMON/SCN/MAPHEAD.SCN
+// MAPHEAD.SCN, section 155
+
+section section_155(155) {  // len=162
+    setScript(149, Map.FACT04);
+    setPStat(245, 0);
+    setBGM(22);
+    storeDate(105);
+    if (pstat[107] != 11 || pstat[108] < 55) goto L_0020;
+    return;
+L_0020:
+    if (pstat[107] != 12 || pstat[108] > 5) goto L_0032;
+    return;
+L_0032:
+    if (pstat[107] != 23 || pstat[108] < 55) goto L_0044;
+    return;
+L_0044:
+    if (pstat[107] != 0 || pstat[108] > 5) goto L_0056;
+    return;
+L_0056:
+    if (trigger(332)) goto L_006e;
+    loadDigimon(Digimon.Guardromon);
+    setDigimon(Digimon.Guardromon, 6, 0);
+    setDigimon(Digimon.Guardromon, 7, 0);
+    return;
+L_006e:
+    storeDate(105);
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0092;
+    loadDigimon(Digimon.Geremon);
+    setDigimon(Digimon.Geremon, 0, 1);
+    setDigimon(Digimon.Geremon, 1, 1);
+    setDigimon(Digimon.Geremon, 2, 1);
+    goto L_00a0;
+L_0092:
+    loadDigimon(Digimon.PlatinumSukamon);
+    setDigimon(Digimon.PlatinumSukamon, 3, 1);
+    setDigimon(Digimon.PlatinumSukamon, 4, 1);
+    setDigimon(Digimon.PlatinumSukamon, 5, 1);
+L_00a0:
+    return;
+}

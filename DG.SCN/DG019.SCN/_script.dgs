@@ -1,0 +1,21 @@
+// DG019.SCN
+#pragma script index=19 start=0x14000 end=0x14800 headerU16=0x2c sentinelOff=0x24
+#pragma sections section_0254 section_0005 section_0006 section_0007 section_0008 section_0009 section_0010 section_0011 section_0012 section_0051
+
+section onEnter(254) {  // len=76
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 14) goto L_0016;
+    spawnItem(Item.Digimushroom, 37, 19);
+L_0016:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 9) goto L_002c;
+    spawnItem(Item.Digimushroom, 60, 72);
+L_002c:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 3) goto L_0042;
+    spawnItem(Item.BigBerry, 57, 54);
+L_0042:
+    setTrigger(106);
+    setTrigger(105);
+    return;
+}

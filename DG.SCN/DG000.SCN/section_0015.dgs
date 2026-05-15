@@ -1,0 +1,23 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG000.SCN, section 15
+
+section section_15(15) {  // len=68
+    setScript(16, Map.TROP04);
+    setPStat(245, 0);
+    setBGM(2);
+    if (trigger(204)) goto L_001e;
+    loadDigimon(Digimon.NPCBetamon);
+    setDigimon(Digimon.NPCBetamon, 0, 1);
+L_001e:
+    storeDate(105);
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L_003a;
+    loadDigimon(Digimon.ModokiBetamon);
+    setDigimon(Digimon.ModokiBetamon, 1, 1);
+    goto L_0042;
+L_003a:
+    loadDigimon(Digimon.Tsukaimon);
+    loadDigimon(Digimon.JMojyamon);
+    setDigimon(Digimon.JMojyamon, 2, 1);
+L_0042:
+    return;
+}

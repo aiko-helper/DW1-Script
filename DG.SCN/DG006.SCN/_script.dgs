@@ -1,0 +1,60 @@
+// DG006.SCN
+#pragma script index=6 start=0x9800 end=0xa800 headerU16=0x20 sentinelOff=0x24
+#pragma sections section_0254 section_0006 section_0007 section_0008 section_0009 section_0010 section_0051
+
+section onEnter(254) {  // len=256
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 29) goto L_0016;
+    spawnItem(Item.Digimushroom, 42, 54);
+L_0016:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 59) goto L_002c;
+    spawnItem(Item.Digimushroom, 34, 30);
+L_002c:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 9) goto L_0042;
+    spawnItem(Item.Digimushroom, 53, 47);
+L_0042:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 19) goto L_0058;
+    spawnItem(Item.Digimushroom, 69, 60);
+L_0058:
+    if (!trigger(185) || trigger(249)) goto L_00a8;
+    setObjectVisibility(13, 0);
+    setObjectVisibility(14, 0);
+    setObjectVisibility(15, 0);
+    setObjectVisibility(16, 0);
+    setObjectVisibility(17, 0);
+    setObjectVisibility(18, 0);
+    setObjectVisibility(19, 0);
+    setObjectVisibility(20, 0);
+    setObjectVisibility(21, 0);
+    setObjectVisibility(22, 0);
+    setObjectVisibility(23, 0);
+    setObjectVisibility(24, 0);
+    setObjectVisibility(25, 0);
+    setObjectVisibility(26, 0);
+    setObjectVisibility(27, 0);
+    setObjectVisibility(28, 0);
+L_00a8:
+    storeDate(105);
+    if (pstat[107] < 15 || pstat[107] > 19 || trigger(249)) goto L_00fe;
+    setObjectVisibility(13, 0);
+    setObjectVisibility(14, 0);
+    setObjectVisibility(15, 0);
+    setObjectVisibility(16, 0);
+    setObjectVisibility(17, 0);
+    setObjectVisibility(18, 0);
+    setObjectVisibility(19, 0);
+    setObjectVisibility(20, 0);
+    setObjectVisibility(21, 0);
+    setObjectVisibility(22, 0);
+    setObjectVisibility(23, 0);
+    setObjectVisibility(24, 0);
+    setObjectVisibility(25, 0);
+    setObjectVisibility(26, 0);
+    setObjectVisibility(27, 0);
+    setObjectVisibility(28, 0);
+L_00fe:
+    return;
+}

@@ -1,0 +1,73 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG175.SCN, section 81
+
+section section_81(81) {  // len=2180
+    look(entity: Entity.Player, at: 5);
+    look(entity: 5, at: Entity.Player);
+    if (!trigger(58) && !trigger(61) && !trigger(60) && !trigger(59)) goto L_0024;
+    goto L_041e;
+L_0024:
+    if (!trigger(209) || trigger(58) || pstat[27] != 0) goto L_0154;
+    setDialogOwner(5);
+    showTextbox("Welcome to my restaurant.\n");
+    showTextbox("I have decided to be\na manager and chef\nof this restaurant.\n");
+    showTextbox("Enjoy my flaming cuisine\nas much as you like.\n");
+    setTrigger(58);
+    return;
+L_0154:
+    if (!trigger(208) || trigger(61) || pstat[27] != 1) goto L_0250;
+    setDialogOwner(5);
+    showTextbox("<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>,\nwon't you try my\nhome cooking?\n");
+    showTextbox("Unlike Items you get, this\nis true cooking. It's my\nsecret talent.\n");
+    setTrigger(61);
+    return;
+L_0250:
+    if (!trigger(222) || trigger(60) || pstat[27] != 2) goto L_0352;
+    setDialogOwner(5);
+    showTextbox("<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\nI decided to make living\nwith cooking. I'm good!\n");
+    showTextbox("You should relax and\neat at my restaurant\nsometime.\n");
+    setTrigger(60);
+    return;
+L_0352:
+    if (!trigger(223) || trigger(59) || pstat[27] != 3) goto L_041e;
+    setDialogOwner(5);
+    showTextbox("<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>.\nMy restaurant is finally\nopen!\n");
+    showTextbox("Try the frozen dessert!\nIt's my specialty.\n");
+    setTrigger(59);
+    return;
+L_041e:
+    if (!trigger(209) || trigger(58) || pstat[27] != 0) goto L_04f4;
+    setDialogOwner(5);
+    showTextbox("<LIGHTBLUE><PLAYER><WHITE>, I have decided\nto work as a chef\nin this restaurant.\n");
+    showTextbox("You can enjoy a\nhot meal here.\n");
+    setTrigger(58);
+    return;
+L_04f4:
+    if (!trigger(208) || trigger(61) || pstat[27] != 1) goto L_05e8;
+    setDialogOwner(5);
+    showTextbox("<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>,\nI'm a professional cook now!\n");
+    showTextbox("If you want to try my\ncooking, you'd better\ncome in the morning!\n");
+    setTrigger(61);
+    return;
+L_05e8:
+    if (!trigger(222) || trigger(60) || pstat[27] != 2) goto L_0724;
+    setDialogOwner(5);
+    showTextbox("<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\nI decided to make living\nwith cooking. I'm good!\n");
+    showTextbox("You can eat my special\ncuisine early in the morning\nand the middle of the night.\n");
+    setTrigger(60);
+    return;
+L_0724:
+    if (!trigger(223) || trigger(59) || pstat[27] != 3) goto L_0850;
+    setDialogOwner(5);
+    showTextbox("Hey <LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\n");
+    showTextbox("I decided to help\nthis restaurant.\nThey let me make dessert.\n");
+    showTextbox("I'm really proud of\nmy dessert.\nBe sure to try it, OK?\n");
+    setTrigger(59);
+    return;
+L_0850:
+    if (pstat[27] != 0 && pstat[27] != 1 && pstat[27] != 2) goto L_086a;
+    jumpToScriptSection(217, 51);
+L_086a:
+    if (pstat[27] != 3 && pstat[27] != 4 && pstat[27] != 5) goto section_6;
+    jumpToScriptSection(218, 51);
+}

@@ -1,0 +1,87 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG180.SCN, section 6
+
+section section_6(6) {  // len=1398
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("Good, the sewer is\nback to normal.\n");
+    showTextbox("He'll be alright now.\nI solved the problem.\n");
+    moveCamera(to: (2381, -698), slowdown: 20);
+    waitForEntity(200);
+    playSound(8, 13);
+    playAnimation(6, 15);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("Something's wrong!\n");
+    look(entity: 6, at: Entity.Player);
+    delay(10);
+    playSound(8, 11);
+    playAnimation(6, 28);
+    playSound(8, 13);
+    delay(40);
+    setDialogOwner(6);
+    showTextbox("Da da da!\n");
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 6);
+    setPStat(252, 255);
+    setPStat(253, 255);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    move(entity: Entity.Player, to: (2387, -771), sprint: 0);
+    move(entity: Entity.Partner, to: (1865, -772), sprint: 0);
+    move(entity: 6, to: (2795, -771), sprint: 0);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    waitForEntity(6);
+    look(entity: Entity.Player, at: 6);
+    look(entity: 6, at: Entity.Player);
+    look(entity: Entity.Partner, at: 6);
+    delay(5);
+    setDialogOwner(6);
+    showTextbox("I'm tired.\nWhat happened to you guys?\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("He sounds dumber!\nMaybe he regained his senses.\n");
+    setDialogOwner(6);
+    showTextbox("Are you calling me dumb?\nHow rude! My name is Numemon.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("If you're not dumb,\nwhat are you?\n");
+    showTextbox("Excuse me, Numemon. Do you\nknow who saved your life?\n");
+    setDialogOwner(6);
+    showTextbox("Huh? Do you want me to\nsave your life? OK.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Ugghh. He doesn't get it\nat all! Well, no matter.\n");
+    setDialogOwner(6);
+    showTextbox("Hey, I'll be a savior. Cool!\n");
+    setDialogOwner(Entity.Player);
+    playAnimation(Entity.Player, 19);
+    delay(15);
+    showTextbox("Please come to our city.\nDo you know where it is?\n");
+    playAnimation(Entity.Player, 0);
+    setDialogOwner(6);
+    showTextbox("I know a little.\n");
+    goto L_04fc;
+L_04fc:
+    move(entity: 6, to: (-137, 34), sprint: 1);
+    if (pstat[101] >= 6) goto L_0524;
+    addPStat(101, 1);
+    delay(10);
+    look(entity: Entity.Player, at: 6);
+    look(entity: Entity.Partner, at: 6);
+    goto L_04fc;
+L_0524:
+    waitForEntity(6);
+    unloadEntity(6);
+    setPStat(101, 0);
+    playSound(8, 10);
+    setDialogOwner(Entity.System);
+    showTextbox("Numemon joins the city!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    setTrigger(211);
+    addPStat(1, 1);
+    return;
+}

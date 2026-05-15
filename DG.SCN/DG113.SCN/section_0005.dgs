@@ -1,0 +1,77 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG113.SCN, section 5
+
+section section_5(5) {  // len=1550
+    playSound(8, 11);
+    setDialogOwner(5);
+    showTextbox("Hey you!\n");
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 5);
+    setPStat(252, 255);
+    setPStat(253, 255);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    delay(10);
+    setDialogOwner(5);
+    showTextbox("Hmm, you're something else!\nThat was pretty good for\nso early in the morning.\n");
+    playAnimation(Entity.Player, 16);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("Hey, hey, don't act like it's\nsomebody else's business!\n");
+    setDialogOwner(5);
+    showTextbox("I know! I know what you're\ntalking about.\n");
+    showTextbox("I hear you're working\nhard for the island\nby gathering Digimons.\n");
+    playAnimation(Entity.Player, 19);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("So you know. Well,\nwhy don't you help me.\n");
+    setDialogOwner(5);
+    showTextbox("And, where am I supposed\nto do what?\n");
+    playAnimation(Entity.Player, 7);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh you just don't get it!\nYou're supposed to work\nin the city, remember?!\n");
+    setDialogOwner(5);
+    showTextbox("Well, like they say...\nthe early bird gets the bug.\n");
+    playAnimation(Entity.Player, 7);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("That has nothing to do with\nanything! On top of that,\nit's a worm not a bug!\n");
+    playAnimation(Entity.Partner, 11);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("I'm just joking. Well,\nI'll see you in the city...\n");
+    fadeOutHUD();
+    goto L_0534;
+L_0534:
+    move(entity: 5, to: (-330, -2751), sprint: 1);
+    if (pstat[101] >= 10) goto L_055c;
+    addPStat(101, 1);
+    delay(10);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_0534;
+L_055c:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    playSound(8, 10);
+    setDialogOwner(Entity.System);
+    showTextbox("Kokatorimon joins the city!\n");
+    playAnimation(Entity.Player, 16);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("Can we really trust him?\nI wonder...\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    setTrigger(250);
+    addPStat(1, 2);
+    return;
+}

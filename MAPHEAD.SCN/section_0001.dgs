@@ -1,0 +1,23 @@
+// source: extract/DIGIMON/SCN/MAPHEAD.SCN
+// MAPHEAD.SCN, section 1
+
+section section_1(1) {  // len=92
+    setScript(2, Map.MAYO02);
+    setPStat(245, 0);
+    setBGM(1);
+    if (trigger(232)) goto L_001e;
+    loadDigimon(Digimon.NPCKunemon);
+    setDigimon(Digimon.NPCKunemon, 1, 0);
+L_001e:
+    if (pstat[107] < 7 || pstat[107] >= 19 || !trigger(232)) goto L_003c;
+    loadDigimon(Digimon.RedVegimon);
+    setDigimon(Digimon.RedVegimon, 0, 1);
+    setDigimon(Digimon.RedVegimon, 2, 1);
+L_003c:
+    if ((pstat[107] >= 7 && pstat[107] < 19) || !trigger(232)) goto L_005a;
+    loadDigimon(Digimon.Dokunemon);
+    setDigimon(Digimon.Dokunemon, 3, 1);
+    setDigimon(Digimon.Dokunemon, 4, 1);
+L_005a:
+    return;
+}

@@ -1,0 +1,35 @@
+// DG105.SCN
+#pragma script index=105 start=0x4b000 end=0x4c000 headerU16=0x24 sentinelOff=0x19
+#pragma sections section_0254 section_0005 section_0006 section_0007 section_0008 section_0009 section_0051 section_0052
+
+section onEnter(254) {  // len=136
+    if (pstat[1] >= 10) goto L_0018;
+    setObjectVisibility(18, 0);
+    setObjectVisibility(23, 1);
+    goto L_0020;
+L_0018:
+    setObjectVisibility(18, 1);
+    setObjectVisibility(23, 0);
+L_0020:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 2) goto L_0036;
+    spawnItem(Item.Happymushroom, 61, 64);
+L_0036:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 29) goto L_004c;
+    spawnItem(Item.Digimushroom, 55, 71);
+L_004c:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 39) goto L_0062;
+    spawnItem(Item.Digimushroom, 36, 44);
+L_0062:
+    if (pstat[1] < 25) goto L_0086;
+    setObjectVisibility(28, 0);
+    setObjectVisibility(29, 0);
+    setObjectVisibility(30, 0);
+    setObjectVisibility(31, 0);
+    setObjectVisibility(32, 0);
+    setObjectVisibility(33, 0);
+L_0086:
+    return;
+}

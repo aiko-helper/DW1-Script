@@ -1,0 +1,33 @@
+// MAP149.SCN
+#pragma script index=149 start=0x69000 end=0x6a000 headerU16=0x30 sentinelOff=0x6925
+#pragma sections section_0254 section_0051 section_0052 section_0012 section_0011 section_0005 section_0006 section_0007 section_0008 section_0009 section_0010
+
+section onEnter(254) {  // len=166
+    storeDate(105);
+    if (pstat[107] != 11 || pstat[108] < 55) goto L_0016;
+    goto L_0054;
+L_0016:
+    if (pstat[107] != 12 || pstat[108] > 5) goto L_002a;
+    goto L_0054;
+L_002a:
+    if (pstat[107] != 23 || pstat[108] < 55) goto L_003e;
+    goto L_0054;
+L_003e:
+    if (pstat[107] != 0 || pstat[108] > 5) goto L_0052;
+    goto L_0054;
+L_0052:
+    return;
+L_0054:
+    if (trigger(332)) goto L_00a4;
+    playAnimation(Entity.Player, 24);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("There's no guard!\n");
+    playAnimation(Entity.Player, 0);
+    moveCamera(to: (2799, 74), slowdown: 20);
+    waitForEntity(200);
+    moveCamera(to: Entity.Player, speed: 15);
+    waitForEntity(200);
+L_00a4:
+    return;
+}

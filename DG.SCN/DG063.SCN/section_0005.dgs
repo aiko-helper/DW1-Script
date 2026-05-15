@@ -1,0 +1,97 @@
+// source: extract/DIGIMON/SCN/DG.SCN
+// DG063.SCN, section 5
+
+section section_5(5) {  // len=1516
+    setTrigger(44);
+    move(entity: Entity.Player, to: (-253, -1358), sprint: 1, withCamera: true);
+    waitForEntity(Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    playAnimation(5, 29);
+    delay(5);
+    if (item[Item.Steak] < 1) goto L_002c;
+    goto L_037e;
+L_002c:
+    if (!trigger(104)) goto L_0076;
+    setDialogOwner(5);
+    showTextbox("Uh... my Meat fridge key?\n");
+    goto L_02de;
+L_0076:
+    setTrigger(104);
+    setDialogOwner(Entity.Player);
+    showTextbox(" ! \n");
+    setDialogOwner(5);
+    showTextbox("Someone came to help me?\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Digimon? Are you ok?\n");
+    setDialogOwner(5);
+    showTextbox("Who are you? Give me food!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Hungry? What do you want?\n");
+    setDialogOwner(5);
+    showTextbox("Meat.\n");
+    if (item[Item.Meat] < 1 && item[Item.GiantMeat] < 1 && item[Item.Sirloin] < 1) goto L_01d8;
+    setDialogOwner(Entity.Player);
+    showTextbox("I got Meat!\n");
+    setDialogOwner(5);
+    showTextbox("Meat.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What?\n");
+    goto L_0214;
+L_01d8:
+    setDialogOwner(Entity.Player);
+    showTextbox("Meat? No, I don't got any.\n");
+L_0214:
+    setDialogOwner(5);
+    showTextbox("Here.\n");
+    giveItem(Item.FridgeKey, 1);
+    setDialogOwner(Entity.Player);
+    showTextbox("A key?\n");
+    if (!trigger(0)) goto L_0298;
+    setDialogOwner(Entity.Player);
+    showTextbox("I gotta get rid of something.\n");
+    unsetTrigger(3);
+    callSubroutine(0);
+    callSubroutine(13);
+    giveItem(Item.FridgeKey, 1);
+L_0298:
+    setDialogOwner(Entity.System);
+    showTextbox("I got a <LIGHTBLUE>Frige Key<WHITE>!\n");
+    setDialogOwner(5);
+    showTextbox("Okay...\n");
+L_02de:
+    setDialogOwner(Entity.Player);
+    showTextbox("I don't have much time!\n");
+    showTextbox("I'll bring something soon.\nHang on little more.\n");
+    playAnimation(5, 28);
+    return;
+L_037e:
+    removeItem(Item.Steak, 1);
+    setDialogOwner(5);
+    showTextbox("Phew!\n");
+    playAnimation(5, 30);
+    delay(40);
+    playAnimation(5, 0);
+    look(entity: 5, at: Entity.Player);
+    setDialogOwner(5);
+    showTextbox("I'm saved. Thanks so much.\nSorry for the trouble.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What happened?\n");
+    setDialogOwner(5);
+    showTextbox("I'm Myotismon, master of\nthis mansion.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("I'm <LIGHTBLUE><PLAYER><WHITE>, a human from\nanother world. This is\nmy partner, <ORANGE><DIGIMON><WHITE>.\n");
+    showTextbox("We're here to\nsave the island.\n");
+    setDialogOwner(5);
+    showTextbox("Looks like we have lot to\ntalk about. I welcome you.\n");
+    setTrigger(128);
+    move(entity: 5, to: (-29, -2765), animDuration: 30);
+    delay(30);
+    move(entity: Entity.Player, to: (-29, -2765), sprint: 0);
+    waitForEntity(5);
+    unloadEntity(5);
+    delay(10);
+    move(entity: Entity.Partner, to: (-29, -2765), sprint: 0);
+    delay(10);
+    warp(to: Map.YAKA26, spawn: 0, trigger: 60);
+    return;
+}
