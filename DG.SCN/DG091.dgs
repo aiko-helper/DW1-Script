@@ -4,30 +4,29 @@
 section onEnter(254) {  // len=90
     roll(pstat: 110, max: 99);
     if (pstat[110] > 5) goto L1;
-    spawnItem(Item.Digimushroom, 49, 36);
+    spawnItem(Item.Digimushroom, x: 49, y: 36);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 17) goto L2;
-    spawnItem(Item.Digimushroom, 59, 55);
+    spawnItem(Item.Digimushroom, x: 59, y: 55);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 7) goto L3;
-    spawnItem(Item.Digimushroom, 48, 61);
+    spawnItem(Item.Digimushroom, x: 48, y: 61);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 2) goto L4;
-    spawnItem(Item.IceMushroom, 38, 60);
+    spawnItem(Item.IceMushroom, x: 38, y: 60);
 
 L4:
     return;
 }
 
 section(6) {  // len=50
-    setDialogOwner(6);
-    showTextbox("I'm gonna win!\n");
+    speak(6, "I'm gonna win!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -36,8 +35,7 @@ section(6) {  // len=50
 }
 
 section(7) {  // len=64
-    setDialogOwner(7);
-    showTextbox("You'll never beat me!\n");
+    speak(7, "You'll never beat me!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -46,8 +44,7 @@ section(7) {  // len=64
 }
 
 section(8) {  // len=62
-    setDialogOwner(8);
-    showTextbox("He he! I'm so sorry!\n");
+    speak(8, "He he! I'm so sorry!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -56,8 +53,7 @@ section(8) {  // len=62
 }
 
 section(9) {  // len=62
-    setDialogOwner(9);
-    showTextbox("Are you ignoring me?\n");
+    speak(9, "Are you ignoring me?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -70,8 +66,7 @@ section(5) {  // len=1826
     goto L6;
 
 L1:
-    setDialogOwner(5);
-    showTextbox("If you want to go thru,\nyou must accept my challenge.\n");
+    speak(5, "If you want to go thru,\nyou must accept my challenge.\n");
     setTrigger(1);
     setPStat(250, 1);
     setPStat(251, 5);
@@ -85,8 +80,7 @@ L1:
     look(entity: Entity.Player, at: 5);
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Partner, at: 5);
-    setDialogOwner(5);
-    showTextbox("I let my guard down,\nbut two on one isn't fair.\n");
+    speak(5, "I let my guard down,\nbut two on one isn't fair.\n");
     playAnimation(Entity.Player, 16);
     setTrigger(49);
     setDialogOwner(Entity.Player);
@@ -94,8 +88,7 @@ L1:
     showTextbox("Well, that maybe so\nDon't be a sore loser\n");
 
 L2:
-    setDialogOwner(5);
-    showTextbox("I never lose to anybody\nwhen it's a fair fight.\n");
+    speak(5, "I never lose to anybody\nwhen it's a fair fight.\n");
     showTextbox("Let's fight one on one. Come\nback tomorrow at four O'clock.\nOnly Digimon will fight.\n");
     setDialogOwner(Entity.Player);
     setSelection(L3, L3);
@@ -104,8 +97,7 @@ L2:
 L3:
     playAnimation(Entity.Player, 16);
     unsetTrigger(49);
-    setDialogOwner(5);
-    showTextbox("It's a promise then.\nSee you tomorrow!\n");
+    speak(5, "It's a promise then.\nSee you tomorrow!\n");
     setTrigger(195);
     storeDate(29);
     goto L4;
@@ -130,19 +122,16 @@ L5:
 L6:
     storeDate(105);
     if (!trigger(195) || pstat[107] < 15 || pstat[107] > 17 || pstat[29] != 1) goto L7;
-    setDialogOwner(5);
-    showTextbox("You came back, good.\nToday, we'll fight fair!\n");
+    speak(5, "You came back, good.\nToday, we'll fight fair!\n");
     goto L8;
     goto L8;
 
 L7:
-    setDialogOwner(5);
-    showTextbox("You're late, but that gave\nme time to nurse my injury.\nNow let's go for it.\n");
+    speak(5, "You're late, but that gave\nme time to nurse my injury.\nNow let's go for it.\n");
     goto L8;
 
 L8:
-    setDialogOwner(Entity.Player);
-    showTextbox("I'll just watch. Start!\n");
+    speak(Entity.Player, "I'll just watch. Start!\n");
     look(entity: Entity.Player, at: Entity.Partner);
     waitForEntity(Entity.Player);
     playAnimation(Entity.Player, 20);
@@ -162,18 +151,13 @@ L8:
     look(entity: Entity.Player, at: 5);
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Partner, at: 5);
-    setDialogOwner(5);
-    showTextbox("You're good! Who are you?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("We're exploring and trying to\nsave the island from danger.\n");
-    setDialogOwner(5);
-    showTextbox("What?\n");
-    setDialogOwner(Entity.System);
-    showTextbox("<LIGHTBLUE><PLAYER><WHITE> tries so hard\nto convince him!\n");
+    speak(5, "You're good! Who are you?\n");
+    speak(Entity.Player, "We're exploring and trying to\nsave the island from danger.\n");
+    speak(5, "What?\n");
+    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> tries so hard\nto convince him!\n");
     playAnimation(Entity.Player, 19);
     delay(40);
-    setDialogOwner(5);
-    showTextbox("I'll help you. But, I'll\nhave to see that city first.\n");
+    speak(5, "I'll help you. But, I'll\nhave to see that city first.\n");
     goto L9;
 
 L9:
@@ -190,8 +174,7 @@ L10:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 11);
-    setDialogOwner(Entity.System);
-    showTextbox("Garurumon joins the city!\n");
+    speak(Entity.System, "Garurumon joins the city!\n");
     setTrigger(222);
     addPStat(1, 2);
     moveCamera(to: Entity.Player, speed: 10);

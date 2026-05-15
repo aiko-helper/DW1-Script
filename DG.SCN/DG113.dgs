@@ -4,30 +4,29 @@
 section onEnter(254) {  // len=90
     roll(pstat: 110, max: 99);
     if (pstat[110] > 19) goto L1;
-    spawnItem(Item.Digimushroom, 37, 84);
+    spawnItem(Item.Digimushroom, x: 37, y: 84);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 16) goto L2;
-    spawnItem(Item.Digimushroom, 33, 67);
+    spawnItem(Item.Digimushroom, x: 33, y: 67);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 12) goto L3;
-    spawnItem(Item.Digimushroom, 56, 63);
+    spawnItem(Item.Digimushroom, x: 56, y: 63);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 2) goto L4;
-    spawnItem(Item.Digipine, 56, 83);
+    spawnItem(Item.Digipine, x: 56, y: 83);
 
 L4:
     return;
 }
 
 section(6) {  // len=116
-    setDialogOwner(6);
-    showTextbox("Go straight ahead and\nmake a right. He he he...\n");
+    speak(6, "Go straight ahead and\nmake a right. He he he...\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -36,8 +35,7 @@ section(6) {  // len=116
 }
 
 section(7) {  // len=100
-    setDialogOwner(7);
-    showTextbox("Make a right and\na quick left. He he...\n");
+    speak(7, "Make a right and\na quick left. He he...\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -46,8 +44,7 @@ section(7) {  // len=100
 }
 
 section(8) {  // len=112
-    setDialogOwner(8);
-    showTextbox("You won't get out of\nthis forest. He he he...\n");
+    speak(8, "You won't get out of\nthis forest. He he he...\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -56,8 +53,7 @@ section(8) {  // len=112
 }
 
 section(9) {  // len=44
-    setDialogOwner(9);
-    showTextbox("I got lost!\n");
+    speak(9, "I got lost!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -66,8 +62,7 @@ section(9) {  // len=44
 }
 
 section(10) {  // len=70
-    setDialogOwner(10);
-    showTextbox("Lately, I've been tired.\n");
+    speak(10, "Lately, I've been tired.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -76,8 +71,7 @@ section(10) {  // len=70
 }
 
 section(11) {  // len=48
-    setDialogOwner(11);
-    showTextbox("You? No way!?\n");
+    speak(11, "You? No way!?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -86,8 +80,7 @@ section(11) {  // len=48
 }
 
 section(12) {  // len=74
-    setDialogOwner(12);
-    showTextbox("Be careful where you walk.\n");
+    speak(12, "Be careful where you walk.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -97,8 +90,7 @@ section(12) {  // len=74
 
 section(5) {  // len=1550
     playSound(8, 11);
-    setDialogOwner(5);
-    showTextbox("Hey you!\n");
+    speak(5, "Hey you!\n");
     setTrigger(1);
     setPStat(250, 1);
     setPStat(251, 5);
@@ -113,35 +105,26 @@ section(5) {  // len=1550
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
     delay(10);
-    setDialogOwner(5);
-    showTextbox("Hmm, you're something else!\nThat was pretty good for\nso early in the morning.\n");
+    speak(5, "Hmm, you're something else!\nThat was pretty good for\nso early in the morning.\n");
     playAnimation(Entity.Player, 16);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("Hey, hey, don't act like it's\nsomebody else's business!\n");
-    setDialogOwner(5);
-    showTextbox("I know! I know what you're\ntalking about.\n");
+    speak(Entity.Player, "Hey, hey, don't act like it's\nsomebody else's business!\n");
+    speak(5, "I know! I know what you're\ntalking about.\n");
     showTextbox("I hear you're working\nhard for the island\nby gathering Digimons.\n");
     playAnimation(Entity.Player, 19);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("So you know. Well,\nwhy don't you help me.\n");
-    setDialogOwner(5);
-    showTextbox("And, where am I supposed\nto do what?\n");
+    speak(Entity.Player, "So you know. Well,\nwhy don't you help me.\n");
+    speak(5, "And, where am I supposed\nto do what?\n");
     playAnimation(Entity.Player, 7);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh you just don't get it!\nYou're supposed to work\nin the city, remember?!\n");
-    setDialogOwner(5);
-    showTextbox("Well, like they say...\nthe early bird gets the bug.\n");
+    speak(Entity.Player, "Oh you just don't get it!\nYou're supposed to work\nin the city, remember?!\n");
+    speak(5, "Well, like they say...\nthe early bird gets the bug.\n");
     playAnimation(Entity.Player, 7);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("That has nothing to do with\nanything! On top of that,\nit's a worm not a bug!\n");
+    speak(Entity.Player, "That has nothing to do with\nanything! On top of that,\nit's a worm not a bug!\n");
     playAnimation(Entity.Partner, 11);
     delay(5);
-    setDialogOwner(5);
-    showTextbox("I'm just joking. Well,\nI'll see you in the city...\n");
+    speak(5, "I'm just joking. Well,\nI'll see you in the city...\n");
     fadeOutHUD();
     goto L1;
 
@@ -159,12 +142,10 @@ L2:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 10);
-    setDialogOwner(Entity.System);
-    showTextbox("Kokatorimon joins the city!\n");
+    speak(Entity.System, "Kokatorimon joins the city!\n");
     playAnimation(Entity.Player, 16);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("Can we really trust him?\nI wonder...\n");
+    speak(Entity.Player, "Can we really trust him?\nI wonder...\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     setTrigger(250);
@@ -175,8 +156,7 @@ L2:
 section(54) {  // len=174
     playAnimation(Entity.Player, 24);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("Hey, a bird's feathers are\nfallen here. They are still\nfresh. Are we too late?\n");
+    speak(Entity.Player, "Hey, a bird's feathers are\nfallen here. They are still\nfresh. Are we too late?\n");
     return;
 }
 

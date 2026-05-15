@@ -25,65 +25,47 @@ section(54) {  // len=8
 section(5) {  // len=2296
     if (trigger(202) || trigger(215) || pstat[16] == 0) goto L1;
     if (!trigger(201) || !trigger(243)) goto L1;
-    setDialogOwner(5);
-    showTextbox("You had perfect timing in\ncoming here! I have a favor\nthat only you can do.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What is it?\n");
-    setDialogOwner(5);
-    showTextbox("I just got the same evil\nfeeling that Analogman\nand Machinedramon give.\n");
+    speak(5, "You had perfect timing in\ncoming here! I have a favor\nthat only you can do.\n");
+    speak(Entity.Player, "What is it?\n");
+    speak(5, "I just got the same evil\nfeeling that Analogman\nand Machinedramon give.\n");
     showTextbox("I know where it comes from.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Again? Ok, leave it to me!\n");
-    setDialogOwner(5);
-    showTextbox("Thanks. By the way...\n");
+    speak(Entity.Player, "Again? Ok, leave it to me!\n");
+    speak(5, "Thanks. By the way...\n");
     goto L5;
 
 L1:
     if (!trigger(202) || trigger(215)) goto L4;
-    setDialogOwner(5);
-    showTextbox("I heard you beat\nMachinedramon!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Yeah, but I don't get it.\nIt seemed like the curse\nof Analogman.\n");
-    setDialogOwner(5);
-    showTextbox("His grudge was so strong.\nMaybe we can have peace now.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("If Machinedramon returns,\nwe'll beat him again.\n");
-    setDialogOwner(5);
-    showTextbox("You're trustworthy. This was\ngrowing in our Meat farm,\nit's for you.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
+    speak(5, "I heard you beat\nMachinedramon!\n");
+    speak(Entity.Player, "Yeah, but I don't get it.\nIt seemed like the curse\nof Analogman.\n");
+    speak(5, "His grudge was so strong.\nMaybe we can have peace now.\n");
+    speak(Entity.Player, "If Machinedramon returns,\nwe'll beat him again.\n");
+    speak(5, "You're trustworthy. This was\ngrowing in our Meat farm,\nit's for you.\n");
+    speak(Entity.Player, "Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
     giveItem(Item.ChainMelon, 1);
     if (!trigger(0)) goto L3;
     if (item[Item.SpikeClub] < 99) goto L2;
     return;
 
 L2:
-    setDialogOwner(Entity.Player);
-    showTextbox("I have too many Items.\n");
+    speak(Entity.Player, "I have too many Items.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.ChainMelon, 1);
 
 L3:
-    setDialogOwner(Entity.Player);
-    showTextbox("Thank you!\n");
+    speak(Entity.Player, "Thank you!\n");
     setPStat(28, 0);
     setTrigger(215);
     return;
 
 L4:
     if (!trigger(50) || trigger(201)) goto L5;
-    setDialogOwner(5);
-    showTextbox("You're here!\nThis is something I can't\nask anybody else.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Never fear, I'm here.\nDo you mean\nAnalogman is back?\n");
-    setDialogOwner(5);
-    showTextbox("I can feel his evil, but\nI can't tell where it is.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Leave it up to me! I'll find\nhim and take care of it.\n");
-    setDialogOwner(5);
-    showTextbox("Thank you.\nBy the way...\n");
+    speak(5, "You're here!\nThis is something I can't\nask anybody else.\n");
+    speak(Entity.Player, "Never fear, I'm here.\nDo you mean\nAnalogman is back?\n");
+    speak(5, "I can feel his evil, but\nI can't tell where it is.\n");
+    speak(Entity.Player, "Leave it up to me! I'll find\nhim and take care of it.\n");
+    speak(5, "Thank you.\nBy the way...\n");
     setTrigger(201);
 
 L5:
@@ -95,18 +77,15 @@ L6:
     playAnimation(5, 0);
     playAnimation(5, 29);
     delay(5);
-    setDialogOwner(5);
-    showTextbox("I'm back and I'm planning\nto rebuild File City with\nhelp from <ORANGE><DIGIMON><WHITE>.\n");
+    speak(5, "I'm back and I'm planning\nto rebuild File City with\nhelp from <ORANGE><DIGIMON><WHITE>.\n");
     playAnimation(5, 0);
     playAnimation(5, 29);
     delay(5);
-    setDialogOwner(5);
-    showTextbox("I want to build\nshops that are useful\nto you and <ORANGE><DIGIMON><WHITE>.\n");
+    speak(5, "I want to build\nshops that are useful\nto you and <ORANGE><DIGIMON><WHITE>.\n");
     playAnimation(5, 0);
     playAnimation(5, 29);
     delay(5);
-    setDialogOwner(5);
-    showTextbox("You should explore Native\nForest just outside the city.\n");
+    speak(5, "You should explore Native\nForest just outside the city.\n");
     playAnimation(5, 0);
     return;
 }
@@ -117,43 +96,36 @@ section(6) {  // len=2460
     goto L2;
 
 L1:
-    setDialogOwner(6);
-    showTextbox("You can have this. Good luck.\n");
-    setDialogOwner(Entity.System);
-    showTextbox("I got lots of Items!\n");
+    speak(6, "You can have this. Good luck.\n");
+    speak(Entity.System, "I got lots of Items!\n");
     giveItem(Item.SmallRecovery, 3);
     giveItem(Item.Meat, 3);
     giveItem(Item.MPFloppy, 3);
     giveItem(Item.Restore, 1);
     giveItem(Item.Bandage, 2);
     giveItem(Item.Medicine, 1);
-    setDialogOwner(6);
-    showTextbox("To look up Items, press\n<GREEN><TRIANGLE> <WHITE>...\n");
+    speak(6, "To look up Items, press\n<GREEN><TRIANGLE> <WHITE>...\n");
     showTextbox("...then select 'Item'\nand look by using\n<LIGHTBLUE><X> <WHITE>.\n");
     setTrigger(56);
     return;
 
 L2:
     if (trigger(224) || !trigger(175)) goto L3;
-    setDialogOwner(6);
-    showTextbox("Sounds like Yuramon has\ngathered more rumors.\n");
+    speak(6, "Sounds like Yuramon has\ngathered more rumors.\n");
     return;
 
 L3:
     if (!trigger(124) || !trigger(103)) goto L4;
-    setDialogOwner(6);
-    showTextbox("I hear Yuramon\nhas some new rumors.\n");
+    speak(6, "I hear Yuramon\nhas some new rumors.\n");
     return;
 
 L4:
     if (pstat[1] < 6) goto L5;
-    setDialogOwner(6);
-    showTextbox("The city is starting to\ngrow and I hear it's\nchanging now.\n");
+    speak(6, "The city is starting to\ngrow and I hear it's\nchanging now.\n");
     return;
 
 L5:
-    setDialogOwner(6);
-    showTextbox("I will teach you about the\ncommon sense in our world.\n");
+    speak(6, "I will teach you about the\ncommon sense in our world.\n");
     showTextbox("There are twenty four hours\na day and there is morning,\nday and night.\n");
     showTextbox("You may feel\nthe pace is quick.\n");
     showTextbox("There are thirty days a year.\nMonth? What's that? Seasons?\nCan you eat that?\n");
@@ -178,14 +150,12 @@ section(7) {  // len=1922
 L1:
     roll(pstat: 110, max: 2);
     if (pstat[1] < 3 || pstat[110] != 0) goto L2;
-    setDialogOwner(7);
-    showTextbox("Talk to Tsunomon and\nYuramon as often as you can.\n");
+    speak(7, "Talk to Tsunomon and\nYuramon as often as you can.\n");
     return;
 
 L2:
     if (pstat[1] < 3 || pstat[110] != 1) goto L3;
-    setDialogOwner(7);
-    showTextbox("I'll tell you about\nthe Tamer level.\n");
+    speak(7, "I'll tell you about\nthe Tamer level.\n");
     showTextbox("With a high Tamer level,\nwhen your Digimon fades away,\n");
     showTextbox("your next Digimon will have\nbetter parameters.\n");
     showTextbox("In the beginning\nit won't go up much,\n");
@@ -194,14 +164,12 @@ L2:
 
 L3:
     if (pstat[1] < 3 || pstat[110] != 2) goto L4;
-    setDialogOwner(7);
-    showTextbox("When you use your Finishing\nTechnique, make sure to\nrapidly hit L and R buttons.\n");
+    speak(7, "When you use your Finishing\nTechnique, make sure to\nrapidly hit L and R buttons.\n");
     showTextbox("When Finish Gauge is full,\ncompared to when empty, the\ndamage to enemy is double!\n");
     return;
 
 L4:
-    setDialogOwner(7);
-    showTextbox("I'll tell you about a\nDigimon's life.\n");
+    speak(7, "I'll tell you about a\nDigimon's life.\n");
     showTextbox("When Digimon gets hungry,\nhe'll tell you.\n");
     showTextbox("He also needs to go potty.\nMake sure he does it\nin the toilet.\n");
     showTextbox("Digimon get sleepy and\nneed sleep, but you have to\nmake him sleep.\n");
@@ -220,8 +188,7 @@ section(20) {  // len=102
     unsetTrigger(1);
     playAnimation(5, 29);
     delay(5);
-    setDialogOwner(5);
-    showTextbox("You woke up...\nI'm so sorry.\n");
+    speak(5, "You woke up...\nI'm so sorry.\n");
     playAnimation(5, 0);
     return;
 }
@@ -244,13 +211,11 @@ section(73) {  // len=8
 section(85) {  // len=658
     if (trigger(94)) goto L1;
     setTrigger(94);
-    setDialogOwner(Entity.Player);
-    showTextbox("What's this machine?\n");
+    speak(Entity.Player, "What's this machine?\n");
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Player, at: 5);
     delay(5);
-    setDialogOwner(5);
-    showTextbox("Oh that? That is a\n<PINK>Save Machine for\nMemory Card Battle Data<WHITE>.\n");
+    speak(5, "Oh that? That is a\n<PINK>Save Machine for\nMemory Card Battle Data<WHITE>.\n");
     showTextbox("Using that machine, you can\nsave your current partner's\ndata for battle.\n");
     showTextbox("Just press <LIGHTBLUE><X> <WHITE>,\nand the machine will tell\nyou what to do.\n");
     rotate(entity: Entity.Player, to: 0);
@@ -258,11 +223,8 @@ section(85) {  // len=658
     return;
 
 L1:
-    setDialogOwner(Entity.System);
-    showTextbox("Do you want to use\n<PINK>Save Machine for\nMemory Card Battle Data<WHITE>?\n");
-    setSelection(L2, L3);
-    showTextbox("Yes\nNo\n");
-    waitForSelectionChoice();
+    speak(Entity.System, "Do you want to use\n<PINK>Save Machine for\nMemory Card Battle Data<WHITE>?\n");
+    choice { "Yes" -> L2, "No" -> L3 }
     return;
 
 L2:
@@ -279,20 +241,16 @@ section(82) {  // len=480
     delay(5);
     playSound(0, 0);
     if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L1;
-    setDialogOwner(Entity.Player);
-    showTextbox("I don't see Punimon, but\nI think I'll rest here.\n");
+    speak(Entity.Player, "I don't see Punimon, but\nI think I'll rest here.\n");
     goto L2;
 
 L1:
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Punimon <WHITE>\nI'm Punimon! Why don't you\nrest here a while?\n");
+    speak(Entity.System, "<YELLOW>Punimon <WHITE>\nI'm Punimon! Why don't you\nrest here a while?\n");
     showTextbox("<YELLOW>Punimon <WHITE>\nOne hour rest recovers HP,\nMP and lowers Tiredness.\n");
 
 L2:
     setDialogOwner(Entity.Player);
-    setSelection(L3, L4);
-    showTextbox("Rest\nDon't rest\n");
-    waitForSelectionChoice();
+    choice { "Rest" -> L3, "Don't rest" -> L4 }
     playSound(0, 1);
     return;
 
@@ -301,7 +259,7 @@ L3:
     addMinutesToDate(105, 60);
     advanceToDate(105);
     addStats(currentHP: 300, currentMP: 300);
-    reduceStats(Stat.Tiredness, 10);
+    reduceStats(tiredness: 10);
     warp(to: Map.ROOM08, spawn: 2, trigger: 255);
     return;
 

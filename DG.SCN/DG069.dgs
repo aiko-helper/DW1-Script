@@ -4,17 +4,17 @@
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 12) goto L1;
-    spawnItem(Item.Digimushroom, 44, 56);
+    spawnItem(Item.Digimushroom, x: 44, y: 56);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 8) goto L2;
-    spawnItem(Item.Digimushroom, 74, 50);
+    spawnItem(Item.Digimushroom, x: 74, y: 50);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 1) goto L3;
-    spawnItem(Item.Happymushroom, 45, 46);
+    spawnItem(Item.Happymushroom, x: 45, y: 46);
 
 L3:
     return;
@@ -22,8 +22,7 @@ L3:
 
 section(5) {  // len=1172
     playSound(8, 7);
-    setDialogOwner(5);
-    showTextbox("I'm gonna knock you out!\n");
+    speak(5, "I'm gonna knock you out!\n");
     setTrigger(1);
     setPStat(250, 1);
     setPStat(251, 5);
@@ -37,12 +36,9 @@ section(5) {  // len=1172
     look(entity: Entity.Player, at: 5);
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Partner, at: 5);
-    setDialogOwner(5);
-    showTextbox("Let's do it again.\n");
+    speak(5, "Let's do it again.\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L5);
-    showTextbox("OK\nNo\n");
-    waitForSelectionChoice();
+    choice { "OK" -> L1, "No" -> L5 }
     goto L5;
 
 L1:
@@ -59,13 +55,10 @@ L1:
     look(entity: Entity.Player, at: 5);
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Partner, at: 5);
-    setDialogOwner(5);
-    showTextbox("Just a little more...\nCome on, one more time!\n");
+    speak(5, "Just a little more...\nCome on, one more time!\n");
     playAnimation(Entity.Player, 16);
     setDialogOwner(Entity.Player);
-    setSelection(L2, L5);
-    showTextbox("OK\nNo\n");
-    waitForSelectionChoice();
+    choice { "OK" -> L2, "No" -> L5 }
     goto L5;
 
 L2:
@@ -86,24 +79,17 @@ L2:
     playAnimation(5, 28);
     playSound(8, 7);
     delay(40);
-    setDialogOwner(5);
-    showTextbox("I can't win!\n");
+    speak(5, "I can't win!\n");
     playAnimation(Entity.Player, 8);
-    setDialogOwner(Entity.Player);
-    showTextbox("Why do you want to win?\n");
+    speak(Entity.Player, "Why do you want to win?\n");
     playAnimation(5, 0);
     playAnimation(Entity.Player, 0);
-    setDialogOwner(5);
-    showTextbox("What should I do?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What do you mean?\nYou don't have anything?\n");
-    setDialogOwner(5);
-    showTextbox("I've got lots of time.\n");
+    speak(5, "What should I do?\n");
+    speak(Entity.Player, "What do you mean?\nYou don't have anything?\n");
+    speak(5, "I've got lots of time.\n");
     playAnimation(Entity.Player, 19);
-    setDialogOwner(Entity.Player);
-    showTextbox("If you have too much time,\ncome to the city. There're\nall kinds of Digimon there.\n");
-    setDialogOwner(5);
-    showTextbox("Sounds good. I'll go.\nMy name's Patamon.\nSee ya later.\n");
+    speak(Entity.Player, "If you have too much time,\ncome to the city. There're\nall kinds of Digimon there.\n");
+    speak(5, "Sounds good. I'll go.\nMy name's Patamon.\nSee ya later.\n");
     goto L3;
 
 L3:
@@ -120,8 +106,7 @@ L4:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 5);
-    setDialogOwner(Entity.System);
-    showTextbox("Patamon joins the city!\n");
+    speak(Entity.System, "Patamon joins the city!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     setTrigger(231);
@@ -129,16 +114,14 @@ L4:
     return;
 
 L5:
-    setDialogOwner(5);
-    showTextbox("That's not fun!\n");
+    speak(5, "That's not fun!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
 }
 
 section(6) {  // len=52
-    setDialogOwner(6);
-    showTextbox("Are you coming?\n");
+    speak(6, "Are you coming?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -147,8 +130,7 @@ section(6) {  // len=52
 }
 
 section(7) {  // len=54
-    setDialogOwner(7);
-    showTextbox("You don't smell!\n");
+    speak(7, "You don't smell!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -157,8 +139,7 @@ section(7) {  // len=54
 }
 
 section(8) {  // len=86
-    setDialogOwner(8);
-    showTextbox("Looks yummy.\nI'll gobble you up!\n");
+    speak(8, "Looks yummy.\nI'll gobble you up!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -167,8 +148,7 @@ section(8) {  // len=86
 }
 
 section(9) {  // len=588
-    setDialogOwner(9);
-    showTextbox("Ha ha, you're funny!\n");
+    speak(9, "Ha ha, you're funny!\n");
     fadeOutHUD();
     delay(1);
     startBattle();

@@ -4,17 +4,17 @@
 section onEnter(254) {  // len=96
     roll(pstat: 110, max: 99);
     if (pstat[110] > 8) goto L1;
-    spawnItem(Item.Digimushroom, 57, 61);
+    spawnItem(Item.Digimushroom, x: 57, y: 61);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 19) goto L2;
-    spawnItem(Item.Digimushroom, 35, 43);
+    spawnItem(Item.Digimushroom, x: 35, y: 43);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 2) goto L3;
-    spawnItem(Item.SweetNut, 39, 18);
+    spawnItem(Item.SweetNut, x: 39, y: 18);
 
 L3:
     if (!trigger(328)) goto L4;
@@ -47,8 +47,7 @@ L1:
     waitForEntity(5);
     setObjectVisibility(41, 1);
     setObjectVisibility(42, 1);
-    setDialogOwner(5);
-    showTextbox("Ha ha, touch me and\nyou'll get shocked.\n");
+    speak(5, "Ha ha, touch me and\nyou'll get shocked.\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     addPStat(33, 1);
@@ -71,8 +70,7 @@ L2:
     waitForEntity(5);
     setObjectVisibility(41, 1);
     setObjectVisibility(42, 1);
-    setDialogOwner(5);
-    showTextbox("Don't you wanna be here?\n");
+    speak(5, "Don't you wanna be here?\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     addPStat(33, 1);
@@ -97,14 +95,11 @@ L3:
     setObjectVisibility(42, 1);
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
-    setDialogOwner(5);
-    showTextbox("Wow, amazing! He's got guts.\n");
+    speak(5, "Wow, amazing! He's got guts.\n");
     showTextbox("You're gonna be somebody!\nAlright, I'll help you.\n");
     playAnimation(Entity.Player, 19);
-    setDialogOwner(Entity.Player);
-    showTextbox("Won't you use your electric\npower for the city?\n");
-    setDialogOwner(5);
-    showTextbox("City? What's that?\nSounds familiar, but...\n");
+    speak(Entity.Player, "Won't you use your electric\npower for the city?\n");
+    speak(5, "City? What's that?\nSounds familiar, but...\n");
     showTextbox("I'll help. I'm Elecmon,\nnice to meet you.\n");
     goto L4;
 
@@ -122,8 +117,7 @@ L5:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 5);
-    setDialogOwner(Entity.System);
-    showTextbox("Elecmon joins the city!\n");
+    speak(Entity.System, "Elecmon joins the city!\n");
     setTrigger(218);
     addPStat(1, 1);
     moveCamera(to: Entity.Player, speed: 10);
@@ -132,8 +126,7 @@ L5:
 }
 
 section(6) {  // len=34
-    setDialogOwner(6);
-    showTextbox("Ugghh!\n");
+    speak(6, "Ugghh!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -142,8 +135,7 @@ section(6) {  // len=34
 }
 
 section(7) {  // len=32
-    setDialogOwner(7);
-    showTextbox("Ahhh!\n");
+    speak(7, "Ahhh!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -152,8 +144,7 @@ section(7) {  // len=32
 }
 
 section(8) {  // len=56
-    setDialogOwner(8);
-    showTextbox("You're dead meat!\n");
+    speak(8, "You're dead meat!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -162,8 +153,7 @@ section(8) {  // len=56
 }
 
 section(9) {  // len=38
-    setDialogOwner(9);
-    showTextbox("Not Bad.\n");
+    speak(9, "Not Bad.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -172,8 +162,7 @@ section(9) {  // len=38
 }
 
 section(10) {  // len=60
-    setDialogOwner(10);
-    showTextbox("You got poor taste.\n");
+    speak(10, "You got poor taste.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -182,8 +171,7 @@ section(10) {  // len=60
 }
 
 section(11) {  // len=80
-    setDialogOwner(11);
-    showTextbox("You're cocky! I'll teach you.\n");
+    speak(11, "You're cocky! I'll teach you.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -199,8 +187,7 @@ section(51) {  // len=676
 L1:
     rotate(entity: Entity.Player, to: 2048);
     delay(10);
-    setDialogOwner(Entity.Player);
-    showTextbox("This iron door is hard.\nIf it doesn't open,\nwe can't get in.\n");
+    speak(Entity.Player, "This iron door is hard.\nIf it doesn't open,\nwe can't get in.\n");
     move(entity: Entity.Player, to: (946, 2852), sprint: 1, withCamera: true);
     waitForEntity(Entity.Player);
     return;

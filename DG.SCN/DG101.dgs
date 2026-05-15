@@ -4,7 +4,7 @@
 section onEnter(254) {  // len=24
     roll(pstat: 110, max: 99);
     if (pstat[110] > 3) goto L1;
-    spawnItem(Item.GoldAcorn, 36, 69);
+    spawnItem(Item.GoldAcorn, x: 36, y: 69);
 
 L1:
     return;
@@ -12,12 +12,9 @@ L1:
 
 section(81) {  // len=178
     if (item[Item.BlueFlute] < 1) goto L1;
-    setDialogOwner(Entity.System);
-    showTextbox("Will you play the Lake\nGuardian's <LIGHTBLUE>Blue Flute<WHITE>?\n");
+    speak(Entity.System, "Will you play the Lake\nGuardian's <LIGHTBLUE>Blue Flute<WHITE>?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L3, L2);
-    showTextbox("Play\nDon't play\n");
-    waitForSelectionChoice();
+    choice { "Play" -> L3, "Don't play" -> L2 }
     return;
 
 L1:
@@ -39,8 +36,7 @@ section(51) {  // len=14
 }
 
 section(5) {  // len=64
-    setDialogOwner(5);
-    showTextbox("Reporting, reporting!\n");
+    speak(5, "Reporting, reporting!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -49,8 +45,7 @@ section(5) {  // len=64
 }
 
 section(6) {  // len=46
-    setDialogOwner(6);
-    showTextbox("Enemy ahead!\n");
+    speak(6, "Enemy ahead!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -59,8 +54,7 @@ section(6) {  // len=46
 }
 
 section(7) {  // len=38
-    setDialogOwner(7);
-    showTextbox("Hee-how!\n");
+    speak(7, "Hee-how!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -69,8 +63,7 @@ section(7) {  // len=38
 }
 
 section(8) {  // len=68
-    setDialogOwner(8);
-    showTextbox("Today's not a good day.\n");
+    speak(8, "Today's not a good day.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -79,8 +72,7 @@ section(8) {  // len=68
 }
 
 section(9) {  // len=32
-    setDialogOwner(9);
-    showTextbox(" ??? \n");
+    speak(9, " ??? \n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -89,8 +81,7 @@ section(9) {  // len=32
 }
 
 section(10) {  // len=78
-    setDialogOwner(10);
-    showTextbox("Don't you think it's unfair?\n");
+    speak(10, "Don't you think it's unfair?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -99,8 +90,7 @@ section(10) {  // len=78
 }
 
 section(11) {  // len=42
-    setDialogOwner(9);
-    showTextbox("Stop them!\n");
+    speak(9, "Stop them!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -109,8 +99,7 @@ section(11) {  // len=42
 }
 
 section(12) {  // len=1416
-    setDialogOwner(10);
-    showTextbox("So busy!\n");
+    speak(10, "So busy!\n");
     fadeOutHUD();
     delay(1);
     startBattle();

@@ -32,8 +32,7 @@ L1:
     waitForEntity(Entity.Partner);
     delay(20);
     playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    showTextbox("Hmm\n");
+    speak(Entity.Player, "Hmm\n");
     delay(20);
     look(entity: Entity.Player, at: Entity.Partner);
     look(entity: Entity.Partner, at: Entity.Player);
@@ -41,15 +40,13 @@ L1:
     waitForEntity(Entity.Partner);
     playAnimation(Entity.Player, 19);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("It looks like a bird's nest.\nWhat do you think?\n");
+    speak(Entity.Player, "It looks like a bird's nest.\nWhat do you think?\n");
     playAnimation(Entity.Player, 0);
     playAnimation(Entity.Player, 24);
     delay(5);
     playSound(8, 13);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("I hear noise.\n");
+    speak(Entity.Player, "I hear noise.\n");
     setDigimon(Digimon.NPCBirdramon, 0, 0);
     delay(10);
     moveCamera(to: 5, speed: 10);
@@ -78,36 +75,23 @@ L1:
     delay(20);
     playAnimation(5, 28);
     delay(40);
-    setDialogOwner(5);
-    showTextbox("You're good.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("So it was your nest.\n");
-    setDialogOwner(5);
-    showTextbox("Yeah.\n");
+    speak(5, "You're good.\n");
+    speak(Entity.Player, "So it was your nest.\n");
+    speak(5, "Yeah.\n");
     playAnimation(Entity.Player, 20);
-    setDialogOwner(Entity.Player);
-    showTextbox("Sorry to enter without asking.\n");
+    speak(Entity.Player, "Sorry to enter without asking.\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(5);
-    showTextbox("Oh, don't worry about it.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("?\n");
-    setDialogOwner(5);
-    showTextbox("I've heard of you.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I didn't know I was famous.\n");
-    setDialogOwner(5);
-    showTextbox("You're probably the only\nhuman left on the island.\n");
+    speak(5, "Oh, don't worry about it.\n");
+    speak(Entity.Player, "?\n");
+    speak(5, "I've heard of you.\n");
+    speak(Entity.Player, "I didn't know I was famous.\n");
+    speak(5, "You're probably the only\nhuman left on the island.\n");
     playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    showTextbox("Left...? There've been\nothers before me?\n");
-    setDialogOwner(5);
-    showTextbox("Aren't you going to\ninvite me to the city?\n");
+    speak(Entity.Player, "Left...? There've been\nothers before me?\n");
+    speak(5, "Aren't you going to\ninvite me to the city?\n");
     playAnimation(Entity.Player, 19);
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh, yeah, won't you come\nto the city?\n");
-    setDialogOwner(5);
-    showTextbox("Okay. Then let's get down\nto business. Hold on tight.\n");
+    speak(Entity.Player, "Oh, yeah, won't you come\nto the city?\n");
+    speak(5, "Okay. Then let's get down\nto business. Hold on tight.\n");
     move(entity: 5, to: (167, -665), sprint: 0);
     waitForEntity(5);
     moveCamera(to: 5, speed: 20);
@@ -119,8 +103,7 @@ L1:
     look(entity: 5, at: Entity.Player);
     delay(5);
     playSound(8, 10);
-    setDialogOwner(Entity.System);
-    showTextbox("Birdramon joins the city!\n");
+    speak(Entity.System, "Birdramon joins the city!\n");
     setTrigger(221);
     addPStat(1, 2);
     playAnimation(5, 29);
@@ -201,12 +184,9 @@ section(52) {  // len=6
 
 section(81) {  // len=412
     rotate(entity: Entity.Player, to: 1271);
-    setDialogOwner(Entity.System);
-    showTextbox("Elevator\n");
+    speak(Entity.System, "Elevator\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L2, L5);
-    showTextbox("Press Down once\nPress Down twice\nDon't get on\n");
-    waitForSelectionChoice();
+    choice { "Press Down once" -> L1, "Press Down twice" -> L2, "Don't get on" -> L5 }
     goto L5;
 
 L1:
@@ -234,8 +214,7 @@ L1:
 L2:
     fadeOutHUD();
     if (trigger(155)) goto L3;
-    setDialogOwner(Entity.Player);
-    showTextbox("Huh?\n");
+    speak(Entity.Player, "Huh?\n");
     showTextbox("No good. It doesn't work.\n");
     return;
     goto L4;

@@ -4,7 +4,7 @@
 section onEnter(254) {  // len=136
     roll(pstat: 110, max: 99);
     if (pstat[110] > 10) goto L1;
-    spawnItem(Item.Digimushroom, 40, 54);
+    spawnItem(Item.Digimushroom, x: 40, y: 54);
 
 L1:
     setPStat(113, 0);
@@ -44,31 +44,26 @@ section(10) {  // len=8
 
 section(7) {  // len=820
     if (!trigger(5) || !trigger(6)) goto L1;
-    setDialogOwner(7);
-    showTextbox("Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+    speak(7, "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
     goto L5;
 
 L1:
     if (!trigger(5) || !trigger(7)) goto L2;
-    setDialogOwner(7);
-    showTextbox("Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+    speak(7, "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
     goto L5;
 
 L2:
     if (!trigger(6) || !trigger(7)) goto L3;
-    setDialogOwner(7);
-    showTextbox("Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+    speak(7, "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
     goto L5;
 
 L3:
     if (!trigger(5) && !trigger(6) && !trigger(7)) goto L4;
-    setDialogOwner(7);
-    showTextbox("Thanks for coming again.\n");
+    speak(7, "Thanks for coming again.\n");
     goto L5;
 
 L4:
-    setDialogOwner(7);
-    showTextbox("Hi, I'm Mojyamon!\n");
+    speak(7, "Hi, I'm Mojyamon!\n");
 
 L5:
     setPStat(254, 7);
@@ -110,8 +105,7 @@ L13:
     return;
 
 L14:
-    setDialogOwner(7);
-    showTextbox("<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n");
+    speak(7, "<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n");
     showTextbox("I've decided I'm going\nto the city. We'll work\ntogether, alright?\n");
     goto L15;
 
@@ -129,8 +123,7 @@ L16:
     unloadEntity(7);
     setPStat(101, 0);
     playSound(8, 11);
-    setDialogOwner(Entity.System);
-    showTextbox("Mojyamon joins the city!\n");
+    speak(Entity.System, "Mojyamon joins the city!\n");
     setTrigger(252);
     setTrigger(107);
     addPStat(1, 2);

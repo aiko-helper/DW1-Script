@@ -26,10 +26,8 @@ L2:
     return;
 
 L3:
-    setDialogOwner(6);
-    showTextbox("Boy, gimme some <LIGHTBLUE>Meat<WHITE>!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Welcome, so you want some\n<LIGHTBLUE>Meat<WHITE>. Well, uh...\n");
+    speak(6, "Boy, gimme some <LIGHTBLUE>Meat<WHITE>!\n");
+    speak(Entity.Player, "Welcome, so you want some\n<LIGHTBLUE>Meat<WHITE>. Well, uh...\n");
 
 L4:
     setPStat(247, 6);
@@ -38,11 +36,8 @@ L4:
     delay(10);
     setPStat(117, 6);
     setDialogOwner(Entity.System);
-    setSelection(L5, L10, L11);
-    showTextbox("Raise price\nKeep price at fifty bits\nLower price\n");
-    waitForSelectionChoice();
-    setDialogOwner(Entity.Player);
-    showTextbox("Uh, you wanted some\n<LIGHTBLUE>Meat<WHITE>, right? Uh...\n");
+    choice { "Raise price" -> L5, "Keep price at fifty bits" -> L10, "Lower price" -> L11 }
+    speak(Entity.Player, "Uh, you wanted some\n<LIGHTBLUE>Meat<WHITE>, right? Uh...\n");
     goto L4;
 
 L5:
@@ -51,13 +46,10 @@ L5:
     setPStat(247, 6);
     setPStat(248, 3);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor seventy five bits?\n");
+    speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor seventy five bits?\n");
     setPStat(117, 1);
     setDialogOwner(Entity.System);
-    setSelection(L14, L4);
-    showTextbox("Raise fifty to seventy five\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Raise fifty to seventy five" -> L14, "Let me rethink this" -> L4 }
     goto L4;
 
 L6:
@@ -65,13 +57,10 @@ L6:
     setPStat(247, 6);
     setPStat(248, 2);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor seventy bits?\n");
+    speak(Entity.System, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor seventy bits?\n");
     setPStat(117, 2);
     setDialogOwner(Entity.System);
-    setSelection(L16, L4);
-    showTextbox("Raise from fifty to seventy\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Raise from fifty to seventy" -> L16, "Let me rethink this" -> L4 }
     goto L4;
 
 L7:
@@ -79,13 +68,10 @@ L7:
     setPStat(247, 6);
     setPStat(248, 2);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor sixty five bits?\n");
+    speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor sixty five bits?\n");
     setPStat(117, 3);
     setDialogOwner(Entity.System);
-    setSelection(L18, L4);
-    showTextbox("Raise fifty to sixty five\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Raise fifty to sixty five" -> L18, "Let me rethink this" -> L4 }
     goto L4;
 
 L8:
@@ -93,13 +79,10 @@ L8:
     setPStat(247, 6);
     setPStat(248, 1);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor sixty bits?\n");
+    speak(Entity.System, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor sixty bits?\n");
     setPStat(117, 4);
     setDialogOwner(Entity.System);
-    setSelection(L20, L4);
-    showTextbox("Raise from fifty to sixty\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Raise from fifty to sixty" -> L20, "Let me rethink this" -> L4 }
     goto L4;
 
 L9:
@@ -107,26 +90,20 @@ L9:
     setPStat(247, 6);
     setPStat(248, 1);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor fifty five bits?\n");
+    speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor fifty five bits?\n");
     setPStat(117, 5);
     setDialogOwner(Entity.System);
-    setSelection(L22, L4);
-    showTextbox("Raise fifty to fifty five\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Raise fifty to fifty five" -> L22, "Let me rethink this" -> L4 }
     goto L4;
 
 L10:
     setPStat(247, 6);
     setPStat(248, 0);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How's fifty bit <LIGHTBLUE>Meat<WHITE>\nat regular price?\n");
+    speak(Entity.System, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nat regular price?\n");
     setPStat(117, 6);
     setDialogOwner(Entity.System);
-    setSelection(L24, L4);
-    showTextbox("Offer at regular price\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Offer at regular price" -> L24, "Let me rethink this" -> L4 }
     goto L4;
 
 L11:
@@ -135,13 +112,10 @@ L11:
     setPStat(247, 6);
     setPStat(248, 0);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor forty five bits?\n");
+    speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor forty five bits?\n");
     setPStat(117, 7);
     setDialogOwner(Entity.System);
-    setSelection(L26, L4);
-    showTextbox("Lower fifty to forty five\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Lower fifty to forty five" -> L26, "Let me rethink this" -> L4 }
     goto L4;
 
 L12:
@@ -149,13 +123,10 @@ L12:
     setPStat(247, 6);
     setPStat(248, 0);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor forty bits?\n");
+    speak(Entity.System, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor forty bits?\n");
     setPStat(117, 8);
     setDialogOwner(Entity.System);
-    setSelection(L28, L4);
-    showTextbox("Lower fifty down to forty\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Lower fifty down to forty" -> L28, "Let me rethink this" -> L4 }
     goto L4;
 
 L13:
@@ -163,13 +134,10 @@ L13:
     setPStat(247, 6);
     setPStat(248, 0);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor thirty five bits?\n");
+    speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor thirty five bits?\n");
     setPStat(117, 9);
     setDialogOwner(Entity.System);
-    setSelection(L30, L4);
-    showTextbox("Lower fifty to thirty five\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Lower fifty to thirty five" -> L30, "Let me rethink this" -> L4 }
     goto L4;
 
 L14:
@@ -245,8 +213,7 @@ L31:
     goto L42;
 
 L32:
-    setDialogOwner(6);
-    showTextbox("Good, it's sold!\n");
+    speak(6, "Good, it's sold!\n");
     playSound(8, 6);
     delay(10);
     setTextboxSize(12, 3);
@@ -345,8 +312,7 @@ L45:
     goto L47;
 
 L46:
-    setDialogOwner(6);
-    showTextbox("See ya! I'm out of here!!\n");
+    speak(6, "See ya! I'm out of here!!\n");
     setPStat(119, 0);
     playSound(8, 7);
     delay(10);
@@ -358,25 +324,20 @@ L46:
     unloadEntity(6);
     unloadModel(Digimon.Goburimon);
     delay(40);
-    setDialogOwner(Entity.Player);
-    showTextbox("When will customers come...?\n");
+    speak(Entity.Player, "When will customers come...?\n");
     fadeOutHUD();
     addPStat(123, 1);
     jumpToScriptSection(49, 82);
     return;
 
 L47:
-    setDialogOwner(6);
-    showTextbox("Gimme a price break!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Well... Well then...\n");
+    speak(6, "Gimme a price break!\n");
+    speak(Entity.Player, "Well... Well then...\n");
     goto L4;
 
 L48:
-    setDialogOwner(6);
-    showTextbox("Hey! Gimme a \n<LIGHTBLUE>Portable Potty<WHITE>.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Uh... Welcome, so you want a\n<LIGHTBLUE>Portable Potty<WHITE>?\n");
+    speak(6, "Hey! Gimme a \n<LIGHTBLUE>Portable Potty<WHITE>.\n");
+    speak(Entity.Player, "Uh... Welcome, so you want a\n<LIGHTBLUE>Portable Potty<WHITE>?\n");
 
 L49:
     setPStat(247, 6);
@@ -384,11 +345,8 @@ L49:
     callSubroutine(28);
     setPStat(117, 6);
     setDialogOwner(Entity.System);
-    setSelection(L50, L55, L56);
-    showTextbox("Raise price\nKeep price at three hund bits\nLower price\n");
-    waitForSelectionChoice();
-    setDialogOwner(Entity.Player);
-    showTextbox("Uh... you wanted a\n<LIGHTBLUE>Portable Potty<WHITE>?\n");
+    choice { "Raise price" -> L50, "Keep price at three hund bits" -> L55, "Lower price" -> L56 }
+    speak(Entity.Player, "Uh... you wanted a\n<LIGHTBLUE>Portable Potty<WHITE>?\n");
     goto L49;
 
 L50:
@@ -397,13 +355,10 @@ L50:
     setPStat(247, 6);
     setPStat(248, 3);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor four hundred fifty bits?\n");
+    speak(Entity.System, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor four hundred fifty bits?\n");
     setPStat(117, 1);
     setDialogOwner(Entity.System);
-    setSelection(L59, L49);
-    showTextbox("Raise three hund to four fifty\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Raise three hund to four fifty" -> L59, "Let me rethink this" -> L49 }
     goto L49;
 
 L51:
@@ -411,13 +366,10 @@ L51:
     setPStat(247, 6);
     setPStat(248, 2);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor four hundred twenty bits?\n");
+    speak(Entity.System, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor four hundred twenty bits?\n");
     setPStat(117, 2);
     setDialogOwner(Entity.System);
-    setSelection(L61, L49);
-    showTextbox("Up three hund to four twenty\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Up three hund to four twenty" -> L61, "Let me rethink this" -> L49 }
     goto L49;
 
 L52:
@@ -425,13 +377,10 @@ L52:
     setPStat(247, 6);
     setPStat(248, 2);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred ninety bits?\n");
+    speak(Entity.System, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred ninety bits?\n");
     setPStat(117, 3);
     setDialogOwner(Entity.System);
-    setSelection(L63, L49);
-    showTextbox("Up three hund to three ninety\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Up three hund to three ninety" -> L63, "Let me rethink this" -> L49 }
     goto L49;
 
 L53:
@@ -439,13 +388,10 @@ L53:
     setPStat(247, 6);
     setPStat(248, 1);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred sixty bits?\n");
+    speak(Entity.System, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred sixty bits?\n");
     setPStat(117, 4);
     setDialogOwner(Entity.System);
-    setSelection(L65, L49);
-    showTextbox("Up three hund to three sixty\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Up three hund to three sixty" -> L65, "Let me rethink this" -> L49 }
     goto L49;
 
 L54:
@@ -453,26 +399,20 @@ L54:
     setPStat(247, 6);
     setPStat(248, 1);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred thirty bits?\n");
+    speak(Entity.System, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred thirty bits?\n");
     setPStat(117, 5);
     setDialogOwner(Entity.System);
-    setSelection(L67, L49);
-    showTextbox("Up three hund to three thirty\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Up three hund to three thirty" -> L67, "Let me rethink this" -> L49 }
     goto L49;
 
 L55:
     setPStat(247, 6);
     setPStat(248, 0);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nat regular price: three hund?\n");
+    speak(Entity.System, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nat regular price: three hund?\n");
     setPStat(117, 6);
     setDialogOwner(Entity.System);
-    setSelection(L69, L49);
-    showTextbox("Offer at regular price\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Offer at regular price" -> L69, "Let me rethink this" -> L49 }
     goto L49;
 
 L56:
@@ -481,13 +421,10 @@ L56:
     setPStat(247, 6);
     setPStat(248, 0);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred seventy bits?\n");
+    speak(Entity.System, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred seventy bits?\n");
     setPStat(117, 7);
     setDialogOwner(Entity.System);
-    setSelection(L71, L49);
-    showTextbox("drop three hund to two seventy\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "drop three hund to two seventy" -> L71, "Let me rethink this" -> L49 }
     goto L49;
 
 L57:
@@ -495,13 +432,10 @@ L57:
     setPStat(247, 6);
     setPStat(248, 0);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred forty bits?\n");
+    speak(Entity.System, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred forty bits?\n");
     setPStat(117, 8);
     setDialogOwner(Entity.System);
-    setSelection(L73, L49);
-    showTextbox("Lower three hund to two forty\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Lower three hund to two forty" -> L73, "Let me rethink this" -> L49 }
     goto L49;
 
 L58:
@@ -509,13 +443,10 @@ L58:
     setPStat(247, 6);
     setPStat(248, 0);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred ten bits?\n");
+    speak(Entity.System, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred ten bits?\n");
     setPStat(117, 9);
     setDialogOwner(Entity.System);
-    setSelection(L75, L49);
-    showTextbox("Lower three hund to two ten\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Lower three hund to two ten" -> L75, "Let me rethink this" -> L49 }
     goto L49;
 
 L59:
@@ -591,8 +522,7 @@ L76:
     goto L87;
 
 L77:
-    setDialogOwner(6);
-    showTextbox("Yeah! You gotta deal!\n");
+    speak(6, "Yeah! You gotta deal!\n");
     playSound(8, 6);
     delay(10);
     setTextboxSize(12, 3);
@@ -679,17 +609,13 @@ L90:
     goto L91;
 
 L91:
-    setDialogOwner(6);
-    showTextbox("I think it's a bit high.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Think so? Well then...\n");
+    speak(6, "I think it's a bit high.\n");
+    speak(Entity.Player, "Think so? Well then...\n");
     goto L49;
 
 L92:
-    setDialogOwner(6);
-    showTextbox("Boy! Gimme some\n<LIGHTBLUE>Medicine<WHITE>.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Uh... Welcome, you want some\n<LIGHTBLUE>Medicine<WHITE>?\n");
+    speak(6, "Boy! Gimme some\n<LIGHTBLUE>Medicine<WHITE>.\n");
+    speak(Entity.Player, "Uh... Welcome, you want some\n<LIGHTBLUE>Medicine<WHITE>?\n");
 
 L93:
     setPStat(247, 6);
@@ -697,11 +623,8 @@ L93:
     callSubroutine(28);
     setPStat(117, 6);
     setDialogOwner(Entity.System);
-    setSelection(L94, L99, L100);
-    showTextbox("Raise price\nKeep price at one thous bits\nLower price\n");
-    waitForSelectionChoice();
-    setDialogOwner(Entity.Player);
-    showTextbox("Uh, you wanted some\n<LIGHTBLUE>Medicine<WHITE>, right?\n");
+    choice { "Raise price" -> L94, "Keep price at one thous bits" -> L99, "Lower price" -> L100 }
+    speak(Entity.Player, "Uh, you wanted some\n<LIGHTBLUE>Medicine<WHITE>, right?\n");
     goto L93;
 
 L94:
@@ -710,13 +633,10 @@ L94:
     setPStat(247, 6);
     setPStat(248, 3);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor fifteen hundred bits?\n");
+    speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor fifteen hundred bits?\n");
     setPStat(117, 1);
     setDialogOwner(Entity.System);
-    setSelection(L103, L93);
-    showTextbox("Up one thous to fifteen hund\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Up one thous to fifteen hund" -> L103, "Let me rethink this" -> L93 }
     goto L93;
 
 L95:
@@ -724,13 +644,10 @@ L95:
     setPStat(247, 6);
     setPStat(248, 2);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor fourteen hundred bits?\n");
+    speak(Entity.System, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor fourteen hundred bits?\n");
     setPStat(117, 2);
     setDialogOwner(Entity.System);
-    setSelection(L105, L93);
-    showTextbox("Up one thous to fourteen hund\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Up one thous to fourteen hund" -> L105, "Let me rethink this" -> L93 }
     goto L93;
 
 L96:
@@ -738,13 +655,10 @@ L96:
     setPStat(247, 6);
     setPStat(248, 2);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor thirteen hundred bits?\n");
+    speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor thirteen hundred bits?\n");
     setPStat(117, 3);
     setDialogOwner(Entity.System);
-    setSelection(L107, L93);
-    showTextbox("Up one thous to thirteen hund\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Up one thous to thirteen hund" -> L107, "Let me rethink this" -> L93 }
     goto L93;
 
 L97:
@@ -752,13 +666,10 @@ L97:
     setPStat(247, 6);
     setPStat(248, 1);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor twelve hundred bits?\n");
+    speak(Entity.System, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor twelve hundred bits?\n");
     setPStat(117, 4);
     setDialogOwner(Entity.System);
-    setSelection(L109, L93);
-    showTextbox("Up one thous to twelve hund\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Up one thous to twelve hund" -> L109, "Let me rethink this" -> L93 }
     goto L93;
 
 L98:
@@ -766,26 +677,20 @@ L98:
     setPStat(247, 6);
     setPStat(248, 1);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor eleven hundred bits?\n");
+    speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor eleven hundred bits?\n");
     setPStat(117, 5);
     setDialogOwner(Entity.System);
-    setSelection(L111, L93);
-    showTextbox("Up one thous to eleven hund\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Up one thous to eleven hund" -> L111, "Let me rethink this" -> L93 }
     goto L93;
 
 L99:
     setPStat(247, 6);
     setPStat(248, 0);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nat regular price: one thous?\n");
+    speak(Entity.System, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nat regular price: one thous?\n");
     setPStat(117, 6);
     setDialogOwner(Entity.System);
-    setSelection(L113, L93);
-    showTextbox("Offer at regular price\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Offer at regular price" -> L113, "Let me rethink this" -> L93 }
     goto L93;
 
 L100:
@@ -794,13 +699,10 @@ L100:
     setPStat(247, 6);
     setPStat(248, 0);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor nine hundred bits?\n");
+    speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor nine hundred bits?\n");
     setPStat(117, 7);
     setDialogOwner(Entity.System);
-    setSelection(L115, L93);
-    showTextbox("Lower one thous to nine hund\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Lower one thous to nine hund" -> L115, "Let me rethink this" -> L93 }
     goto L93;
 
 L101:
@@ -808,13 +710,10 @@ L101:
     setPStat(247, 6);
     setPStat(248, 0);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor eight hundred bits?\n");
+    speak(Entity.System, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor eight hundred bits?\n");
     setPStat(117, 8);
     setDialogOwner(Entity.System);
-    setSelection(L117, L93);
-    showTextbox("Lower one thous to eight hund\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Lower one thous to eight hund" -> L117, "Let me rethink this" -> L93 }
     goto L93;
 
 L102:
@@ -822,13 +721,10 @@ L102:
     setPStat(247, 6);
     setPStat(248, 0);
     callSubroutine(28);
-    setDialogOwner(Entity.System);
-    showTextbox("How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor seven hundred bits?\n");
+    speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor seven hundred bits?\n");
     setPStat(117, 9);
     setDialogOwner(Entity.System);
-    setSelection(L119, L93);
-    showTextbox("Lower one thous to seven hund\nLet me rethink this\n");
-    waitForSelectionChoice();
+    choice { "Lower one thous to seven hund" -> L119, "Let me rethink this" -> L93 }
     goto L93;
 
 L103:
@@ -904,8 +800,7 @@ L120:
     goto L131;
 
 L121:
-    setDialogOwner(6);
-    showTextbox("Okay! I'll take it.\n");
+    speak(6, "Okay! I'll take it.\n");
     playSound(8, 6);
     delay(10);
     setTextboxSize(12, 3);
@@ -992,10 +887,8 @@ L134:
     goto L135;
 
 L135:
-    setDialogOwner(6);
-    showTextbox("You charge too much.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Really? Well then...\n");
+    speak(6, "You charge too much.\n");
+    speak(Entity.Player, "Really? Well then...\n");
     goto L93;
     garbage { 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 1f 00 7b 01 46 50 47 50 01 00 67 00 14 00 4e 06 0b fe 04 fe 00 00 4a 06 4c 00 06 fd 24 00 6e 63 19 00 0b 00 6e 22 18 00 3e 00 19 00 16 00 54 00 19 00 0b 00 6e 54 18 00 4e 00 19 00 16 00 a6 0f 16 00 fa 20 fe 00 1b 06 1a 00 82 61 82 8f 82 99 81 43 81 40 82 87 82 89 82 8d 82 8d 82 85 81 40 82 93 82 8f 82 8d 82 85 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 81 49 0d 00 00 00 1b fd 1a 00 82 76 82 85 82 8c 82 83 82 8f 82 8d 82 85 81 43 81 40 82 93 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 93 82 8f 82 8d 82 85 0d 00 01 06 82 6c 82 85 82 81 82 94 01 01 81 42 81 40 82 76 82 85 82 8c 82 8c 81 43 81 40 82 95 82 88 81 42 81 42 81 42 0d 00 00 00 1e 00 f7 06 1e 00 f8 05 64 1c 67 00 0a 00 1e 00 75 06 1b ff 10 03 cc 01 62 06 30 07 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 90 82 92 82 89 82 83 82 85 0d 00 82 6a 82 85 82 85 82 90 81 40 82 90 82 92 82 89 82 83 82 85 81 40 82 81 82 94 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 82 93 0d 00 82 6b 82 8f 82 97 82 85 82 92 81 40 82 90 82 92 82 89 82 83 82 85 0d 00 00 00 12 00 1b fd 1a 00 82 74 82 88 81 43 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 82 85 82 84 81 40 82 93 82 8f 82 8d 82 85 0d 00 01 06 82 6c 82 85 82 81 82 94 01 01 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 81 40 82 74 82 88 81 42 81 42 81 42 0d 00 00 00 16 00 ec 00 24 00 6e 04 19 00 0b 00 6e 00 18 00 c6 02 19 00 1e 00 f7 06 1e 00 f8 03 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 93 82 85 82 96 82 85 82 8e 82 94 82 99 81 40 82 86 82 89 82 96 82 85 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 01 1b ff 10 02 f0 09 ec 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 93 82 85 82 96 82 85 82 8e 82 94 82 99 81 40 82 86 82 89 82 96 82 85 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 0d 00 00 00 12 00 16 00 ec 00 19 00 0b 00 6e 01 18 00 aa 03 19 00 1e 00 f7 06 1e 00 f8 02 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 75 82 93 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 93 82 85 82 96 82 85 82 8e 82 94 82 99 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 02 1b ff 10 02 08 0a ec 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 92 82 8f 82 8d 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 93 82 85 82 96 82 85 82 8e 82 94 82 99 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 0d 00 00 00 12 00 16 00 ec 00 19 00 0b 00 6e 02 18 00 98 04 19 00 1e 00 f7 06 1e 00 f8 02 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 93 82 89 82 98 82 94 82 99 81 40 82 86 82 89 82 96 82 85 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 03 1b ff 10 02 20 0a ec 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 93 82 89 82 98 82 94 82 99 81 40 82 86 82 89 82 96 82 85 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 0d 00 00 00 12 00 16 00 ec 00 19 00 0b 00 6e 03 18 00 74 05 19 00 1e 00 f7 06 1e 00 f8 01 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 75 82 93 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 93 82 89 82 98 82 94 82 99 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 04 1b ff 10 02 38 0a ec 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 92 82 8f 82 8d 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 93 82 89 82 98 82 94 82 99 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 0d 00 00 00 12 00 16 00 ec 00 19 00 0b 00 6e 04 18 00 62 06 19 00 1e 00 f7 06 1e 00 f8 01 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 86 82 89 82 96 82 85 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 05 1b ff 10 02 50 0a ec 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 86 82 89 82 96 82 85 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 0d 00 00 00 12 00 16 00 ec 00 1e 00 f7 06 1e 00 f8 00 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 75 82 93 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 81 82 94 81 40 82 92 82 85 82 87 82 95 82 8c 82 81 82 92 81 40 82 90 82 92 82 89 82 83 82 85 81 48 0d 00 00 00 1e 00 }
 }

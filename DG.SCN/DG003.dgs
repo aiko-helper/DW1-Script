@@ -4,25 +4,24 @@
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 3) goto L1;
-    spawnItem(Item.BlueApple, 37, 33);
+    spawnItem(Item.BlueApple, x: 37, y: 33);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 29) goto L2;
-    spawnItem(Item.Digimushroom, 46, 59);
+    spawnItem(Item.Digimushroom, x: 46, y: 59);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 15) goto L3;
-    spawnItem(Item.Digimushroom, 62, 54);
+    spawnItem(Item.Digimushroom, x: 62, y: 54);
 
 L3:
     return;
 }
 
 section(5) {  // len=40
-    setDialogOwner(5);
-    showTextbox("Get away!\n");
+    speak(5, "Get away!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -31,8 +30,7 @@ section(5) {  // len=40
 }
 
 section(6) {  // len=40
-    setDialogOwner(6);
-    showTextbox("Get lost!\n");
+    speak(6, "Get lost!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -41,8 +39,7 @@ section(6) {  // len=40
 }
 
 section(8) {  // len=42
-    setDialogOwner(8);
-    showTextbox("It's mine!\n");
+    speak(8, "It's mine!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -51,8 +48,7 @@ section(8) {  // len=42
 }
 
 section(9) {  // len=40
-    setDialogOwner(9);
-    showTextbox("I got it!\n");
+    speak(9, "I got it!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -65,26 +61,22 @@ section(7) {  // len=1790
     switch (pstat[32]) { case 0: goto L1; case 1: goto L2; case 2: goto L3; case 3: goto L4; }
 
 L1:
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>? ? ? <WHITE>\n...\n");
+    speak(Entity.System, "<YELLOW>? ? ? <WHITE>\n...\n");
     addPStat(32, 1);
     goto L7;
 
 L2:
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>? ? ? <WHITE>. A flower.\n");
+    speak(Entity.System, "<YELLOW>? ? ? <WHITE>. A flower.\n");
     addPStat(32, 1);
     goto L7;
 
 L3:
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>? ? ? <WHITE>\nI'm a flower.\n");
+    speak(Entity.System, "<YELLOW>? ? ? <WHITE>\nI'm a flower.\n");
     addPStat(32, 1);
     goto L7;
 
 L4:
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>? ? ? <WHITE>\nI said I'm a flower!\nAren't you listening!?\n");
+    speak(Entity.System, "<YELLOW>? ? ? <WHITE>\nI said I'm a flower!\nAren't you listening!?\n");
     playSound(8, 12);
     look(entity: 7, at: Entity.Player);
     delay(20);
@@ -104,16 +96,13 @@ L4:
     waitForEntity(Entity.Player);
     waitForEntity(Entity.Partner);
     playSound(8, 12);
-    setDialogOwner(7);
-    showTextbox("I hate fighting.\n");
+    speak(7, "I hate fighting.\n");
     playAnimation(Entity.Player, 19);
-    setDialogOwner(Entity.Player);
-    showTextbox("In that case,\ncome to the city.\n");
+    speak(Entity.Player, "In that case,\ncome to the city.\n");
     playAnimation(Entity.Player, 19);
     showTextbox("It's peaceful there.\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(7);
-    showTextbox("The city?\n");
+    speak(7, "The city?\n");
     showTextbox("Sounds like fun.\nI'm Palmon.\nYou'll find me useful!\n");
     goto L5;
 
@@ -132,8 +121,7 @@ L6:
     setPStat(101, 0);
     moveCamera(to: Entity.Player, speed: 10);
     playSound(8, 11);
-    setDialogOwner(Entity.System);
-    showTextbox("Palmon joins the city!\n");
+    speak(Entity.System, "Palmon joins the city!\n");
     setPStat(32, 0);
     setTrigger(246);
     addPStat(1, 1);

@@ -4,27 +4,27 @@
 section onEnter(254) {  // len=132
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L1;
-    spawnItem(Item.Digimushroom, 53, 64);
+    spawnItem(Item.Digimushroom, x: 53, y: 64);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L2;
-    spawnItem(Item.Digimushroom, 56, 61);
+    spawnItem(Item.Digimushroom, x: 56, y: 61);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L3;
-    spawnItem(Item.Digimushroom, 60, 59);
+    spawnItem(Item.Digimushroom, x: 60, y: 59);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L4;
-    spawnItem(Item.Digimushroom, 63, 55);
+    spawnItem(Item.Digimushroom, x: 63, y: 55);
 
 L4:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 5) goto L5;
-    spawnItem(Item.Happymushroom, 56, 65);
+    spawnItem(Item.Happymushroom, x: 56, y: 65);
 
 L5:
     if (trigger(233) || !trigger(53)) goto L6;
@@ -38,22 +38,16 @@ section(5) {  // len=1904
     setTrigger(44);
     if (!trigger(229)) goto L1;
     playSound(8, 9);
-    setDialogOwner(5);
-    showTextbox("Did you bring something\nto treat the wound?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Wait a second. Let me see...\n");
+    speak(5, "Did you bring something\nto treat the wound?\n");
+    speak(Entity.Player, "Wait a second. Let me see...\n");
     goto L2;
 
 L1:
     playSound(8, 9);
-    setDialogOwner(5);
-    showTextbox("My wing hurts!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What happened?\n");
-    setDialogOwner(5);
-    showTextbox("I hurt my wing. Do you got\nsomething to treat my wound?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("It looks bad. Hold on.\nWhat should I do?\n");
+    speak(5, "My wing hurts!\n");
+    speak(Entity.Player, "What happened?\n");
+    speak(5, "I hurt my wing. Do you got\nsomething to treat my wound?\n");
+    speak(Entity.Player, "It looks bad. Hold on.\nWhat should I do?\n");
 
 L2:
     playAnimation(Entity.Player, 4);
@@ -61,8 +55,7 @@ L2:
     setTrigger(3);
     callSubroutine(0);
     if (!trigger(3)) goto L3;
-    setDialogOwner(Entity.Player);
-    showTextbox("I got nothing right now.\n");
+    speak(Entity.Player, "I got nothing right now.\n");
     goto L9;
 
 L3:
@@ -77,8 +70,7 @@ L4:
     goto L6;
 
 L5:
-    setDialogOwner(Entity.Player);
-    showTextbox("No good. This won't do!\n");
+    speak(Entity.Player, "No good. This won't do!\n");
     goto L9;
 
 L6:
@@ -87,23 +79,16 @@ L6:
     playAnimation(Entity.Player, 0);
     delay(5);
     playSound(8, 9);
-    setDialogOwner(5);
-    showTextbox("It's much better. Thanks.\n");
+    speak(5, "It's much better. Thanks.\n");
     playAnimation(5, 29);
     waitForEntity(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("Can you fly already?\n");
-    setDialogOwner(5);
-    showTextbox("I don't think I can fly far.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("There's a clinic in city.\nYou should go there.\nIt isn't far from here.\n");
-    setDialogOwner(5);
-    showTextbox("I heard about the city.\nIt's bigger than I thought.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Go to the city and rest.\n");
+    speak(Entity.Player, "Can you fly already?\n");
+    speak(5, "I don't think I can fly far.\n");
+    speak(Entity.Player, "There's a clinic in city.\nYou should go there.\nIt isn't far from here.\n");
+    speak(5, "I heard about the city.\nIt's bigger than I thought.\n");
+    speak(Entity.Player, "Go to the city and rest.\n");
     playSound(8, 9);
-    setDialogOwner(5);
-    showTextbox("Thanks. Maybe\nI can help you someday.\n");
+    speak(5, "Thanks. Maybe\nI can help you someday.\n");
     goto L7;
 
 L7:
@@ -121,18 +106,15 @@ L8:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 8);
-    setDialogOwner(Entity.System);
-    showTextbox("Unimon joins the city!\n");
+    speak(Entity.System, "Unimon joins the city!\n");
     setTrigger(233);
     addPStat(1, 2);
     goto L10;
 
 L9:
-    setDialogOwner(Entity.Player);
-    showTextbox("I'll bring something to cure\nyour wound. Wait for me.\n");
+    speak(Entity.Player, "I'll bring something to cure\nyour wound. Wait for me.\n");
     playSound(8, 9);
-    setDialogOwner(5);
-    showTextbox("Thanks. Please hurry!\n");
+    speak(5, "Thanks. Please hurry!\n");
     setTrigger(229);
     goto L10;
 

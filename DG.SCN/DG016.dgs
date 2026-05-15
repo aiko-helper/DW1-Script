@@ -4,20 +4,19 @@
 section onEnter(254) {  // len=46
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
-    spawnItem(Item.Digimushroom, 23, 31);
+    spawnItem(Item.Digimushroom, x: 23, y: 31);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 3) goto L2;
-    spawnItem(Item.Happymushroom, 67, 47);
+    spawnItem(Item.Happymushroom, x: 67, y: 47);
 
 L2:
     return;
 }
 
 section(5) {  // len=890
-    setDialogOwner(5);
-    showTextbox("Gruun.\n");
+    speak(5, "Gruun.\n");
     showTextbox("Gruun.ru.ru..\n");
     playAnimation(Entity.Player, 16);
     showTextbox("Something came back to life!\n");
@@ -25,25 +24,19 @@ section(5) {  // len=890
     look(entity: Entity.Player, at: Entity.Partner);
     look(entity: Entity.Partner, at: Entity.Player);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox(" ? \n");
-    setDialogOwner(5);
-    showTextbox("I used to live in the city.\nYou smell like the city.\n");
+    speak(Entity.Player, " ? \n");
+    speak(5, "I used to live in the city.\nYou smell like the city.\n");
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
     waitForEntity(Entity.Player);
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow!\n");
-    setDialogOwner(5);
-    showTextbox("It's scary. I left the city\nand lost my memory.\n");
+    speak(Entity.Player, "Wow!\n");
+    speak(5, "It's scary. I left the city\nand lost my memory.\n");
     showTextbox("But thanks to you,\nI remember everything now.\n");
     showTextbox("I'm going back to the city,\nOK?\n");
     playAnimation(Entity.Player, 19);
-    setDialogOwner(Entity.Player);
-    showTextbox("Of course. I'm sure\nthe city is now more lively\nthan before.\n");
+    speak(Entity.Player, "Of course. I'm sure\nthe city is now more lively\nthan before.\n");
     playSound(8, 4);
-    setDialogOwner(5);
-    showTextbox("Really? Alright!\nI'll try my best!\n");
+    speak(5, "Really? Alright!\nI'll try my best!\n");
     goto L1;
 
 L1:
@@ -60,8 +53,7 @@ L2:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 3);
-    setDialogOwner(Entity.System);
-    showTextbox("Betamon joins the city!\n");
+    speak(Entity.System, "Betamon joins the city!\n");
     setTrigger(204);
     addPStat(1, 1);
     moveCamera(to: Entity.Player, speed: 10);
@@ -70,8 +62,7 @@ L2:
 }
 
 section(6) {  // len=64
-    setDialogOwner(6);
-    showTextbox("This is my territory!\n");
+    speak(6, "This is my territory!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -80,8 +71,7 @@ section(6) {  // len=64
 }
 
 section(7) {  // len=58
-    setDialogOwner(7);
-    showTextbox("He he he. Alright!\n");
+    speak(7, "He he he. Alright!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -90,8 +80,7 @@ section(7) {  // len=58
 }
 
 section(8) {  // len=966
-    setDialogOwner(8);
-    showTextbox("Just watch!\n");
+    speak(8, "Just watch!\n");
     fadeOutHUD();
     delay(1);
     startBattle();

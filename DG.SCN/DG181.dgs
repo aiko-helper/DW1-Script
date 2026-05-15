@@ -14,8 +14,7 @@ section(51) {  // len=2018
     return;
 
 L1:
-    setDialogOwner(Entity.Player);
-    showTextbox("!\n");
+    speak(Entity.Player, "!\n");
     move(entity: Entity.Player, to: (-835, -37), sprint: 1, withCamera: true);
     move(entity: Entity.Partner, to: (-353, 32), sprint: 1);
     waitForEntity(Entity.Player);
@@ -26,18 +25,13 @@ L1:
     waitForEntity(Entity.Partner);
     playAnimation(5, 29);
     waitForEntity(5);
-    setDialogOwner(5);
-    showTextbox("Are you <LIGHTBLUE><PLAYER><WHITE>?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("A skelton Digimon?!\n");
-    setDialogOwner(5);
-    showTextbox("Are you <ORANGE><DIGIMON><WHITE>?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I don't feel life from him,\nbut some evil.\n");
+    speak(5, "Are you <LIGHTBLUE><PLAYER><WHITE>?\n");
+    speak(Entity.Player, "A skelton Digimon?!\n");
+    speak(5, "Are you <ORANGE><DIGIMON><WHITE>?\n");
+    speak(Entity.Player, "I don't feel life from him,\nbut some evil.\n");
     showTextbox("I wonder if he did\nsomething to Myotismon?!\n");
     playSound(8, 13);
-    setDialogOwner(5);
-    showTextbox("If you don't tell me...\nI'll attack you!\n");
+    speak(5, "If you don't tell me...\nI'll attack you!\n");
     setTrigger(1);
     setPStat(250, 1);
     setPStat(251, 5);
@@ -49,15 +43,13 @@ L1:
     unsetTrigger(1);
     setPStat(250, 0);
     setTrigger(345);
-    setDialogOwner(5);
-    showTextbox("I'll attack you!\n");
+    speak(5, "I'll attack you!\n");
     playSound(8, 9);
     playAnimation(5, 28);
     delay(60);
     unloadEntity(5);
     rotate(entity: Entity.Player, to: 3072);
-    setDialogOwner(Entity.Player);
-    showTextbox("I gotta save Myotismon\nas soon as possible!\n");
+    speak(Entity.Player, "I gotta save Myotismon\nas soon as possible!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;

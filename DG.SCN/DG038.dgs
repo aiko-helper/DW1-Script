@@ -4,30 +4,29 @@
 section onEnter(254) {  // len=90
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
-    spawnItem(Item.Digimushroom, 49, 64);
+    spawnItem(Item.Digimushroom, x: 49, y: 64);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L2;
-    spawnItem(Item.Digimushroom, 19, 31);
+    spawnItem(Item.Digimushroom, x: 19, y: 31);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 4) goto L3;
-    spawnItem(Item.Pricklypear, 20, 9);
+    spawnItem(Item.Pricklypear, x: 20, y: 9);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 0) goto L4;
-    spawnItem(Item.DeluxeMushroom, 69, 16);
+    spawnItem(Item.DeluxeMushroom, x: 69, y: 16);
 
 L4:
     return;
 }
 
 section(5) {  // len=62
-    setDialogOwner(5);
-    showTextbox("Would you stop that?\n");
+    speak(5, "Would you stop that?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -36,8 +35,7 @@ section(5) {  // len=62
 }
 
 section(6) {  // len=48
-    setDialogOwner(6);
-    showTextbox("Shuha, shuha!\n");
+    speak(6, "Shuha, shuha!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -46,8 +44,7 @@ section(6) {  // len=48
 }
 
 section(7) {  // len=34
-    setDialogOwner(7);
-    showTextbox("Swish!\n");
+    speak(7, "Swish!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -56,8 +53,7 @@ section(7) {  // len=34
 }
 
 section(8) {  // len=64
-    setDialogOwner(8);
-    showTextbox("Let's battle full on!\n");
+    speak(8, "Let's battle full on!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -66,8 +62,7 @@ section(8) {  // len=64
 }
 
 section(9) {  // len=66
-    setDialogOwner(9);
-    showTextbox("Whatcha talking about?\n");
+    speak(9, "Whatcha talking about?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -76,20 +71,16 @@ section(9) {  // len=66
 }
 
 section(81) {  // len=54
-    setDialogOwner(Entity.System);
-    showTextbox("North West: Freezeland\n");
+    speak(Entity.System, "North West: Freezeland\n");
     return;
 }
 
 section(82) {  // len=388
     rotate(entity: Entity.Player, to: 2048);
     delay(5);
-    setDialogOwner(Entity.System);
-    showTextbox("Elevator\n");
+    speak(Entity.System, "Elevator\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L2, L5);
-    showTextbox("Press UP\nPress DOWN\nDon't get on\n");
-    waitForSelectionChoice();
+    choice { "Press UP" -> L1, "Press DOWN" -> L2, "Don't get on" -> L5 }
     goto L5;
     return;
 
@@ -122,8 +113,7 @@ L1:
 L2:
     fadeOutHUD();
     if (trigger(155)) goto L3;
-    setDialogOwner(Entity.Player);
-    showTextbox("What?\n");
+    speak(Entity.Player, "What?\n");
     showTextbox("Nothing happens.\n");
     return;
     goto L4;

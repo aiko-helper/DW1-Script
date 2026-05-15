@@ -4,12 +4,12 @@
 section onEnter(254) {  // len=50
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
-    spawnItem(Item.Digimushroom, 48, 68);
+    spawnItem(Item.Digimushroom, x: 48, y: 68);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 3) goto L2;
-    spawnItem(Item.Pricklypear, 76, 49);
+    spawnItem(Item.Pricklypear, x: 76, y: 49);
 
 L2:
     unsetTrigger(98);
@@ -17,8 +17,7 @@ L2:
 }
 
 section(5) {  // len=30
-    setDialogOwner(5);
-    showTextbox("Daa!\n");
+    speak(5, "Daa!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -27,8 +26,7 @@ section(5) {  // len=30
 }
 
 section(6) {  // len=30
-    setDialogOwner(6);
-    showTextbox("Haa!\n");
+    speak(6, "Haa!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -37,8 +35,7 @@ section(6) {  // len=30
 }
 
 section(7) {  // len=36
-    setDialogOwner(7);
-    showTextbox("Gghhee!\n");
+    speak(7, "Gghhee!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -49,8 +46,7 @@ section(7) {  // len=36
 section(81) {  // len=190
     rotate(entity: Entity.Player, to: 1944);
     waitForEntity(Entity.Player);
-    setDialogOwner(Entity.System);
-    showTextbox("East: Elevator\nWest: Danger, Cliff\n");
+    speak(Entity.System, "East: Elevator\nWest: Danger, Cliff\n");
     if (!trigger(54)) goto L1;
     return;
 
@@ -74,8 +70,7 @@ section(53) {  // len=486
     if (trigger(143) || trigger(141)) goto L1;
     setTrigger(143);
     setTrigger(141);
-    setDialogOwner(Entity.Player);
-    showTextbox("What?\n");
+    speak(Entity.Player, "What?\n");
     move(entity: Entity.Player, to: (-1048, -498), sprint: 0, withCamera: true);
     delay(20);
     move(entity: Entity.Partner, to: (-1048, -498), sprint: 0);
@@ -92,8 +87,7 @@ section(53) {  // len=486
     look(entity: Entity.Player, at: Entity.Partner);
     delay(20);
     rotate(entity: Entity.Player, to: 1000);
-    setDialogOwner(Entity.Player);
-    showTextbox("I felt the ground move.\nWas it my imagination?\n");
+    speak(Entity.Player, "I felt the ground move.\nWas it my imagination?\n");
 
 L1:
     if (trigger(143) || !trigger(141)) goto L2;
@@ -115,8 +109,7 @@ L1:
     delay(20);
     rotate(entity: Entity.Player, to: 1000);
     playSound(8, 8);
-    setDialogOwner(Entity.Player);
-    showTextbox("What? No way!\n");
+    speak(Entity.Player, "What? No way!\n");
     look(entity: Entity.Player, at: Entity.Partner);
     look(entity: Entity.Partner, at: Entity.Player);
     setPStat(247, 2);
@@ -139,8 +132,7 @@ L1:
     move(entity: Entity.Player, axis: 1, to: 5000, speed: 5);
     playSound(8, 0);
     setTexboxMode(2, 20);
-    setDialogOwner(Entity.System);
-    showTextbox("<LIGHTBLUE><PLAYER><WHITE>Wow!!\n");
+    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE>Wow!!\n");
     warp(to: Map.GCAN07, spawn: 1, trigger: 51);
     return;
 
@@ -156,8 +148,7 @@ section(54) {  // len=6
 section(82) {  // len=54
     rotate(entity: Entity.Player, to: 1944);
     waitForEntity(Entity.Player);
-    setDialogOwner(Entity.System);
-    showTextbox("Beware of cave-ins!\n");
+    speak(Entity.System, "Beware of cave-ins!\n");
     return;
 }
 
@@ -177,8 +168,7 @@ L3:
     rotate(entity: Entity.Player, to: 1944);
     moveCamera(to: (2000, 173), slowdown: 30);
     waitForEntity(200);
-    setDialogOwner(Entity.Player);
-    showTextbox("I heard this road is where\nthe bandits attack.\n");
+    speak(Entity.Player, "I heard this road is where\nthe bandits attack.\n");
     showTextbox("Let's go, <ORANGE><DIGIMON><WHITE>.\n");
     move(entity: Entity.Player, to: (1925, 468), sprint: 0);
     move(entity: Entity.Partner, to: (1925, 78), sprint: 0);
@@ -189,13 +179,10 @@ L3:
     setDigimon(Digimon.NPCOgremon, 3, 0);
     setDigimon(Digimon.Agumon, 4, 0);
     setDigimon(Digimon.Agumon, 5, 0);
-    setDialogOwner(9);
-    showTextbox("You-hoo!\n");
+    speak(9, "You-hoo!\n");
     playSound(8, 11);
-    setDialogOwner(8);
-    showTextbox("Ha ha!\n");
-    setDialogOwner(10);
-    showTextbox("Yaa-hoo!\n");
+    speak(8, "Ha ha!\n");
+    speak(10, "Yaa-hoo!\n");
     delay(10);
     playSound(8, 1);
     playAnimation(8, 31);
@@ -210,19 +197,13 @@ L3:
     look(entity: Entity.Partner, at: 9);
     delay(10);
     playSound(8, 11);
-    setDialogOwner(8);
-    showTextbox("Give up and leave your stuff!\nOr else!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("No, you give up!\n");
-    setDialogOwner(8);
-    showTextbox("What?! You...?\n");
-    setDialogOwner(8);
-    showTextbox("It can't be.\n");
-    setDialogOwner(9);
-    showTextbox("Boss, what'll we do?\n");
+    speak(8, "Give up and leave your stuff!\nOr else!\n");
+    speak(Entity.Player, "No, you give up!\n");
+    speak(8, "What?! You...?\n");
+    speak(8, "It can't be.\n");
+    speak(9, "Boss, what'll we do?\n");
     look(entity: 9, at: 8);
-    setDialogOwner(8);
-    showTextbox("Don't worry, we're stronger\nand there's more of us.\nGo get'um!\n");
+    speak(8, "Don't worry, we're stronger\nand there's more of us.\nGo get'um!\n");
     look(entity: 8, at: 9);
     setTrigger(1);
     setPStat(250, 1);
@@ -243,13 +224,11 @@ L3:
     waitForEntity(10);
     unloadEntity(9);
     unloadEntity(10);
-    setDialogOwner(8);
-    showTextbox("I'll get even with\nyou someday!\n");
+    speak(8, "I'll get even with\nyou someday!\n");
     move(entity: 8, to: (1650, 2350), sprint: 1);
     waitForEntity(8);
     unloadEntity(8);
-    setDialogOwner(Entity.Player);
-    showTextbox("Look at them go! They won't\nbe back for a while.\n");
+    speak(Entity.Player, "Look at them go! They won't\nbe back for a while.\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     setTrigger(198);

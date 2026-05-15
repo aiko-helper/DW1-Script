@@ -24,8 +24,7 @@ section(52) {  // len=14
 }
 
 section(5) {  // len=30
-    setDialogOwner(5);
-    showTextbox("Taaa\n");
+    speak(5, "Taaa\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -34,8 +33,7 @@ section(5) {  // len=30
 }
 
 section(6) {  // len=74
-    setDialogOwner(6);
-    showTextbox("Let's ask for forgiveness.\n");
+    speak(6, "Let's ask for forgiveness.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -44,8 +42,7 @@ section(6) {  // len=74
 }
 
 section(7) {  // len=78
-    setDialogOwner(7);
-    showTextbox("Forgiveness heals the heart.\n");
+    speak(7, "Forgiveness heals the heart.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -54,8 +51,7 @@ section(7) {  // len=78
 }
 
 section(8) {  // len=48
-    setDialogOwner(8);
-    showTextbox("Are you evil?\n");
+    speak(8, "Are you evil?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -64,8 +60,7 @@ section(8) {  // len=48
 }
 
 section(9) {  // len=58
-    setDialogOwner(9);
-    showTextbox("Follow me. Then...\n");
+    speak(9, "Follow me. Then...\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -78,15 +73,12 @@ section(53) {  // len=1660
     return;
 
 L1:
-    setDialogOwner(10);
-    showTextbox("Ha ha ha!\n");
+    speak(10, "Ha ha ha!\n");
     playAnimation(10, 28);
     move(entity: 10, axis: 1, to: 0, speed: 20);
     delay(60);
-    setDialogOwner(Entity.Player);
-    showTextbox("You!\n");
-    setDialogOwner(10);
-    showTextbox("You will lose!\n");
+    speak(Entity.Player, "You!\n");
+    speak(10, "You will lose!\n");
     setTrigger(1);
     setPStat(250, 1);
     setPStat(251, 10);
@@ -100,14 +92,10 @@ L1:
     look(entity: Entity.Player, at: 10);
     look(entity: 10, at: Entity.Player);
     look(entity: Entity.Partner, at: 10);
-    setDialogOwner(10);
-    showTextbox("I can't believe I was\nbrain washed by him.\n");
-    setDialogOwner(10);
-    showTextbox("He's strong.\nCan you defeat him?\nWhy are you doing this?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I'll fight for the island\nLet's settle this now.\n");
-    setDialogOwner(10);
-    showTextbox("We don't want a ruler,\nyou're our only hope.\n");
+    speak(10, "I can't believe I was\nbrain washed by him.\n");
+    speak(10, "He's strong.\nCan you defeat him?\nWhy are you doing this?\n");
+    speak(Entity.Player, "I'll fight for the island\nLet's settle this now.\n");
+    speak(10, "We don't want a ruler,\nyou're our only hope.\n");
     goto L2;
 
 L2:

@@ -24,8 +24,7 @@ section(81) {  // len=3482
     waitForEntity(200);
     if (trigger(90)) goto L1;
     setTrigger(90);
-    setDialogOwner(5);
-    showTextbox("You're here, <LIGHTBLUE><PLAYER><WHITE>!\n");
+    speak(5, "You're here, <LIGHTBLUE><PLAYER><WHITE>!\n");
     showTextbox("We are treasure hunters.\nWe find underground treasure\nusing our digging skills.\n");
     showTextbox("Trust me to find treasure.\n");
     return;
@@ -37,38 +36,28 @@ L1:
     goto L11;
 
 L2:
-    setDialogOwner(5);
-    showTextbox("Do you want me to find\nsomething? Do you want me to\nexplain how we do it?\n");
+    speak(5, "Do you want me to find\nsomething? Do you want me to\nexplain how we do it?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L3, L4, L5);
-    showTextbox("Explain\nDon't explain\nNever mind\n");
-    waitForSelectionChoice();
+    choice { "Explain" -> L3, "Don't explain" -> L4, "Never mind" -> L5 }
     goto L5;
 
 L3:
-    setDialogOwner(5);
-    showTextbox("We have two plans with\ndifferent days and prices.\n");
+    speak(5, "We have two plans with\ndifferent days and prices.\n");
     showTextbox("Reg:three day, one thous bits\nSpec:ten day, five thous bits\n");
     showTextbox("The chances of finding\nbetter treasure is higher\nwith Special Plan.\n");
     showTextbox("That's about it.\nWhat do you want to do?\n");
     setDialogOwner(5);
-    setSelection(L4, L3, L5);
-    showTextbox("Find treasure\nExplain again\nNever mind\n");
-    waitForSelectionChoice();
+    choice { "Find treasure" -> L4, "Explain again" -> L3, "Never mind" -> L5 }
     goto L5;
 
 L4:
-    setDialogOwner(5);
-    showTextbox("Choose a plan!\n");
+    speak(5, "Choose a plan!\n");
     setDialogOwner(Entity.Player);
-    setSelection(L6, L8, L5);
-    showTextbox("Reg:three day, one thous bits\nSpec:ten day, five thous bits\nCancel\n");
-    waitForSelectionChoice();
+    choice { "Reg:three day, one thous bits" -> L6, "Spec:ten day, five thous bits" -> L8, "Cancel" -> L5 }
     goto L5;
 
 L5:
-    setDialogOwner(5);
-    showTextbox("OK then, good bye.\n");
+    speak(5, "OK then, good bye.\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
@@ -81,8 +70,7 @@ L7:
     reduceMoney(1000);
     setTrigger(178);
     setPStat(30, 0);
-    setDialogOwner(5);
-    showTextbox("You'll get our results in\nthree days. Wish me luck.\n");
+    speak(5, "You'll get our results in\nthree days. Wish me luck.\n");
     roll(pstat: 22, max: 49);
     move(entity: 5, to: (169, 2232), sprint: 1);
     waitForEntity(5);
@@ -98,8 +86,7 @@ L9:
     reduceMoney(5000);
     setTrigger(179);
     setPStat(30, 0);
-    setDialogOwner(5);
-    showTextbox("You'll get our results in\nten days. Wish me luck.\n");
+    speak(5, "You'll get our results in\nten days. Wish me luck.\n");
     roll(pstat: 23, max: 49);
     move(entity: 5, to: (169, 2232), sprint: 1);
     waitForEntity(5);
@@ -108,8 +95,7 @@ L9:
     return;
 
 L10:
-    setDialogOwner(5);
-    showTextbox("You don't have enough bits.\nI need money to\nfind treasure.\n");
+    speak(5, "You don't have enough bits.\nI need money to\nfind treasure.\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
@@ -128,8 +114,7 @@ L13:
 L14:
     move(entity: 5, to: (180, 840), sprint: 1);
     waitForEntity(5);
-    setDialogOwner(5);
-    showTextbox("I'm looking for treasure\nright now. Please be patient.\n");
+    speak(5, "I'm looking for treasure\nright now. Please be patient.\n");
     move(entity: 5, to: (169, 2232), sprint: 1);
     waitForEntity(5);
     moveCamera(to: Entity.Player, speed: 10);
@@ -137,8 +122,7 @@ L14:
     return;
 
 L15:
-    setDialogOwner(5);
-    showTextbox("You know what?\nWe've got some treasure.\n");
+    speak(5, "You know what?\nWe've got some treasure.\n");
     if (!trigger(178)) goto L16;
     goto L17;
 
@@ -297,15 +281,13 @@ L41:
 
 L42:
     if (!trigger(0)) goto L43;
-    setDialogOwner(5);
-    showTextbox("Empty your stuff!\n");
+    speak(5, "Empty your stuff!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
 
 L43:
-    setDialogOwner(Entity.System);
-    showTextbox("I got a <LIGHTBLUE><TREASURE ITEM><WHITE>!\n");
+    speak(Entity.System, "I got a <LIGHTBLUE><TREASURE ITEM><WHITE>!\n");
     unsetTrigger(178);
     unsetTrigger(179);
     goto L69;
@@ -459,16 +441,14 @@ L68:
     goto L42;
 
 L69:
-    setDialogOwner(5);
-    showTextbox("Thank you for coming!\n");
+    speak(5, "Thank you for coming!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
 }
 
 section(6) {  // len=226
-    setDialogOwner(6);
-    showTextbox("Thanks for your business,\n<LIGHTBLUE><PLAYER><WHITE>!\n");
+    speak(6, "Thanks for your business,\n<LIGHTBLUE><PLAYER><WHITE>!\n");
     showTextbox("I just started to assist\nDrimogemon. I'm really good\nat looking for things.\n");
     return;
 }

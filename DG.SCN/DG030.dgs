@@ -33,22 +33,17 @@ L2:
     return;
 
 L3:
-    setDialogOwner(5);
-    showTextbox("Shoot! We hit a big rock!\n");
+    speak(5, "Shoot! We hit a big rock!\n");
     showTextbox("I can't drill thru.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("You can't? Oh no!\n");
-    setDialogOwner(5);
-    showTextbox("We gotta figure out how to\nmove it. Can you do it?\n");
+    speak(Entity.Player, "You can't? Oh no!\n");
+    speak(5, "We gotta figure out how to\nmove it. Can you do it?\n");
     playAnimation(Entity.Player, 19);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("I don't know.\n");
+    speak(Entity.Player, "I don't know.\n");
     look(entity: Entity.Player, at: Entity.Partner);
     playAnimation(Entity.Player, 14);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("<ORANGE><DIGIMON><WHITE>,\nI need your help.\n");
+    speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>,\nI need your help.\n");
     move(entity: Entity.Partner, to: (-337, 170), sprint: 0);
     look(entity: Entity.Player, at: Entity.Partner);
     waitForEntity(Entity.Partner);
@@ -124,28 +119,22 @@ L7:
     playAnimation(Entity.Partner, 0);
     delay(5);
     setObjectVisibility(0, 1);
-    setDialogOwner(Entity.Player);
-    showTextbox("We did it!\n");
-    setDialogOwner(5);
-    showTextbox("Wow, amazing power!\nWe moved the rock!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I think it's empty past\nthis point.\n");
+    speak(Entity.Player, "We did it!\n");
+    speak(5, "Wow, amazing power!\nWe moved the rock!\n");
+    speak(Entity.Player, "I think it's empty past\nthis point.\n");
     rotate(entity: Entity.Player, to: 2000);
     move(entity: Entity.Player, to: (-131, 1250), sprint: 0);
     waitForEntity(Entity.Player);
     rotate(entity: Entity.Player, to: 2000);
-    setDialogOwner(Entity.Player);
-    showTextbox("It's a lava river!\nIt's dangerous!\n");
+    speak(Entity.Player, "It's a lava river!\nIt's dangerous!\n");
     showTextbox("There's a path along\nthe river. Let's go!\n");
-    setDialogOwner(5);
-    showTextbox("Are you going inside?\nBe careful!\n");
+    speak(5, "Are you going inside?\nBe careful!\n");
     setTrigger(120);
     warp(to: Map.TUNN07, spawn: 0, trigger: 255);
     return;
 
 L8:
-    setDialogOwner(5);
-    showTextbox("Are you going inside?\nBe careful!\n");
+    speak(5, "Are you going inside?\nBe careful!\n");
     return;
 
 L9:
@@ -154,8 +143,7 @@ L9:
     delay(20);
     playAnimation(Entity.Partner, 1);
     delay(30);
-    setDialogOwner(5);
-    showTextbox("Come back <ORANGE><DIGIMON><WHITE>\nwhen you grow more.\n");
+    speak(5, "Come back <ORANGE><DIGIMON><WHITE>\nwhen you grow more.\n");
     move(entity: Entity.Player, to: (-337, 0), sprint: 0);
     waitForEntity(Entity.Player);
     return;

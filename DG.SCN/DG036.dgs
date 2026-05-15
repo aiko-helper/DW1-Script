@@ -4,30 +4,29 @@
 section onEnter(254) {  // len=90
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
-    spawnItem(Item.Digimushroom, 36, 68);
+    spawnItem(Item.Digimushroom, x: 36, y: 68);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 5) goto L2;
-    spawnItem(Item.Digimushroom, 83, 78);
+    spawnItem(Item.Digimushroom, x: 83, y: 78);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L3;
-    spawnItem(Item.Digimushroom, 25, 17);
+    spawnItem(Item.Digimushroom, x: 25, y: 17);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 2) goto L4;
-    spawnItem(Item.Happymushroom, 78, 60);
+    spawnItem(Item.Happymushroom, x: 78, y: 60);
 
 L4:
     return;
 }
 
 section(5) {  // len=30
-    setDialogOwner(5);
-    showTextbox("Hey!\n");
+    speak(5, "Hey!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -36,8 +35,7 @@ section(5) {  // len=30
 }
 
 section(6) {  // len=58
-    setDialogOwner(6);
-    showTextbox("Don't make me mad!\n");
+    speak(6, "Don't make me mad!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -46,8 +44,7 @@ section(6) {  // len=58
 }
 
 section(7) {  // len=70
-    setDialogOwner(7);
-    showTextbox("You think that's funny?!\n");
+    speak(7, "You think that's funny?!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -56,8 +53,7 @@ section(7) {  // len=70
 }
 
 section(8) {  // len=70
-    setDialogOwner(8);
-    showTextbox("Come on let's go for it!\n");
+    speak(8, "Come on let's go for it!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -69,8 +65,7 @@ section(51) {  // len=86
     if (trigger(124)) goto L1;
     playAnimation(Entity.Player, 15);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh no, it's dangerous!\n");
+    speak(Entity.Player, "Oh no, it's dangerous!\n");
     move(entity: Entity.Player, to: (73, 971), sprint: 1, withCamera: true);
     waitForEntity(Entity.Player);
 
@@ -82,8 +77,7 @@ section(52) {  // len=86
     if (trigger(124)) goto L1;
     playAnimation(Entity.Player, 15);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh no, it's dangerous!\n");
+    speak(Entity.Player, "Oh no, it's dangerous!\n");
     move(entity: Entity.Player, to: (-782, 1580), sprint: 1, withCamera: true);
     waitForEntity(Entity.Player);
 
@@ -95,8 +89,7 @@ section(53) {  // len=1522
     if (trigger(124)) goto L1;
     playAnimation(Entity.Player, 15);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh no, it's dangerous!\n");
+    speak(Entity.Player, "Oh no, it's dangerous!\n");
     move(entity: Entity.Player, to: (856, 1137), sprint: 1, withCamera: true);
     waitForEntity(Entity.Player);
     moveCamera(to: Entity.Player, speed: 10);
@@ -108,18 +101,15 @@ L1:
     delay(10);
     playAnimation(Entity.Player, 24);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("Is there really an\ninvisible bridge here?\n");
+    speak(Entity.Player, "Is there really an\ninvisible bridge here?\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(Entity.Player);
-    showTextbox("What?\n");
+    speak(Entity.Player, "What?\n");
     move(entity: Entity.Player, to: (66, 3240), sprint: 0, withCamera: true);
     delay(20);
     move(entity: Entity.Partner, to: (30, 2646), sprint: 0);
     waitForEntity(Entity.Player);
     waitForEntity(Entity.Partner);
-    setDialogOwner(Entity.Player);
-    showTextbox("Hey, I can walk over this!\n");
+    speak(Entity.Player, "Hey, I can walk over this!\n");
     setTrigger(103);
 
 L2:

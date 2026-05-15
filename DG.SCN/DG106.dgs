@@ -4,17 +4,17 @@
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 19) goto L1;
-    spawnItem(Item.Digimushroom, 61, 54);
+    spawnItem(Item.Digimushroom, x: 61, y: 54);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 4) goto L2;
-    spawnItem(Item.Happymushroom, 39, 46);
+    spawnItem(Item.Happymushroom, x: 39, y: 46);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L3;
-    spawnItem(Item.Digimushroom, 55, 63);
+    spawnItem(Item.Digimushroom, x: 55, y: 63);
 
 L3:
     return;
@@ -22,40 +22,31 @@ L3:
 
 section(81) {  // len=72
     rotate(entity: Entity.Player, to: 1536);
-    setDialogOwner(Entity.System);
-    showTextbox("Rockslide blocked the road...\n");
+    speak(Entity.System, "Rockslide blocked the road...\n");
     return;
 }
 
 section(5) {  // len=68
-    setDialogOwner(5);
-    showTextbox("Battle test!\n");
+    speak(5, "Battle test!\n");
     showTextbox("Just kidding.\n");
     unloadEntity(5);
     return;
 }
 
 section(6) {  // len=1820
-    setDialogOwner(6);
-    showTextbox("I'm called Mr. Handy!\nWhat can I do for you?\n");
+    speak(6, "I'm called Mr. Handy!\nWhat can I do for you?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L2, L14);
-    showTextbox("Change Parameters\nFast forward time\nMaster all Techniques\n");
-    waitForSelectionChoice();
+    choice { "Change Parameters" -> L1, "Fast forward time" -> L2, "Master all Techniques" -> L14 }
     return;
 
 L1:
     setDialogOwner(Entity.Player);
-    setSelection(L6, L10, L15);
-    showTextbox("Increase\nDecrease\nReset ability level\n");
-    waitForSelectionChoice();
+    choice { "Increase" -> L6, "Decrease" -> L10, "Reset ability level" -> L15 }
     return;
 
 L2:
     setDialogOwner(Entity.Player);
-    setSelection(L3, L4, L5);
-    showTextbox("Fast forward one hour\nFast forward six hours\nFast forward one day\n");
-    waitForSelectionChoice();
+    choice { "Fast forward one hour" -> L3, "Fast forward six hours" -> L4, "Fast forward one day" -> L5 }
     return;
 
 L3:
@@ -78,9 +69,7 @@ L5:
 
 L6:
     setDialogOwner(Entity.Player);
-    setSelection(L7, L8, L9);
-    showTextbox("Add fifty\nAdd one hundred\nAdd two hundred\n");
-    waitForSelectionChoice();
+    choice { "Add fifty" -> L7, "Add one hundred" -> L8, "Add two hundred" -> L9 }
     return;
 
 L7:
@@ -100,9 +89,7 @@ L9:
 
 L10:
     setDialogOwner(Entity.Player);
-    setSelection(L11, L12, L13);
-    showTextbox("Minus fifty\nMinus one hundred\nMinus two hundred\n");
-    waitForSelectionChoice();
+    choice { "Minus fifty" -> L11, "Minus one hundred" -> L12, "Minus two hundred" -> L13 }
     return;
 
 L11:
@@ -121,62 +108,7 @@ L13:
     return;
 
 L14:
-    learnMove(Move.FireTower);
-    learnMove(Move.ProminenceBeam);
-    learnMove(Move.SpitFire);
-    learnMove(Move.RedInferno);
-    learnMove(Move.MagmaBomb);
-    learnMove(Move.HeatLaser);
-    learnMove(Move.InifinityBurn);
-    learnMove(Move.Meltdown);
-    learnMove(Move.ThunderJustice);
-    learnMove(Move.SpinningShot);
-    learnMove(Move.ElectricCloud);
-    learnMove(Move.MegaloSpark);
-    learnMove(Move.StaticElect);
-    learnMove(Move.WindCutter);
-    learnMove(Move.ConfusedStorm);
-    learnMove(Move.Hurricane);
-    learnMove(Move.GigaFreeze);
-    learnMove(Move.IceStatue);
-    learnMove(Move.WinterBlast);
-    learnMove(Move.IceNeedle);
-    learnMove(Move.WaterBlit);
-    learnMove(Move.AquaMagic);
-    learnMove(Move.AuroraFreeze);
-    learnMove(Move.TearDrop);
-    learnMove(Move.PowerCrane);
-    learnMove(Move.AllRangeBeam);
-    learnMove(Move.MetalSprinter);
-    learnMove(Move.PulseLaser);
-    learnMove(Move.DeleteProgram);
-    learnMove(Move.DGDimension);
-    learnMove(Move.FullPotential);
-    learnMove(Move.ReverseProg);
-    learnMove(Move.PoisonPowder);
-    learnMove(Move.MassMorph);
-    learnMove(Move.InsectPlague);
-    learnMove(Move.CharmPerfume);
-    learnMove(Move.PoisonClaw);
-    learnMove(Move.DangerSting);
-    learnMove(Move.GreenTrap);
-    learnMove(Move.MuscleCharge);
-    learnMove(Move.SonicJab);
-    learnMove(Move.DynamiteKick);
-    learnMove(Move.MegatonPunch);
-    learnMove(Move.BusterDive);
-    learnMove(Move.OdorSpray);
-    learnMove(Move.PoopSpdToss);
-    learnMove(Move.BigPoopToss);
-    learnMove(Move.BigRndToss);
-    learnMove(Move.RndSpdToss);
-    learnMove(Move.HorizontalKick);
-    learnMove(Move.UltPoopHell);
-    learnMove(Move.BlazeBlast);
-    learnMove(Move.PepperBreath);
-    learnMove(Move.LovelyAttack);
-    learnMove(Move.Fireball);
-    learnMove(Move.DeathClaw);
+    learnMoves([Move.FireTower, Move.ProminenceBeam, Move.SpitFire, Move.RedInferno, Move.MagmaBomb, Move.HeatLaser, Move.InifinityBurn, Move.Meltdown, Move.ThunderJustice, Move.SpinningShot, Move.ElectricCloud, Move.MegaloSpark, Move.StaticElect, Move.WindCutter, Move.ConfusedStorm, Move.Hurricane, Move.GigaFreeze, Move.IceStatue, Move.WinterBlast, Move.IceNeedle, Move.WaterBlit, Move.AquaMagic, Move.AuroraFreeze, Move.TearDrop, Move.PowerCrane, Move.AllRangeBeam, Move.MetalSprinter, Move.PulseLaser, Move.DeleteProgram, Move.DGDimension, Move.FullPotential, Move.ReverseProg, Move.PoisonPowder, Move.MassMorph, Move.InsectPlague, Move.CharmPerfume, Move.PoisonClaw, Move.DangerSting, Move.GreenTrap, Move.MuscleCharge, Move.SonicJab, Move.DynamiteKick, Move.MegatonPunch, Move.BusterDive, Move.OdorSpray, Move.PoopSpdToss, Move.BigPoopToss, Move.BigRndToss, Move.RndSpdToss, Move.HorizontalKick, Move.UltPoopHell, Move.BlazeBlast, Move.PepperBreath, Move.LovelyAttack, Move.Fireball, Move.DeathClaw]);
     goto L1;
     return;
 

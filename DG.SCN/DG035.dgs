@@ -4,34 +4,33 @@
 section onEnter(254) {  // len=112
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
-    spawnItem(Item.Digimushroom, 56, 78);
+    spawnItem(Item.Digimushroom, x: 56, y: 78);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 19) goto L2;
-    spawnItem(Item.Digimushroom, 24, 44);
+    spawnItem(Item.Digimushroom, x: 24, y: 44);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 4) goto L3;
-    spawnItem(Item.SuperVeggy, 36, 24);
+    spawnItem(Item.SuperVeggy, x: 36, y: 24);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 2) goto L4;
-    spawnItem(Item.Happymushroom, 79, 6);
+    spawnItem(Item.Happymushroom, x: 79, y: 6);
 
 L4:
     if (!trigger(348) || trigger(128)) goto L5;
-    spawnItem(Item.Steak, 48, 32);
+    spawnItem(Item.Steak, x: 48, y: 32);
 
 L5:
     return;
 }
 
 section(6) {  // len=58
-    setDialogOwner(6);
-    showTextbox("Ha! You're scared.\n");
+    speak(6, "Ha! You're scared.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -40,8 +39,7 @@ section(6) {  // len=58
 }
 
 section(7) {  // len=64
-    setDialogOwner(7);
-    showTextbox("You'd better go home!\n");
+    speak(7, "You'd better go home!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -50,8 +48,7 @@ section(7) {  // len=64
 }
 
 section(8) {  // len=92
-    setDialogOwner(8);
-    showTextbox("Once you go in,\nyou can't come out.\n");
+    speak(8, "Once you go in,\nyou can't come out.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -60,8 +57,7 @@ section(8) {  // len=92
 }
 
 section(9) {  // len=40
-    setDialogOwner(9);
-    showTextbox("Heh, heh!\n");
+    speak(9, "Heh, heh!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -70,8 +66,7 @@ section(9) {  // len=40
 }
 
 section(10) {  // len=32
-    setDialogOwner(10);
-    showTextbox("Wait.\n");
+    speak(10, "Wait.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -80,8 +75,7 @@ section(10) {  // len=32
 }
 
 section(11) {  // len=62
-    setDialogOwner(11);
-    showTextbox("You'll be possessed.\n");
+    speak(11, "You'll be possessed.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -93,11 +87,9 @@ section(5) {  // len=684
     playAnimation(5, 11);
     delay(50);
     playAnimation(5, 0);
-    setDialogOwner(5);
-    showTextbox("Bakke-bakke?\n");
+    speak(5, "Bakke-bakke?\n");
     playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    showTextbox("Looks like he's\nasking something.\n");
+    speak(Entity.Player, "Looks like he's\nasking something.\n");
     setTrigger(49);
     setSelection(L1, L6);
     showTextbox("?...Yes\n?...No\n");
@@ -106,8 +98,7 @@ L1:
     playAnimation(5, 11);
     delay(45);
     playAnimation(5, 0);
-    setDialogOwner(5);
-    showTextbox("Bakke! Bakke bakke?\n");
+    speak(5, "Bakke! Bakke bakke?\n");
     setDialogOwner(Entity.Player);
     setSelection(L2, L6);
     showTextbox("Yes\nNo\n");
@@ -117,8 +108,7 @@ L2:
     delay(58);
     playAnimation(5, 0);
     playAnimation(Entity.Player, 15);
-    setDialogOwner(5);
-    showTextbox("Bakkeee...bakke bakke?\n");
+    speak(5, "Bakkeee...bakke bakke?\n");
     playAnimation(Entity.Player, 16);
     setDialogOwner(Entity.Player);
     setSelection(L6, L3);
@@ -128,8 +118,7 @@ L3:
     playAnimation(5, 13);
     delay(34);
     playAnimation(5, 13);
-    setDialogOwner(5);
-    showTextbox("Bakke bakke!\nBakkeee bakke bakkeee!\n");
+    speak(5, "Bakke bakke!\nBakkeee bakke bakkeee!\n");
     goto L4;
 
 L4:
@@ -147,11 +136,9 @@ L5:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 11);
-    setDialogOwner(Entity.System);
-    showTextbox("Bakemon joins the city!\n");
+    speak(Entity.System, "Bakemon joins the city!\n");
     playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    showTextbox("I think it went OK.\n");
+    speak(Entity.Player, "I think it went OK.\n");
     setTrigger(237);
     addPStat(1, 2);
     return;
@@ -163,8 +150,7 @@ L6:
     delay(40);
     waitForEntity(5);
     unloadEntity(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("Maybe I made him mad?\n");
+    speak(Entity.Player, "Maybe I made him mad?\n");
     return;
 }
 
@@ -185,8 +171,7 @@ L1:
     goto L3;
 
 L2:
-    setDialogOwner(Entity.System);
-    showTextbox("Stopped by a weird\nblack force!\n");
+    speak(Entity.System, "Stopped by a weird\nblack force!\n");
     fadeOutHUD();
     move(entity: Entity.Player, to: (-200, 3658), sprint: 1, withCamera: true);
     move(entity: Entity.Partner, to: (100, 3658), sprint: 1);
@@ -196,8 +181,7 @@ L2:
     rotate(entity: Entity.Player, to: 3100);
     delay(10);
     rotate(entity: Entity.Player, to: 2076);
-    setDialogOwner(Entity.Player);
-    showTextbox("What?! My legs are...\n");
+    speak(Entity.Player, "What?! My legs are...\n");
 
 L3:
     return;

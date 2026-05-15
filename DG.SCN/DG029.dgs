@@ -74,8 +74,7 @@ L1:
     look(entity: Entity.Player, at: 5);
     waitForEntity(5);
     if (pstat[18] < 10) goto L2;
-    setDialogOwner(5);
-    showTextbox("I think we're finished moving\nout most of the dirt.\n");
+    speak(5, "I think we're finished moving\nout most of the dirt.\n");
     showTextbox("Our job is going well.\nThanks.\nPlease wait a little more.\n");
     rotate(entity: 5, to: 1900);
     waitForEntity(5);
@@ -86,14 +85,12 @@ L1:
 
 L2:
     if (pstat[17] != 4) goto L3;
-    setDialogOwner(5);
-    showTextbox("Thanks for your work.\nHere's your payment.\n");
+    speak(5, "Thanks for your work.\nHere's your payment.\n");
     setPStat(254, 2);
     callSubroutine(19);
     addMoney(500);
     addStats(offense: 5, defense: 5, maxHP: 50, tiredness: 10);
-    setDialogOwner(Entity.System);
-    showTextbox("I got five hund bits\nfor work!\n");
+    speak(Entity.System, "I got five hund bits\nfor work!\n");
     showTextbox("HP is up by fifty!\nOffense Power is up five!\nDefense Power is up five!\n");
     addPStat(18, 1);
     setPStat(17, 1);
@@ -106,8 +103,7 @@ L2:
 
 L3:
     if (pstat[17] != 3) goto L4;
-    setDialogOwner(5);
-    showTextbox("Please dump the dirt\noutside the tunnel.\n");
+    speak(5, "Please dump the dirt\noutside the tunnel.\n");
     move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
     waitForEntity(Entity.Player);
     rotate(entity: 5, to: 1900);
@@ -115,8 +111,7 @@ L3:
 
 L4:
     if (pstat[17] != 2) goto L5;
-    setDialogOwner(5);
-    showTextbox("Take it from the pile of dirt.\n");
+    speak(5, "Take it from the pile of dirt.\n");
     rotate(entity: 5, to: 1900);
     waitForEntity(5);
     move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
@@ -126,8 +121,7 @@ L4:
 
 L5:
     if (pstat[17] != 1 || stat[Stat.Tiredness] < 70) goto L6;
-    setDialogOwner(5);
-    showTextbox("Are you going to carry dirt?\n");
+    speak(5, "Are you going to carry dirt?\n");
     showTextbox("Your Digimon looks tired.\nWhy don't you rest him first.\n");
     rotate(entity: 5, to: 1900);
     waitForEntity(5);
@@ -138,18 +132,14 @@ L5:
 
 L6:
     if (pstat[17] != 1) goto L7;
-    setDialogOwner(5);
-    showTextbox("Are you going to carry dirt?\n");
+    speak(5, "Are you going to carry dirt?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L9, L10);
-    showTextbox("Yes\nNo\n");
-    waitForSelectionChoice();
+    choice { "Yes" -> L9, "No" -> L10 }
     goto L10;
 
 L7:
     if (trigger(140)) goto L8;
-    setDialogOwner(5);
-    showTextbox("This is not a place for\namateurs. Stay away,\nit's too dangerous.\n");
+    speak(5, "This is not a place for\namateurs. Stay away,\nit's too dangerous.\n");
     move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
     waitForEntity(Entity.Player);
     rotate(entity: 5, to: 1900);
@@ -160,33 +150,22 @@ L7:
 L8:
     setPStat(17, 1);
     setPStat(30, 0);
-    setDialogOwner(5);
-    showTextbox("This tunnel hasn't been\nopened yet. Don't get\nin our way.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I'm sorry. Do you know\nwhen it will be?\n");
-    setDialogOwner(5);
-    showTextbox("I don't know,\nit will take a while.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("That's a problem.\nCan we help?\n");
-    setDialogOwner(5);
-    showTextbox("Are you trying to\nsteal our fun?\nMaybe you can carry dirt.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What is it?\n");
+    speak(5, "This tunnel hasn't been\nopened yet. Don't get\nin our way.\n");
+    speak(Entity.Player, "I'm sorry. Do you know\nwhen it will be?\n");
+    speak(5, "I don't know,\nit will take a while.\n");
+    speak(Entity.Player, "That's a problem.\nCan we help?\n");
+    speak(5, "Are you trying to\nsteal our fun?\nMaybe you can carry dirt.\n");
+    speak(Entity.Player, "What is it?\n");
     moveCamera(to: (2027, 764), slowdown: 20);
     waitForEntity(200);
     delay(30);
-    setDialogOwner(5);
-    showTextbox("I dug up that dirt.\nYou can carry it out\nand dump it.\n");
+    speak(5, "I dug up that dirt.\nYou can carry it out\nand dump it.\n");
     moveCamera(to: Entity.Player, speed: 20);
     waitForEntity(200);
-    setDialogOwner(5);
-    showTextbox("It's a hard job, so I'll\npay you five hund bits\nfor each round trip.\n");
+    speak(5, "It's a hard job, so I'll\npay you five hund bits\nfor each round trip.\n");
+    speak(Entity.Player, "This will make digging go\nfaster. I can make money,\nand it's good training.\n");
     setDialogOwner(Entity.Player);
-    showTextbox("This will make digging go\nfaster. I can make money,\nand it's good training.\n");
-    setDialogOwner(Entity.Player);
-    setSelection(L9, L10);
-    showTextbox("OK\nNo thanks\n");
-    waitForSelectionChoice();
+    choice { "OK" -> L9, "No thanks" -> L10 }
     goto L10;
 
 L9:
@@ -199,8 +178,7 @@ L9:
     return;
 
 L10:
-    setDialogOwner(5);
-    showTextbox("Are you scared?\n");
+    speak(5, "Are you scared?\n");
     rotate(entity: 5, to: 1900);
     waitForEntity(5);
     move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
@@ -211,8 +189,7 @@ L10:
 
 section(81) {  // len=70
     if (pstat[17] != 2) goto L1;
-    setDialogOwner(Entity.System);
-    showTextbox("Dirt box is added.\n");
+    speak(Entity.System, "Dirt box is added.\n");
     setPStat(17, 3);
     setPStat(254, 0);
     callSubroutine(19);

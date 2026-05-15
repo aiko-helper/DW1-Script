@@ -12,8 +12,7 @@ L1:
 }
 
 section(5) {  // len=28
-    setDialogOwner(5);
-    showTextbox("Ah!\n");
+    speak(5, "Ah!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -22,8 +21,7 @@ section(5) {  // len=28
 }
 
 section(6) {  // len=28
-    setDialogOwner(6);
-    showTextbox("Ah!\n");
+    speak(6, "Ah!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -33,8 +31,7 @@ section(6) {  // len=28
 
 section(51) {  // len=224
     if (!trigger(182) || trigger(235)) goto L1;
-    setDialogOwner(Entity.Player);
-    showTextbox("Is the elevator causing\nthe ground to rise?\n");
+    speak(Entity.Player, "Is the elevator causing\nthe ground to rise?\n");
 
 L1:
     if (trigger(175)) goto L2;
@@ -42,9 +39,7 @@ L1:
 
 L2:
     setDialogOwner(Entity.Player);
-    setSelection(L3, L4);
-    showTextbox("Get in\nDon't get in\n");
-    waitForSelectionChoice();
+    choice { "Get in" -> L3, "Don't get in" -> L4 }
     goto L4;
 
 L3:
@@ -76,23 +71,19 @@ L2:
     look(entity: Entity.Partner, at: 7);
     playAnimation(Entity.Player, 7);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("Hey!\n");
+    speak(Entity.Player, "Hey!\n");
     playAnimation(Entity.Player, 0);
     look(entity: 7, at: Entity.Player);
     look(entity: 8, at: Entity.Player);
     look(entity: 9, at: Entity.Player);
-    setDialogOwner(7);
-    showTextbox("What?\n");
+    speak(7, "What?\n");
     showTextbox("Did you come here to lose?\n");
     playSound(8, 11);
     playAnimation(Entity.Player, 20);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("That's my line!\n");
+    speak(Entity.Player, "That's my line!\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(7);
-    showTextbox("I'm holding nothing back\nthis time. I'll make you cry!\n");
+    speak(7, "I'm holding nothing back\nthis time. I'll make you cry!\n");
     setTrigger(1);
     setPStat(250, 1);
     setPStat(251, 7);
@@ -106,18 +97,15 @@ L2:
     look(entity: Entity.Player, at: 7);
     look(entity: 7, at: Entity.Player);
     look(entity: Entity.Partner, at: 7);
-    setDialogOwner(8);
-    showTextbox("Wow!\n");
-    setDialogOwner(9);
-    showTextbox("Oh no!\n");
+    speak(8, "Wow!\n");
+    speak(9, "Oh no!\n");
     move(entity: 8, to: (224, -784), sprint: 1);
     move(entity: 9, to: (116, -784), sprint: 1);
     waitForEntity(8);
     waitForEntity(9);
     unloadEntity(8);
     unloadEntity(9);
-    setDialogOwner(7);
-    showTextbox("Darn it!\n");
+    speak(7, "Darn it!\n");
     playAnimation(7, 46);
     delay(30);
     playSound(8, 9);
@@ -129,8 +117,7 @@ L2:
     unloadEntity(7);
     playAnimation(Entity.Player, 24);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("What is it?\n");
+    speak(Entity.Player, "What is it?\n");
     playAnimation(Entity.Player, 0);
     for id in 0..25 { setObjectVisibility(id, 1); }
     setDigimon(Digimon.NPCOgremon, 5, 0);
@@ -140,23 +127,20 @@ L2:
     callSubroutine(46);
     delay(40);
     playSound(8, 11);
-    setDialogOwner(10);
-    showTextbox("Bye, dumb guys!\n");
+    speak(10, "Bye, dumb guys!\n");
     look(entity: Entity.Player, at: 10);
     playSound(8, 5);
     waitForEntity(10);
     unloadEntity(10);
     setTrigger(176);
-    setDialogOwner(Entity.Player);
-    showTextbox("Darn, he got away!\n");
+    speak(Entity.Player, "Darn, he got away!\n");
     move(entity: Entity.Player, to: (1234, 2267), sprint: 1, withCamera: true);
     move(entity: Entity.Partner, to: (774, 2251), sprint: 1);
     waitForEntity(Entity.Player);
     waitForEntity(Entity.Partner);
     rotate(entity: Entity.Player, to: 2037);
     rotate(entity: Entity.Partner, to: 2300);
-    setDialogOwner(Entity.Player);
-    showTextbox("There is an escape elevator.\nChasing him will do no good.\n");
+    speak(Entity.Player, "There is an escape elevator.\nChasing him will do no good.\n");
     setTrigger(175);
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
@@ -187,10 +171,8 @@ section(11) {  // len=614
     delay(10);
     playAnimation(11, 28);
     delay(10);
-    setDialogOwner(Entity.Player);
-    showTextbox("Who are you?\n");
-    setDialogOwner(11);
-    showTextbox("Who am I? Who are you?\n");
+    speak(Entity.Player, "Who are you?\n");
+    speak(11, "Who am I? Who are you?\n");
     rotate(entity: 11, to: 1276);
     delay(5);
     rotate(entity: 11, to: 2300);
@@ -218,8 +200,7 @@ section(11) {  // len=614
     delay(10);
     setObjectVisibility(43, 1);
     playSound(0, 7);
-    setDialogOwner(Entity.System);
-    showTextbox("I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry twenty Items!\n");
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry twenty Items!\n");
     playSound(0, 7);
     setInventorySize(20);
     setTrigger(47);
@@ -233,8 +214,7 @@ L1:
     delay(10);
     setObjectVisibility(42, 1);
     playSound(0, 7);
-    setDialogOwner(Entity.System);
-    showTextbox("I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry thirty Items!\n");
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry thirty Items!\n");
     setInventorySize(30);
     setTrigger(48);
     setTrigger(253);

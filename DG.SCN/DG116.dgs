@@ -4,25 +4,24 @@
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 13) goto L1;
-    spawnItem(Item.Digimushroom, 53, 64);
+    spawnItem(Item.Digimushroom, x: 53, y: 64);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 8) goto L2;
-    spawnItem(Item.Digimushroom, 50, 36);
+    spawnItem(Item.Digimushroom, x: 50, y: 36);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 2) goto L3;
-    spawnItem(Item.Happymushroom, 42, 75);
+    spawnItem(Item.Happymushroom, x: 42, y: 75);
 
 L3:
     return;
 }
 
 section(6) {  // len=30
-    setDialogOwner(6);
-    showTextbox("Wow!\n");
+    speak(6, "Wow!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -31,8 +30,7 @@ section(6) {  // len=30
 }
 
 section(7) {  // len=32
-    setDialogOwner(7);
-    showTextbox("Mmmm.\n");
+    speak(7, "Mmmm.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -41,8 +39,7 @@ section(7) {  // len=32
 }
 
 section(8) {  // len=70
-    setDialogOwner(8);
-    showTextbox("Uh, let's call it quits.\n");
+    speak(8, "Uh, let's call it quits.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -51,8 +48,7 @@ section(8) {  // len=70
 }
 
 section(9) {  // len=86
-    setDialogOwner(9);
-    showTextbox("We can't let our\nguard down yet.\n");
+    speak(9, "We can't let our\nguard down yet.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -61,8 +57,7 @@ section(9) {  // len=86
 }
 
 section(5) {  // len=1734
-    setDialogOwner(5);
-    showTextbox("...!\n");
+    speak(5, "...!\n");
     setTrigger(1);
     setPStat(250, 1);
     setPStat(251, 5);
@@ -78,25 +73,18 @@ section(5) {  // len=1734
     look(entity: Entity.Partner, at: 5);
     waitForEntity(Entity.Player);
     waitForEntity(Entity.Partner);
-    setDialogOwner(5);
-    showTextbox("No, I don't want to!\nI don't want to fight!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("If you don't want to\nfight, then run away.\n");
-    setDialogOwner(5);
-    showTextbox("That's too bad.\n");
+    speak(5, "No, I don't want to!\nI don't want to fight!\n");
+    speak(Entity.Player, "If you don't want to\nfight, then run away.\n");
+    speak(5, "That's too bad.\n");
     playAnimation(Entity.Player, 16);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("I don't understand you.\n");
+    speak(Entity.Player, "I don't understand you.\n");
     showTextbox("Oh well, why don't you come\nto our city? Better than\nhiding out here.\n");
-    setDialogOwner(5);
-    showTextbox("Uh, city?\n");
+    speak(5, "Uh, city?\n");
     playAnimation(Entity.Player, 19);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("We are not going to\nforce you.\n");
-    setDialogOwner(5);
-    showTextbox("That makes me want to go.\nOkay, I'll go!\n");
+    speak(Entity.Player, "We are not going to\nforce you.\n");
+    speak(5, "That makes me want to go.\nOkay, I'll go!\n");
     fadeOutHUD();
     goto L1;
 
@@ -114,12 +102,10 @@ L2:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 10);
-    setDialogOwner(Entity.System);
-    showTextbox("Gabumon joins the city!\n");
+    speak(Entity.System, "Gabumon joins the city!\n");
     playAnimation(Entity.Player, 16);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("What a weird fellow.\n");
+    speak(Entity.Player, "What a weird fellow.\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     setTrigger(217);

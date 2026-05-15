@@ -13,65 +13,47 @@ section(54) {  // len=8
 section(5) {  // len=1948
     if (trigger(202) || trigger(215) || pstat[16] == 0) goto L1;
     if (!trigger(201) || !trigger(243)) goto L1;
-    setDialogOwner(5);
-    showTextbox("You came here at the perfect\ntime! I have a big favor to\nask that only you can do.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What is it?\n");
-    setDialogOwner(5);
-    showTextbox("It's the same evil\nI felt from Analogman\nand Machinedramon.\n");
+    speak(5, "You came here at the perfect\ntime! I have a big favor to\nask that only you can do.\n");
+    speak(Entity.Player, "What is it?\n");
+    speak(5, "It's the same evil\nI felt from Analogman\nand Machinedramon.\n");
     showTextbox("But I can't tell\nwhere it's coming from.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Alright, leave it to me!\n");
-    setDialogOwner(5);
-    showTextbox("Thank you. By the way...\n");
+    speak(Entity.Player, "Alright, leave it to me!\n");
+    speak(5, "Thank you. By the way...\n");
     goto L5;
 
 L1:
     if (!trigger(202) || trigger(215)) goto L4;
-    setDialogOwner(5);
-    showTextbox("I heard that you\nbeat Machinedramon!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Yeah, but I don't get it.\nIt seemed like the\ncurse of Analogman.\n");
-    setDialogOwner(5);
-    showTextbox("His grudge was so strong.\nMaybe we can have peace now.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("If Machinedramon returns,\nwe can beat him again.\n");
-    setDialogOwner(5);
-    showTextbox("You are trustworthy. Here's\na sign of my gratitude.\nIt grew in our Meat farm.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
+    speak(5, "I heard that you\nbeat Machinedramon!\n");
+    speak(Entity.Player, "Yeah, but I don't get it.\nIt seemed like the\ncurse of Analogman.\n");
+    speak(5, "His grudge was so strong.\nMaybe we can have peace now.\n");
+    speak(Entity.Player, "If Machinedramon returns,\nwe can beat him again.\n");
+    speak(5, "You are trustworthy. Here's\na sign of my gratitude.\nIt grew in our Meat farm.\n");
+    speak(Entity.Player, "Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
     giveItem(Item.ChainMelon, 1);
     if (!trigger(0)) goto L3;
     if (item[Item.SpikeClub] < 99) goto L2;
     return;
 
 L2:
-    setDialogOwner(Entity.Player);
-    showTextbox("I have too many Items.\n");
+    speak(Entity.Player, "I have too many Items.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.ChainMelon, 1);
 
 L3:
-    setDialogOwner(Entity.Player);
-    showTextbox("I gladly accept, thank you!\n");
+    speak(Entity.Player, "I gladly accept, thank you!\n");
     setPStat(28, 0);
     setTrigger(215);
     return;
 
 L4:
     if (!trigger(50) || trigger(201)) goto L5;
-    setDialogOwner(5);
-    showTextbox("Oh, you're back!\nThis is something I can't\nask anybody else.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Okay. Do you mean\nAnalogman is back?\n");
-    setDialogOwner(5);
-    showTextbox("I felt his evil, but\nI can't tell where it is.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Alright, leave it to me!\nI'll go find him and\ntake care of it.\n");
-    setDialogOwner(5);
-    showTextbox("Oh, thank you. By the way...\n");
+    speak(5, "Oh, you're back!\nThis is something I can't\nask anybody else.\n");
+    speak(Entity.Player, "Okay. Do you mean\nAnalogman is back?\n");
+    speak(5, "I felt his evil, but\nI can't tell where it is.\n");
+    speak(Entity.Player, "Alright, leave it to me!\nI'll go find him and\ntake care of it.\n");
+    speak(5, "Oh, thank you. By the way...\n");
     setTrigger(201);
 
 L5:
@@ -95,8 +77,7 @@ section(20) {  // len=98
     unsetTrigger(1);
     playAnimation(5, 29);
     delay(5);
-    setDialogOwner(5);
-    showTextbox("You woke up. I'm so sorry.\n");
+    speak(5, "You woke up. I'm so sorry.\n");
     playAnimation(5, 0);
     return;
 }
@@ -119,13 +100,11 @@ section(73) {  // len=8
 section(85) {  // len=666
     if (trigger(94)) goto L1;
     setTrigger(94);
-    setDialogOwner(Entity.Player);
-    showTextbox("What's this machine?\n");
+    speak(Entity.Player, "What's this machine?\n");
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Player, at: 5);
     delay(5);
-    setDialogOwner(5);
-    showTextbox("That's a <PINK>Save Machine\nfor Memory Card Battle\nData<WHITE>.\n");
+    speak(5, "That's a <PINK>Save Machine\nfor Memory Card Battle\nData<WHITE>.\n");
     showTextbox("Using that machine, you can\nsave your current partner's\ndata for battle.\n");
     showTextbox("All you have to do is press\n<LIGHTBLUE><X> <WHITE>and the machine\nwill tell you what to do.\n");
     rotate(entity: Entity.Player, to: 0);
@@ -133,11 +112,8 @@ section(85) {  // len=666
     return;
 
 L1:
-    setDialogOwner(Entity.System);
-    showTextbox("Do you want to use the\n<PINK>Save Machine for\nMemory Card Battle<WHITE>?\n");
-    setSelection(L2, L3);
-    showTextbox("Yes\nNo\n");
-    waitForSelectionChoice();
+    speak(Entity.System, "Do you want to use the\n<PINK>Save Machine for\nMemory Card Battle<WHITE>?\n");
+    choice { "Yes" -> L2, "No" -> L3 }
     return;
 
 L2:
@@ -151,25 +127,21 @@ L3:
 
 section(7) {  // len=472
     if (trigger(224) || !trigger(175)) goto L1;
-    setDialogOwner(7);
-    showTextbox("Sounds like Yuramon has\ngathered more rumors.\n");
+    speak(7, "Sounds like Yuramon has\ngathered more rumors.\n");
     return;
 
 L1:
     if (!trigger(124) || !trigger(103)) goto L2;
-    setDialogOwner(7);
-    showTextbox("I heard Yuramon\nknows some new rumors.\n");
+    speak(7, "I heard Yuramon\nknows some new rumors.\n");
     return;
 
 L2:
     if (pstat[1] < 6) goto L3;
-    setDialogOwner(7);
-    showTextbox("The city's starting to\ngrow and change\nnow that we're here.\n");
+    speak(7, "The city's starting to\ngrow and change\nnow that we're here.\n");
     return;
 
 L3:
-    setDialogOwner(7);
-    showTextbox("<LIGHTBLUE><PLAYER><WHITE>, you have a\nway different\napproach to adventure.\n");
+    speak(7, "<LIGHTBLUE><PLAYER><WHITE>, you have a\nway different\napproach to adventure.\n");
     return;
 }
 

@@ -11,70 +11,56 @@ section onEnter(254) {  // len=38
 section(5) {  // len=788
     move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
     waitForEntity(Entity.Player);
-    setDialogOwner(5);
-    showTextbox("We are going to remodel.\nThe fee is two thous bits.\n");
+    speak(5, "We are going to remodel.\nThe fee is two thous bits.\n");
     storeDigimonType(103);
     if (pstat[103] == 13) goto L1;
-    setDialogOwner(5);
-    showTextbox("The style is different.\nWe can't remodel.\n");
+    speak(5, "The style is different.\nWe can't remodel.\n");
     return;
 
 L1:
     setDialogOwner(Entity.Player);
-    setSelection(L2, L6);
-    showTextbox("Do it\nNo thanks\n");
-    waitForSelectionChoice();
+    choice { "Do it" -> L2, "No thanks" -> L6 }
     return;
 
 L2:
     if (money >= 2000) goto L3;
-    setDialogOwner(5);
-    showTextbox("You don't have enough bits.\n");
+    speak(5, "You don't have enough bits.\n");
     return;
 
 L3:
     reduceMoney(2000);
-    setDialogOwner(5);
-    showTextbox("Wait a minute.\n");
+    speak(5, "Wait a minute.\n");
     roll(pstat: 110, max: 10);
     if (pstat[110] > 0) goto L4;
-    setDialogOwner(5);
-    showTextbox("It didn't work, but...\n");
+    speak(5, "It didn't work, but...\n");
     fadeOutHUD();
     setPStat(254, 41);
     callDigimonSubroutine(10);
     delay(570);
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow, it turned into Giromon!\n");
+    speak(Entity.Player, "Wow, it turned into Giromon!\n");
     return;
 
 L4:
     if (pstat[110] > 5) goto L5;
-    setDialogOwner(5);
-    showTextbox("It was successful!\n");
+    speak(5, "It was successful!\n");
     fadeOutHUD();
     setPStat(254, 27);
     callDigimonSubroutine(10);
     delay(570);
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow, it turned into\nMetalMamemon!\n");
+    speak(Entity.Player, "Wow, it turned into\nMetalMamemon!\n");
     return;
 
 L5:
-    setDialogOwner(5);
-    showTextbox("It didn't work.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("That's awful!\n");
-    setDialogOwner(5);
-    showTextbox("I'm sorry...\n");
+    speak(5, "It didn't work.\n");
+    speak(Entity.Player, "That's awful!\n");
+    speak(5, "I'm sorry...\n");
 
 L6:
     return;
 }
 
 section(6) {  // len=66
-    setDialogOwner(6);
-    showTextbox("Addition, elimination!\n");
+    speak(6, "Addition, elimination!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -83,8 +69,7 @@ section(6) {  // len=66
 }
 
 section(7) {  // len=1136
-    setDialogOwner(7);
-    showTextbox("The number one goal is\nto destroy hardware.\n");
+    speak(7, "The number one goal is\nto destroy hardware.\n");
     fadeOutHUD();
     delay(1);
     startBattle();

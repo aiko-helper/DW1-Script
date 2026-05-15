@@ -20,13 +20,11 @@ L2:
 
 section(5) {  // len=126
     if (pstat[17] < 3) goto L1;
-    setDialogOwner(5);
-    showTextbox("Come on, keep up!\n");
+    speak(5, "Come on, keep up!\n");
     return;
 
 L1:
-    setDialogOwner(5);
-    showTextbox("You must be an outsider!\n");
+    speak(5, "You must be an outsider!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -40,8 +38,7 @@ section(51) {  // len=84
     waitForEntity(Entity.Partner);
     move(entity: Entity.Partner, to: (1200, 1583), sprint: 0);
     waitForEntity(Entity.Partner);
-    setDialogOwner(Entity.System);
-    showTextbox("Dumped the dirt.\n");
+    speak(Entity.System, "Dumped the dirt.\n");
     setPStat(254, 1);
     callSubroutine(19);
     move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
@@ -53,8 +50,7 @@ L1:
 
 section(52) {  // len=1770
     if (pstat[17] != 4) goto L1;
-    setDialogOwner(Entity.Player);
-    showTextbox("Ooops, I must return\nthe dirt box to Drimogemon.\n");
+    speak(Entity.Player, "Ooops, I must return\nthe dirt box to Drimogemon.\n");
     move(entity: Entity.Player, to: (453, 1815), sprint: 1);
     waitForEntity(Entity.Player);
     moveCamera(to: Entity.Player, speed: 10);

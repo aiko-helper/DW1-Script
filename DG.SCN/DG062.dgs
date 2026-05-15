@@ -13,8 +13,7 @@ section(81) {  // len=564
     if (trigger(131)) goto L3;
     rotate(entity: Entity.Player, to: 91);
     delay(10);
-    setDialogOwner(Entity.Player);
-    showTextbox("What are those?\nAny books I can read?\n");
+    speak(Entity.Player, "What are those?\nAny books I can read?\n");
     rotate(entity: Entity.Player, to: 3675);
     delay(10);
     rotate(entity: Entity.Player, to: 91);
@@ -27,12 +26,9 @@ section(81) {  // len=564
     delay(10);
     rotate(entity: Entity.Player, to: 1115);
     delay(10);
-    setDialogOwner(Entity.Player);
-    showTextbox("No. None I can read.\n");
+    speak(Entity.Player, "No. None I can read.\n");
     showTextbox("Wow! A book with\na cool cover!\n");
-    setSelection(L1, L2);
-    showTextbox("I'll take it\nI'd better not\n");
-    waitForSelectionChoice();
+    choice { "I'll take it" -> L1, "I'd better not" -> L2 }
     goto L2;
 
 L1:
@@ -42,10 +38,8 @@ L1:
     waitForEntity(Entity.Partner);
     rotate(entity: Entity.Player, to: 1115);
     rotate(entity: Entity.Partner, to: 91);
-    setDialogOwner(Entity.System);
-    showTextbox("Touched a cool book.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Huh?\n");
+    speak(Entity.System, "Touched a cool book.\n");
+    speak(Entity.Player, "Huh?\n");
     playSound(8, 4);
     setObjectVisibility(3, 1);
     setObjectVisibility(4, 0);
@@ -54,14 +48,12 @@ L1:
     move(entity: Entity.Player, to: (655, -663), animDuration: 4);
     move(entity: Entity.Partner, to: (694, -377), animDuration: 4);
     playSound(8, 5);
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow!\n");
+    speak(Entity.Player, "Wow!\n");
     warp(to: Map.YAKA15, spawn: 4, trigger: 53);
     return;
 
 L2:
-    setDialogOwner(Entity.Player);
-    showTextbox("It might be a trap....\nLeave it!\n");
+    speak(Entity.Player, "It might be a trap....\nLeave it!\n");
 
 L3:
     return;

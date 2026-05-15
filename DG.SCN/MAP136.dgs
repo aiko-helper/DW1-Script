@@ -50,8 +50,7 @@ section(60) {  // len=260
     delay(10);
     moveCamera(to: Entity.Player, speed: 20);
     waitForEntity(200);
-    setDialogOwner(Entity.Player);
-    showTextbox("I hear a voice coming from\nbehind. The voice is...!\n");
+    speak(Entity.Player, "I hear a voice coming from\nbehind. The voice is...!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
@@ -67,14 +66,11 @@ section(6) {  // len=3090
     move(entity: 5, to: (1457, 2916), animDuration: 1);
     look(entity: Entity.Player, at: 5);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("Wait!\n");
-    setDialogOwner(6);
-    showTextbox("Why should I wait?!\n");
+    speak(Entity.Player, "Wait!\n");
+    speak(6, "Why should I wait?!\n");
     look(entity: 6, at: Entity.Player);
     delay(5);
-    setDialogOwner(6);
-    showTextbox("Ha ha ha!\n");
+    speak(6, "Ha ha ha!\n");
     moveCamera(to: (1116, 2183), slowdown: 15);
     waitForEntity(200);
     for id in 105..109 { setObjectVisibility(id, 1); }
@@ -92,10 +88,8 @@ section(6) {  // len=3090
     playAnimation(6, 40);
     delay(20);
     playAnimation(6, 0);
-    setDialogOwner(6);
-    showTextbox("Wow, what a surprise!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Whamon, nice! Wow!\n");
+    speak(6, "Wow, what a surprise!\n");
+    speak(Entity.Player, "Whamon, nice! Wow!\n");
     move(entity: Entity.Player, to: (830, 813), sprint: 1);
     move(entity: Entity.Partner, to: (473, 481), sprint: 1);
     waitForEntity(Entity.Player);
@@ -104,24 +98,19 @@ section(6) {  // len=3090
     look(entity: Entity.Partner, at: 6);
     moveCamera(to: (212, 958), slowdown: 10);
     waitForEntity(200);
-    setDialogOwner(Entity.Player);
-    showTextbox("Give up!\n");
+    speak(Entity.Player, "Give up!\n");
     move(entity: 6, to: (212, 958), sprint: 0);
     waitForEntity(6);
     look(entity: 6, at: Entity.Player);
-    setDialogOwner(6);
-    showTextbox("Ugghh!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Come to the city and work,\nso you can repay your sins.\n");
-    setDialogOwner(6);
-    showTextbox("Alright, got it.\nI'll go to the city.\n");
+    speak(6, "Ugghh!\n");
+    speak(Entity.Player, "Come to the city and work,\nso you can repay your sins.\n");
+    speak(6, "Alright, got it.\nI'll go to the city.\n");
     playSound(8, 6);
     move(entity: 6, to: (-381, 1112), sprint: 1);
     waitForEntity(6);
     look(entity: 6, at: Entity.Player);
     waitForEntity(6);
-    setDialogOwner(6);
-    showTextbox("Ha ha ha, Just kidding! Bye.\n");
+    speak(6, "Ha ha ha, Just kidding! Bye.\n");
     moveCamera(to: (-28, 1976), slowdown: 30);
     waitForEntity(200);
     waitForEntity(6);
@@ -239,33 +228,21 @@ section(6) {  // len=3090
     delay(80);
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
-    setDialogOwner(Entity.Player);
-    showTextbox("Darn, he tricked me!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Well, we got the cave back.\nI guess it's OK.\n");
+    speak(Entity.Player, "Darn, he tricked me!\n");
+    speak(Entity.Player, "Well, we got the cave back.\nI guess it's OK.\n");
     move(entity: Entity.Player, to: (705, 1585), sprint: 0, withCamera: true);
     move(entity: Entity.Partner, to: (740, 1100), sprint: 0);
-    setDialogOwner(Entity.Player);
-    showTextbox("I think this cave is OK now.\n");
-    setDialogOwner(5);
-    showTextbox("You seem to be a really nice\nperson. I'm sure they'll\nrealize their mistake someday.\n");
-    setDialogOwner(5);
-    showTextbox("I'll give you my treasure.\nIt's in the back.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Wait, wait.\nThat's your treasure, right?\nI can't accept it.\n");
-    setDialogOwner(5);
-    showTextbox("No, I don't need it. I want\nto go to your city.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Then what did we have to\nget this cave back for?\nFor nothing...?\n");
-    setDialogOwner(5);
-    showTextbox("I'm sorry, but I really\nwant to help you now.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I see. Thanks.\nYou're really nice.\n");
-    setDialogOwner(5);
-    showTextbox("I'm going straight to\nthe city. I'll give you\na ride if you want.\n");
+    speak(Entity.Player, "I think this cave is OK now.\n");
+    speak(5, "You seem to be a really nice\nperson. I'm sure they'll\nrealize their mistake someday.\n");
+    speak(5, "I'll give you my treasure.\nIt's in the back.\n");
+    speak(Entity.Player, "Wait, wait.\nThat's your treasure, right?\nI can't accept it.\n");
+    speak(5, "No, I don't need it. I want\nto go to your city.\n");
+    speak(Entity.Player, "Then what did we have to\nget this cave back for?\nFor nothing...?\n");
+    speak(5, "I'm sorry, but I really\nwant to help you now.\n");
+    speak(Entity.Player, "I see. Thanks.\nYou're really nice.\n");
+    speak(5, "I'm going straight to\nthe city. I'll give you\na ride if you want.\n");
     playSound(8, 11);
-    setDialogOwner(Entity.System);
-    showTextbox("Whamon joins the city!\n");
+    speak(Entity.System, "Whamon joins the city!\n");
     setTrigger(224);
     addPStat(1, 2);
     warp(to: Map.FRZL16, spawn: 0, trigger: 255);
@@ -273,12 +250,9 @@ section(6) {  // len=3090
 }
 
 section(81) {  // len=558
-    setDialogOwner(5);
-    showTextbox("Going back to the city?\n");
+    speak(5, "Going back to the city?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L20);
-    showTextbox("I'm going back\nI'm not\n");
-    waitForSelectionChoice();
+    choice { "I'm going back" -> L1, "I'm not" -> L20 }
     goto L20;
 
 L1:

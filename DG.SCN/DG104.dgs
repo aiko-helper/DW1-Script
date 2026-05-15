@@ -6,29 +6,22 @@ section onEnter(254) {  // len=2
 }
 
 section(5) {  // len=828
-    setDialogOwner(5);
-    showTextbox("I want to beat Kabuterimon.\nWhat do I need to do to win?\n");
+    speak(5, "I want to beat Kabuterimon.\nWhat do I need to do to win?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L2, L5);
-    showTextbox("Hmm. You gotta get stronger.\nActually, there is a sure fire\nway.... well, hang in there.\n");
-    waitForSelectionChoice();
+    choice { "Hmm. You gotta get stronger." -> L1, "Actually, there is a sure fire" -> L2, "way.... well, hang in there." -> L5 }
     goto L5;
 
 L1:
-    setDialogOwner(5);
-    showTextbox("I see. Alright, I'll train.\n");
+    speak(5, "I see. Alright, I'll train.\n");
     return;
 
 L2:
-    setDialogOwner(5);
-    showTextbox("Really?! Then I'll train you!\n");
+    speak(5, "Really?! Then I'll train you!\n");
     playAnimation(Entity.Player, 19);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("Just come to the city.\n");
+    speak(Entity.Player, "Just come to the city.\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(5);
-    showTextbox("...\n");
+    speak(5, "...\n");
     showTextbox("You're really nice.\nI'll go to the city.\n");
     goto L3;
 
@@ -46,22 +39,19 @@ L4:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 17);
-    setDialogOwner(Entity.System);
-    showTextbox("Kuwagamon went to the city!\n");
+    speak(Entity.System, "Kuwagamon went to the city!\n");
     setTrigger(251);
     addPStat(1, 2);
     return;
 
 L5:
-    setDialogOwner(5);
-    showTextbox("Man, you're not nice.\nI'm disappointed!\n");
+    speak(5, "Man, you're not nice.\nI'm disappointed!\n");
     return;
 }
 
 section(6) {  // len=1678
     if (!trigger(346)) goto L1;
-    setDialogOwner(6);
-    showTextbox("Hey, you've been in these\nbug battle contests, right?\n");
+    speak(6, "Hey, you've been in these\nbug battle contests, right?\n");
     showTextbox("Well, I'll teach you\nsomething useful.\n");
     showTextbox("Do you know where Kunemon\nsleeps? In Native Forest?\n");
     showTextbox("Kid Digimons sleep there.\nWhen they wake up, they\nbecome Kunemon.\n");
@@ -74,8 +64,7 @@ L1:
     goto L3;
 
 L2:
-    setDialogOwner(6);
-    showTextbox("Hey, you've been in these\nbug battle contests, right?\n");
+    speak(6, "Hey, you've been in these\nbug battle contests, right?\n");
     showTextbox("Uh...The way you are now,\nyou won't make it.\n");
     showTextbox("Well, I'll teach you\nsomething useful.\n");
     showTextbox("Do you know where Kunemon\nsleeps? In Native Forest.\n");
@@ -84,29 +73,20 @@ L2:
     return;
 
 L3:
-    setDialogOwner(6);
-    showTextbox("Hey, do you want to enter the\nbug battle contest?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What's that?\n");
-    setDialogOwner(6);
-    showTextbox("You gotta sign up by ten\no'clock on the twenty second.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Huh???\n");
-    setDialogOwner(6);
-    showTextbox("You'll get the details\nthe day of the contest.\n");
-    setDialogOwner(6);
-    showTextbox("I wonder what he's?\ntalking about?\n");
+    speak(6, "Hey, do you want to enter the\nbug battle contest?\n");
+    speak(Entity.Player, "What's that?\n");
+    speak(6, "You gotta sign up by ten\no'clock on the twenty second.\n");
+    speak(Entity.Player, "Huh???\n");
+    speak(6, "You'll get the details\nthe day of the contest.\n");
+    speak(6, "I wonder what he's?\ntalking about?\n");
     return;
 }
 
 section(7) {  // len=232
-    setDialogOwner(7);
-    showTextbox("We will train hard, but\nwe must rest too.\n");
+    speak(7, "We will train hard, but\nwe must rest too.\n");
     showTextbox("Shall we rest for an hour?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L2);
-    showTextbox("Let's rest\nNo rest\n");
-    waitForSelectionChoice();
+    choice { "Let's rest" -> L1, "No rest" -> L2 }
     return;
 
 L1:
@@ -114,7 +94,7 @@ L1:
     addMinutesToDate(105, 60);
     advanceToDate(105);
     addStats(currentHP: 300, currentMP: 300);
-    reduceStats(Stat.Tiredness, 5);
+    reduceStats(tiredness: 5);
     warp(to: Map.BETL04, spawn: 0, trigger: 255);
     return;
 
@@ -126,26 +106,18 @@ section(84) {  // len=578
     rotate(entity: Entity.Player, to: 2048);
     setTextboxOrigin(-162, 0, 2558);
     callSubroutine(39);
-    setDialogOwner(200);
-    showTextbox("<GREEN>Training :\nHammer Machine <WHITE>\n");
-    setSelection(L1, L2, L3);
-    showTextbox("Start\nExplain\nQuit\n");
-    waitForSelectionChoice();
+    speak(200, "<GREEN>Training :\nHammer Machine <WHITE>\n");
+    choice { "Start" -> L1, "Explain" -> L2, "Quit" -> L3 }
     return;
 
 L1:
     setDialogOwner(200);
-    setSelection(L4, L5, L3);
-    showTextbox("Normal\nBonus Try\nNever mind\n");
-    waitForSelectionChoice();
+    choice { "Normal" -> L4, "Bonus Try" -> L5, "Never mind" -> L3 }
     return;
 
 L2:
-    setDialogOwner(200);
-    showTextbox("Getting hit by the Hammer\nMachine makes you strong.\nDefensive Power goes up.\n");
-    setSelection(L2, L1, L3);
-    showTextbox("Explain again\nStart\nQuit\n");
-    waitForSelectionChoice();
+    speak(200, "Getting hit by the Hammer\nMachine makes you strong.\nDefensive Power goes up.\n");
+    choice { "Explain again" -> L2, "Start" -> L1, "Quit" -> L3 }
     return;
 
 L3:
@@ -161,8 +133,7 @@ L4:
 
 L5:
     setTexboxMode(1, 0);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> C?? \nto match three pictures.\n");
+    speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> C?? \nto match three pictures.\n");
     setPStat(254, 3);
     setPStat(246, 1);
     callDigimonSubroutine(214);
@@ -175,26 +146,18 @@ section(85) {  // len=750
     rotate(entity: Entity.Player, to: 2048);
     setTextboxOrigin(823, 0, 2144);
     callSubroutine(39);
-    setDialogOwner(200);
-    showTextbox("<GREEN>Training: Treadmill <WHITE>\n");
-    setSelection(L1, L2, L3);
-    showTextbox("Start\nExplain\nQuit\n");
-    waitForSelectionChoice();
+    speak(200, "<GREEN>Training: Treadmill <WHITE>\n");
+    choice { "Start" -> L1, "Explain" -> L2, "Quit" -> L3 }
     return;
 
 L1:
     setDialogOwner(200);
-    setSelection(L4, L5, L3);
-    showTextbox("Normal\nBonus Try\nNever mind\n");
-    waitForSelectionChoice();
+    choice { "Normal" -> L4, "Bonus Try" -> L5, "Never mind" -> L3 }
     return;
 
 L2:
-    setDialogOwner(200);
-    showTextbox("Run the opposite\nway of the moving belt.\nYour Speed will go up.\n");
-    setSelection(L2, L1, L3);
-    showTextbox("Explain again\nStart\nQuit\n");
-    waitForSelectionChoice();
+    speak(200, "Run the opposite\nway of the moving belt.\nYour Speed will go up.\n");
+    choice { "Explain again" -> L2, "Start" -> L1, "Quit" -> L3 }
     return;
 
 L3:
@@ -210,8 +173,7 @@ L4:
 
 L5:
     setTexboxMode(1, 0);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
+    speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
     setPStat(254, 2);
     setPStat(246, 1);
     callDigimonSubroutine(214);

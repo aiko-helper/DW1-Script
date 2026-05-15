@@ -7,22 +7,18 @@ section onEnter(254) {  // len=14
 }
 
 section(5) {  // len=2022
-    setDialogOwner(5);
-    showTextbox("Hello there. Do you know\nabout Digimon cards?\n");
+    speak(5, "Hello there. Do you know\nabout Digimon cards?\n");
     showTextbox("I collect Meramon Cards.\nBring me one and I'll buy\nit for fifteen hund bits.\n");
     if (card[30] < 1) goto L1;
     setDialogOwner(Entity.Player);
-    setSelection(L2, L3);
-    showTextbox("Here you go\nSorry\n");
-    waitForSelectionChoice();
+    choice { "Here you go" -> L2, "Sorry" -> L3 }
     return;
 
 L1:
     return;
 
 L2:
-    setDialogOwner(5);
-    showTextbox("Great! Thanks.\n");
+    speak(5, "Great! Thanks.\n");
     takeCard(30);
     addMoney(1500);
     return;

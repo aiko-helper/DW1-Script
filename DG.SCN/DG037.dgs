@@ -4,22 +4,22 @@
 section onEnter(254) {  // len=112
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
-    spawnItem(Item.Digimushroom, 35, 9);
+    spawnItem(Item.Digimushroom, x: 35, y: 9);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 4) goto L2;
-    spawnItem(Item.Digimushroom, 19, 31);
+    spawnItem(Item.Digimushroom, x: 19, y: 31);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 0) goto L3;
-    spawnItem(Item.Happymushroom, 11, 10);
+    spawnItem(Item.Happymushroom, x: 11, y: 10);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 0) goto L4;
-    spawnItem(Item.DeluxeMushroom, 46, 46);
+    spawnItem(Item.DeluxeMushroom, x: 46, y: 46);
 
 L4:
     if (trigger(180)) goto L5;
@@ -32,8 +32,7 @@ L5:
 }
 
 section(5) {  // len=60
-    setDialogOwner(5);
-    showTextbox("I'll knock you out!\n");
+    speak(5, "I'll knock you out!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -42,8 +41,7 @@ section(5) {  // len=60
 }
 
 section(6) {  // len=60
-    setDialogOwner(6);
-    showTextbox("Hey, don't push me!\n");
+    speak(6, "Hey, don't push me!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -52,8 +50,7 @@ section(6) {  // len=60
 }
 
 section(7) {  // len=66
-    setDialogOwner(7);
-    showTextbox("It's peaceful up here!\n");
+    speak(7, "It's peaceful up here!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -62,8 +59,7 @@ section(7) {  // len=66
 }
 
 section(8) {  // len=74
-    setDialogOwner(8);
-    showTextbox("I'll fall! It's dangerous!\n");
+    speak(8, "I'll fall! It's dangerous!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -72,8 +68,7 @@ section(8) {  // len=74
 }
 
 section(9) {  // len=66
-    setDialogOwner(9);
-    showTextbox("Don't do that up here!\n");
+    speak(9, "Don't do that up here!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -82,8 +77,7 @@ section(9) {  // len=66
 }
 
 section(10) {  // len=76
-    setDialogOwner(10);
-    showTextbox("Don't even try to fight me!\n");
+    speak(10, "Don't even try to fight me!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -93,12 +87,9 @@ section(10) {  // len=76
 
 section(81) {  // len=284
     rotate(entity: Entity.Player, to: 1844);
-    setDialogOwner(Entity.System);
-    showTextbox("Elevator\n");
+    speak(Entity.System, "Elevator\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L4);
-    showTextbox("Press DOWN\nDon't get in\n");
-    waitForSelectionChoice();
+    choice { "Press DOWN" -> L1, "Don't get in" -> L4 }
     goto L4;
     return;
 
@@ -131,8 +122,7 @@ L2:
 
 L3:
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("Nothing happens.\nThat's not good.\n");
+    speak(Entity.Player, "Nothing happens.\nThat's not good.\n");
     return;
 
 L4:

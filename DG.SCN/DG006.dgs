@@ -4,22 +4,22 @@
 section onEnter(254) {  // len=256
     roll(pstat: 110, max: 99);
     if (pstat[110] > 29) goto L1;
-    spawnItem(Item.Digimushroom, 42, 54);
+    spawnItem(Item.Digimushroom, x: 42, y: 54);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 59) goto L2;
-    spawnItem(Item.Digimushroom, 34, 30);
+    spawnItem(Item.Digimushroom, x: 34, y: 30);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L3;
-    spawnItem(Item.Digimushroom, 53, 47);
+    spawnItem(Item.Digimushroom, x: 53, y: 47);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 19) goto L4;
-    spawnItem(Item.Digimushroom, 69, 60);
+    spawnItem(Item.Digimushroom, x: 69, y: 60);
 
 L4:
     if (!trigger(185) || trigger(249)) goto L5;
@@ -35,8 +35,7 @@ L6:
 }
 
 section(6) {  // len=46
-    setDialogOwner(6);
-    showTextbox("I'm gonna win!\n");
+    speak(6, "I'm gonna win!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -44,8 +43,7 @@ section(6) {  // len=46
 }
 
 section(7) {  // len=68
-    setDialogOwner(7);
-    showTextbox("Don't come here! Go away!\n");
+    speak(7, "Don't come here! Go away!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -53,8 +51,7 @@ section(7) {  // len=68
 }
 
 section(8) {  // len=60
-    setDialogOwner(8);
-    showTextbox("Now I'm really angry!\n");
+    speak(8, "Now I'm really angry!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -62,8 +59,7 @@ section(8) {  // len=60
 }
 
 section(9) {  // len=68
-    setDialogOwner(9);
-    showTextbox("Hit me and I'll hit back!\n");
+    speak(9, "Hit me and I'll hit back!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -71,8 +67,7 @@ section(9) {  // len=68
 }
 
 section(10) {  // len=56
-    setDialogOwner(10);
-    showTextbox("Try it, if you can!\n");
+    speak(10, "Try it, if you can!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -103,21 +98,16 @@ section(51) {  // len=3510
     look(entity: Entity.Partner, at: 5);
     delay(20);
     look(entity: 5, at: Entity.Player);
-    setDialogOwner(5);
-    showTextbox("Oh, it's you, <LIGHTBLUE><PLAYER><WHITE>.\nThe bridge is fixed.\n");
+    speak(5, "Oh, it's you, <LIGHTBLUE><PLAYER><WHITE>.\nThe bridge is fixed.\n");
     showTextbox("I hear you're making a city.\n");
     showTextbox("I got a request.\nI want you to help me\njust like I helped you.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("?\n");
-    setDialogOwner(5);
-    showTextbox("Making a city means\nsaving this island.\nEveryone will be saved.\n");
+    speak(Entity.Player, "?\n");
+    speak(5, "Making a city means\nsaving this island.\nEveryone will be saved.\n");
     playAnimation(Entity.Player, 19);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("Does that mean you'll\ncome to the city?\n");
+    speak(Entity.Player, "Does that mean you'll\ncome to the city?\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(5);
-    showTextbox("Yes. I'll go to your city.\n");
+    speak(5, "Yes. I'll go to your city.\n");
     delay(10);
     setObjectVisibility(34, 1);
     unloadEntity(5);
@@ -140,8 +130,7 @@ section(51) {  // len=3510
     setObjectVisibility(30, 1);
     delay(10);
     playSound(8, 11);
-    setDialogOwner(Entity.System);
-    showTextbox("Coelamon joins the city!\n");
+    speak(Entity.System, "Coelamon joins the city!\n");
     move(entity: Entity.Player, to: (1000, -461), sprint: 1);
     moveCamera(to: Entity.Player, speed: 10);
     setTrigger(249);
@@ -185,8 +174,7 @@ L3:
     goto L8;
 
 L4:
-    setDialogOwner(5);
-    showTextbox("Hey, are you human?\n");
+    speak(5, "Hey, are you human?\n");
     showTextbox("I am Coelamon,\nthe fish Digimon.\nDid you come to see me?\n");
     setTrigger(49);
     setDialogOwner(Entity.Player);
@@ -197,20 +185,17 @@ L5:
     playAnimation(Entity.Player, 19);
     delay(20);
     unsetTrigger(49);
-    setDialogOwner(5);
-    showTextbox("Ha-ha, is that so!\n");
+    speak(5, "Ha-ha, is that so!\n");
     goto L7;
 
 L6:
     playAnimation(Entity.Player, 19);
     delay(20);
     unsetTrigger(49);
-    setDialogOwner(5);
-    showTextbox("I already know what\nyou want.\n");
+    speak(5, "I already know what\nyou want.\n");
 
 L7:
-    setDialogOwner(5);
-    showTextbox("The bridge upstream is\nbroken and you want to go\nacross. Right?\n");
+    speak(5, "The bridge upstream is\nbroken and you want to go\nacross. Right?\n");
     playSound(8, 8);
     playAnimation(Entity.Player, 22);
     delay(8);
@@ -223,8 +208,7 @@ L7:
 
 L8:
     if (!trigger(96)) goto L9;
-    setDialogOwner(5);
-    showTextbox("Aa-ha, you've come again.\n");
+    speak(5, "Aa-ha, you've come again.\n");
 
 L9:
     moveCamera(to: 5, speed: 10);
@@ -267,8 +251,7 @@ L9:
     setObjectVisibility(36, 0);
     look(entity: 5, at: Entity.Player);
     delay(20);
-    setDialogOwner(5);
-    showTextbox("Now, walk on our heads.\nDon't worry.\n");
+    speak(5, "Now, walk on our heads.\nDon't worry.\n");
     playSound(8, 14);
     delay(10);
     playSound(8, 14);
@@ -277,8 +260,7 @@ L9:
     delay(10);
     playAnimation(Entity.Player, 11);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("Okay, here we go!\n");
+    speak(Entity.Player, "Okay, here we go!\n");
     look(entity: Entity.Player, at: 5);
     delay(3);
     playAnimation(Entity.Player, 21);
@@ -337,8 +319,7 @@ L9:
     look(entity: 11, at: Entity.Player);
     look(entity: 12, at: Entity.Player);
     delay(20);
-    setDialogOwner(5);
-    showTextbox("This world needs more\nteamwork. Let's meet again.\n");
+    speak(5, "This world needs more\nteamwork. Let's meet again.\n");
     playSound(8, 14);
     setTrigger(96);
     move(entity: Entity.Partner, to: (3500, 2500), sprint: 0);

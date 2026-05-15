@@ -321,8 +321,7 @@ L1:
 
 L2:
     if (!trigger(231) || trigger(65) || pstat[25] != 0) goto L4;
-    setDialogOwner(5);
-    showTextbox("Welcome to my shop.\n");
+    speak(5, "Welcome to my shop.\n");
     showTextbox("Look, <LIGHTBLUE><PLAYER><WHITE>. This is\nmy shop. I'm going to sell\nall kinds of Items.\n");
     showTextbox("I'll have more stuff soon.\nBut I need Digimon who can\nhelp me here.\n");
     setTrigger(65);
@@ -336,8 +335,7 @@ L3:
 
 L4:
     if (!trigger(245) || trigger(66) || pstat[25] != 1) goto L6;
-    setDialogOwner(5);
-    showTextbox("I'm gonna buy and sell\nItems. Come and visit me\nwhen you need my services.\n");
+    speak(5, "I'm gonna buy and sell\nItems. Come and visit me\nwhen you need my services.\n");
     showTextbox("We don't have much variety,\nbut if I can find a helper,\nmaybe I can do better.\n");
     setTrigger(66);
     addPStat(26, 1);
@@ -350,8 +348,7 @@ L5:
 
 L6:
     if (!trigger(233) || trigger(67) || pstat[25] != 2) goto L8;
-    setDialogOwner(5);
-    showTextbox("I've decided\nto open a shop for Items.\nI hope you come here often.\n");
+    speak(5, "I've decided\nto open a shop for Items.\nI hope you come here often.\n");
     showTextbox("We are not well stocked yet,\nbut we want to expand soon.\nPlease bear with us for now.\n");
     setTrigger(67);
     addPStat(26, 1);
@@ -364,8 +361,7 @@ L7:
 
 L8:
     if (!trigger(247) || trigger(68) || pstat[25] != 3) goto L10;
-    setDialogOwner(5);
-    showTextbox("<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>,\nI opened my Item shop.\nI think I'll do well!\n");
+    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>,\nI opened my Item shop.\nI think I'll do well!\n");
     showTextbox("With more Digimon in the\ncity, we can get more stuff.\n");
     setTrigger(68);
     addPStat(26, 1);
@@ -378,8 +374,7 @@ L9:
 
 L10:
     if (!trigger(231) || trigger(65) || pstat[25] != 0) goto L12;
-    setDialogOwner(5);
-    showTextbox("<LIGHTBLUE><PLAYER><WHITE>, I just started to\nhelp running this shop.\nPlease buy lots of stuff!\n");
+    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, I just started to\nhelp running this shop.\nPlease buy lots of stuff!\n");
     setTrigger(65);
     addPStat(26, 1);
     if (pstat[26] < 3) goto L11;
@@ -391,8 +386,7 @@ L11:
 
 L12:
     if (!trigger(245) || trigger(66) || pstat[25] != 1) goto L14;
-    setDialogOwner(5);
-    showTextbox("Welcome. Starting today,\nI'm going to work here.\nPlease come here often.\n");
+    speak(5, "Welcome. Starting today,\nI'm going to work here.\nPlease come here often.\n");
     setTrigger(66);
     addPStat(26, 1);
     if (pstat[26] < 3) goto L13;
@@ -404,8 +398,7 @@ L13:
 
 L14:
     if (!trigger(233) || trigger(67) || pstat[25] != 2) goto L16;
-    setDialogOwner(5);
-    showTextbox("I have decided to help\nrun this shop.\nPlease come by anytime.\n");
+    speak(5, "I have decided to help\nrun this shop.\nPlease come by anytime.\n");
     setTrigger(67);
     addPStat(26, 1);
     if (pstat[26] < 3) goto L15;
@@ -417,8 +410,7 @@ L15:
 
 L16:
     if (!trigger(247) || trigger(68) || pstat[25] != 3) goto L18;
-    setDialogOwner(5);
-    showTextbox("Oh, <LIGHTBLUE><PLAYER><WHITE>. This is the\nperfect place for me.\nI will work hard here.\n");
+    speak(5, "Oh, <LIGHTBLUE><PLAYER><WHITE>. This is the\nperfect place for me.\nI will work hard here.\n");
     setTrigger(68);
     addPStat(26, 1);
     if (pstat[26] < 3) goto L17;
@@ -568,8 +560,7 @@ section(82) {  // len=964
 L1:
     look(entity: Entity.Player, at: 6);
     look(entity: 6, at: Entity.Player);
-    setDialogOwner(6);
-    showTextbox("Hi, I'm busy all the time\nrunning this shop... Not!\n");
+    speak(6, "Hi, I'm busy all the time\nrunning this shop... Not!\n");
     showTextbox("I'm kinda lazy and I won't\nbe in the shop much. \nBut I got some cool stuff.\n");
     showTextbox("Yes! 'Training Manual'!\nWith this, your training\nwill get better!\n");
     showTextbox("It's very valuable. I'll\nsell it for fifty thous bits.\nYou'll regret not buying it.\n");
@@ -583,26 +574,22 @@ L2:
     goto L4;
 
 L3:
-    setDialogOwner(6);
-    showTextbox("You don't have enough bits.\n");
+    speak(6, "You don't have enough bits.\n");
     return;
 
 L4:
     giveItem(Item.TrainingManual, 1);
     if (!trigger(0)) goto L5;
-    setDialogOwner(6);
-    showTextbox("Hmmm, you have lots of\nstuff with you.\n");
+    speak(6, "Hmmm, you have lots of\nstuff with you.\n");
     addMoney(50000);
     return;
 
 L5:
     playSound(0, 5);
-    setDialogOwner(Entity.System);
-    showTextbox("I got a\n<LIGHTBLUE>Training Manual<WHITE>!\n");
+    speak(Entity.System, "I got a\n<LIGHTBLUE>Training Manual<WHITE>!\n");
 
 L6:
-    setDialogOwner(6);
-    showTextbox("I won't give you a discount.\n");
+    speak(6, "I won't give you a discount.\n");
     return;
 }
 
@@ -620,16 +607,14 @@ section(7) {  // len=1220
     roll(pstat: 110, max: 2);
     if (pstat[1] < 20) goto L1;
     if (pstat[110] != 0) goto L1;
-    setDialogOwner(7);
-    showTextbox("Are you having trouble\nbecause you've got\ntoo much stuff?\n");
+    speak(7, "Are you having trouble\nbecause you've got\ntoo much stuff?\n");
     showTextbox("There is a place to find a\nkey chain that connects your\nbag to another dimension.\n");
     showTextbox("It increases the number of\nItems you can carry.\n");
     showTextbox("Even if you've been to some\nplace before, look again.\n");
     return;
 
 L1:
-    setDialogOwner(7);
-    showTextbox("I'll tell you the secret to\nItem buying.\n");
+    speak(7, "I'll tell you the secret to\nItem buying.\n");
     showTextbox("Press the Start button\non the Item you want to\nget information for!\n");
     showTextbox("Choose the Item with <LIGHTBLUE><X><WHITE>,\nand press <PINK><SQUARE><WHITE>, if you\nwant to buy a lot.\n");
     showTextbox("To raise or lower by ten, use\nUp or Down on Dir. Pad,\nwhile pressing <ORANGE><O><WHITE>.\n");

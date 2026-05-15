@@ -4,12 +4,12 @@
 section onEnter(254) {  // len=78
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L1;
-    spawnItem(Item.Digimushroom, 48, 80);
+    spawnItem(Item.Digimushroom, x: 48, y: 80);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 6) goto L2;
-    spawnItem(Item.Happymushroom, 40, 60);
+    spawnItem(Item.Happymushroom, x: 40, y: 60);
 
 L2:
     if (!trigger(86) || trigger(225)) goto L3;
@@ -20,8 +20,7 @@ L3:
 }
 
 section(5) {  // len=58
-    setDialogOwner(5);
-    showTextbox("Are you a Digimon?\n");
+    speak(5, "Are you a Digimon?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -30,8 +29,7 @@ section(5) {  // len=58
 }
 
 section(7) {  // len=66
-    setDialogOwner(7);
-    showTextbox("Where you from Homie?!\n");
+    speak(7, "Where you from Homie?!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -40,8 +38,7 @@ section(7) {  // len=66
 }
 
 section(8) {  // len=64
-    setDialogOwner(8);
-    showTextbox("Don't make fun of me!\n");
+    speak(8, "Don't make fun of me!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -50,8 +47,7 @@ section(8) {  // len=64
 }
 
 section(9) {  // len=64
-    setDialogOwner(9);
-    showTextbox("I'm gonna gobble you!\n");
+    speak(9, "I'm gonna gobble you!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -73,47 +69,38 @@ L2:
     rotate(entity: Entity.Player, to: 1024);
     delay(5);
     if (!trigger(186)) goto L3;
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh no, if I don't do\nanything, it will dry up...\n");
+    speak(Entity.Player, "Oh no, if I don't do\nanything, it will dry up...\n");
     showTextbox("I hope it rains...\n");
     goto L4;
 
 L3:
     setTrigger(186);
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow, interesting.\nIt's sprouting.\n");
+    speak(Entity.Player, "Wow, interesting.\nIt's sprouting.\n");
     delay(20);
     playAnimation(Entity.Player, 16);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("It moved a little bit.\nIs this the mysterious plant\neveryone is talking about?\n");
+    speak(Entity.Player, "It moved a little bit.\nIs this the mysterious plant\neveryone is talking about?\n");
     playAnimation(Entity.Player, 22);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("It's wilting. If I don't\ndo anything, it'll die.\n");
+    speak(Entity.Player, "It's wilting. If I don't\ndo anything, it'll die.\n");
     playAnimation(Entity.Player, 0);
 
 L4:
-    setDialogOwner(Entity.System);
-    showTextbox("Gonna use some Items?\n");
+    speak(Entity.System, "Gonna use some Items?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L5, L15);
-    showTextbox("Yes\nNo\n");
-    waitForSelectionChoice();
+    choice { "Yes" -> L5, "No" -> L15 }
     goto L15;
 
 L5:
     setTrigger(3);
     callSubroutine(0);
     if (!trigger(3)) goto L6;
-    setDialogOwner(Entity.Player);
-    showTextbox("I don't have anything now.\n");
+    speak(Entity.Player, "I don't have anything now.\n");
     goto L15;
 
 L6:
     if (pstat[254] != 255) goto L7;
-    setDialogOwner(Entity.Player);
-    showTextbox("Nothing I have is useful.\n");
+    speak(Entity.Player, "Nothing I have is useful.\n");
     goto L15;
 
 L7:
@@ -123,8 +110,7 @@ L7:
     goto L9;
 
 L8:
-    setDialogOwner(Entity.Player);
-    showTextbox("This won't work...\n");
+    speak(Entity.Player, "This won't work...\n");
     goto L15;
     return;
 
@@ -184,65 +170,50 @@ L9:
     delay(20);
     look(entity: 6, at: Entity.Player);
     delay(5);
-    setDialogOwner(6);
-    showTextbox("He he he.\n");
+    speak(6, "He he he.\n");
     showTextbox("Hey, I'm Vegiemon!\n");
     playAnimation(Entity.Player, 15);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("What! A plant Digimon?\n");
-    setDialogOwner(6);
-    showTextbox("By the way, do you like\nveggies?\n");
+    speak(Entity.Player, "What! A plant Digimon?\n");
+    speak(6, "By the way, do you like\nveggies?\n");
     playSound(8, 5);
     playAnimation(Entity.Player, 16);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("Why are you asking me\nabout veggies? Well?\n");
+    speak(Entity.Player, "Why are you asking me\nabout veggies? Well?\n");
     setTrigger(49);
     setSelection(L10, L11);
     showTextbox("I like them\nI don't\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Well, I changed my mind.\n");
+    speak(Entity.Player, "Well, I changed my mind.\n");
     return;
 
 L10:
     unsetTrigger(49);
     playSound(8, 5);
-    setDialogOwner(6);
-    showTextbox("Anyone who likes veggies\nmust be a nice guy.\n");
+    speak(6, "Anyone who likes veggies\nmust be a nice guy.\n");
     goto L12;
 
 L11:
     unsetTrigger(49);
     playSound(8, 5);
-    setDialogOwner(6);
-    showTextbox("No, no!\nVeggies are good!\n");
+    speak(6, "No, no!\nVeggies are good!\n");
     goto L12;
 
 L12:
-    setDialogOwner(Entity.Player);
-    showTextbox(" ? ? ? \n");
-    setDialogOwner(6);
-    showTextbox("Alright, I've decided.\nI'll come with you!\n");
+    speak(Entity.Player, " ? ? ? \n");
+    speak(6, "Alright, I've decided.\nI'll come with you!\n");
     playAnimation(Entity.Player, 19);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("What a persistent guy...\nHey, wait!\n");
+    speak(Entity.Player, "What a persistent guy...\nHey, wait!\n");
     playSound(8, 5);
-    setDialogOwner(6);
-    showTextbox("Well, then I won't come!\nBye!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Make up your mind!\n");
-    setDialogOwner(6);
-    showTextbox("What do you want me to do?\n");
+    speak(6, "Well, then I won't come!\nBye!\n");
+    speak(Entity.Player, "Make up your mind!\n");
+    speak(6, "What do you want me to do?\n");
     playAnimation(Entity.Player, 20);
     delay(10);
-    setDialogOwner(Entity.Player);
-    showTextbox("Why don't you come to\nthe city and help us!\n");
+    speak(Entity.Player, "Why don't you come to\nthe city and help us!\n");
     playAnimation(Entity.Player, 0);
     playSound(8, 5);
-    setDialogOwner(6);
-    showTextbox("Alright, sounds good.\nI've been here way too long.\n");
+    speak(6, "Alright, sounds good.\nI've been here way too long.\n");
     move(entity: Entity.Player, to: (-1024, -1820), sprint: 1, withCamera: true);
     move(entity: Entity.Partner, to: (-741, -1923), sprint: 1);
     goto L13;
@@ -261,8 +232,7 @@ L14:
     unloadEntity(6);
     setPStat(101, 0);
     playSound(8, 3);
-    setDialogOwner(Entity.System);
-    showTextbox("Vegiemon joins the city!\n");
+    speak(Entity.System, "Vegiemon joins the city!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     setTrigger(225);

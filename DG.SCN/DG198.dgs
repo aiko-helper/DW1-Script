@@ -20,8 +20,7 @@ section(52) {  // len=14
 }
 
 section(5) {  // len=62
-    setDialogOwner(5);
-    showTextbox("This's the last one.\n");
+    speak(5, "This's the last one.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -30,8 +29,7 @@ section(5) {  // len=62
 }
 
 section(6) {  // len=62
-    setDialogOwner(6);
-    showTextbox("We are here at last!\n");
+    speak(6, "We are here at last!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -40,8 +38,7 @@ section(6) {  // len=62
 }
 
 section(7) {  // len=56
-    setDialogOwner(7);
-    showTextbox("Pathway is clear!\n");
+    speak(7, "Pathway is clear!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -50,8 +47,7 @@ section(7) {  // len=56
 }
 
 section(8) {  // len=60
-    setDialogOwner(8);
-    showTextbox("Let's make it easy.\n");
+    speak(8, "Let's make it easy.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -60,8 +56,7 @@ section(8) {  // len=60
 }
 
 section(9) {  // len=70
-    setDialogOwner(9);
-    showTextbox("This is the last chance!\n");
+    speak(9, "This is the last chance!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -70,8 +65,7 @@ section(9) {  // len=70
 }
 
 section(10) {  // len=64
-    setDialogOwner(10);
-    showTextbox("Are you really going?\n");
+    speak(10, "Are you really going?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -86,25 +80,17 @@ section(53) {  // len=1576
 L1:
     look(entity: Entity.Player, at: 11);
     delay(5);
+    speak(Entity.Player, "How scary! I feel it\nin my bones.\n");
+    speak(11, "...\n");
+    speak(Entity.Player, "Why doesn't he attack me?\n");
+    speak(11, "...\n");
+    speak(Entity.Player, "Don't you need to fight?\n");
     setDialogOwner(Entity.Player);
-    showTextbox("How scary! I feel it\nin my bones.\n");
-    setDialogOwner(11);
-    showTextbox("...\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Why doesn't he attack me?\n");
-    setDialogOwner(11);
-    showTextbox("...\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Don't you need to fight?\n");
-    setDialogOwner(Entity.Player);
-    setSelection(L5, L2);
-    showTextbox("We should hurry up and go.\nWe have to test our skills.\n");
-    waitForSelectionChoice();
+    choice { "We should hurry up and go." -> L5, "We have to test our skills." -> L2 }
     goto L2;
 
 L2:
-    setDialogOwner(Entity.Player);
-    showTextbox("Let's go, <ORANGE><DIGIMON><WHITE>!\n");
+    speak(Entity.Player, "Let's go, <ORANGE><DIGIMON><WHITE>!\n");
     setTrigger(1);
     setPStat(250, 1);
     setPStat(251, 11);
@@ -118,8 +104,7 @@ L2:
     look(entity: Entity.Player, at: 11);
     look(entity: 11, at: Entity.Player);
     look(entity: Entity.Partner, at: 11);
-    setDialogOwner(11);
-    showTextbox("...\n");
+    speak(11, "...\n");
     goto L3;
 
 L3:
@@ -135,8 +120,7 @@ L4:
     waitForEntity(11);
     unloadEntity(11);
     setPStat(101, 0);
-    setDialogOwner(Entity.Player);
-    showTextbox("Did we win?\n");
+    speak(Entity.Player, "Did we win?\n");
     setTrigger(254);
     addPStat(1, 3);
     moveCamera(to: Entity.Player, speed: 15);

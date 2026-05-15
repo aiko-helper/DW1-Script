@@ -27,8 +27,7 @@ L1:
     look(entity: Entity.Player, at: 5);
     delay(5);
     if (trigger(353)) goto L2;
-    setDialogOwner(5);
-    showTextbox("Hey, it'll be open soon!\n");
+    speak(5, "Hey, it'll be open soon!\n");
     rotate(entity: 5, to: 512);
     delay(5);
     playAnimation(5, 29);
@@ -40,26 +39,19 @@ L1:
 
 L2:
     if (!trigger(353) || pstat[30] < 3) goto L3;
-    setDialogOwner(5);
-    showTextbox("We've been waiting for this!\nThe tunnel is open!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("We don't have to go over the\nmountain anymore. Thanks.\n");
-    setDialogOwner(5);
-    showTextbox("Thanks. I couldn't have\nmoved the big rock by myself.\n");
-    setDialogOwner(5);
-    showTextbox("What should I do now?\n");
+    speak(5, "We've been waiting for this!\nThe tunnel is open!\n");
+    speak(Entity.Player, "We don't have to go over the\nmountain anymore. Thanks.\n");
+    speak(5, "Thanks. I couldn't have\nmoved the big rock by myself.\n");
+    speak(5, "What should I do now?\n");
     playAnimation(Entity.Player, 19);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("You should come to the city.\nYou'll find things to do!\n");
+    speak(Entity.Player, "You should come to the city.\nYou'll find things to do!\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(5);
-    showTextbox("I still have lots of energy.\nI gladly accept your offer.\n");
+    speak(5, "I still have lots of energy.\nI gladly accept your offer.\n");
     goto L4;
 
 L3:
-    setDialogOwner(5);
-    showTextbox("It'll be open soon!\n");
+    speak(5, "It'll be open soon!\n");
     rotate(entity: 5, to: 512);
     playAnimation(5, 29);
     delay(5);
@@ -81,8 +73,7 @@ L5:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 8);
-    setDialogOwner(Entity.System);
-    showTextbox("Drimogemon joins the city!\n");
+    speak(Entity.System, "Drimogemon joins the city!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     setTrigger(238);

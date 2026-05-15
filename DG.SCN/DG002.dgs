@@ -4,12 +4,12 @@
 section onEnter(254) {  // len=62
     roll(pstat: 110, max: 99);
     if (pstat[110] > 24) goto L1;
-    spawnItem(Item.Digimushroom, 46, 45);
+    spawnItem(Item.Digimushroom, x: 46, y: 45);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 4) goto L2;
-    spawnItem(Item.Happymushroom, 60, 59);
+    spawnItem(Item.Happymushroom, x: 60, y: 59);
 
 L2:
     if (trigger(232)) goto L3;
@@ -20,8 +20,7 @@ L3:
 }
 
 section(5) {  // len=56
-    setDialogOwner(5);
-    showTextbox("I'm going to win!\n");
+    speak(5, "I'm going to win!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -30,8 +29,7 @@ section(5) {  // len=56
 }
 
 section(7) {  // len=60
-    setDialogOwner(7);
-    showTextbox("Okay, come on, boy!\n");
+    speak(7, "Okay, come on, boy!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -40,8 +38,7 @@ section(7) {  // len=60
 }
 
 section(8) {  // len=78
-    setDialogOwner(8);
-    showTextbox("What's going to happen next?\n");
+    speak(8, "What's going to happen next?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -50,8 +47,7 @@ section(8) {  // len=78
 }
 
 section(9) {  // len=62
-    setDialogOwner(9);
-    showTextbox("No way it will work.\n");
+    speak(9, "No way it will work.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -62,20 +58,16 @@ section(9) {  // len=62
 section(6) {  // len=1000
     setTrigger(44);
     playAnimation(6, 29);
-    setDialogOwner(6);
-    showTextbox("I'm hungry.\n");
+    speak(6, "I'm hungry.\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L9);
-    showTextbox("Give food\nDon't give food\n");
-    waitForSelectionChoice();
+    choice { "Give food" -> L1, "Don't give food" -> L9 }
     goto L9;
 
 L1:
     setTrigger(3);
     callSubroutine(0);
     if (!trigger(3)) goto L2;
-    setDialogOwner(Entity.Player);
-    showTextbox("I don't have food now.\n");
+    speak(Entity.Player, "I don't have food now.\n");
     goto L9;
 
 L2:
@@ -94,8 +86,7 @@ L4:
     goto L6;
 
 L5:
-    setDialogOwner(Entity.Player);
-    showTextbox("Oops, I can't give you this.\n");
+    speak(Entity.Player, "Oops, I can't give you this.\n");
     goto L9;
 
 L6:
@@ -103,8 +94,7 @@ L6:
     delay(20);
     playAnimation(6, 8);
     waitForEntity(6);
-    setDialogOwner(6);
-    showTextbox("That's good...\n");
+    speak(6, "That's good...\n");
     playAnimation(6, 0);
     showTextbox("Let's fight!\n");
     setTrigger(1);
@@ -120,16 +110,13 @@ L6:
     look(entity: Entity.Player, at: 6);
     look(entity: 6, at: Entity.Player);
     look(entity: Entity.Partner, at: 6);
-    setDialogOwner(6);
-    showTextbox("This isn't good.\nWhat should I do?\n");
+    speak(6, "This isn't good.\nWhat should I do?\n");
     playAnimation(Entity.Player, 20);
     waitForEntity(Entity.Player);
-    setDialogOwner(Entity.Player);
-    showTextbox("Come to the city and work\noff what you ate!\n");
+    speak(Entity.Player, "Come to the city and work\noff what you ate!\n");
     playAnimation(Entity.Player, 0);
     delay(10);
-    setDialogOwner(6);
-    showTextbox("Okay, I'll do that. I'm an\nInsectoid-Digimon named\nKunemon. Nice meeting you.\n");
+    speak(6, "Okay, I'll do that. I'm an\nInsectoid-Digimon named\nKunemon. Nice meeting you.\n");
     goto L7;
 
 L7:
@@ -146,8 +133,7 @@ L8:
     unloadEntity(6);
     setPStat(101, 0);
     playSound(8, 11);
-    setDialogOwner(Entity.System);
-    showTextbox("Kunemon joins the city!\n");
+    speak(Entity.System, "Kunemon joins the city!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     setTrigger(232);
@@ -155,8 +141,7 @@ L8:
     goto L10;
 
 L9:
-    setDialogOwner(6);
-    showTextbox("Bring some next time.\n");
+    speak(6, "Bring some next time.\n");
     playAnimation(6, 28);
     delay(20);
     goto L10;

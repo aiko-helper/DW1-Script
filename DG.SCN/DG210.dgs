@@ -29,32 +29,21 @@ L4:
 L5:
     if (trigger(354) || pstat[1] < 50 || !trigger(205)) goto L6;
     setTrigger(354);
-    setDialogOwner(5);
-    showTextbox("I was waiting for you,\n<LIGHTBLUE><PLAYER><WHITE>.\nFinally, this day has come\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What happened?\n");
-    setDialogOwner(5);
-    showTextbox("The entrance to Mt. Infinity\nappeared.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What? Really? Where?\n");
-    setDialogOwner(5);
-    showTextbox("It's beyond the falls\nof the city.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Gosh, it's so close!\n");
-    setDialogOwner(5);
-    showTextbox("The way I see it, the last\nenemy is on Mt. Infinity.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("So it's the Last Dungeon.\nI'll do it!\n");
-    setDialogOwner(5);
-    showTextbox("Good luck! But don't be\nhasty. Don't make a move\nuntil you're fully prepared.\n");
+    speak(5, "I was waiting for you,\n<LIGHTBLUE><PLAYER><WHITE>.\nFinally, this day has come\n");
+    speak(Entity.Player, "What happened?\n");
+    speak(5, "The entrance to Mt. Infinity\nappeared.\n");
+    speak(Entity.Player, "What? Really? Where?\n");
+    speak(5, "It's beyond the falls\nof the city.\n");
+    speak(Entity.Player, "Gosh, it's so close!\n");
+    speak(5, "The way I see it, the last\nenemy is on Mt. Infinity.\n");
+    speak(Entity.Player, "So it's the Last Dungeon.\nI'll do it!\n");
+    speak(5, "Good luck! But don't be\nhasty. Don't make a move\nuntil you're fully prepared.\n");
     return;
 
 L6:
     if (!trigger(354) || trigger(50) || !trigger(205)) goto L7;
-    setDialogOwner(5);
-    showTextbox("On the other side of the\nwaterfall, in the city, is\nthe entrance to Mt. Infinity.\n");
-    setDialogOwner(5);
-    showTextbox("The way I see it, the last\nenemy is on Mt. Infinity.\n");
+    speak(5, "On the other side of the\nwaterfall, in the city, is\nthe entrance to Mt. Infinity.\n");
+    speak(5, "The way I see it, the last\nenemy is on Mt. Infinity.\n");
     showTextbox("Go there fully prepared!\n");
     showTextbox("In any case...\n");
 
@@ -63,50 +52,41 @@ L7:
 }
 
 section(77) {  // len=2748
-    setDialogOwner(5);
-    showTextbox("The prosperity rate of\nthe current city is <PROSPERITY>.\n");
+    speak(5, "The prosperity rate of\nthe current city is <PROSPERITY>.\n");
     if (pstat[1] > 10) goto L1;
-    setDialogOwner(5);
-    showTextbox("It's far from\nhow it used to look.\n");
+    speak(5, "It's far from\nhow it used to look.\n");
     return;
 
 L1:
     if (pstat[1] > 30) goto L2;
-    setDialogOwner(5);
-    showTextbox("It's finally taking shape.\n");
+    speak(5, "It's finally taking shape.\n");
     return;
 
 L2:
     if (pstat[1] > 50) goto L3;
-    setDialogOwner(5);
-    showTextbox("It's developing well.\n");
+    speak(5, "It's developing well.\n");
     return;
 
 L3:
     if (pstat[1] > 70) goto L4;
-    setDialogOwner(5);
-    showTextbox("It's becoming a fine city.\n");
+    speak(5, "It's becoming a fine city.\n");
     return;
 
 L4:
     if (pstat[1] > 99) goto L5;
-    setDialogOwner(5);
-    showTextbox("You've done a fine job.\nSplendid!\n");
+    speak(5, "You've done a fine job.\nSplendid!\n");
     return;
 
 L5:
     if (pstat[1] > 100) goto L6;
-    setDialogOwner(5);
-    showTextbox("There's nothing more I need\nto say. It's fantastic!\n");
+    speak(5, "There's nothing more I need\nto say. It's fantastic!\n");
     if (stat[Stat.TamerLevel] == 10 || trigger(216)) goto L6;
-    addStats(Stat.TamerLevel, 1);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Tamer Level\nhas gone up! <WHITE>\n");
+    addStats(tamerLevel: 1);
+    speak(Entity.System, "<YELLOW>Tamer Level\nhas gone up! <WHITE>\n");
     setTrigger(216);
     setTrigger(375);
     playSound(0, 7);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Congratulations!\nHere's a medal\nfor your great work! <WHITE>\n");
+    speak(Entity.System, "<YELLOW>Congratulations!\nHere's a medal\nfor your great work! <WHITE>\n");
 
 L6:
     return;

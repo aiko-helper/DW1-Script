@@ -8,8 +8,7 @@ section onEnter(254) {  // len=18
 }
 
 section(5) {  // len=54
-    setDialogOwner(5);
-    showTextbox("I'll handle you!\n");
+    speak(5, "I'll handle you!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -18,8 +17,7 @@ section(5) {  // len=54
 }
 
 section(6) {  // len=54
-    setDialogOwner(6);
-    showTextbox("I'll handle you!\n");
+    speak(6, "I'll handle you!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -28,8 +26,7 @@ section(6) {  // len=54
 }
 
 section(7) {  // len=54
-    setDialogOwner(7);
-    showTextbox("I'll handle you!\n");
+    speak(7, "I'll handle you!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -47,10 +44,8 @@ section(83) {  // len=810
 
 L1:
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("What does it say?\n");
-    setDialogOwner(Entity.System);
-    showTextbox("Return to the position\nwhere you got the points\nfrom the dumb one.\n");
+    speak(Entity.Player, "What does it say?\n");
+    speak(Entity.System, "Return to the position\nwhere you got the points\nfrom the dumb one.\n");
     setTrigger(100);
     return;
 
@@ -58,32 +53,25 @@ L2:
     if (item[Item.FridgeKey] < 1 || trigger(348)) goto L3;
     setTrigger(100);
     playSound(8, 3);
-    setDialogOwner(Entity.System);
-    showTextbox("I used a <LIGHTBLUE>\nrefrigerator key. <WHITE>\n");
+    speak(Entity.System, "I used a <LIGHTBLUE>\nrefrigerator key. <WHITE>\n");
     rotate3DObject(2, 1);
     rotate3DObject(3, 1);
     delay(60);
     removeItem(Item.FridgeKey, 1);
     playAnimation(Entity.Player, 24);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("I don't see it.\n");
+    speak(Entity.Player, "I don't see it.\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(Entity.Player);
-    showTextbox("There's a memo.\n");
-    setDialogOwner(Entity.System);
-    showTextbox("Return to the position\nwhere you got the points\nfrom the dumb one.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I should listen to this memo.\n");
+    speak(Entity.Player, "There's a memo.\n");
+    speak(Entity.System, "Return to the position\nwhere you got the points\nfrom the dumb one.\n");
+    speak(Entity.Player, "I should listen to this memo.\n");
     setTrigger(348);
     return;
 
 L3:
     if (item[Item.FridgeKey] >= 1 || trigger(348)) goto L4;
-    setDialogOwner(Entity.Player);
-    showTextbox("It's a refrigerator.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("It's locked. I've never seen\na locked fridge.\n");
+    speak(Entity.Player, "It's a refrigerator.\n");
+    speak(Entity.Player, "It's locked. I've never seen\na locked fridge.\n");
     return;
 
 L4:

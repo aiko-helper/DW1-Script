@@ -19,8 +19,7 @@ L1:
 
 L2:
     if (pstat[106] != 21 || pstat[107] < 10) goto L3;
-    setDialogOwner(5);
-    showTextbox("Unfortunately, you're\ntoo late to register.\nWait another year.\n");
+    speak(5, "Unfortunately, you're\ntoo late to register.\nWait another year.\n");
     return;
 
 L3:
@@ -28,14 +27,12 @@ L3:
     goto L5;
 
 L4:
-    setDialogOwner(5);
-    showTextbox("We're between tournaments.\nI don't have anything to do.\n");
+    speak(5, "We're between tournaments.\nI don't have anything to do.\n");
     return;
 
 L5:
     if (pstat[106] != 21 || pstat[107] < 23) goto L6;
-    setDialogOwner(5);
-    showTextbox("The tournament just ended.\nWait another year.\n");
+    speak(5, "The tournament just ended.\nWait another year.\n");
 
 L6:
     storeDigimonType(103);
@@ -43,23 +40,18 @@ L6:
     goto L8;
 
 L7:
-    setDialogOwner(5);
-    showTextbox("You're not an insectoid.\nYou can't enter the contest.\n");
+    speak(5, "You're not an insectoid.\nYou can't enter the contest.\n");
     return;
 
 L8:
     if (trigger(37)) goto L9;
+    speak(5, "You want to enter the contest?\n");
     setDialogOwner(5);
-    showTextbox("You want to enter the contest?\n");
-    setDialogOwner(5);
-    setSelection(L9, L10);
-    showTextbox("Explain\nDon't explain\n");
-    waitForSelectionChoice();
+    choice { "Explain" -> L9, "Don't explain" -> L10 }
     goto L10;
 
 L9:
-    setDialogOwner(5);
-    showTextbox("On the twenty second,\nthere's a tournament for\nInsectoid Digimon only.\n");
+    speak(5, "On the twenty second,\nthere's a tournament for\nInsectoid Digimon only.\n");
     showTextbox("You can register for\nthat one right now.\n");
     showTextbox("Unless you're an Insectoid\nDigimon, you can't\nregister for the contest.\n");
     showTextbox("If you win, you'll receive\ndeluxe gifts. Just register.\n");
@@ -67,9 +59,7 @@ L9:
 
 L10:
     setDialogOwner(5);
-    setSelection(L17, L16);
-    showTextbox("Register\nDon't register\n");
-    waitForSelectionChoice();
+    choice { "Register" -> L17, "Don't register" -> L16 }
     return;
 
 L11:
@@ -77,39 +67,31 @@ L11:
     goto L13;
 
 L12:
-    setDialogOwner(5);
-    showTextbox("We're between tournaments.\nI don't have anything to do.\n");
+    speak(5, "We're between tournaments.\nI don't have anything to do.\n");
     return;
 
 L13:
     if (pstat[106] != 21 || pstat[107] < 23) goto L14;
-    setDialogOwner(5);
-    showTextbox("The tournament just ended.\nWait another year.\n");
+    speak(5, "The tournament just ended.\nWait another year.\n");
 
 L14:
-    setDialogOwner(5);
-    showTextbox("You're scheduled to\nregister in  ' - <SELECTED TOURNAMENT>- '.\nDo you want to cancel?\n");
+    speak(5, "You're scheduled to\nregister in  ' - <SELECTED TOURNAMENT>- '.\nDo you want to cancel?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L16, L15);
-    showTextbox("I won't cancel\nI'll cancel\n");
-    waitForSelectionChoice();
+    choice { "I won't cancel" -> L16, "I'll cancel" -> L15 }
     return;
 
 L15:
     unsetTrigger(37);
-    setDialogOwner(5);
-    showTextbox("I canceled.\n");
+    speak(5, "I canceled.\n");
     return;
 
 L16:
-    setDialogOwner(5);
-    showTextbox("Sure you want to do that?\n");
+    speak(5, "Sure you want to do that?\n");
     return;
 
 L17:
     callSubroutine(33);
-    setDialogOwner(5);
-    showTextbox("I registered.\n");
+    speak(5, "I registered.\n");
     return;
 }
 
@@ -119,8 +101,7 @@ section(51) {  // len=606
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Player, at: 5);
     delay(5);
-    setDialogOwner(5);
-    showTextbox("There's no tournament today.\n");
+    speak(5, "There's no tournament today.\n");
     move(entity: Entity.Player, to: (-126, 546), sprint: 1);
     waitForEntity(Entity.Player);
     return;
@@ -130,8 +111,7 @@ L1:
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Player, at: 5);
     delay(5);
-    setDialogOwner(5);
-    showTextbox("Those who aren't registered\ncan't come in.\n");
+    speak(5, "Those who aren't registered\ncan't come in.\n");
     move(entity: Entity.Player, to: (-126, 546), sprint: 1);
     waitForEntity(Entity.Player);
     return;
@@ -141,8 +121,7 @@ L2:
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Player, at: 5);
     delay(5);
-    setDialogOwner(5);
-    showTextbox("It's not open yet. Register\non the twenty second, between\nten am and eleven pm.\n");
+    speak(5, "It's not open yet. Register\non the twenty second, between\nten am and eleven pm.\n");
     move(entity: Entity.Player, to: (-126, 546), sprint: 1);
     waitForEntity(Entity.Player);
     return;
@@ -152,8 +131,7 @@ L3:
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Player, at: 5);
     delay(5);
-    setDialogOwner(5);
-    showTextbox("Too bad, the tournament is\nover. Come again next year.\n");
+    speak(5, "Too bad, the tournament is\nover. Come again next year.\n");
     move(entity: Entity.Player, to: (-126, 546), sprint: 1);
     waitForEntity(Entity.Player);
     return;
@@ -185,14 +163,11 @@ L1:
     goto L6;
 
 L2:
-    setDialogOwner(5);
-    showTextbox("Too bad.\nIt'll have to be next year.\n");
-    setDialogOwner(Entity.System);
-    showTextbox("I got a <LIGHTBLUE>Giant Meat <WHITE>\nfor participating!\n");
+    speak(5, "Too bad.\nIt'll have to be next year.\n");
+    speak(Entity.System, "I got a <LIGHTBLUE>Giant Meat <WHITE>\nfor participating!\n");
     giveItem(Item.GiantMeat, 1);
     if (!trigger(0)) goto L3;
-    setDialogOwner(5);
-    showTextbox("Too much stuff.\nThrow some away.\n");
+    speak(5, "Too much stuff.\nThrow some away.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
@@ -204,12 +179,10 @@ L3:
 L4:
     if (pstat[3] != 22) goto L6;
     addMoney(5000);
-    setDialogOwner(Entity.System);
-    showTextbox("Championship prize money :\nfive thous bits.\nI got a <LIGHTBLUE>Beetle Pearl <WHITE>\nas a championship prize!\n");
+    speak(Entity.System, "Championship prize money :\nfive thous bits.\nI got a <LIGHTBLUE>Beetle Pearl <WHITE>\nas a championship prize!\n");
     giveItem(Item.Beetlepearl, 1);
     if (!trigger(0)) goto L5;
-    setDialogOwner(5);
-    showTextbox("Too much stuff!\n");
+    speak(5, "Too much stuff!\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
@@ -222,13 +195,11 @@ L6:
     roll(pstat: 110, max: 1);
     if (pstat[3] != 22 || pstat[110] != 0) goto L8;
     addMoney(2000);
-    setDialogOwner(Entity.System);
-    showTextbox("Second place prize money :\ntwo thous bits!\nI got a <LIGHTBLUE>Horn Helmet <WHITE>\nas a second place prize!\n");
+    speak(Entity.System, "Second place prize money :\ntwo thous bits!\nI got a <LIGHTBLUE>Horn Helmet <WHITE>\nas a second place prize!\n");
     giveItem(Item.HornHelmet, 1);
     setTrigger(346);
     if (!trigger(0)) goto L7;
-    setDialogOwner(5);
-    showTextbox("Too much stuff!\n");
+    speak(5, "Too much stuff!\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
@@ -240,12 +211,10 @@ L7:
 L8:
     if (pstat[3] != 22 || pstat[110] != 1) goto L10;
     addMoney(2000);
-    setDialogOwner(Entity.System);
-    showTextbox("Second place prize money:\ntwo thous bits!\nI got <LIGHTBLUE>Scissor Jaw <WHITE>\nas a second place prize!\n");
+    speak(Entity.System, "Second place prize money:\ntwo thous bits!\nI got <LIGHTBLUE>Scissor Jaw <WHITE>\nas a second place prize!\n");
     giveItem(Item.ScissorJaw, 1);
     if (!trigger(0)) goto L9;
-    setDialogOwner(5);
-    showTextbox("Too much stuff!\n");
+    speak(5, "Too much stuff!\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);

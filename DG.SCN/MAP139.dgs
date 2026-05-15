@@ -28,8 +28,7 @@ section(81) {  // len=1992
 L1:
     playAnimation(Entity.Player, 16);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("This costume seems different\nfrom others. It has some\noverpowering presence.\n");
+    speak(Entity.Player, "This costume seems different\nfrom others. It has some\noverpowering presence.\n");
     fadeOutHUD();
     playAnimation(Entity.Player, 0);
     if (!trigger(116)) goto L2;
@@ -44,16 +43,14 @@ L2:
     waitForEntity(Entity.Player);
     look(entity: Entity.Player, at: 5);
     delay(10);
-    setDialogOwner(Entity.Player);
-    showTextbox("There's a zipper on the back.\n");
+    speak(Entity.Player, "There's a zipper on the back.\n");
     fadeOutHUD();
     if (pstat[103] != 11) goto L3;
     move(entity: Entity.Partner, to: 5, sprint: 0);
     waitForEntity(Entity.Partner);
     look(entity: Entity.Player, at: Entity.Partner);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("What happened, <ORANGE><DIGIMON><WHITE>?!\n");
+    speak(Entity.Player, "What happened, <ORANGE><DIGIMON><WHITE>?!\n");
     fadeOutHUD();
     delay(10);
     waitForEntity(5);
@@ -62,13 +59,11 @@ L2:
     callDigimonSubroutine(10);
     waitForEntity(Entity.System);
     delay(10);
-    setDialogOwner(Entity.Player);
-    showTextbox("What? Did you turn into\nanother Digimon?\nIt's kinda nice.\n");
+    speak(Entity.Player, "What? Did you turn into\nanother Digimon?\nIt's kinda nice.\n");
     return;
 
 L3:
-    setDialogOwner(Entity.Player);
-    showTextbox(" <ORANGE><DIGIMON><WHITE>,\ndo you want to get in?\n");
+    speak(Entity.Player, " <ORANGE><DIGIMON><WHITE>,\ndo you want to get in?\n");
     look(entity: Entity.Player, at: Entity.Partner);
     move(entity: Entity.Partner, to: (900, 90), sprint: 0);
     waitForEntity(Entity.Partner);
@@ -76,8 +71,7 @@ L3:
     delay(20);
     playAnimation(Entity.Partner, 13);
     delay(30);
-    setDialogOwner(Entity.Player);
-    showTextbox("No, you can't, <ORANGE><DIGIMON><WHITE>.\nOnly if you are limber\nand slippery, you can go in.\n");
+    speak(Entity.Player, "No, you can't, <ORANGE><DIGIMON><WHITE>.\nOnly if you are limber\nand slippery, you can go in.\n");
     return;
     garbage { 10 00 fe 00 10 00 05 00 34 00 51 00 38 00 ff ff 1d 00 74 00 22 67 19 00 08 00 67 0e 40 00 d6 00 18 00 2a 00 19 00 16 00 32 00 56 00 05 1f 67 00 05 00 fe 00 16 00 38 00 1c 00 2c 00 22 67 19 00 00 00 0e 01 48 00 67 0e 18 00 50 00 19 00 fe 00 56 00 fd 10 67 00 0f 00 1b fd 1a 00 82 73 82 88 82 89 82 93 81 40 82 83 82 8f 82 93 82 94 82 95 82 8d 82 85 81 40 82 93 82 85 82 85 82 8d 82 93 81 40 82 84 82 89 82 86 82 86 82 85 82 92 82 85 82 8e 82 94 0d 00 82 86 82 92 82 8f 82 8d 81 40 82 8f 82 94 82 88 82 85 82 92 82 93 81 42 81 40 82 68 82 94 81 40 82 88 82 81 82 93 81 40 82 93 82 8f 82 8d 82 85 0d 00 82 8f 82 96 82 85 82 92 82 90 82 8f 82 97 82 85 82 92 82 89 82 8e 82 87 81 40 82 90 82 92 82 85 82 93 82 85 82 8e 82 83 82 85 81 42 0d 00 00 00 27 00 56 00 fd 00 19 00 00 00 74 00 18 00 0c 01 19 00 fe 00 1c 00 74 00 56 00 05 1c 56 00 fd 0f 67 00 28 00 4e fd 37 04 4c ff 00 00 4a fd 4c 00 fd 05 67 00 0a 00 1b fd 1a 00 82 73 82 88 82 85 82 92 82 85 81 75 82 93 81 40 82 81 81 40 82 9a 82 89 82 90 82 90 82 85 82 92 81 40 82 8f 82 8e 81 40 82 94 82 88 82 85 81 40 82 82 82 81 82 83 82 8b 81 42 0d 00 00 00 27 00 19 00 08 00 67 0b 18 00 4e 02 19 00 51 fc 00 05 4a fc 4c 00 fd fc 67 00 05 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 88 82 81 82 90 82 90 82 85 82 8e 82 85 82 84 81 43 81 40 01 0a 06 00 01 01 81 48 81 49 0d 00 00 00 27 00 67 00 0a 00 4a 05 48 05 1e 00 fe 0e 49 0a 4a ff 67 00 0a 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 48 81 40 82 63 82 89 82 84 81 40 82 99 82 8f 82 95 81 40 82 94 82 95 82 92 82 8e 81 40 82 89 82 8e 82 94 82 8f 0d 00 82 81 82 8e 82 8f 82 94 82 88 82 85 82 92 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 48 0d 00 82 68 82 94 81 75 82 93 81 40 82 8b 82 89 82 8e 82 84 82 81 81 40 82 8e 82 89 82 83 82 85 81 42 0d 00 00 00 fe 00 1b fd 1a 00 81 40 01 0a 06 00 01 01 81 43 0d 00 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 87 82 85 82 94 81 40 82 89 82 8e 81 48 0d 00 00 00 4c 00 fd fc 4e fc 84 03 5a 00 00 00 4a fc 56 00 fc 19 67 00 14 00 56 00 fc 0d 67 00 1e 00 1b fd 1a 00 82 6d 82 8f 81 43 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 75 82 94 81 43 81 40 01 0a 06 00 01 01 81 42 0d 00 82 6e 82 8e 82 8c 82 99 81 40 82 89 82 86 81 40 82 99 82 8f 82 95 81 40 82 81 82 92 82 85 81 40 82 8c 82 89 82 8d 82 82 82 85 82 92 0d 00 82 81 82 8e 82 84 81 40 82 93 82 8c 82 89 82 90 82 90 82 85 82 92 82 99 81 43 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 40 82 87 82 8f 81 40 82 89 82 8e 81 42 0d 00 00 00 fe 00 ff 00 81 40 82 81 81 40 82 86 82 89 82 93 82 88 82 89 82 8e 82 87 81 40 82 92 82 8f 82 84 81 42 0d 00 82 60 81 40 82 87 82 8f 82 8f 82 84 81 40 82 8f 82 8e 82 85 81 40 82 83 82 81 82 8e 81 40 82 86 82 8c 82 99 81 40 82 86 82 81 82 92 0d 00 82 81 82 8e 82 84 81 40 82 88 82 81 82 93 81 40 82 85 82 8e 82 8f 82 95 82 87 82 88 81 40 82 86 82 8c 82 85 82 98 81 42 0d 00 00 00 1a 00 82 6d 82 85 82 98 82 94 81 43 81 40 82 82 82 81 82 89 82 94 81 42 81 40 82 71 82 85 82 8d 82 85 82 8d 82 82 82 85 82 92 81 40 82 97 82 88 82 89 82 83 82 88 0d 00 82 86 82 89 82 93 82 88 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 95 82 87 82 88 82 94 81 40 82 97 82 89 82 94 82 88 0d 00 82 97 82 88 82 89 82 83 82 88 81 40 82 82 82 81 82 89 82 94 81 42 0d 00 00 00 1a 00 82 76 82 88 82 85 82 8e 81 40 82 99 82 8f 82 95 81 40 82 94 82 88 82 92 82 8f 82 97 81 40 82 94 82 88 82 85 81 40 82 92 82 8f 82 84 81 43 0d 00 82 92 82 85 82 8c 82 85 82 81 82 93 82 85 81 40 82 97 82 89 82 94 82 88 81 40 01 06 81 a2 81 40 01 01 0d 00 82 94 82 8f 81 40 82 8c 82 85 82 94 81 40 82 89 82 94 81 40 82 86 82 8c 82 99 81 40 82 81 82 94 81 40 82 86 82 95 82 8c }
 }

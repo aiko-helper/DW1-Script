@@ -15,25 +15,18 @@ section(81) {  // len=576
     rotate(entity: Entity.Player, to: 2048);
     setTextboxOrigin(-11, 0, 1049);
     callSubroutine(39);
-    setDialogOwner(200);
-    showTextbox("<GREEN>Training: Moving Ice <WHITE>\n");
-    setSelection(L1, L2, L3);
-    showTextbox("Begin\nExplain\nQuit\n");
-    waitForSelectionChoice();
+    speak(200, "<GREEN>Training: Moving Ice <WHITE>\n");
+    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
     return;
 
 L1:
-    setSelection(L4, L5, L3);
-    showTextbox("Normal\nBonus Try\nQuit\n");
-    waitForSelectionChoice();
+    choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
     return;
 
 L2:
     showTextbox("Pushing ice develops strength.\n");
     showTextbox("Max HP is greatly boosted.\nDefensive power is\nboosted, too.\n");
-    setSelection(L2, L1, L3);
-    showTextbox("Explain again\nBegin\nQuit\n");
-    waitForSelectionChoice();
+    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
     return;
 
 L3:
@@ -49,8 +42,7 @@ L4:
 
 L5:
     setTexboxMode(1, 0);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to match\nthree pictures.\n");
+    speak(Entity.System, "<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to match\nthree pictures.\n");
     setPStat(254, 0);
     setPStat(246, 1);
     callDigimonSubroutine(214);
@@ -63,27 +55,19 @@ section(84) {  // len=1436
     rotate(entity: Entity.Player, to: 2048);
     setTextboxOrigin(1574, 0, 116);
     callSubroutine(39);
-    setDialogOwner(200);
-    showTextbox("<GREEN>Training: Icicle Fall <WHITE>\n");
-    setSelection(L1, L2, L3);
-    showTextbox("Begin\nExplain\nQuit\n");
-    waitForSelectionChoice();
+    speak(200, "<GREEN>Training: Icicle Fall <WHITE>\n");
+    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
     return;
 
 L1:
     setDialogOwner(200);
-    setSelection(L4, L5, L3);
-    showTextbox("Normal\nBonus Try\nQuit\n");
-    waitForSelectionChoice();
+    choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
     return;
 
 L2:
-    setDialogOwner(200);
-    showTextbox("Train in catching\na big icicle.\n");
+    speak(200, "Train in catching\na big icicle.\n");
     showTextbox("Defensive Power is\ngreatly boosted.\nSpeed will also increase.\n");
-    setSelection(L2, L1, L3);
-    showTextbox("Explain again\nBegin\nQuit\n");
-    waitForSelectionChoice();
+    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
     return;
 
 L3:
@@ -99,8 +83,7 @@ L4:
 
 L5:
     setTexboxMode(1, 0);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures\n");
+    speak(Entity.System, "<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures\n");
     setPStat(254, 3);
     setPStat(246, 1);
     callDigimonSubroutine(214);

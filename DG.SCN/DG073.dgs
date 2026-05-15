@@ -4,22 +4,22 @@
 section onEnter(254) {  // len=94
     roll(pstat: 110, max: 99);
     if (pstat[110] > 5) goto L1;
-    spawnItem(Item.Digimushroom, 39, 59);
+    spawnItem(Item.Digimushroom, x: 39, y: 59);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L2;
-    spawnItem(Item.Digimushroom, 62, 89);
+    spawnItem(Item.Digimushroom, x: 62, y: 89);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 11) goto L3;
-    spawnItem(Item.Digimushroom, 40, 24);
+    spawnItem(Item.Digimushroom, x: 40, y: 24);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 6) goto L4;
-    spawnItem(Item.Digimushroom, 61, 35);
+    spawnItem(Item.Digimushroom, x: 61, y: 35);
 
 L4:
     unsetTrigger(338);
@@ -46,22 +46,18 @@ L1:
     rotate(entity: 6, to: 0);
     moveCamera(to: 5, speed: 25);
     waitForEntity(200);
-    setDialogOwner(Entity.Player);
-    showTextbox("What is it?\n");
+    speak(Entity.Player, "What is it?\n");
     waitForEntity(5);
     look(entity: 5, at: Entity.Player);
     delay(5);
-    setDialogOwner(5);
-    showTextbox("HELP ME!\n");
+    speak(5, "HELP ME!\n");
     playAnimation(Entity.Player, 7);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("He's in trouble,\nI gotta help him!\n");
+    speak(Entity.Player, "He's in trouble,\nI gotta help him!\n");
     playAnimation(Entity.Player, 0);
     move(entity: Entity.Player, to: (-150, -550), sprint: 1);
     move(entity: Entity.Partner, to: (-80, -300), sprint: 1);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>??? <WHITE>\nPick on someone\nyour own size!\n");
+    speak(Entity.System, "<YELLOW>??? <WHITE>\nPick on someone\nyour own size!\n");
     setPStat(245, 3);
     setBGM(11);
     setDigimon(Digimon.NPCLeomon, 2, 0);
@@ -70,8 +66,7 @@ L1:
     look(entity: 7, at: 6);
     look(entity: Entity.Player, at: 7);
     delay(10);
-    setDialogOwner(Entity.Player);
-    showTextbox("Who is that?\n");
+    speak(Entity.Player, "Who is that?\n");
     look(entity: 5, at: 7);
     look(entity: 6, at: 7);
     delay(10);
@@ -99,17 +94,13 @@ L1:
     delay(5);
     look(entity: 7, at: 5);
     delay(5);
-    setDialogOwner(7);
-    showTextbox("Are you alright?\n");
-    setDialogOwner(5);
-    showTextbox("Thank you.\n");
-    setDialogOwner(7);
-    showTextbox("Call me anytime you're\nin trouble. I will\ncome right away!\n");
+    speak(7, "Are you alright?\n");
+    speak(5, "Thank you.\n");
+    speak(7, "Call me anytime you're\nin trouble. I will\ncome right away!\n");
     showTextbox("See you again!\n");
     move(entity: 7, to: (-2323, 1264), sprint: 1);
     delay(20);
-    setDialogOwner(5);
-    showTextbox("Hey, wait up!\n");
+    speak(5, "Hey, wait up!\n");
     move(entity: 5, to: (-2323, 1264), sprint: 1);
     delay(40);
     waitForEntity(5);
@@ -118,8 +109,7 @@ L1:
     unloadEntity(5);
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
-    setDialogOwner(Entity.Player);
-    showTextbox("He's like a hero.\nHe gets all the credit.\n");
+    speak(Entity.Player, "He's like a hero.\nHe gets all the credit.\n");
     playAnimation(Entity.Player, 0);
     setTrigger(196);
     return;
@@ -131,8 +121,7 @@ section(52) {  // len=6
 }
 
 section(8) {  // len=70
-    setDialogOwner(8);
-    showTextbox("This is my house. Leave!\n");
+    speak(8, "This is my house. Leave!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -141,8 +130,7 @@ section(8) {  // len=70
 }
 
 section(9) {  // len=952
-    setDialogOwner(9);
-    showTextbox("I'm Sharmamon. Who are you?\n");
+    speak(9, "I'm Sharmamon. Who are you?\n");
     fadeOutHUD();
     delay(1);
     startBattle();

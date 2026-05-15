@@ -4,27 +4,27 @@
 section onEnter(254) {  // len=168
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L1;
-    spawnItem(Item.Digimushroom, 15, 41);
+    spawnItem(Item.Digimushroom, x: 15, y: 41);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L2;
-    spawnItem(Item.Digimushroom, 49, 28);
+    spawnItem(Item.Digimushroom, x: 49, y: 28);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L3;
-    spawnItem(Item.Digimushroom, 63, 67);
+    spawnItem(Item.Digimushroom, x: 63, y: 67);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L4;
-    spawnItem(Item.Digimushroom, 25, 64);
+    spawnItem(Item.Digimushroom, x: 25, y: 64);
 
 L4:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 5) goto L5;
-    spawnItem(Item.Happymushroom, 84, 49);
+    spawnItem(Item.Happymushroom, x: 84, y: 49);
 
 L5:
     spawnChest(Item.MediumRecovery, 3545, 855, 1024, 696);
@@ -38,24 +38,19 @@ L6:
 }
 
 section(5) {  // len=1412
-    setDialogOwner(5);
-    showTextbox("My wing hurts.\n");
+    speak(5, "My wing hurts.\n");
     playAnimation(Entity.Player, 19);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("What happened?\n");
-    setDialogOwner(5);
-    showTextbox("I injured my wing... Do you\nhave anything to treat it?\n");
+    speak(Entity.Player, "What happened?\n");
+    speak(5, "I injured my wing... Do you\nhave anything to treat it?\n");
     playAnimation(Entity.Player, 4);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow, it looks pretty bad!\nHold on. Let me see.\n");
+    speak(Entity.Player, "Wow, it looks pretty bad!\nHold on. Let me see.\n");
     playAnimation(Entity.Player, 0);
     setTrigger(3);
     callSubroutine(0);
     if (!trigger(3)) goto L1;
-    setDialogOwner(Entity.Player);
-    showTextbox("I don't have anything\nright now.\n");
+    speak(Entity.Player, "I don't have anything\nright now.\n");
     goto L7;
 
 L1:
@@ -70,31 +65,23 @@ L2:
     goto L4;
 
 L3:
-    setDialogOwner(Entity.Player);
-    showTextbox("This won't do.\n");
+    speak(Entity.Player, "This won't do.\n");
     goto L7;
 
 L4:
-    setDialogOwner(5);
-    showTextbox("It's much better. Thank you.\n");
+    speak(5, "It's much better. Thank you.\n");
     playAnimation(5, 29);
     waitForEntity(5);
     playAnimation(Entity.Player, 25);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("Can you fly now?\n");
-    setDialogOwner(5);
-    showTextbox("I don't think I can fly far.\n");
+    speak(Entity.Player, "Can you fly now?\n");
+    speak(5, "I don't think I can fly far.\n");
     playAnimation(Entity.Player, 19);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("There's a clinic in the city.\nYou should go there.\nIt's not far.\n");
-    setDialogOwner(5);
-    showTextbox("I heard about the city.\nIt's bigger than I thought.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Go to the city and rest.\n");
-    setDialogOwner(5);
-    showTextbox("Thank you. Maybe\nI can help you someday.\n");
+    speak(Entity.Player, "There's a clinic in the city.\nYou should go there.\nIt's not far.\n");
+    speak(5, "I heard about the city.\nIt's bigger than I thought.\n");
+    speak(Entity.Player, "Go to the city and rest.\n");
+    speak(5, "Thank you. Maybe\nI can help you someday.\n");
     goto L5;
 
 L5:
@@ -112,17 +99,14 @@ L6:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 9);
-    setDialogOwner(Entity.System);
-    showTextbox("Unimon joins the city!\n");
+    speak(Entity.System, "Unimon joins the city!\n");
     setTrigger(233);
     addPStat(1, 2);
     goto L8;
 
 L7:
-    setDialogOwner(Entity.Player);
-    showTextbox("I don't have anything to\ntreat your wound.\nI'll get you something.\n");
-    setDialogOwner(5);
-    showTextbox("I'm sorry, please hurry.\n");
+    speak(Entity.Player, "I don't have anything to\ntreat your wound.\nI'll get you something.\n");
+    speak(5, "I'm sorry, please hurry.\n");
     goto L8;
 
 L8:
@@ -150,28 +134,23 @@ L3:
     goto L9;
 
 L4:
-    setDialogOwner(Entity.System);
-    showTextbox("There are some strange\ndrawings on the ground.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Is that one of those\nMystery Circles?\nIt still looks new.\n");
+    speak(Entity.System, "There are some strange\ndrawings on the ground.\n");
+    speak(Entity.Player, "Is that one of those\nMystery Circles?\nIt still looks new.\n");
     setTrigger(118);
     setTrigger(152);
     return;
 
 L5:
-    setDialogOwner(Entity.Player);
-    showTextbox("I see more of them now!\nI wonder if this is\nrelated to the UFO...?\n");
+    speak(Entity.Player, "I see more of them now!\nI wonder if this is\nrelated to the UFO...?\n");
     setTrigger(154);
     setTrigger(153);
     return;
 
 L6:
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow!? There are more\nof them than before!\n");
+    speak(Entity.Player, "Wow!? There are more\nof them than before!\n");
     showTextbox("What does this mean?\n");
     playSound(8, 5);
-    setDialogOwner(Entity.Player);
-    showTextbox("What?\n");
+    speak(Entity.Player, "What?\n");
     rotate(entity: Entity.Player, to: 2560);
     setDigimon(Digimon.NPCUnimon, 1, 0);
     moveCamera(to: (-335, 285), slowdown: 20);
@@ -190,38 +169,23 @@ L6:
     playSound(8, 5);
     waitForEntity(6);
     look(entity: 6, at: Entity.Player);
-    setDialogOwner(Entity.System);
-    showTextbox("Vademon's UFO appears.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("A...an alien?!\n");
-    setDialogOwner(6);
-    showTextbox("...\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Are you... a Digimon?\n");
-    setDialogOwner(6);
-    showTextbox("...\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Well...\n");
-    setDialogOwner(6);
-    showTextbox("...\n");
+    speak(Entity.System, "Vademon's UFO appears.\n");
+    speak(Entity.Player, "A...an alien?!\n");
+    speak(6, "...\n");
+    speak(Entity.Player, "Are you... a Digimon?\n");
+    speak(6, "...\n");
+    speak(Entity.Player, "Well...\n");
+    speak(6, "...\n");
     playSound(8, 6);
     delay(10);
-    setDialogOwner(Entity.System);
-    showTextbox("Vademon holds a gun.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("No, stop!\nI'm not your enemy!\n");
-    setDialogOwner(Entity.System);
-    showTextbox("Vademon drops the gun.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Good you understand.\n");
-    setDialogOwner(Entity.System);
-    showTextbox("<LIGHTBLUE><PLAYER><WHITE> desperately\ntries to convince him.\n");
-    setDialogOwner(6);
-    showTextbox("...\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Maybe he doesn't get it?\n");
-    setDialogOwner(6);
-    showTextbox("Okay.\n");
+    speak(Entity.System, "Vademon holds a gun.\n");
+    speak(Entity.Player, "No, stop!\nI'm not your enemy!\n");
+    speak(Entity.System, "Vademon drops the gun.\n");
+    speak(Entity.Player, "Good you understand.\n");
+    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> desperately\ntries to convince him.\n");
+    speak(6, "...\n");
+    speak(Entity.Player, "Maybe he doesn't get it?\n");
+    speak(6, "Okay.\n");
     fadeOutHUD();
     goto L7;
 
@@ -240,10 +204,8 @@ L8:
     unloadEntity(6);
     setPStat(101, 0);
     playSound(8, 9);
-    setDialogOwner(Entity.System);
-    showTextbox("Vademon joins the city!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("He...\n");
+    speak(Entity.System, "Vademon joins the city!\n");
+    speak(Entity.Player, "He...\n");
     showTextbox("He can talk!\n");
     setTrigger(228);
     addPStat(1, 3);

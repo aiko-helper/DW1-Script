@@ -4,12 +4,12 @@
 section onEnter(254) {  // len=46
     roll(pstat: 110, max: 99);
     if (pstat[110] > 16) goto L1;
-    spawnItem(Item.Digimushroom, 49, 70);
+    spawnItem(Item.Digimushroom, x: 49, y: 70);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 2) goto L2;
-    spawnItem(Item.Happymushroom, 25, 68);
+    spawnItem(Item.Happymushroom, x: 25, y: 68);
 
 L2:
     return;
@@ -21,68 +21,49 @@ section(81) {  // len=1282
     if (trigger(139)) goto L1;
     setTrigger(139);
     playSound(8, 4);
-    setDialogOwner(5);
-    showTextbox("This is a Digimon Card Shop.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What's a Digimon Card?\n");
-    setDialogOwner(5);
-    showTextbox("Everyone's collecting them.\nYou can't lose with them.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh?\n");
+    speak(5, "This is a Digimon Card Shop.\n");
+    speak(Entity.Player, "What's a Digimon Card?\n");
+    speak(5, "Everyone's collecting them.\nYou can't lose with them.\n");
+    speak(Entity.Player, "Oh?\n");
     playSound(8, 4);
-    setDialogOwner(5);
-    showTextbox("I'll give you one free for\nstarters. It's a good one.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Hey! This card's about ME!\n");
-    setDialogOwner(Entity.System);
-    showTextbox("Got a card of <LIGHTBLUE><PLAYER><WHITE>!\n");
+    speak(5, "I'll give you one free for\nstarters. It's a good one.\n");
+    speak(Entity.Player, "Hey! This card's about ME!\n");
+    speak(Entity.System, "Got a card of <LIGHTBLUE><PLAYER><WHITE>!\n");
     giveCard(0);
     return;
 
 L1:
-    setDialogOwner(5);
-    showTextbox("This is a Digimon Card Shop.\n");
+    speak(5, "This is a Digimon Card Shop.\n");
     setPStat(254, 5);
     playSound(8, 4);
-    setDialogOwner(5);
-    showTextbox("We have really cool cards\nin stock today.\n");
+    speak(5, "We have really cool cards\nin stock today.\n");
     callSubroutine(15);
 
 L2:
     setDialogOwner(Entity.Player);
-    setSelection(L3, L8, L10);
-    showTextbox("I'll buy a card\nI'll sell a card\nQuit\n");
-    waitForSelectionChoice();
+    choice { "I'll buy a card" -> L3, "I'll sell a card" -> L8, "Quit" -> L10 }
     goto L10;
 
 L3:
     if (money < 500) goto L4;
-    setSelection(L5, L7, L9);
-    showTextbox("Buy a pack of three\nBuy one\nQuit\n");
-    waitForSelectionChoice();
+    choice { "Buy a pack of three" -> L5, "Buy one" -> L7, "Quit" -> L9 }
     goto L9;
     goto L5;
 
 L4:
-    setSelection(L7, L9);
-    showTextbox("Buy one\nQuit\n");
-    waitForSelectionChoice();
+    choice { "Buy one" -> L7, "Quit" -> L9 }
     goto L9;
 
 L5:
-    setDialogOwner(5);
-    showTextbox("Five hundred bits for a pack.\nNo telling what's inside.\n");
+    speak(5, "Five hundred bits for a pack.\nNo telling what's inside.\n");
     setDialogOwner(Entity.Player);
-    setSelection(L6, L9);
-    showTextbox("I'll buy it\nNo thanks\n");
-    waitForSelectionChoice();
+    choice { "I'll buy it" -> L6, "No thanks" -> L9 }
     goto L9;
 
 L6:
     reduceMoney(500);
     callSubroutine(15);
-    setDialogOwner(5);
-    showTextbox("Open the pack right away.\n");
+    speak(5, "Open the pack right away.\n");
     unsetTrigger(3);
     unsetTrigger(4);
     callSubroutine(14);
@@ -101,14 +82,12 @@ L8:
     callSubroutine(14);
 
 L9:
-    setDialogOwner(5);
-    showTextbox("You want something else?\n");
+    speak(5, "You want something else?\n");
     goto L2;
 
 L10:
     callSubroutine(16);
-    setDialogOwner(5);
-    showTextbox("Come again.\n");
+    speak(5, "Come again.\n");
     return;
 }
 
@@ -116,12 +95,9 @@ section(82) {  // len=290
     look(entity: 6, at: Entity.Player);
     look(entity: Entity.Player, at: 6);
     playSound(8, 4);
-    setDialogOwner(6);
-    showTextbox("This's a Recycled Goods shop.\n");
+    speak(6, "This's a Recycled Goods shop.\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L2, L3);
-    showTextbox("I want a regular item\nI want a recycled item\nNext time\n");
-    waitForSelectionChoice();
+    choice { "I want a regular item" -> L1, "I want a recycled item" -> L2, "Next time" -> L3 }
     goto L3;
 
 L1:
@@ -155,12 +131,10 @@ section(51) {  // len=410
     return;
 
 L1:
-    setDialogOwner(Entity.Player);
-    showTextbox("Hey!?\n");
+    speak(Entity.Player, "Hey!?\n");
     moveCamera(to: (800, 4000), slowdown: 30);
     waitForEntity(200);
-    setDialogOwner(Entity.Player);
-    showTextbox("It's a shop!\n");
+    speak(Entity.Player, "It's a shop!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     setTrigger(190);

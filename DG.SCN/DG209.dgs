@@ -3,16 +3,12 @@
 
 section(5) {  // len=2322
     setDialogOwner(Entity.System);
-    setSelection(L4, L8, L24, L1);
-    showTextbox("Store one\nStore two\nOthers\nEnter Name\n");
-    waitForSelectionChoice();
+    choice { "Store one" -> L4, "Store two" -> L8, "Others" -> L24, "Enter Name" -> L1 }
     goto L36;
 
 L1:
     setDialogOwner(Entity.System);
-    setSelection(L2, L3);
-    showTextbox("<LIGHTBLUE><PLAYER><WHITE>\n<ORANGE><DIGIMON><WHITE>\n");
-    waitForSelectionChoice();
+    choice { "<LIGHTBLUE><PLAYER><WHITE>" -> L2, "<ORANGE><DIGIMON><WHITE>" -> L3 }
     goto L36;
 
 L2:
@@ -27,9 +23,7 @@ L3:
 
 L4:
     setDialogOwner(Entity.Player);
-    setSelection(L5, L6, L7);
-    showTextbox("Shop\nMarket\nPoint\n");
-    waitForSelectionChoice();
+    choice { "Shop" -> L5, "Market" -> L6, "Point" -> L7 }
     goto L36;
 
 L5:
@@ -113,9 +107,7 @@ L7:
 
 L8:
     setDialogOwner(Entity.Player);
-    setSelection(L10, L9, L20);
-    showTextbox("Card\nItem Keeper\nOther shops\n");
-    waitForSelectionChoice();
+    choice { "Card" -> L10, "Item Keeper" -> L9, "Other shops" -> L20 }
     goto L36;
 
 L9:
@@ -125,45 +117,34 @@ L9:
 
 L10:
     setPStat(254, 7);
-    setDialogOwner(7);
-    showTextbox("I have fresh cards today,\nas usual.\n");
+    speak(7, "I have fresh cards today,\nas usual.\n");
     callSubroutine(15);
 
 L11:
     setDialogOwner(Entity.Player);
-    setSelection(L12, L17, L19);
-    showTextbox("Buy a card\nSell a card\nCancel\n");
-    waitForSelectionChoice();
+    choice { "Buy a card" -> L12, "Sell a card" -> L17, "Cancel" -> L19 }
     goto L19;
 
 L12:
     if (money < 500) goto L13;
-    setSelection(L14, L16, L18);
-    showTextbox("Buy a three card pack\nBuy a single card\nCancel\n");
-    waitForSelectionChoice();
+    choice { "Buy a three card pack" -> L14, "Buy a single card" -> L16, "Cancel" -> L18 }
     goto L18;
     goto L14;
 
 L13:
-    setSelection(L16, L18);
-    showTextbox("Buy a single card\nCancel\n");
-    waitForSelectionChoice();
+    choice { "Buy a single card" -> L16, "Cancel" -> L18 }
     goto L18;
 
 L14:
-    setDialogOwner(7);
-    showTextbox("One pack will cost\nfive hund bits. What's\ninside is a surprise.\n");
+    speak(7, "One pack will cost\nfive hund bits. What's\ninside is a surprise.\n");
     setDialogOwner(Entity.Player);
-    setSelection(L15, L18);
-    showTextbox("Buy\nCancel\n");
-    waitForSelectionChoice();
+    choice { "Buy" -> L15, "Cancel" -> L18 }
     goto L18;
 
 L15:
     reduceMoney(500);
     callSubroutine(15);
-    setDialogOwner(7);
-    showTextbox("Open your pack right away.\n");
+    speak(7, "Open your pack right away.\n");
     unsetTrigger(3);
     unsetTrigger(4);
     callSubroutine(14);
@@ -182,21 +163,17 @@ L17:
     callSubroutine(14);
 
 L18:
-    setDialogOwner(7);
-    showTextbox("What else do ya need amigo?\n");
+    speak(7, "What else do ya need amigo?\n");
     goto L11;
 
 L19:
     callSubroutine(16);
-    setDialogOwner(7);
-    showTextbox("Come again.\n");
+    speak(7, "Come again.\n");
     return;
 
 L20:
     setDialogOwner(Entity.Player);
-    setSelection(L21, L22, L23);
-    showTextbox("Sound Test\nWarp Shop\nExchange\n");
-    waitForSelectionChoice();
+    choice { "Sound Test" -> L21, "Warp Shop" -> L22, "Exchange" -> L23 }
     goto L36;
 
 L21:
@@ -217,16 +194,12 @@ L23:
 
 L24:
     setDialogOwner(Entity.System);
-    setSelection(L37, L40, L25, L42);
-    showTextbox("Entry\nArena\nVarious\nPrice\n");
-    waitForSelectionChoice();
+    choice { "Entry" -> L37, "Arena" -> L40, "Various" -> L25, "Price" -> L42 }
     goto L36;
 
 L25:
     setDialogOwner(Entity.System);
-    setSelection(L26, L27, L32, L35);
-    showTextbox("Opening\nEnding\nMorph\nGone\n");
-    waitForSelectionChoice();
+    choice { "Opening" -> L26, "Ending" -> L27, "Morph" -> L32, "Gone" -> L35 }
     return;
 
 L26:
@@ -241,20 +214,17 @@ L27:
     setTrigger(3);
     callSubroutine(0);
     if (!trigger(3)) goto L28;
-    setDialogOwner(Entity.Player);
-    showTextbox("I didn't have anything.\n");
+    speak(Entity.Player, "I didn't have anything.\n");
     goto L36;
 
 L28:
     if (pstat[254] != 255) goto L29;
-    setDialogOwner(7);
-    showTextbox("You're not going to\ngive me anything?\n");
+    speak(7, "You're not going to\ngive me anything?\n");
     goto L30;
 
 L29:
     callSubroutine(12);
-    setDialogOwner(7);
-    showTextbox("Thanks.\n");
+    speak(7, "Thanks.\n");
 
 L30:
     goto L36;
@@ -266,21 +236,18 @@ L30:
     giveItem(Item.SuperSpeedDisk, 1);
 
 L31:
-    setDialogOwner(Entity.Player);
-    showTextbox("I got number twenty one.\n");
+    speak(Entity.Player, "I got number twenty one.\n");
     goto L36;
 
 L32:
     storeDigimonType(200);
     if (pstat[200] != 39) goto L33;
-    setDialogOwner(Entity.Player);
-    showTextbox("Digivolve to original form.\n");
+    speak(Entity.Player, "Digivolve to original form.\n");
     copyPStat(5, 254);
     goto L34;
 
 L33:
-    setDialogOwner(Entity.Player);
-    showTextbox("Digivolve to Sukamon.\n");
+    speak(Entity.Player, "Digivolve to Sukamon.\n");
     storeDigimonType(5);
     setPStat(254, 39);
 
@@ -288,8 +255,7 @@ L34:
     fadeOutHUD();
     callDigimonSubroutine(2);
     waitForEntity(201);
-    setDialogOwner(Entity.Player);
-    showTextbox("Complete.\n");
+    speak(Entity.Player, "Complete.\n");
     goto L36;
 
 L35:
@@ -305,16 +271,14 @@ L37:
     goto L39;
 
 L38:
-    setDialogOwner(7);
-    showTextbox("Registering to ' - <SELECTED TOURNAMENT>- '\n");
+    speak(7, "Registering to ' - <SELECTED TOURNAMENT>- '\n");
 
 L39:
     return;
 
 L40:
     if (trigger(37)) goto L41;
-    setDialogOwner(7);
-    showTextbox("There's no entry.\n");
+    speak(7, "There's no entry.\n");
     return;
 
 L41:
@@ -328,11 +292,8 @@ L42:
     goto L45;
 
 L43:
-    setDialogOwner(Entity.Player);
-    showTextbox("Currently, it's <DISCOUNT>bits.\n");
-    setSelection(L45, L46, L44);
-    showTextbox("Clear\nAdd\nEnd\n");
-    waitForSelectionChoice();
+    speak(Entity.Player, "Currently, it's <DISCOUNT>bits.\n");
+    choice { "Clear" -> L45, "Add" -> L46, "End" -> L44 }
 
 L44:
     return;

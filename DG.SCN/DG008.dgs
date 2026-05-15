@@ -4,7 +4,7 @@
 section onEnter(254) {  // len=24
     roll(pstat: 110, max: 99);
     if (pstat[110] > 1) goto L1;
-    spawnItem(Item.Happymushroom, 22, 69);
+    spawnItem(Item.Happymushroom, x: 22, y: 69);
 
 L1:
     return;
@@ -16,16 +16,13 @@ section(51) {  // len=816
     rotate(entity: Entity.Player, to: 1117);
     waitForEntity(200);
     delay(50);
-    setDialogOwner(Entity.Player);
-    showTextbox("Drill Tunnel\n");
+    speak(Entity.Player, "Drill Tunnel\n");
     moveCamera(to: Entity.Player, speed: 20);
     waitForEntity(200);
     setTrigger(149);
     if (trigger(54)) goto L1;
     setDialogOwner(Entity.Player);
-    setSelection(L3, L4);
-    showTextbox("Normal\nOgre mode\n");
-    waitForSelectionChoice();
+    choice { "Normal" -> L3, "Ogre mode" -> L4 }
     goto L3;
 
 L1:
@@ -46,13 +43,11 @@ L4:
     rotate(entity: Entity.Player, to: 1117);
     waitForEntity(200);
     delay(50);
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh that jerk! How rude!\n");
+    speak(Entity.Player, "Oh that jerk! How rude!\n");
     moveCamera(to: (-2900, 0), slowdown: 30);
     waitForEntity(200);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("Huh?\n");
+    speak(Entity.Player, "Huh?\n");
     setDigimon(Digimon.MarketManager, 0, 0);
     move(entity: 5, to: (-2028, -842), sprint: 0);
     rotate(entity: Entity.Player, to: 1117);
@@ -60,8 +55,7 @@ L4:
     rotate(entity: 5, to: 1117);
     waitForEntity(5);
     delay(10);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Market manager <WHITE>\nI didn't know we'd have to\npay to get thru!\n");
+    speak(Entity.System, "<YELLOW>Market manager <WHITE>\nI didn't know we'd have to\npay to get thru!\n");
     move(entity: 5, to: (-1323, -815), sprint: 0);
     waitForEntity(5);
     look(entity: 5, at: Entity.Player);
@@ -69,14 +63,10 @@ L4:
     moveCamera(to: Entity.Player, speed: 20);
     waitForEntity(200);
     look(entity: Entity.Player, at: 5);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Market manager <WHITE>\nHey, aren't you... yes!\nDo something!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("How are the Drimogemon\ninside?\n");
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Market manager <WHITE>\nI don't know.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I hope they are alright.\nOkay, here I go!\n");
+    speak(Entity.System, "<YELLOW>Market manager <WHITE>\nHey, aren't you... yes!\nDo something!\n");
+    speak(Entity.Player, "How are the Drimogemon\ninside?\n");
+    speak(Entity.System, "<YELLOW>Market manager <WHITE>\nI don't know.\n");
+    speak(Entity.Player, "I hope they are alright.\nOkay, here I go!\n");
     move(entity: 5, to: (-2333, 59), sprint: 0);
     waitForEntity(5);
     rotate(entity: 5, to: 4000);
@@ -85,8 +75,7 @@ L4:
 }
 
 section(5) {  // len=84
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Market manager <WHITE>\nDo something quick!\n");
+    speak(Entity.System, "<YELLOW>Market manager <WHITE>\nDo something quick!\n");
     return;
 }
 
@@ -104,11 +93,8 @@ L1:
 section(53) {  // len=1062
     if (!trigger(238)) goto L1;
     if (trigger(150) && !trigger(234)) goto L1;
-    setDialogOwner(Entity.Player);
-    showTextbox("There's nothing more in\nthe tunnel... Do we run\nthru it or what?\n");
-    setSelection(L2, L3);
-    showTextbox("Let's go thru!\nLet's not\n");
-    waitForSelectionChoice();
+    speak(Entity.Player, "There's nothing more in\nthe tunnel... Do we run\nthru it or what?\n");
+    choice { "Let's go thru!" -> L2, "Let's not" -> L3 }
     goto L3;
 
 L1:

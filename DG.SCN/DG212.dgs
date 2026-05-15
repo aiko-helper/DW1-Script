@@ -9,8 +9,7 @@ section(71) {  // len=610
     unsetTrigger(1);
     setPStat(250, 0);
     waitForEntity(213);
-    setDialogOwner(5);
-    showTextbox("It seems <ORANGE><DIGIMON><WHITE> has\nfaded away...\n");
+    speak(5, "It seems <ORANGE><DIGIMON><WHITE> has\nfaded away...\n");
     showTextbox("Before fading away, he gave\nbirth to a Digitama. He will\nbe reborn with his abilities.\n");
     showTextbox("Which egg do you want?\n");
     callSubroutine(29);
@@ -19,12 +18,9 @@ section(71) {  // len=610
     waitForEntity(Entity.System);
     setPStat(245, 0);
     setBGM(28);
-    setDialogOwner(5);
-    showTextbox("You can change the name\n<ORANGE><DIGIMON><WHITE> if you want.\n");
+    speak(5, "You can change the name\n<ORANGE><DIGIMON><WHITE> if you want.\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L2);
-    showTextbox("I want a new name\nI'll keep his name\n");
-    waitForSelectionChoice();
+    choice { "I want a new name" -> L1, "I'll keep his name" -> L2 }
     return;
 
 L1:
@@ -32,12 +28,9 @@ L1:
     waitForEntity(214);
     setPStat(254, 3);
     callSubroutine(32);
-    setDialogOwner(5);
-    showTextbox("Is <ORANGE><DIGIMON><WHITE> okay?\n");
+    speak(5, "Is <ORANGE><DIGIMON><WHITE> okay?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L2);
-    showTextbox("I want another name\nOkay\n");
-    waitForSelectionChoice();
+    choice { "I want another name" -> L1, "Okay" -> L2 }
     goto L1;
 
 L2:
@@ -53,8 +46,7 @@ section(72) {  // len=794
     removeCondition(Condition.Injured);
     removeCondition(Condition.Sick);
     addStats(currentHP: 9999, currentMP: 9999);
-    setDialogOwner(5);
-    showTextbox("Hey, don't get sick!\n");
+    speak(5, "Hey, don't get sick!\n");
     showTextbox("With the small bit of life\nleft, <ORANGE><DIGIMON><WHITE> was able\nto survive.\n");
     showTextbox("You must be careful.\n");
     waitForEntity(214);
@@ -62,8 +54,7 @@ section(72) {  // len=794
 
 L1:
     addStats(currentHP: 9999, currentMP: 9999);
-    setDialogOwner(5);
-    showTextbox("Oh my gosh!\nYou're back after losing.\n");
+    speak(5, "Oh my gosh!\nYou're back after losing.\n");
     showTextbox("With the small bit of life\nleft, <ORANGE><DIGIMON><WHITE> was able\nto survive.\n");
     showTextbox("Maybe your things were stolen.\n");
     showTextbox("Those who lose a battle might\nhave their things stolen.\n");
@@ -77,14 +68,12 @@ section(73) {  // len=2670
     unsetTrigger(1);
     setPStat(250, 0);
     waitForEntity(213);
-    setDialogOwner(5);
-    showTextbox("Oh no! <ORANGE><DIGIMON><WHITE>\nhas lost all life.\n");
+    speak(5, "Oh no! <ORANGE><DIGIMON><WHITE>\nhas lost all life.\n");
     showTextbox("Before fading away,\n<ORANGE><DIGIMON><WHITE> gave\nbirth to a Digitama.\n");
     showTextbox("Due to the danger,\nDigitama did not inherit\nall abilities...\n");
     if (stat[Stat.TamerLevel] == 0) goto L1;
-    reduceStats(Stat.TamerLevel, 1);
-    setDialogOwner(Entity.System);
-    showTextbox("<PINK>Tamer Level\nhas gone down! <WHITE>\n");
+    reduceStats(tamerLevel: 1);
+    speak(Entity.System, "<PINK>Tamer Level\nhas gone down! <WHITE>\n");
 
 L1:
     callSubroutine(47);
@@ -92,12 +81,9 @@ L1:
     waitForEntity(Entity.System);
     setPStat(245, 0);
     setBGM(28);
-    setDialogOwner(5);
-    showTextbox("If you want,\nyou can change the name\n<ORANGE><DIGIMON><WHITE>.\n");
+    speak(5, "If you want,\nyou can change the name\n<ORANGE><DIGIMON><WHITE>.\n");
     setDialogOwner(Entity.Player);
-    setSelection(section_71.L1, section_71.L2);
-    showTextbox("I want a new name\nI'll keep his name\n");
-    waitForSelectionChoice();
+    choice { "I want a new name" -> section_71.L1, "I'll keep his name" -> section_71.L2 }
     return;
     setPStat(254, 3);
     callSubroutine(32);
@@ -136,8 +122,7 @@ L8:
     setPStat(254, 37);
     callDigimonSubroutine(10);
     delay(550);
-    setDialogOwner(Entity.System);
-    showTextbox("<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");
     return;
 
 L9:
@@ -149,8 +134,7 @@ L10:
     setPStat(254, 26);
     callDigimonSubroutine(10);
     delay(550);
-    setDialogOwner(Entity.System);
-    showTextbox("<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");
     return;
 
 L11:
@@ -162,8 +146,7 @@ L12:
     setPStat(254, 59);
     callDigimonSubroutine(10);
     delay(550);
-    setDialogOwner(Entity.System);
-    showTextbox("<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");
     return;
 
 L13:
@@ -175,8 +158,7 @@ L14:
     setPStat(254, 6);
     callDigimonSubroutine(10);
     delay(550);
-    setDialogOwner(Entity.System);
-    showTextbox("<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");
     return;
 
 L15:

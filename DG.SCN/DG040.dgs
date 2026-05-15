@@ -4,22 +4,22 @@
 section onEnter(254) {  // len=98
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
-    spawnItem(Item.Digimushroom, 76, 78);
+    spawnItem(Item.Digimushroom, x: 76, y: 78);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 4) goto L2;
-    spawnItem(Item.Digimushroom, 31, 68);
+    spawnItem(Item.Digimushroom, x: 31, y: 68);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 6) goto L3;
-    spawnItem(Item.Pricklypear, 66, 68);
+    spawnItem(Item.Pricklypear, x: 66, y: 68);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 2) goto L4;
-    spawnItem(Item.Happymushroom, 22, 75);
+    spawnItem(Item.Happymushroom, x: 22, y: 75);
 
 L4:
     rotate3DObject(0, 1);
@@ -44,23 +44,16 @@ L3:
 
 L4:
     setTrigger(199);
-    setDialogOwner(5);
-    showTextbox("Who are you? Go away!\n");
+    speak(5, "Who are you? Go away!\n");
     playAnimation(Entity.Player, 24);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("Is this where you live?\n");
+    speak(Entity.Player, "Is this where you live?\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(5);
-    showTextbox("I can't tell you!\n");
+    speak(5, "I can't tell you!\n");
+    speak(Entity.Player, "Are you a guard or something?\n");
+    speak(5, "Want to fight? I'll beat you!\n");
     setDialogOwner(Entity.Player);
-    showTextbox("Are you a guard or something?\n");
-    setDialogOwner(5);
-    showTextbox("Want to fight? I'll beat you!\n");
-    setDialogOwner(Entity.Player);
-    setSelection(L5, L6);
-    showTextbox("I guess I'll fight\nYou can't bully me\n");
-    waitForSelectionChoice();
+    choice { "I guess I'll fight" -> L5, "You can't bully me" -> L6 }
     goto L6;
 
 L5:
@@ -74,8 +67,7 @@ L5:
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);
-    setDialogOwner(5);
-    showTextbox("Wow!\n");
+    speak(5, "Wow!\n");
     move(entity: 5, to: (-356, -1058), sprint: 1);
     delay(40);
     move(entity: Entity.Player, to: (-349, -1355), sprint: 1);
@@ -94,40 +86,30 @@ L5:
     delay(10);
     move(entity: Entity.Player, to: (-350, -1145), sprint: 1);
     move(entity: Entity.Partner, to: (-359, -1355), sprint: 1);
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh no! Hey!\n");
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>???mon <WHITE>\nHa ha ha.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Who is it?\n");
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>???mon <WHITE>\nI have done nothing wrong.\nDon't come in my house\nwithout permission!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I guess I should leave now.\n");
+    speak(Entity.Player, "Oh no! Hey!\n");
+    speak(Entity.System, "<YELLOW>???mon <WHITE>\nHa ha ha.\n");
+    speak(Entity.Player, "Who is it?\n");
+    speak(Entity.System, "<YELLOW>???mon <WHITE>\nI have done nothing wrong.\nDon't come in my house\nwithout permission!\n");
+    speak(Entity.Player, "I guess I should leave now.\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
 
 L6:
-    setDialogOwner(Entity.Player);
-    showTextbox("Keep up your guard work!\n");
+    speak(Entity.Player, "Keep up your guard work!\n");
     return;
 
 L7:
-    setDialogOwner(Entity.Player);
-    showTextbox("You are an Ogremon bandit!\nThis is your hideout!\n");
-    setDialogOwner(5);
-    showTextbox("What are you talking about?\n");
+    speak(Entity.Player, "You are an Ogremon bandit!\nThis is your hideout!\n");
+    speak(5, "What are you talking about?\n");
     playAnimation(Entity.Player, 7);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("You were lucky last time!\nGive up!\n");
+    speak(Entity.Player, "You were lucky last time!\nGive up!\n");
     playAnimation(Entity.Player, 0);
     goto L8;
 
 L8:
-    setDialogOwner(5);
-    showTextbox("Wow!\n");
+    speak(5, "Wow!\n");
     move(entity: 5, to: (-356, -1058), sprint: 1);
     delay(40);
     move(entity: Entity.Player, to: (-349, -1375), sprint: 1);
@@ -147,27 +129,20 @@ L8:
     warp(to: Map.OGRE00, spawn: 0, trigger: 255);
 
 L9:
-    setDialogOwner(Entity.Player);
-    showTextbox("You tricked me last time,\nbut now I'll get you.\n");
-    setDialogOwner(5);
-    showTextbox("What are you talking about?\n");
+    speak(Entity.Player, "You tricked me last time,\nbut now I'll get you.\n");
+    speak(5, "What are you talking about?\n");
     playAnimation(Entity.Player, 7);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("You won't get away this time!\n");
+    speak(Entity.Player, "You won't get away this time!\n");
     playAnimation(Entity.Player, 0);
     goto L8;
     return;
 
 L10:
+    speak(Entity.Player, "Come on, let me in.\n");
+    speak(5, "You want a piece of me?\nI'll knock you out!\n");
     setDialogOwner(Entity.Player);
-    showTextbox("Come on, let me in.\n");
-    setDialogOwner(5);
-    showTextbox("You want a piece of me?\nI'll knock you out!\n");
-    setDialogOwner(Entity.Player);
-    setSelection(L5, L6);
-    showTextbox("Let's fight\nDon't bully me\n");
-    waitForSelectionChoice();
+    choice { "Let's fight" -> L5, "Don't bully me" -> L6 }
     goto L6;
 }
 

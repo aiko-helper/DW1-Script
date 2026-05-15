@@ -4,17 +4,17 @@
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 8) goto L1;
-    spawnItem(Item.Digimushroom, 33, 39);
+    spawnItem(Item.Digimushroom, x: 33, y: 39);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 16) goto L2;
-    spawnItem(Item.Digimushroom, 33, 22);
+    spawnItem(Item.Digimushroom, x: 33, y: 22);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 2) goto L3;
-    spawnItem(Item.SweetNut, 52, 35);
+    spawnItem(Item.SweetNut, x: 52, y: 35);
 
 L3:
     return;
@@ -36,25 +36,20 @@ L2:
     setTrigger(189);
     moveCamera(to: (-285, 3964), slowdown: 30);
     waitForEntity(200);
-    setDialogOwner(5);
-    showTextbox("I've heard about you.\n");
+    speak(5, "I've heard about you.\n");
     look(entity: 5, at: Entity.Player);
     waitForEntity(5);
     playAnimation(Entity.Player, 19);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("If you've heard about us\nand the city, why don't you\ncome with me?\n");
+    speak(Entity.Player, "If you've heard about us\nand the city, why don't you\ncome with me?\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(5);
-    showTextbox("I'm also thinking about the\nisland's future. I've been\nsearching for something.\n");
+    speak(5, "I'm also thinking about the\nisland's future. I've been\nsearching for something.\n");
     rotate(entity: 5, to: 2560);
     waitForEntity(5);
     playAnimation(5, 24);
     waitForEntity(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("What are you looking for?\n");
-    setDialogOwner(5);
-    showTextbox("Something that my ancestors\nleft behind, but\nI don't know what it is.\n");
+    speak(Entity.Player, "What are you looking for?\n");
+    speak(5, "Something that my ancestors\nleft behind, but\nI don't know what it is.\n");
 
 L3:
     if (item[Item.Leomonstone] < 1) goto L4;
@@ -63,12 +58,9 @@ L3:
     goto L5;
 
 L4:
-    setDialogOwner(Entity.Player);
-    showTextbox("I see. If I find it,\nI'll let you know.\n");
-    setDialogOwner(5);
-    showTextbox("I've been looking\na long time.\nIt won't be easy to find.\n");
-    setDialogOwner(5);
-    showTextbox("But if you find it,\nI promise,\nI'll go to your city.\n");
+    speak(Entity.Player, "I see. If I find it,\nI'll let you know.\n");
+    speak(5, "I've been looking\na long time.\nIt won't be easy to find.\n");
+    speak(5, "But if you find it,\nI promise,\nI'll go to your city.\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
@@ -76,13 +68,11 @@ L4:
 L5:
     playAnimation(Entity.Player, 19);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("Is this it?\n");
+    speak(Entity.Player, "Is this it?\n");
     playAnimation(Entity.Player, 0);
     look(entity: 5, at: Entity.Player);
     waitForEntity(5);
-    setDialogOwner(5);
-    showTextbox("Oh, that's it!\n");
+    speak(5, "Oh, that's it!\n");
     moveCamera(to: 5, speed: 20);
     waitForEntity(200);
     move(entity: 5, to: Entity.Player, sprint: 1, withCamera: true);
@@ -93,20 +83,15 @@ L5:
     waitForEntity(Entity.Player);
     playAnimation(5, 25);
     delay(30);
-    setDialogOwner(5);
-    showTextbox("This is what my ancestors\nhad written. Let me see.\n");
-    setDialogOwner(5);
-    showTextbox("When danger comes to the\nisland, go to the city.\n");
+    speak(5, "This is what my ancestors\nhad written. Let me see.\n");
+    speak(5, "When danger comes to the\nisland, go to the city.\n");
     playAnimation(5, 24);
     waitForEntity(5);
-    setDialogOwner(5);
-    showTextbox("My ancestors say\nthat I should go!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("You are going to help us?\n");
+    speak(5, "My ancestors say\nthat I should go!\n");
+    speak(Entity.Player, "You are going to help us?\n");
     playAnimation(5, 22);
     waitForEntity(5);
-    setDialogOwner(5);
-    showTextbox("You can count on me!\n");
+    speak(5, "You can count on me!\n");
     goto L6;
 
 L6:
@@ -123,8 +108,7 @@ L7:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 17);
-    setDialogOwner(Entity.System);
-    showTextbox("Leomon joins the city!\n");
+    speak(Entity.System, "Leomon joins the city!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     setTrigger(248);
@@ -133,8 +117,7 @@ L7:
 }
 
 section(5) {  // len=126
-    setDialogOwner(5);
-    showTextbox("I have to look for something.\nExcuse me, but I have to...\n");
+    speak(5, "I have to look for something.\nExcuse me, but I have to...\n");
     goto section_51.L3;
 }
 
@@ -142,27 +125,19 @@ section(83) {  // len=586
     rotate(entity: Entity.Player, to: 2048);
     setTextboxOrigin(-829, 0, 4099);
     callSubroutine(39);
-    setDialogOwner(200);
-    showTextbox("<GREEN>Training:\nStriking Special <WHITE>\n");
-    setSelection(L1, L2, L3);
-    showTextbox("Begin\nExplain\nQuit\n");
-    waitForSelectionChoice();
+    speak(200, "<GREEN>Training:\nStriking Special <WHITE>\n");
+    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
     return;
 
 L1:
     setDialogOwner(200);
-    setSelection(L4, L5, L3);
-    showTextbox("Normal\nBonus Try\nQuit\n");
-    waitForSelectionChoice();
+    choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
     return;
 
 L2:
-    setDialogOwner(200);
-    showTextbox("Using a concrete bag,\nstrike at full force.\n");
+    speak(200, "Using a concrete bag,\nstrike at full force.\n");
     showTextbox("This will boost Offensive\nPower and Max HP.\n");
-    setSelection(L2, L1, L3);
-    showTextbox("Explain again\nBegin\nQuit\n");
-    waitForSelectionChoice();
+    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
     return;
 
 L3:
@@ -178,8 +153,7 @@ L4:
 
 L5:
     setTexboxMode(1, 0);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
+    speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
     setPStat(254, 1);
     setPStat(246, 1);
     callDigimonSubroutine(214);
@@ -192,27 +166,19 @@ section(85) {  // len=1648
     rotate(entity: Entity.Player, to: 2560);
     setTextboxOrigin(766, 0, 106);
     callSubroutine(39);
-    setDialogOwner(200);
-    showTextbox("<GREEN>Training: \nSavanna Course <WHITE>\n");
-    setSelection(L1, L2, L3);
-    showTextbox("Begin\nExplain\nQuit\n");
-    waitForSelectionChoice();
+    speak(200, "<GREEN>Training: \nSavanna Course <WHITE>\n");
+    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
     return;
 
 L1:
     setDialogOwner(200);
-    setSelection(L4, L5, L3);
-    showTextbox("Normal\nBonus Try\nQuit\n");
-    waitForSelectionChoice();
+    choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
     return;
 
 L2:
-    setDialogOwner(200);
-    showTextbox("Run around Savanna Course.\n");
+    speak(200, "Run around Savanna Course.\n");
     showTextbox("This will boost Speed greatly\nand boost Max HP also.\n");
-    setSelection(L2, L1, L3);
-    showTextbox("Explain again\nBegin\nQuit\n");
-    waitForSelectionChoice();
+    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
     return;
 
 L3:
@@ -228,8 +194,7 @@ L4:
 
 L5:
     setTexboxMode(1, 0);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
+    speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
     setPStat(254, 2);
     setPStat(246, 1);
     callDigimonSubroutine(214);

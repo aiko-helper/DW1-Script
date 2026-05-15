@@ -13,8 +13,7 @@ L1:
 }
 
 section(5) {  // len=74
-    setDialogOwner(5);
-    showTextbox("I must protect this place.\n");
+    speak(5, "I must protect this place.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -23,8 +22,7 @@ section(5) {  // len=74
 }
 
 section(6) {  // len=60
-    setDialogOwner(6);
-    showTextbox("What was the order?\n");
+    speak(6, "What was the order?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -34,21 +32,18 @@ section(6) {  // len=60
 
 section(51) {  // len=1840
     if (trigger(132)) goto L1;
-    setDialogOwner(Entity.Player);
-    showTextbox("What?\n");
+    speak(Entity.Player, "What?\n");
     playSound(8, 4);
     setObjectVisibility(15, 0);
     delay(10);
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow!\n");
+    speak(Entity.Player, "Wow!\n");
     playSound(8, 5);
     warp(to: Map.YAKA23, spawn: 2, trigger: 52);
     return;
     goto L2;
 
 L1:
-    setDialogOwner(Entity.Player);
-    showTextbox("I'm coming!\n");
+    speak(Entity.Player, "I'm coming!\n");
     playSound(8, 4);
     playSound(8, 5);
     warp(to: Map.YAKA23, spawn: 2, trigger: 52);

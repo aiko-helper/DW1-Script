@@ -5,27 +5,23 @@ section onEnter(254) {  // len=58
     spawnChest(Item.MediumMP, -1511, 1093, 0, 706);
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L1;
-    spawnItem(Item.Digimushroom, 74, 62);
+    spawnItem(Item.Digimushroom, x: 74, y: 62);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 24) goto L2;
-    spawnItem(Item.Digimushroom, 31, 45);
+    spawnItem(Item.Digimushroom, x: 31, y: 45);
 
 L2:
     return;
 }
 
 section(81) {  // len=738
-    setDialogOwner(Entity.System);
-    showTextbox("Vending Machine\n");
+    speak(Entity.System, "Vending Machine\n");
     rotate(entity: Entity.Player, to: 2048);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("My gosh, it's so expensive!\n");
-    setSelection(L1, L3, L5);
-    showTextbox("Meat : three hund bits\nDigiMushrooms:six hund bits\nDon't buy\n");
-    waitForSelectionChoice();
+    speak(Entity.Player, "My gosh, it's so expensive!\n");
+    choice { "Meat : three hund bits" -> L1, "DigiMushrooms:six hund bits" -> L3, "Don't buy" -> L5 }
     goto L5;
     return;
 
@@ -35,8 +31,7 @@ L1:
     goto L3;
 
 L2:
-    setDialogOwner(Entity.Player);
-    showTextbox("I don't got enough money.\n");
+    speak(Entity.Player, "I don't got enough money.\n");
     return;
 
 L3:
@@ -45,8 +40,7 @@ L3:
     goto L5;
 
 L4:
-    setDialogOwner(Entity.Player);
-    showTextbox("I don't got enough money.\n");
+    speak(Entity.Player, "I don't got enough money.\n");
     return;
 
 L5:
@@ -54,16 +48,14 @@ L5:
 
 L6:
     reduceMoney(300);
-    setDialogOwner(Entity.System);
-    showTextbox("<LIGHTBLUE>Meat <WHITE>came out!\n");
+    speak(Entity.System, "<LIGHTBLUE>Meat <WHITE>came out!\n");
     giveItem(Item.Meat, 1);
     if (!trigger(0)) goto L8;
     if (item[Item.Meat] < 99) goto L7;
     return;
 
 L7:
-    setDialogOwner(Entity.Player);
-    showTextbox("Oops, too many things.\n");
+    speak(Entity.Player, "Oops, too many things.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
@@ -74,16 +66,14 @@ L8:
 
 L9:
     reduceMoney(600);
-    setDialogOwner(Entity.System);
-    showTextbox("A <LIGHTBLUE>Digital Mushroom <WHITE>\ncame out!\n");
+    speak(Entity.System, "A <LIGHTBLUE>Digital Mushroom <WHITE>\ncame out!\n");
     giveItem(Item.Digimushroom, 1);
     if (!trigger(0)) goto L11;
     if (item[Item.Digimushroom] < 99) goto L10;
     return;
 
 L10:
-    setDialogOwner(Entity.Player);
-    showTextbox("Oops, too many things.\n");
+    speak(Entity.Player, "Oops, too many things.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);

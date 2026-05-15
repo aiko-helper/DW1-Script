@@ -4,20 +4,19 @@
 section onEnter(254) {  // len=46
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
-    spawnItem(Item.Digimushroom, 69, 49);
+    spawnItem(Item.Digimushroom, x: 69, y: 49);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 2) goto L2;
-    spawnItem(Item.Happymushroom, 37, 33);
+    spawnItem(Item.Happymushroom, x: 37, y: 33);
 
 L2:
     return;
 }
 
 section(5) {  // len=62
-    setDialogOwner(5);
-    showTextbox("It's not going well!\n");
+    speak(5, "It's not going well!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -26,8 +25,7 @@ section(5) {  // len=62
 }
 
 section(6) {  // len=66
-    setDialogOwner(6);
-    showTextbox("Did you say something?\n");
+    speak(6, "Did you say something?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -36,8 +34,7 @@ section(6) {  // len=66
 }
 
 section(7) {  // len=76
-    setDialogOwner(7);
-    showTextbox("I told you it's impossible.\n");
+    speak(7, "I told you it's impossible.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -46,8 +43,7 @@ section(7) {  // len=76
 }
 
 section(8) {  // len=80
-    setDialogOwner(8);
-    showTextbox("I don't have much confidence.\n");
+    speak(8, "I don't have much confidence.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -56,8 +52,7 @@ section(8) {  // len=80
 }
 
 section(9) {  // len=50
-    setDialogOwner(9);
-    showTextbox("Go easy on me.\n");
+    speak(9, "Go easy on me.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -66,8 +61,7 @@ section(9) {  // len=50
 }
 
 section(10) {  // len=64
-    setDialogOwner(10);
-    showTextbox("Don't make fun of me!\n");
+    speak(10, "Don't make fun of me!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -78,20 +72,16 @@ section(10) {  // len=64
 section(81) {  // len=928
     rotate(entity: Entity.Player, to: 2128);
     delay(5);
-    setDialogOwner(Entity.System);
-    showTextbox("Elevator\n");
+    speak(Entity.System, "Elevator\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L4, L7);
-    showTextbox("Hit Rooftop\nHit Up\nDon't get on\n");
-    waitForSelectionChoice();
+    choice { "Hit Rooftop" -> L1, "Hit Up" -> L4, "Don't get on" -> L7 }
     goto L7;
 
 L1:
     if (trigger(155)) goto L2;
     playAnimation(Entity.Player, 16);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("It doesn't do anything.\n");
+    speak(Entity.Player, "It doesn't do anything.\n");
     playAnimation(Entity.Player, 0);
     rotate(entity: Entity.Player, to: 2297);
     delay(10);
@@ -101,10 +91,8 @@ L1:
     showTextbox("There's a rock stuck in\nthe machine. Maybe this is...\n");
     playAnimation(Entity.Player, 25);
     delay(20);
-    setDialogOwner(Entity.System);
-    showTextbox("I removed the rock!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("That should do it!\n");
+    speak(Entity.System, "I removed the rock!\n");
+    speak(Entity.Player, "That should do it!\n");
     setTrigger(155);
     return;
     goto L3;
@@ -139,8 +127,7 @@ L4:
     if (trigger(155)) goto L5;
     playAnimation(Entity.Player, 16);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("It doesn't do anything.\n");
+    speak(Entity.Player, "It doesn't do anything.\n");
     playAnimation(Entity.Player, 0);
     rotate(entity: Entity.Player, to: 2297);
     delay(10);
@@ -148,11 +135,9 @@ L4:
     delay(10);
     rotate(entity: Entity.Player, to: 2297);
     showTextbox("There's a rock stuck in\nthe machine. Maybe this is...\n");
-    setDialogOwner(Entity.System);
-    showTextbox("I removed the rock!");
+    speak(Entity.System, "I removed the rock!");
     dead_string("?is is...\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("That should do it.\n");
+    speak(Entity.Player, "That should do it.\n");
     setTrigger(155);
     return;
     goto L6;

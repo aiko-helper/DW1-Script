@@ -18,9 +18,7 @@ L1:
     if (trigger(54)) goto L6;
     delay(20);
     setDialogOwner(Entity.System);
-    setSelection(L2, L3, L4, L5);
-    showTextbox("Giromon Computer Room\nToy Deepest\nFight Check\nLast Battle\n");
-    waitForSelectionChoice();
+    choice { "Giromon Computer Room" -> L2, "Toy Deepest" -> L3, "Fight Check" -> L4, "Last Battle" -> L5 }
     return;
 
 L2:
@@ -329,38 +327,27 @@ section(52) {  // len=14
 
 section(5) {  // len=1038
     setStats(tournamentsWon: 99, tournamentWins: 99, tournamentsLost: 99);
-    setDialogOwner(5);
-    showTextbox("<WHITE>White White White\n<BLUE>Blue Blue Blue\n<RED>Red Red Red\n<PINK>Pink <GREEN>Green\n<LIGHTBLUE>LightBlue LightBlue\n<YELLOW>Yellow <ORANGE>Orange\n<ORANGE>a <LIGHTBLUE>b <PINK>c <GREEN>d\n");
+    speak(5, "<WHITE>White White White\n<BLUE>Blue Blue Blue\n<RED>Red Red Red\n<PINK>Pink <GREEN>Green\n<LIGHTBLUE>LightBlue LightBlue\n<YELLOW>Yellow <ORANGE>Orange\n<ORANGE>a <LIGHTBLUE>b <PINK>c <GREEN>d\n");
     storeDate(105);
-    setDialogOwner(5);
-    showTextbox("Right now, <HOUR>: <MINUTE>on\nthe <DAY>th day of\nthe <YEAR>th month.\n");
-    setDialogOwner(5);
-    showTextbox("I'm Mr. Warp.\nWhere do you want to go?\n");
+    speak(5, "Right now, <HOUR>: <MINUTE>on\nthe <DAY>th day of\nthe <YEAR>th month.\n");
+    speak(5, "I'm Mr. Warp.\nWhere do you want to go?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L2, L3);
-    showTextbox("Near\nFar away\nVery far away\n");
-    waitForSelectionChoice();
+    choice { "Near" -> L1, "Far away" -> L2, "Very far away" -> L3 }
     return;
 
 L1:
     setDialogOwner(Entity.Player);
-    setSelection(L4, L5, L6);
-    showTextbox("The peak of Mt. Panorama\nTropical Jungle\nDrill Tunnel\n");
-    waitForSelectionChoice();
+    choice { "The peak of Mt. Panorama" -> L4, "Tropical Jungle" -> L5, "Drill Tunnel" -> L6 }
     return;
 
 L2:
     setDialogOwner(Entity.Player);
-    setSelection(L7, L8, L9);
-    showTextbox("Gear Savanna\nGray Lord's mansion\nGreat Canyon\n");
-    waitForSelectionChoice();
+    choice { "Gear Savanna" -> L7, "Gray Lord's mansion" -> L8, "Great Canyon" -> L9 }
     return;
 
 L3:
     setDialogOwner(Entity.Player);
-    setSelection(L10, L11, L12);
-    showTextbox("Anc. Dino Region: gate\nAnc. Dino Region: back\nUnknown World\n");
-    waitForSelectionChoice();
+    choice { "Anc. Dino Region: gate" -> L10, "Anc. Dino Region: back" -> L11, "Unknown World" -> L12 }
     return;
 
 L4:
@@ -389,9 +376,7 @@ L11:
 
 L12:
     setDialogOwner(Entity.Player);
-    setSelection(L13, L14, L15);
-    showTextbox("In front of Curling Cave\nSeadra fishing\nLava Cave\n");
-    waitForSelectionChoice();
+    choice { "In front of Curling Cave" -> L13, "Seadra fishing" -> L14, "Lava Cave" -> L15 }
     return;
 
 L13:
@@ -406,15 +391,11 @@ L15:
 }
 
 section(6) {  // len=226
-    setStats(Stat.Lives, 3);
-    setDialogOwner(5);
-    showTextbox("Life three\n");
-    setDialogOwner(6);
-    showTextbox("I'm Mr. Digivolution.\nWhat do you want to be?\n");
+    setStats(lives: 3);
+    speak(5, "Life three\n");
+    speak(6, "I'm Mr. Digivolution.\nWhat do you want to be?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L2, L3);
-    showTextbox("Numemon\nSukamon\nBotamon\n");
-    waitForSelectionChoice();
+    choice { "Numemon" -> L1, "Sukamon" -> L2, "Botamon" -> L3 }
     return;
 
 L1:
@@ -449,71 +430,12 @@ L1:
     setTrigger(75);
     goto section_8.L2;
     setDialogOwner(Entity.Player);
-    setSelection(L2, L3, section_8.L2);
-    showTextbox("Debug high\nDebug initial\nTo Opening\n");
-    waitForSelectionChoice();
+    choice { "Debug high" -> L2, "Debug initial" -> L3, "To Opening" -> section_8.L2 }
     return;
 
 L2:
     setStats(offense: 999, defense: 999, speed: 999, brains: 999, maxHP: 9999, maxMP: 9999, currentHP: 9999, currentMP: 9999);
-    learnMove(Move.FireTower);
-    learnMove(Move.ProminenceBeam);
-    learnMove(Move.SpitFire);
-    learnMove(Move.RedInferno);
-    learnMove(Move.MagmaBomb);
-    learnMove(Move.HeatLaser);
-    learnMove(Move.InifinityBurn);
-    learnMove(Move.Meltdown);
-    learnMove(Move.ThunderJustice);
-    learnMove(Move.SpinningShot);
-    learnMove(Move.ElectricCloud);
-    learnMove(Move.MegaloSpark);
-    learnMove(Move.StaticElect);
-    learnMove(Move.WindCutter);
-    learnMove(Move.ConfusedStorm);
-    learnMove(Move.Hurricane);
-    learnMove(Move.GigaFreeze);
-    learnMove(Move.IceStatue);
-    learnMove(Move.WinterBlast);
-    learnMove(Move.IceNeedle);
-    learnMove(Move.WaterBlit);
-    learnMove(Move.AquaMagic);
-    learnMove(Move.AuroraFreeze);
-    learnMove(Move.TearDrop);
-    learnMove(Move.PowerCrane);
-    learnMove(Move.AllRangeBeam);
-    learnMove(Move.MetalSprinter);
-    learnMove(Move.PulseLaser);
-    learnMove(Move.DeleteProgram);
-    learnMove(Move.DGDimension);
-    learnMove(Move.FullPotential);
-    learnMove(Move.ReverseProg);
-    learnMove(Move.PoisonPowder);
-    learnMove(Move.MassMorph);
-    learnMove(Move.InsectPlague);
-    learnMove(Move.CharmPerfume);
-    learnMove(Move.PoisonClaw);
-    learnMove(Move.DangerSting);
-    learnMove(Move.GreenTrap);
-    learnMove(Move.MuscleCharge);
-    learnMove(Move.SonicJab);
-    learnMove(Move.DynamiteKick);
-    learnMove(Move.MegatonPunch);
-    learnMove(Move.BusterDive);
-    learnMove(Move.OdorSpray);
-    learnMove(Move.PoopSpdToss);
-    learnMove(Move.BigPoopToss);
-    learnMove(Move.BigRndToss);
-    learnMove(Move.PoopRndToss);
-    learnMove(Move.RndSpdToss);
-    learnMove(Move.HorizontalKick);
-    learnMove(Move.UltPoopHell);
-    learnMove(Move.BlazeBlast);
-    learnMove(Move.PepperBreath);
-    learnMove(Move.LovelyAttack);
-    learnMove(Move.Fireball);
-    learnMove(Move.DeathClaw);
-    learnMove(Move.MegaFlame);
+    learnMoves([Move.FireTower, Move.ProminenceBeam, Move.SpitFire, Move.RedInferno, Move.MagmaBomb, Move.HeatLaser, Move.InifinityBurn, Move.Meltdown, Move.ThunderJustice, Move.SpinningShot, Move.ElectricCloud, Move.MegaloSpark, Move.StaticElect, Move.WindCutter, Move.ConfusedStorm, Move.Hurricane, Move.GigaFreeze, Move.IceStatue, Move.WinterBlast, Move.IceNeedle, Move.WaterBlit, Move.AquaMagic, Move.AuroraFreeze, Move.TearDrop, Move.PowerCrane, Move.AllRangeBeam, Move.MetalSprinter, Move.PulseLaser, Move.DeleteProgram, Move.DGDimension, Move.FullPotential, Move.ReverseProg, Move.PoisonPowder, Move.MassMorph, Move.InsectPlague, Move.CharmPerfume, Move.PoisonClaw, Move.DangerSting, Move.GreenTrap, Move.MuscleCharge, Move.SonicJab, Move.DynamiteKick, Move.MegatonPunch, Move.BusterDive, Move.OdorSpray, Move.PoopSpdToss, Move.BigPoopToss, Move.BigRndToss, Move.PoopRndToss, Move.RndSpdToss, Move.HorizontalKick, Move.UltPoopHell, Move.BlazeBlast, Move.PepperBreath, Move.LovelyAttack, Move.Fireball, Move.DeathClaw, Move.MegaFlame]);
     return;
 
 L3:
@@ -523,9 +445,7 @@ L3:
 
 section(8) {  // len=282
     setDialogOwner(8);
-    setSelection(L1, L2, L3);
-    showTextbox("Half dead\nOpening mode\nFast forward time\n");
-    waitForSelectionChoice();
+    choice { "Half dead" -> L1, "Opening mode" -> L2, "Fast forward time" -> L3 }
     return;
 
 L1:
@@ -540,9 +460,7 @@ L2:
 
 L3:
     setDialogOwner(Entity.Player);
-    setSelection(L4, L5, L6);
-    showTextbox("Forward one hour\nForward six hours\nForward ten days\n");
-    waitForSelectionChoice();
+    choice { "Forward one hour" -> L4, "Forward six hours" -> L5, "Forward ten days" -> L6 }
     return;
 
 L4:
@@ -566,18 +484,13 @@ L6:
 
 section(11) {  // len=2742
     if (trigger(74)) goto L1;
-    setDialogOwner(11);
-    showTextbox("Would you like some Meat?\n");
+    speak(11, "Would you like some Meat?\n");
     showTextbox("Oh, I'm sorry.\nI forgot to explain.\n");
     showTextbox("This is a Meat Farm.\nWe grow Meat for everyone.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("You grow Meat on a farm?\n");
-    setDialogOwner(11);
-    showTextbox("Yes, what's wrong?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Nothing...it's alright.\nPlease continue...\n");
-    setDialogOwner(11);
-    showTextbox("Jiji and I decided to give\nyou three pieces of Meat\na day, <LIGHTBLUE><PLAYER><WHITE>.\n");
+    speak(Entity.Player, "You grow Meat on a farm?\n");
+    speak(11, "Yes, what's wrong?\n");
+    speak(Entity.Player, "Nothing...it's alright.\nPlease continue...\n");
+    speak(11, "Jiji and I decided to give\nyou three pieces of Meat\na day, <LIGHTBLUE><PLAYER><WHITE>.\n");
     showTextbox("So, here's today's Meat.\n");
     goto L2;
 
@@ -587,30 +500,25 @@ L1:
 L2:
     giveItem(Item.Meat, 3);
     if (item[Item.Meat] < 99) goto L3;
-    setDialogOwner(11);
-    showTextbox("You got too much Meat.\nI guess you don't\nneed any today.\n");
+    speak(11, "You got too much Meat.\nI guess you don't\nneed any today.\n");
     setPStat(31, 1);
     return;
 
 L3:
     if (item[Item.Meat] < 97) goto L4;
-    setDialogOwner(11);
-    showTextbox("You got too much Meat.\nI will take what\nyou can't carry.\n");
-    setDialogOwner(Entity.System);
-    showTextbox("I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    speak(11, "You got too much Meat.\nI will take what\nyou can't carry.\n");
+    speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
     setTrigger(74);
     setPStat(31, 0);
     return;
 
 L4:
     if (!trigger(0)) goto L5;
-    setDialogOwner(11);
-    showTextbox("You got too many Items.\n");
+    speak(11, "You got too many Items.\n");
     return;
 
 L5:
-    setDialogOwner(Entity.System);
-    showTextbox("I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
     setTrigger(74);
     setPStat(31, 0);
     return;
@@ -618,8 +526,7 @@ L5:
 L6:
     roll(pstat: 110, max: 9);
     if (pstat[31] < 1 || pstat[110] > 0) goto L7;
-    setDialogOwner(11);
-    showTextbox("We harvested lots of Meat!\nSo I'll give you\nfive pieces of Meat.\n");
+    speak(11, "We harvested lots of Meat!\nSo I'll give you\nfive pieces of Meat.\n");
     goto L8;
 
 L7:
@@ -627,16 +534,13 @@ L7:
 
 L8:
     if (item[Item.Meat] < 99) goto L9;
-    setDialogOwner(11);
-    showTextbox("You got too much Meat.\nI guess you don't\nneed any today.\n");
+    speak(11, "You got too much Meat.\nI guess you don't\nneed any today.\n");
     return;
 
 L9:
     if (item[Item.Meat] < 95) goto L10;
-    setDialogOwner(11);
-    showTextbox("You got too much Meat.\nI'm happy to take\nwhat you can't carry\n");
-    setDialogOwner(Entity.System);
-    showTextbox("I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    speak(11, "You got too much Meat.\nI'm happy to take\nwhat you can't carry\n");
+    speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
     giveItem(Item.Meat, 5);
     setTrigger(74);
     setPStat(31, 0);
@@ -645,22 +549,18 @@ L9:
 L10:
     giveItem(Item.Meat, 5);
     if (!trigger(0)) goto L11;
-    setDialogOwner(11);
-    showTextbox("I'm sorry, but\nyou got too many Items.\n");
+    speak(11, "I'm sorry, but\nyou got too many Items.\n");
     return;
 
 L11:
-    setDialogOwner(Entity.System);
-    showTextbox("I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
-    setDialogOwner(11);
-    showTextbox("I'll give you more tomorrow.\n");
+    speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    speak(11, "I'll give you more tomorrow.\n");
     setPStat(31, 0);
     return;
 
 L12:
     if (pstat[31] < 1) goto L13;
-    setDialogOwner(11);
-    showTextbox("Here's today's Meat.\n");
+    speak(11, "Here's today's Meat.\n");
     goto L14;
 
 L13:
@@ -668,16 +568,13 @@ L13:
 
 L14:
     if (item[Item.Meat] < 99) goto L15;
-    setDialogOwner(11);
-    showTextbox("You got too much Meat.\nI guess you don't\nneed any today.\n");
+    speak(11, "You got too much Meat.\nI guess you don't\nneed any today.\n");
     return;
 
 L15:
     if (item[Item.Meat] < 97) goto L16;
-    setDialogOwner(11);
-    showTextbox("You got too much Meat.\nI'm happy to take\nwhat you can't carry.\n");
-    setDialogOwner(Entity.System);
-    showTextbox("I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    speak(11, "You got too much Meat.\nI'm happy to take\nwhat you can't carry.\n");
+    speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
     giveItem(Item.Meat, 3);
     setTrigger(74);
     setPStat(31, 0);
@@ -686,28 +583,23 @@ L15:
 L16:
     giveItem(Item.Meat, 3);
     if (!trigger(0)) goto L17;
-    setDialogOwner(11);
-    showTextbox("You have too many Items.\n");
+    speak(11, "You have too many Items.\n");
     return;
 
 L17:
-    setDialogOwner(Entity.System);
-    showTextbox("I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
-    setDialogOwner(11);
-    showTextbox("I'll give you more tomorrow.\n");
+    speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+    speak(11, "I'll give you more tomorrow.\n");
     setPStat(31, 0);
     return;
 
 L18:
-    setDialogOwner(11);
-    showTextbox("What? I gave you Meat today,\nremember?\n");
+    speak(11, "What? I gave you Meat today,\nremember?\n");
     showTextbox("If you run out of food,\nlook for mushrooms\nin Native Forest.\n");
     return;
 }
 
 section(9) {  // len=1314
-    setDialogOwner(9);
-    showTextbox("OK, I'll explain to you the\nsurroundings of this city.\n");
+    speak(9, "OK, I'll explain to you the\nsurroundings of this city.\n");
     showTextbox("Native Forest\nsurrounds the city.\n");
     showTextbox("The Digimon around there\nare not very strong.\n");
     showTextbox("There's a Training Camp on\nthe west side. I think you\nwill go there often.\n");

@@ -6,17 +6,12 @@ section onEnter(254) {  // len=2
 }
 
 section(5) {  // len=778
-    setDialogOwner(5);
-    showTextbox("I'm tired of training here.\nWhat should I do?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What to do?\n");
-    setDialogOwner(5);
-    showTextbox("Where do you train?\n");
+    speak(5, "I'm tired of training here.\nWhat should I do?\n");
+    speak(Entity.Player, "What to do?\n");
+    speak(5, "Where do you train?\n");
     if (trigger(205)) goto L1;
-    setDialogOwner(Entity.Player);
-    showTextbox("Is that a training ground?\n");
-    setDialogOwner(5);
-    showTextbox("I'm tired of training.\nI want to do live battle.\n");
+    speak(Entity.Player, "Is that a training ground?\n");
+    speak(5, "I'm tired of training.\nI want to do live battle.\n");
     return;
 
 L1:
@@ -25,13 +20,11 @@ L1:
     showTextbox("Maybe it's a training ground\nMaybe it's an Arena\n");
 
 L2:
-    setDialogOwner(5);
-    showTextbox("I'm tired of training.\nI want to do live battle.\n");
+    speak(5, "I'm tired of training.\nI want to do live battle.\n");
     return;
 
 L3:
-    setDialogOwner(5);
-    showTextbox("I want to go there.\nI'll train there.\n");
+    speak(5, "I want to go there.\nI'll train there.\n");
     goto L4;
 
 L4:
@@ -48,29 +41,25 @@ L5:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 17);
-    setDialogOwner(Entity.System);
-    showTextbox("Kabuterimon joins the city!\n");
+    speak(Entity.System, "Kabuterimon joins the city!\n");
     setTrigger(219);
     addPStat(1, 2);
     return;
 }
 
 section(6) {  // len=1262
-    setDialogOwner(6);
-    showTextbox("The Insectoid Warrior\nTournament takes place here\nevery year...\n");
+    speak(6, "The Insectoid Warrior\nTournament takes place here\nevery year...\n");
     showTextbox("...on days with two two's.\nThe winner gets great stuff!\n");
     showTextbox("But only Insectoid\nDigimon can enter.\n");
     if (!trigger(346)) goto L1;
-    setDialogOwner(6);
-    showTextbox("There's Kabuterimon,\nKuragamon, Kunemon,\nand one other Insectoid.\n");
+    speak(6, "There's Kabuterimon,\nKuragamon, Kunemon,\nand one other Insectoid.\n");
     showTextbox("But, no Numemon.\n");
     showTextbox("On days with two two's, the\nInsectoid Warrior Contest\ntakes place every year.\n");
     showTextbox("You've won before, right?\n");
     return;
 
 L1:
-    setDialogOwner(6);
-    showTextbox("There's Kabuterimon,\nKuragamon, Kunemon,\nand one other Insectoid.\n");
+    speak(6, "There's Kabuterimon,\nKuragamon, Kunemon,\nand one other Insectoid.\n");
     showTextbox("That's HerculesKabuterimon.\n");
     showTextbox("Hercules-Kabuterimon is\nsuper strong.\n");
     showTextbox("The contest winner can\nbecome Hercules-Kabuterimon\nand get Items.\n");
@@ -80,46 +69,36 @@ L1:
 
 section(7) {  // len=910
     if (hasTech(Move.MassMorph) == 0) goto L1;
-    setDialogOwner(7);
-    showTextbox("You're strong.\nThere's nothing to teach you.\n");
+    speak(7, "You're strong.\nThere's nothing to teach you.\n");
     return;
 
 L1:
-    setDialogOwner(7);
-    showTextbox("We're researching Techniques.\nIt's difficult to master\nhard Techniques.\n");
+    speak(7, "We're researching Techniques.\nIt's difficult to master\nhard Techniques.\n");
     showTextbox("If you have ability, you\nmight master the Techniques.\nWant to master the hard ones?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L2, L6);
-    showTextbox("Of course!\nNo, I don't\n");
-    waitForSelectionChoice();
+    choice { "Of course!" -> L2, "No, I don't" -> L6 }
     return;
 
 L2:
-    setDialogOwner(7);
-    showTextbox("Then I'll try it.\n");
+    speak(7, "Then I'll try it.\n");
     if (stat[Stat.Defense] >= 500) goto L3;
-    setDialogOwner(7);
-    showTextbox("You lack Defensive Power.\nTrain more.\n");
+    speak(7, "You lack Defensive Power.\nTrain more.\n");
     return;
 
 L3:
     if (stat[Stat.Speed] >= 500) goto L4;
-    setDialogOwner(7);
-    showTextbox("You lack Speed.\nTrain more.\n");
+    speak(7, "You lack Speed.\nTrain more.\n");
     return;
 
 L4:
     if (stat[Stat.MaxHP] >= 500) goto L5;
-    setDialogOwner(7);
-    showTextbox("You lack HP.\nTrain more.\n");
+    speak(7, "You lack HP.\nTrain more.\n");
     return;
 
 L5:
     learnMove(Move.MassMorph);
-    setDialogOwner(7);
-    showTextbox("You mastered a Technique.\n");
-    setDialogOwner(Entity.System);
-    showTextbox("You mastered the 'Bug'!\n");
+    speak(7, "You mastered a Technique.\n");
+    speak(Entity.System, "You mastered the 'Bug'!\n");
     waitForEntity(7);
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
@@ -133,24 +112,17 @@ section(81) {  // len=524
     rotate(entity: Entity.Player, to: 2128);
     setTextboxOrigin(-541, 0, 1823);
     callSubroutine(39);
-    setDialogOwner(200);
-    showTextbox("<GREEN>Training: Rock Pushing <WHITE>\n");
-    setSelection(L1, L2, L3);
-    showTextbox("Begin\nExplain\nQuit\n");
-    waitForSelectionChoice();
+    speak(200, "<GREEN>Training: Rock Pushing <WHITE>\n");
+    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
     return;
 
 L1:
-    setSelection(L4, L5, L3);
-    showTextbox("Normal\nBonus Try\nQuit\n");
-    waitForSelectionChoice();
+    choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
     return;
 
 L2:
     showTextbox("Get power by pushing\non the rock. Maximum\nHP is boosted greatly.\n");
-    setSelection(L2, L1, L3);
-    showTextbox("Explain again\nBegin\nQuit\n");
-    waitForSelectionChoice();
+    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
     return;
 
 L3:
@@ -166,8 +138,7 @@ L4:
 
 L5:
     setTexboxMode(1, 0);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
+    speak(Entity.System, "<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
     setPStat(254, 0);
     setPStat(246, 1);
     callDigimonSubroutine(214);
@@ -180,26 +151,18 @@ section(83) {  // len=592
     rotate(entity: Entity.Player, to: 1968);
     setTextboxOrigin(-1330, 0, 1434);
     callSubroutine(39);
-    setDialogOwner(200);
-    showTextbox("<GREEN>Training: Striking <WHITE>\n");
-    setSelection(L1, L2, L3);
-    showTextbox("Begin\nExplain\nQuit\n");
-    waitForSelectionChoice();
+    speak(200, "<GREEN>Training: Striking <WHITE>\n");
+    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
     return;
 
 L1:
     setDialogOwner(200);
-    setSelection(L4, L5, L3);
-    showTextbox("Normal\nBonus Try\nQuit\n");
-    waitForSelectionChoice();
+    choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
     return;
 
 L2:
-    setDialogOwner(200);
-    showTextbox("Using a dummy, strike at\nfull force. Offensive Power\nis boosted greatly.\n");
-    setSelection(L2, L1, L3);
-    showTextbox("Explain again\nBegin\nQuit\n");
-    waitForSelectionChoice();
+    speak(200, "Using a dummy, strike at\nfull force. Offensive Power\nis boosted greatly.\n");
+    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
     return;
 
 L3:
@@ -215,8 +178,7 @@ L4:
 
 L5:
     setTexboxMode(1, 0);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
+    speak(Entity.System, "<YELLOW>slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
     setPStat(254, 1);
     setPStat(246, 1);
     callDigimonSubroutine(214);

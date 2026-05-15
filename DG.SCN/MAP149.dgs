@@ -25,8 +25,7 @@ L5:
     if (trigger(332)) goto L6;
     playAnimation(Entity.Player, 24);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("There's no guard!\n");
+    speak(Entity.Player, "There's no guard!\n");
     playAnimation(Entity.Player, 0);
     moveCamera(to: (2799, 74), slowdown: 20);
     waitForEntity(200);
@@ -51,15 +50,13 @@ section(52) {  // len=14
 
 section(12) {  // len=62
     playSound(8, 9);
-    setDialogOwner(12);
-    showTextbox("You can't get thru here.\n");
+    speak(12, "You can't get thru here.\n");
     return;
 }
 
 section(11) {  // len=2456
     playSound(8, 9);
-    setDialogOwner(11);
-    showTextbox("You can't get thru here.\n");
+    speak(11, "You can't get thru here.\n");
     storeDate(105);
     if (!trigger(331) || pstat[107] != 11 || pstat[108] < 55) goto L1;
     goto L14;
@@ -78,17 +75,14 @@ L3:
 
 L4:
     if (!trigger(331)) goto L5;
-    setDialogOwner(11);
-    showTextbox("......\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow, he's staring at us!\nMaybe he's suspicious\nabout us.\n");
+    speak(11, "......\n");
+    speak(Entity.Player, "Wow, he's staring at us!\nMaybe he's suspicious\nabout us.\n");
     showTextbox("We should hide from them\nand wait, then come back.\nIt's twelve o'clock.\n");
     return;
 
 L5:
     if (!trigger(342) || trigger(343)) goto L6;
-    setDialogOwner(Entity.Player);
-    showTextbox("This factory must be\ndraining their waste to\nsewage. I must find out.\n");
+    speak(Entity.Player, "This factory must be\ndraining their waste to\nsewage. I must find out.\n");
     look(entity: Entity.Player, at: Entity.Partner);
     delay(5);
     playAnimation(Entity.Player, 22);
@@ -102,21 +96,16 @@ L5:
     delay(10);
     playAnimation(Entity.Player, 19);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("Can you move, please?\n");
+    speak(Entity.Player, "Can you move, please?\n");
     playAnimation(Entity.Player, 0);
     playSound(8, 9);
     delay(5);
-    setDialogOwner(11);
-    showTextbox("You can't go thru here\nwithout a permit issued by\nthe person in charge.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I'm in a hurry.\n");
-    setDialogOwner(11);
-    showTextbox("Sorry, you gotta have\na permit.\n");
+    speak(11, "You can't go thru here\nwithout a permit issued by\nthe person in charge.\n");
+    speak(Entity.Player, "I'm in a hurry.\n");
+    speak(11, "Sorry, you gotta have\na permit.\n");
     playAnimation(Entity.Player, 25);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("OK, if that's the way\nit is.\n");
+    speak(Entity.Player, "OK, if that's the way\nit is.\n");
     playAnimation(Entity.Player, 0);
     setTrigger(347);
     return;
@@ -127,73 +116,55 @@ L6:
 
 L7:
     if (!trigger(343)) goto L8;
+    speak(Entity.Player, "So, what should we do?\n");
     setDialogOwner(Entity.Player);
-    showTextbox("So, what should we do?\n");
-    setDialogOwner(Entity.Player);
-    setSelection(L8, L11, L13);
-    showTextbox("Time for shift change\nLet me thru or else\nNo, nothing\n");
-    waitForSelectionChoice();
+    choice { "Time for shift change" -> L8, "Let me thru or else" -> L11, "No, nothing" -> L13 }
     return;
 
 L8:
     playSound(8, 9);
-    setDialogOwner(11);
-    showTextbox("It's not the time for\nthe shift change yet.\n");
+    speak(11, "It's not the time for\nthe shift change yet.\n");
     setDialogOwner(Entity.Player);
-    setSelection(L9, L10);
-    showTextbox("That's OK, don't worry.\nWhen is shift change?\n");
-    waitForSelectionChoice();
+    choice { "That's OK, don't worry." -> L9, "When is shift change?" -> L10 }
     return;
 
 L9:
     playSound(8, 9);
-    setDialogOwner(11);
-    showTextbox("No, we have to follow\nthe time strictly.\n");
+    speak(11, "No, we have to follow\nthe time strictly.\n");
     return;
 
 L10:
-    setDialogOwner(11);
-    showTextbox("The shift changes are\nat midnight and noon.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh, I see.\n");
+    speak(11, "The shift changes are\nat midnight and noon.\n");
+    speak(Entity.Player, "Oh, I see.\n");
     setTrigger(331);
     return;
 
 L11:
     playSound(8, 9);
-    setDialogOwner(11);
-    showTextbox("You can't threaten me.\nYou have to get a permit.\n");
+    speak(11, "You can't threaten me.\nYou have to get a permit.\n");
     setDialogOwner(Entity.Player);
-    setSelection(L12, L12);
-    showTextbox("A permit? I got one.\nI'll give you permission!\n");
-    waitForSelectionChoice();
+    choice { "A permit? I got one." -> L12, "I'll give you permission!" -> L12 }
     return;
 
 L12:
     playSound(8, 9);
-    setDialogOwner(11);
-    showTextbox("We can't give you a permit.\nYou have to go thru\nproper channels.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow, you're so strict!\n");
+    speak(11, "We can't give you a permit.\nYou have to go thru\nproper channels.\n");
+    speak(Entity.Player, "Wow, you're so strict!\n");
     return;
 
 L13:
     return;
 
 L14:
-    setDialogOwner(Entity.Player);
-    showTextbox("Isn't it shift change yet?\n");
-    setDialogOwner(11);
-    showTextbox("...\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow, he's staring at us!\nI guess he won't change\nthe shift.\n");
+    speak(Entity.Player, "Isn't it shift change yet?\n");
+    speak(11, "...\n");
+    speak(Entity.Player, "Wow, he's staring at us!\nI guess he won't change\nthe shift.\n");
     showTextbox("Let's come back later.\nMaybe we should hide from\nthem and wait.\n");
     return;
 }
 
 section(5) {  // len=56
-    setDialogOwner(5);
-    showTextbox("Bopi bopi pooooo.\n");
+    speak(5, "Bopi bopi pooooo.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -202,8 +173,7 @@ section(5) {  // len=56
 }
 
 section(6) {  // len=42
-    setDialogOwner(6);
-    showTextbox("Geba geba!\n");
+    speak(6, "Geba geba!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -212,8 +182,7 @@ section(6) {  // len=42
 }
 
 section(7) {  // len=36
-    setDialogOwner(7);
-    showTextbox("Boobyo?\n");
+    speak(7, "Boobyo?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -222,8 +191,7 @@ section(7) {  // len=36
 }
 
 section(8) {  // len=50
-    setDialogOwner(8);
-    showTextbox("I'm satisfied!\n");
+    speak(8, "I'm satisfied!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -232,8 +200,7 @@ section(8) {  // len=50
 }
 
 section(9) {  // len=68
-    setDialogOwner(9);
-    showTextbox("This is part of my job.\n");
+    speak(9, "This is part of my job.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -242,8 +209,7 @@ section(9) {  // len=68
 }
 
 section(10) {  // len=1084
-    setDialogOwner(10);
-    showTextbox("What's the problem?\n");
+    speak(10, "What's the problem?\n");
     fadeOutHUD();
     delay(1);
     startBattle();

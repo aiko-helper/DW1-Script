@@ -13,8 +13,7 @@ section(51) {  // len=88
     if (trigger(134)) goto L1;
     rotate(entity: Entity.Player, to: 1900);
     waitForEntity(Entity.Player);
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow, it's amazing!\n");
+    speak(Entity.Player, "Wow, it's amazing!\n");
     moveCamera(to: (-400, 4000), slowdown: 50);
     waitForEntity(200);
     delay(40);
@@ -31,8 +30,7 @@ section(52) {  // len=558
     if (trigger(135)) goto L2;
     rotate(entity: Entity.Player, to: 1900);
     waitForEntity(Entity.Player);
-    setDialogOwner(Entity.Player);
-    showTextbox("Hey, there's a stone tablet.\nLet's see...\n");
+    speak(Entity.Player, "Hey, there's a stone tablet.\nLet's see...\n");
     move(entity: Entity.Player, to: (-477, 2801), sprint: 0, withCamera: true);
     waitForEntity(Entity.Player);
     rotate(entity: Entity.Player, to: 1900);
@@ -42,8 +40,7 @@ section(52) {  // len=558
     playSound(8, 7);
     setObjectVisibility(2, 1);
     delay(10);
-    setDialogOwner(Entity.Player);
-    showTextbox("It says Leomon.\nI can't read the rest.\n");
+    speak(Entity.Player, "It says Leomon.\nI can't read the rest.\n");
     playAnimation(Entity.Player, 16);
     delay(15);
     showTextbox("I can understand speech,\nbut not writing...\n");
@@ -51,8 +48,7 @@ section(52) {  // len=558
     showTextbox("Let's take it.\n");
     giveItem(Item.Leomonstone, 1);
     if (!trigger(0)) goto L1;
-    setDialogOwner(Entity.Player);
-    showTextbox("Oops, I have to throw\nsomething away.\n");
+    speak(Entity.Player, "Oops, I have to throw\nsomething away.\n");
     unsetTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
@@ -60,8 +56,7 @@ section(52) {  // len=558
 
 L1:
     playSound(0, 7);
-    setDialogOwner(Entity.System);
-    showTextbox("I got <LIGHTBLUE>Leomon's\nStone<WHITE> Tablet!\n");
+    speak(Entity.System, "I got <LIGHTBLUE>Leomon's\nStone<WHITE> Tablet!\n");
     setTrigger(135);
     return;
 
@@ -73,10 +68,8 @@ section(5) {  // len=1364
     delay(10);
     playAnimation(5, 28);
     delay(10);
-    setDialogOwner(Entity.Player);
-    showTextbox("Who are you?\n");
-    setDialogOwner(5);
-    showTextbox("Who are you!\n");
+    speak(Entity.Player, "Who are you?\n");
+    speak(5, "Who are you!\n");
     rotate(entity: 5, to: 1276);
     delay(5);
     rotate(entity: 5, to: 2300);
@@ -104,8 +97,7 @@ section(5) {  // len=1364
     delay(10);
     setObjectVisibility(3, 1);
     playSound(0, 7);
-    setDialogOwner(Entity.System);
-    showTextbox("I got a <PINK>Dimensional\nKey Chain<WHITE>! I can now\ncarry up to twenty Items!\n");
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can now\ncarry up to twenty Items!\n");
     playSound(0, 7);
     setInventorySize(20);
     setTrigger(47);
@@ -119,8 +111,7 @@ L1:
     delay(10);
     setObjectVisibility(4, 1);
     playSound(0, 7);
-    setDialogOwner(Entity.System);
-    showTextbox("I got a <PINK>Dimensional\nKey Chain<WHITE>! I can now\ncarry up to thirty Items!\n");
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can now\ncarry up to thirty Items!\n");
     setTrigger(48);
     setInventorySize(30);
     setTrigger(253);

@@ -5,41 +5,36 @@ section onEnter(254) {  // len=102
     spawnChest(Item.MediumRecovery, 1941, 142, 0, 693);
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L1;
-    spawnItem(Item.Digimushroom, 79, 34);
+    spawnItem(Item.Digimushroom, x: 79, y: 34);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 17) goto L2;
-    spawnItem(Item.Digimushroom, 56, 61);
+    spawnItem(Item.Digimushroom, x: 56, y: 61);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 5) goto L3;
-    spawnItem(Item.Digimushroom, 87, 67);
+    spawnItem(Item.Digimushroom, x: 87, y: 67);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 2) goto L4;
-    spawnItem(Item.OrangeBanana, 21, 57);
+    spawnItem(Item.OrangeBanana, x: 21, y: 57);
 
 L4:
     return;
 }
 
 section(5) {  // len=828
-    setDialogOwner(5);
-    showTextbox("Hey, are you the one\nbuilding a city?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Yes.\n");
+    speak(5, "Hey, are you the one\nbuilding a city?\n");
+    speak(Entity.Player, "Yes.\n");
     playSound(8, 6);
-    setDialogOwner(5);
-    showTextbox("Uh, you're real lucky\nto meet me.\n");
+    speak(5, "Uh, you're real lucky\nto meet me.\n");
     showTextbox("I don't look it, but I'm an\nUltimate Digimon. If you\nbeat me, I'll help you.\n");
     playAnimation(Entity.Player, 16);
     setDialogOwner(Entity.Player);
-    setSelection(L1, L4);
-    showTextbox("Okay, I accept\nNo thanks\n");
-    waitForSelectionChoice();
+    choice { "Okay, I accept" -> L1, "No thanks" -> L4 }
     goto L4;
 
 L1:
@@ -60,8 +55,7 @@ L1:
     look(entity: Entity.Partner, at: 5);
     look(entity: 5, at: Entity.Player);
     waitForEntity(Entity.Player);
-    setDialogOwner(5);
-    showTextbox("Wow, I lost! Well, I'll\nsee you in the city.\n");
+    speak(5, "Wow, I lost! Well, I'll\nsee you in the city.\n");
     goto L2;
 
 L2:
@@ -78,8 +72,7 @@ L3:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 3);
-    setDialogOwner(Entity.System);
-    showTextbox("Piximon joins the city!\n");
+    speak(Entity.System, "Piximon joins the city!\n");
     unsetTrigger(1);
     setTrigger(255);
     addPStat(1, 3);
@@ -88,8 +81,7 @@ L3:
     return;
 
 L4:
-    setDialogOwner(5);
-    showTextbox("Oh, what a coward!\nLet's meet again!\n");
+    speak(5, "Oh, what a coward!\nLet's meet again!\n");
     goto L5;
 
 L5:
@@ -109,8 +101,7 @@ L6:
 }
 
 section(6) {  // len=48
-    setDialogOwner(6);
-    showTextbox("Oh, Senorita!\n");
+    speak(6, "Oh, Senorita!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -119,8 +110,7 @@ section(6) {  // len=48
 }
 
 section(7) {  // len=64
-    setDialogOwner(7);
-    showTextbox("Hey amigo, what's up?\n");
+    speak(7, "Hey amigo, what's up?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -129,8 +119,7 @@ section(7) {  // len=64
 }
 
 section(8) {  // len=48
-    setDialogOwner(8);
-    showTextbox("Wooki, wooki!\n");
+    speak(8, "Wooki, wooki!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -139,8 +128,7 @@ section(8) {  // len=48
 }
 
 section(9) {  // len=930
-    setDialogOwner(9);
-    showTextbox("Huh?\n");
+    speak(9, "Huh?\n");
     fadeOutHUD();
     delay(1);
     startBattle();

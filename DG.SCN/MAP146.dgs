@@ -10,8 +10,7 @@ section(51) {  // len=2
 }
 
 section(5) {  // len=46
-    setDialogOwner(5);
-    showTextbox("Who are you?\n");
+    speak(5, "Who are you?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -20,8 +19,7 @@ section(5) {  // len=46
 }
 
 section(6) {  // len=56
-    setDialogOwner(6);
-    showTextbox("Why are you here?\n");
+    speak(6, "Why are you here?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -30,8 +28,7 @@ section(6) {  // len=56
 }
 
 section(7) {  // len=76
-    setDialogOwner(7);
-    showTextbox("I'm going to get some rest.\n");
+    speak(7, "I'm going to get some rest.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -40,8 +37,7 @@ section(7) {  // len=76
 }
 
 section(8) {  // len=54
-    setDialogOwner(8);
-    showTextbox("What's going on?\n");
+    speak(8, "What's going on?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -51,12 +47,9 @@ section(8) {  // len=54
 
 section(81) {  // len=1780
     look(entity: Entity.Player, at: 9);
-    setDialogOwner(9);
-    showTextbox("Going back to the city?\n");
+    speak(9, "Going back to the city?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L20);
-    showTextbox("Going back\nNot going\n");
-    waitForSelectionChoice();
+    choice { "Going back" -> L1, "Not going" -> L20 }
     goto L20;
 
 L1:

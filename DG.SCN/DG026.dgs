@@ -20,13 +20,11 @@ L2:
 
 section(5) {  // len=126
     if (pstat[17] < 3) goto L1;
-    setDialogOwner(5);
-    showTextbox("Oh, thanks so much!\n");
+    speak(5, "Oh, thanks so much!\n");
     return;
 
 L1:
-    setDialogOwner(5);
-    showTextbox("What? You wanna fight?\n");
+    speak(5, "What? You wanna fight?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -36,13 +34,11 @@ L1:
 
 section(6) {  // len=96
     if (pstat[17] < 3) goto L1;
-    setDialogOwner(6);
-    showTextbox("Oh, thanks a lot!\n");
+    speak(6, "Oh, thanks a lot!\n");
     return;
 
 L1:
-    setDialogOwner(6);
-    showTextbox("Leave it!\n");
+    speak(6, "Leave it!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -52,13 +48,11 @@ L1:
 
 section(7) {  // len=120
     if (pstat[17] < 3) goto L1;
-    setDialogOwner(7);
-    showTextbox("Don't push yourself!\n");
+    speak(7, "Don't push yourself!\n");
     return;
 
 L1:
-    setDialogOwner(7);
-    showTextbox("Let's fight, punk!\n");
+    speak(7, "Let's fight, punk!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -67,14 +61,12 @@ L1:
 }
 
 section(9) {  // len=30
-    setDialogOwner(9);
-    showTextbox("I give up!\n");
+    speak(9, "I give up!\n");
     return;
 }
 
 section(10) {  // len=44
-    setDialogOwner(10);
-    showTextbox("The boss is gone.\n");
+    speak(10, "The boss is gone.\n");
     return;
 }
 
@@ -98,21 +90,15 @@ L1:
     look(entity: 9, at: Entity.Player);
     look(entity: 10, at: Entity.Player);
     look(entity: 8, at: Entity.Player);
-    setDialogOwner(8);
-    showTextbox("Hey guys, if you want\nto get thru here,");
+    speak(8, "Hey guys, if you want\nto get thru here,");
     dead_string("?nt\nleave all your stuff!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Long time no see.\n");
-    setDialogOwner(8);
-    showTextbox("Mmm. You guys again!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("That's my line!\nIt was so easy to find you.\nReady to lose?\n");
+    speak(Entity.Player, "Long time no see.\n");
+    speak(8, "Mmm. You guys again!\n");
+    speak(Entity.Player, "That's my line!\nIt was so easy to find you.\nReady to lose?\n");
     playAnimation(8, 32);
-    setDialogOwner(8);
-    showTextbox("Lose? No way!\nI'll show you what I do\nwhen I get serious!\n");
+    speak(8, "Lose? No way!\nI'll show you what I do\nwhen I get serious!\n");
     playAnimation(8, 0);
-    setDialogOwner(Entity.Player);
-    showTextbox("Let's settle this\nonce and for all!\n");
+    speak(Entity.Player, "Let's settle this\nonce and for all!\n");
     setTrigger(1);
     setPStat(250, 1);
     setPStat(251, 9);
@@ -133,53 +119,39 @@ L1:
     waitForEntity(8);
     playAnimation(8, 28);
     delay(30);
-    setDialogOwner(8);
-    showTextbox("How come...I can't win?\n");
+    speak(8, "How come...I can't win?\n");
     playAnimation(8, 29);
     playAnimation(Entity.Player, 19);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("What's wrong?\nAren't you going to run?\n");
+    speak(Entity.Player, "What's wrong?\nAren't you going to run?\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(8);
-    showTextbox("I'm too tired.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("...\n");
-    setDialogOwner(8);
-    showTextbox("I became a bandit cuz I\nthought this island was done\nfor, so I just did whatever.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Did you know the island\nwas in trouble?\n");
-    setDialogOwner(8);
-    showTextbox("Yes, then you showed up.\nI guess it's dumb to\nstart helping you now.\n");
+    speak(8, "I'm too tired.\n");
+    speak(Entity.Player, "...\n");
+    speak(8, "I became a bandit cuz I\nthought this island was done\nfor, so I just did whatever.\n");
+    speak(Entity.Player, "Did you know the island\nwas in trouble?\n");
+    speak(8, "Yes, then you showed up.\nI guess it's dumb to\nstart helping you now.\n");
     playAnimation(Entity.Player, 19);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("I don't think so.\nCome to the city.\n");
+    speak(Entity.Player, "I don't think so.\nCome to the city.\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(8);
-    showTextbox("No, I can't. Plus, I don't\nthink anybody would forgive\nme for what I've done.\n");
+    speak(8, "No, I can't. Plus, I don't\nthink anybody would forgive\nme for what I've done.\n");
     playAnimation(Entity.Player, 7);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh, just be quiet\nand come with me!\n");
+    speak(Entity.Player, "Oh, just be quiet\nand come with me!\n");
     playAnimation(Entity.Player, 0);
     move(entity: Entity.Player, to: (160, -193), sprint: 1, withCamera: true);
     waitForEntity(Entity.Player);
     rotate(entity: Entity.Player, to: 100);
     showTextbox("You can be helpful!\nEveryone has something\nto offer!\n");
-    setDialogOwner(8);
-    showTextbox("!!!\n");
+    speak(8, "!!!\n");
     playAnimation(8, 30);
     look(entity: 8, at: Entity.Player);
-    setDialogOwner(8);
-    showTextbox("Can this island be saved?\nYou're going to save it\nfor us, right?!\n");
+    speak(8, "Can this island be saved?\nYou're going to save it\nfor us, right?!\n");
     move(entity: 8, to: (119, -494), sprint: 1);
     waitForEntity(8);
     look(entity: 8, at: Entity.Player);
-    setDialogOwner(Entity.Player);
-    showTextbox("Of course! You know\nwhere the city is, right?\n");
-    setDialogOwner(8);
-    showTextbox("Ohhhhh!\nI'll be there!\n");
+    speak(Entity.Player, "Of course! You know\nwhere the city is, right?\n");
+    speak(8, "Ohhhhh!\nI'll be there!\n");
     goto L2;
 
 L2:
@@ -195,8 +167,7 @@ L3:
     unloadEntity(8);
     setPStat(101, 0);
     playSound(8, 8);
-    setDialogOwner(Entity.System);
-    showTextbox("Ogremon joins the city!\n");
+    speak(Entity.System, "Ogremon joins the city!\n");
     setTrigger(234);
     addPStat(1, 2);
     moveCamera(to: Entity.Player, speed: 10);
@@ -206,8 +177,7 @@ L3:
 
 section(52) {  // len=272
     if (pstat[17] != 3) goto L1;
-    setDialogOwner(Entity.Player);
-    showTextbox("Ooops!\nExit isn't this way!\n");
+    speak(Entity.Player, "Ooops!\nExit isn't this way!\n");
     move(entity: Entity.Player, to: (-51, -1550), sprint: 1);
     waitForEntity(Entity.Player);
     moveCamera(to: Entity.Player, speed: 10);
@@ -216,8 +186,7 @@ section(52) {  // len=272
 
 L1:
     if (pstat[17] != 4) goto L2;
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh no! I have to return\nthe dirt box to Drimogemon!\n");
+    speak(Entity.Player, "Oh no! I have to return\nthe dirt box to Drimogemon!\n");
     move(entity: Entity.Player, to: (-51, -1550), sprint: 1);
     waitForEntity(Entity.Player);
     moveCamera(to: Entity.Player, speed: 10);
@@ -236,8 +205,7 @@ L3:
 
 section(53) {  // len=1064
     if (pstat[17] != 3) goto L1;
-    setDialogOwner(Entity.Player);
-    showTextbox("Ooops! Exit isn't this way!\n");
+    speak(Entity.Player, "Ooops! Exit isn't this way!\n");
     move(entity: Entity.Player, to: (-2253, 359), sprint: 1);
     waitForEntity(Entity.Player);
     moveCamera(to: Entity.Player, speed: 10);
@@ -246,8 +214,7 @@ section(53) {  // len=1064
 
 L1:
     if (pstat[17] != 4) goto L2;
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh no! I have to return\nthe dirt box to Drimogemon!\n");
+    speak(Entity.Player, "Oh no! I have to return\nthe dirt box to Drimogemon!\n");
     move(entity: Entity.Player, to: (-2253, 359), sprint: 1);
     waitForEntity(Entity.Player);
     moveCamera(to: Entity.Player, speed: 10);

@@ -53,29 +53,23 @@ L1:
 }
 
 section(82) {  // len=1176
-    setDialogOwner(Entity.System);
-    showTextbox("Arena Information\n");
-    setSelection(L1, L2, L3);
-    showTextbox("Record\nAbout Grade Tournament\nAbout Special Tournament\n");
-    waitForSelectionChoice();
+    speak(Entity.System, "Arena Information\n");
+    choice { "Record" -> L1, "About Grade Tournament" -> L2, "About Special Tournament" -> L3 }
     return;
 
 L1:
-    setDialogOwner(Entity.System);
-    showTextbox("Number of\nChampionship wins <TOURNAMENTS WON>\n<ARENA WINS>Wins <ARENA LOSSES>Losses\n");
+    speak(Entity.System, "Number of\nChampionship wins <TOURNAMENTS WON>\n<ARENA WINS>Wins <ARENA LOSSES>Losses\n");
     fadeOutHUD();
     return;
 
 L2:
-    setDialogOwner(Entity.System);
-    showTextbox("Anybody can join a Grade\nTournament. It's held a lot.\n");
+    speak(Entity.System, "Anybody can join a Grade\nTournament. It's held a lot.\n");
     showTextbox("But a higher generation\nDigimon should not enter\nlower level tournaments.\n");
     showTextbox("If your Digimon digivolves\nbetween registering and\ntournament, he can't compete.\n");
     return;
 
 L3:
-    setDialogOwner(Entity.System);
-    showTextbox("Special tournaments have\nset contestant rules\nand they aren't held often.\n");
+    speak(Entity.System, "Special tournaments have\nset contestant rules\nand they aren't held often.\n");
     showTextbox("If there aren't enough\ncontestants in the city,\nit will not even be held.\n");
     showTextbox("The same tournament is only\nheld once or twice a year.\nCheck schedule in advance.\n");
     return;
@@ -90,67 +84,56 @@ section(84) {  // len=946
     look(entity: 7, at: Entity.Player);
     look(entity: Entity.Player, at: 7);
     delay(10);
-    setDialogOwner(7);
-    showTextbox("<ORANGE><DIGIMON><WHITE>, let me think of\nyour nickname... a hero\nwho has saved the world.\n");
+    speak(7, "<ORANGE><DIGIMON><WHITE>, let me think of\nyour nickname... a hero\nwho has saved the world.\n");
     showTextbox("Let's see.\n");
     roll(pstat: 110, max: 9);
     if (pstat[110] != 0) goto L1;
-    setDialogOwner(7);
-    showTextbox("How about\n'Invincible <ORANGE><DIGIMON><WHITE>'?\n");
+    speak(7, "How about\n'Invincible <ORANGE><DIGIMON><WHITE>'?\n");
     return;
 
 L1:
     if (pstat[110] != 1) goto L2;
-    setDialogOwner(7);
-    showTextbox("How about\n'Legendary Hero <ORANGE><DIGIMON><WHITE>'?\n");
+    speak(7, "How about\n'Legendary Hero <ORANGE><DIGIMON><WHITE>'?\n");
     return;
 
 L2:
     if (pstat[110] != 2) goto L3;
-    setDialogOwner(7);
-    showTextbox("How about\n'<ORANGE><DIGIMON><WHITE> The Great'?\n");
+    speak(7, "How about\n'<ORANGE><DIGIMON><WHITE> The Great'?\n");
     return;
 
 L3:
     if (pstat[110] != 3) goto L4;
-    setDialogOwner(7);
-    showTextbox("How about\n'Peacemaker <ORANGE><DIGIMON><WHITE>'?\n");
+    speak(7, "How about\n'Peacemaker <ORANGE><DIGIMON><WHITE>'?\n");
     return;
 
 L4:
     if (pstat[110] != 4) goto L5;
-    setDialogOwner(7);
-    showTextbox("How about\n'<ORANGE><DIGIMON><WHITE> The Champ'?\n");
+    speak(7, "How about\n'<ORANGE><DIGIMON><WHITE> The Champ'?\n");
     return;
 
 L5:
     if (pstat[110] != 5) goto L6;
-    setDialogOwner(7);
-    showTextbox("How about\n'<ORANGE><DIGIMON><WHITE> The Brave'?\n");
+    speak(7, "How about\n'<ORANGE><DIGIMON><WHITE> The Brave'?\n");
     return;
 
 L6:
     if (pstat[110] != 6) goto L7;
-    setDialogOwner(7);
-    showTextbox("How about\n'Cool Dude, <ORANGE><DIGIMON><WHITE>'?\n");
+    speak(7, "How about\n'Cool Dude, <ORANGE><DIGIMON><WHITE>'?\n");
     return;
 
 L7:
     if (pstat[110] != 7) goto L8;
-    setDialogOwner(7);
-    showTextbox("How about\n'The Mighty <ORANGE><DIGIMON><WHITE>'?\n");
+    speak(7, "How about\n'The Mighty <ORANGE><DIGIMON><WHITE>'?\n");
     return;
 
 L8:
     if (pstat[110] != 8) goto L9;
-    setDialogOwner(7);
-    showTextbox("How about\n'Augustas <ORANGE><DIGIMON><WHITE>'?\n");
+    speak(7, "How about\n'Augustas <ORANGE><DIGIMON><WHITE>'?\n");
     return;
 
 L9:
     if (pstat[110] != 9) goto section_6;
-    setDialogOwner(7);
-    showTextbox("How about\n'Mastermind <ORANGE><DIGIMON><WHITE>'?\n");
+    speak(7, "How about\n'Mastermind <ORANGE><DIGIMON><WHITE>'?\n");
     return;
 }
 
@@ -163,8 +146,7 @@ section(53) {  // len=110
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Player, at: 5);
     delay(5);
-    setDialogOwner(5);
-    showTextbox("Hey, those seats are\nfor our guests.\n");
+    speak(5, "Hey, those seats are\nfor our guests.\n");
     move(entity: Entity.Player, to: (450, 124), sprint: 1);
     waitForEntity(Entity.Player);
     moveCamera(to: Entity.Player, speed: 10);

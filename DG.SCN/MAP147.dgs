@@ -14,8 +14,7 @@ section(51) {  // len=24
 }
 
 section(5) {  // len=62
-    setDialogOwner(5);
-    showTextbox("Where are you going?\n");
+    speak(5, "Where are you going?\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -24,8 +23,7 @@ section(5) {  // len=62
 }
 
 section(6) {  // len=32
-    setDialogOwner(6);
-    showTextbox("Wait!\n");
+    speak(6, "Wait!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -34,8 +32,7 @@ section(6) {  // len=32
 }
 
 section(7) {  // len=38
-    setDialogOwner(7);
-    showTextbox("Dopeeee!\n");
+    speak(7, "Dopeeee!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -44,8 +41,7 @@ section(7) {  // len=38
 }
 
 section(8) {  // len=54
-    setDialogOwner(8);
-    showTextbox("Gguhh Heyee Hee!\n");
+    speak(8, "Gguhh Heyee Hee!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -54,14 +50,11 @@ section(8) {  // len=54
 }
 
 section(9) {  // len=1804
-    setDialogOwner(9);
-    showTextbox("Who are you?\n");
+    speak(9, "Who are you?\n");
     showTextbox("I'm MetalMamemon, unbeaten\nin ninety nine battles!\nYou will be one hundred!\n");
     showTextbox("I don't believe anyone like\n<LIGHTBLUE><PLAYER><WHITE>would run away.\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L4);
-    showTextbox("OK, let's fight\nSorry, laters\n");
-    waitForSelectionChoice();
+    choice { "OK, let's fight" -> L1, "Sorry, laters" -> L4 }
     goto L4;
 
 L1:
@@ -79,8 +72,7 @@ L1:
     look(entity: 9, at: Entity.Player);
     look(entity: Entity.Partner, at: 9);
     waitForEntity(Entity.Player);
-    setDialogOwner(9);
-    showTextbox("You're better than\nI thought.\n");
+    speak(9, "You're better than\nI thought.\n");
     showTextbox("You're a worthy rival!\n");
     showTextbox("I'll beat you someday!\n");
     goto L2;
@@ -99,8 +91,7 @@ L3:
     unloadEntity(9);
     setPStat(101, 0);
     playSound(8, 10);
-    setDialogOwner(Entity.System);
-    showTextbox("MetalMamemon joins the city!\n");
+    speak(Entity.System, "MetalMamemon joins the city!\n");
     unsetTrigger(1);
     setTrigger(227);
     addPStat(1, 3);
@@ -109,8 +100,7 @@ L3:
     return;
 
 L4:
-    setDialogOwner(9);
-    showTextbox("I knew you would chicken out.\nWell, let's meet when you\nget more guts.\n");
+    speak(9, "I knew you would chicken out.\nWell, let's meet when you\nget more guts.\n");
     goto L5;
 
 L5:

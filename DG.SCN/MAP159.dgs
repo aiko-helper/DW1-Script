@@ -33,15 +33,12 @@ section(81) {  // len=2094
     storeDigimonType(103);
     if (!trigger(363) || pstat[103] != 39) goto L1;
     playSound(8, 20);
-    setDialogOwner(5);
-    showTextbox("You again! Get out of here!\n");
+    speak(5, "You again! Get out of here!\n");
     playAnimation(Entity.Player, 16);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("Uhh...\n");
+    speak(Entity.Player, "Uhh...\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(5);
-    showTextbox("You... you're a pest!\nIs that okay now?!\n");
+    speak(5, "You... you're a pest!\nIs that okay now?!\n");
     goto L6;
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
@@ -50,16 +47,14 @@ section(81) {  // len=2094
 L1:
     if (!trigger(363)) goto L2;
     playSound(8, 20);
-    setDialogOwner(5);
-    showTextbox("You again! Get out of here\nright now!\n");
+    speak(5, "You again! Get out of here\nright now!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
 
 L2:
     if (pstat[103] != 39) goto L3;
-    setDialogOwner(5);
-    showTextbox("Good to see you, my friends.\nIf you want to live here,\nI give you permission.\n");
+    speak(5, "Good to see you, my friends.\nIf you want to live here,\nI give you permission.\n");
     setTrigger(49);
     setDialogOwner(Entity.Player);
     setSelection(L4, L5);
@@ -71,36 +66,26 @@ L3:
 L4:
     unsetTrigger(49);
     playSound(8, 20);
-    setDialogOwner(5);
-    showTextbox("Hmmm, that's good. What?\nBut you are analog,\nso you can't live here.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("We have to be together!\n");
-    setDialogOwner(5);
-    showTextbox("Then, get out of here\nwith him!\n");
+    speak(5, "Hmmm, that's good. What?\nBut you are analog,\nso you can't live here.\n");
+    speak(Entity.Player, "We have to be together!\n");
+    speak(5, "Then, get out of here\nwith him!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
 
 L5:
     unsetTrigger(49);
-    setDialogOwner(5);
-    showTextbox("What? What are you saying?\n");
+    speak(5, "What? What are you saying?\n");
     playAnimation(Entity.Player, 16);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("He's not originally Sukamon.\nKing, please return him\nto his original form!\n");
+    speak(Entity.Player, "He's not originally Sukamon.\nKing, please return him\nto his original form!\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(5);
-    showTextbox("Isn't it great that\nhe became Sukamon?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("No, it's not very good\nright now. Please.\n");
-    setDialogOwner(5);
-    showTextbox("Only way to become Sukamon\nis to try hard.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("He became a Sukamon\nnaturally and\nthat's the problem.\n");
+    speak(5, "Isn't it great that\nhe became Sukamon?\n");
+    speak(Entity.Player, "No, it's not very good\nright now. Please.\n");
+    speak(5, "Only way to become Sukamon\nis to try hard.\n");
+    speak(Entity.Player, "He became a Sukamon\nnaturally and\nthat's the problem.\n");
     playSound(8, 20);
-    setDialogOwner(5);
-    showTextbox("You guys are unbelievable!\n");
+    speak(5, "You guys are unbelievable!\n");
 
 L6:
     if (pstat[200] != 39) goto L7;
@@ -116,11 +101,9 @@ L7:
     waitForEntity(201);
     playAnimation(5, 0);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow! King, thank you!\n");
+    speak(Entity.Player, "Wow! King, thank you!\n");
     playSound(8, 20);
-    setDialogOwner(5);
-    showTextbox("Get out of here right now!\n");
+    speak(5, "Get out of here right now!\n");
     setTrigger(363);
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
@@ -128,14 +111,10 @@ L7:
 
 L8:
     playSound(8, 20);
-    setDialogOwner(5);
-    showTextbox("Did you come here for\nsomething?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Well...\n");
-    setDialogOwner(5);
-    showTextbox("If you have a request,\nforget it. Because\nI am King of Sukamon!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I guess I won't be able\nto invite him to the city.\n");
+    speak(5, "Did you come here for\nsomething?\n");
+    speak(Entity.Player, "Well...\n");
+    speak(5, "If you have a request,\nforget it. Because\nI am King of Sukamon!\n");
+    speak(Entity.Player, "I guess I won't be able\nto invite him to the city.\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
@@ -143,50 +122,37 @@ L8:
 
 section(6) {  // len=3620
     if (!trigger(362)) goto L2;
-    setDialogOwner(6);
-    showTextbox("I am collecting\nDigimon cards myself.\n");
+    speak(6, "I am collecting\nDigimon cards myself.\n");
     showTextbox("I really want a King of\nSukamon card. Will you trade\nfor my Etemon card?\n");
     if (card[21] < 1) goto L1;
     setDialogOwner(Entity.Player);
-    setSelection(L6, L8);
-    showTextbox("Trade\nDon't trade\n");
-    waitForSelectionChoice();
+    choice { "Trade" -> L6, "Don't trade" -> L8 }
     return;
 
 L1:
-    setDialogOwner(Entity.Player);
-    showTextbox("Sorry, but I don't have it.\n");
+    speak(Entity.Player, "Sorry, but I don't have it.\n");
     return;
 
 L2:
     playAnimation(Entity.Player, 24);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow it stinks! Is this\nTrash Pile?\n");
+    speak(Entity.Player, "Wow it stinks! Is this\nTrash Pile?\n");
     showTextbox("I didn't know there's one\nin Digimon World.\n");
     playAnimation(Entity.Player, 0);
     storeDigimonType(103);
     if (trigger(362) || pstat[103] != 39) goto L3;
     move(entity: 6, to: (192, -2979), sprint: 0);
     waitForEntity(6);
-    setDialogOwner(6);
-    showTextbox("I'm glad you came.\nWe welcome new friends.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Is this a community for\nthe Sukamon Tribe?\n");
-    setDialogOwner(6);
-    showTextbox("Exactly. This is a paradise\nfor the Sukamon Tribe,\nit's called Dust Kingdom.\n");
+    speak(6, "I'm glad you came.\nWe welcome new friends.\n");
+    speak(Entity.Player, "Is this a community for\nthe Sukamon Tribe?\n");
+    speak(6, "Exactly. This is a paradise\nfor the Sukamon Tribe,\nit's called Dust Kingdom.\n");
     showTextbox("King of Sukamon is here, too.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("King of Sukamon...?\n");
-    setDialogOwner(6);
-    showTextbox("King of Sukamon is amazing!\nIf you don't listen to him,\nyou'll be digivolved!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Do you mean we turn into\nsomething besides Sukamon?\n");
+    speak(Entity.Player, "King of Sukamon...?\n");
+    speak(6, "King of Sukamon is amazing!\nIf you don't listen to him,\nyou'll be digivolved!\n");
+    speak(Entity.Player, "Do you mean we turn into\nsomething besides Sukamon?\n");
     showTextbox("That means we return\nto our original form?!\n");
-    setDialogOwner(6);
-    showTextbox("Yeah, it's scary. Creepy.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I learned something useful...\n");
+    speak(6, "Yeah, it's scary. Creepy.\n");
+    speak(Entity.Player, "I learned something useful...\n");
     move(entity: 6, to: (189, -1273), sprint: 0);
     waitForEntity(6);
     setTrigger(362);
@@ -196,49 +162,31 @@ L3:
     if (trigger(362) || !trigger(550)) goto L4;
     move(entity: 6, to: (192, -2979), sprint: 0);
     waitForEntity(6);
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh, Sukamon?!\n");
-    setDialogOwner(6);
-    showTextbox("Huh? Do you know about me?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Well, kind of.\nDo we need to take Sukamon\nto the city as well?\n");
+    speak(Entity.Player, "Oh, Sukamon?!\n");
+    speak(6, "Huh? Do you know about me?\n");
+    speak(Entity.Player, "Well, kind of.\nDo we need to take Sukamon\nto the city as well?\n");
     goto L5;
 
 L4:
     move(entity: 6, to: (192, -2979), sprint: 0);
     waitForEntity(6);
-    setDialogOwner(6);
-    showTextbox("Wow, this is interesting!\nI've never seen anything\nlike this!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh my goodness! The poop\nare moving and talking!\n");
-    setDialogOwner(6);
-    showTextbox("Are you talking about me?\nI'm Sukamon...\nI'm a Mutant Digimon.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("You are not poop?\n");
-    setDialogOwner(6);
-    showTextbox("In a way, you are right,\ncuz we are made from\nDigital Waste.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Should we ask him to come\nto the city, too? We\nshouldn't be prejudiced.\n");
+    speak(6, "Wow, this is interesting!\nI've never seen anything\nlike this!\n");
+    speak(Entity.Player, "Oh my goodness! The poop\nare moving and talking!\n");
+    speak(6, "Are you talking about me?\nI'm Sukamon...\nI'm a Mutant Digimon.\n");
+    speak(Entity.Player, "You are not poop?\n");
+    speak(6, "In a way, you are right,\ncuz we are made from\nDigital Waste.\n");
+    speak(Entity.Player, "Should we ask him to come\nto the city, too? We\nshouldn't be prejudiced.\n");
 
 L5:
-    setDialogOwner(6);
-    showTextbox("Are you planning to\nlive here?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What? I never thought\nabout it.\n");
-    setDialogOwner(6);
-    showTextbox("Well, this is a paradise\nonly for the Sukamon Tribe.\nOthers can't live here.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Then you can't live\nin other places?\n");
-    setDialogOwner(6);
-    showTextbox("Of course not!\nWhat do you think?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I see. That's\nwhat I thought.\n");
-    setDialogOwner(6);
-    showTextbox("Well, although you\ncan't live here,\nyou can look around.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh, just to look.Okay.\n");
-    setDialogOwner(6);
-    showTextbox("Oh, by the way, don't\never make the King mad.\n");
+    speak(6, "Are you planning to\nlive here?\n");
+    speak(Entity.Player, "What? I never thought\nabout it.\n");
+    speak(6, "Well, this is a paradise\nonly for the Sukamon Tribe.\nOthers can't live here.\n");
+    speak(Entity.Player, "Then you can't live\nin other places?\n");
+    speak(6, "Of course not!\nWhat do you think?\n");
+    speak(Entity.Player, "I see. That's\nwhat I thought.\n");
+    speak(6, "Well, although you\ncan't live here,\nyou can look around.\n");
+    speak(Entity.Player, "Oh, just to look.Okay.\n");
+    speak(6, "Oh, by the way, don't\never make the King mad.\n");
     showTextbox("You'll be turned into\nsomething miserable by the\nKing's Digivolve technique.\n");
     move(entity: 6, to: (189, -1273), sprint: 0);
     waitForEntity(6);
@@ -247,13 +195,11 @@ L5:
 
 L6:
     if (card[14] < 9) goto L7;
-    setDialogOwner(6);
-    showTextbox("Hey, you have too many\nEtemon cards!\nDon't do it.\n");
+    speak(6, "Hey, you have too many\nEtemon cards!\nDon't do it.\n");
     return;
 
 L7:
-    setDialogOwner(6);
-    showTextbox("Oh, thank you!\n");
+    speak(6, "Oh, thank you!\n");
     takeCard(21);
     giveCard(14);
     return;
@@ -266,30 +212,26 @@ section(7) {  // len=622
     if (trigger(239)) goto L1;
     setTrigger(239);
     addPStat(1, 1);
-    setDialogOwner(7);
-    showTextbox("Hey guys, are you from ...\nwhat-cha-ma-call-it...city?\n");
+    speak(7, "Hey guys, are you from ...\nwhat-cha-ma-call-it...city?\n");
     showTextbox("This is just between\nyou and me. I'm interested\na little bit.\n");
     showTextbox("I'll visit you guys\nthere some day.\n");
     return;
 
 L1:
-    setDialogOwner(7);
-    showTextbox("Hey, guys, do you know\nthe Sukamon Tribe's\nspecial Technique?\n");
+    speak(7, "Hey, guys, do you know\nthe Sukamon Tribe's\nspecial Technique?\n");
     showTextbox("We absorb poop on the ground\ninto our bodies and\nturn them into energy!\n");
     return;
 }
 
 section(8) {  // len=298
-    setDialogOwner(8);
-    showTextbox("Huh? This is Dust Kingdom.\nI know this is just\na trash pile for you.\n");
+    speak(8, "Huh? This is Dust Kingdom.\nI know this is just\na trash pile for you.\n");
     showTextbox("But we may find something\nuseful. I saw a long rod-like\nthing over there.\n");
     return;
 }
 
 section(51) {  // len=108
     if (trigger(45)) goto L1;
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow, it's an\n<LIGHTBLUE>Old Fishrod<WHITE>!\n");
+    speak(Entity.Player, "Wow, it's an\n<LIGHTBLUE>Old Fishrod<WHITE>!\n");
     delay(10);
     playAnimation(Entity.Player, 12);
     delay(10);
@@ -307,26 +249,18 @@ section(82) {  // len=1366
     rotate(entity: Entity.Player, to: 2640);
     setTextboxOrigin(1484, 0, -241);
     callSubroutine(39);
-    setDialogOwner(200);
-    showTextbox(" <GREEN>Training: Hide In Trash <WHITE>\n");
-    setSelection(L1, L2, L3);
-    showTextbox("Begin\nExplain\nQuit\n");
-    waitForSelectionChoice();
+    speak(200, " <GREEN>Training: Hide In Trash <WHITE>\n");
+    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
     return;
 
 L1:
     setDialogOwner(200);
-    setSelection(L4, L5, L3);
-    showTextbox("Normal\nBonus Try\nQuit\n");
-    waitForSelectionChoice();
+    choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
     return;
 
 L2:
-    setDialogOwner(200);
-    showTextbox("Mental training by putting\nyourself in dirty trash.\nMax MP is greatly boosted.\n");
-    setSelection(L2, L1, L3);
-    showTextbox("Explain again\nBegin\nQuit\n");
-    waitForSelectionChoice();
+    speak(200, "Mental training by putting\nyourself in dirty trash.\nMax MP is greatly boosted.\n");
+    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
     return;
 
 L3:
@@ -342,8 +276,7 @@ L4:
 
 L5:
     setTexboxMode(1, 0);
-    setDialogOwner(Entity.System);
-    showTextbox(" <YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
+    speak(Entity.System, " <YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
     setPStat(254, 4);
     setPStat(246, 1);
     callDigimonSubroutine(214);

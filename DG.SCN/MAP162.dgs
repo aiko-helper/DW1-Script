@@ -32,14 +32,12 @@ L4:
     waitForEntity(Entity.Partner);
     rotate(entity: Entity.Partner, to: 2048);
     delay(40);
-    setDialogOwner(Entity.Player);
-    showTextbox("I'm back!\n");
+    speak(Entity.Player, "I'm back!\n");
     playAnimation(Entity.Player, 11);
     delay(20);
     look(entity: Entity.Player, at: Entity.Partner);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("Thanks for inviting me.\nI hope we can work\ntogether <ORANGE><DIGIMON><WHITE>.\n");
+    speak(Entity.Player, "Thanks for inviting me.\nI hope we can work\ntogether <ORANGE><DIGIMON><WHITE>.\n");
     playAnimation(Entity.Player, 5);
     delay(10);
     playAnimation(Entity.Partner, 11);
@@ -48,18 +46,15 @@ L4:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     if (stat[Stat.TamerLevel] == 10) goto L5;
-    addStats(Stat.TamerLevel, 1);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Tamer Level\nhas gone up! <WHITE>\n");
+    addStats(tamerLevel: 1);
+    speak(Entity.System, "<YELLOW>Tamer Level\nhas gone up! <WHITE>\n");
 
 L5:
     setTrigger(374);
     playSound(0, 7);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Congratulations!\nHere's a medal\nfor you. <WHITE>\n");
+    speak(Entity.System, "<YELLOW>Congratulations!\nHere's a medal\nfor you. <WHITE>\n");
     giveCard(65);
-    setDialogOwner(Entity.System);
-    showTextbox("I got a Machinedramon card!\n");
+    speak(Entity.System, "I got a Machinedramon card!\n");
 
 L6:
     if (!trigger(238)) goto L7;
@@ -402,67 +397,55 @@ L69:
 section(5) {  // len=2410
     if (trigger(210) || pstat[1] < 40 || trigger(224) || !trigger(175)) goto L1;
     if (trigger(250)) goto L1;
-    setDialogOwner(5);
-    showTextbox("Have you seen\nthe Lake Guardian?\n");
+    speak(5, "Have you seen\nthe Lake Guardian?\n");
     showTextbox("If not, you should\nwait on the south side.\n");
     return;
 
 L1:
     if (trigger(250) || pstat[1] < 25 || trigger(224) || !trigger(175)) goto L2;
-    setDialogOwner(5);
-    showTextbox("Get up very early and\nwalk in the mist.\nSomething good will happen!\n");
+    speak(5, "Get up very early and\nwalk in the mist.\nSomething good will happen!\n");
     return;
 
 L2:
     if (trigger(224) || !trigger(175)) goto L3;
-    setDialogOwner(5);
-    showTextbox("Did you know there's\na place in the north\ncalled Iceberg Beach?\n");
+    speak(5, "Did you know there's\na place in the north\ncalled Iceberg Beach?\n");
     showTextbox("Rumor has it that a huge\nDigimon often appears\nat the beach.\n");
     return;
 
 L3:
     if (trigger(175) || !trigger(198)) goto L4;
-    setDialogOwner(5);
-    showTextbox("Are the bandits defeated?\nI heard there is a gang\nof bandits.\n");
+    speak(5, "Are the bandits defeated?\nI heard there is a gang\nof bandits.\n");
     return;
 
 L4:
     if (trigger(198) || !trigger(103)) goto L5;
     setTrigger(197);
-    setDialogOwner(5);
-    showTextbox("Ever been to Great Canyon?\n");
+    speak(5, "Ever been to Great Canyon?\n");
     showTextbox("Rumor has it that\nthe bandits are there.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Are they bad guys?\n");
-    setDialogOwner(5);
-    showTextbox("They jump you and rob you.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Let's do something about it.\n");
+    speak(Entity.Player, "Are they bad guys?\n");
+    speak(5, "They jump you and rob you.\n");
+    speak(Entity.Player, "Let's do something about it.\n");
     return;
 
 L5:
     if (pstat[1] < 6) goto L6;
     setTrigger(124);
-    setDialogOwner(5);
-    showTextbox("Ever been to Great Canyon?\n");
+    speak(5, "Ever been to Great Canyon?\n");
     showTextbox("Rumor has it that there is an\nInvisible Bridge there.\n");
     return;
 
 L6:
     if (!trigger(50) || trigger(202)) goto L7;
-    setDialogOwner(5);
-    showTextbox("I hear\nMachinedramon is back.\n");
+    speak(5, "I hear\nMachinedramon is back.\n");
     return;
 
 L7:
     if (!trigger(50) || !trigger(202)) goto L8;
-    setDialogOwner(5);
-    showTextbox("You beat\nMachinedramon again.\n");
+    speak(5, "You beat\nMachinedramon again.\n");
     return;
 
 L8:
-    setDialogOwner(5);
-    showTextbox("I'll explain the city\nsurroundings to you.\n");
+    speak(5, "I'll explain the city\nsurroundings to you.\n");
     showTextbox("Native Forest\nsurrounds the city.\n");
     showTextbox("The Digimon around there\naren't too strong.\n");
     showTextbox("To the west there's a\nTraining Camp.\n");
@@ -477,15 +460,13 @@ L8:
 }
 
 section(6) {  // len=182
-    setDialogOwner(6);
-    showTextbox("Let's see what's around here.\n");
+    speak(6, "Let's see what's around here.\n");
     showTextbox("I don't like the toilet, but\neverything else seems Ok!\n");
     return;
 }
 
 section(7) {  // len=244
-    setDialogOwner(7);
-    showTextbox("It looks pretty lively.\n");
+    speak(7, "It looks pretty lively.\n");
     showTextbox("Don't I have to go back\nto Factorial Town?\n");
     showTextbox("My scheduling function is\nworking. No problem.\n");
     return;
@@ -494,8 +475,7 @@ section(7) {  // len=244
 section(8) {  // len=556
     if (trigger(84)) goto L1;
     setTrigger(84);
-    setDialogOwner(8);
-    showTextbox("You came at the right time!\n");
+    speak(8, "You came at the right time!\n");
     showTextbox("Look at this sculpture!\nWhat do you think?\n");
     showTextbox("What a masterpiece.\nI amaze myself.\n");
     showTextbox("What do you mean?\nYou're making fun of me!\n");
@@ -503,8 +483,7 @@ section(8) {  // len=556
     return;
 
 L1:
-    setDialogOwner(8);
-    showTextbox("What image did I have?\nWhen you figure it out,\nlet me know.\n");
+    speak(8, "What image did I have?\nWhen you figure it out,\nlet me know.\n");
     return;
 }
 
@@ -524,20 +503,17 @@ L1:
 
 L2:
     if (pstat[107] >= 7 && pstat[107] < 19) goto L3;
-    setDialogOwner(204);
-    showTextbox("sleeping...\n");
+    speak(204, "sleeping...\n");
     return;
 
 L3:
     if (pstat[1] < 10 || trigger(225)) goto L4;
     setTrigger(86);
-    setDialogOwner(204);
-    showTextbox("Have you heard? There is\na strange plant growing\nin Tropical Jungle.\n");
+    speak(204, "Have you heard? There is\na strange plant growing\nin Tropical Jungle.\n");
 
 L4:
     if (pstat[1] < 20) goto L5;
-    setDialogOwner(204);
-    showTextbox("Oh yeah,\n");
+    speak(204, "Oh yeah,\n");
     showTextbox("I planted a <LIGHTBLUE>Rain Plant\n<WHITE>right there.\n");
     showTextbox("It bears fruit every year\naround the fifteenth.\nYou may take those.\n");
     showTextbox("For what?\n");
@@ -545,13 +521,11 @@ L4:
 
 L5:
     if (pstat[1] >= 10) goto L6;
-    setDialogOwner(204);
-    showTextbox("Oh, it feels good!\nSun rays.\n");
+    speak(204, "Oh, it feels good!\nSun rays.\n");
     return;
 
 L6:
-    setDialogOwner(204);
-    showTextbox("Oh, it feels good!\nSun rays.\n");
+    speak(204, "Oh, it feels good!\nSun rays.\n");
     return;
 }
 
@@ -561,8 +535,7 @@ section(82) {  // len=78
 
 L1:
     setTextboxOrigin(600, 0, 1502);
-    setDialogOwner(205);
-    showTextbox("Alright, this is great!\n");
+    speak(205, "Alright, this is great!\n");
     return;
 }
 
@@ -575,18 +548,15 @@ L1:
     return;
 
 L2:
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh, this is a...\n");
+    speak(Entity.Player, "Oh, this is a...\n");
     giveItem(Item.RainPlant, 1);
     if (!trigger(0)) goto L3;
-    setDialogOwner(Entity.System);
-    showTextbox("Too many Items.\n");
+    speak(Entity.System, "Too many Items.\n");
     return;
 
 L3:
     setObjectVisibility(72, 1);
-    setDialogOwner(Entity.System);
-    showTextbox("I got a <LIGHTBLUE>Rain\nPlant Fruit<WHITE>!\n");
+    speak(Entity.System, "I got a <LIGHTBLUE>Rain\nPlant Fruit<WHITE>!\n");
     setTrigger(76);
     return;
 }
@@ -633,18 +603,14 @@ L1:
     delay(5);
     if (trigger(83)) goto L2;
     setTrigger(83);
-    setDialogOwner(12);
-    showTextbox("I'll take you to the ocean.\nThat's my job.\n");
+    speak(12, "I'll take you to the ocean.\nThat's my job.\n");
     showTextbox("I'll take you to a place you\ncan only go to by sea.\n");
     showTextbox("Well, then...\n");
 
 L2:
-    setDialogOwner(12);
-    showTextbox("Hmmm, where should we go?\nFactorial Town or maybe\nBeach Cave.\n");
+    speak(12, "Hmmm, where should we go?\nFactorial Town or maybe\nBeach Cave.\n");
     setDialogOwner(Entity.Player);
-    setSelection(L3, L4, L5);
-    showTextbox("Factorial Town\nSecret Beach Cave\nNowhere\n");
-    waitForSelectionChoice();
+    choice { "Factorial Town" -> L3, "Secret Beach Cave" -> L4, "Nowhere" -> L5 }
     goto L5;
 
 L3:
@@ -692,33 +658,26 @@ L3:
     moveCamera(to: 9, speed: 20);
     waitForEntity(200);
     move(entity: 9, to: (256, -3385), sprint: 0);
-    setDialogOwner(9);
-    showTextbox("I found you!\n");
+    speak(9, "I found you!\n");
     moveCamera(to: Entity.Player, speed: 20);
     waitForEntity(200);
     playAnimation(Entity.Player, 15);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh no, he's coming\nright for us!\n");
+    speak(Entity.Player, "Oh no, he's coming\nright for us!\n");
     move(entity: 9, to: (432, -2236), sprint: 0);
     waitForEntity(9);
     look(entity: 9, at: Entity.Player);
     delay(5);
-    setDialogOwner(9);
-    showTextbox("I finally met you!\nI'm Greymon.\nNow let's settle things!\n");
+    speak(9, "I finally met you!\nI'm Greymon.\nNow let's settle things!\n");
     playAnimation(Entity.Player, 1);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("What?!\n");
-    setDialogOwner(9);
-    showTextbox("I got here by following\nthe rumors about you.\nI want to fight you!\n");
+    speak(Entity.Player, "What?!\n");
+    speak(9, "I got here by following\nthe rumors about you.\nI want to fight you!\n");
     showTextbox("If I win,\nI want this street sign!\n");
     playAnimation(Entity.Player, 16);
     delay(30);
-    setDialogOwner(Entity.Player);
-    showTextbox("There's no sign.\n");
-    setDialogOwner(9);
-    showTextbox("I don't care,\nlet's fight anyway!\n");
+    speak(Entity.Player, "There's no sign.\n");
+    speak(9, "I don't care,\nlet's fight anyway!\n");
     move(entity: Entity.Partner, to: (50, -1950), sprint: 1);
     waitForEntity(Entity.Partner);
     look(entity: Entity.Partner, at: 9);
@@ -736,14 +695,11 @@ L3:
     look(entity: Entity.Player, at: 9);
     look(entity: 9, at: Entity.Player);
     look(entity: Entity.Partner, at: 9);
-    setDialogOwner(9);
-    showTextbox("Hey, you guys are good!\nBut to finish your goal,\nyou're still amateurs.\n");
+    speak(9, "Hey, you guys are good!\nBut to finish your goal,\nyou're still amateurs.\n");
     playAnimation(Entity.Player, 1);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("Hmmm\n");
-    setDialogOwner(9);
-    showTextbox("I'll stay and train you.\nYou'll get much better!\n");
+    speak(Entity.Player, "Hmmm\n");
+    speak(9, "I'll stay and train you.\nYou'll get much better!\n");
     goto L4;
 
 L4:
@@ -760,8 +716,7 @@ L5:
     unloadEntity(9);
     setPStat(101, 0);
     playSound(8, 12);
-    setDialogOwner(Entity.System);
-    showTextbox("Greymon joins the city!\n");
+    speak(Entity.System, "Greymon joins the city!\n");
     setTrigger(87);
     setTrigger(205);
     addPStat(1, 2);
@@ -796,14 +751,10 @@ L6:
     look(entity: Entity.Partner, at: 10);
     look(entity: 10, at: Entity.Player);
     delay(5);
-    setDialogOwner(10);
-    showTextbox("Alright, I found you, <LIGHTBLUE><PLAYER><WHITE>!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Ambush!\n");
-    setDialogOwner(10);
-    showTextbox("My goal is to beat you.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Those eyes! He must be\nbrain washed!\n");
+    speak(10, "Alright, I found you, <LIGHTBLUE><PLAYER><WHITE>!\n");
+    speak(Entity.Player, "Ambush!\n");
+    speak(10, "My goal is to beat you.\n");
+    speak(Entity.Player, "Those eyes! He must be\nbrain washed!\n");
     move(entity: Entity.Partner, to: (50, -1950), sprint: 1);
     waitForEntity(Entity.Partner);
     look(entity: Entity.Partner, at: 10);
@@ -821,14 +772,12 @@ L6:
     look(entity: Entity.Player, at: 10);
     look(entity: 10, at: Entity.Player);
     look(entity: Entity.Partner, at: 10);
-    setDialogOwner(10);
-    showTextbox("No matter what I do,\nI must defeat him.\n");
+    speak(10, "No matter what I do,\nI must defeat him.\n");
     playAnimation(10, 29);
     delay(30);
     playAnimation(Entity.Player, 7);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("What are you talking about?\nYou gotta get treatment.\n");
+    speak(Entity.Player, "What are you talking about?\nYou gotta get treatment.\n");
     move(entity: Entity.Player, to: 10, sprint: 1);
     move(entity: Entity.Partner, to: 10, sprint: 1);
     delay(40);

@@ -14,17 +14,17 @@ L1:
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 2) goto L3;
-    spawnItem(Item.Happymushroom, 61, 64);
+    spawnItem(Item.Happymushroom, x: 61, y: 64);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 29) goto L4;
-    spawnItem(Item.Digimushroom, 55, 71);
+    spawnItem(Item.Digimushroom, x: 55, y: 71);
 
 L4:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 39) goto L5;
-    spawnItem(Item.Digimushroom, 36, 44);
+    spawnItem(Item.Digimushroom, x: 36, y: 44);
 
 L5:
     if (pstat[1] < 25) goto L6;
@@ -35,8 +35,7 @@ L6:
 }
 
 section(5) {  // len=58
-    setDialogOwner(5);
-    showTextbox("What do you want?!\n");
+    speak(5, "What do you want?!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -45,15 +44,12 @@ section(5) {  // len=58
 }
 
 section(6) {  // len=912
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow!\n");
+    speak(Entity.Player, "Wow!\n");
     playAnimation(Entity.Player, 15);
     delay(20);
     playAnimation(Entity.Player, 0);
-    setDialogOwner(6);
-    showTextbox("...? ...!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What? Now?!\nOkay, let's fight!\n");
+    speak(6, "...? ...!\n");
+    speak(Entity.Player, "What? Now?!\nOkay, let's fight!\n");
     setTrigger(1);
     setPStat(250, 1);
     setPStat(251, 6);
@@ -69,31 +65,26 @@ section(6) {  // len=912
     look(entity: Entity.Partner, at: 6);
     waitForEntity(Entity.Player);
     waitForEntity(Entity.Partner);
-    setDialogOwner(6);
-    showTextbox("I lost. Rats!\n");
+    speak(6, "I lost. Rats!\n");
     playAnimation(6, 18);
-    setDialogOwner(Entity.Player);
-    showTextbox("I should invite him\nto the city.\n");
+    speak(Entity.Player, "I should invite him\nto the city.\n");
     playAnimation(Entity.Player, 25);
     showTextbox("Uh, excuse me.\n");
     playAnimation(Entity.Player, 19);
     showTextbox("Could you...\ncome to the city...?\n");
     playAnimation(Entity.Player, 0);
     playAnimation(6, 0);
-    setDialogOwner(6);
-    showTextbox("What? City?!\n");
+    speak(6, "What? City?!\n");
     showTextbox("You mean that...old place?\n");
     playAnimation(6, 19);
-    setDialogOwner(6);
-    showTextbox("Well...\n");
+    speak(6, "Well...\n");
     showTextbox("Uh......\n");
     showTextbox("Uhm.........\n");
     fadeOutHUD();
     playAnimation(6, 22);
     waitForEntity(6);
     playAnimation(6, 22);
-    setDialogOwner(6);
-    showTextbox("Well, okay.\nI'm Agumon.\nNice meeting you.\n");
+    speak(6, "Well, okay.\nI'm Agumon.\nNice meeting you.\n");
     fadeOutHUD();
     goto L1;
 
@@ -111,14 +102,12 @@ L2:
     unloadEntity(6);
     setPStat(101, 0);
     playSound(8, 11);
-    setDialogOwner(Entity.System);
-    showTextbox("Agumon joins the city!\n");
+    speak(Entity.System, "Agumon joins the city!\n");
     setTrigger(203);
     addPStat(1, 1);
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
-    setDialogOwner(Entity.Player);
-    showTextbox("Alright, it pays to try.\nI'll keep on asking!\n");
+    speak(Entity.Player, "Alright, it pays to try.\nI'll keep on asking!\n");
     playAnimation(Entity.Player, 11);
     delay(20);
     playAnimation(Entity.Player, 0);
@@ -126,8 +115,7 @@ L2:
 }
 
 section(7) {  // len=64
-    setDialogOwner(7);
-    showTextbox("This is my territory!\n");
+    speak(7, "This is my territory!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -136,8 +124,7 @@ section(7) {  // len=64
 }
 
 section(8) {  // len=34
-    setDialogOwner(8);
-    showTextbox("What?!\n");
+    speak(8, "What?!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -146,8 +133,7 @@ section(8) {  // len=34
 }
 
 section(9) {  // len=54
-    setDialogOwner(9);
-    showTextbox("Now's my chance!\n");
+    speak(9, "Now's my chance!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -439,8 +425,7 @@ L69:
 
 section(52) {  // len=2046
     if (trigger(203)) goto L1;
-    setDialogOwner(Entity.Player);
-    showTextbox("I just can't get away\nfrom this guy!\n");
+    speak(Entity.Player, "I just can't get away\nfrom this guy!\n");
     move(entity: Entity.Player, to: (-1115, -1503), sprint: 1);
     waitForEntity(Entity.Player);
     moveCamera(to: Entity.Player, speed: 10);

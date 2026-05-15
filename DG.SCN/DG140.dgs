@@ -42,16 +42,13 @@ section(5) {  // len=3554
     playSound(8, 4);
     playAnimation(Entity.Player, 16);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("What is it?!\n");
+    speak(Entity.Player, "What is it?!\n");
     playAnimation(Entity.Player, 0);
     look(entity: Entity.Player, at: 6);
     playSound(8, 9);
     delay(10);
-    setDialogOwner(5);
-    showTextbox("Oh, welcome back, Hagurumon!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Hagurumon?!\n");
+    speak(5, "Oh, welcome back, Hagurumon!\n");
+    speak(Entity.Player, "Hagurumon?!\n");
     playSound(8, 8);
     moveCamera(to: (-80, 1048), slowdown: 18);
     move(entity: 6, to: (-100, 1758), animDuration: 20);
@@ -61,8 +58,7 @@ section(5) {  // len=3554
     playAnimation(6, 30);
     playAnimation(Entity.Player, 16);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("What's going on?!\n");
+    speak(Entity.Player, "What's going on?!\n");
     playAnimation(Entity.Player, 0);
     setPStat(254, 1);
     callSubroutine(42);
@@ -84,43 +80,37 @@ L2:
     playAnimation(8, 29);
     delay(10);
     playSound(8, 9);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Toys <WHITE>\nIt's an old tale.\nA bad guy came from\nfar away to this island.\n");
+    speak(Entity.System, "<YELLOW>Toys <WHITE>\nIt's an old tale.\nA bad guy came from\nfar away to this island.\n");
     playAnimation(5, 29);
     playAnimation(7, 29);
     playAnimation(8, 29);
     delay(10);
     playSound(8, 9);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Toys <WHITE>\nThe bad guys told Digimon:\nThis island is ours.\n");
+    speak(Entity.System, "<YELLOW>Toys <WHITE>\nThe bad guys told Digimon:\nThis island is ours.\n");
     playAnimation(5, 29);
     playAnimation(7, 29);
     playAnimation(8, 29);
     delay(10);
     playSound(8, 9);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Toys <WHITE>\nDigimon told them:\nThat's not true. This island\nis for everybody.\n");
+    speak(Entity.System, "<YELLOW>Toys <WHITE>\nDigimon told them:\nThat's not true. This island\nis for everybody.\n");
     playAnimation(5, 29);
     playAnimation(7, 29);
     playAnimation(8, 29);
     delay(10);
     playSound(8, 9);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Toys <WHITE>\nBecause Digimons unified and\nchallenged the bad guys, the\nbad guys were taught a lesson.\n");
+    speak(Entity.System, "<YELLOW>Toys <WHITE>\nBecause Digimons unified and\nchallenged the bad guys, the\nbad guys were taught a lesson.\n");
     playAnimation(5, 29);
     playAnimation(7, 29);
     playAnimation(8, 29);
     delay(10);
     playSound(8, 9);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Toys <WHITE>\nBut the bad guys said:\nWait, we'll get you later.\n...and they disappeared.\n");
+    speak(Entity.System, "<YELLOW>Toys <WHITE>\nBut the bad guys said:\nWait, we'll get you later.\n...and they disappeared.\n");
     playAnimation(5, 29);
     playAnimation(7, 29);
     playAnimation(8, 29);
     delay(10);
     playSound(8, 9);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>Toys <WHITE>\nIt's an old tale.\n");
+    speak(Entity.System, "<YELLOW>Toys <WHITE>\nIt's an old tale.\n");
     playAnimation(5, 0);
     playAnimation(7, 0);
     playAnimation(8, 0);
@@ -130,19 +120,16 @@ L2:
 
 L3:
     setTrigger(350);
-    setDialogOwner(Entity.Player);
-    showTextbox("Hmmm, I feel joyous...\nOh, wait up.\n");
+    speak(Entity.Player, "Hmmm, I feel joyous...\nOh, wait up.\n");
     showTextbox("That story from the song\nis an old tale of this\nisland, isn't it?\n");
     showTextbox("About the Digimon\ndefeating the bad guys...\n");
     showTextbox("Hmmm, I wonder who the\nbad guys were in the story?\n");
     playSound(8, 8);
-    setDialogOwner(5);
-    showTextbox("Thanks for helping me.\nThis is to show my gratitude.\n");
+    speak(5, "Thanks for helping me.\nThis is to show my gratitude.\n");
     setTrigger(214);
     addPStat(1, 3);
     playSound(8, 10);
-    setDialogOwner(Entity.System);
-    showTextbox("Monzaemon's Stuffed\nAnimal joins the city!\n");
+    speak(Entity.System, "Monzaemon's Stuffed\nAnimal joins the city!\n");
     moveCamera(to: Entity.Player, speed: 15);
     waitForEntity(200);
     setPStat(254, 0);
@@ -151,14 +138,12 @@ L3:
 
 L4:
     if (!trigger(270) || !trigger(350) || item[Item.Gear] >= 1 || trigger(350)) goto L5;
-    setDialogOwner(5);
-    showTextbox("Wait, didn't WaruMonzaemon\ndrop something?\n");
+    speak(5, "Wait, didn't WaruMonzaemon\ndrop something?\n");
     return;
 
 L5:
     if (!trigger(349) || trigger(270)) goto L6;
-    setDialogOwner(5);
-    showTextbox("Good luck!\nIt's the house next door!\n");
+    speak(5, "Good luck!\nIt's the house next door!\n");
     return;
 
 L6:
@@ -168,48 +153,33 @@ L6:
     goto L8;
 
 L7:
-    setDialogOwner(5);
-    showTextbox("......\n");
+    speak(5, "......\n");
     return;
 
 L8:
     if (!trigger(350)) goto L9;
-    setDialogOwner(5);
-    showTextbox("Are we going to listen\nto the chorus again?\n");
+    speak(5, "Are we going to listen\nto the chorus again?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L2, L10);
-    showTextbox("Yes\nNo\n");
-    waitForSelectionChoice();
+    choice { "Yes" -> L2, "No" -> L10 }
     return;
 
 L9:
     setTrigger(349);
-    setDialogOwner(5);
-    showTextbox("Oh, Monzaemon!\nYou're back alive!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Wow, what is it?\n");
-    setDialogOwner(5);
-    showTextbox("Go fight WaruMonzaemon!\nQuickly, everybody get\nmoving! Quick, quick!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Wait...wait! He's not the\nMonzaemon you all know.\n");
-    setDialogOwner(5);
-    showTextbox("Huh? What do you mean? But \nhe is a Monzaemon, right?\n");
+    speak(5, "Oh, Monzaemon!\nYou're back alive!\n");
+    speak(Entity.Player, "Wow, what is it?\n");
+    speak(5, "Go fight WaruMonzaemon!\nQuickly, everybody get\nmoving! Quick, quick!\n");
+    speak(Entity.Player, "Wait...wait! He's not the\nMonzaemon you all know.\n");
+    speak(5, "Huh? What do you mean? But \nhe is a Monzaemon, right?\n");
     playAnimation(Entity.Player, 25);
     delay(15);
-    setDialogOwner(Entity.Player);
-    showTextbox("Yeah, it's true that\nhe's a Monzaemon.\n");
+    speak(Entity.Player, "Yeah, it's true that\nhe's a Monzaemon.\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(5);
-    showTextbox("A bad guy called WaruMonzaemon\nkidnapped my friends.\n");
-    setDialogOwner(5);
-    showTextbox("I think the only one who can\ndefeat him is Monzaemon!\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Hmm, then we got to find that\nbad guy. Where is he?\n");
-    setDialogOwner(5);
-    showTextbox("He's next door. I'll unlock\nthe seal at the door.\n");
+    speak(5, "A bad guy called WaruMonzaemon\nkidnapped my friends.\n");
+    speak(5, "I think the only one who can\ndefeat him is Monzaemon!\n");
+    speak(Entity.Player, "Hmm, then we got to find that\nbad guy. Where is he?\n");
+    speak(5, "He's next door. I'll unlock\nthe seal at the door.\n");
     showTextbox("So please go and see\nwhat you can do.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I see. Alright,\nI'll help you!\n");
+    speak(Entity.Player, "I see. Alright,\nI'll help you!\n");
     return;
 
 L10:
@@ -218,16 +188,14 @@ L10:
 
 section(6) {  // len=28
     playSound(8, 8);
-    setDialogOwner(6);
-    showTextbox("Thanks!\n");
+    speak(6, "Thanks!\n");
     return;
 }
 
 section(7) {  // len=40
     if (!trigger(350)) goto L1;
     playSound(8, 9);
-    setDialogOwner(7);
-    showTextbox("Thanks!\n");
+    speak(7, "Thanks!\n");
 
 L1:
     return;
@@ -236,8 +204,7 @@ L1:
 section(8) {  // len=354
     if (!trigger(350)) goto L1;
     playSound(8, 9);
-    setDialogOwner(8);
-    showTextbox("Thanks!\n");
+    speak(8, "Thanks!\n");
 
 L1:
     return;

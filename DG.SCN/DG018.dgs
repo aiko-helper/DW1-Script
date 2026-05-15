@@ -10,77 +10,77 @@ section onEnter(254) {  // len=350
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 29) goto L2;
-    spawnItem(Item.GiantMeat, 33, 49);
+    spawnItem(Item.GiantMeat, x: 33, y: 49);
     goto L3;
 
 L2:
     if (pstat[110] > 49) goto L3;
-    spawnItem(Item.OffenseDisk, 33, 49);
+    spawnItem(Item.OffenseDisk, x: 33, y: 49);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 29) goto L4;
-    spawnItem(Item.MPFloppy, 49, 53);
+    spawnItem(Item.MPFloppy, x: 49, y: 53);
     goto L5;
 
 L4:
     if (pstat[110] > 49) goto L5;
-    spawnItem(Item.SmallRecovery, 49, 53);
+    spawnItem(Item.SmallRecovery, x: 49, y: 53);
 
 L5:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 29) goto L6;
-    spawnItem(Item.DefenseDisk, 67, 42);
+    spawnItem(Item.DefenseDisk, x: 67, y: 42);
     goto L7;
 
 L6:
     if (pstat[110] > 49) goto L7;
-    spawnItem(Item.Meat, 67, 42);
+    spawnItem(Item.Meat, x: 67, y: 42);
 
 L7:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L8;
-    spawnItem(Item.PortaPotty, 34, 29);
+    spawnItem(Item.PortaPotty, x: 34, y: 29);
     goto L9;
 
 L8:
     if (pstat[110] > 29) goto L9;
-    spawnItem(Item.SpeedDisk, 34, 29);
+    spawnItem(Item.SpeedDisk, x: 34, y: 29);
 
 L9:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L10;
-    spawnItem(Item.MediumRecovery, 50, 34);
+    spawnItem(Item.MediumRecovery, x: 50, y: 34);
     goto L11;
 
 L10:
     if (pstat[110] > 29) goto L11;
-    spawnItem(Item.MoldyMeat, 50, 34);
+    spawnItem(Item.MoldyMeat, x: 50, y: 34);
 
 L11:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 1) goto L12;
-    spawnItem(Item.OrangeBanana, 49, 18);
+    spawnItem(Item.OrangeBanana, x: 49, y: 18);
     goto L14;
 
 L12:
     if (pstat[110] > 9) goto L13;
-    spawnItem(Item.Happymushroom, 49, 18);
+    spawnItem(Item.Happymushroom, x: 49, y: 18);
     goto L14;
 
 L13:
     if (pstat[110] > 29) goto L14;
-    spawnItem(Item.Autopilot, 49, 18);
+    spawnItem(Item.Autopilot, x: 49, y: 18);
 
 L14:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 4) goto L15;
-    spawnItem(Item.OmniDisk, 65, 22);
+    spawnItem(Item.OmniDisk, x: 65, y: 22);
     return;
 
 L15:
     if (pstat[110] > 29) goto L16;
-    spawnItem(Item.MediumMP, 65, 22);
+    spawnItem(Item.MediumMP, x: 65, y: 22);
 
 L16:
     return;
@@ -121,8 +121,7 @@ L4:
     delay(20);
     playSound(8, 0);
     delay(20);
-    setDialogOwner(Entity.System);
-    showTextbox("Trespasser Alert!\n");
+    speak(Entity.System, "Trespasser Alert!\n");
     showTextbox("Trespasser Alert!\n");
     showTextbox("I will shoot!\n");
 
@@ -138,8 +137,7 @@ section(10) {  // len=408
 L1:
     if (stat[Stat.CurrentHP] != 1) goto L2;
     look(entity: Entity.Player, at: Entity.Partner);
-    setDialogOwner(Entity.Player);
-    showTextbox("Are you alright <ORANGE><DIGIMON><WHITE>?!\n");
+    speak(Entity.Player, "Are you alright <ORANGE><DIGIMON><WHITE>?!\n");
     showTextbox("Let's go back.\n");
     warp(to: Map.TROP06, spawn: 0, trigger: 51);
 
@@ -149,8 +147,7 @@ L2:
 L3:
     if (stat[Stat.CurrentHP] != 1) goto L4;
     look(entity: Entity.Player, at: Entity.Partner);
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh no! I gotta revive\n<ORANGE><DIGIMON><WHITE>.\n");
+    speak(Entity.Player, "Oh no! I gotta revive\n<ORANGE><DIGIMON><WHITE>.\n");
     warp(to: Map.TROP06, spawn: 0, trigger: 51);
 
 L4:
@@ -1081,8 +1078,7 @@ section(68) {  // len=844
 
 L1:
     if (pstat[116] != 0) goto L4;
-    setDialogOwner(Entity.Player);
-    showTextbox(" !!! \n");
+    speak(Entity.Player, " !!! \n");
     playSound(8, 2);
     delay(20);
     setObjectVisibility(38, 1);
@@ -1095,8 +1091,7 @@ L1:
     setDigimon(Digimon.NPCCentarumon, 0, 0);
     move(entity: 5, to: (-1600, 4300), sprint: 0);
     waitForEntity(5);
-    setDialogOwner(5);
-    showTextbox("It's amazing that you made it\nthrough the forest!\n");
+    speak(5, "It's amazing that you made it\nthrough the forest!\n");
     showTextbox("I am Centarumon.\nI'm sorry for what I did.\n");
     showTextbox("I didn't test you for fun.\nI want to work with you.\n");
     setTrigger(236);
@@ -1118,18 +1113,15 @@ L3:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 9);
-    setDialogOwner(Entity.System);
-    showTextbox("Centarumon joins the city!\n");
+    speak(Entity.System, "Centarumon joins the city!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     look(entity: Entity.Player, at: Entity.Partner);
     look(entity: Entity.Partner, at: Entity.Player);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous!\n");
+    speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous!\n");
     playAnimation(Entity.Player, 11);
-    setDialogOwner(Entity.Player);
-    showTextbox("Let's keep it up!\n");
+    speak(Entity.Player, "Let's keep it up!\n");
     move(entity: Entity.Player, to: (-1600, 5200), sprint: 0);
     delay(20);
     move(entity: Entity.Partner, to: (-1600, 5200), sprint: 0);
@@ -1140,8 +1132,7 @@ L3:
 
 L4:
     playSound(0, 11);
-    setDialogOwner(Entity.System);
-    showTextbox("Missed!\n");
+    speak(Entity.System, "Missed!\n");
     warp(to: Map.TROP06, spawn: 0, trigger: 255);
 
 L5:
@@ -1154,8 +1145,7 @@ section(69) {  // len=810
 
 L1:
     if (pstat[116] != 1) goto L4;
-    setDialogOwner(Entity.Player);
-    showTextbox(" !!! \n");
+    speak(Entity.Player, " !!! \n");
     playSound(8, 2);
     delay(20);
     setObjectVisibility(39, 1);
@@ -1168,8 +1158,7 @@ L1:
     setDigimon(Digimon.NPCCentarumon, 1, 0);
     move(entity: 6, to: (0, 4300), sprint: 0);
     waitForEntity(6);
-    setDialogOwner(6);
-    showTextbox("It's amazing that you made it\nthrough the forest!\n");
+    speak(6, "It's amazing that you made it\nthrough the forest!\n");
     showTextbox("I am Centarumon.\nI'm sorry for what I did.\n");
     showTextbox("I didn't test you for fun.\nI want to work with you.\n");
     setTrigger(236);
@@ -1191,18 +1180,15 @@ L3:
     unloadEntity(6);
     setPStat(101, 0);
     playSound(8, 9);
-    setDialogOwner(Entity.System);
-    showTextbox("Centarumon joins the city!\n");
+    speak(Entity.System, "Centarumon joins the city!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     look(entity: Entity.Player, at: Entity.Partner);
     look(entity: Entity.Partner, at: Entity.Player);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous.\n");
+    speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous.\n");
     playAnimation(Entity.Player, 11);
-    setDialogOwner(Entity.Player);
-    showTextbox("Let's keep it up!\n");
+    speak(Entity.Player, "Let's keep it up!\n");
     move(entity: Entity.Player, to: (0, 5200), sprint: 0);
     delay(20);
     move(entity: Entity.Partner, to: (0, 5200), sprint: 0);
@@ -1213,8 +1199,7 @@ L3:
 
 L4:
     playSound(0, 11);
-    setDialogOwner(Entity.System);
-    showTextbox("Missed!\n");
+    speak(Entity.System, "Missed!\n");
     warp(to: Map.TROP06, spawn: 0, trigger: 255);
 
 L5:
@@ -1227,8 +1212,7 @@ section(70) {  // len=810
 
 L1:
     if (pstat[116] != 2) goto L4;
-    setDialogOwner(Entity.Player);
-    showTextbox(" !!! \n");
+    speak(Entity.Player, " !!! \n");
     playSound(8, 2);
     delay(20);
     setObjectVisibility(40, 1);
@@ -1241,8 +1225,7 @@ L1:
     setDigimon(Digimon.NPCCentarumon, 2, 0);
     move(entity: 7, to: (1600, 4300), sprint: 0);
     waitForEntity(7);
-    setDialogOwner(7);
-    showTextbox("It's amazing that you made it\nthrough the forest!\n");
+    speak(7, "It's amazing that you made it\nthrough the forest!\n");
     showTextbox("I am Centarumon.\nI'm sorry for what I did.\n");
     showTextbox("I didn't test you for fun.\nI want to work with you.\n");
     setTrigger(236);
@@ -1264,18 +1247,15 @@ L3:
     unloadEntity(7);
     setPStat(101, 0);
     playSound(8, 9);
-    setDialogOwner(Entity.System);
-    showTextbox("Centarumon joins the city!\n");
+    speak(Entity.System, "Centarumon joins the city!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     look(entity: Entity.Player, at: Entity.Partner);
     look(entity: Entity.Partner, at: Entity.Player);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous.\n");
+    speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous.\n");
     playAnimation(Entity.Player, 11);
-    setDialogOwner(Entity.Player);
-    showTextbox("Let's keep it up!\n");
+    speak(Entity.Player, "Let's keep it up!\n");
     move(entity: Entity.Player, to: (1600, 5200), sprint: 0);
     delay(20);
     move(entity: Entity.Partner, to: (1600, 5200), sprint: 0);
@@ -1286,8 +1266,7 @@ L3:
 
 L4:
     playSound(0, 11);
-    setDialogOwner(Entity.System);
-    showTextbox("Missed!\n");
+    speak(Entity.System, "Missed!\n");
     warp(to: Map.TROP06, spawn: 0, trigger: 255);
 
 L5:

@@ -20,16 +20,13 @@ section(51) {  // len=14
 section(5) {  // len=4458
     if (!trigger(270)) goto L1;
     playAnimation(Entity.Player, 20);
-    setDialogOwner(Entity.Player);
-    showTextbox("Quit messing around!\n");
-    setDialogOwner(5);
-    showTextbox("Alright. I don't think\nI'll do it again.\n");
+    speak(Entity.Player, "Quit messing around!\n");
+    speak(5, "Alright. I don't think\nI'll do it again.\n");
     return;
 
 L1:
     delay(60);
-    setDialogOwner(Entity.Player);
-    showTextbox("I think this is\nthe last room.\n");
+    speak(Entity.Player, "I think this is\nthe last room.\n");
     move(entity: Entity.Player, to: (14, -754), sprint: 0);
     moveCamera(to: (73, 181), slowdown: 20);
     waitForEntity(200);
@@ -39,16 +36,14 @@ L1:
     rotate(entity: Entity.Player, to: 2048);
     rotate(entity: Entity.Partner, to: 2048);
     delay(5);
-    setDialogOwner(Entity.System);
-    showTextbox("<YELLOW>??? <WHITE>\nWhich one?\n");
+    speak(Entity.System, "<YELLOW>??? <WHITE>\nWhich one?\n");
     rotate(entity: Entity.Player, to: 2560);
     delay(20);
     rotate(entity: Entity.Player, to: 1536);
     delay(20);
     rotate(entity: Entity.Player, to: 2048);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("That voice...sounds like\nWaruMonzaemon!\n");
+    speak(Entity.Player, "That voice...sounds like\nWaruMonzaemon!\n");
     showTextbox("A big box or a small box.\nI can read your mind!\n");
     setSelection(L2, L3);
     showTextbox("Big box\nSmall box\n");
@@ -76,8 +71,7 @@ L2:
     moveObjectTo(0, 0, 1, 12, 0, 165, 177);
     moveObjectTo(1, 1, 1, 12, 0, 160, 190);
     delay(13);
-    setDialogOwner(Entity.Player);
-    showTextbox("Huh? Aaahhhh!\n");
+    speak(Entity.Player, "Huh? Aaahhhh!\n");
     setObjectVisibility(0, 1);
     setObjectVisibility(1, 1);
     for id in 13..50 { setObjectVisibility(id, 0); }
@@ -98,8 +92,7 @@ L2:
     delay(10);
     move(entity: 5, axis: 1, to: 0, speed: 10);
     delay(20);
-    setDialogOwner(5);
-    showTextbox("Ha ha ha, you jerk!\nYou missed!\n");
+    speak(5, "Ha ha ha, you jerk!\nYou missed!\n");
     move(entity: 5, to: (-5, 41), sprint: 0);
     waitForEntity(5);
     rotate(entity: 5, to: 0);
@@ -117,8 +110,7 @@ L3:
     delay(10);
     move(entity: 5, axis: 1, to: 0, speed: 10);
     delay(20);
-    setDialogOwner(5);
-    showTextbox("Ohhhh, you found out!\nHe he he. Nervous?\n");
+    speak(5, "Ohhhh, you found out!\nHe he he. Nervous?\n");
     move(entity: 5, to: (-5, 41), sprint: 0);
     waitForEntity(5);
     rotate(entity: 5, to: 0);
@@ -126,27 +118,19 @@ L3:
     goto L4;
 
 L4:
-    setDialogOwner(Entity.Player);
-    showTextbox("Darn, what's so funny?\n");
-    setDialogOwner(5);
-    showTextbox("Wow, don't get excited.\nWhy are you here today?\nDo you want to work for me?\n");
+    speak(Entity.Player, "Darn, what's so funny?\n");
+    speak(5, "Wow, don't get excited.\nWhy are you here today?\nDo you want to work for me?\n");
     playAnimation(Entity.Player, 20);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("Give us back my friend\nyou kidnapped!\n");
-    setDialogOwner(5);
-    showTextbox("Friend? What are you talking\nabout. Do I look like I\nwould do such a thing?\n");
+    speak(Entity.Player, "Give us back my friend\nyou kidnapped!\n");
+    speak(5, "Friend? What are you talking\nabout. Do I look like I\nwould do such a thing?\n");
     playAnimation(Entity.Player, 0);
-    setDialogOwner(Entity.Player);
-    showTextbox("Yeah!\n");
-    setDialogOwner(5);
-    showTextbox("Wow, you're correct again!\nYes, I'm the one! I did it!\n");
+    speak(Entity.Player, "Yeah!\n");
+    speak(5, "Wow, you're correct again!\nYes, I'm the one! I did it!\n");
     showTextbox("But you know you can't\nhave him back.\nBecause I'm WaruMonzaemon.\n");
     playAnimation(Entity.Player, 1);
-    setDialogOwner(Entity.Player);
-    showTextbox("If that's what you think,\nI'll force you!\n");
-    setDialogOwner(5);
-    showTextbox("Are you kidding?\nYou are going to defeat me?\n");
+    speak(Entity.Player, "If that's what you think,\nI'll force you!\n");
+    speak(5, "Are you kidding?\nYou are going to defeat me?\n");
     showTextbox("You know what?\nYou'd better wake up and\nface reality!\n");
     setTrigger(1);
     setPStat(250, 1);
@@ -166,13 +150,11 @@ L4:
     waitForEntity(5);
     playAnimation(Entity.Player, 19);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("Hey, give me back my\nfriend you kidnapped.\n");
+    speak(Entity.Player, "Hey, give me back my\nfriend you kidnapped.\n");
     move(entity: 5, to: (-5, 41), sprint: 0);
     waitForEntity(5);
     rotate(entity: 5, to: 0);
-    setDialogOwner(5);
-    showTextbox("Ugghhh....no way!\nI can't believe it,\nI'm losing....\n");
+    speak(5, "Ugghhh....no way!\nI can't believe it,\nI'm losing....\n");
     move(entity: Entity.Player, to: (-205, -608), sprint: 0);
     move(entity: Entity.Partner, to: (195, -608), sprint: 0);
     waitForEntity(Entity.Player);
@@ -183,10 +165,8 @@ L4:
     waitForEntity(Entity.Partner);
     playAnimation(Entity.Player, 20);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("Come on!\n");
-    setDialogOwner(5);
-    showTextbox("Well... I guess\nI don't have choice. Here.\n");
+    speak(Entity.Player, "Come on!\n");
+    speak(5, "Well... I guess\nI don't have choice. Here.\n");
     playAnimation(Entity.Player, 0);
     playSound(8, 6);
     setObjectVisibility(0, 0);
@@ -208,8 +188,7 @@ L4:
     moveObjectTo(0, 0, 1, 12, 0, 165, 177);
     moveObjectTo(1, 1, 1, 12, 0, 160, 190);
     delay(13);
-    setDialogOwner(Entity.Player);
-    showTextbox("Huh? Wowww.... hey!\n");
+    speak(Entity.Player, "Huh? Wowww.... hey!\n");
     setObjectVisibility(0, 1);
     setObjectVisibility(1, 1);
     for id in 13..50 { setObjectVisibility(id, 0); }
@@ -220,52 +199,40 @@ L4:
     playAnimation(Entity.Player, 15);
     delay(20);
     for id in 13..50 { setObjectVisibility(id, 1); }
-    setDialogOwner(Entity.Player);
-    showTextbox("Hey, stop goofing off,\nthat's enough!\n");
+    speak(Entity.Player, "Hey, stop goofing off,\nthat's enough!\n");
     playAnimation(Entity.Player, 7);
     delay(20);
-    setDialogOwner(5);
-    showTextbox("Hey, don't you get the joke?\nHere. This is the one.\n");
+    speak(5, "Hey, don't you get the joke?\nHere. This is the one.\n");
     playSound(8, 6);
     delay(20);
     setDigimon(Digimon.Hagurumon, 2, 0);
     delay(10);
-    setDialogOwner(Entity.Player);
-    showTextbox("What is this?\nThis is a Gear.\n");
-    setDialogOwner(5);
-    showTextbox("Yeah, that's right.\n");
+    speak(Entity.Player, "What is this?\nThis is a Gear.\n");
+    speak(5, "Yeah, that's right.\n");
     playAnimation(Entity.Player, 16);
     delay(20);
-    setDialogOwner(Entity.Player);
-    showTextbox("This is the friend???\n");
-    setDialogOwner(5);
-    showTextbox("Well, I didn't take\nanything else. Really.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I guess I'll take\nthis back for now.\n");
+    speak(Entity.Player, "This is the friend???\n");
+    speak(5, "Well, I didn't take\nanything else. Really.\n");
+    speak(Entity.Player, "I guess I'll take\nthis back for now.\n");
     playAnimation(Entity.Player, 12);
     delay(20);
     unloadEntity(7);
     playAnimation(Entity.Player, 20);
     delay(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("You! Don't do anything bad\nany more, alright?!\n");
-    setDialogOwner(5);
-    showTextbox("Alright. I don't think\nit will happen again.\n");
+    speak(Entity.Player, "You! Don't do anything bad\nany more, alright?!\n");
+    speak(5, "Alright. I don't think\nit will happen again.\n");
     playAnimation(Entity.Player, 1);
-    setDialogOwner(Entity.Player);
-    showTextbox("Somehow I don't believe you,\nbut I have so much stuff\nto take care of.\n");
+    speak(Entity.Player, "Somehow I don't believe you,\nbut I have so much stuff\nto take care of.\n");
     giveItem(Item.Gear, 1);
     if (!trigger(0)) goto L5;
     unsetTrigger(3);
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh no, I have too many\nItems. I have to\nthrow one away.\n");
+    speak(Entity.Player, "Oh no, I have too many\nItems. I have to\nthrow one away.\n");
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Gear, 1);
 
 L5:
-    setDialogOwner(Entity.System);
-    showTextbox("I got a <LIGHTBLUE>Gear<WHITE>!\n");
+    speak(Entity.System, "I got a <LIGHTBLUE>Gear<WHITE>!\n");
     setTrigger(270);
     return;
 }
@@ -274,10 +241,8 @@ section(6) {  // len=1620
     delay(10);
     playAnimation(6, 28);
     delay(10);
-    setDialogOwner(Entity.Player);
-    showTextbox("What? Who are you?\n");
-    setDialogOwner(6);
-    showTextbox("Who am I? Who are you?!\n");
+    speak(Entity.Player, "What? Who are you?\n");
+    speak(6, "Who am I? Who are you?!\n");
     rotate(entity: 6, to: 1276);
     delay(5);
     rotate(entity: 6, to: 2300);
@@ -305,8 +270,7 @@ section(6) {  // len=1620
     delay(10);
     setObjectVisibility(54, 1);
     playSound(0, 7);
-    setDialogOwner(Entity.System);
-    showTextbox("I got a <PINK>Dimensional\nKey Chain<WHITE>! I can hold\nup to twenty Items now.\n");
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can hold\nup to twenty Items now.\n");
     playSound(0, 7);
     setInventorySize(20);
     setTrigger(47);
@@ -320,8 +284,7 @@ L1:
     delay(10);
     setObjectVisibility(53, 1);
     playSound(0, 7);
-    setDialogOwner(Entity.System);
-    showTextbox("I got a <PINK>Dimensional\nKey Chain<WHITE>! I can hold\nup to twenty Items now.\n");
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can hold\nup to twenty Items now.\n");
     setInventorySize(30);
     setTrigger(48);
     setTrigger(253);

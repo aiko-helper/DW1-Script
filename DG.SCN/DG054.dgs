@@ -12,8 +12,7 @@ L1:
     delay(5);
     moveCamera(to: (234, 211), slowdown: 30);
     waitForEntity(200);
-    setDialogOwner(Entity.Player);
-    showTextbox("Myotismon is gone.\n");
+    speak(Entity.Player, "Myotismon is gone.\n");
     setTrigger(358);
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
@@ -24,19 +23,15 @@ L2:
 
 section(81) {  // len=314
     if (trigger(110)) goto L2;
-    setDialogOwner(Entity.Player);
-    showTextbox("Oh!\n");
+    speak(Entity.Player, "Oh!\n");
     playAnimation(Entity.Player, 12);
     delay(20);
     setObjectVisibility(14, 1);
     giveItem(Item.MansionKey, 1);
-    setDialogOwner(Entity.Player);
-    showTextbox("I found a key. Maybe it'll\nopen some of those doors.\n");
-    setDialogOwner(Entity.System);
-    showTextbox("I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
+    speak(Entity.Player, "I found a key. Maybe it'll\nopen some of those doors.\n");
+    speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
     if (!trigger(0)) goto L1;
-    setDialogOwner(Entity.Player);
-    showTextbox("I gotta get rid of something.\n");
+    speak(Entity.Player, "I gotta get rid of something.\n");
     unsetTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
@@ -57,8 +52,7 @@ section(82) {  // len=220
     if (item[Item.MansionKey] < 1 || trigger(111)) goto L1;
     rotate(entity: Entity.Player, to: 2954);
     playSound(8, 3);
-    setDialogOwner(Entity.System);
-    showTextbox("I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
+    speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
     setTrigger(111);
     goto L2;
 
@@ -68,8 +62,7 @@ L1:
     playSound(8, 2);
     delay(5);
     playSound(8, 2);
-    setDialogOwner(Entity.System);
-    showTextbox("It doesn't open.\nIt's locked.\n");
+    speak(Entity.System, "It doesn't open.\nIt's locked.\n");
     return;
 
 L2:
@@ -94,8 +87,7 @@ section(83) {  // len=220
     if (item[Item.MansionKey] < 1 || trigger(113)) goto L1;
     rotate(entity: Entity.Player, to: 2954);
     playSound(8, 3);
-    setDialogOwner(Entity.System);
-    showTextbox("I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
+    speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
     setTrigger(113);
     goto L2;
 
@@ -105,8 +97,7 @@ L1:
     playSound(8, 2);
     delay(5);
     playSound(8, 2);
-    setDialogOwner(Entity.System);
-    showTextbox("It doesn't open.\nIt's locked.\n");
+    speak(Entity.System, "It doesn't open.\nIt's locked.\n");
     return;
 
 L2:
@@ -124,67 +115,42 @@ section(60) {  // len=2038
     move(entity: Entity.Partner, to: (775, -69), sprint: 1);
     waitForEntity(Entity.Partner);
     rotate(entity: Entity.Partner, to: 906);
-    setDialogOwner(Entity.Player);
-    showTextbox("Yum, yum....\n");
-    setDialogOwner(5);
-    showTextbox("Well.\n");
+    speak(Entity.Player, "Yum, yum....\n");
+    speak(5, "Well.\n");
     look(entity: 5, at: Entity.Player);
-    setDialogOwner(5);
-    showTextbox("Listen to me.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Yummy, yummy....\n");
-    setDialogOwner(5);
-    showTextbox("My guys don't behave anymore.\n");
+    speak(5, "Listen to me.\n");
+    speak(Entity.Player, "Yummy, yummy....\n");
+    speak(5, "My guys don't behave anymore.\n");
     showTextbox("I don't think they can\nremember my orders.\n");
     showTextbox("They don't understand now.\nThey should be bringing\nme my meals, but....\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Yum, yum....\n");
-    setDialogOwner(5);
-    showTextbox("While I was working,\nthey didn't bring my meals,\nso I forgot to eat.\n");
+    speak(Entity.Player, "Yum, yum....\n");
+    speak(5, "While I was working,\nthey didn't bring my meals,\nso I forgot to eat.\n");
     look(entity: Entity.Player, at: 5);
-    setDialogOwner(Entity.Player);
-    showTextbox("You're too wrapped up in\nyour work.\n");
-    setDialogOwner(5);
-    showTextbox("I'm so embarrassed.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I think there's trouble\nin the mansion.\n");
-    setDialogOwner(5);
-    showTextbox("Any problem on the island?\nIs everyone like my men?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Yes, they're all\nlosing their memory.\n");
-    setDialogOwner(5);
-    showTextbox("Do you think someone is\nplanning this?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Hmm?\n");
-    setDialogOwner(5);
-    showTextbox("What can I do?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("We're building a city to\nunite the hearts of Digimon.\n");
+    speak(Entity.Player, "You're too wrapped up in\nyour work.\n");
+    speak(5, "I'm so embarrassed.\n");
+    speak(Entity.Player, "I think there's trouble\nin the mansion.\n");
+    speak(5, "Any problem on the island?\nIs everyone like my men?\n");
+    speak(Entity.Player, "Yes, they're all\nlosing their memory.\n");
+    speak(5, "Do you think someone is\nplanning this?\n");
+    speak(Entity.Player, "Hmm?\n");
+    speak(5, "What can I do?\n");
+    speak(Entity.Player, "We're building a city to\nunite the hearts of Digimon.\n");
     showTextbox("We're looking for friends.\n");
-    setDialogOwner(5);
-    showTextbox("What can I do? My men\nonly have fighting skills.\n");
+    speak(5, "What can I do? My men\nonly have fighting skills.\n");
     showTextbox("I can't leave them here.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I see.\n");
-    setDialogOwner(5);
-    showTextbox("Let me think about it.\nI'm very sorry.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I'll come back again.\nDon't forget to eat.\n");
+    speak(Entity.Player, "I see.\n");
+    speak(5, "Let me think about it.\nI'm very sorry.\n");
+    speak(Entity.Player, "I'll come back again.\nDon't forget to eat.\n");
     return;
-    setDialogOwner(Entity.Player);
-    showTextbox("Want to enter a match?\n");
-    setDialogOwner(5);
-    showTextbox("A match? That's perfect.\nIt will refresh my men.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("So, you want to join?\n");
-    setDialogOwner(5);
-    showTextbox("Yes, but I still have\nsome research to do.\nI'll go there soon.\n");
+    speak(Entity.Player, "Want to enter a match?\n");
+    speak(5, "A match? That's perfect.\nIt will refresh my men.\n");
+    speak(Entity.Player, "So, you want to join?\n");
+    speak(5, "Yes, but I still have\nsome research to do.\nI'll go there soon.\n");
 }
 
 section(5) {  // len=3186
     if (!trigger(226)) goto L1;
-    setDialogOwner(5);
-    showTextbox("Thanks for your help.\nI'll show you my research.\n");
+    speak(5, "Thanks for your help.\nI'll show you my research.\n");
     showTextbox("Sometimes, if MetalGreymon\nfades away, he'll ");
     dead_string("?reymon\ndigivolve into SkullGreymon.\n");
     showTextbox("Bakemon, Devimon and\nPhoenixmon also digivolve\nthat way.\n");
@@ -193,27 +159,21 @@ section(5) {  // len=3186
 
 L1:
     if (!trigger(266)) goto L2;
-    setDialogOwner(5);
-    showTextbox("The matches have\nhelped my men.\n");
+    speak(5, "The matches have\nhelped my men.\n");
     showTextbox("A match is a good\nbreak from my research.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What's the research about?\n");
+    speak(Entity.Player, "What's the research about?\n");
     return;
 
 L2:
     if (!trigger(205)) goto L3;
-    setDialogOwner(5);
-    showTextbox("An Arena has been\nmade in the city!\n");
-    setDialogOwner(5);
-    showTextbox("I wonder if my men\ncould help?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Yes, they can be as\nforceful as they want.\n");
+    speak(5, "An Arena has been\nmade in the city!\n");
+    speak(5, "I wonder if my men\ncould help?\n");
+    speak(Entity.Player, "Yes, they can be as\nforceful as they want.\n");
     setTrigger(266);
     goto L4;
 
 L3:
-    setDialogOwner(5);
-    showTextbox("My men's condition is worse.\nIt's time to leave\nthe mansion.\n");
+    speak(5, "My men's condition is worse.\nIt's time to leave\nthe mansion.\n");
     return;
 
 L4:

@@ -20,42 +20,25 @@ L1:
 
 L2:
     setTrigger(136);
-    setDialogOwner(5);
-    showTextbox("Welcome. I've never seen you\nbefore. Where are you from?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("The city. Actually, I'm\nfrom another world.\n");
-    setDialogOwner(5);
-    showTextbox("You understand my language?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Yes, I do.\n");
-    setDialogOwner(5);
-    showTextbox("Sometimes it's hard and\nI don't sell much here.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("I see.\n");
-    setDialogOwner(5);
-    showTextbox("Many shoppers stopped coming.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("It must be the trouble\non the island.\n");
-    setDialogOwner(5);
-    showTextbox("Help me do something.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What is it?\n");
-    setDialogOwner(5);
-    showTextbox("Can you work in my shop?\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Your shop?\n");
-    setDialogOwner(5);
-    showTextbox("Half day? The more you sell,\nthe more I'll pay you.\nYou know our language.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("You might lose money.\n");
-    setDialogOwner(5);
-    showTextbox("Don't worry. It'll be good\nfor me. How about eight hours?\n");
+    speak(5, "Welcome. I've never seen you\nbefore. Where are you from?\n");
+    speak(Entity.Player, "The city. Actually, I'm\nfrom another world.\n");
+    speak(5, "You understand my language?\n");
+    speak(Entity.Player, "Yes, I do.\n");
+    speak(5, "Sometimes it's hard and\nI don't sell much here.\n");
+    speak(Entity.Player, "I see.\n");
+    speak(5, "Many shoppers stopped coming.\n");
+    speak(Entity.Player, "It must be the trouble\non the island.\n");
+    speak(5, "Help me do something.\n");
+    speak(Entity.Player, "What is it?\n");
+    speak(5, "Can you work in my shop?\n");
+    speak(Entity.Player, "Your shop?\n");
+    speak(5, "Half day? The more you sell,\nthe more I'll pay you.\nYou know our language.\n");
+    speak(Entity.Player, "You might lose money.\n");
+    speak(5, "Don't worry. It'll be good\nfor me. How about eight hours?\n");
 
 L3:
     setDialogOwner(Entity.Player);
-    setSelection(L4, L5);
-    showTextbox("I'll try\nNo thanks\n");
-    waitForSelectionChoice();
+    choice { "I'll try" -> L4, "No thanks" -> L5 }
     goto L5;
 
 L4:
@@ -96,13 +79,11 @@ L4:
     goto section_82;
 
 L5:
-    setDialogOwner(5);
-    showTextbox("That's too bad. Come back\nwhen you have time.\n");
+    speak(5, "That's too bad. Come back\nwhen you have time.\n");
     return;
 
 L6:
-    setDialogOwner(5);
-    showTextbox("You want to work?\n");
+    speak(5, "You want to work?\n");
     goto L3;
     return;
 }
@@ -114,8 +95,7 @@ section(82) {  // len=2420
 L1:
     if (pstat[123] < 10 || trigger(101)) goto L2;
     setTrigger(101);
-    setDialogOwner(5);
-    showTextbox("Well, it's half way done.\n \n");
+    speak(5, "Well, it's half way done.\n \n");
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Player, at: 5);
     delay(10);
@@ -141,38 +121,32 @@ L5:
 L6:
     callSubroutine(56);
     if (pstat[243] > 2) goto L7;
-    setDialogOwner(5);
-    showTextbox("The way it's going, we won't\nmake any money. Try harder.\n \n");
+    speak(5, "The way it's going, we won't\nmake any money. Try harder.\n \n");
     rotate(entity: Entity.Player, to: 80);
     fadeOutHUD();
     goto L2;
 
 L7:
     if (pstat[243] > 5) goto L8;
-    setDialogOwner(5);
-    showTextbox("The sales are good.\nWe can make some money.\n");
+    speak(5, "The sales are good.\nWe can make some money.\n");
     rotate(entity: Entity.Player, to: 80);
     fadeOutHUD();
     goto L2;
 
 L8:
-    setDialogOwner(5);
-    showTextbox("I haven't had this much\nbusiness in a long time.\nKeep it up!\n");
+    speak(5, "I haven't had this much\nbusiness in a long time.\nKeep it up!\n");
     rotate(entity: Entity.Player, to: 80);
     fadeOutHUD();
     goto L2;
 
 L9:
     delay(40);
-    setDialogOwner(5);
-    showTextbox("I think it's time.\nThank you for your work.\n");
+    speak(5, "I think it's time.\nThank you for your work.\n");
     callSubroutine(56);
     if (pstat[243] > 6) goto L10;
-    setDialogOwner(5);
-    showTextbox("It could have been better,\nbut it wasn't that bad.\nDon't give up.\n");
+    speak(5, "It could have been better,\nbut it wasn't that bad.\nDon't give up.\n");
     addMoney(500);
-    setDialogOwner(Entity.System);
-    showTextbox("I got five hund bits!\n");
+    speak(Entity.System, "I got five hund bits!\n");
     storeDate(105);
     addMinutesToDate(105, 480);
     advanceToDate(105);
@@ -181,11 +155,9 @@ L9:
 
 L10:
     if (pstat[243] > 11) goto L11;
-    setDialogOwner(5);
-    showTextbox("You can do better.\nI want you to work more.\n");
+    speak(5, "You can do better.\nI want you to work more.\n");
     addMoney(1500);
-    setDialogOwner(Entity.System);
-    showTextbox("I got fifteen hund bits!\n");
+    speak(Entity.System, "I got fifteen hund bits!\n");
     storeDate(105);
     addMinutesToDate(105, 480);
     advanceToDate(105);
@@ -193,27 +165,17 @@ L10:
     return;
 
 L11:
-    setDialogOwner(5);
-    showTextbox("Your wisdom, character and\nguts are what we need to\nsave this island.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("What are you talking about?\n");
-    setDialogOwner(5);
-    showTextbox("I was testing you to see if\nyou are capable of saving us.\n");
-    setDialogOwner(5);
-    showTextbox("It's important to be\ngood in battle.\n");
-    setDialogOwner(5);
-    showTextbox("Besides power, courage and\nwisdom are also needed.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Did we pass the test?\n");
-    setDialogOwner(5);
-    showTextbox("Yes, I'll help you\nas much as I can.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Will you come to the city?\nWhat will you do\nwith the shop?\n");
-    setDialogOwner(5);
-    showTextbox("I can open a shop later.\nThis shop's duty is done.\n");
+    speak(5, "Your wisdom, character and\nguts are what we need to\nsave this island.\n");
+    speak(Entity.Player, "What are you talking about?\n");
+    speak(5, "I was testing you to see if\nyou are capable of saving us.\n");
+    speak(5, "It's important to be\ngood in battle.\n");
+    speak(5, "Besides power, courage and\nwisdom are also needed.\n");
+    speak(Entity.Player, "Did we pass the test?\n");
+    speak(5, "Yes, I'll help you\nas much as I can.\n");
+    speak(Entity.Player, "Will you come to the city?\nWhat will you do\nwith the shop?\n");
+    speak(5, "I can open a shop later.\nThis shop's duty is done.\n");
     playSound(8, 10);
-    setDialogOwner(Entity.System);
-    showTextbox("Monochromon joins the city!\n");
+    speak(Entity.System, "Monochromon joins the city!\n");
     showTextbox("I got two thous bits!\n");
     addMoney(2000);
     addPStat(1, 2);

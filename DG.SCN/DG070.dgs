@@ -4,22 +4,22 @@
 section onEnter(254) {  // len=90
     roll(pstat: 110, max: 99);
     if (pstat[110] > 15) goto L1;
-    spawnItem(Item.Digimushroom, 38, 72);
+    spawnItem(Item.Digimushroom, x: 38, y: 72);
 
 L1:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 7) goto L2;
-    spawnItem(Item.Digimushroom, 46, 81);
+    spawnItem(Item.Digimushroom, x: 46, y: 81);
 
 L2:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 18) goto L3;
-    spawnItem(Item.Digimushroom, 60, 83);
+    spawnItem(Item.Digimushroom, x: 60, y: 83);
 
 L3:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L4;
-    spawnItem(Item.Digimushroom, 69, 71);
+    spawnItem(Item.Digimushroom, x: 69, y: 71);
 
 L4:
     return;
@@ -27,43 +27,35 @@ L4:
 
 section(5) {  // len=1030
     if (pstat[111] < 1) goto L1;
-    setDialogOwner(5);
-    showTextbox("I'm here again.\n");
+    speak(5, "I'm here again.\n");
     jumpAndLink(L3);
     playSound(8, 6);
-    setDialogOwner(5);
-    showTextbox("Bye!\n");
+    speak(5, "Bye!\n");
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
     waitForEntity(Entity.Player);
     waitForEntity(Entity.Partner);
     playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    showTextbox("If we go on like this, we'll\njust repeat ourselves.\n");
-    setDialogOwner(Entity.Player);
-    showTextbox("Maybe I should wait here.\n");
+    speak(Entity.Player, "If we go on like this, we'll\njust repeat ourselves.\n");
+    speak(Entity.Player, "Maybe I should wait here.\n");
     setPStat(111, 2);
     for id in 191..194 { setTrigger(id); }
     return;
 
 L1:
     if (pstat[111] != 0) goto L2;
-    setDialogOwner(5);
-    showTextbox("Who is it?\n");
-    setDialogOwner(5);
-    showTextbox("No way.\n");
+    speak(5, "Who is it?\n");
+    speak(5, "No way.\n");
     move(entity: 5, to: (-240, -1076), sprint: 1);
     delay(20);
     playSound(8, 6);
-    setDialogOwner(5);
-    showTextbox("Ahhh!\n");
+    speak(5, "Ahhh!\n");
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
     waitForEntity(Entity.Player);
     waitForEntity(Entity.Partner);
     playAnimation(Entity.Player, 14);
-    setDialogOwner(Entity.Player);
-    showTextbox("Wait up!\n");
+    speak(Entity.Player, "Wait up!\n");
     move(entity: 5, to: (-240, -1076), sprint: 1);
     waitForEntity(5);
     addPStat(111, 1);
@@ -79,8 +71,7 @@ L3:
     move(entity: 5, to: (-1055, 2740), sprint: 1);
     delay(20);
     setPStat(112, 0);
-    setDialogOwner(Entity.Player);
-    showTextbox("Not again! Wait!\n");
+    speak(Entity.Player, "Not again! Wait!\n");
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
     move(entity: 5, to: (-1025, 2740), sprint: 1);
@@ -92,8 +83,7 @@ L4:
     move(entity: 5, to: (-566, -350), sprint: 1);
     delay(20);
     setPStat(112, 1);
-    setDialogOwner(Entity.Player);
-    showTextbox("Not again! Wait!\n");
+    speak(Entity.Player, "Not again! Wait!\n");
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
     move(entity: 5, to: (-566, -320), sprint: 1);
@@ -105,8 +95,7 @@ L5:
     move(entity: 5, to: (1869, -939), sprint: 1);
     delay(20);
     setPStat(112, 2);
-    setDialogOwner(Entity.Player);
-    showTextbox("Not again! Wait!\n");
+    speak(Entity.Player, "Not again! Wait!\n");
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
     move(entity: 5, to: (1869, -939), sprint: 1);
@@ -118,8 +107,7 @@ L6:
     move(entity: 5, to: (1664, 3155), sprint: 1);
     delay(20);
     setPStat(112, 3);
-    setDialogOwner(Entity.Player);
-    showTextbox("Not again! Wait!\n");
+    speak(Entity.Player, "Not again! Wait!\n");
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
     move(entity: 5, to: (1664, 3125), sprint: 1);
@@ -182,11 +170,8 @@ section(51) {  // len=332
     if (pstat[111] < 2 || pstat[112] == 0 || trigger(191) || trigger(245)) goto L1;
     setTrigger(191);
     playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    showTextbox("Maybe I'll wait.\n");
-    setSelection(L2, L5);
-    showTextbox("Wait\nGo\n");
-    waitForSelectionChoice();
+    speak(Entity.Player, "Maybe I'll wait.\n");
+    choice { "Wait" -> L2, "Go" -> L5 }
     return;
 
 L1:
@@ -200,8 +185,7 @@ L2:
     waitForEntity(Entity.Partner);
     waitForEntity(Entity.Player);
     playAnimation(Entity.Player, 8);
-    setDialogOwner(Entity.Player);
-    showTextbox("Alright, <ORANGE><DIGIMON><WHITE>,\nget rid of Biyomon!\n");
+    speak(Entity.Player, "Alright, <ORANGE><DIGIMON><WHITE>,\nget rid of Biyomon!\n");
     playAnimation(Entity.Partner, 22);
     delay(20);
     move(entity: Entity.Player, to: (-1282, 3173), sprint: 1);
@@ -217,8 +201,7 @@ L2:
 
 L3:
     playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    showTextbox("He went to the wrong place!\n");
+    speak(Entity.Player, "He went to the wrong place!\n");
 
 L4:
     moveCamera(to: Entity.Player, speed: 10);
@@ -233,11 +216,8 @@ section(52) {  // len=330
     if (pstat[111] < 2 || pstat[112] == 1 || trigger(192) || trigger(245)) goto L1;
     setTrigger(192);
     playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    showTextbox("Maybe I'll wait.\n");
-    setSelection(L2, section_51.L5);
-    showTextbox("Wait\nGo\n");
-    waitForSelectionChoice();
+    speak(Entity.Player, "Maybe I'll wait.\n");
+    choice { "Wait" -> L2, "Go" -> section_51.L5 }
     return;
 
 L1:
@@ -251,8 +231,7 @@ L2:
     waitForEntity(Entity.Partner);
     waitForEntity(Entity.Player);
     playAnimation(Entity.Player, 8);
-    setDialogOwner(Entity.Player);
-    showTextbox("Alright, <ORANGE><DIGIMON><WHITE>,\nget rid of Biyomon!\n");
+    speak(Entity.Player, "Alright, <ORANGE><DIGIMON><WHITE>,\nget rid of Biyomon!\n");
     playAnimation(Entity.Partner, 22);
     delay(20);
     move(entity: Entity.Player, to: (-268, -1362), sprint: 1);
@@ -268,8 +247,7 @@ L2:
 
 L3:
     playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    showTextbox("He went to the wrong place!\n");
+    speak(Entity.Player, "He went to the wrong place!\n");
 
 L4:
     moveCamera(to: Entity.Player, speed: 10);
@@ -281,11 +259,8 @@ section(53) {  // len=330
     if (pstat[111] < 2 || pstat[112] == 2 || trigger(193) || trigger(245)) goto L1;
     setTrigger(193);
     playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    showTextbox("Maybe I'll wait.\n");
-    setSelection(L2, section_51.L5);
-    showTextbox("Wait\nGo\n");
-    waitForSelectionChoice();
+    speak(Entity.Player, "Maybe I'll wait.\n");
+    choice { "Wait" -> L2, "Go" -> section_51.L5 }
     return;
 
 L1:
@@ -299,8 +274,7 @@ L2:
     waitForEntity(Entity.Partner);
     waitForEntity(Entity.Player);
     playAnimation(Entity.Player, 8);
-    setDialogOwner(Entity.Player);
-    showTextbox("Alright, <ORANGE><DIGIMON><WHITE>,\nget rid of Biyomon!\n");
+    speak(Entity.Player, "Alright, <ORANGE><DIGIMON><WHITE>,\nget rid of Biyomon!\n");
     playAnimation(Entity.Partner, 22);
     delay(20);
     move(entity: Entity.Player, to: (2143, -1254), sprint: 1);
@@ -316,8 +290,7 @@ L2:
 
 L3:
     playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    showTextbox("He went to the wrong place!\n");
+    speak(Entity.Player, "He went to the wrong place!\n");
 
 L4:
     moveCamera(to: Entity.Player, speed: 10);
@@ -329,11 +302,8 @@ section(54) {  // len=1062
     if (pstat[111] < 2 || pstat[112] == 3 || trigger(194) || trigger(245)) goto L1;
     setTrigger(194);
     playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    showTextbox("Maybe I'll wait.\n");
-    setSelection(L2, section_51.L5);
-    showTextbox("Wait\nGo\n");
-    waitForSelectionChoice();
+    speak(Entity.Player, "Maybe I'll wait.\n");
+    choice { "Wait" -> L2, "Go" -> section_51.L5 }
     return;
 
 L1:
@@ -364,8 +334,7 @@ L2:
 
 L3:
     playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    showTextbox("He went to the wrong place!\n");
+    speak(Entity.Player, "He went to the wrong place!\n");
 
 L4:
     moveCamera(to: Entity.Player, speed: 10);
@@ -381,31 +350,23 @@ L5:
     waitForEntity(Entity.Player);
     waitForEntity(Entity.Partner);
     waitForEntity(5);
-    setDialogOwner(Entity.Player);
-    showTextbox("The ambush is a success!\n");
+    speak(Entity.Player, "The ambush is a success!\n");
     playSound(8, 6);
-    setDialogOwner(5);
-    showTextbox("Help me out!\n");
+    speak(5, "Help me out!\n");
     playAnimation(Entity.Player, 19);
-    setDialogOwner(Entity.Player);
-    showTextbox("Don't panic. We're not\nthe bad guys here.\n");
+    speak(Entity.Player, "Don't panic. We're not\nthe bad guys here.\n");
     playAnimation(5, 28);
     delay(20);
-    setDialogOwner(5);
-    showTextbox("Are you the famous\nDigimon kidnapper?\n");
+    speak(5, "Are you the famous\nDigimon kidnapper?\n");
     playAnimation(Entity.Player, 16);
-    setDialogOwner(Entity.Player);
-    showTextbox("I think everyone has\nthe wrong idea.\n");
+    speak(Entity.Player, "I think everyone has\nthe wrong idea.\n");
     playAnimation(5, 19);
     delay(40);
     playAnimation(Entity.Player, 19);
-    setDialogOwner(Entity.System);
-    showTextbox("<LIGHTBLUE><PLAYER><WHITE> tried\nto convince them.\n");
+    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> tried\nto convince them.\n");
     playAnimation(5, 0);
-    setDialogOwner(5);
-    showTextbox("I see. It's my mistake.\n");
-    setDialogOwner(5);
-    showTextbox("I'll go to the city.\n");
+    speak(5, "I see. It's my mistake.\n");
+    speak(5, "I'll go to the city.\n");
     goto L6;
 
 L6:
@@ -430,8 +391,7 @@ L8:
     unloadEntity(5);
     setPStat(101, 0);
     playSound(8, 5);
-    setDialogOwner(Entity.System);
-    showTextbox("Biyomon joins the city!\n");
+    speak(Entity.System, "Biyomon joins the city!\n");
     setTrigger(245);
     addPStat(1, 1);
     moveCamera(to: Entity.Player, speed: 10);
@@ -460,8 +420,7 @@ section(64) {  // len=6
 }
 
 section(6) {  // len=54
-    setDialogOwner(6);
-    showTextbox("Come and get me!\n");
+    speak(6, "Come and get me!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -470,8 +429,7 @@ section(6) {  // len=54
 }
 
 section(7) {  // len=48
-    setDialogOwner(7);
-    showTextbox("You're brave!\n");
+    speak(7, "You're brave!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -480,8 +438,7 @@ section(7) {  // len=48
 }
 
 section(8) {  // len=30
-    setDialogOwner(8);
-    showTextbox("Wow!\n");
+    speak(8, "Wow!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -490,8 +447,7 @@ section(8) {  // len=30
 }
 
 section(9) {  // len=42
-    setDialogOwner(9);
-    showTextbox("I'm first!\n");
+    speak(9, "I'm first!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -500,8 +456,7 @@ section(9) {  // len=42
 }
 
 section(10) {  // len=86
-    setDialogOwner(10);
-    showTextbox("I'm strong.\nYou can't handle me!\n");
+    speak(10, "I'm strong.\nYou can't handle me!\n");
     fadeOutHUD();
     delay(1);
     startBattle();
@@ -510,8 +465,7 @@ section(10) {  // len=86
 }
 
 section(11) {  // len=570
-    setDialogOwner(11);
-    showTextbox("Don't get mad if I win.\n");
+    speak(11, "Don't get mad if I win.\n");
     fadeOutHUD();
     delay(1);
     startBattle();
