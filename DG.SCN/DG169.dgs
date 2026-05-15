@@ -2,25 +2,27 @@
 #pragma script index=169 start=0x7e800 end=0x7f800 headerU16=0x14 sentinelOff=0x19
 
 section onEnter(254) {  // len=56
-    if (pstat[30] >= 3 || !trigger(178)) goto L_001a;
+    if (pstat[30] >= 3 || !trigger(178)) goto L1;
     move(entity: 5, to: (169, 2232), animDuration: 5);
     waitForEntity(5);
-L_001a:
-    if (pstat[30] >= 10 || !trigger(179)) goto L_0036;
+
+L1:
+    if (pstat[30] >= 10 || !trigger(179)) goto L2;
     move(entity: 5, to: (169, 2232), animDuration: 5);
     waitForEntity(5);
     return;
-L_0036:
+
+L2:
     return;
 }
 
-section section_81(81) {  // len=3482
+section(81) {  // len=3482
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Player, at: 5);
     delay(5);
     moveCamera(to: (184, 686), slowdown: 10);
     waitForEntity(200);
-    if (trigger(90)) goto L_0134;
+    if (trigger(90)) goto L1;
     setTrigger(90);
     setDialogOwner(5);
     showTextbox("You're here, <LIGHTBLUE><PLAYER><WHITE>!\n");
@@ -29,46 +31,53 @@ section section_81(81) {  // len=3482
     return;
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
-L_0134:
-    if (!trigger(178) && !trigger(179)) goto L_0148;
-    goto L_0720;
-L_0148:
+
+L1:
+    if (!trigger(178) && !trigger(179)) goto L2;
+    goto L11;
+
+L2:
     setDialogOwner(5);
     showTextbox("Do you want me to find\nsomething? Do you want me to\nexplain how we do it?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L_0238, L_0462, L_0520);
+    setSelection(L3, L4, L5);
     showTextbox("Explain\nDon't explain\nNever mind\n");
     waitForSelectionChoice();
-    goto L_0520;
-L_0238:
+    goto L5;
+
+L3:
     setDialogOwner(5);
     showTextbox("We have two plans with\ndifferent days and prices.\n");
     showTextbox("Reg:three day, one thous bits\nSpec:ten day, five thous bits\n");
     showTextbox("The chances of finding\nbetter treasure is higher\nwith Special Plan.\n");
     showTextbox("That's about it.\nWhat do you want to do?\n");
     setDialogOwner(5);
-    setSelection(L_0462, L_0238, L_0520);
+    setSelection(L4, L3, L5);
     showTextbox("Find treasure\nExplain again\nNever mind\n");
     waitForSelectionChoice();
-    goto L_0520;
-L_0462:
+    goto L5;
+
+L4:
     setDialogOwner(5);
     showTextbox("Choose a plan!\n");
     setDialogOwner(Entity.Player);
-    setSelection(L_0554, L_05fa, L_0520);
+    setSelection(L6, L8, L5);
     showTextbox("Reg:three day, one thous bits\nSpec:ten day, five thous bits\nCancel\n");
     waitForSelectionChoice();
-    goto L_0520;
-L_0520:
+    goto L5;
+
+L5:
     setDialogOwner(5);
     showTextbox("OK then, good bye.\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_0554:
-    if (money >= 1000) goto L_0568;
-    goto L_069c;
-L_0568:
+
+L6:
+    if (money >= 1000) goto L7;
+    goto L10;
+
+L7:
     reduceMoney(1000);
     setTrigger(178);
     setPStat(30, 0);
@@ -80,10 +89,12 @@ L_0568:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_05fa:
-    if (money >= 5000) goto L_060e;
-    goto L_069c;
-L_060e:
+
+L8:
+    if (money >= 5000) goto L9;
+    goto L10;
+
+L9:
     reduceMoney(5000);
     setTrigger(179);
     setPStat(30, 0);
@@ -95,21 +106,26 @@ L_060e:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_069c:
+
+L10:
     setDialogOwner(5);
     showTextbox("You don't have enough bits.\nI need money to\nfind treasure.\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_0720:
-    if (pstat[30] >= 3 || !trigger(178)) goto L_0734;
-    goto L_074c;
-L_0734:
-    if (pstat[30] >= 10 || !trigger(179)) goto L_0748;
-    goto L_074c;
-L_0748:
-    goto L_07dc;
-L_074c:
+
+L11:
+    if (pstat[30] >= 3 || !trigger(178)) goto L12;
+    goto L14;
+
+L12:
+    if (pstat[30] >= 10 || !trigger(179)) goto L13;
+    goto L14;
+
+L13:
+    goto L15;
+
+L14:
     move(entity: 5, to: (180, 840), sprint: 1);
     waitForEntity(5);
     setDialogOwner(5);
@@ -119,275 +135,330 @@ L_074c:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_07dc:
+
+L15:
     setDialogOwner(5);
     showTextbox("You know what?\nWe've got some treasure.\n");
-    if (!trigger(178)) goto L_0842;
-    goto L_0856;
-L_0842:
-    if (!trigger(179)) goto L_0856;
+    if (!trigger(178)) goto L16;
+    goto L17;
+
+L16:
+    if (!trigger(179)) goto L17;
     unsetTrigger(179);
-    goto L_0b10;
-L_0856:
-    if (!trigger(217)) goto L_0866;
-    goto L_0986;
-L_0866:
-    if (pstat[22] > 0) goto L_087e;
+    goto L44;
+
+L17:
+    if (!trigger(217)) goto L18;
+    goto L30;
+
+L18:
+    if (pstat[22] > 0) goto L19;
     giveItem(Item.KogaLaws, 1);
     setPStat(110, 90);
-    goto L_0aa6;
-L_087e:
-    if (pstat[22] > 1) goto L_0896;
+    goto L42;
+
+L19:
+    if (pstat[22] > 1) goto L20;
     giveItem(Item.FlameWing, 1);
     setPStat(110, 73);
-    goto L_0aa6;
-L_0896:
-    if (pstat[22] > 2) goto L_08ae;
+    goto L42;
+
+L20:
+    if (pstat[22] > 2) goto L21;
     giveItem(Item.TornTatter, 1);
     setPStat(110, 82);
-    goto L_0aa6;
-L_08ae:
-    if (pstat[22] > 12) goto L_08c6;
+    goto L42;
+
+L21:
+    if (pstat[22] > 12) goto L22;
     giveItem(Item.SuperRecovery, 1);
     setPStat(110, 3);
-    goto L_0aa6;
-L_08c6:
-    if (pstat[22] > 15) goto L_08de;
+    goto L42;
+
+L22:
+    if (pstat[22] > 15) goto L23;
     giveItem(Item.Restore, 1);
     setPStat(110, 11);
-    goto L_0aa6;
-L_08de:
-    if (pstat[22] > 19) goto L_08f6;
+    goto L42;
+
+L23:
+    if (pstat[22] > 19) goto L24;
     giveItem(Item.Omnipotent, 1);
     setPStat(110, 9);
-    goto L_0aa6;
-L_08f6:
-    if (pstat[22] > 23) goto L_090e;
+    goto L42;
+
+L24:
+    if (pstat[22] > 23) goto L25;
     giveItem(Item.Protection, 1);
     setPStat(110, 10);
-    goto L_0aa6;
-L_090e:
-    if (pstat[22] > 33) goto L_0926;
+    goto L42;
+
+L25:
+    if (pstat[22] > 33) goto L26;
     giveItem(Item.LargeMP, 1);
     setPStat(110, 6);
-    goto L_0aa6;
-L_0926:
-    if (pstat[22] > 37) goto L_093e;
+    goto L42;
+
+L26:
+    if (pstat[22] > 37) goto L27;
     giveItem(Item.SuperOffenseDisk, 1);
     setPStat(110, 19);
-    goto L_0aa6;
-L_093e:
-    if (pstat[22] > 41) goto L_0956;
+    goto L42;
+
+L27:
+    if (pstat[22] > 41) goto L28;
     giveItem(Item.SuperDefenseDisk, 1);
     setPStat(110, 20);
-    goto L_0aa6;
-L_0956:
-    if (pstat[22] > 45) goto L_096e;
+    goto L42;
+
+L28:
+    if (pstat[22] > 45) goto L29;
     giveItem(Item.SuperSpeedDisk, 1);
     setPStat(110, 21);
-    goto L_0aa6;
-L_096e:
-    if (pstat[22] > 49) goto L_0986;
+    goto L42;
+
+L29:
+    if (pstat[22] > 49) goto L30;
     giveItem(Item.OmniDisk, 1);
     setPStat(110, 18);
-    goto L_0aa6;
-L_0986:
-    if (pstat[22] > 0) goto L_099e;
+    goto L42;
+
+L30:
+    if (pstat[22] > 0) goto L31;
     giveItem(Item.KogaLaws, 1);
     setPStat(110, 90);
-    goto L_0aa6;
-L_099e:
-    if (pstat[22] > 2) goto L_09b6;
+    goto L42;
+
+L31:
+    if (pstat[22] > 2) goto L32;
     giveItem(Item.FlameWing, 1);
     setPStat(110, 73);
-    goto L_0aa6;
-L_09b6:
-    if (pstat[22] > 4) goto L_09ce;
+    goto L42;
+
+L32:
+    if (pstat[22] > 4) goto L33;
     giveItem(Item.TornTatter, 1);
     setPStat(110, 82);
-    goto L_0aa6;
-L_09ce:
-    if (pstat[22] > 12) goto L_09e6;
+    goto L42;
+
+L33:
+    if (pstat[22] > 12) goto L34;
     giveItem(Item.SuperRecovery, 1);
     setPStat(110, 3);
-    goto L_0aa6;
-L_09e6:
-    if (pstat[22] > 15) goto L_09fe;
+    goto L42;
+
+L34:
+    if (pstat[22] > 15) goto L35;
     giveItem(Item.Restore, 1);
     setPStat(110, 11);
-    goto L_0aa6;
-L_09fe:
-    if (pstat[22] > 19) goto L_0a16;
+    goto L42;
+
+L35:
+    if (pstat[22] > 19) goto L36;
     giveItem(Item.Omnipotent, 1);
     setPStat(110, 9);
-    goto L_0aa6;
-L_0a16:
-    if (pstat[22] > 23) goto L_0a2e;
+    goto L42;
+
+L36:
+    if (pstat[22] > 23) goto L37;
     giveItem(Item.Protection, 1);
     setPStat(110, 10);
-    goto L_0aa6;
-L_0a2e:
-    if (pstat[22] > 33) goto L_0a46;
+    goto L42;
+
+L37:
+    if (pstat[22] > 33) goto L38;
     giveItem(Item.LargeMP, 1);
     setPStat(110, 6);
-    goto L_0aa6;
-L_0a46:
-    if (pstat[22] > 37) goto L_0a5e;
+    goto L42;
+
+L38:
+    if (pstat[22] > 37) goto L39;
     giveItem(Item.SuperOffenseDisk, 1);
     setPStat(110, 19);
-    goto L_0aa6;
-L_0a5e:
-    if (pstat[22] > 41) goto L_0a76;
+    goto L42;
+
+L39:
+    if (pstat[22] > 41) goto L40;
     giveItem(Item.SuperDefenseDisk, 1);
     setPStat(110, 20);
-    goto L_0aa6;
-L_0a76:
-    if (pstat[22] > 45) goto L_0a8e;
+    goto L42;
+
+L40:
+    if (pstat[22] > 45) goto L41;
     giveItem(Item.SuperSpeedDisk, 1);
     setPStat(110, 21);
-    goto L_0aa6;
-L_0a8e:
-    if (pstat[22] > 49) goto L_0aa6;
+    goto L42;
+
+L41:
+    if (pstat[22] > 49) goto L42;
     giveItem(Item.OmniDisk, 1);
     setPStat(110, 18);
-    goto L_0aa6;
-L_0aa6:
-    if (!trigger(0)) goto L_0ae4;
+    goto L42;
+
+L42:
+    if (!trigger(0)) goto L43;
     setDialogOwner(5);
     showTextbox("Empty your stuff!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_0ae4:
+
+L43:
     setDialogOwner(Entity.System);
     showTextbox("I got a <LIGHTBLUE><TREASURE ITEM><WHITE>!\n");
     unsetTrigger(178);
     unsetTrigger(179);
-    goto L_0d60;
-L_0b10:
-    if (!trigger(217)) goto L_0b20;
-    goto L_0c40;
-L_0b20:
-    if (pstat[23] > 0) goto L_0b38;
+    goto L69;
+
+L44:
+    if (!trigger(217)) goto L45;
+    goto L57;
+
+L45:
+    if (pstat[23] > 0) goto L46;
     giveItem(Item.OffenseChip, 1);
     setPStat(110, 23);
-    goto L_0aa6;
-L_0b38:
-    if (pstat[23] > 1) goto L_0b50;
+    goto L42;
+
+L46:
+    if (pstat[23] > 1) goto L47;
     giveItem(Item.HPChip, 1);
     setPStat(110, 27);
-    goto L_0aa6;
-L_0b50:
-    if (pstat[23] > 2) goto L_0b68;
+    goto L42;
+
+L47:
+    if (pstat[23] > 2) goto L48;
     giveItem(Item.BrainChip, 1);
     setPStat(110, 25);
-    goto L_0aa6;
-L_0b68:
-    if (pstat[23] > 3) goto L_0b80;
+    goto L42;
+
+L48:
+    if (pstat[23] > 3) goto L49;
     giveItem(Item.DefenseChip, 1);
     setPStat(110, 24);
-    goto L_0aa6;
-L_0b80:
-    if (pstat[23] > 4) goto L_0b98;
+    goto L42;
+
+L49:
+    if (pstat[23] > 4) goto L50;
     giveItem(Item.MPChip, 1);
     setPStat(110, 28);
-    goto L_0aa6;
-L_0b98:
-    if (pstat[23] > 5) goto L_0bb0;
+    goto L42;
+
+L50:
+    if (pstat[23] > 5) goto L51;
     giveItem(Item.SpeedChip, 1);
     setPStat(110, 26);
-    goto L_0aa6;
-L_0bb0:
-    if (pstat[23] > 6) goto L_0bc8;
+    goto L42;
+
+L51:
+    if (pstat[23] > 6) goto L52;
     giveItem(Item.KogaLaws, 1);
     setPStat(110, 90);
-    goto L_0aa6;
-L_0bc8:
-    if (pstat[23] > 7) goto L_0be0;
+    goto L42;
+
+L52:
+    if (pstat[23] > 7) goto L53;
     giveItem(Item.FlameWing, 1);
     setPStat(110, 73);
-    goto L_0aa6;
-L_0be0:
-    if (pstat[23] > 8) goto L_0bf8;
+    goto L42;
+
+L53:
+    if (pstat[23] > 8) goto L54;
     giveItem(Item.TornTatter, 1);
     setPStat(110, 82);
-    goto L_0aa6;
-L_0bf8:
-    if (pstat[23] > 20) goto L_0c10;
+    goto L42;
+
+L54:
+    if (pstat[23] > 20) goto L55;
     giveItem(Item.SuperRecovery, 1);
     setPStat(110, 3);
-    goto L_0aa6;
-L_0c10:
-    if (pstat[23] > 29) goto L_0c28;
+    goto L42;
+
+L55:
+    if (pstat[23] > 29) goto L56;
     giveItem(Item.Restore, 1);
     setPStat(110, 11);
-    goto L_0aa6;
-L_0c28:
-    if (pstat[23] > 49) goto L_0c40;
+    goto L42;
+
+L56:
+    if (pstat[23] > 49) goto L57;
     giveItem(Item.Omnipotent, 1);
     setPStat(110, 9);
-    goto L_0aa6;
-L_0c40:
-    if (pstat[23] > 1) goto L_0c58;
+    goto L42;
+
+L57:
+    if (pstat[23] > 1) goto L58;
     giveItem(Item.OffenseChip, 1);
     setPStat(110, 23);
-    goto L_0aa6;
-L_0c58:
-    if (pstat[23] > 3) goto L_0c70;
+    goto L42;
+
+L58:
+    if (pstat[23] > 3) goto L59;
     giveItem(Item.HPChip, 1);
     setPStat(110, 27);
-    goto L_0aa6;
-L_0c70:
-    if (pstat[23] > 5) goto L_0c88;
+    goto L42;
+
+L59:
+    if (pstat[23] > 5) goto L60;
     giveItem(Item.BrainChip, 1);
     setPStat(110, 25);
-    goto L_0aa6;
-L_0c88:
-    if (pstat[23] > 7) goto L_0ca0;
+    goto L42;
+
+L60:
+    if (pstat[23] > 7) goto L61;
     giveItem(Item.DefenseChip, 1);
     setPStat(110, 24);
-    goto L_0aa6;
-L_0ca0:
-    if (pstat[23] > 9) goto L_0cb8;
+    goto L42;
+
+L61:
+    if (pstat[23] > 9) goto L62;
     giveItem(Item.MPChip, 1);
     setPStat(110, 28);
-    goto L_0aa6;
-L_0cb8:
-    if (pstat[23] > 11) goto L_0cd0;
+    goto L42;
+
+L62:
+    if (pstat[23] > 11) goto L63;
     giveItem(Item.SpeedChip, 1);
     setPStat(110, 26);
-    goto L_0aa6;
-L_0cd0:
-    if (pstat[23] > 13) goto L_0ce8;
+    goto L42;
+
+L63:
+    if (pstat[23] > 13) goto L64;
     giveItem(Item.KogaLaws, 1);
     setPStat(110, 90);
-    goto L_0aa6;
-L_0ce8:
-    if (pstat[23] > 15) goto L_0d00;
+    goto L42;
+
+L64:
+    if (pstat[23] > 15) goto L65;
     giveItem(Item.FlameWing, 1);
     setPStat(110, 73);
-    goto L_0aa6;
-L_0d00:
-    if (pstat[23] > 17) goto L_0d18;
+    goto L42;
+
+L65:
+    if (pstat[23] > 17) goto L66;
     giveItem(Item.TornTatter, 1);
     setPStat(110, 82);
-    goto L_0aa6;
-L_0d18:
-    if (pstat[23] > 21) goto L_0d30;
+    goto L42;
+
+L66:
+    if (pstat[23] > 21) goto L67;
     giveItem(Item.SuperRestore, 1);
     setPStat(110, 12);
-    goto L_0aa6;
-L_0d30:
-    if (pstat[23] > 33) goto L_0d48;
+    goto L42;
+
+L67:
+    if (pstat[23] > 33) goto L68;
     giveItem(Item.Restore, 1);
     setPStat(110, 11);
-    goto L_0aa6;
-L_0d48:
-    if (pstat[23] > 49) goto L_0d60;
+    goto L42;
+
+L68:
+    if (pstat[23] > 49) goto L69;
     giveItem(Item.Omnipotent, 1);
     setPStat(110, 9);
-    goto L_0aa6;
-L_0d60:
+    goto L42;
+
+L69:
     setDialogOwner(5);
     showTextbox("Thank you for coming!\n");
     moveCamera(to: Entity.Player, speed: 10);
@@ -395,67 +466,85 @@ L_0d60:
     return;
 }
 
-section section_6(6) {  // len=226
+section(6) {  // len=226
     setDialogOwner(6);
     showTextbox("Thanks for your business,\n<LIGHTBLUE><PLAYER><WHITE>!\n");
     showTextbox("I just started to assist\nDrimogemon. I'm really good\nat looking for things.\n");
     return;
 }
 
-section section_51(51) {  // len=312
+section(51) {  // len=312
     move(entity: Entity.Player, to: (2200, -3000), sprint: 0);
-    if (trigger(203)) goto L_0018;
+    if (trigger(203)) goto L1;
     warp(to: Map.TWNA01, spawn: 5, trigger: 255);
-L_0018:
-    if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L_0034;
-    goto L_0098;
-    goto L_0038;
-L_0034:
-    goto L_0038;
-L_0038:
-    if (!trigger(221)) goto L_004c;
-    goto L_0074;
-    goto L_0050;
-L_004c:
-    goto L_0050;
-L_0050:
-    if (!trigger(225)) goto L_0060;
+
+L1:
+    if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L2;
+    goto L11;
+    goto L3;
+
+L2:
+    goto L3;
+
+L3:
+    if (!trigger(221)) goto L4;
+    goto L8;
+    goto L5;
+
+L4:
+    goto L5;
+
+L5:
+    if (!trigger(225)) goto L6;
     warp(to: Map.TWNA04, spawn: 5, trigger: 255);
-L_0060:
-    if (!trigger(246)) goto L_0070;
+
+L6:
+    if (!trigger(246)) goto L7;
     warp(to: Map.TWNA03, spawn: 5, trigger: 255);
-L_0070:
+
+L7:
     warp(to: Map.TWNA02, spawn: 5, trigger: 255);
-L_0074:
-    if (!trigger(225)) goto L_0084;
+
+L8:
+    if (!trigger(225)) goto L9;
     warp(to: Map.TWNA07, spawn: 5, trigger: 255);
-L_0084:
-    if (!trigger(246)) goto L_0094;
+
+L9:
+    if (!trigger(246)) goto L10;
     warp(to: Map.TWNA06, spawn: 5, trigger: 255);
-L_0094:
+
+L10:
     warp(to: Map.TWNA05, spawn: 5, trigger: 255);
-L_0098:
-    if (!trigger(221)) goto L_00ac;
-    goto L_00d4;
-    goto L_00b0;
-L_00ac:
-    goto L_00b0;
-L_00b0:
-    if (!trigger(225)) goto L_00c0;
+
+L11:
+    if (!trigger(221)) goto L12;
+    goto L16;
+    goto L13;
+
+L12:
+    goto L13;
+
+L13:
+    if (!trigger(225)) goto L14;
     warp(to: Map.TWNA10, spawn: 5, trigger: 255);
-L_00c0:
-    if (!trigger(246)) goto L_00d0;
+
+L14:
+    if (!trigger(246)) goto L15;
     warp(to: Map.TWNA09, spawn: 5, trigger: 255);
-L_00d0:
+
+L15:
     warp(to: Map.TWNA08, spawn: 5, trigger: 255);
-L_00d4:
-    if (!trigger(225)) goto L_00e4;
+
+L16:
+    if (!trigger(225)) goto L17;
     warp(to: Map.TWNA13, spawn: 5, trigger: 255);
-L_00e4:
-    if (!trigger(246)) goto L_00f4;
+
+L17:
+    if (!trigger(246)) goto L18;
     warp(to: Map.TWNA12, spawn: 5, trigger: 255);
-L_00f4:
+
+L18:
     warp(to: Map.TWNA11, spawn: 5, trigger: 255);
     return;
-    garbage { 14 00 fe 00 14 00 51 00 4c 00 06 00 e6 0d 33 00 c8 0e ff ff 19 00 0d 00 1e 03 80 00 b2 00 18 00 2e 00 19 00 6c 05 a9 00 b8 08 05 00 4a 05 19 00 0d 00 1e 0a 80 00 b3 00 18 00 4a 00 };
+    garbage { 14 00 fe 00 14 00 51 00 4c 00 06 00 e6 0d 33 00 c8 0e ff ff 19 00 0d 00 1e 03 80 00 b2 00 18 00 2e 00 19 00 6c 05 a9 00 b8 08 05 00 4a 05 19 00 0d 00 1e 0a 80 00 b3 00 18 00 4a 00 }
 }

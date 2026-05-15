@@ -3,29 +3,34 @@
 
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 10) goto L_0016;
+    if (pstat[110] > 10) goto L1;
     spawnItem(Item.Digimushroom, 31, 84);
-L_0016:
+
+L1:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 7) goto L_002c;
+    if (pstat[110] > 7) goto L2;
     spawnItem(Item.Digimushroom, 48, 27);
-L_002c:
+
+L2:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 3) goto L_0042;
+    if (pstat[110] > 3) goto L3;
     spawnItem(Item.RedBerry, 25, 55);
-L_0042:
+
+L3:
     return;
 }
 
-section section_5(5) {  // len=446
-    switch (pstat[34]) { case 0: goto L_0008; case 1: goto L_00f6; };
-L_0008:
+section(5) {  // len=446
+    switch (pstat[34]) { case 0: goto L1; case 1: goto L2; }
+
+L1:
     setDialogOwner(5);
     showTextbox("There was someone who wanted\nto become a merchant. I heard\nhe has a store somewhere.\n");
     showTextbox("He's more useful than me.\n");
     addPStat(34, 1);
     return;
-L_00f6:
+
+L2:
     setDialogOwner(5);
     showTextbox("Why is time different here\nthan other areas?\n");
     showTextbox("I'm sure this place is\neasy to live in, but...\n");
@@ -33,45 +38,51 @@ L_00f6:
     return;
 }
 
-section section_6(6) {  // len=1510
+section(6) {  // len=1510
     look(entity: Entity.Player, at: 6);
     playSound(8, 3);
     delay(15);
-    switch (pstat[35]) { case 0: goto L_001c; case 1: goto L_010e; case 2: goto L_023c; case 3: goto L_0370; case 4: goto L_044a; case 5: goto L_0516; };
-L_001c:
+    switch (pstat[35]) { case 0: goto L1; case 1: goto L2; case 2: goto L3; case 3: goto L4; case 4: goto L5; case 5: goto L6; }
+
+L1:
     setDialogOwner(6);
     showTextbox("I've been looking around\nfrom the sky.\n");
     showTextbox("To the north, there's ice\nand snow. Living in such a\ncold place is crazy.\n");
     addPStat(35, 1);
     return;
-L_010e:
+
+L2:
     setDialogOwner(6);
     showTextbox("I've been looking around\nfrom the sky.\n");
     showTextbox("There's a small city made\nof iron to the west.\n");
     showTextbox("But the entrance and exit\nare closed. I can fly there.\n");
     addPStat(35, 1);
     return;
-L_023c:
+
+L3:
     setDialogOwner(6);
     showTextbox("I've been looking around\nfrom the sky.\n");
     showTextbox("There are groups of Digimon\nthat have horns or claws.\n");
     showTextbox("I heard they make their\nhomes by carving out wood.\n");
     addPStat(35, 1);
     return;
-L_0370:
+
+L4:
     setDialogOwner(6);
     showTextbox("I've been looking around\nfrom the sky.\n");
     showTextbox("In the northwest is a forest\nwith buildings.\n");
     showTextbox("It's very far.\n");
     addPStat(35, 1);
     return;
-L_044a:
+
+L5:
     setDialogOwner(6);
     showTextbox("I've been looking around\nfrom the sky.\n");
     showTextbox("Have you been past the Great\nCanyon? It's like a maze.\n");
     addPStat(35, 1);
     return;
-L_0516:
+
+L6:
     setDialogOwner(6);
     showTextbox("I've been looking around\nfrom the sky.\n");
     showTextbox("I can't see the middle of the\nisland. I see only clouds.\n");
@@ -79,13 +90,14 @@ L_0516:
     return;
 }
 
-section section_82(82) {  // len=668
+section(82) {  // len=668
     playAnimation(7, 29);
     delay(5);
     setDialogOwner(7);
     showTextbox("You heard this already.\n");
-    switch (pstat[36]) { case 0: goto L_0046; case 1: goto L_013c; };
-L_0046:
+    switch (pstat[36]) { case 0: goto L1; case 1: goto L2; }
+
+L1:
     playAnimation(7, 30);
     delay(5);
     setDialogOwner(7);
@@ -98,7 +110,8 @@ L_0046:
     playAnimation(7, 31);
     delay(5);
     return;
-L_013c:
+
+L2:
     playAnimation(7, 30);
     delay(5);
     setDialogOwner(7);
@@ -114,103 +127,120 @@ L_013c:
     return;
 }
 
-section section_7(7) {  // len=2
+section(7) {  // len=2
     return;
 }
 
-section section_8(8) {  // len=2
+section(8) {  // len=2
     return;
 }
 
-section section_81(81) {  // len=1368
+section(81) {  // len=1368
     setDialogOwner(Entity.System);
     showTextbox("Vending Machine\n");
     setDialogOwner(Entity.Player);
     showTextbox("I wonder what'll come out?\nTwo hund bits each?\nShould I buy it?\n");
-    setSelection(L_00d4, L_012a);
+    setSelection(L1, L4);
     showTextbox("Try\nCancel\n");
     waitForSelectionChoice();
-    goto L_012a;
+    goto L4;
     return;
-L_00d4:
-    if (money < 200) goto L_00ec;
-    goto L_012c;
-    goto L_0128;
-L_00ec:
+
+L1:
+    if (money < 200) goto L2;
+    goto L5;
+    goto L3;
+
+L2:
     setDialogOwner(Entity.Player);
     showTextbox("I don't got enough money.\n");
     return;
-L_0128:
+
+L3:
     return;
-L_012a:
+
+L4:
     return;
-L_012c:
+
+L5:
     roll(pstat: 102, max: 99);
-    if (pstat[102] >= 29) goto L_01e8;
+    if (pstat[102] >= 29) goto L7;
     reduceMoney(200);
     setDialogOwner(Entity.System);
     showTextbox("<LIGHTBLUE>Meat <WHITE>came out!\n");
     giveItem(Item.Meat, 1);
-    if (!trigger(0)) goto L_01e4;
+    if (!trigger(0)) goto L6;
     setDialogOwner(Entity.Player);
     showTextbox("I got too many Items.\nMust get rid of some.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Meat, 1);
-L_01e4:
-    goto L_01ec;
-L_01e8:
-    goto L_01ee;
-L_01ec:
+
+L6:
+    goto L8;
+
+L7:
+    goto L9;
+
+L8:
     return;
-L_01ee:
-    if (pstat[102] >= 59) goto L_02ce;
+
+L9:
+    if (pstat[102] >= 59) goto L11;
     setDialogOwner(Entity.System);
     reduceMoney(200);
     setDialogOwner(Entity.System);
     showTextbox("A <LIGHTBLUE>Small Recovery\nFloppy <WHITE>came out!\n");
     giveItem(Item.SmallRecovery, 1);
-    if (!trigger(0)) goto L_02ca;
+    if (!trigger(0)) goto L10;
     setDialogOwner(Entity.Player);
     showTextbox("I got too many Items.\nMust get rid of some.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.SmallRecovery, 1);
-L_02ca:
-    goto L_02d2;
-L_02ce:
-    goto L_02d4;
-L_02d2:
+
+L10:
+    goto L12;
+
+L11:
+    goto L13;
+
+L12:
     return;
-L_02d4:
-    if (pstat[102] >= 79) goto L_0392;
+
+L13:
+    if (pstat[102] >= 79) goto L15;
     setDialogOwner(Entity.System);
     reduceMoney(200);
     setDialogOwner(Entity.System);
     showTextbox("<LIGHTBLUE>Steak <WHITE>\ncame out!\n");
     giveItem(Item.MoldyMeat, 1);
-    if (!trigger(0)) goto L_038e;
+    if (!trigger(0)) goto L14;
     setDialogOwner(Entity.Player);
     showTextbox("I got too many Items.\nMust get rid of some.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.MoldyMeat, 1);
-L_038e:
-    goto L_0396;
-L_0392:
-    goto L_0398;
-L_0396:
+
+L14:
+    goto L16;
+
+L15:
+    goto L17;
+
+L16:
     return;
-L_0398:
-    if (pstat[102] > 99) goto L_045e;
+
+L17:
+    if (pstat[102] > 99) goto L18;
     setDialogOwner(Entity.System);
     reduceMoney(200);
     setDialogOwner(Entity.System);
     showTextbox("An <LIGHTBLUE>MP floppy <WHITE>\ncame out!\n");
-    if (!trigger(0)) goto L_045e;
+    if (!trigger(0)) goto L18;
     setDialogOwner(Entity.Player);
     showTextbox("I got too many Items.\nMust get rid of some.\n");
     setTrigger(3);
@@ -218,7 +248,8 @@ L_0398:
     callSubroutine(13);
     giveItem(Item.MPFloppy, 1);
     return;
-L_045e:
+
+L18:
     return;
-    garbage { 20 00 fe 00 20 00 05 00 64 00 06 00 22 02 52 00 08 08 07 00 a4 0a 08 00 a6 0a 51 00 a8 0a ff ff 24 00 6e 63 19 00 0b 00 6e 0a 18 00 36 00 19 00 74 2c 1f 00 54 00 24 00 6e 63 19 00 0b 00 6e 07 18 00 4c 00 19 00 74 2c 30 00 1b 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 62 00 19 00 74 31 19 00 37 00 fe 00 18 22 02 00 6c 00 5a 01 1b 05 1a 00 82 73 82 88 82 85 82 92 82 85 81 40 82 97 82 81 82 93 81 40 82 93 82 8f 82 8d 82 85 82 8f 82 8e 82 85 81 40 82 97 82 88 82 8f 81 40 82 97 82 81 82 8e 82 94 82 85 82 84 0d 00 82 94 82 8f 81 40 82 82 82 85 82 83 82 8f 82 8d 82 85 81 40 82 81 81 40 82 8d 82 85 82 92 82 83 82 88 82 81 82 8e 82 94 81 42 81 40 82 68 81 40 82 88 82 85 82 81 82 92 82 84 0d 00 82 88 82 85 81 40 82 88 82 81 82 93 81 40 82 81 };
+    garbage { 20 00 fe 00 20 00 05 00 64 00 06 00 22 02 52 00 08 08 07 00 a4 0a 08 00 a6 0a 51 00 a8 0a ff ff 24 00 6e 63 19 00 0b 00 6e 0a 18 00 36 00 19 00 74 2c 1f 00 54 00 24 00 6e 63 19 00 0b 00 6e 07 18 00 4c 00 19 00 74 2c 30 00 1b 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 62 00 19 00 74 31 19 00 37 00 fe 00 18 22 02 00 6c 00 5a 01 1b 05 1a 00 82 73 82 88 82 85 82 92 82 85 81 40 82 97 82 81 82 93 81 40 82 93 82 8f 82 8d 82 85 82 8f 82 8e 82 85 81 40 82 97 82 88 82 8f 81 40 82 97 82 81 82 8e 82 94 82 85 82 84 0d 00 82 94 82 8f 81 40 82 82 82 85 82 83 82 8f 82 8d 82 85 81 40 82 81 81 40 82 8d 82 85 82 92 82 83 82 88 82 81 82 8e 82 94 81 42 81 40 82 68 81 40 82 88 82 85 82 81 82 92 82 84 0d 00 82 88 82 85 81 40 82 88 82 81 82 93 81 40 82 81 }
 }

@@ -1,33 +1,38 @@
 // DG209.SCN
 #pragma script index=209 start=0xac800 end=0xaf000 headerU16=0x10 sentinelOff=0xff1b
 
-section section_5(5) {  // len=2322
+section(5) {  // len=2322
     setDialogOwner(Entity.System);
-    setSelection(L_0094, L_01ea, L_0592, L_0062);
+    setSelection(L4, L8, L24, L1);
     showTextbox("Store one\nStore two\nOthers\nEnter Name\n");
     waitForSelectionChoice();
-    goto L_0804;
-L_0062:
+    goto L36;
+
+L1:
     setDialogOwner(Entity.System);
-    setSelection(L_0084, L_008c);
+    setSelection(L2, L3);
     showTextbox("<LIGHTBLUE><PLAYER><WHITE>\n<ORANGE><DIGIMON><WHITE>\n");
     waitForSelectionChoice();
-    goto L_0804;
-L_0084:
+    goto L36;
+
+L2:
     setPStat(254, 2);
     callSubroutine(32);
     return;
-L_008c:
+
+L3:
     setPStat(254, 3);
     callSubroutine(32);
     return;
-L_0094:
+
+L4:
     setDialogOwner(Entity.Player);
-    setSelection(L_00cc, L_01d2, L_01e0);
+    setSelection(L5, L6, L7);
     showTextbox("Shop\nMarket\nPoint\n");
     waitForSelectionChoice();
-    goto L_0804;
-L_00cc:
+    goto L36;
+
+L5:
     setTrigger(385);
     setTrigger(396);
     setTrigger(404);
@@ -93,58 +98,68 @@ L_00cc:
     unsetTrigger(3);
     setPStat(254, 7);
     callSubroutine(8);
-    goto L_0804;
-L_01d2:
+    goto L36;
+
+L6:
     setTrigger(3);
     setPStat(254, 7);
     callSubroutine(8);
-    goto L_0804;
-L_01e0:
+    goto L36;
+
+L7:
     setPStat(254, 7);
     callSubroutine(1);
-    goto L_0804;
-L_01ea:
+    goto L36;
+
+L8:
     setDialogOwner(Entity.Player);
-    setSelection(L_0240, L_0238, L_0526);
+    setSelection(L10, L9, L20);
     showTextbox("Card\nItem Keeper\nOther shops\n");
     waitForSelectionChoice();
-    goto L_0804;
-L_0238:
+    goto L36;
+
+L9:
     setPStat(254, 7);
     callSubroutine(11);
     return;
-L_0240:
+
+L10:
     setPStat(254, 7);
     setDialogOwner(7);
     showTextbox("I have fresh cards today,\nas usual.\n");
     callSubroutine(15);
-L_0294:
+
+L11:
     setDialogOwner(Entity.Player);
-    setSelection(L_02e4, L_04bc, L_0504);
+    setSelection(L12, L17, L19);
     showTextbox("Buy a card\nSell a card\nCancel\n");
     waitForSelectionChoice();
-    goto L_0504;
-L_02e4:
-    if (money < 500) goto L_0368;
-    setSelection(L_03aa, L_04ac, L_04c2);
+    goto L19;
+
+L12:
+    if (money < 500) goto L13;
+    setSelection(L14, L16, L18);
     showTextbox("Buy a three card pack\nBuy a single card\nCancel\n");
     waitForSelectionChoice();
-    goto L_04c2;
-    goto L_03aa;
-L_0368:
-    setSelection(L_04ac, L_04c2);
+    goto L18;
+    goto L14;
+
+L13:
+    setSelection(L16, L18);
     showTextbox("Buy a single card\nCancel\n");
     waitForSelectionChoice();
-    goto L_04c2;
-L_03aa:
+    goto L18;
+
+L14:
     setDialogOwner(7);
     showTextbox("One pack will cost\nfive hund bits. What's\ninside is a surprise.\n");
     setDialogOwner(Entity.Player);
-    setSelection(L_0458, L_04c2);
+    setSelection(L15, L18);
     showTextbox("Buy\nCancel\n");
     waitForSelectionChoice();
-    goto L_04c2;
-L_0458:
+    goto L18;
+
+L15:
     reduceMoney(500);
     callSubroutine(15);
     setDialogOwner(7);
@@ -153,509 +168,670 @@ L_0458:
     unsetTrigger(4);
     callSubroutine(14);
     callSubroutine(22);
-    goto L_04c2;
-L_04ac:
+    goto L18;
+
+L16:
     unsetTrigger(3);
     setTrigger(4);
     callSubroutine(14);
     callSubroutine(22);
-    goto L_04c2;
-L_04bc:
+    goto L18;
+
+L17:
     setTrigger(3);
     callSubroutine(14);
-L_04c2:
+
+L18:
     setDialogOwner(7);
     showTextbox("What else do ya need amigo?\n");
-    goto L_0294;
-L_0504:
+    goto L11;
+
+L19:
     callSubroutine(16);
     setDialogOwner(7);
     showTextbox("Come again.\n");
     return;
-L_0526:
+
+L20:
     setDialogOwner(Entity.Player);
-    setSelection(L_0576, L_057e, L_0586);
+    setSelection(L21, L22, L23);
     showTextbox("Sound Test\nWarp Shop\nExchange\n");
     waitForSelectionChoice();
-    goto L_0804;
-L_0576:
+    goto L36;
+
+L21:
     setPStat(254, 7);
     callSubroutine(9);
     return;
-L_057e:
+
+L22:
     setPStat(254, 7);
     callSubroutine(10);
     return;
-L_0586:
+
+L23:
     setPStat(254, 7);
     setPStat(249, 2);
     callSubroutine(2);
     return;
-L_0592:
+
+L24:
     setDialogOwner(Entity.System);
-    setSelection(L_0806, L_0854, L_05dc, L_089a);
+    setSelection(L37, L40, L25, L42);
     showTextbox("Entry\nArena\nVarious\nPrice\n");
     waitForSelectionChoice();
-    goto L_0804;
-L_05dc:
+    goto L36;
+
+L25:
     setDialogOwner(Entity.System);
-    setSelection(L_0624, L_062a, L_0752, L_0802);
+    setSelection(L26, L27, L32, L35);
     showTextbox("Opening\nEnding\nMorph\nGone\n");
     waitForSelectionChoice();
     return;
-L_0624:
+
+L26:
     callDigimonSubroutine(5);
     waitForEntity(Entity.System);
     return;
-L_062a:
+
+L27:
     callDigimonSubroutine(6);
     waitForEntity(Entity.System);
     return;
     setTrigger(3);
     callSubroutine(0);
-    if (!trigger(3)) goto L_067c;
+    if (!trigger(3)) goto L28;
     setDialogOwner(Entity.Player);
     showTextbox("I didn't have anything.\n");
-    goto L_0804;
-L_067c:
-    if (pstat[254] != 255) goto L_06de;
+    goto L36;
+
+L28:
+    if (pstat[254] != 255) goto L29;
     setDialogOwner(7);
     showTextbox("You're not going to\ngive me anything?\n");
-    goto L_06f6;
-L_06de:
+    goto L30;
+
+L29:
     callSubroutine(12);
     setDialogOwner(7);
     showTextbox("Thanks.\n");
-L_06f6:
-    goto L_0804;
+
+L30:
+    goto L36;
     giveItem(Item.SuperSpeedDisk, 1);
-    if (!trigger(0)) goto L_0716;
+    if (!trigger(0)) goto L31;
     unsetTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.SuperSpeedDisk, 1);
-L_0716:
+
+L31:
     setDialogOwner(Entity.Player);
     showTextbox("I got number twenty one.\n");
-    goto L_0804;
-L_0752:
+    goto L36;
+
+L32:
     storeDigimonType(200);
-    if (pstat[200] != 39) goto L_07a6;
+    if (pstat[200] != 39) goto L33;
     setDialogOwner(Entity.Player);
     showTextbox("Digivolve to original form.\n");
     copyPStat(5, 254);
-    goto L_07de;
-L_07a6:
+    goto L34;
+
+L33:
     setDialogOwner(Entity.Player);
     showTextbox("Digivolve to Sukamon.\n");
     storeDigimonType(5);
     setPStat(254, 39);
-L_07de:
+
+L34:
     fadeOutHUD();
     callDigimonSubroutine(2);
     waitForEntity(201);
     setDialogOwner(Entity.Player);
     showTextbox("Complete.\n");
-    goto L_0804;
-L_0802:
+    goto L36;
+
+L35:
     callSubroutine(47);
-L_0804:
+
+L36:
     return;
-L_0806:
-    if (trigger(37)) goto L_081c;
+
+L37:
+    if (trigger(37)) goto L38;
     setPStat(254, 7);
     callSubroutine(18);
-    goto L_0852;
-L_081c:
+    goto L39;
+
+L38:
     setDialogOwner(7);
     showTextbox("Registering to ' - <SELECTED TOURNAMENT>- '\n");
-L_0852:
+
+L39:
     return;
-L_0854:
-    if (trigger(37)) goto L_088c;
+
+L40:
+    if (trigger(37)) goto L41;
     setDialogOwner(7);
     showTextbox("There's no entry.\n");
     return;
-L_088c:
+
+L41:
     setPStat(254, 7);
     callSubroutine(6);
     warp(to: Map.TWNB01, spawn: 0, trigger: 255);
     callSubroutine(22);
     return;
-L_089a:
-    goto L_08fe;
-L_089e:
+
+L42:
+    goto L45;
+
+L43:
     setDialogOwner(Entity.Player);
     showTextbox("Currently, it's <DISCOUNT>bits.\n");
-    setSelection(L_08fe, L_0904, L_08fc);
+    setSelection(L45, L46, L44);
     showTextbox("Clear\nAdd\nEnd\n");
     waitForSelectionChoice();
-L_08fc:
+
+L44:
     return;
-L_08fe:
+
+L45:
     callSubroutine(30);
-    goto L_089e;
-L_0904:
+    goto L43;
+
+L46:
     setPStat(243, 19);
     setPStat(244, 136);
     callSubroutine(31);
-    goto L_089e;
+    goto L43;
 }
 
-section section_10(10) {  // len=6754
-    goto L_005c;
-L_0004:
-    goto L_015a;
-L_0008:
-    goto L_025c;
-L_000c:
-    goto L_035e;
-L_0010:
-    goto L_0460;
-L_0014:
-    goto L_055a;
-L_0018:
-    goto L_068e;
-L_001c:
-    goto L_07ca;
-L_0020:
-    goto L_0906;
-L_0024:
-    goto L_0a4e;
-L_0028:
-    goto L_0b90;
-L_002c:
-    goto L_0cf6;
-L_0030:
-    goto L_0e30;
-L_0034:
-    goto L_0f7a;
-L_0038:
-    goto L_10c8;
-L_003c:
-    goto L_11fa;
-L_0040:
-    goto L_1346;
-L_0044:
-    goto L_1480;
-L_0048:
-    goto L_15b8;
-L_004c:
-    goto L_16e8;
-L_0050:
-    goto L_17fa;
-L_0054:
-    goto L_192e;
-L_0058:
-    goto L_1a4e;
-L_005c:
-    goto L_0070;
-L_0060:
-    goto section_11.L_0012;
-L_0064:
-    goto section_11.L_0064;
-L_0068:
-    goto section_11.L_008c;
-L_006c:
-    goto section_11.L_0220;
-L_0070:
+section(10) {  // len=6754
+    goto L23;
+
+L1:
+    goto L29;
+
+L2:
+    goto L31;
+
+L3:
+    goto L33;
+
+L4:
+    goto L35;
+
+L5:
+    goto L37;
+
+L6:
+    goto L39;
+
+L7:
+    goto L41;
+
+L8:
+    goto L43;
+
+L9:
+    goto L45;
+
+L10:
+    goto L47;
+
+L11:
+    goto L49;
+
+L12:
+    goto L51;
+
+L13:
+    goto L53;
+
+L14:
+    goto L55;
+
+L15:
+    goto L57;
+
+L16:
+    goto L59;
+
+L17:
+    goto L61;
+
+L18:
+    goto L63;
+
+L19:
+    goto L65;
+
+L20:
+    goto L67;
+
+L21:
+    goto L69;
+
+L22:
+    goto L71;
+
+L23:
+    goto L28;
+
+L24:
+    goto section_11.L1;
+
+L25:
+    goto section_11.L15;
+
+L26:
+    goto section_11.L17;
+
+L27:
+    goto section_11.L37;
+
+L28:
     showTextbox("- Grade D -\nContest featuring\nRookie Digimon\n\nSingle match, three rounds\neight contestants.\nQualifications ? none.\n");
-L_015a:
-    goto L_016e;
-    goto section_11.L_0018;
-    goto section_11.L_007a;
-    goto section_11.L_00c8;
-    goto section_11.L_0236;
-L_016e:
+
+L29:
+    goto L30;
+    goto section_11.L2;
+    goto section_11.L16;
+    goto section_11.L18;
+    goto section_11.L38;
+
+L30:
     showTextbox("- Grade C -\nContest featuring\nChampion Digimon\n\nSingle match, three rounds\neight contestants.\nQualifications ? none.\n");
-L_025c:
-    goto L_0270;
-    goto section_11.L_001e;
-    goto section_11.L_0060;
-    goto section_11.L_0104;
-    goto section_11.L_0279;
-L_0270:
+
+L31:
+    goto L32;
+    goto section_11.L3;
+    goto section_11.L14;
+    goto section_11.L19;
+    goto section_11.L39;
+
+L32:
     showTextbox("- Grade B -\nContest featuring\nChampion Digimon\n\nSingle match, three rounds\neight contestants.\nQualifications ? none.\n");
-L_035e:
-    goto L_0372;
-    goto section_11.L_0024;
-    goto section_11.L_0060;
-    goto section_11.L_0104;
-    goto section_11.L_02c7;
-L_0372:
+
+L33:
+    goto L34;
+    goto section_11.L4;
+    goto section_11.L14;
+    goto section_11.L19;
+    goto section_11.L40;
+
+L34:
     showTextbox("- Grade A -\nContest featuring\nUltimate Digimon\n\nSingle match, three rounds\neight contestants.\nQualifications ? none.\n");
-L_0460:
-    goto L_0474;
-    goto section_11.L_002a;
-    goto section_11.L_0060;
-    goto section_11.L_00c8;
-    goto section_11.L_02f5;
-L_0474:
+
+L35:
+    goto L36;
+    goto section_11.L5;
+    goto section_11.L14;
+    goto section_11.L18;
+    goto section_11.L41;
+
+L36:
     showTextbox("- Grade S -\nContest for\nstrongest Digimon\n\nSingle match, three rounds\neight contestants.\nMust be Grade A winner.\n");
-L_055a:
-    goto L_056e;
-    goto section_11.L_0018;
-    goto section_11.L_0060;
-    goto section_11.L_00c8;
-    goto section_11.L_0309;
-L_056e:
+
+L37:
+    goto L38;
+    goto section_11.L2;
+    goto section_11.L14;
+    goto section_11.L18;
+    goto section_11.L42;
+
+L38:
     showTextbox("- Grade R -\nBattle Royal Contest:\nTactics are key to winning\n\nFour-Person Battle Royal,\ntwo rounds, eight contestants.\nQualifications ? none.\n");
-L_068e:
-    goto L_06a2;
-    goto section_11.L_0018;
-    goto section_11.L_0060;
-    goto section_11.L_013c;
-    goto section_11.L_030d;
-L_06a2:
+
+L39:
+    goto L40;
+    goto section_11.L2;
+    goto section_11.L14;
+    goto section_11.L20;
+    goto section_11.L43;
+
+L40:
     showTextbox("- Version One Cup -\nTime-restricted match for\ntop version one Digimon\n\nSingle match, three rounds\neight contestants.\nMust be version one Digimon.\n");
-L_07ca:
-    goto L_07de;
-    goto section_11.L_0018;
-    goto section_11.L_0060;
-    goto section_11.L_014c;
-    goto section_11.L_031d;
-L_07de:
+
+L41:
+    goto L42;
+    goto section_11.L2;
+    goto section_11.L14;
+    goto section_11.L21;
+    goto section_11.L44;
+
+L42:
     showTextbox("- Version Two Cup -\nTime-restricted match for\ntop version two Digimon\n\nSingle match, three rounds\neight contestants.\nMust be version two Digimon.\n");
-L_0906:
-    goto L_091a;
-    goto section_11.L_0018;
-    goto section_11.L_0060;
-    goto section_11.L_015c;
-    goto section_11.L_032d;
-L_091a:
+
+L43:
+    goto L44;
+    goto section_11.L2;
+    goto section_11.L14;
+    goto section_11.L22;
+    goto section_11.L45;
+
+L44:
     showTextbox("- Version Three Cup -\nTime-restricted match for\ntop version three Digimon\n\nSingle match, three rounds\neight contestants. Must be\nversion three Digimon.\n");
-L_0a4e:
-    goto L_0a62;
-    goto section_11.L_0018;
-    goto section_11.L_0060;
-    goto section_11.L_016c;
-    goto section_11.L_033d;
-L_0a62:
+
+L45:
+    goto L46;
+    goto section_11.L2;
+    goto section_11.L14;
+    goto section_11.L23;
+    goto section_11.L46;
+
+L46:
     showTextbox("- Version Four Cup -\nTime-restricted match for\ntop version four Digimon\n\nSingle match, three rounds\neight contestants. Must be\nversion four Digimon.\n");
-L_0b90:
-    goto L_0ba4;
-    goto section_11.L_0018;
-    goto section_11.L_0060;
-    goto section_11.L_017c;
-    goto section_11.L_034d;
-L_0ba4:
+
+L47:
+    goto L48;
+    goto section_11.L2;
+    goto section_11.L14;
+    goto section_11.L24;
+    goto section_11.L47;
+
+L48:
     showTextbox("- Version Zero Cup -\nTime-restricted match for\ntop Digimon not in\nversions one ? four.\nSingle match, three rounds\neight contestants. Digimons\nnot versions one ? four.\n");
-L_0cf6:
-    goto L_0d0a;
-    goto section_11.L_0030;
-    goto section_11.L_0060;
-    goto section_11.L_0188;
-    goto section_11.L_0387;
-L_0d0a:
+
+L49:
+    goto L50;
+    goto section_11.L6;
+    goto section_11.L14;
+    goto section_11.L25;
+    goto section_11.L48;
+
+L50:
     showTextbox("- Fire Cup -\nTime-restricted match for\nKing of Blazing Digimon\n\nSingle match, three rounds\neight contestants. Must be\nDigimon of flaming nature.\n");
-L_0e30:
-    goto L_0e44;
-    goto section_11.L_0036;
-    goto section_11.L_0060;
-    goto section_11.L_0192;
-    goto section_11.L_0397;
-L_0e44:
+
+L51:
+    goto L52;
+    goto section_11.L7;
+    goto section_11.L14;
+    goto section_11.L26;
+    goto section_11.L49;
+
+L52:
     showTextbox("- Grappling Cup -\nTime-restricted match for\nKing of Combative Sport\n\nSingle match, three rounds\neight contestants. Digimon\nmust have a combative nature.\n");
-L_0f7a:
-    goto L_0f8e;
-    goto section_11.L_003c;
-    goto section_11.L_0060;
-    goto section_11.L_01a4;
-    goto section_11.L_03b5;
-L_0f8e:
+
+L53:
+    goto L54;
+    goto section_11.L8;
+    goto section_11.L14;
+    goto section_11.L27;
+    goto section_11.L50;
+
+L54:
     showTextbox("- Thunder Cup -\nTime-restricted match for\nKing of Atmospheric Digimon\n\nSingle match, three rounds\neight contestants. Must be a\natmospheric nature Digimon.\n");
-L_10c8:
-    goto L_10dc;
-    goto section_11.L_0042;
-    goto section_11.L_0060;
-    goto section_11.L_01b0;
-    goto section_11.L_03c5;
-L_10dc:
+
+L55:
+    goto L56;
+    goto section_11.L9;
+    goto section_11.L14;
+    goto section_11.L28;
+    goto section_11.L51;
+
+L56:
     showTextbox("- Cool Cup -\nTime-restricted match for\nKing of cool Digimon\n\nSingle match, three rounds\neight contestants. Must be\nDigimon of an icy nature.\n");
-L_11fa:
-    goto L_120e;
-    goto section_11.L_0048;
-    goto section_11.L_0060;
-    goto section_11.L_01be;
-    goto section_11.L_03db;
-L_120e:
+
+L57:
+    goto L58;
+    goto section_11.L10;
+    goto section_11.L14;
+    goto section_11.L29;
+    goto section_11.L52;
+
+L58:
     showTextbox("- Nature Cup -\nTime-restricted match for the\nKing of Naturalist Digimon\n\nSingle match, three rounds\neight contestants. Must be\na nature-oriented Digimon.\n");
-L_1346:
-    goto L_135a;
-    goto section_11.L_004e;
-    goto section_11.L_0060;
-    goto section_11.L_01ca;
-    goto section_11.L_03ed;
-L_135a:
+
+L59:
+    goto L60;
+    goto section_11.L11;
+    goto section_11.L14;
+    goto section_11.L30;
+    goto section_11.L53;
+
+L60:
     showTextbox("- Mech Cup -\nTimed match for King of\nExtreme Android Digimon\n\nSingle match, three rounds\neight contestants. Must be\na mechanical nature Digimon.\n");
-L_1480:
-    goto L_1494;
-    goto section_11.L_0054;
-    goto section_11.L_0060;
-    goto section_11.L_01d4;
-    goto section_11.L_03f8;
-L_1494:
+
+L61:
+    goto L62;
+    goto section_11.L12;
+    goto section_11.L14;
+    goto section_11.L31;
+    goto section_11.L54;
+
+L62:
     showTextbox("- Filthy Cup -\nTime-restricted match for\nKing of Filthy Digimon\n\nSingle match, three rounds\neight contestants. Must be\na filthy nature Digimon.\n");
-L_15b8:
-    goto L_15cc;
-    goto section_11.L_005a;
-    goto section_11.L_0060;
-    goto section_11.L_01da;
-    goto section_11.L_0400;
-L_15cc:
+
+L63:
+    goto L64;
+    goto section_11.L13;
+    goto section_11.L14;
+    goto section_11.L32;
+    goto section_11.L55;
+
+L64:
     showTextbox("- Dino Cup -\nTime-restricted match for\nDigimon of ancient bloodline\n\nSingle match, three rounds\neight contestants.\nQualifications --  ? ? ?\n");
-L_16e8:
-    goto L_16fc;
-    goto section_11.L_0048;
-    goto section_11.L_0060;
-    goto section_11.L_01ea;
-    goto section_11.L_0418;
-L_16fc:
+
+L65:
+    goto L66;
+    goto section_11.L10;
+    goto section_11.L14;
+    goto section_11.L33;
+    goto section_11.L56;
+
+L66:
     showTextbox("- Wing Cup -\nDigimon with wings\ncompete for strength\n\nSingle match, three rounds\neight contestants.\nQualifications --  ? ? ?\n");
-L_17fa:
-    goto L_180e;
-    goto section_11.L_0042;
-    goto section_11.L_0060;
-    goto section_11.L_01fc;
-    goto section_11.L_0432;
-L_180e:
+
+L67:
+    goto L68;
+    goto section_11.L9;
+    goto section_11.L14;
+    goto section_11.L34;
+    goto section_11.L57;
+
+L68:
     showTextbox("- Animal Cup -\nTime-restricted match for\nDigimon of beastly bloodline\n\nSingle match, three rounds\neight contestants.\nQualifications --  ? ? ?\n");
-L_192e:
-    goto L_1942;
-    goto section_11.L_0042;
-    goto section_11.L_0060;
-    goto section_11.L_020a;
-    goto section_11.L_0446;
-L_1942:
+
+L69:
+    goto L70;
+    goto section_11.L9;
+    goto section_11.L14;
+    goto section_11.L35;
+    goto section_11.L58;
+
+L70:
     showTextbox("- Humanoid Cup -\nTime-restricted match for\nhumanoid Digimon\n\nSingle match, three rounds\neight contestants.\nQualifications --  ? ? ?\n");
-L_1a4e:
-    goto L_1942;
-    goto section_11.L_0012;
-    goto section_11.L_0060;
-    goto section_11.L_0218;
-    goto section_11.L_045c;
+
+L71:
+    goto L70;
+    goto section_11.L1;
+    goto section_11.L14;
+    goto section_11.L36;
+    goto section_11.L59;
 }
 
-section section_11(11) {  // len=1148
+section(11) {  // len=1148
     tournamentData(12, 13, 14, 26, 27, 28, 40, 41, 42, 54, 55, 56, 59, 60, 61, 255);
-L_0012:
+
+L1:
     tournamentData(0, 0, 0, 255);
-L_0018:
+
+L2:
     tournamentData(8, 0, 0, 255);
-L_001e:
+
+L3:
     tournamentData(24, 0, 0, 255);
-L_0024:
+
+L4:
     tournamentData(8, 4, 2, 255);
-L_002a:
+
+L5:
     tournamentData(8, 0, 1, 255);
-L_0030:
+
+L6:
     tournamentData(8, 4, 56, 255);
-L_0036:
+
+L7:
     tournamentData(8, 4, 48, 255);
-L_003c:
+
+L8:
     tournamentData(8, 4, 59, 255);
-L_0042:
+
+L9:
     tournamentData(8, 4, 61, 255);
-L_0048:
+
+L10:
     tournamentData(8, 4, 60, 255);
-L_004e:
+
+L11:
     tournamentData(6, 3, 60, 255);
-L_0054:
+
+L12:
     tournamentData(3, 2, 53, 255);
-L_005a:
+
+L13:
     tournamentData(8, 4, 61, 255);
-L_0060:
+
+L14:
     tournamentData(254, 255);
-L_0064:
+
+L15:
     tournamentData(12, 13, 14, 26, 27, 28, 40, 41, 42, 54, 55, 56, 59, 60, 61, 63, 64, 65, 66, 255);
-L_007a:
+
+L16:
     tournamentData(12, 13, 14, 26, 27, 28, 40, 41, 42, 54, 55, 56, 59, 60, 61, 255);
-L_008c:
+
+L17:
     tournamentData(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 63, 64, 65, 66, 255);
-L_00c8:
+
+L18:
     tournamentData(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 63, 64, 65, 254, 255);
-L_0104:
+
+L19:
     tournamentData(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 255);
-L_013c:
+
+L20:
     tournamentData(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 254, 255);
-L_014c:
+
+L21:
     tournamentData(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 254, 255);
-L_015c:
+
+L22:
     tournamentData(31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 254, 255);
-L_016c:
+
+L23:
     tournamentData(45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 254, 255);
-L_017c:
+
+L24:
     tournamentData(57, 58, 59, 60, 61, 63, 64, 65, 254, 255);
-L_0188:
+
+L25:
     tournamentData(3, 5, 9, 21, 36, 47, 56, 255);
-L_0192:
+
+L26:
     tournamentData(6, 8, 13, 14, 17, 26, 27, 31, 34, 38, 42, 48, 63, 65, 254, 255);
-L_01a4:
+
+L27:
     tournamentData(7, 18, 20, 33, 37, 45, 50, 59, 254, 255);
-L_01b0:
+
+L28:
     tournamentData(4, 10, 22, 23, 24, 35, 49, 52, 57, 61, 254, 255);
-L_01be:
+
+L29:
     tournamentData(19, 25, 32, 46, 51, 55, 58, 60, 254, 255);
-L_01ca:
+
+L30:
     tournamentData(12, 28, 40, 41, 54, 65, 254, 255);
-L_01d4:
+
+L31:
     tournamentData(11, 39, 53, 255);
-L_01da:
+
+L32:
     tournamentData(3, 4, 8, 5, 7, 10, 12, 35, 47, 54, 61, 65, 254, 255);
-L_01ea:
+
+L33:
     tournamentData(6, 7, 12, 19, 20, 21, 31, 33, 45, 50, 51, 54, 55, 59, 60, 255);
-L_01fc:
+
+L34:
     tournamentData(14, 22, 24, 33, 36, 38, 42, 48, 57, 63, 254, 255);
-L_020a:
+
+L35:
     tournamentData(6, 9, 20, 34, 36, 40, 42, 48, 58, 65, 254, 255);
-L_0218:
+
+L36:
     tournamentData(19, 32, 51, 60, 254, 255);
-L_0220:
+
+L37:
     tournamentData(3, 4, 17, 18, 31, 32, 45, 46, 57, 74, 80, 82, 83, 86, 96, 103, 109, 111, 254, 255);
-L_0236:
+
+L38:
     tournamentData(5, 6, 7, 8, 9, 10, 11, 19, 20, 21, 22, 23, 24, 25, 33, 34, 35, 36, 37, 38, 39, 47, 48, 49, 50, 51, 52, 53, 58, 67, 68, 69, 71, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 86, 87, 91, 92, 93, 94, 95, 96, 97, 98, 99, 101, 102, 103, 105, 106, 107, 109, 111, 255);
-L_0279:
+
+L39:
     tournamentData(5, 6, 7, 8, 9, 10, 11, 19, 20, 21, 22, 23, 24, 25, 33, 34, 35, 36, 37, 38, 39, 47, 48, 49, 50, 51, 52, 53, 58, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 255);
-L_02c7:
+
+L40:
     tournamentData(5, 6, 7, 12, 13, 14, 19, 20, 21, 26, 27, 28, 32, 33, 34, 40, 41, 42, 47, 48, 49, 54, 55, 56, 58, 59, 60, 61, 63, 64, 65, 66, 70, 72, 85, 88, 89, 90, 100, 104, 108, 110, 254, 255);
-L_02f5:
+
+L41:
     tournamentData(12, 13, 14, 26, 27, 28, 40, 41, 42, 54, 55, 56, 59, 60, 61, 66, 254, 255);
-L_0309:
+
+L42:
     tournamentData(254, 255);
-L_030d:
+
+L43:
     tournamentData(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 254, 255);
-L_031d:
+
+L44:
     tournamentData(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 254, 255);
-L_032d:
+
+L45:
     tournamentData(31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 254, 255);
-L_033d:
+
+L46:
     tournamentData(45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 254, 255);
-L_034d:
+
+L47:
     tournamentData(57, 58, 59, 60, 61, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 254, 255);
-L_0387:
+
+L48:
     tournamentData(3, 5, 9, 21, 36, 47, 56, 69, 88, 101, 104, 105, 254, 255);
-L_0397:
+
+L49:
     tournamentData(6, 8, 13, 14, 17, 26, 27, 31, 34, 38, 42, 48, 68, 70, 72, 78, 79, 80, 81, 82, 83, 97, 106, 107, 108, 90, 254, 255);
-L_03b5:
+
+L50:
     tournamentData(7, 18, 20, 33, 37, 45, 50, 66, 67, 75, 85, 95, 102, 255);
-L_03c5:
+
+L51:
     tournamentData(4, 10, 22, 23, 24, 35, 49, 52, 57, 61, 71, 89, 94, 98, 100, 103, 109, 110, 254, 255);
-L_03db:
+
+L52:
     tournamentData(19, 25, 32, 46, 51, 55, 58, 60, 74, 77, 86, 91, 93, 99, 254, 255);
-L_03ed:
+
+L53:
     tournamentData(12, 28, 40, 41, 54, 76, 84, 92, 255);
-L_03f8:
+
+L54:
     tournamentData(11, 39, 53, 73, 87, 255);
-L_0400:
+
+L55:
     tournamentData(3, 4, 8, 5, 7, 10, 12, 35, 47, 54, 61, 69, 71, 83, 84, 88, 91, 98, 101, 106, 254, 255);
-L_0418:
+
+L56:
     tournamentData(6, 7, 12, 19, 20, 21, 31, 33, 45, 50, 51, 54, 55, 59, 60, 67, 85, 95, 96, 100, 102, 106, 254, 255);
-L_0432:
+
+L57:
     tournamentData(14, 22, 24, 33, 36, 38, 42, 48, 57, 69, 70, 75, 79, 93, 101, 105, 254, 255);
-L_0446:
+
+L58:
     tournamentData(6, 9, 20, 34, 36, 40, 42, 48, 52, 58, 66, 72, 80, 85, 89, 97, 100, 110, 104, 255);
-L_045c:
+
+L59:
     tournamentData(67, 74, 102, 111, 19, 32, 51, 60, 254, 255);
     return;
-    garbage { 10 00 05 00 10 00 0a 00 22 09 0b 00 84 23 ff ff };
+    garbage { 10 00 05 00 10 00 0a 00 22 09 0b 00 84 23 ff ff }
 }

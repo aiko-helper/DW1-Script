@@ -1,12 +1,12 @@
 // DG000.SCN
 #pragma script index=0 start=0x800 end=0x7000 headerU16=0x468 sentinelOff=0xfb
 
-section section_0(0) {  // len=74
+section(0) {  // len=74
     setScript(1, Map.MAYO01);
     setPStat(245, 0);
     setBGM(1);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_003a;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.ModokiBetamon);
     loadDigimon(Digimon.RedVegimon);
     setDigimon(Digimon.ModokiBetamon, 0, 1);
@@ -14,90 +14,100 @@ section section_0(0) {  // len=74
     setDigimon(Digimon.RedVegimon, 2, 1);
     setDigimon(Digimon.RedVegimon, 3, 1);
     setDigimon(Digimon.ModokiBetamon, 4, 1);
-    goto L_0048;
-L_003a:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Dokunemon);
-    setDigimon(Digimon.Dokunemon, 5, 1);
-    setDigimon(Digimon.Dokunemon, 6, 1);
-    setDigimon(Digimon.Dokunemon, 7, 1);
-L_0048:
+    for id in 5..7 { setDigimon(Digimon.Dokunemon, id, 1); }
+
+L2:
     return;
 }
 
-section section_1(1) {  // len=92
+section(1) {  // len=92
     setScript(2, Map.MAYO02);
     setPStat(245, 0);
     setBGM(1);
-    if (trigger(232)) goto L_001e;
+    if (trigger(232)) goto L1;
     loadDigimon(Digimon.NPCKunemon);
     setDigimon(Digimon.NPCKunemon, 1, 0);
-L_001e:
-    if (pstat[107] < 7 || pstat[107] >= 19 || !trigger(232)) goto L_003c;
+
+L1:
+    if (pstat[107] < 7 || pstat[107] >= 19 || !trigger(232)) goto L2;
     loadDigimon(Digimon.RedVegimon);
     setDigimon(Digimon.RedVegimon, 0, 1);
     setDigimon(Digimon.RedVegimon, 2, 1);
-L_003c:
-    if ((pstat[107] >= 7 && pstat[107] < 19) || !trigger(232)) goto L_005a;
+
+L2:
+    if ((pstat[107] >= 7 && pstat[107] < 19) || !trigger(232)) goto L3;
     loadDigimon(Digimon.Dokunemon);
     setDigimon(Digimon.Dokunemon, 3, 1);
     setDigimon(Digimon.Dokunemon, 4, 1);
-L_005a:
+
+L3:
     return;
 }
 
-section section_2(2) {  // len=54
+section(2) {  // len=54
     setScript(3, Map.MAYO03);
     setPStat(245, 0);
     setBGM(1);
-    if (trigger(246)) goto L_0022;
+    if (trigger(246)) goto L1;
     loadDigimon(Digimon.NPCPalmon);
     setDigimon(Digimon.NPCPalmon, 2, 0);
-    goto L_0034;
-L_0022:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Goburimon);
     setDigimon(Digimon.Goburimon, 0, 1);
     setDigimon(Digimon.Goburimon, 1, 1);
     setDigimon(Digimon.Goburimon, 3, 1);
     setDigimon(Digimon.Goburimon, 4, 1);
-L_0034:
+
+L2:
     return;
 }
 
-section section_3(3) {  // len=116
+section(3) {  // len=116
     setScript(4, Map.MAYO04A);
     setPStat(245, 0);
     setBGM(1);
-    if (trigger(242)) goto L_001e;
+    if (trigger(242)) goto L1;
     loadDigimon(Digimon.NPCEtemon);
     setDigimon(Digimon.NPCEtemon, 0, 1);
-L_001e:
+
+L1:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_003a;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L2;
     loadDigimon(Digimon.Aruraumon);
     setDigimon(Digimon.Aruraumon, 2, 1);
-    goto L_0040;
-L_003a:
+    goto L3;
+
+L2:
     loadDigimon(Digimon.Goburimon);
     setDigimon(Digimon.Goburimon, 4, 1);
-L_0040:
-    if (pstat[107] < 7 || pstat[107] >= 19 || !trigger(242)) goto L_005a;
+
+L3:
+    if (pstat[107] < 7 || pstat[107] >= 19 || !trigger(242)) goto L4;
     loadDigimon(Digimon.Aruraumon);
     setDigimon(Digimon.Aruraumon, 1, 1);
-L_005a:
-    if ((pstat[107] >= 7 && pstat[107] < 19) || !trigger(242)) goto L_0072;
+
+L4:
+    if ((pstat[107] >= 7 && pstat[107] < 19) || !trigger(242)) goto L5;
     setDigimon(Digimon.Goburimon, 3, 1);
-L_0072:
+
+L5:
     return;
 }
 
-section section_4(4) {  // len=14
+section(4) {  // len=14
     setScript(5, Map.MAYO04B);
     setPStat(245, 0);
     setBGM(1);
     return;
 }
 
-section section_5(5) {  // len=16
+section(5) {  // len=16
     setScript(6, Map.MAYO05);
     setPStat(245, 0);
     setBGM(1);
@@ -105,14 +115,14 @@ section section_5(5) {  // len=16
     return;
 }
 
-section section_6(6) {  // len=14
+section(6) {  // len=14
     setScript(7, Map.MAYO06);
     setPStat(245, 0);
     setBGM(1);
     return;
 }
 
-section section_7(7) {  // len=16
+section(7) {  // len=16
     setScript(8, Map.MAYO11);
     setPStat(245, 0);
     setBGM(1);
@@ -120,187 +130,202 @@ section section_7(7) {  // len=16
     return;
 }
 
-section section_8(8) {  // len=14
+section(8) {  // len=14
     setScript(9, Map.MAYO10);
     setPStat(245, 0);
     setBGM(1);
     return;
 }
 
-section section_9(9) {  // len=88
+section(9) {  // len=88
     setScript(10, Map.MAYO08A);
     setPStat(245, 0);
     setBGM(1);
-    if (!trigger(242) || !trigger(258)) goto L_0024;
+    if (!trigger(242) || !trigger(258)) goto L1;
     loadDigimon(Digimon.NPCEtemon);
     setDigimon(Digimon.NPCEtemon, 3, 0);
     return;
-L_0024:
-    if (trigger(258)) goto L_0034;
+
+L1:
+    if (trigger(258)) goto L2;
     loadDigimon(Digimon.NPCNinjamon);
     return;
-L_0034:
+
+L2:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0050;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L3;
     loadDigimon(Digimon.Aruraumon);
     setDigimon(Digimon.Aruraumon, 0, 1);
-    goto L_0056;
-L_0050:
+    goto L4;
+
+L3:
     loadDigimon(Digimon.Tsukaimon);
     setDigimon(Digimon.Tsukaimon, 2, 1);
-L_0056:
+
+L4:
     return;
 }
 
-section section_10(10) {  // len=66
+section(10) {  // len=66
     setScript(11, Map.MAYO08B);
     setPStat(245, 0);
     setBGM(1);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.ModokiBetamon);
     loadDigimon(Digimon.Aruraumon);
     setDigimon(Digimon.ModokiBetamon, 0, 1);
     setDigimon(Digimon.ModokiBetamon, 1, 1);
     setDigimon(Digimon.Aruraumon, 2, 1);
-    goto L_0040;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Tsukaimon);
-    setDigimon(Digimon.Tsukaimon, 3, 1);
-    setDigimon(Digimon.Tsukaimon, 4, 1);
-    setDigimon(Digimon.Tsukaimon, 5, 1);
-L_0040:
+    for id in 3..5 { setDigimon(Digimon.Tsukaimon, id, 1); }
+
+L2:
     return;
 }
 
-section section_11(11) {  // len=58
+section(11) {  // len=58
     setScript(12, Map.TROP00);
     setPStat(245, 0);
     setBGM(2);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Aruraumon);
     setDigimon(Digimon.Aruraumon, 0, 1);
     setDigimon(Digimon.Aruraumon, 1, 1);
-    goto L_0036;
-L_002c:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Tsukaimon);
     setDigimon(Digimon.Tsukaimon, 2, 1);
     setDigimon(Digimon.Tsukaimon, 3, 1);
-L_0036:
+
+L2:
     return;
     return;
 }
 
-section section_12(12) {  // len=92
+section(12) {  // len=92
     setScript(13, Map.TROP01);
     setPStat(245, 0);
     setBGM(2);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Muchomon);
     setDigimon(Digimon.Muchomon, 1, 1);
     setDigimon(Digimon.Muchomon, 2, 1);
-    goto L_0036;
-L_002c:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.JMojyamon);
     setDigimon(Digimon.JMojyamon, 4, 1);
     setDigimon(Digimon.JMojyamon, 3, 1);
-L_0036:
-    if (!trigger(255)) goto L_0044;
+
+L2:
+    if (!trigger(255)) goto L3;
     return;
-L_0044:
+
+L3:
     roll(pstat: 100, max: 99);
-    if (pstat[100] > 2) goto L_005a;
+    if (pstat[100] > 2) goto L4;
     loadDigimon(Digimon.NPCPiximon);
     setDigimon(Digimon.NPCPiximon, 0, 1);
-L_005a:
+
+L4:
     return;
 }
 
-section section_13(13) {  // len=66
+section(13) {  // len=66
     setScript(14, Map.TROP02);
     setPStat(245, 0);
     setBGM(2);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0030;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Yanmamon);
-    setDigimon(Digimon.Yanmamon, 0, 1);
-    setDigimon(Digimon.Yanmamon, 1, 1);
-    setDigimon(Digimon.Yanmamon, 2, 1);
-    goto L_0040;
-L_0030:
+    for id in 0..2 { setDigimon(Digimon.Yanmamon, id, 1); }
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Tsukaimon);
     loadDigimon(Digimon.JMojyamon);
     setDigimon(Digimon.Tsukaimon, 3, 1);
     setDigimon(Digimon.JMojyamon, 4, 1);
     setDigimon(Digimon.JMojyamon, 5, 1);
-L_0040:
+
+L2:
     return;
 }
 
-section section_14(14) {  // len=58
+section(14) {  // len=58
     setScript(15, Map.TROP03);
     setPStat(245, 0);
     setBGM(2);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.RedVegimon);
     setDigimon(Digimon.RedVegimon, 0, 1);
     setDigimon(Digimon.RedVegimon, 2, 1);
-    goto L_0038;
-L_002c:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Tsukaimon);
     loadDigimon(Digimon.JMojyamon);
     setDigimon(Digimon.Tsukaimon, 3, 1);
     setDigimon(Digimon.JMojyamon, 4, 1);
-L_0038:
+
+L2:
     return;
 }
 
-section section_15(15) {  // len=68
+section(15) {  // len=68
     setScript(16, Map.TROP04);
     setPStat(245, 0);
     setBGM(2);
-    if (trigger(204)) goto L_001e;
+    if (trigger(204)) goto L1;
     loadDigimon(Digimon.NPCBetamon);
     setDigimon(Digimon.NPCBetamon, 0, 1);
-L_001e:
+
+L1:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_003a;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L2;
     loadDigimon(Digimon.ModokiBetamon);
     setDigimon(Digimon.ModokiBetamon, 1, 1);
-    goto L_0042;
-L_003a:
+    goto L3;
+
+L2:
     loadDigimon(Digimon.Tsukaimon);
     loadDigimon(Digimon.JMojyamon);
     setDigimon(Digimon.JMojyamon, 2, 1);
-L_0042:
+
+L3:
     return;
 }
 
-section section_16(16) {  // len=66
+section(16) {  // len=66
     setScript(17, Map.TROP05);
     setPStat(245, 0);
     setBGM(2);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Yanmamon);
     setDigimon(Digimon.Yanmamon, 0, 1);
     setDigimon(Digimon.Yanmamon, 1, 1);
     loadDigimon(Digimon.Muchomon);
     setDigimon(Digimon.Muchomon, 2, 1);
-    goto L_0040;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.JMojyamon);
-    setDigimon(Digimon.JMojyamon, 3, 1);
-    setDigimon(Digimon.JMojyamon, 4, 1);
-    setDigimon(Digimon.JMojyamon, 5, 1);
-L_0040:
+    for id in 3..5 { setDigimon(Digimon.JMojyamon, id, 1); }
+
+L2:
     return;
 }
 
-section section_17(17) {  // len=16
+section(17) {  // len=16
     setScript(18, Map.TROP06);
     setPStat(245, 0);
     setBGM(12);
@@ -308,50 +333,52 @@ section section_17(17) {  // len=16
     return;
 }
 
-section section_18(18) {  // len=78
+section(18) {  // len=78
     setScript(19, Map.MIHA00);
     setPStat(245, 0);
     setBGM(3);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0036;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Goburimon);
     setDigimon(Digimon.Goburimon, 0, 1);
     setDigimon(Digimon.Goburimon, 1, 1);
     loadDigimon(Digimon.Aruraumon);
     setDigimon(Digimon.Aruraumon, 2, 1);
     setDigimon(Digimon.Aruraumon, 3, 1);
-    goto L_004a;
-L_0036:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Goburimon);
     setDigimon(Digimon.Goburimon, 4, 1);
     setDigimon(Digimon.Goburimon, 5, 1);
     loadDigimon(Digimon.Gotsumon);
     setDigimon(Digimon.Gotsumon, 6, 1);
     setDigimon(Digimon.Gotsumon, 7, 1);
-L_004a:
+
+L2:
     return;
     return;
 }
 
-section section_19(19) {  // len=58
+section(19) {  // len=58
     setScript(20, Map.MIHA01);
     setPStat(245, 0);
     setBGM(3);
     roll(pstat: 100, max: 99);
-    if (pstat[100] > 2 || trigger(213)) goto L_002a;
+    if (pstat[100] > 2 || trigger(213)) goto L1;
     loadDigimon(Digimon.NPCMamemon);
     setDigimon(Digimon.NPCMamemon, 0, 1);
-    goto L_0038;
-L_002a:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.MudFrigimon);
-    setDigimon(Digimon.MudFrigimon, 1, 1);
-    setDigimon(Digimon.MudFrigimon, 2, 1);
-    setDigimon(Digimon.MudFrigimon, 3, 1);
-L_0038:
+    for id in 1..3 { setDigimon(Digimon.MudFrigimon, id, 1); }
+
+L2:
     return;
 }
 
-section section_20(20) {  // len=34
+section(20) {  // len=34
     setScript(21, Map.MIHA02);
     setPStat(245, 0);
     setBGM(3);
@@ -364,62 +391,66 @@ section section_20(20) {  // len=34
     return;
 }
 
-section section_21(21) {  // len=14
+section(21) {  // len=14
     setScript(22, Map.MIHA03);
     setPStat(245, 0);
     setBGM(3);
     return;
 }
 
-section section_22(22) {  // len=76
+section(22) {  // len=76
     setScript(23, Map.MIHA04A);
     setPStat(245, 0);
     setBGM(3);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0036;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Flareizamon);
     loadDigimon(Digimon.Aruraumon);
     setDigimon(Digimon.Flareizamon, 0, 1);
     setDigimon(Digimon.Flareizamon, 1, 1);
     setDigimon(Digimon.Aruraumon, 2, 1);
     setDigimon(Digimon.Aruraumon, 3, 1);
-    goto L_004a;
-L_0036:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Tsukaimon);
     setDigimon(Digimon.Tsukaimon, 4, 1);
     setDigimon(Digimon.Tsukaimon, 5, 1);
     loadDigimon(Digimon.Goburimon);
     setDigimon(Digimon.Goburimon, 6, 1);
     setDigimon(Digimon.Goburimon, 7, 1);
-L_004a:
+
+L2:
     return;
 }
 
-section section_23(23) {  // len=76
+section(23) {  // len=76
     setScript(24, Map.MIHA04B);
     setPStat(245, 0);
     setBGM(3);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0036;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Flareizamon);
     loadDigimon(Digimon.Aruraumon);
     setDigimon(Digimon.Flareizamon, 0, 1);
     setDigimon(Digimon.Flareizamon, 1, 1);
     setDigimon(Digimon.Aruraumon, 2, 1);
     setDigimon(Digimon.Aruraumon, 3, 1);
-    goto L_004a;
-L_0036:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Tsukaimon);
     setDigimon(Digimon.Tsukaimon, 4, 1);
     setDigimon(Digimon.Tsukaimon, 5, 1);
     loadDigimon(Digimon.Goburimon);
     setDigimon(Digimon.Goburimon, 6, 1);
     setDigimon(Digimon.Goburimon, 7, 1);
-L_004a:
+
+L2:
     return;
 }
 
-section section_24(24) {  // len=20
+section(24) {  // len=20
     setScript(25, Map.TUNN01);
     setPStat(245, 1);
     setBGM(4);
@@ -428,17 +459,16 @@ section section_24(24) {  // len=20
     return;
 }
 
-section section_25(25) {  // len=86
+section(25) {  // len=86
     setScript(26, Map.TUNN02);
-    if (trigger(150) && !trigger(234)) goto L_002e;
+    if (trigger(150) && !trigger(234)) goto L1;
     setPStat(245, 1);
     setBGM(4);
     loadDigimon(Digimon.Goburimon);
-    setDigimon(Digimon.Goburimon, 0, 1);
-    setDigimon(Digimon.Goburimon, 1, 1);
-    setDigimon(Digimon.Goburimon, 2, 1);
-    goto L_0044;
-L_002e:
+    for id in 0..2 { setDigimon(Digimon.Goburimon, id, 1); }
+    goto L2;
+
+L1:
     setPStat(245, 2);
     setBGM(6);
     loadDigimon(Digimon.NPCOgremon);
@@ -446,14 +476,16 @@ L_002e:
     setDigimon(Digimon.NPCOgremon, 3, 0);
     setDigimon(Digimon.Agumon, 4, 0);
     setDigimon(Digimon.Agumon, 5, 0);
-L_0044:
-    if (pstat[17] != 2) goto L_0054;
+
+L2:
+    if (pstat[17] != 2) goto L3;
     setPStat(17, 1);
-L_0054:
+
+L3:
     return;
 }
 
-section section_26(26) {  // len=20
+section(26) {  // len=20
     setScript(27, Map.TUNN03);
     setPStat(245, 1);
     setBGM(4);
@@ -462,7 +494,7 @@ section section_26(26) {  // len=20
     return;
 }
 
-section section_27(27) {  // len=20
+section(27) {  // len=20
     setScript(28, Map.TUNN04);
     setPStat(245, 1);
     setBGM(4);
@@ -471,67 +503,73 @@ section section_27(27) {  // len=20
     return;
 }
 
-section section_28(28) {  // len=76
+section(28) {  // len=76
     setScript(29, Map.TUNN05);
     setPStat(245, 1);
     setBGM(4);
-    if (pstat[30] < 5 || pstat[17] >= 3 || pstat[17] < 1) goto L_0022;
+    if (pstat[30] < 5 || pstat[17] >= 3 || pstat[17] < 1) goto L1;
     return;
-L_0022:
-    if (pstat[18] < 10) goto L_0030;
+
+L1:
+    if (pstat[18] < 10) goto L2;
     return;
-L_0030:
-    if (pstat[18] < 5) goto L_0044;
+
+L2:
+    if (pstat[18] < 5) goto L3;
     loadDigimon(Digimon.NPCDrimogemon);
     setDigimon(Digimon.NPCDrimogemon, 1, 0);
     return;
-L_0044:
+
+L3:
     loadDigimon(Digimon.NPCDrimogemon);
     setDigimon(Digimon.NPCDrimogemon, 0, 0);
     return;
 }
 
-section section_29(29) {  // len=32
+section(29) {  // len=32
     setScript(30, Map.TUNN06);
     setPStat(245, 1);
     setBGM(4);
-    if (trigger(209)) goto L_001e;
+    if (trigger(209)) goto L1;
     loadDigimon(Digimon.NPCDrimogemon);
     setDigimon(Digimon.NPCDrimogemon, 0, 0);
-L_001e:
+
+L1:
     return;
 }
 
-section section_30(30) {  // len=14
+section(30) {  // len=14
     setScript(5, Map.TUNN07);
     setPStat(245, 1);
     setBGM(9);
     return;
 }
 
-section section_31(31) {  // len=32
+section(31) {  // len=32
     setScript(31, Map.TUNN08);
     setPStat(245, 1);
     setBGM(9);
-    if (trigger(209)) goto L_001e;
+    if (trigger(209)) goto L1;
     loadDigimon(Digimon.NPCMeramon);
     setDigimon(Digimon.NPCMeramon, 0, 1);
-L_001e:
+
+L1:
     return;
 }
 
-section section_32(32) {  // len=32
+section(32) {  // len=32
     setScript(32, Map.TUNN09);
     setPStat(245, 1);
     setBGM(4);
-    if (trigger(238)) goto L_001e;
+    if (trigger(238)) goto L1;
     loadDigimon(Digimon.NPCDrimogemon);
     setDigimon(Digimon.NPCDrimogemon, 0, 0);
-L_001e:
+
+L1:
     return;
 }
 
-section section_33(33) {  // len=18
+section(33) {  // len=18
     setScript(33, Map.TUNN10);
     loadDigimon(Digimon.DemiMeramon);
     setDigimon(Digimon.DemiMeramon, 0, 0);
@@ -539,270 +577,277 @@ section section_33(33) {  // len=18
     return;
 }
 
-section section_34(34) {  // len=74
+section(34) {  // len=74
     setScript(34, Map.DGHA01);
     setPStat(245, 1);
     setBGM(5);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0034;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Darkrizamon);
-    setDigimon(Digimon.Darkrizamon, 0, 1);
-    setDigimon(Digimon.Darkrizamon, 1, 1);
-    setDigimon(Digimon.Darkrizamon, 2, 1);
-    setDigimon(Digimon.Darkrizamon, 3, 1);
-    goto L_0048;
-L_0034:
+    for id in 0..3 { setDigimon(Digimon.Darkrizamon, id, 1); }
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Darkrizamon);
     loadDigimon(Digimon.Tsukaimon);
     setDigimon(Digimon.Darkrizamon, 4, 1);
     setDigimon(Digimon.Darkrizamon, 5, 1);
     setDigimon(Digimon.Tsukaimon, 6, 1);
     setDigimon(Digimon.Tsukaimon, 7, 1);
-L_0048:
+
+L2:
     return;
 }
 
-section section_35(35) {  // len=100
+section(35) {  // len=100
     setScript(35, Map.DGHA02);
     setPStat(245, 1);
     setBGM(5);
-    if (trigger(237)) goto L_002a;
+    if (trigger(237)) goto L1;
     loadDigimon(Digimon.NPCBakemon);
     setDigimon(Digimon.NPCBakemon, 0, 1);
     loadDigimon(Digimon.Tsukaimon);
     setDigimon(Digimon.Tsukaimon, 1, 1);
     setDigimon(Digimon.Tsukaimon, 2, 1);
     return;
-L_002a:
+
+L1:
     roll(pstat: 110, max: 1);
-    if (pstat[110] != 0) goto L_0048;
+    if (pstat[110] != 0) goto L2;
     loadDigimon(Digimon.Tsukaimon);
-    setDigimon(Digimon.Tsukaimon, 1, 1);
-    setDigimon(Digimon.Tsukaimon, 2, 1);
-    setDigimon(Digimon.Tsukaimon, 3, 1);
-L_0048:
-    if (pstat[110] != 1) goto L_0062;
+    for id in 1..3 { setDigimon(Digimon.Tsukaimon, id, 1); }
+
+L2:
+    if (pstat[110] != 1) goto L3;
     loadDigimon(Digimon.Soulmon);
-    setDigimon(Digimon.Soulmon, 4, 1);
-    setDigimon(Digimon.Soulmon, 5, 1);
-    setDigimon(Digimon.Soulmon, 6, 1);
-L_0062:
+    for id in 4..6 { setDigimon(Digimon.Soulmon, id, 1); }
+
+L3:
     return;
 }
 
-section section_36(36) {  // len=56
+section(36) {  // len=56
     setScript(36, Map.GCAN01);
     setPStat(245, 0);
     setBGM(6);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Goburimon);
     setDigimon(Digimon.Goburimon, 0, 1);
     setDigimon(Digimon.Goburimon, 1, 1);
-    goto L_0036;
-L_002c:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Gotsumon);
     setDigimon(Digimon.Gotsumon, 2, 1);
     setDigimon(Digimon.Gotsumon, 3, 1);
-L_0036:
+
+L2:
     return;
 }
 
-section section_37(37) {  // len=64
+section(37) {  // len=64
     setScript(37, Map.GCAN02);
     setPStat(245, 0);
     setBGM(6);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0030;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Goburimon);
-    setDigimon(Digimon.Goburimon, 0, 1);
-    setDigimon(Digimon.Goburimon, 1, 1);
-    setDigimon(Digimon.Goburimon, 2, 1);
-    goto L_003e;
-L_0030:
+    for id in 0..2 { setDigimon(Digimon.Goburimon, id, 1); }
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Weedmon);
-    setDigimon(Digimon.Weedmon, 3, 1);
-    setDigimon(Digimon.Weedmon, 4, 1);
-    setDigimon(Digimon.Weedmon, 5, 1);
-L_003e:
+    for id in 3..5 { setDigimon(Digimon.Weedmon, id, 1); }
+
+L2:
     return;
 }
 
-section section_38(38) {  // len=62
+section(38) {  // len=62
     setScript(38, Map.GCAN03);
     setPStat(245, 0);
     setBGM(6);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Weedmon);
     loadDigimon(Digimon.SandYanmamon);
     setDigimon(Digimon.Weedmon, 0, 1);
     setDigimon(Digimon.SandYanmamon, 1, 1);
     setDigimon(Digimon.SandYanmamon, 2, 1);
-    goto L_003c;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Gotsumon);
     setDigimon(Digimon.Gotsumon, 3, 1);
     setDigimon(Digimon.Gotsumon, 4, 1);
-L_003c:
+
+L2:
     return;
 }
 
-section section_39(39) {  // len=46
+section(39) {  // len=46
     setScript(39, Map.GCAN04);
     setPStat(245, 0);
     setBGM(6);
-    if (!trigger(175) || !trigger(180) || trigger(235)) goto L_0026;
+    if (!trigger(175) || !trigger(180) || trigger(235)) goto L1;
     loadDigimon(Digimon.NPCShellmon);
     setDigimon(Digimon.NPCShellmon, 0, 0);
-L_0026:
+
+L1:
     loadDigimon(Digimon.Goburimon);
     setDigimon(Digimon.Goburimon, 1, 1);
     return;
 }
 
-section section_40(40) {  // len=32
+section(40) {  // len=32
     setScript(40, Map.GCAN05);
     setPStat(245, 0);
     setBGM(6);
-    if (trigger(200)) goto L_001e;
+    if (trigger(200)) goto L1;
     loadDigimon(Digimon.Agumon);
     setDigimon(Digimon.Agumon, 0, 0);
-L_001e:
+
+L1:
     return;
 }
 
-section section_41(41) {  // len=68
+section(41) {  // len=68
     setScript(41, Map.GCAN06);
     setPStat(245, 0);
     setBGM(6);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Weedmon);
     loadDigimon(Digimon.Muchomon);
     setDigimon(Digimon.Muchomon, 0, 1);
     setDigimon(Digimon.Muchomon, 1, 1);
     setDigimon(Digimon.Weedmon, 2, 1);
-    goto L_0042;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Weedmon);
     loadDigimon(Digimon.Goburimon);
     setDigimon(Digimon.Weedmon, 3, 1);
     setDigimon(Digimon.Weedmon, 4, 1);
     setDigimon(Digimon.Goburimon, 5, 1);
-L_0042:
+
+L2:
     return;
 }
 
-section section_42(42) {  // len=68
+section(42) {  // len=68
     setScript(42, Map.GCAN07);
     setPStat(245, 0);
     setBGM(6);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.SandYanmamon);
     loadDigimon(Digimon.Weedmon);
     setDigimon(Digimon.SandYanmamon, 0, 1);
     setDigimon(Digimon.SandYanmamon, 1, 1);
     setDigimon(Digimon.Weedmon, 2, 1);
-    goto L_0042;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Gotsumon);
     loadDigimon(Digimon.Gururumon);
     setDigimon(Digimon.Gotsumon, 3, 1);
     setDigimon(Digimon.Gotsumon, 4, 1);
     setDigimon(Digimon.Gururumon, 5, 1);
-L_0042:
+
+L2:
     return;
 }
 
-section section_43(43) {  // len=48
+section(43) {  // len=48
     setScript(43, Map.GCAN08_1);
-    if (!trigger(197)) goto L_001a;
+    if (!trigger(197)) goto L1;
     setPStat(245, 2);
     setBGM(6);
     return;
-L_001a:
+
+L1:
     setPStat(245, 0);
     setBGM(6);
     loadDigimon(Digimon.Goburimon);
-    setDigimon(Digimon.Goburimon, 0, 1);
-    setDigimon(Digimon.Goburimon, 1, 1);
-    setDigimon(Digimon.Goburimon, 2, 1);
+    for id in 0..2 { setDigimon(Digimon.Goburimon, id, 1); }
     return;
 }
 
-section section_44(44) {  // len=58
+section(44) {  // len=58
     setScript(44, Map.GCAN09);
     setPStat(245, 0);
     setBGM(6);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002e;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Gotsumon);
     loadDigimon(Digimon.Weedmon);
     setDigimon(Digimon.Gotsumon, 0, 1);
     setDigimon(Digimon.Weedmon, 1, 1);
-    goto L_0038;
-L_002e:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Gururumon);
     setDigimon(Digimon.Gururumon, 2, 1);
     setDigimon(Digimon.Gururumon, 3, 1);
-L_0038:
+
+L2:
     return;
 }
 
-section section_45(45) {  // len=40
+section(45) {  // len=40
     setScript(45, Map.OGRE00);
     setPStat(245, 1);
     setBGM(8);
-    if (trigger(175)) goto L_0026;
+    if (trigger(175)) goto L1;
     loadDigimon(Digimon.NPCGabumon);
-    setDigimon(Digimon.NPCGabumon, 0, 1);
-    setDigimon(Digimon.NPCGabumon, 1, 1);
-    setDigimon(Digimon.NPCGabumon, 2, 1);
-L_0026:
+    for id in 0..2 { setDigimon(Digimon.NPCGabumon, id, 1); }
+
+L1:
     return;
 }
 
-section section_46(46) {  // len=42
+section(46) {  // len=42
     setScript(46, Map.OGRE01);
     setPStat(245, 1);
     setBGM(8);
-    if (trigger(175)) goto L_0028;
+    if (trigger(175)) goto L1;
     loadDigimon(Digimon.NPCGabumon);
     loadDigimon(Digimon.Agumon);
     setDigimon(Digimon.NPCGabumon, 0, 1);
     setDigimon(Digimon.NPCGabumon, 1, 1);
     setDigimon(Digimon.Agumon, 2, 1);
-L_0028:
+
+L1:
     return;
 }
 
-section section_47(47) {  // len=66
+section(47) {  // len=66
     setScript(47, Map.OGRE02);
     setPStat(245, 1);
     setBGM(8);
-    if (pstat[16] != 3) goto L_0026;
+    if (pstat[16] != 3) goto L1;
     loadDigimon(Digimon.Machinedramon);
     loadDigimon(Digimon.Analogman);
     setDigimon(Digimon.Machinedramon, 3, 1);
     setDigimon(Digimon.Analogman, 4, 1);
     return;
-L_0026:
-    if (trigger(175)) goto L_0040;
+
+L1:
+    if (trigger(175)) goto L2;
     loadDigimon(Digimon.Agumon);
-    setDigimon(Digimon.Agumon, 0, 1);
-    setDigimon(Digimon.Agumon, 1, 1);
-    setDigimon(Digimon.Agumon, 2, 1);
-L_0040:
+    for id in 0..2 { setDigimon(Digimon.Agumon, id, 1); }
+
+L2:
     return;
 }
 
-section section_48(48) {  // len=78
+section(48) {  // len=78
     setScript(48, Map.OGRE03);
     setPStat(245, 1);
     setBGM(8);
-    if (trigger(175)) goto L_0036;
+    if (trigger(175)) goto L1;
     setPStat(245, 2);
     setBGM(6);
     loadDigimon(Digimon.Agumon);
@@ -812,33 +857,36 @@ section section_48(48) {  // len=78
     setDigimon(Digimon.NPCOgremon, 2, 1);
     setDigimon(Digimon.Agumon, 3, 1);
     setDigimon(Digimon.Agumon, 4, 1);
-L_0036:
-    if (!trigger(150) || trigger(334)) goto L_004c;
+
+L1:
+    if (!trigger(150) || trigger(334)) goto L2;
     loadDigimon(Digimon.NPCNanimon);
     setDigimon(Digimon.NPCNanimon, 6, 0);
-L_004c:
+
+L2:
     return;
 }
 
-section section_49(49) {  // len=32
+section(49) {  // len=32
     setScript(49, Map.GCAN11);
     setPStat(245, 1);
     setBGM(7);
-    if (trigger(247)) goto L_001e;
+    if (trigger(247)) goto L1;
     loadDigimon(Digimon.NPCMonochromon);
     setDigimon(Digimon.NPCMonochromon, 0, 0);
-L_001e:
+
+L1:
     return;
 }
 
-section section_50(50) {  // len=14
+section(50) {  // len=14
     setScript(5, Map.YAKA01);
     setPStat(245, 1);
     setBGM(10);
     return;
 }
 
-section section_51(51) {  // len=24
+section(51) {  // len=24
     setScript(50, Map.YAKA02);
     setPStat(245, 1);
     setBGM(10);
@@ -848,62 +896,62 @@ section section_51(51) {  // len=24
     return;
 }
 
-section section_52(52) {  // len=14
+section(52) {  // len=14
     setScript(51, Map.YAKA11A);
     setPStat(245, 1);
     setBGM(10);
     return;
 }
 
-section section_53(53) {  // len=14
+section(53) {  // len=14
     setScript(52, Map.YAKA11B);
     setPStat(245, 1);
     setBGM(10);
     return;
 }
 
-section section_54(54) {  // len=14
+section(54) {  // len=14
     setScript(53, Map.YAKA12);
     setPStat(245, 1);
     setBGM(10);
     return;
 }
 
-section section_55(55) {  // len=56
+section(55) {  // len=56
     setScript(54, Map.YAKA13);
     setPStat(245, 1);
     setBGM(10);
-    if (!trigger(226)) goto L_0020;
+    if (!trigger(226)) goto L1;
     loadDigimon(Digimon.NPCMyotismon);
     setDigimon(Digimon.NPCMyotismon, 0, 0);
     return;
-L_0020:
-    if (!trigger(128) || trigger(356)) goto L_0036;
+
+L1:
+    if (!trigger(128) || trigger(356)) goto L2;
     loadDigimon(Digimon.NPCMyotismon);
     setDigimon(Digimon.NPCMyotismon, 0, 0);
-L_0036:
+
+L2:
     return;
 }
 
-section section_56(56) {  // len=28
+section(56) {  // len=28
     setScript(55, Map.YAKA14);
     setPStat(245, 1);
     setBGM(10);
     loadDigimon(Digimon.Soulmon);
-    setDigimon(Digimon.Soulmon, 0, 1);
-    setDigimon(Digimon.Soulmon, 1, 1);
-    setDigimon(Digimon.Soulmon, 2, 1);
+    for id in 0..2 { setDigimon(Digimon.Soulmon, id, 1); }
     return;
 }
 
-section section_57(57) {  // len=14
+section(57) {  // len=14
     setScript(56, Map.YAKA15);
     setPStat(245, 1);
     setBGM(10);
     return;
 }
 
-section section_58(58) {  // len=20
+section(58) {  // len=20
     setScript(57, Map.YAKA16);
     setPStat(245, 1);
     setBGM(10);
@@ -912,7 +960,7 @@ section section_58(58) {  // len=20
     return;
 }
 
-section section_59(59) {  // len=20
+section(59) {  // len=20
     setScript(58, Map.YAKA17);
     setPStat(245, 1);
     setBGM(10);
@@ -921,7 +969,7 @@ section section_59(59) {  // len=20
     return;
 }
 
-section section_60(60) {  // len=18
+section(60) {  // len=18
     setScript(59, Map.YAKA18);
     setPStat(245, 1);
     setBGM(10);
@@ -929,342 +977,368 @@ section section_60(60) {  // len=18
     return;
 }
 
-section section_61(61) {  // len=14
+section(61) {  // len=14
     setScript(5, Map.YAKA21);
     setPStat(245, 1);
     setBGM(10);
     return;
 }
 
-section section_62(62) {  // len=14
+section(62) {  // len=14
     setScript(60, Map.YAKA22);
     setPStat(245, 1);
     setBGM(10);
     return;
 }
 
-section section_63(63) {  // len=14
+section(63) {  // len=14
     setScript(61, Map.YAKA23);
     setPStat(245, 1);
     setBGM(10);
     return;
 }
 
-section section_64(64) {  // len=14
+section(64) {  // len=14
     setScript(62, Map.YAKA24);
     setPStat(245, 1);
     setBGM(10);
     return;
 }
 
-section section_65(65) {  // len=14
+section(65) {  // len=14
     setScript(5, Map.YAKA25);
     setPStat(245, 1);
     setBGM(10);
     return;
 }
 
-section section_66(66) {  // len=58
+section(66) {  // len=58
     setScript(63, Map.CHKA01);
     setPStat(245, 1);
     setBGM(10);
-    if (pstat[16] != 2) goto L_0026;
+    if (pstat[16] != 2) goto L1;
     loadDigimon(Digimon.Machinedramon);
     loadDigimon(Digimon.Analogman);
     setDigimon(Digimon.Machinedramon, 1, 0);
     setDigimon(Digimon.Analogman, 2, 0);
     return;
-L_0026:
-    if (trigger(128)) goto L_0038;
+
+L1:
+    if (trigger(128)) goto L2;
     loadDigimon(Digimon.NPCMyotismon);
     setDigimon(Digimon.NPCMyotismon, 0, 0);
-L_0038:
+
+L2:
     return;
 }
 
-section section_67(67) {  // len=38
+section(67) {  // len=38
     setScript(64, Map.SAIB01);
     setPStat(245, 1);
     setBGM(10);
-    if (trigger(129)) goto L_0024;
+    if (trigger(129)) goto L1;
     loadDigimon(Digimon.NPCMyotismon);
     loadDigimon(Digimon.NPCBakemon);
     setDigimon(Digimon.NPCMyotismon, 0, 0);
     setDigimon(Digimon.NPCBakemon, 1, 0);
-L_0024:
+
+L1:
     return;
 }
 
-section section_68(68) {  // len=54
+section(68) {  // len=54
     setScript(65, Map.SAIB02);
     setPStat(245, 1);
     setBGM(10);
     loadDigimon(Digimon.Darkrizamon);
-    setDigimon(Digimon.Darkrizamon, 1, 1);
-    setDigimon(Digimon.Darkrizamon, 2, 1);
-    setDigimon(Digimon.Darkrizamon, 3, 1);
-    setDigimon(Digimon.Darkrizamon, 4, 1);
-    setDigimon(Digimon.Darkrizamon, 5, 1);
-    if (trigger(130)) goto L_0034;
+    for id in 1..5 { setDigimon(Digimon.Darkrizamon, id, 1); }
+    if (trigger(130)) goto L1;
     loadDigimon(Digimon.Tekkamon);
     setDigimon(Digimon.Tekkamon, 0, 1);
-L_0034:
+
+L1:
     return;
 }
 
-section section_69(69) {  // len=58
+section(69) {  // len=58
     setScript(66, Map.GIAS00);
     setPStat(245, 0);
     setBGM(11);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.ShimaUnimon);
     setDigimon(Digimon.ShimaUnimon, 0, 1);
     setDigimon(Digimon.ShimaUnimon, 1, 1);
-    goto L_0038;
-L_002c:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Tsukaimon);
     loadDigimon(Digimon.NiseDrimogemon);
     setDigimon(Digimon.Tsukaimon, 2, 1);
     setDigimon(Digimon.NiseDrimogemon, 3, 1);
-L_0038:
+
+L2:
     return;
 }
 
-section section_70(70) {  // len=68
+section(70) {  // len=68
     setScript(67, Map.GIAS01);
     setPStat(245, 0);
     setBGM(11);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Psychemon);
     setDigimon(Digimon.Psychemon, 0, 1);
     setDigimon(Digimon.Psychemon, 1, 1);
     loadDigimon(Digimon.ShimaUnimon);
     setDigimon(Digimon.ShimaUnimon, 2, 1);
-    goto L_0042;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.NiseDrimogemon);
     setDigimon(Digimon.NiseDrimogemon, 3, 1);
     setDigimon(Digimon.NiseDrimogemon, 4, 1);
     loadDigimon(Digimon.Sharmamon);
     setDigimon(Digimon.Sharmamon, 5, 1);
-L_0042:
+
+L2:
     return;
 }
 
-section section_71(71) {  // len=88
+section(71) {  // len=88
     setScript(68, Map.GIAS02);
     setPStat(245, 0);
     setBGM(11);
-    if (trigger(218)) goto L_0020;
+    if (trigger(218)) goto L1;
     loadDigimon(Digimon.NPCElecmon);
     setDigimon(Digimon.NPCElecmon, 0, 0);
     return;
-L_0020:
+
+L1:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0046;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L2;
     loadDigimon(Digimon.Sharmamon);
     loadDigimon(Digimon.Akatorimon);
     setDigimon(Digimon.Akatorimon, 1, 1);
     setDigimon(Digimon.Akatorimon, 2, 1);
     setDigimon(Digimon.Sharmamon, 3, 1);
-    goto L_0056;
-L_0046:
+    goto L3;
+
+L2:
     loadDigimon(Digimon.Psychemon);
     loadDigimon(Digimon.Sharmamon);
     setDigimon(Digimon.Psychemon, 4, 1);
     setDigimon(Digimon.Psychemon, 5, 1);
     setDigimon(Digimon.Sharmamon, 6, 1);
-L_0056:
+
+L3:
     return;
 }
 
-section section_72(72) {  // len=78
+section(72) {  // len=78
     setScript(69, Map.GIAS03);
     setPStat(245, 0);
     setBGM(11);
-    if (trigger(231)) goto L_0020;
+    if (trigger(231)) goto L1;
     loadDigimon(Digimon.NPCPatamon);
     setDigimon(Digimon.NPCPatamon, 0, 1);
     return;
-L_0020:
+
+L1:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0042;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L2;
     loadDigimon(Digimon.ShimaUnimon);
     loadDigimon(Digimon.Sharmamon);
     setDigimon(Digimon.ShimaUnimon, 1, 1);
     setDigimon(Digimon.Sharmamon, 2, 1);
-    goto L_004c;
-L_0042:
+    goto L3;
+
+L2:
     loadDigimon(Digimon.Sharmamon);
     setDigimon(Digimon.Sharmamon, 3, 1);
     setDigimon(Digimon.Sharmamon, 4, 1);
-L_004c:
+
+L3:
     return;
 }
 
-section section_73(73) {  // len=92
+section(73) {  // len=92
     setScript(70, Map.GIAS04);
     setPStat(245, 0);
     setBGM(11);
-    if (trigger(245)) goto L_0024;
+    if (trigger(245)) goto L1;
     setPStat(111, 0);
     loadDigimon(Digimon.NPCBiyomon);
     setDigimon(Digimon.NPCBiyomon, 0, 1);
     return;
-L_0024:
+
+L1:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_004a;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L2;
     loadDigimon(Digimon.ShimaUnimon);
     loadDigimon(Digimon.Akatorimon);
     setDigimon(Digimon.ShimaUnimon, 1, 1);
     setDigimon(Digimon.ShimaUnimon, 2, 1);
     setDigimon(Digimon.Akatorimon, 3, 1);
-    goto L_005a;
-L_004a:
+    goto L3;
+
+L2:
     loadDigimon(Digimon.Sharmamon);
     loadDigimon(Digimon.Tsukaimon);
     setDigimon(Digimon.Sharmamon, 4, 1);
     setDigimon(Digimon.Sharmamon, 5, 1);
     setDigimon(Digimon.Tsukaimon, 6, 1);
-L_005a:
+
+L3:
     return;
 }
 
-section section_74(74) {  // len=68
+section(74) {  // len=68
     setScript(71, Map.GIAS05);
     setPStat(245, 0);
     setBGM(11);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Psychemon);
     loadDigimon(Digimon.Akatorimon);
     setDigimon(Digimon.Psychemon, 0, 1);
     setDigimon(Digimon.Psychemon, 1, 1);
     setDigimon(Digimon.Akatorimon, 2, 1);
-    goto L_0042;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Tsukaimon);
     loadDigimon(Digimon.Sharmamon);
     setDigimon(Digimon.Tsukaimon, 3, 1);
     setDigimon(Digimon.Tsukaimon, 4, 1);
     setDigimon(Digimon.Sharmamon, 5, 1);
-L_0042:
+
+L2:
     return;
 }
 
-section section_75(75) {  // len=56
+section(75) {  // len=56
     setScript(72, Map.GIAS06A);
     setPStat(245, 0);
     setBGM(11);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Psychemon);
     setDigimon(Digimon.Psychemon, 2, 1);
     setDigimon(Digimon.Psychemon, 3, 1);
-    goto L_0036;
-L_002c:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Sharmamon);
     setDigimon(Digimon.Sharmamon, 4, 1);
     setDigimon(Digimon.Sharmamon, 5, 1);
-L_0036:
+
+L2:
     return;
 }
 
-section section_76(76) {  // len=44
+section(76) {  // len=44
     setScript(73, Map.GIAS07);
     setPStat(245, 0);
     setBGM(11);
-    if (trigger(196)) goto L_0020;
+    if (trigger(196)) goto L1;
     loadDigimon(Digimon.NPCGobiromon);
     loadDigimon(Digimon.NPCPatamon);
     loadDigimon(Digimon.NPCLeomon);
     return;
-L_0020:
+
+L1:
     loadDigimon(Digimon.Sharmamon);
     setDigimon(Digimon.Sharmamon, 3, 1);
     setDigimon(Digimon.Sharmamon, 4, 1);
     return;
 }
 
-section section_77(77) {  // len=68
+section(77) {  // len=68
     setScript(74, Map.GIAS08);
     setPStat(245, 0);
     setBGM(11);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.ShimaUnimon);
     loadDigimon(Digimon.Sharmamon);
     setDigimon(Digimon.ShimaUnimon, 0, 1);
     setDigimon(Digimon.Sharmamon, 1, 1);
     setDigimon(Digimon.Sharmamon, 2, 1);
-    goto L_0042;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.NiseDrimogemon);
     loadDigimon(Digimon.Sharmamon);
     setDigimon(Digimon.NiseDrimogemon, 3, 1);
     setDigimon(Digimon.Sharmamon, 4, 1);
     setDigimon(Digimon.Sharmamon, 5, 1);
-L_0042:
+
+L2:
     return;
 }
 
-section section_78(78) {  // len=36
+section(78) {  // len=36
     setScript(75, Map.GIAS09);
     setPStat(245, 0);
     setBGM(11);
-    if (trigger(248) || !trigger(196)) goto L_0022;
+    if (trigger(248) || !trigger(196)) goto L1;
     loadDigimon(Digimon.NPCLeomon);
     setDigimon(Digimon.NPCLeomon, 0, 1);
-L_0022:
+
+L1:
     return;
 }
 
-section section_79(79) {  // len=76
+section(79) {  // len=76
     setScript(76, Map.KODA00);
     setPStat(245, 0);
     setBGM(14);
     loadDigimon(Digimon.NPCTyrannomon);
-    if (trigger(144)) goto L_0020;
+    if (trigger(144)) goto L1;
     setDigimon(Digimon.NPCTyrannomon, 0, 1);
     return;
-L_0020:
+
+L1:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0040;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L2;
     loadDigimon(Digimon.Vermilimon);
     setDigimon(Digimon.Vermilimon, 1, 1);
     setDigimon(Digimon.Vermilimon, 2, 1);
-    goto L_004a;
-L_0040:
+    goto L3;
+
+L2:
     loadDigimon(Digimon.Yanmamon);
     setDigimon(Digimon.Yanmamon, 3, 1);
     setDigimon(Digimon.Yanmamon, 4, 1);
-L_004a:
+
+L3:
     return;
 }
 
-section section_80(80) {  // len=64
+section(80) {  // len=64
     setScript(77, Map.KODA01);
     setPStat(245, 0);
     setBGM(14);
     loadDigimon(Digimon.Vermilimon);
     loadDigimon(Digimon.Yanmamon);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     setDigimon(Digimon.Vermilimon, 0, 1);
     setDigimon(Digimon.Yanmamon, 1, 1);
     setDigimon(Digimon.Vermilimon, 2, 1);
-    goto L_003e;
-L_0032:
+    goto L2;
+
+L1:
     setDigimon(Digimon.Yanmamon, 3, 1);
     setDigimon(Digimon.Vermilimon, 4, 1);
     setDigimon(Digimon.Vermilimon, 5, 1);
-L_003e:
+
+L2:
     return;
 }
 
-section section_81(81) {  // len=36
+section(81) {  // len=36
     setScript(78, Map.KODA02);
     setPStat(245, 0);
     setBGM(14);
@@ -1278,54 +1352,59 @@ section section_81(81) {  // len=36
     return;
 }
 
-section section_82(82) {  // len=70
+section(82) {  // len=70
     setScript(79, Map.KODA03);
     setPStat(245, 0);
     setBGM(14);
     loadDigimon(Digimon.NPCTyrannomon);
     loadDigimon(Digimon.MasterTyrannomon);
-    if (trigger(187)) goto L_0020;
+    if (trigger(187)) goto L1;
     setDigimon(Digimon.NPCTyrannomon, 0, 0);
-L_0020:
-    if (!trigger(187) || trigger(208)) goto L_0034;
+
+L1:
+    if (!trigger(187) || trigger(208)) goto L2;
     setDigimon(Digimon.NPCTyrannomon, 1, 0);
-L_0034:
-    if (!trigger(208)) goto L_0044;
+
+L2:
+    if (!trigger(208)) goto L3;
     setDigimon(Digimon.MasterTyrannomon, 3, 0);
-L_0044:
+
+L3:
     return;
 }
 
-section section_83(83) {  // len=68
+section(83) {  // len=68
     setScript(80, Map.KODA04);
     setPStat(245, 0);
     setBGM(13);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Gotsumon);
     loadDigimon(Digimon.Saberdramon);
     setDigimon(Digimon.Gotsumon, 0, 1);
     setDigimon(Digimon.Gotsumon, 1, 1);
     setDigimon(Digimon.Saberdramon, 2, 1);
-    goto L_0042;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Darkrizamon);
     loadDigimon(Digimon.Gotsumon);
     setDigimon(Digimon.Darkrizamon, 3, 1);
     setDigimon(Digimon.Darkrizamon, 4, 1);
     setDigimon(Digimon.Gotsumon, 5, 1);
-L_0042:
+
+L2:
     return;
 }
 
-section section_84(84) {  // len=14
+section(84) {  // len=14
     setScript(5, Map.KODA05);
     setPStat(245, 0);
     setBGM(13);
     return;
 }
 
-section section_85(85) {  // len=20
+section(85) {  // len=20
     setScript(81, Map.KODA06);
     setPStat(245, 0);
     setBGM(13);
@@ -1334,221 +1413,240 @@ section section_85(85) {  // len=20
     return;
 }
 
-section section_86(86) {  // len=58
+section(86) {  // len=58
     setScript(82, Map.KODA07);
     setPStat(245, 0);
     setBGM(13);
-    if (trigger(313)) goto L_001e;
+    if (trigger(313)) goto L1;
     loadDigimon(Digimon.Meteormon);
     setDigimon(Digimon.Meteormon, 0, 0);
-L_001e:
-    if (!trigger(313) || trigger(335) || !trigger(208)) goto L_0038;
+
+L1:
+    if (!trigger(313) || trigger(335) || !trigger(208)) goto L2;
     loadDigimon(Digimon.NPCNanimon);
     setDigimon(Digimon.NPCNanimon, 1, 0);
-L_0038:
+
+L2:
     return;
 }
 
-section section_87(87) {  // len=56
+section(87) {  // len=56
     setScript(83, Map.KODA08);
     setPStat(245, 0);
     setBGM(13);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Saberdramon);
     setDigimon(Digimon.Saberdramon, 0, 1);
     setDigimon(Digimon.Saberdramon, 1, 1);
-    goto L_0036;
-L_002c:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Darkrizamon);
     setDigimon(Digimon.Darkrizamon, 2, 1);
     setDigimon(Digimon.Darkrizamon, 3, 1);
-L_0036:
+
+L2:
     return;
 }
 
-section section_88(88) {  // len=58
+section(88) {  // len=58
     setScript(84, Map.FRZL01);
     setPStat(245, 0);
     setBGM(15);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002e;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.SnowAgumon);
     loadDigimon(Digimon.SnowGoburimon);
     setDigimon(Digimon.SnowAgumon, 0, 1);
     setDigimon(Digimon.SnowGoburimon, 1, 1);
-    goto L_0038;
-L_002e:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.IceDevimon);
     setDigimon(Digimon.IceDevimon, 2, 1);
     setDigimon(Digimon.IceDevimon, 3, 1);
-L_0038:
+
+L2:
     return;
 }
 
-section section_89(89) {  // len=56
+section(89) {  // len=56
     setScript(85, Map.FRZL02);
     setPStat(245, 0);
     setBGM(15);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Hyogamon);
     setDigimon(Digimon.Hyogamon, 0, 1);
     setDigimon(Digimon.Hyogamon, 1, 1);
-    goto L_0036;
-L_002c:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.IceDevimon);
     setDigimon(Digimon.IceDevimon, 2, 1);
     setDigimon(Digimon.IceDevimon, 3, 1);
-L_0036:
+
+L2:
     return;
 }
 
-section section_90(90) {  // len=56
+section(90) {  // len=56
     setScript(86, Map.FRZL03);
     setPStat(245, 0);
     setBGM(15);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.SnowAgumon);
     setDigimon(Digimon.SnowAgumon, 0, 1);
     setDigimon(Digimon.SnowAgumon, 1, 1);
-    goto L_0036;
-L_002c:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.SnowGoburimon);
     setDigimon(Digimon.SnowGoburimon, 2, 1);
     setDigimon(Digimon.SnowGoburimon, 3, 1);
-L_0036:
+
+L2:
     return;
 }
 
-section section_91(91) {  // len=66
+section(91) {  // len=66
     setScript(87, Map.FRZL04);
     setPStat(245, 0);
     setBGM(15);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Hyogamon);
     loadDigimon(Digimon.SnowGoburimon);
     setDigimon(Digimon.SnowGoburimon, 0, 1);
     setDigimon(Digimon.SnowGoburimon, 1, 1);
     setDigimon(Digimon.Hyogamon, 2, 1);
-    goto L_0040;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.IceDevimon);
-    setDigimon(Digimon.IceDevimon, 3, 1);
-    setDigimon(Digimon.IceDevimon, 4, 1);
-    setDigimon(Digimon.IceDevimon, 5, 1);
-L_0040:
+    for id in 3..5 { setDigimon(Digimon.IceDevimon, id, 1); }
+
+L2:
     return;
 }
 
-section section_92(92) {  // len=14
+section(92) {  // len=14
     setScript(88, Map.FRZL05);
     setPStat(245, 0);
     setBGM(15);
     return;
 }
 
-section section_93(93) {  // len=66
+section(93) {  // len=66
     setScript(89, Map.FRZL06);
     setPStat(245, 0);
     setBGM(15);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0030;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Hyogamon);
-    setDigimon(Digimon.Hyogamon, 0, 1);
-    setDigimon(Digimon.Hyogamon, 1, 1);
-    setDigimon(Digimon.Hyogamon, 2, 1);
-    goto L_0040;
-L_0030:
+    for id in 0..2 { setDigimon(Digimon.Hyogamon, id, 1); }
+    goto L2;
+
+L1:
     loadDigimon(Digimon.IceDevimon);
     loadDigimon(Digimon.Hyogamon);
     setDigimon(Digimon.IceDevimon, 3, 1);
     setDigimon(Digimon.IceDevimon, 4, 1);
     setDigimon(Digimon.Hyogamon, 5, 1);
-L_0040:
+
+L2:
     return;
 }
 
-section section_94(94) {  // len=56
+section(94) {  // len=56
     setScript(90, Map.FRZL07);
     setPStat(245, 0);
     setBGM(15);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.SnowGoburimon);
     setDigimon(Digimon.SnowGoburimon, 0, 1);
     setDigimon(Digimon.SnowGoburimon, 1, 1);
-    goto L_0036;
-L_002c:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.IceDevimon);
     setDigimon(Digimon.IceDevimon, 2, 1);
     setDigimon(Digimon.IceDevimon, 3, 1);
-L_0036:
+
+L2:
     return;
 }
 
-section section_95(95) {  // len=146
+section(95) {  // len=146
     setScript(91, Map.FRZL08);
     setPStat(245, 0);
     setBGM(15);
-    if (trigger(195)) goto L_0020;
+    if (trigger(195)) goto L1;
     loadDigimon(Digimon.NPCGarurumon);
     setDigimon(Digimon.NPCGarurumon, 0, 0);
     return;
-L_0020:
+
+L1:
     storeDate(105);
-    if (!trigger(195) || pstat[107] < 15 || pstat[107] >= 17 || trigger(222) || pstat[29] < 1) goto L_0046;
+    if (!trigger(195) || pstat[107] < 15 || pstat[107] >= 17 || trigger(222) || pstat[29] < 1) goto L2;
     loadDigimon(Digimon.NPCGarurumon);
     setDigimon(Digimon.NPCGarurumon, 5, 0);
     return;
-L_0046:
-    if (!trigger(195) || pstat[107] < 17 || trigger(222) || pstat[29] < 1) goto L_0066;
+
+L2:
+    if (!trigger(195) || pstat[107] < 17 || trigger(222) || pstat[29] < 1) goto L3;
     loadDigimon(Digimon.NPCGarurumon);
     setDigimon(Digimon.NPCGarurumon, 0, 0);
     return;
-L_0066:
+
+L3:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0086;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L4;
     loadDigimon(Digimon.SnowAgumon);
     setDigimon(Digimon.SnowAgumon, 1, 1);
     setDigimon(Digimon.SnowAgumon, 2, 1);
-    goto L_0090;
-L_0086:
+    goto L5;
+
+L4:
     loadDigimon(Digimon.Hyogamon);
     setDigimon(Digimon.Hyogamon, 3, 1);
     setDigimon(Digimon.Hyogamon, 4, 1);
-L_0090:
+
+L5:
     return;
 }
 
-section section_96(96) {  // len=56
+section(96) {  // len=56
     setScript(92, Map.FRZL12);
     setPStat(245, 0);
     setBGM(15);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.SnowAgumon);
     setDigimon(Digimon.SnowAgumon, 0, 1);
     setDigimon(Digimon.SnowAgumon, 1, 1);
-    goto L_0036;
-L_002c:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.SnowGoburimon);
     setDigimon(Digimon.SnowGoburimon, 2, 1);
     setDigimon(Digimon.SnowGoburimon, 3, 1);
-L_0036:
+
+L2:
     return;
 }
 
-section section_97(97) {  // len=14
+section(97) {  // len=14
     setScript(93, Map.ICSA01);
     setPStat(245, 1);
     setBGM(17);
     return;
 }
 
-section section_98(98) {  // len=30
+section(98) {  // len=30
     setScript(94, Map.ICSA02);
     setPStat(245, 1);
     setBGM(18);
@@ -1560,14 +1658,14 @@ section section_98(98) {  // len=30
     return;
 }
 
-section section_99(99) {  // len=14
+section(99) {  // len=14
     setScript(95, Map.ICSA03);
     setPStat(245, 1);
     setBGM(18);
     return;
 }
 
-section section_100(100) {  // len=30
+section(100) {  // len=30
     setScript(96, Map.ICSA04);
     setPStat(245, 1);
     setBGM(18);
@@ -1579,7 +1677,7 @@ section section_100(100) {  // len=30
     return;
 }
 
-section section_101(101) {  // len=34
+section(101) {  // len=34
     setScript(97, Map.ICSA05);
     setPStat(245, 1);
     setBGM(18);
@@ -1592,7 +1690,7 @@ section section_101(101) {  // len=34
     return;
 }
 
-section section_102(102) {  // len=30
+section(102) {  // len=30
     setScript(98, Map.ICSA06);
     setPStat(245, 1);
     setBGM(18);
@@ -1604,7 +1702,7 @@ section section_102(102) {  // len=30
     return;
 }
 
-section section_103(103) {  // len=24
+section(103) {  // len=24
     setScript(99, Map.ICSA07);
     setPStat(245, 1);
     setBGM(18);
@@ -1614,7 +1712,7 @@ section section_103(103) {  // len=24
     return;
 }
 
-section section_104(104) {  // len=26
+section(104) {  // len=26
     setScript(100, Map.ICSA08);
     setPStat(245, 1);
     setBGM(18);
@@ -1625,31 +1723,31 @@ section section_104(104) {  // len=26
     return;
 }
 
-section section_105(105) {  // len=76
+section(105) {  // len=76
     setScript(101, Map.BETL01);
     setPStat(245, 0);
     setBGM(25);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0036;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Tentomon);
     loadDigimon(Digimon.Dokunemon);
-    setDigimon(Digimon.Tentomon, 0, 1);
-    setDigimon(Digimon.Tentomon, 1, 1);
-    setDigimon(Digimon.Tentomon, 2, 1);
+    for id in 0..2 { setDigimon(Digimon.Tentomon, id, 1); }
     setDigimon(Digimon.Dokunemon, 3, 1);
-    goto L_004a;
-L_0036:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Tentomon);
     loadDigimon(Digimon.Dokunemon);
     setDigimon(Digimon.Dokunemon, 4, 1);
     setDigimon(Digimon.Dokunemon, 5, 1);
     setDigimon(Digimon.Tentomon, 6, 1);
     setDigimon(Digimon.Tentomon, 7, 1);
-L_004a:
+
+L2:
     return;
 }
 
-section section_106(106) {  // len=20
+section(106) {  // len=20
     setScript(102, Map.BETL02);
     setPStat(245, 0);
     setBGM(25);
@@ -1658,112 +1756,122 @@ section section_106(106) {  // len=20
     return;
 }
 
-section section_107(107) {  // len=42
+section(107) {  // len=42
     setScript(103, Map.BETL03);
     setPStat(245, 0);
     setBGM(25);
-    if (trigger(219)) goto L_001e;
+    if (trigger(219)) goto L1;
     loadDigimon(Digimon.NPCKabuterimon);
     setDigimon(Digimon.NPCKabuterimon, 0, 0);
-L_001e:
+
+L1:
     loadDigimon(Digimon.NPCKabuterimon);
     setDigimon(Digimon.NPCKabuterimon, 1, 0);
     setDigimon(Digimon.NPCKabuterimon, 2, 0);
     return;
 }
 
-section section_108(108) {  // len=42
+section(108) {  // len=42
     setScript(104, Map.BETL04);
     setPStat(245, 0);
     setBGM(25);
-    if (trigger(251)) goto L_001e;
+    if (trigger(251)) goto L1;
     loadDigimon(Digimon.NPCKuwagamon);
     setDigimon(Digimon.NPCKuwagamon, 0, 0);
-L_001e:
+
+L1:
     loadDigimon(Digimon.NPCKuwagamon);
     setDigimon(Digimon.NPCKuwagamon, 1, 0);
     setDigimon(Digimon.NPCKuwagamon, 2, 0);
     return;
 }
 
-section section_109(109) {  // len=76
+section(109) {  // len=76
     setScript(105, Map.MAYO00);
     setPStat(245, 0);
     setBGM(1);
-    if (trigger(203)) goto L_0020;
+    if (trigger(203)) goto L1;
     loadDigimon(Digimon.Agumon);
     setDigimon(Digimon.Agumon, 2, 1);
     return;
-L_0020:
+
+L1:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0040;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L2;
     loadDigimon(Digimon.ModokiBetamon);
     setDigimon(Digimon.ModokiBetamon, 3, 1);
     setDigimon(Digimon.ModokiBetamon, 4, 1);
-    goto L_004a;
-L_0040:
+    goto L3;
+
+L2:
     loadDigimon(Digimon.Dokunemon);
     setDigimon(Digimon.Dokunemon, 0, 1);
     setDigimon(Digimon.Dokunemon, 1, 1);
-L_004a:
+
+L3:
     return;
 }
 
-section section_110(110) {  // len=38
+section(110) {  // len=38
     setScript(106, Map.MAYO01_2);
     setPStat(245, 0);
     setBGM(1);
-    if (!trigger(54)) goto L_001a;
+    if (!trigger(54)) goto L1;
     return;
-L_001a:
+
+L1:
     loadDigimon(Digimon.Sukamon);
     setDigimon(Digimon.Sukamon, 0, 0);
     setDigimon(Digimon.Sukamon, 1, 0);
     return;
 }
 
-section section_111(111) {  // len=38
+section(111) {  // len=38
     setScript(107, Map.MAYO02_2);
     setPStat(245, 0);
     setBGM(1);
-    if (!trigger(54)) goto L_001a;
+    if (!trigger(54)) goto L1;
     return;
-L_001a:
+
+L1:
     loadDigimon(Digimon.Sukamon);
     setDigimon(Digimon.Sukamon, 0, 0);
     setDigimon(Digimon.Sukamon, 1, 0);
     return;
 }
 
-section section_112(112) {  // len=56
+section(112) {  // len=56
     setScript(108, Map.TRAI00);
     setPStat(245, 0);
     setBGM(1);
     loadDigimon(Digimon.Koromon);
     setDigimon(Digimon.Koromon, 0, 0);
-    if (!trigger(219)) goto L_0024;
+    if (!trigger(219)) goto L1;
     loadDigimon(Digimon.NPCKabuterimon);
     setDigimon(Digimon.NPCKabuterimon, 1, 0);
-L_0024:
-    if (!trigger(251)) goto L_0036;
+
+L1:
+    if (!trigger(251)) goto L2;
     loadDigimon(Digimon.NPCKuwagamon);
     setDigimon(Digimon.NPCKuwagamon, 2, 0);
-L_0036:
+
+L2:
     return;
 }
 
-section section_113(113) {  // len=36
+section(113) {  // len=36
     setScript(109, Map.LEOM01);
     setPStat(245, 1);
     setBGM(4);
-    if (!trigger(248) || trigger(333)) goto L_0022;
+    if (!trigger(248) || trigger(333)) goto L1;
     loadDigimon(Digimon.NPCNanimon);
     setDigimon(Digimon.NPCNanimon, 0, 0);
-L_0022:
+
+L1:
     return;
 }
 
-section section_114(114) {  // len=20
+section(114) {  // len=20
     setScript(110, Map.LEOM02);
     setPStat(245, 1);
     setBGM(4);
@@ -1772,111 +1880,119 @@ section section_114(114) {  // len=20
     return;
 }
 
-section section_115(115) {  // len=68
+section(115) {  // len=68
     setScript(111, Map.MIST01);
     setPStat(245, 0);
     setBGM(20);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Fugamon);
     loadDigimon(Digimon.MoriShellmon);
     setDigimon(Digimon.Fugamon, 0, 1);
     setDigimon(Digimon.Fugamon, 1, 1);
     setDigimon(Digimon.MoriShellmon, 2, 1);
-    goto L_0042;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Darkrizamon);
     loadDigimon(Digimon.Tsukaimon);
     setDigimon(Digimon.Darkrizamon, 3, 1);
     setDigimon(Digimon.Darkrizamon, 4, 1);
     setDigimon(Digimon.Tsukaimon, 5, 1);
-L_0042:
+
+L2:
     return;
 }
 
-section section_116(116) {  // len=88
+section(116) {  // len=88
     setScript(112, Map.MIST02);
     setPStat(245, 0);
     setBGM(20);
-    if (trigger(114) || trigger(147)) goto L_002c;
+    if (trigger(114) || trigger(147)) goto L1;
     loadDigimon(Digimon.MoriShellmon);
-    setDigimon(Digimon.MoriShellmon, 0, 1);
-    setDigimon(Digimon.MoriShellmon, 1, 1);
-    setDigimon(Digimon.MoriShellmon, 2, 1);
+    for id in 0..2 { setDigimon(Digimon.MoriShellmon, id, 1); }
     return;
-L_002c:
+
+L1:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_004c;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L2;
     loadDigimon(Digimon.Fugamon);
     setDigimon(Digimon.Fugamon, 3, 1);
     setDigimon(Digimon.Fugamon, 4, 1);
-    goto L_0056;
-L_004c:
+    goto L3;
+
+L2:
     loadDigimon(Digimon.Darkrizamon);
     setDigimon(Digimon.Darkrizamon, 5, 1);
     setDigimon(Digimon.Darkrizamon, 6, 1);
-L_0056:
+
+L3:
     return;
 }
 
-section section_117(117) {  // len=126
+section(117) {  // len=126
     setScript(113, Map.MIST03);
     setPStat(245, 0);
     setBGM(20);
     storeDate(105);
     unsetTrigger(174);
-    if (pstat[107] < 4 || pstat[107] > 6 || trigger(250)) goto L_0032;
+    if (pstat[107] < 4 || pstat[107] > 6 || trigger(250)) goto L1;
     loadDigimon(Digimon.NPCKokatorimon);
     setDigimon(Digimon.NPCKokatorimon, 0, 1);
     setTrigger(174);
     return;
-L_0032:
-    if (trigger(114) || trigger(147)) goto L_0052;
+
+L1:
+    if (trigger(114) || trigger(147)) goto L2;
     loadDigimon(Digimon.Goburimon);
-    setDigimon(Digimon.Goburimon, 1, 1);
-    setDigimon(Digimon.Goburimon, 2, 1);
-    setDigimon(Digimon.Goburimon, 3, 1);
+    for id in 1..3 { setDigimon(Digimon.Goburimon, id, 1); }
     return;
-L_0052:
+
+L2:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0072;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L3;
     loadDigimon(Digimon.MoriShellmon);
     setDigimon(Digimon.MoriShellmon, 4, 1);
     setDigimon(Digimon.MoriShellmon, 5, 1);
-    goto L_007c;
-L_0072:
+    goto L4;
+
+L3:
     loadDigimon(Digimon.Goburimon);
     setDigimon(Digimon.Goburimon, 6, 1);
     setDigimon(Digimon.Goburimon, 7, 1);
-L_007c:
+
+L4:
     return;
 }
 
-section section_118(118) {  // len=82
+section(118) {  // len=82
     setScript(114, Map.MIST04);
     setPStat(245, 0);
     setBGM(20);
-    if (trigger(114) || trigger(147)) goto L_0024;
+    if (trigger(114) || trigger(147)) goto L1;
     loadDigimon(Digimon.Goburimon);
     setDigimon(Digimon.Goburimon, 0, 1);
     return;
-L_0024:
+
+L1:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0046;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L2;
     loadDigimon(Digimon.Fugamon);
     loadDigimon(Digimon.MoriShellmon);
     setDigimon(Digimon.Fugamon, 1, 1);
     setDigimon(Digimon.MoriShellmon, 2, 1);
-    goto L_0050;
-L_0046:
+    goto L3;
+
+L2:
     loadDigimon(Digimon.Saberdramon);
     setDigimon(Digimon.Saberdramon, 3, 1);
     setDigimon(Digimon.Saberdramon, 4, 1);
-L_0050:
+
+L3:
     return;
 }
 
-section section_119(119) {  // len=20
+section(119) {  // len=20
     setScript(115, Map.MIST05);
     setPStat(245, 0);
     setBGM(20);
@@ -1885,116 +2001,120 @@ section section_119(119) {  // len=20
     return;
 }
 
-section section_120(120) {  // len=78
+section(120) {  // len=78
     setScript(116, Map.MIST06);
     setPStat(245, 0);
     setBGM(20);
-    if (trigger(217)) goto L_0020;
+    if (trigger(217)) goto L1;
     loadDigimon(Digimon.NPCGabumon);
     setDigimon(Digimon.NPCGabumon, 0, 1);
     return;
-L_0020:
+
+L1:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0040;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L2;
     loadDigimon(Digimon.Goburimon);
     setDigimon(Digimon.Goburimon, 1, 1);
     setDigimon(Digimon.Goburimon, 2, 1);
-    goto L_004c;
-L_0040:
+    goto L3;
+
+L2:
     loadDigimon(Digimon.Tsukaimon);
     loadDigimon(Digimon.Darkrizamon);
     setDigimon(Digimon.Tsukaimon, 3, 1);
     setDigimon(Digimon.Darkrizamon, 4, 1);
-L_004c:
+
+L3:
     return;
 }
 
-section section_121(121) {  // len=94
+section(121) {  // len=94
     setScript(117, Map.MIST07);
     setPStat(245, 0);
     setBGM(20);
-    if (trigger(114) || trigger(147)) goto L_002c;
+    if (trigger(114) || trigger(147)) goto L1;
     loadDigimon(Digimon.Fugamon);
-    setDigimon(Digimon.Fugamon, 0, 1);
-    setDigimon(Digimon.Fugamon, 1, 1);
-    setDigimon(Digimon.Fugamon, 2, 1);
+    for id in 0..2 { setDigimon(Digimon.Fugamon, id, 1); }
     return;
-L_002c:
+
+L1:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0052;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L2;
     loadDigimon(Digimon.Goburimon);
     loadDigimon(Digimon.Fugamon);
     setDigimon(Digimon.Goburimon, 3, 1);
     setDigimon(Digimon.Goburimon, 4, 1);
     setDigimon(Digimon.Fugamon, 5, 1);
-    goto L_005c;
-L_0052:
+    goto L3;
+
+L2:
     loadDigimon(Digimon.Tsukaimon);
     setDigimon(Digimon.Tsukaimon, 6, 1);
     setDigimon(Digimon.Tsukaimon, 7, 1);
-L_005c:
+
+L3:
     return;
 }
 
-section section_122(122) {  // len=8
+section(122) {  // len=8
     setScript(118, Map.TUNN07_2);
     return;
 }
 
-section section_123(123) {  // len=14
+section(123) {  // len=14
     setScript(119, Map.TUNN07_3);
     loadDigimon(Digimon.DemiMeramon);
     setDigimon(Digimon.DemiMeramon, 0, 0);
     return;
 }
 
-section section_124(124) {  // len=8
+section(124) {  // len=8
     setScript(120, Map.TUNN08_2);
     return;
 }
 
-section section_125(125) {  // len=14
+section(125) {  // len=14
     setScript(121, Map.TUNN08_3);
     loadDigimon(Digimon.DemiMeramon);
     setDigimon(Digimon.DemiMeramon, 0, 0);
     return;
 }
 
-section section_126(126) {  // len=14
+section(126) {  // len=14
     setScript(5, Map.TUNN03_2);
     setPStat(245, 1);
     setBGM(4);
     return;
 }
 
-section section_127(127) {  // len=46
+section(127) {  // len=46
     setScript(122, Map.GCAN04_2);
     setPStat(245, 0);
     setBGM(6);
     loadDigimon(Digimon.Goburimon);
     loadDigimon(Digimon.NPCShellmon);
-    if (!trigger(181) || !trigger(182) || trigger(235)) goto L_0028;
+    if (!trigger(181) || !trigger(182) || trigger(235)) goto L1;
     setDigimon(Digimon.NPCShellmon, 0, 0);
-L_0028:
+
+L1:
     setDigimon(Digimon.Goburimon, 1, 1);
     return;
 }
 
-section section_128(128) {  // len=42
+section(128) {  // len=42
     setScript(123, Map.GCAN08_2);
     setPStat(245, 0);
     setBGM(6);
-    if (!trigger(197)) goto L_001a;
+    if (!trigger(197)) goto L1;
     return;
-L_001a:
+
+L1:
     loadDigimon(Digimon.Goburimon);
-    setDigimon(Digimon.Goburimon, 0, 1);
-    setDigimon(Digimon.Goburimon, 1, 1);
-    setDigimon(Digimon.Goburimon, 2, 1);
+    for id in 0..2 { setDigimon(Digimon.Goburimon, id, 1); }
     return;
 }
 
-section section_129(129) {  // len=16
+section(129) {  // len=16
     setScript(124, Map.GCAN10);
     setPStat(245, 0);
     setBGM(6);
@@ -2002,14 +2122,14 @@ section section_129(129) {  // len=16
     return;
 }
 
-section section_130(130) {  // len=14
+section(130) {  // len=14
     setScript(125, Map.OGRE04);
     setPStat(245, 1);
     setBGM(8);
     return;
 }
 
-section section_131(131) {  // len=24
+section(131) {  // len=24
     setScript(126, Map.GIAS06B);
     setPStat(245, 0);
     setBGM(11);
@@ -2019,165 +2139,176 @@ section section_131(131) {  // len=24
     return;
 }
 
-section section_132(132) {  // len=56
+section(132) {  // len=56
     setScript(127, Map.FRZL13);
     setPStat(245, 0);
     setBGM(15);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Hyogamon);
     setDigimon(Digimon.Hyogamon, 0, 1);
     setDigimon(Digimon.Hyogamon, 1, 1);
-    goto L_0036;
-L_002c:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.IceDevimon);
     setDigimon(Digimon.IceDevimon, 2, 1);
     setDigimon(Digimon.IceDevimon, 3, 1);
-L_0036:
+
+L2:
     return;
 }
 
-section section_133(133) {  // len=48
+section(133) {  // len=48
     setScript(128, Map.FRZL14);
     setPStat(245, 0);
     setBGM(15);
     loadDigimon(Digimon.NPCMojyamon);
-    if (trigger(108)) goto L_001e;
+    if (trigger(108)) goto L1;
     setDigimon(Digimon.NPCMojyamon, 0, 0);
-L_001e:
-    if (trigger(109)) goto L_002e;
+
+L1:
+    if (trigger(109)) goto L2;
     setDigimon(Digimon.NPCMojyamon, 1, 0);
-L_002e:
+
+L2:
     return;
 }
 
-section section_134(134) {  // len=50
+section(134) {  // len=50
     setScript(129, Map.FRZL15);
     setPStat(245, 0);
     setBGM(15);
-    if (trigger(257)) goto L_001e;
+    if (trigger(257)) goto L1;
     loadDigimon(Digimon.Penguinmon);
     setDigimon(Digimon.Penguinmon, 0, 0);
-L_001e:
-    if (trigger(107)) goto L_0030;
+
+L1:
+    if (trigger(107)) goto L2;
     loadDigimon(Digimon.NPCMojyamon);
     setDigimon(Digimon.NPCMojyamon, 1, 0);
-L_0030:
+
+L2:
     return;
 }
 
-section section_135(135) {  // len=70
+section(135) {  // len=70
     setScript(130, Map.FRZL16);
     setPStat(245, 0);
     setBGM(15);
-    if (!trigger(175) || trigger(224)) goto L_0022;
+    if (!trigger(175) || trigger(224)) goto L1;
     loadDigimon(Digimon.NPCWhamon);
     setDigimon(Digimon.NPCWhamon, 1, 0);
-L_0022:
+
+L1:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_003e;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L2;
     loadDigimon(Digimon.SnowGoburimon);
     setDigimon(Digimon.SnowGoburimon, 0, 1);
-    goto L_0044;
-L_003e:
+    goto L3;
+
+L2:
     loadDigimon(Digimon.IceDevimon);
     setDigimon(Digimon.IceDevimon, 2, 1);
-L_0044:
+
+L3:
     return;
 }
 
-section section_136(136) {  // len=52
+section(136) {  // len=52
     setScript(131, Map.FRZL17);
     setPStat(245, 1);
     setBGM(16);
-    if (pstat[122] != 1) goto L_0020;
+    if (pstat[122] != 1) goto L1;
     loadDigimon(Digimon.NPCMetalMamemon);
     setDigimon(Digimon.NPCMetalMamemon, 1, 0);
     return;
-L_0020:
-    if (pstat[113] != 1) goto L_0032;
+
+L1:
+    if (pstat[113] != 1) goto L2;
     loadDigimon(Digimon.Penguinmon);
     setDigimon(Digimon.Penguinmon, 0, 0);
-L_0032:
+
+L2:
     return;
 }
 
-section section_137(137) {  // len=32
+section(137) {  // len=32
     setScript(132, Map.FRZL18);
     setPStat(245, 4);
     setBGM(15);
-    if (trigger(223)) goto L_001e;
+    if (trigger(223)) goto L1;
     loadDigimon(Digimon.NPCFrigimon);
     setDigimon(Digimon.NPCFrigimon, 0, 0);
-L_001e:
+
+L1:
     return;
 }
 
-section section_138(138) {  // len=64
+section(138) {  // len=64
     setScript(133, Map.STIC01);
     setPStat(245, 0);
     setBGM(19);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0030;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Yanmamon);
-    setDigimon(Digimon.Yanmamon, 0, 1);
-    setDigimon(Digimon.Yanmamon, 1, 1);
-    setDigimon(Digimon.Yanmamon, 2, 1);
-    goto L_003e;
-L_0030:
+    for id in 0..2 { setDigimon(Digimon.Yanmamon, id, 1); }
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Gekomon);
-    setDigimon(Digimon.Gekomon, 3, 1);
-    setDigimon(Digimon.Gekomon, 4, 1);
-    setDigimon(Digimon.Gekomon, 5, 1);
-L_003e:
+    for id in 3..5 { setDigimon(Digimon.Gekomon, id, 1); }
+
+L2:
     return;
 }
 
-section section_139(139) {  // len=84
+section(139) {  // len=84
     setScript(134, Map.STIC02);
     setPStat(245, 0);
     setBGM(19);
     roll(pstat: 110, max: 2);
-    if (pstat[110] > 0 || trigger(309)) goto L_0028;
+    if (pstat[110] > 0 || trigger(309)) goto L1;
     loadDigimon(Digimon.Otamamon);
     setDigimon(Digimon.Otamamon, 4, 0);
     return;
-L_0028:
+
+L1:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0048;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L2;
     loadDigimon(Digimon.Yanmamon);
     setDigimon(Digimon.Yanmamon, 0, 1);
     setDigimon(Digimon.Yanmamon, 1, 1);
-    goto L_0052;
-L_0048:
+    goto L3;
+
+L2:
     loadDigimon(Digimon.Gekomon);
     setDigimon(Digimon.Gekomon, 2, 1);
     setDigimon(Digimon.Gekomon, 3, 1);
-L_0052:
+
+L3:
     return;
 }
 
-section section_140(140) {  // len=14
+section(140) {  // len=14
     setScript(5, Map.GKYO01);
     setPStat(245, 0);
     setBGM(19);
     return;
 }
 
-section section_141(141) {  // len=34
+section(141) {  // len=34
     setScript(135, Map.GKYO02);
     setPStat(245, 0);
     setBGM(19);
     loadDigimon(Digimon.ShogunGekomon);
     loadDigimon(Digimon.Gekomon);
     setDigimon(Digimon.ShogunGekomon, 0, 0);
-    setDigimon(Digimon.Gekomon, 1, 0);
-    setDigimon(Digimon.Gekomon, 2, 0);
-    setDigimon(Digimon.Gekomon, 3, 0);
+    for id in 1..3 { setDigimon(Digimon.Gekomon, id, 0); }
     return;
 }
 
-section section_142(142) {  // len=20
+section(142) {  // len=20
     setScript(136, Map.OGRE10);
     setPStat(245, 7);
     setBGM(26);
@@ -2186,71 +2317,80 @@ section section_142(142) {  // len=20
     return;
 }
 
-section section_143(143) {  // len=44
+section(143) {  // len=44
     setScript(137, Map.OGRE11);
     setPStat(245, 8);
     setBGM(26);
-    if (trigger(150)) goto L_002a;
+    if (trigger(150)) goto L1;
     loadDigimon(Digimon.NPCOgremon);
     loadDigimon(Digimon.NPCGabumon);
     loadDigimon(Digimon.WaruSeadramon);
     setDigimon(Digimon.NPCOgremon, 0, 0);
     setDigimon(Digimon.NPCGabumon, 1, 0);
     setDigimon(Digimon.NPCGabumon, 2, 0);
-L_002a:
+
+L1:
     return;
 }
 
-section section_144(144) {  // len=66
+section(144) {  // len=66
     setScript(138, Map.OMOC01);
-    if (!trigger(350)) goto L_001c;
+    if (!trigger(350)) goto L1;
     setPStat(245, 6);
     setBGM(21);
-    goto L_0022;
-L_001c:
+    goto L2;
+
+L1:
     setPStat(245, 5);
     setBGM(21);
-L_0022:
-    if (!trigger(350)) goto L_0040;
+
+L2:
+    if (!trigger(350)) goto L3;
     loadDigimon(Digimon.ClearAgumon);
     loadDigimon(Digimon.ToyAgumon);
     loadDigimon(Digimon.Tankmon);
     setDigimon(Digimon.ClearAgumon, 0, 0);
     setDigimon(Digimon.ToyAgumon, 1, 0);
     setDigimon(Digimon.Tankmon, 2, 0);
-L_0040:
+
+L3:
     return;
 }
 
-section section_145(145) {  // len=62
+section(145) {  // len=62
     setScript(139, Map.OMOC02);
-    if (!trigger(350)) goto L_001c;
+    if (!trigger(350)) goto L1;
     setPStat(245, 6);
     setBGM(21);
-    goto L_0022;
-L_001c:
+    goto L2;
+
+L1:
     setPStat(245, 5);
     setBGM(21);
-L_0022:
+
+L2:
     storeDigimonType(103);
-    if (!trigger(350) && pstat[103] != 14) goto L_0036;
+    if (!trigger(350) && pstat[103] != 14) goto L3;
     return;
-L_0036:
+
+L3:
     loadDigimon(Digimon.NPCMonzaemon);
     setDigimon(Digimon.NPCMonzaemon, 0, 0);
     return;
 }
 
-section section_146(146) {  // len=50
+section(146) {  // len=50
     setScript(140, Map.OMOC03);
-    if (!trigger(350)) goto L_001c;
+    if (!trigger(350)) goto L1;
     setPStat(245, 6);
     setBGM(21);
-    goto L_0022;
-L_001c:
+    goto L2;
+
+L1:
     setPStat(245, 5);
     setBGM(21);
-L_0022:
+
+L2:
     loadDigimon(Digimon.Tinmon);
     setDigimon(Digimon.Tinmon, 0, 0);
     setDigimon(Digimon.Tinmon, 2, 0);
@@ -2258,201 +2398,218 @@ L_0022:
     return;
 }
 
-section section_147(147) {  // len=36
+section(147) {  // len=36
     setScript(141, Map.OMOC04);
-    if (!trigger(350)) goto L_001c;
+    if (!trigger(350)) goto L1;
     setPStat(245, 6);
     setBGM(21);
-    goto L_0022;
-L_001c:
+    goto L2;
+
+L1:
     setPStat(245, 5);
     setBGM(21);
-L_0022:
+
+L2:
     return;
 }
 
-section section_148(148) {  // len=50
+section(148) {  // len=50
     setScript(142, Map.OMOC05);
-    if (!trigger(350)) goto L_001c;
+    if (!trigger(350)) goto L1;
     setPStat(245, 6);
     setBGM(21);
-    goto L_0022;
-L_001c:
+    goto L2;
+
+L1:
     setPStat(245, 5);
     setBGM(21);
-L_0022:
+
+L2:
     loadDigimon(Digimon.ToyAgumon);
-    setDigimon(Digimon.ToyAgumon, 0, 1);
-    setDigimon(Digimon.ToyAgumon, 1, 1);
-    setDigimon(Digimon.ToyAgumon, 2, 1);
+    for id in 0..2 { setDigimon(Digimon.ToyAgumon, id, 1); }
     return;
 }
 
-section section_149(149) {  // len=46
+section(149) {  // len=46
     setScript(143, Map.OMOC06);
-    if (!trigger(350)) goto L_001c;
+    if (!trigger(350)) goto L1;
     setPStat(245, 6);
     setBGM(21);
-    goto L_0022;
-L_001c:
+    goto L2;
+
+L1:
     setPStat(245, 5);
     setBGM(21);
-L_0022:
+
+L2:
     loadDigimon(Digimon.Tankmon);
     setDigimon(Digimon.Tankmon, 0, 1);
     setDigimon(Digimon.Tankmon, 1, 1);
     return;
 }
 
-section section_150(150) {  // len=50
+section(150) {  // len=50
     setScript(144, Map.OMOC07);
-    if (!trigger(350)) goto L_001c;
+    if (!trigger(350)) goto L1;
     setPStat(245, 6);
     setBGM(21);
-    goto L_0022;
-L_001c:
+    goto L2;
+
+L1:
     setPStat(245, 5);
     setBGM(21);
-L_0022:
+
+L2:
     loadDigimon(Digimon.ClearAgumon);
-    setDigimon(Digimon.ClearAgumon, 0, 1);
-    setDigimon(Digimon.ClearAgumon, 1, 1);
-    setDigimon(Digimon.ClearAgumon, 2, 1);
+    for id in 0..2 { setDigimon(Digimon.ClearAgumon, id, 1); }
     return;
 }
 
-section section_151(151) {  // len=62
+section(151) {  // len=62
     setScript(145, Map.OMOC08);
-    if (!trigger(350)) goto L_001c;
+    if (!trigger(350)) goto L1;
     setPStat(245, 6);
     setBGM(21);
-    goto L_0022;
-L_001c:
+    goto L2;
+
+L1:
     setPStat(245, 5);
     setBGM(21);
-L_0022:
+
+L2:
     loadDigimon(Digimon.WaruMonzaemon);
     loadDigimon(Digimon.Hagurumon);
-    if (!trigger(350) || trigger(337)) goto L_003c;
+    if (!trigger(350) || trigger(337)) goto L3;
     loadDigimon(Digimon.NPCNanimon);
     setDigimon(Digimon.NPCNanimon, 1, 0);
-L_003c:
+
+L3:
     return;
 }
 
-section section_152(152) {  // len=62
+section(152) {  // len=62
     setScript(146, Map.FACT01);
     setPStat(245, 0);
     setBGM(22);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Guardromon);
     setDigimon(Digimon.Guardromon, 0, 1);
     setDigimon(Digimon.Guardromon, 1, 1);
-    goto L_0036;
-L_002c:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.PlatinumSukamon);
     setDigimon(Digimon.PlatinumSukamon, 2, 1);
     setDigimon(Digimon.PlatinumSukamon, 3, 1);
-L_0036:
+
+L2:
     loadDigimon(Digimon.NPCWhamon);
     setDigimon(Digimon.NPCWhamon, 4, 0);
     return;
 }
 
-section section_153(153) {  // len=84
+section(153) {  // len=84
     setScript(147, Map.FACT02);
     setPStat(245, 0);
     setBGM(22);
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 2 || trigger(227)) goto L_0028;
+    if (pstat[110] > 2 || trigger(227)) goto L1;
     loadDigimon(Digimon.NPCMetalMamemon);
     setDigimon(Digimon.NPCMetalMamemon, 4, 1);
     return;
-L_0028:
+
+L1:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0048;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L2;
     loadDigimon(Digimon.Guardromon);
     setDigimon(Digimon.Guardromon, 0, 1);
     setDigimon(Digimon.Guardromon, 1, 1);
-    goto L_0052;
-L_0048:
+    goto L3;
+
+L2:
     loadDigimon(Digimon.Geremon);
     setDigimon(Digimon.Geremon, 2, 1);
     setDigimon(Digimon.Geremon, 3, 1);
-L_0052:
+
+L3:
     return;
 }
 
-section section_154(154) {  // len=68
+section(154) {  // len=68
     setScript(148, Map.FACT03);
     setPStat(245, 0);
     setBGM(22);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Guardromon);
     loadDigimon(Digimon.PlatinumSukamon);
     setDigimon(Digimon.Guardromon, 0, 1);
     setDigimon(Digimon.PlatinumSukamon, 1, 1);
     setDigimon(Digimon.PlatinumSukamon, 2, 1);
-    goto L_0042;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Geremon);
     loadDigimon(Digimon.Guardromon);
     setDigimon(Digimon.Geremon, 3, 1);
     setDigimon(Digimon.Guardromon, 4, 1);
     setDigimon(Digimon.Guardromon, 5, 1);
-L_0042:
+
+L2:
     return;
 }
 
-section section_155(155) {  // len=162
+section(155) {  // len=162
     setScript(149, Map.FACT04);
     setPStat(245, 0);
     setBGM(22);
     storeDate(105);
-    if (pstat[107] != 11 || pstat[108] < 55) goto L_0020;
+    if (pstat[107] != 11 || pstat[108] < 55) goto L1;
     return;
-L_0020:
-    if (pstat[107] != 12 || pstat[108] > 5) goto L_0032;
+
+L1:
+    if (pstat[107] != 12 || pstat[108] > 5) goto L2;
     return;
-L_0032:
-    if (pstat[107] != 23 || pstat[108] < 55) goto L_0044;
+
+L2:
+    if (pstat[107] != 23 || pstat[108] < 55) goto L3;
     return;
-L_0044:
-    if (pstat[107] != 0 || pstat[108] > 5) goto L_0056;
+
+L3:
+    if (pstat[107] != 0 || pstat[108] > 5) goto L4;
     return;
-L_0056:
-    if (trigger(332)) goto L_006e;
+
+L4:
+    if (trigger(332)) goto L5;
     loadDigimon(Digimon.Guardromon);
     setDigimon(Digimon.Guardromon, 6, 0);
     setDigimon(Digimon.Guardromon, 7, 0);
     return;
-L_006e:
+
+L5:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0092;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L6;
     loadDigimon(Digimon.Geremon);
-    setDigimon(Digimon.Geremon, 0, 1);
-    setDigimon(Digimon.Geremon, 1, 1);
-    setDigimon(Digimon.Geremon, 2, 1);
-    goto L_00a0;
-L_0092:
+    for id in 0..2 { setDigimon(Digimon.Geremon, id, 1); }
+    goto L7;
+
+L6:
     loadDigimon(Digimon.PlatinumSukamon);
-    setDigimon(Digimon.PlatinumSukamon, 3, 1);
-    setDigimon(Digimon.PlatinumSukamon, 4, 1);
-    setDigimon(Digimon.PlatinumSukamon, 5, 1);
-L_00a0:
+    for id in 3..5 { setDigimon(Digimon.PlatinumSukamon, id, 1); }
+
+L7:
     return;
 }
 
-section section_156(156) {  // len=14
+section(156) {  // len=14
     setScript(150, Map.FACT05);
     setPStat(245, 0);
     setBGM(22);
     return;
 }
 
-section section_157(157) {  // len=20
+section(157) {  // len=20
     setScript(151, Map.FACT06);
     setPStat(245, 0);
     setBGM(22);
@@ -2461,40 +2618,41 @@ section section_157(157) {  // len=20
     return;
 }
 
-section section_158(158) {  // len=66
+section(158) {  // len=66
     setScript(152, Map.FACT07);
     setPStat(245, 0);
     setBGM(22);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Guardromon);
     loadDigimon(Digimon.Geremon);
     setDigimon(Digimon.Geremon, 0, 1);
     setDigimon(Digimon.Geremon, 1, 1);
     setDigimon(Digimon.Guardromon, 2, 1);
-    goto L_0040;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Guardromon);
-    setDigimon(Digimon.Guardromon, 3, 1);
-    setDigimon(Digimon.Guardromon, 4, 1);
-    setDigimon(Digimon.Guardromon, 5, 1);
-L_0040:
+    for id in 3..5 { setDigimon(Digimon.Guardromon, id, 1); }
+
+L2:
     return;
 }
 
-section section_159(159) {  // len=34
+section(159) {  // len=34
     setScript(153, Map.FACT08A);
     setPStat(245, 0);
     setBGM(22);
-    if (trigger(241)) goto L_0020;
+    if (trigger(241)) goto L1;
     loadDigimon(Digimon.NPCGiromon);
     setDigimon(Digimon.NPCGiromon, 0, 0);
     return;
-L_0020:
+
+L1:
     return;
 }
 
-section section_160(160) {  // len=20
+section(160) {  // len=20
     setScript(154, Map.FACT08B);
     setPStat(245, 0);
     setBGM(22);
@@ -2503,28 +2661,28 @@ section section_160(160) {  // len=20
     return;
 }
 
-section section_161(161) {  // len=66
+section(161) {  // len=66
     setScript(155, Map.FACT09);
     setPStat(245, 0);
     setBGM(22);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Guardromon);
     loadDigimon(Digimon.PlatinumSukamon);
     setDigimon(Digimon.Guardromon, 0, 1);
     setDigimon(Digimon.PlatinumSukamon, 1, 1);
     setDigimon(Digimon.Guardromon, 2, 1);
-    goto L_0040;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Geremon);
-    setDigimon(Digimon.Geremon, 3, 1);
-    setDigimon(Digimon.Geremon, 4, 1);
-    setDigimon(Digimon.Geremon, 5, 1);
-L_0040:
+    for id in 3..5 { setDigimon(Digimon.Geremon, id, 1); }
+
+L2:
     return;
 }
 
-section section_162(162) {  // len=28
+section(162) {  // len=28
     setScript(156, Map.FACT10);
     setPStat(245, 0);
     setBGM(22);
@@ -2535,49 +2693,49 @@ section section_162(162) {  // len=28
     return;
 }
 
-section section_163(163) {  // len=14
+section(163) {  // len=14
     setScript(157, Map.FACT11A);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_164(164) {  // len=68
+section(164) {  // len=68
     setScript(158, Map.GOMI01);
     setPStat(245, 0);
     setBGM(24);
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0032;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L1;
     loadDigimon(Digimon.Psychemon);
     loadDigimon(Digimon.Geremon);
     setDigimon(Digimon.Psychemon, 0, 1);
     setDigimon(Digimon.Geremon, 1, 1);
     setDigimon(Digimon.Geremon, 2, 1);
-    goto L_0042;
-L_0032:
+    goto L2;
+
+L1:
     loadDigimon(Digimon.Psychemon);
     loadDigimon(Digimon.Geremon);
     setDigimon(Digimon.Geremon, 3, 1);
     setDigimon(Digimon.Psychemon, 4, 1);
     setDigimon(Digimon.Psychemon, 5, 1);
-L_0042:
+
+L2:
     return;
 }
 
-section section_165(165) {  // len=34
+section(165) {  // len=34
     setScript(159, Map.GOMI02);
     setPStat(245, 0);
     setBGM(24);
     loadDigimon(Digimon.Sukamon);
     loadDigimon(Digimon.KingSukamon);
     setDigimon(Digimon.KingSukamon, 0, 0);
-    setDigimon(Digimon.Sukamon, 1, 0);
-    setDigimon(Digimon.Sukamon, 2, 0);
-    setDigimon(Digimon.Sukamon, 3, 0);
+    for id in 1..3 { setDigimon(Digimon.Sukamon, id, 0); }
     return;
 }
 
-section section_166(166) {  // len=38
+section(166) {  // len=38
     setScript(160, Map.MGEN01);
     setPStat(245, 1);
     setBGM(27);
@@ -2591,7 +2749,7 @@ section section_166(166) {  // len=38
     return;
 }
 
-section section_167(167) {  // len=38
+section(167) {  // len=38
     setScript(161, Map.MGEN02);
     setPStat(245, 1);
     setBGM(27);
@@ -2605,537 +2763,590 @@ section section_167(167) {  // len=38
     return;
 }
 
-section section_168(168) {  // len=18
+section(168) {  // len=18
     setScript(162, Map.TWNA02);
     setPStat(245, 0);
     setBGM(28);
-    goto section_177.L_000c;
+    goto section_177.L1;
     return;
 }
 
-section section_169(169) {  // len=18
+section(169) {  // len=18
     setScript(162, Map.TWNA03);
     setPStat(245, 0);
     setBGM(28);
-    goto section_178.L_000c;
+    goto section_178.L1;
     return;
 }
 
-section section_170(170) {  // len=18
+section(170) {  // len=18
     setScript(162, Map.TWNA04);
     setPStat(245, 0);
     setBGM(28);
-    goto section_179.L_000c;
+    goto section_179.L1;
     return;
 }
 
-section section_171(171) {  // len=18
+section(171) {  // len=18
     setScript(162, Map.TWNA05);
     setPStat(245, 0);
     setBGM(28);
-    goto section_177.L_000c;
+    goto section_177.L1;
     return;
 }
 
-section section_172(172) {  // len=18
+section(172) {  // len=18
     setScript(162, Map.TWNA06);
     setPStat(245, 0);
     setBGM(28);
-    goto section_178.L_000c;
+    goto section_178.L1;
     return;
 }
 
-section section_173(173) {  // len=18
+section(173) {  // len=18
     setScript(162, Map.TWNA07);
     setPStat(245, 0);
     setBGM(28);
-    goto section_179.L_000c;
+    goto section_179.L1;
     return;
 }
 
-section section_174(174) {  // len=18
+section(174) {  // len=18
     setScript(162, Map.TWNA08);
     setPStat(245, 0);
     setBGM(28);
-    goto section_177.L_000c;
+    goto section_177.L1;
     return;
 }
 
-section section_175(175) {  // len=18
+section(175) {  // len=18
     setScript(162, Map.TWNA09);
     setPStat(245, 0);
     setBGM(28);
-    goto section_178.L_000c;
+    goto section_178.L1;
     return;
 }
 
-section section_176(176) {  // len=18
+section(176) {  // len=18
     setScript(162, Map.TWNA10);
     setPStat(245, 0);
     setBGM(28);
-    goto section_179.L_000c;
+    goto section_179.L1;
     return;
 }
 
-section section_177(177) {  // len=32
+section(177) {  // len=32
     setScript(162, Map.TWNA11);
     setPStat(245, 0);
     setBGM(28);
-L_000c:
+
+L1:
     setPStat(42, 0);
     loadDigimon(Digimon.Tanemon);
     setDigimon(Digimon.Tanemon, 6, 0);
     addPStat(42, 1);
-    goto section_179.L_001a;
+    goto section_179.L2;
     return;
 }
 
-section section_178(178) {  // len=32
+section(178) {  // len=32
     setScript(162, Map.TWNA12);
     setPStat(245, 0);
     setBGM(28);
-L_000c:
+
+L1:
     setPStat(42, 0);
     loadDigimon(Digimon.NPCPalmon);
     setDigimon(Digimon.NPCPalmon, 6, 0);
     addPStat(42, 1);
-    goto section_179.L_001a;
+    goto section_179.L2;
     return;
 }
 
-section section_179(179) {  // len=296
+section(179) {  // len=296
     setScript(162, Map.TWNA13);
     setPStat(245, 0);
     setBGM(28);
-L_000c:
+
+L1:
     setPStat(42, 0);
     loadDigimon(Digimon.NPCVegimon);
     setDigimon(Digimon.NPCVegimon, 6, 0);
     addPStat(42, 1);
-L_001a:
-    if (!trigger(224)) goto L_0030;
+
+L2:
+    if (!trigger(224)) goto L3;
     loadDigimon(Digimon.NPCWhamon);
     setDigimon(Digimon.NPCWhamon, 7, 0);
     addPStat(42, 1);
-L_0030:
-    if (!trigger(87) || trigger(205)) goto L_0042;
+
+L3:
+    if (!trigger(87) || trigger(205)) goto L4;
     return;
-L_0042:
-    if (!trigger(354) || trigger(355)) goto L_0054;
+
+L4:
+    if (!trigger(354) || trigger(355)) goto L5;
     return;
-L_0054:
-    if (trigger(84) || !trigger(250)) goto L_006e;
+
+L5:
+    if (trigger(84) || !trigger(250)) goto L6;
     loadDigimon(Digimon.NPCKokatorimon);
     setDigimon(Digimon.NPCKokatorimon, 3, 0);
     addPStat(42, 1);
-L_006e:
-    if (pstat[42] != 3) goto L_007c;
+
+L6:
+    if (pstat[42] != 3) goto L7;
     return;
-L_007c:
+
+L7:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0096;
-    goto L_009a;
-    goto L_009a;
-L_0096:
-    goto L_00d2;
-L_009a:
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L8;
+    goto L9;
+    goto L9;
+
+L8:
+    goto L12;
+
+L9:
     roll(pstat: 110, max: 3);
-    if (!trigger(240) || pstat[110] > 0 || pstat[42] > 2) goto L_00bc;
+    if (!trigger(240) || pstat[110] > 0 || pstat[42] > 2) goto L10;
     loadDigimon(Digimon.NPCAndromon);
     setDigimon(Digimon.NPCAndromon, 2, 0);
     addPStat(42, 1);
-L_00bc:
-    if (pstat[42] != 3) goto L_00ca;
+
+L10:
+    if (pstat[42] != 3) goto L11;
     return;
-L_00ca:
+
+L11:
     loadDigimon(Digimon.Yuramon);
     setDigimon(Digimon.Yuramon, 0, 0);
     return;
-L_00d2:
-    if (pstat[42] > 2) goto L_00e2;
-    goto L_00e4;
-L_00e2:
+
+L12:
+    if (pstat[42] > 2) goto L13;
+    goto L14;
+
+L13:
     return;
-L_00e4:
-    if (!trigger(250) || !trigger(84) || pstat[107] < 4 || pstat[107] >= 8) goto L_0106;
+
+L14:
+    if (!trigger(250) || !trigger(84) || pstat[107] < 4 || pstat[107] >= 8) goto L15;
     loadDigimon(Digimon.NPCKokatorimon);
     setDigimon(Digimon.NPCKokatorimon, 3, 0);
     addPStat(42, 1);
-L_0106:
-    if (pstat[42] != 3) goto L_0114;
+
+L15:
+    if (pstat[42] != 3) goto L16;
     return;
-L_0114:
-    if (!trigger(239)) goto L_0126;
+
+L16:
+    if (!trigger(239)) goto L17;
     loadDigimon(Digimon.NPCSukamon);
     setDigimon(Digimon.NPCSukamon, 1, 0);
-L_0126:
+
+L17:
     return;
 }
 
-section section_180(180) {  // len=22
+section(180) {  // len=22
     setScript(163, Map.TWNB01);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 1);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_181(181) {  // len=22
+section(181) {  // len=22
     setScript(163, Map.TWNB02);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 2);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_182(182) {  // len=22
+section(182) {  // len=22
     setScript(163, Map.TWNB03);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 3);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_183(183) {  // len=22
+section(183) {  // len=22
     setScript(163, Map.TWNB04);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 4);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_184(184) {  // len=22
+section(184) {  // len=22
     setScript(163, Map.TWNB05);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 5);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_185(185) {  // len=22
+section(185) {  // len=22
     setScript(163, Map.TWNB06);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 6);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_186(186) {  // len=22
+section(186) {  // len=22
     setScript(163, Map.TWNB07);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 7);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_187(187) {  // len=22
+section(187) {  // len=22
     setScript(163, Map.TWNB08);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 8);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_188(188) {  // len=22
+section(188) {  // len=22
     setScript(163, Map.TWNB09);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 9);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_189(189) {  // len=22
+section(189) {  // len=22
     setScript(163, Map.TWNB10);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 10);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_190(190) {  // len=22
+section(190) {  // len=22
     setScript(163, Map.TWNB11);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 11);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_191(191) {  // len=22
+section(191) {  // len=22
     setScript(163, Map.TWNB12);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 12);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_192(192) {  // len=718
+section(192) {  // len=718
     setScript(163, Map.TWNB13);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 13);
-    if (!trigger(328)) goto L_0020;
+    if (!trigger(328)) goto L1;
     setTrigger(329);
-L_0020:
+
+L1:
     setPStat(38, 0);
     setPStat(39, 0);
-    if (!trigger(204)) goto L_005a;
-    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L_0050;
-    goto L_005a;
-L_0050:
+    if (!trigger(204)) goto L3;
+    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L2;
+    goto L3;
+
+L2:
     addPStat(38, 1);
     loadDigimon(Digimon.NPCBetamon);
     setDigimon(Digimon.NPCBetamon, 2, 0);
-L_005a:
-    if (trigger(77) || !trigger(237)) goto L_0074;
+
+L3:
+    if (trigger(77) || !trigger(237)) goto L4;
     addPStat(38, 1);
     loadDigimon(Digimon.NPCBakemon);
     setDigimon(Digimon.NPCBakemon, 0, 0);
-L_0074:
-    if (trigger(78) || !trigger(235)) goto L_008e;
+
+L4:
+    if (trigger(78) || !trigger(235)) goto L5;
     addPStat(38, 1);
     loadDigimon(Digimon.NPCShellmon);
     setDigimon(Digimon.NPCShellmon, 1, 0);
-L_008e:
-    if (pstat[38] != 3) goto L_009c;
+
+L5:
+    if (pstat[38] != 3) goto L6;
     return;
-L_009c:
-    if (trigger(79) || !trigger(232)) goto L_00b6;
+
+L6:
+    if (trigger(79) || !trigger(232)) goto L7;
     addPStat(38, 1);
     loadDigimon(Digimon.NPCKunemon);
     setDigimon(Digimon.NPCKunemon, 3, 0);
-L_00b6:
-    if (pstat[38] != 3) goto L_00c4;
+
+L7:
+    if (pstat[38] != 3) goto L8;
     return;
-L_00c4:
+
+L8:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_00da;
-    goto L_0102;
-L_00da:
-    if (trigger(80) || !trigger(218)) goto L_00f4;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L9;
+    goto L11;
+
+L9:
+    if (trigger(80) || !trigger(218)) goto L10;
     addPStat(38, 1);
     loadDigimon(Digimon.NPCElecmon);
     setDigimon(Digimon.NPCElecmon, 5, 0);
-L_00f4:
-    if (pstat[38] != 3) goto L_0102;
+
+L10:
+    if (pstat[38] != 3) goto L11;
     return;
-L_0102:
+
+L11:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_011c;
-    goto L_0120;
-    goto L_0120;
-L_011c:
-    goto L_01f2;
-L_0120:
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L12;
+    goto L13;
+    goto L13;
+
+L12:
+    goto L22;
+
+L13:
     addPStat(38, 1);
     loadDigimon(Digimon.Tsunomon);
     setDigimon(Digimon.Tsunomon, 4, 0);
-    if (pstat[38] != 3) goto L_0138;
+    if (pstat[38] != 3) goto L14;
     return;
-L_0138:
-    if (!trigger(204)) goto L_0174;
-    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L_0174;
+
+L14:
+    if (!trigger(204)) goto L15;
+    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L15;
     addPStat(38, 1);
     loadDigimon(Digimon.NPCBetamon);
     setDigimon(Digimon.NPCBetamon, 2, 0);
-    if (pstat[38] != 3) goto L_0174;
+    if (pstat[38] != 3) goto L15;
     return;
-L_0174:
+
+L15:
     roll(pstat: 110, max: 1);
-    if (pstat[110] != 0 || !trigger(235) || !trigger(78)) goto L_0190;
-    goto L_01b4;
-L_0190:
-    if (!trigger(234)) goto L_01a6;
+    if (pstat[110] != 0 || !trigger(235) || !trigger(78)) goto L16;
+    goto L18;
+
+L16:
+    if (!trigger(234)) goto L17;
     addPStat(38, 1);
     loadDigimon(Digimon.NPCOgremon);
     setDigimon(Digimon.NPCOgremon, 7, 0);
-L_01a6:
-    if (pstat[38] != 3) goto L_01b4;
+
+L17:
+    if (pstat[38] != 3) goto L18;
     return;
-L_01b4:
-    if (!trigger(235) || !trigger(78)) goto L_01ce;
+
+L18:
+    if (!trigger(235) || !trigger(78)) goto L19;
     addPStat(38, 1);
     loadDigimon(Digimon.NPCShellmon);
     setDigimon(Digimon.NPCShellmon, 1, 0);
-L_01ce:
-    if (pstat[38] != 3) goto L_01dc;
+
+L19:
+    if (pstat[38] != 3) goto L20;
     return;
-L_01dc:
+
+L20:
     addPStat(39, 1);
-    if (pstat[39] >= 2) goto L_01f0;
-    goto L_01f2;
-L_01f0:
+    if (pstat[39] >= 2) goto L21;
+    goto L22;
+
+L21:
     return;
-L_01f2:
+
+L22:
     storeDate(105);
-    if (pstat[107] < 7 || pstat[107] >= 19) goto L_0208;
-    goto L_0230;
-L_0208:
-    if (!trigger(237) || !trigger(77)) goto L_0222;
+    if (pstat[107] < 7 || pstat[107] >= 19) goto L23;
+    goto L25;
+
+L23:
+    if (!trigger(237) || !trigger(77)) goto L24;
     addPStat(38, 1);
     loadDigimon(Digimon.NPCBakemon);
     setDigimon(Digimon.NPCBakemon, 0, 0);
-L_0222:
-    if (pstat[38] != 3) goto L_0230;
+
+L24:
+    if (pstat[38] != 3) goto L25;
     return;
-L_0230:
-    if (!trigger(218)) goto L_0246;
+
+L25:
+    if (!trigger(218)) goto L26;
     addPStat(38, 1);
     loadDigimon(Digimon.NPCElecmon);
     setDigimon(Digimon.NPCElecmon, 5, 0);
-L_0246:
-    if (pstat[38] != 3) goto L_0254;
+
+L26:
+    if (pstat[38] != 3) goto L27;
     return;
-L_0254:
+
+L27:
     roll(pstat: 110, max: 1);
-    if (pstat[110] != 0 || !trigger(254)) goto L_026c;
-    goto L_0294;
-L_026c:
-    if (!trigger(232) || !trigger(79)) goto L_0286;
+    if (pstat[110] != 0 || !trigger(254)) goto L28;
+    goto L30;
+
+L28:
+    if (!trigger(232) || !trigger(79)) goto L29;
     addPStat(38, 1);
     loadDigimon(Digimon.NPCKunemon);
     setDigimon(Digimon.NPCKunemon, 3, 0);
-L_0286:
-    if (pstat[38] != 3) goto L_0294;
+
+L29:
+    if (pstat[38] != 3) goto L30;
     return;
-L_0294:
-    if (!trigger(254)) goto L_02aa;
+
+L30:
+    if (!trigger(254)) goto L31;
     addPStat(38, 1);
     loadDigimon(Digimon.NPCMegadramon);
     setDigimon(Digimon.NPCMegadramon, 6, 0);
-L_02aa:
-    if (pstat[38] != 3) goto L_02b8;
+
+L31:
+    if (pstat[38] != 3) goto L32;
     return;
-L_02b8:
+
+L32:
     addPStat(39, 1);
-    if (pstat[39] >= 2) goto L_02cc;
-    goto L_0120;
-L_02cc:
+    if (pstat[39] >= 2) goto L33;
+    goto L13;
+
+L33:
     return;
 }
 
-section section_193(193) {  // len=22
+section(193) {  // len=22
     setScript(163, Map.TWNB14);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 14);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_194(194) {  // len=22
+section(194) {  // len=22
     setScript(163, Map.TWNB15);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 15);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_195(195) {  // len=22
+section(195) {  // len=22
     setScript(163, Map.TWNB16);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 16);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_196(196) {  // len=22
+section(196) {  // len=22
     setScript(163, Map.TWNB17);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 17);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_197(197) {  // len=22
+section(197) {  // len=22
     setScript(163, Map.TWNB18);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 18);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_198(198) {  // len=22
+section(198) {  // len=22
     setScript(163, Map.TWNB19);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 19);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_199(199) {  // len=22
+section(199) {  // len=22
     setScript(163, Map.TWNB20);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 20);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_200(200) {  // len=22
+section(200) {  // len=22
     setScript(163, Map.TWNB21);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 21);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_201(201) {  // len=22
+section(201) {  // len=22
     setScript(163, Map.TWNB22);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 22);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_202(202) {  // len=22
+section(202) {  // len=22
     setScript(163, Map.TWNB23);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 23);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_203(203) {  // len=22
+section(203) {  // len=22
     setScript(163, Map.TWNB24);
     setPStat(245, 0);
     setBGM(28);
     setPStat(43, 24);
-    goto section_192.L_0020;
+    goto section_192.L1;
     return;
 }
 
-section section_204(204) {  // len=86
+section(204) {  // len=86
     setScript(164, Map.TWNA01);
     setPStat(245, 0);
     setBGM(28);
-    if (!trigger(55)) goto L_0026;
+    if (!trigger(55)) goto L1;
     loadDigimon(Digimon.Jijimon);
     loadDigimon(Digimon.Tokomon);
     setDigimon(Digimon.Tokomon, 5, 0);
     setDigimon(Digimon.Jijimon, 3, 0);
     return;
-L_0026:
-    if (trigger(54)) goto L_0048;
+
+L1:
+    if (trigger(54)) goto L2;
     loadDigimon(Digimon.Jijimon);
     loadDigimon(Digimon.Tokomon);
     setDigimon(Digimon.Jijimon, 0, 0);
@@ -3143,7 +3354,8 @@ L_0026:
     setDigimon(Digimon.Jijimon, 2, 0);
     setDigimon(Digimon.Jijimon, 3, 0);
     return;
-L_0048:
+
+L2:
     loadDigimon(Digimon.Yuramon);
     loadDigimon(Digimon.Tanemon);
     setDigimon(Digimon.Yuramon, 4, 0);
@@ -3151,52 +3363,56 @@ L_0048:
     return;
 }
 
-section section_205(205) {  // len=44
+section(205) {  // len=44
     setScript(165, Map.ROOM10);
     setPStat(245, 0);
     setBGM(28);
     loadDigimon(Digimon.Jijimon);
     setDigimon(Digimon.Jijimon, 0, 0);
-    if (!trigger(220)) goto L_0024;
+    if (!trigger(220)) goto L1;
     loadDigimon(Digimon.NPCAngemon);
     setDigimon(Digimon.NPCAngemon, 1, 0);
-L_0024:
+
+L1:
     loadDigimon(Digimon.Tokomon);
     setDigimon(Digimon.Tokomon, 2, 0);
     return;
 }
 
-section section_206(206) {  // len=60
+section(206) {  // len=60
     setScript(166, Map.ROOM11);
     setPStat(245, 0);
     setBGM(28);
     loadDigimon(Digimon.Botamon);
     setDigimon(Digimon.Botamon, 0, 0);
-    if (!trigger(214)) goto L_0024;
+    if (!trigger(214)) goto L1;
     loadDigimon(Digimon.NPCMonzaemon);
     setDigimon(Digimon.NPCMonzaemon, 1, 0);
-L_0024:
-    if (!trigger(88) || trigger(50)) goto L_003a;
+
+L1:
+    if (!trigger(88) || trigger(50)) goto L2;
     loadDigimon(Digimon.NPCAirdramon);
     setDigimon(Digimon.NPCAirdramon, 2, 0);
-L_003a:
+
+L2:
     return;
 }
 
-section section_207(207) {  // len=38
+section(207) {  // len=38
     setScript(167, Map.ROOM12);
     setPStat(245, 0);
     setBGM(28);
     loadDigimon(Digimon.NPCBirdramon);
     setDigimon(Digimon.NPCBirdramon, 0, 0);
-    if (!trigger(248)) goto L_0024;
+    if (!trigger(248)) goto L1;
     loadDigimon(Digimon.NPCLeomon);
     setDigimon(Digimon.NPCLeomon, 1, 0);
-L_0024:
+
+L1:
     return;
 }
 
-section section_208(208) {  // len=20
+section(208) {  // len=20
     setScript(168, Map.ROOM13);
     setPStat(245, 0);
     setBGM(28);
@@ -3205,20 +3421,21 @@ section section_208(208) {  // len=20
     return;
 }
 
-section section_209(209) {  // len=38
+section(209) {  // len=38
     setScript(169, Map.ROOM14);
     setPStat(245, 0);
     setBGM(28);
     loadDigimon(Digimon.NPCDrimogemon);
     setDigimon(Digimon.NPCDrimogemon, 0, 0);
-    if (!trigger(217)) goto L_0024;
+    if (!trigger(217)) goto L1;
     loadDigimon(Digimon.NPCGabumon);
     setDigimon(Digimon.NPCGabumon, 1, 0);
-L_0024:
+
+L1:
     return;
 }
 
-section section_210(210) {  // len=34
+section(210) {  // len=34
     setScript(170, Map.MGEN03);
     setPStat(245, 1);
     setBGM(27);
@@ -3231,7 +3448,7 @@ section section_210(210) {  // len=34
     return;
 }
 
-section section_211(211) {  // len=44
+section(211) {  // len=44
     setScript(171, Map.ROOM02);
     setPStat(245, 0);
     setBGM(28);
@@ -3239,14 +3456,15 @@ section section_211(211) {  // len=44
     loadDigimon(Digimon.Poyomon);
     setDigimon(Digimon.Agumon, 0, 0);
     setDigimon(Digimon.Poyomon, 1, 0);
-    if (!trigger(253)) goto L_002a;
+    if (!trigger(253)) goto L1;
     loadDigimon(Digimon.NPCNanimon);
     setDigimon(Digimon.NPCNanimon, 2, 0);
-L_002a:
+
+L1:
     return;
 }
 
-section section_212(212) {  // len=34
+section(212) {  // len=34
     setScript(172, Map.MGEN04);
     setPStat(245, 1);
     setBGM(27);
@@ -3259,386 +3477,441 @@ section section_212(212) {  // len=34
     return;
 }
 
-section section_213(213) {  // len=62
+section(213) {  // len=62
     setScript(173, Map.ROOM04);
     setPStat(245, 0);
     setBGM(28);
     loadDigimon(Digimon.NPCCentarumon);
     setDigimon(Digimon.NPCCentarumon, 0, 0);
-    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L_003c;
-    if (!trigger(249)) goto L_003c;
+    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L1;
+    if (!trigger(249)) goto L1;
     loadDigimon(Digimon.NPCCoelamon);
     setDigimon(Digimon.NPCCoelamon, 1, 0);
-L_003c:
+
+L1:
     return;
 }
 
-section section_214(214) {  // len=412
+section(214) {  // len=412
     setScript(174, Map.ROOM05A);
     setPStat(245, 0);
     setBGM(28);
-    if (!trigger(209) || trigger(58)) goto L_0028;
+    if (!trigger(209) || trigger(58)) goto L1;
     loadDigimon(Digimon.NPCMeramon);
     setDigimon(Digimon.NPCMeramon, 0, 0);
     setPStat(27, 0);
     return;
-L_0028:
-    if (!trigger(208) || trigger(61)) goto L_0044;
+
+L1:
+    if (!trigger(208) || trigger(61)) goto L2;
     loadDigimon(Digimon.NPCTyrannomon);
     setDigimon(Digimon.NPCTyrannomon, 1, 0);
     setPStat(27, 1);
     return;
-L_0044:
-    if (!trigger(222) || trigger(60)) goto L_0060;
+
+L2:
+    if (!trigger(222) || trigger(60)) goto L3;
     loadDigimon(Digimon.NPCGarurumon);
     setDigimon(Digimon.NPCGarurumon, 2, 0);
     setPStat(27, 2);
     return;
-L_0060:
-    if (!trigger(223) || trigger(59)) goto L_007c;
+
+L3:
+    if (!trigger(223) || trigger(59)) goto L4;
     loadDigimon(Digimon.NPCFrigimon);
     setDigimon(Digimon.NPCFrigimon, 3, 0);
     setPStat(27, 3);
     return;
-L_007c:
+
+L4:
     roll(pstat: 110, max: 99);
-    if (!trigger(228) || pstat[110] > 19) goto L_009c;
+    if (!trigger(228) || pstat[110] > 19) goto L5;
     loadDigimon(Digimon.NPCVademon);
     setDigimon(Digimon.NPCVademon, 4, 0);
     setPStat(27, 4);
     return;
-L_009c:
+
+L5:
     roll(pstat: 110, max: 99);
-    if (!trigger(256) || pstat[110] > 9) goto L_00bc;
+    if (!trigger(256) || pstat[110] > 9) goto L6;
     loadDigimon(Digimon.NPCDigitamamon);
     setDigimon(Digimon.NPCDigitamamon, 5, 0);
     setPStat(27, 5);
     return;
-L_00bc:
+
+L6:
     storeDate(105);
-    if (!trigger(58) || pstat[107] < 12 || pstat[107] >= 18) goto L_00de;
+    if (!trigger(58) || pstat[107] < 12 || pstat[107] >= 18) goto L7;
     loadDigimon(Digimon.NPCMeramon);
     setDigimon(Digimon.NPCMeramon, 0, 0);
     setPStat(27, 0);
     return;
-L_00de:
-    if (!trigger(61) || pstat[107] < 6 || pstat[107] >= 12) goto L_00fe;
+
+L7:
+    if (!trigger(61) || pstat[107] < 6 || pstat[107] >= 12) goto L8;
     loadDigimon(Digimon.NPCTyrannomon);
     setDigimon(Digimon.NPCTyrannomon, 1, 0);
     setPStat(27, 1);
     return;
-L_00fe:
-    if (!trigger(60) || pstat[107] < 0 || pstat[107] >= 6) goto L_011e;
+
+L8:
+    if (!trigger(60) || pstat[107] < 0 || pstat[107] >= 6) goto L9;
     loadDigimon(Digimon.NPCGarurumon);
     setDigimon(Digimon.NPCGarurumon, 2, 0);
     setPStat(27, 2);
     return;
-L_011e:
-    if (!trigger(59) || pstat[107] < 18) goto L_013a;
+
+L9:
+    if (!trigger(59) || pstat[107] < 18) goto L10;
     loadDigimon(Digimon.NPCFrigimon);
     setDigimon(Digimon.NPCFrigimon, 3, 0);
     setPStat(27, 3);
     return;
-L_013a:
-    if (!trigger(209)) goto L_0152;
+
+L10:
+    if (!trigger(209)) goto L11;
     loadDigimon(Digimon.NPCMeramon);
     setDigimon(Digimon.NPCMeramon, 0, 0);
     setPStat(27, 0);
     return;
-L_0152:
-    if (!trigger(208)) goto L_016a;
+
+L11:
+    if (!trigger(208)) goto L12;
     loadDigimon(Digimon.NPCTyrannomon);
     setDigimon(Digimon.NPCTyrannomon, 1, 0);
     setPStat(27, 1);
     return;
-L_016a:
-    if (!trigger(222)) goto L_0182;
+
+L12:
+    if (!trigger(222)) goto L13;
     loadDigimon(Digimon.NPCGarurumon);
     setDigimon(Digimon.NPCGarurumon, 2, 0);
     setPStat(27, 2);
     return;
-L_0182:
-    if (!trigger(223)) goto L_019a;
+
+L13:
+    if (!trigger(223)) goto L14;
     loadDigimon(Digimon.NPCFrigimon);
     setDigimon(Digimon.NPCFrigimon, 3, 0);
     setPStat(27, 3);
     return;
-L_019a:
+
+L14:
     return;
 }
 
-section section_215(215) {  // len=418
+section(215) {  // len=418
     setScript(175, Map.ROOM05B);
     setPStat(245, 0);
     setBGM(28);
     loadDigimon(Digimon.NPCGiromon);
     setDigimon(Digimon.NPCGiromon, 6, 0);
-    if (!trigger(209) || trigger(58)) goto L_002e;
+    if (!trigger(209) || trigger(58)) goto L1;
     loadDigimon(Digimon.NPCMeramon);
     setDigimon(Digimon.NPCMeramon, 0, 0);
     setPStat(27, 0);
     return;
-L_002e:
-    if (!trigger(208) || trigger(61)) goto L_004a;
+
+L1:
+    if (!trigger(208) || trigger(61)) goto L2;
     loadDigimon(Digimon.NPCTyrannomon);
     setDigimon(Digimon.NPCTyrannomon, 1, 0);
     setPStat(27, 1);
     return;
-L_004a:
-    if (!trigger(222) || trigger(60)) goto L_0066;
+
+L2:
+    if (!trigger(222) || trigger(60)) goto L3;
     loadDigimon(Digimon.NPCGarurumon);
     setDigimon(Digimon.NPCGarurumon, 2, 0);
     setPStat(27, 2);
     return;
-L_0066:
-    if (!trigger(223) || trigger(59)) goto L_0082;
+
+L3:
+    if (!trigger(223) || trigger(59)) goto L4;
     loadDigimon(Digimon.NPCFrigimon);
     setDigimon(Digimon.NPCFrigimon, 3, 0);
     setPStat(27, 3);
     return;
-L_0082:
+
+L4:
     roll(pstat: 110, max: 99);
-    if (!trigger(228) || pstat[110] > 19) goto L_00a2;
+    if (!trigger(228) || pstat[110] > 19) goto L5;
     loadDigimon(Digimon.NPCVademon);
     setDigimon(Digimon.NPCVademon, 4, 0);
     setPStat(27, 4);
     return;
-L_00a2:
+
+L5:
     roll(pstat: 110, max: 99);
-    if (!trigger(256) || pstat[110] > 9) goto L_00c2;
+    if (!trigger(256) || pstat[110] > 9) goto L6;
     loadDigimon(Digimon.NPCDigitamamon);
     setDigimon(Digimon.NPCDigitamamon, 5, 0);
     setPStat(27, 5);
     return;
-L_00c2:
+
+L6:
     storeDate(105);
-    if (!trigger(58) || pstat[107] < 12 || pstat[107] >= 18) goto L_00e4;
+    if (!trigger(58) || pstat[107] < 12 || pstat[107] >= 18) goto L7;
     loadDigimon(Digimon.NPCMeramon);
     setDigimon(Digimon.NPCMeramon, 0, 0);
     setPStat(27, 0);
     return;
-L_00e4:
-    if (!trigger(61) || pstat[107] < 6 || pstat[107] >= 12) goto L_0104;
+
+L7:
+    if (!trigger(61) || pstat[107] < 6 || pstat[107] >= 12) goto L8;
     loadDigimon(Digimon.NPCTyrannomon);
     setDigimon(Digimon.NPCTyrannomon, 1, 0);
     setPStat(27, 1);
     return;
-L_0104:
-    if (!trigger(60) || pstat[107] < 0 || pstat[107] >= 6) goto L_0124;
+
+L8:
+    if (!trigger(60) || pstat[107] < 0 || pstat[107] >= 6) goto L9;
     loadDigimon(Digimon.NPCGarurumon);
     setDigimon(Digimon.NPCGarurumon, 2, 0);
     setPStat(27, 2);
     return;
-L_0124:
-    if (!trigger(59) || pstat[107] < 18) goto L_0140;
+
+L9:
+    if (!trigger(59) || pstat[107] < 18) goto L10;
     loadDigimon(Digimon.NPCFrigimon);
     setDigimon(Digimon.NPCFrigimon, 3, 0);
     setPStat(27, 3);
     return;
-L_0140:
-    if (!trigger(209)) goto L_0158;
+
+L10:
+    if (!trigger(209)) goto L11;
     loadDigimon(Digimon.NPCMeramon);
     setDigimon(Digimon.NPCMeramon, 0, 0);
     setPStat(27, 0);
     return;
-L_0158:
-    if (!trigger(208)) goto L_0170;
+
+L11:
+    if (!trigger(208)) goto L12;
     loadDigimon(Digimon.NPCTyrannomon);
     setDigimon(Digimon.NPCTyrannomon, 1, 0);
     setPStat(27, 1);
     return;
-L_0170:
-    if (!trigger(222)) goto L_0188;
+
+L12:
+    if (!trigger(222)) goto L13;
     loadDigimon(Digimon.NPCGarurumon);
     setDigimon(Digimon.NPCGarurumon, 2, 0);
     setPStat(27, 2);
     return;
-L_0188:
-    if (!trigger(223)) goto L_01a0;
+
+L13:
+    if (!trigger(223)) goto L14;
     loadDigimon(Digimon.NPCFrigimon);
     setDigimon(Digimon.NPCFrigimon, 3, 0);
     setPStat(27, 3);
     return;
-L_01a0:
+
+L14:
     return;
 }
 
-section section_216(216) {  // len=390
+section(216) {  // len=390
     setScript(176, Map.ROOM06);
     setPStat(245, 0);
     setBGM(28);
     loadDigimon(Digimon.Punimon);
     setDigimon(Digimon.Punimon, 5, 0);
-    if (!trigger(231) || trigger(65)) goto L_002e;
+    if (!trigger(231) || trigger(65)) goto L1;
     loadDigimon(Digimon.NPCPatamon);
     setDigimon(Digimon.NPCPatamon, 0, 0);
     setPStat(25, 0);
     return;
-L_002e:
-    if (!trigger(245) || trigger(66)) goto L_004a;
+
+L1:
+    if (!trigger(245) || trigger(66)) goto L2;
     loadDigimon(Digimon.NPCBiyomon);
     setDigimon(Digimon.NPCBiyomon, 1, 0);
     setPStat(25, 1);
     return;
-L_004a:
-    if (!trigger(233) || trigger(67)) goto L_0066;
+
+L2:
+    if (!trigger(233) || trigger(67)) goto L3;
     loadDigimon(Digimon.NPCUnimon);
     setDigimon(Digimon.NPCUnimon, 2, 0);
     setPStat(25, 2);
     return;
-L_0066:
-    if (!trigger(247) || trigger(68)) goto L_0082;
+
+L3:
+    if (!trigger(247) || trigger(68)) goto L4;
     loadDigimon(Digimon.NPCMonochromon);
     setDigimon(Digimon.NPCMonochromon, 3, 0);
     setPStat(25, 3);
     return;
-L_0082:
+
+L4:
     unsetTrigger(69);
     roll(pstat: 110, max: 9);
-    if (!trigger(255) || pstat[110] > 1) goto L_00a4;
+    if (!trigger(255) || pstat[110] > 1) goto L5;
     loadDigimon(Digimon.NPCPiximon);
     setDigimon(Digimon.NPCPiximon, 4, 0);
     setTrigger(69);
-L_00a4:
+
+L5:
     storeDate(105);
-    if (!trigger(65) || pstat[107] < 12 || pstat[107] >= 18) goto L_00c6;
+    if (!trigger(65) || pstat[107] < 12 || pstat[107] >= 18) goto L6;
     loadDigimon(Digimon.NPCPatamon);
     setDigimon(Digimon.NPCPatamon, 0, 0);
     setPStat(25, 0);
     return;
-L_00c6:
-    if (!trigger(66) || pstat[107] < 6 || pstat[107] >= 12) goto L_00e6;
+
+L6:
+    if (!trigger(66) || pstat[107] < 6 || pstat[107] >= 12) goto L7;
     loadDigimon(Digimon.NPCBiyomon);
     setDigimon(Digimon.NPCBiyomon, 1, 0);
     setPStat(25, 1);
     return;
-L_00e6:
-    if (!trigger(67) || pstat[107] < 0 || pstat[107] >= 6) goto L_0106;
+
+L7:
+    if (!trigger(67) || pstat[107] < 0 || pstat[107] >= 6) goto L8;
     loadDigimon(Digimon.NPCUnimon);
     setDigimon(Digimon.NPCUnimon, 2, 0);
     setPStat(25, 2);
     return;
-L_0106:
-    if (!trigger(68) || pstat[107] < 18) goto L_0122;
+
+L8:
+    if (!trigger(68) || pstat[107] < 18) goto L9;
     loadDigimon(Digimon.NPCMonochromon);
     setDigimon(Digimon.NPCMonochromon, 3, 0);
     setPStat(25, 3);
     return;
-L_0122:
+
+L9:
     storeDate(105);
-    if (!trigger(231)) goto L_013c;
+    if (!trigger(231)) goto L10;
     loadDigimon(Digimon.NPCPatamon);
     setDigimon(Digimon.NPCPatamon, 0, 0);
     setPStat(25, 0);
     return;
-L_013c:
-    if (!trigger(245)) goto L_0154;
+
+L10:
+    if (!trigger(245)) goto L11;
     loadDigimon(Digimon.NPCBiyomon);
     setDigimon(Digimon.NPCBiyomon, 1, 0);
     setPStat(25, 1);
     return;
-L_0154:
-    if (!trigger(233)) goto L_016c;
+
+L11:
+    if (!trigger(233)) goto L12;
     loadDigimon(Digimon.NPCUnimon);
     setDigimon(Digimon.NPCUnimon, 2, 0);
     setPStat(25, 2);
     return;
-L_016c:
-    if (!trigger(247)) goto L_0184;
+
+L12:
+    if (!trigger(247)) goto L13;
     loadDigimon(Digimon.NPCMonochromon);
     setDigimon(Digimon.NPCMonochromon, 3, 0);
     setPStat(25, 3);
     return;
-L_0184:
+
+L13:
     return;
 }
 
-section section_217(217) {  // len=368
+section(217) {  // len=368
     setScript(177, Map.ROOM07);
     setPStat(245, 0);
     setBGM(28);
-    if (!trigger(258)) goto L_001e;
+    if (!trigger(258)) goto L1;
     loadDigimon(Digimon.NPCNinjamon);
     setDigimon(Digimon.NPCNinjamon, 4, 0);
-L_001e:
-    if (!trigger(211) || trigger(70)) goto L_003a;
+
+L1:
+    if (!trigger(211) || trigger(70)) goto L2;
     loadDigimon(Digimon.NPCNumemon);
     setDigimon(Digimon.NPCNumemon, 0, 0);
     setPStat(24, 0);
     return;
-L_003a:
-    if (!trigger(252) || trigger(71)) goto L_0056;
+
+L2:
+    if (!trigger(252) || trigger(71)) goto L3;
     loadDigimon(Digimon.NPCMojyamon);
     setDigimon(Digimon.NPCMojyamon, 1, 0);
     setPStat(24, 1);
     return;
-L_0056:
-    if (!trigger(213) || trigger(72)) goto L_0072;
+
+L3:
+    if (!trigger(213) || trigger(72)) goto L4;
     loadDigimon(Digimon.NPCMamemon);
     setDigimon(Digimon.NPCMamemon, 2, 0);
     setPStat(24, 2);
     return;
-L_0072:
-    if (!trigger(206) || trigger(73)) goto L_008e;
+
+L4:
+    if (!trigger(206) || trigger(73)) goto L5;
     loadDigimon(Digimon.NPCDevimon);
     setDigimon(Digimon.NPCDevimon, 3, 0);
     setPStat(24, 3);
     return;
-L_008e:
+
+L5:
     storeDate(105);
-    if (!trigger(70) || pstat[107] < 0 || pstat[107] >= 6) goto L_00b0;
+    if (!trigger(70) || pstat[107] < 0 || pstat[107] >= 6) goto L6;
     loadDigimon(Digimon.NPCNumemon);
     setDigimon(Digimon.NPCNumemon, 0, 0);
     setPStat(24, 0);
     return;
-L_00b0:
-    if (!trigger(71) || pstat[107] < 6 || pstat[107] >= 12) goto L_00d0;
+
+L6:
+    if (!trigger(71) || pstat[107] < 6 || pstat[107] >= 12) goto L7;
     loadDigimon(Digimon.NPCMojyamon);
     setDigimon(Digimon.NPCMojyamon, 1, 0);
     setPStat(24, 1);
     return;
-L_00d0:
-    if (!trigger(72) || pstat[107] < 12 || pstat[107] >= 18) goto L_00f0;
+
+L7:
+    if (!trigger(72) || pstat[107] < 12 || pstat[107] >= 18) goto L8;
     loadDigimon(Digimon.NPCMamemon);
     setDigimon(Digimon.NPCMamemon, 2, 0);
     setPStat(24, 2);
     return;
-L_00f0:
-    if (!trigger(73) || pstat[107] < 18) goto L_010c;
+
+L8:
+    if (!trigger(73) || pstat[107] < 18) goto L9;
     loadDigimon(Digimon.NPCDevimon);
     setDigimon(Digimon.NPCDevimon, 3, 0);
     setPStat(24, 3);
     return;
-L_010c:
+
+L9:
     storeDate(105);
-    if (!trigger(211)) goto L_0126;
+    if (!trigger(211)) goto L10;
     loadDigimon(Digimon.NPCNumemon);
     setDigimon(Digimon.NPCNumemon, 0, 0);
     setPStat(24, 0);
     return;
-L_0126:
-    if (!trigger(252)) goto L_013e;
+
+L10:
+    if (!trigger(252)) goto L11;
     loadDigimon(Digimon.NPCMojyamon);
     setDigimon(Digimon.NPCMojyamon, 1, 0);
     setPStat(24, 1);
     return;
-L_013e:
-    if (!trigger(213)) goto L_0156;
+
+L11:
+    if (!trigger(213)) goto L12;
     loadDigimon(Digimon.NPCMamemon);
     setDigimon(Digimon.NPCMamemon, 2, 0);
     setPStat(24, 2);
     return;
-L_0156:
-    if (!trigger(206)) goto L_016e;
+
+L12:
+    if (!trigger(206)) goto L13;
     loadDigimon(Digimon.NPCDevimon);
     setDigimon(Digimon.NPCDevimon, 3, 0);
     setPStat(24, 3);
     return;
-L_016e:
+
+L13:
     return;
 }
 
-section section_218(218) {  // len=32
+section(218) {  // len=32
     setScript(178, Map.ROOM08);
     setPStat(245, 0);
     setBGM(28);
@@ -3651,7 +3924,7 @@ section section_218(218) {  // len=32
     return;
 }
 
-section section_219(219) {  // len=30
+section(219) {  // len=30
     setScript(179, Map.MGEN05);
     setPStat(245, 1);
     setBGM(27);
@@ -3663,64 +3936,70 @@ section section_219(219) {  // len=30
     return;
 }
 
-section section_220(220) {  // len=78
+section(220) {  // len=78
     setScript(180, Map.FACT11B);
     setPStat(245, 1);
     setBGM(23);
-    if (!trigger(341) || trigger(211)) goto L_0024;
+    if (!trigger(341) || trigger(211)) goto L1;
     loadDigimon(Digimon.NPCNumemon);
     setDigimon(Digimon.NPCNumemon, 1, 0);
     return;
-L_0024:
-    if (trigger(211)) goto L_0036;
+
+L1:
+    if (trigger(211)) goto L2;
     loadDigimon(Digimon.NPCNumemon);
     setDigimon(Digimon.NPCNumemon, 0, 0);
-L_0036:
-    if (!trigger(330) || trigger(336)) goto L_004c;
+
+L2:
+    if (!trigger(330) || trigger(336)) goto L3;
     loadDigimon(Digimon.NPCNanimon);
     setDigimon(Digimon.NPCNanimon, 2, 0);
-L_004c:
+
+L3:
     return;
 }
 
-section section_221(221) {  // len=32
+section(221) {  // len=32
     setScript(181, Map.SAIB03);
     setPStat(245, 1);
     setBGM(10);
-    if (trigger(345)) goto L_001e;
+    if (trigger(345)) goto L1;
     loadDigimon(Digimon.NPCSkullGreymon);
     setDigimon(Digimon.NPCSkullGreymon, 0, 1);
-L_001e:
+
+L1:
     return;
 }
 
-section section_222(222) {  // len=32
+section(222) {  // len=32
     setScript(182, Map.MGEN98);
     setPStat(245, 1);
     setBGM(27);
-    if (trigger(326)) goto L_001e;
+    if (trigger(326)) goto L1;
     loadDigimon(Digimon.NPCMetalGreymon);
     setDigimon(Digimon.NPCMetalGreymon, 0, 1);
-L_001e:
+
+L1:
     return;
 }
 
-section section_223(223) {  // len=44
+section(223) {  // len=44
     setScript(168, Map.ROOM19);
     setPStat(245, 0);
     setBGM(28);
     loadDigimon(Digimon.NPC2Greymon);
     setDigimon(Digimon.NPC2Greymon, 0, 0);
-    if (!trigger(50)) goto L_002a;
+    if (!trigger(50)) goto L1;
     loadDigimon(Digimon.NPCAirdramon);
     loadDigimon(Digimon.NPC2MetalGreymon);
     setDigimon(Digimon.NPCAirdramon, 1, 0);
     setDigimon(Digimon.NPC2MetalGreymon, 2, 0);
-L_002a:
+
+L1:
     return;
 }
 
-section section_224(224) {  // len=20
+section(224) {  // len=20
     setScript(183, Map.YAKA26);
     setPStat(245, 1);
     setBGM(10);
@@ -3729,24 +4008,26 @@ section section_224(224) {  // len=20
     return;
 }
 
-section section_225(225) {  // len=58
+section(225) {  // len=58
     setScript(184, Map.MGEN99);
     setPStat(245, 10);
     setBGM(27);
-    if (trigger(50)) goto L_0022;
+    if (trigger(50)) goto L1;
     loadDigimon(Digimon.Analogman);
     setDigimon(Digimon.Analogman, 1, 0);
     loadDigimon(Digimon.Machinedramon);
     return;
-L_0022:
-    if (trigger(256) || !trigger(50)) goto L_0038;
+
+L1:
+    if (trigger(256) || !trigger(50)) goto L2;
     loadDigimon(Digimon.NPCDigitamamon);
     setDigimon(Digimon.NPCDigitamamon, 3, 0);
-L_0038:
+
+L2:
     return;
 }
 
-section section_226(226) {  // len=34
+section(226) {  // len=34
     setScript(185, Map.MGEN11);
     setPStat(245, 1);
     setBGM(27);
@@ -3759,7 +4040,7 @@ section section_226(226) {  // len=34
     return;
 }
 
-section section_227(227) {  // len=34
+section(227) {  // len=34
     setScript(186, Map.MGEN12);
     setPStat(245, 1);
     setBGM(27);
@@ -3772,7 +4053,7 @@ section section_227(227) {  // len=34
     return;
 }
 
-section section_228(228) {  // len=34
+section(228) {  // len=34
     setScript(187, Map.MGEN13);
     setPStat(245, 1);
     setBGM(27);
@@ -3785,46 +4066,47 @@ section section_228(228) {  // len=34
     return;
 }
 
-section section_229(229) {  // len=14
+section(229) {  // len=14
     setScript(180, Map.MGEN14);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_230(230) {  // len=14
+section(230) {  // len=14
     setScript(180, Map.MGEN15);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_231(231) {  // len=14
+section(231) {  // len=14
     setScript(180, Map.MGEN16);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_232(232) {  // len=14
+section(232) {  // len=14
     setScript(188, Map.YAKA25_2);
     setPStat(245, 1);
     setBGM(10);
     return;
 }
 
-section section_233(233) {  // len=36
+section(233) {  // len=36
     setScript(189, Map.MIHA05);
     setPStat(245, 0);
     setBGM(3);
-    if (trigger(233) || !trigger(53)) goto L_0022;
+    if (trigger(233) || !trigger(53)) goto L1;
     loadDigimon(Digimon.NPCUnimon);
     setDigimon(Digimon.NPCUnimon, 0, 0);
-L_0022:
+
+L1:
     return;
 }
 
-section section_234(234) {  // len=16
+section(234) {  // len=16
     setScript(190, Map.MIHA06);
     setPStat(245, 0);
     setBGM(3);
@@ -3832,37 +4114,41 @@ section section_234(234) {  // len=16
     return;
 }
 
-section section_235(235) {  // len=110
+section(235) {  // len=110
     setScript(191, Map.ROOM20);
     setPStat(245, 0);
     setBGM(28);
-    if (pstat[122] != 1) goto L_0020;
+    if (pstat[122] != 1) goto L1;
     loadDigimon(Digimon.NPCMetalMamemon);
     setDigimon(Digimon.NPCMetalMamemon, 1, 0);
     return;
-L_0020:
-    if (pstat[122] != 0) goto L_0034;
+
+L1:
+    if (pstat[122] != 0) goto L2;
     loadDigimon(Digimon.NPCPenguinmon);
     setDigimon(Digimon.NPCPenguinmon, 0, 0);
     return;
-L_0034:
+
+L2:
     roll(pstat: 110, max: 7);
-    if (!trigger(227) || pstat[110] > 0) goto L_0054;
+    if (!trigger(227) || pstat[110] > 0) goto L3;
     setPStat(122, 1);
     loadDigimon(Digimon.NPCMetalMamemon);
     setDigimon(Digimon.NPCMetalMamemon, 1, 0);
     return;
-L_0054:
-    if (!trigger(257)) goto L_006a;
+
+L3:
+    if (!trigger(257)) goto L4;
     setPStat(122, 0);
     loadDigimon(Digimon.NPCPenguinmon);
     setDigimon(Digimon.NPCPenguinmon, 0, 0);
-L_006a:
+
+L4:
     return;
     return;
 }
 
-section section_236(236) {  // len=32
+section(236) {  // len=32
     setScript(192, Map.TEND01);
     setPStat(245, 0);
     setBGM(28);
@@ -3875,7 +4161,7 @@ section section_236(236) {  // len=32
     return;
 }
 
-section section_237(237) {  // len=32
+section(237) {  // len=32
     setScript(192, Map.TEND02);
     setPStat(245, 0);
     setBGM(28);
@@ -3888,11 +4174,11 @@ section section_237(237) {  // len=32
     return;
 }
 
-section section_238(238) {  // len=46
+section(238) {  // len=46
     setScript(193, Map.TOPN01);
     setPStat(245, 0);
     setBGM(28);
-    if (!trigger(55)) goto L_002c;
+    if (!trigger(55)) goto L1;
     loadDigimon(Digimon.Jijimon);
     loadDigimon(Digimon.Tokomon);
     loadDigimon(Digimon.Poyomon);
@@ -3900,75 +4186,77 @@ section section_238(238) {  // len=46
     setDigimon(Digimon.Jijimon, 3, 0);
     setDigimon(Digimon.Poyomon, 7, 0);
     return;
-L_002c:
+
+L1:
     return;
 }
 
-section section_239(239) {  // len=14
+section(239) {  // len=14
     setScript(180, 239);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_240(240) {  // len=14
+section(240) {  // len=14
     setScript(180, 240);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_241(241) {  // len=14
+section(241) {  // len=14
     setScript(180, 241);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_242(242) {  // len=14
+section(242) {  // len=14
     setScript(180, 242);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_243(243) {  // len=14
+section(243) {  // len=14
     setScript(180, 243);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_244(244) {  // len=14
+section(244) {  // len=14
     setScript(180, 244);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_245(245) {  // len=14
+section(245) {  // len=14
     setScript(180, 245);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_246(246) {  // len=14
+section(246) {  // len=14
     setScript(180, 246);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_247(247) {  // len=58
+section(247) {  // len=58
     setScript(194, Map.MGEN06);
     setPStat(245, 1);
     setBGM(27);
-    if (trigger(321)) goto L_0020;
+    if (trigger(321)) goto L1;
     loadDigimon(Digimon.NPCDevimon);
     setDigimon(Digimon.NPCDevimon, 5, 1);
     return;
-L_0020:
+
+L1:
     loadDigimon(Digimon.Vermilimon);
     loadDigimon(Digimon.Piddomon);
     setDigimon(Digimon.Vermilimon, 0, 1);
@@ -3979,18 +4267,16 @@ L_0020:
     return;
 }
 
-section section_248(248) {  // len=28
+section(248) {  // len=28
     setScript(195, Map.MGEN07);
     setPStat(245, 1);
     setBGM(27);
     loadDigimon(Digimon.Rockmon);
-    setDigimon(Digimon.Rockmon, 0, 1);
-    setDigimon(Digimon.Rockmon, 1, 1);
-    setDigimon(Digimon.Rockmon, 2, 1);
+    for id in 0..2 { setDigimon(Digimon.Rockmon, id, 1); }
     return;
 }
 
-section section_249(249) {  // len=34
+section(249) {  // len=34
     setScript(196, Map.MGEN08);
     setPStat(245, 1);
     setBGM(27);
@@ -4003,28 +4289,28 @@ section section_249(249) {  // len=34
     return;
 }
 
-section section_250(250) {  // len=14
+section(250) {  // len=14
     setScript(180, 250);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_251(251) {  // len=14
+section(251) {  // len=14
     setScript(180, 251);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_252(252) {  // len=14
+section(252) {  // len=14
     setScript(180, 252);
     setPStat(245, 1);
     setBGM(23);
     return;
 }
 
-section section_253(253) {  // len=30
+section(253) {  // len=30
     setScript(197, Map.MGEN09);
     setPStat(245, 1);
     setBGM(27);
@@ -4040,11 +4326,12 @@ section onEnter(254) {  // len=62
     setScript(198, Map.MGEN10);
     setPStat(245, 1);
     setBGM(27);
-    if (trigger(254)) goto L_0020;
+    if (trigger(254)) goto L1;
     loadDigimon(Digimon.NPCMegadramon);
     setDigimon(Digimon.NPCMegadramon, 6, 1);
     return;
-L_0020:
+
+L1:
     loadDigimon(Digimon.Gururumon);
     loadDigimon(Digimon.Piddomon);
     setDigimon(Digimon.Piddomon, 0, 1);
@@ -4056,334 +4343,477 @@ L_0020:
     return;
 }
 
-section section_1220(1220) {  // len=56
-    goto section_1230.L_027e;
-L_0004:
-    goto section_1230.L_02b6;
-L_0008:
-    goto section_1230.L_02f8;
-L_000c:
-    goto section_1230.L_031c;
-L_0010:
-    goto section_1230.L_0336;
-L_0014:
-    goto section_1230.L_0352;
-L_0018:
-    goto section_1230.L_0376;
-L_001c:
-    goto section_1230.L_0388;
-L_0020:
-    goto section_1230.L_039e;
-L_0024:
-    goto section_1230.L_03ae;
-L_0028:
-    goto section_1230.L_03e0;
-L_002c:
-    goto section_1230.L_03f4;
-L_0030:
-    goto section_1230.L_0420;
-L_0034:
-    goto section_1230.L_042c;
+section(1220) {  // len=56
+    goto section_1230.L14;
+
+L1:
+    goto section_1230.L15;
+
+L2:
+    goto section_1230.L16;
+
+L3:
+    goto section_1230.L17;
+
+L4:
+    goto section_1230.L18;
+
+L5:
+    goto section_1230.L19;
+
+L6:
+    goto section_1230.L20;
+
+L7:
+    goto section_1230.L21;
+
+L8:
+    goto section_1230.L22;
+
+L9:
+    goto section_1230.L23;
+
+L10:
+    goto section_1230.L24;
+
+L11:
+    goto section_1230.L25;
+
+L12:
+    goto section_1230.L26;
+
+L13:
+    goto section_1230.L27;
 }
 
-section section_1221(1221) {  // len=56
-    goto section_1230.L_0458;
-L_0004:
-    goto section_1230.L_02b6;
-L_0008:
-    goto section_1230.L_02f8;
-L_000c:
-    goto section_1230.L_031c;
-L_0010:
-    goto section_1230.L_046e;
-L_0014:
-    goto section_1230.L_048a;
-L_0018:
-    goto section_1230.L_0376;
-L_001c:
-    goto section_1230.L_0388;
-L_0020:
-    goto section_1230.L_04b8;
-L_0024:
-    goto section_1230.L_04ec;
-L_0028:
-    goto section_1230.L_051a;
-L_002c:
-    goto section_1230.L_052e;
-L_0030:
-    goto section_1230.L_0420;
-L_0034:
-    goto section_1230.L_055a;
+section(1221) {  // len=56
+    goto section_1230.L28;
+
+L1:
+    goto section_1230.L15;
+
+L2:
+    goto section_1230.L16;
+
+L3:
+    goto section_1230.L17;
+
+L4:
+    goto section_1230.L29;
+
+L5:
+    goto section_1230.L30;
+
+L6:
+    goto section_1230.L20;
+
+L7:
+    goto section_1230.L21;
+
+L8:
+    goto section_1230.L31;
+
+L9:
+    goto section_1230.L32;
+
+L10:
+    goto section_1230.L33;
+
+L11:
+    goto section_1230.L34;
+
+L12:
+    goto section_1230.L26;
+
+L13:
+    goto section_1230.L35;
 }
 
-section section_1222(1222) {  // len=56
-    goto section_1230.L_0586;
-L_0004:
-    goto section_1230.L_02b6;
-L_0008:
-    goto section_1230.L_02f8;
-L_000c:
-    goto section_1230.L_031c;
-L_0010:
-    goto section_1230.L_05ba;
-L_0014:
-    goto section_1230.L_05ce;
-L_0018:
-    goto section_1230.L_0376;
-L_001c:
-    goto section_1230.L_0388;
-L_0020:
-    goto section_1230.L_0600;
-L_0024:
-    goto section_1230.L_0614;
-L_0028:
-    goto section_1230.L_0650;
-L_002c:
-    goto section_1230.L_0664;
-L_0030:
-    goto section_1230.L_0420;
-L_0034:
-    goto section_1230.L_067c;
+section(1222) {  // len=56
+    goto section_1230.L36;
+
+L1:
+    goto section_1230.L15;
+
+L2:
+    goto section_1230.L16;
+
+L3:
+    goto section_1230.L17;
+
+L4:
+    goto section_1230.L37;
+
+L5:
+    goto section_1230.L38;
+
+L6:
+    goto section_1230.L20;
+
+L7:
+    goto section_1230.L21;
+
+L8:
+    goto section_1230.L39;
+
+L9:
+    goto section_1230.L40;
+
+L10:
+    goto section_1230.L41;
+
+L11:
+    goto section_1230.L42;
+
+L12:
+    goto section_1230.L26;
+
+L13:
+    goto section_1230.L43;
 }
 
-section section_1223(1223) {  // len=56
-    goto section_1230.L_06b6;
-L_0004:
-    goto section_1230.L_02b6;
-L_0008:
-    goto section_1230.L_02f8;
-L_000c:
-    goto section_1230.L_031c;
-L_0010:
-    goto section_1230.L_06e8;
-L_0014:
-    goto section_1230.L_0714;
-L_0018:
-    goto section_1230.L_0376;
-L_001c:
-    goto section_1230.L_0388;
-L_0020:
-    goto section_1230.L_0762;
-L_0024:
-    goto section_1230.L_0794;
-L_0028:
-    goto section_1230.L_07cc;
-L_002c:
-    goto section_1230.L_07e0;
-L_0030:
-    goto section_1230.L_0420;
-L_0034:
-    goto section_1230.L_0802;
+section(1223) {  // len=56
+    goto section_1230.L44;
+
+L1:
+    goto section_1230.L15;
+
+L2:
+    goto section_1230.L16;
+
+L3:
+    goto section_1230.L17;
+
+L4:
+    goto section_1230.L45;
+
+L5:
+    goto section_1230.L46;
+
+L6:
+    goto section_1230.L20;
+
+L7:
+    goto section_1230.L21;
+
+L8:
+    goto section_1230.L47;
+
+L9:
+    goto section_1230.L48;
+
+L10:
+    goto section_1230.L49;
+
+L11:
+    goto section_1230.L50;
+
+L12:
+    goto section_1230.L26;
+
+L13:
+    goto section_1230.L51;
 }
 
-section section_1224(1224) {  // len=56
-    goto section_1230.L_083c;
-L_0004:
-    goto section_1230.L_02b6;
-L_0008:
-    goto section_1230.L_02f8;
-L_000c:
-    goto section_1230.L_031c;
-L_0010:
-    goto section_1230.L_087c;
-L_0014:
-    goto section_1230.L_0896;
-L_0018:
-    goto section_1230.L_0376;
-L_001c:
-    goto section_1230.L_0388;
-L_0020:
-    goto section_1230.L_08dc;
-L_0024:
-    goto section_1230.L_0906;
-L_0028:
-    goto section_1230.L_0934;
-L_002c:
-    goto section_1230.L_0950;
-L_0030:
-    goto section_1230.L_0420;
-L_0034:
-    goto section_1230.L_0982;
+section(1224) {  // len=56
+    goto section_1230.L52;
+
+L1:
+    goto section_1230.L15;
+
+L2:
+    goto section_1230.L16;
+
+L3:
+    goto section_1230.L17;
+
+L4:
+    goto section_1230.L53;
+
+L5:
+    goto section_1230.L54;
+
+L6:
+    goto section_1230.L20;
+
+L7:
+    goto section_1230.L21;
+
+L8:
+    goto section_1230.L55;
+
+L9:
+    goto section_1230.L56;
+
+L10:
+    goto section_1230.L57;
+
+L11:
+    goto section_1230.L58;
+
+L12:
+    goto section_1230.L26;
+
+L13:
+    goto section_1230.L59;
 }
 
-section section_1225(1225) {  // len=56
-    goto section_1230.L_09c4;
-L_0004:
-    goto section_1230.L_02b6;
-L_0008:
-    goto section_1230.L_02f8;
-L_000c:
-    goto section_1230.L_031c;
-L_0010:
-    goto section_1230.L_09ee;
-L_0014:
-    goto section_1230.L_0a1c;
-L_0018:
-    goto section_1230.L_0376;
-L_001c:
-    goto section_1230.L_0388;
-L_0020:
-    goto section_1230.L_0a3e;
-L_0024:
-    goto section_1230.L_0a62;
-L_0028:
-    goto section_1230.L_0a8a;
-L_002c:
-    goto section_1230.L_0aa0;
-L_0030:
-    goto section_1230.L_0420;
-L_0034:
-    goto section_1230.L_0ad2;
+section(1225) {  // len=56
+    goto section_1230.L60;
+
+L1:
+    goto section_1230.L15;
+
+L2:
+    goto section_1230.L16;
+
+L3:
+    goto section_1230.L17;
+
+L4:
+    goto section_1230.L61;
+
+L5:
+    goto section_1230.L62;
+
+L6:
+    goto section_1230.L20;
+
+L7:
+    goto section_1230.L21;
+
+L8:
+    goto section_1230.L63;
+
+L9:
+    goto section_1230.L64;
+
+L10:
+    goto section_1230.L65;
+
+L11:
+    goto section_1230.L66;
+
+L12:
+    goto section_1230.L26;
+
+L13:
+    goto section_1230.L67;
 }
 
-section section_1226(1226) {  // len=56
-    goto section_1230.L_0b0e;
-L_0004:
-    goto section_1230.L_02b6;
-L_0008:
-    goto section_1230.L_02f8;
-L_000c:
-    goto section_1230.L_031c;
-L_0010:
-    goto section_1230.L_0b3e;
-L_0014:
-    goto section_1230.L_0b5a;
-L_0018:
-    goto section_1230.L_0376;
-L_001c:
-    goto section_1230.L_0388;
-L_0020:
-    goto section_1230.L_0b70;
-L_0024:
-    goto section_1230.L_0b9a;
-L_0028:
-    goto section_1230.L_0bc2;
-L_002c:
-    goto section_1230.L_0be8;
-L_0030:
-    goto section_1230.L_0420;
-L_0034:
-    goto section_1230.L_0c1c;
+section(1226) {  // len=56
+    goto section_1230.L68;
+
+L1:
+    goto section_1230.L15;
+
+L2:
+    goto section_1230.L16;
+
+L3:
+    goto section_1230.L17;
+
+L4:
+    goto section_1230.L69;
+
+L5:
+    goto section_1230.L70;
+
+L6:
+    goto section_1230.L20;
+
+L7:
+    goto section_1230.L21;
+
+L8:
+    goto section_1230.L71;
+
+L9:
+    goto section_1230.L72;
+
+L10:
+    goto section_1230.L73;
+
+L11:
+    goto section_1230.L74;
+
+L12:
+    goto section_1230.L26;
+
+L13:
+    goto section_1230.L75;
 }
 
-section section_1227(1227) {  // len=56
-    goto section_1230.L_0c42;
-L_0004:
-    goto section_1230.L_02b6;
-L_0008:
-    goto section_1230.L_02f8;
-L_000c:
-    goto section_1230.L_031c;
-L_0010:
-    goto section_1230.L_0c6c;
-L_0014:
-    goto section_1230.L_0c88;
-L_0018:
-    goto section_1230.L_0376;
-L_001c:
-    goto section_1230.L_0388;
-L_0020:
-    goto section_1230.L_0cb8;
-L_0024:
-    goto section_1230.L_0ce0;
-L_0028:
-    goto section_1230.L_0d12;
-L_002c:
-    goto section_1230.L_0d26;
-L_0030:
-    goto section_1230.L_0420;
-L_0034:
-    goto section_1230.L_0d48;
+section(1227) {  // len=56
+    goto section_1230.L76;
+
+L1:
+    goto section_1230.L15;
+
+L2:
+    goto section_1230.L16;
+
+L3:
+    goto section_1230.L17;
+
+L4:
+    goto section_1230.L77;
+
+L5:
+    goto section_1230.L78;
+
+L6:
+    goto section_1230.L20;
+
+L7:
+    goto section_1230.L21;
+
+L8:
+    goto section_1230.L79;
+
+L9:
+    goto section_1230.L80;
+
+L10:
+    goto section_1230.L81;
+
+L11:
+    goto section_1230.L82;
+
+L12:
+    goto section_1230.L26;
+
+L13:
+    goto section_1230.L83;
 }
 
-section section_1228(1228) {  // len=56
-    goto section_1230.L_0d7c;
-L_0004:
-    goto section_1230.L_02b6;
-L_0008:
-    goto section_1230.L_02f8;
-L_000c:
-    goto section_1230.L_031c;
-L_0010:
-    goto section_1230.L_0da6;
-L_0014:
-    goto section_1230.L_0dc2;
-L_0018:
-    goto section_1230.L_0376;
-L_001c:
-    goto section_1230.L_0388;
-L_0020:
-    goto section_1230.L_0e0a;
-L_0024:
-    goto section_1230.L_0e3c;
-L_0028:
-    goto section_1230.L_0e6c;
-L_002c:
-    goto section_1230.L_0e82;
-L_0030:
-    goto section_1230.L_0420;
-L_0034:
-    goto section_1230.L_0ebe;
+section(1228) {  // len=56
+    goto section_1230.L84;
+
+L1:
+    goto section_1230.L15;
+
+L2:
+    goto section_1230.L16;
+
+L3:
+    goto section_1230.L17;
+
+L4:
+    goto section_1230.L85;
+
+L5:
+    goto section_1230.L86;
+
+L6:
+    goto section_1230.L20;
+
+L7:
+    goto section_1230.L21;
+
+L8:
+    goto section_1230.L87;
+
+L9:
+    goto section_1230.L88;
+
+L10:
+    goto section_1230.L89;
+
+L11:
+    goto section_1230.L90;
+
+L12:
+    goto section_1230.L26;
+
+L13:
+    goto section_1230.L91;
 }
 
-section section_1229(1229) {  // len=56
-    goto section_1230.L_0ef8;
-L_0004:
-    goto section_1230.L_02b6;
-L_0008:
-    goto section_1230.L_02f8;
-L_000c:
-    goto section_1230.L_031c;
-L_0010:
-    goto section_1230.L_0f0e;
-L_0014:
-    goto section_1230.L_0f2a;
-L_0018:
-    goto section_1230.L_0376;
-L_001c:
-    goto section_1230.L_0388;
-L_0020:
-    goto section_1230.L_0f5a;
-L_0024:
-    goto section_1230.L_0f82;
-L_0028:
-    goto section_1230.L_0fba;
-L_002c:
-    goto section_1230.L_0fce;
-L_0030:
-    goto section_1230.L_0420;
-L_0034:
-    goto section_1230.L_0ff0;
+section(1229) {  // len=56
+    goto section_1230.L92;
+
+L1:
+    goto section_1230.L15;
+
+L2:
+    goto section_1230.L16;
+
+L3:
+    goto section_1230.L17;
+
+L4:
+    goto section_1230.L93;
+
+L5:
+    goto section_1230.L94;
+
+L6:
+    goto section_1230.L20;
+
+L7:
+    goto section_1230.L21;
+
+L8:
+    goto section_1230.L95;
+
+L9:
+    goto section_1230.L96;
+
+L10:
+    goto section_1230.L97;
+
+L11:
+    goto section_1230.L98;
+
+L12:
+    goto section_1230.L26;
+
+L13:
+    goto section_1230.L99;
 }
 
-section section_1230(1230) {  // len=4720
-    goto L_102a;
-L_0004:
-    goto L_02b6;
-L_0008:
-    goto L_02f8;
-L_000c:
-    goto L_031c;
-L_0010:
-    goto L_1072;
-L_0014:
-    goto L_10a6;
-L_0018:
-    goto L_0376;
-L_001c:
-    goto L_0388;
-L_0020:
-    goto L_10e4;
-L_0024:
-    goto L_1124;
-L_0028:
-    goto L_1176;
-L_002c:
-    goto L_11a2;
-L_0030:
-    goto L_0420;
-L_0034:
-    goto L_11dc;
+section(1230) {  // len=4720
+    goto L100;
+
+L1:
+    goto L15;
+
+L2:
+    goto L16;
+
+L3:
+    goto L17;
+
+L4:
+    goto L101;
+
+L5:
+    goto L102;
+
+L6:
+    goto L20;
+
+L7:
+    goto L21;
+
+L8:
+    goto L103;
+
+L9:
+    goto L104;
+
+L10:
+    goto L105;
+
+L11:
+    goto L106;
+
+L12:
+    goto L26;
+
+L13:
+    goto L107;
     showTextbox("What can I do for you?\n");
     showTextbox("We'll be open in a moment.\n");
     showTextbox("Buy\nSell\nSee ya\n");
@@ -4398,640 +4828,899 @@ L_0034:
     showTextbox("What else can I do for you?\n");
     showTextbox("I don't have any in stock.\n");
     showTextbox("I discounted it <DISCOUNT>.\n");
-L_027e:
+
+L14:
     showTextbox("What are you going to do?\n");
-L_02b6:
+
+L15:
     showTextbox("I don't have\nanything to sell.\n");
-L_02f8:
+
+L16:
     showTextbox("Buy\nSell\nSee ya\n");
-L_031c:
+
+L17:
     showTextbox("Buy\nSee ya\n");
-L_0336:
+
+L18:
     showTextbox("Come again.\n");
-L_0352:
+
+L19:
     showTextbox("That's too bad.\n");
-L_0376:
+
+L20:
     showTextbox("Bits <BITS>\n");
-L_0388:
+
+L21:
     showTextbox("Points <POINTS>\n");
-L_039e:
+
+L22:
     showTextbox("Shop.\n");
-L_03ae:
+
+L23:
     showTextbox("Want to sell anything?\n");
-L_03e0:
+
+L24:
     showTextbox("Thanks.\n");
-L_03f4:
+
+L25:
     showTextbox("Have anything else?\n");
-L_0420:
+
+L26:
     showTextbox("No.\n");
-L_042c:
+
+L27:
     showTextbox("I'll discount it <DISCOUNT>.\n");
-L_0458:
+
+L28:
     showTextbox("Welcome.\n");
-L_046e:
+
+L29:
     showTextbox("Come again.\n");
-L_048a:
+
+L30:
     showTextbox("Browsing isn't nice.\n");
-L_04b8:
+
+L31:
     showTextbox("Going to buy something?\n");
-L_04ec:
+
+L32:
     showTextbox("Will you sell me it?\n");
-L_051a:
+
+L33:
     showTextbox("Thanks.\n");
-L_052e:
+
+L34:
     showTextbox("Need anything else?\n");
-L_055a:
+
+L35:
     showTextbox("I'll discount it <DISCOUNT>.\n");
-L_0586:
+
+L36:
     showTextbox("What do you want to do?\n");
-L_05ba:
+
+L37:
     showTextbox("Thanks.\n");
-L_05ce:
+
+L38:
     showTextbox("You just came to look?\n");
-L_0600:
+
+L39:
     showTextbox("Choose.\n");
-L_0614:
+
+L40:
     showTextbox("I'll buy anything from you.\n");
-L_0650:
+
+L41:
     showTextbox("Thanks.\n");
-L_0664:
+
+L42:
     showTextbox("Continue?\n");
-L_067c:
+
+L43:
     showTextbox("I'll give you a <DISCOUNT>discount.\n");
-L_06b6:
+
+L44:
     showTextbox("What can I do for you?\n");
-L_06e8:
+
+L45:
     showTextbox("Thanks. Come again.\n");
-L_0714:
+
+L46:
     showTextbox("I hope you find something\nnext time.\n");
-L_0762:
+
+L47:
     showTextbox("Which one do you like?\n");
-L_0794:
+
+L48:
     showTextbox("What do you want to sell?\n");
-L_07cc:
+
+L49:
     showTextbox("Thanks.\n");
-L_07e0:
+
+L50:
     showTextbox("Anything else?\n");
-L_0802:
+
+L51:
     showTextbox("I'll give you a <DISCOUNT>discount.\n");
-L_083c:
+
+L52:
     showTextbox("What I have is one of\na kind.\n");
-L_087c:
+
+L53:
     showTextbox("Come back.\n");
-L_0896:
+
+L54:
     showTextbox("Do you plan on buying\nsomething?\n");
-L_08dc:
+
+L55:
     showTextbox("Get what you want.\n");
-L_0906:
+
+L56:
     showTextbox("I don't accept junk.\n");
-L_0934:
+
+L57:
     showTextbox("Be careful.\n");
-L_0950:
+
+L58:
     showTextbox("What else do you want?\n");
-L_0982:
+
+L59:
     showTextbox("I'll give you a\ndiscount of <DISCOUNT>.\n");
-L_09c4:
+
+L60:
     showTextbox("You're a customer!\n");
-L_09ee:
+
+L61:
     showTextbox("Next time, buy more.\n");
-L_0a1c:
+
+L62:
     showTextbox("You're stingy!\n");
-L_0a3e:
+
+L63:
     showTextbox("Buy everything.\n");
-L_0a62:
+
+L64:
     showTextbox("Sell me anything.\n");
-L_0a8a:
+
+L65:
     showTextbox("Alright.\n");
-L_0aa0:
+
+L66:
     showTextbox("What else do you have?\n");
-L_0ad2:
+
+L67:
     showTextbox("I'll give you a <DISCOUNT>\ndiscount.\n");
-L_0b0e:
+
+L68:
     showTextbox("My Items are amazing!\n");
-L_0b3e:
+
+L69:
     showTextbox("Come again.\n");
-L_0b5a:
+
+L70:
     showTextbox("Go home.\n");
-L_0b70:
+
+L71:
     showTextbox("Which one is good?\n");
-L_0b9a:
+
+L72:
     showTextbox("I'll sell you it.\n");
-L_0bc2:
+
+L73:
     showTextbox("Are you serious?\n");
-L_0be8:
+
+L74:
     showTextbox("Is there anything else?\n");
-L_0c1c:
+
+L75:
     showTextbox("A discount? - <DISCOUNT>.\n");
-L_0c42:
+
+L76:
     showTextbox("What do you think?\n");
-L_0c6c:
+
+L77:
     showTextbox("Come again.\n");
-L_0c88:
+
+L78:
     showTextbox("Are you just looking?\n");
-L_0cb8:
+
+L79:
     showTextbox("What do you want?\n");
-L_0ce0:
+
+L80:
     showTextbox("Which one do you want?\n");
-L_0d12:
+
+L81:
     showTextbox("Thanks.\n");
-L_0d26:
+
+L82:
     showTextbox("Is there more?\n");
-L_0d48:
+
+L83:
     showTextbox("I gave you a <DISCOUNT>discount.\n");
-L_0d7c:
+
+L84:
     showTextbox("Now's your chance.\n");
-L_0da6:
+
+L85:
     showTextbox("Come again.\n");
-L_0dc2:
+
+L86:
     showTextbox("Are you messing\nwith my business?\n");
-L_0e0a:
+
+L87:
     showTextbox("Which one do you want?\n");
-L_0e3c:
+
+L88:
     showTextbox("What are you selling?\n");
-L_0e6c:
+
+L89:
     showTextbox("Gracias.\n");
-L_0e82:
+
+L90:
     showTextbox("What else can I do for you?\n");
-L_0ebe:
+
+L91:
     showTextbox("I'll give you a <DISCOUNT>discount.\n");
-L_0ef8:
+
+L92:
     showTextbox("Welcome!\n");
-L_0f0e:
+
+L93:
     showTextbox("Come again.\n");
-L_0f2a:
+
+L94:
     showTextbox("You're not gonna buy?\n");
-L_0f5a:
+
+L95:
     showTextbox("What do you want?\n");
-L_0f82:
+
+L96:
     showTextbox("What do you want to sell?\n");
-L_0fba:
+
+L97:
     showTextbox("Thanks.\n");
-L_0fce:
+
+L98:
     showTextbox("Anything else?\n");
-L_0ff0:
+
+L99:
     showTextbox("I'll give you a <DISCOUNT>discount.\n");
-L_102a:
+
+L100:
     showTextbox("<YELLOW>Coelamon <WHITE>\nThis is an Item shop.\n");
-L_1072:
+
+L101:
     showTextbox("<YELLOW>Coelamon <WHITE>\nCome again.\n");
-L_10a6:
+
+L102:
     showTextbox("<YELLOW>Coelamon <WHITE>\nWindow Shopping?\n");
-L_10e4:
+
+L103:
     showTextbox("<YELLOW>Coelamon <WHITE>\nWhat do you want?\n");
-L_1124:
+
+L104:
     showTextbox("<YELLOW>Coelamon <WHITE>\nWhich do you want to sell?\n");
-L_1176:
+
+L105:
     showTextbox("<YELLOW>Coelamon <WHITE>\nThanks.\n");
-L_11a2:
+
+L106:
     showTextbox("<YELLOW>Coelamon <WHITE>\nAnything else?\n");
-L_11dc:
+
+L107:
     showTextbox("<YELLOW>Coelamon <WHITE>\nWell, <ORANGE><DIGIMON><WHITE>is still\nyoung, so I'll give you\na <DISCOUNT>bit discount.\n");
     return;
 }
 
-section section_1235(1235) {  // len=466
-    goto L_0024;
-L_0004:
-    goto L_0058;
-L_0008:
-    goto L_008c;
-L_000c:
-    goto L_00b2;
-L_0010:
-    goto L_00d8;
-L_0014:
-    goto L_0120;
-L_0018:
-    goto L_0136;
-L_001c:
-    goto L_0158;
-L_0020:
-    goto L_018c;
-L_0024:
+section(1235) {  // len=466
+    goto L9;
+
+L1:
+    goto L10;
+
+L2:
+    goto L11;
+
+L3:
+    goto L12;
+
+L4:
+    goto L13;
+
+L5:
+    goto L14;
+
+L6:
+    goto L15;
+
+L7:
+    goto L16;
+
+L8:
+    goto L17;
+
+L9:
     showTextbox("Look what we got today.\n");
-L_0058:
+
+L10:
     showTextbox("We don't have any more.\n");
-L_008c:
+
+L11:
     showTextbox("This is a <CARD>card.\n");
-L_00b2:
+
+L12:
     showTextbox("This is a <CARD>card.\n");
-L_00d8:
+
+L13:
     showTextbox("This is a <CARD>that\nI don't have yet.\n");
-L_0120:
+
+L14:
     showTextbox("A <CARD>card!\n");
-L_0136:
+
+L15:
     showTextbox("Another <CARD>card.\n");
-L_0158:
+
+L16:
     showTextbox("I didn't have the card.\n");
-L_018c:
+
+L17:
     showTextbox("Which card do you want\nto sell?\n");
     return;
 }
 
-section section_1236(1236) {  // len=944
-    goto L_0030;
-L_0004:
-    goto L_0094;
-L_0008:
-    goto L_00f0;
-L_000c:
-    goto L_0112;
-L_0010:
-    goto L_012a;
-L_0014:
-    goto L_014a;
-L_0018:
-    goto L_0176;
-L_001c:
-    goto L_019e;
-L_0020:
-    goto L_0214;
-L_0024:
-    goto L_028a;
-L_0028:
-    goto L_02e8;
-L_002c:
-    goto L_034a;
-L_0030:
+section(1236) {  // len=944
+    goto L12;
+
+L1:
+    goto L13;
+
+L2:
+    goto L14;
+
+L3:
+    goto L15;
+
+L4:
+    goto L16;
+
+L5:
+    goto L17;
+
+L6:
+    goto L18;
+
+L7:
+    goto L19;
+
+L8:
+    goto L20;
+
+L9:
+    goto L21;
+
+L10:
+    goto L22;
+
+L11:
+    goto L23;
+
+L12:
     showTextbox("You want 'Merit' too?\nWhat are you going to do?\n");
-L_0094:
+
+L13:
     showTextbox("Show a Digimon card\nUse Merit points\nSee ya\n");
-L_00f0:
+
+L14:
     showTextbox("Give it\nCancel\n");
-L_0112:
+
+L15:
     showTextbox("OK\nCancel\n");
-L_012a:
+
+L16:
     showTextbox("Are you sure?\n");
-L_014a:
+
+L17:
     showTextbox("What did you bring?\n");
-L_0176:
+
+L18:
     showTextbox("What do you want?\n");
-L_019e:
+
+L19:
     showTextbox("This is very rare!\nIf you give me this it'll\nbe <DISCOUNT>points.\n");
-L_0214:
+
+L20:
     showTextbox("This is very rare!\nIf you give me this it'll be\n<DISCOUNT>points.\n");
-L_028a:
+
+L21:
     showTextbox("This is very good stuff.\nIt's worth <DISCOUNT>points.\n");
-L_02e8:
+
+L22:
     showTextbox("This is very common.\nIt's worth about <DISCOUNT>points.\n");
-L_034a:
+
+L23:
     showTextbox("This isn't good. I'll give \nyou <DISCOUNT>points for it.\n");
     return;
 }
 
-section section_1237(1237) {  // len=416
-    goto L_0018;
-L_0004:
-    goto L_0076;
-L_0008:
-    goto L_0088;
-L_000c:
-    goto L_00d4;
-L_0010:
-    goto L_0160;
-L_0014:
-    goto L_017e;
-L_0018:
+section(1237) {  // len=416
+    goto L6;
+
+L1:
+    goto L7;
+
+L2:
+    goto L8;
+
+L3:
+    goto L9;
+
+L4:
+    goto L10;
+
+L5:
+    goto L11;
+
+L6:
     showTextbox("Do you have any business\nat the Item Keeper?\n");
-L_0076:
+
+L7:
     showTextbox("Yes\nNo\n");
-L_0088:
+
+L8:
     showTextbox("Come to this shop\nwhen you need it.\n");
-L_00d4:
+
+L9:
     showTextbox("Use <LIGHTBLUE><X> <WHITE>to move Items.\nUse <ORANGE><O> <WHITE>to move by tens\nand <PINK><SQUARE> <WHITE>to move all.\n");
-L_0160:
+
+L10:
     showTextbox("Items Stored\n");
-L_017e:
+
+L11:
     showTextbox("Items in Hand\n");
     return;
 }
 
-section section_1238(1238) {  // len=2154
-    goto L_0084;
-L_0004:
-    goto L_00b6;
-L_0008:
-    goto L_00f2;
-L_000c:
-    goto L_010a;
-L_0010:
-    goto L_017a;
-L_0014:
-    goto L_01b0;
-L_0018:
-    goto L_0216;
-L_001c:
-    goto L_027e;
-L_0020:
-    goto L_029e;
-L_0024:
-    goto L_0312;
-L_0028:
-    goto L_0344;
-L_002c:
-    goto L_03b0;
-L_0030:
-    goto L_03e6;
-L_0034:
-    goto L_040c;
-L_0038:
-    goto L_0420;
-L_003c:
-    goto L_0444;
-L_0040:
-    goto L_0468;
-L_0044:
-    goto L_04cc;
-L_0048:
-    goto L_0516;
-L_004c:
-    goto L_0530;
-L_0050:
-    goto L_0558;
-L_0054:
-    goto L_05e0;
-L_0058:
-    goto L_0600;
-L_005c:
-    goto L_0628;
-L_0060:
-    goto L_066c;
-L_0064:
-    goto L_0686;
-L_0068:
-    goto L_06b2;
-L_006c:
-    goto L_06f0;
-L_0070:
-    goto L_0722;
-L_0074:
-    goto L_073c;
-L_0078:
-    goto L_078e;
-L_007c:
-    goto L_07c0;
-L_0080:
-    goto L_07f0;
-L_0084:
+section(1238) {  // len=2154
+    goto L33;
+
+L1:
+    goto L34;
+
+L2:
+    goto L35;
+
+L3:
+    goto L36;
+
+L4:
+    goto L37;
+
+L5:
+    goto L38;
+
+L6:
+    goto L39;
+
+L7:
+    goto L40;
+
+L8:
+    goto L41;
+
+L9:
+    goto L42;
+
+L10:
+    goto L43;
+
+L11:
+    goto L44;
+
+L12:
+    goto L45;
+
+L13:
+    goto L46;
+
+L14:
+    goto L47;
+
+L15:
+    goto L48;
+
+L16:
+    goto L49;
+
+L17:
+    goto L50;
+
+L18:
+    goto L51;
+
+L19:
+    goto L52;
+
+L20:
+    goto L53;
+
+L21:
+    goto L54;
+
+L22:
+    goto L55;
+
+L23:
+    goto L56;
+
+L24:
+    goto L57;
+
+L25:
+    goto L58;
+
+L26:
+    goto L59;
+
+L27:
+    goto L60;
+
+L28:
+    goto L61;
+
+L29:
+    goto L62;
+
+L30:
+    goto L63;
+
+L31:
+    goto L64;
+
+L32:
+    goto L65;
+
+L33:
     showTextbox("Which one do you want?\n");
-L_00b6:
+
+L34:
     showTextbox("Help me on my next request.\n");
-L_00f2:
+
+L35:
     showTextbox("<SELECTED TRACK>, right?\n");
-L_010a:
+
+L36:
     showTextbox("Why don't you request a\nnumber that will make me hot?\n");
-L_017a:
+
+L37:
     showTextbox("Where should I take you?\n");
-L_01b0:
+
+L38:
     showTextbox("I think that going yourself\nmay be the best way.\n");
-L_0216:
+
+L39:
     showTextbox("Are you sure? Once you go,\nI can't take you back.\n");
-L_027e:
+
+L40:
     showTextbox("I know\nCancel\n");
-L_029e:
+
+L41:
     showTextbox("I'm a collector. If you got\na thing I want, I'll trade.\n");
-L_0312:
+
+L42:
     showTextbox("What will you give me?\n");
-L_0344:
+
+L43:
     showTextbox("I'll trade all the time,\nso bring whatever you got.\n");
-L_03b0:
+
+L44:
     showTextbox("You'll really give me <SELECTED ITEM>?\n");
-L_03e6:
+
+L45:
     showTextbox("Yeah\nWell..., no\n");
-L_040c:
+
+L46:
     showTextbox("Thanks!\n");
-L_0420:
+
+L47:
     showTextbox("Too many Items.\n");
-L_0444:
+
+L48:
     showTextbox("I want You have\n");
-L_0468:
+
+L49:
     showTextbox("<YELLOW>Jijimon <WHITE>\nI'm Jijimon. Tell me\nabout yourself.\n");
-L_04cc:
+
+L50:
     showTextbox("<YELLOW>Jijimon <WHITE>\nDo you have a Digivice?\n");
-L_0516:
+
+L51:
     showTextbox("<LIGHTBLUE><PLAYER><WHITE>\nYes\nNo\n");
-L_0530:
+
+L52:
     showTextbox("<YELLOW>Jijimon <WHITE>\nI see.\n");
-L_0558:
+
+L53:
     showTextbox("<YELLOW>Jijimon <WHITE>\nNext question. Which do you\nlike better, day or night?\n");
-L_05e0:
+
+L54:
     showTextbox("<LIGHTBLUE><PLAYER><WHITE>\nDay\nNight\n");
-L_0600:
+
+L55:
     showTextbox("<YELLOW>Jijimon <WHITE>\nI see.\n");
-L_0628:
+
+L56:
     showTextbox("<YELLOW>Jijimon <WHITE>\nDo you have friends?\n");
-L_066c:
+
+L57:
     showTextbox("<LIGHTBLUE><PLAYER><WHITE>\nYes\nNo\n");
-L_0686:
+
+L58:
     showTextbox("<YELLOW>Jijimon <WHITE>\nAlright.\n");
-L_06b2:
+
+L59:
     showTextbox("<YELLOW>Jijimon <WHITE>\nWhat's your name?\n");
-L_06f0:
+
+L60:
     showTextbox("<YELLOW>Jijimon <WHITE>\n<LIGHTBLUE><PLAYER><WHITE>, right?\n");
-L_0722:
+
+L61:
     showTextbox("<LIGHTBLUE><PLAYER><WHITE>\nYes\nNo\n");
-L_073c:
+
+L62:
     showTextbox("<YELLOW>Jijimon <WHITE>\nWhat's your Digimon's name?\n");
-L_078e:
+
+L63:
     showTextbox("<YELLOW>Jijimon <WHITE>\n<ORANGE><DIGIMON><WHITE>, right?\n");
-L_07c0:
+
+L64:
     showTextbox("<YELLOW>Jijimon <WHITE>\nGood Name.\n");
-L_07f0:
+
+L65:
     showTextbox("<YELLOW>Jijimon <WHITE>\nThat's all the questions\nI have. See ya later!\n");
     return;
 }
 
-section section_1240(1240) {  // len=520
-    goto L_0020;
-L_0004:
-    goto L_0046;
-L_0008:
-    goto L_0072;
-L_000c:
-    goto L_00b0;
-L_0010:
-    goto L_0106;
-L_0014:
-    goto L_012e;
-L_0018:
-    goto L_0142;
-L_001c:
-    goto L_01da;
-L_0020:
+section(1240) {  // len=520
+    goto L8;
+
+L1:
+    goto L9;
+
+L2:
+    goto L10;
+
+L3:
+    goto L11;
+
+L4:
+    goto L12;
+
+L5:
+    goto L13;
+
+L6:
+    goto L14;
+
+L7:
+    goto L15;
+
+L8:
     showTextbox("Is it OK?\nYes No\n");
-L_0046:
+
+L9:
     showTextbox("Tournament Schedule\n");
-L_0072:
+
+L10:
     showTextbox("Do you want to enter?\n- <SELECTED TOURNAMENT>- ?\n");
-L_00b0:
+
+L11:
     showTextbox("<ORANGE><DIGIMON><WHITE>is going to\nenter - <SELECTED TOURNAMENT>-?\nAre you sure?\n");
-L_0106:
+
+L12:
     showTextbox("Enter\nDon't enter\n");
-L_012e:
+
+L13:
     showTextbox("Penalty\n");
-L_0142:
+
+L14:
     showTextbox("You can't enter yet. Come\nbetween ten am and eleven pm\non tournament day.\n");
-L_01da:
+
+L15:
     showTextbox("<LOST MOVE>was not passed on.\n");
     return;
 }
 
-section section_1241(1241) {  // len=112
+section(1241) {  // len=112
     playSound(0, 6);
     setDialogOwner(Entity.Player);
     showTextbox("You're entered in today's\n- <SELECTED TOURNAMENT>- Tournament, right?\n");
     return;
 }
 
-section section_1242(1242) {  // len=126
+section(1242) {  // len=126
     playSound(0, 6);
     setDialogOwner(Entity.Player);
     showTextbox("Darn! I forgot that we\nentered today's\n - <SELECTED TOURNAMENT>- Tournament!\n");
     return;
 }
 
-section section_1243(1243) {  // len=152
-    goto L_0018;
-L_0004:
-    goto L_0028;
-L_0008:
-    goto L_003c;
-L_000c:
-    goto L_0054;
-L_0010:
-    goto L_0068;
-L_0014:
-    goto L_0078;
-L_0018:
+section(1243) {  // len=152
+    goto L6;
+
+L1:
+    goto L7;
+
+L2:
+    goto L8;
+
+L3:
+    goto L9;
+
+L4:
+    goto L10;
+
+L5:
+    goto L11;
+
+L6:
     showTextbox("Grade\n");
-L_0028:
+
+L7:
     showTextbox("Version\n");
-L_003c:
+
+L8:
     showTextbox("Character\n");
-L_0054:
+
+L9:
     showTextbox("Special\n");
-L_0068:
+
+L10:
     showTextbox("Total\n");
-L_0078:
+
+L11:
     showTextbox("Trading card\n");
     return;
 }
 
-section section_1244(1244) {  // len=110
+section(1244) {  // len=110
     playSound(0, 7);
     delay(10);
     setDialogOwner(Entity.Player);
-    if (pstat[254] != 0) goto L_0032;
+    if (pstat[254] != 0) goto L1;
     showTextbox("It's <LIGHTBLUE><SOME ITEM><WHITE>!\n");
-    goto L_006c;
-L_0032:
+    goto L2;
+
+L1:
     showTextbox("But we got too many Items.\n");
-L_006c:
+
+L2:
     return;
 }
 
-section section_1245(1245) {  // len=246
+section(1245) {  // len=246
     playSound(0, 9);
-    if (trigger(203)) goto L_0014;
+    if (trigger(203)) goto L1;
     warp(to: Map.TWNA01, spawn: 0, trigger: 255);
-L_0014:
-    if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L_0030;
-    goto L_0094;
-    goto L_0034;
-L_0030:
-    goto L_0034;
-L_0034:
-    if (!trigger(221)) goto L_0048;
-    goto L_0070;
-    goto L_004c;
-L_0048:
-    goto L_004c;
-L_004c:
-    if (!trigger(225)) goto L_005c;
+
+L1:
+    if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L2;
+    goto L11;
+    goto L3;
+
+L2:
+    goto L3;
+
+L3:
+    if (!trigger(221)) goto L4;
+    goto L8;
+    goto L5;
+
+L4:
+    goto L5;
+
+L5:
+    if (!trigger(225)) goto L6;
     warp(to: Map.TWNA04, spawn: 0, trigger: 255);
-L_005c:
-    if (!trigger(246)) goto L_006c;
+
+L6:
+    if (!trigger(246)) goto L7;
     warp(to: Map.TWNA03, spawn: 0, trigger: 255);
-L_006c:
+
+L7:
     warp(to: Map.TWNA02, spawn: 0, trigger: 255);
-L_0070:
-    if (!trigger(225)) goto L_0080;
+
+L8:
+    if (!trigger(225)) goto L9;
     warp(to: Map.TWNA07, spawn: 0, trigger: 255);
-L_0080:
-    if (!trigger(246)) goto L_0090;
+
+L9:
+    if (!trigger(246)) goto L10;
     warp(to: Map.TWNA06, spawn: 0, trigger: 255);
-L_0090:
+
+L10:
     warp(to: Map.TWNA05, spawn: 0, trigger: 255);
-L_0094:
-    if (!trigger(221)) goto L_00a8;
-    goto L_00d0;
-    goto L_00ac;
-L_00a8:
-    goto L_00ac;
-L_00ac:
-    if (!trigger(225)) goto L_00bc;
+
+L11:
+    if (!trigger(221)) goto L12;
+    goto L16;
+    goto L13;
+
+L12:
+    goto L13;
+
+L13:
+    if (!trigger(225)) goto L14;
     warp(to: Map.TWNA10, spawn: 0, trigger: 255);
-L_00bc:
-    if (!trigger(246)) goto L_00cc;
+
+L14:
+    if (!trigger(246)) goto L15;
     warp(to: Map.TWNA09, spawn: 0, trigger: 255);
-L_00cc:
+
+L15:
     warp(to: Map.TWNA08, spawn: 0, trigger: 255);
-L_00d0:
-    if (!trigger(225)) goto L_00e0;
+
+L16:
+    if (!trigger(225)) goto L17;
     warp(to: Map.TWNA13, spawn: 0, trigger: 255);
-L_00e0:
-    if (!trigger(246)) goto L_00f0;
+
+L17:
+    if (!trigger(246)) goto L18;
     warp(to: Map.TWNA12, spawn: 0, trigger: 255);
-L_00f0:
+
+L18:
     warp(to: Map.TWNA11, spawn: 0, trigger: 255);
     return;
 }
 
-section section_1246(1246) {  // len=94
+section(1246) {  // len=94
     unsetTrigger(1);
     setTrigger(41);
-    if (stat[Stat.Lives] != 0 || stat[Stat.CurrentHP] != 0) goto L_0024;
+    if (stat[Stat.Lives] != 0 || stat[Stat.CurrentHP] != 0) goto L1;
     sectionOnExit(73);
     callDigimonSubroutine(7);
     waitForEntity(Entity.System);
     return;
-L_0024:
-    if (stat[Stat.Lives] != 0 || stat[Stat.CurrentHP] == 0) goto L_0040;
+
+L1:
+    if (stat[Stat.Lives] != 0 || stat[Stat.CurrentHP] == 0) goto L2;
     sectionOnExit(73);
     callDigimonSubroutine(7);
     waitForEntity(Entity.System);
     return;
-L_0040:
-    if (stat[Stat.Lifetime] > 0) goto L_0056;
+
+L2:
+    if (stat[Stat.Lifetime] > 0) goto L3;
     sectionOnExit(71);
     callDigimonSubroutine(3);
     waitForEntity(Entity.System);
     return;
-L_0056:
+
+L3:
     sectionOnExit(72);
     callDigimonSubroutine(9);
     waitForEntity(Entity.System);
     return;
 }
 
-section section_1250(1250) {  // len=10
+section(1250) {  // len=10
     callDigimonSubroutine(0);
     waitForEntity(Entity.System);
     playSound(0, 10);
     return;
 }
 
-section section_1251(1251) {  // len=36
+section(1251) {  // len=36
     setDialogOwner(5);
     showTextbox("Hold on tight!\n");
 }
 
-section section_1253(1253) {  // len=4
+section(1253) {  // len=4
     teleport(pstat: 247);
     return;
 }
 
-section section_1252(1252) {  // len=1946
+section(1252) {  // len=1946
     jumpToScriptSection(7, 82);
-    garbage { 68 04 00 00 68 04 01 00 b2 04 02 00 0e 05 03 00 44 05 04 00 b8 05 05 00 c6 05 06 00 d6 05 07 00 e4 05 08 00 f4 05 09 00 02 06 0a 00 5a 06 0b 00 9c 06 0c 00 d6 06 0d 00 32 07 0e 00 74 07 0f 00 ae 07 10 00 f2 07 11 00 34 08 12 00 44 08 13 00 92 08 14 00 cc 08 15 00 ee 08 16 00 fc 08 17 00 48 09 18 00 94 09 19 00 a8 09 1a 00 fe 09 1b 00 12 0a 1c 00 26 0a 1d 00 72 0a 1e 00 92 0a 1f 00 a0 0a 20 00 c0 0a 21 00 e0 0a 22 00 f2 0a 23 00 3c 0b 24 00 a0 0b 25 00 d8 0b 26 00 18 0c 27 00 56 0c 28 00 84 0c 29 00 a4 0c 2a 00 e8 0c 2b 00 2c 0d 2c 00 5c 0d 2d 00 96 0d 2e 00 be 0d 2f 00 e8 0d 30 00 2a 0e 31 00 78 0e 32 00 98 0e 33 00 a6 0e 34 00 be 0e 35 00 cc 0e 36 00 da 0e 37 00 e8 0e 38 00 20 0f 39 00 3c 0f 3a 00 4a 0f 3b 00 5e 0f 3c 00 72 0f 3d 00 84 0f 3e 00 92 0f 3f 00 a0 0f 40 00 ae 0f 41 00 bc 0f 42 00 ca 0f 43 00 04 10 44 00 2a 10 45 00 60 10 46 00 9a 10 47 00 de 10 48 00 36 11 49 00 84 11 4a 00 e0 11 4b 00 24 12 4c 00 5c 12 4d 00 88 12 4e 00 cc 12 4f 00 f0 12 50 00 3c 13 51 00 7c 13 52 00 a0 13 53 00 e6 13 54 00 2a 14 55 00 38 14 56 00 4c 14 57 00 86 14 58 00 be 14 59 00 f8 14 5a 00 30 15 5b 00 68 15 5c 00 aa 15 5d 00 b8 15 5e 00 fa 15 5f 00 32 16 60 00 c4 16 61 00 fc 16 62 00 0a 17 63 00 28 17 64 00 36 17 65 00 54 17 66 00 76 17 67 00 94 17 68 00 ac 17 69 00 c6 17 6a 00 12 18 6b 00 26 18 6c 00 50 18 6d 00 7a 18 6e 00 c6 18 6f 00 ec 18 70 00 12 19 71 00 4a 19 72 00 6e 19 73 00 82 19 74 00 c6 19 75 00 1e 1a 76 00 9c 1a 77 00 ee 1a 78 00 02 1b 79 00 50 1b 7a 00 ae 1b 7b 00 b6 1b 7c 00 c4 1b 7d 00 cc 1b 7e 00 da 1b 7f 00 e8 1b 80 00 16 1c 81 00 40 1c 82 00 50 1c 83 00 5e 1c 84 00 76 1c 85 00 ae 1c 86 00 de 1c 87 00 10 1d 88 00 56 1d 89 00 8a 1d 8a 00 aa 1d 8b 00 ea 1d 8c 00 3e 1e 8d 00 4c 1e 8e 00 6e 1e 8f 00 82 1e 90 00 ae 1e 91 00 f0 1e 92 00 2e 1f 93 00 60 1f 94 00 84 1f 95 00 b6 1f 96 00 e4 1f 97 00 16 20 98 00 54 20 99 00 92 20 9a 00 e6 20 9b 00 2a 21 9c 00 cc 21 9d 00 da 21 9e 00 ee 21 9f 00 30 22 a0 00 52 22 a1 00 66 22 a2 00 a8 22 a3 00 c4 22 a4 00 d2 22 a5 00 16 23 a6 00 38 23 a7 00 5e 23 a8 00 84 23 a9 00 96 23 aa 00 a8 23 ab 00 ba 23 ac 00 cc 23 ad 00 de 23 ae 00 f0 23 af 00 02 24 b0 00 14 24 b1 00 26 24 b2 00 46 24 b3 00 66 24 b4 00 8e 25 b5 00 a4 25 b6 00 ba 25 b7 00 d0 25 b8 00 e6 25 b9 00 fc 25 ba 00 12 26 bb 00 28 26 bc 00 3e 26 bd 00 54 26 be 00 6a 26 bf 00 80 26 c0 00 96 26 c1 00 64 29 c2 00 7a 29 c3 00 90 29 c4 00 a6 29 c5 00 bc 29 c6 00 d2 29 c7 00 e8 29 c8 00 fe 29 c9 00 14 2a ca 00 2a 2a cb 00 40 2a cc 00 56 2a cd 00 ac 2a ce 00 d8 2a cf 00 14 2b d0 00 3a 2b d1 00 4e 2b d2 00 74 2b d3 00 96 2b d4 00 c2 2b d5 00 e4 2b d6 00 22 2c d7 00 be 2d d8 00 60 2f d9 00 e6 30 da 00 56 32 db 00 76 32 dc 00 94 32 dd 00 e2 32 de 00 02 33 df 00 22 33 e0 00 4e 33 e1 00 62 33 e2 00 9c 33 e3 00 be 33 e4 00 e0 33 e5 00 02 34 e6 00 10 34 e7 00 1e 34 e8 00 2c 34 e9 00 3a 34 ea 00 5e 34 eb 00 6e 34 ec 00 dc 34 ed 00 fc 34 ee 00 1c 35 ef 00 4a 35 f0 00 58 35 f1 00 66 35 f2 00 74 35 f3 00 82 35 f4 00 90 35 f5 00 9e 35 f6 00 ac 35 f7 00 ba 35 f8 00 f4 35 f9 00 10 36 fa 00 32 36 fb 00 40 36 fc 00 4e 36 fd 00 5c 36 fe 00 7a 36 c4 04 b8 36 c5 04 f0 36 c6 04 28 37 c7 04 60 37 c8 04 98 37 c9 04 d0 37 ca 04 08 38 cb 04 40 38 cc 04 78 38 cd 04 b0 38 ce 04 e8 38 d3 04 58 4b d4 04 2a 4d d5 04 da 50 d6 04 7a 52 d8 04 e4 5a d9 04 ec 5c da 04 5c 5d db 04 da 5d dc 04 72 5e dd 04 e0 5e de 04 d6 5f e2 04 34 60 e3 04 3e 60 e5 04 62 60 e4 04 66 60 ff ff fb 00 01 00 00 00 1e 00 f5 00 5d 01 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 a2 04 19 00 46 53 46 4d 47 53 00 01 47 53 01 01 47 4d 02 01 47 4d 03 01 47 53 04 01 16 00 b0 04 46 4a 47 4a 05 01 47 4a 06 01 47 4a 07 01 fe 00 fb 00 02 00 01 00 1e 00 f5 00 5d 01 19 00 01 00 e8 00 18 00 d0 04 19 00 46 98 47 98 01 00 19 00 0a 00 6b 07 8d 00 6b 13 80 00 e8 00 18 00 ee 04 19 00 46 4d 47 4d 00 01 47 4d 02 01 19 00 0d 00 6b 07 4a 00 6b 13 80 00 e8 00 18 00 0c 05 19 00 46 4a 47 4a 03 01 47 4a 04 01 fe 00 fb 00 03 00 02 00 1e 00 f5 00 5d 01 19 00 01 00 f6 00 18 00 30 05 19 00 46 a4 47 a4 02 00 16 00 42 05 46 50 47 50 00 01 47 50 01 01 47 50 03 01 47 50 04 01 fe 00 fb 00 04 00 03 00 1e 00 f5 00 5d 01 19 00 01 00 f2 00 18 00 62 05 19 00 46 a2 47 a2 00 01 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 7e 05 19 00 46 56 47 56 02 01 16 00 84 05 46 50 47 50 04 01 19 00 0a 00 6b 07 8d 00 6b 13 80 00 f2 00 18 00 9e 05 19 00 46 56 47 56 01 01 19 00 0d 00 6b 07 4a 00 6b 13 80 00 f2 00 18 00 b6 05 19 00 47 50 03 01 fe 00 fb 00 05 00 04 00 1e 00 f5 00 5d 01 fe 00 fb 00 06 00 05 00 1e 00 f5 00 5d 01 46 31 fe 00 fb 00 07 00 06 00 1e 00 f5 00 5d 01 fe 00 fb 00 08 00 07 00 1e 00 f5 00 5d 01 46 76 fe 00 fb 00 09 00 08 00 1e 00 f5 00 5d 01 fe 00 fb 00 0a 00 09 00 1e 00 f5 00 5d 01 19 00 00 00 f2 00 80 00 02 01 18 00 26 06 19 00 46 a2 47 a2 03 00 fe 00 19 00 01 00 02 01 18 00 36 06 19 00 46 af fe 00 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 52 06 19 00 46 56 47 56 00 01 16 00 58 06 46 60 47 60 02 01 fe 00 fb 00 0b 00 0a 00 1e 00 f5 00 5d 01 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 8c 06 19 00 46 53 46 56 47 53 00 01 47 53 01 01 47 56 02 01 16 00 9a 06 46 60 47 60 03 01 47 60 04 01 47 60 05 01 fe 00 fb 00 0c 00 0b 00 1e 00 f5 00 5d 02 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 c8 06 19 00 46 56 47 56 00 01 47 56 01 01 16 00 d2 06 46 60 47 60 02 01 47 60 03 01 fe 00 fe 00 fb 00 0d 00 0c 00 1e 00 f5 00 5d 02 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 02 07 19 00 46 5d 47 5d 01 01 47 5d 02 01 16 00 0c 07 46 4e 47 4e 04 01 47 4e 03 01 19 00 00 00 ff 00 18 00 1a 07 19 00 fe 00 24 00 64 63 19 00 0b 00 64 02 18 00 30 07 19 00 46 ad 47 ad 00 01 fe 00 fb 00 0e 00 0d 00 1e 00 f5 00 5d 02 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 62 07 19 00 46 43 47 43 00 01 47 43 01 01 47 43 02 01 16 00 72 07 46 60 46 4e 47 60 03 01 47 4e 04 01 47 4e 05 01 fe 00 fb 00 0f 00 0e 00 1e 00 f5 00 5d 02 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 a0 07 19 00 };
+    garbage { 68 04 00 00 68 04 01 00 b2 04 02 00 0e 05 03 00 44 05 04 00 b8 05 05 00 c6 05 06 00 d6 05 07 00 e4 05 08 00 f4 05 09 00 02 06 0a 00 5a 06 0b 00 9c 06 0c 00 d6 06 0d 00 32 07 0e 00 74 07 0f 00 ae 07 10 00 f2 07 11 00 34 08 12 00 44 08 13 00 92 08 14 00 cc 08 15 00 ee 08 16 00 fc 08 17 00 48 09 18 00 94 09 19 00 a8 09 1a 00 fe 09 1b 00 12 0a 1c 00 26 0a 1d 00 72 0a 1e 00 92 0a 1f 00 a0 0a 20 00 c0 0a 21 00 e0 0a 22 00 f2 0a 23 00 3c 0b 24 00 a0 0b 25 00 d8 0b 26 00 18 0c 27 00 56 0c 28 00 84 0c 29 00 a4 0c 2a 00 e8 0c 2b 00 2c 0d 2c 00 5c 0d 2d 00 96 0d 2e 00 be 0d 2f 00 e8 0d 30 00 2a 0e 31 00 78 0e 32 00 98 0e 33 00 a6 0e 34 00 be 0e 35 00 cc 0e 36 00 da 0e 37 00 e8 0e 38 00 20 0f 39 00 3c 0f 3a 00 4a 0f 3b 00 5e 0f 3c 00 72 0f 3d 00 84 0f 3e 00 92 0f 3f 00 a0 0f 40 00 ae 0f 41 00 bc 0f 42 00 ca 0f 43 00 04 10 44 00 2a 10 45 00 60 10 46 00 9a 10 47 00 de 10 48 00 36 11 49 00 84 11 4a 00 e0 11 4b 00 24 12 4c 00 5c 12 4d 00 88 12 4e 00 cc 12 4f 00 f0 12 50 00 3c 13 51 00 7c 13 52 00 a0 13 53 00 e6 13 54 00 2a 14 55 00 38 14 56 00 4c 14 57 00 86 14 58 00 be 14 59 00 f8 14 5a 00 30 15 5b 00 68 15 5c 00 aa 15 5d 00 b8 15 5e 00 fa 15 5f 00 32 16 60 00 c4 16 61 00 fc 16 62 00 0a 17 63 00 28 17 64 00 36 17 65 00 54 17 66 00 76 17 67 00 94 17 68 00 ac 17 69 00 c6 17 6a 00 12 18 6b 00 26 18 6c 00 50 18 6d 00 7a 18 6e 00 c6 18 6f 00 ec 18 70 00 12 19 71 00 4a 19 72 00 6e 19 73 00 82 19 74 00 c6 19 75 00 1e 1a 76 00 9c 1a 77 00 ee 1a 78 00 02 1b 79 00 50 1b 7a 00 ae 1b 7b 00 b6 1b 7c 00 c4 1b 7d 00 cc 1b 7e 00 da 1b 7f 00 e8 1b 80 00 16 1c 81 00 40 1c 82 00 50 1c 83 00 5e 1c 84 00 76 1c 85 00 ae 1c 86 00 de 1c 87 00 10 1d 88 00 56 1d 89 00 8a 1d 8a 00 aa 1d 8b 00 ea 1d 8c 00 3e 1e 8d 00 4c 1e 8e 00 6e 1e 8f 00 82 1e 90 00 ae 1e 91 00 f0 1e 92 00 2e 1f 93 00 60 1f 94 00 84 1f 95 00 b6 1f 96 00 e4 1f 97 00 16 20 98 00 54 20 99 00 92 20 9a 00 e6 20 9b 00 2a 21 9c 00 cc 21 9d 00 da 21 9e 00 ee 21 9f 00 30 22 a0 00 52 22 a1 00 66 22 a2 00 a8 22 a3 00 c4 22 a4 00 d2 22 a5 00 16 23 a6 00 38 23 a7 00 5e 23 a8 00 84 23 a9 00 96 23 aa 00 a8 23 ab 00 ba 23 ac 00 cc 23 ad 00 de 23 ae 00 f0 23 af 00 02 24 b0 00 14 24 b1 00 26 24 b2 00 46 24 b3 00 66 24 b4 00 8e 25 b5 00 a4 25 b6 00 ba 25 b7 00 d0 25 b8 00 e6 25 b9 00 fc 25 ba 00 12 26 bb 00 28 26 bc 00 3e 26 bd 00 54 26 be 00 6a 26 bf 00 80 26 c0 00 96 26 c1 00 64 29 c2 00 7a 29 c3 00 90 29 c4 00 a6 29 c5 00 bc 29 c6 00 d2 29 c7 00 e8 29 c8 00 fe 29 c9 00 14 2a ca 00 2a 2a cb 00 40 2a cc 00 56 2a cd 00 ac 2a ce 00 d8 2a cf 00 14 2b d0 00 3a 2b d1 00 4e 2b d2 00 74 2b d3 00 96 2b d4 00 c2 2b d5 00 e4 2b d6 00 22 2c d7 00 be 2d d8 00 60 2f d9 00 e6 30 da 00 56 32 db 00 76 32 dc 00 94 32 dd 00 e2 32 de 00 02 33 df 00 22 33 e0 00 4e 33 e1 00 62 33 e2 00 9c 33 e3 00 be 33 e4 00 e0 33 e5 00 02 34 e6 00 10 34 e7 00 1e 34 e8 00 2c 34 e9 00 3a 34 ea 00 5e 34 eb 00 6e 34 ec 00 dc 34 ed 00 fc 34 ee 00 1c 35 ef 00 4a 35 f0 00 58 35 f1 00 66 35 f2 00 74 35 f3 00 82 35 f4 00 90 35 f5 00 9e 35 f6 00 ac 35 f7 00 ba 35 f8 00 f4 35 f9 00 10 36 fa 00 32 36 fb 00 40 36 fc 00 4e 36 fd 00 5c 36 fe 00 7a 36 c4 04 b8 36 c5 04 f0 36 c6 04 28 37 c7 04 60 37 c8 04 98 37 c9 04 d0 37 ca 04 08 38 cb 04 40 38 cc 04 78 38 cd 04 b0 38 ce 04 e8 38 d3 04 58 4b d4 04 2a 4d d5 04 da 50 d6 04 7a 52 d8 04 e4 5a d9 04 ec 5c da 04 5c 5d db 04 da 5d dc 04 72 5e dd 04 e0 5e de 04 d6 5f e2 04 34 60 e3 04 3e 60 e5 04 62 60 e4 04 66 60 ff ff fb 00 01 00 00 00 1e 00 f5 00 5d 01 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 a2 04 19 00 46 53 46 4d 47 53 00 01 47 53 01 01 47 4d 02 01 47 4d 03 01 47 53 04 01 16 00 b0 04 46 4a 47 4a 05 01 47 4a 06 01 47 4a 07 01 fe 00 fb 00 02 00 01 00 1e 00 f5 00 5d 01 19 00 01 00 e8 00 18 00 d0 04 19 00 46 98 47 98 01 00 19 00 0a 00 6b 07 8d 00 6b 13 80 00 e8 00 18 00 ee 04 19 00 46 4d 47 4d 00 01 47 4d 02 01 19 00 0d 00 6b 07 4a 00 6b 13 80 00 e8 00 18 00 0c 05 19 00 46 4a 47 4a 03 01 47 4a 04 01 fe 00 fb 00 03 00 02 00 1e 00 f5 00 5d 01 19 00 01 00 f6 00 18 00 30 05 19 00 46 a4 47 a4 02 00 16 00 42 05 46 50 47 50 00 01 47 50 01 01 47 50 03 01 47 50 04 01 fe 00 fb 00 04 00 03 00 1e 00 f5 00 5d 01 19 00 01 00 f2 00 18 00 62 05 19 00 46 a2 47 a2 00 01 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 7e 05 19 00 46 56 47 56 02 01 16 00 84 05 46 50 47 50 04 01 19 00 0a 00 6b 07 8d 00 6b 13 80 00 f2 00 18 00 9e 05 19 00 46 56 47 56 01 01 19 00 0d 00 6b 07 4a 00 6b 13 80 00 f2 00 18 00 b6 05 19 00 47 50 03 01 fe 00 fb 00 05 00 04 00 1e 00 f5 00 5d 01 fe 00 fb 00 06 00 05 00 1e 00 f5 00 5d 01 46 31 fe 00 fb 00 07 00 06 00 1e 00 f5 00 5d 01 fe 00 fb 00 08 00 07 00 1e 00 f5 00 5d 01 46 76 fe 00 fb 00 09 00 08 00 1e 00 f5 00 5d 01 fe 00 fb 00 0a 00 09 00 1e 00 f5 00 5d 01 19 00 00 00 f2 00 80 00 02 01 18 00 26 06 19 00 46 a2 47 a2 03 00 fe 00 19 00 01 00 02 01 18 00 36 06 19 00 46 af fe 00 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 52 06 19 00 46 56 47 56 00 01 16 00 58 06 46 60 47 60 02 01 fe 00 fb 00 0b 00 0a 00 1e 00 f5 00 5d 01 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 8c 06 19 00 46 53 46 56 47 53 00 01 47 53 01 01 47 56 02 01 16 00 9a 06 46 60 47 60 03 01 47 60 04 01 47 60 05 01 fe 00 fb 00 0c 00 0b 00 1e 00 f5 00 5d 02 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 c8 06 19 00 46 56 47 56 00 01 47 56 01 01 16 00 d2 06 46 60 47 60 02 01 47 60 03 01 fe 00 fe 00 fb 00 0d 00 0c 00 1e 00 f5 00 5d 02 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 02 07 19 00 46 5d 47 5d 01 01 47 5d 02 01 16 00 0c 07 46 4e 47 4e 04 01 47 4e 03 01 19 00 00 00 ff 00 18 00 1a 07 19 00 fe 00 24 00 64 63 19 00 0b 00 64 02 18 00 30 07 19 00 46 ad 47 ad 00 01 fe 00 fb 00 0e 00 0d 00 1e 00 f5 00 5d 02 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 62 07 19 00 46 43 47 43 00 01 47 43 01 01 47 43 02 01 16 00 72 07 46 60 46 4e 47 60 03 01 47 4e 04 01 47 4e 05 01 fe 00 fb 00 0f 00 0e 00 1e 00 f5 00 5d 02 25 69 19 00 0a 00 6b 07 8d 00 6b 13 18 00 a0 07 19 00 }
 }

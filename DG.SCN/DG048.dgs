@@ -3,14 +3,15 @@
 
 section onEnter(254) {  // len=40
     spawnChest(Item.PortaPotty, -1455, 184, 3072, 671);
-    if (!trigger(175)) goto L_0026;
+    if (!trigger(175)) goto L1;
     moveObjectTo(0, 45, 1, 10, 0, 385, -50);
     delay(10);
-L_0026:
+
+L1:
     return;
 }
 
-section section_5(5) {  // len=28
+section(5) {  // len=28
     setDialogOwner(5);
     showTextbox("Ah!\n");
     fadeOutHUD();
@@ -20,7 +21,7 @@ section section_5(5) {  // len=28
     return;
 }
 
-section section_6(6) {  // len=28
+section(6) {  // len=28
     setDialogOwner(6);
     showTextbox("Ah!\n");
     fadeOutHUD();
@@ -30,20 +31,23 @@ section section_6(6) {  // len=28
     return;
 }
 
-section section_51(51) {  // len=224
-    if (!trigger(182) || trigger(235)) goto L_006e;
+section(51) {  // len=224
+    if (!trigger(182) || trigger(235)) goto L1;
     setDialogOwner(Entity.Player);
     showTextbox("Is the elevator causing\nthe ground to rise?\n");
-L_006e:
-    if (trigger(175)) goto L_007c;
+
+L1:
+    if (trigger(175)) goto L2;
     return;
-L_007c:
+
+L2:
     setDialogOwner(Entity.Player);
-    setSelection(L_00b6, L_00d4);
+    setSelection(L3, L4);
     showTextbox("Get in\nDon't get in\n");
     waitForSelectionChoice();
-    goto L_00d4;
-L_00b6:
+    goto L4;
+
+L3:
     move(entity: Entity.Player, to: (1220, 3988), sprint: 0);
     move(entity: Entity.Partner, to: (1201, 3486), sprint: 0);
     waitForEntity(Entity.Player);
@@ -51,18 +55,21 @@ L_00b6:
     playSound(8, 5);
     warp(to: Map.GCAN02, spawn: 3, trigger: 53);
     return;
-L_00d4:
+
+L4:
     move(entity: Entity.Player, to: (1152, 2851), sprint: 0);
     waitForEntity(Entity.Player);
     return;
 }
 
-section section_52(52) {  // len=1022
-    if (trigger(175)) goto L_0010;
-    goto L_0012;
-L_0010:
+section(52) {  // len=1022
+    if (trigger(175)) goto L1;
+    goto L2;
+
+L1:
     return;
-L_0012:
+
+L2:
     moveCamera(to: (40, 2922), slowdown: 30);
     waitForEntity(200);
     look(entity: Entity.Player, at: 7);
@@ -114,32 +121,7 @@ L_0012:
     playAnimation(7, 46);
     delay(30);
     playSound(8, 9);
-    setObjectVisibility(0, 0);
-    setObjectVisibility(1, 0);
-    setObjectVisibility(2, 0);
-    setObjectVisibility(3, 0);
-    setObjectVisibility(4, 0);
-    setObjectVisibility(5, 0);
-    setObjectVisibility(6, 0);
-    setObjectVisibility(7, 0);
-    setObjectVisibility(8, 0);
-    setObjectVisibility(9, 0);
-    setObjectVisibility(10, 0);
-    setObjectVisibility(11, 0);
-    setObjectVisibility(12, 0);
-    setObjectVisibility(13, 0);
-    setObjectVisibility(14, 0);
-    setObjectVisibility(15, 0);
-    setObjectVisibility(16, 0);
-    setObjectVisibility(17, 0);
-    setObjectVisibility(18, 0);
-    setObjectVisibility(19, 0);
-    setObjectVisibility(20, 0);
-    setObjectVisibility(21, 0);
-    setObjectVisibility(22, 0);
-    setObjectVisibility(23, 0);
-    setObjectVisibility(24, 0);
-    setObjectVisibility(25, 0);
+    for id in 0..25 { setObjectVisibility(id, 0); }
     delay(40);
     setPStat(254, 40);
     callSubroutine(45);
@@ -150,32 +132,7 @@ L_0012:
     setDialogOwner(Entity.Player);
     showTextbox("What is it?\n");
     playAnimation(Entity.Player, 0);
-    setObjectVisibility(0, 1);
-    setObjectVisibility(1, 1);
-    setObjectVisibility(2, 1);
-    setObjectVisibility(3, 1);
-    setObjectVisibility(4, 1);
-    setObjectVisibility(5, 1);
-    setObjectVisibility(6, 1);
-    setObjectVisibility(7, 1);
-    setObjectVisibility(8, 1);
-    setObjectVisibility(9, 1);
-    setObjectVisibility(10, 1);
-    setObjectVisibility(11, 1);
-    setObjectVisibility(12, 1);
-    setObjectVisibility(13, 1);
-    setObjectVisibility(14, 1);
-    setObjectVisibility(15, 1);
-    setObjectVisibility(16, 1);
-    setObjectVisibility(17, 1);
-    setObjectVisibility(18, 1);
-    setObjectVisibility(19, 1);
-    setObjectVisibility(20, 1);
-    setObjectVisibility(21, 1);
-    setObjectVisibility(22, 1);
-    setObjectVisibility(23, 1);
-    setObjectVisibility(24, 1);
-    setObjectVisibility(25, 1);
+    for id in 0..25 { setObjectVisibility(id, 1); }
     setDigimon(Digimon.NPCOgremon, 5, 0);
     rotate(entity: 10, to: 0);
     moveObjectTo(0, 45, 1, 10, 0, 385, -50);
@@ -206,18 +163,19 @@ L_0012:
     return;
 }
 
-section section_53(53) {  // len=38
-    if (trigger(175)) goto L_0024;
+section(53) {  // len=38
+    if (trigger(175)) goto L1;
     move(entity: Entity.Player, to: (245, 1250), sprint: 1, withCamera: true);
     move(entity: Entity.Partner, to: (-50, 1250), sprint: 1);
     waitForEntity(Entity.Player);
     waitForEntity(Entity.Partner);
-    goto section_52.L_0012;
-L_0024:
+    goto section_52.L2;
+
+L1:
     return;
 }
 
-section section_54(54) {  // len=18
+section(54) {  // len=18
     playSound(8, 5);
     rotate(entity: Entity.Player, to: 0);
     unsetTrigger(180);
@@ -225,7 +183,7 @@ section section_54(54) {  // len=18
     return;
 }
 
-section section_11(11) {  // len=614
+section(11) {  // len=614
     delay(10);
     playAnimation(11, 28);
     delay(10);
@@ -252,7 +210,7 @@ section section_11(11) {  // len=614
     move(entity: 11, to: (179, -74), sprint: 1);
     waitForEntity(11);
     unloadEntity(11);
-    if (pstat[21] != 0) goto L_015c;
+    if (pstat[21] != 0) goto L1;
     setObjectVisibility(43, 0);
     move(entity: Entity.Player, to: (32, 829), sprint: 1);
     waitForEntity(Entity.Player);
@@ -265,8 +223,9 @@ section section_11(11) {  // len=614
     playSound(0, 7);
     setInventorySize(20);
     setTrigger(47);
-L_015c:
-    if (pstat[21] != 4) goto L_0210;
+
+L1:
+    if (pstat[21] != 4) goto L2;
     setObjectVisibility(42, 0);
     move(entity: Entity.Player, to: (32, 829), sprint: 1);
     waitForEntity(Entity.Player);
@@ -280,9 +239,10 @@ L_015c:
     setTrigger(48);
     setTrigger(253);
     addPStat(1, 1);
-L_0210:
+
+L2:
     addPStat(21, 1);
     setTrigger(334);
     return;
-    garbage { 24 00 fe 00 24 00 05 00 4c 00 06 00 68 00 33 00 84 00 34 00 64 01 35 00 62 05 36 00 88 05 0b 00 9a 05 ff ff 75 20 51 fa 00 00 b8 00 00 0c 9f 02 19 00 00 00 af 00 18 00 4a 00 19 00 71 00 2d 01 0a 00 81 01 ce ff 67 00 0a 00 };
+    garbage { 24 00 fe 00 24 00 05 00 4c 00 06 00 68 00 33 00 84 00 34 00 64 01 35 00 62 05 36 00 88 05 0b 00 9a 05 ff ff 75 20 51 fa 00 00 b8 00 00 0c 9f 02 19 00 00 00 af 00 18 00 4a 00 19 00 71 00 2d 01 0a 00 81 01 ce ff 67 00 0a 00 }
 }

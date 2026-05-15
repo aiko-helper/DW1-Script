@@ -3,29 +3,33 @@
 
 section onEnter(254) {  // len=90
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 15) goto L_0016;
+    if (pstat[110] > 15) goto L1;
     spawnItem(Item.Digimushroom, 38, 72);
-L_0016:
+
+L1:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 7) goto L_002c;
+    if (pstat[110] > 7) goto L2;
     spawnItem(Item.Digimushroom, 46, 81);
-L_002c:
+
+L2:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 18) goto L_0042;
+    if (pstat[110] > 18) goto L3;
     spawnItem(Item.Digimushroom, 60, 83);
-L_0042:
+
+L3:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 14) goto L_0058;
+    if (pstat[110] > 14) goto L4;
     spawnItem(Item.Digimushroom, 69, 71);
-L_0058:
+
+L4:
     return;
 }
 
-section section_5(5) {  // len=1030
-    if (pstat[111] < 1) goto L_0118;
+section(5) {  // len=1030
+    if (pstat[111] < 1) goto L1;
     setDialogOwner(5);
     showTextbox("I'm here again.\n");
-    jumpAndLink(L_01b6);
+    jumpAndLink(L3);
     playSound(8, 6);
     setDialogOwner(5);
     showTextbox("Bye!\n");
@@ -39,13 +43,11 @@ section section_5(5) {  // len=1030
     setDialogOwner(Entity.Player);
     showTextbox("Maybe I should wait here.\n");
     setPStat(111, 2);
-    setTrigger(191);
-    setTrigger(192);
-    setTrigger(193);
-    setTrigger(194);
+    for id in 191..194 { setTrigger(id); }
     return;
-L_0118:
-    if (pstat[111] != 0) goto L_01b4;
+
+L1:
+    if (pstat[111] != 0) goto L2;
     setDialogOwner(5);
     showTextbox("Who is it?\n");
     setDialogOwner(5);
@@ -67,11 +69,13 @@ L_0118:
     addPStat(111, 1);
     setPStat(112, 1);
     return;
-L_01b4:
+
+L2:
     return;
-L_01b6:
+
+L3:
     roll(pstat: 110, max: 3);
-    if (pstat[110] != 0 || pstat[112] == 0) goto L_0216;
+    if (pstat[110] != 0 || pstat[112] == 0) goto L4;
     move(entity: 5, to: (-1055, 2740), sprint: 1);
     delay(20);
     setPStat(112, 0);
@@ -82,8 +86,9 @@ L_01b6:
     move(entity: 5, to: (-1025, 2740), sprint: 1);
     waitForEntity(5);
     jumpReturn();
-L_0216:
-    if (pstat[110] != 1 || pstat[112] == 1) goto L_0272;
+
+L4:
+    if (pstat[110] != 1 || pstat[112] == 1) goto L5;
     move(entity: 5, to: (-566, -350), sprint: 1);
     delay(20);
     setPStat(112, 1);
@@ -94,8 +99,9 @@ L_0216:
     move(entity: 5, to: (-566, -320), sprint: 1);
     waitForEntity(5);
     jumpReturn();
-L_0272:
-    if (pstat[110] != 2 || pstat[112] == 2) goto L_02ce;
+
+L5:
+    if (pstat[110] != 2 || pstat[112] == 2) goto L6;
     move(entity: 5, to: (1869, -939), sprint: 1);
     delay(20);
     setPStat(112, 2);
@@ -106,8 +112,9 @@ L_0272:
     move(entity: 5, to: (1869, -939), sprint: 1);
     waitForEntity(5);
     jumpReturn();
-L_02ce:
-    if (pstat[110] != 3 || pstat[112] == 3) goto L_032a;
+
+L6:
+    if (pstat[110] != 3 || pstat[112] == 3) goto L7;
     move(entity: 5, to: (1664, 3155), sprint: 1);
     delay(20);
     setPStat(112, 3);
@@ -118,11 +125,13 @@ L_02ce:
     move(entity: 5, to: (1664, 3125), sprint: 1);
     waitForEntity(5);
     jumpReturn();
-L_032a:
-    goto L_01b6;
-L_032e:
+
+L7:
+    goto L3;
+
+L8:
     roll(pstat: 110, max: 3);
-    if (pstat[110] != 0 || pstat[112] == 0) goto L_0366;
+    if (pstat[110] != 0 || pstat[112] == 0) goto L9;
     move(entity: 5, to: (-1025, 2740), sprint: 1);
     delay(20);
     setPStat(112, 0);
@@ -131,8 +140,9 @@ L_032e:
     move(entity: 5, to: (-1025, 2740), sprint: 1);
     waitForEntity(5);
     jumpReturn();
-L_0366:
-    if (pstat[110] != 1 || pstat[112] == 1) goto L_039a;
+
+L9:
+    if (pstat[110] != 1 || pstat[112] == 1) goto L10;
     move(entity: 5, to: (-566, -320), sprint: 1);
     delay(20);
     setPStat(112, 1);
@@ -141,8 +151,9 @@ L_0366:
     move(entity: 5, to: (-566, -320), sprint: 1);
     waitForEntity(5);
     jumpReturn();
-L_039a:
-    if (pstat[110] != 2 || pstat[112] == 2) goto L_03ce;
+
+L10:
+    if (pstat[110] != 2 || pstat[112] == 2) goto L11;
     move(entity: 5, to: (1869, -939), sprint: 1);
     delay(20);
     setPStat(112, 2);
@@ -151,8 +162,9 @@ L_039a:
     move(entity: 5, to: (1869, -939), sprint: 1);
     waitForEntity(5);
     jumpReturn();
-L_03ce:
-    if (pstat[110] != 3 || pstat[112] == 3) goto L_0402;
+
+L11:
+    if (pstat[110] != 3 || pstat[112] == 3) goto L12;
     move(entity: 5, to: (1664, 3125), sprint: 1);
     delay(20);
     setPStat(112, 3);
@@ -161,23 +173,26 @@ L_03ce:
     move(entity: 5, to: (1664, 3125), sprint: 1);
     waitForEntity(5);
     jumpReturn();
-L_0402:
-    goto L_032e;
+
+L12:
+    goto L8;
 }
 
-section section_51(51) {  // len=332
-    if (pstat[111] < 2 || pstat[112] == 0 || trigger(191) || trigger(245)) goto L_0066;
+section(51) {  // len=332
+    if (pstat[111] < 2 || pstat[112] == 0 || trigger(191) || trigger(245)) goto L1;
     setTrigger(191);
     playAnimation(Entity.Player, 16);
     setDialogOwner(Entity.Player);
     showTextbox("Maybe I'll wait.\n");
-    setSelection(L_0068, L_014a);
+    setSelection(L2, L5);
     showTextbox("Wait\nGo\n");
     waitForSelectionChoice();
     return;
-L_0066:
+
+L1:
     return;
-L_0068:
+
+L2:
     move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
     waitForEntity(Entity.Partner);
     look(entity: Entity.Partner, at: Entity.Player);
@@ -193,37 +208,42 @@ L_0068:
     move(entity: Entity.Partner, to: 5, sprint: 1);
     waitForEntity(Entity.Partner);
     look(entity: Entity.Player, at: 5);
-    jumpAndLink(section_5.L_032e);
-    if (pstat[112] != 0) goto L_0100;
+    jumpAndLink(section_5.L8);
+    if (pstat[112] != 0) goto L3;
     move(entity: Entity.Partner, to: 5, sprint: 1);
     waitForEntity(Entity.Partner);
-    goto section_54.L_014a;
-    goto L_0142;
-L_0100:
+    goto section_54.L5;
+    goto L4;
+
+L3:
     playAnimation(Entity.Player, 16);
     setDialogOwner(Entity.Player);
     showTextbox("He went to the wrong place!\n");
-L_0142:
+
+L4:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_014a:
+
+L5:
     return;
 }
 
-section section_52(52) {  // len=330
-    if (pstat[111] < 2 || pstat[112] == 1 || trigger(192) || trigger(245)) goto L_0066;
+section(52) {  // len=330
+    if (pstat[111] < 2 || pstat[112] == 1 || trigger(192) || trigger(245)) goto L1;
     setTrigger(192);
     playAnimation(Entity.Player, 16);
     setDialogOwner(Entity.Player);
     showTextbox("Maybe I'll wait.\n");
-    setSelection(L_0068, section_51.L_014a);
+    setSelection(L2, section_51.L5);
     showTextbox("Wait\nGo\n");
     waitForSelectionChoice();
     return;
-L_0066:
+
+L1:
     return;
-L_0068:
+
+L2:
     move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
     waitForEntity(Entity.Partner);
     look(entity: Entity.Partner, at: Entity.Player);
@@ -239,35 +259,39 @@ L_0068:
     move(entity: Entity.Partner, to: 5, sprint: 1);
     waitForEntity(Entity.Partner);
     look(entity: Entity.Player, at: 5);
-    jumpAndLink(section_5.L_032e);
-    if (pstat[112] != 1) goto L_0100;
+    jumpAndLink(section_5.L8);
+    if (pstat[112] != 1) goto L3;
     move(entity: Entity.Partner, to: 5, sprint: 1);
     waitForEntity(Entity.Partner);
-    goto section_54.L_014a;
-    goto L_0142;
-L_0100:
+    goto section_54.L5;
+    goto L4;
+
+L3:
     playAnimation(Entity.Player, 16);
     setDialogOwner(Entity.Player);
     showTextbox("He went to the wrong place!\n");
-L_0142:
+
+L4:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
 }
 
-section section_53(53) {  // len=330
-    if (pstat[111] < 2 || pstat[112] == 2 || trigger(193) || trigger(245)) goto L_0066;
+section(53) {  // len=330
+    if (pstat[111] < 2 || pstat[112] == 2 || trigger(193) || trigger(245)) goto L1;
     setTrigger(193);
     playAnimation(Entity.Player, 16);
     setDialogOwner(Entity.Player);
     showTextbox("Maybe I'll wait.\n");
-    setSelection(L_0068, section_51.L_014a);
+    setSelection(L2, section_51.L5);
     showTextbox("Wait\nGo\n");
     waitForSelectionChoice();
     return;
-L_0066:
+
+L1:
     return;
-L_0068:
+
+L2:
     move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
     waitForEntity(Entity.Partner);
     look(entity: Entity.Partner, at: Entity.Player);
@@ -283,35 +307,39 @@ L_0068:
     move(entity: Entity.Partner, to: 5, sprint: 1);
     waitForEntity(Entity.Partner);
     look(entity: Entity.Player, at: 5);
-    jumpAndLink(section_5.L_032e);
-    if (pstat[112] != 2) goto L_0100;
+    jumpAndLink(section_5.L8);
+    if (pstat[112] != 2) goto L3;
     move(entity: Entity.Partner, to: 5, sprint: 1);
     waitForEntity(Entity.Partner);
-    goto section_54.L_014a;
-    goto L_0142;
-L_0100:
+    goto section_54.L5;
+    goto L4;
+
+L3:
     playAnimation(Entity.Player, 16);
     setDialogOwner(Entity.Player);
     showTextbox("He went to the wrong place!\n");
-L_0142:
+
+L4:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
 }
 
-section section_54(54) {  // len=1062
-    if (pstat[111] < 2 || pstat[112] == 3 || trigger(194) || trigger(245)) goto L_0066;
+section(54) {  // len=1062
+    if (pstat[111] < 2 || pstat[112] == 3 || trigger(194) || trigger(245)) goto L1;
     setTrigger(194);
     playAnimation(Entity.Player, 16);
     setDialogOwner(Entity.Player);
     showTextbox("Maybe I'll wait.\n");
-    setSelection(L_0068, section_51.L_014a);
+    setSelection(L2, section_51.L5);
     showTextbox("Wait\nGo\n");
     waitForSelectionChoice();
     return;
-L_0066:
+
+L1:
     return;
-L_0068:
+
+L2:
     move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
     waitForEntity(Entity.Partner);
     look(entity: Entity.Partner, at: Entity.Player);
@@ -327,21 +355,24 @@ L_0068:
     move(entity: Entity.Partner, to: 5, sprint: 1);
     waitForEntity(Entity.Partner);
     look(entity: Entity.Player, at: 5);
-    jumpAndLink(section_5.L_032e);
-    if (pstat[112] != 3) goto L_0100;
+    jumpAndLink(section_5.L8);
+    if (pstat[112] != 3) goto L3;
     move(entity: Entity.Partner, to: 5, sprint: 1);
     waitForEntity(Entity.Partner);
-    goto L_014a;
-    goto L_0142;
-L_0100:
+    goto L5;
+    goto L4;
+
+L3:
     playAnimation(Entity.Player, 16);
     setDialogOwner(Entity.Player);
     showTextbox("He went to the wrong place!\n");
-L_0142:
+
+L4:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_014a:
+
+L5:
     playAnimation(Entity.Player, 11);
     delay(10);
     look(entity: Entity.Player, at: 5);
@@ -375,23 +406,26 @@ L_014a:
     showTextbox("I see. It's my mistake.\n");
     setDialogOwner(5);
     showTextbox("I'll go to the city.\n");
-    goto L_0384;
-L_0384:
+    goto L6;
+
+L6:
     move(entity: 5, to: (-1232, 4250), sprint: 1);
-    if (pstat[101] >= 6 || pstat[112] == 0) goto L_03b0;
+    if (pstat[101] >= 6 || pstat[112] == 0) goto L7;
     addPStat(101, 1);
     delay(10);
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
-    goto L_0384;
-L_03b0:
-    if (pstat[101] >= 4 || pstat[112] != 0) goto L_03d4;
+    goto L6;
+
+L7:
+    if (pstat[101] >= 4 || pstat[112] != 0) goto L8;
     addPStat(101, 1);
     delay(5);
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
-    goto L_0384;
-L_03d4:
+    goto L6;
+
+L8:
     waitForEntity(5);
     unloadEntity(5);
     setPStat(101, 0);
@@ -405,27 +439,27 @@ L_03d4:
     return;
 }
 
-section section_61(61) {  // len=6
+section(61) {  // len=6
     unsetTrigger(191);
     return;
 }
 
-section section_62(62) {  // len=6
+section(62) {  // len=6
     unsetTrigger(192);
     return;
 }
 
-section section_63(63) {  // len=6
+section(63) {  // len=6
     unsetTrigger(193);
     return;
 }
 
-section section_64(64) {  // len=6
+section(64) {  // len=6
     unsetTrigger(194);
     return;
 }
 
-section section_6(6) {  // len=54
+section(6) {  // len=54
     setDialogOwner(6);
     showTextbox("Come and get me!\n");
     fadeOutHUD();
@@ -435,7 +469,7 @@ section section_6(6) {  // len=54
     return;
 }
 
-section section_7(7) {  // len=48
+section(7) {  // len=48
     setDialogOwner(7);
     showTextbox("You're brave!\n");
     fadeOutHUD();
@@ -445,7 +479,7 @@ section section_7(7) {  // len=48
     return;
 }
 
-section section_8(8) {  // len=30
+section(8) {  // len=30
     setDialogOwner(8);
     showTextbox("Wow!\n");
     fadeOutHUD();
@@ -455,7 +489,7 @@ section section_8(8) {  // len=30
     return;
 }
 
-section section_9(9) {  // len=42
+section(9) {  // len=42
     setDialogOwner(9);
     showTextbox("I'm first!\n");
     fadeOutHUD();
@@ -465,7 +499,7 @@ section section_9(9) {  // len=42
     return;
 }
 
-section section_10(10) {  // len=86
+section(10) {  // len=86
     setDialogOwner(10);
     showTextbox("I'm strong.\nYou can't handle me!\n");
     fadeOutHUD();
@@ -475,7 +509,7 @@ section section_10(10) {  // len=86
     return;
 }
 
-section section_11(11) {  // len=570
+section(11) {  // len=570
     setDialogOwner(11);
     showTextbox("Don't get mad if I win.\n");
     fadeOutHUD();
@@ -483,5 +517,5 @@ section section_11(11) {  // len=570
     startBattle();
     setTrigger(296);
     return;
-    garbage { 44 00 fe 00 44 00 05 00 9e 00 33 00 a4 04 34 00 f0 05 35 00 3a 07 36 00 84 08 3d 00 aa 0c 3e 00 b0 0c 3f 00 b6 0c 40 00 bc 0c 06 00 c2 0c 07 00 f8 0c 08 00 28 0d 09 00 46 0d 0a 00 70 0d 0b 00 c6 0d ff ff 24 00 6e 63 19 00 0b 00 6e 0f 18 00 5a 00 19 00 74 2c 26 00 48 00 24 00 6e 63 19 00 0b 00 6e 07 18 00 70 00 19 00 74 2c 2e 00 51 00 24 00 6e 63 19 00 0b 00 6e 12 18 00 86 00 19 00 74 2c 3c 00 53 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 9c 00 19 00 74 2c 45 00 47 00 fe 00 19 00 0a 00 6f 01 18 00 b6 01 19 00 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 88 82 85 82 92 82 85 81 40 82 81 82 87 82 81 82 89 82 8e 81 42 0d 00 00 00 13 00 54 02 5a 00 08 06 1b 05 1a 00 82 61 82 99 82 85 81 49 0d 00 00 00 4c 00 fd 05 4c 00 fc 05 4a fd 4a fc 56 00 fd 10 1b fd 1a 00 82 68 82 86 81 40 82 97 82 85 81 40 82 87 82 8f 81 40 82 8f 82 8e 81 40 82 8c 82 89 82 8b 82 85 81 40 82 94 82 88 82 89 82 93 81 43 81 40 82 97 82 85 81 75 82 8c 82 8c 0d 00 82 8a 82 95 82 93 82 94 81 40 82 92 82 85 82 90 82 85 82 81 82 94 81 40 82 8f 82 95 82 92 82 93 82 85 82 8c 82 96 82 85 82 93 81 42 0d 00 00 00 1b fd 1a 00 82 6c 82 81 82 99 82 82 82 85 81 40 82 68 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 97 82 81 82 89 82 94 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 00 00 1e 00 6f 02 1c 00 bf 00 1c 00 c0 00 1c 00 c1 00 1c 00 c2 00 fe 00 19 00 08 00 6f 00 18 00 52 02 19 00 1b 05 1a 00 82 76 82 88 82 8f 81 40 82 89 82 93 81 40 82 89 82 94 81 48 0d 00 00 00 1b 05 1a 00 82 6d 82 8f 81 40 82 97 82 81 82 99 81 42 0d 00 00 00 };
+    garbage { 44 00 fe 00 44 00 05 00 9e 00 33 00 a4 04 34 00 f0 05 35 00 3a 07 36 00 84 08 3d 00 aa 0c 3e 00 b0 0c 3f 00 b6 0c 40 00 bc 0c 06 00 c2 0c 07 00 f8 0c 08 00 28 0d 09 00 46 0d 0a 00 70 0d 0b 00 c6 0d ff ff 24 00 6e 63 19 00 0b 00 6e 0f 18 00 5a 00 19 00 74 2c 26 00 48 00 24 00 6e 63 19 00 0b 00 6e 07 18 00 70 00 19 00 74 2c 2e 00 51 00 24 00 6e 63 19 00 0b 00 6e 12 18 00 86 00 19 00 74 2c 3c 00 53 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 9c 00 19 00 74 2c 45 00 47 00 fe 00 19 00 0a 00 6f 01 18 00 b6 01 19 00 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 88 82 85 82 92 82 85 81 40 82 81 82 87 82 81 82 89 82 8e 81 42 0d 00 00 00 13 00 54 02 5a 00 08 06 1b 05 1a 00 82 61 82 99 82 85 81 49 0d 00 00 00 4c 00 fd 05 4c 00 fc 05 4a fd 4a fc 56 00 fd 10 1b fd 1a 00 82 68 82 86 81 40 82 97 82 85 81 40 82 87 82 8f 81 40 82 8f 82 8e 81 40 82 8c 82 89 82 8b 82 85 81 40 82 94 82 88 82 89 82 93 81 43 81 40 82 97 82 85 81 75 82 8c 82 8c 0d 00 82 8a 82 95 82 93 82 94 81 40 82 92 82 85 82 90 82 85 82 81 82 94 81 40 82 8f 82 95 82 92 82 93 82 85 82 8c 82 96 82 85 82 93 81 42 0d 00 00 00 1b fd 1a 00 82 6c 82 81 82 99 82 82 82 85 81 40 82 68 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 97 82 81 82 89 82 94 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 00 00 1e 00 6f 02 1c 00 bf 00 1c 00 c0 00 1c 00 c1 00 1c 00 c2 00 fe 00 19 00 08 00 6f 00 18 00 52 02 19 00 1b 05 1a 00 82 76 82 88 82 8f 81 40 82 89 82 93 81 40 82 89 82 94 81 48 0d 00 00 00 1b 05 1a 00 82 6d 82 8f 81 40 82 97 82 81 82 99 81 42 0d 00 00 00 }
 }

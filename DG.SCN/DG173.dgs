@@ -5,19 +5,20 @@ section onEnter(254) {  // len=2
     return;
 }
 
-section section_5(5) {  // len=8
+section(5) {  // len=8
     jumpToScriptSection(216, 51);
     return;
 }
 
-section section_6(6) {  // len=2416
+section(6) {  // len=2416
     roll(pstat: 110, max: 3);
-    if (pstat[110] != 0) goto L_009e;
+    if (pstat[110] != 0) goto L1;
     setDialogOwner(6);
     showTextbox("Rest as much as possible.\nThat's the key to\nyour Digimon's health.\n");
     return;
-L_009e:
-    if (pstat[110] != 1) goto L_03b2;
+
+L1:
+    if (pstat[110] != 1) goto L2;
     setDialogOwner(6);
     showTextbox("Alright. Let me tell you\nhow the city will\ngrow and prosper...\n");
     showTextbox("When a Rookie Digimon\ncomes to the city,\nit's plus one point.\n");
@@ -26,16 +27,18 @@ L_009e:
     showTextbox("However, there are three\nChampion Digimon that\nare not very useful.\n");
     showTextbox("When one of them comes,\nit's only plus one point.\n");
     return;
-L_03b2:
-    if (pstat[110] != 2) goto L_05c6;
+
+L2:
+    if (pstat[110] != 2) goto L3;
     setDialogOwner(6);
     showTextbox("Let me tell you a little\nbit about Types.\n");
     showTextbox("If an opponent is the\nsame Type as your Digimon\npartner, he may not battle.\n");
     showTextbox("And if your Digimon's Type\nis not compatible, he can be\nrefused at a door.\n");
     showTextbox("Other than that, maybe\nyou don't have to\nworry about it.\n");
     return;
-L_05c6:
-    if (pstat[110] != 3) goto L_096e;
+
+L3:
+    if (pstat[110] != 3) goto L4;
     setDialogOwner(6);
     showTextbox("Let me tell you about\nTamer Level.\n");
     showTextbox("Tamer Level will increase\nif you can raise Digimon\nto Ultimate Digimon.\n");
@@ -45,221 +48,291 @@ L_05c6:
     showTextbox("If your Digimon fades away,\nyour Tamer Level\nwill go down for sure.\n");
     showTextbox("If you regularly have\ncare mistakes, it might\ngo down. Be careful.\n");
     return;
-L_096e:
+
+L4:
     return;
 }
 
-section section_51(51) {  // len=1650
+section(51) {  // len=1650
     move(entity: Entity.Player, to: (1909, 860), sprint: 0);
     unsetTrigger(69);
-    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L_002c;
-    goto L_0214;
-    goto L_0030;
-L_002c:
-    goto L_0030;
-L_0030:
-    if (!trigger(204) && !trigger(249)) goto L_0048;
-    goto L_004c;
-    goto L_004c;
-L_0048:
-    goto L_0130;
-L_004c:
-    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L_006c;
-    goto L_00d0;
-    goto L_0070;
-L_006c:
-    goto L_0070;
-L_0070:
-    if (!trigger(236)) goto L_0084;
-    goto L_00ac;
-    goto L_0088;
-L_0084:
-    goto L_0088;
-L_0088:
-    if (!trigger(205)) goto L_009c;
-    goto L_00a6;
-    goto L_00a0;
-L_009c:
-    goto L_00a0;
-L_00a0:
+    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L1;
+    goto L48;
+    goto L2;
+
+L1:
+    goto L2;
+
+L2:
+    if (!trigger(204) && !trigger(249)) goto L3;
+    goto L4;
+    goto L4;
+
+L3:
+    goto L26;
+
+L4:
+    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L5;
+    goto L16;
+    goto L6;
+
+L5:
+    goto L6;
+
+L6:
+    if (!trigger(236)) goto L7;
+    goto L12;
+    goto L8;
+
+L7:
+    goto L8;
+
+L8:
+    if (!trigger(205)) goto L9;
+    goto L11;
+    goto L10;
+
+L9:
+    goto L10;
+
+L10:
     warp(to: Map.TWNB02, spawn: 5, trigger: 255);
     return;
-L_00a6:
+
+L11:
     warp(to: Map.TWNB09, spawn: 5, trigger: 255);
     return;
-L_00ac:
-    if (!trigger(205)) goto L_00c0;
-    goto L_00ca;
-    goto L_00c4;
-L_00c0:
-    goto L_00c4;
-L_00c4:
+
+L12:
+    if (!trigger(205)) goto L13;
+    goto L15;
+    goto L14;
+
+L13:
+    goto L14;
+
+L14:
     warp(to: Map.TWNB07, spawn: 5, trigger: 255);
     return;
-L_00ca:
+
+L15:
     warp(to: Map.TWNB08, spawn: 5, trigger: 255);
     return;
-L_00d0:
-    if (!trigger(236)) goto L_00e4;
-    goto L_010c;
-    goto L_00e8;
-L_00e4:
-    goto L_00e8;
-L_00e8:
-    if (!trigger(205)) goto L_00fc;
-    goto L_0106;
-    goto L_0100;
-L_00fc:
-    goto L_0100;
-L_0100:
+
+L16:
+    if (!trigger(236)) goto L17;
+    goto L22;
+    goto L18;
+
+L17:
+    goto L18;
+
+L18:
+    if (!trigger(205)) goto L19;
+    goto L21;
+    goto L20;
+
+L19:
+    goto L20;
+
+L20:
     warp(to: Map.TWNB03, spawn: 5, trigger: 255);
     return;
-L_0106:
+
+L21:
     warp(to: Map.TWNB06, spawn: 5, trigger: 255);
     return;
-L_010c:
-    if (!trigger(205)) goto L_0120;
-    goto L_012a;
-    goto L_0124;
-L_0120:
-    goto L_0124;
-L_0124:
+
+L22:
+    if (!trigger(205)) goto L23;
+    goto L25;
+    goto L24;
+
+L23:
+    goto L24;
+
+L24:
     warp(to: Map.TWNB04, spawn: 5, trigger: 255);
     return;
-L_012a:
+
+L25:
     warp(to: Map.TWNB05, spawn: 5, trigger: 255);
     return;
-L_0130:
-    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L_0150;
-    goto L_01b4;
-    goto L_0154;
-L_0150:
-    goto L_0154;
-L_0154:
-    if (!trigger(236)) goto L_0168;
-    goto L_0190;
-    goto L_016c;
-L_0168:
-    goto L_016c;
-L_016c:
-    if (!trigger(205)) goto L_0180;
-    goto L_018a;
-    goto L_0184;
-L_0180:
-    goto L_0184;
-L_0184:
+
+L26:
+    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L27;
+    goto L38;
+    goto L28;
+
+L27:
+    goto L28;
+
+L28:
+    if (!trigger(236)) goto L29;
+    goto L34;
+    goto L30;
+
+L29:
+    goto L30;
+
+L30:
+    if (!trigger(205)) goto L31;
+    goto L33;
+    goto L32;
+
+L31:
+    goto L32;
+
+L32:
     warp(to: Map.TWNB01, spawn: 5, trigger: 255);
     return;
-L_018a:
+
+L33:
     warp(to: Map.TWNB24, spawn: 5, trigger: 255);
     return;
-L_0190:
-    if (!trigger(205)) goto L_01a4;
-    goto L_01a8;
-    goto L_01a8;
-L_01a4:
-    goto L_01ae;
-L_01a8:
+
+L34:
+    if (!trigger(205)) goto L35;
+    goto L36;
+    goto L36;
+
+L35:
+    goto L37;
+
+L36:
     warp(to: Map.TWNB23, spawn: 5, trigger: 255);
     return;
-L_01ae:
+
+L37:
     warp(to: Map.TWNB22, spawn: 5, trigger: 255);
     return;
-L_01b4:
-    if (!trigger(236)) goto L_01c8;
-    goto L_01f0;
-    goto L_01cc;
-L_01c8:
-    goto L_01cc;
-L_01cc:
-    if (!trigger(205)) goto L_01e0;
-    goto L_01ea;
-    goto L_01e4;
-L_01e0:
-    goto L_01e4;
-L_01e4:
+
+L38:
+    if (!trigger(236)) goto L39;
+    goto L44;
+    goto L40;
+
+L39:
+    goto L40;
+
+L40:
+    if (!trigger(205)) goto L41;
+    goto L43;
+    goto L42;
+
+L41:
+    goto L42;
+
+L42:
     warp(to: Map.TWNB18, spawn: 5, trigger: 255);
     return;
-L_01ea:
+
+L43:
     warp(to: Map.TWNB21, spawn: 5, trigger: 255);
     return;
-L_01f0:
-    if (!trigger(205)) goto L_0204;
-    goto L_020e;
-    goto L_0208;
-L_0204:
-    goto L_0208;
-L_0208:
+
+L44:
+    if (!trigger(205)) goto L45;
+    goto L47;
+    goto L46;
+
+L45:
+    goto L46;
+
+L46:
     warp(to: Map.TWNB19, spawn: 5, trigger: 255);
     return;
-L_020e:
+
+L47:
     warp(to: Map.TWNB20, spawn: 5, trigger: 255);
     return;
-L_0214:
-    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L_0234;
-    goto L_0298;
-    goto L_0238;
-L_0234:
-    goto L_0238;
-L_0238:
-    if (!trigger(236)) goto L_024c;
-    goto L_0274;
-    goto L_0250;
-L_024c:
-    goto L_0250;
-L_0250:
-    if (!trigger(205)) goto L_0264;
-    goto L_026e;
-    goto L_0268;
-L_0264:
-    goto L_0268;
-L_0268:
+
+L48:
+    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L49;
+    goto L60;
+    goto L50;
+
+L49:
+    goto L50;
+
+L50:
+    if (!trigger(236)) goto L51;
+    goto L56;
+    goto L52;
+
+L51:
+    goto L52;
+
+L52:
+    if (!trigger(205)) goto L53;
+    goto L55;
+    goto L54;
+
+L53:
+    goto L54;
+
+L54:
     warp(to: Map.TWNB10, spawn: 5, trigger: 255);
     return;
-L_026e:
+
+L55:
     warp(to: Map.TWNB17, spawn: 5, trigger: 255);
     return;
-L_0274:
-    if (!trigger(205)) goto L_0288;
-    goto L_0292;
-    goto L_028c;
-L_0288:
-    goto L_028c;
-L_028c:
+
+L56:
+    if (!trigger(205)) goto L57;
+    goto L59;
+    goto L58;
+
+L57:
+    goto L58;
+
+L58:
     warp(to: Map.TWNB15, spawn: 5, trigger: 255);
     return;
-L_0292:
+
+L59:
     warp(to: Map.TWNB16, spawn: 5, trigger: 255);
     return;
-L_0298:
-    if (!trigger(236)) goto L_02ac;
-    goto L_02d4;
-    goto L_02b0;
-L_02ac:
-    goto L_02b0;
-L_02b0:
-    if (!trigger(205)) goto L_02c4;
-    goto L_02ce;
-    goto L_02c8;
-L_02c4:
-    goto L_02c8;
-L_02c8:
+
+L60:
+    if (!trigger(236)) goto L61;
+    goto L66;
+    goto L62;
+
+L61:
+    goto L62;
+
+L62:
+    if (!trigger(205)) goto L63;
+    goto L65;
+    goto L64;
+
+L63:
+    goto L64;
+
+L64:
     warp(to: Map.TWNB11, spawn: 5, trigger: 255);
     return;
-L_02ce:
+
+L65:
     warp(to: Map.TWNB14, spawn: 5, trigger: 255);
     return;
-L_02d4:
-    if (!trigger(205)) goto L_02e8;
-    goto L_02f2;
-    goto L_02ec;
-L_02e8:
-    goto L_02ec;
-L_02ec:
+
+L66:
+    if (!trigger(205)) goto L67;
+    goto L69;
+    goto L68;
+
+L67:
+    goto L68;
+
+L68:
     warp(to: Map.TWNB12, spawn: 5, trigger: 255);
     return;
-L_02f2:
+
+L69:
     warp(to: Map.TWNB13, spawn: 5, trigger: 255);
     return;
-    garbage { 14 00 fe 00 14 00 05 00 16 00 06 00 1e 00 33 00 8e 09 ff ff fe 00 17 00 d8 00 33 00 fe 00 24 00 6e 03 19 00 08 00 6e 00 18 00 bc 00 19 00 1b 06 1a 00 82 71 82 85 82 93 82 94 81 40 82 81 82 93 81 40 82 8d 82 95 82 83 82 88 81 40 82 81 82 93 81 40 82 90 82 8f 82 93 82 93 82 89 82 82 82 8c 82 85 81 42 0d 00 82 73 82 88 82 81 82 94 81 75 82 93 81 40 82 94 82 88 82 85 81 40 82 8b 82 85 82 99 81 40 82 94 82 8f 0d 00 82 99 82 8f 82 95 82 92 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 75 82 93 81 40 82 88 82 85 82 81 82 8c 82 94 82 88 81 42 0d 00 00 00 fe 00 19 00 08 00 6e 01 18 00 d0 03 19 00 1b 06 1a 00 82 60 82 8c 82 92 82 89 82 87 82 88 82 94 81 42 81 40 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 94 82 85 82 8c 82 8c 81 40 82 99 82 8f 82 95 0d 00 82 88 82 8f 82 97 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 40 82 97 82 89 82 8c 82 8c 0d 00 82 87 82 92 82 8f 82 97 81 40 82 81 82 8e 82 84 81 40 82 90 82 92 82 8f 82 93 82 90 82 85 82 92 81 42 81 42 81 42 0d 00 00 00 1a 00 82 76 82 88 82 85 82 8e 81 40 82 81 81 40 82 71 82 8f 82 8f 82 8b 82 89 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 0d 00 82 83 82 8f 82 8d 82 85 82 93 81 40 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 43 0d 00 82 89 82 94 81 75 82 93 81 40 82 90 82 8c 82 95 82 93 81 40 82 8f 82 8e 82 85 81 40 82 90 82 8f 82 89 82 8e 82 94 81 42 0d 00 00 00 1a 00 82 60 82 8e 82 84 81 40 82 97 82 88 82 85 82 8e 81 40 82 81 81 40 82 62 82 88 82 81 82 8d 82 90 82 89 82 8f 82 8e 0d 00 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 40 82 83 82 8f 82 8d 82 85 82 93 81 40 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 43 0d 00 82 89 82 94 81 75 82 93 81 40 82 90 82 8c 82 95 82 93 81 40 82 94 82 97 82 8f 81 40 82 90 82 8f 82 89 82 8e 82 94 82 93 81 42 0d 00 00 00 1a 00 82 68 82 86 81 40 82 81 82 8e 81 40 82 74 82 8c 82 94 82 89 82 8d 82 81 82 94 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 0d 00 82 83 82 8f 82 8d 82 85 82 93 81 40 82 94 82 8f 81 40 82 83 82 89 82 94 82 99 81 43 0d 00 82 89 82 94 81 75 82 93 81 40 82 90 82 8c 82 95 82 93 81 40 82 94 82 88 82 92 82 85 82 85 81 40 82 90 82 8f 82 89 82 8e 82 94 82 93 81 42 0d 00 00 00 1a 00 82 67 82 8f 82 97 82 85 82 96 82 85 82 92 81 43 81 40 82 94 82 88 82 85 82 92 82 85 81 40 82 81 82 92 82 85 81 40 82 94 82 88 82 92 82 85 82 85 0d 00 82 62 82 88 82 81 82 8d 82 90 82 89 82 8f 82 8e 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 40 82 94 82 88 82 81 82 94 0d 00 82 81 82 92 82 85 81 40 82 8e 82 8f 82 94 81 40 82 96 82 85 82 92 82 99 81 40 82 95 82 93 82 85 82 86 82 95 82 8c 81 42 0d 00 00 00 1a 00 82 76 82 88 82 85 82 8e 81 40 82 8f 82 8e 82 85 };
+    garbage { 14 00 fe 00 14 00 05 00 16 00 06 00 1e 00 33 00 8e 09 ff ff fe 00 17 00 d8 00 33 00 fe 00 24 00 6e 03 19 00 08 00 6e 00 18 00 bc 00 19 00 1b 06 1a 00 82 71 82 85 82 93 82 94 81 40 82 81 82 93 81 40 82 8d 82 95 82 83 82 88 81 40 82 81 82 93 81 40 82 90 82 8f 82 93 82 93 82 89 82 82 82 8c 82 85 81 42 0d 00 82 73 82 88 82 81 82 94 81 75 82 93 81 40 82 94 82 88 82 85 81 40 82 8b 82 85 82 99 81 40 82 94 82 8f 0d 00 82 99 82 8f 82 95 82 92 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 75 82 93 81 40 82 88 82 85 82 81 82 8c 82 94 82 88 81 42 0d 00 00 00 fe 00 19 00 08 00 6e 01 18 00 d0 03 19 00 1b 06 1a 00 82 60 82 8c 82 92 82 89 82 87 82 88 82 94 81 42 81 40 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 94 82 85 82 8c 82 8c 81 40 82 99 82 8f 82 95 0d 00 82 88 82 8f 82 97 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 40 82 97 82 89 82 8c 82 8c 0d 00 82 87 82 92 82 8f 82 97 81 40 82 81 82 8e 82 84 81 40 82 90 82 92 82 8f 82 93 82 90 82 85 82 92 81 42 81 42 81 42 0d 00 00 00 1a 00 82 76 82 88 82 85 82 8e 81 40 82 81 81 40 82 71 82 8f 82 8f 82 8b 82 89 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 0d 00 82 83 82 8f 82 8d 82 85 82 93 81 40 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 43 0d 00 82 89 82 94 81 75 82 93 81 40 82 90 82 8c 82 95 82 93 81 40 82 8f 82 8e 82 85 81 40 82 90 82 8f 82 89 82 8e 82 94 81 42 0d 00 00 00 1a 00 82 60 82 8e 82 84 81 40 82 97 82 88 82 85 82 8e 81 40 82 81 81 40 82 62 82 88 82 81 82 8d 82 90 82 89 82 8f 82 8e 0d 00 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 40 82 83 82 8f 82 8d 82 85 82 93 81 40 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 43 0d 00 82 89 82 94 81 75 82 93 81 40 82 90 82 8c 82 95 82 93 81 40 82 94 82 97 82 8f 81 40 82 90 82 8f 82 89 82 8e 82 94 82 93 81 42 0d 00 00 00 1a 00 82 68 82 86 81 40 82 81 82 8e 81 40 82 74 82 8c 82 94 82 89 82 8d 82 81 82 94 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 0d 00 82 83 82 8f 82 8d 82 85 82 93 81 40 82 94 82 8f 81 40 82 83 82 89 82 94 82 99 81 43 0d 00 82 89 82 94 81 75 82 93 81 40 82 90 82 8c 82 95 82 93 81 40 82 94 82 88 82 92 82 85 82 85 81 40 82 90 82 8f 82 89 82 8e 82 94 82 93 81 42 0d 00 00 00 1a 00 82 67 82 8f 82 97 82 85 82 96 82 85 82 92 81 43 81 40 82 94 82 88 82 85 82 92 82 85 81 40 82 81 82 92 82 85 81 40 82 94 82 88 82 92 82 85 82 85 0d 00 82 62 82 88 82 81 82 8d 82 90 82 89 82 8f 82 8e 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 40 82 94 82 88 82 81 82 94 0d 00 82 81 82 92 82 85 81 40 82 8e 82 8f 82 94 81 40 82 96 82 85 82 92 82 99 81 40 82 95 82 93 82 85 82 86 82 95 82 8c 81 42 0d 00 00 00 1a 00 82 76 82 88 82 85 82 8e 81 40 82 8f 82 8e 82 85 }
 }

@@ -2,31 +2,32 @@
 #pragma script index=11 start=0xe000 end=0xe800 headerU16=0x24 sentinelOff=0x19
 
 section onEnter(254) {  // len=110
-    if (!trigger(232)) goto L_001c;
-    setObjectVisibility(68, 1);
-    setObjectVisibility(69, 1);
-    setObjectVisibility(70, 1);
-    goto L_0024;
-L_001c:
+    if (!trigger(232)) goto L1;
+    for id in 68..70 { setObjectVisibility(id, 1); }
+    goto L2;
+
+L1:
     setRectImpassible(22, 16, 3, 12);
-L_0024:
-    if (!trigger(232) || pstat[1] < 35) goto L_0040;
-    setObjectVisibility(71, 0);
-    setObjectVisibility(72, 0);
-    setObjectVisibility(73, 0);
-L_0040:
+
+L2:
+    if (!trigger(232) || pstat[1] < 35) goto L3;
+    for id in 71..73 { setObjectVisibility(id, 0); }
+
+L3:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 39) goto L_0056;
+    if (pstat[110] > 39) goto L4;
     spawnItem(Item.Digimushroom, 37, 48);
-L_0056:
+
+L4:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 3) goto L_006c;
+    if (pstat[110] > 3) goto L5;
     spawnItem(Item.BlueApple, 38, 52);
-L_006c:
+
+L5:
     return;
 }
 
-section section_5(5) {  // len=76
+section(5) {  // len=76
     setDialogOwner(5);
     showTextbox("I can beat you in one blow!\n");
     fadeOutHUD();
@@ -36,7 +37,7 @@ section section_5(5) {  // len=76
     return;
 }
 
-section section_7(7) {  // len=70
+section(7) {  // len=70
     setDialogOwner(7);
     showTextbox("You don't know anything.\n");
     fadeOutHUD();
@@ -46,7 +47,7 @@ section section_7(7) {  // len=70
     return;
 }
 
-section section_8(8) {  // len=54
+section(8) {  // len=54
     setDialogOwner(8);
     showTextbox("Stop it already!\n");
     fadeOutHUD();
@@ -56,7 +57,7 @@ section section_8(8) {  // len=54
     return;
 }
 
-section section_9(9) {  // len=62
+section(9) {  // len=62
     setDialogOwner(9);
     showTextbox("Bullies aren't cool!\n");
     fadeOutHUD();
@@ -66,7 +67,7 @@ section section_9(9) {  // len=62
     return;
 }
 
-section section_10(10) {  // len=70
+section(10) {  // len=70
     setDialogOwner(10);
     showTextbox("Listen to me, will you?!\n");
     fadeOutHUD();
@@ -76,7 +77,7 @@ section section_10(10) {  // len=70
     return;
 }
 
-section section_6(6) {  // len=68
+section(6) {  // len=68
     setDialogOwner(6);
     showTextbox("I think I can beat you!\n");
     fadeOutHUD();
@@ -86,216 +87,285 @@ section section_6(6) {  // len=68
     return;
 }
 
-section section_52(52) {  // len=1502
+section(52) {  // len=1502
     move(entity: Entity.Player, to: (-2800, 3000), sprint: 0);
-    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L_0028;
-    goto L_0210;
-    goto L_002c;
-L_0028:
-    goto L_002c;
-L_002c:
-    if (!trigger(204) && !trigger(249)) goto L_0044;
-    goto L_0048;
-    goto L_0048;
-L_0044:
-    goto L_012c;
-L_0048:
-    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L_0068;
-    goto L_00cc;
-    goto L_006c;
-L_0068:
-    goto L_006c;
-L_006c:
-    if (!trigger(236)) goto L_0080;
-    goto L_00a8;
-    goto L_0084;
-L_0080:
-    goto L_0084;
-L_0084:
-    if (!trigger(205)) goto L_0098;
-    goto L_00a2;
-    goto L_009c;
-L_0098:
-    goto L_009c;
-L_009c:
+    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L1;
+    goto L48;
+    goto L2;
+
+L1:
+    goto L2;
+
+L2:
+    if (!trigger(204) && !trigger(249)) goto L3;
+    goto L4;
+    goto L4;
+
+L3:
+    goto L26;
+
+L4:
+    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L5;
+    goto L16;
+    goto L6;
+
+L5:
+    goto L6;
+
+L6:
+    if (!trigger(236)) goto L7;
+    goto L12;
+    goto L8;
+
+L7:
+    goto L8;
+
+L8:
+    if (!trigger(205)) goto L9;
+    goto L11;
+    goto L10;
+
+L9:
+    goto L10;
+
+L10:
     warp(to: Map.TWNB02, spawn: 2, trigger: 255);
     return;
-L_00a2:
+
+L11:
     warp(to: Map.TWNB09, spawn: 2, trigger: 255);
     return;
-L_00a8:
-    if (!trigger(205)) goto L_00bc;
-    goto L_00c6;
-    goto L_00c0;
-L_00bc:
-    goto L_00c0;
-L_00c0:
+
+L12:
+    if (!trigger(205)) goto L13;
+    goto L15;
+    goto L14;
+
+L13:
+    goto L14;
+
+L14:
     warp(to: Map.TWNB07, spawn: 2, trigger: 255);
     return;
-L_00c6:
+
+L15:
     warp(to: Map.TWNB08, spawn: 2, trigger: 255);
     return;
-L_00cc:
-    if (!trigger(236)) goto L_00e0;
-    goto L_0108;
-    goto L_00e4;
-L_00e0:
-    goto L_00e4;
-L_00e4:
-    if (!trigger(205)) goto L_00f8;
-    goto L_0102;
-    goto L_00fc;
-L_00f8:
-    goto L_00fc;
-L_00fc:
+
+L16:
+    if (!trigger(236)) goto L17;
+    goto L22;
+    goto L18;
+
+L17:
+    goto L18;
+
+L18:
+    if (!trigger(205)) goto L19;
+    goto L21;
+    goto L20;
+
+L19:
+    goto L20;
+
+L20:
     warp(to: Map.TWNB03, spawn: 2, trigger: 255);
     return;
-L_0102:
+
+L21:
     warp(to: Map.TWNB06, spawn: 2, trigger: 255);
     return;
-L_0108:
-    if (!trigger(205)) goto L_011c;
-    goto L_0126;
-    goto L_0120;
-L_011c:
-    goto L_0120;
-L_0120:
+
+L22:
+    if (!trigger(205)) goto L23;
+    goto L25;
+    goto L24;
+
+L23:
+    goto L24;
+
+L24:
     warp(to: Map.TWNB04, spawn: 2, trigger: 255);
     return;
-L_0126:
+
+L25:
     warp(to: Map.TWNB05, spawn: 2, trigger: 255);
     return;
-L_012c:
-    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L_014c;
-    goto L_01b0;
-    goto L_0150;
-L_014c:
-    goto L_0150;
-L_0150:
-    if (!trigger(236)) goto L_0164;
-    goto L_018c;
-    goto L_0168;
-L_0164:
-    goto L_0168;
-L_0168:
-    if (!trigger(205)) goto L_017c;
-    goto L_0186;
-    goto L_0180;
-L_017c:
-    goto L_0180;
-L_0180:
+
+L26:
+    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L27;
+    goto L38;
+    goto L28;
+
+L27:
+    goto L28;
+
+L28:
+    if (!trigger(236)) goto L29;
+    goto L34;
+    goto L30;
+
+L29:
+    goto L30;
+
+L30:
+    if (!trigger(205)) goto L31;
+    goto L33;
+    goto L32;
+
+L31:
+    goto L32;
+
+L32:
     warp(to: Map.TWNB01, spawn: 2, trigger: 255);
     return;
-L_0186:
+
+L33:
     warp(to: Map.TWNB24, spawn: 2, trigger: 255);
     return;
-L_018c:
-    if (!trigger(205)) goto L_01a0;
-    goto L_01a4;
-    goto L_01a4;
-L_01a0:
-    goto L_01aa;
-L_01a4:
+
+L34:
+    if (!trigger(205)) goto L35;
+    goto L36;
+    goto L36;
+
+L35:
+    goto L37;
+
+L36:
     warp(to: Map.TWNB23, spawn: 2, trigger: 255);
     return;
-L_01aa:
+
+L37:
     warp(to: Map.TWNB22, spawn: 2, trigger: 255);
     return;
-L_01b0:
-    if (!trigger(236)) goto L_01c4;
-    goto L_01ec;
-    goto L_01c8;
-L_01c4:
-    goto L_01c8;
-L_01c8:
-    if (!trigger(205)) goto L_01dc;
-    goto L_01e6;
-    goto L_01e0;
-L_01dc:
-    goto L_01e0;
-L_01e0:
+
+L38:
+    if (!trigger(236)) goto L39;
+    goto L44;
+    goto L40;
+
+L39:
+    goto L40;
+
+L40:
+    if (!trigger(205)) goto L41;
+    goto L43;
+    goto L42;
+
+L41:
+    goto L42;
+
+L42:
     warp(to: Map.TWNB18, spawn: 2, trigger: 255);
     return;
-L_01e6:
+
+L43:
     warp(to: Map.TWNB21, spawn: 2, trigger: 255);
     return;
-L_01ec:
-    if (!trigger(205)) goto L_0200;
-    goto L_020a;
-    goto L_0204;
-L_0200:
-    goto L_0204;
-L_0204:
+
+L44:
+    if (!trigger(205)) goto L45;
+    goto L47;
+    goto L46;
+
+L45:
+    goto L46;
+
+L46:
     warp(to: Map.TWNB19, spawn: 2, trigger: 255);
     return;
-L_020a:
+
+L47:
     warp(to: Map.TWNB20, spawn: 2, trigger: 255);
     return;
-L_0210:
-    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L_0230;
-    goto L_0294;
-    goto L_0234;
-L_0230:
-    goto L_0234;
-L_0234:
-    if (!trigger(236)) goto L_0248;
-    goto L_0270;
-    goto L_024c;
-L_0248:
-    goto L_024c;
-L_024c:
-    if (!trigger(205)) goto L_0260;
-    goto L_026a;
-    goto L_0264;
-L_0260:
-    goto L_0264;
-L_0264:
+
+L48:
+    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L49;
+    goto L60;
+    goto L50;
+
+L49:
+    goto L50;
+
+L50:
+    if (!trigger(236)) goto L51;
+    goto L56;
+    goto L52;
+
+L51:
+    goto L52;
+
+L52:
+    if (!trigger(205)) goto L53;
+    goto L55;
+    goto L54;
+
+L53:
+    goto L54;
+
+L54:
     warp(to: Map.TWNB10, spawn: 2, trigger: 255);
     return;
-L_026a:
+
+L55:
     warp(to: Map.TWNB17, spawn: 2, trigger: 255);
     return;
-L_0270:
-    if (!trigger(205)) goto L_0284;
-    goto L_028e;
-    goto L_0288;
-L_0284:
-    goto L_0288;
-L_0288:
+
+L56:
+    if (!trigger(205)) goto L57;
+    goto L59;
+    goto L58;
+
+L57:
+    goto L58;
+
+L58:
     warp(to: Map.TWNB15, spawn: 2, trigger: 255);
     return;
-L_028e:
+
+L59:
     warp(to: Map.TWNB16, spawn: 2, trigger: 255);
     return;
-L_0294:
-    if (!trigger(236)) goto L_02a8;
-    goto L_02d0;
-    goto L_02ac;
-L_02a8:
-    goto L_02ac;
-L_02ac:
-    if (!trigger(205)) goto L_02c0;
-    goto L_02ca;
-    goto L_02c4;
-L_02c0:
-    goto L_02c4;
-L_02c4:
+
+L60:
+    if (!trigger(236)) goto L61;
+    goto L66;
+    goto L62;
+
+L61:
+    goto L62;
+
+L62:
+    if (!trigger(205)) goto L63;
+    goto L65;
+    goto L64;
+
+L63:
+    goto L64;
+
+L64:
     warp(to: Map.TWNB11, spawn: 2, trigger: 255);
     return;
-L_02ca:
+
+L65:
     warp(to: Map.TWNB14, spawn: 2, trigger: 255);
     return;
-L_02d0:
-    if (!trigger(205)) goto L_02e4;
-    goto L_02ee;
-    goto L_02e8;
-L_02e4:
-    goto L_02e8;
-L_02e8:
+
+L66:
+    if (!trigger(205)) goto L67;
+    goto L69;
+    goto L68;
+
+L67:
+    goto L68;
+
+L68:
     warp(to: Map.TWNB12, spawn: 2, trigger: 255);
     return;
-L_02ee:
+
+L69:
     warp(to: Map.TWNB13, spawn: 2, trigger: 255);
     return;
-    garbage { 24 00 fe 00 24 00 05 00 92 00 07 00 de 00 08 00 24 01 09 00 5a 01 0a 00 98 01 06 00 de 01 34 00 22 02 ff ff 19 00 00 00 e8 00 18 00 40 00 19 00 57 00 44 01 57 00 45 01 57 00 46 01 16 00 48 00 7c 00 16 00 10 00 03 0c 19 00 00 00 e8 00 8a 00 01 23 18 00 64 00 19 00 57 00 47 00 57 00 48 00 57 00 49 00 24 00 6e 63 19 00 0b 00 6e 27 18 00 7a 00 19 00 74 2c 25 00 30 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 90 00 19 00 74 30 26 00 34 00 fe 00 1b 05 1a 00 82 68 81 40 82 83 82 81 82 8e 81 40 82 82 82 85 82 81 82 94 81 40 82 99 82 8f 82 95 81 40 82 89 82 8e 81 40 82 8f 82 8e 82 85 81 40 82 82 82 8c 82 8f 82 97 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1b 01 fe 00 1b 07 1a 00 82 78 82 8f 82 95 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 8b 82 8e 82 8f 82 97 81 40 82 81 82 8e 82 99 82 94 82 88 82 89 82 8e 82 87 81 42 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1e 01 fe 00 1b 08 1a 00 82 72 82 94 82 8f 82 90 81 40 82 89 82 94 81 40 82 81 82 8c 82 92 82 85 82 81 82 84 82 99 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 09 1a 00 82 61 82 95 82 8c 82 8c 82 89 82 85 82 93 81 40 82 81 82 92 82 85 82 8e 81 75 82 94 81 40 82 83 82 8f 82 8f 82 8c 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 0a 1a 00 82 6b 82 89 82 93 82 94 82 85 82 8e 81 40 82 94 82 8f 81 40 82 8d 82 85 81 43 81 40 82 97 82 89 82 8c 82 8c 81 40 82 99 82 8f 82 95 81 48 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 06 1a 00 82 68 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 68 81 40 82 83 82 81 82 8e 81 40 82 82 82 85 82 81 82 94 81 40 82 99 82 8f 82 95 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1b 01 fe 00 4e fd 10 f5 b8 0b 00 00 19 00 00 00 e7 00 40 00 f5 00 40 00 e9 00 40 00 f7 00 18 00 4a 02 19 00 16 00 32 04 16 00 4e 02 16 00 4e 02 19 00 00 00 cc 00 40 00 f9 00 18 00 66 02 19 00 16 00 6a 02 16 00 6a 02 16 00 4e 03 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 8a 02 19 00 16 00 ee 02 16 00 8e 02 16 00 8e 02 19 00 00 00 ec 00 18 00 a2 02 19 00 16 00 ca 02 16 00 a6 02 16 00 a6 02 19 00 00 00 cd 00 18 00 ba 02 19 00 16 00 c4 02 16 00 be 02 16 00 be 02 4b b5 02 ff fe 00 4b bc 02 ff fe 00 19 00 00 00 cd 00 18 00 de 02 19 00 16 00 e8 02 16 00 e2 02 16 00 e2 02 4b ba 02 ff fe 00 };
+    garbage { 24 00 fe 00 24 00 05 00 92 00 07 00 de 00 08 00 24 01 09 00 5a 01 0a 00 98 01 06 00 de 01 34 00 22 02 ff ff 19 00 00 00 e8 00 18 00 40 00 19 00 57 00 44 01 57 00 45 01 57 00 46 01 16 00 48 00 7c 00 16 00 10 00 03 0c 19 00 00 00 e8 00 8a 00 01 23 18 00 64 00 19 00 57 00 47 00 57 00 48 00 57 00 49 00 24 00 6e 63 19 00 0b 00 6e 27 18 00 7a 00 19 00 74 2c 25 00 30 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 90 00 19 00 74 30 26 00 34 00 fe 00 1b 05 1a 00 82 68 81 40 82 83 82 81 82 8e 81 40 82 82 82 85 82 81 82 94 81 40 82 99 82 8f 82 95 81 40 82 89 82 8e 81 40 82 8f 82 8e 82 85 81 40 82 82 82 8c 82 8f 82 97 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1b 01 fe 00 1b 07 1a 00 82 78 82 8f 82 95 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 8b 82 8e 82 8f 82 97 81 40 82 81 82 8e 82 99 82 94 82 88 82 89 82 8e 82 87 81 42 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1e 01 fe 00 1b 08 1a 00 82 72 82 94 82 8f 82 90 81 40 82 89 82 94 81 40 82 81 82 8c 82 92 82 85 82 81 82 84 82 99 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 09 1a 00 82 61 82 95 82 8c 82 8c 82 89 82 85 82 93 81 40 82 81 82 92 82 85 82 8e 81 75 82 94 81 40 82 83 82 8f 82 8f 82 8c 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 0a 1a 00 82 6b 82 89 82 93 82 94 82 85 82 8e 81 40 82 94 82 8f 81 40 82 8d 82 85 81 43 81 40 82 97 82 89 82 8c 82 8c 81 40 82 99 82 8f 82 95 81 48 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 06 1a 00 82 68 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 68 81 40 82 83 82 81 82 8e 81 40 82 82 82 85 82 81 82 94 81 40 82 99 82 8f 82 95 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1b 01 fe 00 4e fd 10 f5 b8 0b 00 00 19 00 00 00 e7 00 40 00 f5 00 40 00 e9 00 40 00 f7 00 18 00 4a 02 19 00 16 00 32 04 16 00 4e 02 16 00 4e 02 19 00 00 00 cc 00 40 00 f9 00 18 00 66 02 19 00 16 00 6a 02 16 00 6a 02 16 00 4e 03 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 8a 02 19 00 16 00 ee 02 16 00 8e 02 16 00 8e 02 19 00 00 00 ec 00 18 00 a2 02 19 00 16 00 ca 02 16 00 a6 02 16 00 a6 02 19 00 00 00 cd 00 18 00 ba 02 19 00 16 00 c4 02 16 00 be 02 16 00 be 02 4b b5 02 ff fe 00 4b bc 02 ff fe 00 19 00 00 00 cd 00 18 00 de 02 19 00 16 00 e8 02 16 00 e2 02 16 00 e2 02 4b ba 02 ff fe 00 }
 }

@@ -5,7 +5,7 @@ section onEnter(254) {  // len=2
     return;
 }
 
-section section_5(5) {  // len=3342
+section(5) {  // len=3342
     move(entity: Entity.Player, to: (-77, 119), sprint: 0, withCamera: true);
     move(entity: Entity.Partner, to: (397, 151), sprint: 0);
     waitForEntity(Entity.Player);
@@ -39,20 +39,23 @@ section section_5(5) {  // len=3342
     showTextbox("You did?\n");
     setDialogOwner(5);
     showTextbox("I've been wanting to help you.\nHave you been to Misty Trees\njust north of here?\n");
-    if (trigger(112)) goto L_02c2;
+    if (trigger(112)) goto L1;
     setDialogOwner(Entity.Player);
     showTextbox("Not yet.\n");
-L_02c2:
-    if (!trigger(112)) goto L_02de;
+
+L1:
+    if (!trigger(112)) goto L2;
     setDialogOwner(Entity.Player);
     showTextbox("Yes.\n");
-L_02de:
+
+L2:
     setDialogOwner(5);
     showTextbox("It's always foggy there.\nIt'll probably be hard\nfor you to get around.\n");
     showTextbox("But you should meet\nCherrymon, who is the\nforest chief.\n");
-    if (!trigger(147)) goto L_03f6;
-    goto L_0954;
-L_03f6:
+    if (!trigger(147)) goto L3;
+    goto L4;
+
+L3:
     playAnimation(Entity.Player, 16);
     delay(20);
     setDialogOwner(Entity.Player);
@@ -104,7 +107,8 @@ L_03f6:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_0954:
+
+L4:
     setDialogOwner(Entity.Player);
     showTextbox("I met him.\nThe fog is gone now.\n");
     setDialogOwner(5);
@@ -113,13 +117,14 @@ L_0954:
     playAnimation(5, 0);
     setDialogOwner(Entity.System);
     showTextbox("I got a\n<LIGHTBLUE>Digital Sea Bass<WHITE>!\n");
-    if (!trigger(0) || item[Item.Digiseabass] >= 1) goto L_0ae0;
+    if (!trigger(0) || item[Item.Digiseabass] >= 1) goto L5;
     setDialogOwner(Entity.System);
     showTextbox("Throw away something else.\n");
     unsetTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
-L_0ae0:
+
+L5:
     giveItem(Item.Digiseabass, 1);
     setDialogOwner(5);
     showTextbox("It's a very rare thing.\nIt'll be useful to you.\n");
@@ -139,7 +144,7 @@ L_0ae0:
     return;
 }
 
-section section_81(81) {  // len=792
+section(81) {  // len=792
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
     delay(10);
@@ -147,7 +152,7 @@ section section_81(81) {  // len=792
     waitForEntity(200);
     playSound(8, 1);
     storeDigimonType(103);
-    if (!trigger(116) || pstat[103] == 14) goto L_01f2;
+    if (!trigger(116) || pstat[103] == 14) goto L1;
     setDialogOwner(5);
     showTextbox("Looks like you got a problem.\nAbout the costume, right?\n");
     setDialogOwner(Entity.Player);
@@ -159,21 +164,24 @@ section section_81(81) {  // len=792
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_01f2:
-    if (!trigger(122)) goto L_02e4;
+
+L1:
+    if (!trigger(122)) goto L3;
     setPStat(254, 5);
     callSubroutine(1);
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
-    if (item[Item.AmazingRod] < 1) goto L_02e2;
+    if (item[Item.AmazingRod] < 1) goto L2;
     removeItem(Item.AmazingRod, 1);
     setTrigger(46);
     setDialogOwner(5);
     showTextbox("By the way, I'll remove the\n<LIGHTBLUE>Amazing Rod <WHITE>for\nFishing from your Items.\n");
     showTextbox("It's a Special Item.\n");
-L_02e2:
+
+L2:
     return;
-L_02e4:
+
+L3:
     if (!trigger(319)) goto section_6;
     playSound(8, 1);
     setDialogOwner(5);
@@ -183,18 +191,19 @@ L_02e4:
     return;
 }
 
-section section_6(6) {  // len=148
-    if (!trigger(122)) goto L_0060;
+section(6) {  // len=148
+    if (!trigger(122)) goto L1;
     setDialogOwner(6);
     showTextbox("You can fish only at\nDragon Eye Lake.\n");
     return;
-L_0060:
+
+L1:
     setDialogOwner(6);
     showTextbox("Stay back, stay back!\n");
     return;
 }
 
-section section_7(7) {  // len=470
+section(7) {  // len=470
     setDialogOwner(7);
     showTextbox("Shogun is collecting\nrare Items. He used to\ncollect Items.\n");
     showTextbox("But now he's really\ninto Digimon cards.\n");
@@ -208,12 +217,13 @@ section section_7(7) {  // len=470
     return;
 }
 
-section section_8(8) {  // len=1362
-    if (trigger(205)) goto L_004e;
+section(8) {  // len=1362
+    if (trigger(205)) goto L1;
     setDialogOwner(8);
     showTextbox("Well... no, nothing. Ribbit.\n");
     return;
-L_004e:
+
+L1:
     setDialogOwner(8);
     showTextbox("Excuse me... I want to go to\nthe city. Ribbit!\n");
     setDialogOwner(Entity.Player);
@@ -229,5 +239,5 @@ L_004e:
     setDialogOwner(Entity.System);
     showTextbox("Gekomon joined the Arena!\n");
     return;
-    garbage { 1c 00 fe 00 1c 00 05 00 1e 00 51 00 2c 0d 06 00 44 10 07 00 d8 10 08 00 ae 12 ff ff fe 00 52 fd b3 ff 77 00 00 00 4e fc 8d 01 97 00 00 00 4a fd 4a fc 4c 00 fd 05 4c 00 fc 05 67 00 0a 00 4f 14 70 fe 34 08 4a c8 5a 00 08 01 1b 05 1a 00 81 40 01 06 05 00 01 01 81 40 82 81 82 8e 82 84 81 40 01 0a 06 00 01 01 81 43 0d 00 82 92 82 89 82 87 82 88 82 94 81 48 81 40 82 73 82 88 82 81 82 8e 82 8b 82 93 81 40 82 86 82 8f 82 92 81 40 82 83 82 8f 82 8d 82 89 82 8e 82 87 0d 00 82 94 82 8f 81 40 82 75 82 8f 82 8c 82 95 82 8d 82 85 81 40 82 75 82 89 82 8c 82 8c 82 81 81 49 0d 00 00 00 56 00 fd 16 67 00 14 00 1b fd 1a 00 82 68 81 75 82 8d 81 40 82 93 82 8f 82 92 82 92 82 99 81 40 82 86 82 8f 82 92 81 40 82 97 82 88 82 81 82 94 0d 00 82 97 82 85 81 40 82 84 82 89 82 84 81 40 82 94 82 8f 81 40 82 6e 82 94 82 81 82 8d 82 81 82 8d 82 8f 82 8e 81 42 0d 00 00 00 56 00 fd 00 1b 05 1a 00 82 6d 82 85 82 96 82 85 82 92 81 40 82 8d 82 89 82 8e 82 84 81 42 0d 00 00 00 56 00 fd 17 67 00 14 00 1b fd 1a 00 82 67 82 95 82 88 81 48 0d 00 00 00 56 00 fd 00 56 00 05 05 67 00 26 00 56 00 05 00 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 87 82 92 82 81 82 94 82 85 82 86 82 95 82 8c 81 42 81 40 82 68 81 40 82 88 82 85 82 81 82 92 82 84 81 40 82 94 82 88 82 81 82 94 0d 00 82 99 82 8f 82 95 81 75 82 96 82 85 81 40 82 82 82 85 82 85 82 8e 81 40 82 97 82 8f 82 92 82 8b 82 89 82 8e 82 87 81 40 82 88 82 81 82 92 82 84 0d 00 82 94 82 8f 81 40 82 93 82 81 82 96 82 85 81 40 82 94 82 88 82 89 82 93 81 40 82 89 82 93 82 8c 82 81 82 8e 82 84 81 42 0d 00 00 00 1b fd 1a 00 82 78 82 8f 82 95 81 40 82 84 82 89 82 84 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 75 82 96 82 85 81 40 82 82 82 85 82 85 82 8e 81 40 82 97 82 81 82 8e 82 94 82 89 82 8e 82 87 81 40 82 94 82 8f };
+    garbage { 1c 00 fe 00 1c 00 05 00 1e 00 51 00 2c 0d 06 00 44 10 07 00 d8 10 08 00 ae 12 ff ff fe 00 52 fd b3 ff 77 00 00 00 4e fc 8d 01 97 00 00 00 4a fd 4a fc 4c 00 fd 05 4c 00 fc 05 67 00 0a 00 4f 14 70 fe 34 08 4a c8 5a 00 08 01 1b 05 1a 00 81 40 01 06 05 00 01 01 81 40 82 81 82 8e 82 84 81 40 01 0a 06 00 01 01 81 43 0d 00 82 92 82 89 82 87 82 88 82 94 81 48 81 40 82 73 82 88 82 81 82 8e 82 8b 82 93 81 40 82 86 82 8f 82 92 81 40 82 83 82 8f 82 8d 82 89 82 8e 82 87 0d 00 82 94 82 8f 81 40 82 75 82 8f 82 8c 82 95 82 8d 82 85 81 40 82 75 82 89 82 8c 82 8c 82 81 81 49 0d 00 00 00 56 00 fd 16 67 00 14 00 1b fd 1a 00 82 68 81 75 82 8d 81 40 82 93 82 8f 82 92 82 92 82 99 81 40 82 86 82 8f 82 92 81 40 82 97 82 88 82 81 82 94 0d 00 82 97 82 85 81 40 82 84 82 89 82 84 81 40 82 94 82 8f 81 40 82 6e 82 94 82 81 82 8d 82 81 82 8d 82 8f 82 8e 81 42 0d 00 00 00 56 00 fd 00 1b 05 1a 00 82 6d 82 85 82 96 82 85 82 92 81 40 82 8d 82 89 82 8e 82 84 81 42 0d 00 00 00 56 00 fd 17 67 00 14 00 1b fd 1a 00 82 67 82 95 82 88 81 48 0d 00 00 00 56 00 fd 00 56 00 05 05 67 00 26 00 56 00 05 00 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 87 82 92 82 81 82 94 82 85 82 86 82 95 82 8c 81 42 81 40 82 68 81 40 82 88 82 85 82 81 82 92 82 84 81 40 82 94 82 88 82 81 82 94 0d 00 82 99 82 8f 82 95 81 75 82 96 82 85 81 40 82 82 82 85 82 85 82 8e 81 40 82 97 82 8f 82 92 82 8b 82 89 82 8e 82 87 81 40 82 88 82 81 82 92 82 84 0d 00 82 94 82 8f 81 40 82 93 82 81 82 96 82 85 81 40 82 94 82 88 82 89 82 93 81 40 82 89 82 93 82 8c 82 81 82 8e 82 84 81 42 0d 00 00 00 1b fd 1a 00 82 78 82 8f 82 95 81 40 82 84 82 89 82 84 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 75 82 96 82 85 81 40 82 82 82 85 82 85 82 8e 81 40 82 97 82 81 82 8e 82 94 82 89 82 8e 82 87 81 40 82 94 82 8f }
 }

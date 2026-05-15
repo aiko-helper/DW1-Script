@@ -3,27 +3,32 @@
 
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 8) goto L_0016;
+    if (pstat[110] > 8) goto L1;
     spawnItem(Item.Digimushroom, 33, 39);
-L_0016:
+
+L1:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 16) goto L_002c;
+    if (pstat[110] > 16) goto L2;
     spawnItem(Item.Digimushroom, 33, 22);
-L_002c:
+
+L2:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 2) goto L_0042;
+    if (pstat[110] > 2) goto L3;
     spawnItem(Item.SweetNut, 52, 35);
-L_0042:
+
+L3:
     return;
 }
 
-section section_51(51) {  // len=1644
-    if (!trigger(189)) goto L_000e;
+section(51) {  // len=1644
+    if (!trigger(189)) goto L1;
     return;
-L_000e:
-    if (!trigger(248) && trigger(196)) goto L_0020;
+
+L1:
+    if (!trigger(248) && trigger(196)) goto L2;
     return;
-L_0020:
+
+L2:
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
     waitForEntity(Entity.Player);
@@ -50,12 +55,14 @@ L_0020:
     showTextbox("What are you looking for?\n");
     setDialogOwner(5);
     showTextbox("Something that my ancestors\nleft behind, but\nI don't know what it is.\n");
-L_0286:
-    if (item[Item.Leomonstone] < 1) goto L_02a0;
+
+L3:
+    if (item[Item.Leomonstone] < 1) goto L4;
     removeItem(Item.Leomonstone, 1);
-    goto L_03e6;
-    goto L_03e6;
-L_02a0:
+    goto L5;
+    goto L5;
+
+L4:
     setDialogOwner(Entity.Player);
     showTextbox("I see. If I find it,\nI'll let you know.\n");
     setDialogOwner(5);
@@ -65,7 +72,8 @@ L_02a0:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_03e6:
+
+L5:
     playAnimation(Entity.Player, 19);
     delay(15);
     setDialogOwner(Entity.Player);
@@ -99,16 +107,18 @@ L_03e6:
     waitForEntity(5);
     setDialogOwner(5);
     showTextbox("You can count on me!\n");
-    goto L_05f4;
-L_05f4:
+    goto L6;
+
+L6:
     move(entity: 5, to: (-374, -1119), sprint: 1);
-    if (pstat[101] >= 3) goto L_061c;
+    if (pstat[101] >= 3) goto L7;
     addPStat(101, 1);
     delay(20);
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
-    goto L_05f4;
-L_061c:
+    goto L6;
+
+L7:
     waitForEntity(5);
     unloadEntity(5);
     setPStat(101, 0);
@@ -122,46 +132,51 @@ L_061c:
     return;
 }
 
-section section_5(5) {  // len=126
+section(5) {  // len=126
     setDialogOwner(5);
     showTextbox("I have to look for something.\nExcuse me, but I have to...\n");
-    goto section_51.L_0286;
+    goto section_51.L3;
 }
 
-section section_83(83) {  // len=586
+section(83) {  // len=586
     rotate(entity: Entity.Player, to: 2048);
     setTextboxOrigin(-829, 0, 4099);
     callSubroutine(39);
     setDialogOwner(200);
     showTextbox("<GREEN>Training:\nStriking Special <WHITE>\n");
-    setSelection(L_0086, L_00c4, L_01c0);
+    setSelection(L1, L2, L3);
     showTextbox("Begin\nExplain\nQuit\n");
     waitForSelectionChoice();
     return;
-L_0086:
+
+L1:
     setDialogOwner(200);
-    setSelection(L_01c2, L_01d2, L_01c0);
+    setSelection(L4, L5, L3);
     showTextbox("Normal\nBonus Try\nQuit\n");
     waitForSelectionChoice();
     return;
-L_00c4:
+
+L2:
     setDialogOwner(200);
     showTextbox("Using a concrete bag,\nstrike at full force.\n");
     showTextbox("This will boost Offensive\nPower and Max HP.\n");
-    setSelection(L_00c4, L_0086, L_01c0);
+    setSelection(L2, L1, L3);
     showTextbox("Explain again\nBegin\nQuit\n");
     waitForSelectionChoice();
     return;
-L_01c0:
+
+L3:
     return;
-L_01c2:
+
+L4:
     fadeOutHUD();
     setPStat(254, 1);
     setPStat(246, 0);
     callDigimonSubroutine(214);
     callSubroutine(7);
     return;
-L_01d2:
+
+L5:
     setTexboxMode(1, 0);
     setDialogOwner(Entity.System);
     showTextbox("<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
@@ -173,40 +188,45 @@ L_01d2:
     return;
 }
 
-section section_85(85) {  // len=1648
+section(85) {  // len=1648
     rotate(entity: Entity.Player, to: 2560);
     setTextboxOrigin(766, 0, 106);
     callSubroutine(39);
     setDialogOwner(200);
     showTextbox("<GREEN>Training: \nSavanna Course <WHITE>\n");
-    setSelection(L_0084, L_00c2, L_01ae);
+    setSelection(L1, L2, L3);
     showTextbox("Begin\nExplain\nQuit\n");
     waitForSelectionChoice();
     return;
-L_0084:
+
+L1:
     setDialogOwner(200);
-    setSelection(L_01b0, L_01c0, L_01ae);
+    setSelection(L4, L5, L3);
     showTextbox("Normal\nBonus Try\nQuit\n");
     waitForSelectionChoice();
     return;
-L_00c2:
+
+L2:
     setDialogOwner(200);
     showTextbox("Run around Savanna Course.\n");
     showTextbox("This will boost Speed greatly\nand boost Max HP also.\n");
-    setSelection(L_00c2, L_0084, L_01ae);
+    setSelection(L2, L1, L3);
     showTextbox("Explain again\nBegin\nQuit\n");
     waitForSelectionChoice();
     return;
-L_01ae:
+
+L3:
     return;
-L_01b0:
+
+L4:
     fadeOutHUD();
     setPStat(254, 2);
     setPStat(246, 0);
     callDigimonSubroutine(214);
     callSubroutine(7);
     return;
-L_01c0:
+
+L5:
     setTexboxMode(1, 0);
     setDialogOwner(Entity.System);
     showTextbox("<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
@@ -216,5 +236,5 @@ L_01c0:
     callSubroutine(7);
     setTexboxMode(0, 0);
     return;
-    garbage { 18 00 fe 00 18 00 33 00 5c 00 05 00 c8 06 53 00 46 07 55 00 90 09 ff ff 24 00 6e 63 19 00 0b 00 6e 08 18 00 2e 00 19 00 74 2c 21 00 27 00 24 00 6e 63 19 00 0b 00 6e 10 18 00 44 00 19 00 74 2c 21 00 16 00 24 00 6e 63 19 00 0b 00 6e 02 18 00 5a 00 19 00 74 34 34 00 23 00 fe 00 19 00 00 00 bd 00 18 00 6a 00 19 00 fe 00 19 00 00 00 f8 00 41 00 c4 00 18 00 7c 00 19 00 fe 00 4c 00 fd 05 4c 00 fc 05 4a fd 4a fc 1c 00 bd 00 4f 1e e3 fe 7c 0f 4a c8 1b 05 1a 00 82 68 81 75 82 96 82 85 81 40 82 88 82 85 82 81 82 92 82 84 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 99 82 8f 82 95 81 42 0d 00 00 00 4c 00 05 fd 4a 05 56 00 fd 13 67 00 0f 00 1b fd 1a 00 82 68 82 86 81 40 82 99 82 8f 82 95 81 75 82 96 82 85 81 40 82 88 82 85 82 81 82 92 82 84 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 95 82 93 0d 00 82 81 82 8e 82 84 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 43 81 40 82 97 82 88 82 99 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 99 82 8f 82 95 0d 00 82 83 82 8f 82 8d 82 85 81 40 82 97 82 89 82 94 82 88 81 40 82 8d 82 85 81 48 0d 00 00 00 56 00 fd 00 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 81 82 8c 82 93 82 8f 81 40 82 94 82 88 82 89 82 8e 82 8b 82 89 82 8e 82 87 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 94 82 88 82 85 0d 00 82 89 82 93 82 8c 82 81 82 8e 82 84 81 75 82 93 81 40 82 86 82 95 82 94 82 95 82 92 82 85 81 42 81 40 82 68 81 75 82 96 82 85 81 40 82 82 82 85 82 85 82 8e 0d 00 82 93 82 85 82 81 82 92 82 83 82 88 82 89 82 8e 82 87 81 40 82 86 82 8f 82 92 81 40 82 93 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 42 0d 00 00 00 4d 05 00 0a 4a 05 56 00 05 18 4a 05 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 8c 82 8f 82 8f 82 8b 82 89 82 8e 82 87 81 40 82 86 82 8f 82 92 81 48 0d 00 00 00 1b 05 1a 00 82 72 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 40 82 94 82 88 82 81 82 94 81 40 82 8d 82 99 81 40 82 81 82 8e 82 83 82 85 82 93 82 94 82 8f 82 92 82 93 0d 00 82 8c 82 85 82 86 82 94 81 40 82 82 82 85 82 88 82 89 82 8e 82 84 81 43 81 40 82 82 82 95 82 94 0d 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 8b 82 8e 82 8f 82 97 81 40 82 97 82 88 82 81 82 94 81 40 82 89 82 94 81 40 82 89 82 93 81 42 0d 00 00 00 19 00 24 00 76 02 01 00 18 00 fc 02 19 00 29 00 76 01 16 00 42 04 16 00 42 04 1b fd 1a 00 82 68 81 40 82 93 82 85 82 85 81 42 81 40 82 68 82 86 81 40 82 68 81 40 82 86 82 89 82 8e 82 84 81 40 82 89 82 94 81 43 0d 00 82 68 81 75 82 8c 82 8c 81 40 82 8c 82 85 82 94 81 40 82 99 82 8f 82 95 81 40 82 8b 82 8e 82 8f 82 97 81 42 0d 00 00 00 1b 05 1a 00 82 68 81 75 82 96 82 85 81 40 82 82 82 85 82 85 82 8e 81 40 82 8c 82 8f 82 8f 82 8b 82 89 82 8e 82 87 0d 00 82 81 81 40 82 8c 82 8f 82 8e 82 87 81 40 82 94 82 89 82 8d 82 85 81 42 0d 00 82 68 82 94 81 40 82 97 82 8f 82 8e 81 75 82 94 81 40 82 82 82 85 81 40 82 85 82 81 82 93 82 99 81 40 82 94 82 8f 81 40 82 86 82 89 82 8e 82 84 81 42 0d 00 00 00 1b 05 1a 00 82 61 82 95 82 94 81 40 82 89 82 86 81 40 82 99 82 8f 82 95 81 40 82 86 82 89 82 8e 82 84 81 40 82 89 82 94 81 43 0d 00 82 68 81 40 82 90 82 92 82 8f 82 8d 82 89 82 93 82 85 81 43 0d 00 82 68 81 75 82 8c 82 8c 81 40 82 87 82 8f 81 40 82 94 82 8f 81 40 82 99 82 8f 82 95 82 92 81 40 82 83 82 89 82 94 82 99 81 42 };
+    garbage { 18 00 fe 00 18 00 33 00 5c 00 05 00 c8 06 53 00 46 07 55 00 90 09 ff ff 24 00 6e 63 19 00 0b 00 6e 08 18 00 2e 00 19 00 74 2c 21 00 27 00 24 00 6e 63 19 00 0b 00 6e 10 18 00 44 00 19 00 74 2c 21 00 16 00 24 00 6e 63 19 00 0b 00 6e 02 18 00 5a 00 19 00 74 34 34 00 23 00 fe 00 19 00 00 00 bd 00 18 00 6a 00 19 00 fe 00 19 00 00 00 f8 00 41 00 c4 00 18 00 7c 00 19 00 fe 00 4c 00 fd 05 4c 00 fc 05 4a fd 4a fc 1c 00 bd 00 4f 1e e3 fe 7c 0f 4a c8 1b 05 1a 00 82 68 81 75 82 96 82 85 81 40 82 88 82 85 82 81 82 92 82 84 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 99 82 8f 82 95 81 42 0d 00 00 00 4c 00 05 fd 4a 05 56 00 fd 13 67 00 0f 00 1b fd 1a 00 82 68 82 86 81 40 82 99 82 8f 82 95 81 75 82 96 82 85 81 40 82 88 82 85 82 81 82 92 82 84 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 95 82 93 0d 00 82 81 82 8e 82 84 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 43 81 40 82 97 82 88 82 99 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 99 82 8f 82 95 0d 00 82 83 82 8f 82 8d 82 85 81 40 82 97 82 89 82 94 82 88 81 40 82 8d 82 85 81 48 0d 00 00 00 56 00 fd 00 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 81 82 8c 82 93 82 8f 81 40 82 94 82 88 82 89 82 8e 82 8b 82 89 82 8e 82 87 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 94 82 88 82 85 0d 00 82 89 82 93 82 8c 82 81 82 8e 82 84 81 75 82 93 81 40 82 86 82 95 82 94 82 95 82 92 82 85 81 42 81 40 82 68 81 75 82 96 82 85 81 40 82 82 82 85 82 85 82 8e 0d 00 82 93 82 85 82 81 82 92 82 83 82 88 82 89 82 8e 82 87 81 40 82 86 82 8f 82 92 81 40 82 93 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 42 0d 00 00 00 4d 05 00 0a 4a 05 56 00 05 18 4a 05 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 8c 82 8f 82 8f 82 8b 82 89 82 8e 82 87 81 40 82 86 82 8f 82 92 81 48 0d 00 00 00 1b 05 1a 00 82 72 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 40 82 94 82 88 82 81 82 94 81 40 82 8d 82 99 81 40 82 81 82 8e 82 83 82 85 82 93 82 94 82 8f 82 92 82 93 0d 00 82 8c 82 85 82 86 82 94 81 40 82 82 82 85 82 88 82 89 82 8e 82 84 81 43 81 40 82 82 82 95 82 94 0d 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 8b 82 8e 82 8f 82 97 81 40 82 97 82 88 82 81 82 94 81 40 82 89 82 94 81 40 82 89 82 93 81 42 0d 00 00 00 19 00 24 00 76 02 01 00 18 00 fc 02 19 00 29 00 76 01 16 00 42 04 16 00 42 04 1b fd 1a 00 82 68 81 40 82 93 82 85 82 85 81 42 81 40 82 68 82 86 81 40 82 68 81 40 82 86 82 89 82 8e 82 84 81 40 82 89 82 94 81 43 0d 00 82 68 81 75 82 8c 82 8c 81 40 82 8c 82 85 82 94 81 40 82 99 82 8f 82 95 81 40 82 8b 82 8e 82 8f 82 97 81 42 0d 00 00 00 1b 05 1a 00 82 68 81 75 82 96 82 85 81 40 82 82 82 85 82 85 82 8e 81 40 82 8c 82 8f 82 8f 82 8b 82 89 82 8e 82 87 0d 00 82 81 81 40 82 8c 82 8f 82 8e 82 87 81 40 82 94 82 89 82 8d 82 85 81 42 0d 00 82 68 82 94 81 40 82 97 82 8f 82 8e 81 75 82 94 81 40 82 82 82 85 81 40 82 85 82 81 82 93 82 99 81 40 82 94 82 8f 81 40 82 86 82 89 82 8e 82 84 81 42 0d 00 00 00 1b 05 1a 00 82 61 82 95 82 94 81 40 82 89 82 86 81 40 82 99 82 8f 82 95 81 40 82 86 82 89 82 8e 82 84 81 40 82 89 82 94 81 43 0d 00 82 68 81 40 82 90 82 92 82 8f 82 8d 82 89 82 93 82 85 81 43 0d 00 82 68 81 75 82 8c 82 8c 81 40 82 87 82 8f 81 40 82 94 82 8f 81 40 82 99 82 8f 82 95 82 92 81 40 82 83 82 89 82 94 82 99 81 42 }
 }

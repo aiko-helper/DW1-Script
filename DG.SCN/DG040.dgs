@@ -3,38 +3,46 @@
 
 section onEnter(254) {  // len=98
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 9) goto L_0016;
+    if (pstat[110] > 9) goto L1;
     spawnItem(Item.Digimushroom, 76, 78);
-L_0016:
+
+L1:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 4) goto L_002c;
+    if (pstat[110] > 4) goto L2;
     spawnItem(Item.Digimushroom, 31, 68);
-L_002c:
+
+L2:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 6) goto L_0042;
+    if (pstat[110] > 6) goto L3;
     spawnItem(Item.Pricklypear, 66, 68);
-L_0042:
+
+L3:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 2) goto L_0058;
+    if (pstat[110] > 2) goto L4;
     spawnItem(Item.Happymushroom, 22, 75);
-L_0058:
+
+L4:
     rotate3DObject(0, 1);
     delay(20);
     return;
 }
 
-section section_5(5) {  // len=1804
-    if (trigger(199) || trigger(198)) goto L_0014;
-    goto L_0040;
-L_0014:
-    if (trigger(199) || !trigger(198)) goto L_0028;
-    goto L_03de;
-L_0028:
-    if (!trigger(199) || !trigger(198)) goto L_003c;
-    goto L_0540;
-L_003c:
-    goto L_0638;
-L_0040:
+section(5) {  // len=1804
+    if (trigger(199) || trigger(198)) goto L1;
+    goto L4;
+
+L1:
+    if (trigger(199) || !trigger(198)) goto L2;
+    goto L7;
+
+L2:
+    if (!trigger(199) || !trigger(198)) goto L3;
+    goto L9;
+
+L3:
+    goto L10;
+
+L4:
     setTrigger(199);
     setDialogOwner(5);
     showTextbox("Who are you? Go away!\n");
@@ -50,11 +58,12 @@ L_0040:
     setDialogOwner(5);
     showTextbox("Want to fight? I'll beat you!\n");
     setDialogOwner(Entity.Player);
-    setSelection(L_01c4, L_03a4);
+    setSelection(L5, L6);
     showTextbox("I guess I'll fight\nYou can't bully me\n");
     waitForSelectionChoice();
-    goto L_03a4;
-L_01c4:
+    goto L6;
+
+L5:
     setTrigger(1);
     setPStat(250, 1);
     setPStat(251, 5);
@@ -98,11 +107,13 @@ L_01c4:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_03a4:
+
+L6:
     setDialogOwner(Entity.Player);
     showTextbox("Keep up your guard work!\n");
     return;
-L_03de:
+
+L7:
     setDialogOwner(Entity.Player);
     showTextbox("You are an Ogremon bandit!\nThis is your hideout!\n");
     setDialogOwner(5);
@@ -112,8 +123,9 @@ L_03de:
     setDialogOwner(Entity.Player);
     showTextbox("You were lucky last time!\nGive up!\n");
     playAnimation(Entity.Player, 0);
-    goto L_04e0;
-L_04e0:
+    goto L8;
+
+L8:
     setDialogOwner(5);
     showTextbox("Wow!\n");
     move(entity: 5, to: (-356, -1058), sprint: 1);
@@ -133,7 +145,8 @@ L_04e0:
     waitForEntity(Entity.Partner);
     setTrigger(200);
     warp(to: Map.OGRE00, spawn: 0, trigger: 255);
-L_0540:
+
+L9:
     setDialogOwner(Entity.Player);
     showTextbox("You tricked me last time,\nbut now I'll get you.\n");
     setDialogOwner(5);
@@ -143,29 +156,32 @@ L_0540:
     setDialogOwner(Entity.Player);
     showTextbox("You won't get away this time!\n");
     playAnimation(Entity.Player, 0);
-    goto L_04e0;
+    goto L8;
     return;
-L_0638:
+
+L10:
     setDialogOwner(Entity.Player);
     showTextbox("Come on, let me in.\n");
     setDialogOwner(5);
     showTextbox("You want a piece of me?\nI'll knock you out!\n");
     setDialogOwner(Entity.Player);
-    setSelection(L_01c4, L_03a4);
+    setSelection(L5, L6);
     showTextbox("Let's fight\nDon't bully me\n");
     waitForSelectionChoice();
-    goto L_03a4;
+    goto L6;
 }
 
-section section_51(51) {  // len=130
-    if (pstat[16] != 3) goto L_0018;
+section(51) {  // len=130
+    if (pstat[16] != 3) goto L1;
     move(entity: Entity.Player, to: (-250, -250), sprint: 0);
     warp(to: Map.MGEN11, spawn: 0, trigger: 60);
-L_0018:
-    if (!trigger(200)) goto L_0030;
+
+L1:
+    if (!trigger(200)) goto L2;
     move(entity: Entity.Player, to: (-250, -250), sprint: 0);
     warp(to: Map.OGRE00, spawn: 0, trigger: 255);
-L_0030:
+
+L2:
     return;
-    garbage { 10 00 fe 00 10 00 05 00 72 00 33 00 7e 07 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 26 00 19 00 74 2c 4c 00 4e 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 3c 00 19 00 74 2c 1f 00 44 00 24 00 6e 63 19 00 0b 00 6e 06 18 00 52 00 19 00 74 36 };
+    garbage { 10 00 fe 00 10 00 05 00 72 00 33 00 7e 07 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 26 00 19 00 74 2c 4c 00 4e 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 3c 00 19 00 74 2c 1f 00 44 00 24 00 6e 63 19 00 0b 00 6e 06 18 00 52 00 19 00 74 36 }
 }

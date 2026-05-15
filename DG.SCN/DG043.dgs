@@ -3,18 +3,20 @@
 
 section onEnter(254) {  // len=50
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 9) goto L_0016;
+    if (pstat[110] > 9) goto L1;
     spawnItem(Item.Digimushroom, 48, 68);
-L_0016:
+
+L1:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 3) goto L_002c;
+    if (pstat[110] > 3) goto L2;
     spawnItem(Item.Pricklypear, 76, 49);
-L_002c:
+
+L2:
     unsetTrigger(98);
     return;
 }
 
-section section_5(5) {  // len=30
+section(5) {  // len=30
     setDialogOwner(5);
     showTextbox("Daa!\n");
     fadeOutHUD();
@@ -24,7 +26,7 @@ section section_5(5) {  // len=30
     return;
 }
 
-section section_6(6) {  // len=30
+section(6) {  // len=30
     setDialogOwner(6);
     showTextbox("Haa!\n");
     fadeOutHUD();
@@ -34,7 +36,7 @@ section section_6(6) {  // len=30
     return;
 }
 
-section section_7(7) {  // len=36
+section(7) {  // len=36
     setDialogOwner(7);
     showTextbox("Gghhee!\n");
     fadeOutHUD();
@@ -44,29 +46,32 @@ section section_7(7) {  // len=36
     return;
 }
 
-section section_81(81) {  // len=190
+section(81) {  // len=190
     rotate(entity: Entity.Player, to: 1944);
     waitForEntity(Entity.Player);
     setDialogOwner(Entity.System);
     showTextbox("East: Elevator\nWest: Danger, Cliff\n");
-    if (!trigger(54)) goto L_0060;
+    if (!trigger(54)) goto L1;
     return;
-L_0060:
+
+L1:
     setDialogOwner(Entity.System);
-    setSelection(L_00aa, L_00b4);
+    setSelection(L2, L3);
     showTextbox("Ogre mode : ON\nOgre mode : OFF\n");
-L_00aa:
+
+L2:
     setTrigger(197);
     warp(to: Map.GCAN08_1, spawn: 0, trigger: 255);
     return;
-L_00b4:
+
+L3:
     unsetTrigger(197);
     warp(to: Map.GCAN08_1, spawn: 0, trigger: 255);
     return;
 }
 
-section section_53(53) {  // len=486
-    if (trigger(143) || trigger(141)) goto L_00e0;
+section(53) {  // len=486
+    if (trigger(143) || trigger(141)) goto L1;
     setTrigger(143);
     setTrigger(141);
     setDialogOwner(Entity.Player);
@@ -89,8 +94,9 @@ section section_53(53) {  // len=486
     rotate(entity: Entity.Player, to: 1000);
     setDialogOwner(Entity.Player);
     showTextbox("I felt the ground move.\nWas it my imagination?\n");
-L_00e0:
-    if (trigger(143) || !trigger(141)) goto L_01e4;
+
+L1:
+    if (trigger(143) || !trigger(141)) goto L2;
     setTrigger(142);
     move(entity: Entity.Player, to: (-1048, -498), sprint: 0, withCamera: true);
     delay(20);
@@ -137,16 +143,17 @@ L_00e0:
     showTextbox("<LIGHTBLUE><PLAYER><WHITE>Wow!!\n");
     warp(to: Map.GCAN07, spawn: 1, trigger: 51);
     return;
-L_01e4:
+
+L2:
     return;
 }
 
-section section_54(54) {  // len=6
+section(54) {  // len=6
     unsetTrigger(143);
     return;
 }
 
-section section_82(82) {  // len=54
+section(82) {  // len=54
     rotate(entity: Entity.Player, to: 1944);
     waitForEntity(Entity.Player);
     setDialogOwner(Entity.System);
@@ -154,16 +161,19 @@ section section_82(82) {  // len=54
     return;
 }
 
-section section_51(51) {  // len=1020
-    if (trigger(197)) goto L_000e;
+section(51) {  // len=1020
+    if (trigger(197)) goto L1;
     return;
-L_000e:
-    if (!trigger(198)) goto L_001c;
+
+L1:
+    if (!trigger(198)) goto L2;
     return;
-L_001c:
-    if (!trigger(98)) goto L_002a;
+
+L2:
+    if (!trigger(98)) goto L3;
     return;
-L_002a:
+
+L3:
     rotate(entity: Entity.Player, to: 1944);
     moveCamera(to: (2000, 173), slowdown: 30);
     waitForEntity(200);
@@ -192,9 +202,7 @@ L_002a:
     move(entity: 8, to: (1000, 1288), animDuration: 30);
     move(entity: 9, to: (2067, 1561), sprint: 1);
     move(entity: 10, to: (2059, -383), sprint: 1);
-    waitForEntity(8);
-    waitForEntity(9);
-    waitForEntity(10);
+    for id in 8..10 { waitForEntity(id); }
     look(entity: 8, at: Entity.Player);
     look(entity: 9, at: Entity.Player);
     look(entity: 10, at: Entity.Player);
@@ -249,8 +257,8 @@ L_002a:
     return;
 }
 
-section section_52(52) {  // len=102
+section(52) {  // len=102
     setTrigger(98);
     return;
-    garbage { 2c 00 fe 00 2c 00 05 00 5e 00 06 00 7c 00 07 00 9a 00 51 00 be 00 35 00 7c 01 36 00 62 03 52 00 68 03 33 00 9e 03 34 00 9a 07 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 42 00 19 00 74 2c 30 00 44 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 58 00 19 00 74 36 4c 00 31 00 1d 00 62 00 fe 00 };
+    garbage { 2c 00 fe 00 2c 00 05 00 5e 00 06 00 7c 00 07 00 9a 00 51 00 be 00 35 00 7c 01 36 00 62 03 52 00 68 03 33 00 9e 03 34 00 9a 07 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 42 00 19 00 74 2c 30 00 44 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 58 00 19 00 74 36 4c 00 31 00 1d 00 62 00 fe 00 }
 }

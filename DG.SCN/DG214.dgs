@@ -5,719 +5,815 @@ section onEnter(254) {  // len=2
     return;
 }
 
-section section_51(51) {  // len=14322
+section(51) {  // len=14322
     unsetTrigger(37);
-    if (pstat[255] != 3) goto L_0014;
-    goto L_0120;
-L_0014:
-    if (pstat[255] != 2) goto L_0024;
-    goto L_19c4;
-L_0024:
+    if (pstat[255] != 3) goto L1;
+    goto L4;
+
+L1:
+    if (pstat[255] != 2) goto L2;
+    goto L54;
+
+L2:
     setDialogOwner(5);
     showTextbox("That was too bad.\nTry again next time.\n");
     setDialogOwner(Entity.System);
     showTextbox("Participation Award :\n   <LIGHTBLUE>Giant Meat<WHITE>!\n");
     giveItem(Item.GiantMeat, 1);
-    if (!trigger(0)) goto L_011e;
+    if (!trigger(0)) goto L3;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.GiantMeat, 1);
-L_011e:
+
+L3:
     return;
-L_0120:
-    if (pstat[3] != 0) goto L_0226;
+
+L4:
+    if (pstat[3] != 0) goto L6;
     addMoney(2000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   two thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Double Floppy<WHITE>!\n");
     giveItem(Item.DoubleFloppy, 1);
-    if (!trigger(0)) goto L_0220;
+    if (!trigger(0)) goto L5;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.DoubleFloppy, 1);
-L_0220:
+
+L5:
     jumpToScriptSection(204, 51);
-L_0226:
-    if (pstat[3] != 1) goto L_0330;
+
+L6:
+    if (pstat[3] != 1) goto L8;
     addMoney(4000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   four thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Three Sirloins<WHITE>!\n");
     giveItem(Item.Sirloin, 3);
-    if (!trigger(0)) goto L_032a;
+    if (!trigger(0)) goto L7;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Sirloin, 3);
-L_032a:
+
+L7:
     jumpToScriptSection(204, 51);
-L_0330:
-    if (pstat[3] != 2) goto L_0432;
+
+L8:
+    if (pstat[3] != 2) goto L9;
     addMoney(6000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   six thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Restore Floppy<WHITE>!\n");
     giveItem(Item.Restore, 1);
-    if (!trigger(0)) goto L_0432;
+    if (!trigger(0)) goto L9;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Restore, 1);
-L_0432:
+
+L9:
     roll(pstat: 110, max: 99);
-    if (pstat[3] != 2) goto L_04a2;
-    if (stat[Stat.TamerLevel] == 10) goto L_049c;
-    if (pstat[110] > 9) goto L_049c;
+    if (pstat[3] != 2) goto L11;
+    if (stat[Stat.TamerLevel] == 10) goto L10;
+    if (pstat[110] > 9) goto L10;
     addStats(Stat.TamerLevel, 1);
     setDialogOwner(Entity.System);
     showTextbox("<YELLOW>Tamer Level went up! <WHITE>\n");
     jumpToScriptSection(204, 51);
-L_049c:
+
+L10:
     jumpToScriptSection(204, 51);
-L_04a2:
-    if (pstat[3] != 3) goto L_05a6;
+
+L11:
+    if (pstat[3] != 3) goto L12;
     addMoney(8000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Flaming Mane <WHITE>!\n");
     giveItem(Item.FlamingMane, 1);
-    if (!trigger(0)) goto L_05a6;
+    if (!trigger(0)) goto L12;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.FlamingMane, 1);
-L_05a6:
+
+L12:
     roll(pstat: 110, max: 99);
-    if (pstat[3] != 3) goto L_0616;
-    if (stat[Stat.TamerLevel] == 10) goto L_0610;
-    if (pstat[110] > 19) goto L_0610;
+    if (pstat[3] != 3) goto L14;
+    if (stat[Stat.TamerLevel] == 10) goto L13;
+    if (pstat[110] > 19) goto L13;
     addStats(Stat.TamerLevel, 1);
     setDialogOwner(Entity.System);
     showTextbox("<YELLOW>Tamer Level went up! <WHITE>\n");
     jumpToScriptSection(204, 51);
-L_0610:
+
+L13:
     jumpToScriptSection(204, 51);
-L_0616:
+
+L14:
     roll(pstat: 110, max: 2);
-    if (pstat[3] != 4 || pstat[110] != 0) goto L_071e;
+    if (pstat[3] != 4 || pstat[110] != 0) goto L16;
     addMoney(10000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   ten thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Metal Part<WHITE>!\n");
     giveItem(Item.MetalPart, 1);
-    if (!trigger(0)) goto L_0718;
+    if (!trigger(0)) goto L15;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.MetalPart, 1);
-L_0718:
-    goto L_0920;
+
+L15:
+    goto L20;
     return;
-L_071e:
-    if (pstat[3] != 4 || pstat[110] != 1) goto L_0820;
+
+L16:
+    if (pstat[3] != 4 || pstat[110] != 1) goto L18;
     addMoney(10000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   ten thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Fatal Bone<WHITE>!\n");
     giveItem(Item.FatalBone, 1);
-    if (!trigger(0)) goto L_081c;
+    if (!trigger(0)) goto L17;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.FatalBone, 1);
-L_081c:
-    goto L_0920;
-L_0820:
-    if (pstat[3] != 4 || pstat[110] != 2) goto L_0920;
+
+L17:
+    goto L20;
+
+L18:
+    if (pstat[3] != 4 || pstat[110] != 2) goto L20;
     addMoney(10000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   ten thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Mega Hand<WHITE>!\n");
     giveItem(Item.MegaHand, 1);
-    if (!trigger(0)) goto L_091c;
+    if (!trigger(0)) goto L19;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.MegaHand, 1);
-L_091c:
-    goto L_0920;
-L_0920:
+
+L19:
+    goto L20;
+
+L20:
     roll(pstat: 110, max: 99);
-    if (pstat[3] != 4) goto L_0990;
-    if (stat[Stat.TamerLevel] == 10) goto L_098a;
-    if (pstat[110] > 29) goto L_098a;
+    if (pstat[3] != 4) goto L22;
+    if (stat[Stat.TamerLevel] == 10) goto L21;
+    if (pstat[110] > 29) goto L21;
     addStats(Stat.TamerLevel, 1);
     setDialogOwner(Entity.System);
     showTextbox("<YELLOW>Tamer Level went up! <WHITE>\n");
     jumpToScriptSection(204, 51);
-L_098a:
+
+L21:
     jumpToScriptSection(204, 51);
-L_0990:
-    if (pstat[3] != 6) goto L_0a92;
+
+L22:
+    if (pstat[3] != 6) goto L24;
     addMoney(5000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>White Fang<WHITE>!\n");
     giveItem(Item.WhiteFang, 1);
-    if (!trigger(0)) goto L_0a8c;
+    if (!trigger(0)) goto L23;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.WhiteFang, 1);
-L_0a8c:
+
+L23:
     jumpToScriptSection(204, 51);
-L_0a92:
-    if (pstat[3] != 7) goto L_0b98;
+
+L24:
+    if (pstat[3] != 7) goto L26;
     addMoney(5000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Blue Crystal<WHITE>!\n");
     giveItem(Item.BlueCrystal, 1);
-    if (!trigger(0)) goto L_0b92;
+    if (!trigger(0)) goto L25;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.BlueCrystal, 1);
-L_0b92:
+
+L25:
     jumpToScriptSection(204, 51);
-L_0b98:
-    if (pstat[3] != 8) goto L_0c9a;
+
+L26:
+    if (pstat[3] != 8) goto L28;
     addMoney(5000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Iron Hoof <WHITE>!\n");
     giveItem(Item.IronHoof, 1);
-    if (!trigger(0)) goto L_0c94;
+    if (!trigger(0)) goto L27;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.IronHoof, 1);
-L_0c94:
+
+L27:
     jumpToScriptSection(204, 51);
-L_0c9a:
-    if (pstat[3] != 9) goto L_0da8;
+
+L28:
+    if (pstat[3] != 9) goto L30;
     addMoney(5000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Monochrome Stone<WHITE>!\n");
     giveItem(Item.MonoStone, 1);
-    if (!trigger(0)) goto L_0da2;
+    if (!trigger(0)) goto L29;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.MonoStone, 1);
-L_0da2:
+
+L29:
     jumpToScriptSection(204, 51);
-L_0da8:
-    if (pstat[3] != 10) goto L_0ea6;
+
+L30:
+    if (pstat[3] != 10) goto L32;
     addMoney(5000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Red Ruby<WHITE>!\n");
     giveItem(Item.RedRuby, 1);
-    if (!trigger(0)) goto L_0ea0;
+    if (!trigger(0)) goto L31;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.RedRuby, 1);
-L_0ea0:
+
+L31:
     jumpToScriptSection(204, 51);
-L_0ea6:
-    if (pstat[3] != 11) goto L_0fa6;
+
+L32:
+    if (pstat[3] != 11) goto L34;
     addMoney(8000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Fireball<WHITE>!\n");
     giveItem(Item.Fireball, 1);
-    if (!trigger(0)) goto L_0fa0;
+    if (!trigger(0)) goto L33;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Fireball, 1);
-L_0fa0:
+
+L33:
     jumpToScriptSection(204, 51);
-L_0fa6:
-    if (pstat[3] != 12) goto L_10aa;
+
+L34:
+    if (pstat[3] != 12) goto L36;
     addMoney(8000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Spike Club<WHITE>!\n");
     giveItem(Item.SpikeClub, 1);
-    if (!trigger(0)) goto L_10a4;
+    if (!trigger(0)) goto L35;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.SpikeClub, 1);
-L_10a4:
+
+L35:
     jumpToScriptSection(204, 51);
-L_10aa:
-    if (pstat[3] != 13) goto L_11a8;
+
+L36:
+    if (pstat[3] != 13) goto L38;
     addMoney(8000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Unihorn<WHITE>!\n");
     giveItem(Item.Unihorn, 1);
-    if (!trigger(0)) goto L_11a2;
+    if (!trigger(0)) goto L37;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Unihorn, 1);
-L_11a2:
+
+L37:
     jumpToScriptSection(204, 51);
-L_11a8:
-    if (pstat[3] != 14) goto L_12ac;
+
+L38:
+    if (pstat[3] != 14) goto L40;
     addMoney(8000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>North Star<WHITE>!\n");
     giveItem(Item.NorthStar, 1);
-    if (!trigger(0)) goto L_12a6;
+    if (!trigger(0)) goto L39;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.NorthStar, 1);
-L_12a6:
+
+L39:
     jumpToScriptSection(204, 51);
-L_12ac:
-    if (pstat[3] != 15) goto L_13b0;
+
+L40:
+    if (pstat[3] != 15) goto L42;
     addMoney(8000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Fertilizer<WHITE>!\n");
     giveItem(Item.Fertilizer, 1);
-    if (!trigger(0)) goto L_13aa;
+    if (!trigger(0)) goto L41;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Fertilizer, 1);
-L_13aa:
+
+L41:
     jumpToScriptSection(204, 51);
-L_13b0:
-    if (pstat[3] != 16) goto L_14b6;
+
+L42:
+    if (pstat[3] != 16) goto L44;
     addMoney(8000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Cyber Parts<WHITE>!\n");
     giveItem(Item.CyberPart, 1);
-    if (!trigger(0)) goto L_14b0;
+    if (!trigger(0)) goto L43;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.CyberPart, 1);
-L_14b0:
+
+L43:
     jumpToScriptSection(204, 51);
-L_14b6:
-    if (pstat[3] != 17) goto L_15ba;
+
+L44:
+    if (pstat[3] != 17) goto L46;
     addMoney(8000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Sunglasses<WHITE>!\n");
     giveItem(Item.Sunglasses, 1);
-    if (!trigger(0)) goto L_15b4;
+    if (!trigger(0)) goto L45;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Sunglasses, 1);
-L_15b4:
+
+L45:
     jumpToScriptSection(204, 51);
-L_15ba:
-    if (pstat[3] != 18) goto L_16bc;
+
+L46:
+    if (pstat[3] != 18) goto L48;
     addMoney(5000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Grew Claws<WHITE>!\n");
     giveItem(Item.GreyClaws, 1);
-    if (!trigger(0)) goto L_16b6;
+    if (!trigger(0)) goto L47;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.GreyClaws, 1);
-L_16b6:
+
+L47:
     jumpToScriptSection(204, 51);
-L_16bc:
-    if (pstat[3] != 19) goto L_17be;
+
+L48:
+    if (pstat[3] != 19) goto L50;
     addMoney(5000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>White Wing<WHITE>!\n");
     giveItem(Item.WhiteWing, 1);
-    if (!trigger(0)) goto L_17b8;
+    if (!trigger(0)) goto L49;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.WhiteWing, 1);
-L_17b8:
+
+L49:
     jumpToScriptSection(204, 51);
-L_17be:
-    if (pstat[3] != 20) goto L_18c2;
+
+L50:
+    if (pstat[3] != 20) goto L52;
     addMoney(5000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Steel Drill<WHITE>!\n");
     giveItem(Item.SteelDrill, 1);
-    if (!trigger(0)) goto L_18bc;
+    if (!trigger(0)) goto L51;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.SteelDrill, 1);
-L_18bc:
+
+L51:
     jumpToScriptSection(204, 51);
-L_18c2:
-    if (pstat[3] != 21) goto L_19c4;
+
+L52:
+    if (pstat[3] != 21) goto L54;
     addMoney(5000);
     setDialogOwner(Entity.System);
     showTextbox("Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Black Wing<WHITE>!\n");
     giveItem(Item.BlackWing, 1);
-    if (!trigger(0)) goto L_19be;
+    if (!trigger(0)) goto L53;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.BlackWing, 1);
-L_19be:
+
+L53:
     jumpToScriptSection(204, 51);
-L_19c4:
-    if (pstat[3] != 0) goto L_1ad6;
+
+L54:
+    if (pstat[3] != 0) goto L56;
     addMoney(500);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   five hund bits!\nSecond Place Prize :\n   <LIGHTBLUE>Two Giant Meat<WHITE>!\n");
     giveItem(Item.GiantMeat, 2);
-    if (!trigger(0)) goto L_1ad4;
+    if (!trigger(0)) goto L55;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.GiantMeat, 2);
-L_1ad4:
+
+L55:
     return;
-L_1ad6:
-    if (pstat[3] != 1) goto L_1be0;
+
+L56:
+    if (pstat[3] != 1) goto L58;
     addMoney(1000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   one thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Sirloin<WHITE>!\n");
     giveItem(Item.Sirloin, 1);
-    if (!trigger(0)) goto L_1bde;
+    if (!trigger(0)) goto L57;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Sirloin, 1);
-L_1bde:
+
+L57:
     return;
-L_1be0:
-    if (pstat[3] != 2) goto L_1cfa;
+
+L58:
+    if (pstat[3] != 2) goto L60;
     addMoney(2000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Large MP Floppy<WHITE>!\n");
     giveItem(Item.LargeMP, 1);
-    if (!trigger(0)) goto L_1cf8;
+    if (!trigger(0)) goto L59;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.LargeMP, 1);
-L_1cf8:
+
+L59:
     return;
-L_1cfa:
-    if (pstat[3] != 3) goto L_1e16;
+
+L60:
+    if (pstat[3] != 3) goto L62;
     addMoney(3000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Restore Floppy<WHITE>!\n");
     giveItem(Item.Restore, 1);
-    if (!trigger(0)) goto L_1e14;
+    if (!trigger(0)) goto L61;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Restore, 1);
-L_1e14:
+
+L61:
     return;
-L_1e16:
-    if (pstat[3] != 4) goto L_1f3c;
+
+L62:
+    if (pstat[3] != 4) goto L64;
     addMoney(4000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   four thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Restore Floppy<WHITE>!\n");
     giveItem(Item.SuperRestore, 1);
-    if (!trigger(0)) goto L_1f3a;
+    if (!trigger(0)) goto L63;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.SuperRestore, 1);
-L_1f3a:
+
+L63:
     return;
-L_1f3c:
-    if (pstat[3] != 6) goto L_2062;
+
+L64:
+    if (pstat[3] != 6) goto L66;
     addMoney(2000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
     giveItem(Item.SuperRecovery, 1);
-    if (!trigger(0)) goto L_2060;
+    if (!trigger(0)) goto L65;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.SuperRecovery, 1);
-L_2060:
+
+L65:
     return;
-L_2062:
-    if (pstat[3] != 7) goto L_2188;
+
+L66:
+    if (pstat[3] != 7) goto L68;
     addMoney(2000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
     giveItem(Item.SuperRecovery, 1);
-    if (!trigger(0)) goto L_2186;
+    if (!trigger(0)) goto L67;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.SuperRecovery, 1);
-L_2186:
+
+L67:
     return;
-L_2188:
-    if (pstat[3] != 8) goto L_22ae;
+
+L68:
+    if (pstat[3] != 8) goto L70;
     addMoney(2000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
     giveItem(Item.SuperRecovery, 1);
-    if (!trigger(0)) goto L_22ac;
+    if (!trigger(0)) goto L69;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.SuperRecovery, 1);
-L_22ac:
+
+L69:
     return;
-L_22ae:
-    if (pstat[3] != 9) goto L_23d4;
+
+L70:
+    if (pstat[3] != 9) goto L72;
     addMoney(2000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
     giveItem(Item.SuperRecovery, 1);
-    if (!trigger(0)) goto L_23d2;
+    if (!trigger(0)) goto L71;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.SuperRecovery, 1);
-L_23d2:
+
+L71:
     return;
-L_23d4:
-    if (pstat[3] != 10) goto L_24fa;
+
+L72:
+    if (pstat[3] != 10) goto L74;
     addMoney(2000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
     giveItem(Item.SuperRecovery, 1);
-    if (!trigger(0)) goto L_24f8;
+    if (!trigger(0)) goto L73;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.SuperRecovery, 1);
-L_24f8:
+
+L73:
     return;
-L_24fa:
-    if (pstat[3] != 11) goto L_261c;
+
+L74:
+    if (pstat[3] != 11) goto L76;
     addMoney(3000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
     giveItem(Item.Omnipotent, 1);
-    if (!trigger(0)) goto L_261a;
+    if (!trigger(0)) goto L75;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Omnipotent, 1);
-L_261a:
+
+L75:
     return;
-L_261c:
-    if (pstat[3] != 12) goto L_273e;
+
+L76:
+    if (pstat[3] != 12) goto L78;
     addMoney(3000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
     giveItem(Item.Omnipotent, 1);
-    if (!trigger(0)) goto L_273c;
+    if (!trigger(0)) goto L77;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Omnipotent, 1);
-L_273c:
+
+L77:
     return;
-L_273e:
-    if (pstat[3] != 13) goto L_2860;
+
+L78:
+    if (pstat[3] != 13) goto L80;
     addMoney(3000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
     giveItem(Item.Omnipotent, 1);
-    if (!trigger(0)) goto L_285e;
+    if (!trigger(0)) goto L79;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Omnipotent, 1);
-L_285e:
+
+L79:
     return;
-L_2860:
-    if (pstat[3] != 14) goto L_2982;
+
+L80:
+    if (pstat[3] != 14) goto L82;
     addMoney(3000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
     giveItem(Item.Omnipotent, 1);
-    if (!trigger(0)) goto L_2980;
+    if (!trigger(0)) goto L81;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Omnipotent, 1);
-L_2980:
+
+L81:
     return;
-L_2982:
-    if (pstat[3] != 15) goto L_2aa4;
+
+L82:
+    if (pstat[3] != 15) goto L84;
     addMoney(3000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
     giveItem(Item.Omnipotent, 1);
-    if (!trigger(0)) goto L_2aa2;
+    if (!trigger(0)) goto L83;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Omnipotent, 1);
-L_2aa2:
+
+L83:
     return;
-L_2aa4:
-    if (pstat[3] != 16) goto L_2bc6;
+
+L84:
+    if (pstat[3] != 16) goto L86;
     addMoney(3000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
     giveItem(Item.Omnipotent, 1);
-    if (!trigger(0)) goto L_2bc4;
+    if (!trigger(0)) goto L85;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Omnipotent, 1);
-L_2bc4:
+
+L85:
     return;
-L_2bc6:
-    if (pstat[3] != 17) goto L_2cea;
+
+L86:
+    if (pstat[3] != 17) goto L88;
     addMoney(3000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy <WHITE>!\n");
     giveItem(Item.Omnipotent, 1);
-    if (!trigger(0)) goto L_2ce8;
+    if (!trigger(0)) goto L87;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.Omnipotent, 1);
-L_2ce8:
+
+L87:
     return;
-L_2cea:
-    if (pstat[3] != 18) goto L_2e04;
+
+L88:
+    if (pstat[3] != 18) goto L90;
     addMoney(2000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
     giveItem(Item.OmniDisk, 1);
-    if (!trigger(0)) goto L_2e02;
+    if (!trigger(0)) goto L89;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.OmniDisk, 1);
-L_2e02:
+
+L89:
     return;
-L_2e04:
-    if (pstat[3] != 19) goto L_2f1e;
+
+L90:
+    if (pstat[3] != 19) goto L92;
     addMoney(2000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
     giveItem(Item.OmniDisk, 1);
-    if (!trigger(0)) goto L_2f1c;
+    if (!trigger(0)) goto L91;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.OmniDisk, 1);
-L_2f1c:
+
+L91:
     return;
-L_2f1e:
-    if (pstat[3] != 20) goto L_3038;
+
+L92:
+    if (pstat[3] != 20) goto L94;
     addMoney(2000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
     giveItem(Item.OmniDisk, 1);
-    if (!trigger(0)) goto L_3036;
+    if (!trigger(0)) goto L93;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.OmniDisk, 1);
-L_3036:
+
+L93:
     return;
-L_3038:
-    if (pstat[3] != 21) goto L_3152;
+
+L94:
+    if (pstat[3] != 21) goto L96;
     addMoney(2000);
     setDialogOwner(Entity.System);
     showTextbox("Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
     giveItem(Item.OmniDisk, 1);
-    if (!trigger(0)) goto L_3150;
+    if (!trigger(0)) goto L95;
     setDialogOwner(5);
     showTextbox("You got too much stuff.\n");
     setTrigger(3);
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.OmniDisk, 1);
-L_3150:
+
+L95:
     return;
-L_3152:
-    garbage { 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 1d 00 25 00 19 00 08 00 ff 03 18 00 22 00 19 00 16 00 2e 01 19 00 08 00 ff 02 18 00 32 00 19 00 16 00 d2 19 1b 05 1a 00 82 73 82 88 82 81 82 94 81 40 82 97 82 81 82 93 81 40 82 94 82 8f 82 8f 81 40 82 82 82 81 82 84 81 42 0d 00 82 73 82 92 82 99 81 40 82 81 82 87 82 81 82 89 82 8e 81 40 82 8e 82 85 82 98 82 94 81 40 82 94 82 89 82 8d 82 85 81 42 0d 00 00 00 1b ff 1a 00 82 6f 82 81 82 92 82 94 82 89 82 83 82 89 82 90 82 81 82 94 82 89 82 8f 82 8e 81 40 82 60 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 66 82 89 82 81 82 8e 82 94 81 40 82 6c 82 85 82 81 82 94 01 01 81 49 0d 00 00 00 28 00 27 01 19 00 00 00 00 00 18 00 2c 01 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 27 01 fe 00 19 00 08 00 03 00 18 00 34 02 19 00 2a 00 d0 07 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 94 82 97 82 8f 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 6f 82 92 82 89 82 9a 82 85 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 63 82 8f 82 95 82 82 82 8c 82 85 81 40 82 65 82 8c 82 8f 82 90 82 90 82 99 01 01 81 49 0d 00 00 00 28 00 07 01 19 00 00 00 00 00 18 00 2e 02 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 07 01 17 00 cc 00 33 00 19 00 08 00 03 01 18 00 3e 03 19 00 2a 00 a0 0f 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 86 82 8f 82 95 82 92 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 6f 82 92 82 89 82 9a 82 85 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 73 82 88 82 92 82 85 82 85 81 40 82 72 82 89 82 92 82 8c 82 8f 82 89 82 8e 82 93 01 01 81 49 0d 00 00 00 28 00 28 03 19 00 00 00 00 00 18 00 38 03 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 28 03 17 00 cc 00 33 00 19 00 08 00 03 02 18 00 40 04 19 00 2a 00 70 17 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 93 82 89 82 98 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 6f 82 92 82 89 82 9a 82 85 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 71 82 85 82 93 82 94 82 8f 82 92 82 85 81 40 82 65 82 8c 82 8f 82 90 82 90 82 99 01 01 81 49 0d 00 00 00 28 00 0b 01 19 00 00 00 00 00 18 00 40 04 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 0b 01 24 00 6e 63 19 00 08 00 03 02 18 00 b0 04 19 00 19 00 20 00 15 01 0a 00 18 00 aa 04 19 00 19 00 0b 00 6e 09 18 00 aa 04 19 00 35 15 01 00 1b ff 1a 00 01 07 82 73 82 81 82 8d 82 85 82 92 81 40 82 6b 82 85 82 96 82 85 82 8c 81 40 82 97 82 85 82 8e 82 94 81 40 82 95 82 90 81 49 81 40 01 01 0d 00 00 00 17 00 cc 00 33 00 17 00 cc 00 33 00 19 00 08 00 03 03 18 00 b4 05 19 00 2a 00 40 1f 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 85 82 89 82 87 82 88 82 94 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 6f 82 92 82 89 82 9a 82 85 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 65 82 8c 82 81 82 8d 82 89 82 8e 82 87 81 40 82 6c 82 81 82 8e 82 85 81 40 01 01 81 49 0d 00 00 00 28 00 50 01 19 00 00 00 00 00 18 00 b4 05 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 50 01 24 00 6e 63 19 00 08 00 03 03 18 00 24 06 19 00 19 00 20 00 15 01 0a 00 18 00 1e 06 19 00 19 00 0b 00 6e 13 18 00 1e 06 19 00 35 15 01 00 1b ff 1a 00 01 07 82 73 82 81 82 8d 82 85 82 92 81 40 82 6b 82 85 82 96 82 85 82 8c 81 40 82 97 82 85 82 8e 82 94 81 40 82 95 82 90 81 49 81 40 01 01 0d 00 00 00 17 00 cc 00 33 00 17 00 cc 00 33 00 24 00 6e 02 19 00 08 00 03 04 88 00 6e 00 18 00 2c 07 19 00 2a 00 10 27 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 94 82 85 82 8e 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 };
+
+L96:
+    garbage { 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 1d 00 25 00 19 00 08 00 ff 03 18 00 22 00 19 00 16 00 2e 01 19 00 08 00 ff 02 18 00 32 00 19 00 16 00 d2 19 1b 05 1a 00 82 73 82 88 82 81 82 94 81 40 82 97 82 81 82 93 81 40 82 94 82 8f 82 8f 81 40 82 82 82 81 82 84 81 42 0d 00 82 73 82 92 82 99 81 40 82 81 82 87 82 81 82 89 82 8e 81 40 82 8e 82 85 82 98 82 94 81 40 82 94 82 89 82 8d 82 85 81 42 0d 00 00 00 1b ff 1a 00 82 6f 82 81 82 92 82 94 82 89 82 83 82 89 82 90 82 81 82 94 82 89 82 8f 82 8e 81 40 82 60 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 66 82 89 82 81 82 8e 82 94 81 40 82 6c 82 85 82 81 82 94 01 01 81 49 0d 00 00 00 28 00 27 01 19 00 00 00 00 00 18 00 2c 01 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 27 01 fe 00 19 00 08 00 03 00 18 00 34 02 19 00 2a 00 d0 07 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 94 82 97 82 8f 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 6f 82 92 82 89 82 9a 82 85 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 63 82 8f 82 95 82 82 82 8c 82 85 81 40 82 65 82 8c 82 8f 82 90 82 90 82 99 01 01 81 49 0d 00 00 00 28 00 07 01 19 00 00 00 00 00 18 00 2e 02 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 07 01 17 00 cc 00 33 00 19 00 08 00 03 01 18 00 3e 03 19 00 2a 00 a0 0f 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 86 82 8f 82 95 82 92 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 6f 82 92 82 89 82 9a 82 85 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 73 82 88 82 92 82 85 82 85 81 40 82 72 82 89 82 92 82 8c 82 8f 82 89 82 8e 82 93 01 01 81 49 0d 00 00 00 28 00 28 03 19 00 00 00 00 00 18 00 38 03 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 28 03 17 00 cc 00 33 00 19 00 08 00 03 02 18 00 40 04 19 00 2a 00 70 17 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 93 82 89 82 98 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 6f 82 92 82 89 82 9a 82 85 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 71 82 85 82 93 82 94 82 8f 82 92 82 85 81 40 82 65 82 8c 82 8f 82 90 82 90 82 99 01 01 81 49 0d 00 00 00 28 00 0b 01 19 00 00 00 00 00 18 00 40 04 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 0b 01 24 00 6e 63 19 00 08 00 03 02 18 00 b0 04 19 00 19 00 20 00 15 01 0a 00 18 00 aa 04 19 00 19 00 0b 00 6e 09 18 00 aa 04 19 00 35 15 01 00 1b ff 1a 00 01 07 82 73 82 81 82 8d 82 85 82 92 81 40 82 6b 82 85 82 96 82 85 82 8c 81 40 82 97 82 85 82 8e 82 94 81 40 82 95 82 90 81 49 81 40 01 01 0d 00 00 00 17 00 cc 00 33 00 17 00 cc 00 33 00 19 00 08 00 03 03 18 00 b4 05 19 00 2a 00 40 1f 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 85 82 89 82 87 82 88 82 94 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 6f 82 92 82 89 82 9a 82 85 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 65 82 8c 82 81 82 8d 82 89 82 8e 82 87 81 40 82 6c 82 81 82 8e 82 85 81 40 01 01 81 49 0d 00 00 00 28 00 50 01 19 00 00 00 00 00 18 00 b4 05 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 50 01 24 00 6e 63 19 00 08 00 03 03 18 00 24 06 19 00 19 00 20 00 15 01 0a 00 18 00 1e 06 19 00 19 00 0b 00 6e 13 18 00 1e 06 19 00 35 15 01 00 1b ff 1a 00 01 07 82 73 82 81 82 8d 82 85 82 92 81 40 82 6b 82 85 82 96 82 85 82 8c 81 40 82 97 82 85 82 8e 82 94 81 40 82 95 82 90 81 49 81 40 01 01 0d 00 00 00 17 00 cc 00 33 00 17 00 cc 00 33 00 24 00 6e 02 19 00 08 00 03 04 88 00 6e 00 18 00 2c 07 19 00 2a 00 10 27 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 94 82 85 82 8e 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 }
 }

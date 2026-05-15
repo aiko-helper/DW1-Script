@@ -3,25 +3,29 @@
 
 section onEnter(254) {  // len=90
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 11) goto L_0016;
+    if (pstat[110] > 11) goto L1;
     spawnItem(Item.Digimushroom, 68, 50);
-L_0016:
+
+L1:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 17) goto L_002c;
+    if (pstat[110] > 17) goto L2;
     spawnItem(Item.Digimushroom, 46, 29);
-L_002c:
+
+L2:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 3) goto L_0042;
+    if (pstat[110] > 3) goto L3;
     spawnItem(Item.SweetNut, 46, 73);
-L_0042:
+
+L3:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 0) goto L_0058;
+    if (pstat[110] > 0) goto L4;
     spawnItem(Item.ChainMelon, 57, 83);
-L_0058:
+
+L4:
     return;
 }
 
-section section_5(5) {  // len=68
+section(5) {  // len=68
     setDialogOwner(5);
     showTextbox("Well, I see your point.\n");
     fadeOutHUD();
@@ -31,7 +35,7 @@ section section_5(5) {  // len=68
     return;
 }
 
-section section_6(6) {  // len=68
+section(6) {  // len=68
     setDialogOwner(6);
     showTextbox("Can you see its beauty?\n");
     fadeOutHUD();
@@ -41,7 +45,7 @@ section section_6(6) {  // len=68
     return;
 }
 
-section section_7(7) {  // len=42
+section(7) {  // len=42
     setDialogOwner(7);
     showTextbox("Uggghhhh!!\n");
     fadeOutHUD();
@@ -51,7 +55,7 @@ section section_7(7) {  // len=42
     return;
 }
 
-section section_8(8) {  // len=58
+section(8) {  // len=58
     setDialogOwner(8);
     showTextbox("I'm desperate now!\n");
     fadeOutHUD();
@@ -61,7 +65,7 @@ section section_8(8) {  // len=58
     return;
 }
 
-section section_9(9) {  // len=58
+section(9) {  // len=58
     setDialogOwner(9);
     showTextbox("Shoooot! Awh heck.\n");
     fadeOutHUD();
@@ -71,7 +75,7 @@ section section_9(9) {  // len=58
     return;
 }
 
-section section_10(10) {  // len=62
+section(10) {  // len=62
     setDialogOwner(10);
     showTextbox("I have a tummy ache.\n");
     fadeOutHUD();
@@ -81,120 +85,140 @@ section section_10(10) {  // len=62
     return;
 }
 
-section section_81(81) {  // len=1014
+section(81) {  // len=1014
     setDialogOwner(Entity.System);
     showTextbox("Vending Machine\n");
     rotate(entity: Entity.Player, to: 1536);
     setDialogOwner(Entity.Player);
     showTextbox("A vending machine with\nspecial prizes.\nShould I buy something?\n");
-    setSelection(L_014c, L_019e, L_01f0);
+    setSelection(L1, L3, L5);
     showTextbox("Small Recovery:two hund bits\nPortable potty:five hund bits\nDon't buy\n");
     waitForSelectionChoice();
-    goto L_01f0;
+    goto L5;
     return;
-L_014c:
-    if (money < 200) goto L_0164;
-    goto L_01f2;
-    goto L_019e;
-L_0164:
+
+L1:
+    if (money < 200) goto L2;
+    goto L6;
+    goto L3;
+
+L2:
     setDialogOwner(Entity.Player);
     showTextbox("I don't got enough bits.\n");
     return;
-L_019e:
-    if (money < 500) goto L_01b6;
-    goto L_029e;
-    goto L_01f0;
-L_01b6:
+
+L3:
+    if (money < 500) goto L4;
+    goto L9;
+    goto L5;
+
+L4:
     setDialogOwner(Entity.Player);
     showTextbox("I don't got enough bits.\n");
     return;
-L_01f0:
+
+L5:
     return;
-L_01f2:
+
+L6:
     giveItem(Item.SmallRecovery, 1);
-    if (!trigger(0)) goto L_0236;
+    if (!trigger(0)) goto L7;
     setDialogOwner(Entity.Player);
     showTextbox("I got too many Items.\n");
     return;
-L_0236:
+
+L7:
     setDialogOwner(Entity.System);
     showTextbox("A <LIGHTBLUE>Small Recovery\nFloppy<WHITE>came out!\n");
     reduceMoney(200);
     roll(pstat: 102, max: 99);
-    if (pstat[102] >= 9) goto L_029c;
-    goto L_0340;
-L_029c:
+    if (pstat[102] >= 9) goto L8;
+    goto L12;
+
+L8:
     return;
-L_029e:
+
+L9:
     giveItem(Item.PortaPotty, 1);
-    if (!trigger(0)) goto L_02e2;
+    if (!trigger(0)) goto L10;
     setDialogOwner(Entity.Player);
     showTextbox("I got too many Items.\n");
     return;
-L_02e2:
+
+L10:
     setDialogOwner(Entity.System);
     showTextbox("A <LIGHTBLUE>Portable Potty <WHITE>\ncame out!\n");
     reduceMoney(500);
     roll(pstat: 102, max: 99);
-    if (pstat[102] >= 9) goto L_033e;
-    goto L_0340;
-L_033e:
+    if (pstat[102] >= 9) goto L11;
+    goto L12;
+
+L11:
     return;
-L_0340:
+
+L12:
     setDialogOwner(Entity.Player);
     showTextbox("Alright, I won!\n");
     setDialogOwner(Entity.System);
     showTextbox("A <LIGHTBLUE>Double Floppy <WHITE>\ncame out!\n");
     giveItem(Item.DoubleFloppy, 1);
-    if (!trigger(0)) goto L_03f4;
+    if (!trigger(0)) goto L13;
     setTrigger(3);
     setDialogOwner(Entity.Player);
     showTextbox("I got too many Items.\n");
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.SuperSpeedDisk, 1);
-L_03f4:
+
+L13:
     return;
 }
 
-section section_82(82) {  // len=548
+section(82) {  // len=548
     setDialogOwner(Entity.System);
     showTextbox("MP Stand\n");
     rotate(entity: Entity.Player, to: 2048);
     setDialogOwner(Entity.Player);
     showTextbox("Can this machine recover MP?\n");
-    setSelection(L_00ea, L_0182, L_021a);
+    setSelection(L1, L4, L7);
     showTextbox("Hund MP: two hund bits\nThous MP:eighteen hund bits\nDon't use\n");
     waitForSelectionChoice();
-    goto L_021a;
+    goto L7;
     return;
-L_00ea:
-    if (money < 200) goto L_0146;
+
+L1:
+    if (money < 200) goto L2;
     addStats(Stat.CurrentMP, 100);
     reduceMoney(200);
     setDialogOwner(Entity.System);
     showTextbox("Our MP level has recovered!\n");
-    goto L_0180;
-L_0146:
+    goto L3;
+
+L2:
     setDialogOwner(Entity.Player);
     showTextbox("I don't got enough bits.\n");
     return;
-L_0180:
+
+L3:
     return;
-L_0182:
-    if (money < 1800) goto L_01de;
+
+L4:
+    if (money < 1800) goto L5;
     addStats(Stat.CurrentMP, 1000);
     reduceMoney(1800);
     setDialogOwner(Entity.System);
     showTextbox("Our MP level has recovered!\n");
-    goto L_0218;
-L_01de:
+    goto L6;
+
+L5:
     setDialogOwner(Entity.Player);
     showTextbox("I don't got enough bits.\n");
     return;
-L_0218:
+
+L6:
     return;
-L_021a:
+
+L7:
     return;
-    garbage { 28 00 fe 00 28 00 };
+    garbage { 28 00 fe 00 28 00 }
 }

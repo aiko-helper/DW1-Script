@@ -5,13 +5,13 @@ section onEnter(254) {  // len=2
     return;
 }
 
-section section_51(51) {  // len=6
+section(51) {  // len=6
     warp(to: Map.ROOM06, spawn: 1, trigger: 255);
     return;
 }
 
-section section_6(6) {  // len=2086
-    if (pstat[44] != 0) goto L_028e;
+section(6) {  // len=2086
+    if (pstat[44] != 0) goto L1;
     setDialogOwner(6);
     showTextbox("I know about Items.\n");
     showTextbox("There are one hund and twenty\neight kinds of Items in all.\n");
@@ -21,8 +21,9 @@ section section_6(6) {  // len=2086
     showTextbox("These foods have special\neffects, so be careful on\nthe timing of eating them.\n");
     setPStat(44, 1);
     return;
-L_028e:
-    if (pstat[44] != 1) goto L_0824;
+
+L1:
+    if (pstat[44] != 1) goto L2;
     setDialogOwner(6);
     showTextbox("Now I'll talk about\nDigivolution Items.\n");
     showTextbox("Digivolution Items make\nDigimon digivolve, as the\nname suggests.\n");
@@ -36,68 +37,78 @@ L_028e:
     showTextbox("You can only digivolve from\none generation before the\nDigimon you want to become.\n");
     showTextbox("So be careful.\n");
     setPStat(44, 0);
-L_0824:
+
+L2:
     return;
 }
 
-section section_5(5) {  // len=1982
+section(5) {  // len=1982
     look(entity: Entity.Player, at: 5);
     look(entity: 5, at: Entity.Player);
-    if (!trigger(70) && !trigger(71) && !trigger(72) && !trigger(73)) goto L_0024;
-    goto L_038a;
-L_0024:
-    if (!trigger(211) || trigger(70) || pstat[24] != 0) goto L_00ea;
+    if (!trigger(70) && !trigger(71) && !trigger(72) && !trigger(73)) goto L1;
+    goto L5;
+
+L1:
+    if (!trigger(211) || trigger(70) || pstat[24] != 0) goto L2;
     setDialogOwner(5);
     showTextbox("Hey! Hola amigos!\n");
     showTextbox("What kind of shop is this?\nIt's my shop?\nBuy something please.\n");
     setTrigger(70);
     return;
-L_00ea:
-    if (!trigger(252) || trigger(71) || pstat[24] != 1) goto L_019e;
+
+L2:
+    if (!trigger(252) || trigger(71) || pstat[24] != 1) goto L3;
     setDialogOwner(5);
     showTextbox("Look <LIGHTBLUE><PLAYER><WHITE>! My shop\nsells interesting stuff. I\nhope you'll come here a lot.\n");
     setTrigger(71);
     return;
-L_019e:
-    if (!trigger(213) || trigger(72) || pstat[24] != 2) goto L_0244;
+
+L3:
+    if (!trigger(213) || trigger(72) || pstat[24] != 2) goto L4;
     setDialogOwner(5);
     showTextbox("The stuff you see here\nisn't ordinary stuff,\nso go ahead and shop!\n");
     setTrigger(72);
     return;
-L_0244:
-    if (!trigger(206) || trigger(73) || pstat[24] != 3) goto L_038a;
+
+L4:
+    if (!trigger(206) || trigger(73) || pstat[24] != 3) goto L5;
     setDialogOwner(5);
     showTextbox("Hey stranger! I knew\nyou'd come <LIGHTBLUE><PLAYER><WHITE>.\nDon't look so surprised.\n");
     showTextbox("Can you master how to use\nmy Items? The answer depends\non your ability as a Tamer.\n");
     setTrigger(73);
     return;
-L_038a:
-    if (!trigger(211) || trigger(70) || pstat[24] != 0) goto L_0430;
+
+L5:
+    if (!trigger(211) || trigger(70) || pstat[24] != 0) goto L6;
     setDialogOwner(5);
     showTextbox("Where am I?\nI love dark places and this\nshop shows that very well!\n");
     setTrigger(70);
     return;
-L_0430:
-    if (!trigger(252) || trigger(71) || pstat[24] != 1) goto L_04f0;
+
+L6:
+    if (!trigger(252) || trigger(71) || pstat[24] != 1) goto L7;
     setDialogOwner(5);
     showTextbox("Alright <LIGHTBLUE><PLAYER><WHITE>, thanks\nfor coming. Since you're here,\nwhy don't you buy something?\n");
     setTrigger(71);
     return;
-L_04f0:
-    if (!trigger(213) || trigger(72) || pstat[24] != 2) goto L_0594;
+
+L7:
+    if (!trigger(213) || trigger(72) || pstat[24] != 2) goto L8;
     setDialogOwner(5);
     showTextbox("Hey, <LIGHTBLUE><PLAYER><WHITE>. You're here!\nCome on, get some of my\nvery useful Items.\n");
     setTrigger(72);
     return;
-L_0594:
-    if (!trigger(206) || trigger(73) || pstat[24] != 3) goto L_06da;
+
+L8:
+    if (!trigger(206) || trigger(73) || pstat[24] != 3) goto L9;
     setDialogOwner(5);
     showTextbox("Hey stranger!\nI knew you'd come <LIGHTBLUE><PLAYER><WHITE>.\nDon't look so surprised.\n");
     showTextbox("Can you master how to use\nmy Items? The answer depends\non your ability as a Tamer.\n");
     setTrigger(73);
     return;
-L_06da:
-    if (pstat[24] != 0) goto L_0702;
+
+L9:
+    if (pstat[24] != 0) goto L10;
     setTrigger(419);
     setTrigger(420);
     unsetTrigger(3);
@@ -106,8 +117,9 @@ L_06da:
     unsetTrigger(419);
     unsetTrigger(420);
     return;
-L_0702:
-    if (pstat[24] != 1) goto L_072a;
+
+L10:
+    if (pstat[24] != 1) goto L11;
     setTrigger(418);
     setTrigger(421);
     unsetTrigger(3);
@@ -116,33 +128,26 @@ L_0702:
     unsetTrigger(418);
     unsetTrigger(421);
     return;
-L_072a:
-    if (pstat[24] != 2) goto L_0762;
-    setTrigger(402);
-    setTrigger(403);
-    setTrigger(404);
-    setTrigger(405);
+
+L11:
+    if (pstat[24] != 2) goto L12;
+    for id in 402..405 { setTrigger(id); }
     unsetTrigger(3);
     setPStat(254, 5);
     callSubroutine(8);
-    unsetTrigger(402);
-    unsetTrigger(403);
-    unsetTrigger(404);
-    unsetTrigger(405);
+    for id in 402..405 { unsetTrigger(id); }
     return;
-L_0762:
-    if (pstat[24] != 3) goto L_0792;
-    setTrigger(413);
-    setTrigger(414);
-    setTrigger(415);
+
+L12:
+    if (pstat[24] != 3) goto L13;
+    for id in 413..415 { setTrigger(id); }
     unsetTrigger(3);
     setPStat(254, 5);
     callSubroutine(8);
-    unsetTrigger(413);
-    unsetTrigger(414);
-    unsetTrigger(415);
+    for id in 413..415 { unsetTrigger(id); }
     return;
-L_0792:
+
+L13:
     return;
-    garbage { 14 00 fe 00 14 00 33 00 16 00 06 00 1c 00 05 00 42 08 ff ff fe 00 4b d8 01 ff fe 00 19 00 08 00 2c 00 18 00 aa 02 19 00 };
+    garbage { 14 00 fe 00 14 00 33 00 16 00 06 00 1c 00 05 00 42 08 ff ff fe 00 4b d8 01 ff fe 00 19 00 08 00 2c 00 18 00 aa 02 19 00 }
 }

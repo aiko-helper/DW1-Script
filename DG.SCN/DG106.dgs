@@ -3,28 +3,31 @@
 
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 19) goto L_0016;
+    if (pstat[110] > 19) goto L1;
     spawnItem(Item.Digimushroom, 61, 54);
-L_0016:
+
+L1:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 4) goto L_002c;
+    if (pstat[110] > 4) goto L2;
     spawnItem(Item.Happymushroom, 39, 46);
-L_002c:
+
+L2:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 14) goto L_0042;
+    if (pstat[110] > 14) goto L3;
     spawnItem(Item.Digimushroom, 55, 63);
-L_0042:
+
+L3:
     return;
 }
 
-section section_81(81) {  // len=72
+section(81) {  // len=72
     rotate(entity: Entity.Player, to: 1536);
     setDialogOwner(Entity.System);
     showTextbox("Rockslide blocked the road...\n");
     return;
 }
 
-section section_5(5) {  // len=68
+section(5) {  // len=68
     setDialogOwner(5);
     showTextbox("Battle test!\n");
     showTextbox("Just kidding.\n");
@@ -32,120 +35,92 @@ section section_5(5) {  // len=68
     return;
 }
 
-section section_6(6) {  // len=1820
+section(6) {  // len=1820
     setDialogOwner(6);
     showTextbox("I'm called Mr. Handy!\nWhat can I do for you?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L_00e6, L_0144, L_03ba);
+    setSelection(L1, L2, L14);
     showTextbox("Change Parameters\nFast forward time\nMaster all Techniques\n");
     waitForSelectionChoice();
     return;
-L_00e6:
+
+L1:
     setDialogOwner(Entity.Player);
-    setSelection(L_01fe, L_02d6, L_0430);
+    setSelection(L6, L10, L15);
     showTextbox("Increase\nDecrease\nReset ability level\n");
     waitForSelectionChoice();
     return;
-L_0144:
+
+L2:
     setDialogOwner(Entity.Player);
-    setSelection(L_01da, L_01e6, L_01f2);
+    setSelection(L3, L4, L5);
     showTextbox("Fast forward one hour\nFast forward six hours\nFast forward one day\n");
     waitForSelectionChoice();
     return;
-L_01da:
+
+L3:
     storeDate(105);
     addMinutesToDate(105, 60);
     advanceToDate(105);
     return;
-L_01e6:
+
+L4:
     storeDate(105);
     addMinutesToDate(105, 360);
     advanceToDate(105);
     return;
-L_01f2:
+
+L5:
     storeDate(105);
     addMinutesToDate(105, 1440);
     advanceToDate(105);
     return;
-L_01fe:
+
+L6:
     setDialogOwner(Entity.Player);
-    setSelection(L_0264, L_028a, L_02b0);
+    setSelection(L7, L8, L9);
     showTextbox("Add fifty\nAdd one hundred\nAdd two hundred\n");
     waitForSelectionChoice();
     return;
-L_0264:
-    addStats(Stat.Offense, 50);
-    addStats(Stat.Defense, 50);
-    addStats(Stat.Speed, 50);
-    addStats(Stat.Brains, 50);
-    addStats(Stat.MaxHP, 500);
-    addStats(Stat.MaxMP, 500);
-    addStats(Stat.CurrentHP, 500);
-    addStats(Stat.CurrentMP, 500);
-    goto L_00e6;
+
+L7:
+    addStats(offense: 50, defense: 50, speed: 50, brains: 50, maxHP: 500, maxMP: 500, currentHP: 500, currentMP: 500);
+    goto L1;
     return;
-L_028a:
-    addStats(Stat.Offense, 100);
-    addStats(Stat.Defense, 100);
-    addStats(Stat.Speed, 100);
-    addStats(Stat.Brains, 100);
-    addStats(Stat.MaxHP, 1000);
-    addStats(Stat.MaxMP, 1000);
-    addStats(Stat.CurrentHP, 1000);
-    addStats(Stat.CurrentMP, 1000);
-    goto L_00e6;
+
+L8:
+    addStats(offense: 100, defense: 100, speed: 100, brains: 100, maxHP: 1000, maxMP: 1000, currentHP: 1000, currentMP: 1000);
+    goto L1;
     return;
-L_02b0:
-    addStats(Stat.Offense, 200);
-    addStats(Stat.Defense, 200);
-    addStats(Stat.Speed, 200);
-    addStats(Stat.Brains, 200);
-    addStats(Stat.MaxHP, 2000);
-    addStats(Stat.MaxMP, 2000);
-    addStats(Stat.CurrentHP, 2000);
-    addStats(Stat.CurrentMP, 2000);
-    goto L_00e6;
+
+L9:
+    addStats(offense: 200, defense: 200, speed: 200, brains: 200, maxHP: 2000, maxMP: 2000, currentHP: 2000, currentMP: 2000);
+    goto L1;
     return;
-L_02d6:
+
+L10:
     setDialogOwner(Entity.Player);
-    setSelection(L_0348, L_036e, L_0394);
+    setSelection(L11, L12, L13);
     showTextbox("Minus fifty\nMinus one hundred\nMinus two hundred\n");
     waitForSelectionChoice();
     return;
-L_0348:
-    reduceStats(Stat.Offense, 50);
-    reduceStats(Stat.Defense, 50);
-    reduceStats(Stat.Speed, 50);
-    reduceStats(Stat.Brains, 50);
-    reduceStats(Stat.MaxHP, 500);
-    reduceStats(Stat.MaxMP, 500);
-    reduceStats(Stat.CurrentHP, 500);
-    reduceStats(Stat.CurrentMP, 500);
-    goto L_00e6;
+
+L11:
+    reduceStats(offense: 50, defense: 50, speed: 50, brains: 50, maxHP: 500, maxMP: 500, currentHP: 500, currentMP: 500);
+    goto L1;
     return;
-L_036e:
-    reduceStats(Stat.Offense, 100);
-    reduceStats(Stat.Defense, 100);
-    reduceStats(Stat.Speed, 100);
-    reduceStats(Stat.Brains, 100);
-    reduceStats(Stat.MaxHP, 1000);
-    reduceStats(Stat.MaxMP, 1000);
-    reduceStats(Stat.CurrentHP, 1000);
-    reduceStats(Stat.CurrentMP, 1000);
-    goto L_00e6;
+
+L12:
+    reduceStats(offense: 100, defense: 100, speed: 100, brains: 100, maxHP: 1000, maxMP: 1000, currentHP: 1000, currentMP: 1000);
+    goto L1;
     return;
-L_0394:
-    reduceStats(Stat.Offense, 200);
-    reduceStats(Stat.Defense, 200);
-    reduceStats(Stat.Speed, 200);
-    reduceStats(Stat.Brains, 200);
-    reduceStats(Stat.MaxHP, 2000);
-    reduceStats(Stat.MaxMP, 2000);
-    reduceStats(Stat.CurrentHP, 2000);
-    reduceStats(Stat.CurrentMP, 2000);
-    goto L_00e6;
+
+L13:
+    reduceStats(offense: 200, defense: 200, speed: 200, brains: 200, maxHP: 2000, maxMP: 2000, currentHP: 2000, currentMP: 2000);
+    goto L1;
     return;
-L_03ba:
+
+L14:
     learnMove(Move.FireTower);
     learnMove(Move.ProminenceBeam);
     learnMove(Move.SpitFire);
@@ -202,20 +177,14 @@ L_03ba:
     learnMove(Move.LovelyAttack);
     learnMove(Move.Fireball);
     learnMove(Move.DeathClaw);
-    goto L_00e6;
+    goto L1;
     return;
-L_0430:
-    setStats(Stat.Offense, 50);
-    setStats(Stat.Defense, 50);
-    setStats(Stat.Speed, 50);
-    setStats(Stat.Brains, 50);
-    setStats(Stat.MaxHP, 500);
-    setStats(Stat.MaxMP, 500);
-    setStats(Stat.CurrentHP, 500);
-    setStats(Stat.CurrentMP, 500);
-    goto L_00e6;
+
+L15:
+    setStats(offense: 50, defense: 50, speed: 50, brains: 50, maxHP: 500, maxMP: 500, currentHP: 500, currentMP: 500);
+    goto L1;
     return;
     jumpToScriptSection(205, 6);
     return;
-    garbage { 14 00 fe 00 14 00 51 00 58 00 05 00 a0 00 06 00 e4 00 ff ff 24 00 6e 63 19 00 0b 00 6e 13 18 00 2a 00 19 00 74 2c 3d 00 36 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 40 00 19 00 74 45 27 00 2e 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 56 00 19 00 74 2c 37 00 3f 00 fe 00 4d fd 00 06 1b ff 1a 00 82 71 82 8f 82 83 82 8b 82 93 82 8c 82 89 82 84 82 85 81 40 82 82 82 8c 82 8f 82 83 82 8b 82 85 82 84 81 40 82 94 82 88 82 85 81 40 82 92 82 8f 82 81 82 84 81 42 81 42 81 42 0d 00 00 00 fe 00 1b 05 1a 00 82 61 82 81 82 94 82 94 82 8c 82 85 81 40 82 94 82 85 82 93 82 94 81 49 0d 00 00 00 1a 00 82 69 82 95 82 93 82 94 81 40 82 8b 82 89 82 84 82 84 82 89 82 8e 82 87 81 42 0d 00 00 00 48 05 fe 00 1b 06 1a 00 82 68 81 75 82 8d 81 40 82 83 82 81 82 8c 82 8c 82 85 82 84 81 40 82 6c 82 92 81 42 81 40 82 67 82 81 82 8e 82 84 82 99 81 49 0d 00 82 76 82 88 82 81 82 94 81 40 82 83 82 81 82 8e 81 40 82 68 81 40 82 84 82 8f 81 40 82 86 82 8f 82 92 81 40 82 99 82 8f 82 95 81 48 0d 00 00 00 1b fd 10 03 ca 01 28 02 9e 04 1a 00 82 62 82 88 82 81 82 8e 82 87 82 85 81 40 82 6f 82 81 82 92 82 81 82 8d 82 85 82 94 82 85 82 92 82 93 0d 00 82 65 82 81 82 93 82 94 81 40 82 86 82 8f 82 92 82 97 82 81 82 92 82 84 81 40 82 94 82 89 82 8d 82 85 0d 00 82 6c 82 81 82 93 82 94 82 85 82 92 81 40 82 81 82 8c 82 8c 81 40 82 73 82 85 82 83 82 88 82 8e 82 89 82 91 82 95 82 85 82 93 0d 00 00 00 12 00 fe 00 1b fd 10 03 e2 02 ba 03 14 05 1a 00 82 68 82 8e 82 83 82 92 82 85 82 81 82 93 82 85 0d 00 82 63 82 85 82 83 82 92 82 85 82 81 82 93 82 85 0d 00 82 71 82 85 82 93 82 85 82 94 81 40 82 81 82 82 82 89 82 8c 82 89 82 94 82 99 81 40 82 8c 82 85 82 96 82 85 82 8c 0d 00 00 00 12 00 fe 00 1b fd 10 03 be 02 ca 02 d6 02 1a 00 82 65 82 81 82 93 82 94 81 40 82 86 82 8f 82 92 82 97 82 81 82 92 82 84 81 40 82 8f 82 8e 82 85 81 40 82 88 82 8f 82 95 82 92 0d 00 82 65 82 81 82 93 82 94 81 40 82 86 82 8f 82 92 82 97 82 81 82 92 82 84 81 40 82 93 82 89 82 98 81 40 82 88 82 8f 82 95 82 92 82 93 0d 00 82 65 82 81 82 93 82 94 81 40 82 86 82 8f 82 92 82 97 82 81 82 92 82 84 81 40 82 8f 82 8e 82 85 81 40 82 84 82 81 82 99 0d 00 00 00 12 00 };
+    garbage { 14 00 fe 00 14 00 51 00 58 00 05 00 a0 00 06 00 e4 00 ff ff 24 00 6e 63 19 00 0b 00 6e 13 18 00 2a 00 19 00 74 2c 3d 00 36 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 40 00 19 00 74 45 27 00 2e 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 56 00 19 00 74 2c 37 00 3f 00 fe 00 4d fd 00 06 1b ff 1a 00 82 71 82 8f 82 83 82 8b 82 93 82 8c 82 89 82 84 82 85 81 40 82 82 82 8c 82 8f 82 83 82 8b 82 85 82 84 81 40 82 94 82 88 82 85 81 40 82 92 82 8f 82 81 82 84 81 42 81 42 81 42 0d 00 00 00 fe 00 1b 05 1a 00 82 61 82 81 82 94 82 94 82 8c 82 85 81 40 82 94 82 85 82 93 82 94 81 49 0d 00 00 00 1a 00 82 69 82 95 82 93 82 94 81 40 82 8b 82 89 82 84 82 84 82 89 82 8e 82 87 81 42 0d 00 00 00 48 05 fe 00 1b 06 1a 00 82 68 81 75 82 8d 81 40 82 83 82 81 82 8c 82 8c 82 85 82 84 81 40 82 6c 82 92 81 42 81 40 82 67 82 81 82 8e 82 84 82 99 81 49 0d 00 82 76 82 88 82 81 82 94 81 40 82 83 82 81 82 8e 81 40 82 68 81 40 82 84 82 8f 81 40 82 86 82 8f 82 92 81 40 82 99 82 8f 82 95 81 48 0d 00 00 00 1b fd 10 03 ca 01 28 02 9e 04 1a 00 82 62 82 88 82 81 82 8e 82 87 82 85 81 40 82 6f 82 81 82 92 82 81 82 8d 82 85 82 94 82 85 82 92 82 93 0d 00 82 65 82 81 82 93 82 94 81 40 82 86 82 8f 82 92 82 97 82 81 82 92 82 84 81 40 82 94 82 89 82 8d 82 85 0d 00 82 6c 82 81 82 93 82 94 82 85 82 92 81 40 82 81 82 8c 82 8c 81 40 82 73 82 85 82 83 82 88 82 8e 82 89 82 91 82 95 82 85 82 93 0d 00 00 00 12 00 fe 00 1b fd 10 03 e2 02 ba 03 14 05 1a 00 82 68 82 8e 82 83 82 92 82 85 82 81 82 93 82 85 0d 00 82 63 82 85 82 83 82 92 82 85 82 81 82 93 82 85 0d 00 82 71 82 85 82 93 82 85 82 94 81 40 82 81 82 82 82 89 82 8c 82 89 82 94 82 99 81 40 82 8c 82 85 82 96 82 85 82 8c 0d 00 00 00 12 00 fe 00 1b fd 10 03 be 02 ca 02 d6 02 1a 00 82 65 82 81 82 93 82 94 81 40 82 86 82 8f 82 92 82 97 82 81 82 92 82 84 81 40 82 8f 82 8e 82 85 81 40 82 88 82 8f 82 95 82 92 0d 00 82 65 82 81 82 93 82 94 81 40 82 86 82 8f 82 92 82 97 82 81 82 92 82 84 81 40 82 93 82 89 82 98 81 40 82 88 82 8f 82 95 82 92 82 93 0d 00 82 65 82 81 82 93 82 94 81 40 82 86 82 8f 82 92 82 97 82 81 82 92 82 84 81 40 82 8f 82 8e 82 85 81 40 82 84 82 81 82 99 0d 00 00 00 12 00 }
 }

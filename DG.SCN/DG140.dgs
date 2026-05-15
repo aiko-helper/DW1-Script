@@ -3,7 +3,7 @@
 
 section onEnter(254) {  // len=52
     callSubroutine(41);
-    if (!trigger(350)) goto L_0032;
+    if (!trigger(350)) goto L1;
     setPStat(245, 4);
     setBGM(22);
     setPStat(254, 0);
@@ -14,23 +14,25 @@ section onEnter(254) {  // len=52
     waitForEntity(6);
     playAnimation(6, 29);
     rotate(entity: 6, to: 0);
-L_0032:
+
+L1:
     return;
 }
 
-section section_51(51) {  // len=40
-    if (trigger(350) || !trigger(270)) goto L_0026;
+section(51) {  // len=40
+    if (trigger(350) || !trigger(270)) goto L1;
     move(entity: Entity.Player, to: (-52, 650), sprint: 0, withCamera: true);
     waitForEntity(Entity.Player);
     rotate(entity: Entity.Player, to: 2065);
     delay(5);
     goto section_5;
-L_0026:
+
+L1:
     return;
 }
 
-section section_5(5) {  // len=3554
-    if (!trigger(270) || trigger(350) || item[Item.Gear] < 1) goto L_0126;
+section(5) {  // len=3554
+    if (!trigger(270) || trigger(350) || item[Item.Gear] < 1) goto L1;
     removeItem(Item.Gear, 1);
     loadDigimon(Digimon.Hagurumon);
     setDigimon(Digimon.Hagurumon, 1, 0);
@@ -64,10 +66,12 @@ section section_5(5) {  // len=3554
     playAnimation(Entity.Player, 0);
     setPStat(254, 1);
     callSubroutine(42);
-    goto L_012a;
-L_0126:
-    goto L_07bc;
-L_012a:
+    goto L2;
+
+L1:
+    goto L4;
+
+L2:
     moveCamera(to: (-80, 1048), slowdown: 18);
     setPStat(245, 4);
     setBGM(22);
@@ -121,9 +125,10 @@ L_012a:
     playAnimation(7, 0);
     playAnimation(8, 0);
     delay(10);
-    if (!trigger(350)) goto L_0532;
+    if (!trigger(350)) goto L3;
     return;
-L_0532:
+
+L3:
     setTrigger(350);
     setDialogOwner(Entity.Player);
     showTextbox("Hmmm, I feel joyous...\nOh, wait up.\n");
@@ -143,35 +148,41 @@ L_0532:
     setPStat(254, 0);
     callSubroutine(42);
     return;
-L_07bc:
-    if (!trigger(270) || !trigger(350) || item[Item.Gear] >= 1 || trigger(350)) goto L_0834;
+
+L4:
+    if (!trigger(270) || !trigger(350) || item[Item.Gear] >= 1 || trigger(350)) goto L5;
     setDialogOwner(5);
     showTextbox("Wait, didn't WaruMonzaemon\ndrop something?\n");
     return;
-L_0834:
-    if (!trigger(349) || trigger(270)) goto L_0896;
+
+L5:
+    if (!trigger(349) || trigger(270)) goto L6;
     setDialogOwner(5);
     showTextbox("Good luck!\nIt's the house next door!\n");
     return;
-L_0896:
+
+L6:
     storeDigimonType(103);
-    if (pstat[103] != 14 || trigger(349)) goto L_08b0;
-    goto L_094e;
-    goto L_08c6;
-L_08b0:
+    if (pstat[103] != 14 || trigger(349)) goto L7;
+    goto L9;
+    goto L8;
+
+L7:
     setDialogOwner(5);
     showTextbox("......\n");
     return;
-L_08c6:
-    if (!trigger(350)) goto L_094e;
+
+L8:
+    if (!trigger(350)) goto L9;
     setDialogOwner(5);
     showTextbox("Are we going to listen\nto the chorus again?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L_012a, L_0de0);
+    setSelection(L2, L10);
     showTextbox("Yes\nNo\n");
     waitForSelectionChoice();
     return;
-L_094e:
+
+L9:
     setTrigger(349);
     setDialogOwner(5);
     showTextbox("Oh, Monzaemon!\nYou're back alive!\n");
@@ -200,32 +211,35 @@ L_094e:
     setDialogOwner(Entity.Player);
     showTextbox("I see. Alright,\nI'll help you!\n");
     return;
-L_0de0:
+
+L10:
     return;
 }
 
-section section_6(6) {  // len=28
+section(6) {  // len=28
     playSound(8, 8);
     setDialogOwner(6);
     showTextbox("Thanks!\n");
     return;
 }
 
-section section_7(7) {  // len=40
-    if (!trigger(350)) goto L_0026;
+section(7) {  // len=40
+    if (!trigger(350)) goto L1;
     playSound(8, 9);
     setDialogOwner(7);
     showTextbox("Thanks!\n");
-L_0026:
+
+L1:
     return;
 }
 
-section section_8(8) {  // len=354
-    if (!trigger(350)) goto L_0026;
+section(8) {  // len=354
+    if (!trigger(350)) goto L1;
     playSound(8, 9);
     setDialogOwner(8);
     showTextbox("Thanks!\n");
-L_0026:
+
+L1:
     return;
-    garbage { 1c 00 fe 00 1c 00 33 00 50 00 05 00 78 00 06 00 5a 0e 07 00 76 0e 08 00 9e 0e ff ff 64 29 19 00 00 00 5e 01 18 00 4e 00 19 00 1e 00 f5 04 5d 16 1e 00 fe 00 64 2a 46 7a 47 7a 01 00 6c 06 9c ff de 06 01 00 4a 06 56 00 06 1d 4d 06 00 00 fe 00 19 00 01 00 5e 01 80 00 0e 01 18 00 76 00 19 00 52 fd cc ff 8a 02 00 00 4a fd 4d fd 11 08 67 00 05 00 16 00 78 00 fe 00 19 00 00 00 0e 01 81 00 5e 01 a4 00 78 02 01 00 18 00 9e 01 19 00 29 00 78 01 46 7a 47 7a 01 00 56 00 06 1d 56 00 fd 0f 67 00 14 00 5a 00 08 04 56 00 fd 10 67 00 0f 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 89 82 93 81 40 82 89 82 94 81 48 81 49 0d 00 00 00 56 00 fd 00 4c 00 fd 06 5a 00 08 09 67 00 0a 00 1b 05 1a 00 82 6e 82 88 81 43 81 40 82 97 82 85 82 8c 82 83 82 8f 82 8d 82 85 81 40 82 82 82 81 82 83 82 8b 81 43 81 40 82 67 82 81 82 87 82 95 82 92 82 95 82 8d 82 8f 82 8e 81 49 0d 00 00 00 1b fd 1a 00 82 67 82 81 82 87 82 95 82 92 82 95 82 8d 82 8f 82 8e 81 48 };
+    garbage { 1c 00 fe 00 1c 00 33 00 50 00 05 00 78 00 06 00 5a 0e 07 00 76 0e 08 00 9e 0e ff ff 64 29 19 00 00 00 5e 01 18 00 4e 00 19 00 1e 00 f5 04 5d 16 1e 00 fe 00 64 2a 46 7a 47 7a 01 00 6c 06 9c ff de 06 01 00 4a 06 56 00 06 1d 4d 06 00 00 fe 00 19 00 01 00 5e 01 80 00 0e 01 18 00 76 00 19 00 52 fd cc ff 8a 02 00 00 4a fd 4d fd 11 08 67 00 05 00 16 00 78 00 fe 00 19 00 00 00 0e 01 81 00 5e 01 a4 00 78 02 01 00 18 00 9e 01 19 00 29 00 78 01 46 7a 47 7a 01 00 56 00 06 1d 56 00 fd 0f 67 00 14 00 5a 00 08 04 56 00 fd 10 67 00 0f 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 89 82 93 81 40 82 89 82 94 81 48 81 49 0d 00 00 00 56 00 fd 00 4c 00 fd 06 5a 00 08 09 67 00 0a 00 1b 05 1a 00 82 6e 82 88 81 43 81 40 82 97 82 85 82 8c 82 83 82 8f 82 8d 82 85 81 40 82 82 82 81 82 83 82 8b 81 43 81 40 82 67 82 81 82 87 82 95 82 92 82 95 82 8d 82 8f 82 8e 81 49 0d 00 00 00 1b fd 1a 00 82 67 82 81 82 87 82 95 82 92 82 95 82 8d 82 8f 82 8e 81 48 }
 }

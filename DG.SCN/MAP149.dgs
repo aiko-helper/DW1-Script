@@ -3,21 +3,26 @@
 
 section onEnter(254) {  // len=166
     storeDate(105);
-    if (pstat[107] != 11 || pstat[108] < 55) goto L_0016;
-    goto L_0054;
-L_0016:
-    if (pstat[107] != 12 || pstat[108] > 5) goto L_002a;
-    goto L_0054;
-L_002a:
-    if (pstat[107] != 23 || pstat[108] < 55) goto L_003e;
-    goto L_0054;
-L_003e:
-    if (pstat[107] != 0 || pstat[108] > 5) goto L_0052;
-    goto L_0054;
-L_0052:
+    if (pstat[107] != 11 || pstat[108] < 55) goto L1;
+    goto L5;
+
+L1:
+    if (pstat[107] != 12 || pstat[108] > 5) goto L2;
+    goto L5;
+
+L2:
+    if (pstat[107] != 23 || pstat[108] < 55) goto L3;
+    goto L5;
+
+L3:
+    if (pstat[107] != 0 || pstat[108] > 5) goto L4;
+    goto L5;
+
+L4:
     return;
-L_0054:
-    if (trigger(332)) goto L_00a4;
+
+L5:
+    if (trigger(332)) goto L6;
     playAnimation(Entity.Player, 24);
     delay(15);
     setDialogOwner(Entity.Player);
@@ -27,55 +32,61 @@ L_0054:
     waitForEntity(200);
     moveCamera(to: Entity.Player, speed: 15);
     waitForEntity(200);
-L_00a4:
+
+L6:
     return;
 }
 
-section section_51(51) {  // len=14
+section(51) {  // len=14
     move(entity: Entity.Player, to: (-1061, -331), sprint: 0);
     warp(to: Map.FACT03, spawn: 3, trigger: 255);
     return;
 }
 
-section section_52(52) {  // len=14
+section(52) {  // len=14
     move(entity: Entity.Player, to: (5589, -69), sprint: 0);
     warp(to: Map.FACT09, spawn: 1, trigger: 255);
     return;
 }
 
-section section_12(12) {  // len=62
+section(12) {  // len=62
     playSound(8, 9);
     setDialogOwner(12);
     showTextbox("You can't get thru here.\n");
     return;
 }
 
-section section_11(11) {  // len=2456
+section(11) {  // len=2456
     playSound(8, 9);
     setDialogOwner(11);
     showTextbox("You can't get thru here.\n");
     storeDate(105);
-    if (!trigger(331) || pstat[107] != 11 || pstat[108] < 55) goto L_0056;
-    goto L_084a;
-L_0056:
-    if (!trigger(331) || pstat[107] != 12 || pstat[108] > 5) goto L_006e;
-    goto L_084a;
-L_006e:
-    if (!trigger(331) || pstat[107] != 23 || pstat[108] < 55) goto L_0086;
-    goto L_084a;
-L_0086:
-    if (!trigger(331) || pstat[107] != 0 || pstat[108] > 5) goto L_009e;
-    goto L_084a;
-L_009e:
-    if (!trigger(331)) goto L_01cc;
+    if (!trigger(331) || pstat[107] != 11 || pstat[108] < 55) goto L1;
+    goto L14;
+
+L1:
+    if (!trigger(331) || pstat[107] != 12 || pstat[108] > 5) goto L2;
+    goto L14;
+
+L2:
+    if (!trigger(331) || pstat[107] != 23 || pstat[108] < 55) goto L3;
+    goto L14;
+
+L3:
+    if (!trigger(331) || pstat[107] != 0 || pstat[108] > 5) goto L4;
+    goto L14;
+
+L4:
+    if (!trigger(331)) goto L5;
     setDialogOwner(11);
     showTextbox("......\n");
     setDialogOwner(Entity.Player);
     showTextbox("Wow, he's staring at us!\nMaybe he's suspicious\nabout us.\n");
     showTextbox("We should hide from them\nand wait, then come back.\nIt's twelve o'clock.\n");
     return;
-L_01cc:
-    if (!trigger(342) || trigger(343)) goto L_0434;
+
+L5:
+    if (!trigger(342) || trigger(343)) goto L6;
     setDialogOwner(Entity.Player);
     showTextbox("This factory must be\ndraining their waste to\nsewage. I must find out.\n");
     look(entity: Entity.Player, at: Entity.Partner);
@@ -109,58 +120,67 @@ L_01cc:
     playAnimation(Entity.Player, 0);
     setTrigger(347);
     return;
-L_0434:
-    if (trigger(343)) goto L_0442;
+
+L6:
+    if (trigger(343)) goto L7;
     return;
-L_0442:
-    if (!trigger(343)) goto L_0500;
+
+L7:
+    if (!trigger(343)) goto L8;
     setDialogOwner(Entity.Player);
     showTextbox("So, what should we do?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L_0500, L_06ac, L_0848);
+    setSelection(L8, L11, L13);
     showTextbox("Time for shift change\nLet me thru or else\nNo, nothing\n");
     waitForSelectionChoice();
     return;
-L_0500:
+
+L8:
     playSound(8, 9);
     setDialogOwner(11);
     showTextbox("It's not the time for\nthe shift change yet.\n");
     setDialogOwner(Entity.Player);
-    setSelection(L_05ce, L_062c);
+    setSelection(L9, L10);
     showTextbox("That's OK, don't worry.\nWhen is shift change?\n");
     waitForSelectionChoice();
     return;
-L_05ce:
+
+L9:
     playSound(8, 9);
     setDialogOwner(11);
     showTextbox("No, we have to follow\nthe time strictly.\n");
     return;
-L_062c:
+
+L10:
     setDialogOwner(11);
     showTextbox("The shift changes are\nat midnight and noon.\n");
     setDialogOwner(Entity.Player);
     showTextbox("Oh, I see.\n");
     setTrigger(331);
     return;
-L_06ac:
+
+L11:
     playSound(8, 9);
     setDialogOwner(11);
     showTextbox("You can't threaten me.\nYou have to get a permit.\n");
     setDialogOwner(Entity.Player);
-    setSelection(L_0786, L_0786);
+    setSelection(L12, L12);
     showTextbox("A permit? I got one.\nI'll give you permission!\n");
     waitForSelectionChoice();
     return;
-L_0786:
+
+L12:
     playSound(8, 9);
     setDialogOwner(11);
     showTextbox("We can't give you a permit.\nYou have to go thru\nproper channels.\n");
     setDialogOwner(Entity.Player);
     showTextbox("Wow, you're so strict!\n");
     return;
-L_0848:
+
+L13:
     return;
-L_084a:
+
+L14:
     setDialogOwner(Entity.Player);
     showTextbox("Isn't it shift change yet?\n");
     setDialogOwner(11);
@@ -171,7 +191,7 @@ L_084a:
     return;
 }
 
-section section_5(5) {  // len=56
+section(5) {  // len=56
     setDialogOwner(5);
     showTextbox("Bopi bopi pooooo.\n");
     fadeOutHUD();
@@ -181,7 +201,7 @@ section section_5(5) {  // len=56
     return;
 }
 
-section section_6(6) {  // len=42
+section(6) {  // len=42
     setDialogOwner(6);
     showTextbox("Geba geba!\n");
     fadeOutHUD();
@@ -191,7 +211,7 @@ section section_6(6) {  // len=42
     return;
 }
 
-section section_7(7) {  // len=36
+section(7) {  // len=36
     setDialogOwner(7);
     showTextbox("Boobyo?\n");
     fadeOutHUD();
@@ -201,7 +221,7 @@ section section_7(7) {  // len=36
     return;
 }
 
-section section_8(8) {  // len=50
+section(8) {  // len=50
     setDialogOwner(8);
     showTextbox("I'm satisfied!\n");
     fadeOutHUD();
@@ -211,7 +231,7 @@ section section_8(8) {  // len=50
     return;
 }
 
-section section_9(9) {  // len=68
+section(9) {  // len=68
     setDialogOwner(9);
     showTextbox("This is part of my job.\n");
     fadeOutHUD();
@@ -221,7 +241,7 @@ section section_9(9) {  // len=68
     return;
 }
 
-section section_10(10) {  // len=1084
+section(10) {  // len=1084
     setDialogOwner(10);
     showTextbox("What's the problem?\n");
     fadeOutHUD();
@@ -229,5 +249,5 @@ section section_10(10) {  // len=1084
     startBattle();
     setTrigger(273);
     return;
-    garbage { 30 00 fe 00 30 00 33 00 d6 00 34 00 e4 00 0c 00 f2 00 0b 00 30 01 05 00 c8 0a 06 00 00 0b 07 00 2a 0b 08 00 4e 0b 09 00 80 0b 0a 00 c4 0b ff ff 25 69 19 00 08 00 6b 0b 8a 00 6c 37 18 00 46 00 19 00 16 00 84 00 19 00 08 00 6b 0c 8b 00 6c 05 18 00 5a 00 19 00 16 00 84 00 19 00 08 00 6b 17 8a 00 6c 37 18 00 6e 00 19 00 16 00 84 00 19 00 08 00 6b 00 8b 00 6c 05 18 00 82 00 19 00 16 00 84 00 fe 00 19 00 01 00 4c 01 18 00 d4 00 19 00 56 00 fd 18 67 00 0f 00 1b fd 1a 00 82 73 82 88 82 85 82 92 82 85 81 75 82 93 81 40 82 8e 82 8f 81 40 82 87 82 95 82 81 82 92 82 84 81 49 0d 00 00 00 56 00 fd 00 4f 14 ef 0a 4a 00 4a c8 50 00 fd 0f 4a c8 fe 00 4e fd db fb b5 fe 00 00 4b 9a 03 ff fe 00 4e fd d5 15 bb ff 00 00 4b a1 01 ff fe 00 5a 00 08 09 1b 0c 1a 00 82 78 82 8f 82 95 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 87 82 85 82 94 81 40 82 94 82 88 82 92 82 95 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 00 00 fe 00 5a 00 08 09 1b 0b 1a 00 82 78 82 8f 82 95 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 87 82 85 82 94 81 40 82 94 82 88 82 92 82 95 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 00 00 25 69 19 00 00 00 4b 01 88 00 6b 0b 8a 00 6c 37 18 00 86 01 19 00 16 00 7a 09 19 00 00 00 4b 01 88 00 6b 0c 8b 00 6c 05 18 00 9e 01 19 00 16 00 7a 09 19 00 00 00 4b 01 88 00 6b 17 8a 00 6c 37 18 00 b6 01 19 00 16 00 7a 09 19 00 00 00 4b 01 88 00 6b 00 8b 00 6c 05 18 00 ce 01 19 00 16 00 7a 09 19 00 00 00 4b 01 18 00 fc 02 19 00 1b 0b 1a 00 81 42 81 42 81 42 81 42 81 42 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 8f 82 97 81 43 81 40 82 88 82 85 81 75 82 93 81 40 82 93 82 94 82 81 82 92 82 89 82 8e 82 87 81 40 82 81 82 94 81 40 82 95 82 93 81 49 0d 00 82 6c 82 81 82 99 82 82 82 85 81 40 82 88 82 85 81 75 82 93 81 40 82 93 82 95 82 93 82 90 82 89 82 83 82 89 82 8f 82 95 82 93 0d 00 82 81 82 82 82 8f 82 95 82 94 81 40 82 95 82 93 81 42 0d 00 00 00 1a 00 82 76 82 85 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 88 82 89 82 84 82 85 81 40 82 86 82 92 82 8f 82 8d 81 40 82 94 82 88 82 85 82 8d 0d 00 82 81 82 8e 82 84 81 40 82 97 82 81 82 89 82 94 81 43 81 40 82 94 82 88 82 85 82 8e 81 40 82 83 82 8f 82 8d 82 85 81 40 82 82 82 81 82 83 82 8b 81 42 0d 00 82 68 82 94 81 75 82 93 81 40 82 94 82 97 82 85 82 8c 82 96 82 85 81 40 82 8f 81 75 82 83 82 8c 82 8f 82 83 82 8b 81 42 0d 00 00 00 fe 00 19 00 00 00 56 01 81 00 57 01 18 00 64 05 19 00 1b fd 1a 00 82 73 82 88 82 89 82 93 81 40 82 86 82 81 82 83 82 94 82 8f 82 92 82 99 81 40 82 8d 82 95 82 93 82 94 81 40 82 82 82 85 0d 00 82 84 82 92 82 81 82 89 82 8e 82 89 82 8e 82 87 81 40 82 94 82 88 82 85 82 89 82 92 81 40 82 97 82 81 82 93 82 94 82 85 81 40 82 94 82 8f 0d 00 82 93 82 85 82 97 82 81 82 87 82 85 81 42 81 40 82 68 81 40 82 8d 82 95 82 93 82 94 81 40 82 86 82 89 82 8e 82 84 81 40 82 8f 82 95 82 94 81 42 0d 00 00 00 4c 00 fd fc 67 00 05 00 56 00 fd 16 56 00 fc 16 67 00 05 00 56 00 fd 16 56 00 fc 16 67 00 05 00 4c 00 fd 0b 56 00 fc 00 67 00 0a 00 56 00 fd 13 67 00 0f 00 1b fd 1a 00 82 62 82 81 82 8e 81 40 82 99 82 8f 82 95 81 40 82 8d 82 8f 82 96 82 85 81 43 81 40 82 90 82 8c 82 85 82 81 82 93 82 85 };
+    garbage { 30 00 fe 00 30 00 33 00 d6 00 34 00 e4 00 0c 00 f2 00 0b 00 30 01 05 00 c8 0a 06 00 00 0b 07 00 2a 0b 08 00 4e 0b 09 00 80 0b 0a 00 c4 0b ff ff 25 69 19 00 08 00 6b 0b 8a 00 6c 37 18 00 46 00 19 00 16 00 84 00 19 00 08 00 6b 0c 8b 00 6c 05 18 00 5a 00 19 00 16 00 84 00 19 00 08 00 6b 17 8a 00 6c 37 18 00 6e 00 19 00 16 00 84 00 19 00 08 00 6b 00 8b 00 6c 05 18 00 82 00 19 00 16 00 84 00 fe 00 19 00 01 00 4c 01 18 00 d4 00 19 00 56 00 fd 18 67 00 0f 00 1b fd 1a 00 82 73 82 88 82 85 82 92 82 85 81 75 82 93 81 40 82 8e 82 8f 81 40 82 87 82 95 82 81 82 92 82 84 81 49 0d 00 00 00 56 00 fd 00 4f 14 ef 0a 4a 00 4a c8 50 00 fd 0f 4a c8 fe 00 4e fd db fb b5 fe 00 00 4b 9a 03 ff fe 00 4e fd d5 15 bb ff 00 00 4b a1 01 ff fe 00 5a 00 08 09 1b 0c 1a 00 82 78 82 8f 82 95 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 87 82 85 82 94 81 40 82 94 82 88 82 92 82 95 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 00 00 fe 00 5a 00 08 09 1b 0b 1a 00 82 78 82 8f 82 95 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 87 82 85 82 94 81 40 82 94 82 88 82 92 82 95 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 00 00 25 69 19 00 00 00 4b 01 88 00 6b 0b 8a 00 6c 37 18 00 86 01 19 00 16 00 7a 09 19 00 00 00 4b 01 88 00 6b 0c 8b 00 6c 05 18 00 9e 01 19 00 16 00 7a 09 19 00 00 00 4b 01 88 00 6b 17 8a 00 6c 37 18 00 b6 01 19 00 16 00 7a 09 19 00 00 00 4b 01 88 00 6b 00 8b 00 6c 05 18 00 ce 01 19 00 16 00 7a 09 19 00 00 00 4b 01 18 00 fc 02 19 00 1b 0b 1a 00 81 42 81 42 81 42 81 42 81 42 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 8f 82 97 81 43 81 40 82 88 82 85 81 75 82 93 81 40 82 93 82 94 82 81 82 92 82 89 82 8e 82 87 81 40 82 81 82 94 81 40 82 95 82 93 81 49 0d 00 82 6c 82 81 82 99 82 82 82 85 81 40 82 88 82 85 81 75 82 93 81 40 82 93 82 95 82 93 82 90 82 89 82 83 82 89 82 8f 82 95 82 93 0d 00 82 81 82 82 82 8f 82 95 82 94 81 40 82 95 82 93 81 42 0d 00 00 00 1a 00 82 76 82 85 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 88 82 89 82 84 82 85 81 40 82 86 82 92 82 8f 82 8d 81 40 82 94 82 88 82 85 82 8d 0d 00 82 81 82 8e 82 84 81 40 82 97 82 81 82 89 82 94 81 43 81 40 82 94 82 88 82 85 82 8e 81 40 82 83 82 8f 82 8d 82 85 81 40 82 82 82 81 82 83 82 8b 81 42 0d 00 82 68 82 94 81 75 82 93 81 40 82 94 82 97 82 85 82 8c 82 96 82 85 81 40 82 8f 81 75 82 83 82 8c 82 8f 82 83 82 8b 81 42 0d 00 00 00 fe 00 19 00 00 00 56 01 81 00 57 01 18 00 64 05 19 00 1b fd 1a 00 82 73 82 88 82 89 82 93 81 40 82 86 82 81 82 83 82 94 82 8f 82 92 82 99 81 40 82 8d 82 95 82 93 82 94 81 40 82 82 82 85 0d 00 82 84 82 92 82 81 82 89 82 8e 82 89 82 8e 82 87 81 40 82 94 82 88 82 85 82 89 82 92 81 40 82 97 82 81 82 93 82 94 82 85 81 40 82 94 82 8f 0d 00 82 93 82 85 82 97 82 81 82 87 82 85 81 42 81 40 82 68 81 40 82 8d 82 95 82 93 82 94 81 40 82 86 82 89 82 8e 82 84 81 40 82 8f 82 95 82 94 81 42 0d 00 00 00 4c 00 fd fc 67 00 05 00 56 00 fd 16 56 00 fc 16 67 00 05 00 56 00 fd 16 56 00 fc 16 67 00 05 00 4c 00 fd 0b 56 00 fc 00 67 00 0a 00 56 00 fd 13 67 00 0f 00 1b fd 1a 00 82 62 82 81 82 8e 81 40 82 99 82 8f 82 95 81 40 82 8d 82 8f 82 96 82 85 81 43 81 40 82 90 82 8c 82 85 82 81 82 93 82 85 }
 }

@@ -5,164 +5,152 @@ section onEnter(254) {  // len=2
     return;
 }
 
-section section_51(51) {  // len=8178
-    if (!trigger(223) || pstat[27] != 3) goto L_0040;
+section(51) {  // len=8178
+    if (!trigger(223) || pstat[27] != 3) goto L1;
     setDialogOwner(5);
     showTextbox("What will you eat?\n");
-    goto L_00b6;
-L_0040:
-    if (!trigger(228) || pstat[27] != 4) goto L_008c;
+    goto L3;
+
+L1:
+    if (!trigger(228) || pstat[27] != 4) goto L2;
     setDialogOwner(5);
     showTextbox("What do you want to eat?\n");
-    goto L_06cc;
-L_008c:
-    if (!trigger(256) || pstat[27] != 5) goto L_00b6;
+    goto L17;
+
+L2:
+    if (!trigger(256) || pstat[27] != 5) goto L3;
     setDialogOwner(5);
     showTextbox("......?\n");
-    goto L_0f5c;
-L_00b6:
+    goto L31;
+
+L3:
     setDialogOwner(Entity.System);
-    setSelection(L_0172, L_031e, L_04d0);
+    setSelection(L4, L8, L12);
     showTextbox("Snow Shake: three hund bits\nIce Cream:  seven hund bits\nSnow Cone:sixteen hund bits\n");
     waitForSelectionChoice();
-    goto L_06a6;
-L_0172:
-    if (money < 300) goto L_0186;
-    goto L_01c6;
-L_0186:
+    goto L16;
+
+L4:
+    if (money < 300) goto L5;
+    goto L6;
+
+L5:
     setDialogOwner(5);
     showTextbox("You don't have enough bits.\n");
     return;
-L_01c6:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L_02ec;
+
+L6:
+    if (trigger(640) && (cond & 0x04) == 0x00) goto L7;
     setDialogOwner(Entity.System);
     showTextbox("<ORANGE><DIGIMON><WHITE> enjoyed\na Snow Shake!\n");
-    addStats(Stat.Offense, 0);
-    addStats(Stat.Defense, 0);
-    addStats(Stat.Speed, 1);
-    addStats(Stat.Brains, 0);
-    addStats(Stat.MaxHP, 0);
-    addStats(Stat.MaxMP, 10);
+    addStats(offense: 0, defense: 0, speed: 1, brains: 0, maxHP: 0, maxMP: 10);
     reduceStats(Stat.Tiredness, 2);
-    addStats(Stat.Happiness, 3);
-    addStats(Stat.Discipline, 0);
-    addStats(Stat.Energy, 12);
-    addStats(Stat.Weight, 2);
+    addStats(happiness: 3, discipline: 0, energy: 12, weight: 2);
     reduceMoney(300);
     setDialogOwner(Entity.System);
     showTextbox("MP went up ten!\nSpeed went up one!\n");
     showTextbox("Happiness went up!\nTiredness went down!\n");
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
-    goto L_06a6;
-L_02ec:
+    goto L16;
+
+L7:
     playAnimation(Entity.Partner, 13);
     waitForEntity(Entity.System);
     setDialogOwner(5);
     showTextbox("<ORANGE><DIGIMON><WHITE> isn't hungry.\n");
     return;
-L_031e:
-    if (money < 700) goto L_0332;
-    goto L_0372;
-L_0332:
+
+L8:
+    if (money < 700) goto L9;
+    goto L10;
+
+L9:
     setDialogOwner(5);
     showTextbox("You don't have enough bits.\n");
     return;
-L_0372:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L_049e;
+
+L10:
+    if (trigger(640) && (cond & 0x04) == 0x00) goto L11;
     setDialogOwner(Entity.System);
     showTextbox("<ORANGE><DIGIMON><WHITE> enjoyed\nan Ice Cream!\n");
-    addStats(Stat.Offense, 0);
-    addStats(Stat.Defense, 0);
-    addStats(Stat.Speed, 2);
-    addStats(Stat.Brains, 0);
-    addStats(Stat.MaxHP, 0);
-    addStats(Stat.MaxMP, 30);
+    addStats(offense: 0, defense: 0, speed: 2, brains: 0, maxHP: 0, maxMP: 30);
     reduceStats(Stat.Tiredness, 2);
-    addStats(Stat.Happiness, 5);
-    addStats(Stat.Discipline, 0);
-    addStats(Stat.Energy, 16);
-    addStats(Stat.Weight, 3);
+    addStats(happiness: 5, discipline: 0, energy: 16, weight: 3);
     reduceMoney(700);
     setDialogOwner(Entity.System);
     showTextbox("MP went up thirty!\nSpeed went up two!\n");
     showTextbox("Happiness went up!\nTiredness went down!\n");
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
-    goto L_06a6;
-L_049e:
+    goto L16;
+
+L11:
     playAnimation(Entity.Partner, 13);
     waitForEntity(Entity.System);
     setDialogOwner(5);
     showTextbox("<ORANGE><DIGIMON><WHITE> isn't hungry.\n");
     return;
-L_04d0:
-    if (money < 1600) goto L_04e4;
-    goto L_0524;
-L_04e4:
+
+L12:
+    if (money < 1600) goto L13;
+    goto L14;
+
+L13:
     setDialogOwner(5);
     showTextbox("You don't have enough bits.\n");
     return;
-L_0524:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L_0674;
+
+L14:
+    if (trigger(640) && (cond & 0x04) == 0x00) goto L15;
     setDialogOwner(Entity.System);
     showTextbox("<ORANGE><DIGIMON><WHITE> enjoyed\na Snow Cone!\n");
-    addStats(Stat.Offense, 0);
-    addStats(Stat.Defense, 0);
-    addStats(Stat.Speed, 2);
-    addStats(Stat.Brains, 0);
-    addStats(Stat.MaxHP, 0);
-    addStats(Stat.MaxMP, 50);
+    addStats(offense: 0, defense: 0, speed: 2, brains: 0, maxHP: 0, maxMP: 50);
     reduceStats(Stat.Tiredness, 2);
-    addStats(Stat.Happiness, 7);
-    addStats(Stat.Discipline, 1);
-    addStats(Stat.Energy, 20);
-    addStats(Stat.Weight, 4);
+    addStats(happiness: 7, discipline: 1, energy: 20, weight: 4);
     reduceMoney(1600);
     setDialogOwner(Entity.System);
     showTextbox("MP went up fifty!\nSpeed went up two!\n");
     showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
-    goto L_06a6;
-L_0674:
+    goto L16;
+
+L15:
     playAnimation(Entity.Partner, 13);
     waitForEntity(Entity.System);
     setDialogOwner(5);
     showTextbox("<ORANGE><DIGIMON><WHITE> isn't hungry.\n");
     return;
-L_06a6:
+
+L16:
     setDialogOwner(5);
     showTextbox("See you later!\n");
     return;
-L_06cc:
+
+L17:
     setDialogOwner(Entity.System);
-    setSelection(L_078e, L_0a0e, L_0c94);
+    setSelection(L18, L22, L26);
     showTextbox("Space Salad:fifteen hund bit\nUFO Soup:     four thous bit\nGalaxy Course:nine thous bit\n");
     waitForSelectionChoice();
-    goto L_0f2c;
-L_078e:
-    if (money < 1500) goto L_07a2;
-    goto L_07d6;
-L_07a2:
+    goto L30;
+
+L18:
+    if (money < 1500) goto L19;
+    goto L20;
+
+L19:
     setDialogOwner(5);
     showTextbox("You're short of bits.\n");
     return;
-L_07d6:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L_09e6;
+
+L20:
+    if (trigger(640) && (cond & 0x04) == 0x00) goto L21;
     setDialogOwner(Entity.System);
     showTextbox("<ORANGE><DIGIMON><WHITE> enjoyed\na Space Salad!\n");
-    addStats(Stat.Offense, 1);
-    addStats(Stat.Defense, 1);
-    addStats(Stat.Speed, 1);
-    addStats(Stat.Brains, 1);
-    addStats(Stat.MaxHP, 10);
-    addStats(Stat.MaxMP, 10);
+    addStats(offense: 1, defense: 1, speed: 1, brains: 1, maxHP: 10, maxMP: 10);
     reduceStats(Stat.Tiredness, 5);
-    addStats(Stat.Happiness, 1);
-    addStats(Stat.Discipline, 1);
-    addStats(Stat.Energy, 20);
-    addStats(Stat.Weight, 0);
+    addStats(happiness: 1, discipline: 1, energy: 20, weight: 0);
     reduceMoney(1500);
     setDialogOwner(Entity.System);
     showTextbox("HP went up ten!\nMP went up ten!\nOffensive Power went up one!\n");
@@ -170,35 +158,31 @@ L_07d6:
     showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
-    goto L_0f2c;
-L_09e6:
+    goto L30;
+
+L21:
     playAnimation(Entity.Partner, 13);
     waitForEntity(Entity.System);
     setDialogOwner(5);
     showTextbox("<ORANGE><DIGIMON><WHITE> is full.\n");
     return;
-L_0a0e:
-    if (money < 4000) goto L_0a22;
-    goto L_0a56;
-L_0a22:
+
+L22:
+    if (money < 4000) goto L23;
+    goto L24;
+
+L23:
     setDialogOwner(5);
     showTextbox("You're short of bits.\n");
     return;
-L_0a56:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L_0c6c;
+
+L24:
+    if (trigger(640) && (cond & 0x04) == 0x00) goto L25;
     setDialogOwner(Entity.System);
     showTextbox("<ORANGE><DIGIMON><WHITE> enjoyed\na UFO Soup!\n");
-    addStats(Stat.Offense, 2);
-    addStats(Stat.Defense, 2);
-    addStats(Stat.Speed, 2);
-    addStats(Stat.Brains, 2);
-    addStats(Stat.MaxHP, 20);
-    addStats(Stat.MaxMP, 20);
+    addStats(offense: 2, defense: 2, speed: 2, brains: 2, maxHP: 20, maxMP: 20);
     reduceStats(Stat.Tiredness, 5);
-    addStats(Stat.Happiness, 2);
-    addStats(Stat.Discipline, 2);
-    addStats(Stat.Energy, 30);
-    addStats(Stat.Weight, 1);
+    addStats(happiness: 2, discipline: 2, energy: 30, weight: 1);
     reduceMoney(4000);
     setDialogOwner(Entity.System);
     showTextbox("HP went up twenty!\nMP went up twenty!\nOffensive Power went up two!\n");
@@ -206,35 +190,31 @@ L_0a56:
     showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
-    goto L_0f2c;
-L_0c6c:
+    goto L30;
+
+L25:
     playAnimation(Entity.Partner, 13);
     waitForEntity(Entity.System);
     setDialogOwner(5);
     showTextbox("<ORANGE><DIGIMON><WHITE> is full.\n");
     return;
-L_0c94:
-    if (money < 9000) goto L_0ca8;
-    goto L_0cdc;
-L_0ca8:
+
+L26:
+    if (money < 9000) goto L27;
+    goto L28;
+
+L27:
     setDialogOwner(5);
     showTextbox("You're short of bits.\n");
     return;
-L_0cdc:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L_0f04;
+
+L28:
+    if (trigger(640) && (cond & 0x04) == 0x00) goto L29;
     setDialogOwner(Entity.System);
     showTextbox("<ORANGE><DIGIMON><WHITE> enjoyed\na Galaxy Course!\n");
-    addStats(Stat.Offense, 3);
-    addStats(Stat.Defense, 3);
-    addStats(Stat.Speed, 3);
-    addStats(Stat.Brains, 3);
-    addStats(Stat.MaxHP, 30);
-    addStats(Stat.MaxMP, 30);
+    addStats(offense: 3, defense: 3, speed: 3, brains: 3, maxHP: 30, maxMP: 30);
     reduceStats(Stat.Tiredness, 5);
-    addStats(Stat.Happiness, 3);
-    addStats(Stat.Discipline, 3);
-    addStats(Stat.Energy, 45);
-    addStats(Stat.Weight, 5);
+    addStats(happiness: 3, discipline: 3, energy: 45, weight: 5);
     reduceMoney(9000);
     setDialogOwner(Entity.System);
     showTextbox("HP went up thirty!\nMP went up thirty!\nOffense Power went up three!\n");
@@ -242,263 +222,216 @@ L_0cdc:
     showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
-    goto L_0f2c;
-L_0f04:
+    goto L30;
+
+L29:
     playAnimation(Entity.Partner, 13);
     waitForEntity(Entity.System);
     setDialogOwner(5);
     showTextbox("<ORANGE><DIGIMON><WHITE> is full.\n");
     return;
-L_0f2c:
+
+L30:
     setDialogOwner(5);
     showTextbox("See you guys later.\n");
     return;
-L_0f5c:
+
+L31:
     setDialogOwner(Entity.System);
-    setSelection(L_101e, L_14e6, L_19f0);
+    setSelection(L32, L39, L46);
     showTextbox("Boiled Egg:   one thous bits\nOmelet:twenty five hund bits\nEgg Bowl:     six thous bits\n");
     waitForSelectionChoice();
-    goto L_1f24;
-L_101e:
-    if (money < 1000) goto L_1032;
-    goto L_104a;
-L_1032:
+    goto L53;
+
+L32:
+    if (money < 1000) goto L33;
+    goto L34;
+
+L33:
     setDialogOwner(5);
     showTextbox(".......\n");
     return;
-L_104a:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L_10a6;
+
+L34:
+    if (trigger(640) && (cond & 0x04) == 0x00) goto L35;
     setDialogOwner(Entity.System);
     showTextbox("<ORANGE><DIGIMON><WHITE> enjoyed a\nWonder Boiled Egg!\n");
     roll(pstat: 110, max: 2);
-L_10a6:
-    if (pstat[110] > 0) goto L_11c4;
-    addStats(Stat.Offense, 1);
-    addStats(Stat.Defense, 0);
-    addStats(Stat.Speed, 1);
-    addStats(Stat.Brains, 0);
-    addStats(Stat.MaxHP, 10);
-    addStats(Stat.MaxMP, 0);
+
+L35:
+    if (pstat[110] > 0) goto L36;
+    addStats(offense: 1, defense: 0, speed: 1, brains: 0, maxHP: 10, maxMP: 0);
     reduceStats(Stat.Tiredness, 5);
-    addStats(Stat.Happiness, 1);
-    addStats(Stat.Discipline, 0);
-    addStats(Stat.Energy, 18);
-    addStats(Stat.Weight, 1);
+    addStats(happiness: 1, discipline: 0, energy: 18, weight: 1);
     reduceMoney(1000);
     setDialogOwner(Entity.System);
     showTextbox("HP went up ten!\nOffensive Power went up one!\nSpeed went up one!\n");
     setDialogOwner(Entity.System);
     showTextbox("Happiness went up!\nTiredness went down!\n");
-    goto L_1f24;
-L_11c4:
-    if (pstat[110] > 1) goto L_12e4;
-    addStats(Stat.Offense, 0);
-    addStats(Stat.Defense, 1);
-    addStats(Stat.Speed, 0);
-    addStats(Stat.Brains, 1);
-    addStats(Stat.MaxHP, 0);
-    addStats(Stat.MaxMP, 10);
+    goto L53;
+
+L36:
+    if (pstat[110] > 1) goto L37;
+    addStats(offense: 0, defense: 1, speed: 0, brains: 1, maxHP: 0, maxMP: 10);
     reduceStats(Stat.Tiredness, 5);
-    addStats(Stat.Happiness, 1);
-    addStats(Stat.Discipline, 0);
-    addStats(Stat.Energy, 18);
-    addStats(Stat.Weight, 1);
+    addStats(happiness: 1, discipline: 0, energy: 18, weight: 1);
     reduceMoney(1000);
     setDialogOwner(Entity.System);
     showTextbox("MP went up ten!\nDefensive Power went up one!\nBrains went up one!\n");
     setDialogOwner(Entity.System);
     showTextbox("Happiness went up!\nTiredness went down!\n");
-    goto L_1f24;
-L_12e4:
-    if (pstat[110] > 2) goto L_14bc;
-    addStats(Stat.Offense, 2);
-    addStats(Stat.Defense, 2);
-    addStats(Stat.Speed, 2);
-    addStats(Stat.Brains, 2);
-    addStats(Stat.MaxHP, 20);
-    addStats(Stat.MaxMP, 20);
+    goto L53;
+
+L37:
+    if (pstat[110] > 2) goto L38;
+    addStats(offense: 2, defense: 2, speed: 2, brains: 2, maxHP: 20, maxMP: 20);
     reduceStats(Stat.Tiredness, 5);
-    addStats(Stat.Happiness, 2);
-    addStats(Stat.Discipline, 1);
-    addStats(Stat.Energy, 18);
-    addStats(Stat.Weight, 1);
+    addStats(happiness: 2, discipline: 1, energy: 18, weight: 1);
     reduceMoney(1000);
     setDialogOwner(Entity.System);
     showTextbox("HP went up twenty!\nMP went up twenty!\nOffensive Power went up two!\n");
     showTextbox("Defensive Power went up two!\nSpeed went up two!\nBrains went up two!\n");
     setDialogOwner(Entity.System);
     showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
-    goto L_1f24;
-L_14bc:
+    goto L53;
+
+L38:
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
-    goto L_1f24;
+    goto L53;
     playAnimation(Entity.Partner, 13);
     waitForEntity(Entity.System);
     setDialogOwner(5);
     showTextbox(".......!\n");
     return;
-L_14e6:
-    if (money < 2500) goto L_14fa;
-    goto L_1518;
-L_14fa:
+
+L39:
+    if (money < 2500) goto L40;
+    goto L41;
+
+L40:
     setDialogOwner(5);
     showTextbox("..........\n");
     return;
-L_1518:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L_1574;
+
+L41:
+    if (trigger(640) && (cond & 0x04) == 0x00) goto L42;
     setDialogOwner(Entity.System);
     showTextbox("<ORANGE><DIGIMON><WHITE> enjoyed a\nWonder Egg Omelet!\n");
     roll(pstat: 110, max: 2);
-L_1574:
-    if (pstat[110] > 0) goto L_16c0;
-    addStats(Stat.Offense, 2);
-    addStats(Stat.Defense, 0);
-    addStats(Stat.Speed, 2);
-    addStats(Stat.Brains, 0);
-    addStats(Stat.MaxHP, 20);
-    addStats(Stat.MaxMP, 0);
+
+L42:
+    if (pstat[110] > 0) goto L43;
+    addStats(offense: 2, defense: 0, speed: 2, brains: 0, maxHP: 20, maxMP: 0);
     reduceStats(Stat.Tiredness, 5);
-    addStats(Stat.Happiness, 2);
-    addStats(Stat.Discipline, 0);
-    addStats(Stat.Energy, 24);
-    addStats(Stat.Weight, 2);
+    addStats(happiness: 2, discipline: 0, energy: 24, weight: 2);
     reduceMoney(2500);
     setDialogOwner(Entity.System);
     showTextbox("HP went up twenty!\nOffensive Power went up two!\nSpeed went up two!\n");
     setDialogOwner(Entity.System);
     showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
-    goto L_1f24;
-L_16c0:
-    if (pstat[110] > 1) goto L_17e6;
-    addStats(Stat.Offense, 0);
-    addStats(Stat.Defense, 2);
-    addStats(Stat.Speed, 0);
-    addStats(Stat.Brains, 2);
-    addStats(Stat.MaxHP, 0);
-    addStats(Stat.MaxMP, 20);
+    goto L53;
+
+L43:
+    if (pstat[110] > 1) goto L44;
+    addStats(offense: 0, defense: 2, speed: 0, brains: 2, maxHP: 0, maxMP: 20);
     reduceStats(Stat.Tiredness, 5);
-    addStats(Stat.Happiness, 2);
-    addStats(Stat.Discipline, 0);
-    addStats(Stat.Energy, 24);
-    addStats(Stat.Weight, 2);
+    addStats(happiness: 2, discipline: 0, energy: 24, weight: 2);
     reduceMoney(2500);
     setDialogOwner(Entity.System);
     showTextbox("MP went up twenty!\nDefensive Power went up two!\nBrains went up two!\n");
     setDialogOwner(Entity.System);
     showTextbox("Happiness went up!\nTiredness went down!\n");
-    goto L_1f24;
-L_17e6:
-    if (pstat[110] > 2) goto L_19c6;
-    addStats(Stat.Offense, 3);
-    addStats(Stat.Defense, 3);
-    addStats(Stat.Speed, 3);
-    addStats(Stat.Brains, 3);
-    addStats(Stat.MaxHP, 30);
-    addStats(Stat.MaxMP, 30);
+    goto L53;
+
+L44:
+    if (pstat[110] > 2) goto L45;
+    addStats(offense: 3, defense: 3, speed: 3, brains: 3, maxHP: 30, maxMP: 30);
     reduceStats(Stat.Tiredness, 5);
-    addStats(Stat.Happiness, 3);
-    addStats(Stat.Discipline, 1);
-    addStats(Stat.Energy, 24);
-    addStats(Stat.Weight, 2);
+    addStats(happiness: 3, discipline: 1, energy: 24, weight: 2);
     reduceMoney(2500);
     setDialogOwner(Entity.System);
     showTextbox("HP went up thirty!\nMP went up thirty!\nOffense Power went up three!\n");
     showTextbox("Defense Power went up three!\nSpeed went up three!\nBrains went up three!\n");
     setDialogOwner(Entity.System);
     showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
-    goto L_1f24;
-L_19c6:
+    goto L53;
+
+L45:
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
-    goto L_1f24;
+    goto L53;
     playAnimation(Entity.Partner, 13);
     waitForEntity(Entity.System);
     setDialogOwner(5);
     showTextbox(".......!\n");
     return;
-L_19f0:
-    if (money < 6000) goto L_1a04;
-    goto L_1a22;
-L_1a04:
+
+L46:
+    if (money < 6000) goto L47;
+    goto L48;
+
+L47:
     setDialogOwner(5);
     showTextbox("..........\n");
     return;
-L_1a22:
-    if (trigger(640) && (cond & 0x04) == 0x00) goto L_1a7a;
+
+L48:
+    if (trigger(640) && (cond & 0x04) == 0x00) goto L49;
     setDialogOwner(Entity.System);
     showTextbox("<ORANGE><DIGIMON><WHITE> enjoyed a\nWonder Egg Bowl!\n");
     roll(pstat: 110, max: 2);
-L_1a7a:
-    if (pstat[110] > 0) goto L_1bce;
-    addStats(Stat.Offense, 3);
-    addStats(Stat.Defense, 0);
-    addStats(Stat.Speed, 3);
-    addStats(Stat.Brains, 0);
-    addStats(Stat.MaxHP, 30);
-    addStats(Stat.MaxMP, 0);
+
+L49:
+    if (pstat[110] > 0) goto L50;
+    addStats(offense: 3, defense: 0, speed: 3, brains: 0, maxHP: 30, maxMP: 0);
     reduceStats(Stat.Tiredness, 5);
-    addStats(Stat.Happiness, 3);
-    addStats(Stat.Discipline, 1);
-    addStats(Stat.Energy, 36);
-    addStats(Stat.Weight, 3);
+    addStats(happiness: 3, discipline: 1, energy: 36, weight: 3);
     reduceMoney(6000);
     setDialogOwner(Entity.System);
     showTextbox("HP went up thirty!\nOffense Power went up thirty!\nSpeed went up thirty!\n");
     setDialogOwner(Entity.System);
     showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
-    goto L_1f24;
-L_1bce:
-    if (pstat[110] > 1) goto L_1d24;
-    addStats(Stat.Offense, 0);
-    addStats(Stat.Defense, 3);
-    addStats(Stat.Speed, 0);
-    addStats(Stat.Brains, 3);
-    addStats(Stat.MaxHP, 0);
-    addStats(Stat.MaxMP, 30);
+    goto L53;
+
+L50:
+    if (pstat[110] > 1) goto L51;
+    addStats(offense: 0, defense: 3, speed: 0, brains: 3, maxHP: 0, maxMP: 30);
     reduceStats(Stat.Tiredness, 5);
-    addStats(Stat.Happiness, 3);
-    addStats(Stat.Discipline, 1);
-    addStats(Stat.Energy, 36);
-    addStats(Stat.Weight, 3);
+    addStats(happiness: 3, discipline: 1, energy: 36, weight: 3);
     reduceMoney(6000);
     setDialogOwner(Entity.System);
     showTextbox("MP went up thirty!\nDefense Power went up three!\nBrains went up three!\n");
     setDialogOwner(Entity.System);
     showTextbox("Happiness went up!\nDiscipline went up!\nTiredness has went up!\n");
-    goto L_1f24;
-L_1d24:
-    if (pstat[110] > 2) goto L_1ef8;
-    addStats(Stat.Offense, 4);
-    addStats(Stat.Defense, 4);
-    addStats(Stat.Speed, 4);
-    addStats(Stat.Brains, 4);
-    addStats(Stat.MaxHP, 40);
-    addStats(Stat.MaxMP, 40);
+    goto L53;
+
+L51:
+    if (pstat[110] > 2) goto L52;
+    addStats(offense: 4, defense: 4, speed: 4, brains: 4, maxHP: 40, maxMP: 40);
     reduceStats(Stat.Tiredness, 5);
-    addStats(Stat.Happiness, 4);
-    addStats(Stat.Discipline, 3);
-    addStats(Stat.Energy, 36);
-    addStats(Stat.Weight, 3);
+    addStats(happiness: 4, discipline: 3, energy: 36, weight: 3);
     reduceMoney(6000);
     setDialogOwner(Entity.System);
     showTextbox("HP went up forty!\nMP went up forty!\nOffense Power went up four!\n");
     showTextbox("Defense Power went up four!\nSpeed went up four!\nBrains went up four!\n");
     setDialogOwner(Entity.System);
     showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down.\n");
-    goto L_1f24;
-L_1ef8:
+    goto L53;
+
+L52:
     playAnimation(Entity.Partner, 11);
     waitForEntity(Entity.Partner);
-    goto L_1f24;
+    goto L53;
     playAnimation(Entity.Partner, 13);
     waitForEntity(Entity.System);
     setDialogOwner(5);
     showTextbox("........!\n");
     return;
-L_1f24:
+
+L53:
     setDialogOwner(5);
     showTextbox("..........\n");
     return;
-    garbage { 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 19 00 00 00 df 00 88 00 1b 03 18 00 4e 00 19 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 40 82 97 82 89 82 8c 82 8c 81 40 82 99 82 8f 82 95 81 40 82 85 82 81 82 94 81 48 0d 00 00 00 16 00 c4 00 19 00 00 00 e4 00 88 00 1b 04 18 00 9a 00 19 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 85 82 81 82 94 81 48 0d 00 00 00 16 00 da 06 19 00 00 00 00 01 88 00 1b 05 18 00 c4 00 19 00 1b 05 1a 00 };
+    garbage { 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 19 00 00 00 df 00 88 00 1b 03 18 00 4e 00 19 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 40 82 97 82 89 82 8c 82 8c 81 40 82 99 82 8f 82 95 81 40 82 85 82 81 82 94 81 48 0d 00 00 00 16 00 c4 00 19 00 00 00 e4 00 88 00 1b 04 18 00 9a 00 19 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 85 82 81 82 94 81 48 0d 00 00 00 16 00 da 06 19 00 00 00 00 01 88 00 1b 05 18 00 c4 00 19 00 1b 05 1a 00 }
 }

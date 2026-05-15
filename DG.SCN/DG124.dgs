@@ -5,10 +5,11 @@ section onEnter(254) {  // len=2
     return;
 }
 
-section section_51(51) {  // len=1608
-    if (!trigger(221)) goto L_000e;
+section(51) {  // len=1608
+    if (!trigger(221)) goto L1;
     return;
-L_000e:
+
+L1:
     delay(20);
     move(entity: Entity.Player, to: (-142, -455), sprint: 0, withCamera: true);
     move(entity: Entity.Partner, to: (421, -421), sprint: 0);
@@ -124,73 +125,91 @@ L_000e:
     addPStat(1, 2);
     playAnimation(5, 29);
     delay(40);
-    if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L_0582;
-    goto L_05e6;
-    goto L_0586;
-L_0582:
-    goto L_0586;
-L_0586:
-    if (!trigger(221)) goto L_059a;
-    goto L_05c2;
-    goto L_059e;
-L_059a:
-    goto L_059e;
-L_059e:
-    if (!trigger(225)) goto L_05ae;
+    if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L2;
+    goto L11;
+    goto L3;
+
+L2:
+    goto L3;
+
+L3:
+    if (!trigger(221)) goto L4;
+    goto L8;
+    goto L5;
+
+L4:
+    goto L5;
+
+L5:
+    if (!trigger(225)) goto L6;
     warp(to: Map.TWNA04, spawn: 0, trigger: 255);
-L_05ae:
-    if (!trigger(246)) goto L_05be;
+
+L6:
+    if (!trigger(246)) goto L7;
     warp(to: Map.TWNA03, spawn: 0, trigger: 255);
-L_05be:
+
+L7:
     warp(to: Map.TWNA02, spawn: 0, trigger: 255);
-L_05c2:
-    if (!trigger(225)) goto L_05d2;
+
+L8:
+    if (!trigger(225)) goto L9;
     warp(to: Map.TWNA07, spawn: 0, trigger: 255);
-L_05d2:
-    if (!trigger(246)) goto L_05e2;
+
+L9:
+    if (!trigger(246)) goto L10;
     warp(to: Map.TWNA06, spawn: 0, trigger: 255);
-L_05e2:
+
+L10:
     warp(to: Map.TWNA05, spawn: 0, trigger: 255);
-L_05e6:
-    if (!trigger(221)) goto L_05fa;
-    goto L_0622;
-    goto L_05fe;
-L_05fa:
-    goto L_05fe;
-L_05fe:
-    if (!trigger(225)) goto L_060e;
+
+L11:
+    if (!trigger(221)) goto L12;
+    goto L16;
+    goto L13;
+
+L12:
+    goto L13;
+
+L13:
+    if (!trigger(225)) goto L14;
     warp(to: Map.TWNA10, spawn: 0, trigger: 255);
-L_060e:
-    if (!trigger(246)) goto L_061e;
+
+L14:
+    if (!trigger(246)) goto L15;
     warp(to: Map.TWNA09, spawn: 0, trigger: 255);
-L_061e:
+
+L15:
     warp(to: Map.TWNA08, spawn: 0, trigger: 255);
-L_0622:
-    if (!trigger(225)) goto L_0632;
+
+L16:
+    if (!trigger(225)) goto L17;
     warp(to: Map.TWNA13, spawn: 0, trigger: 255);
-L_0632:
-    if (!trigger(246)) goto L_0642;
+
+L17:
+    if (!trigger(246)) goto L18;
     warp(to: Map.TWNA12, spawn: 0, trigger: 255);
-L_0642:
+
+L18:
     warp(to: Map.TWNA11, spawn: 0, trigger: 255);
     return;
 }
 
-section section_52(52) {  // len=6
+section(52) {  // len=6
     playSound(8, 5);
     return;
 }
 
-section section_81(81) {  // len=412
+section(81) {  // len=412
     rotate(entity: Entity.Player, to: 1271);
     setDialogOwner(Entity.System);
     showTextbox("Elevator\n");
     setDialogOwner(Entity.Player);
-    setSelection(L_008c, L_00da, L_0186);
+    setSelection(L1, L2, L5);
     showTextbox("Press Down once\nPress Down twice\nDon't get on\n");
     waitForSelectionChoice();
-    goto L_0186;
-L_008c:
+    goto L5;
+
+L1:
     playSound(8, 4);
     rotate3DObject(0, 1);
     delay(1);
@@ -211,15 +230,17 @@ L_008c:
     playSound(8, 5);
     warp(to: Map.GCAN03, spawn: 2, trigger: 55);
     return;
-L_00da:
+
+L2:
     fadeOutHUD();
-    if (trigger(155)) goto L_0136;
+    if (trigger(155)) goto L3;
     setDialogOwner(Entity.Player);
     showTextbox("Huh?\n");
     showTextbox("No good. It doesn't work.\n");
     return;
-    goto L_0184;
-L_0136:
+    goto L4;
+
+L3:
     playSound(8, 4);
     rotate3DObject(0, 1);
     delay(1);
@@ -240,9 +261,11 @@ L_0136:
     playSound(8, 5);
     warp(to: Map.GCAN06, spawn: 2, trigger: 53);
     return;
-L_0184:
+
+L4:
     return;
-L_0186:
+
+L5:
     return;
-    garbage { 14 00 fe 00 14 00 33 00 16 00 34 00 5e 06 51 00 64 06 };
+    garbage { 14 00 fe 00 14 00 33 00 16 00 34 00 5e 06 51 00 64 06 }
 }

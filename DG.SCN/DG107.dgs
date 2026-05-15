@@ -3,119 +3,114 @@
 
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 19) goto L_0016;
+    if (pstat[110] > 19) goto L1;
     spawnItem(Item.Digimushroom, 61, 54);
-L_0016:
+
+L1:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 4) goto L_002c;
+    if (pstat[110] > 4) goto L2;
     spawnItem(Item.Happymushroom, 39, 46);
-L_002c:
+
+L2:
     roll(pstat: 110, max: 99);
-    if (pstat[110] > 14) goto L_0042;
+    if (pstat[110] > 14) goto L3;
     spawnItem(Item.Digimushroom, 55, 63);
-L_0042:
+
+L3:
     return;
 }
 
-section section_51(51) {  // len=146
-    if (trigger(105) || !trigger(230)) goto L_0090;
+section(51) {  // len=146
+    if (trigger(105) || !trigger(230)) goto L1;
     setDialogOwner(Entity.System);
     showTextbox("During the last earthquake,\nthe dirt and sand disappeared!\n");
     setTrigger(105);
-L_0090:
+
+L1:
     return;
 }
 
-section section_5(5) {  // len=400
+section(5) {  // len=400
     storeDate(105);
     setDialogOwner(5);
     showTextbox("The present time is\n<YEAR>month, <DAY>day,\n<HOUR>hours, <MINUTE>minutes.\n");
     storeDigimonType(103);
     storeDigimonTypus(103, 109);
-    if (pstat[109] != 1) goto L_00ce;
+    if (pstat[109] != 1) goto L1;
     setDialogOwner(5);
     showTextbox("<ORANGE><DIGIMON><WHITE> is a Data\nType Digimon, right?\n");
-L_00ce:
-    if (pstat[109] != 2) goto L_012c;
+
+L1:
+    if (pstat[109] != 2) goto L2;
     setDialogOwner(5);
     showTextbox("<ORANGE><DIGIMON><WHITE> is a Vaccine\nType Digimon, right?\n");
-L_012c:
-    if (pstat[109] != 3) goto L_0186;
+
+L2:
+    if (pstat[109] != 3) goto L3;
     setDialogOwner(5);
     showTextbox("<ORANGE><DIGIMON><WHITE> is a Virus\nType Digimon, right?\n");
-L_0186:
+
+L3:
     addStats(Stat.Tiredness, 10);
     reduceStats(Stat.Happiness, 10);
     return;
 }
 
-section section_6(6) {  // len=1414
+section(6) {  // len=1414
     setDialogOwner(6);
     showTextbox("I am useful for many things.\nWhat do you want me to do?\n");
     setDialogOwner(Entity.Player);
-    setSelection(L_0110, L_019a, L_02bc);
+    setSelection(L1, L2, L9);
     showTextbox("Change his Parameters\nSpeed up time for us\nChange this into a store\n");
     waitForSelectionChoice();
     return;
-L_0110:
+
+L1:
     setDialogOwner(Entity.Player);
-    setSelection(L_0256, L_0278, L_029a);
+    setSelection(L6, L7, L8);
     showTextbox("Make him most powerful\nMake him super weak\nMake him average\n");
     waitForSelectionChoice();
     return;
-L_019a:
+
+L2:
     setDialogOwner(Entity.Player);
-    setSelection(L_0232, L_023e, L_024a);
+    setSelection(L3, L4, L5);
     showTextbox("Make one hour pass\nMake six hours pass\nMake twenty four hours pass\n");
     waitForSelectionChoice();
     return;
-L_0232:
+
+L3:
     storeDate(105);
     addMinutesToDate(105, 60);
     advanceToDate(105);
     return;
-L_023e:
+
+L4:
     storeDate(105);
     addMinutesToDate(105, 360);
     advanceToDate(105);
     return;
-L_024a:
+
+L5:
     storeDate(105);
     addMinutesToDate(105, 1440);
     advanceToDate(105);
     return;
-L_0256:
-    setStats(Stat.Offense, 999);
-    setStats(Stat.Defense, 999);
-    setStats(Stat.Speed, 999);
-    setStats(Stat.Brains, 999);
-    setStats(Stat.MaxHP, 9999);
-    setStats(Stat.MaxMP, 9999);
-    setStats(Stat.CurrentHP, 9999);
-    setStats(Stat.CurrentMP, 9999);
+
+L6:
+    setStats(offense: 999, defense: 999, speed: 999, brains: 999, maxHP: 9999, maxMP: 9999, currentHP: 9999, currentMP: 9999);
     return;
-L_0278:
-    setStats(Stat.Offense, 1);
-    setStats(Stat.Defense, 1);
-    setStats(Stat.Speed, 1);
-    setStats(Stat.Brains, 1);
-    setStats(Stat.MaxHP, 1);
-    setStats(Stat.MaxMP, 1);
-    setStats(Stat.CurrentHP, 1);
-    setStats(Stat.CurrentMP, 1);
+
+L7:
+    setStats(offense: 1, defense: 1, speed: 1, brains: 1, maxHP: 1, maxMP: 1, currentHP: 1, currentMP: 1);
     return;
-L_029a:
-    setStats(Stat.Offense, 500);
-    setStats(Stat.Defense, 500);
-    setStats(Stat.Speed, 500);
-    setStats(Stat.Brains, 500);
-    setStats(Stat.MaxHP, 5000);
-    setStats(Stat.MaxMP, 5000);
-    setStats(Stat.CurrentHP, 5000);
-    setStats(Stat.CurrentMP, 5000);
+
+L8:
+    setStats(offense: 500, defense: 500, speed: 500, brains: 500, maxHP: 5000, maxMP: 5000, currentHP: 5000, currentMP: 5000);
     return;
-L_02bc:
+
+L9:
     jumpToScriptSection(205, 6);
     return;
-    garbage { 14 00 fe 00 14 00 33 00 58 00 05 00 ea 00 06 00 7a 02 ff ff 24 00 6e 63 19 00 0b 00 6e 13 18 00 2a 00 19 00 74 2c 3d 00 36 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 40 00 19 00 74 45 27 00 2e 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 56 00 19 00 74 2c 37 00 3f 00 fe 00 19 00 01 00 69 00 80 00 e6 00 18 00 e8 00 19 00 1b ff 1a 00 82 63 82 95 82 92 82 89 82 8e 82 87 81 40 82 94 82 88 82 85 81 40 82 8c 82 81 82 93 82 94 81 40 82 85 82 81 82 92 82 94 82 88 82 91 82 95 82 81 82 8b 82 85 81 43 0d 00 82 94 82 88 82 85 81 40 82 84 82 89 82 92 82 94 81 40 82 81 82 8e 82 84 81 40 82 93 82 81 82 8e 82 84 81 40 82 84 82 89 82 93 82 81 82 90 82 90 82 85 82 81 82 92 82 85 82 84 81 49 0d 00 00 00 1c 00 69 00 fe 00 25 69 1b 05 1a 00 82 73 82 88 82 85 81 40 82 90 82 92 82 85 82 93 82 85 82 8e 82 94 81 40 82 94 82 89 82 8d 82 85 81 40 82 89 82 93 0d 00 04 69 82 8d 82 8f 82 8e 82 94 82 88 81 43 81 40 04 6a 82 84 82 81 82 99 81 43 0d 00 04 6b 82 88 82 8f 82 95 82 92 82 93 81 43 81 40 04 6c 82 8d 82 89 82 8e 82 95 82 94 82 85 82 93 81 42 0d 00 00 00 22 67 3f 00 67 6d 19 00 08 00 6d 01 18 00 b8 01 19 00 1b 05 1a 00 01 0a 06 00 01 01 81 40 82 89 82 93 81 40 82 81 81 40 82 63 82 81 82 94 82 81 0d 00 82 73 82 99 82 90 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 19 00 08 00 6d 02 18 00 16 02 19 00 1b 05 1a 00 01 0a 06 00 01 01 81 40 82 89 82 93 81 40 82 81 81 40 82 75 82 81 82 83 82 83 82 89 82 8e 82 85 0d 00 82 73 82 99 82 90 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 19 00 08 00 6d 03 18 00 70 02 19 00 1b 05 1a 00 01 0a 06 00 01 01 81 40 82 89 82 93 81 40 82 81 81 40 82 75 82 89 82 92 82 95 82 93 0d 00 82 73 82 99 82 90 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 35 08 0a 00 36 09 0a 00 fe 00 1b 06 1a 00 82 68 81 40 82 81 82 8d 81 40 82 95 82 93 82 85 82 86 82 95 82 8c 81 40 82 86 82 8f 82 92 81 40 82 8d 82 81 82 8e 82 99 81 40 82 94 82 88 82 89 82 8e 82 87 82 93 81 42 0d 00 82 76 82 88 82 81 82 94 };
+    garbage { 14 00 fe 00 14 00 33 00 58 00 05 00 ea 00 06 00 7a 02 ff ff 24 00 6e 63 19 00 0b 00 6e 13 18 00 2a 00 19 00 74 2c 3d 00 36 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 40 00 19 00 74 45 27 00 2e 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 56 00 19 00 74 2c 37 00 3f 00 fe 00 19 00 01 00 69 00 80 00 e6 00 18 00 e8 00 19 00 1b ff 1a 00 82 63 82 95 82 92 82 89 82 8e 82 87 81 40 82 94 82 88 82 85 81 40 82 8c 82 81 82 93 82 94 81 40 82 85 82 81 82 92 82 94 82 88 82 91 82 95 82 81 82 8b 82 85 81 43 0d 00 82 94 82 88 82 85 81 40 82 84 82 89 82 92 82 94 81 40 82 81 82 8e 82 84 81 40 82 93 82 81 82 8e 82 84 81 40 82 84 82 89 82 93 82 81 82 90 82 90 82 85 82 81 82 92 82 85 82 84 81 49 0d 00 00 00 1c 00 69 00 fe 00 25 69 1b 05 1a 00 82 73 82 88 82 85 81 40 82 90 82 92 82 85 82 93 82 85 82 8e 82 94 81 40 82 94 82 89 82 8d 82 85 81 40 82 89 82 93 0d 00 04 69 82 8d 82 8f 82 8e 82 94 82 88 81 43 81 40 04 6a 82 84 82 81 82 99 81 43 0d 00 04 6b 82 88 82 8f 82 95 82 92 82 93 81 43 81 40 04 6c 82 8d 82 89 82 8e 82 95 82 94 82 85 82 93 81 42 0d 00 00 00 22 67 3f 00 67 6d 19 00 08 00 6d 01 18 00 b8 01 19 00 1b 05 1a 00 01 0a 06 00 01 01 81 40 82 89 82 93 81 40 82 81 81 40 82 63 82 81 82 94 82 81 0d 00 82 73 82 99 82 90 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 19 00 08 00 6d 02 18 00 16 02 19 00 1b 05 1a 00 01 0a 06 00 01 01 81 40 82 89 82 93 81 40 82 81 81 40 82 75 82 81 82 83 82 83 82 89 82 8e 82 85 0d 00 82 73 82 99 82 90 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 19 00 08 00 6d 03 18 00 70 02 19 00 1b 05 1a 00 01 0a 06 00 01 01 81 40 82 89 82 93 81 40 82 81 81 40 82 75 82 89 82 92 82 95 82 93 0d 00 82 73 82 99 82 90 82 85 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 35 08 0a 00 36 09 0a 00 fe 00 1b 06 1a 00 82 68 81 40 82 81 82 8d 81 40 82 95 82 93 82 85 82 86 82 95 82 8c 81 40 82 86 82 8f 82 92 81 40 82 8d 82 81 82 8e 82 99 81 40 82 94 82 88 82 89 82 8e 82 87 82 93 81 42 0d 00 82 76 82 88 82 81 82 94 }
 }

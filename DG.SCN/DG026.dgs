@@ -3,29 +3,28 @@
 
 section onEnter(254) {  // len=64
     callSubroutine(26);
-    if (pstat[17] != 3) goto L_0020;
+    if (pstat[17] != 3) goto L1;
     setPStat(254, 0);
     callSubroutine(19);
-    setAutotalk(5, 0);
-    setAutotalk(6, 0);
-    setAutotalk(7, 0);
-L_0020:
-    if (pstat[17] != 4) goto L_003e;
+    for id in 5..7 { setAutotalk(id, 0); }
+
+L1:
+    if (pstat[17] != 4) goto L2;
     setPStat(254, 1);
     callSubroutine(19);
-    setAutotalk(5, 0);
-    setAutotalk(6, 0);
-    setAutotalk(7, 0);
-L_003e:
+    for id in 5..7 { setAutotalk(id, 0); }
+
+L2:
     return;
 }
 
-section section_5(5) {  // len=126
-    if (pstat[17] < 3) goto L_003c;
+section(5) {  // len=126
+    if (pstat[17] < 3) goto L1;
     setDialogOwner(5);
     showTextbox("Oh, thanks so much!\n");
     return;
-L_003c:
+
+L1:
     setDialogOwner(5);
     showTextbox("What? You wanna fight?\n");
     fadeOutHUD();
@@ -35,12 +34,13 @@ L_003c:
     return;
 }
 
-section section_6(6) {  // len=96
-    if (pstat[17] < 3) goto L_0038;
+section(6) {  // len=96
+    if (pstat[17] < 3) goto L1;
     setDialogOwner(6);
     showTextbox("Oh, thanks a lot!\n");
     return;
-L_0038:
+
+L1:
     setDialogOwner(6);
     showTextbox("Leave it!\n");
     fadeOutHUD();
@@ -50,12 +50,13 @@ L_0038:
     return;
 }
 
-section section_7(7) {  // len=120
-    if (pstat[17] < 3) goto L_003e;
+section(7) {  // len=120
+    if (pstat[17] < 3) goto L1;
     setDialogOwner(7);
     showTextbox("Don't push yourself!\n");
     return;
-L_003e:
+
+L1:
     setDialogOwner(7);
     showTextbox("Let's fight, punk!\n");
     fadeOutHUD();
@@ -65,22 +66,23 @@ L_003e:
     return;
 }
 
-section section_9(9) {  // len=30
+section(9) {  // len=30
     setDialogOwner(9);
     showTextbox("I give up!\n");
     return;
 }
 
-section section_10(10) {  // len=44
+section(10) {  // len=44
     setDialogOwner(10);
     showTextbox("The boss is gone.\n");
     return;
 }
 
-section section_51(51) {  // len=2240
-    if (trigger(150) && !trigger(234)) goto L_0012;
+section(51) {  // len=2240
+    if (trigger(150) && !trigger(234)) goto L1;
     return;
-L_0012:
+
+L1:
     move(entity: Entity.Player, to: (-165, 221), sprint: 0, withCamera: true);
     move(entity: Entity.Partner, to: (171, 615), sprint: 0);
     waitForEntity(Entity.Player);
@@ -178,15 +180,17 @@ L_0012:
     showTextbox("Of course! You know\nwhere the city is, right?\n");
     setDialogOwner(8);
     showTextbox("Ohhhhh!\nI'll be there!\n");
-    goto L_084a;
-L_084a:
+    goto L2;
+
+L2:
     move(entity: 8, to: (155, 873), sprint: 1);
-    if (pstat[101] >= 6) goto L_086e;
+    if (pstat[101] >= 6) goto L3;
     addPStat(101, 1);
     delay(10);
     look(entity: Entity.Player, at: 8);
     look(entity: Entity.Partner, at: 8);
-L_086e:
+
+L3:
     waitForEntity(8);
     unloadEntity(8);
     setPStat(101, 0);
@@ -200,8 +204,8 @@ L_086e:
     return;
 }
 
-section section_52(52) {  // len=272
-    if (pstat[17] != 3) goto L_005c;
+section(52) {  // len=272
+    if (pstat[17] != 3) goto L1;
     setDialogOwner(Entity.Player);
     showTextbox("Ooops!\nExit isn't this way!\n");
     move(entity: Entity.Player, to: (-51, -1550), sprint: 1);
@@ -209,8 +213,9 @@ section section_52(52) {  // len=272
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_005c:
-    if (pstat[17] != 4) goto L_00e8;
+
+L1:
+    if (pstat[17] != 4) goto L2;
     setDialogOwner(Entity.Player);
     showTextbox("Oh no! I have to return\nthe dirt box to Drimogemon!\n");
     move(entity: Entity.Player, to: (-51, -1550), sprint: 1);
@@ -218,17 +223,19 @@ L_005c:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_00e8:
-    if (!trigger(209) || pstat[1] < 45) goto L_0104;
+
+L2:
+    if (!trigger(209) || pstat[1] < 45) goto L3;
     move(entity: Entity.Player, to: (-105, -2200), sprint: 0);
     warp(to: Map.TUNN03_2, spawn: 0, trigger: 255);
-L_0104:
+
+L3:
     move(entity: Entity.Player, to: (-105, -2200), sprint: 0);
     warp(to: Map.TUNN03, spawn: 0, trigger: 255);
 }
 
-section section_53(53) {  // len=1064
-    if (pstat[17] != 3) goto L_005c;
+section(53) {  // len=1064
+    if (pstat[17] != 3) goto L1;
     setDialogOwner(Entity.Player);
     showTextbox("Ooops! Exit isn't this way!\n");
     move(entity: Entity.Player, to: (-2253, 359), sprint: 1);
@@ -236,8 +243,9 @@ section section_53(53) {  // len=1064
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_005c:
-    if (pstat[17] != 4) goto L_00e8;
+
+L1:
+    if (pstat[17] != 4) goto L2;
     setDialogOwner(Entity.Player);
     showTextbox("Oh no! I have to return\nthe dirt box to Drimogemon!\n");
     move(entity: Entity.Player, to: (-2253, 359), sprint: 1);
@@ -245,7 +253,8 @@ L_005c:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_00e8:
+
+L2:
     return;
-    garbage { 28 00 fe 00 28 00 05 00 68 00 06 00 e6 00 07 00 46 01 09 00 be 01 0a 00 dc 01 33 00 08 02 34 00 c8 0a 35 00 d8 0b ff ff 64 1a 19 00 08 00 11 03 18 00 48 00 19 00 1e 00 fe 00 64 13 6a 00 05 00 6a 00 06 00 6a 00 07 00 19 00 08 00 11 04 18 00 66 00 19 00 1e 00 fe 01 64 13 6a 00 05 00 6a 00 06 00 6a 00 07 00 fe 00 19 00 0a 00 11 03 18 00 a4 00 19 00 1b 05 1a 00 82 6e 82 88 81 43 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 81 40 82 93 82 8f 81 40 82 8d 82 95 82 83 82 88 81 49 0d 00 00 00 fe 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 48 81 40 82 78 82 8f 82 95 81 40 82 97 82 81 82 8e 82 8e 82 81 81 40 82 86 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 19 00 0a 00 11 03 18 00 1e 01 19 00 1b 06 1a 00 82 6e 82 88 81 43 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 81 40 82 81 81 40 82 8c 82 8f 82 94 81 49 0d 00 00 00 fe 00 1b 06 1a 00 82 6b 82 85 82 81 82 96 82 85 81 40 82 89 82 94 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 19 00 0a 00 11 03 18 00 84 01 19 00 1b 07 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 90 82 95 82 93 82 88 81 40 82 99 82 8f 82 95 82 92 82 93 82 85 82 8c 82 86 81 49 0d 00 00 00 fe 00 1b 07 1a 00 82 6b 82 85 82 94 81 75 82 93 81 40 82 86 82 89 82 87 82 88 82 94 81 43 81 40 82 90 82 95 82 8e 82 8b 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 09 1a 00 82 68 81 40 82 87 82 89 82 96 82 85 81 40 82 95 82 90 81 49 0d 00 00 00 fe 00 1b 0a 1a 00 82 73 82 88 82 85 81 40 82 82 82 8f 82 93 82 93 81 40 82 89 82 93 81 40 82 87 82 8f 82 8e 82 85 81 42 0d 00 00 00 fe 00 19 00 01 00 96 00 40 00 ea 00 18 00 1a 02 19 00 fe 00 52 fd 5b ff dd 00 00 00 4e fc ab 00 67 02 00 00 4a fd 4a fc 4e 09 bd fe 5d 00 00 00 4e 0a f2 01 cd ff 00 00 4e 08 a0 00 3f ff 00 00 4a 05 4a 06 4a 08 4d fd 64 00 4d fc 64 00 4c 00 09 fd 4c 00 0a fd 4c 00 08 fd 1b 08 1a 00 82 67 82 85 82 99 81 40 82 87 82 95 82 99 82 93 81 43 81 40 82 89 82 86 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 0d 00 82 94 82 8f 81 40 82 87 82 85 82 94 81 40 82 94 82 88 82 92 82 95 81 40 82 88 82 85 82 92 82 85 81 43 00 00 81 48 82 8e 82 94 0d 00 82 8c 82 85 82 81 82 96 82 85 81 40 82 81 82 8c 82 8c 81 40 82 99 82 8f 82 95 82 92 81 40 82 93 82 94 82 95 82 86 82 86 81 49 0d 00 00 00 1b fd 1a 00 82 6b 82 8f 82 8e 82 87 81 40 82 94 82 89 82 8d 82 85 81 40 82 8e 82 8f 81 40 82 93 82 85 82 85 81 42 0d 00 00 00 1b 08 1a 00 82 6c 82 8d 82 8d 81 42 81 40 82 78 82 8f 82 95 81 40 82 87 82 95 82 99 82 93 81 40 82 81 82 87 82 81 82 89 };
+    garbage { 28 00 fe 00 28 00 05 00 68 00 06 00 e6 00 07 00 46 01 09 00 be 01 0a 00 dc 01 33 00 08 02 34 00 c8 0a 35 00 d8 0b ff ff 64 1a 19 00 08 00 11 03 18 00 48 00 19 00 1e 00 fe 00 64 13 6a 00 05 00 6a 00 06 00 6a 00 07 00 19 00 08 00 11 04 18 00 66 00 19 00 1e 00 fe 01 64 13 6a 00 05 00 6a 00 06 00 6a 00 07 00 fe 00 19 00 0a 00 11 03 18 00 a4 00 19 00 1b 05 1a 00 82 6e 82 88 81 43 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 81 40 82 93 82 8f 81 40 82 8d 82 95 82 83 82 88 81 49 0d 00 00 00 fe 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 48 81 40 82 78 82 8f 82 95 81 40 82 97 82 81 82 8e 82 8e 82 81 81 40 82 86 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 19 00 0a 00 11 03 18 00 1e 01 19 00 1b 06 1a 00 82 6e 82 88 81 43 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 81 40 82 81 81 40 82 8c 82 8f 82 94 81 49 0d 00 00 00 fe 00 1b 06 1a 00 82 6b 82 85 82 81 82 96 82 85 81 40 82 89 82 94 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 19 00 0a 00 11 03 18 00 84 01 19 00 1b 07 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 90 82 95 82 93 82 88 81 40 82 99 82 8f 82 95 82 92 82 93 82 85 82 8c 82 86 81 49 0d 00 00 00 fe 00 1b 07 1a 00 82 6b 82 85 82 94 81 75 82 93 81 40 82 86 82 89 82 87 82 88 82 94 81 43 81 40 82 90 82 95 82 8e 82 8b 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 09 1a 00 82 68 81 40 82 87 82 89 82 96 82 85 81 40 82 95 82 90 81 49 0d 00 00 00 fe 00 1b 0a 1a 00 82 73 82 88 82 85 81 40 82 82 82 8f 82 93 82 93 81 40 82 89 82 93 81 40 82 87 82 8f 82 8e 82 85 81 42 0d 00 00 00 fe 00 19 00 01 00 96 00 40 00 ea 00 18 00 1a 02 19 00 fe 00 52 fd 5b ff dd 00 00 00 4e fc ab 00 67 02 00 00 4a fd 4a fc 4e 09 bd fe 5d 00 00 00 4e 0a f2 01 cd ff 00 00 4e 08 a0 00 3f ff 00 00 4a 05 4a 06 4a 08 4d fd 64 00 4d fc 64 00 4c 00 09 fd 4c 00 0a fd 4c 00 08 fd 1b 08 1a 00 82 67 82 85 82 99 81 40 82 87 82 95 82 99 82 93 81 43 81 40 82 89 82 86 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 0d 00 82 94 82 8f 81 40 82 87 82 85 82 94 81 40 82 94 82 88 82 92 82 95 81 40 82 88 82 85 82 92 82 85 81 43 00 00 81 48 82 8e 82 94 0d 00 82 8c 82 85 82 81 82 96 82 85 81 40 82 81 82 8c 82 8c 81 40 82 99 82 8f 82 95 82 92 81 40 82 93 82 94 82 95 82 86 82 86 81 49 0d 00 00 00 1b fd 1a 00 82 6b 82 8f 82 8e 82 87 81 40 82 94 82 89 82 8d 82 85 81 40 82 8e 82 8f 81 40 82 93 82 85 82 85 81 42 0d 00 00 00 1b 08 1a 00 82 6c 82 8d 82 8d 81 42 81 40 82 78 82 8f 82 95 81 40 82 87 82 95 82 99 82 93 81 40 82 81 82 87 82 81 82 89 }
 }

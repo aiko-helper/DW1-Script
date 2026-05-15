@@ -2,32 +2,36 @@
 #pragma script index=159 start=0x70000 end=0x72000 headerU16=0x24 sentinelOff=0x19
 
 section onEnter(254) {  // len=42
-    if (trigger(320)) goto L_0014;
+    if (trigger(320)) goto L1;
     setObjectVisibility(10, 0);
-    goto L_0018;
-L_0014:
+    goto L2;
+
+L1:
     setObjectVisibility(10, 1);
-L_0018:
-    if (trigger(362)) goto L_0028;
+
+L2:
+    if (trigger(362)) goto L3;
     goto section_6;
-L_0028:
+
+L3:
     return;
 }
 
-section section_5(5) {  // len=6
+section(5) {  // len=6
     goto section_81;
-L_0004:
+
+L1:
     return;
 }
 
-section section_81(81) {  // len=2094
+section(81) {  // len=2094
     moveCamera(to: (-1143, 1558), slowdown: 10);
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
     look(entity: 5, at: Entity.Player);
     delay(5);
     storeDigimonType(103);
-    if (!trigger(363) || pstat[103] != 39) goto L_00ee;
+    if (!trigger(363) || pstat[103] != 39) goto L1;
     playSound(8, 20);
     setDialogOwner(5);
     showTextbox("You again! Get out of here!\n");
@@ -38,29 +42,33 @@ section section_81(81) {  // len=2094
     playAnimation(Entity.Player, 0);
     setDialogOwner(5);
     showTextbox("You... you're a pest!\nIs that okay now?!\n");
-    goto L_0628;
+    goto L6;
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_00ee:
-    if (!trigger(363)) goto L_0158;
+
+L1:
+    if (!trigger(363)) goto L2;
     playSound(8, 20);
     setDialogOwner(5);
     showTextbox("You again! Get out of here\nright now!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_0158:
-    if (pstat[103] != 39) goto L_0264;
+
+L2:
+    if (pstat[103] != 39) goto L3;
     setDialogOwner(5);
     showTextbox("Good to see you, my friends.\nIf you want to live here,\nI give you permission.\n");
     setTrigger(49);
     setDialogOwner(Entity.Player);
-    setSelection(L_0268, L_0384);
+    setSelection(L4, L5);
     showTextbox("We want to live here\nWe want to return\n");
-L_0264:
-    goto L_06d2;
-L_0268:
+
+L3:
+    goto L8;
+
+L4:
     unsetTrigger(49);
     playSound(8, 20);
     setDialogOwner(5);
@@ -72,7 +80,8 @@ L_0268:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_0384:
+
+L5:
     unsetTrigger(49);
     setDialogOwner(5);
     showTextbox("What? What are you saying?\n");
@@ -92,11 +101,13 @@ L_0384:
     playSound(8, 20);
     setDialogOwner(5);
     showTextbox("You guys are unbelievable!\n");
-L_0628:
-    if (pstat[200] != 39) goto L_063a;
+
+L6:
+    if (pstat[200] != 39) goto L7;
     storeDigimonType(200);
     copyPStat(5, 254);
-L_063a:
+
+L7:
     fadeOutHUD();
     playAnimation(5, 30);
     playSound(8, 19);
@@ -114,7 +125,8 @@ L_063a:
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
-L_06d2:
+
+L8:
     playSound(8, 20);
     setDialogOwner(5);
     showTextbox("Did you come here for\nsomething?\n");
@@ -129,22 +141,24 @@ L_06d2:
     return;
 }
 
-section section_6(6) {  // len=3620
-    if (!trigger(362)) goto L_0176;
+section(6) {  // len=3620
+    if (!trigger(362)) goto L2;
     setDialogOwner(6);
     showTextbox("I am collecting\nDigimon cards myself.\n");
     showTextbox("I really want a King of\nSukamon card. Will you trade\nfor my Etemon card?\n");
-    if (card[21] < 1) goto L_0136;
+    if (card[21] < 1) goto L1;
     setDialogOwner(Entity.Player);
-    setSelection(L_0d7e, L_0e22);
+    setSelection(L6, L8);
     showTextbox("Trade\nDon't trade\n");
     waitForSelectionChoice();
     return;
-L_0136:
+
+L1:
     setDialogOwner(Entity.Player);
     showTextbox("Sorry, but I don't have it.\n");
     return;
-L_0176:
+
+L2:
     playAnimation(Entity.Player, 24);
     delay(15);
     setDialogOwner(Entity.Player);
@@ -152,7 +166,7 @@ L_0176:
     showTextbox("I didn't know there's one\nin Digimon World.\n");
     playAnimation(Entity.Player, 0);
     storeDigimonType(103);
-    if (trigger(362) || pstat[103] != 39) goto L_0604;
+    if (trigger(362) || pstat[103] != 39) goto L3;
     move(entity: 6, to: (192, -2979), sprint: 0);
     waitForEntity(6);
     setDialogOwner(6);
@@ -177,8 +191,9 @@ L_0176:
     waitForEntity(6);
     setTrigger(362);
     return;
-L_0604:
-    if (trigger(362) || !trigger(550)) goto L_0704;
+
+L3:
+    if (trigger(362) || !trigger(550)) goto L4;
     move(entity: 6, to: (192, -2979), sprint: 0);
     waitForEntity(6);
     setDialogOwner(Entity.Player);
@@ -187,8 +202,9 @@ L_0604:
     showTextbox("Huh? Do you know about me?\n");
     setDialogOwner(Entity.Player);
     showTextbox("Well, kind of.\nDo we need to take Sukamon\nto the city as well?\n");
-    goto L_09bc;
-L_0704:
+    goto L5;
+
+L4:
     move(entity: 6, to: (192, -2979), sprint: 0);
     waitForEntity(6);
     setDialogOwner(6);
@@ -203,7 +219,8 @@ L_0704:
     showTextbox("In a way, you are right,\ncuz we are made from\nDigital Waste.\n");
     setDialogOwner(Entity.Player);
     showTextbox("Should we ask him to come\nto the city, too? We\nshouldn't be prejudiced.\n");
-L_09bc:
+
+L5:
     setDialogOwner(6);
     showTextbox("Are you planning to\nlive here?\n");
     setDialogOwner(Entity.Player);
@@ -227,23 +244,26 @@ L_09bc:
     waitForEntity(6);
     setTrigger(362);
     return;
-L_0d7e:
-    if (card[14] < 9) goto L_0df8;
+
+L6:
+    if (card[14] < 9) goto L7;
     setDialogOwner(6);
     showTextbox("Hey, you have too many\nEtemon cards!\nDon't do it.\n");
     return;
-L_0df8:
+
+L7:
     setDialogOwner(6);
     showTextbox("Oh, thank you!\n");
     takeCard(21);
     giveCard(14);
     return;
-L_0e22:
+
+L8:
     return;
 }
 
-section section_7(7) {  // len=622
-    if (trigger(239)) goto L_0156;
+section(7) {  // len=622
+    if (trigger(239)) goto L1;
     setTrigger(239);
     addPStat(1, 1);
     setDialogOwner(7);
@@ -251,22 +271,23 @@ section section_7(7) {  // len=622
     showTextbox("This is just between\nyou and me. I'm interested\na little bit.\n");
     showTextbox("I'll visit you guys\nthere some day.\n");
     return;
-L_0156:
+
+L1:
     setDialogOwner(7);
     showTextbox("Hey, guys, do you know\nthe Sukamon Tribe's\nspecial Technique?\n");
     showTextbox("We absorb poop on the ground\ninto our bodies and\nturn them into energy!\n");
     return;
 }
 
-section section_8(8) {  // len=298
+section(8) {  // len=298
     setDialogOwner(8);
     showTextbox("Huh? This is Dust Kingdom.\nI know this is just\na trash pile for you.\n");
     showTextbox("But we may find something\nuseful. I saw a long rod-like\nthing over there.\n");
     return;
 }
 
-section section_51(51) {  // len=108
-    if (trigger(45)) goto L_006a;
+section(51) {  // len=108
+    if (trigger(45)) goto L1;
     setDialogOwner(Entity.Player);
     showTextbox("Wow, it's an\n<LIGHTBLUE>Old Fishrod<WHITE>!\n");
     delay(10);
@@ -277,43 +298,49 @@ section section_51(51) {  // len=108
     delay(10);
     setTrigger(45);
     setTrigger(320);
-L_006a:
+
+L1:
     return;
 }
 
-section section_82(82) {  // len=1366
+section(82) {  // len=1366
     rotate(entity: Entity.Player, to: 2640);
     setTextboxOrigin(1484, 0, -241);
     callSubroutine(39);
     setDialogOwner(200);
     showTextbox(" <GREEN>Training: Hide In Trash <WHITE>\n");
-    setSelection(L_0082, L_00c0, L_01a6);
+    setSelection(L1, L2, L3);
     showTextbox("Begin\nExplain\nQuit\n");
     waitForSelectionChoice();
     return;
-L_0082:
+
+L1:
     setDialogOwner(200);
-    setSelection(L_01a8, L_01b8, L_01a6);
+    setSelection(L4, L5, L3);
     showTextbox("Normal\nBonus Try\nQuit\n");
     waitForSelectionChoice();
     return;
-L_00c0:
+
+L2:
     setDialogOwner(200);
     showTextbox("Mental training by putting\nyourself in dirty trash.\nMax MP is greatly boosted.\n");
-    setSelection(L_00c0, L_0082, L_01a6);
+    setSelection(L2, L1, L3);
     showTextbox("Explain again\nBegin\nQuit\n");
     waitForSelectionChoice();
     return;
-L_01a6:
+
+L3:
     return;
-L_01a8:
+
+L4:
     fadeOutHUD();
     setPStat(254, 4);
     setPStat(246, 0);
     callDigimonSubroutine(214);
     callSubroutine(7);
     return;
-L_01b8:
+
+L5:
     setTexboxMode(1, 0);
     setDialogOwner(Entity.System);
     showTextbox(" <YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
@@ -323,5 +350,5 @@ L_01b8:
     callSubroutine(7);
     setTexboxMode(0, 0);
     return;
-    garbage { 24 00 fe 00 24 00 05 00 4e 00 51 00 54 00 06 00 82 08 07 00 a6 16 08 00 14 19 33 00 3e 1a 52 00 aa 1a ff ff 19 00 01 00 40 01 18 00 38 00 19 00 57 00 0a 00 16 00 3c 00 57 00 0a 01 19 00 01 00 6a 01 18 00 4c 00 19 00 16 00 82 08 fe 00 16 00 54 00 fe 00 4f 0a 89 fb 16 06 4c 00 fd 05 4c 00 fc 05 4c 00 05 fd 67 00 05 00 22 67 19 00 00 00 6b 01 88 00 67 27 18 00 42 01 19 00 5a 00 08 14 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 81 82 87 82 81 82 89 82 8e 81 49 81 40 82 66 82 85 82 94 81 40 82 8f 82 95 82 94 81 40 82 8f 82 86 81 40 82 88 82 85 82 92 82 85 81 49 0d 00 00 00 56 00 fd 10 67 00 0f 00 1b fd 1a 00 82 74 82 88 82 88 81 42 81 42 81 42 0d 00 00 00 56 00 fd 00 1b 05 1a 00 82 78 82 8f 82 95 81 42 81 42 81 42 81 40 82 99 82 8f 82 95 81 75 82 92 82 85 81 40 82 81 81 40 82 90 82 85 82 93 82 94 81 49 0d 00 82 68 82 93 81 40 82 94 82 88 82 81 82 94 81 40 82 8f 82 8b 82 81 82 99 81 40 82 8e 82 8f 82 97 81 48 81 49 0d 00 00 00 16 00 7c 06 50 00 fd 0a 4a c8 fe 00 19 00 00 00 6b 01 18 00 ac 01 19 00 5a 00 08 14 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 81 82 87 82 81 82 89 82 8e 81 49 81 40 82 66 82 85 82 94 81 40 82 8f 82 95 82 94 81 40 82 8f 82 86 81 40 82 88 82 85 82 92 82 85 0d 00 82 92 82 89 82 87 82 88 82 94 81 40 82 8e 82 8f 82 97 81 49 0d 00 00 00 50 00 fd 0a 4a c8 fe 00 19 00 08 00 67 27 18 00 b8 02 19 00 1b 05 1a 00 82 66 82 8f 82 8f 82 84 81 40 82 94 82 8f 81 40 82 93 82 85 82 85 81 40 82 99 82 8f 82 95 81 43 81 40 82 8d 82 99 81 40 82 86 82 92 82 89 82 85 82 8e 82 84 82 93 81 42 0d 00 82 68 82 86 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 8c 82 89 82 96 82 85 81 40 82 88 82 85 82 92 82 85 81 43 0d 00 82 68 81 40 82 87 82 89 82 96 82 85 81 40 82 99 82 8f 82 95 81 40 82 90 82 85 82 92 82 8d 82 89 82 93 82 93 82 89 82 8f 82 8e 81 42 0d 00 00 00 1c 00 31 00 1b fd 10 02 bc 02 d8 03 1a 00 82 76 82 85 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 8c 82 89 82 96 82 85 81 40 82 88 82 85 82 92 82 85 0d 00 82 76 82 85 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 92 82 85 82 94 82 95 82 92 82 8e 0d 00 00 00 16 00 26 07 1d 00 31 00 5a 00 08 14 1b 05 1a 00 82 67 82 8d 82 8d 82 8d 81 43 81 40 82 94 82 88 82 81 82 94 81 75 82 93 81 40 82 87 82 8f 82 8f 82 84 81 42 81 40 82 76 82 88 82 81 82 94 81 48 0d 00 82 61 82 95 82 94 81 40 82 99 82 8f 82 95 81 40 82 81 82 92 82 85 81 40 82 81 82 8e 82 81 82 8c 82 8f 82 87 81 43 };
+    garbage { 24 00 fe 00 24 00 05 00 4e 00 51 00 54 00 06 00 82 08 07 00 a6 16 08 00 14 19 33 00 3e 1a 52 00 aa 1a ff ff 19 00 01 00 40 01 18 00 38 00 19 00 57 00 0a 00 16 00 3c 00 57 00 0a 01 19 00 01 00 6a 01 18 00 4c 00 19 00 16 00 82 08 fe 00 16 00 54 00 fe 00 4f 0a 89 fb 16 06 4c 00 fd 05 4c 00 fc 05 4c 00 05 fd 67 00 05 00 22 67 19 00 00 00 6b 01 88 00 67 27 18 00 42 01 19 00 5a 00 08 14 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 81 82 87 82 81 82 89 82 8e 81 49 81 40 82 66 82 85 82 94 81 40 82 8f 82 95 82 94 81 40 82 8f 82 86 81 40 82 88 82 85 82 92 82 85 81 49 0d 00 00 00 56 00 fd 10 67 00 0f 00 1b fd 1a 00 82 74 82 88 82 88 81 42 81 42 81 42 0d 00 00 00 56 00 fd 00 1b 05 1a 00 82 78 82 8f 82 95 81 42 81 42 81 42 81 40 82 99 82 8f 82 95 81 75 82 92 82 85 81 40 82 81 81 40 82 90 82 85 82 93 82 94 81 49 0d 00 82 68 82 93 81 40 82 94 82 88 82 81 82 94 81 40 82 8f 82 8b 82 81 82 99 81 40 82 8e 82 8f 82 97 81 48 81 49 0d 00 00 00 16 00 7c 06 50 00 fd 0a 4a c8 fe 00 19 00 00 00 6b 01 18 00 ac 01 19 00 5a 00 08 14 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 81 82 87 82 81 82 89 82 8e 81 49 81 40 82 66 82 85 82 94 81 40 82 8f 82 95 82 94 81 40 82 8f 82 86 81 40 82 88 82 85 82 92 82 85 0d 00 82 92 82 89 82 87 82 88 82 94 81 40 82 8e 82 8f 82 97 81 49 0d 00 00 00 50 00 fd 0a 4a c8 fe 00 19 00 08 00 67 27 18 00 b8 02 19 00 1b 05 1a 00 82 66 82 8f 82 8f 82 84 81 40 82 94 82 8f 81 40 82 93 82 85 82 85 81 40 82 99 82 8f 82 95 81 43 81 40 82 8d 82 99 81 40 82 86 82 92 82 89 82 85 82 8e 82 84 82 93 81 42 0d 00 82 68 82 86 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 8c 82 89 82 96 82 85 81 40 82 88 82 85 82 92 82 85 81 43 0d 00 82 68 81 40 82 87 82 89 82 96 82 85 81 40 82 99 82 8f 82 95 81 40 82 90 82 85 82 92 82 8d 82 89 82 93 82 93 82 89 82 8f 82 8e 81 42 0d 00 00 00 1c 00 31 00 1b fd 10 02 bc 02 d8 03 1a 00 82 76 82 85 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 8c 82 89 82 96 82 85 81 40 82 88 82 85 82 92 82 85 0d 00 82 76 82 85 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 92 82 85 82 94 82 95 82 92 82 8e 0d 00 00 00 16 00 26 07 1d 00 31 00 5a 00 08 14 1b 05 1a 00 82 67 82 8d 82 8d 82 8d 81 43 81 40 82 94 82 88 82 81 82 94 81 75 82 93 81 40 82 87 82 8f 82 8f 82 84 81 42 81 40 82 76 82 88 82 81 82 94 81 48 0d 00 82 61 82 95 82 94 81 40 82 99 82 8f 82 95 81 40 82 81 82 92 82 85 81 40 82 81 82 8e 82 81 82 8c 82 8f 82 87 81 43 }
 }
