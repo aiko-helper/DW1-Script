@@ -14,16 +14,16 @@ function speakThenStartBattleThenSetTrigger(a, b, c) {
     setTrigger(c);
 }
 
-function setTriggerThenPlayAnimationThenSpeak(a) {
-    setTrigger(a);
-    playAnimation(Entity.Player, 16);
-    speak(Entity.Player, "Maybe I'll wait.\n");
-}
-
 function delayThenSetPStatThenSpeak(a) {
     delay(20);
     setPStat(112, a);
     speak(Entity.Player, "Not again! Wait!\n");
+}
+
+function setTriggerThenPlayAnimationThenSpeak(a) {
+    setTrigger(a);
+    playAnimation(Entity.Player, 16);
+    speak(Entity.Player, "Maybe I'll wait.\n");
 }
 
 
@@ -342,9 +342,7 @@ L5:
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
     look(entity: 5, at: Entity.Player);
-    waitForEntity(Entity.Player);
-    waitForEntity(Entity.Partner);
-    waitForEntity(5);
+    for x in [Entity.Player, Entity.Partner, 5] { waitForEntity(x); }
     speak(Entity.Player, "The ambush is a success!\n");
     playSound(8, 6);
     speak(5, "Help me out!\n");

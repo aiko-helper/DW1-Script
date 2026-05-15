@@ -1,12 +1,10 @@
 // DG140.SCN
 #pragma script index=140 start=0x63000 end=0x64000 headerU16=0x1c sentinelOff=0x2964
 
-function playAnimationThenPlayAnimationThenPlayAnimationThenDelayThenPlaySound() {
-    playAnimation(5, 29);
-    playAnimation(7, 29);
-    playAnimation(8, 29);
+function delayThenPlaySoundThenSpeak(a) {
     delay(10);
     playSound(8, 9);
+    speak(Entity.System, a);
 }
 
 
@@ -84,21 +82,19 @@ L2:
     move(entity: 8, to: (-747, 459), sprint: 0);
     waitForEntity(7);
     waitForEntity(8);
-    playAnimationThenPlayAnimationThenPlayAnimationThenDelayThenPlaySound();
-    speak(Entity.System, "<YELLOW>Toys <WHITE>\nIt's an old tale.\nA bad guy came from\nfar away to this island.\n");
-    playAnimationThenPlayAnimationThenPlayAnimationThenDelayThenPlaySound();
-    speak(Entity.System, "<YELLOW>Toys <WHITE>\nThe bad guys told Digimon:\nThis island is ours.\n");
-    playAnimationThenPlayAnimationThenPlayAnimationThenDelayThenPlaySound();
-    speak(Entity.System, "<YELLOW>Toys <WHITE>\nDigimon told them:\nThat's not true. This island\nis for everybody.\n");
-    playAnimationThenPlayAnimationThenPlayAnimationThenDelayThenPlaySound();
-    speak(Entity.System, "<YELLOW>Toys <WHITE>\nBecause Digimons unified and\nchallenged the bad guys, the\nbad guys were taught a lesson.\n");
-    playAnimationThenPlayAnimationThenPlayAnimationThenDelayThenPlaySound();
-    speak(Entity.System, "<YELLOW>Toys <WHITE>\nBut the bad guys said:\nWait, we'll get you later.\n...and they disappeared.\n");
-    playAnimationThenPlayAnimationThenPlayAnimationThenDelayThenPlaySound();
-    speak(Entity.System, "<YELLOW>Toys <WHITE>\nIt's an old tale.\n");
-    playAnimation(5, 0);
-    playAnimation(7, 0);
-    playAnimation(8, 0);
+    for x in [5, 7, 8] { playAnimation(x, 29); }
+    delayThenPlaySoundThenSpeak("<YELLOW>Toys <WHITE>\nIt's an old tale.\nA bad guy came from\nfar away to this island.\n");
+    for x in [5, 7, 8] { playAnimation(x, 29); }
+    delayThenPlaySoundThenSpeak("<YELLOW>Toys <WHITE>\nThe bad guys told Digimon:\nThis island is ours.\n");
+    for x in [5, 7, 8] { playAnimation(x, 29); }
+    delayThenPlaySoundThenSpeak("<YELLOW>Toys <WHITE>\nDigimon told them:\nThat's not true. This island\nis for everybody.\n");
+    for x in [5, 7, 8] { playAnimation(x, 29); }
+    delayThenPlaySoundThenSpeak("<YELLOW>Toys <WHITE>\nBecause Digimons unified and\nchallenged the bad guys, the\nbad guys were taught a lesson.\n");
+    for x in [5, 7, 8] { playAnimation(x, 29); }
+    delayThenPlaySoundThenSpeak("<YELLOW>Toys <WHITE>\nBut the bad guys said:\nWait, we'll get you later.\n...and they disappeared.\n");
+    for x in [5, 7, 8] { playAnimation(x, 29); }
+    delayThenPlaySoundThenSpeak("<YELLOW>Toys <WHITE>\nIt's an old tale.\n");
+    for x in [5, 7, 8] { playAnimation(x, 0); }
     delay(10);
     if (!trigger(350)) goto L3;
     return;

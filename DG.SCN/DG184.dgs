@@ -185,8 +185,8 @@ L5:
     playAnimation(6, 29);
     delay(40);
     playSound(8, 7);
-    setObjectVisibility(11, 0);
-    setObjectVisibilityThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(9, 0, 10, 12, 1);
+    for x in [11, 9, 10] { setObjectVisibility(x, 0); }
+    setPStatThenSetPStatThenCallSubroutine(12, 1);
     setPStatThenSetPStatThenCallSubroutine(9, 10);
     unloadEntity(6);
     speak(Entity.Player, "Oh Noooo!!\n");
@@ -272,10 +272,7 @@ L5:
     speak(Entity.System, "Analogman is gone.\n");
     speak(Entity.System, "Peace has returned to\nFile Island.\n");
     speak(Entity.System, "And...\n");
-    setTrigger(50);
-    setTrigger(212);
-    setTrigger(207);
-    setTrigger(206);
+    for x in [50, 212, 207, 206] { setTrigger(x); }
     addPStat(1, 7);
     roll(pstat: 16, max: 2);
     if (pstat[16] != 0) goto L6;

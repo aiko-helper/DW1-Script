@@ -24,6 +24,12 @@ function playAnimationThenDelayThenSpeakThenPlayAnimation(a, b, c, d, e) {
     playAnimation(d, e);
 }
 
+function delayThenSpeakThenPlayAnimation(a, b, c, d, e) {
+    delay(a);
+    speak(b, c);
+    playAnimation(d, e);
+}
+
 function delayThenPlayAnimationThenDelay(a, b, c) {
     delay(a);
     playAnimation(Entity.Player, b);
@@ -106,9 +112,7 @@ section(54) {
     delay(5);
     speakThenPlayAnimationThenDelayThenSpeakThenPlayAnimation(Entity.Player, "I remember now! I got sucked\ninto that Digimon key chain.\n", 8, 29, 5, "That's right.\n", 8, 0);
     look(entity: Entity.Player, at: 8);
-    delay(20);
-    speak(Entity.Player, "Why am I here?\n");
-    playAnimation(8, 29);
+    delayThenSpeakThenPlayAnimation(20, Entity.Player, "Why am I here?\n", 8, 29);
     delay(5);
     speak(8, "Come to my house,\nI'll explain.\n");
     warp(to: Map.ROOM08, spawn: 1, trigger: 54);
@@ -148,9 +152,7 @@ L2:
     reduceMoney(50000);
     setInventorySize(10);
     look(entity: Entity.Partner, at: Entity.Player);
-    delay(5);
-    speak(5, "I invited you here\nto save us.\n");
-    playAnimation(5, 0);
+    delayThenSpeakThenPlayAnimation(5, 5, "I invited you here\nto save us.\n", 5, 0);
     speakThenPlayAnimationThenDelayThenSpeakThenPlayAnimation(Entity.Player, "Save you from what?\n", 5, 29, 5, "We are in File City, it's\nthe center of File Island.\n", Entity.Player, 16);
     delay(10);
     speak(Entity.Player, "A city? Here?\n");
@@ -161,9 +163,7 @@ L2:
     speak(Entity.Player, "What do you mean?\n");
     playAnimation(5, 0);
     playAnimationThenDelayThenSpeakThenPlayAnimationThenPlayAnimation(5, 29, 5, "I'm not sure what caused it.\nDigimon started losing their\nspeaking skills.\n", 5, 5, 29);
-    delay(5);
-    speak(5, "Some of them still talk, but\nthey all forgot that they\nlived here.\n");
-    playAnimation(5, 0);
+    delayThenSpeakThenPlayAnimation(5, 5, "Some of them still talk, but\nthey all forgot that they\nlived here.\n", 5, 0);
     speakThenPlayAnimationThenDelayThenSpeakThenPlayAnimation(Entity.Player, "That's what you meant\nby losing heart.\n", 5, 30, 5, "It's dangerous if\nwe do nothing.\n", 5, 0);
     speakThenPlayAnimationThenDelayThenSpeakThenPlayAnimation(Entity.Player, "But why me?\n", 5, 29, 5, "You are good at raising\nDigimon, right?\n", 5, 0);
     speakThenPlayAnimationThenDelayThenSpeakThenPlayAnimation(Entity.Player, "I'm good at it, alright!\n", 5, 29, 5, "Don't you realize that\nyou're speaking Digimon?\n", 5, 0);
@@ -175,9 +175,9 @@ L2:
     speak(Entity.Player, "What?\n");
     speak(Entity.Player, "Hmm?\n");
     speak(Entity.Player, "You can count on me!\n");
-    playAnimation(Entity.Player, 11);
-    playAnimation(6, 11);
-    playAnimationThenDelayThenSpeakThenPlayAnimationThenPlayAnimation(7, 11, 6, "Alright!\n", 6, 7, 0);
+    for x in [Entity.Player, 6, 7] { playAnimation(x, 11); }
+    delayThenSpeakThenPlayAnimation(5, 6, "Alright!\n", 6, 0);
+    playAnimation(7, 0);
     playAnimationThenDelayThenSpeakThenPlayAnimation(5, 31, "Thanks, you're our only hope.\n", 5, 0);
     speakThenPlayAnimationThenDelayThenSpeakThenPlayAnimation(Entity.Player, "Where do I start?\n", 5, 29, 5, "Take <ORANGE><DIGIMON><WHITE> and\nexplore the island.\n", 5, 0);
     playAnimationThenDelayThenSpeakThenPlayAnimation(5, 29, "Find the cause of this\ndanger and get Digimon\nto come back.\n", Entity.Player, 22);

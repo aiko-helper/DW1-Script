@@ -1,30 +1,16 @@
 // MAP163.SCN
 #pragma script index=163 start=0x75800 end=0x77800 headerU16=0x4c sentinelOff=0x6925
 
-function setTriggerThenSetTriggerThenSetTriggerThenUnsetTrigger(a, b) {
-    setTrigger(a);
-    setTrigger(b);
-    setTrigger(422);
-    unsetTrigger(3);
-}
-
-function callSubroutineThenUnsetTriggerThenUnsetTriggerThenUnsetTrigger(a, b) {
-    callSubroutine(8);
-    unsetTrigger(384);
-    unsetTrigger(a);
-    unsetTrigger(b);
+function speakThenShowTextboxThenShowTextbox(a, b, c, d) {
+    speak(a, b);
+    showTextbox(c);
+    showTextbox(d);
 }
 
 function setTriggerThenSpeakThenSpeak(a, b, c, d, e) {
     setTrigger(a);
     speak(b, c);
     speak(d, e);
-}
-
-function speakThenShowTextboxThenShowTextbox(a, b, c, d) {
-    speak(a, b);
-    showTextbox(c);
-    showTextbox(d);
 }
 
 
@@ -199,21 +185,19 @@ L2:
 
 L3:
     if (!trigger(204) || !trigger(249)) goto L4;
-    setTrigger(384);
-    setTrigger(385);
-    setTrigger(388);
-    setTriggerThenSetTriggerThenSetTriggerThenUnsetTrigger(392, 406);
+    for x in [384, 385, 388, 392, 406, 422] { setTrigger(x); }
+    unsetTrigger(3);
     setPStat(254, 7);
-    callSubroutineThenUnsetTriggerThenUnsetTriggerThenUnsetTrigger(385, 388);
-    unsetTrigger(392);
-    unsetTrigger(406);
-    unsetTrigger(422);
+    callSubroutine(8);
+    for x in [384, 385, 388, 392, 406, 422] { unsetTrigger(x); }
     return;
 
 L4:
-    setTriggerThenSetTriggerThenSetTriggerThenUnsetTrigger(384, 388);
+    for x in [384, 388, 422] { setTrigger(x); }
+    unsetTrigger(3);
     setPStat(254, 7);
-    callSubroutineThenUnsetTriggerThenUnsetTriggerThenUnsetTrigger(388, 422);
+    callSubroutine(8);
+    for x in [384, 388, 422] { unsetTrigger(x); }
     return;
 }
 
@@ -362,19 +346,16 @@ L2:
 
 L3:
     if (!trigger(204) || !trigger(249)) goto L4;
-    setTrigger(384);
-    setTrigger(385);
-    setTrigger(388);
-    setTriggerThenSetTriggerThenSetTriggerThenUnsetTrigger(392, 406);
+    for x in [384, 385, 388, 392, 406, 422] { setTrigger(x); }
+    unsetTrigger(3);
     setPStat(254, 255);
-    callSubroutineThenUnsetTriggerThenUnsetTriggerThenUnsetTrigger(385, 388);
-    unsetTrigger(392);
-    unsetTrigger(406);
-    unsetTrigger(422);
+    callSubroutine(8);
+    for x in [384, 385, 388, 392, 406, 422] { unsetTrigger(x); }
     return;
 
 L4:
-    setTriggerThenSetTriggerThenSetTriggerThenUnsetTrigger(384, 388);
+    for x in [384, 388, 422] { setTrigger(x); }
+    unsetTrigger(3);
     if (!trigger(249)) goto L5;
     setPStat(254, 255);
     goto L6;
@@ -383,7 +364,8 @@ L5:
     setPStat(254, 7);
 
 L6:
-    callSubroutineThenUnsetTriggerThenUnsetTriggerThenUnsetTrigger(388, 422);
+    callSubroutine(8);
+    for x in [384, 388, 422] { unsetTrigger(x); }
     return;
 }
 
