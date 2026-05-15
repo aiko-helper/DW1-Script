@@ -187,6 +187,12 @@ function switchToMap(scriptId, map: Map, pStatValue, musicId) {
   setBGM(musicId);
 }
 
+function runDigimonRoutine(trigger, routine) {
+  sectionOnExit(trigger);
+  callDigimonSubroutine(routine);
+  waitForEntity(Entity.System);
+}
+
 function startBattle() {
   fadeOutHUD();
   delay(1);
@@ -239,12 +245,6 @@ function loadAndSetDigimonThenSetDigimonThenSetDigimon(digimon: Digimon, entity:
   loadAndSetDigimon(digimon, entity, autotalk);
   setDigimon(digimon, entity2, autotalk2);
   setDigimon(digimon, entity3, autotalk2);
-}
-
-function sectionOnExitThenCallDigimonSubroutineThenWaitForEntity(trigger, routine) {
-  sectionOnExit(trigger);
-  callDigimonSubroutine(routine);
-  waitForEntity(Entity.System);
 }
 
 function switchToMapThenLoadDigimonThenLoadDigimon(scriptId, map: Map, musicId, digimon: Digimon, digimon2: Digimon) {
