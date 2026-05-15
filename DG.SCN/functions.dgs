@@ -138,6 +138,11 @@ function warp(to: Map, spawn, trigger) {
 
 // Multi-opcode composites (previously built-in C++ sugars).
 
+function loadAndSetDigimon(digimon: Digimon, entity: Entity, autotalk) {
+  loadDigimon(digimon);
+  setDigimon(digimon, entity, autotalk);
+}
+
 function startBattle() {
   fadeOutHUD();
   delay(1);
@@ -155,113 +160,108 @@ function learnMoves(moves: Move[]) {
 
 // Auto-extracted repeated-pattern functions.
 
-function loadDigimonThenLoadDigimonThenSetDigimonThenSetDigimonThenSetDigimon(a, b, c, d, e, f, g, h, i) {
-  loadDigimon(a);
-  loadDigimon(b);
-  setDigimon(c, d, e);
-  setDigimon(f, g, e);
-  setDigimon(h, i, e);
+function loadDigimonThenLoadDigimonThenSetDigimonThenSetDigimonThenSetDigimon(digimon: Digimon, digimon2: Digimon, entity: Entity, autotalk, digimon3: Digimon, entity2: Entity, digimon4: Digimon, entity3: Entity) {
+  loadDigimon(digimon);
+  loadDigimon(digimon2);
+  setDigimon(digimon, entity, autotalk);
+  setDigimon(digimon3, entity2, autotalk);
+  setDigimon(digimon4, entity3, autotalk);
 }
 
-function setScriptThenSetPStatThenSetBGMThenLoadDigimonThenSetDigimon(a, b, c, d, e, f, g) {
-  setScript(a, b);
-  setPStat(245, c);
-  setBGM(d);
-  loadDigimon(e);
-  setDigimon(e, f, g);
+function setScriptThenSetPStatThenSetBGMThenLoadDigimonThenLoadDigimon(scriptId, map: Map, value, musicID, digimon: Digimon, digimon2: Digimon) {
+  setScript(scriptId, map);
+  setPStat(245, value);
+  setBGM(musicID);
+  loadDigimon(digimon);
+  loadDigimon(digimon2);
 }
 
-function setScriptThenSetPStatThenSetBGMThenLoadDigimonThenLoadDigimon(a, b, c, d, e, f) {
-  setScript(a, b);
-  setPStat(245, c);
-  setBGM(d);
-  loadDigimon(e);
-  loadDigimon(f);
+function setScriptThenSetPStatThenSetBGMThenLoadAndSetDigimonThenSetDigimon(scriptId, map: Map, value, musicID, digimon: Digimon, autotalk, entity: Entity, autotalk2) {
+  setScript(scriptId, map);
+  setPStat(245, value);
+  setBGM(musicID);
+  loadAndSetDigimon(digimon, 0, autotalk);
+  setDigimon(digimon, entity, autotalk2);
 }
 
-function loadDigimonThenSetDigimonThenSetDigimonThenLoadDigimonThenSetDigimon(a, b, c, d, e) {
-  loadDigimon(a);
-  setDigimon(a, b, 1);
-  setDigimon(a, c, 1);
-  loadDigimon(d);
-  setDigimon(d, e, 1);
+function setScriptThenSetPStatThenSetBGMThenLoadAndSetDigimon(scriptId, map: Map, value, musicID, digimon: Digimon, entity: Entity, autotalk) {
+  setScript(scriptId, map);
+  setPStat(245, value);
+  setBGM(musicID);
+  loadAndSetDigimon(digimon, entity, autotalk);
 }
 
-function setScriptThenSetPStatThenSetBGMThenSetPStat(a, b) {
-  setScript(163, a);
+function setScriptThenSetPStatThenSetBGMThenSetPStat(map: Map, value) {
+  setScript(163, map);
   setPStat(245, 0);
   setBGM(28);
-  setPStat(43, b);
+  setPStat(43, value);
 }
 
-function loadDigimonThenLoadDigimonThenSetDigimonThenSetDigimon(a, b, c, d, e, f, g) {
-  loadDigimon(a);
-  loadDigimon(b);
-  setDigimon(c, d, e);
-  setDigimon(f, g, e);
+function loadDigimonThenLoadDigimonThenSetDigimonThenSetDigimon(digimon: Digimon, digimon2: Digimon, entity: Entity, autotalk, entity2: Entity) {
+  loadDigimon(digimon);
+  loadDigimon(digimon2);
+  setDigimon(digimon, entity, autotalk);
+  setDigimon(digimon2, entity2, autotalk);
 }
 
-function setScriptThenSetPStatThenSetBGMThenLoadDigimon(a, b, c, d, e) {
-  setScript(a, b);
-  setPStat(245, c);
-  setBGM(d);
-  loadDigimon(e);
+function setScriptThenSetPStatThenSetBGMThenLoadDigimon(scriptId, map: Map, value, musicID, digimon: Digimon) {
+  setScript(scriptId, map);
+  setPStat(245, value);
+  setBGM(musicID);
+  loadDigimon(digimon);
 }
 
-function setScriptThenSetPStatThenSetBGM(a, b, c, d) {
-  setScript(a, b);
-  setPStat(245, c);
-  setBGM(d);
+function loadDigimonThenLoadAndSetDigimonThenSetDigimonThenSetDigimon(digimon: Digimon, digimon2: Digimon, entity: Entity, digimon3: Digimon, entity2: Entity, digimon4: Digimon, entity3: Entity) {
+  loadDigimon(digimon);
+  loadAndSetDigimon(digimon2, entity, 1);
+  setDigimon(digimon3, entity2, 1);
+  setDigimon(digimon4, entity3, 1);
 }
 
-function loadDigimonThenSetDigimonThenSetDigimon(a, b, c, d) {
-  loadDigimon(a);
-  setDigimon(a, b, c);
-  setDigimon(a, d, c);
+function loadAndSetDigimonThenSetDigimonThenLoadAndSetDigimonThenSetDigimon(digimon: Digimon, entity: Entity, entity2: Entity, digimon2: Digimon, entity3: Entity, entity4: Entity) {
+  loadAndSetDigimon(digimon, entity, 1);
+  setDigimon(digimon, entity2, 1);
+  loadAndSetDigimon(digimon2, entity3, 1);
+  setDigimon(digimon2, entity4, 1);
 }
 
-function loadDigimonThenSetDigimonThenSetPStat(a, b, c) {
-  loadDigimon(a);
-  setDigimon(a, b, 0);
-  setPStat(c, b);
+function setScriptThenSetPStatThenSetBGM(scriptId, map: Map, value, musicID) {
+  setScript(scriptId, map);
+  setPStat(245, value);
+  setBGM(musicID);
 }
 
-function addPStatThenLoadDigimonThenSetDigimon(a, b) {
-  addPStat(38, 1);
-  loadDigimon(a);
-  setDigimon(a, b, 0);
+function loadAndSetDigimonThenSetDigimonThenSetDigimon(digimon: Digimon, entity: Entity, autotalk, entity2: Entity, entity3: Entity) {
+  loadAndSetDigimon(digimon, entity, autotalk);
+  setDigimon(digimon, entity2, autotalk);
+  setDigimon(digimon, entity3, autotalk);
 }
 
-function loadDigimonThenSetDigimonThenAddPStat(a, b) {
-  loadDigimon(a);
-  setDigimon(a, b, 0);
-  addPStat(42, 1);
-}
-
-function sectionOnExitThenCallDigimonSubroutineThenWaitForEntity(a, b) {
-  sectionOnExit(a);
-  callDigimonSubroutine(b);
+function sectionOnExitThenCallDigimonSubroutineThenWaitForEntity(trigger, routine) {
+  sectionOnExit(trigger);
+  callDigimonSubroutine(routine);
   waitForEntity(Entity.System);
 }
 
-function playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(a) {
+function playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(objectId) {
   playSound(8, 7);
-  setObjectVisibility(a, 0);
-  setPStat(247, a);
+  setObjectVisibility(objectId, 0);
+  setPStat(247, objectId);
   setPStat(248, 1);
   callSubroutine(21);
 }
 
-function delayThenSetObjectVisibilityThenSetObjectVisibility(a, b, c, d) {
-  delay(a);
-  setObjectVisibility(b, 1);
-  setObjectVisibility(c, d);
+function delayThenSetObjectVisibilityThenSetObjectVisibility(duration, objectId, objectId2, invisible) {
+  delay(duration);
+  setObjectVisibility(objectId, 1);
+  setObjectVisibility(objectId2, invisible);
 }
 
-function delayThenPlaySoundThenDelay(a, b, c) {
-  delay(a);
-  playSound(8, b);
-  delay(c);
+function delayThenPlaySoundThenDelay(duration, soundId, duration2) {
+  delay(duration);
+  playSound(8, soundId);
+  delay(duration2);
 }
 
 function playAnimationThenSetObjectVisibilityThenSetObjectVisibilityThenSetObjectVisibility() {
@@ -271,46 +271,46 @@ function playAnimationThenSetObjectVisibilityThenSetObjectVisibilityThenSetObjec
   setObjectVisibility(47, 0);
 }
 
-function setPStatThenSetPStatThenCallSubroutine(a, b) {
-  setPStat(247, a);
-  setPStat(248, b);
+function setPStatThenSetPStatThenCallSubroutine(value, value2) {
+  setPStat(247, value);
+  setPStat(248, value2);
   callSubroutine(21);
 }
 
-function moveObjectToThenDelayThenMoveObjectToThenDelay(a, b, c, d) {
-  moveObjectTo(1, 41, 1, 7, 0, a, b);
+function moveObjectToThenDelayThenMoveObjectToThenDelay(positionX, positionY, positionX2, positionY2) {
+  moveObjectTo(1, 41, 1, 7, 0, positionX, positionY);
   delay(12);
-  moveObjectTo(1, 41, 1, 7, 0, c, d);
+  moveObjectTo(1, 41, 1, 7, 0, positionX2, positionY2);
   delay(12);
 }
 
-function delayThenPlaySoundThenPlayAnimation(a) {
-  delay(a);
+function delayThenPlaySoundThenPlayAnimation(duration) {
+  delay(duration);
   playSound(8, 2);
   playAnimation(6, 28);
 }
 
-function moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(a, b, c, d, e) {
-  moveObjectTo(1, 47, 1, 0, 0, a, b);
-  moveObjectTo(2, 48, 1, 0, 0, a, c);
+function moveObjectToThenMoveObjectToThenDelayThenMoveObjectToThenMoveObjectTo(positionX, positionY, positionY2, value4, positionX2) {
+  moveObjectTo(1, 47, 1, 0, 0, positionX, positionY);
+  moveObjectTo(2, 48, 1, 0, 0, positionX, positionY2);
   delay(1);
-  moveObjectTo(0, 46, 1, d, 0, e, 765);
-  moveObjectTo(1, 47, 1, d, 0, e, 769);
+  moveObjectTo(0, 46, 1, value4, 0, positionX2, 765);
+  moveObjectTo(1, 47, 1, value4, 0, positionX2, 769);
 }
 
-function moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(a, b, c) {
-  moveObjectTo(2, 48, 1, a, 0, b, 773);
-  delay(c);
+function moveObjectToThenDelayThenPlayAnimationThenSetPStatThenDealMapDamage(value4, positionX, duration) {
+  moveObjectTo(2, 48, 1, value4, 0, positionX, 773);
+  delay(duration);
   playAnimation(Entity.Partner, 40);
   setPStat(200, 50);
   dealMapDamage(200);
 }
 
-function setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(a, b) {
+function setPStatThenSetPStatThenCallSubroutineThenMoveObjectTo(positionX, positionY) {
   setPStat(247, 46);
   setPStat(248, 3);
   callSubroutine(21);
-  moveObjectTo(0, 46, 1, 0, 0, a, b);
+  moveObjectTo(0, 46, 1, 0, 0, positionX, positionY);
 }
 
 function delayThenJumpAndLinkThenJumpAndLink() {
@@ -319,10 +319,10 @@ function delayThenJumpAndLinkThenJumpAndLink() {
   jumpAndLink(section_10);
 }
 
-function delayThenSetObjectVisibilityThenSetObjectVisibility_v2(a) {
+function delayThenSetObjectVisibilityThenSetObjectVisibility_v2(invisible) {
   delay(4);
-  setObjectVisibility(44, a);
-  setObjectVisibility(45, a);
+  setObjectVisibility(44, invisible);
+  setObjectVisibility(45, invisible);
 }
 
 function delayThenPlaySoundThenDelay_v2() {
@@ -331,44 +331,44 @@ function delayThenPlaySoundThenDelay_v2() {
   delay(10);
 }
 
-function playSoundThenDelayThenMoveBoulderThenPlaySoundThenDelay(a, b, c, d) {
+function playSoundThenDelayThenMoveBoulderThenPlaySoundThenDelay(duration, translateZ, translateY, duration2) {
   playSound(8, 3);
-  delay(a);
-  moveBoulder(b, c);
+  delay(duration);
+  moveBoulder(translateZ, translateY);
   playSound(8, 3);
-  delay(d);
+  delay(duration2);
 }
 
-function playSoundThenDelayThenMoveBoulder(a, b) {
+function playSoundThenDelayThenMoveBoulder(translateZ, translateY) {
   playSound(8, 3);
   delay(20);
-  moveBoulder(a, b);
+  moveBoulder(translateZ, translateY);
 }
 
-function playAnimationThenDelayThenPlayAnimation(a, b, c) {
-  playAnimation(5, a);
-  delay(b);
-  playAnimation(5, c);
+function playAnimationThenDelayThenPlayAnimation(animation, duration, animation2) {
+  playAnimation(5, animation);
+  delay(duration);
+  playAnimation(5, animation2);
 }
 
-function delayThenRotate3DObjectThenDelayThenRotate3DObjectThenDelay(a, b) {
+function delayThenRotate3DObjectThenDelayThenRotate3DObjectThenDelay(modelId, modelId2) {
   delay(1);
-  rotate3DObject(a, 1);
+  rotate3DObject(modelId, 1);
   delay(1);
-  rotate3DObject(b, 1);
+  rotate3DObject(modelId2, 1);
   delay(1);
 }
 
-function delayThenSetTriggerThenSetPStatThenSetPStatThenSetPStat(a, b, c) {
-  delay(a);
+function delayThenSetTriggerThenSetPStatThenSetPStatThenSetPStat(duration, value, value2) {
+  delay(duration);
   setTrigger(1);
   setPStat(250, 1);
-  setPStat(251, b);
-  setPStat(252, c);
+  setPStat(251, value);
+  setPStat(252, value2);
 }
 
-function rotate3DObjectThenPlaySoundThenDelay(a) {
-  rotate3DObject(a, 1);
+function rotate3DObjectThenPlaySoundThenDelay(modelId) {
+  rotate3DObject(modelId, 1);
   playSound(8, 1);
   delay(10);
 }
@@ -379,48 +379,48 @@ function playSoundThenDelayThenPlaySound() {
   playSound(8, 2);
 }
 
-function waitForEntityThenWaitForEntityThenPlayAnimation(a, b, c) {
-  waitForEntity(a);
-  waitForEntity(b);
-  playAnimation(Entity.Player, c);
+function waitForEntityThenWaitForEntityThenPlayAnimation(entity: Entity, entity2: Entity, animation) {
+  waitForEntity(entity);
+  waitForEntity(entity2);
+  playAnimation(Entity.Player, animation);
 }
 
-function setPStatThenSetPStatThenCallDigimonSubroutineThenCallSubroutine(a, b) {
-  setPStat(254, a);
-  setPStat(246, b);
+function setPStatThenSetPStatThenCallDigimonSubroutineThenCallSubroutine(value, value2) {
+  setPStat(254, value);
+  setPStat(246, value2);
   callDigimonSubroutine(214);
   callSubroutine(7);
 }
 
-function setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(a) {
+function setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(item: Item) {
   setTrigger(3);
   callSubroutine(0);
   callSubroutine(13);
-  giveItem(a, 1);
+  giveItem(item, 1);
 }
 
-function setPStatThenSetPStatThenCallDigimonSubroutineThenCallSubroutineThenSetTexboxMode(a) {
-  setPStat(254, a);
+function setPStatThenSetPStatThenCallDigimonSubroutineThenCallSubroutineThenSetTexboxMode(value) {
+  setPStat(254, value);
   setPStat(246, 1);
   callDigimonSubroutine(214);
   callSubroutine(7);
   setTexboxMode(0, 0);
 }
 
-function fadeOutHUDThenSetPStatThenSetPStatThenCallDigimonSubroutineThenCallSubroutine(a) {
+function fadeOutHUDThenSetPStatThenSetPStatThenCallDigimonSubroutineThenCallSubroutine(value) {
   fadeOutHUD();
-  setPStat(254, a);
+  setPStat(254, value);
   setPStat(246, 0);
   callDigimonSubroutine(214);
   callSubroutine(7);
 }
 
-function rotate3DObjectThenDelayThenRotate3DObjectThenDelayThenRotate3DObject(a, b) {
-  rotate3DObject(a, 1);
+function rotate3DObjectThenDelayThenRotate3DObjectThenDelayThenRotate3DObject(modelId, modelId2) {
+  rotate3DObject(modelId, 1);
   delay(1);
-  rotate3DObject(b, 1);
+  rotate3DObject(modelId2, 1);
   delay(1);
-  rotate3DObject(a, 1);
+  rotate3DObject(modelId, 1);
 }
 
 function waitForEntityThenWaitForEntityThenDelay() {
@@ -429,34 +429,34 @@ function waitForEntityThenWaitForEntityThenDelay() {
   delay(20);
 }
 
-function playAnimationThenDelayThenPlayAnimation_v2(a, b) {
-  playAnimation(5, a);
-  delay(b);
+function playAnimationThenDelayThenPlayAnimation_v2(animation, duration) {
+  playAnimation(5, animation);
+  delay(duration);
   playAnimation(5, 0);
 }
 
-function moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(a, b, c, d, e, f, g, h, i, j) {
-  moveObjectTo(6, 35, 1, a, 0, b, c);
-  moveObjectTo(7, 36, 1, a, 0, d, e);
-  moveObjectTo(8, 37, 1, a, 0, f, g);
-  moveObjectTo(9, 38, 1, a, 0, h, i);
-  delay(j);
+function moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenDelay(value4, positionX, positionY, positionX2, positionY2, positionX3, positionY3, positionX4, positionY4, duration) {
+  moveObjectTo(6, 35, 1, value4, 0, positionX, positionY);
+  moveObjectTo(7, 36, 1, value4, 0, positionX2, positionY2);
+  moveObjectTo(8, 37, 1, value4, 0, positionX3, positionY3);
+  moveObjectTo(9, 38, 1, value4, 0, positionX4, positionY4);
+  delay(duration);
 }
 
-function playSoundThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(a, b, c, d, e, f, g, h, i, j) {
-  playSound(8, a);
-  moveObjectTo(0, 29, 1, b, 0, c, d);
-  moveObjectTo(1, 30, 1, b, 0, e, f);
-  moveObjectTo(2, 31, 1, b, 0, g, h);
-  moveObjectTo(3, 32, 1, b, 0, i, j);
+function playSoundThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(soundId, value4, positionX, positionY, positionX2, positionY2, positionX3, positionY3, positionX4, positionY4) {
+  playSound(8, soundId);
+  moveObjectTo(0, 29, 1, value4, 0, positionX, positionY);
+  moveObjectTo(1, 30, 1, value4, 0, positionX2, positionY2);
+  moveObjectTo(2, 31, 1, value4, 0, positionX3, positionY3);
+  moveObjectTo(3, 32, 1, value4, 0, positionX4, positionY4);
 }
 
-function moveObjectToThenDelayThenPlaySoundThenMoveObjectToThenMoveObjectTo(a, b, c, d, e, f, g, h) {
-  moveObjectTo(1, 1, 1, a, 0, b, c);
-  delay(d);
+function moveObjectToThenDelayThenPlaySoundThenMoveObjectToThenMoveObjectTo(value4, positionX, positionY, duration, value42, positionX2, positionY2, positionY3) {
+  moveObjectTo(1, 1, 1, value4, 0, positionX, positionY);
+  delay(duration);
   playSound(8, 14);
-  moveObjectTo(0, 0, 1, e, 0, f, g);
-  moveObjectTo(1, 1, 1, e, 0, b, h);
+  moveObjectTo(0, 0, 1, value42, 0, positionX2, positionY2);
+  moveObjectTo(1, 1, 1, value42, 0, positionX, positionY3);
 }
 
 function setPStatThenSetPStatThenCallSubroutineThenPlaySoundThenDelay() {
@@ -480,49 +480,49 @@ function unsetTriggerThenSetPStatThenCallSubroutine() {
   callSubroutine(8);
 }
 
-function setObjectVisibilityThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(a, b, c, d, e) {
-  setObjectVisibility(a, b);
-  setObjectVisibility(c, 0);
-  setPStat(247, d);
-  setPStat(248, e);
+function setObjectVisibilityThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(objectId, invisible, objectId2, value, value2) {
+  setObjectVisibility(objectId, invisible);
+  setObjectVisibility(objectId2, 0);
+  setPStat(247, value);
+  setPStat(248, value2);
   callSubroutine(21);
 }
 
-function playAnimationThenPlayAnimationThenPlayAnimationThenDelay(a, b, c, d, e) {
-  playAnimation(a, 0);
-  playAnimation(b, c);
-  playAnimation(d, e);
+function playAnimationThenPlayAnimationThenPlayAnimationThenDelay(entity: Entity, entity2: Entity, animation, entity3: Entity, animation2) {
+  playAnimation(entity, 0);
+  playAnimation(entity2, animation);
+  playAnimation(entity3, animation2);
   delay(5);
 }
 
-function playAnimationThenPlayAnimationThenDelay(a, b, c, d) {
-  playAnimation(a, 0);
-  playAnimation(b, c);
-  delay(d);
+function playAnimationThenPlayAnimationThenDelay(entity: Entity, entity2: Entity, animation, duration) {
+  playAnimation(entity, 0);
+  playAnimation(entity2, animation);
+  delay(duration);
 }
 
-function delayThenPlayAnimationThenDelay(a, b, c, d) {
-  delay(a);
-  playAnimation(b, c);
-  delay(d);
+function delayThenPlayAnimationThenDelay(duration, entity: Entity, animation, duration2) {
+  delay(duration);
+  playAnimation(entity, animation);
+  delay(duration2);
 }
 
-function setPStatThenSetPStatThenCallSubroutine_v2(a, b, c, d, e) {
-  setPStat(a, b);
-  setPStat(c, d);
-  callSubroutine(e);
+function setPStatThenSetPStatThenCallSubroutine_v2(pstat: PStat, value, pstat2: PStat, value2, routine) {
+  setPStat(pstat, value);
+  setPStat(pstat2, value2);
+  callSubroutine(routine);
 }
 
-function setPStatThenCallDigimonSubroutineThenDelay(a) {
-  setPStat(254, a);
+function setPStatThenCallDigimonSubroutineThenDelay(value) {
+  setPStat(254, value);
   callDigimonSubroutine(10);
   delay(550);
 }
 
-function setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem_v2(a, b) {
+function setTriggerThenCallSubroutineThenCallSubroutineThenGiveItem_v2(item: Item, amount) {
   setTrigger(3);
   callSubroutine(0);
   callSubroutine(13);
-  giveItem(a, b);
+  giveItem(item, amount);
 }
 
