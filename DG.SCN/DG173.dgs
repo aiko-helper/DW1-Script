@@ -1,14 +1,6 @@
 // DG173.SCN
 #pragma script index=173 start=0x81800 end=0x82800 headerU16=0x14 sentinelOff=0xfe
 
-function showTextboxThenShowTextboxThenShowTextboxThenShowTextbox(a, b, c, d) {
-    showTextbox(a);
-    showTextbox(b);
-    showTextbox(c);
-    showTextbox(d);
-}
-
-
 section onEnter(254) {  // len=2
     return;
 }
@@ -27,7 +19,10 @@ section(6) {  // len=2416
 L1:
     if (pstat[110] != 1) goto L2;
     speak(6, "Alright. Let me tell you\nhow the city will\ngrow and prosper...\n");
-    showTextboxThenShowTextboxThenShowTextboxThenShowTextbox("When a Rookie Digimon\ncomes to the city,\nit's plus one point.\n", "And when a Champion\nDigimon comes to the city,\nit's plus two points.\n", "If an Ultimate Digimon\ncomes to city,\nit's plus three points.\n", "However, there are three\nChampion Digimon that\nare not very useful.\n");
+    showTextbox("When a Rookie Digimon\ncomes to the city,\nit's plus one point.\n");
+    showTextbox("And when a Champion\nDigimon comes to the city,\nit's plus two points.\n");
+    showTextbox("If an Ultimate Digimon\ncomes to city,\nit's plus three points.\n");
+    showTextbox("However, there are three\nChampion Digimon that\nare not very useful.\n");
     showTextbox("When one of them comes,\nit's only plus one point.\n");
     return;
 
@@ -42,7 +37,10 @@ L2:
 L3:
     if (pstat[110] != 3) goto L4;
     speak(6, "Let me tell you about\nTamer Level.\n");
-    showTextboxThenShowTextboxThenShowTextboxThenShowTextbox("Tamer Level will increase\nif you can raise Digimon\nto Ultimate Digimon.\n", "And winning a championship\nin a high level tournament\nis very good.\n", "It will go up naturally.\nYou don't have to worry\nabout it too much.\n", "On the other hand,\nyou have to pay attention\nnot to let it go down.\n");
+    showTextbox("Tamer Level will increase\nif you can raise Digimon\nto Ultimate Digimon.\n");
+    showTextbox("And winning a championship\nin a high level tournament\nis very good.\n");
+    showTextbox("It will go up naturally.\nYou don't have to worry\nabout it too much.\n");
+    showTextbox("On the other hand,\nyou have to pay attention\nnot to let it go down.\n");
     showTextbox("If your Digimon fades away,\nyour Tamer Level\nwill go down for sure.\n");
     showTextbox("If you regularly have\ncare mistakes, it might\ngo down. Be careful.\n");
     return;

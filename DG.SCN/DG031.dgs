@@ -7,12 +7,6 @@ function playAnimationThenDelayThenSpeak(a, b) {
     speak(Entity.Player, b);
 }
 
-function setPStatThenSetPStatThenSetPStat(a, b, c, d, e) {
-    setPStat(a, b);
-    setPStat(c, d);
-    setPStat(e, 255);
-}
-
 
 section onEnter(254) {  // len=26
     spawnChest(Item.OffenseChip, -582, 1062, 0, 694);
@@ -57,7 +51,9 @@ L1:
     look(entity: 5, at: Entity.Player);
     speak(5, "Who are you? Move out of my\nway! This is the only way!\n");
     setTrigger(1);
-    setPStatThenSetPStatThenSetPStat(250, 1, 251, 5, 252);
+    setPStat(250, 1);
+    setPStat(251, 5);
+    setPStat(252, 255);
     setPStat(253, 255);
     startBattle();
     unsetTrigger(1);
@@ -113,7 +109,9 @@ L6:
     move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
     waitForEntity(Entity.Partner);
     setTrigger(1);
-    setPStatThenSetPStatThenSetPStat(250, 1, 251, 5, 252);
+    setPStat(250, 1);
+    setPStat(251, 5);
+    setPStat(252, 255);
     setPStat(253, 255);
     startBattle();
     unsetTrigger(1);

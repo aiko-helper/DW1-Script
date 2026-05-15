@@ -1,21 +1,6 @@
 // DG183.SCN
 #pragma script index=183 start=0x8c000 end=0x8d000 headerU16=0x10 sentinelOff=0xfe
 
-function speakThenSpeakThenSpeakThenSpeakThenSpeak(a, b, c, d, e, f, g) {
-    speak(a, b);
-    speak(c, d);
-    speak(a, e);
-    speak(c, f);
-    speak(a, g);
-}
-
-function speakThenSpeakThenSpeak(a, b, c, d, e) {
-    speak(a, b);
-    speak(c, d);
-    speak(a, e);
-}
-
-
 section onEnter(254) {  // len=2
     return;
 }
@@ -35,14 +20,20 @@ section(60) {  // len=4078
     speak(Entity.Player, "Yum, Yum.\n");
     speak(5, "Uh...\n");
     look(entity: 5, at: Entity.Player);
-    speakThenSpeakThenSpeak(5, "Please listen up.\n", Entity.Player, "Yummy, Yummy.\n", "My men don't listen any more.\n");
+    speak(5, "Please listen up.\n");
+    speak(Entity.Player, "Yummy, Yummy.\n");
+    speak(5, "My men don't listen any more.\n");
     showTextbox("I don't think they can\nremember my orders.\n");
     showTextbox("Sometimes they don't\neven understand.\n");
     showTextbox("My men should\nbring my meals, but...\n");
     speak(Entity.Player, "Yummy...\n");
     speak(5, "While I was working they\ndidn't bring my meals,\nso I forgot to eat.\n");
     look(entity: Entity.Player, at: 5);
-    speakThenSpeakThenSpeakThenSpeakThenSpeak(Entity.Player, "You're too wrapped up in\nyour work.\n", 5, "I'm so embarrassed.\n", "I think there's trouble\nin the mansion.\n", "Problem on the island? Is\neveryone acting like my men?\n", "Yes, they're all losing\ntheir memory.\n");
+    speak(Entity.Player, "You're too wrapped up in\nyour work.\n");
+    speak(5, "I'm so embarrassed.\n");
+    speak(Entity.Player, "I think there's trouble\nin the mansion.\n");
+    speak(5, "Problem on the island? Is\neveryone acting like my men?\n");
+    speak(Entity.Player, "Yes, they're all losing\ntheir memory.\n");
     speak(5, "Do you think someone's\ndoing this?\n");
     speak(Entity.Player, "Hmmm\n");
     speak(5, "What can I do?\n");
@@ -51,11 +42,15 @@ section(60) {  // len=4078
     speak(5, "What I can do?\nMy men have only\nfighting skills.\n");
     if (trigger(205)) goto L1;
     showTextbox("I can't leave them here.\n");
-    speakThenSpeakThenSpeak(Entity.Player, "I see...\n", 5, "Let me think about it.\nI'm very sorry, but...\n", "I'll come back again.\nDon't forget to eat.\n");
+    speak(Entity.Player, "I see...\n");
+    speak(5, "Let me think about it.\nI'm very sorry, but...\n");
+    speak(Entity.Player, "I'll come back again.\nDon't forget to eat.\n");
     goto L2;
 
 L1:
-    speakThenSpeakThenSpeak(Entity.Player, "Want to enter a match?\n", 5, "A match? It's perfect,\nit will refresh my men.\n", "So, you want to join?\n");
+    speak(Entity.Player, "Want to enter a match?\n");
+    speak(5, "A match? It's perfect,\nit will refresh my men.\n");
+    speak(Entity.Player, "So, you want to join?\n");
     speak(5, "Yes, but I still have\nresearch to do here.\nI'll go there soon.\n");
     setTrigger(266);
 

@@ -1,14 +1,6 @@
 // DG177.SCN
 #pragma script index=177 start=0x86000 end=0x87000 headerU16=0x14 sentinelOff=0xfe
 
-function showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox(a, b, c, d, e) {
-    showTextbox(a);
-    showTextbox(b);
-    showTextbox(c);
-    showTextbox(d);
-    showTextbox(e);
-}
-
 function unsetTriggerThenSetPStatThenCallSubroutine() {
     unsetTrigger(3);
     setPStat(254, 5);
@@ -28,15 +20,27 @@ section(51) {  // len=6
 section(6) {  // len=2086
     if (pstat[44] != 0) goto L1;
     speak(6, "I know about Items.\n");
-    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("There are one hund and twenty\neight kinds of Items in all.\n", "Thirty two are food.\n", "Rare Items grow naturally\nin some areas and can't be\nfound in others.\n", "For example, you can\nfind a Blue Apple in\nNative Forest.\n", "These foods have special\neffects, so be careful on\nthe timing of eating them.\n");
+    showTextbox("There are one hund and twenty\neight kinds of Items in all.\n");
+    showTextbox("Thirty two are food.\n");
+    showTextbox("Rare Items grow naturally\nin some areas and can't be\nfound in others.\n");
+    showTextbox("For example, you can\nfind a Blue Apple in\nNative Forest.\n");
+    showTextbox("These foods have special\neffects, so be careful on\nthe timing of eating them.\n");
     setPStat(44, 1);
     return;
 
 L1:
     if (pstat[44] != 1) goto L2;
     speak(6, "Now I'll talk about\nDigivolution Items.\n");
-    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("Digivolution Items make\nDigimon digivolve, as the\nname suggests.\n", "There are many different\nkinds of Digivolution Items.\n", "Each kind causes Digimon\nto digivolve into different\ntypes of Digimon.\n", "For example, if you use\nGrey Claws, the Digimon\nwill turn into Greymon.\n", "Digivolution Items are\nItems of legend and some\nare one of a kind.\n");
-    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("But sometimes you don't get\nany bonus ability like\nduring normal Digivolution.\n", "Also, Happiness level goes\ndown, so they're not perfect.\n", "At the same time, it's nice\nto digivolve into the kind of\nDigimon you want to be.\n", "You can only digivolve from\none generation before the\nDigimon you want to become.\n", "So be careful.\n");
+    showTextbox("Digivolution Items make\nDigimon digivolve, as the\nname suggests.\n");
+    showTextbox("There are many different\nkinds of Digivolution Items.\n");
+    showTextbox("Each kind causes Digimon\nto digivolve into different\ntypes of Digimon.\n");
+    showTextbox("For example, if you use\nGrey Claws, the Digimon\nwill turn into Greymon.\n");
+    showTextbox("Digivolution Items are\nItems of legend and some\nare one of a kind.\n");
+    showTextbox("But sometimes you don't get\nany bonus ability like\nduring normal Digivolution.\n");
+    showTextbox("Also, Happiness level goes\ndown, so they're not perfect.\n");
+    showTextbox("At the same time, it's nice\nto digivolve into the kind of\nDigimon you want to be.\n");
+    showTextbox("You can only digivolve from\none generation before the\nDigimon you want to become.\n");
+    showTextbox("So be careful.\n");
     setPStat(44, 0);
 
 L2:

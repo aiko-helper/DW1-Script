@@ -1,12 +1,6 @@
 // DG069.SCN
 #pragma script index=69 start=0x31800 end=0x32000 headerU16=0x1c sentinelOff=0x24
 
-function setPStatThenSetPStatThenSetPStat(a, b, c, d, e) {
-    setPStat(a, b);
-    setPStat(c, d);
-    setPStat(e, 255);
-}
-
 function speakThenStartBattleThenSetTrigger(a, b, c) {
     speak(a, b);
     startBattle();
@@ -37,7 +31,9 @@ section(5) {  // len=1172
     playSound(8, 7);
     speak(5, "I'm gonna knock you out!\n");
     setTrigger(1);
-    setPStatThenSetPStatThenSetPStat(250, 1, 251, 5, 252);
+    setPStat(250, 1);
+    setPStat(251, 5);
+    setPStat(252, 255);
     setPStat(253, 255);
     startBattle();
     unsetTrigger(1);
@@ -52,7 +48,9 @@ section(5) {  // len=1172
 
 L1:
     setTrigger(1);
-    setPStatThenSetPStatThenSetPStat(250, 1, 251, 5, 252);
+    setPStat(250, 1);
+    setPStat(251, 5);
+    setPStat(252, 255);
     setPStat(253, 255);
     startBattle();
     unsetTrigger(1);
@@ -68,7 +66,9 @@ L1:
 
 L2:
     setTrigger(1);
-    setPStatThenSetPStatThenSetPStat(250, 1, 251, 5, 252);
+    setPStat(250, 1);
+    setPStat(251, 5);
+    setPStat(252, 255);
     setPStat(253, 255);
     startBattle();
     unsetTrigger(1);

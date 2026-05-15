@@ -1,13 +1,6 @@
 // DG189.SCN
 #pragma script index=189 start=0x90800 end=0x91000 headerU16=0xc sentinelOff=0x24
 
-function speakThenSpeakThenSpeak(a, b, c, d, e) {
-    speak(a, b);
-    speak(c, d);
-    speak(a, e);
-}
-
-
 section onEnter(254) {  // len=132
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L1;
@@ -51,7 +44,9 @@ section(5) {  // len=1904
 
 L1:
     playSound(8, 9);
-    speakThenSpeakThenSpeak(5, "My wing hurts!\n", Entity.Player, "What happened?\n", "I hurt my wing. Do you got\nsomething to treat my wound?\n");
+    speak(5, "My wing hurts!\n");
+    speak(Entity.Player, "What happened?\n");
+    speak(5, "I hurt my wing. Do you got\nsomething to treat my wound?\n");
     speak(Entity.Player, "It looks bad. Hold on.\nWhat should I do?\n");
 
 L2:
@@ -87,7 +82,9 @@ L6:
     speak(5, "It's much better. Thanks.\n");
     playAnimation(5, 29);
     waitForEntity(5);
-    speakThenSpeakThenSpeak(Entity.Player, "Can you fly already?\n", 5, "I don't think I can fly far.\n", "There's a clinic in city.\nYou should go there.\nIt isn't far from here.\n");
+    speak(Entity.Player, "Can you fly already?\n");
+    speak(5, "I don't think I can fly far.\n");
+    speak(Entity.Player, "There's a clinic in city.\nYou should go there.\nIt isn't far from here.\n");
     speak(5, "I heard about the city.\nIt's bigger than I thought.\n");
     speak(Entity.Player, "Go to the city and rest.\n");
     playSound(8, 9);

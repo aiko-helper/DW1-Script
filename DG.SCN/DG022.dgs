@@ -1,14 +1,6 @@
 // DG022.SCN
 #pragma script index=22 start=0x15800 end=0x16800 headerU16=0x18 sentinelOff=0x24
 
-function speakThenSpeakThenSpeakThenSpeakThenSpeak(a, b, c, d, e, f, g, h, i, j) {
-    speak(a, b);
-    speak(c, d);
-    speak(e, f);
-    speak(g, h);
-    speak(i, j);
-}
-
 function playAnimationThenDelayThenSpeak(a, b) {
     playAnimation(Entity.Player, a);
     delay(20);
@@ -176,12 +168,20 @@ L6:
     playSound(8, 5);
     waitForEntity(6);
     look(entity: 6, at: Entity.Player);
-    speakThenSpeakThenSpeakThenSpeakThenSpeak(Entity.System, "Vademon's UFO appears.\n", Entity.Player, "A...an alien?!\n", 6, "...\n", Entity.Player, "Are you... a Digimon?\n", 6, "...\n");
+    speak(Entity.System, "Vademon's UFO appears.\n");
+    speak(Entity.Player, "A...an alien?!\n");
+    speak(6, "...\n");
+    speak(Entity.Player, "Are you... a Digimon?\n");
+    speak(6, "...\n");
     speak(Entity.Player, "Well...\n");
     speak(6, "...\n");
     playSound(8, 6);
     delay(10);
-    speakThenSpeakThenSpeakThenSpeakThenSpeak(Entity.System, "Vademon holds a gun.\n", Entity.Player, "No, stop!\nI'm not your enemy!\n", Entity.System, "Vademon drops the gun.\n", Entity.Player, "Good you understand.\n", Entity.System, "<LIGHTBLUE><PLAYER><WHITE> desperately\ntries to convince him.\n");
+    speak(Entity.System, "Vademon holds a gun.\n");
+    speak(Entity.Player, "No, stop!\nI'm not your enemy!\n");
+    speak(Entity.System, "Vademon drops the gun.\n");
+    speak(Entity.Player, "Good you understand.\n");
+    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> desperately\ntries to convince him.\n");
     speak(6, "...\n");
     speak(Entity.Player, "Maybe he doesn't get it?\n");
     speak(6, "Okay.\n");

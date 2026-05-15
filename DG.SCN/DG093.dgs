@@ -1,14 +1,6 @@
 // DG093.SCN
 #pragma script index=93 start=0x41800 end=0x42000 headerU16=0x14 sentinelOff=0x19
 
-function speakThenSpeakThenSpeakThenSpeak(a, b, c, d, e, f) {
-    speak(a, b);
-    speak(c, d);
-    speak(a, e);
-    speak(c, f);
-}
-
-
 section onEnter(254) {  // len=34
     if (!trigger(322)) goto L1;
     setObjectVisibility(7, 1);
@@ -88,10 +80,16 @@ L1:
     playAnimation(5, 28);
     delay(60);
     playAnimation(5, 0);
-    speakThenSpeakThenSpeakThenSpeak(5, "Phew, well\n", Entity.Player, "You came back to life.\nAlright!\n", "I'm Angemon, an angel to\nprotect you. I've awakened\nto fulfill my duty.\n", "What's he talking about...?\n");
+    speak(5, "Phew, well\n");
+    speak(Entity.Player, "You came back to life.\nAlright!\n");
+    speak(5, "I'm Angemon, an angel to\nprotect you. I've awakened\nto fulfill my duty.\n");
+    speak(Entity.Player, "What's he talking about...?\n");
     speak(5, "I know the truth of heaven.\n");
     showTextbox("I offer my soul to follow\nearthly instructions.\n");
-    speakThenSpeakThenSpeakThenSpeak(Entity.Player, "What's he talking about...?\nAre you coming to the city?\n", 5, "Thine mission is mine duty.\nI go.\n", "I'm sorry, but can you\nspeak in words I understand?\n", "I'll go to the city, so\nyou must keep trying.\n");
+    speak(Entity.Player, "What's he talking about...?\nAre you coming to the city?\n");
+    speak(5, "Thine mission is mine duty.\nI go.\n");
+    speak(Entity.Player, "I'm sorry, but can you\nspeak in words I understand?\n");
+    speak(5, "I'll go to the city, so\nyou must keep trying.\n");
     speak(Entity.Player, "I see. Thanks!\n");
     goto L2;
 

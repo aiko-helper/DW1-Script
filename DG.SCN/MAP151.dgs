@@ -16,10 +16,10 @@ function speakThenPlayAnimationThenDelayThenSpeak(a, b, c, d, e, f) {
     speak(e, f);
 }
 
-function speakThenSpeakThenSpeak(a, b, c, d, e) {
-    speak(a, b);
-    speak(c, d);
-    speak(a, e);
+function showTextboxThenSpeakThenSpeak(a, b, c, d, e) {
+    showTextbox(a);
+    speak(b, c);
+    speak(d, e);
 }
 
 
@@ -66,9 +66,7 @@ L2:
     playAnimationThenDelayThenSpeakThenPlayAnimationThenSpeak(25, "These humans are probably the\nones who caused confusion and\ntrouble on the island.\n", 5, "Can humans live\none hundred years?\n");
     speak(Entity.Player, "It seems that for humans,\ntime is slow in this world.\n");
     showTextbox("I guess that's why I don't\nhave to eat or sleep here.\n");
-    showTextbox("One hundred years is a\nvery long time. Those guys\nmust be very tough.\n");
-    speak(5, "Do you think they are\nhiding somewhere?\n");
-    speak(Entity.Player, "I'll find them\nand do something.\n");
+    showTextboxThenSpeakThenSpeak("One hundred years is a\nvery long time. Those guys\nmust be very tough.\n", 5, "Do you think they are\nhiding somewhere?\n", Entity.Player, "I'll find them\nand do something.\n");
     showTextbox("Now I know why I'm here. \nSince I'm human,\nI need to deal with them.\n");
     setTrigger(330);
     return;
@@ -80,11 +78,9 @@ L3:
     showTextbox("Computers were destroyed and\nwaste water started to leak.\n");
     showTextbox("That water made Digimons\ninsane. I don't think\nit's a coincidence.\n");
     speak(5, "These computers have some\nkey importance.\n");
-    showTextbox("It may be too late,\nbut I think someone was\ntrying to get us.\n");
-    speak(Entity.Player, "What?!\n");
-    speak(5, "I think there was some data\nregarding the island's past\non these computers.\n");
-    showTextbox("But due to the Giromon's\nriot, the data was destroyed.\n");
-    speakThenSpeakThenSpeak(Entity.Player, "You've never seen the data?\n", 5, "No, but we might be able to\nrepair some of it. I'll\ntry to connect the data.\n", "I see, thank you.\nHow long will it take?\n");
+    showTextboxThenSpeakThenSpeak("It may be too late,\nbut I think someone was\ntrying to get us.\n", Entity.Player, "What?!\n", 5, "I think there was some data\nregarding the island's past\non these computers.\n");
+    showTextboxThenSpeakThenSpeak("But due to the Giromon's\nriot, the data was destroyed.\n", Entity.Player, "You've never seen the data?\n", 5, "No, but we might be able to\nrepair some of it. I'll\ntry to connect the data.\n");
+    speak(Entity.Player, "I see, thank you.\nHow long will it take?\n");
     speak(5, "It'll be a while. I'll\nreopen the town entrance,\nso come back again.\n");
     speak(Entity.Player, "Thanks. I'll be back.\n");
     setTrigger(328);
@@ -92,7 +88,9 @@ L3:
 
 L4:
     if (!trigger(328)) goto L5;
-    speakThenSpeakThenSpeak(Entity.Player, "Have you finish\nrepairing the data?\n", 5, "It'll take a while longer.\nCome back again.\n", "OK, I'll be back.\n");
+    speak(Entity.Player, "Have you finish\nrepairing the data?\n");
+    speak(5, "It'll take a while longer.\nCome back again.\n");
+    speak(Entity.Player, "OK, I'll be back.\n");
     return;
 
 L5:
@@ -135,8 +133,8 @@ L8:
 L9:
     if (trigger(344) || !trigger(347) || trigger(343)) goto L10;
     speak(Entity.Player, "We can talk about that later.\nI gotta check out\nthe factory now.\n");
-    showTextbox("This is a life and death\nsituation. Give me the okay!\n");
-    speakThenSpeakThenSpeak(5, "I don't quite understand\nwhat you're trying to do.\nI can't give you permission.\n", Entity.Player, "There are Digimon about to\nfade away because of the\nwaste water from the factory!\n", "From the factory? No way!\nThe waste water cleaning\nsystem is working fine.\n");
+    showTextboxThenSpeakThenSpeak("This is a life and death\nsituation. Give me the okay!\n", 5, "I don't quite understand\nwhat you're trying to do.\nI can't give you permission.\n", Entity.Player, "There are Digimon about to\nfade away because of the\nwaste water from the factory!\n");
+    speak(5, "From the factory? No way!\nThe waste water cleaning\nsystem is working fine.\n");
     speakThenPlayAnimationThenDelayThenSpeak(Entity.Player, "How can you know it's working\nfine if we don't check?!\n", 19, 5, 5, "Our computer is perfect. In\nemergencies, the Net Keeper\nwill shut down the system.\n");
     speakThenPlayAnimationThenDelayThenSpeak(Entity.Player, "Are you telling me that\nNet Keeper will always\nwork correctly?\n", 0, 5, 5, "Net Keeper is another\nname for Giromon who is\nan Ultimate Digimon.\n");
     showTextbox("His judgement and ability\nare so perfect.\n");

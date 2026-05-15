@@ -1,21 +1,6 @@
 // DG178.SCN
 #pragma script index=178 start=0x87000 end=0x89800 headerU16=0x40 sentinelOff=0x19
 
-function showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox(a, b, c, d, e) {
-    showTextbox(a);
-    showTextbox(b);
-    showTextbox(c);
-    showTextbox(d);
-    showTextbox(e);
-}
-
-function speakThenSpeakThenSpeakThenSpeak(a, b, c, d, e, f) {
-    speak(a, b);
-    speak(c, d);
-    speak(a, e);
-    speak(c, f);
-}
-
 function playAnimationThenDelayThenSpeakThenPlayAnimation(a) {
     playAnimation(5, 29);
     delay(5);
@@ -23,10 +8,10 @@ function playAnimationThenDelayThenSpeakThenPlayAnimation(a) {
     playAnimation(5, 0);
 }
 
-function giveItemThenGiveItemThenGiveItem(a, b, c, d, e, f) {
-    giveItem(a, b);
-    giveItem(c, d);
-    giveItem(e, f);
+function speakThenShowTextboxThenShowTextbox(a, b, c, d) {
+    speak(a, b);
+    showTextbox(c);
+    showTextbox(d);
 }
 
 
@@ -64,7 +49,10 @@ section(5) {  // len=2296
 
 L1:
     if (!trigger(202) || trigger(215)) goto L4;
-    speakThenSpeakThenSpeakThenSpeak(5, "I heard you beat\nMachinedramon!\n", Entity.Player, "Yeah, but I don't get it.\nIt seemed like the curse\nof Analogman.\n", "His grudge was so strong.\nMaybe we can have peace now.\n", "If Machinedramon returns,\nwe'll beat him again.\n");
+    speak(5, "I heard you beat\nMachinedramon!\n");
+    speak(Entity.Player, "Yeah, but I don't get it.\nIt seemed like the curse\nof Analogman.\n");
+    speak(5, "His grudge was so strong.\nMaybe we can have peace now.\n");
+    speak(Entity.Player, "If Machinedramon returns,\nwe'll beat him again.\n");
     speak(5, "You're trustworthy. This was\ngrowing in our Meat farm,\nit's for you.\n");
     speak(Entity.Player, "Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
     giveItem(Item.ChainMelon, 1);
@@ -87,7 +75,10 @@ L3:
 
 L4:
     if (!trigger(50) || trigger(201)) goto L5;
-    speakThenSpeakThenSpeakThenSpeak(5, "You're here!\nThis is something I can't\nask anybody else.\n", Entity.Player, "Never fear, I'm here.\nDo you mean\nAnalogman is back?\n", "I can feel his evil, but\nI can't tell where it is.\n", "Leave it up to me! I'll find\nhim and take care of it.\n");
+    speak(5, "You're here!\nThis is something I can't\nask anybody else.\n");
+    speak(Entity.Player, "Never fear, I'm here.\nDo you mean\nAnalogman is back?\n");
+    speak(5, "I can feel his evil, but\nI can't tell where it is.\n");
+    speak(Entity.Player, "Leave it up to me! I'll find\nhim and take care of it.\n");
     speak(5, "Thank you.\nBy the way...\n");
     setTrigger(201);
 
@@ -112,8 +103,12 @@ section(6) {  // len=2460
 L1:
     speak(6, "You can have this. Good luck.\n");
     speak(Entity.System, "I got lots of Items!\n");
-    giveItemThenGiveItemThenGiveItem(Item.SmallRecovery, 3, Item.Meat, 3, Item.MPFloppy, 3);
-    giveItemThenGiveItemThenGiveItem(Item.Restore, 1, Item.Bandage, 2, Item.Medicine, 1);
+    giveItem(Item.SmallRecovery, 3);
+    giveItem(Item.Meat, 3);
+    giveItem(Item.MPFloppy, 3);
+    giveItem(Item.Restore, 1);
+    giveItem(Item.Bandage, 2);
+    giveItem(Item.Medicine, 1);
     speak(6, "To look up Items, press\n<GREEN><TRIANGLE> <WHITE>...\n");
     showTextbox("...then select 'Item'\nand look by using\n<LIGHTBLUE><X> <WHITE>.\n");
     setTrigger(56);
@@ -135,9 +130,15 @@ L4:
     return;
 
 L5:
-    speak(6, "I will teach you about the\ncommon sense in our world.\n");
-    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("There are twenty four hours\na day and there is morning,\nday and night.\n", "You may feel\nthe pace is quick.\n", "There are thirty days a year.\nMonth? What's that? Seasons?\nCan you eat that?\n", "Of course we have money.\nThe unit is a bit. You can\nnever have too much money.\n", "When you say 'city' on\nthis island, that means here.\n");
-    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("But there are other\nsmall villages and towns.\n", "On the clock, the yellow dot\nis hours and the needle is\nminutes.\n", "Up is Midnight\nand Down is Noon.\n", "The red part on the left\nmeans late afternoon. It\nshows four - eight o'clock.\n", "The purple part on the\nright is morning and it\nshows four - eight o'clock.\n");
+    speakThenShowTextboxThenShowTextbox(6, "I will teach you about the\ncommon sense in our world.\n", "There are twenty four hours\na day and there is morning,\nday and night.\n", "You may feel\nthe pace is quick.\n");
+    showTextbox("There are thirty days a year.\nMonth? What's that? Seasons?\nCan you eat that?\n");
+    showTextbox("Of course we have money.\nThe unit is a bit. You can\nnever have too much money.\n");
+    showTextbox("When you say 'city' on\nthis island, that means here.\n");
+    showTextbox("But there are other\nsmall villages and towns.\n");
+    showTextbox("On the clock, the yellow dot\nis hours and the needle is\nminutes.\n");
+    showTextbox("Up is Midnight\nand Down is Noon.\n");
+    showTextbox("The red part on the left\nmeans late afternoon. It\nshows four - eight o'clock.\n");
+    showTextbox("The purple part on the\nright is morning and it\nshows four - eight o'clock.\n");
     showTextbox("Digimon are active at\ncertain times of day.\n");
     showTextbox("Most of them get up in the\nmorning and sleep at night,\nbut some are opposite.\n");
     showTextbox("If you can't meet the\nDigimon you wish, try\na different time of day.\n");
@@ -157,9 +158,7 @@ L1:
 
 L2:
     if (pstat[1] < 3 || pstat[110] != 1) goto L3;
-    speak(7, "I'll tell you about\nthe Tamer level.\n");
-    showTextbox("With a high Tamer level,\nwhen your Digimon fades away,\n");
-    showTextbox("your next Digimon will have\nbetter parameters.\n");
+    speakThenShowTextboxThenShowTextbox(7, "I'll tell you about\nthe Tamer level.\n", "With a high Tamer level,\nwhen your Digimon fades away,\n", "your next Digimon will have\nbetter parameters.\n");
     showTextbox("In the beginning\nit won't go up much,\n");
     showTextbox("but keep steadily raising him\nand it will get better.\n");
     return;
@@ -171,8 +170,10 @@ L3:
     return;
 
 L4:
-    speak(7, "I'll tell you about a\nDigimon's life.\n");
-    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("When Digimon gets hungry,\nhe'll tell you.\n", "He also needs to go potty.\nMake sure he does it\nin the toilet.\n", "Digimon get sleepy and\nneed sleep, but you have to\nmake him sleep.\n", "Don't try to keep him up\nfor too long.\n", "He may get tired, sick\nor just get upset.\nHe's kinda delicate.\n");
+    speakThenShowTextboxThenShowTextbox(7, "I'll tell you about a\nDigimon's life.\n", "When Digimon gets hungry,\nhe'll tell you.\n", "He also needs to go potty.\nMake sure he does it\nin the toilet.\n");
+    showTextbox("Digimon get sleepy and\nneed sleep, but you have to\nmake him sleep.\n");
+    showTextbox("Don't try to keep him up\nfor too long.\n");
+    showTextbox("He may get tired, sick\nor just get upset.\nHe's kinda delicate.\n");
     showTextbox("Since Digimon are wild\ncreatures, you should\npraise or scold them.\n");
     showTextbox("Whatever you do,\npay attention to what\nyour Digimon is doing.\n");
     return;
@@ -210,9 +211,7 @@ section(85) {  // len=658
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Player, at: 5);
     delay(5);
-    speak(5, "Oh that? That is a\n<PINK>Save Machine for\nMemory Card Battle Data<WHITE>.\n");
-    showTextbox("Using that machine, you can\nsave your current partner's\ndata for battle.\n");
-    showTextbox("Just press <LIGHTBLUE><X> <WHITE>,\nand the machine will tell\nyou what to do.\n");
+    speakThenShowTextboxThenShowTextbox(5, "Oh that? That is a\n<PINK>Save Machine for\nMemory Card Battle Data<WHITE>.\n", "Using that machine, you can\nsave your current partner's\ndata for battle.\n", "Just press <LIGHTBLUE><X> <WHITE>,\nand the machine will tell\nyou what to do.\n");
     rotate(entity: Entity.Player, to: 0);
     delay(5);
     return;

@@ -1,30 +1,16 @@
 // MAP162.SCN
 #pragma script index=162 start=0x73000 end=0x75800 headerU16=0x4c sentinelOff=0x19
 
-function showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox(a, b, c, d, e) {
-    showTextbox(a);
-    showTextbox(b);
-    showTextbox(c);
-    showTextbox(d);
-    showTextbox(e);
-}
-
-function playAnimationThenDelayThenSpeak(a, b, c) {
-    playAnimation(Entity.Player, a);
-    delay(b);
-    speak(Entity.Player, c);
-}
-
 function speakThenShowTextboxThenShowTextbox(a, b, c, d) {
     speak(a, b);
     showTextbox(c);
     showTextbox(d);
 }
 
-function setPStatThenSetPStatThenSetPStat(a, b, c, d, e) {
-    setPStat(a, b);
-    setPStat(c, d);
-    setPStat(e, 255);
+function playAnimationThenDelayThenSpeak(a, b, c) {
+    playAnimation(Entity.Player, a);
+    delay(b);
+    speak(Entity.Player, c);
 }
 
 
@@ -472,9 +458,15 @@ L7:
     return;
 
 L8:
-    speak(5, "I'll explain the city\nsurroundings to you.\n");
-    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("Native Forest\nsurrounds the city.\n", "The Digimon around there\naren't too strong.\n", "To the west there's a\nTraining Camp.\n", "Tropical Jungle is\neast across the river.\n", "I don't know\nwhat's beyond that.\n");
-    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("To the west there is a\nmountain and lake.\n", "Go south and there is an ocean.\n", "There is a high mountain\nto the north.\n", "This city is the\ncenter of the island.\n", "I'll check the rumors.\nCome back and find out more.\n");
+    speakThenShowTextboxThenShowTextbox(5, "I'll explain the city\nsurroundings to you.\n", "Native Forest\nsurrounds the city.\n", "The Digimon around there\naren't too strong.\n");
+    showTextbox("To the west there's a\nTraining Camp.\n");
+    showTextbox("Tropical Jungle is\neast across the river.\n");
+    showTextbox("I don't know\nwhat's beyond that.\n");
+    showTextbox("To the west there is a\nmountain and lake.\n");
+    showTextbox("Go south and there is an ocean.\n");
+    showTextbox("There is a high mountain\nto the north.\n");
+    showTextbox("This city is the\ncenter of the island.\n");
+    showTextbox("I'll check the rumors.\nCome back and find out more.\n");
     return;
 }
 
@@ -688,7 +680,9 @@ L3:
     look(entity: Entity.Partner, at: 9);
     delay(5);
     setTrigger(1);
-    setPStatThenSetPStatThenSetPStat(250, 1, 251, 9, 252);
+    setPStat(250, 1);
+    setPStat(251, 9);
+    setPStat(252, 255);
     setPStat(253, 255);
     startBattle();
     unsetTrigger(1);
@@ -759,7 +753,9 @@ L6:
     look(entity: Entity.Partner, at: 10);
     delay(5);
     setTrigger(1);
-    setPStatThenSetPStatThenSetPStat(250, 1, 251, 10, 252);
+    setPStat(250, 1);
+    setPStat(251, 10);
+    setPStat(252, 255);
     setPStat(253, 255);
     startBattle();
     unsetTrigger(1);

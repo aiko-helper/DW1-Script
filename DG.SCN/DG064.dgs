@@ -1,14 +1,6 @@
 // DG064.SCN
 #pragma script index=64 start=0x2f000 end=0x2f800 headerU16=0x14 sentinelOff=0x19
 
-function speakThenSpeakThenSpeakThenSpeak(a, b, c, d, e, f) {
-    speak(a, b);
-    speak(c, d);
-    speak(a, e);
-    speak(c, f);
-}
-
-
 section onEnter(254) {  // len=58
     if (!trigger(345)) goto L1;
     for id in 0..2 { setObjectVisibility(id, 1); }
@@ -72,13 +64,19 @@ L2:
     look(entity: 5, at: Entity.Player);
     look(entity: 6, at: Entity.Player);
     delay(5);
-    speakThenSpeakThenSpeakThenSpeak(5, "Ugghh... It's you!\nYou've rescued me again.\n", Entity.Player, "What happened?\n", "Have you seen Devimon?\n", "I have. He's mean.\n");
+    speak(5, "Ugghh... It's you!\nYou've rescued me again.\n");
+    speak(Entity.Player, "What happened?\n");
+    speak(5, "Have you seen Devimon?\n");
+    speak(Entity.Player, "I have. He's mean.\n");
     speak(5, "He runied my research\nwith evil.\n");
     playAnimation(Entity.Player, 19);
     delay(15);
     speak(Entity.Player, "Your research\non SkullGreymon?\n");
     playAnimation(Entity.Player, 0);
-    speakThenSpeakThenSpeakThenSpeak(5, "I was collecting bones and\nputting them together.\nI'll be more careful.\n", Entity.Player, "That Devimon is awful.\n", "I know him well.\n", "What?!\n");
+    speak(5, "I was collecting bones and\nputting them together.\nI'll be more careful.\n");
+    speak(Entity.Player, "That Devimon is awful.\n");
+    speak(5, "I know him well.\n");
+    speak(Entity.Player, "What?!\n");
     speak(5, "He was always tricky,\nbut never this bad.\n");
     showTextbox("Maybe he's being\nbrainwashed by someone.\n");
     speak(Entity.Player, "Maybe.\n");

@@ -9,20 +9,18 @@ function setPStatThenSetPStatThenCallDigimonSubroutineThenCallSubroutineThenSetT
     setTexboxMode(0, 0);
 }
 
-function showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox(a, b, c, d, e) {
-    showTextbox(a);
-    showTextbox(b);
-    showTextbox(c);
-    showTextbox(d);
-    showTextbox(e);
-}
-
 function fadeOutHUDThenSetPStatThenSetPStatThenCallDigimonSubroutineThenCallSubroutine(a) {
     fadeOutHUD();
     setPStat(254, a);
     setPStat(246, 0);
     callDigimonSubroutine(214);
     callSubroutine(7);
+}
+
+function speakThenShowTextboxThenShowTextbox(a, b, c) {
+    speak(5, a);
+    showTextbox(b);
+    showTextbox(c);
 }
 
 
@@ -265,9 +263,7 @@ L7:
 
 section(5) {  // len=3520
     if (pstat[1] < 40) goto L1;
-    speak(5, "Hey, here's new info.\n");
-    showTextbox("For Fresh or In-Training\nDigimon, try to repeat\nthe same training.\n");
-    showTextbox("Something good will happen.\n");
+    speakThenShowTextboxThenShowTextbox("Hey, here's new info.\n", "For Fresh or In-Training\nDigimon, try to repeat\nthe same training.\n", "Something good will happen.\n");
     return;
 
 L1:
@@ -278,8 +274,10 @@ L1:
 
 L2:
     if (pstat[1] < 5) goto L3;
-    speak(5, "Oh, I was supposed to\ntalk about Techniques.\n");
-    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("Techniques that an enemy\nuses can be mastered\nif you win a battle.\n", "But Techniques are limited\nto those which can be\nadded at that time.\n", "You can't master everything.\nBut battling is the fastest\nway to master Techniques.\n", "You can also master them thru\ntraining, but chances are low.\n", "When you get smarter, take\n<LIGHTBLUE><PLAYER><WHITE>'s classroom and you\nmay learn a Technique.\n");
+    speakThenShowTextboxThenShowTextbox("Oh, I was supposed to\ntalk about Techniques.\n", "Techniques that an enemy\nuses can be mastered\nif you win a battle.\n", "But Techniques are limited\nto those which can be\nadded at that time.\n");
+    showTextbox("You can't master everything.\nBut battling is the fastest\nway to master Techniques.\n");
+    showTextbox("You can also master them thru\ntraining, but chances are low.\n");
+    showTextbox("When you get smarter, take\n<LIGHTBLUE><PLAYER><WHITE>'s classroom and you\nmay learn a Technique.\n");
     showTextbox("Chances of you learning are\nlow, so don't expect too much.\nTrain with balance!\n");
     return;
 
@@ -291,16 +289,16 @@ L3:
     goto L6;
 
 L4:
-    speak(5, "If you train here,\nyou can boost your\nDigimon's abilities.\n");
-    showTextbox("Training makes you tired,\nbut you'll get more out of\nit than actual battle.\n");
-    showTextbox("Also, though very rare, you\ncan master new Techniques.\n");
+    speakThenShowTextboxThenShowTextbox("If you train here,\nyou can boost your\nDigimon's abilities.\n", "Training makes you tired,\nbut you'll get more out of\nit than actual battle.\n", "Also, though very rare, you\ncan master new Techniques.\n");
     showTextbox("I'll tell you more about\nTechniques next time.\n");
     return;
 
 L5:
     speak(5, "There are six training\nstations here and they\nhave signs near by.\n");
-    speak(5, "Try pushing <LIGHTBLUE><X> <WHITE>\nin front of the sign.\n");
-    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("Read the signs, and you'll\nknow which abilities\nyou can boost.\n", "Depending on your Digimon's\nSpecialty, some abilities are\nboosted more than others.\n", "You won't know for sure\nuntil you try though.\n", "After 'Begin'\nchoose 'Normal' and\ntrain for one hour.\n", "While training, with\n<GREEN><TRIANGLE> <WHITE>you can\nfast forward time.\n");
+    speakThenShowTextboxThenShowTextbox("Try pushing <LIGHTBLUE><X> <WHITE>\nin front of the sign.\n", "Read the signs, and you'll\nknow which abilities\nyou can boost.\n", "Depending on your Digimon's\nSpecialty, some abilities are\nboosted more than others.\n");
+    showTextbox("You won't know for sure\nuntil you try though.\n");
+    showTextbox("After 'Begin'\nchoose 'Normal' and\ntrain for one hour.\n");
+    showTextbox("While training, with\n<GREEN><TRIANGLE> <WHITE>you can\nfast forward time.\n");
     showTextbox("Oh yeah, I have to tell you\nabout 'Bonus Try'.\n");
     showTextbox("If successful, Bonus Try\ngreatly boosts your power,\nbut little if you fail.\n");
     showTextbox("Try it once and you'll see.\n");

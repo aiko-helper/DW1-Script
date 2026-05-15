@@ -1,15 +1,6 @@
 // DG220.SCN
 #pragma script index=220 start=0xc1000 end=0xc2000 headerU16=0xc sentinelOff=0xfe
 
-function showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox(a, b, c, d, e) {
-    showTextbox(a);
-    showTextbox(b);
-    showTextbox(c);
-    showTextbox(d);
-    showTextbox(e);
-}
-
-
 section onEnter(254) {  // len=2
     return;
 }
@@ -32,14 +23,22 @@ L1:
 L2:
     if (pstat[1] < 15) goto L3;
     speak(Entity.System, "<YELLOW>Poyomon <WHITE>\nI'll talk about digivolution.\nWell... It's about the \nconditions to digivolve.\n");
-    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("<YELLOW>Poyomon <WHITE>\nFirst, weight has to be close\nto next stage weight range.\n", "<YELLOW>Poyomon <WHITE>\nNext, higher parameters are\nbetter, but the effects of\neach are different.\n", "<YELLOW>Poyomon <WHITE>\nCare mistakes. Depending on\nthe kind of Digimon you want,\nsometimes mistakes are good.\n", "<YELLOW>Poyomon <WHITE>\nOh yeah, there are other\nspecial conditions to\nbecome certain Digimon.\n", "<YELLOW>Poyomon <WHITE>\nLike, especially high\nDiscipline, or many battles.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nFirst, weight has to be close\nto next stage weight range.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nNext, higher parameters are\nbetter, but the effects of\neach are different.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nCare mistakes. Depending on\nthe kind of Digimon you want,\nsometimes mistakes are good.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nOh yeah, there are other\nspecial conditions to\nbecome certain Digimon.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nLike, especially high\nDiscipline, or many battles.\n");
     showTextbox("<YELLOW>Poyomon <WHITE>\nIf you do this, even if the\nthree basic conditions are not\nfully met, you can digivolve.\n");
     playSound(0, 1);
     return;
 
 L3:
     speak(Entity.System, "<YELLOW>Poyomon <WHITE>\nJiji told me that <ORANGE><DIGIMON><WHITE>\nwould be digivolving.\n");
-    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("<YELLOW>Poyomon <WHITE>\nIt takes six hours from Baby\nto In-Training Digimon.\n", "<YELLOW>Poyomon <WHITE>\nAnd it only takes one day to\ngo to Rookie Digimon stage.\n", "<YELLOW>Poyomon <WHITE>\nThe next stage of Champion\ntakes about three days.\n", "<YELLOW>Poyomon <WHITE>\nHow long to next stage? I\nforgot, but it takes longer.\n", "<YELLOW>Poyomon <WHITE>\nWeight, Parameters and Care\nMistakes affect digivolution.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nIt takes six hours from Baby\nto In-Training Digimon.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nAnd it only takes one day to\ngo to Rookie Digimon stage.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nThe next stage of Champion\ntakes about three days.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nHow long to next stage? I\nforgot, but it takes longer.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nWeight, Parameters and Care\nMistakes affect digivolution.\n");
     showTextbox("<YELLOW>Poyomon <WHITE>\nI'm not sure on details, so\nI'll ask Jiji next time.\n");
     playSound(0, 1);
     return;

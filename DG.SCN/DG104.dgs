@@ -8,18 +8,6 @@ function setPStatThenSetPStatThenCallDigimonSubroutineThenCallSubroutine(a, b) {
     callSubroutine(7);
 }
 
-function showTextboxThenShowTextboxThenShowTextbox(a, b, c) {
-    showTextbox(a);
-    showTextbox(b);
-    showTextbox(c);
-}
-
-function speakThenSpeakThenSpeak(a, b, c, d, e, f) {
-    speak(a, b);
-    speak(c, d);
-    speak(e, f);
-}
-
 
 section onEnter(254) {  // len=2
     return;
@@ -72,7 +60,9 @@ L5:
 section(6) {  // len=1678
     if (!trigger(346)) goto L1;
     speak(6, "Hey, you've been in these\nbug battle contests, right?\n");
-    showTextboxThenShowTextboxThenShowTextbox("Well, I'll teach you\nsomething useful.\n", "Do you know where Kunemon\nsleeps? In Native Forest?\n", "Kid Digimons sleep there.\nWhen they wake up, they\nbecome Kunemon.\n");
+    showTextbox("Well, I'll teach you\nsomething useful.\n");
+    showTextbox("Do you know where Kunemon\nsleeps? In Native Forest?\n");
+    showTextbox("Kid Digimons sleep there.\nWhen they wake up, they\nbecome Kunemon.\n");
     showTextbox("But, sometimes they don't.\nIt's a matter of luck.\n");
     return;
 
@@ -83,14 +73,20 @@ L1:
 
 L2:
     speak(6, "Hey, you've been in these\nbug battle contests, right?\n");
-    showTextboxThenShowTextboxThenShowTextbox("Uh...The way you are now,\nyou won't make it.\n", "Well, I'll teach you\nsomething useful.\n", "Do you know where Kunemon\nsleeps? In Native Forest.\n");
+    showTextbox("Uh...The way you are now,\nyou won't make it.\n");
+    showTextbox("Well, I'll teach you\nsomething useful.\n");
+    showTextbox("Do you know where Kunemon\nsleeps? In Native Forest.\n");
     showTextbox("Kid Digimons sleep there.\nWhen they wake up, they\nbecome Kunemon.\n");
     showTextbox("But sometimes they don't.\nIt's a matter of luck.\n");
     return;
 
 L3:
-    speakThenSpeakThenSpeak(6, "Hey, do you want to enter the\nbug battle contest?\n", Entity.Player, "What's that?\n", 6, "You gotta sign up by ten\no'clock on the twenty second.\n");
-    speakThenSpeakThenSpeak(Entity.Player, "Huh???\n", 6, "You'll get the details\nthe day of the contest.\n", 6, "I wonder what he's?\ntalking about?\n");
+    speak(6, "Hey, do you want to enter the\nbug battle contest?\n");
+    speak(Entity.Player, "What's that?\n");
+    speak(6, "You gotta sign up by ten\no'clock on the twenty second.\n");
+    speak(Entity.Player, "Huh???\n");
+    speak(6, "You'll get the details\nthe day of the contest.\n");
+    speak(6, "I wonder what he's?\ntalking about?\n");
     return;
 }
 

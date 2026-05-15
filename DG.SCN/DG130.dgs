@@ -1,15 +1,6 @@
 // DG130.SCN
 #pragma script index=130 start=0x5b800 end=0x5c800 headerU16=0x1c sentinelOff=0x24
 
-function moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u) {
-    moveObjectTo(a, b, 1, c, 0, d, e);
-    moveObjectTo(f, g, 1, c, 0, h, i);
-    moveObjectTo(j, k, 1, c, 0, l, m);
-    moveObjectTo(n, o, 1, c, 0, p, q);
-    moveObjectTo(r, s, 1, c, 0, t, u);
-}
-
-
 section onEnter(254) {  // len=24
     roll(pstat: 110, max: 99);
     if (pstat[110] > 16) goto L1;
@@ -144,7 +135,11 @@ L4:
     move(entity: Entity.Player, to: (-4053, 3680), animDuration: 99);
     move(entity: Entity.Partner, to: (-4053, 3680), animDuration: 99);
     move(entity: 6, to: (-4053, 3680), animDuration: 99);
-    moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(0, 35, 0, 350, 410, 1, 36, 438, 410, 2, 37, 412, 410, 3, 38, 366, 410, 4, 39, 350, 434);
+    moveObjectTo(0, 35, 1, 0, 0, 350, 410);
+    moveObjectTo(1, 36, 1, 0, 0, 438, 410);
+    moveObjectTo(2, 37, 1, 0, 0, 412, 410);
+    moveObjectTo(3, 38, 1, 0, 0, 366, 410);
+    moveObjectTo(4, 39, 1, 0, 0, 350, 434);
     moveObjectTo(5, 40, 1, 0, 0, 350, 458);
     moveObjectTo(6, 41, 1, 0, 0, 366, 482);
     moveObjectTo(7, 42, 1, 0, 0, 390, 506);
@@ -155,7 +150,11 @@ L4:
     setPStat(248, 8);
     callSubroutine(21);
     delay(10);
-    moveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectToThenMoveObjectTo(0, 35, 120, 0, 730, 1, 36, 88, 730, 2, 37, 64, 730, 3, 38, 16, 730, 4, 39, 0, 754);
+    moveObjectTo(0, 35, 1, 120, 0, 0, 730);
+    moveObjectTo(1, 36, 1, 120, 0, 88, 730);
+    moveObjectTo(2, 37, 1, 120, 0, 64, 730);
+    moveObjectTo(3, 38, 1, 120, 0, 16, 730);
+    moveObjectTo(4, 39, 1, 120, 0, 0, 754);
     moveObjectTo(5, 40, 1, 120, 0, 0, 778);
     moveObjectTo(6, 41, 1, 120, 0, 16, 802);
     moveObjectTo(7, 42, 1, 120, 0, 40, 826);

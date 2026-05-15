@@ -1,14 +1,6 @@
 // MAP134.SCN
 #pragma script index=134 start=0x5e800 end=0x5f000 headerU16=0x1c sentinelOff=0x24
 
-function speakThenSpeakThenSpeakThenSpeak(a, b, c, d, e) {
-    speak(9, a);
-    speak(9, b);
-    speak(9, c);
-    speak(d, e);
-}
-
-
 section onEnter(254) {  // len=116
     roll(pstat: 110, max: 99);
     if (pstat[110] > 11) goto L1;
@@ -64,7 +56,10 @@ section(8) {  // len=118
 }
 
 section(9) {  // len=1672
-    speakThenSpeakThenSpeakThenSpeak("Bird brain!\n", "Numbskull!\n", "Dimwit!\n", 9, "Chowder head!\n");
+    speak(9, "Bird brain!\n");
+    speak(9, "Numbskull!\n");
+    speak(9, "Dimwit!\n");
+    speak(9, "Chowder head!\n");
     speak(9, "Dumb, dumb!\n");
     speak(9, "Eau de Geek!\n");
     speak(Entity.Player, "What did you say?!\n");

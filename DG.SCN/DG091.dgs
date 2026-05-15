@@ -1,12 +1,6 @@
 // DG091.SCN
 #pragma script index=91 start=0x40000 end=0x41000 headerU16=0x20 sentinelOff=0x24
 
-function setPStatThenSetPStatThenSetPStat(a, b, c, d, e) {
-    setPStat(a, b);
-    setPStat(c, d);
-    setPStat(e, 255);
-}
-
 function speakThenStartBattleThenSetTrigger(a, b, c) {
     speak(a, b);
     startBattle();
@@ -65,7 +59,9 @@ section(5) {  // len=1826
 L1:
     speak(5, "If you want to go thru,\nyou must accept my challenge.\n");
     setTrigger(1);
-    setPStatThenSetPStatThenSetPStat(250, 1, 251, 5, 252);
+    setPStat(250, 1);
+    setPStat(251, 5);
+    setPStat(252, 255);
     setPStat(253, 255);
     startBattle();
     unsetTrigger(1);
@@ -131,7 +127,9 @@ L8:
     showTextbox("Go <ORANGE><DIGIMON><WHITE>!\n");
     setTrigger(2);
     setTrigger(1);
-    setPStatThenSetPStatThenSetPStat(250, 1, 251, 5, 252);
+    setPStat(250, 1);
+    setPStat(251, 5);
+    setPStat(252, 255);
     setPStat(253, 255);
     startBattle();
     unsetTrigger(1);
