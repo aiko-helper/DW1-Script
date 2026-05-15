@@ -1,6 +1,13 @@
 // DG044.SCN
 #pragma script index=44 start=0x22800 end=0x23000 headerU16=0x20 sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
@@ -21,38 +28,22 @@ L3:
 }
 
 section(5) {  // len=56
-    speak(5, "I'll beat you up!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(268);
+    speakThenStartBattleThenSetTrigger(5, "I'll beat you up!\n", 268);
     return;
 }
 
 section(6) {  // len=60
-    speak(6, "Take it easy on me.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(299);
+    speakThenStartBattleThenSetTrigger(6, "Take it easy on me.\n", 299);
     return;
 }
 
 section(7) {  // len=82
-    speak(7, "I won't let\nmy catch get away!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(305);
+    speakThenStartBattleThenSetTrigger(7, "I won't let\nmy catch get away!\n", 305);
     return;
 }
 
 section(8) {  // len=54
-    speak(8, "Phew, it's over.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(305);
+    speakThenStartBattleThenSetTrigger(8, "Phew, it's over.\n", 305);
     return;
 }
 

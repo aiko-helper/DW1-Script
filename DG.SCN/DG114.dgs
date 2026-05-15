@@ -1,6 +1,13 @@
 // DG114.SCN
 #pragma script index=114 start=0x52000 end=0x52800 headerU16=0x24 sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 7) goto L1;
@@ -21,47 +28,27 @@ L3:
 }
 
 section(5) {  // len=62
-    speak(5, "So you're lost, <LIGHTBLUE><PLAYER><WHITE>?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(5, "So you're lost, <LIGHTBLUE><PLAYER><WHITE>?\n", 280);
     return;
 }
 
 section(6) {  // len=30
-    speak(6, "Huh?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(289);
+    speakThenStartBattleThenSetTrigger(6, "Huh?\n", 289);
     return;
 }
 
 section(7) {  // len=90
-    speak(7, "I'm not trying to get\nin your way.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(291);
+    speakThenStartBattleThenSetTrigger(7, "I'm not trying to get\nin your way.\n", 291);
     return;
 }
 
 section(8) {  // len=78
-    speak(8, "'Misty Trees.' Okay, say it.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(306);
+    speakThenStartBattleThenSetTrigger(8, "'Misty Trees.' Okay, say it.\n", 306);
     return;
 }
 
 section(9) {  // len=54
-    speak(9, "Okay! Showtime!!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(306);
+    speakThenStartBattleThenSetTrigger(9, "Okay! Showtime!!\n", 306);
     return;
 }
 

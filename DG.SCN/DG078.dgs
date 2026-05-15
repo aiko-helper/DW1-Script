@@ -1,6 +1,21 @@
 // DG078.SCN
 #pragma script index=78 start=0x37800 end=0x38800 headerU16=0x20 sentinelOff=0x24
 
+function speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(a) {
+    speak(Entity.Player, "I got too many Items.\nMust get rid of some.\n");
+    setTrigger(3);
+    callSubroutine(0);
+    callSubroutine(13);
+    giveItem(a, 1);
+}
+
+function playAnimationThenDelayThenSpeak(a, b) {
+    playAnimation(7, a);
+    delay(5);
+    speak(7, b);
+}
+
+
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 10) goto L1;
@@ -83,31 +98,21 @@ L6:
 }
 
 section(82) {  // len=668
-    playAnimation(7, 29);
-    delay(5);
-    speak(7, "You heard this already.\n");
+    playAnimationThenDelayThenSpeak(29, "You heard this already.\n");
     switch (pstat[36]) { case 0: goto L1; case 1: goto L2; }
 
 L1:
-    playAnimation(7, 30);
-    delay(5);
-    speak(7, "Time is slow here.\nHalf a day here is\nlike a day out there.\n");
-    playAnimation(7, 30);
-    delay(5);
-    speak(7, "For those who want to rest,\nit's perfect.\n");
+    playAnimationThenDelayThenSpeak(30, "Time is slow here.\nHalf a day here is\nlike a day out there.\n");
+    playAnimationThenDelayThenSpeak(30, "For those who want to rest,\nit's perfect.\n");
     addPStat(36, 1);
     playAnimation(7, 31);
     delay(5);
     return;
 
 L2:
-    playAnimation(7, 30);
-    delay(5);
-    speak(7, "Time goes fast in the\nSpeedy Time Zone.\nIt's just beyond here.\n");
+    playAnimationThenDelayThenSpeak(30, "Time goes fast in the\nSpeedy Time Zone.\nIt's just beyond here.\n");
     showTextbox("Two days pass instead\nof one there.\n");
-    playAnimation(7, 30);
-    delay(5);
-    speak(7, "Your Digimon grows faster,\nbut fades away faster too.\n");
+    playAnimationThenDelayThenSpeak(30, "Your Digimon grows faster,\nbut fades away faster too.\n");
     setPStat(36, 0);
     playAnimation(7, 31);
     delay(5);
@@ -151,11 +156,7 @@ L5:
     speak(Entity.System, "<LIGHTBLUE>Meat <WHITE>came out!\n");
     giveItem(Item.Meat, 1);
     if (!trigger(0)) goto L6;
-    speak(Entity.Player, "I got too many Items.\nMust get rid of some.\n");
-    setTrigger(3);
-    callSubroutine(0);
-    callSubroutine(13);
-    giveItem(Item.Meat, 1);
+    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.Meat);
 
 L6:
     goto L8;
@@ -173,11 +174,7 @@ L9:
     speak(Entity.System, "A <LIGHTBLUE>Small Recovery\nFloppy <WHITE>came out!\n");
     giveItem(Item.SmallRecovery, 1);
     if (!trigger(0)) goto L10;
-    speak(Entity.Player, "I got too many Items.\nMust get rid of some.\n");
-    setTrigger(3);
-    callSubroutine(0);
-    callSubroutine(13);
-    giveItem(Item.SmallRecovery, 1);
+    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.SmallRecovery);
 
 L10:
     goto L12;
@@ -195,11 +192,7 @@ L13:
     speak(Entity.System, "<LIGHTBLUE>Steak <WHITE>\ncame out!\n");
     giveItem(Item.MoldyMeat, 1);
     if (!trigger(0)) goto L14;
-    speak(Entity.Player, "I got too many Items.\nMust get rid of some.\n");
-    setTrigger(3);
-    callSubroutine(0);
-    callSubroutine(13);
-    giveItem(Item.MoldyMeat, 1);
+    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.MoldyMeat);
 
 L14:
     goto L16;
@@ -216,11 +209,7 @@ L17:
     reduceMoney(200);
     speak(Entity.System, "An <LIGHTBLUE>MP floppy <WHITE>\ncame out!\n");
     if (!trigger(0)) goto L18;
-    speak(Entity.Player, "I got too many Items.\nMust get rid of some.\n");
-    setTrigger(3);
-    callSubroutine(0);
-    callSubroutine(13);
-    giveItem(Item.MPFloppy, 1);
+    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(Item.MPFloppy);
     return;
 
 L18:

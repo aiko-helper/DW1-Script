@@ -1,6 +1,21 @@
 // DG037.SCN
 #pragma script index=37 start=0x1f000 end=0x1f800 headerU16=0x30 sentinelOff=0x24
 
+function delayThenRotate3DObjectThenDelayThenRotate3DObjectThenDelay(a, b) {
+    delay(1);
+    rotate3DObject(a, 1);
+    delay(1);
+    rotate3DObject(b, 1);
+    delay(1);
+}
+
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=112
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
@@ -32,56 +47,32 @@ L5:
 }
 
 section(5) {  // len=60
-    speak(5, "I'll knock you out!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(5, "I'll knock you out!\n", 280);
     return;
 }
 
 section(6) {  // len=60
-    speak(6, "Hey, don't push me!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(6, "Hey, don't push me!\n", 280);
     return;
 }
 
 section(7) {  // len=66
-    speak(7, "It's peaceful up here!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(7, "It's peaceful up here!\n", 280);
     return;
 }
 
 section(8) {  // len=74
-    speak(8, "I'll fall! It's dangerous!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(299);
+    speakThenStartBattleThenSetTrigger(8, "I'll fall! It's dangerous!\n", 299);
     return;
 }
 
 section(9) {  // len=66
-    speak(9, "Don't do that up here!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(299);
+    speakThenStartBattleThenSetTrigger(9, "Don't do that up here!\n", 299);
     return;
 }
 
 section(10) {  // len=76
-    speak(10, "Don't even try to fight me!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(299);
+    speakThenStartBattleThenSetTrigger(10, "Don't even try to fight me!\n", 299);
     return;
 }
 
@@ -97,17 +88,9 @@ L1:
     if (!trigger(176)) goto L3;
     playSound(8, 4);
     rotate3DObject(0, 1);
-    delay(1);
+    delayThenRotate3DObjectThenDelayThenRotate3DObjectThenDelay(1, 0);
     rotate3DObject(1, 1);
-    delay(1);
-    rotate3DObject(0, 1);
-    delay(1);
-    rotate3DObject(1, 1);
-    delay(1);
-    rotate3DObject(0, 1);
-    delay(1);
-    rotate3DObject(1, 1);
-    delay(1);
+    delayThenRotate3DObjectThenDelayThenRotate3DObjectThenDelay(0, 1);
     rotate3DObject(0, 1);
     delay(1);
     rotate3DObject(1, 1);

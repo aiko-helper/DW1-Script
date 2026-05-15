@@ -1,6 +1,13 @@
 // DG068.SCN
 #pragma script index=68 start=0x31000 end=0x31800 headerU16=0x28 sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=96
     roll(pstat: 110, max: 99);
     if (pstat[110] > 8) goto L1;
@@ -126,56 +133,32 @@ L5:
 }
 
 section(6) {  // len=34
-    speak(6, "Ugghh!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(295);
+    speakThenStartBattleThenSetTrigger(6, "Ugghh!\n", 295);
     return;
 }
 
 section(7) {  // len=32
-    speak(7, "Ahhh!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(295);
+    speakThenStartBattleThenSetTrigger(7, "Ahhh!\n", 295);
     return;
 }
 
 section(8) {  // len=56
-    speak(8, "You're dead meat!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(297);
+    speakThenStartBattleThenSetTrigger(8, "You're dead meat!\n", 297);
     return;
 }
 
 section(9) {  // len=38
-    speak(9, "Not Bad.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(282);
+    speakThenStartBattleThenSetTrigger(9, "Not Bad.\n", 282);
     return;
 }
 
 section(10) {  // len=60
-    speak(10, "You got poor taste.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(282);
+    speakThenStartBattleThenSetTrigger(10, "You got poor taste.\n", 282);
     return;
 }
 
 section(11) {  // len=80
-    speak(11, "You're cocky! I'll teach you.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(295);
+    speakThenStartBattleThenSetTrigger(11, "You're cocky! I'll teach you.\n", 295);
     return;
 }
 

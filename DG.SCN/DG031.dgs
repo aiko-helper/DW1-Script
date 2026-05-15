@@ -1,6 +1,19 @@
 // DG031.SCN
 #pragma script index=31 start=0x1b800 end=0x1c800 headerU16=0x10 sentinelOff=0x1775
 
+function playAnimationThenDelayThenSpeak(a, b) {
+    playAnimation(Entity.Player, a);
+    delay(20);
+    speak(Entity.Player, b);
+}
+
+function setPStatThenSetPStatThenSetPStat(a, b, c, d, e) {
+    setPStat(a, b);
+    setPStat(c, d);
+    setPStat(e, 255);
+}
+
+
 section onEnter(254) {  // len=26
     spawnChest(Item.OffenseChip, -582, 1062, 0, 694);
     spawnChest(Item.Medicine, -1129, 1032, 0, 695);
@@ -39,19 +52,13 @@ L1:
     look(entity: Entity.Partner, at: 5);
     setTrigger(106);
     delay(20);
-    playAnimation(Entity.Player, 7);
-    delay(20);
-    speak(Entity.Player, "Stop! Do you want to\nruin the island?!\n");
+    playAnimationThenDelayThenSpeak(7, "Stop! Do you want to\nruin the island?!\n");
     delay(20);
     look(entity: 5, at: Entity.Player);
     speak(5, "Who are you? Move out of my\nway! This is the only way!\n");
     setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 255);
+    setPStatThenSetPStatThenSetPStat(250, 1, 251, 5, 252);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);
@@ -59,24 +66,16 @@ L1:
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Partner, at: 5);
     speak(5, "Are you telling me\nthere's another way?\n");
-    playAnimation(Entity.Player, 7);
-    delay(20);
-    speak(Entity.Player, "If the island is ruined,\nit defeats the purpose!\nListen to me.\n");
+    playAnimationThenDelayThenSpeak(7, "If the island is ruined,\nit defeats the purpose!\nListen to me.\n");
     speak(5, "What?\n");
 
 L2:
-    playAnimation(Entity.Player, 19);
-    delay(20);
-    speak(Entity.Player, "We're building a city for\nthe island by gathering all\nDigimon.\n");
+    playAnimationThenDelayThenSpeak(19, "We're building a city for\nthe island by gathering all\nDigimon.\n");
     showTextbox("I heard that we can\nsave the island from this\ndanger by uniting Digimon.\n");
     speak(5, "I think you are right, but\ngathering all the Digimon,\nthat's a big...\n");
-    playAnimation(Entity.Player, 7);
-    delay(20);
-    speak(Entity.Player, "We're working on it right\nnow. Nothing is impossible!\n");
+    playAnimationThenDelayThenSpeak(7, "We're working on it right\nnow. Nothing is impossible!\n");
     speak(5, "That's a big job!\nBut I'm moved...\nMaybe, you guys can do it.\n");
-    playAnimation(Entity.Player, 19);
-    delay(20);
-    speak(Entity.Player, "If you believe in us, I want\nyou to come to the city.\n");
+    playAnimationThenDelayThenSpeak(19, "If you believe in us, I want\nyou to come to the city.\n");
     delay(20);
     speak(5, "Alright. I'll go to the city.\nI guess that's my new path!\n");
     goto L3;
@@ -114,12 +113,8 @@ L6:
     move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
     waitForEntity(Entity.Partner);
     setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 255);
+    setPStatThenSetPStatThenSetPStat(250, 1, 251, 5, 252);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);

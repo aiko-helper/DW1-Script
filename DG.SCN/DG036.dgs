@@ -1,6 +1,19 @@
 // DG036.SCN
 #pragma script index=36 start=0x1e800 end=0x1f000 headerU16=0x24 sentinelOff=0x24
 
+function playAnimationThenDelayThenSpeak(a, b) {
+    playAnimation(Entity.Player, a);
+    delay(15);
+    speak(Entity.Player, b);
+}
+
+function speakThenStartBattleThenSetTrigger(a, b) {
+    speak(a, b);
+    startBattle();
+    setTrigger(280);
+}
+
+
 section onEnter(254) {  // len=90
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
@@ -26,46 +39,28 @@ L4:
 }
 
 section(5) {  // len=30
-    speak(5, "Hey!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(5, "Hey!\n");
     return;
 }
 
 section(6) {  // len=58
-    speak(6, "Don't make me mad!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(6, "Don't make me mad!\n");
     return;
 }
 
 section(7) {  // len=70
-    speak(7, "You think that's funny?!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(7, "You think that's funny?!\n");
     return;
 }
 
 section(8) {  // len=70
-    speak(8, "Come on let's go for it!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(8, "Come on let's go for it!\n");
     return;
 }
 
 section(51) {  // len=86
     if (trigger(124)) goto L1;
-    playAnimation(Entity.Player, 15);
-    delay(15);
-    speak(Entity.Player, "Oh no, it's dangerous!\n");
+    playAnimationThenDelayThenSpeak(15, "Oh no, it's dangerous!\n");
     move(entity: Entity.Player, to: (73, 971), sprint: 1, withCamera: true);
     waitForEntity(Entity.Player);
 
@@ -75,9 +70,7 @@ L1:
 
 section(52) {  // len=86
     if (trigger(124)) goto L1;
-    playAnimation(Entity.Player, 15);
-    delay(15);
-    speak(Entity.Player, "Oh no, it's dangerous!\n");
+    playAnimationThenDelayThenSpeak(15, "Oh no, it's dangerous!\n");
     move(entity: Entity.Player, to: (-782, 1580), sprint: 1, withCamera: true);
     waitForEntity(Entity.Player);
 
@@ -87,9 +80,7 @@ L1:
 
 section(53) {  // len=1522
     if (trigger(124)) goto L1;
-    playAnimation(Entity.Player, 15);
-    delay(15);
-    speak(Entity.Player, "Oh no, it's dangerous!\n");
+    playAnimationThenDelayThenSpeak(15, "Oh no, it's dangerous!\n");
     move(entity: Entity.Player, to: (856, 1137), sprint: 1, withCamera: true);
     waitForEntity(Entity.Player);
     moveCamera(to: Entity.Player, speed: 10);
@@ -99,9 +90,7 @@ L1:
     if (trigger(103) || !trigger(124)) goto L2;
     rotate(entity: Entity.Player, to: 2000);
     delay(10);
-    playAnimation(Entity.Player, 24);
-    delay(15);
-    speak(Entity.Player, "Is there really an\ninvisible bridge here?\n");
+    playAnimationThenDelayThenSpeak(24, "Is there really an\ninvisible bridge here?\n");
     playAnimation(Entity.Player, 0);
     speak(Entity.Player, "What?\n");
     move(entity: Entity.Player, to: (66, 3240), sprint: 0, withCamera: true);

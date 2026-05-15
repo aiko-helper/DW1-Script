@@ -1,6 +1,13 @@
 // DG085.SCN
 #pragma script index=85 start=0x3d000 end=0x3d800 headerU16=0x1c sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=46
     roll(pstat: 110, max: 99);
     if (pstat[110] > 5) goto L1;
@@ -16,38 +23,22 @@ L2:
 }
 
 section(5) {  // len=60
-    speak(5, "I'll gobble you up!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(272);
+    speakThenStartBattleThenSetTrigger(5, "I'll gobble you up!\n", 272);
     return;
 }
 
 section(6) {  // len=60
-    speak(6, "I'm gonna go crazy!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(272);
+    speakThenStartBattleThenSetTrigger(6, "I'm gonna go crazy!\n", 272);
     return;
 }
 
 section(7) {  // len=42
-    speak(7, "Curse you!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(300);
+    speakThenStartBattleThenSetTrigger(7, "Curse you!\n", 300);
     return;
 }
 
 section(8) {  // len=74
-    speak(8, "Come on, I'll tear you up!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(300);
+    speakThenStartBattleThenSetTrigger(8, "Come on, I'll tear you up!\n", 300);
     return;
 }
 

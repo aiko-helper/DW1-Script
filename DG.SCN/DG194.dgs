@@ -1,6 +1,13 @@
 // DG194.SCN
 #pragma script index=194 start=0x94000 end=0x94800 headerU16=0x28 sentinelOff=0x2875
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=32
     spawnChest(Item.Sirloin, 3758, 1159, 1024, 686);
     if (trigger(321)) goto L1;
@@ -24,47 +31,27 @@ section(52) {  // len=14
 }
 
 section(5) {  // len=30
-    speak(5, "Taaa\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(288);
+    speakThenStartBattleThenSetTrigger(5, "Taaa\n", 288);
     return;
 }
 
 section(6) {  // len=74
-    speak(6, "Let's ask for forgiveness.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(285);
+    speakThenStartBattleThenSetTrigger(6, "Let's ask for forgiveness.\n", 285);
     return;
 }
 
 section(7) {  // len=78
-    speak(7, "Forgiveness heals the heart.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(285);
+    speakThenStartBattleThenSetTrigger(7, "Forgiveness heals the heart.\n", 285);
     return;
 }
 
 section(8) {  // len=48
-    speak(8, "Are you evil?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(288);
+    speakThenStartBattleThenSetTrigger(8, "Are you evil?\n", 288);
     return;
 }
 
 section(9) {  // len=58
-    speak(9, "Follow me. Then...\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(285);
+    speakThenStartBattleThenSetTrigger(9, "Follow me. Then...\n", 285);
     return;
 }
 
@@ -84,8 +71,6 @@ L1:
     setPStat(251, 10);
     setPStat(252, 255);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);

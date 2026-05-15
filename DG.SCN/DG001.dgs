@@ -1,6 +1,13 @@
 // DG001.SCN
 #pragma script index=1 start=0x7000 end=0x7800 headerU16=0x2c sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=124
     roll(pstat: 110, max: 99);
     if (pstat[110] > 39) goto L1;
@@ -33,74 +40,42 @@ L5:
 }
 
 section(5) {  // len=64
-    speak(5, "We're ready to begin!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(283);
+    speakThenStartBattleThenSetTrigger(5, "We're ready to begin!\n", 283);
     return;
 }
 
 section(6) {  // len=60
-    speak(6, "Heave-ho, heave-ho.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(283);
+    speakThenStartBattleThenSetTrigger(6, "Heave-ho, heave-ho.\n", 283);
     return;
 }
 
 section(7) {  // len=62
-    speak(7, "I'm going to eat it!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(277);
+    speakThenStartBattleThenSetTrigger(7, "I'm going to eat it!\n", 277);
     return;
 }
 
 section(8) {  // len=50
-    speak(8, "Wait a minute.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(277);
+    speakThenStartBattleThenSetTrigger(8, "Wait a minute.\n", 277);
     return;
 }
 
 section(9) {  // len=42
-    speak(9, "Here I go!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(283);
+    speakThenStartBattleThenSetTrigger(9, "Here I go!\n", 283);
     return;
 }
 
 section(10) {  // len=72
-    speak(10, "Hey, what's the big idea?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(274);
+    speakThenStartBattleThenSetTrigger(10, "Hey, what's the big idea?\n", 274);
     return;
 }
 
 section(11) {  // len=84
-    speak(11, "Rats! I shouldn't have\ndone it.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(274);
+    speakThenStartBattleThenSetTrigger(11, "Rats! I shouldn't have\ndone it.\n", 274);
     return;
 }
 
 section(12) {  // len=68
-    speak(12, "Rats, grumble, grumble.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(274);
+    speakThenStartBattleThenSetTrigger(12, "Rats, grumble, grumble.\n", 274);
     return;
 }
 

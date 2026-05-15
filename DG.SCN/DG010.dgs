@@ -1,6 +1,14 @@
 // DG010.SCN
 #pragma script index=10 start=0xd000 end=0xe000 headerU16=0x20 sentinelOff=0x19
 
+function moveObjectToThenDelayThenMoveObjectToThenDelay(a, b, c, d) {
+    moveObjectTo(1, 41, 1, 7, 0, a, b);
+    delay(12);
+    moveObjectTo(1, 41, 1, 7, 0, c, d);
+    delay(12);
+}
+
+
 section onEnter(254) {  // len=110
     if (!trigger(232)) goto L1;
     for id in 68..70 { setObjectVisibility(id, 1); }
@@ -29,8 +37,6 @@ L5:
 
 section(5) {  // len=76
     speak(5, "You think you're big stuff!\n");
-    fadeOutHUD();
-    delay(1);
     startBattle();
     setTrigger(286);
     return;
@@ -38,8 +44,6 @@ section(5) {  // len=76
 
 section(7) {  // len=76
     speak(7, "What did I ever do to you!?\n");
-    fadeOutHUD();
-    delay(1);
     startBattle();
     setTrigger(296);
     return;
@@ -76,14 +80,8 @@ L3:
     moveCamera(to: (-836, -663), slowdown: 20);
     waitForEntity(200);
     setObjectVisibility(41, 0);
-    moveObjectTo(1, 41, 1, 7, 0, 153, 349);
-    delay(12);
-    moveObjectTo(1, 41, 1, 7, 0, 184, 381);
-    delay(12);
-    moveObjectTo(1, 41, 1, 7, 0, 153, 411);
-    delay(12);
-    moveObjectTo(1, 41, 1, 7, 0, 184, 443);
-    delay(12);
+    moveObjectToThenDelayThenMoveObjectToThenDelay(153, 349, 184, 381);
+    moveObjectToThenDelayThenMoveObjectToThenDelay(153, 411, 184, 443);
     moveObjectTo(1, 41, 1, 7, 0, 153, 475);
     delay(12);
     setDigimon(Digimon.NPCNinjamon, 1, 1);
@@ -122,8 +120,6 @@ L5:
     setPStat(251, 6);
     setPStat(252, 255);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);

@@ -1,6 +1,28 @@
 // MAP151.SCN
 #pragma script index=151 start=0x6a800 end=0x6c800 headerU16=0x10 sentinelOff=0xfe
 
+function playAnimationThenDelayThenSpeakThenPlayAnimationThenSpeak(a, b, c, d) {
+    playAnimation(Entity.Player, a);
+    delay(15);
+    speak(Entity.Player, b);
+    playAnimation(Entity.Player, 0);
+    speak(c, d);
+}
+
+function speakThenPlayAnimationThenDelayThenSpeak(a, b, c, d, e, f) {
+    speak(a, b);
+    playAnimation(Entity.Player, c);
+    delay(d);
+    speak(e, f);
+}
+
+function speakThenSpeakThenSpeak(a, b, c, d, e) {
+    speak(a, b);
+    speak(c, d);
+    speak(a, e);
+}
+
+
 section onEnter(254) {  // len=2
     return;
 }
@@ -36,20 +58,12 @@ L2:
     showTextbox("Analog Humans and native\nDigimon fought very hard.\n");
     showTextbox("After ten years of battle,\nthe Analog Humans were\ndefeated and disappeared.\n");
     showTextbox("In the next ten years,\nmysteriously, the island's\narea almost doubled in size.\n");
-    playAnimation(Entity.Player, 16);
-    delay(15);
-    speak(Entity.Player, "So humans fought Digimon?\n");
-    playAnimation(Entity.Player, 0);
-    speak(5, "I'm sorry. That's all the\ndata we could recover.\n");
+    playAnimationThenDelayThenSpeakThenPlayAnimationThenSpeak(16, "So humans fought Digimon?\n", 5, "I'm sorry. That's all the\ndata we could recover.\n");
     rotate(entity: 5, to: 0);
     delay(20);
     speak(Entity.Player, "Don't worry. This is \nvery important information.\nNow I know so much more.\n");
     speak(5, "Is that right?\n");
-    playAnimation(Entity.Player, 25);
-    delay(15);
-    speak(Entity.Player, "These humans are probably the\nones who caused confusion and\ntrouble on the island.\n");
-    playAnimation(Entity.Player, 0);
-    speak(5, "Can humans live\none hundred years?\n");
+    playAnimationThenDelayThenSpeakThenPlayAnimationThenSpeak(25, "These humans are probably the\nones who caused confusion and\ntrouble on the island.\n", 5, "Can humans live\none hundred years?\n");
     speak(Entity.Player, "It seems that for humans,\ntime is slow in this world.\n");
     showTextbox("I guess that's why I don't\nhave to eat or sleep here.\n");
     showTextbox("One hundred years is a\nvery long time. Those guys\nmust be very tough.\n");
@@ -62,11 +76,7 @@ L2:
 L3:
     if (!trigger(211) || trigger(328)) goto L4;
     speak(5, "We're so sorry. We'll close\nthe factory for a while.\n");
-    playAnimation(Entity.Player, 19);
-    delay(15);
-    speak(Entity.Player, "Because of the trouble now,\nno one can say what's gonna\nhappen. It's not your fault.\n");
-    playAnimation(Entity.Player, 0);
-    speak(Entity.Player, "I think there's somebody\ncontrolling Giromon.\n");
+    playAnimationThenDelayThenSpeakThenPlayAnimationThenSpeak(19, "Because of the trouble now,\nno one can say what's gonna\nhappen. It's not your fault.\n", Entity.Player, "I think there's somebody\ncontrolling Giromon.\n");
     showTextbox("Computers were destroyed and\nwaste water started to leak.\n");
     showTextbox("That water made Digimons\ninsane. I don't think\nit's a coincidence.\n");
     speak(5, "These computers have some\nkey importance.\n");
@@ -74,9 +84,7 @@ L3:
     speak(Entity.Player, "What?!\n");
     speak(5, "I think there was some data\nregarding the island's past\non these computers.\n");
     showTextbox("But due to the Giromon's\nriot, the data was destroyed.\n");
-    speak(Entity.Player, "You've never seen the data?\n");
-    speak(5, "No, but we might be able to\nrepair some of it. I'll\ntry to connect the data.\n");
-    speak(Entity.Player, "I see, thank you.\nHow long will it take?\n");
+    speakThenSpeakThenSpeak(Entity.Player, "You've never seen the data?\n", 5, "No, but we might be able to\nrepair some of it. I'll\ntry to connect the data.\n", "I see, thank you.\nHow long will it take?\n");
     speak(5, "It'll be a while. I'll\nreopen the town entrance,\nso come back again.\n");
     speak(Entity.Player, "Thanks. I'll be back.\n");
     setTrigger(328);
@@ -84,9 +92,7 @@ L3:
 
 L4:
     if (!trigger(328)) goto L5;
-    speak(Entity.Player, "Have you finish\nrepairing the data?\n");
-    speak(5, "It'll take a while longer.\nCome back again.\n");
-    speak(Entity.Player, "OK, I'll be back.\n");
+    speakThenSpeakThenSpeak(Entity.Player, "Have you finish\nrepairing the data?\n", 5, "It'll take a while longer.\nCome back again.\n", "OK, I'll be back.\n");
     return;
 
 L5:
@@ -95,11 +101,7 @@ L5:
     delay(10);
     speak(Entity.Player, "Hey, hey!\n");
     speak(5, "I have to apologize.\n");
-    playAnimation(Entity.Player, 7);
-    delay(15);
-    speak(Entity.Player, "Do that later, you gotta stop\nthe factory's machines now!\n");
-    playAnimation(Entity.Player, 0);
-    speak(5, "Alright, I will.\n");
+    playAnimationThenDelayThenSpeakThenPlayAnimationThenSpeak(7, "Do that later, you gotta stop\nthe factory's machines now!\n", 5, "Alright, I will.\n");
     rotate(entity: 5, to: 2048);
     delay(20);
     playSound(8, 5);
@@ -134,22 +136,11 @@ L9:
     if (trigger(344) || !trigger(347) || trigger(343)) goto L10;
     speak(Entity.Player, "We can talk about that later.\nI gotta check out\nthe factory now.\n");
     showTextbox("This is a life and death\nsituation. Give me the okay!\n");
-    speak(5, "I don't quite understand\nwhat you're trying to do.\nI can't give you permission.\n");
-    speak(Entity.Player, "There are Digimon about to\nfade away because of the\nwaste water from the factory!\n");
-    speak(5, "From the factory? No way!\nThe waste water cleaning\nsystem is working fine.\n");
-    speak(Entity.Player, "How can you know it's working\nfine if we don't check?!\n");
-    playAnimation(Entity.Player, 19);
-    delay(5);
-    speak(5, "Our computer is perfect. In\nemergencies, the Net Keeper\nwill shut down the system.\n");
-    speak(Entity.Player, "Are you telling me that\nNet Keeper will always\nwork correctly?\n");
-    playAnimation(Entity.Player, 0);
-    delay(5);
-    speak(5, "Net Keeper is another\nname for Giromon who is\nan Ultimate Digimon.\n");
+    speakThenSpeakThenSpeak(5, "I don't quite understand\nwhat you're trying to do.\nI can't give you permission.\n", Entity.Player, "There are Digimon about to\nfade away because of the\nwaste water from the factory!\n", "From the factory? No way!\nThe waste water cleaning\nsystem is working fine.\n");
+    speakThenPlayAnimationThenDelayThenSpeak(Entity.Player, "How can you know it's working\nfine if we don't check?!\n", 19, 5, 5, "Our computer is perfect. In\nemergencies, the Net Keeper\nwill shut down the system.\n");
+    speakThenPlayAnimationThenDelayThenSpeak(Entity.Player, "Are you telling me that\nNet Keeper will always\nwork correctly?\n", 0, 5, 5, "Net Keeper is another\nname for Giromon who is\nan Ultimate Digimon.\n");
     showTextbox("His judgement and ability\nare so perfect.\n");
-    speak(Entity.Player, "He is a Digimon?! Oh no, we\nare in even more trouble now.\nPlease, give me permission!\n");
-    playAnimation(Entity.Player, 19);
-    delay(5);
-    speak(5, "Leave! Now!\n");
+    speakThenPlayAnimationThenDelayThenSpeak(Entity.Player, "He is a Digimon?! Oh no, we\nare in even more trouble now.\nPlease, give me permission!\n", 19, 5, 5, "Leave! Now!\n");
     playAnimation(Entity.Player, 22);
     delay(10);
     speak(Entity.Player, "Sigh...Rats!\n");

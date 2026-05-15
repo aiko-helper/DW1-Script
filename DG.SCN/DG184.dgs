@@ -1,6 +1,33 @@
 // DG184.SCN
 #pragma script index=184 start=0x8d000 end=0x8e800 headerU16=0x10 sentinelOff=0xfe
 
+function setObjectVisibilityThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(a, b, c, d, e) {
+    setObjectVisibility(a, b);
+    setObjectVisibility(c, 0);
+    setPStat(247, d);
+    setPStat(248, e);
+    callSubroutine(21);
+}
+
+function playAnimationThenDelayThenSpeak(a, b, c, d, e) {
+    playAnimation(a, b);
+    delay(c);
+    speak(d, e);
+}
+
+function setPStatThenSetPStatThenSetPStat(a, b, c, d, e) {
+    setPStat(a, b);
+    setPStat(c, d);
+    setPStat(e, 255);
+}
+
+function setPStatThenSetPStatThenCallSubroutine(a, b) {
+    setPStat(247, a);
+    setPStat(248, b);
+    callSubroutine(21);
+}
+
+
 section onEnter(254) {  // len=2
     return;
 }
@@ -27,16 +54,10 @@ L2:
     delay(5);
     speak(Entity.Player, "An egg!\n");
     showTextbox("Could it be Machinedramon's?\n");
-    playAnimation(8, 28);
-    delay(40);
-    speak(Entity.Player, "Could be trouble!\n");
+    playAnimationThenDelayThenSpeak(8, 28, 40, Entity.Player, "Could be trouble!\n");
     setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 8);
-    setPStat(252, 255);
+    setPStatThenSetPStatThenSetPStat(250, 1, 251, 8, 252);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);
@@ -91,13 +112,9 @@ L5:
     showTextbox("I was so close to ruling\nthe Net World.\n");
     speak(Entity.Player, "You're a grown up! Stop\nthis, you're hurting everyone.\n");
     speak(6, "I don't care if\nI'm hurting Digimon.\n");
-    playAnimation(6, 29);
-    delay(20);
-    speak(6, "Digimon should obey\nhumans like slaves.\n");
+    playAnimationThenDelayThenSpeak(6, 29, 20, 6, "Digimon should obey\nhumans like slaves.\n");
     callSubroutine(51);
-    playAnimation(Entity.Player, 19);
-    delay(20);
-    speak(Entity.Player, "You're wrong! Digimon have\nhearts and minds!\nWe're friends!\n");
+    playAnimationThenDelayThenSpeak(Entity.Player, 19, 20, Entity.Player, "You're wrong! Digimon have\nhearts and minds!\nWe're friends!\n");
     speak(6, "Let's fight and see if\nslaves or friends are better.\n");
     move(entity: 6, to: (780, 530), sprint: 0);
     waitForEntity(6);
@@ -120,12 +137,8 @@ L5:
     playSound(8, 1);
     delay(40);
     setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 255);
+    setPStatThenSetPStatThenSetPStat(250, 1, 251, 5, 252);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);
@@ -175,82 +188,50 @@ L5:
     delay(40);
     playSound(8, 7);
     setObjectVisibility(11, 0);
-    setObjectVisibility(9, 0);
-    setObjectVisibility(10, 0);
-    setPStat(247, 12);
-    setPStat(248, 1);
-    callSubroutine(21);
-    setPStat(247, 9);
-    setPStat(248, 10);
-    callSubroutine(21);
+    setObjectVisibilityThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(9, 0, 10, 12, 1);
+    setPStatThenSetPStatThenCallSubroutine(9, 10);
     unloadEntity(6);
     speak(Entity.Player, "Oh Noooo!!\n");
     setObjectVisibility(0, 0);
-    setPStat(247, 0);
-    setPStat(248, 1);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(0, 1);
     speak(Entity.System, "<YELLOW>Analogman <WHITE>\nYou're done for now!\n");
     speak(Entity.Player, "I'm sorry guys. There's\nnothing I can do now.\n");
-    playAnimation(Entity.Player, 22);
-    delay(20);
-    speak(Entity.System, "<YELLOW>??? <WHITE>\nIt's alright.\n");
+    playAnimationThenDelayThenSpeak(Entity.Player, 22, 20, Entity.System, "<YELLOW>??? <WHITE>\nIt's alright.\n");
     rotate(entity: Entity.Player, to: 1024);
     delay(20);
     rotate(entity: Entity.Player, to: 3072);
     delay(20);
     speak(Entity.Player, "Huh?\n");
     setObjectVisibility(0, 1);
-    setObjectVisibility(1, 0);
-    setObjectVisibility(2, 0);
-    setPStat(247, 1);
-    setPStat(248, 2);
-    callSubroutine(21);
+    setObjectVisibilityThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(1, 0, 2, 1, 2);
     speak(Entity.System, "<YELLOW>Analogman <WHITE>\nIt's not transferring!\nSomething is wrong in the\nprogram. What's happening?!\n");
     rotate(entity: Entity.Player, to: 0);
     delay(20);
     speak(Entity.Player, "I can hear everyone's voices!\nWho is there?\n");
-    playAnimation(Entity.Player, 23);
-    delay(5);
-    speak(Entity.System, "<YELLOW>Jijimon <WHITE>\nI am sending our energy\nto you right now.\n");
+    playAnimationThenDelayThenSpeak(Entity.Player, 23, 5, Entity.System, "<YELLOW>Jijimon <WHITE>\nI am sending our energy\nto you right now.\n");
     speak(Entity.System, "<YELLOW>Tokomon <WHITE>\nCan you hear our voices?\n");
     speak(Entity.System, "<YELLOW>Agumon <WHITE>\nI guess we made it in time!\n");
     speak(Entity.Player, "You all...\n");
     setObjectVisibility(1, 1);
     setObjectVisibility(2, 1);
-    setObjectVisibility(3, 0);
-    setObjectVisibility(4, 0);
-    setPStat(247, 3);
-    setPStat(248, 2);
-    callSubroutine(21);
+    setObjectVisibilityThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(3, 0, 4, 3, 2);
     speak(Entity.System, "<YELLOW>Analogman <WHITE>\nNo, this stupid thing! Help!\nHelp me! Ahhhhhhh!!!\n");
     playSound(8, 8);
     setObjectVisibility(3, 1);
     setObjectVisibility(4, 1);
     setObjectVisibility(5, 0);
     delay(40);
-    setPStat(247, 5);
-    setPStat(248, 1);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(5, 1);
     delay(20);
     rotate(entity: Entity.Player, to: 2048);
     setObjectVisibility(5, 1);
     for id in 9..11 { setObjectVisibility(id, 1); }
     setObjectVisibility(6, 0);
-    setPStat(247, 6);
-    setPStat(248, 1);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(6, 1);
     delay(4);
-    setObjectVisibility(6, 1);
-    setObjectVisibility(7, 0);
-    setPStat(247, 7);
-    setPStat(248, 1);
-    callSubroutine(21);
+    setObjectVisibilityThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(6, 1, 7, 7, 1);
     delay(3);
-    setObjectVisibility(7, 1);
-    setObjectVisibility(8, 0);
-    setPStat(247, 8);
-    setPStat(248, 1);
-    callSubroutine(21);
+    setObjectVisibilityThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(7, 1, 8, 8, 1);
     delay(3);
     setObjectVisibility(8, 1);
     delay(10);

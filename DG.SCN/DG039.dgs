@@ -1,6 +1,15 @@
 // DG039.SCN
 #pragma script index=39 start=0x20000 end=0x20800 headerU16=0x10 sentinelOff=0x1875
 
+function delayThenSpeakThenDelayThenSpeakThenDelay(a, b, c, d) {
+    delay(10);
+    speak(a, b);
+    delay(10);
+    speak(c, d);
+    delay(10);
+}
+
+
 section onEnter(254) {  // len=14
     spawnChest(Item.DefenseChip, 1460, -443, 3072, 666);
     return;
@@ -8,8 +17,6 @@ section onEnter(254) {  // len=14
 
 section(6) {  // len=60
     speak(6, "Am I bothering you?\n");
-    fadeOutHUD();
-    delay(1);
     startBattle();
     setTrigger(280);
     return;
@@ -36,11 +43,7 @@ L3:
     delay(15);
     speak(Entity.Player, "I hear a voice from above.\nAnybody there?\n");
     playAnimation(Entity.Player, 0);
-    delay(10);
-    speak(Entity.System, "<YELLOW>??? <WHITE>\nAnybody there?\n");
-    delay(10);
-    speak(Entity.Player, "Yes, there is.\n");
-    delay(10);
+    delayThenSpeakThenDelayThenSpeakThenDelay(Entity.System, "<YELLOW>??? <WHITE>\nAnybody there?\n", Entity.Player, "Yes, there is.\n");
     speak(Entity.System, "<YELLOW>??? <WHITE>\nHelp me!\nThe ground is bulging up.\n");
     delay(10);
     speak(Entity.Player, "You gotta be kidding.\n");
@@ -52,11 +55,7 @@ L3:
     delay(15);
     speak(Entity.Player, "A machine? It must be coming\nfrom Ogremon's hideout.\n");
     playAnimation(Entity.Player, 0);
-    delay(10);
-    speak(Entity.System, "<YELLOW>??? <WHITE>\nYou must have done\nsomething wrong there, no?\n");
-    delay(10);
-    speak(Entity.Player, "I did many things. It could\nbe the elevator.... I'll go\nback to the hideout and check.\n");
-    delay(10);
+    delayThenSpeakThenDelayThenSpeakThenDelay(Entity.System, "<YELLOW>??? <WHITE>\nYou must have done\nsomething wrong there, no?\n", Entity.Player, "I did many things. It could\nbe the elevator.... I'll go\nback to the hideout and check.\n");
     playSound(8, 11);
     speak(Entity.System, "<YELLOW>??? <WHITE>\nThanks.\n");
     delay(10);

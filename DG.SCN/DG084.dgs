@@ -1,6 +1,13 @@
 // DG084.SCN
 #pragma script index=84 start=0x3c800 end=0x3d000 headerU16=0x24 sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 17) goto L1;
@@ -21,38 +28,22 @@ L3:
 }
 
 section(5) {  // len=54
-    speak(5, "Ahhh, it's warm!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(271);
+    speakThenStartBattleThenSetTrigger(5, "Ahhh, it's warm!\n", 271);
     return;
 }
 
 section(6) {  // len=132
-    speak(6, "So you want to go thru here?\nDon't even think about it!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(303);
+    speakThenStartBattleThenSetTrigger(6, "So you want to go thru here?\nDon't even think about it!\n", 303);
     return;
 }
 
 section(7) {  // len=72
-    speak(7, "Oh, poor thing, ha ha ha!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(300);
+    speakThenStartBattleThenSetTrigger(7, "Oh, poor thing, ha ha ha!\n", 300);
     return;
 }
 
 section(8) {  // len=50
-    speak(8, "I'll beat you!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(300);
+    speakThenStartBattleThenSetTrigger(8, "I'll beat you!\n", 300);
     return;
 }
 

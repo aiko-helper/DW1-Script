@@ -1,6 +1,13 @@
 // DG024.SCN
 #pragma script index=24 start=0x17000 end=0x17800 headerU16=0x2c sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 7) goto L1;
@@ -21,74 +28,42 @@ L3:
 }
 
 section(5) {  // len=50
-    speak(5, "Hot! It's hot!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(269);
+    speakThenStartBattleThenSetTrigger(5, "Hot! It's hot!\n", 269);
     return;
 }
 
 section(6) {  // len=60
-    speak(6, "It started boiling!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(269);
+    speakThenStartBattleThenSetTrigger(6, "It started boiling!\n", 269);
     return;
 }
 
 section(7) {  // len=42
-    speak(7, "Oh, I see.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(286);
+    speakThenStartBattleThenSetTrigger(7, "Oh, I see.\n", 286);
     return;
 }
 
 section(8) {  // len=56
-    speak(8, "Alright, come on!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(286);
+    speakThenStartBattleThenSetTrigger(8, "Alright, come on!\n", 286);
     return;
 }
 
 section(9) {  // len=54
-    speak(9, "I've had enough!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(296);
+    speakThenStartBattleThenSetTrigger(9, "I've had enough!\n", 296);
     return;
 }
 
 section(10) {  // len=42
-    speak(10, "No thanks!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(296);
+    speakThenStartBattleThenSetTrigger(10, "No thanks!\n", 296);
     return;
 }
 
 section(11) {  // len=32
-    speak(11, "What?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(11, "What?\n", 280);
     return;
 }
 
 section(12) {  // len=34
-    speak(12, "Mmmmm!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(12, "Mmmmm!\n", 280);
     return;
 }
 

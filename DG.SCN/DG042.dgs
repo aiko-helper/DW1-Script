@@ -1,6 +1,13 @@
 // DG042.SCN
 #pragma script index=42 start=0x21800 end=0x22000 headerU16=0x24 sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
@@ -21,56 +28,32 @@ L3:
 }
 
 section(5) {  // len=34
-    speak(5, "Shwaa!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(302);
+    speakThenStartBattleThenSetTrigger(5, "Shwaa!\n", 302);
     return;
 }
 
 section(6) {  // len=52
-    speak(6, "Sha sha shaaaa!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(302);
+    speakThenStartBattleThenSetTrigger(6, "Sha sha shaaaa!\n", 302);
     return;
 }
 
 section(7) {  // len=78
-    speak(7, "Doesn't look like he's hurt.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(299);
+    speakThenStartBattleThenSetTrigger(7, "Doesn't look like he's hurt.\n", 299);
     return;
 }
 
 section(8) {  // len=72
-    speak(8, "I'll give you a discount.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(268);
+    speakThenStartBattleThenSetTrigger(8, "I'll give you a discount.\n", 268);
     return;
 }
 
 section(9) {  // len=64
-    speak(9, "Don't make fun of us!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(268);
+    speakThenStartBattleThenSetTrigger(9, "Don't make fun of us!\n", 268);
     return;
 }
 
 section(10) {  // len=94
-    speak(10, "You're not gonna\nmake it home alive!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(305);
+    speakThenStartBattleThenSetTrigger(10, "You're not gonna\nmake it home alive!\n", 305);
     return;
 }
 

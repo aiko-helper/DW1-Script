@@ -1,6 +1,13 @@
 // DG002.SCN
 #pragma script index=2 start=0x7800 end=0x8000 headerU16=0x20 sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=62
     roll(pstat: 110, max: 99);
     if (pstat[110] > 24) goto L1;
@@ -20,38 +27,22 @@ L3:
 }
 
 section(5) {  // len=56
-    speak(5, "I'm going to win!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(277);
+    speakThenStartBattleThenSetTrigger(5, "I'm going to win!\n", 277);
     return;
 }
 
 section(7) {  // len=60
-    speak(7, "Okay, come on, boy!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(277);
+    speakThenStartBattleThenSetTrigger(7, "Okay, come on, boy!\n", 277);
     return;
 }
 
 section(8) {  // len=78
-    speak(8, "What's going to happen next?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(274);
+    speakThenStartBattleThenSetTrigger(8, "What's going to happen next?\n", 274);
     return;
 }
 
 section(9) {  // len=62
-    speak(9, "No way it will work.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(274);
+    speakThenStartBattleThenSetTrigger(9, "No way it will work.\n", 274);
     return;
 }
 
@@ -102,8 +93,6 @@ L6:
     setPStat(251, 6);
     setPStat(252, 255);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);

@@ -1,6 +1,13 @@
 // MAP146.SCN
 #pragma script index=146 start=0x67800 end=0x68000 headerU16=0x20 sentinelOff=0xfe
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=2
     return;
 }
@@ -10,38 +17,22 @@ section(51) {  // len=2
 }
 
 section(5) {  // len=46
-    speak(5, "Who are you?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(292);
+    speakThenStartBattleThenSetTrigger(5, "Who are you?\n", 292);
     return;
 }
 
 section(6) {  // len=56
-    speak(6, "Why are you here?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(292);
+    speakThenStartBattleThenSetTrigger(6, "Why are you here?\n", 292);
     return;
 }
 
 section(7) {  // len=76
-    speak(7, "I'm going to get some rest.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(273);
+    speakThenStartBattleThenSetTrigger(7, "I'm going to get some rest.\n", 273);
     return;
 }
 
 section(8) {  // len=54
-    speak(8, "What's going on?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(273);
+    speakThenStartBattleThenSetTrigger(8, "What's going on?\n", 273);
     return;
 }
 

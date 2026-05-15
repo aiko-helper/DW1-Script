@@ -1,6 +1,35 @@
 // MAP163.SCN
 #pragma script index=163 start=0x75800 end=0x77800 headerU16=0x4c sentinelOff=0x6925
 
+function unsetTriggerThenUnsetTriggerThenUnsetTriggerThenUnsetTriggerThenUnsetTrigger(a, b, c, d, e) {
+    unsetTrigger(a);
+    unsetTrigger(b);
+    unsetTrigger(c);
+    unsetTrigger(d);
+    unsetTrigger(e);
+}
+
+function setTriggerThenSetTriggerThenSetTriggerThenSetTriggerThenSetTrigger(a, b, c, d, e) {
+    setTrigger(a);
+    setTrigger(b);
+    setTrigger(c);
+    setTrigger(d);
+    setTrigger(e);
+}
+
+function speakThenShowTextboxThenShowTextbox(a, b, c, d) {
+    speak(a, b);
+    showTextbox(c);
+    showTextbox(d);
+}
+
+function setTriggerThenSpeakThenSpeak(a, b, c, d, e) {
+    setTrigger(a);
+    speak(b, c);
+    speak(d, e);
+}
+
+
 section onEnter(254) {  // len=762
     storeDate(105);
     if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L1;
@@ -127,9 +156,7 @@ L26:
 }
 
 section(5) {  // len=224
-    setTrigger(77);
-    speak(5, "Bakke. Bah Kkea.\n");
-    speak(Entity.Player, "I still don't understand him.\n");
+    setTriggerThenSpeakThenSpeak(77, 5, "Bakke. Bah Kkea.\n", Entity.Player, "I still don't understand him.\n");
     storeDigimonType(103);
     if (pstat[103] != 37) goto L1;
     look(entity: Entity.Player, at: Entity.Partner);
@@ -146,9 +173,7 @@ L1:
 
 section(6) {  // len=432
     if (trigger(78)) goto L1;
-    setTrigger(78);
-    speak(6, "Look! It's my special\nbulletin board.\n");
-    speak(6, "We need information for the\ncity, so I decided to make a\nnewspaper! What do you think?\n");
+    setTriggerThenSpeakThenSpeak(78, 6, "Look! It's my special\nbulletin board.\n", 6, "We need information for the\ncity, so I decided to make a\nnewspaper! What do you think?\n");
     speak(6, "You can count on me to\ncollect information.\n");
     return;
 
@@ -166,34 +191,22 @@ section(7) {  // len=810
 L1:
     if (!trigger(204) || trigger(52) || trigger(249)) goto L2;
     setTrigger(52);
-    speak(7, "What do you think of my shop?\n");
-    showTextbox("I'm not good at sales, but\nthere isn't anybody else\nto do it now.\n");
-    showTextbox("Bring many Digimon here, OK?\n");
+    speakThenShowTextboxThenShowTextbox(7, "What do you think of my shop?\n", "I'm not good at sales, but\nthere isn't anybody else\nto do it now.\n", "Bring many Digimon here, OK?\n");
     return;
 
 L2:
     if (!trigger(204) || !trigger(249) || trigger(95)) goto L3;
-    setTrigger(95);
-    speak(7, "Well, what do you think?\n");
-    speak(Entity.System, "<YELLOW>Coelamon <WHITE>\nWe have decided to help each\nother and sell all these items.\n");
+    setTriggerThenSpeakThenSpeak(95, 7, "Well, what do you think?\n", Entity.System, "<YELLOW>Coelamon <WHITE>\nWe have decided to help each\nother and sell all these items.\n");
     return;
 
 L3:
     if (!trigger(204) || !trigger(249)) goto L4;
-    setTrigger(384);
-    setTrigger(385);
-    setTrigger(388);
-    setTrigger(392);
-    setTrigger(406);
+    setTriggerThenSetTriggerThenSetTriggerThenSetTriggerThenSetTrigger(384, 385, 388, 392, 406);
     setTrigger(422);
     unsetTrigger(3);
     setPStat(254, 7);
     callSubroutine(8);
-    unsetTrigger(384);
-    unsetTrigger(385);
-    unsetTrigger(388);
-    unsetTrigger(392);
-    unsetTrigger(406);
+    unsetTriggerThenUnsetTriggerThenUnsetTriggerThenUnsetTriggerThenUnsetTrigger(384, 385, 388, 392, 406);
     unsetTrigger(422);
     return;
 
@@ -283,15 +296,11 @@ L1:
 
 L2:
     if (pstat[1] < 2 || trigger(185)) goto L3;
-    speak(9, "We're fixing Digital Bridge\nnow. Please wait a while.\n");
-    showTextbox("I hear there's a rare Digimon\nat Coela Point in the south.\n");
-    showTextbox("Rumor has it is that he shows\nup late afternoon everyday.\n");
+    speakThenShowTextboxThenShowTextbox(9, "We're fixing Digital Bridge\nnow. Please wait a while.\n", "I hear there's a rare Digimon\nat Coela Point in the south.\n", "Rumor has it is that he shows\nup late afternoon everyday.\n");
     return;
 
 L3:
-    speak(9, "Say, did you know there's\na broken bridge in\nthe east part of the city?\n");
-    showTextbox("We didn't think anyone\nwould ever use it, so we\ndidn't do anything about it.\n");
-    showTextbox("We're thinking about\nfixing it on our own.\n");
+    speakThenShowTextboxThenShowTextbox(9, "Say, did you know there's\na broken bridge in\nthe east part of the city?\n", "We didn't think anyone\nwould ever use it, so we\ndidn't do anything about it.\n", "We're thinking about\nfixing it on our own.\n");
     showTextbox("Until then, go check the\nwest and south sections.\nThen come back and see me.\n");
     return;
 
@@ -311,9 +320,7 @@ L6:
 
 section(10) {  // len=384
     if (trigger(80)) goto L1;
-    setTrigger(80);
-    speak(10, "What do you think? I turned\non the light. Bright enough?\n");
-    speak(10, "Let's make our city\nclean and cheerful!\n");
+    setTriggerThenSpeakThenSpeak(80, 10, "What do you think? I turned\non the light. Bright enough?\n", 10, "Let's make our city\nclean and cheerful!\n");
     return;
 
 L1:
@@ -341,9 +348,7 @@ section(81) {  // len=1148
     setTextboxOrigin(-628, 0, 2226);
     if (!trigger(249) || trigger(52) || trigger(204)) goto L1;
     setTrigger(52);
-    speak(203, "Welcome to my shop!\nI'll give you a great price\n<LIGHTBLUE><PLAYER><WHITE>.\n");
-    showTextbox("I'm not good at sales,\nbut neither is anyone else.\n");
-    showTextbox("I'm in charge of sales now.\nI hope we can do business.\n");
+    speakThenShowTextboxThenShowTextbox(203, "Welcome to my shop!\nI'll give you a great price\n<LIGHTBLUE><PLAYER><WHITE>.\n", "I'm not good at sales,\nbut neither is anyone else.\n", "I'm in charge of sales now.\nI hope we can do business.\n");
     showTextbox("<LIGHTBLUE><PLAYER><WHITE>, please bring\nas many Digimon back\nwith you as you can.\n");
     return;
     playSound(0, 1);
@@ -351,36 +356,24 @@ section(81) {  // len=1148
 L1:
     if (!trigger(204) || trigger(52) || trigger(249)) goto L2;
     setTrigger(52);
-    speak(202, "What do you think\nof my shop?\n");
-    showTextbox("I'm not good at sales,\nbut no one else is,\nso I must do it.\n");
-    showTextbox("Bring back lots\nof Digimon soon.\n");
+    speakThenShowTextboxThenShowTextbox(202, "What do you think\nof my shop?\n", "I'm not good at sales,\nbut no one else is,\nso I must do it.\n", "Bring back lots\nof Digimon soon.\n");
     playSound(0, 1);
     return;
 
 L2:
     if (!trigger(204) || !trigger(249) || trigger(95)) goto L3;
-    setTrigger(95);
-    speak(202, "Well, what do you think?\n");
-    speak(Entity.System, "<YELLOW>Coelamon <WHITE>\nWe decided to help each\nother and sell these items.\n");
+    setTriggerThenSpeakThenSpeak(95, 202, "Well, what do you think?\n", Entity.System, "<YELLOW>Coelamon <WHITE>\nWe decided to help each\nother and sell these items.\n");
     playSound(0, 1);
     return;
 
 L3:
     if (!trigger(204) || !trigger(249)) goto L4;
-    setTrigger(384);
-    setTrigger(385);
-    setTrigger(388);
-    setTrigger(392);
-    setTrigger(406);
+    setTriggerThenSetTriggerThenSetTriggerThenSetTriggerThenSetTrigger(384, 385, 388, 392, 406);
     setTrigger(422);
     unsetTrigger(3);
     setPStat(254, 255);
     callSubroutine(8);
-    unsetTrigger(384);
-    unsetTrigger(385);
-    unsetTrigger(388);
-    unsetTrigger(392);
-    unsetTrigger(406);
+    unsetTriggerThenUnsetTriggerThenUnsetTriggerThenUnsetTriggerThenUnsetTrigger(384, 385, 388, 392, 406);
     unsetTrigger(422);
     return;
 

@@ -1,6 +1,20 @@
 // MAP135.SCN
 #pragma script index=135 start=0x5f000 end=0x60800 headerU16=0x1c sentinelOff=0xfe
 
+function playAnimationThenDelayThenSpeakThenPlayAnimation(a, b, c, d, e, f) {
+    playAnimation(Entity.Player, a);
+    delay(b);
+    speak(c, d);
+    playAnimation(e, f);
+}
+
+function speakThenSpeakThenShowTextbox(a, b, c) {
+    speak(Entity.Player, a);
+    speak(5, b);
+    showTextbox(c);
+}
+
+
 section onEnter(254) {  // len=2
     return;
 }
@@ -17,15 +31,9 @@ section(5) {  // len=3342
     waitForEntity(200);
     playSound(8, 1);
     speak(5, " <LIGHTBLUE><PLAYER><WHITE> and <ORANGE><DIGIMON><WHITE>,\nright? Thanks for coming\nto Volume Villa!\n");
-    playAnimation(Entity.Player, 22);
-    delay(20);
-    speak(Entity.Player, "I'm sorry for what\nwe did to Otamamon.\n");
-    playAnimation(Entity.Player, 0);
+    playAnimationThenDelayThenSpeakThenPlayAnimation(22, 20, Entity.Player, "I'm sorry for what\nwe did to Otamamon.\n", Entity.Player, 0);
     speak(5, "Never mind.\n");
-    playAnimation(Entity.Player, 23);
-    delay(20);
-    speak(Entity.Player, "Huh?\n");
-    playAnimation(Entity.Player, 0);
+    playAnimationThenDelayThenSpeakThenPlayAnimation(23, 20, Entity.Player, "Huh?\n", Entity.Player, 0);
     playAnimation(5, 5);
     delay(38);
     playAnimation(5, 0);
@@ -48,20 +56,13 @@ L2:
 L3:
     playAnimation(Entity.Player, 16);
     delay(20);
-    speak(Entity.Player, "Cherrymon? I've never heard\nof such a Digimon.\n");
-    speak(5, "Cherrymon makes the fog\nin Misty Trees.\n");
-    showTextbox("He created fog to protect\nthe forest from danger.\n");
-    playAnimation(Entity.Player, 25);
-    delay(20);
-    speak(Entity.Player, "But that's a problem for us.\n");
-    playAnimation(5, 5);
+    speakThenSpeakThenShowTextbox("Cherrymon? I've never heard\nof such a Digimon.\n", "Cherrymon makes the fog\nin Misty Trees.\n", "He created fog to protect\nthe forest from danger.\n");
+    playAnimationThenDelayThenSpeakThenPlayAnimation(25, 20, Entity.Player, "But that's a problem for us.\n", 5, 5);
     delay(38);
     playAnimation(5, 0);
     speak(5, "I think Cherrymon knows\nsomething about the cause\nof the island's trouble.\n");
     showTextbox("It's worth going thru\nthe fog to see him.\n");
-    speak(Entity.Player, "If we can do something\nabout the fog.\n");
-    speak(5, "The only one who can get rid\nof the fog is Cherrymon.\n");
-    showTextbox("But here's a way to get thru.\nI'll put a spell on you.\n");
+    speakThenSpeakThenShowTextbox("If we can do something\nabout the fog.\n", "The only one who can get rid\nof the fog is Cherrymon.\n", "But here's a way to get thru.\nI'll put a spell on you.\n");
     speak(Entity.Player, "What's gonna happen?\n");
     speak(5, "You'll be able to see\nthe road even in the fog.\n");
     playAnimation(5, 0);
@@ -74,10 +75,7 @@ L3:
     playSound(8, 0);
     delay(70);
     playAnimation(5, 0);
-    playAnimation(Entity.Player, 15);
-    delay(30);
-    speak(5, "Good. That's perfect.\nNow, go to Misty Trees.\n");
-    playAnimation(5, 30);
+    playAnimationThenDelayThenSpeakThenPlayAnimation(15, 30, 5, "Good. That's perfect.\nNow, go to Misty Trees.\n", 5, 30);
     delay(55);
     playAnimation(5, 0);
     setTrigger(319);
@@ -87,9 +85,7 @@ L3:
     return;
 
 L4:
-    speak(Entity.Player, "I met him.\nThe fog is gone now.\n");
-    speak(5, "Wow, that's amazing! Well,\nwhat can I do to help you?\n");
-    showTextbox("Okay, let me give you this.\n");
+    speakThenSpeakThenShowTextbox("I met him.\nThe fog is gone now.\n", "Wow, that's amazing! Well,\nwhat can I do to help you?\n", "Okay, let me give you this.\n");
     playAnimation(5, 0);
     speak(Entity.System, "I got a\n<LIGHTBLUE>Digital Sea Bass<WHITE>!\n");
     if (!trigger(0) || item[Item.Digiseabass] >= 1) goto L5;
@@ -103,9 +99,7 @@ L5:
     speak(5, "It's a very rare thing.\nIt'll be useful to you.\n");
     playAnimation(Entity.Player, 19);
     delay(20);
-    speak(Entity.Player, "Thanks. So why don't you\ncome to the city, Shogun?\n");
-    speak(5, "I'm chief of a hund Gekomon\nin Geko Swamp. I'm sorry,\nbut I can't come with you.\n");
-    showTextbox("But instead, I'll do\nanything I can from here.\nCome anytime you want.\n");
+    speakThenSpeakThenShowTextbox("Thanks. So why don't you\ncome to the city, Shogun?\n", "I'm chief of a hund Gekomon\nin Geko Swamp. I'm sorry,\nbut I can't come with you.\n", "But instead, I'll do\nanything I can from here.\nCome anytime you want.\n");
     playAnimation(5, 30);
     delay(55);
     playAnimation(5, 0);
@@ -125,9 +119,7 @@ section(81) {  // len=792
     storeDigimonType(103);
     if (!trigger(116) || pstat[103] == 14) goto L1;
     speak(5, "Looks like you got a problem.\nAbout the costume, right?\n");
-    speak(Entity.Player, "You know about it?\n");
-    speak(5, "Don't underrate me. Numemon\nwill be able to wear it.\n");
-    showTextbox("Shocked? Not only that, once\nhe wears it... You won't\nbelieve... Well, try it out.\n");
+    speakThenSpeakThenShowTextbox("You know about it?\n", "Don't underrate me. Numemon\nwill be able to wear it.\n", "Shocked? Not only that, once\nhe wears it... You won't\nbelieve... Well, try it out.\n");
     unsetTrigger(116);
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);

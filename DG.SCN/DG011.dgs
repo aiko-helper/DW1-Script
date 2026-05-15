@@ -1,6 +1,13 @@
 // DG011.SCN
 #pragma script index=11 start=0xe000 end=0xe800 headerU16=0x24 sentinelOff=0x19
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=110
     if (!trigger(232)) goto L1;
     for id in 68..70 { setObjectVisibility(id, 1); }
@@ -28,56 +35,32 @@ L5:
 }
 
 section(5) {  // len=76
-    speak(5, "I can beat you in one blow!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(283);
+    speakThenStartBattleThenSetTrigger(5, "I can beat you in one blow!\n", 283);
     return;
 }
 
 section(7) {  // len=70
-    speak(7, "You don't know anything.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(286);
+    speakThenStartBattleThenSetTrigger(7, "You don't know anything.\n", 286);
     return;
 }
 
 section(8) {  // len=54
-    speak(8, "Stop it already!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(296);
+    speakThenStartBattleThenSetTrigger(8, "Stop it already!\n", 296);
     return;
 }
 
 section(9) {  // len=62
-    speak(9, "Bullies aren't cool!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(296);
+    speakThenStartBattleThenSetTrigger(9, "Bullies aren't cool!\n", 296);
     return;
 }
 
 section(10) {  // len=70
-    speak(10, "Listen to me, will you?!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(296);
+    speakThenStartBattleThenSetTrigger(10, "Listen to me, will you?!\n", 296);
     return;
 }
 
 section(6) {  // len=68
-    speak(6, "I think I can beat you!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(283);
+    speakThenStartBattleThenSetTrigger(6, "I think I can beat you!\n", 283);
     return;
 }
 

@@ -1,6 +1,13 @@
 // DG003.SCN
 #pragma script index=3 start=0x8000 end=0x8800 headerU16=0x1c sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b) {
+    speak(a, b);
+    startBattle();
+    setTrigger(280);
+}
+
+
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 3) goto L1;
@@ -21,38 +28,22 @@ L3:
 }
 
 section(5) {  // len=40
-    speak(5, "Get away!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(5, "Get away!\n");
     return;
 }
 
 section(6) {  // len=40
-    speak(6, "Get lost!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(6, "Get lost!\n");
     return;
 }
 
 section(8) {  // len=42
-    speak(8, "It's mine!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(8, "It's mine!\n");
     return;
 }
 
 section(9) {  // len=40
-    speak(9, "I got it!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(9, "I got it!\n");
     return;
 }
 
@@ -85,8 +76,6 @@ L4:
     setPStat(251, 7);
     setPStat(252, 255);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);

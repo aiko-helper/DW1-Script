@@ -1,20 +1,27 @@
 // DG029.SCN
 #pragma script index=29 start=0x1a000 end=0x1b000 headerU16=0x18 sentinelOff=0x1a64
 
+function callSubroutineThenCallSubroutineThenCallSubroutineThenCallSubroutineThenCallSubroutine() {
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+}
+
+function speakThenSpeakThenSpeak(a, b, c, d, e) {
+    speak(a, b);
+    speak(c, d);
+    speak(a, e);
+}
+
+
 section onEnter(254) {  // len=198
     callSubroutine(26);
     callSubroutine(27);
     if (pstat[30] < 5 || pstat[17] >= 3 || pstat[17] < 1) goto L1;
-    callSubroutine(20);
-    callSubroutine(20);
-    callSubroutine(20);
-    callSubroutine(20);
-    callSubroutine(20);
-    callSubroutine(20);
-    callSubroutine(20);
-    callSubroutine(20);
-    callSubroutine(20);
-    callSubroutine(20);
+    callSubroutineThenCallSubroutineThenCallSubroutineThenCallSubroutineThenCallSubroutine();
+    callSubroutineThenCallSubroutineThenCallSubroutineThenCallSubroutineThenCallSubroutine();
     setPStat(254, 2);
     callSubroutine(19);
     setPStat(19, 2);
@@ -150,12 +157,8 @@ L7:
 L8:
     setPStat(17, 1);
     setPStat(30, 0);
-    speak(5, "This tunnel hasn't been\nopened yet. Don't get\nin our way.\n");
-    speak(Entity.Player, "I'm sorry. Do you know\nwhen it will be?\n");
-    speak(5, "I don't know,\nit will take a while.\n");
-    speak(Entity.Player, "That's a problem.\nCan we help?\n");
-    speak(5, "Are you trying to\nsteal our fun?\nMaybe you can carry dirt.\n");
-    speak(Entity.Player, "What is it?\n");
+    speakThenSpeakThenSpeak(5, "This tunnel hasn't been\nopened yet. Don't get\nin our way.\n", Entity.Player, "I'm sorry. Do you know\nwhen it will be?\n", "I don't know,\nit will take a while.\n");
+    speakThenSpeakThenSpeak(Entity.Player, "That's a problem.\nCan we help?\n", 5, "Are you trying to\nsteal our fun?\nMaybe you can carry dirt.\n", "What is it?\n");
     moveCamera(to: (2027, 764), slowdown: 20);
     waitForEntity(200);
     delay(30);

@@ -1,6 +1,13 @@
 // DG112.SCN
 #pragma script index=112 start=0x50800 end=0x51000 headerU16=0x2c sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 11) goto L1;
@@ -21,65 +28,37 @@ L3:
 }
 
 section(5) {  // len=66
-    speak(5, "Do you want something?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(291);
+    speakThenStartBattleThenSetTrigger(5, "Do you want something?\n", 291);
     return;
 }
 
 section(6) {  // len=74
-    speak(6, "Ha ha, don't be too hasty.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(291);
+    speakThenStartBattleThenSetTrigger(6, "Ha ha, don't be too hasty.\n", 291);
     return;
 }
 
 section(7) {  // len=66
-    speak(7, "Make yourself at home.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(291);
+    speakThenStartBattleThenSetTrigger(7, "Make yourself at home.\n", 291);
     return;
 }
 
 section(8) {  // len=88
-    speak(8, "Wanna be turned into\nfertilizer!?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(289);
+    speakThenStartBattleThenSetTrigger(8, "Wanna be turned into\nfertilizer!?\n", 289);
     return;
 }
 
 section(9) {  // len=46
-    speak(9, "Who are you?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(289);
+    speakThenStartBattleThenSetTrigger(9, "Who are you?\n", 289);
     return;
 }
 
 section(10) {  // len=60
-    speak(10, "You should give up.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(301);
+    speakThenStartBattleThenSetTrigger(10, "You should give up.\n", 301);
     return;
 }
 
 section(11) {  // len=70
-    speak(11, "Don't waste your energy!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(301);
+    speakThenStartBattleThenSetTrigger(11, "Don't waste your energy!\n", 301);
     return;
 }
 

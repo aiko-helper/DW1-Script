@@ -1,6 +1,31 @@
 // DG015.SCN
 #pragma script index=15 start=0x10000 end=0x11000 headerU16=0x1c sentinelOff=0x24
 
+function playAnimationThenDelayThenSpeak(a, b, c) {
+    playAnimation(Entity.Player, a);
+    delay(b);
+    speak(Entity.Player, c);
+}
+
+function delayThenPlaySoundThenPlayAnimation(a) {
+    delay(a);
+    playSound(8, 2);
+    playAnimation(6, 28);
+}
+
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+function setPStatThenSetPStatThenCallSubroutine(a, b) {
+    setPStat(247, a);
+    setPStat(248, b);
+    callSubroutine(21);
+}
+
+
 section onEnter(254) {  // len=78
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L1;
@@ -20,38 +45,22 @@ L3:
 }
 
 section(5) {  // len=58
-    speak(5, "Are you a Digimon?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(277);
+    speakThenStartBattleThenSetTrigger(5, "Are you a Digimon?\n", 277);
     return;
 }
 
 section(7) {  // len=66
-    speak(7, "Where you from Homie?!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(277);
+    speakThenStartBattleThenSetTrigger(7, "Where you from Homie?!\n", 277);
     return;
 }
 
 section(8) {  // len=64
-    speak(8, "Don't make fun of me!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(296);
+    speakThenStartBattleThenSetTrigger(8, "Don't make fun of me!\n", 296);
     return;
 }
 
 section(9) {  // len=64
-    speak(9, "I'm gonna gobble you!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(278);
+    speakThenStartBattleThenSetTrigger(9, "I'm gonna gobble you!\n", 278);
     return;
 }
 
@@ -77,12 +86,8 @@ L3:
     setTrigger(186);
     speak(Entity.Player, "Wow, interesting.\nIt's sprouting.\n");
     delay(20);
-    playAnimation(Entity.Player, 16);
-    delay(20);
-    speak(Entity.Player, "It moved a little bit.\nIs this the mysterious plant\neveryone is talking about?\n");
-    playAnimation(Entity.Player, 22);
-    delay(20);
-    speak(Entity.Player, "It's wilting. If I don't\ndo anything, it'll die.\n");
+    playAnimationThenDelayThenSpeak(16, 20, "It moved a little bit.\nIs this the mysterious plant\neveryone is talking about?\n");
+    playAnimationThenDelayThenSpeak(22, 20, "It's wilting. If I don't\ndo anything, it'll die.\n");
     playAnimation(Entity.Player, 0);
 
 L4:
@@ -117,25 +122,17 @@ L8:
 L9:
     loadDigimon(Digimon.NPCVegimon);
     for id in 3..15 { setObjectVisibility(id, 0); }
-    setPStat(247, 3);
-    setPStat(248, 13);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(3, 13);
     for id in 16..19 { setObjectVisibility(id, 0); }
-    setPStat(247, 16);
-    setPStat(248, 4);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(16, 4);
     for id in 20..32 { setObjectVisibility(id, 0); }
-    setPStat(247, 20);
-    setPStat(248, 13);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(20, 13);
     delay(50);
     playSound(8, 1);
     delay(100);
     for id in 3..32 { setObjectVisibility(id, 1); }
     for id in 33..76 { setObjectVisibility(id, 0); }
-    setPStat(247, 33);
-    setPStat(248, 44);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(33, 44);
     delay(30);
     for id in 0..3 { setObjectVisibility(id, 1); }
     delay(40);
@@ -148,38 +145,24 @@ L9:
     delay(20);
     for id in 33..75 { setObjectVisibility(id, 1); }
     playAnimation(Entity.Player, 15);
-    delay(10);
-    playSound(8, 2);
-    playAnimation(6, 28);
-    delay(20);
-    playSound(8, 2);
-    playAnimation(6, 28);
+    delayThenPlaySoundThenPlayAnimation(10);
+    delayThenPlaySoundThenPlayAnimation(20);
     move(entity: 6, to: (-977, -1946), animDuration: 3);
-    delay(20);
-    playSound(8, 2);
-    playAnimation(6, 28);
+    delayThenPlaySoundThenPlayAnimation(20);
     move(entity: 6, to: (-1254, -2263), animDuration: 3);
-    delay(20);
-    playSound(8, 2);
-    playAnimation(6, 28);
+    delayThenPlaySoundThenPlayAnimation(20);
     move(entity: 6, to: (-1025, -2799), animDuration: 3);
-    delay(20);
-    playSound(8, 2);
-    playAnimation(6, 28);
+    delayThenPlaySoundThenPlayAnimation(20);
     move(entity: 6, to: (-1025, -2349), animDuration: 3);
     delay(20);
     look(entity: 6, at: Entity.Player);
     delay(5);
     speak(6, "He he he.\n");
     showTextbox("Hey, I'm Vegiemon!\n");
-    playAnimation(Entity.Player, 15);
-    delay(20);
-    speak(Entity.Player, "What! A plant Digimon?\n");
+    playAnimationThenDelayThenSpeak(15, 20, "What! A plant Digimon?\n");
     speak(6, "By the way, do you like\nveggies?\n");
     playSound(8, 5);
-    playAnimation(Entity.Player, 16);
-    delay(20);
-    speak(Entity.Player, "Why are you asking me\nabout veggies? Well?\n");
+    playAnimationThenDelayThenSpeak(16, 20, "Why are you asking me\nabout veggies? Well?\n");
     setTrigger(49);
     setSelection(L10, L11);
     showTextbox("I like them\nI don't\n");
@@ -201,16 +184,12 @@ L11:
 L12:
     speak(Entity.Player, " ? ? ? \n");
     speak(6, "Alright, I've decided.\nI'll come with you!\n");
-    playAnimation(Entity.Player, 19);
-    delay(20);
-    speak(Entity.Player, "What a persistent guy...\nHey, wait!\n");
+    playAnimationThenDelayThenSpeak(19, 20, "What a persistent guy...\nHey, wait!\n");
     playSound(8, 5);
     speak(6, "Well, then I won't come!\nBye!\n");
     speak(Entity.Player, "Make up your mind!\n");
     speak(6, "What do you want me to do?\n");
-    playAnimation(Entity.Player, 20);
-    delay(10);
-    speak(Entity.Player, "Why don't you come to\nthe city and help us!\n");
+    playAnimationThenDelayThenSpeak(20, 10, "Why don't you come to\nthe city and help us!\n");
     playAnimation(Entity.Player, 0);
     playSound(8, 5);
     speak(6, "Alright, sounds good.\nI've been here way too long.\n");

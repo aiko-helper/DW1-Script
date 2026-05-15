@@ -1,6 +1,14 @@
 // DG115.SCN
 #pragma script index=115 start=0x52800 end=0x54000 headerU16=0x10 sentinelOff=0x24
 
+function showTextboxThenShowTextboxThenShowTextboxThenShowTextbox(a, b, c, d) {
+    showTextbox(a);
+    showTextbox(b);
+    showTextbox(c);
+    showTextbox(d);
+}
+
+
 section onEnter(254) {  // len=120
     roll(pstat: 110, max: 99);
     if (pstat[110] > 18) goto L1;
@@ -88,16 +96,10 @@ L7:
     showTextbox("Since then, Digimon\nstarted to move away.\nThe species separated.\n");
     showTextbox("And each species started\nto speak their own tongue.\n");
     playSound(8, 18);
-    showTextbox("They forgot the language\nthey used in the city...\n");
-    showTextbox("In the end, File City\nlost most of its\npopulation of Digimon.\n");
-    showTextbox("Then Digimon began to\nlose their memory!\n");
-    showTextbox("The island's history, their\npast, their senses...\ngetting worse day by day.\n");
+    showTextboxThenShowTextboxThenShowTextboxThenShowTextbox("They forgot the language\nthey used in the city...\n", "In the end, File City\nlost most of its\npopulation of Digimon.\n", "Then Digimon began to\nlose their memory!\n", "The island's history, their\npast, their senses...\ngetting worse day by day.\n");
     showTextbox("But I have something\nimportant to tell you, but\nI can't remember it, either.\n");
     playSound(8, 18);
-    showTextbox("However, all will come\ntogether in the end. Someone\ncompels it to be so!\n");
-    showTextbox("In time, the Digimon will\ncome to think of the\nemergency as normal.\n");
-    showTextbox("The only thing that can stop\nthis is you and the power of\nFile City to unify Digimon!\n");
-    showTextbox("Gather Digimon in the city\nand create a miracle.\nIt will definitely happen.\n");
+    showTextboxThenShowTextboxThenShowTextboxThenShowTextbox("However, all will come\ntogether in the end. Someone\ncompels it to be so!\n", "In time, the Digimon will\ncome to think of the\nemergency as normal.\n", "The only thing that can stop\nthis is you and the power of\nFile City to unify Digimon!\n", "Gather Digimon in the city\nand create a miracle.\nIt will definitely happen.\n");
     showTextbox("Well, I got all worked up.\nPhew, I've said it all.\n");
     if (trigger(148)) goto L8;
     setTrigger(148);

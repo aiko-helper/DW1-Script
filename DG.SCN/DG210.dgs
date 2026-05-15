@@ -1,6 +1,15 @@
 // DG210.SCN
 #pragma script index=210 start=0xaf000 end=0xb0000 headerU16=0x10 sentinelOff=0x6722
 
+function speakThenSpeakThenSpeakThenSpeakThenSpeak(a, b, c, d, e, f, g) {
+    speak(a, b);
+    speak(c, d);
+    speak(a, e);
+    speak(c, f);
+    speak(a, g);
+}
+
+
 section onEnter(254) {  // len=0
     // (empty)
 }
@@ -29,11 +38,7 @@ L4:
 L5:
     if (trigger(354) || pstat[1] < 50 || !trigger(205)) goto L6;
     setTrigger(354);
-    speak(5, "I was waiting for you,\n<LIGHTBLUE><PLAYER><WHITE>.\nFinally, this day has come\n");
-    speak(Entity.Player, "What happened?\n");
-    speak(5, "The entrance to Mt. Infinity\nappeared.\n");
-    speak(Entity.Player, "What? Really? Where?\n");
-    speak(5, "It's beyond the falls\nof the city.\n");
+    speakThenSpeakThenSpeakThenSpeakThenSpeak(5, "I was waiting for you,\n<LIGHTBLUE><PLAYER><WHITE>.\nFinally, this day has come\n", Entity.Player, "What happened?\n", "The entrance to Mt. Infinity\nappeared.\n", "What? Really? Where?\n", "It's beyond the falls\nof the city.\n");
     speak(Entity.Player, "Gosh, it's so close!\n");
     speak(5, "The way I see it, the last\nenemy is on Mt. Infinity.\n");
     speak(Entity.Player, "So it's the Last Dungeon.\nI'll do it!\n");

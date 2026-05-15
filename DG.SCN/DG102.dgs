@@ -1,6 +1,15 @@
 // DG102.SCN
 #pragma script index=102 start=0x46000 end=0x49000 headerU16=0x20 sentinelOff=0xfe
 
+function speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem(a, b) {
+    speak(5, a);
+    setTrigger(3);
+    callSubroutine(0);
+    callSubroutine(13);
+    giveItem(b, 1);
+}
+
+
 section onEnter(254) {  // len=2
     return;
 }
@@ -167,11 +176,7 @@ L2:
     speak(Entity.System, "I got a <LIGHTBLUE>Giant Meat <WHITE>\nfor participating!\n");
     giveItem(Item.GiantMeat, 1);
     if (!trigger(0)) goto L3;
-    speak(5, "Too much stuff.\nThrow some away.\n");
-    setTrigger(3);
-    callSubroutine(0);
-    callSubroutine(13);
-    giveItem(Item.GiantMeat, 1);
+    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem("Too much stuff.\nThrow some away.\n", Item.GiantMeat);
 
 L3:
     return;
@@ -182,11 +187,7 @@ L4:
     speak(Entity.System, "Championship prize money :\nfive thous bits.\nI got a <LIGHTBLUE>Beetle Pearl <WHITE>\nas a championship prize!\n");
     giveItem(Item.Beetlepearl, 1);
     if (!trigger(0)) goto L5;
-    speak(5, "Too much stuff!\n");
-    setTrigger(3);
-    callSubroutine(0);
-    callSubroutine(13);
-    giveItem(Item.Beetlepearl, 1);
+    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem("Too much stuff!\n", Item.Beetlepearl);
 
 L5:
     jumpToScriptSection(204, 51);
@@ -199,11 +200,7 @@ L6:
     giveItem(Item.HornHelmet, 1);
     setTrigger(346);
     if (!trigger(0)) goto L7;
-    speak(5, "Too much stuff!\n");
-    setTrigger(3);
-    callSubroutine(0);
-    callSubroutine(13);
-    giveItem(Item.HornHelmet, 1);
+    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem("Too much stuff!\n", Item.HornHelmet);
 
 L7:
     return;
@@ -214,11 +211,7 @@ L8:
     speak(Entity.System, "Second place prize money:\ntwo thous bits!\nI got <LIGHTBLUE>Scissor Jaw <WHITE>\nas a second place prize!\n");
     giveItem(Item.ScissorJaw, 1);
     if (!trigger(0)) goto L9;
-    speak(5, "Too much stuff!\n");
-    setTrigger(3);
-    callSubroutine(0);
-    callSubroutine(13);
-    giveItem(Item.ScissorJaw, 1);
+    speakThenSetTriggerThenCallSubroutineThenCallSubroutineThenGiveItem("Too much stuff!\n", Item.ScissorJaw);
 
 L9:
     return;

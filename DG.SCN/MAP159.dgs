@@ -1,6 +1,27 @@
 // MAP159.SCN
 #pragma script index=159 start=0x70000 end=0x72000 headerU16=0x24 sentinelOff=0x19
 
+function speakThenSpeakThenSpeakThenSpeakThenSpeak(a, b, c, d, e, f, g) {
+    speak(a, b);
+    speak(c, d);
+    speak(a, e);
+    speak(c, f);
+    speak(a, g);
+}
+
+function speakThenSpeakThenSpeak(a, b, c, d, e) {
+    speak(a, b);
+    speak(c, d);
+    speak(a, e);
+}
+
+function playAnimationThenDelayThenSpeak(a, b, c, d) {
+    playAnimation(a, b);
+    delay(c);
+    speak(Entity.Player, d);
+}
+
+
 section onEnter(254) {  // len=42
     if (trigger(320)) goto L1;
     setObjectVisibility(10, 0);
@@ -34,9 +55,7 @@ section(81) {  // len=2094
     if (!trigger(363) || pstat[103] != 39) goto L1;
     playSound(8, 20);
     speak(5, "You again! Get out of here!\n");
-    playAnimation(Entity.Player, 16);
-    delay(15);
-    speak(Entity.Player, "Uhh...\n");
+    playAnimationThenDelayThenSpeak(Entity.Player, 16, 15, "Uhh...\n");
     playAnimation(Entity.Player, 0);
     speak(5, "You... you're a pest!\nIs that okay now?!\n");
     goto L6;
@@ -66,9 +85,7 @@ L3:
 L4:
     unsetTrigger(49);
     playSound(8, 20);
-    speak(5, "Hmmm, that's good. What?\nBut you are analog,\nso you can't live here.\n");
-    speak(Entity.Player, "We have to be together!\n");
-    speak(5, "Then, get out of here\nwith him!\n");
+    speakThenSpeakThenSpeak(5, "Hmmm, that's good. What?\nBut you are analog,\nso you can't live here.\n", Entity.Player, "We have to be together!\n", "Then, get out of here\nwith him!\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
     return;
@@ -76,13 +93,9 @@ L4:
 L5:
     unsetTrigger(49);
     speak(5, "What? What are you saying?\n");
-    playAnimation(Entity.Player, 16);
-    delay(15);
-    speak(Entity.Player, "He's not originally Sukamon.\nKing, please return him\nto his original form!\n");
+    playAnimationThenDelayThenSpeak(Entity.Player, 16, 15, "He's not originally Sukamon.\nKing, please return him\nto his original form!\n");
     playAnimation(Entity.Player, 0);
-    speak(5, "Isn't it great that\nhe became Sukamon?\n");
-    speak(Entity.Player, "No, it's not very good\nright now. Please.\n");
-    speak(5, "Only way to become Sukamon\nis to try hard.\n");
+    speakThenSpeakThenSpeak(5, "Isn't it great that\nhe became Sukamon?\n", Entity.Player, "No, it's not very good\nright now. Please.\n", "Only way to become Sukamon\nis to try hard.\n");
     speak(Entity.Player, "He became a Sukamon\nnaturally and\nthat's the problem.\n");
     playSound(8, 20);
     speak(5, "You guys are unbelievable!\n");
@@ -99,9 +112,7 @@ L7:
     delay(60);
     callDigimonSubroutine(2);
     waitForEntity(201);
-    playAnimation(5, 0);
-    delay(5);
-    speak(Entity.Player, "Wow! King, thank you!\n");
+    playAnimationThenDelayThenSpeak(5, 0, 5, "Wow! King, thank you!\n");
     playSound(8, 20);
     speak(5, "Get out of here right now!\n");
     setTrigger(363);
@@ -111,9 +122,7 @@ L7:
 
 L8:
     playSound(8, 20);
-    speak(5, "Did you come here for\nsomething?\n");
-    speak(Entity.Player, "Well...\n");
-    speak(5, "If you have a request,\nforget it. Because\nI am King of Sukamon!\n");
+    speakThenSpeakThenSpeak(5, "Did you come here for\nsomething?\n", Entity.Player, "Well...\n", "If you have a request,\nforget it. Because\nI am King of Sukamon!\n");
     speak(Entity.Player, "I guess I won't be able\nto invite him to the city.\n");
     moveCamera(to: Entity.Player, speed: 10);
     waitForEntity(200);
@@ -134,22 +143,16 @@ L1:
     return;
 
 L2:
-    playAnimation(Entity.Player, 24);
-    delay(15);
-    speak(Entity.Player, "Wow it stinks! Is this\nTrash Pile?\n");
+    playAnimationThenDelayThenSpeak(Entity.Player, 24, 15, "Wow it stinks! Is this\nTrash Pile?\n");
     showTextbox("I didn't know there's one\nin Digimon World.\n");
     playAnimation(Entity.Player, 0);
     storeDigimonType(103);
     if (trigger(362) || pstat[103] != 39) goto L3;
     move(entity: 6, to: (192, -2979), sprint: 0);
     waitForEntity(6);
-    speak(6, "I'm glad you came.\nWe welcome new friends.\n");
-    speak(Entity.Player, "Is this a community for\nthe Sukamon Tribe?\n");
-    speak(6, "Exactly. This is a paradise\nfor the Sukamon Tribe,\nit's called Dust Kingdom.\n");
+    speakThenSpeakThenSpeak(6, "I'm glad you came.\nWe welcome new friends.\n", Entity.Player, "Is this a community for\nthe Sukamon Tribe?\n", "Exactly. This is a paradise\nfor the Sukamon Tribe,\nit's called Dust Kingdom.\n");
     showTextbox("King of Sukamon is here, too.\n");
-    speak(Entity.Player, "King of Sukamon...?\n");
-    speak(6, "King of Sukamon is amazing!\nIf you don't listen to him,\nyou'll be digivolved!\n");
-    speak(Entity.Player, "Do you mean we turn into\nsomething besides Sukamon?\n");
+    speakThenSpeakThenSpeak(Entity.Player, "King of Sukamon...?\n", 6, "King of Sukamon is amazing!\nIf you don't listen to him,\nyou'll be digivolved!\n", "Do you mean we turn into\nsomething besides Sukamon?\n");
     showTextbox("That means we return\nto our original form?!\n");
     speak(6, "Yeah, it's scary. Creepy.\n");
     speak(Entity.Player, "I learned something useful...\n");
@@ -162,27 +165,17 @@ L3:
     if (trigger(362) || !trigger(550)) goto L4;
     move(entity: 6, to: (192, -2979), sprint: 0);
     waitForEntity(6);
-    speak(Entity.Player, "Oh, Sukamon?!\n");
-    speak(6, "Huh? Do you know about me?\n");
-    speak(Entity.Player, "Well, kind of.\nDo we need to take Sukamon\nto the city as well?\n");
+    speakThenSpeakThenSpeak(Entity.Player, "Oh, Sukamon?!\n", 6, "Huh? Do you know about me?\n", "Well, kind of.\nDo we need to take Sukamon\nto the city as well?\n");
     goto L5;
 
 L4:
     move(entity: 6, to: (192, -2979), sprint: 0);
     waitForEntity(6);
-    speak(6, "Wow, this is interesting!\nI've never seen anything\nlike this!\n");
-    speak(Entity.Player, "Oh my goodness! The poop\nare moving and talking!\n");
-    speak(6, "Are you talking about me?\nI'm Sukamon...\nI'm a Mutant Digimon.\n");
-    speak(Entity.Player, "You are not poop?\n");
-    speak(6, "In a way, you are right,\ncuz we are made from\nDigital Waste.\n");
+    speakThenSpeakThenSpeakThenSpeakThenSpeak(6, "Wow, this is interesting!\nI've never seen anything\nlike this!\n", Entity.Player, "Oh my goodness! The poop\nare moving and talking!\n", "Are you talking about me?\nI'm Sukamon...\nI'm a Mutant Digimon.\n", "You are not poop?\n", "In a way, you are right,\ncuz we are made from\nDigital Waste.\n");
     speak(Entity.Player, "Should we ask him to come\nto the city, too? We\nshouldn't be prejudiced.\n");
 
 L5:
-    speak(6, "Are you planning to\nlive here?\n");
-    speak(Entity.Player, "What? I never thought\nabout it.\n");
-    speak(6, "Well, this is a paradise\nonly for the Sukamon Tribe.\nOthers can't live here.\n");
-    speak(Entity.Player, "Then you can't live\nin other places?\n");
-    speak(6, "Of course not!\nWhat do you think?\n");
+    speakThenSpeakThenSpeakThenSpeakThenSpeak(6, "Are you planning to\nlive here?\n", Entity.Player, "What? I never thought\nabout it.\n", "Well, this is a paradise\nonly for the Sukamon Tribe.\nOthers can't live here.\n", "Then you can't live\nin other places?\n", "Of course not!\nWhat do you think?\n");
     speak(Entity.Player, "I see. That's\nwhat I thought.\n");
     speak(6, "Well, although you\ncan't live here,\nyou can look around.\n");
     speak(Entity.Player, "Oh, just to look.Okay.\n");

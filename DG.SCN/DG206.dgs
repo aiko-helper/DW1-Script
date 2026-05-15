@@ -1,6 +1,13 @@
 // DG206.SCN
 #pragma script index=206 start=0xa7800 end=0xa9800 headerU16=0x1c sentinelOff=0xfe
 
+function speakThenSpeakThenSpeak(a, b, c, d, e) {
+    speak(a, b);
+    speak(c, d);
+    speak(a, e);
+}
+
+
 section onEnter(254) {  // len=2
     return;
 }
@@ -8,12 +15,8 @@ section onEnter(254) {  // len=2
 section(6) {  // len=2218
     setPStat(122, 0);
     if (trigger(257) || trigger(357)) goto L1;
-    speak(6, "Hey, do you want to play a\nmatch with me? If you win,\nI'll do whatever you say.\n");
-    speak(Entity.Player, "What kind of match?\n");
-    speak(6, "What I call...\nDigimon Curling! \nI'll tell you more inside.\n");
-    speak(Entity.Player, "Hmm, what happens if I lose?\n");
-    speak(6, "Nothing the first time.\nBut next time you have to\ngive me a fish first.\n");
-    speak(Entity.Player, "Then if I win, you come to\nthe city with me. OK?");
+    speakThenSpeakThenSpeak(6, "Hey, do you want to play a\nmatch with me? If you win,\nI'll do whatever you say.\n", Entity.Player, "What kind of match?\n", "What I call...\nDigimon Curling! \nI'll tell you more inside.\n");
+    speakThenSpeakThenSpeak(Entity.Player, "Hmm, what happens if I lose?\n", 6, "Nothing the first time.\nBut next time you have to\ngive me a fish first.\n", "Then if I win, you come to\nthe city with me. OK?");
     dead_string("? to\nThen, let's do it.\n");
     speak(6, "Alright, that's fine. \nLet's go inside.\n");
     setTrigger(357);
@@ -104,9 +107,7 @@ L1:
     speak(Entity.System, "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
 
 L2:
-    speak(6, "Amazing dude. I lost a\nmatch for the first time.\n");
-    speak(Entity.Player, "Alright, now come to the city\nwith me as you promised.\n");
-    speak(6, "Oh well, I guess I have to.\nBut I already decided what\nI'm going to do in the city.\n");
+    speakThenSpeakThenSpeak(6, "Amazing dude. I lost a\nmatch for the first time.\n", Entity.Player, "Alright, now come to the city\nwith me as you promised.\n", "Oh well, I guess I have to.\nBut I already decided what\nI'm going to do in the city.\n");
     goto L3;
 
 L3:

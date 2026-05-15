@@ -1,6 +1,13 @@
 // MAP147.SCN
 #pragma script index=147 start=0x68000 end=0x68800 headerU16=0x20 sentinelOff=0xfe
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=2
     return;
 }
@@ -14,38 +21,22 @@ section(51) {  // len=24
 }
 
 section(5) {  // len=62
-    speak(5, "Where are you going?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(292);
+    speakThenStartBattleThenSetTrigger(5, "Where are you going?\n", 292);
     return;
 }
 
 section(6) {  // len=32
-    speak(6, "Wait!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(292);
+    speakThenStartBattleThenSetTrigger(6, "Wait!\n", 292);
     return;
 }
 
 section(7) {  // len=38
-    speak(7, "Dopeeee!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(287);
+    speakThenStartBattleThenSetTrigger(7, "Dopeeee!\n", 287);
     return;
 }
 
 section(8) {  // len=54
-    speak(8, "Gguhh Heyee Hee!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(287);
+    speakThenStartBattleThenSetTrigger(8, "Gguhh Heyee Hee!\n", 287);
     return;
 }
 
@@ -63,8 +54,6 @@ L1:
     setPStat(251, 9);
     setPStat(252, 255);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);

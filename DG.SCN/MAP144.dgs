@@ -1,6 +1,13 @@
 // MAP144.SCN
 #pragma script index=144 start=0x65800 end=0x66000 headerU16=0x24 sentinelOff=0x19
 
+function setPStatThenSetPStatThenCallSubroutine(a, b) {
+    setPStat(247, a);
+    setPStat(248, b);
+    callSubroutine(21);
+}
+
+
 section onEnter(254) {  // len=26
     if (trigger(270)) goto L1;
     roll(pstat: 110, max: 2);
@@ -33,9 +40,7 @@ L1:
     playSound(0, 11);
     delay(10);
     setObjectVisibility(0, 0);
-    setPStat(247, 0);
-    setPStat(248, 1);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(0, 1);
     moveObjectTo(0, 0, 1, 8, 0, 28, 68);
     delay(5);
     playAnimation(Entity.Player, 17);
@@ -44,15 +49,11 @@ L1:
     setObjectVisibility(0, 1);
     moveObjectTo(0, 0, 1, 2, 0, 28, -32);
     for id in 3..7 { setObjectVisibility(id, 0); }
-    setPStat(247, 3);
-    setPStat(248, 5);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(3, 5);
     delay(15);
     for id in 3..7 { setObjectVisibility(id, 1); }
     for id in 18..33 { setObjectVisibility(id, 0); }
-    setPStat(247, 18);
-    setPStat(248, 16);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(18, 16);
     setPStat(200, 10);
     dealMapDamage(200);
     delay(10);
@@ -81,9 +82,7 @@ L1:
     playSound(0, 11);
     delay(10);
     setObjectVisibility(1, 0);
-    setPStat(247, 1);
-    setPStat(248, 1);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(1, 1);
     moveObjectTo(1, 1, 1, 8, 0, 218, 35);
     delay(5);
     playAnimation(Entity.Player, 17);
@@ -92,15 +91,11 @@ L1:
     setObjectVisibility(1, 1);
     moveObjectTo(1, 1, 1, 2, 0, 218, -32);
     for id in 8..12 { setObjectVisibility(id, 0); }
-    setPStat(247, 8);
-    setPStat(248, 5);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(8, 5);
     delay(15);
     for id in 8..12 { setObjectVisibility(id, 1); }
     for id in 34..49 { setObjectVisibility(id, 0); }
-    setPStat(247, 34);
-    setPStat(248, 16);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(34, 16);
     setPStat(200, 10);
     dealMapDamage(200);
     delay(10);
@@ -129,9 +124,7 @@ L1:
     playSound(0, 11);
     delay(10);
     setObjectVisibility(2, 0);
-    setPStat(247, 2);
-    setPStat(248, 1);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(2, 1);
     moveObjectTo(2, 2, 1, 8, 0, 328, 155);
     delay(5);
     playAnimation(Entity.Player, 17);
@@ -140,15 +133,11 @@ L1:
     setObjectVisibility(2, 1);
     moveObjectTo(2, 2, 1, 2, 0, 328, -32);
     for id in 13..17 { setObjectVisibility(id, 0); }
-    setPStat(247, 13);
-    setPStat(248, 5);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(13, 5);
     delay(15);
     for id in 13..17 { setObjectVisibility(id, 1); }
     for id in 50..65 { setObjectVisibility(id, 0); }
-    setPStat(247, 50);
-    setPStat(248, 16);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(50, 16);
     setPStat(200, 10);
     dealMapDamage(200);
     delay(10);
@@ -165,8 +154,6 @@ section(51) {  // len=14
 
 section(5) {  // len=46
     speak(5, "What is it?!\n");
-    fadeOutHUD();
-    delay(1);
     startBattle();
     setTrigger(298);
     return;
@@ -174,8 +161,6 @@ section(5) {  // len=46
 
 section(6) {  // len=54
     speak(6, "Get out of here!\n");
-    fadeOutHUD();
-    delay(1);
     startBattle();
     setTrigger(298);
     return;

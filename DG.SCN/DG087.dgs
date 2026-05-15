@@ -1,6 +1,13 @@
 // DG087.SCN
 #pragma script index=87 start=0x3e000 end=0x3e800 headerU16=0x24 sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 17) goto L1;
@@ -21,56 +28,32 @@ L3:
 }
 
 section(5) {  // len=70
-    speak(5, "Give me what you've got!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(303);
+    speakThenStartBattleThenSetTrigger(5, "Give me what you've got!\n", 303);
     return;
 }
 
 section(6) {  // len=42
-    speak(6, "I'm sorry!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(303);
+    speakThenStartBattleThenSetTrigger(6, "I'm sorry!\n", 303);
     return;
 }
 
 section(7) {  // len=62
-    speak(7, "You can't handle me!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(272);
+    speakThenStartBattleThenSetTrigger(7, "You can't handle me!\n", 272);
     return;
 }
 
 section(8) {  // len=54
-    speak(8, "You want to bet!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(300);
+    speakThenStartBattleThenSetTrigger(8, "You want to bet!\n", 300);
     return;
 }
 
 section(9) {  // len=62
-    speak(9, "Don't make me laugh!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(300);
+    speakThenStartBattleThenSetTrigger(9, "Don't make me laugh!\n", 300);
     return;
 }
 
 section(10) {  // len=88
-    speak(10, "I can't let you pass\nany further!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(300);
+    speakThenStartBattleThenSetTrigger(10, "I can't let you pass\nany further!\n", 300);
     return;
 }
 

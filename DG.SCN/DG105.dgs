@@ -1,6 +1,13 @@
 // DG105.SCN
 #pragma script index=105 start=0x4b000 end=0x4c000 headerU16=0x24 sentinelOff=0x19
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=136
     if (pstat[1] >= 10) goto L1;
     setObjectVisibility(18, 0);
@@ -35,11 +42,7 @@ L6:
 }
 
 section(5) {  // len=58
-    speak(5, "What do you want?!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(274);
+    speakThenStartBattleThenSetTrigger(5, "What do you want?!\n", 274);
     return;
 }
 
@@ -55,8 +58,6 @@ section(6) {  // len=912
     setPStat(251, 6);
     setPStat(252, 255);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);
@@ -115,29 +116,17 @@ L2:
 }
 
 section(7) {  // len=64
-    speak(7, "This is my territory!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(283);
+    speakThenStartBattleThenSetTrigger(7, "This is my territory!\n", 283);
     return;
 }
 
 section(8) {  // len=34
-    speak(8, "What?!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(274);
+    speakThenStartBattleThenSetTrigger(8, "What?!\n", 274);
     return;
 }
 
 section(9) {  // len=54
-    speak(9, "Now's my chance!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(283);
+    speakThenStartBattleThenSetTrigger(9, "Now's my chance!\n", 283);
     return;
 }
 

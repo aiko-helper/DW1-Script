@@ -1,6 +1,15 @@
 // DG049.SCN
 #pragma script index=49 start=0x25000 end=0x26000 headerU16=0x10 sentinelOff=0x19
 
+function speakThenSpeakThenSpeakThenSpeakThenSpeak(a, b, c, d, e, f, g, h, i, j) {
+    speak(a, b);
+    speak(c, d);
+    speak(e, f);
+    speak(g, h);
+    speak(i, j);
+}
+
+
 section onEnter(254) {  // len=18
     if (trigger(247)) goto L1;
     playAnimation(5, 28);
@@ -20,21 +29,9 @@ L1:
 
 L2:
     setTrigger(136);
-    speak(5, "Welcome. I've never seen you\nbefore. Where are you from?\n");
-    speak(Entity.Player, "The city. Actually, I'm\nfrom another world.\n");
-    speak(5, "You understand my language?\n");
-    speak(Entity.Player, "Yes, I do.\n");
-    speak(5, "Sometimes it's hard and\nI don't sell much here.\n");
-    speak(Entity.Player, "I see.\n");
-    speak(5, "Many shoppers stopped coming.\n");
-    speak(Entity.Player, "It must be the trouble\non the island.\n");
-    speak(5, "Help me do something.\n");
-    speak(Entity.Player, "What is it?\n");
-    speak(5, "Can you work in my shop?\n");
-    speak(Entity.Player, "Your shop?\n");
-    speak(5, "Half day? The more you sell,\nthe more I'll pay you.\nYou know our language.\n");
-    speak(Entity.Player, "You might lose money.\n");
-    speak(5, "Don't worry. It'll be good\nfor me. How about eight hours?\n");
+    speakThenSpeakThenSpeakThenSpeakThenSpeak(5, "Welcome. I've never seen you\nbefore. Where are you from?\n", Entity.Player, "The city. Actually, I'm\nfrom another world.\n", 5, "You understand my language?\n", Entity.Player, "Yes, I do.\n", 5, "Sometimes it's hard and\nI don't sell much here.\n");
+    speakThenSpeakThenSpeakThenSpeakThenSpeak(Entity.Player, "I see.\n", 5, "Many shoppers stopped coming.\n", Entity.Player, "It must be the trouble\non the island.\n", 5, "Help me do something.\n", Entity.Player, "What is it?\n");
+    speakThenSpeakThenSpeakThenSpeakThenSpeak(5, "Can you work in my shop?\n", Entity.Player, "Your shop?\n", 5, "Half day? The more you sell,\nthe more I'll pay you.\nYou know our language.\n", Entity.Player, "You might lose money.\n", 5, "Don't worry. It'll be good\nfor me. How about eight hours?\n");
 
 L3:
     setDialogOwner(Entity.Player);
@@ -165,11 +162,7 @@ L10:
     return;
 
 L11:
-    speak(5, "Your wisdom, character and\nguts are what we need to\nsave this island.\n");
-    speak(Entity.Player, "What are you talking about?\n");
-    speak(5, "I was testing you to see if\nyou are capable of saving us.\n");
-    speak(5, "It's important to be\ngood in battle.\n");
-    speak(5, "Besides power, courage and\nwisdom are also needed.\n");
+    speakThenSpeakThenSpeakThenSpeakThenSpeak(5, "Your wisdom, character and\nguts are what we need to\nsave this island.\n", Entity.Player, "What are you talking about?\n", 5, "I was testing you to see if\nyou are capable of saving us.\n", 5, "It's important to be\ngood in battle.\n", 5, "Besides power, courage and\nwisdom are also needed.\n");
     speak(Entity.Player, "Did we pass the test?\n");
     speak(5, "Yes, I'll help you\nas much as I can.\n");
     speak(Entity.Player, "Will you come to the city?\nWhat will you do\nwith the shop?\n");

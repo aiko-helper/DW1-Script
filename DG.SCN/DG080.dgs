@@ -1,6 +1,13 @@
 // DG080.SCN
 #pragma script index=80 start=0x3a000 end=0x3a800 headerU16=0x24 sentinelOff=0x1e
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=8
     setPStat(254, 1);
     callSubroutine(25);
@@ -8,56 +15,32 @@ section onEnter(254) {  // len=8
 }
 
 section(5) {  // len=58
-    speak(5, "I'm gonna get you.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(268);
+    speakThenStartBattleThenSetTrigger(5, "I'm gonna get you.\n", 268);
     return;
 }
 
 section(6) {  // len=74
-    speak(6, "Did you come here to lose?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(268);
+    speakThenStartBattleThenSetTrigger(6, "Did you come here to lose?\n", 268);
     return;
 }
 
 section(7) {  // len=64
-    speak(7, "You're pretty shabby!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(306);
+    speakThenStartBattleThenSetTrigger(7, "You're pretty shabby!\n", 306);
     return;
 }
 
 section(8) {  // len=78
-    speak(8, "Hmmm, you really wanna lose?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(301);
+    speakThenStartBattleThenSetTrigger(8, "Hmmm, you really wanna lose?\n", 301);
     return;
 }
 
 section(9) {  // len=58
-    speak(9, "You're going down!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(301);
+    speakThenStartBattleThenSetTrigger(9, "You're going down!\n", 301);
     return;
 }
 
 section(10) {  // len=58
-    speak(10, "Get out of my way!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(268);
+    speakThenStartBattleThenSetTrigger(10, "Get out of my way!\n", 268);
     return;
 }
 

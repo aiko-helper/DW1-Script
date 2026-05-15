@@ -1,6 +1,15 @@
 // DG047.SCN
 #pragma script index=47 start=0x24000 end=0x24800 headerU16=0x18 sentinelOff=0xfe
 
+function delayThenSetTriggerThenSetPStatThenSetPStatThenSetPStat(a, b, c) {
+    delay(a);
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, b);
+    setPStat(252, c);
+}
+
+
 section onEnter(254) {  // len=2
     return;
 }
@@ -11,14 +20,8 @@ section(5) {  // len=136
     move(entity: 7, to: (483, 70), sprint: 1);
     waitForEntity(6);
     waitForEntity(7);
-    delay(10);
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 6);
+    delayThenSetTriggerThenSetPStatThenSetPStatThenSetPStat(10, 5, 6);
     setPStat(253, 7);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     setPStat(250, 0);
     unsetTrigger(1);
@@ -38,14 +41,8 @@ section(6) {  // len=136
     move(entity: 7, to: (686, 312), sprint: 1);
     waitForEntity(5);
     waitForEntity(7);
-    delay(10);
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 6);
+    delayThenSetTriggerThenSetPStatThenSetPStatThenSetPStat(10, 5, 6);
     setPStat(253, 7);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     setPStat(250, 0);
     unsetTrigger(1);
@@ -65,14 +62,8 @@ section(7) {  // len=136
     move(entity: 5, to: (29, 586), sprint: 1);
     waitForEntity(5);
     waitForEntity(6);
-    delay(10);
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 6);
+    delayThenSetTriggerThenSetPStatThenSetPStatThenSetPStat(10, 5, 6);
     setPStat(253, 7);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     setPStat(250, 0);
     unsetTrigger(1);
@@ -99,14 +90,8 @@ section(60) {  // len=1614
     delay(20);
     speak(Entity.Player, "He's gone.\nWas that my imagination?\n");
     playAnimation(8, 28);
-    delay(40);
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 8);
-    setPStat(252, 255);
+    delayThenSetTriggerThenSetPStatThenSetPStatThenSetPStat(40, 8, 255);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);

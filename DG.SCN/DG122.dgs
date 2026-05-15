@@ -1,6 +1,13 @@
 // DG122.SCN
 #pragma script index=122 start=0x57000 end=0x57800 headerU16=0x10 sentinelOff=0x1875
 
+function speakThenSpeakThenSpeak(a, b, c, d, e) {
+    speak(a, b);
+    speak(c, d);
+    speak(a, e);
+}
+
+
 section onEnter(254) {  // len=14
     spawnChest(Item.DefenseChip, 1460, -443, 3072, 666);
     return;
@@ -8,24 +15,18 @@ section onEnter(254) {  // len=14
 
 section(6) {  // len=54
     speak(6, "Am I in the way?\n");
-    fadeOutHUD();
-    delay(1);
     startBattle();
     setTrigger(280);
     return;
 }
 
 section(5) {  // len=1964
-    speak(5, "You saved me!\n");
-    speak(Entity.Player, "So it was you.\n");
-    speak(5, "This is perfect.\n");
+    speakThenSpeakThenSpeak(5, "You saved me!\n", Entity.Player, "So it was you.\n", "This is perfect.\n");
     playAnimation(Entity.Player, 19);
     delay(15);
     speak(Entity.Player, "What?\n");
     playAnimation(Entity.Player, 0);
-    speak(5, "I was headed toward\nyour city to put my talent\nto good use!\n");
-    speak(Entity.Player, "What kind of talent?\n");
-    speak(5, "Oh, you don't know about me?\nI'm famous with Digimon\nas a know-it-all!\n");
+    speakThenSpeakThenSpeak(5, "I was headed toward\nyour city to put my talent\nto good use!\n", Entity.Player, "What kind of talent?\n", "Oh, you don't know about me?\nI'm famous with Digimon\nas a know-it-all!\n");
     speak(Entity.Player, "Really?\nI've never heard of you.\n");
     speak(5, "I'm ready to go to the city.\n");
     playAnimation(Entity.Player, 16);

@@ -1,6 +1,20 @@
 // DG212.SCN
 #pragma script index=212 start=0xb2800 end=0xb3800 headerU16=0x14 sentinelOff=0xfe
 
+function setPStatThenCallDigimonSubroutineThenDelayThenSpeak(a) {
+    setPStat(254, a);
+    callDigimonSubroutine(10);
+    delay(550);
+    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+}
+
+function speakThenShowTextboxThenShowTextbox(a, b, c) {
+    speak(5, a);
+    showTextbox(b);
+    showTextbox(c);
+}
+
+
 section onEnter(254) {  // len=2
     return;
 }
@@ -9,9 +23,7 @@ section(71) {  // len=610
     unsetTrigger(1);
     setPStat(250, 0);
     waitForEntity(213);
-    speak(5, "It seems <ORANGE><DIGIMON><WHITE> has\nfaded away...\n");
-    showTextbox("Before fading away, he gave\nbirth to a Digitama. He will\nbe reborn with his abilities.\n");
-    showTextbox("Which egg do you want?\n");
+    speakThenShowTextboxThenShowTextbox("It seems <ORANGE><DIGIMON><WHITE> has\nfaded away...\n", "Before fading away, he gave\nbirth to a Digitama. He will\nbe reborn with his abilities.\n", "Which egg do you want?\n");
     callSubroutine(29);
     fadeOutHUD();
     callDigimonSubroutine(4);
@@ -46,17 +58,13 @@ section(72) {  // len=794
     removeCondition(Condition.Injured);
     removeCondition(Condition.Sick);
     addStats(currentHP: 9999, currentMP: 9999);
-    speak(5, "Hey, don't get sick!\n");
-    showTextbox("With the small bit of life\nleft, <ORANGE><DIGIMON><WHITE> was able\nto survive.\n");
-    showTextbox("You must be careful.\n");
+    speakThenShowTextboxThenShowTextbox("Hey, don't get sick!\n", "With the small bit of life\nleft, <ORANGE><DIGIMON><WHITE> was able\nto survive.\n", "You must be careful.\n");
     waitForEntity(214);
     goto section_73.L2;
 
 L1:
     addStats(currentHP: 9999, currentMP: 9999);
-    speak(5, "Oh my gosh!\nYou're back after losing.\n");
-    showTextbox("With the small bit of life\nleft, <ORANGE><DIGIMON><WHITE> was able\nto survive.\n");
-    showTextbox("Maybe your things were stolen.\n");
+    speakThenShowTextboxThenShowTextbox("Oh my gosh!\nYou're back after losing.\n", "With the small bit of life\nleft, <ORANGE><DIGIMON><WHITE> was able\nto survive.\n", "Maybe your things were stolen.\n");
     showTextbox("Those who lose a battle might\nhave their things stolen.\n");
     showTextbox("Stolen objects may be sold\nsomewhere. Don't give up\nfinding them!\n");
     waitForEntity(214);
@@ -68,9 +76,7 @@ section(73) {  // len=2670
     unsetTrigger(1);
     setPStat(250, 0);
     waitForEntity(213);
-    speak(5, "Oh no! <ORANGE><DIGIMON><WHITE>\nhas lost all life.\n");
-    showTextbox("Before fading away,\n<ORANGE><DIGIMON><WHITE> gave\nbirth to a Digitama.\n");
-    showTextbox("Due to the danger,\nDigitama did not inherit\nall abilities...\n");
+    speakThenShowTextboxThenShowTextbox("Oh no! <ORANGE><DIGIMON><WHITE>\nhas lost all life.\n", "Before fading away,\n<ORANGE><DIGIMON><WHITE> gave\nbirth to a Digitama.\n", "Due to the danger,\nDigitama did not inherit\nall abilities...\n");
     if (stat[Stat.TamerLevel] == 0) goto L1;
     reduceStats(tamerLevel: 1);
     speak(Entity.System, "<PINK>Tamer Level\nhas gone down! <WHITE>\n");
@@ -119,10 +125,7 @@ L7:
 L8:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L9;
-    setPStat(254, 37);
-    callDigimonSubroutine(10);
-    delay(550);
-    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+    setPStatThenCallDigimonSubroutineThenDelayThenSpeak(37);
     return;
 
 L9:
@@ -131,10 +134,7 @@ L9:
 L10:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L11;
-    setPStat(254, 26);
-    callDigimonSubroutine(10);
-    delay(550);
-    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+    setPStatThenCallDigimonSubroutineThenDelayThenSpeak(26);
     return;
 
 L11:
@@ -143,10 +143,7 @@ L11:
 L12:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L13;
-    setPStat(254, 59);
-    callDigimonSubroutine(10);
-    delay(550);
-    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+    setPStatThenCallDigimonSubroutineThenDelayThenSpeak(59);
     return;
 
 L13:
@@ -155,10 +152,7 @@ L13:
 L14:
     roll(pstat: 110, max: 99);
     if (pstat[110] > 49 || stat[Stat.Discipline] > 49) goto L15;
-    setPStat(254, 6);
-    callDigimonSubroutine(10);
-    delay(550);
-    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+    setPStatThenCallDigimonSubroutineThenDelayThenSpeak(6);
     return;
 
 L15:

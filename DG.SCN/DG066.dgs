@@ -1,6 +1,13 @@
 // DG066.SCN
 #pragma script index=66 start=0x30000 end=0x30800 headerU16=0x1c sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=68
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
@@ -21,38 +28,22 @@ L3:
 }
 
 section(5) {  // len=56
-    speak(5, "I love the ocean.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(275);
+    speakThenStartBattleThenSetTrigger(5, "I love the ocean.\n", 275);
     return;
 }
 
 section(6) {  // len=58
-    speak(6, "Get out of my way!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(275);
+    speakThenStartBattleThenSetTrigger(6, "Get out of my way!\n", 275);
     return;
 }
 
 section(7) {  // len=56
-    speak(7, "I have good news.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(296);
+    speakThenStartBattleThenSetTrigger(7, "I have good news.\n", 296);
     return;
 }
 
 section(8) {  // len=68
-    speak(8, "Well, it's pretty good.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(279);
+    speakThenStartBattleThenSetTrigger(8, "Well, it's pretty good.\n", 279);
     return;
 }
 

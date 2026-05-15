@@ -1,6 +1,14 @@
 // DG180.SCN
 #pragma script index=180 start=0x8a000 end=0x8b000 headerU16=0x1c sentinelOff=0x19
 
+function speakThenSpeakThenSpeakThenSpeak(a, b, c, d, e, f) {
+    speak(a, b);
+    speak(c, d);
+    speak(a, e);
+    speak(c, f);
+}
+
+
 section onEnter(254) {  // len=38
     if (trigger(340)) goto L1;
     goto section_52;
@@ -24,10 +32,7 @@ section(51) {  // len=24
 section(5) {  // len=522
     if (trigger(342)) goto L1;
     setTrigger(342);
-    speak(5, "I don't feel well.\n");
-    speak(Entity.Player, "Are you alright?\n");
-    speak(5, "I don't feel good.\n");
-    speak(Entity.Player, "Is this where you live?\n");
+    speakThenSpeakThenSpeakThenSpeak(5, "I don't feel well.\n", Entity.Player, "Are you alright?\n", "I don't feel good.\n", "Is this where you live?\n");
     speak(5, "I feel sick. No energy.\n");
     speak(Entity.Player, "You look awful.\n");
 
@@ -80,8 +85,6 @@ section(6) {  // len=1398
     setPStat(251, 6);
     setPStat(252, 255);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);
@@ -95,10 +98,7 @@ section(6) {  // len=1398
     look(entity: 6, at: Entity.Player);
     look(entity: Entity.Partner, at: 6);
     delay(5);
-    speak(6, "I'm tired.\nWhat happened to you guys?\n");
-    speak(Entity.Player, "He sounds dumber!\nMaybe he regained his senses.\n");
-    speak(6, "Are you calling me dumb?\nHow rude! My name is Numemon.\n");
-    speak(Entity.Player, "If you're not dumb,\nwhat are you?\n");
+    speakThenSpeakThenSpeakThenSpeak(6, "I'm tired.\nWhat happened to you guys?\n", Entity.Player, "He sounds dumber!\nMaybe he regained his senses.\n", "Are you calling me dumb?\nHow rude! My name is Numemon.\n", "If you're not dumb,\nwhat are you?\n");
     showTextbox("Excuse me, Numemon. Do you\nknow who saved your life?\n");
     speak(6, "Huh? Do you want me to\nsave your life? OK.\n");
     speak(Entity.Player, "Ugghh. He doesn't get it\nat all! Well, no matter.\n");

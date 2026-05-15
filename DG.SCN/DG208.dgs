@@ -1,6 +1,20 @@
 // DG208.SCN
 #pragma script index=208 start=0xab800 end=0xac800 headerU16=0xc sentinelOff=0xfe
 
+function setTextboxSizeThenShowTextboxThenFadeOutHUDThenSetDialogOwner(a, b) {
+    setTextboxSize(21, a);
+    showTextbox(b);
+    fadeOutHUD();
+    setDialogOwner(Entity.System);
+}
+
+function setTextboxSizeThenShowTextboxThenFadeOutHUD(a, b) {
+    setTextboxSize(21, a);
+    showTextbox(b);
+    fadeOutHUD();
+}
+
+
 section onEnter(254) {  // len=2
     return;
 }
@@ -12,18 +26,13 @@ section(82) {  // len=4082
 L1:
     if (!trigger(154) || pstat[1] < 45) goto L2;
     setTrigger(153);
-    setTextboxSize(21, 8);
-    showTextbox("Shell Newspaper Eigth\nAlien Digimon Appears:\nWe have found the UFO.\nThe creature showed its body\nand spoke unknown words.\nIs the creature an Alien?\nWill it appear again?\n");
-    fadeOutHUD();
-    setDialogOwner(Entity.System);
+    setTextboxSizeThenShowTextboxThenFadeOutHUDThenSetDialogOwner(8, "Shell Newspaper Eigth\nAlien Digimon Appears:\nWe have found the UFO.\nThe creature showed its body\nand spoke unknown words.\nIs the creature an Alien?\nWill it appear again?\n");
     choice { "Back" -> L2, "Stop" -> L35 }
     return;
 
 L2:
     if (!trigger(226)) goto L3;
-    setTextboxSize(21, 10);
-    showTextbox("Shell Newspaper Seven\nMyotismon Denies His\nRetirement:\nIn an interview,\nhe denied the rumors.\nHe is still working hard.\nHe loves his fans.\nHe also announced that\nhis pupil, SkullGreymon,\nwill make his debut.\n");
-    fadeOutHUD();
+    setTextboxSizeThenShowTextboxThenFadeOutHUD(10, "Shell Newspaper Seven\nMyotismon Denies His\nRetirement:\nIn an interview,\nhe denied the rumors.\nHe is still working hard.\nHe loves his fans.\nHe also announced that\nhis pupil, SkullGreymon,\nwill make his debut.\n");
     setTrigger(325);
     setDialogOwner(Entity.System);
     choice { "Back" -> L6, "Forward" -> L4, "Stop" -> L35 }
@@ -42,9 +51,7 @@ L5:
 
 L6:
     if (pstat[1] < 35 || !trigger(128)) goto L8;
-    setTextboxSize(21, 8);
-    showTextbox("Shell Newspaper Six\nMyotismon to Retire?:\nRumor is that popular and \nable Myotismon will retire.\nNo one at the arena has\nseen him. His career is at\nits end. He is too old.\n");
-    fadeOutHUD();
+    setTextboxSizeThenShowTextboxThenFadeOutHUD(8, "Shell Newspaper Six\nMyotismon to Retire?:\nRumor is that popular and \nable Myotismon will retire.\nNo one at the arena has\nseen him. His career is at\nits end. He is too old.\n");
     if (trigger(226)) goto L7;
     unsetTrigger(266);
     setTrigger(356);
@@ -70,10 +77,7 @@ L11:
 
 L12:
     if (pstat[1] < 25) goto L13;
-    setTextboxSize(21, 9);
-    showTextbox("Shell Newspaper Five\nHidden Treasure:\nA cool shop in Gear Savanna.\nThis shop is only open from\nfirst to fifteenth each year.\nThe shop manager is proud of\nhis rare Items.\n");
-    fadeOutHUD();
-    setDialogOwner(Entity.System);
+    setTextboxSizeThenShowTextboxThenFadeOutHUDThenSetDialogOwner(9, "Shell Newspaper Five\nHidden Treasure:\nA cool shop in Gear Savanna.\nThis shop is only open from\nfirst to fifteenth each year.\nThe shop manager is proud of\nhis rare Items.\n");
     choice { "Back" -> L18, "Forward" -> L14, "Stop" -> L35 }
     return;
 
@@ -97,10 +101,7 @@ L17:
 
 L18:
     if (pstat[1] < 20) goto L19;
-    setTextboxSize(21, 10);
-    showTextbox("Shell Newspaper Four\nA Legendary Digimon?:\nRumor is that there is\na cold weather Digimon\nin Freezeland. Mr. M was\nsaved by this monster. It\nlooked like a big snowball.\nDigimon who are not use to\nthe cold, be careful!\n");
-    fadeOutHUD();
-    setDialogOwner(Entity.System);
+    setTextboxSizeThenShowTextboxThenFadeOutHUDThenSetDialogOwner(10, "Shell Newspaper Four\nA Legendary Digimon?:\nRumor is that there is\na cold weather Digimon\nin Freezeland. Mr. M was\nsaved by this monster. It\nlooked like a big snowball.\nDigimon who are not use to\nthe cold, be careful!\n");
     choice { "Back" -> L22, "Forward" -> L20, "Stop" -> L35 }
     return;
 
@@ -116,10 +117,7 @@ L21:
 
 L22:
     if (pstat[1] < 15) goto L23;
-    setTextboxSize(21, 10);
-    showTextbox("Shell Newspaper Three\nA Guardian for the Lake?:\nLake Guardian is at\nDragon Eye Lake.\nThe Digimon-like creature\nwas called by someone.\nCan this Guardian make\nwishes come true?\n");
-    fadeOutHUD();
-    setDialogOwner(Entity.System);
+    setTextboxSizeThenShowTextboxThenFadeOutHUDThenSetDialogOwner(10, "Shell Newspaper Three\nA Guardian for the Lake?:\nLake Guardian is at\nDragon Eye Lake.\nThe Digimon-like creature\nwas called by someone.\nCan this Guardian make\nwishes come true?\n");
     choice { "Back" -> L27, "Forward" -> L24, "Stop" -> L35 }
     return;
 
@@ -139,9 +137,7 @@ L26:
 
 L27:
     if (!trigger(118)) goto L28;
-    setTextboxSize(21, 9);
-    showTextbox("Shell Newspaper Two\nA UFO!:\nA report says the UFO\nis near Mt. Panorama.\nThe UFO looks like a\nsilver dish with light\ncoming from the bottom.\nIs it an alien?\nMore information to come.\n");
-    fadeOutHUD();
+    setTextboxSizeThenShowTextboxThenFadeOutHUD(9, "Shell Newspaper Two\nA UFO!:\nA report says the UFO\nis near Mt. Panorama.\nThe UFO looks like a\nsilver dish with light\ncoming from the bottom.\nIs it an alien?\nMore information to come.\n");
     setTrigger(152);
     setDialogOwner(Entity.System);
     choice { "Back" -> L31, "Forward" -> L29, "Stop" -> L35 }
@@ -158,9 +154,7 @@ L30:
     goto L27;
 
 L31:
-    setTextboxSize(21, 9);
-    showTextbox("Shell Newspaper One\nBandits Are Gone!:\n<LIGHTBLUE><PLAYER><WHITE> found the\nhide out, led by Ogremon.\nHowever, Ogremon is \nloose and people\nare still worried.\n");
-    fadeOutHUD();
+    setTextboxSizeThenShowTextboxThenFadeOutHUD(9, "Shell Newspaper One\nBandits Are Gone!:\n<LIGHTBLUE><PLAYER><WHITE> found the\nhide out, led by Ogremon.\nHowever, Ogremon is \nloose and people\nare still worried.\n");
     if (!trigger(118) && pstat[1] < 15) goto L32;
     setDialogOwner(Entity.System);
     choice { "Forward" -> L33, "Stop" -> L35 }

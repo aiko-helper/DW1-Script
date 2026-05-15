@@ -1,6 +1,19 @@
 // DG091.SCN
 #pragma script index=91 start=0x40000 end=0x41000 headerU16=0x20 sentinelOff=0x24
 
+function setPStatThenSetPStatThenSetPStat(a, b, c, d, e) {
+    setPStat(a, b);
+    setPStat(c, d);
+    setPStat(e, 255);
+}
+
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=90
     roll(pstat: 110, max: 99);
     if (pstat[110] > 5) goto L1;
@@ -26,38 +39,22 @@ L4:
 }
 
 section(6) {  // len=50
-    speak(6, "I'm gonna win!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(271);
+    speakThenStartBattleThenSetTrigger(6, "I'm gonna win!\n", 271);
     return;
 }
 
 section(7) {  // len=64
-    speak(7, "You'll never beat me!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(271);
+    speakThenStartBattleThenSetTrigger(7, "You'll never beat me!\n", 271);
     return;
 }
 
 section(8) {  // len=62
-    speak(8, "He he! I'm so sorry!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(272);
+    speakThenStartBattleThenSetTrigger(8, "He he! I'm so sorry!\n", 272);
     return;
 }
 
 section(9) {  // len=62
-    speak(9, "Are you ignoring me?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(272);
+    speakThenStartBattleThenSetTrigger(9, "Are you ignoring me?\n", 272);
     return;
 }
 
@@ -68,12 +65,8 @@ section(5) {  // len=1826
 L1:
     speak(5, "If you want to go thru,\nyou must accept my challenge.\n");
     setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 255);
+    setPStatThenSetPStatThenSetPStat(250, 1, 251, 5, 252);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);
@@ -138,12 +131,8 @@ L8:
     showTextbox("Go <ORANGE><DIGIMON><WHITE>!\n");
     setTrigger(2);
     setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 255);
+    setPStatThenSetPStatThenSetPStat(250, 1, 251, 5, 252);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);

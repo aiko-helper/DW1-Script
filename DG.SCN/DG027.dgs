@@ -1,6 +1,13 @@
 // DG027.SCN
 #pragma script index=27 start=0x19000 end=0x19800 headerU16=0xc sentinelOff=0x56
 
+function delayThenPlaySoundThenDelay() {
+    delay(10);
+    playSound(8, 1);
+    delay(10);
+}
+
+
 section onEnter(254) {  // len=6
     playAnimation(5, 29);
     return;
@@ -9,21 +16,15 @@ section onEnter(254) {  // len=6
 section(5) {  // len=2030
     setTrigger(44);
     look(entity: Entity.Player, at: 5);
-    delay(10);
-    playSound(8, 1);
-    delay(10);
+    delayThenPlaySoundThenDelay();
     playSound(8, 1);
     delay(10);
     speak(5, "Today we're digging.\n");
     playSound(8, 1);
-    delay(10);
-    playSound(8, 1);
-    delay(10);
+    delayThenPlaySoundThenDelay();
     speak(5, "Tomorrow we'll be digging.\n");
     playSound(8, 1);
-    delay(10);
-    playSound(8, 1);
-    delay(10);
+    delayThenPlaySoundThenDelay();
     speak(5, "It's so much fun.\n");
     playSound(8, 1);
     delay(10);

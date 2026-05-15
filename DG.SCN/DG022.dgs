@@ -1,6 +1,21 @@
 // DG022.SCN
 #pragma script index=22 start=0x15800 end=0x16800 headerU16=0x18 sentinelOff=0x24
 
+function speakThenSpeakThenSpeakThenSpeakThenSpeak(a, b, c, d, e, f, g, h, i, j) {
+    speak(a, b);
+    speak(c, d);
+    speak(e, f);
+    speak(g, h);
+    speak(i, j);
+}
+
+function playAnimationThenDelayThenSpeak(a, b) {
+    playAnimation(Entity.Player, a);
+    delay(20);
+    speak(Entity.Player, b);
+}
+
+
 section onEnter(254) {  // len=168
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L1;
@@ -39,13 +54,9 @@ L6:
 
 section(5) {  // len=1412
     speak(5, "My wing hurts.\n");
-    playAnimation(Entity.Player, 19);
-    delay(20);
-    speak(Entity.Player, "What happened?\n");
+    playAnimationThenDelayThenSpeak(19, "What happened?\n");
     speak(5, "I injured my wing... Do you\nhave anything to treat it?\n");
-    playAnimation(Entity.Player, 4);
-    delay(20);
-    speak(Entity.Player, "Wow, it looks pretty bad!\nHold on. Let me see.\n");
+    playAnimationThenDelayThenSpeak(4, "Wow, it looks pretty bad!\nHold on. Let me see.\n");
     playAnimation(Entity.Player, 0);
     setTrigger(3);
     callSubroutine(0);
@@ -72,13 +83,9 @@ L4:
     speak(5, "It's much better. Thank you.\n");
     playAnimation(5, 29);
     waitForEntity(5);
-    playAnimation(Entity.Player, 25);
-    delay(20);
-    speak(Entity.Player, "Can you fly now?\n");
+    playAnimationThenDelayThenSpeak(25, "Can you fly now?\n");
     speak(5, "I don't think I can fly far.\n");
-    playAnimation(Entity.Player, 19);
-    delay(20);
-    speak(Entity.Player, "There's a clinic in the city.\nYou should go there.\nIt's not far.\n");
+    playAnimationThenDelayThenSpeak(19, "There's a clinic in the city.\nYou should go there.\nIt's not far.\n");
     speak(5, "I heard about the city.\nIt's bigger than I thought.\n");
     speak(Entity.Player, "Go to the city and rest.\n");
     speak(5, "Thank you. Maybe\nI can help you someday.\n");
@@ -169,20 +176,12 @@ L6:
     playSound(8, 5);
     waitForEntity(6);
     look(entity: 6, at: Entity.Player);
-    speak(Entity.System, "Vademon's UFO appears.\n");
-    speak(Entity.Player, "A...an alien?!\n");
-    speak(6, "...\n");
-    speak(Entity.Player, "Are you... a Digimon?\n");
-    speak(6, "...\n");
+    speakThenSpeakThenSpeakThenSpeakThenSpeak(Entity.System, "Vademon's UFO appears.\n", Entity.Player, "A...an alien?!\n", 6, "...\n", Entity.Player, "Are you... a Digimon?\n", 6, "...\n");
     speak(Entity.Player, "Well...\n");
     speak(6, "...\n");
     playSound(8, 6);
     delay(10);
-    speak(Entity.System, "Vademon holds a gun.\n");
-    speak(Entity.Player, "No, stop!\nI'm not your enemy!\n");
-    speak(Entity.System, "Vademon drops the gun.\n");
-    speak(Entity.Player, "Good you understand.\n");
-    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> desperately\ntries to convince him.\n");
+    speakThenSpeakThenSpeakThenSpeakThenSpeak(Entity.System, "Vademon holds a gun.\n", Entity.Player, "No, stop!\nI'm not your enemy!\n", Entity.System, "Vademon drops the gun.\n", Entity.Player, "Good you understand.\n", Entity.System, "<LIGHTBLUE><PLAYER><WHITE> desperately\ntries to convince him.\n");
     speak(6, "...\n");
     speak(Entity.Player, "Maybe he doesn't get it?\n");
     speak(6, "Okay.\n");

@@ -1,6 +1,13 @@
 // DG071.SCN
 #pragma script index=71 start=0x33000 end=0x33800 headerU16=0x28 sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=90
     roll(pstat: 110, max: 99);
     if (pstat[110] > 11) goto L1;
@@ -26,56 +33,32 @@ L4:
 }
 
 section(5) {  // len=68
-    speak(5, "Well, I see your point.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(282);
+    speakThenStartBattleThenSetTrigger(5, "Well, I see your point.\n", 282);
     return;
 }
 
 section(6) {  // len=68
-    speak(6, "Can you see its beauty?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(282);
+    speakThenStartBattleThenSetTrigger(6, "Can you see its beauty?\n", 282);
     return;
 }
 
 section(7) {  // len=42
-    speak(7, "Uggghhhh!!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(295);
+    speakThenStartBattleThenSetTrigger(7, "Uggghhhh!!\n", 295);
     return;
 }
 
 section(8) {  // len=58
-    speak(8, "I'm desperate now!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(296);
+    speakThenStartBattleThenSetTrigger(8, "I'm desperate now!\n", 296);
     return;
 }
 
 section(9) {  // len=58
-    speak(9, "Shoooot! Awh heck.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(296);
+    speakThenStartBattleThenSetTrigger(9, "Shoooot! Awh heck.\n", 296);
     return;
 }
 
 section(10) {  // len=62
-    speak(10, "I have a tummy ache.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(297);
+    speakThenStartBattleThenSetTrigger(10, "I have a tummy ache.\n", 297);
     return;
 }
 

@@ -1,6 +1,13 @@
 // DG040.SCN
 #pragma script index=40 start=0x20800 end=0x21000 headerU16=0x10 sentinelOff=0x24
 
+function speakThenSpeakThenSpeak(a, b, c, d, e) {
+    speak(a, b);
+    speak(c, d);
+    speak(a, e);
+}
+
+
 section onEnter(254) {  // len=98
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
@@ -49,9 +56,7 @@ L4:
     delay(15);
     speak(Entity.Player, "Is this where you live?\n");
     playAnimation(Entity.Player, 0);
-    speak(5, "I can't tell you!\n");
-    speak(Entity.Player, "Are you a guard or something?\n");
-    speak(5, "Want to fight? I'll beat you!\n");
+    speakThenSpeakThenSpeak(5, "I can't tell you!\n", Entity.Player, "Are you a guard or something?\n", "Want to fight? I'll beat you!\n");
     setDialogOwner(Entity.Player);
     choice { "I guess I'll fight" -> L5, "You can't bully me" -> L6 }
     goto L6;
@@ -62,8 +67,6 @@ L5:
     setPStat(251, 5);
     setPStat(252, 255);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);
@@ -86,9 +89,7 @@ L5:
     delay(10);
     move(entity: Entity.Player, to: (-350, -1145), sprint: 1);
     move(entity: Entity.Partner, to: (-359, -1355), sprint: 1);
-    speak(Entity.Player, "Oh no! Hey!\n");
-    speak(Entity.System, "<YELLOW>???mon <WHITE>\nHa ha ha.\n");
-    speak(Entity.Player, "Who is it?\n");
+    speakThenSpeakThenSpeak(Entity.Player, "Oh no! Hey!\n", Entity.System, "<YELLOW>???mon <WHITE>\nHa ha ha.\n", "Who is it?\n");
     speak(Entity.System, "<YELLOW>???mon <WHITE>\nI have done nothing wrong.\nDon't come in my house\nwithout permission!\n");
     speak(Entity.Player, "I guess I should leave now.\n");
     moveCamera(to: Entity.Player, speed: 10);

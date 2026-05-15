@@ -1,6 +1,19 @@
 // DG035.SCN
 #pragma script index=35 start=0x1e000 end=0x1e800 headerU16=0x28 sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+function playAnimationThenDelayThenPlayAnimation(a, b, c) {
+    playAnimation(5, a);
+    delay(b);
+    playAnimation(5, c);
+}
+
+
 section onEnter(254) {  // len=112
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
@@ -30,63 +43,37 @@ L5:
 }
 
 section(6) {  // len=58
-    speak(6, "Ha! You're scared.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(296);
+    speakThenStartBattleThenSetTrigger(6, "Ha! You're scared.\n", 296);
     return;
 }
 
 section(7) {  // len=64
-    speak(7, "You'd better go home!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(296);
+    speakThenStartBattleThenSetTrigger(7, "You'd better go home!\n", 296);
     return;
 }
 
 section(8) {  // len=92
-    speak(8, "Once you go in,\nyou can't come out.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(296);
+    speakThenStartBattleThenSetTrigger(8, "Once you go in,\nyou can't come out.\n", 296);
     return;
 }
 
 section(9) {  // len=40
-    speak(9, "Heh, heh!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(307);
+    speakThenStartBattleThenSetTrigger(9, "Heh, heh!\n", 307);
     return;
 }
 
 section(10) {  // len=32
-    speak(10, "Wait.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(307);
+    speakThenStartBattleThenSetTrigger(10, "Wait.\n", 307);
     return;
 }
 
 section(11) {  // len=62
-    speak(11, "You'll be possessed.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(307);
+    speakThenStartBattleThenSetTrigger(11, "You'll be possessed.\n", 307);
     return;
 }
 
 section(5) {  // len=684
-    playAnimation(5, 11);
-    delay(50);
-    playAnimation(5, 0);
+    playAnimationThenDelayThenPlayAnimation(11, 50, 0);
     speak(5, "Bakke-bakke?\n");
     playAnimation(Entity.Player, 16);
     speak(Entity.Player, "Looks like he's\nasking something.\n");
@@ -95,18 +82,14 @@ section(5) {  // len=684
     showTextbox("?...Yes\n?...No\n");
 
 L1:
-    playAnimation(5, 11);
-    delay(45);
-    playAnimation(5, 0);
+    playAnimationThenDelayThenPlayAnimation(11, 45, 0);
     speak(5, "Bakke! Bakke bakke?\n");
     setDialogOwner(Entity.Player);
     setSelection(L2, L6);
     showTextbox("Yes\nNo\n");
 
 L2:
-    playAnimation(5, 12);
-    delay(58);
-    playAnimation(5, 0);
+    playAnimationThenDelayThenPlayAnimation(12, 58, 0);
     playAnimation(Entity.Player, 15);
     speak(5, "Bakkeee...bakke bakke?\n");
     playAnimation(Entity.Player, 16);
@@ -115,9 +98,7 @@ L2:
     showTextbox("Yes\nNo\n");
 
 L3:
-    playAnimation(5, 13);
-    delay(34);
-    playAnimation(5, 13);
+    playAnimationThenDelayThenPlayAnimation(13, 34, 13);
     speak(5, "Bakke bakke!\nBakkeee bakke bakkeee!\n");
     goto L4;
 

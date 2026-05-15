@@ -1,6 +1,21 @@
 // DG177.SCN
 #pragma script index=177 start=0x86000 end=0x87000 headerU16=0x14 sentinelOff=0xfe
 
+function showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox(a, b, c, d, e) {
+    showTextbox(a);
+    showTextbox(b);
+    showTextbox(c);
+    showTextbox(d);
+    showTextbox(e);
+}
+
+function unsetTriggerThenSetPStatThenCallSubroutine() {
+    unsetTrigger(3);
+    setPStat(254, 5);
+    callSubroutine(8);
+}
+
+
 section onEnter(254) {  // len=2
     return;
 }
@@ -13,27 +28,15 @@ section(51) {  // len=6
 section(6) {  // len=2086
     if (pstat[44] != 0) goto L1;
     speak(6, "I know about Items.\n");
-    showTextbox("There are one hund and twenty\neight kinds of Items in all.\n");
-    showTextbox("Thirty two are food.\n");
-    showTextbox("Rare Items grow naturally\nin some areas and can't be\nfound in others.\n");
-    showTextbox("For example, you can\nfind a Blue Apple in\nNative Forest.\n");
-    showTextbox("These foods have special\neffects, so be careful on\nthe timing of eating them.\n");
+    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("There are one hund and twenty\neight kinds of Items in all.\n", "Thirty two are food.\n", "Rare Items grow naturally\nin some areas and can't be\nfound in others.\n", "For example, you can\nfind a Blue Apple in\nNative Forest.\n", "These foods have special\neffects, so be careful on\nthe timing of eating them.\n");
     setPStat(44, 1);
     return;
 
 L1:
     if (pstat[44] != 1) goto L2;
     speak(6, "Now I'll talk about\nDigivolution Items.\n");
-    showTextbox("Digivolution Items make\nDigimon digivolve, as the\nname suggests.\n");
-    showTextbox("There are many different\nkinds of Digivolution Items.\n");
-    showTextbox("Each kind causes Digimon\nto digivolve into different\ntypes of Digimon.\n");
-    showTextbox("For example, if you use\nGrey Claws, the Digimon\nwill turn into Greymon.\n");
-    showTextbox("Digivolution Items are\nItems of legend and some\nare one of a kind.\n");
-    showTextbox("But sometimes you don't get\nany bonus ability like\nduring normal Digivolution.\n");
-    showTextbox("Also, Happiness level goes\ndown, so they're not perfect.\n");
-    showTextbox("At the same time, it's nice\nto digivolve into the kind of\nDigimon you want to be.\n");
-    showTextbox("You can only digivolve from\none generation before the\nDigimon you want to become.\n");
-    showTextbox("So be careful.\n");
+    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("Digivolution Items make\nDigimon digivolve, as the\nname suggests.\n", "There are many different\nkinds of Digivolution Items.\n", "Each kind causes Digimon\nto digivolve into different\ntypes of Digimon.\n", "For example, if you use\nGrey Claws, the Digimon\nwill turn into Greymon.\n", "Digivolution Items are\nItems of legend and some\nare one of a kind.\n");
+    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("But sometimes you don't get\nany bonus ability like\nduring normal Digivolution.\n", "Also, Happiness level goes\ndown, so they're not perfect.\n", "At the same time, it's nice\nto digivolve into the kind of\nDigimon you want to be.\n", "You can only digivolve from\none generation before the\nDigimon you want to become.\n", "So be careful.\n");
     setPStat(44, 0);
 
 L2:
@@ -101,9 +104,7 @@ L9:
     if (pstat[24] != 0) goto L10;
     setTrigger(419);
     setTrigger(420);
-    unsetTrigger(3);
-    setPStat(254, 5);
-    callSubroutine(8);
+    unsetTriggerThenSetPStatThenCallSubroutine();
     unsetTrigger(419);
     unsetTrigger(420);
     return;
@@ -112,9 +113,7 @@ L10:
     if (pstat[24] != 1) goto L11;
     setTrigger(418);
     setTrigger(421);
-    unsetTrigger(3);
-    setPStat(254, 5);
-    callSubroutine(8);
+    unsetTriggerThenSetPStatThenCallSubroutine();
     unsetTrigger(418);
     unsetTrigger(421);
     return;
@@ -122,18 +121,14 @@ L10:
 L11:
     if (pstat[24] != 2) goto L12;
     for id in 402..405 { setTrigger(id); }
-    unsetTrigger(3);
-    setPStat(254, 5);
-    callSubroutine(8);
+    unsetTriggerThenSetPStatThenCallSubroutine();
     for id in 402..405 { unsetTrigger(id); }
     return;
 
 L12:
     if (pstat[24] != 3) goto L13;
     for id in 413..415 { setTrigger(id); }
-    unsetTrigger(3);
-    setPStat(254, 5);
-    callSubroutine(8);
+    unsetTriggerThenSetPStatThenCallSubroutine();
     for id in 413..415 { unsetTrigger(id); }
     return;
 

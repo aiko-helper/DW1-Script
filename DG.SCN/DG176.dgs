@@ -1,6 +1,42 @@
 // DG176.SCN
 #pragma script index=176 start=0x84800 end=0x86000 headerU16=0x20 sentinelOff=0x19
 
+function setTriggerThenSetTriggerThenSetTriggerThenSetTriggerThenSetTrigger(a, b, c, d, e) {
+    setTrigger(a);
+    setTrigger(b);
+    setTrigger(c);
+    setTrigger(d);
+    setTrigger(e);
+}
+
+function unsetTriggerThenUnsetTriggerThenUnsetTriggerThenUnsetTriggerThenUnsetTrigger(a, b, c, d, e) {
+    unsetTrigger(a);
+    unsetTrigger(b);
+    unsetTrigger(c);
+    unsetTrigger(d);
+    unsetTrigger(e);
+}
+
+function setTriggerThenSetTriggerThenSetTriggerThenSetTrigger() {
+    setTrigger(384);
+    setTrigger(385);
+    setTrigger(388);
+    setTrigger(392);
+}
+
+function speakThenShowTextboxThenShowTextbox(a, b, c, d) {
+    speak(a, b);
+    showTextbox(c);
+    showTextbox(d);
+}
+
+function speakThenSetTriggerThenAddPStat(a, b) {
+    speak(5, a);
+    setTrigger(b);
+    addPStat(26, 1);
+}
+
+
 section onEnter(254) {  // len=90
     if (!trigger(206) && !trigger(211) && !trigger(213) && !trigger(252)) goto L1;
     setObjectVisibility(21, 1);
@@ -321,9 +357,7 @@ L1:
 
 L2:
     if (!trigger(231) || trigger(65) || pstat[25] != 0) goto L4;
-    speak(5, "Welcome to my shop.\n");
-    showTextbox("Look, <LIGHTBLUE><PLAYER><WHITE>. This is\nmy shop. I'm going to sell\nall kinds of Items.\n");
-    showTextbox("I'll have more stuff soon.\nBut I need Digimon who can\nhelp me here.\n");
+    speakThenShowTextboxThenShowTextbox(5, "Welcome to my shop.\n", "Look, <LIGHTBLUE><PLAYER><WHITE>. This is\nmy shop. I'm going to sell\nall kinds of Items.\n", "I'll have more stuff soon.\nBut I need Digimon who can\nhelp me here.\n");
     setTrigger(65);
     addPStat(26, 1);
     if (pstat[26] < 3) goto L3;
@@ -374,9 +408,7 @@ L9:
 
 L10:
     if (!trigger(231) || trigger(65) || pstat[25] != 0) goto L12;
-    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, I just started to\nhelp running this shop.\nPlease buy lots of stuff!\n");
-    setTrigger(65);
-    addPStat(26, 1);
+    speakThenSetTriggerThenAddPStat("<LIGHTBLUE><PLAYER><WHITE>, I just started to\nhelp running this shop.\nPlease buy lots of stuff!\n", 65);
     if (pstat[26] < 3) goto L11;
     setObjectVisibility(18, 1);
     setObjectVisibility(20, 1);
@@ -386,9 +418,7 @@ L11:
 
 L12:
     if (!trigger(245) || trigger(66) || pstat[25] != 1) goto L14;
-    speak(5, "Welcome. Starting today,\nI'm going to work here.\nPlease come here often.\n");
-    setTrigger(66);
-    addPStat(26, 1);
+    speakThenSetTriggerThenAddPStat("Welcome. Starting today,\nI'm going to work here.\nPlease come here often.\n", 66);
     if (pstat[26] < 3) goto L13;
     setObjectVisibility(18, 1);
     setObjectVisibility(20, 1);
@@ -398,9 +428,7 @@ L13:
 
 L14:
     if (!trigger(233) || trigger(67) || pstat[25] != 2) goto L16;
-    speak(5, "I have decided to help\nrun this shop.\nPlease come by anytime.\n");
-    setTrigger(67);
-    addPStat(26, 1);
+    speakThenSetTriggerThenAddPStat("I have decided to help\nrun this shop.\nPlease come by anytime.\n", 67);
     if (pstat[26] < 3) goto L15;
     setObjectVisibility(18, 1);
     setObjectVisibility(20, 1);
@@ -410,9 +438,7 @@ L15:
 
 L16:
     if (!trigger(247) || trigger(68) || pstat[25] != 3) goto L18;
-    speak(5, "Oh, <LIGHTBLUE><PLAYER><WHITE>. This is the\nperfect place for me.\nI will work hard here.\n");
-    setTrigger(68);
-    addPStat(26, 1);
+    speakThenSetTriggerThenAddPStat("Oh, <LIGHTBLUE><PLAYER><WHITE>. This is the\nperfect place for me.\nI will work hard here.\n", 68);
     if (pstat[26] < 3) goto L17;
     setObjectVisibility(18, 1);
     setObjectVisibility(20, 1);
@@ -422,10 +448,7 @@ L17:
 
 L18:
     if (pstat[26] != 1) goto L19;
-    setTrigger(384);
-    setTrigger(385);
-    setTrigger(388);
-    setTrigger(392);
+    setTriggerThenSetTriggerThenSetTriggerThenSetTrigger();
     for id in 399..401 { setTrigger(id); }
     setTrigger(406);
     setTrigger(416);
@@ -450,16 +473,9 @@ L22:
 L23:
     unsetTrigger(3);
     if (pstat[26] != 2 && pstat[26] != 3) goto L24;
-    setTrigger(384);
-    setTrigger(385);
-    setTrigger(388);
-    setTrigger(392);
+    setTriggerThenSetTriggerThenSetTriggerThenSetTrigger();
     for id in 399..401 { setTrigger(id); }
-    setTrigger(406);
-    setTrigger(416);
-    setTrigger(422);
-    setTrigger(386);
-    setTrigger(389);
+    setTriggerThenSetTriggerThenSetTriggerThenSetTriggerThenSetTrigger(406, 416, 422, 386, 389);
 
 L24:
     if (pstat[25] != 0) goto L25;
@@ -479,16 +495,9 @@ L27:
 
 L28:
     if (pstat[26] != 4) goto L29;
-    setTrigger(384);
-    setTrigger(385);
-    setTrigger(388);
-    setTrigger(392);
+    setTriggerThenSetTriggerThenSetTriggerThenSetTrigger();
     for id in 399..401 { setTrigger(id); }
-    setTrigger(406);
-    setTrigger(416);
-    setTrigger(422);
-    setTrigger(386);
-    setTrigger(389);
+    setTriggerThenSetTriggerThenSetTriggerThenSetTriggerThenSetTrigger(406, 416, 422, 386, 389);
     setTrigger(391);
     setTrigger(390);
     setTrigger(395);
@@ -511,21 +520,10 @@ L32:
 
 L33:
     if (pstat[26] != 5) goto L34;
-    setTrigger(384);
-    setTrigger(385);
-    setTrigger(388);
-    setTrigger(392);
+    setTriggerThenSetTriggerThenSetTriggerThenSetTrigger();
     for id in 399..401 { setTrigger(id); }
-    setTrigger(406);
-    setTrigger(416);
-    setTrigger(422);
-    setTrigger(386);
-    setTrigger(389);
-    setTrigger(391);
-    setTrigger(390);
-    setTrigger(395);
-    setTrigger(393);
-    setTrigger(387);
+    setTriggerThenSetTriggerThenSetTriggerThenSetTriggerThenSetTrigger(406, 416, 422, 386, 389);
+    setTriggerThenSetTriggerThenSetTriggerThenSetTriggerThenSetTrigger(391, 390, 395, 393, 387);
     setTrigger(394);
     setTrigger(396);
 
@@ -538,16 +536,8 @@ L34:
     unsetTrigger(388);
     unsetTrigger(392);
     for id in 399..401 { unsetTrigger(id); }
-    unsetTrigger(406);
-    unsetTrigger(416);
-    unsetTrigger(422);
-    unsetTrigger(386);
-    unsetTrigger(389);
-    unsetTrigger(391);
-    unsetTrigger(390);
-    unsetTrigger(395);
-    unsetTrigger(393);
-    unsetTrigger(387);
+    unsetTriggerThenUnsetTriggerThenUnsetTriggerThenUnsetTriggerThenUnsetTrigger(406, 416, 422, 386, 389);
+    unsetTriggerThenUnsetTriggerThenUnsetTriggerThenUnsetTriggerThenUnsetTrigger(391, 390, 395, 393, 387);
     unsetTrigger(394);
     unsetTrigger(396);
     return;
@@ -560,9 +550,7 @@ section(82) {  // len=964
 L1:
     look(entity: Entity.Player, at: 6);
     look(entity: 6, at: Entity.Player);
-    speak(6, "Hi, I'm busy all the time\nrunning this shop... Not!\n");
-    showTextbox("I'm kinda lazy and I won't\nbe in the shop much. \nBut I got some cool stuff.\n");
-    showTextbox("Yes! 'Training Manual'!\nWith this, your training\nwill get better!\n");
+    speakThenShowTextboxThenShowTextbox(6, "Hi, I'm busy all the time\nrunning this shop... Not!\n", "I'm kinda lazy and I won't\nbe in the shop much. \nBut I got some cool stuff.\n", "Yes! 'Training Manual'!\nWith this, your training\nwill get better!\n");
     showTextbox("It's very valuable. I'll\nsell it for fifty thous bits.\nYou'll regret not buying it.\n");
     setDialogOwner(Entity.Player);
     setSelection(L2, L6);
@@ -607,16 +595,12 @@ section(7) {  // len=1220
     roll(pstat: 110, max: 2);
     if (pstat[1] < 20) goto L1;
     if (pstat[110] != 0) goto L1;
-    speak(7, "Are you having trouble\nbecause you've got\ntoo much stuff?\n");
-    showTextbox("There is a place to find a\nkey chain that connects your\nbag to another dimension.\n");
-    showTextbox("It increases the number of\nItems you can carry.\n");
+    speakThenShowTextboxThenShowTextbox(7, "Are you having trouble\nbecause you've got\ntoo much stuff?\n", "There is a place to find a\nkey chain that connects your\nbag to another dimension.\n", "It increases the number of\nItems you can carry.\n");
     showTextbox("Even if you've been to some\nplace before, look again.\n");
     return;
 
 L1:
-    speak(7, "I'll tell you the secret to\nItem buying.\n");
-    showTextbox("Press the Start button\non the Item you want to\nget information for!\n");
-    showTextbox("Choose the Item with <LIGHTBLUE><X><WHITE>,\nand press <PINK><SQUARE><WHITE>, if you\nwant to buy a lot.\n");
+    speakThenShowTextboxThenShowTextbox(7, "I'll tell you the secret to\nItem buying.\n", "Press the Start button\non the Item you want to\nget information for!\n", "Choose the Item with <LIGHTBLUE><X><WHITE>,\nand press <PINK><SQUARE><WHITE>, if you\nwant to buy a lot.\n");
     showTextbox("To raise or lower by ten, use\nUp or Down on Dir. Pad,\nwhile pressing <ORANGE><O><WHITE>.\n");
     showTextbox("Oh, right after digivolution,\ntry buying something.\nSomething good should happen!\n");
     return;

@@ -1,6 +1,20 @@
 // DG082.SCN
 #pragma script index=82 start=0x3b000 end=0x3c000 headerU16=0x10 sentinelOff=0x24
 
+function speakThenSpeakThenSpeakThenSpeak(a, b, c, d, e, f, g) {
+    speak(a, b);
+    speak(c, d);
+    speak(e, f);
+    speak(c, g);
+}
+
+function playAnimationThenDelayThenSpeak(a, b, c, d, e) {
+    playAnimation(a, b);
+    delay(c);
+    speak(d, e);
+}
+
+
 section onEnter(254) {  // len=44
     roll(pstat: 110, max: 99);
     if (pstat[110] > 0) goto L1;
@@ -22,9 +36,7 @@ section(5) {  // len=2382
     showTextbox("Crack it and check\nLeave it alone\n");
 
 L1:
-    playAnimation(Entity.Player, 5);
-    delay(20);
-    speak(Entity.Player, "Hmmm\n");
+    playAnimationThenDelayThenSpeak(Entity.Player, 5, 20, Entity.Player, "Hmmm\n");
     playAnimation(Entity.Player, 16);
     delay(5);
     showTextbox("Looks like a plain\nold meteorite to me.\n");
@@ -32,17 +44,12 @@ L1:
     goto L2;
 
 L2:
-    playAnimation(5, 29);
-    delay(10);
-    speak(Entity.Player, "Wow!\n");
+    playAnimationThenDelayThenSpeak(5, 29, 10, Entity.Player, "Wow!\n");
     speak(Entity.Player, "You're a Digimon?!\nWho are you?\n");
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Player, at: 5);
     delay(5);
-    speak(Entity.System, "<YELLOW>???mon <WHITE>\nMy name is Meteormon.\n");
-    speak(Entity.Player, "Do you know about\nthe island's danger?\n");
-    speak(5, "I know nothing!\n");
-    speak(Entity.Player, "You know nothing?! You sure\nyou're not hiding something?\n");
+    speakThenSpeakThenSpeakThenSpeak(Entity.System, "<YELLOW>???mon <WHITE>\nMy name is Meteormon.\n", Entity.Player, "Do you know about\nthe island's danger?\n", 5, "I know nothing!\n", "You know nothing?! You sure\nyou're not hiding something?\n");
     speak(5, "How rude! Alright!\nWhy don't we battle\nto prove who is right!\n");
     speak(Entity.Player, "Alright! Let's go for it.\n");
     setTrigger(1);
@@ -50,8 +57,6 @@ L2:
     setPStat(251, 5);
     setPStat(252, 255);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);
@@ -60,16 +65,11 @@ L2:
     look(entity: Entity.Partner, at: 5);
     speak(5, "I give up. You're so strong.\n");
     speak(Entity.Player, "Whatever you know, tell me\nabout the island's danger.\n");
-    playAnimation(Entity.Player, 19);
-    delay(5);
-    speak(5, "I was just born, so\nI don't know anything!\n");
+    playAnimationThenDelayThenSpeak(Entity.Player, 19, 5, 5, "I was just born, so\nI don't know anything!\n");
     speak(Entity.Player, "What?!\n");
     playAnimation(Entity.Player, 0);
     delay(5);
-    speak(5, "The Meteorite Tribe is\nborn in the sky and then\nfalls to the ground.\n");
-    speak(5, "Then we sleep for a long time.\nActually, I was supposed to\nsleep much longer, but...\n");
-    speak(Entity.Player, "Time goes much faster here.\n");
-    speak(5, "Probably. Anyway, I'll go\ncheck out the island.");
+    speakThenSpeakThenSpeakThenSpeak(5, "The Meteorite Tribe is\nborn in the sky and then\nfalls to the ground.\n", 5, "Then we sleep for a long time.\nActually, I was supposed to\nsleep much longer, but...\n", Entity.Player, "Time goes much faster here.\n", "Probably. Anyway, I'll go\ncheck out the island.");
     dead_string("?o\nSee ya!\n");
     playAnimation(5, 30);
     delay(10);
@@ -100,9 +100,7 @@ L5:
     speak(Entity.Player, "We looked at it, and\nwe can't tell anything.\nLet's crack it!\n");
     move(entity: Entity.Partner, to: 5, sprint: 0);
     waitForEntity(Entity.Partner);
-    playAnimation(Entity.Partner, 46);
-    delay(20);
-    speak(Entity.System, "<YELLOW>???mon <WHITE>\nWhadda ya think you're doing?\nYou reckless clod!\n");
+    playAnimationThenDelayThenSpeak(Entity.Partner, 46, 20, Entity.System, "<YELLOW>???mon <WHITE>\nWhadda ya think you're doing?\nYou reckless clod!\n");
     playAnimation(5, 29);
     delay(20);
     look(entity: 5, at: Entity.Player);
@@ -113,9 +111,7 @@ L5:
 
 section(6) {  // len=1654
     delay(10);
-    playAnimation(6, 28);
-    delay(10);
-    speak(Entity.Player, "Huh? Who are you?!\n");
+    playAnimationThenDelayThenSpeak(6, 28, 10, Entity.Player, "Huh? Who are you?!\n");
     speak(6, "Who am I? Who are you?!\n");
     rotate(entity: 6, to: 1276);
     delay(5);

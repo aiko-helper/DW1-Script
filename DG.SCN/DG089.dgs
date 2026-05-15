@@ -1,6 +1,13 @@
 // DG089.SCN
 #pragma script index=89 start=0x3f000 end=0x3f800 headerU16=0x28 sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=72
     roll(pstat: 110, max: 99);
     if (pstat[110] > 11) goto L1;
@@ -22,56 +29,32 @@ L3:
 }
 
 section(5) {  // len=64
-    speak(5, "Leave your valuables.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(272);
+    speakThenStartBattleThenSetTrigger(5, "Leave your valuables.\n", 272);
     return;
 }
 
 section(6) {  // len=66
-    speak(6, "I'll cover you in ice!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(272);
+    speakThenStartBattleThenSetTrigger(6, "I'll cover you in ice!\n", 272);
     return;
 }
 
 section(7) {  // len=76
-    speak(7, "You can't go right or left.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(272);
+    speakThenStartBattleThenSetTrigger(7, "You can't go right or left.\n", 272);
     return;
 }
 
 section(8) {  // len=94
-    speak(8, "I'll turn you\ninto an ice sculpture!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(300);
+    speakThenStartBattleThenSetTrigger(8, "I'll turn you\ninto an ice sculpture!\n", 300);
     return;
 }
 
 section(9) {  // len=50
-    speak(9, "I'll show you!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(300);
+    speakThenStartBattleThenSetTrigger(9, "I'll show you!\n", 300);
     return;
 }
 
 section(10) {  // len=66
-    speak(10, "Wanna freeze to death?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(272);
+    speakThenStartBattleThenSetTrigger(10, "Wanna freeze to death?\n", 272);
     return;
 }
 

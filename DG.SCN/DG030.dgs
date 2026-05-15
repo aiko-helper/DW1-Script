@@ -1,6 +1,21 @@
 // DG030.SCN
 #pragma script index=30 start=0x1b000 end=0x1b800 headerU16=0x10 sentinelOff=0x19
 
+function playSoundThenDelayThenMoveBoulderThenPlaySoundThenDelay(a, b, c, d) {
+    playSound(8, 3);
+    delay(a);
+    moveBoulder(b, c);
+    playSound(8, 3);
+    delay(d);
+}
+
+function playSoundThenDelayThenMoveBoulder(a, b) {
+    playSound(8, 3);
+    delay(20);
+    moveBoulder(a, b);
+}
+
+
 section onEnter(254) {  // len=28
     if (trigger(120)) goto L1;
     spawnBoulder();
@@ -71,45 +86,21 @@ L7:
     playAnimation(Entity.Partner, 27);
     setObjectVisibility(0, 0);
     moveBoulder(0, 50);
-    playSound(8, 3);
-    delay(20);
-    moveBoulder(0, 100);
+    playSoundThenDelayThenMoveBoulder(0, 100);
     move(entity: Entity.Partner, to: (-337, 270), sprint: 0);
-    playSound(8, 3);
-    delay(20);
-    moveBoulder(0, 100);
+    playSoundThenDelayThenMoveBoulder(0, 100);
     move(entity: Entity.Partner, to: (-337, 370), sprint: 0);
-    playSound(8, 3);
-    delay(20);
-    moveBoulder(0, 100);
+    playSoundThenDelayThenMoveBoulder(0, 100);
     move(entity: Entity.Partner, to: (-337, 470), sprint: 0);
-    playSound(8, 3);
-    delay(20);
-    moveBoulder(10, 200);
+    playSoundThenDelayThenMoveBoulder(10, 200);
     move(entity: Entity.Partner, to: (-337, 670), sprint: 0);
-    playSound(8, 3);
-    delay(5);
-    moveBoulder(50, 300);
-    playSound(8, 3);
-    delay(5);
+    playSoundThenDelayThenMoveBoulderThenPlaySoundThenDelay(5, 50, 300, 5);
     moveBoulder(60, 400);
-    playSound(8, 3);
-    delay(5);
-    moveBoulder(80, 500);
-    playSound(8, 3);
-    delay(3);
+    playSoundThenDelayThenMoveBoulderThenPlaySoundThenDelay(5, 80, 500, 3);
     moveBoulder(80, 600);
-    playSound(8, 3);
-    delay(3);
-    moveBoulder(80, 600);
-    playSound(8, 3);
-    delay(3);
+    playSoundThenDelayThenMoveBoulderThenPlaySoundThenDelay(3, 80, 600, 3);
     moveBoulder(120, 300);
-    playSound(8, 3);
-    delay(2);
-    moveBoulder(120, 100);
-    playSound(8, 3);
-    delay(2);
+    playSoundThenDelayThenMoveBoulderThenPlaySoundThenDelay(2, 120, 100, 2);
     moveBoulder(120, 100);
     playSound(8, 3);
     delay(1);

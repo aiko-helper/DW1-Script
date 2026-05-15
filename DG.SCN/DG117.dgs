@@ -1,6 +1,13 @@
 // DG117.SCN
 #pragma script index=117 start=0x54800 end=0x55000 headerU16=0x30 sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=94
     roll(pstat: 110, max: 99);
     if (pstat[110] > 4) goto L1;
@@ -27,74 +34,42 @@ L4:
 }
 
 section(5) {  // len=42
-    speak(5, "Who is it?\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(289);
+    speakThenStartBattleThenSetTrigger(5, "Who is it?\n", 289);
     return;
 }
 
 section(6) {  // len=70
-    speak(6, "I'm going! Just kidding.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(289);
+    speakThenStartBattleThenSetTrigger(6, "I'm going! Just kidding.\n", 289);
     return;
 }
 
 section(7) {  // len=68
-    speak(7, "Ha ha ha. This's great.\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(289);
+    speakThenStartBattleThenSetTrigger(7, "Ha ha ha. This's great.\n", 289);
     return;
 }
 
 section(8) {  // len=72
-    speak(8, "Oh, I'm gonna\nenjoy this!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(8, "Oh, I'm gonna\nenjoy this!\n", 280);
     return;
 }
 
 section(9) {  // len=56
-    speak(9, "Are you serious?!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(9, "Are you serious?!\n", 280);
     return;
 }
 
 section(10) {  // len=66
-    speak(10, "Hey, are you serious?!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(289);
+    speakThenStartBattleThenSetTrigger(10, "Hey, are you serious?!\n", 289);
     return;
 }
 
 section(11) {  // len=40
-    speak(11, "Be Quiet!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(296);
+    speakThenStartBattleThenSetTrigger(11, "Be Quiet!\n", 296);
     return;
 }
 
 section(12) {  // len=96
-    speak(12, "I can do it\nwhen I put my mind to it!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(296);
+    speakThenStartBattleThenSetTrigger(12, "I can do it\nwhen I put my mind to it!\n", 296);
     return;
 }
 

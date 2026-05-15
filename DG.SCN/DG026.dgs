@@ -1,6 +1,20 @@
 // DG026.SCN
 #pragma script index=26 start=0x18000 end=0x19000 headerU16=0x28 sentinelOff=0x1a64
 
+function playAnimationThenDelayThenSpeakThenPlayAnimation(a, b, c, d, e) {
+    playAnimation(a, b);
+    delay(c);
+    speak(a, d);
+    playAnimation(a, e);
+}
+
+function speakThenSpeakThenSpeak(a, b, c, d, e) {
+    speak(a, b);
+    speak(c, d);
+    speak(a, e);
+}
+
+
 section onEnter(254) {  // len=64
     callSubroutine(26);
     if (pstat[17] != 3) goto L1;
@@ -25,8 +39,6 @@ section(5) {  // len=126
 
 L1:
     speak(5, "What? You wanna fight?\n");
-    fadeOutHUD();
-    delay(1);
     startBattle();
     setTrigger(280);
     return;
@@ -39,8 +51,6 @@ section(6) {  // len=96
 
 L1:
     speak(6, "Leave it!\n");
-    fadeOutHUD();
-    delay(1);
     startBattle();
     setTrigger(280);
     return;
@@ -53,8 +63,6 @@ section(7) {  // len=120
 
 L1:
     speak(7, "Let's fight, punk!\n");
-    fadeOutHUD();
-    delay(1);
     startBattle();
     setTrigger(280);
     return;
@@ -92,9 +100,7 @@ L1:
     look(entity: 8, at: Entity.Player);
     speak(8, "Hey guys, if you want\nto get thru here,");
     dead_string("?nt\nleave all your stuff!\n");
-    speak(Entity.Player, "Long time no see.\n");
-    speak(8, "Mmm. You guys again!\n");
-    speak(Entity.Player, "That's my line!\nIt was so easy to find you.\nReady to lose?\n");
+    speakThenSpeakThenSpeak(Entity.Player, "Long time no see.\n", 8, "Mmm. You guys again!\n", "That's my line!\nIt was so easy to find you.\nReady to lose?\n");
     playAnimation(8, 32);
     speak(8, "Lose? No way!\nI'll show you what I do\nwhen I get serious!\n");
     playAnimation(8, 0);
@@ -104,8 +110,6 @@ L1:
     setPStat(251, 9);
     setPStat(252, 10);
     setPStat(253, 8);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);
@@ -117,28 +121,14 @@ L1:
     look(entity: Entity.Player, at: 8);
     look(entity: Entity.Partner, at: 8);
     waitForEntity(8);
-    playAnimation(8, 28);
-    delay(30);
-    speak(8, "How come...I can't win?\n");
-    playAnimation(8, 29);
-    playAnimation(Entity.Player, 19);
-    delay(20);
-    speak(Entity.Player, "What's wrong?\nAren't you going to run?\n");
-    playAnimation(Entity.Player, 0);
-    speak(8, "I'm too tired.\n");
-    speak(Entity.Player, "...\n");
-    speak(8, "I became a bandit cuz I\nthought this island was done\nfor, so I just did whatever.\n");
+    playAnimationThenDelayThenSpeakThenPlayAnimation(8, 28, 30, "How come...I can't win?\n", 29);
+    playAnimationThenDelayThenSpeakThenPlayAnimation(Entity.Player, 19, 20, "What's wrong?\nAren't you going to run?\n", 0);
+    speakThenSpeakThenSpeak(8, "I'm too tired.\n", Entity.Player, "...\n", "I became a bandit cuz I\nthought this island was done\nfor, so I just did whatever.\n");
     speak(Entity.Player, "Did you know the island\nwas in trouble?\n");
     speak(8, "Yes, then you showed up.\nI guess it's dumb to\nstart helping you now.\n");
-    playAnimation(Entity.Player, 19);
-    delay(15);
-    speak(Entity.Player, "I don't think so.\nCome to the city.\n");
-    playAnimation(Entity.Player, 0);
+    playAnimationThenDelayThenSpeakThenPlayAnimation(Entity.Player, 19, 15, "I don't think so.\nCome to the city.\n", 0);
     speak(8, "No, I can't. Plus, I don't\nthink anybody would forgive\nme for what I've done.\n");
-    playAnimation(Entity.Player, 7);
-    delay(15);
-    speak(Entity.Player, "Oh, just be quiet\nand come with me!\n");
-    playAnimation(Entity.Player, 0);
+    playAnimationThenDelayThenSpeakThenPlayAnimation(Entity.Player, 7, 15, "Oh, just be quiet\nand come with me!\n", 0);
     move(entity: Entity.Player, to: (160, -193), sprint: 1, withCamera: true);
     waitForEntity(Entity.Player);
     rotate(entity: Entity.Player, to: 100);

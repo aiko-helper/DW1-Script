@@ -1,6 +1,14 @@
 // DG063.SCN
 #pragma script index=63 start=0x2e000 end=0x2f000 headerU16=0x10 sentinelOff=0x19
 
+function speakThenSpeakThenSpeakThenSpeak(a, b, c, d, e, f) {
+    speak(a, b);
+    speak(c, d);
+    speak(a, e);
+    speak(c, f);
+}
+
+
 section onEnter(254) {  // len=104
     if (trigger(104) && trigger(128)) goto L1;
     playAnimation(5, 28);
@@ -34,10 +42,7 @@ L1:
 
 L2:
     setTrigger(104);
-    speak(Entity.Player, " ! \n");
-    speak(5, "Someone came to help me?\n");
-    speak(Entity.Player, "Digimon? Are you ok?\n");
-    speak(5, "Who are you? Give me food!\n");
+    speakThenSpeakThenSpeakThenSpeak(Entity.Player, " ! \n", 5, "Someone came to help me?\n", "Digimon? Are you ok?\n", "Who are you? Give me food!\n");
     speak(Entity.Player, "Hungry? What do you want?\n");
     speak(5, "Meat.\n");
     if (item[Item.Meat] < 1 && item[Item.GiantMeat] < 1 && item[Item.Sirloin] < 1) goto L3;
@@ -77,10 +82,7 @@ L7:
     delay(40);
     playAnimation(5, 0);
     look(entity: 5, at: Entity.Player);
-    speak(5, "I'm saved. Thanks so much.\nSorry for the trouble.\n");
-    speak(Entity.Player, "What happened?\n");
-    speak(5, "I'm Myotismon, master of\nthis mansion.\n");
-    speak(Entity.Player, "I'm <LIGHTBLUE><PLAYER><WHITE>, a human from\nanother world. This is\nmy partner, <ORANGE><DIGIMON><WHITE>.\n");
+    speakThenSpeakThenSpeakThenSpeak(5, "I'm saved. Thanks so much.\nSorry for the trouble.\n", Entity.Player, "What happened?\n", "I'm Myotismon, master of\nthis mansion.\n", "I'm <LIGHTBLUE><PLAYER><WHITE>, a human from\nanother world. This is\nmy partner, <ORANGE><DIGIMON><WHITE>.\n");
     showTextbox("We're here to\nsave the island.\n");
     speak(5, "Looks like we have lot to\ntalk about. I welcome you.\n");
     setTrigger(128);
@@ -116,8 +118,6 @@ section(60) {  // len=2460
     setPStat(251, 6);
     setPStat(252, 255);
     setPStat(253, 255);
-    fadeOutHUD();
-    delay(1);
     startBattle();
     unsetTrigger(1);
     setPStat(250, 0);

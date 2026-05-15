@@ -1,6 +1,21 @@
 // DG007.SCN
 #pragma script index=7 start=0xa800 end=0xb800 headerU16=0x10 sentinelOff=0x24
 
+function speakThenPlayAnimationThenSetObjectVisibilityThenSetObjectVisibilityThenSetObjectVisibility(a) {
+    speak(5, a);
+    playAnimation(5, 29);
+    setObjectVisibility(45, 1);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+}
+
+function setPStatThenSetPStatThenCallSubroutine(a, b) {
+    setPStat(247, a);
+    setPStat(248, b);
+    callSubroutine(21);
+}
+
+
 section onEnter(254) {  // len=24
     roll(pstat: 110, max: 99);
     if (pstat[110] > 4) goto L1;
@@ -41,9 +56,7 @@ L3:
     setDigimon(Digimon.NPCSeadramon, 0, 0);
     playAnimation(5, 28);
     for id in 38..44 { setObjectVisibility(id, 0); }
-    setPStat(247, 40);
-    setPStat(248, 5);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(40, 5);
     playAnimation(Entity.Player, 15);
     waitForEntity(5);
     playSound(8, 12);
@@ -57,14 +70,8 @@ L3:
     delay(15);
     speak(Entity.Player, "Take me to the other side.\n");
     playAnimation(Entity.Player, 0);
-    speak(5, "Sure. Get on.\n");
-    playAnimation(5, 29);
-    setObjectVisibility(45, 1);
-    setObjectVisibility(46, 0);
-    setObjectVisibility(47, 0);
-    setPStat(247, 46);
-    setPStat(248, 2);
-    callSubroutine(21);
+    speakThenPlayAnimationThenSetObjectVisibilityThenSetObjectVisibilityThenSetObjectVisibility("Sure. Get on.\n");
+    setPStatThenSetPStatThenCallSubroutine(46, 2);
     delay(20);
     setObjectVisibility(46, 1);
     setObjectVisibility(47, 1);
@@ -104,9 +111,7 @@ section(82) {  // len=3416
     setDigimon(Digimon.NPCSeadramon, 0, 0);
     playAnimation(5, 28);
     for id in 40..44 { setObjectVisibility(id, 0); }
-    setPStat(247, 40);
-    setPStat(248, 5);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(40, 5);
     playAnimation(Entity.Player, 15);
     waitForEntity(5);
     playSound(8, 12);
@@ -144,9 +149,7 @@ L5:
     setDigimon(Digimon.NPCSeadramon, 0, 0);
     playAnimation(5, 28);
     for id in 38..44 { setObjectVisibility(id, 0); }
-    setPStat(247, 40);
-    setPStat(248, 5);
-    callSubroutine(21);
+    setPStatThenSetPStatThenCallSubroutine(40, 5);
     playAnimation(Entity.Player, 15);
     waitForEntity(5);
     playSound(8, 12);
@@ -213,11 +216,7 @@ L11:
     goto L2;
 
 L12:
-    speak(5, "See ya!\n");
-    playAnimation(5, 29);
-    setObjectVisibility(45, 1);
-    setObjectVisibility(46, 0);
-    setObjectVisibility(47, 0);
+    speakThenPlayAnimationThenSetObjectVisibilityThenSetObjectVisibilityThenSetObjectVisibility("See ya!\n");
     delay(20);
     playAnimation(5, 30);
     setObjectVisibility(46, 1);
@@ -241,11 +240,7 @@ L13:
 
 L14:
     speak(Entity.System, "Yeah, I got the\n<LIGHTBLUE>Water Bottle<WHITE>!\n");
-    speak(5, "See ya!\n");
-    playAnimation(5, 29);
-    setObjectVisibility(45, 1);
-    setObjectVisibility(46, 0);
-    setObjectVisibility(47, 0);
+    speakThenPlayAnimationThenSetObjectVisibilityThenSetObjectVisibilityThenSetObjectVisibility("See ya!\n");
     delay(20);
     playAnimation(5, 30);
     setObjectVisibility(46, 1);
@@ -258,14 +253,8 @@ L14:
 
 L15:
     unsetTrigger(49);
-    speak(5, "Well then, hop on my back.\n");
-    playAnimation(5, 29);
-    setObjectVisibility(45, 1);
-    setObjectVisibility(46, 0);
-    setObjectVisibility(47, 0);
-    setPStat(247, 46);
-    setPStat(248, 2);
-    callSubroutine(21);
+    speakThenPlayAnimationThenSetObjectVisibilityThenSetObjectVisibilityThenSetObjectVisibility("Well then, hop on my back.\n");
+    setPStatThenSetPStatThenCallSubroutine(46, 2);
     delay(20);
     setObjectVisibility(46, 1);
     setObjectVisibility(47, 1);
@@ -288,11 +277,7 @@ L15:
 
 L16:
     unsetTrigger(49);
-    speak(5, "Bye for now.\n");
-    playAnimation(5, 29);
-    setObjectVisibility(45, 1);
-    setObjectVisibility(46, 0);
-    setObjectVisibility(47, 0);
+    speakThenPlayAnimationThenSetObjectVisibilityThenSetObjectVisibilityThenSetObjectVisibility("Bye for now.\n");
     delay(20);
     playAnimation(5, 30);
     setObjectVisibility(46, 1);

@@ -1,6 +1,13 @@
 // DG019.SCN
 #pragma script index=19 start=0x14000 end=0x14800 headerU16=0x2c sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=76
     roll(pstat: 110, max: 99);
     if (pstat[110] > 14) goto L1;
@@ -23,74 +30,42 @@ L3:
 }
 
 section(5) {  // len=74
-    speak(5, "I can't let you thru here!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(5, "I can't let you thru here!\n", 280);
     return;
 }
 
 section(6) {  // len=84
-    speak(6, "I'm going to take\nall you have!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(6, "I'm going to take\nall you have!\n", 280);
     return;
 }
 
 section(7) {  // len=74
-    speak(7, "I can't let you thru here!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(286);
+    speakThenStartBattleThenSetTrigger(7, "I can't let you thru here!\n", 286);
     return;
 }
 
 section(8) {  // len=64
-    speak(8, "You're not gonna win!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(286);
+    speakThenStartBattleThenSetTrigger(8, "You're not gonna win!\n", 286);
     return;
 }
 
 section(9) {  // len=60
-    speak(9, "I should do you in!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(9, "I should do you in!\n", 280);
     return;
 }
 
 section(10) {  // len=64
-    speak(10, "I'm gonna finish you!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(280);
+    speakThenStartBattleThenSetTrigger(10, "I'm gonna finish you!\n", 280);
     return;
 }
 
 section(11) {  // len=52
-    speak(11, "What a problem!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(268);
+    speakThenStartBattleThenSetTrigger(11, "What a problem!\n", 268);
     return;
 }
 
 section(12) {  // len=62
-    speak(12, "I'm gonna do you in!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(268);
+    speakThenStartBattleThenSetTrigger(12, "I'm gonna do you in!\n", 268);
     return;
 }
 

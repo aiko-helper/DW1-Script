@@ -1,6 +1,13 @@
 // DG190.SCN
 #pragma script index=190 start=0x91000 end=0x91800 headerU16=0x10 sentinelOff=0x24
 
+function speakThenSpeakThenSpeak(a, b, c, d, e, f) {
+    speak(a, b);
+    speak(c, d);
+    speak(e, f);
+}
+
+
 section onEnter(254) {  // len=192
     roll(pstat: 110, max: 99);
     if (pstat[110] > 4) goto L1;
@@ -112,12 +119,8 @@ L6:
     move(entity: 5, to: (-126, 409), sprint: 0);
     look(entity: Entity.Player, at: 5);
     delay(20);
-    speak(Entity.Player, "An Alien?!\n");
-    speak(5, "...\n");
-    speak(Entity.Player, "Are you a Digimon?\n");
-    speak(5, "...\n");
-    speak(Entity.Player, "Are you?\n");
-    speak(5, "...\n");
+    speakThenSpeakThenSpeak(Entity.Player, "An Alien?!\n", 5, "...\n", Entity.Player, "Are you a Digimon?\n");
+    speakThenSpeakThenSpeak(5, "...\n", Entity.Player, "Are you?\n", 5, "...\n");
     playSound(8, 6);
     delay(10);
     playAnimation(5, 28);
@@ -130,9 +133,7 @@ L6:
     speak(Entity.Player, "Good, now you understand.\n");
     playAnimation(Entity.Player, 19);
     delay(20);
-    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> tried\nto convince him.\n");
-    speak(5, "...\n");
-    speak(Entity.Player, "Maybe he doesn't understand.\n");
+    speakThenSpeakThenSpeak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> tried\nto convince him.\n", 5, "...\n", Entity.Player, "Maybe he doesn't understand.\n");
     playAnimation(5, 22);
     delay(15);
     playAnimation(5, 22);

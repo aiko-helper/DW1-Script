@@ -1,6 +1,13 @@
 // DG092.SCN
 #pragma script index=92 start=0x41000 end=0x41800 headerU16=0x1c sentinelOff=0x24
 
+function speakThenStartBattleThenSetTrigger(a, b, c) {
+    speak(a, b);
+    startBattle();
+    setTrigger(c);
+}
+
+
 section onEnter(254) {  // len=46
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
@@ -16,38 +23,22 @@ L2:
 }
 
 section(5) {  // len=66
-    speak(5, "I'm going all the way!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(271);
+    speakThenStartBattleThenSetTrigger(5, "I'm going all the way!\n", 271);
     return;
 }
 
 section(6) {  // len=56
-    speak(6, "That gets me mad!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(271);
+    speakThenStartBattleThenSetTrigger(6, "That gets me mad!\n", 271);
     return;
 }
 
 section(7) {  // len=56
-    speak(7, "Don't say 'cold'!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(303);
+    speakThenStartBattleThenSetTrigger(7, "Don't say 'cold'!\n", 303);
     return;
 }
 
 section(8) {  // len=58
-    speak(8, "Don't be reckless!\n");
-    fadeOutHUD();
-    delay(1);
-    startBattle();
-    setTrigger(303);
+    speakThenStartBattleThenSetTrigger(8, "Don't be reckless!\n", 303);
     return;
 }
 

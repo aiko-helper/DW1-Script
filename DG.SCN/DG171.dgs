@@ -1,6 +1,15 @@
 // DG171.SCN
 #pragma script index=171 start=0x80000 end=0x81000 headerU16=0x14 sentinelOff=0xfe
 
+function showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox(a, b, c, d, e) {
+    showTextbox(a);
+    showTextbox(b);
+    showTextbox(c);
+    showTextbox(d);
+    showTextbox(e);
+}
+
+
 section onEnter(254) {  // len=2
     return;
 }
@@ -33,11 +42,7 @@ section(6) {  // len=2898
 L1:
     if (pstat[1] < 15) goto L2;
     speak(6, "More about digivolution.\nAbout the conditions.\n");
-    showTextbox("First of all, I hear that\nthe weight has to be close\nto the target weight.\n");
-    showTextbox("And the higher the parameters\nthe better.\n");
-    showTextbox("But depending on which\nparameter is higher\nthe result is different.\n");
-    showTextbox("About care mistakes,\nin some cases, it works\nbetter to fail on purpose.\n");
-    showTextbox("Depending on the digivolution\ntarget, some conditions\nhave to be met.\n");
+    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("First of all, I hear that\nthe weight has to be close\nto the target weight.\n", "And the higher the parameters\nthe better.\n", "But depending on which\nparameter is higher\nthe result is different.\n", "About care mistakes,\nin some cases, it works\nbetter to fail on purpose.\n", "Depending on the digivolution\ntarget, some conditions\nhave to be met.\n");
     showTextbox("There are some situations\nthat can cause digivolution.\n");
     showTextbox("Like the number of battles or\nhow well he's disciplined.\n");
     showTextbox("If those conditions are met,\neven if some others are\nnot, he still can digivolve.\n");
@@ -45,11 +50,7 @@ L1:
 
 L2:
     speak(6, "I heard from Jiji that\n<ORANGE><DIGIMON><WHITE> will digivolve.\n");
-    showTextbox("From Fresh Digimon to\nIn-Training Digimon,\nit only takes six hours.\n");
-    showTextbox("From there to Rookie\nDigimon, it takes about\na day to digivolve.\n");
-    showTextbox("Then to the next Champion\nDigimon, it takes about\nthree days to digivolve.\n");
-    showTextbox("And what was the next\ngeneration? I forgot,\nbut there's more.\n");
-    showTextbox("Digivolution is related to\nweight, parameters,\nand care mistakes.\n");
+    showTextboxThenShowTextboxThenShowTextboxThenShowTextboxThenShowTextbox("From Fresh Digimon to\nIn-Training Digimon,\nit only takes six hours.\n", "From there to Rookie\nDigimon, it takes about\na day to digivolve.\n", "Then to the next Champion\nDigimon, it takes about\nthree days to digivolve.\n", "And what was the next\ngeneration? I forgot,\nbut there's more.\n", "Digivolution is related to\nweight, parameters,\nand care mistakes.\n");
     showTextbox("I don't understand\nvery well. I'll ask Jiji\nmy next chance.\n");
     return;
 }
