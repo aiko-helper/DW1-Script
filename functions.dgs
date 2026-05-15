@@ -122,6 +122,44 @@ function setTexboxMode(m, d) {
   raw(0x68, 0, m, d);
 }
 
+// S16 / S32 payload opcodes (use width-typed raw wrappers).
+
+function setTrigger(bit: Trigger) {
+  raw(0x1c, 0, s16(bit));
+}
+
+function unsetTrigger(bit: Trigger) {
+  raw(0x1d, 0, s16(bit));
+}
+
+function setMerit(v) {
+  raw(0x31, 0, s16(v));
+}
+
+function addMerit(v) {
+  raw(0x32, 0, s16(v));
+}
+
+function delay(d) {
+  raw(0x67, 0, s16(d));
+}
+
+function addMoney(v) {
+  raw(0x2a, 0, s32(v));
+}
+
+function reduceMoney(v) {
+  raw(0x2b, 0, s32(v));
+}
+
+function addMinutesToDate(pstat: PStat, v) {
+  raw(0x38, pstat, s32(v));
+}
+
+function setScript(scriptId, mapId: Map) {
+  raw(0xfb, 0, s16(scriptId), s16(mapId));
+}
+
 // Named-arg synonyms (disasm emits with `field: value` form).
 
 function teleport(pstat: PStat) {
@@ -161,7 +199,9 @@ function speak(o, t) {
 }
 
 function learnMoves(moves: Move[]) {
-  for m in moves { learnMove(m); }
+  for m in moves {
+    learnMove(m);
+  }
 }
 
 // Auto-extracted repeated-pattern functions.
