@@ -1,0 +1,221 @@
+// MAP165.SCN
+#pragma script index=165 start=0x79800 end=0x7a800 headerU16=0x30 sentinelOff=0xfe
+
+section onEnter(254) {  // len=2
+    return;
+}
+
+section section_54(54) {  // len=8
+    jumpToScriptSection(193, 55);
+    return;
+}
+
+section section_5(5) {  // len=1948
+    if (trigger(202) || trigger(215) || pstat[16] == 0) goto L_0236;
+    if (!trigger(201) || !trigger(243)) goto L_0236;
+    setDialogOwner(5);
+    showTextbox("You came here at the perfect\ntime! I have a big favor to\nask that only you can do.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What is it?\n");
+    setDialogOwner(5);
+    showTextbox("It's the same evil\nI felt from Analogman\nand Machinedramon.\n");
+    showTextbox("But I can't tell\nwhere it's coming from.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Alright, leave it to me!\n");
+    setDialogOwner(5);
+    showTextbox("Thank you. By the way...\n");
+    goto L_0788;
+L_0236:
+    if (!trigger(202) || trigger(215)) goto L_057c;
+    setDialogOwner(5);
+    showTextbox("I heard that you\nbeat Machinedramon!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Yeah, but I don't get it.\nIt seemed like the\ncurse of Analogman.\n");
+    setDialogOwner(5);
+    showTextbox("His grudge was so strong.\nMaybe we can have peace now.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("If Machinedramon returns,\nwe can beat him again.\n");
+    setDialogOwner(5);
+    showTextbox("You are trustworthy. Here's\na sign of my gratitude.\nIt grew in our Meat farm.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
+    giveItem(Item.ChainMelon, 1);
+    if (!trigger(0)) goto L_0534;
+    if (item[Item.SpikeClub] < 99) goto L_04f4;
+    return;
+L_04f4:
+    setDialogOwner(Entity.Player);
+    showTextbox("I have too many Items.\n");
+    setTrigger(3);
+    callSubroutine(0);
+    callSubroutine(13);
+    giveItem(Item.ChainMelon, 1);
+L_0534:
+    setDialogOwner(Entity.Player);
+    showTextbox("I gladly accept, thank you!\n");
+    setPStat(28, 0);
+    setTrigger(215);
+    return;
+L_057c:
+    if (!trigger(50) || trigger(201)) goto L_0788;
+    setDialogOwner(5);
+    showTextbox("Oh, you're back!\nThis is something I can't\nask anybody else.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Okay. Do you mean\nAnalogman is back?\n");
+    setDialogOwner(5);
+    showTextbox("I felt his evil, but\nI can't tell where it is.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Alright, leave it to me!\nI'll go find him and\ntake care of it.\n");
+    setDialogOwner(5);
+    showTextbox("Oh, thank you. By the way...\n");
+    setTrigger(201);
+L_0788:
+    if (!trigger(203)) goto L_079a;
+    jumpToScriptSection(210, 51);
+L_079a:
+    return;
+}
+
+section section_6(6) {  // len=8
+    jumpToScriptSection(211, 8);
+    return;
+}
+
+section section_20(20) {  // len=98
+    moveCamera(to: (183, 221), slowdown: 20);
+    waitForEntity(200);
+    delay(20);
+    addStats(Stat.CurrentHP, 9999);
+    addStats(Stat.CurrentMP, 9999);
+    unsetTrigger(1);
+    playAnimation(5, 29);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("You woke up. I'm so sorry.\n");
+    playAnimation(5, 0);
+    return;
+}
+
+section section_71(71) {  // len=8
+    jumpToScriptSection(212, 71);
+    return;
+}
+
+section section_72(72) {  // len=8
+    jumpToScriptSection(212, 72);
+    return;
+}
+
+section section_73(73) {  // len=8
+    jumpToScriptSection(212, 73);
+    return;
+}
+
+section section_85(85) {  // len=666
+    if (trigger(94)) goto L_01f4;
+    setTrigger(94);
+    setDialogOwner(Entity.Player);
+    showTextbox("What's this machine?\n");
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("That's a <PINK>Save Machine\nfor Memory Card Battle\nData<WHITE>.\n");
+    showTextbox("Using that machine, you can\nsave your current partner's\ndata for battle.\n");
+    showTextbox("All you have to do is press\n<LIGHTBLUE><X> <WHITE>and the machine\nwill tell you what to do.\n");
+    rotate(entity: Entity.Player, to: 0);
+    delay(5);
+    return;
+L_01f4:
+    setDialogOwner(Entity.System);
+    showTextbox("Do you want to use the\n<PINK>Save Machine for\nMemory Card Battle<WHITE>?\n");
+    setSelection(L_0292, L_0298);
+    showTextbox("Yes\nNo\n");
+    waitForSelectionChoice();
+    return;
+L_0292:
+    fadeOutHUD();
+    callSubroutine(48);
+    return;
+L_0298:
+    return;
+}
+
+section section_7(7) {  // len=472
+    if (trigger(224) || !trigger(175)) goto L_0074;
+    setDialogOwner(7);
+    showTextbox("Sounds like Yuramon has\ngathered more rumors.\n");
+    return;
+L_0074:
+    if (!trigger(124) || !trigger(103)) goto L_00da;
+    setDialogOwner(7);
+    showTextbox("I heard Yuramon\nknows some new rumors.\n");
+    return;
+L_00da:
+    if (pstat[1] < 6) goto L_0166;
+    setDialogOwner(7);
+    showTextbox("The city's starting to\ngrow and change\nnow that we're here.\n");
+    return;
+L_0166:
+    setDialogOwner(7);
+    showTextbox("<LIGHTBLUE><PLAYER><WHITE>, you have a\nway different\napproach to adventure.\n");
+    return;
+}
+
+section section_51(51) {  // len=822
+    move(entity: Entity.Player, to: (-470, -1970), sprint: 0);
+    if (trigger(203)) goto L_0018;
+    warp(to: Map.TWNA01, spawn: 2, trigger: 255);
+L_0018:
+    if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L_0034;
+    goto L_0098;
+    goto L_0038;
+L_0034:
+    goto L_0038;
+L_0038:
+    if (!trigger(221)) goto L_004c;
+    goto L_0074;
+    goto L_0050;
+L_004c:
+    goto L_0050;
+L_0050:
+    if (!trigger(225)) goto L_0060;
+    warp(to: Map.TWNA04, spawn: 2, trigger: 255);
+L_0060:
+    if (!trigger(246)) goto L_0070;
+    warp(to: Map.TWNA03, spawn: 2, trigger: 255);
+L_0070:
+    warp(to: Map.TWNA02, spawn: 2, trigger: 255);
+L_0074:
+    if (!trigger(225)) goto L_0084;
+    warp(to: Map.TWNA07, spawn: 2, trigger: 255);
+L_0084:
+    if (!trigger(246)) goto L_0094;
+    warp(to: Map.TWNA06, spawn: 2, trigger: 255);
+L_0094:
+    warp(to: Map.TWNA05, spawn: 2, trigger: 255);
+L_0098:
+    if (!trigger(221)) goto L_00ac;
+    goto L_00d4;
+    goto L_00b0;
+L_00ac:
+    goto L_00b0;
+L_00b0:
+    if (!trigger(225)) goto L_00c0;
+    warp(to: Map.TWNA10, spawn: 2, trigger: 255);
+L_00c0:
+    if (!trigger(246)) goto L_00d0;
+    warp(to: Map.TWNA09, spawn: 2, trigger: 255);
+L_00d0:
+    warp(to: Map.TWNA08, spawn: 2, trigger: 255);
+L_00d4:
+    if (!trigger(225)) goto L_00e4;
+    warp(to: Map.TWNA13, spawn: 2, trigger: 255);
+L_00e4:
+    if (!trigger(246)) goto L_00f4;
+    warp(to: Map.TWNA12, spawn: 2, trigger: 255);
+L_00f4:
+    warp(to: Map.TWNA11, spawn: 2, trigger: 255);
+    return;
+    garbage { 30 00 fe 00 30 00 36 00 32 00 05 00 3a 00 06 00 d6 07 14 00 de 07 47 00 40 08 48 00 48 08 49 00 50 08 55 00 58 08 07 00 f2 0a 33 00 ca 0c ff ff fe 00 17 00 c1 00 37 00 fe 00 19 00 01 00 ca 00 81 00 d7 00 89 00 10 00 18 00 70 02 19 00 19 00 00 00 c9 00 80 00 f3 00 18 00 70 02 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 83 82 81 82 8d 82 85 81 40 82 88 82 85 82 92 82 85 81 40 82 81 82 94 81 40 82 94 82 88 82 85 81 40 82 90 82 85 82 92 82 86 82 85 82 83 82 94 0d 00 82 94 82 89 82 8d 82 85 81 49 81 40 82 68 81 40 82 88 82 81 82 96 82 85 81 40 82 81 81 40 82 82 82 89 82 87 81 40 82 86 82 81 82 96 82 8f 82 92 81 40 82 94 82 8f 0d 00 82 81 82 93 82 8b 81 40 82 94 82 88 82 81 82 94 81 40 82 8f 82 8e 82 8c 82 99 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 40 82 84 82 8f 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 89 82 93 81 40 82 89 82 94 81 48 0d 00 00 00 1b 05 1a 00 82 68 82 94 81 75 82 93 81 40 82 94 82 88 82 85 81 40 82 93 82 81 82 8d 82 85 81 40 82 85 82 96 82 89 82 8c 0d 00 82 68 81 40 82 86 82 85 82 8c 82 94 81 40 82 86 82 92 82 8f 82 8d 81 40 82 60 82 8e 82 81 82 8c 82 8f 82 87 82 8d 82 81 82 8e 0d 00 82 81 82 8e 82 84 81 40 82 6c 82 81 82 83 82 88 82 89 82 8e 82 85 82 84 82 92 82 81 82 8d 82 8f 82 8e 81 42 0d 00 00 00 1a 00 82 61 82 95 82 94 81 40 82 68 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 94 82 85 82 8c 82 8c 0d 00 82 97 82 88 82 85 82 92 82 85 81 40 82 89 82 94 81 75 82 93 81 40 82 83 82 8f 82 8d 82 89 82 8e 82 87 81 40 82 86 82 92 82 8f 82 8d 81 42 0d 00 00 00 1b fd 1a 00 82 60 82 8c 82 92 82 89 82 87 82 88 82 94 81 43 81 40 82 8c 82 85 82 81 82 96 82 85 81 40 82 89 82 94 81 40 82 94 82 8f 81 40 82 8d 82 85 81 49 0d 00 00 00 1b 05 1a 00 82 73 };
+}

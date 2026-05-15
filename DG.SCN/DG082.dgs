@@ -1,0 +1,191 @@
+// DG082.SCN
+#pragma script index=82 start=0x3b000 end=0x3c000 headerU16=0x10 sentinelOff=0x24
+
+section onEnter(254) {  // len=44
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 0) goto L_0016;
+    spawnItem(Item.SageFruit, 60, 53);
+L_0016:
+    if (trigger(313)) goto L_002a;
+    delay(5);
+    playAnimation(5, 28);
+L_002a:
+    return;
+}
+
+section section_5(5) {  // len=2382
+    setTrigger(44);
+    setDialogOwner(Entity.Player);
+    showTextbox("This must be it!\nNo matter how I look at it,\nit looks a plain meteorite.\n");
+    setSelection(L_00ea, L_082c);
+    showTextbox("Crack it and check\nLeave it alone\n");
+L_00ea:
+    playAnimation(Entity.Player, 5);
+    delay(20);
+    setDialogOwner(Entity.Player);
+    showTextbox("Hmmm\n");
+    playAnimation(Entity.Player, 16);
+    delay(5);
+    showTextbox("Looks like a plain\nold meteorite to me.\n");
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>???mon <WHITE>\nSorry to look\nso plain and old.\n");
+    goto L_01bc;
+L_01bc:
+    playAnimation(5, 29);
+    delay(10);
+    setDialogOwner(Entity.Player);
+    showTextbox("Wow!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("You're a Digimon?!\nWho are you?\n");
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>???mon <WHITE>\nMy name is Meteormon.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Do you know about\nthe island's danger?\n");
+    setDialogOwner(5);
+    showTextbox("I know nothing!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("You know nothing?! You sure\nyou're not hiding something?\n");
+    setDialogOwner(5);
+    showTextbox("How rude! Alright!\nWhy don't we battle\nto prove who is right!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Alright! Let's go for it.\n");
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 5);
+    setPStat(252, 255);
+    setPStat(253, 255);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: Entity.Player, at: 5);
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Partner, at: 5);
+    setDialogOwner(5);
+    showTextbox("I give up. You're so strong.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Whatever you know, tell me\nabout the island's danger.\n");
+    playAnimation(Entity.Player, 19);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("I was just born, so\nI don't know anything!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What?!\n");
+    playAnimation(Entity.Player, 0);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("The Meteorite Tribe is\nborn in the sky and then\nfalls to the ground.\n");
+    setDialogOwner(5);
+    showTextbox("Then we sleep for a long time.\nActually, I was supposed to\nsleep much longer, but...\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Time goes much faster here.\n");
+    setDialogOwner(5);
+    showTextbox("Probably. Anyway, I'll go\ncheck out the island.");
+    dead_string("?o\nSee ya!\n");
+    playAnimation(5, 30);
+    delay(10);
+    goto L_0782;
+L_0782:
+    move(entity: 5, to: (1, -1050), animDuration: 40);
+    if (pstat[101] >= 3) goto L_07ae;
+    addPStat(101, 1);
+    delay(20);
+    playSound(8, 5);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_0782;
+L_07ae:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    setDialogOwner(Entity.Player);
+    showTextbox("We couldn't find any clues.\nLet's get out fast.\n");
+    unsetTrigger(1);
+    setTrigger(313);
+    moveCamera(to: Entity.Player, speed: 15);
+    waitForEntity(200);
+    return;
+L_082c:
+    setDialogOwner(Entity.Player);
+    showTextbox("We looked at it, and\nwe can't tell anything.\nLet's crack it!\n");
+    move(entity: Entity.Partner, to: 5, sprint: 0);
+    waitForEntity(Entity.Partner);
+    playAnimation(Entity.Partner, 46);
+    delay(20);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>???mon <WHITE>\nWhadda ya think you're doing?\nYou reckless clod!\n");
+    playAnimation(5, 29);
+    delay(20);
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    goto L_01bc;
+}
+
+section section_6(6) {  // len=1654
+    delay(10);
+    playAnimation(6, 28);
+    delay(10);
+    setDialogOwner(Entity.Player);
+    showTextbox("Huh? Who are you?!\n");
+    setDialogOwner(6);
+    showTextbox("Who am I? Who are you?!\n");
+    rotate(entity: 6, to: 1276);
+    delay(5);
+    rotate(entity: 6, to: 2300);
+    delay(5);
+    rotate(entity: 6, to: 3324);
+    delay(5);
+    rotate(entity: 6, to: 252);
+    delay(5);
+    rotate(entity: 6, to: 1276);
+    delay(5);
+    rotate(entity: 6, to: 2300);
+    delay(5);
+    rotate(entity: 6, to: 3324);
+    delay(5);
+    rotate(entity: 6, to: 252);
+    delay(5);
+    move(entity: 6, to: (182, -571), sprint: 1);
+    waitForEntity(6);
+    unloadEntity(6);
+    if (pstat[21] != 0) goto L_016a;
+    setObjectVisibility(3, 0);
+    move(entity: Entity.Player, to: (150, -138), sprint: 1);
+    waitForEntity(Entity.Player);
+    playAnimation(Entity.Player, 12);
+    delay(10);
+    setObjectVisibility(3, 1);
+    playSound(0, 7);
+    setDialogOwner(Entity.System);
+    showTextbox("I got a <PINK>Dimensional\nKey Chain<WHITE>.\nI can carry twenty Items!\n");
+    playSound(0, 7);
+    setInventorySize(20);
+    setTrigger(47);
+L_016a:
+    if (pstat[21] != 4) goto L_021e;
+    setObjectVisibility(2, 0);
+    move(entity: Entity.Player, to: (150, -138), sprint: 1);
+    waitForEntity(Entity.Player);
+    playAnimation(Entity.Player, 12);
+    delay(10);
+    setObjectVisibility(2, 1);
+    playSound(0, 7);
+    setDialogOwner(Entity.System);
+    showTextbox("I got a <PINK>Dimensional\nKey Chain<WHITE>.\nI can carry thirty Items!\n");
+    setInventorySize(30);
+    setTrigger(48);
+    setTrigger(253);
+    addPStat(1, 1);
+L_021e:
+    moveCamera(to: Entity.Player, speed: 15);
+    waitForEntity(200);
+    addPStat(21, 1);
+    setTrigger(335);
+    return;
+    garbage { 10 00 fe 00 10 00 05 00 3c 00 06 00 8a 09 ff ff 24 00 6e 63 19 00 0b 00 6e 00 18 00 26 00 19 00 74 3b 3c 00 35 00 19 00 01 00 39 01 18 00 3a 00 19 00 67 00 05 00 56 00 05 1c fe 00 1c 00 2c 00 1b fd 1a 00 82 73 82 88 82 89 82 93 81 40 82 8d 82 95 82 93 82 94 81 40 82 82 82 85 81 40 82 89 82 94 81 49 0d 00 82 6d 82 8f 81 40 82 8d 82 81 82 94 82 94 82 85 82 92 81 40 82 88 82 8f 82 97 81 40 82 68 81 40 82 8c 82 8f 82 8f 82 8b 81 40 82 81 82 94 81 40 82 89 82 94 81 43 0d 00 82 89 82 94 81 40 82 8c 82 8f 82 8f 82 8b 82 93 81 40 82 81 81 40 82 90 82 8c 82 81 82 89 82 8e 81 40 82 8d 82 85 82 94 82 85 82 8f 82 92 82 89 82 94 82 85 81 42 0d 00 00 00 10 02 26 01 68 08 1a 00 82 62 82 92 82 81 82 83 82 8b 81 40 82 89 82 94 81 40 82 81 82 8e 82 84 81 40 82 83 82 88 82 85 82 83 82 8b 0d 00 82 6b 82 85 82 81 82 96 82 85 81 40 82 89 82 94 81 40 82 81 82 8c 82 8f 82 8e 82 85 0d 00 00 00 56 00 fd 05 67 00 14 00 1b fd 1a 00 82 67 82 8d 82 8d 82 8d 0d 00 00 00 56 00 fd 10 67 00 05 00 1a 00 82 6b 82 8f 82 8f 82 8b 82 93 81 40 82 8c 82 89 82 8b 82 85 81 40 82 81 81 40 82 90 82 8c 82 81 82 89 82 8e 0d 00 82 8f 82 8c 82 84 81 40 82 8d 82 85 82 94 82 85 82 8f 82 92 82 89 82 94 82 85 81 40 82 94 82 8f 81 40 82 8d 82 85 81 42 0d 00 00 00 1b ff 1a 00 01 07 81 48 81 48 81 48 82 8d 82 8f 82 8e 81 40 01 01 0d 00 82 72 82 8f 82 92 82 92 82 99 81 40 82 94 82 8f 81 40 82 8c 82 8f 82 8f 82 8b 0d 00 82 93 82 8f 81 40 82 90 82 8c 82 81 82 89 82 8e 81 40 82 81 82 8e 82 84 81 40 82 8f 82 8c 82 84 81 42 0d 00 00 00 16 00 f8 01 56 00 05 1d 67 00 0a 00 1b fd 1a 00 82 76 82 8f 82 97 81 49 0d 00 00 00 1b fd 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 81 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 48 81 49 0d 00 82 76 82 88 82 8f 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 48 0d 00 00 00 4c 00 05 fd 4c 00 fd 05 67 00 05 00 1b ff 1a 00 01 07 81 48 81 48 81 48 82 8d 82 8f 82 8e 81 40 01 01 0d 00 82 6c 82 99 81 40 82 8e 82 81 82 8d 82 85 81 40 82 89 82 93 81 40 82 6c 82 85 82 94 82 85 82 8f 82 92 82 8d 82 8f 82 8e 81 42 0d 00 00 00 1b fd 1a 00 82 63 82 8f 81 40 82 99 82 8f 82 95 81 40 82 8b 82 8e 82 8f 82 97 81 40 82 81 82 82 82 8f 82 95 82 94 0d 00 82 94 82 88 82 85 81 40 82 89 82 93 82 8c 82 81 82 8e 82 84 81 75 82 93 81 40 82 84 82 81 82 8e 82 87 82 85 82 92 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 40 82 8b 82 8e 82 8f 82 97 81 40 82 8e 82 8f 82 94 82 88 82 89 82 8e 82 87 81 49 0d 00 00 00 1b fd 1a 00 82 78 82 8f 82 95 81 40 82 8b 82 8e 82 8f 82 97 81 40 82 8e 82 8f 82 94 82 88 82 89 82 8e 82 87 81 48 81 49 81 40 82 78 82 8f 82 95 81 40 82 93 82 95 82 92 82 85 0d 00 82 99 82 8f 82 95 81 75 82 92 82 85 81 40 82 8e 82 8f 82 94 81 40 82 88 82 89 82 84 82 89 82 8e 82 87 81 40 82 93 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 48 0d 00 00 00 1b 05 1a 00 82 67 82 8f 82 97 81 40 82 92 82 95 82 84 82 85 81 49 81 40 82 60 82 8c 82 92 82 89 82 87 82 88 82 94 81 49 0d 00 82 76 82 88 82 99 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 97 82 85 81 40 82 82 82 81 82 94 82 94 82 8c 82 85 0d 00 82 94 82 8f 81 40 82 90 82 92 82 8f 82 96 82 85 81 40 82 97 82 88 82 8f 81 40 82 89 82 93 81 40 82 92 82 89 82 87 82 88 82 94 81 49 0d 00 00 00 1b fd 1a 00 82 60 82 8c 82 92 82 89 82 87 82 88 82 94 81 49 81 40 82 6b 82 85 82 94 81 75 82 93 81 40 82 87 82 8f 81 40 82 86 };
+}

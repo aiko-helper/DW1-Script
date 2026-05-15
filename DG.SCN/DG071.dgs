@@ -1,0 +1,200 @@
+// DG071.SCN
+#pragma script index=71 start=0x33000 end=0x33800 headerU16=0x28 sentinelOff=0x24
+
+section onEnter(254) {  // len=90
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 11) goto L_0016;
+    spawnItem(Item.Digimushroom, 68, 50);
+L_0016:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 17) goto L_002c;
+    spawnItem(Item.Digimushroom, 46, 29);
+L_002c:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 3) goto L_0042;
+    spawnItem(Item.SweetNut, 46, 73);
+L_0042:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 0) goto L_0058;
+    spawnItem(Item.ChainMelon, 57, 83);
+L_0058:
+    return;
+}
+
+section section_5(5) {  // len=68
+    setDialogOwner(5);
+    showTextbox("Well, I see your point.\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(282);
+    return;
+}
+
+section section_6(6) {  // len=68
+    setDialogOwner(6);
+    showTextbox("Can you see its beauty?\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(282);
+    return;
+}
+
+section section_7(7) {  // len=42
+    setDialogOwner(7);
+    showTextbox("Uggghhhh!!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(295);
+    return;
+}
+
+section section_8(8) {  // len=58
+    setDialogOwner(8);
+    showTextbox("I'm desperate now!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(296);
+    return;
+}
+
+section section_9(9) {  // len=58
+    setDialogOwner(9);
+    showTextbox("Shoooot! Awh heck.\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(296);
+    return;
+}
+
+section section_10(10) {  // len=62
+    setDialogOwner(10);
+    showTextbox("I have a tummy ache.\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(297);
+    return;
+}
+
+section section_81(81) {  // len=1014
+    setDialogOwner(Entity.System);
+    showTextbox("Vending Machine\n");
+    rotate(entity: Entity.Player, to: 1536);
+    setDialogOwner(Entity.Player);
+    showTextbox("A vending machine with\nspecial prizes.\nShould I buy something?\n");
+    setSelection(L_014c, L_019e, L_01f0);
+    showTextbox("Small Recovery:two hund bits\nPortable potty:five hund bits\nDon't buy\n");
+    waitForSelectionChoice();
+    goto L_01f0;
+    return;
+L_014c:
+    if (money < 200) goto L_0164;
+    goto L_01f2;
+    goto L_019e;
+L_0164:
+    setDialogOwner(Entity.Player);
+    showTextbox("I don't got enough bits.\n");
+    return;
+L_019e:
+    if (money < 500) goto L_01b6;
+    goto L_029e;
+    goto L_01f0;
+L_01b6:
+    setDialogOwner(Entity.Player);
+    showTextbox("I don't got enough bits.\n");
+    return;
+L_01f0:
+    return;
+L_01f2:
+    giveItem(Item.SmallRecovery, 1);
+    if (!trigger(0)) goto L_0236;
+    setDialogOwner(Entity.Player);
+    showTextbox("I got too many Items.\n");
+    return;
+L_0236:
+    setDialogOwner(Entity.System);
+    showTextbox("A <LIGHTBLUE>Small Recovery\nFloppy<WHITE>came out!\n");
+    reduceMoney(200);
+    roll(pstat: 102, max: 99);
+    if (pstat[102] >= 9) goto L_029c;
+    goto L_0340;
+L_029c:
+    return;
+L_029e:
+    giveItem(Item.PortaPotty, 1);
+    if (!trigger(0)) goto L_02e2;
+    setDialogOwner(Entity.Player);
+    showTextbox("I got too many Items.\n");
+    return;
+L_02e2:
+    setDialogOwner(Entity.System);
+    showTextbox("A <LIGHTBLUE>Portable Potty <WHITE>\ncame out!\n");
+    reduceMoney(500);
+    roll(pstat: 102, max: 99);
+    if (pstat[102] >= 9) goto L_033e;
+    goto L_0340;
+L_033e:
+    return;
+L_0340:
+    setDialogOwner(Entity.Player);
+    showTextbox("Alright, I won!\n");
+    setDialogOwner(Entity.System);
+    showTextbox("A <LIGHTBLUE>Double Floppy <WHITE>\ncame out!\n");
+    giveItem(Item.DoubleFloppy, 1);
+    if (!trigger(0)) goto L_03f4;
+    setTrigger(3);
+    setDialogOwner(Entity.Player);
+    showTextbox("I got too many Items.\n");
+    callSubroutine(0);
+    callSubroutine(13);
+    giveItem(Item.SuperSpeedDisk, 1);
+L_03f4:
+    return;
+}
+
+section section_82(82) {  // len=548
+    setDialogOwner(Entity.System);
+    showTextbox("MP Stand\n");
+    rotate(entity: Entity.Player, to: 2048);
+    setDialogOwner(Entity.Player);
+    showTextbox("Can this machine recover MP?\n");
+    setSelection(L_00ea, L_0182, L_021a);
+    showTextbox("Hund MP: two hund bits\nThous MP:eighteen hund bits\nDon't use\n");
+    waitForSelectionChoice();
+    goto L_021a;
+    return;
+L_00ea:
+    if (money < 200) goto L_0146;
+    addStats(Stat.CurrentMP, 100);
+    reduceMoney(200);
+    setDialogOwner(Entity.System);
+    showTextbox("Our MP level has recovered!\n");
+    goto L_0180;
+L_0146:
+    setDialogOwner(Entity.Player);
+    showTextbox("I don't got enough bits.\n");
+    return;
+L_0180:
+    return;
+L_0182:
+    if (money < 1800) goto L_01de;
+    addStats(Stat.CurrentMP, 1000);
+    reduceMoney(1800);
+    setDialogOwner(Entity.System);
+    showTextbox("Our MP level has recovered!\n");
+    goto L_0218;
+L_01de:
+    setDialogOwner(Entity.Player);
+    showTextbox("I don't got enough bits.\n");
+    return;
+L_0218:
+    return;
+L_021a:
+    return;
+    garbage { 28 00 fe 00 28 00 };
+}

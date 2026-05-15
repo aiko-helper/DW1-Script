@@ -1,0 +1,168 @@
+// DG038.SCN
+#pragma script index=38 start=0x1f800 end=0x20000 headerU16=0x2c sentinelOff=0x24
+
+section onEnter(254) {  // len=90
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 9) goto L_0016;
+    spawnItem(Item.Digimushroom, 49, 64);
+L_0016:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 14) goto L_002c;
+    spawnItem(Item.Digimushroom, 19, 31);
+L_002c:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 4) goto L_0042;
+    spawnItem(Item.Pricklypear, 20, 9);
+L_0042:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 0) goto L_0058;
+    spawnItem(Item.DeluxeMushroom, 69, 16);
+L_0058:
+    return;
+}
+
+section section_5(5) {  // len=62
+    setDialogOwner(5);
+    showTextbox("Would you stop that?\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(299);
+    return;
+}
+
+section section_6(6) {  // len=48
+    setDialogOwner(6);
+    showTextbox("Shuha, shuha!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(302);
+    return;
+}
+
+section section_7(7) {  // len=34
+    setDialogOwner(7);
+    showTextbox("Swish!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(302);
+    return;
+}
+
+section section_8(8) {  // len=64
+    setDialogOwner(8);
+    showTextbox("Let's battle full on!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(268);
+    return;
+}
+
+section section_9(9) {  // len=66
+    setDialogOwner(9);
+    showTextbox("Whatcha talking about?\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(268);
+    return;
+}
+
+section section_81(81) {  // len=54
+    setDialogOwner(Entity.System);
+    showTextbox("North West: Freezeland\n");
+    return;
+}
+
+section section_82(82) {  // len=388
+    rotate(entity: Entity.Player, to: 2048);
+    delay(5);
+    setDialogOwner(Entity.System);
+    showTextbox("Elevator\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_0078, L_00d6, L_0182);
+    showTextbox("Press UP\nPress DOWN\nDon't get on\n");
+    waitForSelectionChoice();
+    goto L_0182;
+    return;
+L_0078:
+    playSound(8, 4);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    playSound(8, 5);
+    warp(to: Map.GCAN10, spawn: 0, trigger: 52);
+    return;
+L_00d6:
+    fadeOutHUD();
+    if (trigger(155)) goto L_0122;
+    setDialogOwner(Entity.Player);
+    showTextbox("What?\n");
+    showTextbox("Nothing happens.\n");
+    return;
+    goto L_0180;
+L_0122:
+    playSound(8, 4);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    playSound(8, 5);
+    warp(to: Map.GCAN06, spawn: 2, trigger: 53);
+    return;
+L_0180:
+    return;
+L_0182:
+    return;
+}
+
+section section_55(55) {  // len=6
+    playSound(8, 5);
+    return;
+}
+
+section section_51(51) {  // len=1192
+    move(entity: Entity.Player, to: (2100, -4000), sprint: 0);
+    if (!trigger(142)) goto L_0018;
+    warp(to: Map.GCAN08_2, spawn: 1, trigger: 255);
+L_0018:
+    warp(to: Map.GCAN08_1, spawn: 1, trigger: 255);
+    return;
+    garbage { 2c 00 fe 00 2c 00 05 00 86 00 06 00 c4 00 07 00 f4 00 08 00 16 01 09 00 56 01 51 00 98 01 52 00 ce 01 37 00 52 03 33 00 58 03 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 42 00 19 00 74 2c 31 00 40 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 58 00 19 00 74 2c 13 00 1f 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 6e 00 19 00 74 36 14 00 09 00 24 00 6e 63 19 00 0b 00 6e 00 18 00 84 00 19 00 74 2e 45 00 10 00 fe 00 1b 05 1a 00 82 76 82 8f 82 95 82 8c 82 84 81 40 82 99 82 8f 82 95 81 40 82 93 82 94 82 8f 82 90 81 40 82 94 82 88 82 81 82 94 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2b 01 fe 00 1b 06 1a 00 82 72 82 88 82 95 82 88 82 81 81 43 81 40 82 93 82 88 82 95 82 88 82 81 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2e 01 fe 00 1b 07 1a 00 82 72 82 97 82 89 82 93 82 88 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2e 01 fe 00 1b 08 1a 00 82 6b 82 85 82 94 81 75 82 93 81 40 82 82 82 81 82 94 82 94 82 8c 82 85 81 40 82 86 82 95 82 8c 82 8c 81 40 82 8f 82 8e 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 0c 01 fe 00 1b 09 1a 00 82 76 82 88 82 81 82 94 82 83 82 88 82 81 81 40 82 94 82 81 82 8c 82 8b 82 89 82 8e 82 87 81 40 82 81 82 82 82 8f 82 95 82 94 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 0c 01 fe 00 1b ff 1a 00 82 6d 82 8f 82 92 82 94 82 88 81 40 82 76 82 85 82 93 82 94 81 46 81 40 82 65 82 92 82 85 82 85 82 9a 82 85 82 8c 82 81 82 8e 82 84 0d 00 00 00 fe 00 4d fd 00 08 67 00 05 00 1b ff 1a 00 82 64 82 8c 82 85 82 96 82 81 82 94 82 8f 82 92 0d 00 00 00 1b fd 10 03 46 02 a4 02 50 03 1a 00 82 6f 82 92 82 85 82 93 82 93 81 40 82 74 82 6f 0d 00 82 6f 82 92 82 85 82 93 82 93 81 40 82 63 82 6e 82 76 82 6d 0d 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 87 82 85 82 94 81 40 82 8f 82 8e 0d 00 00 00 12 00 16 00 50 03 fe 00 5a 00 08 04 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 5a 00 08 05 4b 81 00 34 fe 00 27 00 19 00 01 00 9b 00 18 00 f0 02 19 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 48 0d 00 00 00 1a 00 82 6d 82 8f 82 94 82 88 82 89 82 8e 82 87 81 40 82 88 82 81 82 90 82 90 82 85 82 8e 82 93 81 42 0d 00 00 00 fe 00 16 00 4e 03 5a 00 08 04 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 5a 00 08 05 4b 29 02 35 fe 00 fe 00 fe 00 5a 00 08 05 fe 00 4e fd 34 08 60 f0 00 00 19 00 00 00 8e 00 18 00 70 03 19 00 4b 80 01 ff 4b 2b 01 ff fe 00 ff 00 fe 00 4b 27 00 ff fe 00 4e fd fb fd 54 ee 00 00 19 00 00 00 8e 00 18 00 98 03 19 00 4b 80 02 ff 4b 2b 02 ff ff 00 82 85 82 85 82 85 81 49 0d 00 00 00 16 00 ae 03 1d 00 31 00 4e 05 13 05 ce fb 01 00 19 00 0d 00 65 0a 18 00 da 03 19 00 1f 00 65 01 67 00 05 00 4c 00 fd 05 4c 00 fc 05 16 00 ae 03 4a 05 48 05 1e 00 65 00 5a 00 08 0b 1b ff 1a 00 82 61 82 81 82 8b 82 85 82 8d 82 8f 82 8e 81 40 82 8a 82 8f 82 89 82 8e 82 93 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 49 0d 00 00 00 56 00 fd 10 1b fd 1a 00 82 68 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 89 82 94 81 40 82 97 82 85 82 8e 82 94 81 40 82 6e 82 6a 81 42 0d 00 00 00 1c 00 ed 00 1f 00 01 02 fe 00 1d 00 31 00 56 00 05 1d 5a 00 08 00 67 00 28 00 4a 05 48 05 1b fd 1a 00 82 6c 82 81 82 99 82 82 82 85 81 40 82 68 81 40 82 8d 82 81 82 84 82 85 };
+}

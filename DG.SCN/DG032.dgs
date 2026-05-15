@@ -1,0 +1,97 @@
+// DG032.SCN
+#pragma script index=32 start=0x1c800 end=0x1d000 headerU16=0x14 sentinelOff=0x19
+
+section onEnter(254) {  // len=66
+    if (!trigger(353) || pstat[30] < 3) goto L_002c;
+    setTrigger(126);
+    setObjectVisibility(4, 1);
+    move(entity: 5, to: (-1134, -566), animDuration: 3);
+    delay(5);
+    rotate(entity: 5, to: 3072);
+    delay(5);
+L_002c:
+    if (pstat[30] >= 3 || trigger(238)) goto L_0040;
+    playAnimation(5, 29);
+L_0040:
+    return;
+}
+
+section section_52(52) {  // len=976
+    if (!trigger(238)) goto L_000e;
+    return;
+L_000e:
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    if (trigger(353)) goto L_007e;
+    setDialogOwner(5);
+    showTextbox("Hey, it'll be open soon!\n");
+    rotate(entity: 5, to: 512);
+    delay(5);
+    playAnimation(5, 29);
+    setTrigger(353);
+    setPStat(30, 0);
+    move(entity: Entity.Player, to: (-334, -853), sprint: 0);
+    waitForEntity(Entity.Player);
+    return;
+L_007e:
+    if (!trigger(353) || pstat[30] < 3) goto L_030a;
+    setDialogOwner(5);
+    showTextbox("We've been waiting for this!\nThe tunnel is open!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("We don't have to go over the\nmountain anymore. Thanks.\n");
+    setDialogOwner(5);
+    showTextbox("Thanks. I couldn't have\nmoved the big rock by myself.\n");
+    setDialogOwner(5);
+    showTextbox("What should I do now?\n");
+    playAnimation(Entity.Player, 19);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("You should come to the city.\nYou'll find things to do!\n");
+    playAnimation(Entity.Player, 0);
+    setDialogOwner(5);
+    showTextbox("I still have lots of energy.\nI gladly accept your offer.\n");
+    goto L_0350;
+L_030a:
+    setDialogOwner(5);
+    showTextbox("It'll be open soon!\n");
+    rotate(entity: 5, to: 512);
+    playAnimation(5, 29);
+    delay(5);
+    move(entity: Entity.Player, to: (-334, -853), sprint: 0);
+    waitForEntity(Entity.Player);
+    return;
+L_0350:
+    move(entity: 5, to: (600, 1700), sprint: 1);
+    if (pstat[101] >= 3) goto L_0378;
+    addPStat(101, 1);
+    delay(25);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_0350;
+L_0378:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    playSound(8, 8);
+    setDialogOwner(Entity.System);
+    showTextbox("Drimogemon joins the city!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    setTrigger(238);
+    addPStat(1, 2);
+    return;
+}
+
+section section_5(5) {  // len=6
+    goto section_52;
+L_0004:
+    return;
+}
+
+section section_51(51) {  // len=980
+    move(entity: Entity.Player, to: (-1996, -2148), sprint: 0);
+    warp(to: Map.MIHA04B, spawn: 2, trigger: 255);
+    return;
+    garbage { 14 00 fe 00 14 00 34 00 56 00 05 00 26 04 33 00 2c 04 ff ff 19 00 00 00 61 01 8a 00 1e 03 18 00 40 00 19 00 1c 00 7e 00 57 00 04 01 6c 05 92 fb ca fd 03 00 67 00 05 00 4d 05 00 0c 67 00 05 00 19 00 0d 00 1e 03 81 00 ee 00 18 00 54 00 19 00 56 00 05 1d fe 00 19 00 00 00 ee 00 18 00 64 00 19 00 fe 00 4c 00 05 fd 4c 00 fd 05 67 00 05 00 19 00 01 00 61 01 18 00 d4 00 19 00 1b 05 1a 00 82 67 82 85 82 99 81 43 81 40 82 89 82 94 81 75 82 8c 82 8c 81 40 82 82 82 85 81 40 82 8f 82 90 82 85 82 8e 81 40 82 93 82 8f 82 8f 82 8e 81 49 0d 00 00 00 4d 05 00 02 67 00 05 00 56 00 05 1d 1c 00 61 01 1e 00 1e 00 4e fd b2 fe ab fc 00 00 4a fd fe 00 19 00 00 00 61 01 8a 00 1e 03 18 00 60 03 19 00 1b 05 1a 00 82 76 82 85 81 75 82 96 82 85 81 40 82 82 82 85 82 85 82 8e 81 40 82 97 82 81 82 89 82 94 82 89 82 8e 82 87 81 40 82 86 82 8f 82 92 81 40 82 94 82 88 82 89 82 93 81 49 0d 00 82 73 82 88 82 85 81 40 82 94 82 95 82 8e 82 8e 82 85 82 8c 81 40 82 89 82 93 81 40 82 8f 82 90 82 85 82 8e 81 49 0d 00 00 00 1b fd 1a 00 82 76 82 85 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 81 40 82 94 82 8f 81 40 82 87 82 8f 81 40 82 8f 82 96 82 85 82 92 81 40 82 94 82 88 82 85 0d 00 82 8d 82 8f 82 95 82 8e 82 94 82 81 82 89 82 8e 81 40 82 81 82 8e 82 99 82 8d 82 8f 82 92 82 85 81 42 81 40 82 73 82 88 82 81 82 8e 82 8b 82 93 81 42 0d 00 00 00 1b 05 1a 00 82 73 82 88 82 81 82 8e 82 8b 82 93 81 42 81 40 82 68 81 40 82 83 82 8f 82 95 82 8c 82 84 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 0d 00 82 8d 82 8f 82 96 82 85 82 84 81 40 82 94 82 88 82 85 81 40 82 82 82 89 82 87 81 40 82 92 82 8f 82 83 82 8b 81 40 82 82 82 99 81 40 82 8d 82 99 82 93 82 85 82 8c 82 86 81 42 0d 00 00 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 68 81 40 82 84 82 8f 81 40 82 8e 82 8f 82 97 81 48 0d 00 00 00 56 00 fd 13 67 00 0f 00 1b fd 1a 00 82 78 82 8f 82 95 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 83 82 8f 82 8d 82 85 81 40 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 42 0d 00 82 78 82 8f 82 95 81 75 82 8c 82 8c 81 40 82 86 82 89 82 8e 82 84 81 40 82 94 82 88 82 89 82 8e 82 87 82 93 81 40 82 94 82 8f 81 40 82 84 82 8f 81 49 0d 00 00 00 56 00 fd 00 1b 05 1a 00 82 68 81 40 82 93 82 94 82 89 82 8c 82 8c 81 40 82 88 82 81 82 96 82 85 81 40 82 8c 82 8f 82 94 82 93 81 40 82 8f 82 86 81 40 82 85 82 8e 82 85 82 92 82 87 82 99 81 42 0d 00 82 68 81 40 82 87 82 8c 82 81 82 84 82 8c 82 99 81 40 82 81 82 83 82 83 82 85 82 90 82 94 81 40 82 99 82 8f 82 95 82 92 81 40 82 8f 82 86 82 86 82 85 82 92 81 42 0d 00 00 00 16 00 a6 03 1b 05 1a 00 82 68 82 94 81 75 82 8c 82 8c 81 40 82 82 82 85 81 40 82 8f 82 90 82 85 82 8e 81 40 82 93 82 8f 82 8f 82 8e 81 49 0d 00 00 00 4d 05 00 02 56 00 05 1d 67 00 05 00 4e fd b2 fe ab fc 00 00 4a fd fe 00 4e 05 58 02 a4 06 01 00 19 00 0d 00 65 03 18 00 ce 03 19 00 1f 00 65 01 67 00 19 00 4c 00 };
+}

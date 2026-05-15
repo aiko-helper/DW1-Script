@@ -1,0 +1,199 @@
+// DG068.SCN
+#pragma script index=68 start=0x31000 end=0x31800 headerU16=0x28 sentinelOff=0x24
+
+section onEnter(254) {  // len=96
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 8) goto L_0016;
+    spawnItem(Item.Digimushroom, 57, 61);
+L_0016:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 19) goto L_002c;
+    spawnItem(Item.Digimushroom, 35, 43);
+L_002c:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 2) goto L_0042;
+    spawnItem(Item.SweetNut, 39, 18);
+L_0042:
+    if (!trigger(328)) goto L_0052;
+    goto L_005e;
+L_0052:
+    setObjectVisibility(38, 1);
+    setObjectVisibility(39, 1);
+    setObjectVisibility(40, 1);
+L_005e:
+    return;
+}
+
+section section_5(5) {  // len=936
+    switch (pstat[33]) { case 0: goto L_000a; case 1: goto L_00a6; case 2: goto L_0124; };
+L_000a:
+    delay(1);
+    setPStat(200, 20);
+    dealMapDamage(200);
+    setObjectVisibility(41, 0);
+    setPStat(247, 41);
+    setPStat(248, 1);
+    callSubroutine(21);
+    spawnSpriteAtEntity(5, 10498);
+    playSound(8, 0);
+    playAnimation(Entity.Partner, 40);
+    delay(3);
+    playAnimation(Entity.Player, 17);
+    look(entity: 5, at: Entity.Player);
+    waitForEntity(5);
+    setObjectVisibility(41, 1);
+    setObjectVisibility(42, 1);
+    setDialogOwner(5);
+    showTextbox("Ha ha, touch me and\nyou'll get shocked.\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    addPStat(33, 1);
+    return;
+L_00a6:
+    delay(1);
+    setPStat(200, 20);
+    dealMapDamage(200);
+    setObjectVisibility(41, 0);
+    setPStat(247, 41);
+    setPStat(248, 1);
+    callSubroutine(21);
+    spawnSpriteAtEntity(5, 10498);
+    playSound(8, 0);
+    playAnimation(Entity.Partner, 40);
+    delay(3);
+    playAnimation(Entity.Player, 17);
+    look(entity: 5, at: Entity.Player);
+    waitForEntity(5);
+    setObjectVisibility(41, 1);
+    setObjectVisibility(42, 1);
+    setDialogOwner(5);
+    showTextbox("Don't you wanna be here?\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    addPStat(33, 1);
+    return;
+L_0124:
+    delay(1);
+    setPStat(200, 20);
+    dealMapDamage(200);
+    setObjectVisibility(41, 0);
+    setPStat(247, 41);
+    setPStat(248, 1);
+    callSubroutine(21);
+    spawnSpriteAtEntity(5, 10498);
+    playSound(8, 0);
+    playAnimation(Entity.Partner, 40);
+    delay(3);
+    playAnimation(Entity.Player, 17);
+    look(entity: 5, at: Entity.Player);
+    waitForEntity(5);
+    setObjectVisibility(41, 1);
+    setObjectVisibility(42, 1);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    setDialogOwner(5);
+    showTextbox("Wow, amazing! He's got guts.\n");
+    showTextbox("You're gonna be somebody!\nAlright, I'll help you.\n");
+    playAnimation(Entity.Player, 19);
+    setDialogOwner(Entity.Player);
+    showTextbox("Won't you use your electric\npower for the city?\n");
+    setDialogOwner(5);
+    showTextbox("City? What's that?\nSounds familiar, but...\n");
+    showTextbox("I'll help. I'm Elecmon,\nnice to meet you.\n");
+    goto L_032e;
+L_032e:
+    move(entity: 5, to: (-171, -2105), sprint: 1);
+    if (pstat[101] >= 6) goto L_0356;
+    addPStat(101, 1);
+    delay(10);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_032e;
+L_0356:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    playSound(8, 5);
+    setDialogOwner(Entity.System);
+    showTextbox("Elecmon joins the city!\n");
+    setTrigger(218);
+    addPStat(1, 1);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+}
+
+section section_6(6) {  // len=34
+    setDialogOwner(6);
+    showTextbox("Ugghh!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(295);
+    return;
+}
+
+section section_7(7) {  // len=32
+    setDialogOwner(7);
+    showTextbox("Ahhh!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(295);
+    return;
+}
+
+section section_8(8) {  // len=56
+    setDialogOwner(8);
+    showTextbox("You're dead meat!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(297);
+    return;
+}
+
+section section_9(9) {  // len=38
+    setDialogOwner(9);
+    showTextbox("Not Bad.\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(282);
+    return;
+}
+
+section section_10(10) {  // len=60
+    setDialogOwner(10);
+    showTextbox("You got poor taste.\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(282);
+    return;
+}
+
+section section_11(11) {  // len=80
+    setDialogOwner(11);
+    showTextbox("You're cocky! I'll teach you.\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(295);
+    return;
+}
+
+section section_51(51) {  // len=676
+    if (!trigger(328)) goto L_0018;
+    move(entity: Entity.Player, to: (1020, 4048), sprint: 0);
+    warp(to: Map.FACT05, spawn: 1, trigger: 255);
+L_0018:
+    rotate(entity: Entity.Player, to: 2048);
+    delay(10);
+    setDialogOwner(Entity.Player);
+    showTextbox("This iron door is hard.\nIf it doesn't open,\nwe can't get in.\n");
+    move(entity: Entity.Player, to: (946, 2852), sprint: 1, withCamera: true);
+    waitForEntity(Entity.Player);
+    return;
+    garbage { 28 00 fe 00 28 00 05 00 88 00 06 00 30 04 07 00 52 04 08 00 72 04 09 00 aa 04 0a 00 d0 04 0b 00 0c 05 33 00 5c 05 ff ff 24 00 6e 63 19 00 0b 00 6e 08 18 00 3e 00 19 00 74 2c 39 00 3d 00 24 00 6e 63 19 00 0b 00 6e 13 18 00 54 00 19 00 74 2c 23 00 2b 00 24 00 6e 63 19 00 0b 00 6e 02 18 00 6a 00 19 00 74 34 27 00 12 00 19 00 00 00 48 01 18 00 7a 00 19 00 16 00 86 00 57 00 26 01 57 00 27 01 57 00 28 01 fe 00 18 21 03 00 92 00 2e 01 ac 01 67 00 01 00 1e 00 c8 14 69 c8 57 00 29 00 1e 00 f7 29 1e 00 f8 01 64 15 7e 05 02 29 5a 00 08 00 56 00 fc 28 67 00 03 00 56 00 fd 11 4c 00 05 fd 4a 05 57 00 29 01 57 00 2a 01 1b 05 1a 00 82 67 82 81 81 40 82 88 82 81 81 43 81 40 82 94 82 8f 82 95 82 83 82 88 81 40 82 8d 82 85 81 40 82 81 82 8e 82 84 0d 00 82 99 82 8f 82 95 81 75 82 8c 82 8c 81 40 82 87 82 85 82 94 81 40 82 93 82 88 82 8f 82 83 82 8b 82 85 82 84 81 42 0d 00 00 00 50 00 fd 0a 4a c8 1f 00 21 01 fe 00 67 00 01 00 1e 00 c8 14 69 c8 57 00 29 00 1e 00 f7 29 1e 00 f8 01 64 15 7e 05 02 29 5a 00 08 00 56 00 fc 28 67 00 03 00 56 00 fd 11 4c 00 05 fd 4a 05 57 00 29 01 57 00 2a 01 1b 05 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 8e 82 81 81 40 82 82 82 85 81 40 82 88 82 85 82 92 82 85 81 48 0d 00 00 00 50 00 fd 0a 4a c8 1f 00 21 01 fe 00 67 00 01 00 1e 00 c8 14 69 c8 57 00 29 00 1e 00 f7 29 1e 00 f8 01 64 15 7e 05 02 29 5a 00 08 00 56 00 fc 28 67 00 03 00 56 00 fd 11 4c 00 05 fd 4a 05 57 00 29 01 57 00 2a 01 50 00 fd 0a 4a c8 1b 05 1a 00 82 76 82 8f 82 97 };
+}

@@ -1,0 +1,209 @@
+// DG054.SCN
+#pragma script index=54 start=0x28800 end=0x2a000 headerU16=0x20 sentinelOff=0x19
+
+section onEnter(254) {  // len=108
+    if (!trigger(110)) goto L_0010;
+    setObjectVisibility(14, 1);
+L_0010:
+    if (!trigger(356) || trigger(358)) goto L_006a;
+    delay(20);
+    rotate(entity: Entity.Player, to: 1024);
+    delay(5);
+    moveCamera(to: (234, 211), slowdown: 30);
+    waitForEntity(200);
+    setDialogOwner(Entity.Player);
+    showTextbox("Myotismon is gone.\n");
+    setTrigger(358);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+L_006a:
+    return;
+}
+
+section section_81(81) {  // len=314
+    if (trigger(110)) goto L_0136;
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh!\n");
+    playAnimation(Entity.Player, 12);
+    delay(20);
+    setObjectVisibility(14, 1);
+    giveItem(Item.MansionKey, 1);
+    setDialogOwner(Entity.Player);
+    showTextbox("I found a key. Maybe it'll\nopen some of those doors.\n");
+    setDialogOwner(Entity.System);
+    showTextbox("I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
+    if (!trigger(0)) goto L_012e;
+    setDialogOwner(Entity.Player);
+    showTextbox("I gotta get rid of something.\n");
+    unsetTrigger(3);
+    callSubroutine(0);
+    callSubroutine(13);
+    giveItem(Item.MansionKey, 1);
+L_012e:
+    setTrigger(110);
+    goto L_0138;
+L_0136:
+    return;
+L_0138:
+    return;
+}
+
+section section_82(82) {  // len=220
+    if (item[Item.MansionKey] < 1 || trigger(111)) goto L_005c;
+    rotate(entity: Entity.Player, to: 2954);
+    playSound(8, 3);
+    setDialogOwner(Entity.System);
+    showTextbox("I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
+    setTrigger(111);
+    goto L_00c2;
+L_005c:
+    if (item[Item.MansionKey] >= 1 || trigger(111)) goto L_00c2;
+    rotate(entity: Entity.Player, to: 2954);
+    playSound(8, 2);
+    delay(5);
+    playSound(8, 2);
+    setDialogOwner(Entity.System);
+    showTextbox("It doesn't open.\nIt's locked.\n");
+    return;
+L_00c2:
+    rotate3DObject(1, 1);
+    playSound(8, 1);
+    delay(10);
+    move(entity: Entity.Player, to: (1600, 1674), sprint: 0);
+    warp(to: Map.YAKA11A, spawn: 4, trigger: 255);
+    return;
+}
+
+section section_84(84) {  // len=26
+    rotate3DObject(0, 1);
+    playSound(8, 1);
+    delay(10);
+    move(entity: Entity.Player, to: (-866, 3000), sprint: 0);
+    warp(to: Map.YAKA12, spawn: 1, trigger: 255);
+    return;
+}
+
+section section_83(83) {  // len=220
+    if (item[Item.MansionKey] < 1 || trigger(113)) goto L_005c;
+    rotate(entity: Entity.Player, to: 2954);
+    playSound(8, 3);
+    setDialogOwner(Entity.System);
+    showTextbox("I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
+    setTrigger(113);
+    goto L_00c2;
+L_005c:
+    if (item[Item.MansionKey] >= 1 || trigger(113)) goto L_00c2;
+    rotate(entity: Entity.Player, to: 2954);
+    playSound(8, 2);
+    delay(5);
+    playSound(8, 2);
+    setDialogOwner(Entity.System);
+    showTextbox("It doesn't open.\nIt's locked.\n");
+    return;
+L_00c2:
+    rotate3DObject(2, 1);
+    playSound(8, 1);
+    delay(10);
+    move(entity: Entity.Player, to: (1600, -1546), sprint: 0);
+    warp(to: Map.YAKA11A, spawn: 5, trigger: 255);
+    return;
+}
+
+section section_60(60) {  // len=2038
+    setDigimon(Digimon.Devimon, 0, 0);
+    rotate(entity: Entity.Player, to: 906);
+    move(entity: Entity.Partner, to: (775, -69), sprint: 1);
+    waitForEntity(Entity.Partner);
+    rotate(entity: Entity.Partner, to: 906);
+    setDialogOwner(Entity.Player);
+    showTextbox("Yum, yum....\n");
+    setDialogOwner(5);
+    showTextbox("Well.\n");
+    look(entity: 5, at: Entity.Player);
+    setDialogOwner(5);
+    showTextbox("Listen to me.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Yummy, yummy....\n");
+    setDialogOwner(5);
+    showTextbox("My guys don't behave anymore.\n");
+    showTextbox("I don't think they can\nremember my orders.\n");
+    showTextbox("They don't understand now.\nThey should be bringing\nme my meals, but....\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Yum, yum....\n");
+    setDialogOwner(5);
+    showTextbox("While I was working,\nthey didn't bring my meals,\nso I forgot to eat.\n");
+    look(entity: Entity.Player, at: 5);
+    setDialogOwner(Entity.Player);
+    showTextbox("You're too wrapped up in\nyour work.\n");
+    setDialogOwner(5);
+    showTextbox("I'm so embarrassed.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("I think there's trouble\nin the mansion.\n");
+    setDialogOwner(5);
+    showTextbox("Any problem on the island?\nIs everyone like my men?\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Yes, they're all\nlosing their memory.\n");
+    setDialogOwner(5);
+    showTextbox("Do you think someone is\nplanning this?\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Hmm?\n");
+    setDialogOwner(5);
+    showTextbox("What can I do?\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("We're building a city to\nunite the hearts of Digimon.\n");
+    showTextbox("We're looking for friends.\n");
+    setDialogOwner(5);
+    showTextbox("What can I do? My men\nonly have fighting skills.\n");
+    showTextbox("I can't leave them here.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("I see.\n");
+    setDialogOwner(5);
+    showTextbox("Let me think about it.\nI'm very sorry.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("I'll come back again.\nDon't forget to eat.\n");
+    return;
+    setDialogOwner(Entity.Player);
+    showTextbox("Want to enter a match?\n");
+    setDialogOwner(5);
+    showTextbox("A match? That's perfect.\nIt will refresh my men.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("So, you want to join?\n");
+    setDialogOwner(5);
+    showTextbox("Yes, but I still have\nsome research to do.\nI'll go there soon.\n");
+}
+
+section section_5(5) {  // len=3186
+    if (!trigger(226)) goto L_022a;
+    setDialogOwner(5);
+    showTextbox("Thanks for your help.\nI'll show you my research.\n");
+    showTextbox("Sometimes, if MetalGreymon\nfades away, he'll ");
+    dead_string("?reymon\ndigivolve into SkullGreymon.\n");
+    showTextbox("Bakemon, Devimon and\nPhoenixmon also digivolve\nthat way.\n");
+    showTextbox("I don't know who they were\nat birth. The Digivolution\nCharts don't say.\n");
+    return;
+L_022a:
+    if (!trigger(266)) goto L_0312;
+    setDialogOwner(5);
+    showTextbox("The matches have\nhelped my men.\n");
+    showTextbox("A match is a good\nbreak from my research.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What's the research about?\n");
+    return;
+L_0312:
+    if (!trigger(205)) goto L_0414;
+    setDialogOwner(5);
+    showTextbox("An Arena has been\nmade in the city!\n");
+    setDialogOwner(5);
+    showTextbox("I wonder if my men\ncould help?\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Yes, they can be as\nforceful as they want.\n");
+    setTrigger(266);
+    goto L_0496;
+L_0414:
+    setDialogOwner(5);
+    showTextbox("My men's condition is worse.\nIt's time to leave\nthe mansion.\n");
+    return;
+L_0496:
+    return;
+    garbage { 20 00 fe 00 20 00 51 00 8c 00 52 00 c6 01 54 00 a2 02 53 00 bc 02 3c 00 98 03 05 00 8e 0b ff ff 19 00 00 00 6e 00 18 00 30 00 19 00 57 00 0e 01 19 00 00 00 64 01 81 00 66 01 18 00 8a 00 19 00 67 00 14 00 4d fd 00 04 67 00 05 00 4f 1e ea 00 d3 00 4a c8 1b fd 1a 00 82 6c 82 99 82 8f 82 94 82 89 82 93 82 8d 82 8f 82 8e 81 40 82 89 82 93 81 40 82 87 82 8f 82 8e 82 85 81 42 0d 00 00 00 1c 00 66 01 50 00 fd 0a 4a c8 fe 00 19 00 01 00 6e 00 18 00 c2 01 19 00 1b fd 1a 00 82 6e 82 88 81 49 0d 00 00 00 56 00 fd 0c 67 00 14 00 57 00 0e 01 28 00 77 01 1b fd 1a 00 82 68 81 40 82 86 82 8f 82 95 82 8e 82 84 81 40 82 81 81 40 82 8b 82 85 82 99 81 42 81 40 82 6c 82 81 82 99 82 82 82 85 81 40 82 89 82 94 81 75 82 8c 82 8c 0d 00 82 8f 82 90 82 85 82 8e 81 40 82 93 82 8f 82 8d 82 85 81 40 82 8f 82 86 81 40 82 94 82 88 82 8f 82 93 82 85 81 40 82 84 82 8f 82 8f 82 92 82 93 81 42 0d 00 00 00 1b ff 1a 00 82 68 81 40 82 95 82 93 82 85 82 84 81 40 82 94 82 88 82 85 0d 00 01 06 82 6c 82 81 82 8e 82 93 82 89 82 8f 82 8e 81 40 82 6a 82 85 82 99 01 01 81 49 0d 00 00 00 19 00 00 00 00 00 18 00 ba 01 19 00 1b fd 1a 00 82 68 81 40 82 87 82 8f 82 94 82 94 82 81 81 40 82 87 82 85 82 94 81 40 82 92 82 89 82 84 81 40 82 8f 82 86 81 40 82 93 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 42 0d 00 00 00 1d 00 03 00 64 00 64 0d 28 00 77 01 1c 00 6e 00 16 00 c4 01 fe 00 fe 00 19 00 24 00 77 02 01 00 81 00 6f 00 18 00 22 02 19 00 4d fd 8a 0b 5a 00 08 03 1b ff 1a 00 82 68 81 40 82 95 82 93 82 85 82 84 81 40 82 94 82 88 82 85 0d 00 01 06 82 6c 82 81 82 8e 82 93 82 89 82 8f 82 8e 81 40 82 6a 82 85 82 99 01 01 81 49 0d 00 00 00 1c 00 6f 00 16 00 88 02 19 00 24 00 77 05 01 00 81 00 6f 00 18 00 88 02 19 00 4d fd 8a 0b 5a 00 08 02 67 00 05 00 5a 00 08 02 1b ff 1a 00 82 68 82 94 81 40 82 84 82 8f 82 85 82 93 82 8e 81 75 82 94 81 40 82 8f 82 90 82 85 82 8e 81 42 0d 00 82 68 82 94 81 75 82 93 81 40 82 8c 82 8f 82 83 82 8b 82 85 82 84 81 42 0d 00 00 00 fe 00 70 01 00 01 5a 00 08 01 67 00 0a 00 4e fd 40 06 8a 06 00 00 4b 34 04 ff fe 00 70 00 00 01 5a 00 08 01 67 00 0a 00 4e fd 9e fc b8 0b 00 00 4b 36 01 ff fe 00 19 00 24 00 77 02 01 00 81 00 71 00 18 00 18 03 19 00 4d fd 8a 0b 5a 00 08 03 1b ff 1a 00 82 68 81 40 82 95 82 93 82 85 82 84 81 40 82 94 82 88 82 85 0d 00 01 06 82 6c 82 81 82 8e 82 93 82 89 82 8f 82 8e 81 40 82 6a 82 85 82 99 01 01 81 49 0d 00 00 00 1c 00 71 00 16 00 7e 03 19 00 24 00 77 05 01 00 81 00 71 00 18 00 7e 03 19 00 4d fd 8a 0b 5a 00 08 02 67 00 05 00 5a 00 08 02 1b ff 1a 00 82 68 82 94 81 40 82 84 82 8f 82 85 82 93 82 8e 81 75 82 94 81 40 82 8f 82 90 82 85 82 8e 81 42 0d 00 82 68 82 94 81 75 82 93 81 40 82 8c 82 8f 82 83 82 8b 82 85 82 84 81 42 0d 00 00 00 fe 00 70 02 00 01 5a 00 08 01 67 00 0a 00 4e fd 40 06 f6 f9 00 00 4b 34 05 ff fe 00 47 06 00 00 4d fd 8a 03 4e fc 07 03 bb ff 01 00 4a fc 4d fc 8a 03 1b fd 1a 00 82 78 82 95 82 8d 81 43 81 40 82 99 82 95 82 8d 81 42 81 42 81 42 81 42 0d 00 00 00 1b 05 1a 00 82 76 82 85 82 8c 82 8c 81 42 0d 00 00 00 4c 00 05 fd 1b 05 1a 00 82 6b 82 89 82 93 82 94 82 85 82 8e 81 40 82 94 82 8f 81 40 82 8d 82 85 81 42 0d 00 00 00 1b fd 1a 00 82 78 82 95 82 8d 82 8d 82 99 81 43 81 40 82 99 82 95 82 8d 82 8d 82 99 81 42 81 42 81 42 81 42 0d 00 00 00 1b 05 1a 00 82 6c 82 99 81 40 82 87 82 95 82 99 82 93 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 82 82 85 82 88 82 81 82 96 82 85 81 40 82 81 82 8e 82 99 82 8d 82 8f 82 92 82 85 81 42 0d 00 00 00 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 85 82 99 81 40 82 83 82 81 82 8e 0d 00 82 92 82 85 82 8d 82 85 82 8d 82 82 82 85 82 92 81 40 82 8d 82 99 81 40 82 8f 82 92 82 84 82 85 82 92 82 93 81 42 0d 00 00 00 1a 00 82 73 82 88 82 85 82 99 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 95 82 8e 82 84 82 85 82 92 82 93 82 94 82 81 82 8e 82 84 81 40 82 8e 82 8f 82 97 81 42 0d 00 82 73 82 88 82 85 82 99 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 82 82 85 81 40 82 82 82 92 82 89 82 8e 82 87 82 89 82 8e 82 87 0d 00 82 8d 82 85 81 40 82 8d 82 99 81 40 82 8d 82 85 82 81 82 8c 82 93 81 43 81 40 82 82 82 95 82 94 81 42 81 42 81 42 81 42 0d 00 00 00 1b fd 1a 00 82 78 82 95 82 8d 81 43 81 40 82 99 82 95 82 8d 81 42 81 42 81 42 81 42 0d 00 00 00 1b 05 1a 00 82 76 82 88 82 89 82 8c 82 85 81 40 82 68 81 40 82 97 82 81 82 93 81 40 82 97 82 8f 82 92 82 8b 82 89 82 8e 82 87 81 43 0d 00 82 94 82 88 82 85 82 99 81 40 82 84 82 89 82 84 82 8e 81 75 82 94 81 40 82 82 82 92 82 89 82 8e 82 87 81 40 82 8d 82 99 81 40 82 8d 82 85 82 81 82 8c 82 93 81 43 0d 00 82 93 82 8f 81 40 82 68 81 40 82 86 82 8f 82 92 82 87 82 8f 82 94 81 40 82 94 82 8f 81 40 82 85 82 81 82 94 81 42 0d 00 00 00 4c 00 fd 05 1b fd 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 94 82 8f 82 8f 81 40 82 97 82 92 82 81 82 90 82 90 82 85 82 84 81 40 82 95 82 90 81 40 82 89 82 8e 0d 00 82 99 82 8f 82 95 82 92 81 40 82 97 82 8f 82 92 82 8b 81 42 0d 00 00 00 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 93 82 8f 81 40 82 85 82 8d 82 82 82 81 82 92 82 92 82 81 82 93 82 93 82 85 82 84 81 42 0d 00 00 00 1b fd 1a 00 82 68 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 85 82 92 82 85 81 75 82 93 81 40 82 94 82 92 82 8f 82 95 82 82 82 8c 82 85 0d 00 82 89 82 8e 81 40 82 94 82 88 82 85 81 40 82 8d 82 81 82 8e 82 93 82 89 82 8f 82 8e 81 42 0d 00 00 00 1b 05 1a 00 82 60 82 8e 82 99 81 40 82 90 82 92 82 8f 82 82 82 8c 82 85 82 8d 81 40 82 8f 82 8e 81 40 82 94 82 88 82 85 81 40 82 89 82 93 82 8c 82 81 82 8e 82 84 81 48 0d 00 82 68 82 93 81 40 82 85 82 96 82 85 82 92 82 99 82 8f 82 8e 82 85 81 40 82 8c 82 89 82 8b 82 85 81 40 82 8d 82 99 81 40 82 8d 82 85 82 8e 81 48 0d 00 00 00 1b fd 1a 00 82 78 82 85 82 93 81 43 81 40 82 94 82 88 82 85 82 99 81 75 82 92 82 85 81 40 82 81 82 8c 82 8c 0d 00 82 8c 82 8f 82 93 82 89 82 8e 82 87 81 40 82 94 82 88 82 85 82 89 82 92 81 40 82 8d 82 85 82 8d 82 8f 82 92 82 99 81 42 0d 00 00 00 1b 05 1a 00 82 63 82 8f 81 40 82 99 82 8f 82 95 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 93 82 8f 82 8d 82 85 82 8f 82 8e 82 85 81 40 82 89 82 93 0d 00 };
+}

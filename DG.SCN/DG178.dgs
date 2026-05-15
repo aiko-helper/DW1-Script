@@ -1,0 +1,376 @@
+// DG178.SCN
+#pragma script index=178 start=0x87000 end=0x89800 headerU16=0x40 sentinelOff=0x19
+
+section onEnter(254) {  // len=58
+    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L_001c;
+    setObjectVisibility(7, 1);
+L_001c:
+    if (!trigger(203)) goto L_0030;
+    setObjectVisibility(8, 1);
+    goto L_0038;
+L_0030:
+    setRectImpassible(40, 38, 2, 2);
+L_0038:
+    return;
+}
+
+section section_54(54) {  // len=8
+    jumpToScriptSection(193, 55);
+    return;
+}
+
+section section_5(5) {  // len=2296
+    if (trigger(202) || trigger(215) || pstat[16] == 0) goto L_0224;
+    if (!trigger(201) || !trigger(243)) goto L_0224;
+    setDialogOwner(5);
+    showTextbox("You had perfect timing in\ncoming here! I have a favor\nthat only you can do.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What is it?\n");
+    setDialogOwner(5);
+    showTextbox("I just got the same evil\nfeeling that Analogman\nand Machinedramon give.\n");
+    showTextbox("I know where it comes from.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Again? Ok, leave it to me!\n");
+    setDialogOwner(5);
+    showTextbox("Thanks. By the way...\n");
+    goto L_073c;
+L_0224:
+    if (!trigger(202) || trigger(215)) goto L_052a;
+    setDialogOwner(5);
+    showTextbox("I heard you beat\nMachinedramon!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Yeah, but I don't get it.\nIt seemed like the curse\nof Analogman.\n");
+    setDialogOwner(5);
+    showTextbox("His grudge was so strong.\nMaybe we can have peace now.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("If Machinedramon returns,\nwe'll beat him again.\n");
+    setDialogOwner(5);
+    showTextbox("You're trustworthy. This was\ngrowing in our Meat farm,\nit's for you.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
+    giveItem(Item.ChainMelon, 1);
+    if (!trigger(0)) goto L_0504;
+    if (item[Item.SpikeClub] < 99) goto L_04c4;
+    return;
+L_04c4:
+    setDialogOwner(Entity.Player);
+    showTextbox("I have too many Items.\n");
+    setTrigger(3);
+    callSubroutine(0);
+    callSubroutine(13);
+    giveItem(Item.ChainMelon, 1);
+L_0504:
+    setDialogOwner(Entity.Player);
+    showTextbox("Thank you!\n");
+    setPStat(28, 0);
+    setTrigger(215);
+    return;
+L_052a:
+    if (!trigger(50) || trigger(201)) goto L_073c;
+    setDialogOwner(5);
+    showTextbox("You're here!\nThis is something I can't\nask anybody else.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Never fear, I'm here.\nDo you mean\nAnalogman is back?\n");
+    setDialogOwner(5);
+    showTextbox("I can feel his evil, but\nI can't tell where it is.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Leave it up to me! I'll find\nhim and take care of it.\n");
+    setDialogOwner(5);
+    showTextbox("Thank you.\nBy the way...\n");
+    setTrigger(201);
+L_073c:
+    if (!trigger(203)) goto L_074e;
+    jumpToScriptSection(210, 51);
+L_074e:
+    if (trigger(55)) goto section_6;
+    playAnimation(5, 0);
+    playAnimation(5, 29);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("I'm back and I'm planning\nto rebuild File City with\nhelp from <ORANGE><DIGIMON><WHITE>.\n");
+    playAnimation(5, 0);
+    playAnimation(5, 29);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("I want to build\nshops that are useful\nto you and <ORANGE><DIGIMON><WHITE>.\n");
+    playAnimation(5, 0);
+    playAnimation(5, 29);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("You should explore Native\nForest just outside the city.\n");
+    playAnimation(5, 0);
+    return;
+}
+
+section section_6(6) {  // len=2460
+    if (trigger(56)) goto L_0156;
+    if (!trigger(96) && pstat[18] < 10) goto L_0020;
+    goto L_0156;
+L_0020:
+    setDialogOwner(6);
+    showTextbox("You can have this. Good luck.\n");
+    setDialogOwner(Entity.System);
+    showTextbox("I got lots of Items!\n");
+    giveItem(Item.SmallRecovery, 3);
+    giveItem(Item.Meat, 3);
+    giveItem(Item.MPFloppy, 3);
+    giveItem(Item.Restore, 1);
+    giveItem(Item.Bandage, 2);
+    giveItem(Item.Medicine, 1);
+    setDialogOwner(6);
+    showTextbox("To look up Items, press\n<GREEN><TRIANGLE> <WHITE>...\n");
+    showTextbox("...then select 'Item'\nand look by using\n<LIGHTBLUE><X> <WHITE>.\n");
+    setTrigger(56);
+    return;
+L_0156:
+    if (trigger(224) || !trigger(175)) goto L_01ca;
+    setDialogOwner(6);
+    showTextbox("Sounds like Yuramon has\ngathered more rumors.\n");
+    return;
+L_01ca:
+    if (!trigger(124) || !trigger(103)) goto L_022a;
+    setDialogOwner(6);
+    showTextbox("I hear Yuramon\nhas some new rumors.\n");
+    return;
+L_022a:
+    if (pstat[1] < 6) goto L_02b4;
+    setDialogOwner(6);
+    showTextbox("The city is starting to\ngrow and I hear it's\nchanging now.\n");
+    return;
+L_02b4:
+    setDialogOwner(6);
+    showTextbox("I will teach you about the\ncommon sense in our world.\n");
+    showTextbox("There are twenty four hours\na day and there is morning,\nday and night.\n");
+    showTextbox("You may feel\nthe pace is quick.\n");
+    showTextbox("There are thirty days a year.\nMonth? What's that? Seasons?\nCan you eat that?\n");
+    showTextbox("Of course we have money.\nThe unit is a bit. You can\nnever have too much money.\n");
+    showTextbox("When you say 'city' on\nthis island, that means here.\n");
+    showTextbox("But there are other\nsmall villages and towns.\n");
+    showTextbox("On the clock, the yellow dot\nis hours and the needle is\nminutes.\n");
+    showTextbox("Up is Midnight\nand Down is Noon.\n");
+    showTextbox("The red part on the left\nmeans late afternoon. It\nshows four - eight o'clock.\n");
+    showTextbox("The purple part on the\nright is morning and it\nshows four - eight o'clock.\n");
+    showTextbox("Digimon are active at\ncertain times of day.\n");
+    showTextbox("Most of them get up in the\nmorning and sleep at night,\nbut some are opposite.\n");
+    showTextbox("If you can't meet the\nDigimon you wish, try\na different time of day.\n");
+    return;
+}
+
+section section_7(7) {  // len=1922
+    if (trigger(54)) goto L_0014;
+    jumpToScriptSection(209, 5);
+    return;
+L_0014:
+    roll(pstat: 110, max: 2);
+    if (pstat[1] < 3 || pstat[110] != 0) goto L_0094;
+    setDialogOwner(7);
+    showTextbox("Talk to Tsunomon and\nYuramon as often as you can.\n");
+    return;
+L_0094:
+    if (pstat[1] < 3 || pstat[110] != 1) goto L_028a;
+    setDialogOwner(7);
+    showTextbox("I'll tell you about\nthe Tamer level.\n");
+    showTextbox("With a high Tamer level,\nwhen your Digimon fades away,\n");
+    showTextbox("your next Digimon will have\nbetter parameters.\n");
+    showTextbox("In the beginning\nit won't go up much,\n");
+    showTextbox("but keep steadily raising him\nand it will get better.\n");
+    return;
+L_028a:
+    if (pstat[1] < 3 || pstat[110] != 2) goto L_03ec;
+    setDialogOwner(7);
+    showTextbox("When you use your Finishing\nTechnique, make sure to\nrapidly hit L and R buttons.\n");
+    showTextbox("When Finish Gauge is full,\ncompared to when empty, the\ndamage to enemy is double!\n");
+    return;
+L_03ec:
+    setDialogOwner(7);
+    showTextbox("I'll tell you about a\nDigimon's life.\n");
+    showTextbox("When Digimon gets hungry,\nhe'll tell you.\n");
+    showTextbox("He also needs to go potty.\nMake sure he does it\nin the toilet.\n");
+    showTextbox("Digimon get sleepy and\nneed sleep, but you have to\nmake him sleep.\n");
+    showTextbox("Don't try to keep him up\nfor too long.\n");
+    showTextbox("He may get tired, sick\nor just get upset.\nHe's kinda delicate.\n");
+    showTextbox("Since Digimon are wild\ncreatures, you should\npraise or scold them.\n");
+    showTextbox("Whatever you do,\npay attention to what\nyour Digimon is doing.\n");
+    return;
+}
+
+section section_20(20) {  // len=102
+    moveCamera(to: (183, 221), slowdown: 20);
+    waitForEntity(200);
+    delay(20);
+    addStats(Stat.CurrentHP, 9999);
+    addStats(Stat.CurrentMP, 9999);
+    unsetTrigger(1);
+    playAnimation(5, 29);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("You woke up...\nI'm so sorry.\n");
+    playAnimation(5, 0);
+    return;
+}
+
+section section_71(71) {  // len=8
+    jumpToScriptSection(212, 71);
+    return;
+}
+
+section section_72(72) {  // len=8
+    jumpToScriptSection(212, 72);
+    return;
+}
+
+section section_73(73) {  // len=8
+    jumpToScriptSection(212, 73);
+    return;
+}
+
+section section_85(85) {  // len=658
+    if (trigger(94)) goto L_01ea;
+    setTrigger(94);
+    setDialogOwner(Entity.Player);
+    showTextbox("What's this machine?\n");
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    setDialogOwner(5);
+    showTextbox("Oh that? That is a\n<PINK>Save Machine for\nMemory Card Battle Data<WHITE>.\n");
+    showTextbox("Using that machine, you can\nsave your current partner's\ndata for battle.\n");
+    showTextbox("Just press <LIGHTBLUE><X> <WHITE>,\nand the machine will tell\nyou what to do.\n");
+    rotate(entity: Entity.Player, to: 0);
+    delay(5);
+    return;
+L_01ea:
+    setDialogOwner(Entity.System);
+    showTextbox("Do you want to use\n<PINK>Save Machine for\nMemory Card Battle Data<WHITE>?\n");
+    setSelection(L_028a, L_0290);
+    showTextbox("Yes\nNo\n");
+    waitForSelectionChoice();
+    return;
+L_028a:
+    fadeOutHUD();
+    callSubroutine(48);
+    return;
+L_0290:
+    return;
+}
+
+section section_82(82) {  // len=480
+    rotate(entity: Entity.Player, to: 3072);
+    delay(5);
+    playSound(0, 0);
+    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L_0090;
+    setDialogOwner(Entity.Player);
+    showTextbox("I don't see Punimon, but\nI think I'll rest here.\n");
+    goto L_018a;
+L_0090:
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Punimon <WHITE>\nI'm Punimon! Why don't you\nrest here a while?\n");
+    showTextbox("<YELLOW>Punimon <WHITE>\nOne hour rest recovers HP,\nMP and lowers Tiredness.\n");
+L_018a:
+    setDialogOwner(Entity.Player);
+    setSelection(L_01be, L_01da);
+    showTextbox("Rest\nDon't rest\n");
+    waitForSelectionChoice();
+    playSound(0, 1);
+    return;
+L_01be:
+    storeDate(105);
+    addMinutesToDate(105, 60);
+    advanceToDate(105);
+    addStats(Stat.CurrentHP, 300);
+    addStats(Stat.CurrentMP, 300);
+    reduceStats(Stat.Tiredness, 10);
+    warp(to: Map.ROOM08, spawn: 2, trigger: 255);
+    return;
+L_01da:
+    playSound(0, 1);
+    return;
+}
+
+section section_83(83) {  // len=30
+    if (!trigger(203)) goto L_000e;
+    return;
+L_000e:
+    rotate(entity: Entity.Player, to: 3072);
+    delay(5);
+    jumpToScriptSection(220, 83);
+    return;
+}
+
+section section_84(84) {  // len=30
+    if (!trigger(203)) goto L_000e;
+    return;
+L_000e:
+    rotate(entity: Entity.Player, to: 1024);
+    delay(5);
+    jumpToScriptSection(220, 83);
+    return;
+}
+
+section section_86(86) {  // len=30
+    if (!trigger(203)) goto L_000e;
+    return;
+L_000e:
+    rotate(entity: Entity.Player, to: 2048);
+    delay(5);
+    jumpToScriptSection(220, 83);
+    return;
+}
+
+section section_51(51) {  // len=2078
+    move(entity: Entity.Player, to: (-470, -1970), sprint: 0);
+    if (trigger(203)) goto L_0018;
+    warp(to: Map.TWNA01, spawn: 2, trigger: 255);
+L_0018:
+    if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L_0034;
+    goto L_0098;
+    goto L_0038;
+L_0034:
+    goto L_0038;
+L_0038:
+    if (!trigger(221)) goto L_004c;
+    goto L_0074;
+    goto L_0050;
+L_004c:
+    goto L_0050;
+L_0050:
+    if (!trigger(225)) goto L_0060;
+    warp(to: Map.TWNA04, spawn: 2, trigger: 255);
+L_0060:
+    if (!trigger(246)) goto L_0070;
+    warp(to: Map.TWNA03, spawn: 2, trigger: 255);
+L_0070:
+    warp(to: Map.TWNA02, spawn: 2, trigger: 255);
+L_0074:
+    if (!trigger(225)) goto L_0084;
+    warp(to: Map.TWNA07, spawn: 2, trigger: 255);
+L_0084:
+    if (!trigger(246)) goto L_0094;
+    warp(to: Map.TWNA06, spawn: 2, trigger: 255);
+L_0094:
+    warp(to: Map.TWNA05, spawn: 2, trigger: 255);
+L_0098:
+    if (!trigger(221)) goto L_00ac;
+    goto L_00d4;
+    goto L_00b0;
+L_00ac:
+    goto L_00b0;
+L_00b0:
+    if (!trigger(225)) goto L_00c0;
+    warp(to: Map.TWNA10, spawn: 2, trigger: 255);
+L_00c0:
+    if (!trigger(246)) goto L_00d0;
+    warp(to: Map.TWNA09, spawn: 2, trigger: 255);
+L_00d0:
+    warp(to: Map.TWNA08, spawn: 2, trigger: 255);
+L_00d4:
+    if (!trigger(225)) goto L_00e4;
+    warp(to: Map.TWNA13, spawn: 2, trigger: 255);
+L_00e4:
+    if (!trigger(246)) goto L_00f4;
+    warp(to: Map.TWNA12, spawn: 2, trigger: 255);
+L_00f4:
+    warp(to: Map.TWNA11, spawn: 2, trigger: 255);
+    return;
+    garbage { 40 00 fe 00 40 00 36 00 7a 00 05 00 82 00 06 00 7a 09 07 00 16 13 14 00 98 1a 47 00 fe 1a 48 00 06 1b 49 00 0e 1b 55 00 16 1b 52 00 a8 1d 53 00 88 1f 54 00 a6 1f 56 00 c4 1f 33 00 e2 1f ff ff 19 00 00 00 e7 00 40 00 f5 00 40 00 e9 00 40 00 f7 00 18 00 5c 00 19 00 57 00 07 01 19 00 00 00 cb 00 18 00 70 00 19 00 57 00 08 01 16 00 78 00 7c 00 28 00 26 00 02 02 fe 00 17 00 c1 00 37 00 fe 00 19 00 01 00 ca 00 81 00 d7 00 89 00 10 00 18 00 a6 02 19 00 19 00 00 00 c9 00 80 00 f3 00 18 00 a6 02 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 88 82 81 82 84 81 40 82 90 82 85 82 92 82 86 82 85 82 83 82 94 81 40 82 94 82 89 82 8d 82 89 82 8e 82 87 81 40 82 89 82 8e 0d 00 82 83 82 8f 82 8d 82 89 82 8e 82 87 81 40 82 88 82 85 82 92 82 85 81 49 81 40 82 68 81 40 82 88 82 81 82 96 82 85 81 40 82 81 81 40 82 86 82 81 82 96 82 8f 82 92 0d 00 82 94 82 88 82 81 82 94 81 40 82 8f 82 8e 82 8c 82 99 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 40 82 84 82 8f 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 89 82 93 81 40 82 89 82 94 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 40 82 8a 82 95 82 93 82 94 81 40 82 87 82 8f 82 94 81 40 82 94 82 88 82 85 81 40 82 93 82 81 82 8d 82 85 81 40 82 85 82 96 82 89 82 8c 0d 00 82 86 82 85 82 85 82 8c 82 89 82 8e 82 87 81 40 82 94 82 88 82 81 82 94 81 40 82 60 82 8e 82 81 82 8c 82 8f 82 87 82 8d 82 81 82 8e 0d 00 82 81 82 8e 82 84 81 40 82 6c 82 81 82 83 82 88 82 89 82 8e 82 85 82 84 82 92 82 81 82 8d 82 8f 82 8e 81 40 82 87 82 89 82 96 82 85 81 42 0d 00 00 00 1a 00 82 68 81 40 82 8b 82 8e 82 8f 82 97 81 40 82 97 82 88 82 85 82 92 82 85 81 40 82 89 82 94 81 40 82 83 82 8f 82 8d 82 85 82 93 81 40 82 86 82 92 82 8f 82 8d 81 42 0d 00 00 00 1b fd 1a 00 82 60 82 87 82 81 82 89 82 8e 81 48 81 40 82 6e 82 8b 81 43 81 40 82 8c 82 85 82 81 82 96 82 85 81 40 82 89 82 94 81 40 82 94 82 8f 81 40 82 8d 82 85 81 49 0d 00 00 00 1b 05 1a 00 82 73 82 88 82 81 82 8e 82 8b 82 93 81 42 81 40 82 61 82 99 81 40 82 94 82 88 82 85 81 40 82 97 82 81 82 99 81 42 81 42 81 42 0d 00 00 00 16 00 be 07 19 00 00 00 ca 00 81 00 d7 00 18 00 ac 05 19 00 1b 05 1a 00 82 68 81 40 82 88 82 85 82 81 82 92 82 84 81 40 82 99 82 8f 82 95 81 40 82 82 82 85 82 81 82 94 0d 00 82 6c 82 81 82 83 82 88 82 89 82 8e 82 85 82 84 82 92 82 81 82 8d 82 8f 82 8e 81 49 0d 00 00 00 1b fd 1a 00 82 78 82 85 82 81 82 88 81 43 81 40 82 82 82 95 82 94 81 40 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 87 82 85 82 94 81 40 82 89 82 94 81 42 0d 00 82 68 82 94 81 40 82 93 82 85 82 85 82 8d 82 85 82 84 81 40 82 8c 82 89 82 8b 82 85 81 40 82 94 82 88 82 85 81 40 82 83 82 95 82 92 82 93 82 85 0d 00 82 8f 82 86 81 40 82 60 82 8e 82 81 82 8c 82 8f 82 87 82 8d 82 81 82 8e 81 42 0d 00 00 00 1b 05 1a 00 82 67 82 89 82 93 81 40 82 87 82 92 82 95 82 84 82 87 82 85 81 40 82 97 82 81 82 93 81 40 82 93 82 8f 81 40 82 93 82 94 82 92 82 8f 82 8e 82 87 81 42 0d 00 82 6c 82 81 82 99 82 82 82 85 81 40 82 97 82 85 81 40 82 83 82 81 82 8e 81 40 82 88 82 81 82 96 82 85 81 40 82 90 82 85 82 81 82 83 82 85 81 40 82 8e 82 8f 82 97 81 42 0d 00 00 00 1b fd 1a 00 82 68 82 86 81 40 82 6c 82 81 82 83 82 88 82 89 82 8e 82 85 82 84 82 92 82 81 82 8d 82 8f 82 8e 81 40 82 92 82 85 82 94 82 95 82 92 82 8e 82 93 81 43 0d 00 82 97 82 85 81 75 82 8c 82 8c 81 40 82 82 82 85 82 81 82 94 81 40 82 88 82 89 82 8d 81 40 82 81 82 87 82 81 82 89 82 8e 81 42 0d 00 00 00 1b 05 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 94 82 92 82 95 82 93 82 94 82 97 82 8f 82 92 82 94 82 88 82 99 81 42 81 40 82 73 82 88 82 89 82 93 81 40 82 97 82 81 82 93 0d 00 82 87 82 92 82 8f 82 97 82 89 82 8e 82 87 81 40 82 89 82 8e 81 40 82 8f 82 95 82 92 81 40 82 6c 82 85 82 81 82 94 81 40 82 86 82 81 82 92 82 8d 81 43 0d 00 82 89 82 94 81 75 82 93 81 40 82 86 82 8f 82 92 81 40 82 99 82 8f 82 95 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 8f 82 81 82 88 81 49 81 40 82 60 81 40 01 06 82 62 82 88 82 81 82 89 82 8e 82 85 82 84 0d 00 82 6c 82 85 82 8c 82 8f 82 8e 01 01 81 48 0d 00 00 00 28 00 46 01 19 00 00 00 00 00 18 00 86 05 19 00 19 00 24 00 4f 02 63 00 18 00 46 05 19 00 fe 00 1b fd 1a 00 82 68 81 40 82 88 82 81 82 96 82 85 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 81 82 8e 82 99 81 40 82 68 82 94 82 85 82 8d 82 93 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 46 01 1b fd 1a 00 82 73 82 88 82 81 82 8e 82 8b 81 40 82 99 82 8f 82 95 81 49 0d 00 00 00 1e 00 1c 00 1c 00 d7 00 fe 00 19 00 00 00 32 00 81 00 c9 00 18 00 be 07 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 88 82 85 82 92 82 85 81 49 0d 00 82 73 82 88 82 89 82 93 81 40 82 89 82 93 81 40 82 93 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 40 82 68 81 40 82 83 82 81 82 8e 81 75 82 94 0d 00 82 81 82 93 82 8b 81 40 82 81 82 8e 82 99 82 82 82 8f 82 84 82 99 81 40 82 85 82 8c 82 93 82 85 81 42 0d 00 00 00 1b fd 1a 00 82 6d 82 85 82 96 82 85 82 92 81 40 82 86 82 85 82 81 82 92 81 43 81 40 82 68 81 75 82 8d 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 82 63 82 8f 81 40 82 99 82 8f 82 95 81 40 82 8d 82 85 82 81 82 8e 0d 00 82 60 82 8e 82 81 82 8c 82 8f 82 87 82 8d 82 81 82 8e 81 40 82 89 82 93 81 40 82 82 82 81 82 83 82 8b 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 40 82 83 82 81 82 8e 81 40 82 86 82 85 82 85 82 8c 81 40 82 88 82 89 82 93 81 40 82 85 82 96 82 89 82 8c 81 43 81 40 82 82 82 95 82 94 0d 00 82 68 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 94 82 85 82 8c 82 8c 81 40 82 97 82 88 82 85 82 92 82 85 81 40 82 89 82 94 81 40 82 89 82 93 81 42 0d 00 00 00 1b fd 1a 00 82 6b 82 85 82 81 82 96 82 85 81 40 82 89 };
+}

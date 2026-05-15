@@ -1,0 +1,118 @@
+// MAP146.SCN
+#pragma script index=146 start=0x67800 end=0x68000 headerU16=0x20 sentinelOff=0xfe
+
+section onEnter(254) {  // len=2
+    return;
+}
+
+section section_51(51) {  // len=2
+    return;
+}
+
+section section_5(5) {  // len=46
+    setDialogOwner(5);
+    showTextbox("Who are you?\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(292);
+    return;
+}
+
+section section_6(6) {  // len=56
+    setDialogOwner(6);
+    showTextbox("Why are you here?\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(292);
+    return;
+}
+
+section section_7(7) {  // len=76
+    setDialogOwner(7);
+    showTextbox("I'm going to get some rest.\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(273);
+    return;
+}
+
+section section_8(8) {  // len=54
+    setDialogOwner(8);
+    showTextbox("What's going on?\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(273);
+    return;
+}
+
+section section_81(81) {  // len=1780
+    look(entity: Entity.Player, at: 9);
+    setDialogOwner(9);
+    showTextbox("Going back to the city?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_0076, L_0168);
+    showTextbox("Going back\nNot going\n");
+    waitForSelectionChoice();
+    goto L_0168;
+L_0076:
+    if (trigger(203)) goto L_0086;
+    warp(to: Map.TWNA01, spawn: 0, trigger: 255);
+L_0086:
+    if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L_00a2;
+    goto L_0106;
+    goto L_00a6;
+L_00a2:
+    goto L_00a6;
+L_00a6:
+    if (!trigger(221)) goto L_00ba;
+    goto L_00e2;
+    goto L_00be;
+L_00ba:
+    goto L_00be;
+L_00be:
+    if (!trigger(225)) goto L_00ce;
+    warp(to: Map.TWNA04, spawn: 0, trigger: 255);
+L_00ce:
+    if (!trigger(246)) goto L_00de;
+    warp(to: Map.TWNA03, spawn: 0, trigger: 255);
+L_00de:
+    warp(to: Map.TWNA02, spawn: 0, trigger: 255);
+L_00e2:
+    if (!trigger(225)) goto L_00f2;
+    warp(to: Map.TWNA07, spawn: 0, trigger: 255);
+L_00f2:
+    if (!trigger(246)) goto L_0102;
+    warp(to: Map.TWNA06, spawn: 0, trigger: 255);
+L_0102:
+    warp(to: Map.TWNA05, spawn: 0, trigger: 255);
+L_0106:
+    if (!trigger(221)) goto L_011a;
+    goto L_0142;
+    goto L_011e;
+L_011a:
+    goto L_011e;
+L_011e:
+    if (!trigger(225)) goto L_012e;
+    warp(to: Map.TWNA10, spawn: 0, trigger: 255);
+L_012e:
+    if (!trigger(246)) goto L_013e;
+    warp(to: Map.TWNA09, spawn: 0, trigger: 255);
+L_013e:
+    warp(to: Map.TWNA08, spawn: 0, trigger: 255);
+L_0142:
+    if (!trigger(225)) goto L_0152;
+    warp(to: Map.TWNA13, spawn: 0, trigger: 255);
+L_0152:
+    if (!trigger(246)) goto L_0162;
+    warp(to: Map.TWNA12, spawn: 0, trigger: 255);
+L_0162:
+    warp(to: Map.TWNA11, spawn: 0, trigger: 255);
+    return;
+L_0168:
+    return;
+    garbage { 20 00 fe 00 20 00 33 00 22 00 05 00 24 00 06 00 52 00 07 00 8a 00 08 00 d6 00 51 00 0c 01 ff ff fe 00 fe 00 1b 05 1a 00 82 76 82 88 82 8f 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 24 01 fe 00 1b 06 1a 00 82 76 82 88 82 99 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 88 82 85 82 92 82 85 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 24 01 fe 00 1b 07 1a 00 82 68 81 75 82 8d 81 40 82 87 82 8f 82 89 82 8e 82 87 81 40 82 94 82 8f 81 40 82 87 82 85 82 94 81 40 82 93 82 8f 82 8d 82 85 81 40 82 92 82 85 82 93 82 94 81 42 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 11 01 fe 00 1b 08 1a 00 82 76 82 88 82 81 82 94 81 75 82 93 81 40 82 87 82 8f 82 89 82 8e 82 87 81 40 82 8f 82 8e 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 11 01 fe 00 4c 00 fd 09 1b 09 1a 00 82 66 82 8f 82 89 82 8e 82 87 81 40 82 82 82 81 82 83 82 8b 81 40 82 94 82 8f 81 40 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 48 0d 00 00 00 1b fd 10 02 82 01 74 02 1a 00 82 66 82 8f 82 89 82 8e 82 87 81 40 82 82 82 81 82 83 82 8b 0d 00 82 6d 82 8f 82 94 81 40 82 87 82 8f 82 89 82 8e 82 87 0d 00 00 00 12 00 16 00 74 02 19 00 01 00 cb 00 18 00 92 01 19 00 4b cc 00 ff 19 00 00 00 dc 00 40 00 d6 00 4a 00 01 32 18 00 ae 01 19 00 16 00 12 02 16 00 b2 01 16 00 b2 01 19 00 00 00 dd 00 18 00 c6 01 19 00 16 00 ee 01 16 00 ca 01 16 00 ca 01 19 00 00 00 e1 00 18 00 da 01 19 00 4b aa 00 ff 19 00 00 00 f6 00 18 00 ea 01 19 00 4b a9 00 ff 4b a8 00 ff 19 00 00 00 e1 00 18 00 fe 01 19 00 4b ad 00 ff 19 00 00 00 f6 00 18 00 0e 02 19 00 4b ac 00 ff 4b ab 00 ff 19 00 00 00 dd 00 18 00 26 02 19 00 16 00 4e 02 16 00 2a 02 16 00 2a 02 19 00 00 00 e1 00 18 00 3a 02 19 00 4b b0 00 ff 19 00 00 00 f6 00 18 00 4a 02 19 00 4b af 00 ff 4b ae 00 ff 19 00 00 00 e1 00 18 00 5e 02 19 00 4b b3 00 ff 19 00 00 00 f6 00 18 00 6e 02 19 00 4b b2 00 ff 4b b1 00 ff fe 00 fe 00 ff 00 82 98 0d 00 00 00 1e 00 fe 01 64 2c 67 00 0a 00 57 00 00 00 57 00 01 00 1e 00 f7 00 1e 00 f8 02 64 15 71 00 00 01 01 00 04 01 75 00 71 01 01 01 01 00 ff 00 82 00 67 00 0a 00 5a 00 08 0e 71 00 00 01 08 00 04 01 1b 00 71 01 01 01 08 00 ff 00 28 00 67 00 09 00 71 00 00 01 0d 00 a5 00 1b 00 71 01 01 01 0d 00 a0 00 28 00 67 00 0e 00 5a 00 08 0e 71 00 00 01 0c 00 a5 00 b1 00 71 01 01 01 0c 00 a0 00 be 00 67 00 0d 00 1b fd 1a 00 82 67 82 95 82 88 81 48 81 40 82 60 82 81 82 81 82 88 82 88 82 88 82 88 81 49 0d 00 00 00 57 00 00 01 57 00 01 01 57 00 0d 00 57 00 0e 00 57 00 0f 00 57 00 10 00 57 00 11 00 57 00 12 00 57 00 13 00 57 00 14 00 57 00 15 00 57 00 16 00 57 00 17 00 57 00 18 00 57 00 19 00 57 00 1a 00 57 00 1b 00 57 00 1c 00 57 00 1d 00 57 00 1e 00 57 00 1f 00 57 00 20 00 57 00 21 00 57 00 22 00 57 00 23 00 57 00 24 00 57 00 25 00 57 00 26 00 57 00 27 00 57 00 28 00 57 00 29 00 57 00 2a 00 57 00 2b 00 57 00 2c 00 57 00 2d 00 57 00 2e 00 57 00 2f 00 57 00 30 00 57 00 31 00 57 00 32 00 1e 00 f7 0d 1e 00 f8 26 64 15 5a 00 08 0f 56 00 fd 0f 67 00 14 00 57 00 0d 01 57 00 0e 01 57 00 0f 01 57 00 10 01 57 00 11 01 57 00 12 01 57 00 13 01 57 00 14 01 57 00 15 01 57 00 16 01 57 00 17 01 57 00 18 01 57 00 19 01 57 00 1a 01 57 00 1b 01 57 00 1c 01 57 00 1d 01 57 00 1e 01 57 00 1f 01 57 00 20 01 57 00 21 01 57 00 22 01 57 00 23 01 57 00 24 01 57 00 25 01 57 00 26 01 57 00 27 01 57 00 28 01 57 00 29 01 57 00 2a 01 57 00 2b 01 57 00 2c 01 57 00 2d 01 57 00 2e 01 57 00 2f 01 57 00 30 01 57 00 31 01 57 00 32 01 67 00 14 00 1e 00 fe 02 64 2c 47 46 00 00 72 05 30 f8 01 0a 67 00 14 00 6c 05 fb ff 29 00 02 00 67 00 0a 00 72 05 00 00 01 0a 67 00 14 00 1b 05 1a 00 82 67 82 81 81 40 82 88 82 81 81 40 82 88 82 81 81 43 81 40 82 99 82 8f 82 95 81 40 82 8a 82 85 82 92 82 8b 81 49 0d 00 82 78 82 8f 82 95 81 40 82 8d 82 89 82 93 82 93 82 85 82 84 81 49 0d 00 00 00 4e 05 fb ff 29 00 00 00 4a 05 4d 05 00 00 67 00 05 00 16 00 98 05 1e 00 fe 02 64 2c 67 00 28 00 47 46 00 00 72 05 30 f8 01 0a 67 00 14 00 6c 05 fb ff 29 00 02 00 67 00 0a 00 72 05 00 00 01 0a 67 00 14 00 1b 05 1a 00 82 6e 82 88 82 88 82 88 82 88 81 43 81 40 82 99 82 8f 82 95 81 40 82 86 82 8f 82 95 82 8e 82 84 81 40 82 8f 82 95 82 94 81 49 0d 00 82 67 82 85 81 40 82 88 82 85 81 40 82 88 82 85 81 42 81 40 82 6d 82 85 82 92 82 96 82 8f 82 95 82 93 81 48 0d 00 00 00 4e 05 fb ff 29 00 };
+}

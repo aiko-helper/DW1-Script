@@ -1,0 +1,128 @@
+// DG194.SCN
+#pragma script index=194 start=0x94000 end=0x94800 headerU16=0x28 sentinelOff=0x2875
+
+section onEnter(254) {  // len=32
+    spawnChest(Item.Sirloin, 3758, 1159, 1024, 686);
+    if (trigger(321)) goto L_001e;
+    playAnimation(10, 28);
+    return;
+L_001e:
+    return;
+}
+
+section section_51(51) {  // len=14
+    move(entity: Entity.Player, to: (3588, 1931), sprint: 0);
+    warp(to: Map.MGEN07, spawn: 1, trigger: 255);
+    return;
+}
+
+section section_52(52) {  // len=14
+    move(entity: Entity.Player, to: (-4289, 1108), sprint: 0);
+    warp(to: Map.MGEN05, spawn: 1, trigger: 255);
+    return;
+}
+
+section section_5(5) {  // len=30
+    setDialogOwner(5);
+    showTextbox("Taaa\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(288);
+    return;
+}
+
+section section_6(6) {  // len=74
+    setDialogOwner(6);
+    showTextbox("Let's ask for forgiveness.\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(285);
+    return;
+}
+
+section section_7(7) {  // len=78
+    setDialogOwner(7);
+    showTextbox("Forgiveness heals the heart.\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(285);
+    return;
+}
+
+section section_8(8) {  // len=48
+    setDialogOwner(8);
+    showTextbox("Are you evil?\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(288);
+    return;
+}
+
+section section_9(9) {  // len=58
+    setDialogOwner(9);
+    showTextbox("Follow me. Then...\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(285);
+    return;
+}
+
+section section_53(53) {  // len=1660
+    if (!trigger(321)) goto L_000e;
+    return;
+L_000e:
+    setDialogOwner(10);
+    showTextbox("Ha ha ha!\n");
+    playAnimation(10, 28);
+    move(entity: 10, axis: 1, to: 0, speed: 20);
+    delay(60);
+    setDialogOwner(Entity.Player);
+    showTextbox("You!\n");
+    setDialogOwner(10);
+    showTextbox("You will lose!\n");
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 10);
+    setPStat(252, 255);
+    setPStat(253, 255);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: Entity.Player, at: 10);
+    look(entity: 10, at: Entity.Player);
+    look(entity: Entity.Partner, at: 10);
+    setDialogOwner(10);
+    showTextbox("I can't believe I was\nbrain washed by him.\n");
+    setDialogOwner(10);
+    showTextbox("He's strong.\nCan you defeat him?\nWhy are you doing this?\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("I'll fight for the island\nLet's settle this now.\n");
+    setDialogOwner(10);
+    showTextbox("We don't want a ruler,\nyou're our only hope.\n");
+    goto L_023a;
+L_023a:
+    playAnimation(10, 28);
+    move(entity: 10, to: (-4562, 41), animDuration: 20);
+    if (pstat[101] >= 3) goto L_0266;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 10);
+    look(entity: Entity.Partner, at: 10);
+    goto L_023a;
+L_0266:
+    waitForEntity(10);
+    unloadEntity(10);
+    setPStat(101, 0);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    setTrigger(321);
+    return;
+    garbage { 28 00 fe 00 28 00 33 00 48 00 34 00 56 00 05 00 64 00 06 00 82 00 07 00 cc 00 08 00 1a 01 09 00 4a 01 35 00 84 01 ff ff 75 28 ae 0e 00 00 87 04 00 04 ae 02 19 00 01 00 41 01 18 00 46 00 19 00 56 00 0a 1c fe 00 fe 00 4e fd 04 0e 8b 07 00 00 4b f8 01 ff fe 00 4e fd 3f ef 54 04 00 00 4b db 01 ff fe 00 1b 05 1a 00 82 73 82 81 82 81 82 81 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 20 01 fe 00 1b 06 1a 00 82 6b 82 85 82 94 81 75 82 93 81 40 82 81 82 93 82 8b 81 40 82 86 82 8f 82 92 81 40 82 86 82 8f 82 92 82 87 82 89 82 96 82 85 82 8e 82 85 82 93 82 93 81 42 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1d 01 fe 00 1b 07 1a 00 82 65 82 8f 82 92 82 87 82 89 82 96 82 85 82 8e 82 85 82 93 82 93 81 40 82 88 82 85 82 81 82 8c 82 93 81 40 82 94 82 88 82 85 81 40 82 88 82 85 82 81 82 92 82 94 81 42 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1d 01 fe 00 1b 08 1a 00 82 60 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 85 82 96 82 89 82 8c 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 20 01 fe 00 1b 09 1a 00 82 65 82 8f 82 8c 82 8c 82 8f 82 97 81 40 82 8d 82 85 81 42 81 40 82 73 82 88 82 85 82 8e 81 42 81 42 81 42 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1d 01 fe 00 19 00 00 00 41 01 18 00 92 01 19 00 fe 00 1b 0a 1a 00 82 67 82 81 81 40 82 88 82 81 81 40 82 88 82 81 81 49 0d 00 00 00 56 00 0a 1c 72 0a 00 00 01 14 67 00 3c 00 1b fd 1a 00 82 78 82 8f 82 95 81 49 0d 00 00 00 1b 0a 1a 00 82 78 82 8f 82 95 81 40 82 97 82 89 82 8c 82 8c 81 40 82 8c 82 8f 82 93 82 85 81 49 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 0a 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 0a 4c 00 0a fd 4c 00 fc 0a 1b 0a 1a 00 82 68 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 82 82 85 82 8c 82 89 82 85 82 96 82 85 81 40 82 68 81 40 82 97 82 81 82 93 0d 00 82 82 82 92 82 81 82 89 82 8e 81 40 82 97 82 81 82 93 82 88 82 85 82 84 81 40 82 82 82 99 81 40 82 88 82 89 82 8d 81 42 0d 00 00 00 1b 0a 1a 00 82 67 82 85 81 75 82 93 81 40 82 93 82 94 82 92 82 8f 82 8e 82 87 81 42 0d 00 82 62 82 81 82 8e 81 40 82 99 82 8f 82 95 81 40 82 84 82 85 82 86 82 85 82 81 82 94 81 40 82 88 82 89 82 8d 81 48 0d 00 82 76 82 88 82 99 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 40 82 84 82 8f 82 89 82 8e 82 87 81 40 82 94 82 88 82 89 82 93 81 48 0d 00 00 00 1b fd 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 86 82 89 82 87 82 88 82 94 81 40 82 86 82 8f 82 92 81 40 82 94 82 88 82 85 81 40 82 89 82 93 82 8c 82 81 82 8e 82 84 0d 00 82 6b 82 85 82 94 81 75 82 93 81 40 82 93 82 85 82 94 82 94 82 8c 82 85 81 40 82 94 82 88 82 89 82 93 81 40 82 8e 82 8f 82 97 81 42 0d 00 00 00 1b 0a 1a 00 82 76 82 85 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 97 82 81 82 8e 82 94 81 40 82 81 81 40 82 92 82 95 82 8c 82 85 82 92 81 43 0d 00 82 99 82 8f 82 95 81 75 82 92 82 85 81 40 82 8f 82 95 82 92 81 40 82 8f 82 8e 82 8c 82 99 81 40 82 88 82 8f 82 90 82 85 81 42 0d 00 00 00 16 00 be 03 56 00 0a 1c 6c 0a 2e ee 29 00 14 00 19 00 0d 00 65 03 18 00 ea 03 19 00 1f 00 65 01 67 00 14 00 4c 00 fd 0a 4c 00 fc 0a 16 00 be 03 4a 0a 48 0a 1e 00 65 00 50 00 fd 0a 4a c8 1c 00 41 01 fe 00 ff 00 };
+}

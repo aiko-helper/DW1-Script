@@ -1,0 +1,382 @@
+// DG205.SCN
+#pragma script index=205 start=0xa5800 end=0xa7800 headerU16=0xc sentinelOff=0xfe
+
+section onEnter(254) {  // len=2
+    return;
+}
+
+section section_6(6) {  // len=8178
+    setDialogOwner(6);
+    showTextbox("Which shop would you want?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_009a, L_108c, L_1b1e);
+    showTextbox("Clinic\nTreasure Hunter\nFortune Teller\n");
+    waitForSelectionChoice();
+    return;
+L_009a:
+    setDialogOwner(6);
+    showTextbox("I changed it into a hospital.\n");
+    if ((cond & 0x20) == 0x01 || (cond & 0x40) == 0x01) goto L_00f0;
+    goto L_0354;
+L_00f0:
+    setDialogOwner(6);
+    showTextbox("He doesn't feel well,\ndoes he? You have to take\ncare of his health!\n");
+    showTextbox("Let me treat him right away.\nFee will be discounted\nto three hundred bits.\n");
+    if (money < 300) goto L_0232;
+    reduceMoney(300);
+    goto L_02e4;
+L_0232:
+    setDialogOwner(6);
+    showTextbox("You don't have enough bits?!\nPay me what you can. Save\nyour money for a rainy day.\n");
+    reduceMoney(300);
+L_02e4:
+    removeCondition(Condition.Injured);
+    removeCondition(Condition.Sick);
+    showTextbox("Everything is OK now.\nJust be careful from now on.\n");
+    return;
+L_0354:
+    setDialogOwner(6);
+    showTextbox("He doesn't look sick or\ninjured. What do you need?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_041c, L_0cde, L_0dba);
+    showTextbox("Check him out\nSell me Medicine\nNothing\n");
+L_041c:
+    setDialogOwner(6);
+    showTextbox("OK, let me look at\nhow <ORANGE><DIGIMON><WHITE> is doing.\n");
+    if (stat[Stat.Tiredness] < 80) goto L_0522;
+    setDialogOwner(6);
+    showTextbox("Oh no. <ORANGE><DIGIMON><WHITE>'s Tiredness\nis at a very dangerous level.\nHe has to rest right now!\n");
+    goto L_06ee;
+L_0522:
+    if (stat[Stat.Tiredness] < 50) goto L_05bc;
+    setDialogOwner(6);
+    showTextbox("<ORANGE><DIGIMON><WHITE> has too much\nTiredness. He should rest\nbefore it's too late.\n");
+    goto L_06ee;
+L_05bc:
+    if (stat[Stat.Tiredness] < 20) goto L_0654;
+    setDialogOwner(6);
+    showTextbox("<ORANGE><DIGIMON><WHITE> seems to be a bit\ntired. He shouldn't push\nhimself so much.\n");
+    goto L_06ee;
+L_0654:
+    setDialogOwner(6);
+    showTextbox("<ORANGE><DIGIMON><WHITE> is fine, but\nTiredness can cause all kinds\nof bad things. Be careful.\n");
+L_06ee:
+    setDialogOwner(6);
+    showTextbox("Well, how does he feel?\n");
+    if (stat[Stat.Happiness] < 100) goto L_07bc;
+    setDialogOwner(6);
+    showTextbox("Mentally, <ORANGE><DIGIMON><WHITE> is at\nmax relaxation. He'll\nlive for a long time.\n");
+    goto L_0bd4;
+L_07bc:
+    if (stat[Stat.Happiness] < 70) goto L_0862;
+    setDialogOwner(6);
+    showTextbox("<ORANGE><DIGIMON><WHITE>'s mental state is\nexcellent. It's the sign\nof a healthy lifestyle.\n");
+    goto L_0bd4;
+L_0862:
+    if (stat[Stat.Happiness] < 30) goto L_08fa;
+    setDialogOwner(6);
+    showTextbox("<ORANGE><DIGIMON><WHITE> seems to be very\nrelaxed. Did something\nnice happen to him?\n");
+    goto L_0bd4;
+L_08fa:
+    if (stat[Stat.Happiness] < 0) goto L_09a0;
+    setDialogOwner(6);
+    showTextbox("I don't think <ORANGE><DIGIMON><WHITE> is\nfeeling really stressed.\nI would say he's normal.\n");
+    goto L_0bd4;
+L_09a0:
+    if (stat[Stat.Happiness] < -20) goto L_0a22;
+    setDialogOwner(6);
+    showTextbox("<ORANGE><DIGIMON><WHITE> seems to be stressed\na bit. Go easy on training.\n");
+    goto L_0bd4;
+L_0a22:
+    if (stat[Stat.Happiness] < -50) goto L_0a8e;
+    setDialogOwner(6);
+    showTextbox("<ORANGE><DIGIMON><WHITE> has excess stress.\nHe needs some fun.\n");
+    goto L_0bd4;
+L_0a8e:
+    if (stat[Stat.Happiness] < -80) goto L_0b3e;
+    setDialogOwner(6);
+    showTextbox("<ORANGE><DIGIMON><WHITE> has too much stress\nand isn't happy. He shouldn't\npush himself so much.\n");
+    goto L_0bd4;
+L_0b3e:
+    setDialogOwner(6);
+    showTextbox("<ORANGE><DIGIMON><WHITE> has too much stress!\nIf he goes on like this,\nhe won't live long!\n");
+    goto L_0bd4;
+L_0bd4:
+    setDialogOwner(6);
+    showTextbox("Hmmm.... This is the best\nI can do for <ORANGE><DIGIMON><WHITE>.\n");
+    showTextbox("Do you still need me\nfor something?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_041c, L_0cde, L_0dba);
+    showTextbox("Check him out\nSell me Medicine\nNothing\n");
+    waitForSelectionChoice();
+    return;
+L_0cde:
+    setDialogOwner(6);
+    showTextbox("Hmmm, he should be fine.\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_0e2e, L_0f06, L_0dba);
+    showTextbox("Bandage:    four hund bits\nMedicine: twelve hund bits\nDon't buy anything\n");
+    waitForSelectionChoice();
+    return;
+L_0dba:
+    setDialogOwner(6);
+    showTextbox("When he doesn't feel well,\ncome to see me right away.\n");
+    return;
+L_0e2e:
+    if (item[Item.Bandage] >= 1 || !trigger(0)) goto L_0e7a;
+    setDialogOwner(6);
+    showTextbox("You have a lot of stuff.\n");
+    return;
+L_0e7a:
+    if (money < 400) goto L_0e98;
+    reduceMoney(400);
+    giveItem(Item.Bandage, 1);
+    goto L_0fde;
+L_0e98:
+    setDialogOwner(6);
+    showTextbox("You don't have enough bits.\nI can't sell you that.\n");
+    return;
+L_0f06:
+    if (item[Item.Medicine] >= 1 || !trigger(0)) goto L_0f52;
+    setDialogOwner(6);
+    showTextbox("You have a lot of stuff.\n");
+    return;
+L_0f52:
+    if (money < 1200) goto L_0f70;
+    reduceMoney(1200);
+    giveItem(Item.Medicine, 1);
+    goto L_0fde;
+L_0f70:
+    setDialogOwner(6);
+    showTextbox("You don't have enough bits.\nI can't sell you that.\n");
+    return;
+L_0fde:
+    setDialogOwner(6);
+    showTextbox("Do you still need me\nfor something?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_041c, L_0cde, L_0dba);
+    showTextbox("Check him out\nSell me Medicine\nNothing\n");
+    waitForSelectionChoice();
+    return;
+L_108c:
+    setDialogOwner(6);
+    showTextbox("I changed jobs to become\nthe Treasure Hunter.\n");
+    if (!trigger(178) && !trigger(178)) goto L_1102;
+    goto L_16f8;
+L_1102:
+    setDialogOwner(6);
+    showTextbox("Do you have a request for\nTreasure Hunting? Do you\nwant some information?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_120c, L_144a, L_1508);
+    showTextbox("Want some info\nDon't need any info\nNever mind\n");
+    waitForSelectionChoice();
+    goto L_1508;
+L_120c:
+    setDialogOwner(6);
+    showTextbox("There are two courses with\ndifferent times and prices.\n");
+    showTextbox("Reg:three day, one thous bits\nSpec:ten day, five thous bits\n");
+    showTextbox("The chances of finding\nbetter treasure is higher\nwith the Special Plan.\n");
+    showTextbox("That's about it.\nSo, what do you want to do?\n");
+    setDialogOwner(6);
+    setSelection(L_120c, L_144a, L_1508);
+    showTextbox("Explain again\nFind treasure\nNothing\n");
+    waitForSelectionChoice();
+    goto L_1508;
+L_144a:
+    setDialogOwner(6);
+    showTextbox("Choose a plan!\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_1534, L_15d2, L_1508);
+    showTextbox("Reg:three day, one thous bits\nSpec:ten day, five thous bits\nCancel\n");
+    waitForSelectionChoice();
+    goto L_1508;
+L_1508:
+    setDialogOwner(6);
+    showTextbox("OK then, goodbye.\n");
+    return;
+L_1534:
+    if (money >= 1000) goto L_1548;
+    goto L_1670;
+L_1548:
+    reduceMoney(1000);
+    setTrigger(178);
+    storeDate(30);
+    setDialogOwner(6);
+    showTextbox("Alright, you'll get results\nin three days. Wish me luck.\n");
+    roll(pstat: 22, max: 49);
+    return;
+L_15d2:
+    if (money >= 5000) goto L_15e6;
+    goto L_1670;
+L_15e6:
+    reduceMoney(5000);
+    setTrigger(179);
+    storeDate(30);
+    setDialogOwner(6);
+    showTextbox("Alright, you'll get results\nin three days. Wish me luck.\n");
+    roll(pstat: 23, max: 49);
+    return;
+L_1670:
+    setDialogOwner(6);
+    showTextbox("You don't have enough bits.\nI need some money to\nfind treasure.\n");
+    return;
+L_16f8:
+    if (pstat[30] >= 3 || !trigger(178)) goto L_170c;
+    goto L_1724;
+L_170c:
+    if (pstat[30] >= 10 || !trigger(179)) goto L_1720;
+    goto L_1724;
+L_1720:
+    goto L_17c6;
+L_1724:
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Sign <WHITE>\nI'm looking for treasure\nright now. Please wait\na while: Drimogemon.\n");
+    return;
+L_17c6:
+    setDialogOwner(6);
+    showTextbox("You know what?\nWe got some treasure.\n");
+    if (!trigger(178)) goto L_1826;
+    goto L_183a;
+L_1826:
+    if (!trigger(179)) goto L_183a;
+    unsetTrigger(179);
+    goto L_19c2;
+L_183a:
+    if (pstat[22] > 0) goto L_1852;
+    giveItem(Item.KogaLaws, 1);
+    setPStat(110, 90);
+    goto L_195a;
+L_1852:
+    if (pstat[22] > 1) goto L_186a;
+    giveItem(Item.FlameWing, 1);
+    setPStat(110, 73);
+    goto L_195a;
+L_186a:
+    if (pstat[22] > 2) goto L_1882;
+    giveItem(Item.TornTatter, 1);
+    setPStat(110, 82);
+    goto L_195a;
+L_1882:
+    if (pstat[22] > 12) goto L_189a;
+    giveItem(Item.SuperRecovery, 1);
+    setPStat(110, 3);
+    goto L_195a;
+L_189a:
+    if (pstat[22] > 15) goto L_18b2;
+    giveItem(Item.Restore, 1);
+    setPStat(110, 11);
+    goto L_195a;
+L_18b2:
+    if (pstat[22] > 19) goto L_18ca;
+    giveItem(Item.Omnipotent, 1);
+    setPStat(110, 9);
+    goto L_195a;
+L_18ca:
+    if (pstat[22] > 23) goto L_18e2;
+    giveItem(Item.Protection, 1);
+    setPStat(110, 10);
+    goto L_195a;
+L_18e2:
+    if (pstat[22] > 33) goto L_18fa;
+    giveItem(Item.LargeMP, 1);
+    setPStat(110, 6);
+    goto L_195a;
+L_18fa:
+    if (pstat[22] > 37) goto L_1912;
+    giveItem(Item.SuperOffenseDisk, 1);
+    setPStat(110, 19);
+    goto L_195a;
+L_1912:
+    if (pstat[22] > 41) goto L_192a;
+    giveItem(Item.SuperDefenseDisk, 1);
+    setPStat(110, 20);
+    goto L_195a;
+L_192a:
+    if (pstat[22] > 45) goto L_1942;
+    giveItem(Item.SuperSpeedDisk, 1);
+    setPStat(110, 21);
+    goto L_195a;
+L_1942:
+    if (pstat[22] > 49) goto L_195a;
+    giveItem(Item.OmniDisk, 1);
+    setPStat(110, 18);
+    goto L_195a;
+L_195a:
+    if (!trigger(0)) goto L_199c;
+    setDialogOwner(6);
+    showTextbox("Empty your belongings!\n");
+    return;
+L_199c:
+    showTextbox("I got <LIGHTBLUE><TREASURE ITEM><WHITE>!\n");
+    unsetTrigger(178);
+    unsetTrigger(179);
+    goto L_1ae2;
+L_19c2:
+    if (pstat[23] > 0) goto L_19da;
+    giveItem(Item.OffenseChip, 1);
+    setPStat(110, 23);
+    goto L_195a;
+L_19da:
+    if (pstat[23] > 1) goto L_19f2;
+    giveItem(Item.HPChip, 1);
+    setPStat(110, 27);
+    goto L_195a;
+L_19f2:
+    if (pstat[23] > 2) goto L_1a0a;
+    giveItem(Item.BrainChip, 1);
+    setPStat(110, 25);
+    goto L_195a;
+L_1a0a:
+    if (pstat[23] > 3) goto L_1a22;
+    giveItem(Item.DefenseChip, 1);
+    setPStat(110, 24);
+    goto L_195a;
+L_1a22:
+    if (pstat[23] > 4) goto L_1a3a;
+    giveItem(Item.MPChip, 1);
+    setPStat(110, 28);
+    goto L_195a;
+L_1a3a:
+    if (pstat[23] > 5) goto L_1a52;
+    giveItem(Item.SpeedChip, 1);
+    setPStat(110, 26);
+    goto L_195a;
+L_1a52:
+    if (pstat[23] > 6) goto L_1a6a;
+    giveItem(Item.KogaLaws, 1);
+    setPStat(110, 90);
+    goto L_195a;
+L_1a6a:
+    if (pstat[23] > 7) goto L_1a82;
+    giveItem(Item.FlameWing, 1);
+    setPStat(110, 73);
+    goto L_195a;
+L_1a82:
+    if (pstat[23] > 8) goto L_1a9a;
+    giveItem(Item.TornTatter, 1);
+    setPStat(110, 82);
+    goto L_195a;
+L_1a9a:
+    if (pstat[23] > 20) goto L_1ab2;
+    giveItem(Item.SuperRecovery, 1);
+    setPStat(110, 3);
+    goto L_195a;
+L_1ab2:
+    if (pstat[23] > 29) goto L_1aca;
+    giveItem(Item.Restore, 1);
+    setPStat(110, 11);
+    goto L_195a;
+L_1aca:
+    if (pstat[23] > 49) goto L_1ae2;
+    giveItem(Item.Omnipotent, 1);
+    setPStat(110, 9);
+    goto L_195a;
+L_1ae2:
+    setDialogOwner(6);
+    showTextbox("Thanks for your business!\n");
+    return;
+L_1b1e:
+    jumpToScriptSection(215, 6);
+    return;
+    garbage { 0c 00 fe 00 0c 00 06 00 0e 00 ff ff fe 00 1b 06 1a 00 82 76 82 88 82 89 82 83 82 88 81 40 82 93 82 88 82 8f 82 90 81 40 82 97 82 8f 82 95 82 8c 82 84 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 48 0d 00 00 00 1b fd 10 03 a8 00 9a 10 2c 1b 1a 00 82 62 82 8c 82 89 82 8e 82 89 82 83 0d 00 82 73 82 92 82 85 82 81 82 93 82 95 82 92 82 85 81 40 82 67 82 95 82 8e 82 94 82 85 82 92 0d 00 82 65 82 8f 82 92 82 94 82 95 82 8e 82 85 81 40 82 73 82 85 82 8c 82 8c 82 85 82 92 0d 00 00 00 12 00 fe 00 1b 06 1a 00 82 68 81 40 82 83 82 88 82 81 82 8e 82 87 82 85 82 84 81 40 82 89 82 94 81 40 82 89 82 8e 82 94 82 8f 81 40 82 81 81 40 82 88 82 8f 82 93 82 90 82 89 82 94 82 81 82 8c 81 42 0d 00 00 00 19 00 23 00 20 01 a3 00 40 01 18 00 fe 00 19 00 16 00 62 03 1b 06 1a 00 82 67 82 85 81 40 82 84 82 8f 82 85 82 93 82 8e 81 75 82 94 81 40 82 86 82 85 82 85 82 8c 81 40 82 97 82 85 82 8c 82 8c 81 43 0d 00 82 84 82 8f 82 85 82 93 81 40 82 88 82 85 81 48 81 40 82 78 82 8f 82 95 81 40 82 88 82 81 82 96 82 85 81 40 82 94 82 8f 81 40 82 94 82 81 82 8b 82 85 0d 00 82 83 82 81 82 92 82 85 81 40 82 8f 82 86 81 40 82 88 82 89 82 93 81 40 82 88 82 85 82 81 82 8c 82 94 82 88 81 49 0d 00 00 00 1a 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 94 82 92 82 85 82 81 82 94 81 40 82 88 82 89 82 8d 81 40 82 92 82 89 82 87 82 88 82 94 81 40 82 81 82 97 82 81 82 99 81 42 0d 00 82 65 82 85 82 85 81 40 82 97 82 89 82 8c 82 8c 81 40 82 82 82 85 81 40 82 84 82 89 82 93 82 83 82 8f 82 95 82 8e 82 94 82 85 82 84 0d 00 82 94 82 8f 81 40 82 94 82 88 82 92 82 85 82 85 81 40 82 88 82 95 82 8e 82 84 82 92 82 85 82 84 81 40 82 82 82 89 82 94 82 93 81 42 0d 00 00 00 19 00 25 00 00 02 2c 01 00 00 18 00 40 02 19 00 2b 00 2c 01 00 00 16 00 f2 02 1b 06 1a 00 82 78 82 8f 82 95 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 81 40 82 85 82 8e 82 8f 82 95 82 87 82 88 81 40 82 82 82 89 82 94 82 93 81 48 81 49 0d 00 82 6f 82 81 82 99 81 40 82 8d 82 85 81 40 82 97 82 88 82 81 82 94 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 42 81 40 82 72 82 81 82 96 82 85 0d 00 82 99 82 8f 82 95 82 92 81 40 82 8d 82 8f 82 8e 82 85 82 99 81 40 82 86 82 8f 82 92 81 40 82 81 81 40 82 92 82 81 82 89 82 8e 82 99 81 40 82 84 82 81 82 99 81 42 0d 00 00 00 2b 00 2c 01 00 00 65 20 65 40 1a 00 82 64 82 96 82 85 82 92 82 99 82 94 82 88 82 89 82 8e 82 87 81 40 82 89 82 93 81 40 82 6e 82 6a 81 40 82 8e 82 8f 82 97 81 42 0d 00 82 69 82 95 82 93 82 94 81 40 82 82 82 85 81 40 82 83 82 81 82 92 82 85 82 86 82 95 82 8c 81 40 82 86 82 92 82 8f 82 8d 81 40 82 8e 82 8f 82 97 81 40 82 8f 82 8e 81 42 0d 00 00 00 fe 00 1b 06 1a 00 82 67 82 85 81 40 82 84 82 8f 82 85 82 93 82 8e 81 75 82 94 81 40 82 8c 82 8f 82 8f 82 8b 81 40 82 93 82 89 82 83 82 8b 81 40 82 8f 82 92 0d 00 82 89 82 8e 82 8a 82 95 82 92 82 85 82 84 81 42 81 40 82 76 82 88 82 81 82 94 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 8e 82 85 82 85 82 84 81 48 0d 00 00 00 1b fd 10 03 2a 04 ec 0c c8 0d 1a 00 82 62 82 88 82 85 82 83 82 8b 81 40 82 88 82 89 82 8d 81 40 82 8f 82 95 82 94 0d 00 82 72 82 85 82 8c 82 8c 81 40 82 8d 82 85 81 40 82 6c 82 85 82 84 82 89 82 83 82 89 82 8e 82 85 0d 00 82 6d 82 8f 82 94 82 88 82 89 82 8e 82 87 0d 00 00 00 1b 06 1a 00 82 6e 82 6a 81 43 81 40 82 8c 82 85 82 94 81 40 82 8d 82 85 81 40 82 8c 82 8f 82 8f 82 8b 81 40 82 81 82 94 0d 00 82 88 82 8f 82 97 81 40 01 0a 06 00 01 01 81 40 82 89 82 93 81 40 82 84 82 8f 82 89 82 8e 82 87 81 42 0d 00 00 00 19 00 20 00 08 02 50 00 18 00 30 05 19 00 1b 06 1a 00 82 6e 82 88 81 40 82 8e 82 8f 81 42 81 40 01 0a 06 00 01 01 81 75 82 93 81 40 82 73 82 89 82 92 82 85 82 84 82 8e 82 85 82 93 82 93 0d 00 82 89 82 93 81 40 82 81 82 94 81 40 82 81 81 40 };
+}

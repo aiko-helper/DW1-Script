@@ -1,0 +1,231 @@
+// DG140.SCN
+#pragma script index=140 start=0x63000 end=0x64000 headerU16=0x1c sentinelOff=0x2964
+
+section onEnter(254) {  // len=52
+    callSubroutine(41);
+    if (!trigger(350)) goto L_0032;
+    setPStat(245, 4);
+    setBGM(22);
+    setPStat(254, 0);
+    callSubroutine(42);
+    loadDigimon(Digimon.Hagurumon);
+    setDigimon(Digimon.Hagurumon, 1, 0);
+    move(entity: 6, to: (-100, 1758), animDuration: 1);
+    waitForEntity(6);
+    playAnimation(6, 29);
+    rotate(entity: 6, to: 0);
+L_0032:
+    return;
+}
+
+section section_51(51) {  // len=40
+    if (trigger(350) || !trigger(270)) goto L_0026;
+    move(entity: Entity.Player, to: (-52, 650), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 2065);
+    delay(5);
+    goto section_5;
+L_0026:
+    return;
+}
+
+section section_5(5) {  // len=3554
+    if (!trigger(270) || trigger(350) || item[Item.Gear] < 1) goto L_0126;
+    removeItem(Item.Gear, 1);
+    loadDigimon(Digimon.Hagurumon);
+    setDigimon(Digimon.Hagurumon, 1, 0);
+    playAnimation(6, 29);
+    playAnimation(Entity.Player, 15);
+    delay(20);
+    playSound(8, 4);
+    playAnimation(Entity.Player, 16);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("What is it?!\n");
+    playAnimation(Entity.Player, 0);
+    look(entity: Entity.Player, at: 6);
+    playSound(8, 9);
+    delay(10);
+    setDialogOwner(5);
+    showTextbox("Oh, welcome back, Hagurumon!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Hagurumon?!\n");
+    playSound(8, 8);
+    moveCamera(to: (-80, 1048), slowdown: 18);
+    move(entity: 6, to: (-100, 1758), animDuration: 20);
+    waitForEntity(6);
+    rotate(entity: 6, to: 0);
+    delay(5);
+    playAnimation(6, 30);
+    playAnimation(Entity.Player, 16);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("What's going on?!\n");
+    playAnimation(Entity.Player, 0);
+    setPStat(254, 1);
+    callSubroutine(42);
+    goto L_012a;
+L_0126:
+    goto L_07bc;
+L_012a:
+    moveCamera(to: (-80, 1048), slowdown: 18);
+    setPStat(245, 4);
+    setBGM(22);
+    move(entity: 7, to: (248, -447), sprint: 0);
+    move(entity: 8, to: (-747, 459), sprint: 0);
+    waitForEntity(7);
+    waitForEntity(8);
+    playAnimation(5, 29);
+    playAnimation(7, 29);
+    playAnimation(8, 29);
+    delay(10);
+    playSound(8, 9);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Toys <WHITE>\nIt's an old tale.\nA bad guy came from\nfar away to this island.\n");
+    playAnimation(5, 29);
+    playAnimation(7, 29);
+    playAnimation(8, 29);
+    delay(10);
+    playSound(8, 9);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Toys <WHITE>\nThe bad guys told Digimon:\nThis island is ours.\n");
+    playAnimation(5, 29);
+    playAnimation(7, 29);
+    playAnimation(8, 29);
+    delay(10);
+    playSound(8, 9);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Toys <WHITE>\nDigimon told them:\nThat's not true. This island\nis for everybody.\n");
+    playAnimation(5, 29);
+    playAnimation(7, 29);
+    playAnimation(8, 29);
+    delay(10);
+    playSound(8, 9);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Toys <WHITE>\nBecause Digimons unified and\nchallenged the bad guys, the\nbad guys were taught a lesson.\n");
+    playAnimation(5, 29);
+    playAnimation(7, 29);
+    playAnimation(8, 29);
+    delay(10);
+    playSound(8, 9);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Toys <WHITE>\nBut the bad guys said:\nWait, we'll get you later.\n...and they disappeared.\n");
+    playAnimation(5, 29);
+    playAnimation(7, 29);
+    playAnimation(8, 29);
+    delay(10);
+    playSound(8, 9);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Toys <WHITE>\nIt's an old tale.\n");
+    playAnimation(5, 0);
+    playAnimation(7, 0);
+    playAnimation(8, 0);
+    delay(10);
+    if (!trigger(350)) goto L_0532;
+    return;
+L_0532:
+    setTrigger(350);
+    setDialogOwner(Entity.Player);
+    showTextbox("Hmmm, I feel joyous...\nOh, wait up.\n");
+    showTextbox("That story from the song\nis an old tale of this\nisland, isn't it?\n");
+    showTextbox("About the Digimon\ndefeating the bad guys...\n");
+    showTextbox("Hmmm, I wonder who the\nbad guys were in the story?\n");
+    playSound(8, 8);
+    setDialogOwner(5);
+    showTextbox("Thanks for helping me.\nThis is to show my gratitude.\n");
+    setTrigger(214);
+    addPStat(1, 3);
+    playSound(8, 10);
+    setDialogOwner(Entity.System);
+    showTextbox("Monzaemon's Stuffed\nAnimal joins the city!\n");
+    moveCamera(to: Entity.Player, speed: 15);
+    waitForEntity(200);
+    setPStat(254, 0);
+    callSubroutine(42);
+    return;
+L_07bc:
+    if (!trigger(270) || !trigger(350) || item[Item.Gear] >= 1 || trigger(350)) goto L_0834;
+    setDialogOwner(5);
+    showTextbox("Wait, didn't WaruMonzaemon\ndrop something?\n");
+    return;
+L_0834:
+    if (!trigger(349) || trigger(270)) goto L_0896;
+    setDialogOwner(5);
+    showTextbox("Good luck!\nIt's the house next door!\n");
+    return;
+L_0896:
+    storeDigimonType(103);
+    if (pstat[103] != 14 || trigger(349)) goto L_08b0;
+    goto L_094e;
+    goto L_08c6;
+L_08b0:
+    setDialogOwner(5);
+    showTextbox("......\n");
+    return;
+L_08c6:
+    if (!trigger(350)) goto L_094e;
+    setDialogOwner(5);
+    showTextbox("Are we going to listen\nto the chorus again?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_012a, L_0de0);
+    showTextbox("Yes\nNo\n");
+    waitForSelectionChoice();
+    return;
+L_094e:
+    setTrigger(349);
+    setDialogOwner(5);
+    showTextbox("Oh, Monzaemon!\nYou're back alive!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Wow, what is it?\n");
+    setDialogOwner(5);
+    showTextbox("Go fight WaruMonzaemon!\nQuickly, everybody get\nmoving! Quick, quick!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Wait...wait! He's not the\nMonzaemon you all know.\n");
+    setDialogOwner(5);
+    showTextbox("Huh? What do you mean? But \nhe is a Monzaemon, right?\n");
+    playAnimation(Entity.Player, 25);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("Yeah, it's true that\nhe's a Monzaemon.\n");
+    playAnimation(Entity.Player, 0);
+    setDialogOwner(5);
+    showTextbox("A bad guy called WaruMonzaemon\nkidnapped my friends.\n");
+    setDialogOwner(5);
+    showTextbox("I think the only one who can\ndefeat him is Monzaemon!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Hmm, then we got to find that\nbad guy. Where is he?\n");
+    setDialogOwner(5);
+    showTextbox("He's next door. I'll unlock\nthe seal at the door.\n");
+    showTextbox("So please go and see\nwhat you can do.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("I see. Alright,\nI'll help you!\n");
+    return;
+L_0de0:
+    return;
+}
+
+section section_6(6) {  // len=28
+    playSound(8, 8);
+    setDialogOwner(6);
+    showTextbox("Thanks!\n");
+    return;
+}
+
+section section_7(7) {  // len=40
+    if (!trigger(350)) goto L_0026;
+    playSound(8, 9);
+    setDialogOwner(7);
+    showTextbox("Thanks!\n");
+L_0026:
+    return;
+}
+
+section section_8(8) {  // len=354
+    if (!trigger(350)) goto L_0026;
+    playSound(8, 9);
+    setDialogOwner(8);
+    showTextbox("Thanks!\n");
+L_0026:
+    return;
+    garbage { 1c 00 fe 00 1c 00 33 00 50 00 05 00 78 00 06 00 5a 0e 07 00 76 0e 08 00 9e 0e ff ff 64 29 19 00 00 00 5e 01 18 00 4e 00 19 00 1e 00 f5 04 5d 16 1e 00 fe 00 64 2a 46 7a 47 7a 01 00 6c 06 9c ff de 06 01 00 4a 06 56 00 06 1d 4d 06 00 00 fe 00 19 00 01 00 5e 01 80 00 0e 01 18 00 76 00 19 00 52 fd cc ff 8a 02 00 00 4a fd 4d fd 11 08 67 00 05 00 16 00 78 00 fe 00 19 00 00 00 0e 01 81 00 5e 01 a4 00 78 02 01 00 18 00 9e 01 19 00 29 00 78 01 46 7a 47 7a 01 00 56 00 06 1d 56 00 fd 0f 67 00 14 00 5a 00 08 04 56 00 fd 10 67 00 0f 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 89 82 93 81 40 82 89 82 94 81 48 81 49 0d 00 00 00 56 00 fd 00 4c 00 fd 06 5a 00 08 09 67 00 0a 00 1b 05 1a 00 82 6e 82 88 81 43 81 40 82 97 82 85 82 8c 82 83 82 8f 82 8d 82 85 81 40 82 82 82 81 82 83 82 8b 81 43 81 40 82 67 82 81 82 87 82 95 82 92 82 95 82 8d 82 8f 82 8e 81 49 0d 00 00 00 1b fd 1a 00 82 67 82 81 82 87 82 95 82 92 82 95 82 8d 82 8f 82 8e 81 48 };
+}

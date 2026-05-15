@@ -1,0 +1,337 @@
+// DG206.SCN
+#pragma script index=206 start=0xa7800 end=0xa9800 headerU16=0x1c sentinelOff=0xfe
+
+section onEnter(254) {  // len=2
+    return;
+}
+
+section section_6(6) {  // len=2218
+    setPStat(122, 0);
+    if (trigger(257) || trigger(357)) goto L_0358;
+    setDialogOwner(6);
+    showTextbox("Hey, do you want to play a\nmatch with me? If you win,\nI'll do whatever you say.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What kind of match?\n");
+    setDialogOwner(6);
+    showTextbox("What I call...\nDigimon Curling! \nI'll tell you more inside.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Hmm, what happens if I lose?\n");
+    setDialogOwner(6);
+    showTextbox("Nothing the first time.\nBut next time you have to\ngive me a fish first.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Then if I win, you come to\nthe city with me. OK?");
+    dead_string("? to\nThen, let's do it.\n");
+    setDialogOwner(6);
+    showTextbox("Alright, that's fine. \nLet's go inside.\n");
+    setTrigger(357);
+    move(entity: 6, to: (1905, 1667), sprint: 0);
+    delay(10);
+    move(entity: Entity.Player, to: (1905, 1667), sprint: 0);
+    delay(10);
+    move(entity: Entity.Partner, to: (1905, 1667), sprint: 0);
+    delay(10);
+    warp(to: Map.FRZL17, spawn: 1, trigger: 255);
+    return;
+L_0358:
+    if (trigger(257)) goto L_0444;
+    setDialogOwner(6);
+    showTextbox("Hey, do you want to play a\nmatch with me? Give me a\nfish and you can play me.\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_0656, L_061e);
+    showTextbox("I'll get you\nNo thanks\n");
+    waitForSelectionChoice();
+    return;
+L_0444:
+    if (trigger(92)) goto L_0530;
+    setTrigger(92);
+    setDialogOwner(6);
+    showTextbox("Hey bro! I made a\nskating rink here.\n");
+    showTextbox("One fish for one match.\nBut if you win, I'll give\nyou a nice prize.\n");
+L_0530:
+    setPStat(122, 0);
+    setDialogOwner(6);
+    showTextbox("Hey dude, don't you want to\nhave a match with me? You can\nchallenge me with one fish.\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_0656, L_061e);
+    showTextbox("You're on\nNo thanks\n");
+    waitForSelectionChoice();
+    return;
+L_061e:
+    setPStat(113, 0);
+    setDialogOwner(6);
+    showTextbox("Shoot, that's no fun.\n");
+    return;
+L_0656:
+    setDialogOwner(6);
+    showTextbox("Give me a fish!\n");
+    setTrigger(3);
+    callSubroutine(0);
+    if (!trigger(3)) goto L_06d0;
+    setDialogOwner(Entity.Player);
+    showTextbox("I don't got anything now...\n");
+    goto L_081e;
+L_06d0:
+    if (pstat[254] != 62 && pstat[254] != 63 && pstat[254] != 64 && pstat[254] != 65) goto L_06ee;
+    callSubroutine(12);
+    goto L_077a;
+L_06ee:
+    if (pstat[254] != 66 && pstat[254] != 67) goto L_0704;
+    callSubroutine(12);
+    goto L_077a;
+L_0704:
+    if (pstat[254] != 255) goto L_0718;
+    goto L_081e;
+    goto L_077a;
+L_0718:
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh no, giving you this\ndoesn't do any good.\n");
+    goto L_081e;
+L_077a:
+    setDialogOwner(6);
+    showTextbox("Wow, it looks tasty. Ooops,\nwe have to have a match first.\nLet's go inside.\n");
+    warp(to: Map.FRZL17, spawn: 1, trigger: 255);
+    return;
+L_081e:
+    setPStat(113, 0);
+    setDialogOwner(6);
+    showTextbox("Oh come on, dude.\nWhy don't you go fishing\nat Dragon Eye Lake.\n");
+    return;
+    return;
+}
+
+section section_10(10) {  // len=1020
+    if (pstat[121] != 0) goto L_00bc;
+    setDialogOwner(6);
+    showTextbox("Sorry bro. Come back again\nto challenge me. And don't\nforget to bring another fish.\n");
+    return;
+L_00bc:
+    if (pstat[121] != 2) goto L_01ee;
+    setDialogOwner(6);
+    showTextbox("Impressive! Perfect score!\nAre you by any chance...\na professional?\n");
+    if (trigger(372)) goto L_01ee;
+    setTrigger(372);
+    playSound(0, 7);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
+L_01ee:
+    setDialogOwner(6);
+    showTextbox("Amazing dude. I lost a\nmatch for the first time.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Alright, now come to the city\nwith me as you promised.\n");
+    setDialogOwner(6);
+    showTextbox("Oh well, I guess I have to.\nBut I already decided what\nI'm going to do in the city.\n");
+    goto L_037c;
+L_037c:
+    move(entity: 6, to: (-105, 1821), sprint: 1);
+    if (pstat[101] >= 3) goto L_03a4;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 6);
+    look(entity: Entity.Partner, at: 6);
+    goto L_037c;
+L_03a4:
+    waitForEntity(6);
+    unloadEntity(6);
+    setPStat(101, 0);
+    playSound(8, 11);
+    setDialogOwner(Entity.System);
+    showTextbox("Penguinmon joins the city!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    setTrigger(257);
+    addPStat(1, 1);
+    return;
+}
+
+section section_11(11) {  // len=928
+    if (pstat[121] != 0) goto L_00b0;
+    setDialogOwner(6);
+    showTextbox("Sorry bro. Come back again\nto challenge me. And don't\nforget to bring a fish.\n");
+    return;
+L_00b0:
+    if (pstat[121] != 2) goto L_01e2;
+    setDialogOwner(6);
+    showTextbox("Impressive! Perfect score!\nAre you by any chance...\na professional?\n");
+    if (trigger(372)) goto L_01e2;
+    setTrigger(372);
+    playSound(0, 7);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
+L_01e2:
+    setDialogOwner(6);
+    showTextbox("Wow, you're amazing, man. \nI lost again.\n");
+    setDialogOwner(6);
+    showTextbox("Well, what can I say.\nHere's your prize.\n");
+    roll(pstat: 102, max: 49);
+L_0296:
+    if (pstat[102] > 0) goto L_02ae;
+    giveItem(Item.Rooster, 1);
+    setPStat(110, 85);
+    goto L_0326;
+L_02ae:
+    if (pstat[102] > 5) goto L_02c6;
+    giveItem(Item.Restore, 1);
+    setPStat(110, 11);
+    goto L_0326;
+L_02c6:
+    if (pstat[102] > 15) goto L_02de;
+    giveItem(Item.OmniDisk, 1);
+    setPStat(110, 18);
+    goto L_0326;
+L_02de:
+    if (pstat[102] > 22) goto L_02f6;
+    giveItem(Item.GiantMeat, 1);
+    setPStat(110, 39);
+    goto L_0326;
+L_02f6:
+    if (pstat[102] > 30) goto L_030e;
+    giveItem(Item.LargeRecovery, 1);
+    setPStat(110, 2);
+    goto L_0326;
+L_030e:
+    if (pstat[102] > 50) goto L_0326;
+    giveItem(Item.MediumMP, 1);
+    setPStat(110, 5);
+    goto L_0326;
+L_0326:
+    if (!trigger(0)) goto L_0376;
+    setDialogOwner(6);
+    showTextbox("You have too many Items!\n");
+    unsetTrigger(3);
+    callSubroutine(0);
+    callSubroutine(13);
+    goto L_0296;
+L_0376:
+    setDialogOwner(Entity.System);
+    showTextbox("I got a <LIGHTBLUE><TREASURE ITEM><WHITE>!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+    return;
+}
+
+section section_7(7) {  // len=1046
+    setPStat(122, 1);
+    setDialogOwner(6);
+    showTextbox("Hey <LIGHTBLUE><PLAYER><WHITE>. I'm watching\nthe shop now as a favor for\nPenguinmon.\n");
+    showTextbox("Have a match with me!\nIf you win, I'll give you my\nspecial prize. How's that?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_0174, L_03d0);
+    showTextbox("Alright, let's do it\nNo thanks\n");
+    waitForSelectionChoice();
+    return;
+L_0174:
+    setDialogOwner(6);
+    showTextbox("Let me get the fish\nbefore the match.\n");
+    setTrigger(3);
+    callSubroutine(0);
+    if (!trigger(3)) goto L_022c;
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh, I don't have\nanything right now.\n");
+    goto L_0338;
+L_022c:
+    if (pstat[254] != 62 && pstat[254] != 63 && pstat[254] != 64 && pstat[254] != 65) goto L_024a;
+    callSubroutine(12);
+    goto L_02ca;
+L_024a:
+    if (pstat[254] != 66 && pstat[254] != 67) goto L_0260;
+    callSubroutine(12);
+    goto L_02ca;
+L_0260:
+    if (pstat[254] != 255) goto L_0274;
+    goto L_0338;
+    goto L_02ca;
+L_0274:
+    setDialogOwner(Entity.Player);
+    showTextbox("Giving this to you\nwon't do any good.\n");
+    goto L_0338;
+L_02ca:
+    setDialogOwner(6);
+    showTextbox("Well, this time, I'm gonna\nwin. Let's go inside.\n");
+    warp(to: Map.FRZL17, spawn: 1, trigger: 255);
+    return;
+L_0338:
+    setPStat(113, 0);
+    setDialogOwner(6);
+    showTextbox("I can't have a match\nwithout a fish. Come back\nagain some other time.\n");
+    return;
+L_03d0:
+    setDialogOwner(6);
+    showTextbox("What? Are you\nturning me down?\n");
+    return;
+}
+
+section section_12(12) {  // len=2950
+    if (pstat[121] != 0) goto L_00be;
+    setDialogOwner(6);
+    showTextbox("If you want to win against\nme, you better use your head!\nI'll see you again someday.\n");
+    return;
+L_00be:
+    if (pstat[121] != 2) goto L_01e8;
+    setDialogOwner(6);
+    showTextbox("You got a perfect score\nagainst me!! Are you\na Curling genius?!\n");
+    if (trigger(372)) goto L_01e8;
+    setTrigger(372);
+    playSound(0, 7);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
+L_01e8:
+    setDialogOwner(6);
+    showTextbox("You are good, <LIGHTBLUE><PLAYER><WHITE>!\nHere's the prize\nI promised you!\n");
+    roll(pstat: 102, max: 49);
+L_025a:
+    if (pstat[102] > 0) goto L_0272;
+    giveItem(Item.SilverBall, 1);
+    setPStat(110, 103);
+    goto L_031a;
+L_0272:
+    if (pstat[102] > 1) goto L_028a;
+    giveItem(Item.MetalArmor, 1);
+    setPStat(110, 104);
+    goto L_031a;
+L_028a:
+    if (pstat[102] > 2) goto L_02a2;
+    giveItem(Item.Chainsaw, 1);
+    setPStat(110, 105);
+    goto L_031a;
+L_02a2:
+    if (pstat[102] > 3) goto L_02ba;
+    giveItem(Item.SmallSpear, 1);
+    setPStat(110, 106);
+    goto L_031a;
+L_02ba:
+    if (pstat[102] > 11) goto L_02d2;
+    giveItem(Item.SuperRecovery, 1);
+    setPStat(110, 3);
+    goto L_031a;
+L_02d2:
+    if (pstat[102] > 21) goto L_02ea;
+    giveItem(Item.Restore, 1);
+    setPStat(110, 11);
+    goto L_031a;
+L_02ea:
+    if (pstat[102] > 33) goto L_0302;
+    giveItem(Item.Omnipotent, 1);
+    setPStat(110, 9);
+    goto L_031a;
+L_0302:
+    if (pstat[102] > 49) goto L_031a;
+    giveItem(Item.Sirloin, 1);
+    setPStat(110, 40);
+    goto L_031a;
+L_031a:
+    if (!trigger(0)) goto L_036a;
+    setDialogOwner(6);
+    showTextbox("You have too many Items.\n");
+    unsetTrigger(3);
+    callSubroutine(0);
+    callSubroutine(13);
+    goto L_025a;
+L_036a:
+    setDialogOwner(Entity.System);
+    showTextbox("I got a <LIGHTBLUE><TREASURE ITEM><WHITE>!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+    garbage { 1c 00 fe 00 1c 00 06 00 1e 00 0a 00 c8 08 0b 00 c4 0c 07 00 64 10 0c 00 7a 14 ff ff fe 00 1e 00 7a 00 19 00 01 00 01 01 81 00 65 01 18 00 76 03 19 00 1b 06 1a 00 82 67 82 85 82 99 81 43 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 90 82 8c 82 81 82 99 81 40 82 81 0d 00 82 8d 82 81 82 94 82 83 82 88 81 40 82 97 82 89 82 94 82 88 81 40 82 8d 82 85 81 48 81 40 82 68 82 86 81 40 82 99 82 8f 82 95 81 40 82 97 82 89 82 8e 81 43 0d 00 82 68 81 75 82 8c 82 8c 81 40 82 84 82 8f 81 40 82 97 82 88 82 81 82 94 82 85 82 96 82 85 82 92 81 40 82 99 82 8f 82 95 81 40 82 93 82 81 82 99 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 8b 82 89 82 8e 82 84 81 40 82 8f 82 86 81 40 82 8d 82 81 82 94 82 83 82 88 81 48 0d 00 00 00 1b 06 1a 00 82 76 82 88 82 81 82 94 81 40 82 68 81 40 82 83 82 81 82 8c 82 8c 81 42 81 42 81 42 0d 00 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 40 82 62 82 95 82 92 82 8c 82 89 82 8e 82 87 81 49 81 40 0d 00 82 68 81 75 82 8c 82 8c 81 40 82 94 82 85 82 8c 82 8c 81 40 82 99 82 8f 82 95 81 40 82 8d 82 8f 82 92 82 85 81 40 82 89 82 8e 82 93 82 89 82 84 82 85 81 42 0d 00 00 00 1b fd 1a 00 82 67 82 8d 82 8d 81 43 81 40 82 97 82 88 82 81 82 94 81 40 82 88 82 81 82 90 82 90 82 85 82 8e 82 93 81 40 82 89 82 86 81 40 82 68 81 40 82 8c 82 8f 82 93 82 85 81 48 0d 00 00 00 1b 06 1a 00 82 6d 82 8f 82 94 82 88 82 89 82 8e 82 87 81 40 82 94 82 88 82 85 81 40 82 86 82 89 82 92 82 93 82 94 81 40 82 94 82 89 82 8d 82 85 81 42 0d 00 82 61 82 95 82 94 81 40 82 8e 82 85 82 98 82 94 81 40 82 94 82 89 82 8d 82 85 81 40 82 99 82 8f 82 95 81 40 82 88 82 81 82 96 82 85 81 40 82 94 82 8f 0d 00 82 87 82 89 82 96 82 85 81 40 82 8d 82 85 81 40 82 81 81 40 82 86 82 89 82 93 82 88 81 40 82 86 82 89 82 92 82 93 82 94 81 42 0d 00 00 00 1b fd 1a 00 82 73 82 88 82 85 82 8e 81 40 82 89 82 86 81 40 82 68 81 40 82 97 82 89 82 8e 81 43 81 40 82 99 82 8f 82 95 81 40 82 83 82 8f 82 8d 82 85 81 40 82 94 82 8f 0d 00 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 40 82 97 82 89 82 94 82 88 81 40 82 8d 82 85 81 42 81 40 82 6e 82 6a 81 48 00 00 81 48 81 40 82 94 82 8f 0d 00 82 73 82 88 82 85 82 8e 81 43 81 40 82 8c 82 85 82 94 81 75 82 93 81 40 82 84 82 8f 81 40 82 89 82 94 81 42 0d 00 00 00 1b 06 1a 00 82 60 82 8c 82 92 82 89 82 87 82 88 82 94 81 43 81 40 82 94 82 88 82 81 82 94 81 75 82 93 81 40 82 86 82 89 82 8e 82 85 81 42 81 40 0d 00 82 6b 82 85 82 94 81 75 82 93 81 40 82 87 82 8f 81 40 82 89 82 8e 82 93 82 89 82 84 82 85 81 42 0d 00 00 00 1c 00 65 01 4e 06 71 07 83 06 00 00 67 00 0a 00 4e fd 71 07 83 06 00 00 67 00 0a 00 4e fc 71 07 83 06 00 00 67 00 0a 00 4b 88 01 ff fe 00 19 00 01 00 01 01 18 00 62 04 19 00 1b 06 1a 00 82 67 82 85 82 99 81 43 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 90 82 8c 82 81 82 99 81 40 82 81 0d 00 82 8d 82 81 82 94 82 83 82 88 81 40 82 97 82 89 82 94 82 88 81 40 82 8d 82 85 81 48 81 40 82 66 82 89 82 96 82 85 81 40 82 8d 82 85 81 40 82 81 0d 00 82 86 82 89 82 93 82 88 81 40 82 81 82 8e 82 84 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 40 82 90 82 8c 82 81 82 99 81 40 82 8d 82 85 81 42 0d 00 00 00 1b fd 10 02 74 06 3c 06 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 87 82 85 82 94 81 40 82 99 82 8f 82 95 0d 00 82 6d 82 8f 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 0d 00 00 00 12 00 fe 00 19 00 01 00 5c 00 18 00 4e 05 19 00 1c 00 5c 00 1b 06 1a 00 82 67 82 85 82 99 81 40 82 82 82 92 82 8f 81 49 81 40 82 68 81 40 82 8d 82 81 82 84 82 85 81 40 82 81 0d 00 82 93 82 8b 82 81 82 94 82 89 82 8e 82 87 81 40 82 92 82 89 82 8e 82 8b 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 00 00 1a 00 82 6e 82 8e 82 85 81 40 82 86 82 89 82 93 82 88 81 40 82 86 82 8f 82 92 81 40 82 8f 82 8e 82 85 81 40 82 8d 82 81 82 94 82 83 82 88 81 42 0d 00 82 61 82 95 82 94 81 40 82 89 82 86 81 40 82 99 82 8f 82 95 81 40 82 97 82 89 82 8e 81 43 81 40 82 68 81 75 82 8c 82 8c 81 40 82 87 82 89 82 96 82 85 0d 00 82 99 82 8f 82 95 81 40 82 81 81 40 82 8e 82 89 82 83 82 85 81 40 82 90 82 92 82 89 82 9a 82 85 81 42 0d 00 00 00 1e 00 7a 00 1b 06 1a 00 82 67 82 85 82 99 81 40 82 84 82 95 82 84 82 85 81 43 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 0d 00 82 88 82 81 82 96 82 85 81 40 82 81 81 40 82 8d 82 81 82 94 82 83 82 88 81 40 82 97 82 89 82 94 82 88 81 40 82 8d 82 85 81 48 81 40 82 78 82 8f 82 95 81 40 82 83 82 81 82 8e 0d 00 82 83 82 88 82 81 82 8c 82 8c 82 85 82 8e 82 87 82 85 81 40 82 8d 82 85 81 40 82 97 82 89 82 94 82 88 81 40 82 8f 82 8e 82 85 81 40 82 86 82 89 82 93 82 88 81 42 0d 00 00 00 1b fd 10 02 74 06 3c 06 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 8f 82 8e 0d 00 82 6d 82 8f 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 0d 00 00 00 12 00 fe 00 1e 00 71 00 1b 06 1a 00 82 72 82 88 82 8f 82 8f 82 94 81 43 81 40 82 94 82 88 82 81 82 94 81 75 82 93 81 40 82 8e 82 8f 81 40 82 86 82 95 82 8e 81 42 0d 00 00 00 fe 00 1b 06 1a 00 82 66 82 89 82 96 82 85 81 40 82 8d 82 85 81 40 82 81 81 40 82 86 82 89 82 93 82 88 81 49 0d 00 00 00 1c 00 03 00 64 00 19 00 00 00 03 00 18 00 ee 06 19 00 1b fd 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 87 82 8f 82 94 81 40 82 81 82 8e 82 99 82 94 82 88 82 89 82 8e 82 87 81 40 82 8e 82 8f 82 97 81 42 81 42 81 42 0d 00 00 00 16 00 3c 08 19 00 08 00 fe 3e 48 00 fe 3f 48 00 fe 40 48 00 fe 41 18 00 0c 07 19 00 64 0c 16 00 98 07 19 00 08 00 fe 42 48 00 fe 43 18 00 22 07 19 00 64 0c 16 00 98 07 19 00 08 00 fe ff 18 00 36 07 19 00 16 00 3c 08 16 00 98 07 1b fd 1a 00 82 6e 82 88 81 40 82 8e 82 8f 81 43 81 40 82 87 82 89 82 96 82 89 82 8e 82 87 81 40 82 99 82 8f 82 95 81 40 82 94 82 88 82 89 82 93 0d 00 82 84 82 8f 82 85 82 93 82 8e 81 75 82 94 81 40 82 84 82 8f 81 40 82 81 82 8e 82 99 81 40 82 87 82 8f 82 8f 82 84 81 42 0d 00 00 00 16 00 3c 08 1b 06 1a 00 82 76 82 8f 82 97 81 43 81 40 82 89 82 94 81 40 82 8c 82 8f 82 8f 82 8b 82 93 81 40 82 94 82 81 82 93 82 94 82 99 81 42 81 40 82 6e 82 8f 82 8f 82 90 82 93 81 43 0d 00 82 97 82 85 81 40 82 88 82 81 82 96 82 85 81 40 82 94 82 8f 81 40 82 88 82 81 82 96 82 85 };
+}

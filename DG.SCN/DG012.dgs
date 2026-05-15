@@ -1,0 +1,107 @@
+// DG012.SCN
+#pragma script index=12 start=0xe800 end=0xf000 headerU16=0x20 sentinelOff=0x24
+
+section onEnter(254) {  // len=46
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 9) goto L_0016;
+    spawnItem(Item.Digimushroom, 55, 43);
+L_0016:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 4) goto L_002c;
+    spawnItem(Item.Digimushroom, 68, 46);
+L_002c:
+    return;
+}
+
+section section_81(81) {  // len=588
+    setDialogOwner(Entity.System);
+    showTextbox("MP Vending Machine\n");
+    rotate(entity: Entity.Player, to: 2048);
+    setDialogOwner(Entity.Player);
+    showTextbox("This machine recovers MP.\n");
+    setSelection(L_00f6, L_018c, L_0222);
+    showTextbox("Hund MP: two hund bits\nThous MP:eighteen hund bits\nDon't use\n");
+    waitForSelectionChoice();
+    goto L_0222;
+L_00f6:
+    if (money < 200) goto L_014e;
+    addStats(Stat.CurrentMP, 100);
+    reduceMoney(200);
+    setDialogOwner(Entity.System);
+    showTextbox("My MP level went back up!\n");
+    goto L_018a;
+L_014e:
+    setDialogOwner(Entity.Player);
+    showTextbox("I don't have enough bits.\n");
+    return;
+L_018a:
+    return;
+L_018c:
+    if (money < 1800) goto L_01e4;
+    addStats(Stat.CurrentMP, 1000);
+    reduceMoney(1800);
+    setDialogOwner(Entity.System);
+    showTextbox("My MP level went back up!\n");
+    goto L_0220;
+L_01e4:
+    setDialogOwner(Entity.Player);
+    showTextbox("I don't have enough bits.\n");
+    return;
+L_0220:
+    return;
+L_0222:
+    setDialogOwner(Entity.Player);
+    showTextbox("Forget about it.\n");
+    return;
+}
+
+section section_53(53) {  // len=54
+    if (!trigger(185)) goto L_000e;
+    return;
+L_000e:
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh, a bridge!\n");
+    setTrigger(185);
+    return;
+}
+
+section section_5(5) {  // len=60
+    setDialogOwner(5);
+    showTextbox("You gonna fight me?\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(286);
+    return;
+}
+
+section section_6(6) {  // len=76
+    setDialogOwner(6);
+    showTextbox("You're quite a smart aleck!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(286);
+    return;
+}
+
+section section_7(7) {  // len=68
+    setDialogOwner(7);
+    showTextbox("Wha..Whatcha gonna do?!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(296);
+    return;
+}
+
+section section_8(8) {  // len=1124
+    setDialogOwner(8);
+    showTextbox("I'm gonna tell on you!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(296);
+    return;
+    garbage { 20 00 fe 00 20 00 51 00 4e 00 35 00 9a 02 05 00 d0 02 06 00 0c 03 07 00 58 03 08 00 9c 03 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 36 00 19 00 74 2c 37 00 2b 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 4c 00 19 00 74 2c 44 00 2e 00 fe 00 1b ff 1a 00 82 6c 82 6f 81 40 82 75 82 85 82 8e 82 84 82 89 82 8e 82 87 81 40 82 6c 82 81 82 83 82 88 82 89 82 8e 82 85 0d 00 00 00 4d fd 00 08 1b fd 1a 00 82 73 82 88 82 89 82 93 81 40 82 8d 82 81 82 83 82 88 82 89 82 8e 82 85 81 40 82 92 82 85 82 83 82 8f 82 96 82 85 82 92 82 93 81 40 82 6c 82 6f 81 42 0d 00 00 00 10 03 44 01 da 01 70 02 1a 00 82 67 82 95 82 8e 82 84 81 40 82 6c 82 6f 81 46 81 40 82 94 82 97 82 8f 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 0d 00 82 73 82 88 82 8f 82 95 82 93 81 40 82 6c 82 6f 81 46 82 85 82 89 82 87 82 88 82 94 82 85 82 85 82 8e 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 0d 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 95 82 93 82 85 0d 00 00 00 12 00 16 00 70 02 19 00 25 00 00 02 c8 00 00 00 18 00 9c 01 19 00 35 07 64 00 2b 00 c8 00 00 00 1b ff 1a 00 82 6c 82 99 81 40 82 6c 82 6f 81 40 82 8c 82 85 82 96 82 85 82 8c 81 40 82 97 82 85 82 8e 82 94 81 40 82 82 82 81 82 83 82 8b 81 40 82 95 82 90 81 49 0d 00 00 00 16 00 d8 01 1b fd 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 81 40 82 85 82 8e 82 8f 82 95 82 87 82 88 81 40 82 82 82 89 82 94 82 93 81 42 0d 00 00 00 fe 00 fe 00 19 00 25 00 00 02 08 07 00 00 18 00 32 02 19 00 35 07 e8 03 2b 00 08 07 00 00 1b ff 1a 00 82 6c 82 99 81 40 82 6c 82 6f 81 40 82 8c 82 85 82 96 82 85 82 8c 81 40 82 97 82 85 82 8e 82 94 81 40 82 82 82 81 82 83 82 8b 81 40 82 95 82 90 81 49 0d 00 00 00 16 00 6e 02 1b fd 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 81 40 82 85 82 8e 82 8f 82 95 82 87 82 88 81 40 82 82 82 89 82 94 82 93 81 42 0d 00 00 00 fe 00 fe 00 1b fd 1a 00 82 65 82 8f 82 92 82 87 82 85 82 94 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 89 82 94 81 42 0d 00 00 00 fe 00 19 00 00 00 b9 00 18 00 a8 02 19 00 fe 00 1b fd 1a 00 82 6e 82 88 81 43 81 40 82 81 81 40 82 82 82 92 82 89 82 84 82 87 82 85 81 49 0d 00 00 00 1c 00 b9 00 fe 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 8e 82 8e 82 81 81 40 82 86 82 89 82 87 82 88 82 94 81 40 82 8d 82 85 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1e 01 fe 00 1b 06 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 91 82 95 82 89 82 94 82 85 81 40 82 81 81 40 82 93 82 8d 82 81 82 92 82 94 81 40 82 81 82 8c 82 85 82 83 82 8b 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1e 01 fe 00 1b 07 1a 00 82 76 82 88 82 81 81 42 81 42 82 76 82 88 82 81 82 94 82 83 82 88 82 81 81 40 82 87 82 8f 82 8e 82 8e 82 81 81 40 82 84 82 8f 81 48 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 08 1a 00 82 68 81 75 82 8d 81 40 82 87 82 8f 82 8e 82 8e 82 81 81 40 82 94 82 85 82 8c 82 8c 81 40 82 8f 82 8e 81 40 82 99 82 8f 82 95 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 ff 00 0e 04 16 00 ea 03 16 00 ea 03 19 00 00 00 cd 00 18 00 fe 03 19 00 16 00 08 04 16 00 02 04 16 00 02 04 4b c5 02 ff fe 00 4b c8 02 ff fe 00 19 00 00 00 cd 00 18 00 22 04 19 00 16 00 2c 04 16 00 };
+}

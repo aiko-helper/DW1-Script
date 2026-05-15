@@ -1,0 +1,179 @@
+// DG123.SCN
+#pragma script index=123 start=0x57800 end=0x58000 headerU16=0x24 sentinelOff=0x24
+
+section onEnter(254) {  // len=50
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 9) goto L_0016;
+    spawnItem(Item.Digimushroom, 48, 68);
+L_0016:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 3) goto L_002c;
+    spawnItem(Item.Pricklypear, 76, 49);
+L_002c:
+    unsetTrigger(98);
+    return;
+}
+
+section section_5(5) {  // len=30
+    setDialogOwner(5);
+    showTextbox("Hey!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(280);
+    return;
+}
+
+section section_6(6) {  // len=34
+    setDialogOwner(6);
+    showTextbox("Haaaa!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(280);
+    return;
+}
+
+section section_7(7) {  // len=30
+    setDialogOwner(7);
+    showTextbox("Wow!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(280);
+    return;
+}
+
+section section_81(81) {  // len=206
+    rotate(entity: Entity.Player, to: 1944);
+    waitForEntity(Entity.Player);
+    setDialogOwner(Entity.System);
+    showTextbox("East: Elevator\nWest: Danger!!\nBeware of cliff.\n");
+    if (!trigger(54)) goto L_0078;
+    return;
+L_0078:
+    setDialogOwner(Entity.System);
+    setSelection(L_00ba, L_00c4);
+    showTextbox("Ogre Mode:ON\nOgre Mode:OFF\n");
+L_00ba:
+    setTrigger(197);
+    warp(to: Map.GCAN08_2, spawn: 0, trigger: 255);
+    return;
+L_00c4:
+    unsetTrigger(197);
+    warp(to: Map.GCAN08_2, spawn: 0, trigger: 255);
+    return;
+}
+
+section section_82(82) {  // len=54
+    rotate(entity: Entity.Player, to: 1944);
+    waitForEntity(Entity.Player);
+    setDialogOwner(Entity.System);
+    showTextbox("Beware of cave-ins!\n");
+    return;
+}
+
+section section_51(51) {  // len=1074
+    if (trigger(197)) goto L_000e;
+    return;
+L_000e:
+    if (!trigger(198)) goto L_001c;
+    return;
+L_001c:
+    if (!trigger(98)) goto L_002a;
+    return;
+L_002a:
+    rotate(entity: Entity.Player, to: 1944);
+    moveCamera(to: (2000, 173), slowdown: 30);
+    waitForEntity(200);
+    setDialogOwner(Entity.Player);
+    showTextbox("Rumor is that this is the\nroad where bandits attack.\n");
+    showTextbox("Alright, let's go <ORANGE><DIGIMON><WHITE>.\n");
+    move(entity: Entity.Player, to: (1925, 468), sprint: 0);
+    move(entity: Entity.Partner, to: (1925, 78), sprint: 0);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    loadDigimon(Digimon.NPCOgremon);
+    loadDigimon(Digimon.Agumon);
+    setDigimon(Digimon.NPCOgremon, 3, 0);
+    setDigimon(Digimon.Agumon, 4, 0);
+    setDigimon(Digimon.Agumon, 5, 0);
+    setDialogOwner(9);
+    showTextbox("Yoo-hoo!\n");
+    playSound(8, 11);
+    setDialogOwner(8);
+    showTextbox("Ha ha ha!\n");
+    setDialogOwner(10);
+    showTextbox("Yaa-hoo!\n");
+    delay(10);
+    playSound(8, 1);
+    playAnimation(8, 31);
+    move(entity: 8, to: (1000, 1288), animDuration: 30);
+    move(entity: 9, to: (2067, 1561), sprint: 1);
+    move(entity: 10, to: (2059, -383), sprint: 1);
+    waitForEntity(8);
+    waitForEntity(9);
+    waitForEntity(10);
+    look(entity: 8, at: Entity.Player);
+    look(entity: 9, at: Entity.Player);
+    look(entity: 10, at: Entity.Player);
+    look(entity: Entity.Player, at: 8);
+    look(entity: Entity.Partner, at: 9);
+    delay(10);
+    playSound(8, 11);
+    setDialogOwner(8);
+    showTextbox("Give up and leave your stuff\nhere or you'll regret it!\n");
+    playAnimation(Entity.Player, 20);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("Give up!\n");
+    playAnimation(Entity.Player, 0);
+    setDialogOwner(8);
+    showTextbox("What?! You...\n");
+    setDialogOwner(8);
+    showTextbox("It can't be!\n");
+    setDialogOwner(9);
+    showTextbox("Boss, what'll we do?\n");
+    look(entity: 9, at: 8);
+    setDialogOwner(8);
+    showTextbox("Don't panic! We are\nstronger and there are more\nof us! Go get 'em!\n");
+    look(entity: 8, at: 9);
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 8);
+    setPStat(252, 9);
+    setPStat(253, 10);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: Entity.Player, at: 8);
+    look(entity: 8, at: Entity.Player);
+    look(entity: Entity.Partner, at: 8);
+    move(entity: 9, to: (1350, 2350), sprint: 1);
+    move(entity: 10, to: (1850, 2350), sprint: 1);
+    waitForEntity(9);
+    waitForEntity(10);
+    unloadEntity(9);
+    unloadEntity(10);
+    setDialogOwner(8);
+    showTextbox("I'll get even someday!\n");
+    move(entity: 8, to: (1650, 2350), sprint: 1);
+    waitForEntity(8);
+    unloadEntity(8);
+    setDialogOwner(Entity.Player);
+    showTextbox("Look at them go! They won't\nbe back for a while.\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    setTrigger(198);
+    setTrigger(142);
+    setTrigger(155);
+    return;
+}
+
+section section_52(52) {  // len=534
+    setTrigger(98);
+    return;
+    garbage { 24 00 fe 00 24 00 05 00 56 00 06 00 74 00 07 00 96 00 51 00 b4 00 52 00 82 01 33 00 b8 01 34 00 ea 05 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 3a 00 19 00 74 2c 30 00 44 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 50 00 19 00 74 36 4c 00 31 00 1d 00 62 00 fe 00 1b 05 1a 00 82 67 82 85 82 99 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 06 1a 00 82 67 82 81 82 81 82 81 82 81 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 07 1a 00 82 76 82 8f 82 97 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 4d fd 98 07 4a fd 1b ff 1a 00 82 64 82 81 82 93 82 94 81 46 81 40 82 64 82 8c 82 85 82 96 82 81 82 94 82 8f 82 92 0d 00 82 76 82 85 82 93 82 94 81 46 81 40 82 63 82 81 82 8e 82 87 82 85 82 92 81 49 81 49 0d 00 82 61 82 85 82 97 82 81 82 92 82 85 81 40 82 8f 82 86 81 40 82 83 82 8c 82 89 82 86 82 86 81 42 0d 00 00 00 19 00 00 00 36 00 18 00 2c 01 19 00 fe 00 1b ff 10 02 6e 01 78 01 1a 00 82 6e 82 87 82 92 82 85 81 40 82 6c 82 8f 82 84 82 85 81 46 82 6e 82 6d 0d 00 82 6e 82 87 82 92 82 85 81 40 82 6c 82 8f 82 84 82 85 81 46 82 6e 82 65 82 65 0d 00 00 00 1c 00 c5 00 4b 80 00 ff fe 00 1d 00 c5 00 4b 80 00 ff fe 00 4d fd 98 07 4a fd 1b ff 1a 00 82 61 82 85 82 97 82 81 82 92 82 85 81 40 82 8f 82 86 81 40 82 83 82 81 82 96 82 85 81 7c 82 89 82 8e 82 93 81 49 0d 00 00 00 fe 00 19 00 01 00 c5 00 18 00 c6 01 19 00 fe 00 19 00 00 00 c6 00 18 00 d4 01 19 00 fe 00 19 00 00 00 62 00 18 00 e2 01 19 00 fe 00 4d fd 98 07 4f 1e d0 07 ad 00 4a c8 1b fd 1a 00 82 71 82 95 82 8d 82 8f 82 92 81 40 82 89 82 93 81 40 82 94 82 88 82 81 82 94 81 40 };
+}

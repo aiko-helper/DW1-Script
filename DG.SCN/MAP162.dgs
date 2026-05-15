@@ -1,0 +1,790 @@
+// MAP162.SCN
+#pragma script index=162 start=0x73000 end=0x75800 headerU16=0x4c sentinelOff=0x19
+
+section onEnter(254) {  // len=1052
+    if (!trigger(202) || !trigger(215) || pstat[28] < 20) goto L_004c;
+    unsetTrigger(202);
+    unsetTrigger(215);
+    roll(pstat: 16, max: 2);
+    if (pstat[16] != 0) goto L_004c;
+    setPStat(16, 3);
+    unsetTrigger(707);
+    unsetTrigger(708);
+    unsetTrigger(709);
+    unsetTrigger(710);
+    unsetTrigger(711);
+    unsetTrigger(712);
+    unsetTrigger(713);
+L_004c:
+    setPStat(254, 0);
+    callSubroutine(25);
+    unsetTrigger(2);
+    if (pstat[17] < 3) goto L_0066;
+    addPStat(18, 1);
+L_0066:
+    if (pstat[17] < 1) goto L_0076;
+    setPStat(17, 1);
+L_0076:
+    storeDate(105);
+    if (pstat[106] == 14) goto L_0088;
+    unsetTrigger(76);
+L_0088:
+    if (!trigger(50) || trigger(43)) goto L_025c;
+    move(entity: Entity.Partner, to: (302, -2961), animDuration: 5);
+    waitForEntity(Entity.Partner);
+    rotate(entity: Entity.Partner, to: 2048);
+    delay(40);
+    setDialogOwner(Entity.Player);
+    showTextbox("I'm back!\n");
+    playAnimation(Entity.Player, 11);
+    delay(20);
+    look(entity: Entity.Player, at: Entity.Partner);
+    delay(5);
+    setDialogOwner(Entity.Player);
+    showTextbox("Thanks for inviting me.\nI hope we can work\ntogether <ORANGE><DIGIMON><WHITE>.\n");
+    playAnimation(Entity.Player, 5);
+    delay(10);
+    playAnimation(Entity.Partner, 11);
+    delay(40);
+    setTrigger(43);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    if (stat[Stat.TamerLevel] == 10) goto L_01b6;
+    addStats(Stat.TamerLevel, 1);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Tamer Level\nhas gone up! <WHITE>\n");
+L_01b6:
+    setTrigger(374);
+    playSound(0, 7);
+    setDialogOwner(Entity.System);
+    showTextbox("<YELLOW>Congratulations!\nHere's a medal\nfor you. <WHITE>\n");
+    giveCard(65);
+    setDialogOwner(Entity.System);
+    showTextbox("I got a Machinedramon card!\n");
+L_025c:
+    if (!trigger(238)) goto L_0274;
+    setObjectVisibility(0, 0);
+    setObjectVisibility(1, 0);
+    setObjectVisibility(2, 0);
+L_0274:
+    if (!trigger(224)) goto L_02a8;
+    setObjectVisibility(3, 0);
+    setObjectVisibility(4, 0);
+    setObjectVisibility(5, 0);
+    setObjectVisibility(6, 0);
+    setObjectVisibility(7, 0);
+    setObjectVisibility(8, 0);
+    setObjectVisibility(9, 0);
+    setObjectVisibility(10, 0);
+    setObjectVisibility(11, 0);
+    setObjectVisibility(12, 0);
+L_02a8:
+    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L_02e0;
+    setObjectVisibility(13, 0);
+    setObjectVisibility(14, 0);
+    setObjectVisibility(15, 0);
+    setObjectVisibility(16, 0);
+    setObjectVisibility(17, 0);
+    setObjectVisibility(18, 0);
+    setObjectVisibility(19, 0);
+    setObjectVisibility(20, 0);
+L_02e0:
+    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L_0310;
+    setObjectVisibility(21, 0);
+    setObjectVisibility(22, 0);
+    setObjectVisibility(23, 0);
+    setObjectVisibility(24, 0);
+    setObjectVisibility(25, 0);
+    setObjectVisibility(26, 0);
+L_0310:
+    if (!trigger(250)) goto L_033c;
+    setObjectVisibility(27, 0);
+    setObjectVisibility(28, 0);
+    setObjectVisibility(29, 0);
+    setObjectVisibility(30, 0);
+    setObjectVisibility(31, 0);
+    setObjectVisibility(32, 0);
+    setRectImpassible(33, 69, 3, 2);
+L_033c:
+    storeDate(105);
+    if (pstat[107] < 7 && pstat[107] >= 19) goto L_0352;
+    goto L_03a2;
+L_0352:
+    if (!trigger(250)) goto L_036e;
+    setObjectVisibility(59, 0);
+    setObjectVisibility(60, 0);
+    setObjectVisibility(61, 0);
+    setObjectVisibility(62, 0);
+L_036e:
+    if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L_03a2;
+    if (!trigger(218)) goto L_03a2;
+    setObjectVisibility(63, 0);
+    setObjectVisibility(64, 0);
+    setObjectVisibility(65, 0);
+    setObjectVisibility(66, 0);
+    setObjectVisibility(67, 0);
+L_03a2:
+    if (!trigger(246)) goto L_03ba;
+    setObjectVisibility(68, 0);
+    setObjectVisibility(69, 0);
+    setObjectVisibility(70, 0);
+L_03ba:
+    if (!trigger(225)) goto L_03ca;
+    setObjectVisibility(71, 0);
+L_03ca:
+    if (!trigger(246) || pstat[106] != 14 || trigger(76)) goto L_03e2;
+    setObjectVisibility(72, 0);
+L_03e2:
+    if (!trigger(354)) goto L_041a;
+    setObjectVisibility(73, 1);
+    setObjectVisibility(74, 1);
+    setObjectVisibility(75, 1);
+    setObjectVisibility(76, 1);
+    setObjectVisibility(77, 1);
+    setObjectVisibility(78, 1);
+    setObjectVisibility(79, 0);
+    setObjectVisibility(80, 0);
+    setObjectVisibility(81, 0);
+    setObjectVisibility(82, 0);
+    setObjectVisibility(83, 0);
+L_041a:
+    return;
+}
+
+section section_51(51) {  // len=756
+    move(entity: Entity.Player, to: (250, -5000), sprint: 0);
+    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L_0028;
+    goto L_0210;
+    goto L_002c;
+L_0028:
+    goto L_002c;
+L_002c:
+    if (!trigger(204) && !trigger(249)) goto L_0044;
+    goto L_0048;
+    goto L_0048;
+L_0044:
+    goto L_012c;
+L_0048:
+    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L_0068;
+    goto L_00cc;
+    goto L_006c;
+L_0068:
+    goto L_006c;
+L_006c:
+    if (!trigger(236)) goto L_0080;
+    goto L_00a8;
+    goto L_0084;
+L_0080:
+    goto L_0084;
+L_0084:
+    if (!trigger(205)) goto L_0098;
+    goto L_00a2;
+    goto L_009c;
+L_0098:
+    goto L_009c;
+L_009c:
+    warp(to: Map.TWNB02, spawn: 1, trigger: 255);
+    return;
+L_00a2:
+    warp(to: Map.TWNB09, spawn: 1, trigger: 255);
+    return;
+L_00a8:
+    if (!trigger(205)) goto L_00bc;
+    goto L_00c6;
+    goto L_00c0;
+L_00bc:
+    goto L_00c0;
+L_00c0:
+    warp(to: Map.TWNB07, spawn: 1, trigger: 255);
+    return;
+L_00c6:
+    warp(to: Map.TWNB08, spawn: 1, trigger: 255);
+    return;
+L_00cc:
+    if (!trigger(236)) goto L_00e0;
+    goto L_0108;
+    goto L_00e4;
+L_00e0:
+    goto L_00e4;
+L_00e4:
+    if (!trigger(205)) goto L_00f8;
+    goto L_0102;
+    goto L_00fc;
+L_00f8:
+    goto L_00fc;
+L_00fc:
+    warp(to: Map.TWNB03, spawn: 1, trigger: 255);
+    return;
+L_0102:
+    warp(to: Map.TWNB06, spawn: 1, trigger: 255);
+    return;
+L_0108:
+    if (!trigger(205)) goto L_011c;
+    goto L_0126;
+    goto L_0120;
+L_011c:
+    goto L_0120;
+L_0120:
+    warp(to: Map.TWNB04, spawn: 1, trigger: 255);
+    return;
+L_0126:
+    warp(to: Map.TWNB05, spawn: 1, trigger: 255);
+    return;
+L_012c:
+    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L_014c;
+    goto L_01b0;
+    goto L_0150;
+L_014c:
+    goto L_0150;
+L_0150:
+    if (!trigger(236)) goto L_0164;
+    goto L_018c;
+    goto L_0168;
+L_0164:
+    goto L_0168;
+L_0168:
+    if (!trigger(205)) goto L_017c;
+    goto L_0186;
+    goto L_0180;
+L_017c:
+    goto L_0180;
+L_0180:
+    warp(to: Map.TWNB01, spawn: 1, trigger: 255);
+    return;
+L_0186:
+    warp(to: Map.TWNB24, spawn: 1, trigger: 255);
+    return;
+L_018c:
+    if (!trigger(205)) goto L_01a0;
+    goto L_01a4;
+    goto L_01a4;
+L_01a0:
+    goto L_01aa;
+L_01a4:
+    warp(to: Map.TWNB23, spawn: 1, trigger: 255);
+    return;
+L_01aa:
+    warp(to: Map.TWNB22, spawn: 1, trigger: 255);
+    return;
+L_01b0:
+    if (!trigger(236)) goto L_01c4;
+    goto L_01ec;
+    goto L_01c8;
+L_01c4:
+    goto L_01c8;
+L_01c8:
+    if (!trigger(205)) goto L_01dc;
+    goto L_01e6;
+    goto L_01e0;
+L_01dc:
+    goto L_01e0;
+L_01e0:
+    warp(to: Map.TWNB18, spawn: 1, trigger: 255);
+    return;
+L_01e6:
+    warp(to: Map.TWNB21, spawn: 1, trigger: 255);
+    return;
+L_01ec:
+    if (!trigger(205)) goto L_0200;
+    goto L_020a;
+    goto L_0204;
+L_0200:
+    goto L_0204;
+L_0204:
+    warp(to: Map.TWNB19, spawn: 1, trigger: 255);
+    return;
+L_020a:
+    warp(to: Map.TWNB20, spawn: 1, trigger: 255);
+    return;
+L_0210:
+    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L_0230;
+    goto L_0294;
+    goto L_0234;
+L_0230:
+    goto L_0234;
+L_0234:
+    if (!trigger(236)) goto L_0248;
+    goto L_0270;
+    goto L_024c;
+L_0248:
+    goto L_024c;
+L_024c:
+    if (!trigger(205)) goto L_0260;
+    goto L_026a;
+    goto L_0264;
+L_0260:
+    goto L_0264;
+L_0264:
+    warp(to: Map.TWNB10, spawn: 1, trigger: 255);
+    return;
+L_026a:
+    warp(to: Map.TWNB17, spawn: 1, trigger: 255);
+    return;
+L_0270:
+    if (!trigger(205)) goto L_0284;
+    goto L_028e;
+    goto L_0288;
+L_0284:
+    goto L_0288;
+L_0288:
+    warp(to: Map.TWNB15, spawn: 1, trigger: 255);
+    return;
+L_028e:
+    warp(to: Map.TWNB16, spawn: 1, trigger: 255);
+    return;
+L_0294:
+    if (!trigger(236)) goto L_02a8;
+    goto L_02d0;
+    goto L_02ac;
+L_02a8:
+    goto L_02ac;
+L_02ac:
+    if (!trigger(205)) goto L_02c0;
+    goto L_02ca;
+    goto L_02c4;
+L_02c0:
+    goto L_02c4;
+L_02c4:
+    warp(to: Map.TWNB11, spawn: 1, trigger: 255);
+    return;
+L_02ca:
+    warp(to: Map.TWNB14, spawn: 1, trigger: 255);
+    return;
+L_02d0:
+    if (!trigger(205)) goto L_02e4;
+    goto L_02ee;
+    goto L_02e8;
+L_02e4:
+    goto L_02e8;
+L_02e8:
+    warp(to: Map.TWNB12, spawn: 1, trigger: 255);
+    return;
+L_02ee:
+    warp(to: Map.TWNB13, spawn: 1, trigger: 255);
+    return;
+}
+
+section section_5(5) {  // len=2410
+    if (trigger(210) || pstat[1] < 40 || trigger(224) || !trigger(175)) goto L_00c8;
+    if (trigger(250)) goto L_00c8;
+    setDialogOwner(5);
+    showTextbox("Have you seen\nthe Lake Guardian?\n");
+    showTextbox("If not, you should\nwait on the south side.\n");
+    return;
+L_00c8:
+    if (trigger(250) || pstat[1] < 25 || trigger(224) || !trigger(175)) goto L_0170;
+    setDialogOwner(5);
+    showTextbox("Get up very early and\nwalk in the mist.\nSomething good will happen!\n");
+    return;
+L_0170:
+    if (trigger(224) || !trigger(175)) goto L_0286;
+    setDialogOwner(5);
+    showTextbox("Did you know there's\na place in the north\ncalled Iceberg Beach?\n");
+    showTextbox("Rumor has it that a huge\nDigimon often appears\nat the beach.\n");
+    return;
+L_0286:
+    if (trigger(175) || !trigger(198)) goto L_031a;
+    setDialogOwner(5);
+    showTextbox("Are the bandits defeated?\nI heard there is a gang\nof bandits.\n");
+    return;
+L_031a:
+    if (trigger(198) || !trigger(103)) goto L_046a;
+    setTrigger(197);
+    setDialogOwner(5);
+    showTextbox("Ever been to Great Canyon?\n");
+    showTextbox("Rumor has it that\nthe bandits are there.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Are they bad guys?\n");
+    setDialogOwner(5);
+    showTextbox("They jump you and rob you.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Let's do something about it.\n");
+    return;
+L_046a:
+    if (pstat[1] < 6) goto L_0528;
+    setTrigger(124);
+    setDialogOwner(5);
+    showTextbox("Ever been to Great Canyon?\n");
+    showTextbox("Rumor has it that there is an\nInvisible Bridge there.\n");
+    return;
+L_0528:
+    if (!trigger(50) || trigger(202)) goto L_057c;
+    setDialogOwner(5);
+    showTextbox("I hear\nMachinedramon is back.\n");
+    return;
+L_057c:
+    if (!trigger(50) || !trigger(202)) goto L_05d0;
+    setDialogOwner(5);
+    showTextbox("You beat\nMachinedramon again.\n");
+    return;
+L_05d0:
+    setDialogOwner(5);
+    showTextbox("I'll explain the city\nsurroundings to you.\n");
+    showTextbox("Native Forest\nsurrounds the city.\n");
+    showTextbox("The Digimon around there\naren't too strong.\n");
+    showTextbox("To the west there's a\nTraining Camp.\n");
+    showTextbox("Tropical Jungle is\neast across the river.\n");
+    showTextbox("I don't know\nwhat's beyond that.\n");
+    showTextbox("To the west there is a\nmountain and lake.\n");
+    showTextbox("Go south and there is an ocean.\n");
+    showTextbox("There is a high mountain\nto the north.\n");
+    showTextbox("This city is the\ncenter of the island.\n");
+    showTextbox("I'll check the rumors.\nCome back and find out more.\n");
+    return;
+}
+
+section section_6(6) {  // len=182
+    setDialogOwner(6);
+    showTextbox("Let's see what's around here.\n");
+    showTextbox("I don't like the toilet, but\neverything else seems Ok!\n");
+    return;
+}
+
+section section_7(7) {  // len=244
+    setDialogOwner(7);
+    showTextbox("It looks pretty lively.\n");
+    showTextbox("Don't I have to go back\nto Factorial Town?\n");
+    showTextbox("My scheduling function is\nworking. No problem.\n");
+    return;
+}
+
+section section_8(8) {  // len=556
+    if (trigger(84)) goto L_01ac;
+    setTrigger(84);
+    setDialogOwner(8);
+    showTextbox("You came at the right time!\n");
+    showTextbox("Look at this sculpture!\nWhat do you think?\n");
+    showTextbox("What a masterpiece.\nI amaze myself.\n");
+    showTextbox("What do you mean?\nYou're making fun of me!\n");
+    showTextbox("What were we talking about?\nWell, whatever.\n");
+    return;
+L_01ac:
+    setDialogOwner(8);
+    showTextbox("What image did I have?\nWhen you figure it out,\nlet me know.\n");
+    return;
+}
+
+section section_11(11) {  // len=8
+    jumpToScriptSection(207, 11);
+    return;
+}
+
+section section_81(81) {  // len=682
+    if (trigger(246)) goto L_000e;
+    return;
+L_000e:
+    setTextboxOrigin(944, 0, 1158);
+    storeDate(105);
+    if (!trigger(225) || pstat[107] < 7 || pstat[107] >= 19) goto L_002c;
+L_002c:
+    if (pstat[107] >= 7 && pstat[107] < 19) goto L_005c;
+    setDialogOwner(204);
+    showTextbox("sleeping...\n");
+    return;
+L_005c:
+    if (pstat[1] < 10 || trigger(225)) goto L_0100;
+    setTrigger(86);
+    setDialogOwner(204);
+    showTextbox("Have you heard? There is\na strange plant growing\nin Tropical Jungle.\n");
+L_0100:
+    if (pstat[1] < 20) goto L_021a;
+    setDialogOwner(204);
+    showTextbox("Oh yeah,\n");
+    showTextbox("I planted a <LIGHTBLUE>Rain Plant\n<WHITE>right there.\n");
+    showTextbox("It bears fruit every year\naround the fifteenth.\nYou may take those.\n");
+    showTextbox("For what?\n");
+    return;
+L_021a:
+    if (pstat[1] >= 10) goto L_0268;
+    setDialogOwner(204);
+    showTextbox("Oh, it feels good!\nSun rays.\n");
+    return;
+L_0268:
+    setDialogOwner(204);
+    showTextbox("Oh, it feels good!\nSun rays.\n");
+    return;
+}
+
+section section_82(82) {  // len=78
+    if (trigger(225)) goto L_000e;
+    return;
+L_000e:
+    setTextboxOrigin(600, 0, 1502);
+    setDialogOwner(205);
+    showTextbox("Alright, this is great!\n");
+    return;
+}
+
+section section_83(83) {  // len=200
+    if (!trigger(76) && trigger(246)) goto L_0012;
+    return;
+L_0012:
+    if (pstat[106] == 14) goto L_0020;
+    return;
+L_0020:
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh, this is a...\n");
+    giveItem(Item.RainPlant, 1);
+    if (!trigger(0)) goto L_0080;
+    setDialogOwner(Entity.System);
+    showTextbox("Too many Items.\n");
+    return;
+L_0080:
+    setObjectVisibility(72, 1);
+    setDialogOwner(Entity.System);
+    showTextbox("I got a <LIGHTBLUE>Rain\nPlant Fruit<WHITE>!\n");
+    setTrigger(76);
+    return;
+}
+
+section section_52(52) {  // len=40
+    move(entity: Entity.Player, to: (171, -327), sprint: 0);
+    if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L_0024;
+    warp(to: Map.ROOM10, spawn: 0, trigger: 255);
+    goto section_53;
+L_0024:
+    warp(to: Map.ROOM08, spawn: 0, trigger: 255);
+}
+
+section section_53(53) {  // len=28
+    move(entity: Entity.Player, to: (1507, -2574), sprint: 1);
+    waitForEntity(Entity.Player);
+    move(entity: Entity.Player, to: (2061, -1997), sprint: 0);
+    delay(10);
+    warp(to: Map.ROOM12, spawn: 0, trigger: 255);
+    return;
+}
+
+section section_54(54) {  // len=26
+    if (!trigger(238)) goto L_0018;
+    move(entity: Entity.Player, to: (401, 3992), sprint: 0);
+    warp(to: Map.ROOM14, spawn: 0, trigger: 255);
+L_0018:
+    return;
+}
+
+section section_55(55) {  // len=566
+    if (trigger(224)) goto L_000e;
+    return;
+L_000e:
+    move(entity: Entity.Player, to: (2594, 630), sprint: 1);
+    move(entity: Entity.Partner, to: (2189, 545), sprint: 1);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    rotate(entity: Entity.Player, to: 2128);
+    rotate(entity: Entity.Partner, to: 2128);
+    delay(5);
+    if (trigger(83)) goto L_0126;
+    setTrigger(83);
+    setDialogOwner(12);
+    showTextbox("I'll take you to the ocean.\nThat's my job.\n");
+    showTextbox("I'll take you to a place you\ncan only go to by sea.\n");
+    showTextbox("Well, then...\n");
+L_0126:
+    setDialogOwner(12);
+    showTextbox("Hmmm, where should we go?\nFactorial Town or maybe\nBeach Cave.\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_020e, L_0212, L_0216);
+    showTextbox("Factorial Town\nSecret Beach Cave\nNowhere\n");
+    waitForSelectionChoice();
+    goto L_0216;
+L_020e:
+    warp(to: Map.FACT01, spawn: 1, trigger: 255);
+L_0212:
+    warp(to: Map.OGRE10, spawn: 2, trigger: 61);
+L_0216:
+    move(entity: Entity.Partner, to: (1184, 316), sprint: 1);
+    delay(10);
+    move(entity: Entity.Player, to: (1556, 348), sprint: 1);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+}
+
+section section_56(56) {  // len=14
+    move(entity: Entity.Player, to: (3583, 3620), sprint: 0);
+    warp(to: Map.MGEN01, spawn: 0, trigger: 255);
+    return;
+}
+
+section section_57(57) {  // len=1810
+    if (!trigger(87) || trigger(205)) goto L_0014;
+    goto L_002a;
+L_0014:
+    if (!trigger(354) || trigger(88)) goto L_0028;
+    goto L_0498;
+L_0028:
+    return;
+L_002a:
+    unsetTrigger(87);
+    loadDigimon(Digimon.NPCGreymon);
+    setDigimon(Digimon.NPCGreymon, 4, 0);
+    look(entity: Entity.Player, at: 9);
+    look(entity: Entity.Partner, at: 9);
+    rotate(entity: 9, to: 2048);
+    delay(20);
+    moveCamera(to: 9, speed: 20);
+    waitForEntity(200);
+    move(entity: 9, to: (256, -3385), sprint: 0);
+    setDialogOwner(9);
+    showTextbox("I found you!\n");
+    moveCamera(to: Entity.Player, speed: 20);
+    waitForEntity(200);
+    playAnimation(Entity.Player, 15);
+    delay(5);
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh no, he's coming\nright for us!\n");
+    move(entity: 9, to: (432, -2236), sprint: 0);
+    waitForEntity(9);
+    look(entity: 9, at: Entity.Player);
+    delay(5);
+    setDialogOwner(9);
+    showTextbox("I finally met you!\nI'm Greymon.\nNow let's settle things!\n");
+    playAnimation(Entity.Player, 1);
+    delay(5);
+    setDialogOwner(Entity.Player);
+    showTextbox("What?!\n");
+    setDialogOwner(9);
+    showTextbox("I got here by following\nthe rumors about you.\nI want to fight you!\n");
+    showTextbox("If I win,\nI want this street sign!\n");
+    playAnimation(Entity.Player, 16);
+    delay(30);
+    setDialogOwner(Entity.Player);
+    showTextbox("There's no sign.\n");
+    setDialogOwner(9);
+    showTextbox("I don't care,\nlet's fight anyway!\n");
+    move(entity: Entity.Partner, to: (50, -1950), sprint: 1);
+    waitForEntity(Entity.Partner);
+    look(entity: Entity.Partner, at: 9);
+    delay(5);
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 9);
+    setPStat(252, 255);
+    setPStat(253, 255);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: Entity.Player, at: 9);
+    look(entity: 9, at: Entity.Player);
+    look(entity: Entity.Partner, at: 9);
+    setDialogOwner(9);
+    showTextbox("Hey, you guys are good!\nBut to finish your goal,\nyou're still amateurs.\n");
+    playAnimation(Entity.Player, 1);
+    delay(5);
+    setDialogOwner(Entity.Player);
+    showTextbox("Hmmm\n");
+    setDialogOwner(9);
+    showTextbox("I'll stay and train you.\nYou'll get much better!\n");
+    goto L_041a;
+L_041a:
+    move(entity: 9, to: (412, -4500), sprint: 1);
+    if (pstat[101] >= 3) goto L_0442;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 9);
+    look(entity: Entity.Partner, at: 9);
+    goto L_041a;
+L_0442:
+    waitForEntity(9);
+    unloadEntity(9);
+    setPStat(101, 0);
+    playSound(8, 12);
+    setDialogOwner(Entity.System);
+    showTextbox("Greymon joins the city!\n");
+    setTrigger(87);
+    setTrigger(205);
+    addPStat(1, 2);
+    moveCamera(to: Entity.Player, speed: 20);
+    waitForEntity(200);
+    return;
+L_0498:
+    unsetTrigger(354);
+    loadDigimon(Digimon.NPCAirdramon);
+    setDigimon(Digimon.NPCAirdramon, 5, 0);
+    look(entity: Entity.Player, at: 10);
+    look(entity: Entity.Partner, at: 10);
+    look(entity: 10, at: Entity.Player);
+    delay(20);
+    moveCamera(to: 10, speed: 20);
+    waitForEntity(200);
+    move(entity: 10, to: (2084, -211), animDuration: 30);
+    moveCamera(to: Entity.Player, speed: 20);
+    delay(20);
+    playAnimation(Entity.Player, 17);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 10);
+    dealMapDamage(200);
+    delay(15);
+    move(entity: 10, to: (432, -2236), sprint: 1);
+    moveCamera(to: (410, -1474), slowdown: 2);
+    waitForEntity(200);
+    move(entity: 10, to: (432, -2236), sprint: 1);
+    waitForEntity(10);
+    look(entity: Entity.Player, at: 10);
+    look(entity: Entity.Partner, at: 10);
+    look(entity: 10, at: Entity.Player);
+    delay(5);
+    setDialogOwner(10);
+    showTextbox("Alright, I found you, <LIGHTBLUE><PLAYER><WHITE>!\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Ambush!\n");
+    setDialogOwner(10);
+    showTextbox("My goal is to beat you.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("Those eyes! He must be\nbrain washed!\n");
+    move(entity: Entity.Partner, to: (50, -1950), sprint: 1);
+    waitForEntity(Entity.Partner);
+    look(entity: Entity.Partner, at: 10);
+    delay(5);
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 10);
+    setPStat(252, 255);
+    setPStat(253, 255);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: Entity.Player, at: 10);
+    look(entity: 10, at: Entity.Player);
+    look(entity: Entity.Partner, at: 10);
+    setDialogOwner(10);
+    showTextbox("No matter what I do,\nI must defeat him.\n");
+    playAnimation(10, 29);
+    delay(30);
+    playAnimation(Entity.Player, 7);
+    delay(5);
+    setDialogOwner(Entity.Player);
+    showTextbox("What are you talking about?\nYou gotta get treatment.\n");
+    move(entity: Entity.Player, to: 10, sprint: 1);
+    move(entity: Entity.Partner, to: 10, sprint: 1);
+    delay(40);
+    setTrigger(88);
+    setTrigger(355);
+    setTrigger(354);
+    warp(to: Map.ROOM11, spawn: 1, trigger: 60);
+    return;
+}
+
+section section_58(58) {  // len=24
+    if (!trigger(354)) goto L_0016;
+    move(entity: Entity.Player, to: (2980, 3318), sprint: 1);
+    waitForEntity(Entity.Player);
+L_0016:
+    return;
+}
+
+section section_59(59) {  // len=1488
+    if (!trigger(354)) goto L_0016;
+    move(entity: Entity.Player, to: (1780, 3318), sprint: 1);
+    waitForEntity(Entity.Player);
+L_0016:
+    return;
+    garbage { 4c 00 fe 00 4c 00 33 00 68 04 05 00 5c 07 06 00 c6 10 07 00 7c 11 08 00 70 12 0b 00 9c 14 51 00 a4 14 52 00 4e 17 53 00 9c 17 34 00 64 18 35 00 8c 18 36 00 a8 18 37 00 c2 18 38 00 f8 1a 39 00 06 1b 3a 00 18 22 3b 00 30 22 ff ff 19 00 00 00 ca 00 80 00 d7 00 8a 00 1c 14 18 00 98 00 19 00 1d 00 ca 00 1d 00 d7 00 24 00 10 02 19 00 08 00 10 00 18 00 98 00 19 00 1e 00 10 03 1d 00 c3 02 1d 00 c4 02 1d 00 c5 02 1d 00 c6 02 1d 00 c7 02 1d 00 c8 02 1d 00 c9 02 1e 00 fe 00 64 19 1d 00 02 00 19 00 0a 00 11 03 18 00 b2 00 19 00 1f 00 12 01 19 00 0a 00 11 01 18 00 c2 00 19 00 1e 00 11 01 25 69 19 00 09 00 6a 0e 18 00 d4 00 19 00 1d 00 4c 00 19 00 00 00 32 00 81 00 2b 00 18 00 a8 02 19 00 6c fc 2e 01 6f f4 05 00 4a fc 4d fc 00 08 67 00 28 00 1b fd 1a 00 82 68 81 75 82 8d 81 40 82 82 82 81 82 83 82 8b 81 49 0d 00 00 00 56 00 fd 0b 67 00 14 00 4c 00 fd fc 67 00 05 00 1b fd 1a 00 82 73 82 88 82 81 82 8e 82 8b 82 93 81 40 82 86 82 8f 82 92 81 40 82 89 82 8e 82 96 82 89 82 94 82 89 82 8e 82 87 81 40 82 8d 82 85 81 42 0d 00 82 68 81 40 82 88 82 8f 82 90 82 85 81 40 82 97 82 85 81 40 82 83 82 81 82 8e 81 40 82 97 82 8f 82 92 82 8b 0d 00 82 94 82 8f 82 87 82 85 82 94 82 88 82 85 82 92 81 40 01 0a 06 00 01 01 81 42 0d 00 00 00 56 00 fd 05 67 00 0a 00 56 00 fc 0b 67 00 28 00 1c 00 2b 00 50 00 fd 0a 4a c8 19 00 20 00 15 01 0a 00 18 00 02 02 19 00 35 15 01 00 1b ff 1a 00 01 07 82 73 82 81 82 8d 82 85 82 92 81 40 82 6b 82 85 82 96 82 85 82 8c 0d 00 82 88 82 81 82 93 81 40 82 87 82 8f 82 8e 82 85 81 40 82 95 82 90 81 49 81 40 01 01 0d 00 00 00 1c 00 76 01 5a 00 00 07 1b ff 1a 00 01 07 82 62 82 8f 82 8e 82 87 82 92 82 81 82 94 82 95 82 8c 82 81 82 94 82 89 82 8f 82 8e 82 93 81 49 0d 00 82 67 82 85 82 92 82 85 81 75 82 93 81 40 82 81 81 40 82 8d 82 85 82 84 82 81 82 8c 0d 00 82 86 82 8f 82 92 81 40 82 99 82 8f 82 95 81 42 81 40 01 01 0d 00 00 00 2f 41 1b ff 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 81 81 40 82 6c 82 81 82 83 82 88 82 89 82 8e 82 85 82 84 82 92 82 81 82 8d 82 8f 82 8e 81 40 82 83 82 81 82 92 82 84 81 49 0d 00 00 00 19 00 00 00 ee 00 18 00 c0 02 19 00 57 00 00 00 57 00 01 00 57 00 02 00 19 00 00 00 e0 00 18 00 f4 02 19 00 57 00 03 00 57 00 04 00 57 00 05 00 57 00 06 00 57 00 07 00 57 00 08 00 57 00 09 00 57 00 0a 00 57 00 0b 00 57 00 0c 00 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 2c 03 19 00 57 00 0d 00 57 00 0e 00 57 00 0f 00 57 00 10 00 57 00 11 00 57 00 12 00 57 00 13 00 57 00 14 00 19 00 00 00 e7 00 40 00 f5 00 40 00 e9 00 40 00 f7 00 18 00 5c 03 19 00 57 00 15 00 57 00 16 00 57 00 17 00 57 00 18 00 57 00 19 00 57 00 1a 00 19 00 00 00 fa 00 18 00 88 03 19 00 57 00 1b 00 57 00 1c 00 57 00 1d 00 57 00 1e 00 57 00 1f 00 57 00 20 00 7c 00 21 00 45 00 03 02 25 69 19 00 0a 00 6b 07 4d 00 6b 13 18 00 9e 03 19 00 16 00 ee 03 19 00 00 00 fa 00 18 00 ba 03 19 00 57 00 3b 00 57 00 3c 00 57 00 3d 00 57 00 3e 00 19 00 00 00 dc 00 40 00 d6 00 4a 00 01 32 18 00 ee 03 19 00 19 00 00 00 da 00 18 00 ee 03 19 00 57 00 3f 00 57 00 40 00 57 00 41 00 57 00 42 00 57 00 43 00 19 00 00 00 f6 00 18 00 06 04 19 00 57 00 44 00 57 00 45 00 57 00 46 00 19 00 00 00 e1 00 18 00 16 04 19 00 57 00 47 00 19 00 00 00 f6 00 88 00 6a 0e 81 00 4c 00 18 00 2e 04 19 00 57 00 48 00 19 00 00 00 62 01 18 00 66 04 19 00 57 00 49 01 57 00 4a 01 57 00 4b 01 57 00 4c 01 57 00 4d 01 57 00 4e 01 57 00 4f 00 57 00 50 00 57 00 51 00 57 00 52 00 57 00 53 00 fe 00 4e fd fa 00 78 ec 00 00 19 00 00 00 e7 00 40 00 f5 00 40 00 e9 00 40 00 f7 00 18 00 90 04 19 00 16 00 78 06 16 00 94 04 16 00 94 04 19 00 00 00 cc 00 40 00 f9 00 18 00 ac 04 19 00 16 00 b0 04 16 00 b0 04 16 00 94 05 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 d0 04 19 00 16 00 34 05 16 00 d4 04 16 00 d4 04 19 00 00 00 ec 00 18 00 e8 04 19 00 16 00 10 05 16 00 ec 04 16 00 ec 04 19 00 00 00 cd 00 18 00 00 05 19 00 16 00 0a 05 16 00 04 05 16 00 04 05 4b b5 01 ff fe 00 4b bc 01 ff fe 00 19 00 00 00 cd 00 18 00 24 05 19 00 16 00 2e 05 16 00 28 05 16 00 28 05 4b ba 01 ff fe 00 4b bb 01 ff fe 00 19 00 00 00 ec 00 18 00 48 05 19 00 16 00 70 05 16 00 4c 05 16 00 4c 05 19 00 00 00 cd 00 18 00 60 05 19 00 16 00 6a 05 16 00 64 05 16 00 64 05 4b b6 01 ff fe 00 4b b9 01 ff fe 00 19 00 00 00 cd 00 18 00 84 05 19 00 16 00 8e 05 16 00 88 05 16 00 88 05 4b b7 01 ff fe 00 4b b8 01 ff fe 00 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 b4 05 19 00 16 00 18 06 16 00 b8 05 16 00 };
+}

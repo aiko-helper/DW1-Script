@@ -1,0 +1,213 @@
+// DG029.SCN
+#pragma script index=29 start=0x1a000 end=0x1b000 headerU16=0x18 sentinelOff=0x1a64
+
+section onEnter(254) {  // len=198
+    callSubroutine(26);
+    callSubroutine(27);
+    if (pstat[30] < 5 || pstat[17] >= 3 || pstat[17] < 1) goto L_0044;
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    setPStat(254, 2);
+    callSubroutine(19);
+    setPStat(19, 2);
+    setObjectVisibility(19, 1);
+    setObjectVisibility(18, 1);
+    setPStat(18, 10);
+    return;
+L_0044:
+    playAnimation(5, 29);
+    setObjectVisibility(19, 1);
+    setObjectVisibility(18, 0);
+    if (pstat[18] < 5) goto L_0068;
+    setObjectVisibility(19, 0);
+    setObjectVisibility(18, 1);
+    setPStat(19, 1);
+L_0068:
+    if (pstat[18] < 10) goto L_008c;
+    if (pstat[17] >= 3) goto L_008c;
+    setObjectVisibility(19, 1);
+    setObjectVisibility(18, 1);
+    setPStat(19, 2);
+L_008c:
+    if (pstat[17] != 3) goto L_009e;
+    setPStat(254, 0);
+    callSubroutine(19);
+L_009e:
+    if (pstat[17] != 4) goto L_00b0;
+    setPStat(254, 1);
+    callSubroutine(19);
+L_00b0:
+    if (pstat[18] >= 8) goto L_00c4;
+    setRectImpassible(69, 41, 3, 2);
+L_00c4:
+    return;
+}
+
+section section_52(52) {  // len=18
+    if (pstat[19] < 2) goto L_000e;
+    return;
+L_000e:
+    goto section_51.L_000e;
+}
+
+section section_51(51) {  // len=2736
+    if (pstat[19] < 1) goto L_000e;
+    return;
+L_000e:
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    waitForEntity(5);
+    if (pstat[18] < 10) goto L_0120;
+    setDialogOwner(5);
+    showTextbox("I think we're finished moving\nout most of the dirt.\n");
+    showTextbox("Our job is going well.\nThanks.\nPlease wait a little more.\n");
+    rotate(entity: 5, to: 1900);
+    waitForEntity(5);
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    playAnimation(5, 29);
+    return;
+L_0120:
+    if (pstat[17] != 4) goto L_0298;
+    setDialogOwner(5);
+    showTextbox("Thanks for your work.\nHere's your payment.\n");
+    setPStat(254, 2);
+    callSubroutine(19);
+    addMoney(500);
+    addStats(Stat.Offense, 5);
+    addStats(Stat.Defense, 5);
+    addStats(Stat.MaxHP, 50);
+    addStats(Stat.Tiredness, 10);
+    setDialogOwner(Entity.System);
+    showTextbox("I got five hund bits\nfor work!\n");
+    showTextbox("HP is up by fifty!\nOffense Power is up five!\nDefense Power is up five!\n");
+    addPStat(18, 1);
+    setPStat(17, 1);
+    rotate(entity: 5, to: 1900);
+    waitForEntity(5);
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    playAnimation(5, 29);
+    return;
+L_0298:
+    if (pstat[17] != 3) goto L_030c;
+    setDialogOwner(5);
+    showTextbox("Please dump the dirt\noutside the tunnel.\n");
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    rotate(entity: 5, to: 1900);
+    return;
+L_030c:
+    if (pstat[17] != 2) goto L_0372;
+    setDialogOwner(5);
+    showTextbox("Take it from the pile of dirt.\n");
+    rotate(entity: 5, to: 1900);
+    waitForEntity(5);
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    playAnimation(5, 29);
+    return;
+L_0372:
+    if (pstat[17] != 1 || stat[Stat.Tiredness] < 70) goto L_044e;
+    setDialogOwner(5);
+    showTextbox("Are you going to carry dirt?\n");
+    showTextbox("Your Digimon looks tired.\nWhy don't you rest him first.\n");
+    rotate(entity: 5, to: 1900);
+    waitForEntity(5);
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    playAnimation(5, 29);
+    return;
+L_044e:
+    if (pstat[17] != 1) goto L_04ba;
+    setDialogOwner(5);
+    showTextbox("Are you going to carry dirt?\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_0946, L_0a74);
+    showTextbox("Yes\nNo\n");
+    waitForSelectionChoice();
+    goto L_0a74;
+L_04ba:
+    if (trigger(140)) goto L_0564;
+    setDialogOwner(5);
+    showTextbox("This is not a place for\namateurs. Stay away,\nit's too dangerous.\n");
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    rotate(entity: 5, to: 1900);
+    waitForEntity(5);
+    playAnimation(5, 29);
+    return;
+L_0564:
+    setPStat(17, 1);
+    setPStat(30, 0);
+    setDialogOwner(5);
+    showTextbox("This tunnel hasn't been\nopened yet. Don't get\nin our way.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("I'm sorry. Do you know\nwhen it will be?\n");
+    setDialogOwner(5);
+    showTextbox("I don't know,\nit will take a while.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("That's a problem.\nCan we help?\n");
+    setDialogOwner(5);
+    showTextbox("Are you trying to\nsteal our fun?\nMaybe you can carry dirt.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What is it?\n");
+    moveCamera(to: (2027, 764), slowdown: 20);
+    waitForEntity(200);
+    delay(30);
+    setDialogOwner(5);
+    showTextbox("I dug up that dirt.\nYou can carry it out\nand dump it.\n");
+    moveCamera(to: Entity.Player, speed: 20);
+    waitForEntity(200);
+    setDialogOwner(5);
+    showTextbox("It's a hard job, so I'll\npay you five hund bits\nfor each round trip.\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("This will make digging go\nfaster. I can make money,\nand it's good training.\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_0946, L_0a74);
+    showTextbox("OK\nNo thanks\n");
+    waitForSelectionChoice();
+    goto L_0a74;
+L_0946:
+    setTextboxSize(21, 6);
+    showTextbox("Dirt Transport Job\nUse <LIGHTBLUE><X> <WHITE>to set a\ndirt box in front of dirt.\nDump dirt outside tunnel.\nOnce you finish a round,\nplease tell Drimogemon.\n");
+    fadeOutHUD();
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    setPStat(17, 2);
+    return;
+L_0a74:
+    setDialogOwner(5);
+    showTextbox("Are you scared?\n");
+    rotate(entity: 5, to: 1900);
+    waitForEntity(5);
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    playAnimation(5, 29);
+    return;
+}
+
+section section_81(81) {  // len=70
+    if (pstat[17] != 2) goto L_0044;
+    setDialogOwner(Entity.System);
+    showTextbox("Dirt box is added.\n");
+    setPStat(17, 3);
+    setPStat(254, 0);
+    callSubroutine(19);
+    callSubroutine(20);
+L_0044:
+    return;
+}
+
+section section_5(5) {  // len=1050
+    return;
+    garbage { 18 00 fe 00 18 00 34 00 de 00 33 00 f0 00 51 00 a0 0b 05 00 e6 0b ff ff 64 1a 64 1b 19 00 0a 00 1e 05 8d 00 11 03 8a 00 11 01 18 00 5c 00 19 00 64 14 64 14 64 14 64 14 64 14 64 14 64 14 64 14 64 14 64 14 1e 00 fe 02 64 13 1e 00 13 02 57 00 13 01 57 00 12 01 1e 00 12 0a fe 00 56 00 05 1d 57 00 13 01 57 00 12 00 19 00 0a 00 12 05 18 00 80 00 19 00 57 00 13 00 57 00 12 01 1e 00 13 01 19 00 0a 00 12 0a 18 00 a4 00 19 00 19 00 0d 00 11 03 18 00 a4 00 19 00 57 00 13 01 57 00 12 01 1e 00 13 02 19 00 08 00 11 03 18 00 b6 00 19 00 1e 00 fe 00 64 13 19 00 08 00 11 04 18 00 c8 00 19 00 1e 00 fe 01 64 13 19 00 0d 00 12 08 18 00 dc 00 19 00 7c 00 45 00 29 00 03 02 fe 00 19 00 0a 00 13 02 18 00 ec 00 19 00 fe 00 16 00 fe 00 19 00 0a 00 13 01 18 00 fe 00 19 00 fe 00 4c 00 05 fd 4c 00 fd 05 4a 05 19 00 0a 00 12 0a 18 00 10 02 19 00 1b 05 1a 00 82 68 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 97 82 85 81 75 82 92 82 85 81 40 82 86 82 89 82 8e 82 89 82 93 82 88 82 85 82 84 81 40 82 8d 82 8f 82 96 82 89 82 8e 82 87 0d 00 82 8f 82 95 82 94 81 40 82 8d 82 8f 82 93 82 94 81 40 82 8f 82 86 81 40 82 94 82 88 82 85 81 40 82 84 82 89 82 92 82 94 81 42 0d 00 00 00 1a 00 82 6e 82 95 82 92 81 40 82 8a 82 8f 82 82 81 40 82 89 82 93 81 40 82 87 82 8f 82 89 82 8e 82 87 81 40 82 97 82 85 82 8c 82 8c 81 42 0d 00 82 73 82 88 82 81 82 8e 82 8b 82 93 81 42 0d 00 82 6f 82 8c 82 85 82 81 82 93 82 85 81 40 82 97 82 81 82 89 82 94 81 40 82 81 81 40 82 8c 82 89 82 94 82 94 82 8c 82 85 81 40 82 8d 82 8f 82 92 82 85 81 42 0d 00 00 00 4d 05 6c 07 4a 05 52 fd af 0a b3 04 00 00 4a fd 56 00 05 1d fe 00 19 00 08 00 11 04 18 00 88 03 19 00 1b 05 1a 00 82 73 82 88 82 81 82 8e 82 8b 82 93 81 40 82 86 82 8f 82 92 81 40 82 99 82 8f 82 95 82 92 81 40 82 97 82 8f 82 92 82 8b 81 42 0d 00 82 67 82 85 82 92 82 85 81 75 82 93 81 40 82 99 82 8f 82 95 82 92 81 40 82 90 82 81 82 99 82 8d 82 85 82 8e 82 94 81 42 0d 00 00 00 1e 00 fe 02 64 13 2a 00 f4 01 00 00 35 00 05 00 35 01 05 00 35 04 32 00 35 08 0a 00 1b ff 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 86 82 89 82 96 82 85 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 0d 00 82 86 82 8f 82 92 81 40 82 97 82 8f 82 92 82 8b 81 49 0d 00 00 00 1a 00 82 67 82 6f 81 40 82 89 82 93 81 40 82 95 82 90 81 40 82 82 82 99 81 40 82 86 82 89 82 86 82 94 82 99 81 49 0d 00 82 6e 82 86 82 86 82 85 82 8e 82 93 82 85 81 40 82 6f 82 8f 82 97 82 85 82 92 81 40 82 89 82 93 81 40 82 95 82 90 81 40 82 86 82 89 82 96 82 85 81 49 0d 00 82 63 82 85 82 86 82 85 82 8e 82 93 82 85 81 40 82 6f 82 8f 82 97 82 85 82 92 81 40 82 89 82 93 81 40 82 95 82 90 81 40 82 86 82 89 82 96 82 85 81 49 0d 00 00 00 1f 00 12 01 1e 00 11 01 4d 05 6c 07 4a 05 52 fd af 0a b3 04 00 00 4a fd 56 00 05 1d fe 00 19 00 08 00 11 03 18 00 fc 03 19 00 1b 05 1a 00 82 6f 82 8c 82 85 82 81 82 93 82 85 81 40 82 84 82 95 82 8d 82 90 81 40 82 94 82 88 82 85 81 40 82 84 82 89 82 92 82 94 0d 00 82 8f 82 95 82 94 82 93 82 89 82 84 82 85 81 40 82 94 82 88 82 85 81 40 82 94 82 95 82 8e 82 8e 82 85 82 8c 81 42 0d 00 00 00 52 fd af 0a b3 04 00 00 4a fd 4d 05 6c 07 fe 00 19 00 08 00 11 02 18 00 62 04 19 00 1b 05 1a 00 82 73 82 81 82 8b 82 85 81 40 };
+}

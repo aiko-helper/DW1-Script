@@ -1,0 +1,288 @@
+// DG048.SCN
+#pragma script index=48 start=0x24800 end=0x25000 headerU16=0x24 sentinelOff=0x2075
+
+section onEnter(254) {  // len=40
+    spawnChest(Item.PortaPotty, -1455, 184, 3072, 671);
+    if (!trigger(175)) goto L_0026;
+    moveObjectTo(0, 45, 1, 10, 0, 385, -50);
+    delay(10);
+L_0026:
+    return;
+}
+
+section section_5(5) {  // len=28
+    setDialogOwner(5);
+    showTextbox("Ah!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(203);
+    return;
+}
+
+section section_6(6) {  // len=28
+    setDialogOwner(6);
+    showTextbox("Ah!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(203);
+    return;
+}
+
+section section_51(51) {  // len=224
+    if (!trigger(182) || trigger(235)) goto L_006e;
+    setDialogOwner(Entity.Player);
+    showTextbox("Is the elevator causing\nthe ground to rise?\n");
+L_006e:
+    if (trigger(175)) goto L_007c;
+    return;
+L_007c:
+    setDialogOwner(Entity.Player);
+    setSelection(L_00b6, L_00d4);
+    showTextbox("Get in\nDon't get in\n");
+    waitForSelectionChoice();
+    goto L_00d4;
+L_00b6:
+    move(entity: Entity.Player, to: (1220, 3988), sprint: 0);
+    move(entity: Entity.Partner, to: (1201, 3486), sprint: 0);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    playSound(8, 5);
+    warp(to: Map.GCAN02, spawn: 3, trigger: 53);
+    return;
+L_00d4:
+    move(entity: Entity.Player, to: (1152, 2851), sprint: 0);
+    waitForEntity(Entity.Player);
+    return;
+}
+
+section section_52(52) {  // len=1022
+    if (trigger(175)) goto L_0010;
+    goto L_0012;
+L_0010:
+    return;
+L_0012:
+    moveCamera(to: (40, 2922), slowdown: 30);
+    waitForEntity(200);
+    look(entity: Entity.Player, at: 7);
+    look(entity: Entity.Partner, at: 7);
+    playAnimation(Entity.Player, 7);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("Hey!\n");
+    playAnimation(Entity.Player, 0);
+    look(entity: 7, at: Entity.Player);
+    look(entity: 8, at: Entity.Player);
+    look(entity: 9, at: Entity.Player);
+    setDialogOwner(7);
+    showTextbox("What?\n");
+    showTextbox("Did you come here to lose?\n");
+    playSound(8, 11);
+    playAnimation(Entity.Player, 20);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("That's my line!\n");
+    playAnimation(Entity.Player, 0);
+    setDialogOwner(7);
+    showTextbox("I'm holding nothing back\nthis time. I'll make you cry!\n");
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 7);
+    setPStat(252, 8);
+    setPStat(253, 9);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: Entity.Player, at: 7);
+    look(entity: 7, at: Entity.Player);
+    look(entity: Entity.Partner, at: 7);
+    setDialogOwner(8);
+    showTextbox("Wow!\n");
+    setDialogOwner(9);
+    showTextbox("Oh no!\n");
+    move(entity: 8, to: (224, -784), sprint: 1);
+    move(entity: 9, to: (116, -784), sprint: 1);
+    waitForEntity(8);
+    waitForEntity(9);
+    unloadEntity(8);
+    unloadEntity(9);
+    setDialogOwner(7);
+    showTextbox("Darn it!\n");
+    playAnimation(7, 46);
+    delay(30);
+    playSound(8, 9);
+    setObjectVisibility(0, 0);
+    setObjectVisibility(1, 0);
+    setObjectVisibility(2, 0);
+    setObjectVisibility(3, 0);
+    setObjectVisibility(4, 0);
+    setObjectVisibility(5, 0);
+    setObjectVisibility(6, 0);
+    setObjectVisibility(7, 0);
+    setObjectVisibility(8, 0);
+    setObjectVisibility(9, 0);
+    setObjectVisibility(10, 0);
+    setObjectVisibility(11, 0);
+    setObjectVisibility(12, 0);
+    setObjectVisibility(13, 0);
+    setObjectVisibility(14, 0);
+    setObjectVisibility(15, 0);
+    setObjectVisibility(16, 0);
+    setObjectVisibility(17, 0);
+    setObjectVisibility(18, 0);
+    setObjectVisibility(19, 0);
+    setObjectVisibility(20, 0);
+    setObjectVisibility(21, 0);
+    setObjectVisibility(22, 0);
+    setObjectVisibility(23, 0);
+    setObjectVisibility(24, 0);
+    setObjectVisibility(25, 0);
+    delay(40);
+    setPStat(254, 40);
+    callSubroutine(45);
+    delay(40);
+    unloadEntity(7);
+    playAnimation(Entity.Player, 24);
+    delay(15);
+    setDialogOwner(Entity.Player);
+    showTextbox("What is it?\n");
+    playAnimation(Entity.Player, 0);
+    setObjectVisibility(0, 1);
+    setObjectVisibility(1, 1);
+    setObjectVisibility(2, 1);
+    setObjectVisibility(3, 1);
+    setObjectVisibility(4, 1);
+    setObjectVisibility(5, 1);
+    setObjectVisibility(6, 1);
+    setObjectVisibility(7, 1);
+    setObjectVisibility(8, 1);
+    setObjectVisibility(9, 1);
+    setObjectVisibility(10, 1);
+    setObjectVisibility(11, 1);
+    setObjectVisibility(12, 1);
+    setObjectVisibility(13, 1);
+    setObjectVisibility(14, 1);
+    setObjectVisibility(15, 1);
+    setObjectVisibility(16, 1);
+    setObjectVisibility(17, 1);
+    setObjectVisibility(18, 1);
+    setObjectVisibility(19, 1);
+    setObjectVisibility(20, 1);
+    setObjectVisibility(21, 1);
+    setObjectVisibility(22, 1);
+    setObjectVisibility(23, 1);
+    setObjectVisibility(24, 1);
+    setObjectVisibility(25, 1);
+    setDigimon(Digimon.NPCOgremon, 5, 0);
+    rotate(entity: 10, to: 0);
+    moveObjectTo(0, 45, 1, 10, 0, 385, -50);
+    delay(10);
+    callSubroutine(46);
+    delay(40);
+    playSound(8, 11);
+    setDialogOwner(10);
+    showTextbox("Bye, dumb guys!\n");
+    look(entity: Entity.Player, at: 10);
+    playSound(8, 5);
+    waitForEntity(10);
+    unloadEntity(10);
+    setTrigger(176);
+    setDialogOwner(Entity.Player);
+    showTextbox("Darn, he got away!\n");
+    move(entity: Entity.Player, to: (1234, 2267), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (774, 2251), sprint: 1);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    rotate(entity: Entity.Player, to: 2037);
+    rotate(entity: Entity.Partner, to: 2300);
+    setDialogOwner(Entity.Player);
+    showTextbox("There is an escape elevator.\nChasing him will do no good.\n");
+    setTrigger(175);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+}
+
+section section_53(53) {  // len=38
+    if (trigger(175)) goto L_0024;
+    move(entity: Entity.Player, to: (245, 1250), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (-50, 1250), sprint: 1);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    goto section_52.L_0012;
+L_0024:
+    return;
+}
+
+section section_54(54) {  // len=18
+    playSound(8, 5);
+    rotate(entity: Entity.Player, to: 0);
+    unsetTrigger(180);
+    setTrigger(181);
+    return;
+}
+
+section section_11(11) {  // len=614
+    delay(10);
+    playAnimation(11, 28);
+    delay(10);
+    setDialogOwner(Entity.Player);
+    showTextbox("Who are you?\n");
+    setDialogOwner(11);
+    showTextbox("Who am I? Who are you?\n");
+    rotate(entity: 11, to: 1276);
+    delay(5);
+    rotate(entity: 11, to: 2300);
+    delay(5);
+    rotate(entity: 11, to: 3324);
+    delay(5);
+    rotate(entity: 11, to: 252);
+    delay(5);
+    rotate(entity: 11, to: 1276);
+    delay(5);
+    rotate(entity: 11, to: 2300);
+    delay(5);
+    rotate(entity: 11, to: 3324);
+    delay(5);
+    rotate(entity: 11, to: 252);
+    delay(5);
+    move(entity: 11, to: (179, -74), sprint: 1);
+    waitForEntity(11);
+    unloadEntity(11);
+    if (pstat[21] != 0) goto L_015c;
+    setObjectVisibility(43, 0);
+    move(entity: Entity.Player, to: (32, 829), sprint: 1);
+    waitForEntity(Entity.Player);
+    playAnimation(Entity.Player, 12);
+    delay(10);
+    setObjectVisibility(43, 1);
+    playSound(0, 7);
+    setDialogOwner(Entity.System);
+    showTextbox("I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry twenty Items!\n");
+    playSound(0, 7);
+    setInventorySize(20);
+    setTrigger(47);
+L_015c:
+    if (pstat[21] != 4) goto L_0210;
+    setObjectVisibility(42, 0);
+    move(entity: Entity.Player, to: (32, 829), sprint: 1);
+    waitForEntity(Entity.Player);
+    playAnimation(Entity.Player, 12);
+    delay(10);
+    setObjectVisibility(42, 1);
+    playSound(0, 7);
+    setDialogOwner(Entity.System);
+    showTextbox("I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry thirty Items!\n");
+    setInventorySize(30);
+    setTrigger(48);
+    setTrigger(253);
+    addPStat(1, 1);
+L_0210:
+    addPStat(21, 1);
+    setTrigger(334);
+    return;
+    garbage { 24 00 fe 00 24 00 05 00 4c 00 06 00 68 00 33 00 84 00 34 00 64 01 35 00 62 05 36 00 88 05 0b 00 9a 05 ff ff 75 20 51 fa 00 00 b8 00 00 0c 9f 02 19 00 00 00 af 00 18 00 4a 00 19 00 71 00 2d 01 0a 00 81 01 ce ff 67 00 0a 00 };
+}

@@ -1,0 +1,1259 @@
+// DG018.SCN
+#pragma script index=18 start=0x12000 end=0x14000 headerU16=0x70 sentinelOff=0x1e
+
+section onEnter(254) {  // len=350
+    setPStat(254, 0);
+    callSubroutine(25);
+    if (!trigger(236)) goto L_0014;
+    return;
+L_0014:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 29) goto L_002e;
+    spawnItem(Item.GiantMeat, 33, 49);
+    goto L_0040;
+L_002e:
+    if (pstat[110] > 49) goto L_0040;
+    spawnItem(Item.OffenseDisk, 33, 49);
+L_0040:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 29) goto L_005a;
+    spawnItem(Item.MPFloppy, 49, 53);
+    goto L_006c;
+L_005a:
+    if (pstat[110] > 49) goto L_006c;
+    spawnItem(Item.SmallRecovery, 49, 53);
+L_006c:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 29) goto L_0086;
+    spawnItem(Item.DefenseDisk, 67, 42);
+    goto L_0098;
+L_0086:
+    if (pstat[110] > 49) goto L_0098;
+    spawnItem(Item.Meat, 67, 42);
+L_0098:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 9) goto L_00b2;
+    spawnItem(Item.PortaPotty, 34, 29);
+    goto L_00c4;
+L_00b2:
+    if (pstat[110] > 29) goto L_00c4;
+    spawnItem(Item.SpeedDisk, 34, 29);
+L_00c4:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 9) goto L_00de;
+    spawnItem(Item.MediumRecovery, 50, 34);
+    goto L_00f0;
+L_00de:
+    if (pstat[110] > 29) goto L_00f0;
+    spawnItem(Item.MoldyMeat, 50, 34);
+L_00f0:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 1) goto L_010a;
+    spawnItem(Item.OrangeBanana, 49, 18);
+    goto L_0132;
+L_010a:
+    if (pstat[110] > 9) goto L_0120;
+    spawnItem(Item.Happymushroom, 49, 18);
+    goto L_0132;
+L_0120:
+    if (pstat[110] > 29) goto L_0132;
+    spawnItem(Item.Autopilot, 49, 18);
+L_0132:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 4) goto L_014a;
+    spawnItem(Item.OmniDisk, 65, 22);
+    return;
+L_014a:
+    if (pstat[110] > 29) goto L_015c;
+    spawnItem(Item.MediumMP, 65, 22);
+L_015c:
+    return;
+}
+
+section section_51(51) {  // len=290
+    setObjectVisibility(38, 1);
+    setObjectVisibility(39, 1);
+    setObjectVisibility(40, 1);
+    setObjectVisibility(41, 1);
+    setObjectVisibility(42, 1);
+    setObjectVisibility(43, 1);
+    if (!trigger(236)) goto L_0026;
+    return;
+L_0026:
+    roll(pstat: 110, max: 2);
+    if (pstat[110] != 0) goto L_0046;
+    setPStat(116, 0);
+    setObjectVisibility(38, 0);
+    setObjectVisibility(42, 0);
+    setObjectVisibility(43, 0);
+L_0046:
+    if (pstat[110] != 1) goto L_0062;
+    setPStat(116, 1);
+    setObjectVisibility(39, 0);
+    setObjectVisibility(41, 0);
+    setObjectVisibility(43, 0);
+L_0062:
+    if (pstat[110] != 2) goto L_007e;
+    setPStat(116, 2);
+    setObjectVisibility(40, 0);
+    setObjectVisibility(41, 0);
+    setObjectVisibility(42, 0);
+L_007e:
+    if (trigger(137)) goto L_011c;
+    setTrigger(137);
+    rotate(entity: Entity.Player, to: 2048);
+    playSound(8, 0);
+    delay(20);
+    playSound(8, 0);
+    delay(20);
+    playSound(8, 0);
+    delay(20);
+    setDialogOwner(Entity.System);
+    showTextbox("Trespasser Alert!\n");
+    showTextbox("Trespasser Alert!\n");
+    showTextbox("I will shoot!\n");
+L_011c:
+    jumpAndLink(section_10);
+    return;
+}
+
+section section_10(10) {  // len=408
+    unsetTrigger(158);
+    unsetTrigger(159);
+    unsetTrigger(160);
+    unsetTrigger(161);
+    unsetTrigger(162);
+    unsetTrigger(163);
+    unsetTrigger(164);
+    unsetTrigger(165);
+    unsetTrigger(166);
+    unsetTrigger(167);
+    unsetTrigger(168);
+    unsetTrigger(169);
+    unsetTrigger(170);
+    unsetTrigger(171);
+    unsetTrigger(172);
+    unsetTrigger(173);
+    jumpReturn();
+L_0042:
+    if (stat[Stat.CurrentHP] != 1) goto L_00ac;
+    look(entity: Entity.Player, at: Entity.Partner);
+    setDialogOwner(Entity.Player);
+    showTextbox("Are you alright <ORANGE><DIGIMON><WHITE>?!\n");
+    showTextbox("Let's go back.\n");
+    warp(to: Map.TROP06, spawn: 0, trigger: 51);
+L_00ac:
+    jumpReturn();
+L_00ae:
+    if (stat[Stat.CurrentHP] != 1) goto L_0100;
+    look(entity: Entity.Player, at: Entity.Partner);
+    setDialogOwner(Entity.Player);
+    showTextbox("Oh no! I gotta revive\n<ORANGE><DIGIMON><WHITE>.\n");
+    warp(to: Map.TROP06, spawn: 0, trigger: 51);
+L_0100:
+    jumpReturn();
+L_0102:
+    playSound(8, 1);
+    setObjectVisibility(44, 0);
+    setObjectVisibility(45, 0);
+    spawnSpriteAtEntity(253, 11274);
+    spawnSpriteAtEntity(253, 11530);
+    delay(4);
+    setObjectVisibility(44, 1);
+    setObjectVisibility(45, 1);
+    delay(4);
+    setObjectVisibility(44, 0);
+    setObjectVisibility(45, 0);
+    spawnSpriteAtEntity(253, 11274);
+    spawnSpriteAtEntity(253, 11530);
+    delay(4);
+    setObjectVisibility(44, 1);
+    setObjectVisibility(45, 1);
+    delay(4);
+    setObjectVisibility(44, 0);
+    setObjectVisibility(45, 0);
+    spawnSpriteAtEntity(253, 11274);
+    spawnSpriteAtEntity(253, 11530);
+    delay(4);
+    setObjectVisibility(44, 1);
+    setObjectVisibility(45, 1);
+    delay(10);
+    jumpReturn();
+L_0168:
+    setObjectVisibility(46, 1);
+    setObjectVisibility(47, 1);
+    setObjectVisibility(48, 1);
+    moveObjectTo(0, 46, 1, 0, 0, 600, 900);
+    moveObjectTo(1, 47, 1, 0, 0, 600, 900);
+    moveObjectTo(2, 48, 1, 0, 0, 600, 900);
+    delay(1);
+    jumpReturn();
+}
+
+section section_52(52) {  // len=198
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    jumpAndLink(section_10.L_00ae);
+    setTrigger(158);
+    unsetTrigger(159);
+    unsetTrigger(160);
+    if (!trigger(161)) goto L_002e;
+    goto L_0030;
+L_002e:
+    return;
+L_0030:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 109, 428);
+    moveObjectTo(1, 47, 1, 0, 0, 109, 432);
+    moveObjectTo(2, 48, 1, 0, 0, 109, 436);
+    delay(1);
+    moveObjectTo(0, 46, 1, 10, 0, 52, 765);
+    moveObjectTo(1, 47, 1, 10, 0, 52, 769);
+    moveObjectTo(2, 48, 1, 10, 0, 52, 773);
+    delay(3);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    jumpAndLink(section_10);
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_53(53) {  // len=198
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    jumpAndLink(section_10.L_00ae);
+    setTrigger(159);
+    unsetTrigger(158);
+    unsetTrigger(160);
+    if (!trigger(162)) goto L_002e;
+    goto L_0030;
+L_002e:
+    return;
+L_0030:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 300, 430);
+    moveObjectTo(1, 47, 1, 0, 0, 300, 434);
+    moveObjectTo(2, 48, 1, 0, 0, 300, 438);
+    delay(1);
+    moveObjectTo(0, 46, 1, 10, 0, 300, 765);
+    moveObjectTo(1, 47, 1, 10, 0, 300, 769);
+    moveObjectTo(2, 48, 1, 10, 0, 300, 773);
+    delay(3);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    jumpAndLink(section_10);
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_54(54) {  // len=198
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    jumpAndLink(section_10.L_00ae);
+    setTrigger(160);
+    unsetTrigger(158);
+    unsetTrigger(159);
+    if (!trigger(164)) goto L_002e;
+    goto L_0030;
+L_002e:
+    return;
+L_0030:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 495, 430);
+    moveObjectTo(1, 47, 1, 0, 0, 495, 434);
+    moveObjectTo(2, 48, 1, 0, 0, 495, 438);
+    delay(1);
+    moveObjectTo(0, 46, 1, 10, 0, 540, 765);
+    moveObjectTo(1, 47, 1, 10, 0, 540, 769);
+    moveObjectTo(2, 48, 1, 10, 0, 540, 773);
+    delay(3);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    jumpAndLink(section_10);
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_55(55) {  // len=234
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    setTrigger(161);
+    roll(pstat: 110, max: 1);
+    if (!trigger(165)) goto L_0026;
+    goto L_0028;
+L_0026:
+    return;
+L_0028:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 135, 215);
+    moveObjectTo(1, 47, 1, 0, 0, 135, 219);
+    moveObjectTo(2, 48, 1, 0, 0, 135, 223);
+    delay(1);
+    moveObjectTo(0, 46, 1, 17, 0, 52, 765);
+    moveObjectTo(1, 47, 1, 17, 0, 52, 769);
+    moveObjectTo(2, 48, 1, 17, 0, 52, 773);
+    delay(5);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    if (pstat[110] != 0) goto L_00c8;
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    goto L_00e4;
+L_00c8:
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+L_00e4:
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_56(56) {  // len=234
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    setTrigger(162);
+    roll(pstat: 110, max: 1);
+    if (!trigger(163)) goto L_0026;
+    goto L_0028;
+L_0026:
+    return;
+L_0028:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 300, 225);
+    moveObjectTo(1, 47, 1, 0, 0, 300, 229);
+    moveObjectTo(2, 48, 1, 0, 0, 300, 233);
+    delay(1);
+    moveObjectTo(0, 46, 1, 17, 0, 300, 765);
+    moveObjectTo(1, 47, 1, 17, 0, 300, 769);
+    moveObjectTo(2, 48, 1, 17, 0, 300, 773);
+    delay(5);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    if (pstat[110] != 0) goto L_00c8;
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    goto L_00e4;
+L_00c8:
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+L_00e4:
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_57(57) {  // len=254
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    setTrigger(163);
+    roll(pstat: 110, max: 1);
+    if (!trigger(159) || !trigger(162)) goto L_002a;
+    goto L_003c;
+L_002a:
+    if (!trigger(166)) goto L_003a;
+    goto L_003c;
+L_003a:
+    return;
+L_003c:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 300, 200);
+    moveObjectTo(1, 47, 1, 0, 0, 300, 204);
+    moveObjectTo(2, 48, 1, 0, 0, 300, 208);
+    delay(1);
+    moveObjectTo(0, 46, 1, 19, 0, 300, 765);
+    moveObjectTo(1, 47, 1, 19, 0, 300, 769);
+    moveObjectTo(2, 48, 1, 19, 0, 300, 773);
+    delay(4);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    if (pstat[110] != 0) goto L_00dc;
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -1000, speed: 5, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    goto L_00f8;
+L_00dc:
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+L_00f8:
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_58(58) {  // len=234
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    setTrigger(164);
+    roll(pstat: 110, max: 1);
+    if (!trigger(169)) goto L_0026;
+    goto L_0028;
+L_0026:
+    return;
+L_0028:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 470, 225);
+    moveObjectTo(1, 47, 1, 0, 0, 470, 229);
+    moveObjectTo(2, 48, 1, 0, 0, 470, 223);
+    delay(1);
+    moveObjectTo(0, 46, 1, 19, 0, 540, 765);
+    moveObjectTo(1, 47, 1, 19, 0, 540, 769);
+    moveObjectTo(2, 48, 1, 19, 0, 540, 773);
+    delay(4);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    if (pstat[110] != 0) goto L_00c8;
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    goto L_00e4;
+L_00c8:
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -3650, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+L_00e4:
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_59(59) {  // len=254
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    setTrigger(165);
+    roll(pstat: 110, max: 1);
+    if (!trigger(158) || !trigger(161)) goto L_002a;
+    goto L_003c;
+L_002a:
+    if (!trigger(167)) goto L_003a;
+    goto L_003c;
+L_003a:
+    return;
+L_003c:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 150, 95);
+    moveObjectTo(1, 47, 1, 0, 0, 150, 99);
+    moveObjectTo(2, 48, 1, 0, 0, 150, 103);
+    delay(1);
+    moveObjectTo(0, 46, 1, 21, 0, 52, 765);
+    moveObjectTo(1, 47, 1, 21, 0, 52, 769);
+    moveObjectTo(2, 48, 1, 21, 0, 52, 773);
+    delay(3);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    if (pstat[110] != 0) goto L_00dc;
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -400, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    goto L_00f8;
+L_00dc:
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+L_00f8:
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_60(60) {  // len=254
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    setTrigger(166);
+    roll(pstat: 110, max: 1);
+    if (!trigger(163) || !trigger(162)) goto L_002a;
+    goto L_003c;
+L_002a:
+    if (!trigger(168)) goto L_003a;
+    goto L_003c;
+L_003a:
+    return;
+L_003c:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 300, 95);
+    moveObjectTo(1, 47, 1, 0, 0, 300, 99);
+    moveObjectTo(2, 48, 1, 0, 0, 300, 103);
+    delay(1);
+    moveObjectTo(0, 46, 1, 21, 0, 300, 765);
+    moveObjectTo(1, 47, 1, 21, 0, 300, 769);
+    moveObjectTo(2, 48, 1, 21, 0, 300, 773);
+    delay(3);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    if (pstat[110] != 0) goto L_00dc;
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -1100, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    goto L_00f8;
+L_00dc:
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+L_00f8:
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_61(61) {  // len=254
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    setTrigger(167);
+    roll(pstat: 110, max: 1);
+    if (!trigger(161) || !trigger(165)) goto L_002a;
+    goto L_003c;
+L_002a:
+    if (!trigger(171)) goto L_003a;
+    goto L_003c;
+L_003a:
+    return;
+L_003c:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 165, 0);
+    moveObjectTo(1, 47, 1, 0, 0, 165, 4);
+    moveObjectTo(2, 48, 1, 0, 0, 165, 8);
+    delay(1);
+    moveObjectTo(0, 46, 1, 25, 0, 52, 765);
+    moveObjectTo(1, 47, 1, 25, 0, 52, 769);
+    moveObjectTo(2, 48, 1, 25, 0, 52, 773);
+    delay(3);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    if (pstat[110] != 0) goto L_00dc;
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: 2000, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    goto L_00f8;
+L_00dc:
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: 0, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+L_00f8:
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_62(62) {  // len=210
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    setTrigger(168);
+    roll(pstat: 110, max: 1);
+    if (!trigger(163) || !trigger(166)) goto L_002a;
+    goto L_003c;
+L_002a:
+    if (!trigger(170)) goto L_003a;
+    goto L_003c;
+L_003a:
+    return;
+L_003c:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 300, 0);
+    moveObjectTo(1, 47, 1, 0, 0, 300, 4);
+    moveObjectTo(2, 48, 1, 0, 0, 300, 8);
+    delay(1);
+    moveObjectTo(0, 46, 1, 25, 0, 300, 765);
+    moveObjectTo(1, 47, 1, 25, 0, 300, 769);
+    moveObjectTo(2, 48, 1, 25, 0, 300, 773);
+    delay(3);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: 1400, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_63(63) {  // len=254
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    setTrigger(169);
+    roll(pstat: 110, max: 1);
+    if (!trigger(160) || !trigger(164)) goto L_002a;
+    goto L_003c;
+L_002a:
+    if (!trigger(173)) goto L_003a;
+    goto L_003c;
+L_003a:
+    return;
+L_003c:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 445, 0);
+    moveObjectTo(1, 47, 1, 0, 0, 445, 4);
+    moveObjectTo(2, 48, 1, 0, 0, 445, 8);
+    delay(1);
+    moveObjectTo(0, 46, 1, 25, 0, 540, 765);
+    moveObjectTo(1, 47, 1, 25, 0, 540, 769);
+    moveObjectTo(2, 48, 1, 25, 0, 540, 773);
+    delay(5);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    if (pstat[110] != 0) goto L_00dc;
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: 800, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    goto L_00f8;
+L_00dc:
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -2000, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+L_00f8:
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_64(64) {  // len=210
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    setTrigger(170);
+    roll(pstat: 110, max: 1);
+    if (!trigger(166) || !trigger(168)) goto L_002a;
+    goto L_003c;
+L_002a:
+    if (!trigger(172)) goto L_003a;
+    goto L_003c;
+L_003a:
+    return;
+L_003c:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 300, 0);
+    moveObjectTo(1, 47, 1, 0, 0, 300, 4);
+    moveObjectTo(2, 48, 1, 0, 0, 300, 8);
+    delay(1);
+    moveObjectTo(0, 46, 1, 29, 0, 300, 765);
+    moveObjectTo(1, 47, 1, 29, 0, 300, 769);
+    moveObjectTo(2, 48, 1, 29, 0, 300, 773);
+    delay(3);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: 1500, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_65(65) {  // len=238
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    setTrigger(171);
+    roll(pstat: 110, max: 1);
+    if (!trigger(165) || !trigger(167)) goto L_002a;
+    goto L_002c;
+L_002a:
+    return;
+L_002c:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 158, 0);
+    moveObjectTo(1, 47, 1, 0, 0, 158, 4);
+    moveObjectTo(2, 48, 1, 0, 0, 158, 8);
+    delay(1);
+    moveObjectTo(0, 46, 1, 29, 0, 25, 765);
+    moveObjectTo(1, 47, 1, 29, 0, 25, 769);
+    moveObjectTo(2, 48, 1, 29, 0, 25, 773);
+    delay(3);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    if (pstat[110] != 0) goto L_00cc;
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: 1800, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    goto L_00e8;
+L_00cc:
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -400, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+L_00e8:
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_66(66) {  // len=238
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    setTrigger(172);
+    roll(pstat: 110, max: 1);
+    if (!trigger(170) || !trigger(168)) goto L_002a;
+    goto L_002c;
+L_002a:
+    return;
+L_002c:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 300, 0);
+    moveObjectTo(1, 47, 1, 0, 0, 300, 4);
+    moveObjectTo(2, 48, 1, 0, 0, 300, 8);
+    delay(1);
+    moveObjectTo(0, 46, 1, 29, 0, 300, 765);
+    moveObjectTo(1, 47, 1, 29, 0, 300, 769);
+    moveObjectTo(2, 48, 1, 29, 0, 300, 773);
+    delay(3);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    if (pstat[110] != 0) goto L_00cc;
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: 2550, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    goto L_00e8;
+L_00cc:
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: 1400, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+L_00e8:
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_67(67) {  // len=242
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    setTrigger(173);
+    roll(pstat: 110, max: 1);
+    if (!trigger(169) || !trigger(164)) goto L_002a;
+    goto L_002c;
+L_002a:
+    return;
+L_002c:
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    jumpAndLink(section_10.L_0102);
+    playSound(8, 2);
+    playSound(8, 2);
+    setObjectVisibility(46, 0);
+    setObjectVisibility(47, 0);
+    setObjectVisibility(48, 0);
+    setPStat(247, 46);
+    setPStat(248, 3);
+    callSubroutine(21);
+    moveObjectTo(0, 46, 1, 0, 0, 445, 0);
+    moveObjectTo(1, 47, 1, 0, 0, 445, 4);
+    moveObjectTo(2, 48, 1, 0, 0, 445, 8);
+    delay(1);
+    moveObjectTo(0, 46, 1, 25, 0, 540, 765);
+    moveObjectTo(1, 47, 1, 25, 0, 540, 769);
+    moveObjectTo(2, 48, 1, 25, 0, 540, 773);
+    delay(3);
+    playAnimation(Entity.Partner, 40);
+    setPStat(200, 50);
+    dealMapDamage(200);
+    if (pstat[110] != 0) goto L_00d0;
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: 1000, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    goto L_00ec;
+L_00d0:
+    playAnimation(Entity.Player, 17);
+    move(entity: Entity.Player, axis: 2, to: -1800, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L_0168);
+    jumpAndLink(section_10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+L_00ec:
+    jumpAndLink(section_10.L_0042);
+    return;
+}
+
+section section_68(68) {  // len=844
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    if (pstat[116] != 0) goto L_032c;
+    setDialogOwner(Entity.Player);
+    showTextbox(" !!! \n");
+    playSound(8, 2);
+    delay(20);
+    setObjectVisibility(38, 1);
+    move(entity: Entity.Player, to: (-1750, 3600), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (-1450, 3600), sprint: 1);
+    waitForEntity(Entity.Partner);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    setDigimon(Digimon.NPCCentarumon, 0, 0);
+    move(entity: 5, to: (-1600, 4300), sprint: 0);
+    waitForEntity(5);
+    setDialogOwner(5);
+    showTextbox("It's amazing that you made it\nthrough the forest!\n");
+    showTextbox("I am Centarumon.\nI'm sorry for what I did.\n");
+    showTextbox("I didn't test you for fun.\nI want to work with you.\n");
+    setTrigger(236);
+    addPStat(1, 2);
+    showTextbox("Go on. I'll stay in the\ncity and wait for you.\n");
+    goto L_0200;
+L_0200:
+    move(entity: 5, to: (-1600, 1000), sprint: 1);
+    if (pstat[101] >= 4) goto L_0228;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_0200;
+L_0228:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    playSound(8, 9);
+    setDialogOwner(Entity.System);
+    showTextbox("Centarumon joins the city!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    look(entity: Entity.Player, at: Entity.Partner);
+    look(entity: Entity.Partner, at: Entity.Player);
+    delay(5);
+    setDialogOwner(Entity.Player);
+    showTextbox("<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous!\n");
+    playAnimation(Entity.Player, 11);
+    setDialogOwner(Entity.Player);
+    showTextbox("Let's keep it up!\n");
+    move(entity: Entity.Player, to: (-1600, 5200), sprint: 0);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1600, 5200), sprint: 0);
+    delay(20);
+    warp(to: Map.KODA00, spawn: 0, trigger: 255);
+    return;
+    goto L_034a;
+L_032c:
+    playSound(0, 11);
+    setDialogOwner(Entity.System);
+    showTextbox("Missed!\n");
+    warp(to: Map.TROP06, spawn: 0, trigger: 255);
+L_034a:
+    return;
+}
+
+section section_69(69) {  // len=810
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    if (pstat[116] != 1) goto L_030a;
+    setDialogOwner(Entity.Player);
+    showTextbox(" !!! \n");
+    playSound(8, 2);
+    delay(20);
+    setObjectVisibility(39, 1);
+    move(entity: Entity.Player, to: (-241, 3600), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (200, 3600), sprint: 1);
+    waitForEntity(Entity.Partner);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    setDigimon(Digimon.NPCCentarumon, 1, 0);
+    move(entity: 6, to: (0, 4300), sprint: 0);
+    waitForEntity(6);
+    setDialogOwner(6);
+    showTextbox("It's amazing that you made it\nthrough the forest!\n");
+    showTextbox("I am Centarumon.\nI'm sorry for what I did.\n");
+    showTextbox("I didn't test you for fun.\nI want to work with you.\n");
+    setTrigger(236);
+    addPStat(1, 2);
+    showTextbox("Go on, I'll stay in the city.\n");
+    goto L_01de;
+L_01de:
+    move(entity: 6, to: (0, 1000), sprint: 1);
+    if (pstat[101] >= 4) goto L_0206;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 6);
+    look(entity: Entity.Partner, at: 6);
+    goto L_01de;
+L_0206:
+    waitForEntity(6);
+    unloadEntity(6);
+    setPStat(101, 0);
+    playSound(8, 9);
+    setDialogOwner(Entity.System);
+    showTextbox("Centarumon joins the city!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    look(entity: Entity.Player, at: Entity.Partner);
+    look(entity: Entity.Partner, at: Entity.Player);
+    delay(5);
+    setDialogOwner(Entity.Player);
+    showTextbox("<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous.\n");
+    playAnimation(Entity.Player, 11);
+    setDialogOwner(Entity.Player);
+    showTextbox("Let's keep it up!\n");
+    move(entity: Entity.Player, to: (0, 5200), sprint: 0);
+    delay(20);
+    move(entity: Entity.Partner, to: (0, 5200), sprint: 0);
+    delay(20);
+    warp(to: Map.KODA00, spawn: 0, trigger: 255);
+    return;
+    goto L_0328;
+L_030a:
+    playSound(0, 11);
+    setDialogOwner(Entity.System);
+    showTextbox("Missed!\n");
+    warp(to: Map.TROP06, spawn: 0, trigger: 255);
+L_0328:
+    return;
+}
+
+section section_70(70) {  // len=810
+    if (!trigger(236)) goto L_000e;
+    return;
+L_000e:
+    if (pstat[116] != 2) goto L_030a;
+    setDialogOwner(Entity.Player);
+    showTextbox(" !!! \n");
+    playSound(8, 2);
+    delay(20);
+    setObjectVisibility(40, 1);
+    move(entity: Entity.Player, to: (1450, 3600), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (1667, 3600), sprint: 1);
+    waitForEntity(Entity.Partner);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    setDigimon(Digimon.NPCCentarumon, 2, 0);
+    move(entity: 7, to: (1600, 4300), sprint: 0);
+    waitForEntity(7);
+    setDialogOwner(7);
+    showTextbox("It's amazing that you made it\nthrough the forest!\n");
+    showTextbox("I am Centarumon.\nI'm sorry for what I did.\n");
+    showTextbox("I didn't test you for fun.\nI want to work with you.\n");
+    setTrigger(236);
+    addPStat(1, 2);
+    showTextbox("Go on, I'll stay in the city.\n");
+    goto L_01de;
+L_01de:
+    move(entity: 7, to: (1600, 1000), sprint: 1);
+    if (pstat[101] >= 4) goto L_0206;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 7);
+    look(entity: Entity.Partner, at: 7);
+    goto L_01de;
+L_0206:
+    waitForEntity(7);
+    unloadEntity(7);
+    setPStat(101, 0);
+    playSound(8, 9);
+    setDialogOwner(Entity.System);
+    showTextbox("Centarumon joins the city!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    look(entity: Entity.Player, at: Entity.Partner);
+    look(entity: Entity.Partner, at: Entity.Player);
+    delay(5);
+    setDialogOwner(Entity.Player);
+    showTextbox("<ORANGE><DIGIMON><WHITE>, I think\nwe're getting pretty famous.\n");
+    playAnimation(Entity.Player, 11);
+    setDialogOwner(Entity.Player);
+    showTextbox("Let's keep it up!\n");
+    move(entity: Entity.Player, to: (1600, 5200), sprint: 0);
+    delay(20);
+    move(entity: Entity.Partner, to: (1600, 5200), sprint: 0);
+    delay(20);
+    warp(to: Map.KODA00, spawn: 0, trigger: 255);
+    return;
+    goto L_0328;
+L_030a:
+    playSound(0, 11);
+    setDialogOwner(Entity.System);
+    showTextbox("Missed!\n");
+    warp(to: Map.TROP06, spawn: 0, trigger: 255);
+L_0328:
+    return;
+}
+
+section section_5(5) {  // len=2
+    return;
+}
+
+section section_6(6) {  // len=2
+    return;
+}
+
+section section_71(71) {  // len=14
+    move(entity: Entity.Player, to: (-1600, 5200), sprint: 0);
+    warp(to: Map.KODA00, spawn: 0, trigger: 255);
+    return;
+}
+
+section section_72(72) {  // len=14
+    move(entity: Entity.Player, to: (0, 5200), sprint: 0);
+    warp(to: Map.KODA00, spawn: 0, trigger: 255);
+    return;
+}
+
+section section_73(73) {  // len=832
+    move(entity: Entity.Player, to: (1600, 5200), sprint: 0);
+    warp(to: Map.KODA00, spawn: 0, trigger: 255);
+    return;
+    garbage { 70 00 fe 00 70 00 33 00 ce 01 0a 00 f0 02 34 00 88 04 35 00 4e 05 36 00 14 06 37 00 da 06 38 00 c4 07 39 00 ae 08 3a 00 ac 09 3b 00 96 0a 3c 00 94 0b 3d 00 92 0c 3e 00 90 0d 3f 00 62 0e 40 00 60 0f 41 00 32 10 42 00 20 11 43 00 0e 12 44 00 00 13 45 00 4c 16 46 00 76 19 05 00 a0 1c 06 00 a2 1c 47 00 a4 1c 48 00 b2 1c 49 00 c0 1c ff ff 1e 00 fe 00 64 19 19 00 00 00 ec 00 18 00 84 00 19 00 fe 00 24 00 6e 63 19 00 0b 00 6e 1d 18 00 9e 00 19 00 74 27 21 00 31 00 16 00 b0 00 19 00 0b 00 6e 31 18 00 b0 00 19 00 74 0f 21 00 31 00 24 00 6e 63 19 00 0b 00 6e 1d 18 00 ca 00 19 00 74 04 31 00 35 00 16 00 dc 00 19 00 0b 00 6e 31 18 00 dc 00 19 00 74 00 31 00 35 00 24 00 6e 63 19 00 0b 00 6e 1d 18 00 f6 00 19 00 74 10 43 00 2a 00 16 00 08 01 19 00 0b 00 6e 31 18 00 08 01 19 00 74 26 43 00 2a 00 24 00 6e 63 19 00 0b 00 6e 09 18 00 22 01 19 00 74 20 22 00 1d 00 16 00 34 01 19 00 0b 00 6e 1d 18 00 34 01 19 00 74 11 22 00 1d 00 24 00 6e 63 19 00 0b 00 6e 09 18 00 4e 01 19 00 74 01 32 00 22 00 16 00 60 01 19 00 0b 00 6e 1d 18 00 60 01 19 00 74 44 32 00 22 00 24 00 6e 63 19 00 0b 00 6e 01 18 00 7a 01 19 00 74 37 31 00 12 00 16 00 a2 01 19 00 0b 00 6e 09 18 00 90 01 19 00 74 45 31 00 12 00 16 00 a2 01 19 00 0b 00 6e 1d 18 00 a2 01 19 00 74 16 31 00 12 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 ba 01 19 00 74 12 41 00 16 00 fe 00 19 00 0b 00 6e 1d 18 00 cc 01 19 00 74 05 41 00 16 00 fe 00 57 00 26 01 57 00 27 01 57 00 28 01 57 00 29 01 57 00 2a 01 57 00 2b 01 19 00 00 00 ec 00 18 00 f4 01 19 00 fe 00 24 00 6e 02 19 00 08 00 6e 00 18 00 14 02 19 00 1e 00 74 00 57 00 26 00 57 00 2a 00 57 00 2b 00 19 00 08 00 6e 01 18 00 30 02 19 00 1e 00 74 01 57 00 27 00 57 00 29 00 57 00 2b 00 19 00 08 00 6e 02 18 00 4c 02 19 00 1e 00 74 02 57 00 28 00 57 00 29 00 57 00 2a 00 19 00 01 00 89 00 18 00 ea 02 19 00 1c 00 89 00 4d fd 00 08 5a 00 08 00 67 00 14 00 5a 00 08 00 67 00 14 00 5a 00 08 00 67 00 14 00 1b ff 1a 00 82 73 82 92 82 85 82 93 82 90 82 81 82 93 82 93 82 85 82 92 81 40 82 60 82 8c 82 85 82 92 82 94 81 49 0d 00 00 00 1a 00 82 73 82 92 82 85 82 93 82 90 82 81 82 93 82 93 82 85 82 92 81 40 82 60 82 8c 82 85 82 92 82 94 81 49 0d 00 00 00 1a 00 82 68 81 40 82 97 82 89 82 8c 82 8c 81 40 82 93 82 88 82 8f 82 8f 82 94 81 49 0d 00 00 00 13 00 f0 02 fe 00 1d 00 9e 00 1d 00 9f 00 1d 00 a0 00 1d 00 a1 00 1d 00 a2 00 1d 00 a3 00 1d 00 a4 00 1d 00 a5 00 1d 00 a6 00 1d 00 a7 00 1d 00 a8 00 1d 00 a9 00 1d 00 aa 00 1d 00 ab 00 1d 00 ac 00 1d 00 ad 00 };
+}

@@ -1,0 +1,170 @@
+// DG069.SCN
+#pragma script index=69 start=0x31800 end=0x32000 headerU16=0x1c sentinelOff=0x24
+
+section onEnter(254) {  // len=68
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 12) goto L_0016;
+    spawnItem(Item.Digimushroom, 44, 56);
+L_0016:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 8) goto L_002c;
+    spawnItem(Item.Digimushroom, 74, 50);
+L_002c:
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 1) goto L_0042;
+    spawnItem(Item.Happymushroom, 45, 46);
+L_0042:
+    return;
+}
+
+section section_5(5) {  // len=1172
+    playSound(8, 7);
+    setDialogOwner(5);
+    showTextbox("I'm gonna knock you out!\n");
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 5);
+    setPStat(252, 255);
+    setPStat(253, 255);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: Entity.Player, at: 5);
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Partner, at: 5);
+    setDialogOwner(5);
+    showTextbox("Let's do it again.\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L_00b6, L_0466);
+    showTextbox("OK\nNo\n");
+    waitForSelectionChoice();
+    goto L_0466;
+L_00b6:
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 5);
+    setPStat(252, 255);
+    setPStat(253, 255);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: Entity.Player, at: 5);
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Partner, at: 5);
+    setDialogOwner(5);
+    showTextbox("Just a little more...\nCome on, one more time!\n");
+    playAnimation(Entity.Player, 16);
+    setDialogOwner(Entity.Player);
+    setSelection(L_016a, L_0466);
+    showTextbox("OK\nNo\n");
+    waitForSelectionChoice();
+    goto L_0466;
+L_016a:
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 5);
+    setPStat(252, 255);
+    setPStat(253, 255);
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: Entity.Player, at: 5);
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Partner, at: 5);
+    delay(5);
+    playAnimation(5, 28);
+    playSound(8, 7);
+    delay(40);
+    setDialogOwner(5);
+    showTextbox("I can't win!\n");
+    playAnimation(Entity.Player, 8);
+    setDialogOwner(Entity.Player);
+    showTextbox("Why do you want to win?\n");
+    playAnimation(5, 0);
+    playAnimation(Entity.Player, 0);
+    setDialogOwner(5);
+    showTextbox("What should I do?\n");
+    setDialogOwner(Entity.Player);
+    showTextbox("What do you mean?\nYou don't have anything?\n");
+    setDialogOwner(5);
+    showTextbox("I've got lots of time.\n");
+    playAnimation(Entity.Player, 19);
+    setDialogOwner(Entity.Player);
+    showTextbox("If you have too much time,\ncome to the city. There're\nall kinds of Digimon there.\n");
+    setDialogOwner(5);
+    showTextbox("Sounds good. I'll go.\nMy name's Patamon.\nSee ya later.\n");
+    goto L_03ec;
+L_03ec:
+    move(entity: 5, to: (-1673, 122), sprint: 1);
+    if (pstat[101] >= 10) goto L_0414;
+    addPStat(101, 1);
+    delay(10);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L_03ec;
+L_0414:
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    playSound(8, 5);
+    setDialogOwner(Entity.System);
+    showTextbox("Patamon joins the city!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    setTrigger(231);
+    addPStat(1, 1);
+    return;
+L_0466:
+    setDialogOwner(5);
+    showTextbox("That's not fun!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+}
+
+section section_6(6) {  // len=52
+    setDialogOwner(6);
+    showTextbox("Are you coming?\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(275);
+    return;
+}
+
+section section_7(7) {  // len=54
+    setDialogOwner(7);
+    showTextbox("You don't smell!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(297);
+    return;
+}
+
+section section_8(8) {  // len=86
+    setDialogOwner(8);
+    showTextbox("Looks yummy.\nI'll gobble you up!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(297);
+    return;
+}
+
+section section_9(9) {  // len=588
+    setDialogOwner(9);
+    showTextbox("Ha ha, you're funny!\n");
+    fadeOutHUD();
+    delay(1);
+    startBattle();
+    setTrigger(297);
+    return;
+    garbage { 1c 00 fe 00 1c 00 05 00 60 00 06 00 f4 04 07 00 28 05 08 00 5e 05 09 00 b4 05 ff ff 24 00 6e 63 19 00 0b 00 6e 0c 18 00 32 00 19 00 74 2c 2c 00 38 00 24 00 6e 63 19 00 0b 00 6e 08 18 00 48 00 19 00 74 2c 4a 00 32 00 24 00 6e 63 19 00 0b 00 6e 01 18 00 5e 00 19 00 74 45 2d 00 2e 00 fe 00 5a 00 08 07 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 87 82 8f 82 8e 82 8e 82 81 81 40 82 8b 82 8e 82 8f 82 83 82 8b 81 40 82 99 82 8f 82 95 81 40 82 8f 82 95 82 94 81 49 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 1b 05 1a 00 82 6b 82 85 82 94 81 75 82 93 81 40 82 84 82 8f 81 40 82 89 82 94 81 40 82 81 82 87 82 81 82 89 82 8e 81 42 0d 00 00 00 1b fd 10 02 16 01 c6 04 1a 00 82 6e 82 6a 0d 00 82 6d 82 8f 0d 00 00 00 12 00 16 00 c6 04 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 1b 05 1a 00 82 69 82 95 82 93 82 94 81 40 82 81 81 40 82 8c 82 89 82 94 82 94 82 8c 82 85 81 40 82 8d 82 8f 82 92 82 85 81 42 81 42 81 42 0d 00 82 62 82 8f 82 8d 82 85 81 40 82 8f 82 8e 81 43 81 40 82 8f 82 8e 82 85 81 40 82 8d 82 8f 82 92 82 85 81 40 82 94 82 89 82 8d 82 85 81 49 0d 00 00 00 56 00 fd 10 1b fd 10 02 ca 01 c6 04 1a 00 82 6e 82 6a 0d 00 82 6d 82 8f 0d 00 00 00 12 00 16 00 c6 04 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 67 00 05 00 56 00 05 1c 5a 00 08 07 67 00 28 00 1b 05 };
+}
