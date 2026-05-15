@@ -1,7 +1,7 @@
 // DG129.SCN
 #pragma script index=129 start=0x5b000 end=0x5b800 headerU16=0x18 sentinelOff=0x24
 
-section onEnter(254) {  // len=136
+section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 10) goto L1;
     spawnItem(Item.Digimushroom, x: 40, y: 54);
@@ -31,18 +31,18 @@ L6:
     return;
 }
 
-section(6) {  // len=12
+section(6) {
     setPStat(113, 1);
     jumpToScriptSection(206, 6);
     return;
 }
 
-section(10) {  // len=8
+section(10) {
     jumpToScriptSection(206, 10);
     return;
 }
 
-section(7) {  // len=820
+section(7) {
     if (!trigger(5) || !trigger(6)) goto L1;
     speak(7, "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
     goto L5;
@@ -130,7 +130,7 @@ L16:
     return;
 }
 
-section(51) {  // len=1048
+section(51) {
     if ((cond & 0x40) == 0x01 && !trigger(133)) goto L1;
     return;
 

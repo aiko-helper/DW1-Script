@@ -1,7 +1,7 @@
 // DG040.SCN
 #pragma script index=40 start=0x20800 end=0x21000 headerU16=0x10 sentinelOff=0x24
 
-section onEnter(254) {  // len=98
+section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 9) goto L1;
     spawnItem(Item.Digimushroom, x: 76, y: 78);
@@ -27,7 +27,7 @@ L4:
     return;
 }
 
-section(5) {  // len=1804
+section(5) {
     if (trigger(199) || trigger(198)) goto L1;
     goto L4;
 
@@ -144,7 +144,7 @@ L10:
     goto L6;
 }
 
-section(51) {  // len=130
+section(51) {
     if (pstat[16] != 3) goto L1;
     move(entity: Entity.Player, to: (-250, -250), sprint: 0);
     warp(to: Map.MGEN11, spawn: 0, trigger: 60);

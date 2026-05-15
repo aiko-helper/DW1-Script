@@ -1,11 +1,11 @@
 // DG191.SCN
 #pragma script index=191 start=0x91800 end=0x92000 headerU16=0x18 sentinelOff=0xfe
 
-section onEnter(254) {  // len=2
+section onEnter(254) {
     return;
 }
 
-section(6) {  // len=42
+section(6) {
     setPStat(113, 1);
     if (pstat[122] != 0) goto L1;
     jumpToScriptSection(206, 6);
@@ -18,7 +18,7 @@ L2:
     return;
 }
 
-section(11) {  // len=38
+section(11) {
     if (pstat[122] != 0) goto L1;
     jumpToScriptSection(206, 11);
 
@@ -30,7 +30,7 @@ L2:
     return;
 }
 
-section(51) {  // len=26
+section(51) {
     if (trigger(50)) goto L1;
     warp(to: Map.ROOM13, spawn: 0, trigger: 255);
     goto L2;
@@ -42,7 +42,7 @@ L2:
     return;
 }
 
-section(52) {  // len=1916
+section(52) {
     speak(Entity.Player, "It won't do any good for\njust us to go in.\n");
     move(entity: Entity.Player, to: (-2, -619), sprint: 0, withCamera: true);
     waitForEntity(Entity.Player);

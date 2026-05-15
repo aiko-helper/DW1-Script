@@ -1,16 +1,16 @@
 // DG173.SCN
 #pragma script index=173 start=0x81800 end=0x82800 headerU16=0x14 sentinelOff=0xfe
 
-section onEnter(254) {  // len=2
+section onEnter(254) {
     return;
 }
 
-section(5) {  // len=8
+section(5) {
     jumpToScriptSection(216, 51);
     return;
 }
 
-section(6) {  // len=2416
+section(6) {
     roll(pstat: 110, max: 3);
     if (pstat[110] != 0) goto L1;
     speak(6, "Rest as much as possible.\nThat's the key to\nyour Digimon's health.\n");
@@ -49,7 +49,7 @@ L4:
     return;
 }
 
-section(51) {  // len=1650
+section(51) {
     move(entity: Entity.Player, to: (1909, 860), sprint: 0);
     unsetTrigger(69);
     if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L1;

@@ -1,7 +1,7 @@
 // DG107.SCN
 #pragma script index=107 start=0x4c800 end=0x4d000 headerU16=0x14 sentinelOff=0x24
 
-section onEnter(254) {  // len=68
+section onEnter(254) {
     roll(pstat: 110, max: 99);
     if (pstat[110] > 19) goto L1;
     spawnItem(Item.Digimushroom, x: 61, y: 54);
@@ -20,7 +20,7 @@ L3:
     return;
 }
 
-section(51) {  // len=146
+section(51) {
     if (trigger(105) || !trigger(230)) goto L1;
     speak(Entity.System, "During the last earthquake,\nthe dirt and sand disappeared!\n");
     setTrigger(105);
@@ -29,7 +29,7 @@ L1:
     return;
 }
 
-section(5) {  // len=400
+section(5) {
     storeDate(105);
     speak(5, "The present time is\n<YEAR>month, <DAY>day,\n<HOUR>hours, <MINUTE>minutes.\n");
     storeDigimonType(103);
@@ -51,7 +51,7 @@ L3:
     return;
 }
 
-section(6) {  // len=1414
+section(6) {
     speak(6, "I am useful for many things.\nWhat do you want me to do?\n");
     setDialogOwner(Entity.Player);
     choice { "Change his Parameters" -> L1, "Speed up time for us" -> L2, "Change this into a store" -> L9 }

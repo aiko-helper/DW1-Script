@@ -1,12 +1,12 @@
 // MAP167.SCN
 #pragma script index=167 start=0x7b000 end=0x7b800 headerU16=0x18 sentinelOff=0x56
 
-section onEnter(254) {  // len=6
+section onEnter(254) {
     playAnimation(5, 30);
     return;
 }
 
-section(81) {  // len=504
+section(81) {
     look(entity: Entity.Player, at: 5);
     delay(5);
     if (trigger(89)) goto L1;
@@ -23,20 +23,20 @@ L1:
     return;
 }
 
-section(5) {  // len=10
+section(5) {
     setTrigger(44);
     goto section_81;
     return;
 }
 
-section(6) {  // len=292
+section(6) {
     speak(6, "Hey, <LIGHTBLUE><PLAYER><WHITE>.\n");
     speak(6, "Sometimes I return to\nGear Savanna to patrol.\n");
     speak(6, "I heard there are some shops\nalong the beach in Gear\nSavanna. Did you see them?\n");
     return;
 }
 
-section(51) {  // len=1212
+section(51) {
     move(entity: Entity.Player, to: (2200, -3000), sprint: 0);
     if (trigger(203)) goto L1;
     warp(to: Map.TWNA01, spawn: 4, trigger: 255);

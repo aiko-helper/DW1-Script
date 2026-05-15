@@ -1,7 +1,7 @@
 // DG025.SCN
 #pragma script index=25 start=0x17800 end=0x18000 headerU16=0x14 sentinelOff=0x1a64
 
-section onEnter(254) {  // len=48
+section onEnter(254) {
     callSubroutine(26);
     if (pstat[17] != 3) goto L1;
     setPStat(254, 0);
@@ -18,7 +18,7 @@ L2:
     return;
 }
 
-section(5) {  // len=126
+section(5) {
     if (pstat[17] < 3) goto L1;
     speak(5, "Come on, keep up!\n");
     return;
@@ -30,7 +30,7 @@ L1:
     return;
 }
 
-section(51) {  // len=84
+section(51) {
     if (pstat[17] != 3) goto L1;
     move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
     waitForEntity(Entity.Partner);
@@ -46,7 +46,7 @@ L1:
     return;
 }
 
-section(52) {  // len=1770
+section(52) {
     if (pstat[17] != 4) goto L1;
     speak(Entity.Player, "Ooops, I must return\nthe dirt box to Drimogemon.\n");
     move(entity: Entity.Player, to: (453, 1815), sprint: 1);
