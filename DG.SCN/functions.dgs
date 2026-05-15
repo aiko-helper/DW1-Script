@@ -143,6 +143,12 @@ function loadAndSetDigimon(digimon: Digimon, entity: Entity, autotalk) {
   setDigimon(digimon, entity, autotalk);
 }
 
+function switchToMap(scriptId, map: Map, pStatValue, musicId) {
+  setScript(scriptId, map);
+  setPStat(245, pStatValue);
+  setBGM(musicId);
+}
+
 function startBattle() {
   fadeOutHUD();
   delay(1);
@@ -168,48 +174,11 @@ function loadDigimonThenLoadDigimonThenSetDigimonThenSetDigimonThenSetDigimon(di
   setDigimon(digimon4, entity3, autotalk);
 }
 
-function setScriptThenSetPStatThenSetBGMThenLoadDigimonThenLoadDigimon(scriptId, map: Map, value, musicID, digimon: Digimon, digimon2: Digimon) {
-  setScript(scriptId, map);
-  setPStat(245, value);
-  setBGM(musicID);
-  loadDigimon(digimon);
-  loadDigimon(digimon2);
-}
-
-function setScriptThenSetPStatThenSetBGMThenLoadAndSetDigimonThenSetDigimon(scriptId, map: Map, value, musicID, digimon: Digimon, autotalk, entity: Entity, autotalk2) {
-  setScript(scriptId, map);
-  setPStat(245, value);
-  setBGM(musicID);
-  loadAndSetDigimon(digimon, 0, autotalk);
-  setDigimon(digimon, entity, autotalk2);
-}
-
-function setScriptThenSetPStatThenSetBGMThenLoadAndSetDigimon(scriptId, map: Map, value, musicID, digimon: Digimon, entity: Entity, autotalk) {
-  setScript(scriptId, map);
-  setPStat(245, value);
-  setBGM(musicID);
-  loadAndSetDigimon(digimon, entity, autotalk);
-}
-
-function setScriptThenSetPStatThenSetBGMThenSetPStat(map: Map, value) {
-  setScript(163, map);
-  setPStat(245, 0);
-  setBGM(28);
-  setPStat(43, value);
-}
-
 function loadDigimonThenLoadDigimonThenSetDigimonThenSetDigimon(digimon: Digimon, digimon2: Digimon, entity: Entity, autotalk, entity2: Entity) {
   loadDigimon(digimon);
   loadDigimon(digimon2);
   setDigimon(digimon, entity, autotalk);
   setDigimon(digimon2, entity2, autotalk);
-}
-
-function setScriptThenSetPStatThenSetBGMThenLoadDigimon(scriptId, map: Map, value, musicID, digimon: Digimon) {
-  setScript(scriptId, map);
-  setPStat(245, value);
-  setBGM(musicID);
-  loadDigimon(digimon);
 }
 
 function loadDigimonThenLoadAndSetDigimonThenSetDigimonThenSetDigimon(digimon: Digimon, digimon2: Digimon, entity: Entity, digimon3: Digimon, entity2: Entity, digimon4: Digimon, entity3: Entity) {
@@ -226,22 +195,22 @@ function loadAndSetDigimonThenSetDigimonThenLoadAndSetDigimonThenSetDigimon(digi
   setDigimon(digimon2, entity4, 1);
 }
 
-function setScriptThenSetPStatThenSetBGM(scriptId, map: Map, value, musicID) {
-  setScript(scriptId, map);
-  setPStat(245, value);
-  setBGM(musicID);
-}
-
-function loadAndSetDigimonThenSetDigimonThenSetDigimon(digimon: Digimon, entity: Entity, autotalk, entity2: Entity, entity3: Entity) {
+function loadAndSetDigimonThenSetDigimonThenSetDigimon(digimon: Digimon, entity: Entity, autotalk, entity2: Entity, autotalk2, entity3: Entity) {
   loadAndSetDigimon(digimon, entity, autotalk);
-  setDigimon(digimon, entity2, autotalk);
-  setDigimon(digimon, entity3, autotalk);
+  setDigimon(digimon, entity2, autotalk2);
+  setDigimon(digimon, entity3, autotalk2);
 }
 
 function sectionOnExitThenCallDigimonSubroutineThenWaitForEntity(trigger, routine) {
   sectionOnExit(trigger);
   callDigimonSubroutine(routine);
   waitForEntity(Entity.System);
+}
+
+function switchToMapThenLoadDigimonThenLoadDigimon(scriptId, map: Map, musicId, digimon: Digimon, digimon2: Digimon) {
+  switchToMap(scriptId, map, 0, musicId);
+  loadDigimon(digimon);
+  loadDigimon(digimon2);
 }
 
 function playSoundThenSetObjectVisibilityThenSetPStatThenSetPStatThenCallSubroutine(objectId) {
