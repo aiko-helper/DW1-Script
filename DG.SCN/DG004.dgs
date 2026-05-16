@@ -91,14 +91,14 @@ L2:
   loop {
     move(entity: 5, to: (0, 0), sprint: 1);
     if (pstat[101] >= 4) break;
-    addPStat(101, 1);
+    addPStat(PStat.LoopIterator, 1);
     delay(20);
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
   }
   waitForEntity(5);
   unloadEntity(5);
-  setPStat(101, 0);
+  setPStat(PStat.LoopIterator, 0);
   moveCamera(to: Entity.Player, speed: 10);
   playSound(8, 11);
   speak(Entity.System, "Etemon joins the city!\n");

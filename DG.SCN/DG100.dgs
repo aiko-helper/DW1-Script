@@ -55,14 +55,14 @@ L1:
   loop {
     move(entity: 7, to: (3050, 950), sprint: 1);
     if (pstat[101] >= 3) break;
-    addPStat(101, 1);
+    addPStat(PStat.LoopIterator, 1);
     delay(20);
     look(entity: Entity.Player, at: 7);
     look(entity: Entity.Partner, at: 7);
   }
   waitForEntity(7);
   unloadEntity(7);
-  setPStat(101, 0);
+  setPStat(PStat.LoopIterator, 0);
   playAnimation(Entity.Player, 16);
   delay(40);
   speak(Entity.Player, "Huh? What was that?\nthe curse of Analogman?\n");

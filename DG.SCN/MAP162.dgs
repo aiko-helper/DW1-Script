@@ -727,14 +727,14 @@ L4:
   loop {
     move(entity: 9, to: (412, -4500), sprint: 1);
     if (pstat[101] >= 3) break;
-    addPStat(101, 1);
+    addPStat(PStat.LoopIterator, 1);
     delay(20);
     look(entity: Entity.Player, at: 9);
     look(entity: Entity.Partner, at: 9);
   }
   waitForEntity(9);
   unloadEntity(9);
-  setPStat(101, 0);
+  setPStat(PStat.LoopIterator, 0);
   playSound(8, 12);
   speak(Entity.System, "Greymon joins the city!\n");
   setTrigger(87);

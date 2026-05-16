@@ -99,14 +99,14 @@ L3:
   loop {
     move(entity: 11, to: (0, 0), sprint: 1);
     if (pstat[101] >= 3) break;
-    addPStat(101, 1);
+    addPStat(PStat.LoopIterator, 1);
     delay(20);
     look(entity: Entity.Player, at: 11);
     look(entity: Entity.Partner, at: 11);
   }
   waitForEntity(11);
   unloadEntity(11);
-  setPStat(101, 0);
+  setPStat(PStat.LoopIterator, 0);
   speak(Entity.Player, "Did we win?\n");
   setTrigger(254);
   addPStat(1, 3);

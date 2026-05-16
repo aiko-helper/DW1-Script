@@ -232,14 +232,14 @@ L13:
   loop {
     move(entity: 6, to: (911, -2266), sprint: 1);
     if (pstat[101] >= 10) break;
-    addPStat(101, 1);
+    addPStat(PStat.LoopIterator, 1);
     delay(10);
     look(entity: Entity.Player, at: 6);
     look(entity: Entity.Partner, at: 6);
   }
   waitForEntity(6);
   unloadEntity(6);
-  setPStat(101, 0);
+  setPStat(PStat.LoopIterator, 0);
   playSound(8, 3);
   speak(Entity.System, "Vegiemon joins the city!\n");
   moveCamera(to: Entity.Player, speed: 10);

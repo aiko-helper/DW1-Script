@@ -45,14 +45,14 @@ L1:
   loop {
     move(entity: 5, to: (421, -1390), sprint: 1);
     if (pstat[101] >= 10) break;
-    addPStat(101, 1);
+    addPStat(PStat.LoopIterator, 1);
     delay(10);
     look(entity: Entity.Player, at: 5);
     look(entity: Entity.Partner, at: 5);
   }
   waitForEntity(5);
   unloadEntity(5);
-  setPStat(101, 0);
+  setPStat(PStat.LoopIterator, 0);
   playSound(8, 3);
   speak(Entity.System, "Betamon joins the city!\n");
   setTrigger(204);
