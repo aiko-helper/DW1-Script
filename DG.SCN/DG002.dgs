@@ -54,19 +54,19 @@ section(6) {
   playAnimation(6, 29);
   speak(6, "I'm hungry.\n");
   setDialogOwner(Entity.Player);
-  choice { "Give food" -> L1, "Don't give food" -> L9 }
-  goto L9;
+  choice { "Give food" -> L1, "Don't give food" -> L8 }
+  goto L8;
 
 L1:
   setTrigger(3);
   callSubroutine(0);
   if (!trigger(3)) goto L2;
   speak(Entity.Player, "I don't have food now.\n");
-  goto L9;
+  goto L8;
 
 L2:
   if (pstat[254] != 255) goto L3;
-  goto L9;
+  goto L8;
 
 L3:
   if (pstat[254] != 38 && pstat[254] != 39 && pstat[254] != 40 && pstat[254] != 41) goto L4;
@@ -81,7 +81,7 @@ L4:
 
 L5:
   speak(Entity.Player, "Oops, I can't give you this.\n");
-  goto L9;
+  goto L8;
 
 L6:
   playAnimation(6, 30);
@@ -112,15 +112,14 @@ L6:
   goto L7;
 
 L7:
-  move(entity: 6, to: (1219, 984), sprint: 1);
-  if (pstat[101] >= 3) goto L8;
-  addPStat(101, 1);
-  delay(20);
-  look(entity: Entity.Player, at: 6);
-  look(entity: Entity.Partner, at: 6);
-  goto L7;
-
-L8:
+  loop {
+    move(entity: 6, to: (1219, 984), sprint: 1);
+    if (pstat[101] >= 3) break;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 6);
+    look(entity: Entity.Partner, at: 6);
+  }
   waitForEntity(6);
   unloadEntity(6);
   setPStat(101, 0);
@@ -130,15 +129,15 @@ L8:
   waitForEntity(200);
   setTrigger(232);
   addPStat(1, 1);
-  goto L10;
+  goto L9;
 
-L9:
+L8:
   speak(6, "Bring some next time.\n");
   playAnimation(6, 28);
   delay(20);
-  goto L10;
+  goto L9;
 
-L10:
+L9:
   return;
 }
 

@@ -11,7 +11,7 @@ section onEnter(254) {
 
 section(51) {
   if (!trigger(230)) goto L1;
-  goto L5;
+  goto L4;
 
 L1:
   setTrigger(230);
@@ -63,70 +63,69 @@ L1:
   delay(20);
   speak(Entity.Player, "If the island is ruined,\nit defeats the purpose!\nListen to me.\n");
   speak(5, "What?\n");
+  loop {
+    playAnimation(Entity.Player, 19);
+    delay(20);
+    speak(Entity.Player, "We're building a city for\nthe island by gathering all\nDigimon.\n");
+    showTextbox("I heard that we can\nsave the island from this\ndanger by uniting Digimon.\n");
+    speak(5, "I think you are right, but\ngathering all the Digimon,\nthat's a big...\n");
+    playAnimation(Entity.Player, 7);
+    delay(20);
+    speak(Entity.Player, "We're working on it right\nnow. Nothing is impossible!\n");
+    speak(5, "That's a big job!\nBut I'm moved...\nMaybe, you guys can do it.\n");
+    playAnimation(Entity.Player, 19);
+    delay(20);
+    speak(Entity.Player, "If you believe in us, I want\nyou to come to the city.\n");
+    delay(20);
+    speak(5, "Alright. I'll go to the city.\nI guess that's my new path!\n");
+    goto L2;
 
 L2:
-  playAnimation(Entity.Player, 19);
-  delay(20);
-  speak(Entity.Player, "We're building a city for\nthe island by gathering all\nDigimon.\n");
-  showTextbox("I heard that we can\nsave the island from this\ndanger by uniting Digimon.\n");
-  speak(5, "I think you are right, but\ngathering all the Digimon,\nthat's a big...\n");
-  playAnimation(Entity.Player, 7);
-  delay(20);
-  speak(Entity.Player, "We're working on it right\nnow. Nothing is impossible!\n");
-  speak(5, "That's a big job!\nBut I'm moved...\nMaybe, you guys can do it.\n");
-  playAnimation(Entity.Player, 19);
-  delay(20);
-  speak(Entity.Player, "If you believe in us, I want\nyou to come to the city.\n");
-  delay(20);
-  speak(5, "Alright. I'll go to the city.\nI guess that's my new path!\n");
-  goto L3;
+    move(entity: 5, to: (691, -1990), sprint: 1);
+    if (pstat[101] >= 10) goto L3;
+    addPStat(101, 1);
+    delay(10);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    goto L2;
 
 L3:
-  move(entity: 5, to: (691, -1990), sprint: 1);
-  if (pstat[101] >= 10) goto L4;
-  addPStat(101, 1);
-  delay(10);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  goto L3;
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(101, 0);
+    playSound(8, 8);
+    speak(Entity.System, "Meramon joins the city!\n");
+    setTrigger(209);
+    addPStat(1, 2);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
 
 L4:
-  waitForEntity(5);
-  unloadEntity(5);
-  setPStat(101, 0);
-  playSound(8, 8);
-  speak(Entity.System, "Meramon joins the city!\n");
-  setTrigger(209);
-  addPStat(1, 2);
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  return;
+    if (!trigger(209)) goto L5;
+    return;
 
 L5:
-  if (!trigger(209)) goto L6;
-  return;
-
-L6:
-  moveCamera(to: 5, speed: 20);
-  waitForEntity(200);
-  speak(5, "I knew you'd come back.\nI need to know the answer!\n");
-  look(entity: 5, at: Entity.Player);
-  move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
-  waitForEntity(Entity.Partner);
-  setTrigger(1);
-  setPStat(250, 1);
-  setPStat(251, 5);
-  setPStat(252, 255);
-  setPStat(253, 255);
-  startBattle();
-  unsetTrigger(1);
-  setPStat(250, 0);
-  look(entity: Entity.Player, at: 5);
-  look(entity: 5, at: Entity.Player);
-  look(entity: Entity.Partner, at: 5);
-  speak(5, "I guess, I lose...\n");
-  speak(Entity.Player, "There's something\nI need to tell you.\n");
-  goto L2;
+    moveCamera(to: 5, speed: 20);
+    waitForEntity(200);
+    speak(5, "I knew you'd come back.\nI need to know the answer!\n");
+    look(entity: 5, at: Entity.Player);
+    move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
+    waitForEntity(Entity.Partner);
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 5);
+    setPStat(252, 255);
+    setPStat(253, 255);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: Entity.Player, at: 5);
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Partner, at: 5);
+    speak(5, "I guess, I lose...\n");
+    speak(Entity.Player, "There's something\nI need to tell you.\n");
+  }
   return;
 }
 

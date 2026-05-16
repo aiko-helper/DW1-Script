@@ -61,15 +61,14 @@ L1:
   goto L2;
 
 L2:
-  move(entity: 5, to: (-400, -500), sprint: 0);
-  if (pstat[101] >= 3) goto L3;
-  addPStat(101, 1);
-  delay(20);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  goto L2;
-
-L3:
+  loop {
+    move(entity: 5, to: (-400, -500), sprint: 0);
+    if (pstat[101] >= 3) break;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+  }
   waitForEntity(5);
   unloadEntity(5);
   setPStat(101, 0);

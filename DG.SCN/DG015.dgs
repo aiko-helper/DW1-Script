@@ -84,20 +84,20 @@ L3:
 L4:
   speak(Entity.System, "Gonna use some Items?\n");
   setDialogOwner(Entity.Player);
-  choice { "Yes" -> L5, "No" -> L15 }
-  goto L15;
+  choice { "Yes" -> L5, "No" -> L14 }
+  goto L14;
 
 L5:
   setTrigger(3);
   callSubroutine(0);
   if (!trigger(3)) goto L6;
   speak(Entity.Player, "I don't have anything now.\n");
-  goto L15;
+  goto L14;
 
 L6:
   if (pstat[254] != 255) goto L7;
   speak(Entity.Player, "Nothing I have is useful.\n");
-  goto L15;
+  goto L14;
 
 L7:
   if (pstat[254] != 121) goto L8;
@@ -107,7 +107,7 @@ L7:
 
 L8:
   speak(Entity.Player, "This won't work...\n");
-  goto L15;
+  goto L14;
   return;
 
 L9:
@@ -229,15 +229,14 @@ L12:
   goto L13;
 
 L13:
-  move(entity: 6, to: (911, -2266), sprint: 1);
-  if (pstat[101] >= 10) goto L14;
-  addPStat(101, 1);
-  delay(10);
-  look(entity: Entity.Player, at: 6);
-  look(entity: Entity.Partner, at: 6);
-  goto L13;
-
-L14:
+  loop {
+    move(entity: 6, to: (911, -2266), sprint: 1);
+    if (pstat[101] >= 10) break;
+    addPStat(101, 1);
+    delay(10);
+    look(entity: Entity.Player, at: 6);
+    look(entity: Entity.Partner, at: 6);
+  }
   waitForEntity(6);
   unloadEntity(6);
   setPStat(101, 0);
@@ -249,7 +248,7 @@ L14:
   addPStat(1, 2);
   return;
 
-L15:
+L14:
   move(entity: Entity.Player, to: (-61, -2273), sprint: 0, withCamera: true);
   waitForEntity(Entity.Player);
   return;

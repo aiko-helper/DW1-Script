@@ -18,7 +18,7 @@ section(81) {
 L1:
   look(entity: Entity.Player, at: 5);
   if (!trigger(136)) goto L2;
-  goto L6;
+  goto L5;
 
 L2:
   setTrigger(136);
@@ -37,68 +37,67 @@ L2:
   speak(5, "Half day? The more you sell,\nthe more I'll pay you.\nYou know our language.\n");
   speak(Entity.Player, "You might lose money.\n");
   speak(5, "Don't worry. It'll be good\nfor me. How about eight hours?\n");
+  loop {
+    setDialogOwner(Entity.Player);
+    choice { "I'll try" -> L3, "No thanks" -> L4 }
+    goto L4;
 
 L3:
-  setDialogOwner(Entity.Player);
-  choice { "I'll try" -> L4, "No thanks" -> L5 }
-  goto L5;
+    fadeOutHUD();
+    move(entity: 5, to: (133, 292), sprint: 0);
+    move(entity: Entity.Player, to: (-980, -432), sprint: 0);
+    waitForEntity(Entity.Player);
+    waitForEntity(5);
+    setPStat(247, 9);
+    setPStat(248, 12);
+    callSubroutine(21);
+    for id in 33..35 {
+      setObjectVisibility(id, 1);
+    }
+    for id in 9..20 {
+      setObjectVisibility(id, 0);
+    }
+    look(entity: 5, at: Entity.Player);
+    move(entity: Entity.Player, to: (-980, 292), sprint: 0);
+    move(entity: Entity.Partner, to: (-980, -432), sprint: 0);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    look(entity: 5, at: Entity.Player);
+    move(entity: Entity.Player, to: (-341, 292), sprint: 0);
+    move(entity: Entity.Partner, to: (-980, 292), sprint: 0);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    setPStat(247, 21);
+    setPStat(248, 12);
+    callSubroutine(21);
+    for id in 9..20 {
+      setObjectVisibility(id, 1);
+    }
+    for id in 21..32 {
+      setObjectVisibility(id, 0);
+    }
+    delay(60);
+    rotate(entity: Entity.Player, to: 0);
+    look(entity: Entity.Partner, at: Entity.Player);
+    waitForEntity(Entity.Player);
+    for id in 21..32 {
+      setObjectVisibility(id, 1);
+    }
+    for id in 33..35 {
+      setObjectVisibility(id, 0);
+    }
+    callSubroutine(30);
+    setPStat(123, 0);
+    unsetTrigger(101);
+    goto section_82;
 
 L4:
-  fadeOutHUD();
-  move(entity: 5, to: (133, 292), sprint: 0);
-  move(entity: Entity.Player, to: (-980, -432), sprint: 0);
-  waitForEntity(Entity.Player);
-  waitForEntity(5);
-  setPStat(247, 9);
-  setPStat(248, 12);
-  callSubroutine(21);
-  for id in 33..35 {
-    setObjectVisibility(id, 1);
-  }
-  for id in 9..20 {
-    setObjectVisibility(id, 0);
-  }
-  look(entity: 5, at: Entity.Player);
-  move(entity: Entity.Player, to: (-980, 292), sprint: 0);
-  move(entity: Entity.Partner, to: (-980, -432), sprint: 0);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
-  look(entity: 5, at: Entity.Player);
-  move(entity: Entity.Player, to: (-341, 292), sprint: 0);
-  move(entity: Entity.Partner, to: (-980, 292), sprint: 0);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
-  setPStat(247, 21);
-  setPStat(248, 12);
-  callSubroutine(21);
-  for id in 9..20 {
-    setObjectVisibility(id, 1);
-  }
-  for id in 21..32 {
-    setObjectVisibility(id, 0);
-  }
-  delay(60);
-  rotate(entity: Entity.Player, to: 0);
-  look(entity: Entity.Partner, at: Entity.Player);
-  waitForEntity(Entity.Player);
-  for id in 21..32 {
-    setObjectVisibility(id, 1);
-  }
-  for id in 33..35 {
-    setObjectVisibility(id, 0);
-  }
-  callSubroutine(30);
-  setPStat(123, 0);
-  unsetTrigger(101);
-  goto section_82;
+    speak(5, "That's too bad. Come back\nwhen you have time.\n");
+    return;
 
 L5:
-  speak(5, "That's too bad. Come back\nwhen you have time.\n");
-  return;
-
-L6:
-  speak(5, "You want to work?\n");
-  goto L3;
+    speak(5, "You want to work?\n");
+  }
   return;
 }
 
@@ -116,42 +115,43 @@ L1:
   goto L6;
 
 L2:
-  roll(pstat: 110, max: 8);
-  if (pstat[110] > 2) goto L3;
-  jumpToScriptSection(199, 51);
+  loop {
+    roll(pstat: 110, max: 8);
+    if (pstat[110] > 2) goto L3;
+    jumpToScriptSection(199, 51);
 
 L3:
-  if (pstat[110] > 5) goto L4;
-  jumpToScriptSection(200, 51);
+    if (pstat[110] > 5) goto L4;
+    jumpToScriptSection(200, 51);
 
 L4:
-  if (pstat[110] > 7) goto L5;
-  jumpToScriptSection(201, 51);
+    if (pstat[110] > 7) goto L5;
+    jumpToScriptSection(201, 51);
 
 L5:
-  jumpToScriptSection(202, 51);
-  return;
+    jumpToScriptSection(202, 51);
+    return;
 
 L6:
-  callSubroutine(56);
-  if (pstat[243] > 2) goto L7;
-  speak(5, "The way it's going, we won't\nmake any money. Try harder.\n \n");
-  rotate(entity: Entity.Player, to: 80);
-  fadeOutHUD();
-  goto L2;
+    callSubroutine(56);
+    if (pstat[243] > 2) goto L7;
+    speak(5, "The way it's going, we won't\nmake any money. Try harder.\n \n");
+    rotate(entity: Entity.Player, to: 80);
+    fadeOutHUD();
+    continue;
 
 L7:
-  if (pstat[243] > 5) goto L8;
-  speak(5, "The sales are good.\nWe can make some money.\n");
-  rotate(entity: Entity.Player, to: 80);
-  fadeOutHUD();
-  goto L2;
+    if (pstat[243] > 5) goto L8;
+    speak(5, "The sales are good.\nWe can make some money.\n");
+    rotate(entity: Entity.Player, to: 80);
+    fadeOutHUD();
+    continue;
 
 L8:
-  speak(5, "I haven't had this much\nbusiness in a long time.\nKeep it up!\n");
-  rotate(entity: Entity.Player, to: 80);
-  fadeOutHUD();
-  goto L2;
+    speak(5, "I haven't had this much\nbusiness in a long time.\nKeep it up!\n");
+    rotate(entity: Entity.Player, to: 80);
+    fadeOutHUD();
+  }
 
 L9:
   delay(40);

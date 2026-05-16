@@ -666,7 +666,7 @@ section(57) {
 
 L1:
   if (!trigger(354) || trigger(88)) goto L2;
-  goto L6;
+  goto L5;
 
 L2:
   return;
@@ -724,15 +724,14 @@ L3:
   goto L4;
 
 L4:
-  move(entity: 9, to: (412, -4500), sprint: 1);
-  if (pstat[101] >= 3) goto L5;
-  addPStat(101, 1);
-  delay(20);
-  look(entity: Entity.Player, at: 9);
-  look(entity: Entity.Partner, at: 9);
-  goto L4;
-
-L5:
+  loop {
+    move(entity: 9, to: (412, -4500), sprint: 1);
+    if (pstat[101] >= 3) break;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 9);
+    look(entity: Entity.Partner, at: 9);
+  }
   waitForEntity(9);
   unloadEntity(9);
   setPStat(101, 0);
@@ -745,7 +744,7 @@ L5:
   waitForEntity(200);
   return;
 
-L6:
+L5:
   unsetTrigger(354);
   loadAndSetDigimon(Digimon.NPCAirdramon, 5, 0);
   look(entity: Entity.Player, at: 10);

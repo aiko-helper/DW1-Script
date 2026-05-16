@@ -20,15 +20,14 @@ section(5) {
   goto L1;
 
 L1:
-  move(entity: 5, to: (3050, -150), sprint: 1);
-  if (pstat[101] >= 3) goto L2;
-  addPStat(101, 1);
-  delay(20);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  goto L1;
-
-L2:
+  loop {
+    move(entity: 5, to: (3050, -150), sprint: 1);
+    if (pstat[101] >= 3) break;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+  }
   waitForEntity(5);
   unloadEntity(5);
   setPStat(101, 0);

@@ -26,14 +26,15 @@ section(71) {
   return;
 
 L1:
-  callSubroutine(35);
-  waitForEntity(214);
-  setPStat(254, 3);
-  callSubroutine(32);
-  speak(5, "Is <ORANGE><DIGIMON><WHITE> okay?\n");
-  setDialogOwner(Entity.Player);
-  choice { "I want another name" -> L1, "Okay" -> L2 }
-  goto L1;
+  loop {
+    callSubroutine(35);
+    waitForEntity(214);
+    setPStat(254, 3);
+    callSubroutine(32);
+    speak(5, "Is <ORANGE><DIGIMON><WHITE> okay?\n");
+    setDialogOwner(Entity.Player);
+    choice { "I want another name" -> L1, "Okay" -> L2 }
+  }
 
 L2:
   return;

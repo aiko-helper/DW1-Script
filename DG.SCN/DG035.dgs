@@ -81,7 +81,7 @@ section(5) {
   playAnimation(Entity.Player, 16);
   speak(Entity.Player, "Looks like he's\nasking something.\n");
   setTrigger(49);
-  setSelection(L1, L6);
+  setSelection(L1, L5);
   showTextbox("?...Yes\n?...No\n");
 
 L1:
@@ -90,7 +90,7 @@ L1:
   playAnimation(5, 0);
   speak(5, "Bakke! Bakke bakke?\n");
   setDialogOwner(Entity.Player);
-  setSelection(L2, L6);
+  setSelection(L2, L5);
   showTextbox("Yes\nNo\n");
 
 L2:
@@ -101,7 +101,7 @@ L2:
   speak(5, "Bakkeee...bakke bakke?\n");
   playAnimation(Entity.Player, 16);
   setDialogOwner(Entity.Player);
-  setSelection(L6, L3);
+  setSelection(L5, L3);
   showTextbox("Yes\nNo\n");
 
 L3:
@@ -112,16 +112,15 @@ L3:
   goto L4;
 
 L4:
-  unsetTrigger(49);
-  move(entity: 5, to: (1299, -1074), sprint: 1);
-  if (pstat[101] >= 10) goto L5;
-  addPStat(101, 1);
-  delay(5);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  goto L4;
-
-L5:
+  loop {
+    unsetTrigger(49);
+    move(entity: 5, to: (1299, -1074), sprint: 1);
+    if (pstat[101] >= 10) break;
+    addPStat(101, 1);
+    delay(5);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+  }
   waitForEntity(5);
   unloadEntity(5);
   setPStat(101, 0);
@@ -133,7 +132,7 @@ L5:
   addPStat(1, 2);
   return;
 
-L6:
+L5:
   unsetTrigger(49);
   playAnimation(5, 29);
   playSound(8, 0);

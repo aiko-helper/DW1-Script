@@ -13,7 +13,7 @@ section(51) {
 
 L1:
   if (trigger(50)) goto L2;
-  goto L5;
+  goto L4;
 
 L2:
   look(entity: Entity.Player, at: 8);
@@ -47,15 +47,14 @@ L2:
   goto L3;
 
 L3:
-  move(entity: 8, to: (0, -2500), sprint: 1);
-  if (pstat[101] >= 3) goto L4;
-  addPStat(101, 1);
-  delay(20);
-  look(entity: Entity.Player, at: 8);
-  look(entity: Entity.Partner, at: 8);
-  goto L3;
-
-L4:
+  loop {
+    move(entity: 8, to: (0, -2500), sprint: 1);
+    if (pstat[101] >= 3) break;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 8);
+    look(entity: Entity.Partner, at: 8);
+  }
   waitForEntity(8);
   unloadEntity(8);
   setPStat(101, 0);
@@ -67,7 +66,7 @@ L4:
   addPStat(1, 3);
   return;
 
-L5:
+L4:
   look(entity: Entity.Player, at: 6);
   look(entity: Entity.Partner, at: 6);
   delay(5);
@@ -297,19 +296,19 @@ L5:
   }
   addPStat(1, 7);
   roll(pstat: 16, max: 2);
-  if (pstat[16] != 0) goto L6;
+  if (pstat[16] != 0) goto L5;
   setPStat(16, 3);
 
-L6:
+L5:
   setPStat(28, 0);
-  if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L7;
+  if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L6;
   warp(to: Map.TEND02, spawn: 0, trigger: 51);
-  goto L8;
+  goto L7;
 
-L7:
+L6:
   warp(to: Map.TEND01, spawn: 0, trigger: 51);
 
-L8:
+L7:
   return;
 }
 

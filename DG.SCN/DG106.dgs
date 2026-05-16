@@ -42,96 +42,97 @@ section(6) {
   return;
 
 L1:
-  setDialogOwner(Entity.Player);
-  choice { "Increase" -> L6, "Decrease" -> L10, "Reset ability level" -> L15 }
-  return;
+  loop {
+    setDialogOwner(Entity.Player);
+    choice { "Increase" -> L6, "Decrease" -> L10, "Reset ability level" -> L15 }
+    return;
 
 L2:
-  setDialogOwner(Entity.Player);
-  choice { "Fast forward one hour" -> L3, "Fast forward six hours" -> L4, "Fast forward one day" -> L5 }
-  return;
+    setDialogOwner(Entity.Player);
+    choice { "Fast forward one hour" -> L3, "Fast forward six hours" -> L4, "Fast forward one day" -> L5 }
+    return;
 
 L3:
-  pstat[:SavedTime] = time();
-  addMinutesToDate(PStat.SavedTime, 60);
-  advanceToDate(PStat.SavedTime);
-  return;
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 60);
+    advanceToDate(PStat.SavedTime);
+    return;
 
 L4:
-  pstat[:SavedTime] = time();
-  addMinutesToDate(PStat.SavedTime, 360);
-  advanceToDate(PStat.SavedTime);
-  return;
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 360);
+    advanceToDate(PStat.SavedTime);
+    return;
 
 L5:
-  pstat[:SavedTime] = time();
-  addMinutesToDate(PStat.SavedTime, 1440);
-  advanceToDate(PStat.SavedTime);
-  return;
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 1440);
+    advanceToDate(PStat.SavedTime);
+    return;
 
 L6:
-  setDialogOwner(Entity.Player);
-  choice { "Add fifty" -> L7, "Add one hundred" -> L8, "Add two hundred" -> L9 }
-  return;
+    setDialogOwner(Entity.Player);
+    choice { "Add fifty" -> L7, "Add one hundred" -> L8, "Add two hundred" -> L9 }
+    return;
 
 L7:
-  addStats(offense: 50, defense: 50, speed: 50, brains: 50, maxHP: 500, maxMP: 500, currentHP: 500, currentMP: 500);
-  goto L1;
-  return;
+    addStats(offense: 50, defense: 50, speed: 50, brains: 50, maxHP: 500, maxMP: 500, currentHP: 500, currentMP: 500);
+    continue;
+    return;
 
 L8:
-  addStats(offense: 100, defense: 100, speed: 100, brains: 100, maxHP: 1000, maxMP: 1000, currentHP: 1000, currentMP: 1000);
-  goto L1;
-  return;
+    addStats(offense: 100, defense: 100, speed: 100, brains: 100, maxHP: 1000, maxMP: 1000, currentHP: 1000, currentMP: 1000);
+    continue;
+    return;
 
 L9:
-  addStats(offense: 200, defense: 200, speed: 200, brains: 200, maxHP: 2000, maxMP: 2000, currentHP: 2000, currentMP: 2000);
-  goto L1;
-  return;
+    addStats(offense: 200, defense: 200, speed: 200, brains: 200, maxHP: 2000, maxMP: 2000, currentHP: 2000, currentMP: 2000);
+    continue;
+    return;
 
 L10:
-  setDialogOwner(Entity.Player);
-  choice { "Minus fifty" -> L11, "Minus one hundred" -> L12, "Minus two hundred" -> L13 }
-  return;
+    setDialogOwner(Entity.Player);
+    choice { "Minus fifty" -> L11, "Minus one hundred" -> L12, "Minus two hundred" -> L13 }
+    return;
 
 L11:
-  reduceStats(offense: 50, defense: 50, speed: 50, brains: 50, maxHP: 500, maxMP: 500, currentHP: 500, currentMP: 500);
-  goto L1;
-  return;
+    reduceStats(offense: 50, defense: 50, speed: 50, brains: 50, maxHP: 500, maxMP: 500, currentHP: 500, currentMP: 500);
+    continue;
+    return;
 
 L12:
-  reduceStats(offense: 100, defense: 100, speed: 100, brains: 100, maxHP: 1000, maxMP: 1000, currentHP: 1000, currentMP: 1000);
-  goto L1;
-  return;
+    reduceStats(offense: 100, defense: 100, speed: 100, brains: 100, maxHP: 1000, maxMP: 1000, currentHP: 1000, currentMP: 1000);
+    continue;
+    return;
 
 L13:
-  reduceStats(offense: 200, defense: 200, speed: 200, brains: 200, maxHP: 2000, maxMP: 2000, currentHP: 2000, currentMP: 2000);
-  goto L1;
-  return;
+    reduceStats(offense: 200, defense: 200, speed: 200, brains: 200, maxHP: 2000, maxMP: 2000, currentHP: 2000, currentMP: 2000);
+    continue;
+    return;
 
 L14:
-  learnMoves([
-    :FireTower, :ProminenceBeam, :SpitFire, :RedInferno,
-    :MagmaBomb, :HeatLaser, :InifinityBurn, :Meltdown,
-    :ThunderJustice, :SpinningShot, :ElectricCloud, :MegaloSpark,
-    :StaticElect, :WindCutter, :ConfusedStorm, :Hurricane,
-    :GigaFreeze, :IceStatue, :WinterBlast, :IceNeedle,
-    :WaterBlit, :AquaMagic, :AuroraFreeze, :TearDrop,
-    :PowerCrane, :AllRangeBeam, :MetalSprinter, :PulseLaser,
-    :DeleteProgram, :DGDimension, :FullPotential, :ReverseProg,
-    :PoisonPowder, :MassMorph, :InsectPlague, :CharmPerfume,
-    :PoisonClaw, :DangerSting, :GreenTrap, :MuscleCharge,
-    :SonicJab, :DynamiteKick, :MegatonPunch, :BusterDive,
-    :OdorSpray, :PoopSpdToss, :BigPoopToss, :BigRndToss,
-    :RndSpdToss, :HorizontalKick, :UltPoopHell, :BlazeBlast,
-    :PepperBreath, :LovelyAttack, :Fireball, :DeathClaw
-    ]);
-  goto L1;
-  return;
+    learnMoves([
+      :FireTower, :ProminenceBeam, :SpitFire, :RedInferno,
+      :MagmaBomb, :HeatLaser, :InifinityBurn, :Meltdown,
+      :ThunderJustice, :SpinningShot, :ElectricCloud, :MegaloSpark,
+      :StaticElect, :WindCutter, :ConfusedStorm, :Hurricane,
+      :GigaFreeze, :IceStatue, :WinterBlast, :IceNeedle,
+      :WaterBlit, :AquaMagic, :AuroraFreeze, :TearDrop,
+      :PowerCrane, :AllRangeBeam, :MetalSprinter, :PulseLaser,
+      :DeleteProgram, :DGDimension, :FullPotential, :ReverseProg,
+      :PoisonPowder, :MassMorph, :InsectPlague, :CharmPerfume,
+      :PoisonClaw, :DangerSting, :GreenTrap, :MuscleCharge,
+      :SonicJab, :DynamiteKick, :MegatonPunch, :BusterDive,
+      :OdorSpray, :PoopSpdToss, :BigPoopToss, :BigRndToss,
+      :RndSpdToss, :HorizontalKick, :UltPoopHell, :BlazeBlast,
+      :PepperBreath, :LovelyAttack, :Fireball, :DeathClaw
+      ]);
+    continue;
+    return;
 
 L15:
-  setStats(offense: 50, defense: 50, speed: 50, brains: 50, maxHP: 500, maxMP: 500, currentHP: 500, currentMP: 500);
-  goto L1;
+    setStats(offense: 50, defense: 50, speed: 50, brains: 50, maxHP: 500, maxMP: 500, currentHP: 500, currentMP: 500);
+  }
   return;
   jumpToScriptSection(205, 6);
   return;

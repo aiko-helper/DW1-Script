@@ -38,8 +38,8 @@ section(5) {
   look(entity: Entity.Partner, at: 5);
   speak(5, "Let's do it again.\n");
   setDialogOwner(Entity.Player);
-  choice { "OK" -> L1, "No" -> L5 }
-  goto L5;
+  choice { "OK" -> L1, "No" -> L4 }
+  goto L4;
 
 L1:
   setTrigger(1);
@@ -56,8 +56,8 @@ L1:
   speak(5, "Just a little more...\nCome on, one more time!\n");
   playAnimation(Entity.Player, 16);
   setDialogOwner(Entity.Player);
-  choice { "OK" -> L2, "No" -> L5 }
-  goto L5;
+  choice { "OK" -> L2, "No" -> L4 }
+  goto L4;
 
 L2:
   setTrigger(1);
@@ -89,15 +89,14 @@ L2:
   goto L3;
 
 L3:
-  move(entity: 5, to: (-1673, 122), sprint: 1);
-  if (pstat[101] >= 10) goto L4;
-  addPStat(101, 1);
-  delay(10);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  goto L3;
-
-L4:
+  loop {
+    move(entity: 5, to: (-1673, 122), sprint: 1);
+    if (pstat[101] >= 10) break;
+    addPStat(101, 1);
+    delay(10);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+  }
   waitForEntity(5);
   unloadEntity(5);
   setPStat(101, 0);
@@ -109,7 +108,7 @@ L4:
   addPStat(1, 1);
   return;
 
-L5:
+L4:
   speak(5, "That's not fun!\n");
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);

@@ -36,8 +36,8 @@ section(5) {
   showTextbox("I don't look it, but I'm an\nUltimate Digimon. If you\nbeat me, I'll help you.\n");
   playAnimation(Entity.Player, 16);
   setDialogOwner(Entity.Player);
-  choice { "Okay, I accept" -> L1, "No thanks" -> L4 }
-  goto L4;
+  choice { "Okay, I accept" -> L1, "No thanks" -> L3 }
+  goto L3;
 
 L1:
   setTrigger(1);
@@ -59,15 +59,14 @@ L1:
   goto L2;
 
 L2:
-  move(entity: 5, to: (-2444, -3233), sprint: 1);
-  if (pstat[101] >= 10) goto L3;
-  addPStat(101, 1);
-  delay(10);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  goto L2;
-
-L3:
+  loop {
+    move(entity: 5, to: (-2444, -3233), sprint: 1);
+    if (pstat[101] >= 10) break;
+    addPStat(101, 1);
+    delay(10);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+  }
   waitForEntity(5);
   unloadEntity(5);
   setPStat(101, 0);
@@ -80,20 +79,19 @@ L3:
   waitForEntity(200);
   return;
 
-L4:
+L3:
   speak(5, "Oh, what a coward!\nLet's meet again!\n");
-  goto L5;
+  goto L4;
 
-L5:
-  move(entity: 5, to: (-2444, -3233), sprint: 1);
-  if (pstat[101] >= 10) goto L6;
-  addPStat(101, 1);
-  delay(10);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  goto L5;
-
-L6:
+L4:
+  loop {
+    move(entity: 5, to: (-2444, -3233), sprint: 1);
+    if (pstat[101] >= 10) break;
+    addPStat(101, 1);
+    delay(10);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+  }
   waitForEntity(5);
   unloadEntity(5);
   setPStat(101, 0);

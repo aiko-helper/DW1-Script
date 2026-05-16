@@ -20,876 +20,873 @@ section(51) {
 
 L1:
   if (pstat[110] > 84) goto L2;
-  goto L48;
+  goto L47;
 
 L2:
-  goto L92;
+  goto L90;
   return;
 
 L3:
   speak(8, "Boy, I want some <LIGHTBLUE>Meat <WHITE>.\n");
   speak(Entity.Player, "Welcome, so you need some\n<LIGHTBLUE>Meat<WHITE>. Well, uh...\n");
+  loop {
+    setPStat(247, 8);
+    setPStat(248, 5);
+    callSubroutine(28);
+    delay(10);
+    setPStat(117, 6);
+    setDialogOwner(Entity.System);
+    choice { "Raise price" -> L4, "Keep price at fifty bits" -> L9, "Lower price" -> L10 }
+    speak(Entity.Player, "Uh, you want some\n<LIGHTBLUE>Meat<WHITE>, cheap? Uh...\n");
+    continue;
 
 L4:
-  setPStat(247, 8);
-  setPStat(248, 5);
-  callSubroutine(28);
-  delay(10);
-  setPStat(117, 6);
-  setDialogOwner(Entity.System);
-  choice { "Raise price" -> L5, "Keep price at fifty bits" -> L10, "Lower price" -> L11 }
-  speak(Entity.Player, "Uh, you want some\n<LIGHTBLUE>Meat<WHITE>, cheap? Uh...\n");
-  goto L4;
+    roll(pstat: 110, max: 4);
+    if (pstat[110] > 0) goto L5;
+    setPStat(247, 8);
+    setPStat(248, 3);
+    callSubroutine(28);
+    speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor seventy five bits?\n");
+    setPStat(117, 1);
+    setDialogOwner(Entity.System);
+    choice { "Raise fifty to seventy five" -> L13, "Let me rethink this" -> L_00e2 }
+    continue;
 
 L5:
-  roll(pstat: 110, max: 4);
-  if (pstat[110] > 0) goto L6;
-  setPStat(247, 8);
-  setPStat(248, 3);
-  callSubroutine(28);
-  speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor seventy five bits?\n");
-  setPStat(117, 1);
-  setDialogOwner(Entity.System);
-  choice { "Raise fifty to seventy five" -> L14, "Let me rethink this" -> L4 }
-  goto L4;
+    if (pstat[110] > 1) goto L6;
+    setPStat(247, 8);
+    setPStat(248, 2);
+    callSubroutine(28);
+    speak(Entity.System, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor seventy bits?\n");
+    setPStat(117, 2);
+    setDialogOwner(Entity.System);
+    choice { "Raise from fifty to seventy" -> L15, "Let me rethink this" -> L_00e2 }
+    continue;
 
 L6:
-  if (pstat[110] > 1) goto L7;
-  setPStat(247, 8);
-  setPStat(248, 2);
-  callSubroutine(28);
-  speak(Entity.System, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor seventy bits?\n");
-  setPStat(117, 2);
-  setDialogOwner(Entity.System);
-  choice { "Raise from fifty to seventy" -> L16, "Let me rethink this" -> L4 }
-  goto L4;
+    if (pstat[110] > 2) goto L7;
+    setPStat(247, 8);
+    setPStat(248, 2);
+    callSubroutine(28);
+    speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor sixty five bits?\n");
+    setPStat(117, 3);
+    setDialogOwner(Entity.System);
+    choice { "Raise fifty to sixty five" -> L17, "Let me rethink this" -> L_00e2 }
+    continue;
 
 L7:
-  if (pstat[110] > 2) goto L8;
-  setPStat(247, 8);
-  setPStat(248, 2);
-  callSubroutine(28);
-  speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor sixty five bits?\n");
-  setPStat(117, 3);
-  setDialogOwner(Entity.System);
-  choice { "Raise fifty to sixty five" -> L18, "Let me rethink this" -> L4 }
-  goto L4;
+    if (pstat[110] > 3) goto L8;
+    setPStat(247, 8);
+    setPStat(248, 1);
+    callSubroutine(28);
+    speak(Entity.System, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor sixty bits?\n");
+    setPStat(117, 4);
+    setDialogOwner(Entity.System);
+    choice { "Raise from fifty to sixty" -> L19, "Let me rethink this" -> L_00e2 }
+    continue;
 
 L8:
-  if (pstat[110] > 3) goto L9;
-  setPStat(247, 8);
-  setPStat(248, 1);
-  callSubroutine(28);
-  speak(Entity.System, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor sixty bits?\n");
-  setPStat(117, 4);
-  setDialogOwner(Entity.System);
-  choice { "Raise from fifty to sixty" -> L20, "Let me rethink this" -> L4 }
-  goto L4;
+    if (pstat[110] > 4) goto L9;
+    setPStat(247, 8);
+    setPStat(248, 1);
+    callSubroutine(28);
+    speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor fifty five bits?\n");
+    setPStat(117, 5);
+    setDialogOwner(Entity.System);
+    choice { "Raise fifty to fifty five" -> L21, "Let me rethink this" -> L_00e2 }
+    continue;
 
 L9:
-  if (pstat[110] > 4) goto L10;
-  setPStat(247, 8);
-  setPStat(248, 1);
-  callSubroutine(28);
-  speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor fifty five bits?\n");
-  setPStat(117, 5);
-  setDialogOwner(Entity.System);
-  choice { "Raise fifty to fifty five" -> L22, "Let me rethink this" -> L4 }
-  goto L4;
+    setPStat(247, 8);
+    setPStat(248, 0);
+    callSubroutine(28);
+    speak(Entity.System, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nat regular price?\n");
+    setPStat(117, 6);
+    setDialogOwner(Entity.System);
+    choice { "Offer at regular price" -> L23, "Let me rethink this" -> L_00e2 }
+    continue;
 
 L10:
-  setPStat(247, 8);
-  setPStat(248, 0);
-  callSubroutine(28);
-  speak(Entity.System, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nat regular price?\n");
-  setPStat(117, 6);
-  setDialogOwner(Entity.System);
-  choice { "Offer at regular price" -> L24, "Let me rethink this" -> L4 }
-  goto L4;
+    roll(pstat: 110, max: 2);
+    if (pstat[110] > 0) goto L11;
+    setPStat(247, 8);
+    setPStat(248, 0);
+    callSubroutine(28);
+    speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor forty five bits?\n");
+    setPStat(117, 7);
+    setDialogOwner(Entity.System);
+    choice { "Lower fifty to forty five" -> L25, "Let me rethink this" -> L_00e2 }
+    continue;
 
 L11:
-  roll(pstat: 110, max: 2);
-  if (pstat[110] > 0) goto L12;
-  setPStat(247, 8);
-  setPStat(248, 0);
-  callSubroutine(28);
-  speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor forty five bits?\n");
-  setPStat(117, 7);
-  setDialogOwner(Entity.System);
-  choice { "Lower fifty to forty five" -> L26, "Let me rethink this" -> L4 }
-  goto L4;
+    if (pstat[110] > 1) goto L12;
+    setPStat(247, 8);
+    setPStat(248, 0);
+    callSubroutine(28);
+    speak(Entity.System, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor forty bits?\n");
+    setPStat(117, 8);
+    setDialogOwner(Entity.System);
+    choice { "Lower fifty down to forty" -> L27, "Let me rethink this" -> L_00e2 }
+    continue;
 
 L12:
-  if (pstat[110] > 1) goto L13;
-  setPStat(247, 8);
-  setPStat(248, 0);
-  callSubroutine(28);
-  speak(Entity.System, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor forty bits?\n");
-  setPStat(117, 8);
-  setDialogOwner(Entity.System);
-  choice { "Lower fifty down to forty" -> L28, "Let me rethink this" -> L4 }
-  goto L4;
+    if (pstat[110] > 2) goto L13;
+    setPStat(247, 8);
+    setPStat(248, 0);
+    callSubroutine(28);
+    speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor thirty five bits?\n");
+    setPStat(117, 9);
+    setDialogOwner(Entity.System);
+    choice { "Lower fifty to thirty five" -> L29, "Let me rethink this" -> L_00e2 }
+    continue;
 
 L13:
-  if (pstat[110] > 2) goto L14;
-  setPStat(247, 8);
-  setPStat(248, 0);
-  callSubroutine(28);
-  speak(Entity.System, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor thirty five bits?\n");
-  setPStat(117, 9);
-  setDialogOwner(Entity.System);
-  choice { "Lower fifty to thirty five" -> L30, "Let me rethink this" -> L4 }
-  goto L4;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 0) goto L14;
+    goto L31;
 
 L14:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 0) goto L15;
-  goto L32;
+    goto L41;
 
 L15:
-  goto L42;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 0) goto L16;
+    goto L31;
 
 L16:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 0) goto L17;
-  goto L32;
+    goto L41;
 
 L17:
-  goto L42;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 0) goto L18;
+    goto L31;
 
 L18:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 0) goto L19;
-  goto L32;
+    goto L41;
 
 L19:
-  goto L42;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 19) goto L20;
+    goto L31;
 
 L20:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 19) goto L21;
-  goto L32;
+    goto L41;
 
 L21:
-  goto L42;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 49) goto L22;
+    goto L31;
 
 L22:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 49) goto L23;
-  goto L32;
+    goto L41;
 
 L23:
-  goto L42;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 79) goto L24;
+    goto L31;
 
 L24:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 79) goto L25;
-  goto L32;
+    goto L41;
 
 L25:
-  goto L42;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 84) goto L26;
+    goto L31;
 
 L26:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 84) goto L27;
-  goto L32;
+    goto L41;
 
 L27:
-  goto L42;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 89) goto L28;
+    goto L31;
 
 L28:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 89) goto L29;
-  goto L32;
+    goto L41;
 
 L29:
-  goto L42;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 94) goto L30;
+    goto L31;
 
 L30:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 94) goto L31;
-  goto L32;
+    goto L41;
 
 L31:
-  goto L42;
+    speak(8, "Okay, I'll take it!\n");
+    playSound(8, 6);
+    delay(10);
+    setTextboxSize(12, 3);
+    if (pstat[117] != 1) goto L32;
+    setPStat(243, 0);
+    setPStat(244, 40);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nforty\n");
 
 L32:
-  speak(8, "Okay, I'll take it!\n");
-  playSound(8, 6);
-  delay(10);
-  setTextboxSize(12, 3);
-  if (pstat[117] != 1) goto L33;
-  setPStat(243, 0);
-  setPStat(244, 40);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nforty\n");
+    if (pstat[117] != 2) goto L33;
+    setPStat(243, 0);
+    setPStat(244, 35);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nthirty five\n");
 
 L33:
-  if (pstat[117] != 2) goto L34;
-  setPStat(243, 0);
-  setPStat(244, 35);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nthirty five\n");
+    if (pstat[117] != 3) goto L34;
+    setPStat(243, 0);
+    setPStat(244, 30);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nthirty\n");
 
 L34:
-  if (pstat[117] != 3) goto L35;
-  setPStat(243, 0);
-  setPStat(244, 30);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nthirty\n");
+    if (pstat[117] != 4) goto L35;
+    setPStat(243, 0);
+    setPStat(244, 25);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\ntwenty five\n");
 
 L35:
-  if (pstat[117] != 4) goto L36;
-  setPStat(243, 0);
-  setPStat(244, 25);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\ntwenty five\n");
+    if (pstat[117] != 5) goto L36;
+    setPStat(243, 0);
+    setPStat(244, 20);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\ntwenty\n");
 
 L36:
-  if (pstat[117] != 5) goto L37;
-  setPStat(243, 0);
-  setPStat(244, 20);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\ntwenty\n");
+    if (pstat[117] != 6) goto L37;
+    setPStat(243, 0);
+    setPStat(244, 15);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nfifteen\n");
 
 L37:
-  if (pstat[117] != 6) goto L38;
-  setPStat(243, 0);
-  setPStat(244, 15);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nfifteen\n");
+    if (pstat[117] != 7) goto L38;
+    setPStat(243, 0);
+    setPStat(244, 10);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nten\n");
 
 L38:
-  if (pstat[117] != 7) goto L39;
-  setPStat(243, 0);
-  setPStat(244, 10);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nten\n");
+    if (pstat[117] != 8) goto L39;
+    setPStat(243, 0);
+    setPStat(244, 5);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nfive\n");
 
 L39:
-  if (pstat[117] != 8) goto L40;
-  setPStat(243, 0);
-  setPStat(244, 5);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nfive\n");
+    if (pstat[117] != 9) goto L40;
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nzero\n");
 
 L40:
-  if (pstat[117] != 9) goto L41;
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nzero\n");
+    setPStat(119, 0);
+    playSound(0, 23);
+    delay(20);
+    setPStat(247, 8);
+    setPStat(248, 5);
+    callSubroutine(28);
+    move(entity: 8, to: (-109, -853), sprint: 0);
+    waitForEntity(8);
+    unloadEntity(8);
+    unloadModel(Digimon.Weedmon);
+    delay(20);
+    jumpToScriptSection(49, 82);
+    return;
 
 L41:
-  setPStat(119, 0);
-  playSound(0, 23);
-  delay(20);
-  setPStat(247, 8);
-  setPStat(248, 5);
-  callSubroutine(28);
-  move(entity: 8, to: (-109, -853), sprint: 0);
-  waitForEntity(8);
-  unloadEntity(8);
-  unloadModel(Digimon.Weedmon);
-  delay(20);
-  jumpToScriptSection(49, 82);
-  return;
+    setPStat(247, 8);
+    setPStat(248, 5);
+    callSubroutine(28);
+    addPStat(119, 1);
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 89 || pstat[119] < 3) goto L42;
+    goto L45;
 
 L42:
-  setPStat(247, 8);
-  setPStat(248, 5);
-  callSubroutine(28);
-  addPStat(119, 1);
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 89 || pstat[119] < 3) goto L43;
-  goto L46;
+    if (pstat[110] > 59 || pstat[119] != 2) goto L43;
+    goto L45;
 
 L43:
-  if (pstat[110] > 59 || pstat[119] != 2) goto L44;
-  goto L46;
+    if (pstat[110] > 19 || pstat[119] != 1) goto L44;
+    goto L45;
 
 L44:
-  if (pstat[110] > 19 || pstat[119] != 1) goto L45;
-  goto L46;
+    goto L46;
 
 L45:
-  goto L47;
+    speak(8, "I'm wasting my time with you!!\n");
+    setPStat(119, 0);
+    playSound(8, 7);
+    delay(10);
+    setPStat(247, 8);
+    setPStat(248, 5);
+    callSubroutine(28);
+    move(entity: 8, to: (-109, -853), sprint: 0);
+    waitForEntity(8);
+    unloadEntity(8);
+    unloadModel(Digimon.Weedmon);
+    delay(40);
+    speak(Entity.Player, "Man, where are the customers?\n");
+    fadeOutHUD();
+    addPStat(123, 1);
+    jumpToScriptSection(49, 82);
+    return;
 
 L46:
-  speak(8, "I'm wasting my time with you!!\n");
-  setPStat(119, 0);
-  playSound(8, 7);
-  delay(10);
-  setPStat(247, 8);
-  setPStat(248, 5);
-  callSubroutine(28);
-  move(entity: 8, to: (-109, -853), sprint: 0);
-  waitForEntity(8);
-  unloadEntity(8);
-  unloadModel(Digimon.Weedmon);
-  delay(40);
-  speak(Entity.Player, "Man, where are the customers?\n");
-  fadeOutHUD();
-  addPStat(123, 1);
-  jumpToScriptSection(49, 82);
-  return;
+    speak(8, "I think you charge too much!\n");
+    speak(Entity.Player, "Could be. Well then...\n");
+  }
 
 L47:
-  speak(8, "I think you charge too much!\n");
-  speak(Entity.Player, "Could be. Well then...\n");
-  goto L4;
-
-L48:
   speak(8, "I'll give anything for a\n<LIGHTBLUE>Portable Potty<WHITE>.\n");
   speak(Entity.Player, "Uh... Welcome, you want a\n<LIGHTBLUE>Portable Potty<WHITE>cheap?\n");
+  loop {
+    setPStat(247, 8);
+    setPStat(248, 5);
+    callSubroutine(28);
+    setPStat(117, 6);
+    setDialogOwner(Entity.System);
+    choice { "Raise price" -> L48, "Keep price at three hund bits" -> L53, "Lower price" -> L54 }
+    speak(Entity.Player, "Uh... let's see, you want a\n<LIGHTBLUE>Portable Potty<WHITE>?\n");
+    continue;
+
+L48:
+    roll(pstat: 110, max: 4);
+    if (pstat[110] > 0) goto L49;
+    setPStat(247, 8);
+    setPStat(248, 3);
+    callSubroutine(28);
+    speak(Entity.System, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor four hundred fifty bits?\n");
+    setPStat(117, 1);
+    setDialogOwner(Entity.System);
+    choice { "Raise three hund to four fifty" -> L57, "Let me rethink this" -> L_1082 }
+    continue;
 
 L49:
-  setPStat(247, 8);
-  setPStat(248, 5);
-  callSubroutine(28);
-  setPStat(117, 6);
-  setDialogOwner(Entity.System);
-  choice { "Raise price" -> L50, "Keep price at three hund bits" -> L55, "Lower price" -> L56 }
-  speak(Entity.Player, "Uh... let's see, you want a\n<LIGHTBLUE>Portable Potty<WHITE>?\n");
-  goto L49;
+    if (pstat[110] > 1) goto L50;
+    setPStat(247, 8);
+    setPStat(248, 2);
+    callSubroutine(28);
+    speak(Entity.System, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor four hundred twenty bits?\n");
+    setPStat(117, 2);
+    setDialogOwner(Entity.System);
+    choice { "Up three hund to four twenty" -> L59, "Let me rethink this" -> L_1082 }
+    continue;
 
 L50:
-  roll(pstat: 110, max: 4);
-  if (pstat[110] > 0) goto L51;
-  setPStat(247, 8);
-  setPStat(248, 3);
-  callSubroutine(28);
-  speak(Entity.System, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor four hundred fifty bits?\n");
-  setPStat(117, 1);
-  setDialogOwner(Entity.System);
-  choice { "Raise three hund to four fifty" -> L59, "Let me rethink this" -> L49 }
-  goto L49;
+    if (pstat[110] > 2) goto L51;
+    setPStat(247, 8);
+    setPStat(248, 2);
+    callSubroutine(28);
+    speak(Entity.System, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred ninety bits?\n");
+    setPStat(117, 3);
+    setDialogOwner(Entity.System);
+    choice { "Up three hund to three ninety" -> L61, "Let me rethink this" -> L_1082 }
+    continue;
 
 L51:
-  if (pstat[110] > 1) goto L52;
-  setPStat(247, 8);
-  setPStat(248, 2);
-  callSubroutine(28);
-  speak(Entity.System, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor four hundred twenty bits?\n");
-  setPStat(117, 2);
-  setDialogOwner(Entity.System);
-  choice { "Up three hund to four twenty" -> L61, "Let me rethink this" -> L49 }
-  goto L49;
+    if (pstat[110] > 3) goto L52;
+    setPStat(247, 8);
+    setPStat(248, 1);
+    callSubroutine(28);
+    speak(Entity.System, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred sixty bits?\n");
+    setPStat(117, 4);
+    setDialogOwner(Entity.System);
+    choice { "Up three hund to three sixty" -> L63, "Let me rethink this" -> L_1082 }
+    continue;
 
 L52:
-  if (pstat[110] > 2) goto L53;
-  setPStat(247, 8);
-  setPStat(248, 2);
-  callSubroutine(28);
-  speak(Entity.System, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred ninety bits?\n");
-  setPStat(117, 3);
-  setDialogOwner(Entity.System);
-  choice { "Up three hund to three ninety" -> L63, "Let me rethink this" -> L49 }
-  goto L49;
+    if (pstat[110] > 4) goto L53;
+    setPStat(247, 8);
+    setPStat(248, 1);
+    callSubroutine(28);
+    speak(Entity.System, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred thirty bits?\n");
+    setPStat(117, 5);
+    setDialogOwner(Entity.System);
+    choice { "Up three hund to three thirty" -> L65, "Let me rethink this" -> L_1082 }
+    continue;
 
 L53:
-  if (pstat[110] > 3) goto L54;
-  setPStat(247, 8);
-  setPStat(248, 1);
-  callSubroutine(28);
-  speak(Entity.System, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred sixty bits?\n");
-  setPStat(117, 4);
-  setDialogOwner(Entity.System);
-  choice { "Up three hund to three sixty" -> L65, "Let me rethink this" -> L49 }
-  goto L49;
+    setPStat(247, 8);
+    setPStat(248, 0);
+    callSubroutine(28);
+    speak(Entity.System, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nat regular price: three hund?\n");
+    setPStat(117, 6);
+    setDialogOwner(Entity.System);
+    choice { "Offer at regular price" -> L67, "Let me rethink this" -> L_1082 }
+    continue;
 
 L54:
-  if (pstat[110] > 4) goto L55;
-  setPStat(247, 8);
-  setPStat(248, 1);
-  callSubroutine(28);
-  speak(Entity.System, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred thirty bits?\n");
-  setPStat(117, 5);
-  setDialogOwner(Entity.System);
-  choice { "Up three hund to three thirty" -> L67, "Let me rethink this" -> L49 }
-  goto L49;
+    roll(pstat: 110, max: 2);
+    if (pstat[110] > 0) goto L55;
+    setPStat(247, 8);
+    setPStat(248, 0);
+    callSubroutine(28);
+    speak(Entity.System, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred seventy bits?\n");
+    setPStat(117, 7);
+    setDialogOwner(Entity.System);
+    choice { "drop three hund to two seventy" -> L69, "Let me rethink this" -> L_1082 }
+    continue;
 
 L55:
-  setPStat(247, 8);
-  setPStat(248, 0);
-  callSubroutine(28);
-  speak(Entity.System, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nat regular price: three hund?\n");
-  setPStat(117, 6);
-  setDialogOwner(Entity.System);
-  choice { "Offer at regular price" -> L69, "Let me rethink this" -> L49 }
-  goto L49;
+    if (pstat[110] > 1) goto L56;
+    setPStat(247, 8);
+    setPStat(248, 0);
+    callSubroutine(28);
+    speak(Entity.System, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred forty bits?\n");
+    setPStat(117, 8);
+    setDialogOwner(Entity.System);
+    choice { "Lower three hund to two forty" -> L71, "Let me rethink this" -> L_1082 }
+    continue;
 
 L56:
-  roll(pstat: 110, max: 2);
-  if (pstat[110] > 0) goto L57;
-  setPStat(247, 8);
-  setPStat(248, 0);
-  callSubroutine(28);
-  speak(Entity.System, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred seventy bits?\n");
-  setPStat(117, 7);
-  setDialogOwner(Entity.System);
-  choice { "drop three hund to two seventy" -> L71, "Let me rethink this" -> L49 }
-  goto L49;
+    if (pstat[110] > 2) goto L57;
+    setPStat(247, 8);
+    setPStat(248, 0);
+    callSubroutine(28);
+    speak(Entity.System, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred forty bits?\n");
+    setPStat(117, 9);
+    setDialogOwner(Entity.System);
+    choice { "Lower three hund to two ten" -> L73, "Let me rethink this" -> L_1082 }
+    continue;
 
 L57:
-  if (pstat[110] > 1) goto L58;
-  setPStat(247, 8);
-  setPStat(248, 0);
-  callSubroutine(28);
-  speak(Entity.System, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred forty bits?\n");
-  setPStat(117, 8);
-  setDialogOwner(Entity.System);
-  choice { "Lower three hund to two forty" -> L73, "Let me rethink this" -> L49 }
-  goto L49;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 0) goto L58;
+    goto L75;
 
 L58:
-  if (pstat[110] > 2) goto L59;
-  setPStat(247, 8);
-  setPStat(248, 0);
-  callSubroutine(28);
-  speak(Entity.System, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred forty bits?\n");
-  setPStat(117, 9);
-  setDialogOwner(Entity.System);
-  choice { "Lower three hund to two ten" -> L75, "Let me rethink this" -> L49 }
-  goto L49;
+    goto L85;
 
 L59:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 0) goto L60;
-  goto L77;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 0) goto L60;
+    goto L75;
 
 L60:
-  goto L87;
+    goto L85;
 
 L61:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 0) goto L62;
-  goto L77;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 0) goto L62;
+    goto L75;
 
 L62:
-  goto L87;
+    goto L85;
 
 L63:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 0) goto L64;
-  goto L77;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 19) goto L64;
+    goto L75;
 
 L64:
-  goto L87;
+    goto L85;
 
 L65:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 19) goto L66;
-  goto L77;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 49) goto L66;
+    goto L75;
 
 L66:
-  goto L87;
+    goto L85;
 
 L67:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 49) goto L68;
-  goto L77;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 79) goto L68;
+    goto L75;
 
 L68:
-  goto L87;
+    goto L85;
 
 L69:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 79) goto L70;
-  goto L77;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 84) goto L70;
+    goto L75;
 
 L70:
-  goto L87;
+    goto L85;
 
 L71:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 84) goto L72;
-  goto L77;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 89) goto L72;
+    goto L75;
 
 L72:
-  goto L87;
+    goto L85;
 
 L73:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 89) goto L74;
-  goto L77;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 94) goto L74;
+    goto L75;
 
 L74:
-  goto L87;
+    goto L85;
 
 L75:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 94) goto L76;
-  goto L77;
+    speak(8, "Alright, I'll take it!\n");
+    playSound(8, 6);
+    delay(10);
+    setTextboxSize(12, 3);
+    if (pstat[117] != 1) goto L76;
+    setPStat(243, 0);
+    setPStat(244, 240);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\ntwo hundred forty\n");
 
 L76:
-  goto L87;
+    if (pstat[117] != 2) goto L77;
+    setPStat(243, 0);
+    setPStat(244, 210);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\ntwo hundred ten\n");
 
 L77:
-  speak(8, "Alright, I'll take it!\n");
-  playSound(8, 6);
-  delay(10);
-  setTextboxSize(12, 3);
-  if (pstat[117] != 1) goto L78;
-  setPStat(243, 0);
-  setPStat(244, 240);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\ntwo hundred forty\n");
+    if (pstat[117] != 3) goto L78;
+    setPStat(243, 0);
+    setPStat(244, 180);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\none hundred eighty\n");
 
 L78:
-  if (pstat[117] != 2) goto L79;
-  setPStat(243, 0);
-  setPStat(244, 210);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\ntwo hundred ten\n");
+    if (pstat[117] != 4) goto L79;
+    setPStat(243, 0);
+    setPStat(244, 150);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\none hundred fifty\n");
 
 L79:
-  if (pstat[117] != 3) goto L80;
-  setPStat(243, 0);
-  setPStat(244, 180);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\none hundred eighty\n");
+    if (pstat[117] != 5) goto L80;
+    setPStat(243, 0);
+    setPStat(244, 120);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\none hundred twenty\n");
 
 L80:
-  if (pstat[117] != 4) goto L81;
-  setPStat(243, 0);
-  setPStat(244, 150);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\none hundred fifty\n");
+    if (pstat[117] != 6) goto L81;
+    setPStat(243, 0);
+    setPStat(244, 90);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nninety\n");
 
 L81:
-  if (pstat[117] != 5) goto L82;
-  setPStat(243, 0);
-  setPStat(244, 120);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\none hundred twenty\n");
+    if (pstat[117] != 7) goto L82;
+    setPStat(243, 0);
+    setPStat(244, 60);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nsixty\n");
 
 L82:
-  if (pstat[117] != 6) goto L83;
-  setPStat(243, 0);
-  setPStat(244, 90);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nninety\n");
+    if (pstat[117] != 8) goto L83;
+    setPStat(243, 0);
+    setPStat(244, 30);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nthirty\n");
 
 L83:
-  if (pstat[117] != 7) goto L84;
-  setPStat(243, 0);
-  setPStat(244, 60);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nsixty\n");
+    if (pstat[117] != 9) goto L84;
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nzero\n");
 
 L84:
-  if (pstat[117] != 8) goto L85;
-  setPStat(243, 0);
-  setPStat(244, 30);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nthirty\n");
+    goto L40;
 
 L85:
-  if (pstat[117] != 9) goto L86;
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nzero\n");
+    setPStat(247, 8);
+    setPStat(248, 5);
+    callSubroutine(28);
+    addPStat(119, 1);
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 89 || pstat[119] < 3) goto L86;
+    goto L45;
 
 L86:
-  goto L41;
+    if (pstat[110] > 59 || pstat[119] != 2) goto L87;
+    goto L45;
 
 L87:
-  setPStat(247, 8);
-  setPStat(248, 5);
-  callSubroutine(28);
-  addPStat(119, 1);
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 89 || pstat[119] < 3) goto L88;
-  goto L46;
+    if (pstat[110] > 19 || pstat[119] != 1) goto L88;
+    goto L45;
 
 L88:
-  if (pstat[110] > 59 || pstat[119] != 2) goto L89;
-  goto L46;
+    goto L89;
 
 L89:
-  if (pstat[110] > 19 || pstat[119] != 1) goto L90;
-  goto L46;
+    speak(8, "Come on, give me a break!\n");
+    speak(Entity.Player, "Huh? Well then...\n");
+  }
 
 L90:
-  goto L91;
-
-L91:
-  speak(8, "Come on, give me a break!\n");
-  speak(Entity.Player, "Huh? Well then...\n");
-  goto L49;
-
-L92:
   speak(8, "Boy, I need some\n<LIGHTBLUE>Medicine<WHITE>.\n");
   speak(Entity.Player, "Uh... Welcome, you want some\n<LIGHTBLUE>Medicine<WHITE>?\n");
+  loop {
+    setPStat(247, 8);
+    setPStat(248, 5);
+    callSubroutine(28);
+    setPStat(117, 6);
+    setDialogOwner(Entity.System);
+    choice { "Raise price" -> L91, "Keep price at one thous bits" -> L96, "Lower price" -> L97 }
+    speak(Entity.Player, "Uh, you wanted some cheap\n<LIGHTBLUE>Medicine <WHITE>, right?\n");
+    continue;
+
+L91:
+    roll(pstat: 110, max: 4);
+    if (pstat[110] > 0) goto L92;
+    setPStat(247, 8);
+    setPStat(248, 3);
+    callSubroutine(28);
+    speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor fifteen hundred bits?\n");
+    setPStat(117, 1);
+    setDialogOwner(Entity.System);
+    choice { "Up one thous to fifteen hund" -> L100, "Let me rethink this" -> L_21dc }
+    continue;
+
+L92:
+    if (pstat[110] > 1) goto L93;
+    setPStat(247, 8);
+    setPStat(248, 2);
+    callSubroutine(28);
+    speak(Entity.System, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor fourteen hundred bits?\n");
+    setPStat(117, 2);
+    setDialogOwner(Entity.System);
+    choice { "Up one thous to fourteen hund" -> L102, "Let me rethink this" -> L_21dc }
+    continue;
 
 L93:
-  setPStat(247, 8);
-  setPStat(248, 5);
-  callSubroutine(28);
-  setPStat(117, 6);
-  setDialogOwner(Entity.System);
-  choice { "Raise price" -> L94, "Keep price at one thous bits" -> L99, "Lower price" -> L100 }
-  speak(Entity.Player, "Uh, you wanted some cheap\n<LIGHTBLUE>Medicine <WHITE>, right?\n");
-  goto L93;
+    if (pstat[110] > 2) goto L94;
+    setPStat(247, 8);
+    setPStat(248, 2);
+    callSubroutine(28);
+    speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor thirteen hundred bits?\n");
+    setPStat(117, 3);
+    setDialogOwner(Entity.System);
+    choice { "Up one thous to thirteen hund" -> L104, "Let me rethink this" -> L_21dc }
+    continue;
 
 L94:
-  roll(pstat: 110, max: 4);
-  if (pstat[110] > 0) goto L95;
-  setPStat(247, 8);
-  setPStat(248, 3);
-  callSubroutine(28);
-  speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor fifteen hundred bits?\n");
-  setPStat(117, 1);
-  setDialogOwner(Entity.System);
-  choice { "Up one thous to fifteen hund" -> L103, "Let me rethink this" -> L93 }
-  goto L93;
+    if (pstat[110] > 3) goto L95;
+    setPStat(247, 8);
+    setPStat(248, 1);
+    callSubroutine(28);
+    speak(Entity.System, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor twelve hundred bits?\n");
+    setPStat(117, 4);
+    setDialogOwner(Entity.System);
+    choice { "Up one thous to twelve hund" -> L106, "Let me rethink this" -> L_21dc }
+    continue;
 
 L95:
-  if (pstat[110] > 1) goto L96;
-  setPStat(247, 8);
-  setPStat(248, 2);
-  callSubroutine(28);
-  speak(Entity.System, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor fourteen hundred bits?\n");
-  setPStat(117, 2);
-  setDialogOwner(Entity.System);
-  choice { "Up one thous to fourteen hund" -> L105, "Let me rethink this" -> L93 }
-  goto L93;
+    if (pstat[110] > 4) goto L96;
+    setPStat(247, 8);
+    setPStat(248, 1);
+    callSubroutine(28);
+    speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor eleven hundred bits?\n");
+    setPStat(117, 5);
+    setDialogOwner(Entity.System);
+    choice { "Up one thous to eleven hund" -> L108, "Let me rethink this" -> L_21dc }
+    continue;
 
 L96:
-  if (pstat[110] > 2) goto L97;
-  setPStat(247, 8);
-  setPStat(248, 2);
-  callSubroutine(28);
-  speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor thirteen hundred bits?\n");
-  setPStat(117, 3);
-  setDialogOwner(Entity.System);
-  choice { "Up one thous to thirteen hund" -> L107, "Let me rethink this" -> L93 }
-  goto L93;
+    setPStat(247, 8);
+    setPStat(248, 0);
+    callSubroutine(28);
+    speak(Entity.System, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nat regular price: one thous?\n");
+    setPStat(117, 6);
+    setDialogOwner(Entity.System);
+    choice { "Offer at regular price" -> L110, "Let me rethink this" -> L_21dc }
+    continue;
 
 L97:
-  if (pstat[110] > 3) goto L98;
-  setPStat(247, 8);
-  setPStat(248, 1);
-  callSubroutine(28);
-  speak(Entity.System, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor twelve hundred bits?\n");
-  setPStat(117, 4);
-  setDialogOwner(Entity.System);
-  choice { "Up one thous to twelve hund" -> L109, "Let me rethink this" -> L93 }
-  goto L93;
+    roll(pstat: 110, max: 2);
+    if (pstat[110] > 0) goto L98;
+    setPStat(247, 8);
+    setPStat(248, 0);
+    callSubroutine(28);
+    speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor nine hundred bits?\n");
+    setPStat(117, 7);
+    setDialogOwner(Entity.System);
+    choice { "Lower one thous to nine hund" -> L112, "Let me rethink this" -> L_21dc }
+    continue;
 
 L98:
-  if (pstat[110] > 4) goto L99;
-  setPStat(247, 8);
-  setPStat(248, 1);
-  callSubroutine(28);
-  speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor eleven hundred bits?\n");
-  setPStat(117, 5);
-  setDialogOwner(Entity.System);
-  choice { "Up one thous to eleven hund" -> L111, "Let me rethink this" -> L93 }
-  goto L93;
+    if (pstat[110] > 1) goto L99;
+    setPStat(247, 8);
+    setPStat(248, 0);
+    callSubroutine(28);
+    speak(Entity.System, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor eight hundred bits?\n");
+    setPStat(117, 8);
+    setDialogOwner(Entity.System);
+    choice { "Lower one thous to eight hund" -> L114, "Let me rethink this" -> L_21dc }
+    continue;
 
 L99:
-  setPStat(247, 8);
-  setPStat(248, 0);
-  callSubroutine(28);
-  speak(Entity.System, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nat regular price: one thous?\n");
-  setPStat(117, 6);
-  setDialogOwner(Entity.System);
-  choice { "Offer at regular price" -> L113, "Let me rethink this" -> L93 }
-  goto L93;
+    if (pstat[110] > 2) goto L100;
+    setPStat(247, 8);
+    setPStat(248, 0);
+    callSubroutine(28);
+    speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor seven hundred bits?\n");
+    setPStat(117, 9);
+    setDialogOwner(Entity.System);
+    choice { "Lower one thous to seven hund" -> L116, "Let me rethink this" -> L_21dc }
+    continue;
 
 L100:
-  roll(pstat: 110, max: 2);
-  if (pstat[110] > 0) goto L101;
-  setPStat(247, 8);
-  setPStat(248, 0);
-  callSubroutine(28);
-  speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor nine hundred bits?\n");
-  setPStat(117, 7);
-  setDialogOwner(Entity.System);
-  choice { "Lower one thous to nine hund" -> L115, "Let me rethink this" -> L93 }
-  goto L93;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 1) goto L101;
+    goto L118;
 
 L101:
-  if (pstat[110] > 1) goto L102;
-  setPStat(247, 8);
-  setPStat(248, 0);
-  callSubroutine(28);
-  speak(Entity.System, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor eight hundred bits?\n");
-  setPStat(117, 8);
-  setDialogOwner(Entity.System);
-  choice { "Lower one thous to eight hund" -> L117, "Let me rethink this" -> L93 }
-  goto L93;
+    goto L128;
 
 L102:
-  if (pstat[110] > 2) goto L103;
-  setPStat(247, 8);
-  setPStat(248, 0);
-  callSubroutine(28);
-  speak(Entity.System, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor seven hundred bits?\n");
-  setPStat(117, 9);
-  setDialogOwner(Entity.System);
-  choice { "Lower one thous to seven hund" -> L119, "Let me rethink this" -> L93 }
-  goto L93;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 1) goto L103;
+    goto L118;
 
 L103:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 1) goto L104;
-  goto L121;
+    goto L128;
 
 L104:
-  goto L131;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 1) goto L105;
+    goto L118;
 
 L105:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 1) goto L106;
-  goto L121;
+    goto L128;
 
 L106:
-  goto L131;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 19) goto L107;
+    goto L118;
 
 L107:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 1) goto L108;
-  goto L121;
+    goto L128;
 
 L108:
-  goto L131;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 49) goto L109;
+    goto L118;
 
 L109:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 19) goto L110;
-  goto L121;
+    goto L128;
 
 L110:
-  goto L131;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 79) goto L111;
+    goto L118;
 
 L111:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 49) goto L112;
-  goto L121;
+    goto L128;
 
 L112:
-  goto L131;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 84) goto L113;
+    goto L118;
 
 L113:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 79) goto L114;
-  goto L121;
+    goto L128;
 
 L114:
-  goto L131;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 89) goto L115;
+    goto L118;
 
 L115:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 84) goto L116;
-  goto L121;
+    goto L128;
 
 L116:
-  goto L131;
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 94) goto L117;
+    goto L118;
 
 L117:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 89) goto L118;
-  goto L121;
+    goto L128;
 
 L118:
-  goto L131;
+    speak(8, "Okay, you got a sale!\n");
+    playSound(8, 6);
+    delay(10);
+    setTextboxSize(12, 3);
+    if (pstat[117] != 1) goto L119;
+    setPStat(243, 3);
+    setPStat(244, 32);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\neight hundred\n");
 
 L119:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 94) goto L120;
-  goto L121;
+    if (pstat[117] != 2) goto L120;
+    setPStat(243, 2);
+    setPStat(244, 188);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nseven hundred\n");
 
 L120:
-  goto L131;
+    if (pstat[117] != 3) goto L121;
+    setPStat(243, 2);
+    setPStat(244, 88);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nsix hundred\n");
 
 L121:
-  speak(8, "Okay, you got a sale!\n");
-  playSound(8, 6);
-  delay(10);
-  setTextboxSize(12, 3);
-  if (pstat[117] != 1) goto L122;
-  setPStat(243, 3);
-  setPStat(244, 32);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\neight hundred\n");
+    if (pstat[117] != 4) goto L122;
+    setPStat(243, 1);
+    setPStat(244, 244);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nfive hundred\n");
 
 L122:
-  if (pstat[117] != 2) goto L123;
-  setPStat(243, 2);
-  setPStat(244, 188);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nseven hundred\n");
+    if (pstat[117] != 5) goto L123;
+    setPStat(243, 1);
+    setPStat(244, 144);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nfour hundred\n");
 
 L123:
-  if (pstat[117] != 3) goto L124;
-  setPStat(243, 2);
-  setPStat(244, 88);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nsix hundred\n");
+    if (pstat[117] != 6) goto L124;
+    setPStat(243, 1);
+    setPStat(244, 44);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nthree hundred\n");
 
 L124:
-  if (pstat[117] != 4) goto L125;
-  setPStat(243, 1);
-  setPStat(244, 244);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nfive hundred\n");
+    if (pstat[117] != 7) goto L125;
+    setPStat(243, 0);
+    setPStat(244, 200);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\ntwo hundred\n");
 
 L125:
-  if (pstat[117] != 5) goto L126;
-  setPStat(243, 1);
-  setPStat(244, 144);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nfour hundred\n");
+    if (pstat[117] != 8) goto L126;
+    setPStat(243, 0);
+    setPStat(244, 100);
+    callSubroutine(31);
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\none hundred\n");
 
 L126:
-  if (pstat[117] != 6) goto L127;
-  setPStat(243, 1);
-  setPStat(244, 44);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nthree hundred\n");
+    if (pstat[117] != 9) goto L127;
+    showTextbox("Total Profit: <DISCOUNT>\nProfit:\nzero\n");
 
 L127:
-  if (pstat[117] != 7) goto L128;
-  setPStat(243, 0);
-  setPStat(244, 200);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\ntwo hundred\n");
+    goto L40;
 
 L128:
-  if (pstat[117] != 8) goto L129;
-  setPStat(243, 0);
-  setPStat(244, 100);
-  callSubroutine(31);
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\none hundred\n");
+    setPStat(247, 8);
+    setPStat(248, 5);
+    callSubroutine(28);
+    addPStat(119, 1);
+    roll(pstat: 110, max: 99);
+    if (pstat[110] > 89 || pstat[119] < 3) goto L129;
+    goto L45;
 
 L129:
-  if (pstat[117] != 9) goto L130;
-  showTextbox("Total Profit: <DISCOUNT>\nProfit:\nzero\n");
+    if (pstat[110] > 59 || pstat[119] != 2) goto L130;
+    goto L45;
 
 L130:
-  goto L41;
+    if (pstat[110] > 19 || pstat[119] != 1) goto L131;
+    goto L45;
 
 L131:
-  setPStat(247, 8);
-  setPStat(248, 5);
-  callSubroutine(28);
-  addPStat(119, 1);
-  roll(pstat: 110, max: 99);
-  if (pstat[110] > 89 || pstat[119] < 3) goto L132;
-  goto L46;
+    goto L132;
 
 L132:
-  if (pstat[110] > 59 || pstat[119] != 2) goto L133;
-  goto L46;
-
-L133:
-  if (pstat[110] > 19 || pstat[119] != 1) goto L134;
-  goto L46;
-
-L134:
-  goto L135;
-
-L135:
-  speak(8, "That's highway robbery!\n");
-  speak(Entity.Player, "Okay. well then...\n");
-  goto L93;
+    speak(8, "That's highway robbery!\n");
+    speak(Entity.Player, "Okay. well then...\n");
+  }
   garbage { 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 1f 00 7b 01 46 63 47 63 03 00 67 00 14 00 4e 08 0b fe 04 fe 00 00 4a 08 4c 00 08 fd 24 00 6e 63 19 00 0b 00 6e 31 18 00 3e 00 19 00 16 00 54 00 19 00 0b 00 6e 54 18 00 4e 00 19 00 16 00 cc 0f 16 00 52 21 fe 00 1b 08 1a 00 82 61 82 8f 82 99 81 43 81 40 82 68 81 40 82 97 82 81 82 8e 82 94 81 40 82 93 82 8f 82 8d 82 85 81 40 01 06 82 6c 82 85 82 81 82 94 81 40 01 01 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 85 82 8c 82 83 82 8f 82 8d 82 85 81 43 81 40 82 93 82 8f 81 40 82 99 82 8f 82 95 81 40 82 8e 82 85 82 85 82 84 81 40 82 93 82 8f 82 8d 82 85 0d 00 01 06 82 6c 82 85 82 81 82 94 01 01 81 42 81 40 82 76 82 85 82 8c 82 8c 81 43 81 40 82 95 82 88 81 42 81 42 81 42 0d 00 00 00 1e 00 f7 08 1e 00 f8 05 64 1c 67 00 0a 00 1e 00 75 06 1b ff 10 03 cc 01 62 06 30 07 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 90 82 92 82 89 82 83 82 85 0d 00 82 6a 82 85 82 85 82 90 81 40 82 90 82 92 82 89 82 83 82 85 81 40 82 81 82 94 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 82 93 0d 00 82 6b 82 8f 82 97 82 85 82 92 81 40 82 90 82 92 82 89 82 83 82 85 0d 00 00 00 12 00 1b fd 1a 00 82 74 82 88 81 43 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 93 82 8f 82 8d 82 85 0d 00 01 06 82 6c 82 85 82 81 82 94 01 01 81 43 81 40 82 83 82 88 82 85 82 81 82 90 81 48 81 40 82 74 82 88 81 42 81 42 81 42 0d 00 00 00 16 00 f0 00 24 00 6e 04 19 00 0b 00 6e 00 18 00 c6 02 19 00 1e 00 f7 08 1e 00 f8 03 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 93 82 85 82 96 82 85 82 8e 82 94 82 99 81 40 82 86 82 89 82 96 82 85 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 01 1b ff 10 02 f0 09 f0 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 93 82 85 82 96 82 85 82 8e 82 94 82 99 81 40 82 86 82 89 82 96 82 85 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 0d 00 00 00 12 00 16 00 f0 00 19 00 0b 00 6e 01 18 00 aa 03 19 00 1e 00 f7 08 1e 00 f8 02 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 75 82 93 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 93 82 85 82 96 82 85 82 8e 82 94 82 99 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 02 1b ff 10 02 08 0a f0 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 92 82 8f 82 8d 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 93 82 85 82 96 82 85 82 8e 82 94 82 99 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 0d 00 00 00 12 00 16 00 f0 00 19 00 0b 00 6e 02 18 00 98 04 19 00 1e 00 f7 08 1e 00 f8 02 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 93 82 89 82 98 82 94 82 99 81 40 82 86 82 89 82 96 82 85 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 03 1b ff 10 02 20 0a f0 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 93 82 89 82 98 82 94 82 99 81 40 82 86 82 89 82 96 82 85 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 0d 00 00 00 12 00 16 00 f0 00 19 00 0b 00 6e 03 18 00 74 05 19 00 1e 00 f7 08 1e 00 f8 01 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 75 82 93 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 93 82 89 82 98 82 94 82 99 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 04 1b ff 10 02 38 0a f0 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 92 82 8f 82 8d 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 93 82 89 82 98 82 94 82 99 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 0d 00 00 00 12 00 16 00 f0 00 19 00 0b 00 6e 04 18 00 62 06 19 00 1e 00 f7 08 1e 00 f8 01 64 1c 1b ff 1a 00 82 67 82 8f 82 97 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 82 82 89 82 94 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 0d 00 82 86 82 8f 82 92 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 86 82 89 82 96 82 85 81 40 82 82 82 89 82 94 82 93 81 48 0d 00 00 00 1e 00 75 05 1b ff 10 02 50 0a f0 00 1a 00 82 71 82 81 82 89 82 93 82 85 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 94 82 8f 81 40 82 86 82 89 82 86 82 94 82 99 81 40 82 86 82 89 82 96 82 85 0d 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 92 82 85 82 94 82 88 82 89 82 8e 82 8b 81 40 82 94 82 88 82 89 82 93 }
 }

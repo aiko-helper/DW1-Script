@@ -96,54 +96,55 @@ L5:
   return;
 
 L6:
-  speak(Entity.Player, "Keep up your guard work!\n");
-  return;
+  loop {
+    speak(Entity.Player, "Keep up your guard work!\n");
+    return;
 
 L7:
-  speak(Entity.Player, "You are an Ogremon bandit!\nThis is your hideout!\n");
-  speak(5, "What are you talking about?\n");
-  playAnimation(Entity.Player, 7);
-  delay(15);
-  speak(Entity.Player, "You were lucky last time!\nGive up!\n");
-  playAnimation(Entity.Player, 0);
-  goto L8;
+    speak(Entity.Player, "You are an Ogremon bandit!\nThis is your hideout!\n");
+    speak(5, "What are you talking about?\n");
+    playAnimation(Entity.Player, 7);
+    delay(15);
+    speak(Entity.Player, "You were lucky last time!\nGive up!\n");
+    playAnimation(Entity.Player, 0);
+    goto L8;
 
 L8:
-  speak(5, "Wow!\n");
-  move(entity: 5, to: (-356, -1058), sprint: 1);
-  delay(40);
-  move(entity: Entity.Player, to: (-349, -1375), sprint: 1);
-  move(entity: Entity.Partner, to: (-355, -1761), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  move(entity: 5, to: (-250, -930), sprint: 1);
-  waitForEntity(5);
-  unloadEntity(5);
-  move(entity: Entity.Player, to: (-250, -930), sprint: 1);
-  waitForEntity(Entity.Player);
-  move(entity: Entity.Partner, to: (-250, -930), sprint: 1);
-  waitForEntity(Entity.Partner);
-  setTrigger(200);
-  warp(to: Map.OGRE00, spawn: 0, trigger: 255);
+    speak(5, "Wow!\n");
+    move(entity: 5, to: (-356, -1058), sprint: 1);
+    delay(40);
+    move(entity: Entity.Player, to: (-349, -1375), sprint: 1);
+    move(entity: Entity.Partner, to: (-355, -1761), sprint: 1);
+    waitForEntity(Entity.Player);
+    waitForEntity(Entity.Partner);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+    move(entity: 5, to: (-250, -930), sprint: 1);
+    waitForEntity(5);
+    unloadEntity(5);
+    move(entity: Entity.Player, to: (-250, -930), sprint: 1);
+    waitForEntity(Entity.Player);
+    move(entity: Entity.Partner, to: (-250, -930), sprint: 1);
+    waitForEntity(Entity.Partner);
+    setTrigger(200);
+    warp(to: Map.OGRE00, spawn: 0, trigger: 255);
 
 L9:
-  speak(Entity.Player, "You tricked me last time,\nbut now I'll get you.\n");
-  speak(5, "What are you talking about?\n");
-  playAnimation(Entity.Player, 7);
-  delay(15);
-  speak(Entity.Player, "You won't get away this time!\n");
-  playAnimation(Entity.Player, 0);
-  goto L8;
-  return;
+    speak(Entity.Player, "You tricked me last time,\nbut now I'll get you.\n");
+    speak(5, "What are you talking about?\n");
+    playAnimation(Entity.Player, 7);
+    delay(15);
+    speak(Entity.Player, "You won't get away this time!\n");
+    playAnimation(Entity.Player, 0);
+    goto L8;
+    return;
 
 L10:
-  speak(Entity.Player, "Come on, let me in.\n");
-  speak(5, "You want a piece of me?\nI'll knock you out!\n");
-  setDialogOwner(Entity.Player);
-  choice { "Let's fight" -> L5, "Don't bully me" -> L6 }
-  goto L6;
+    speak(Entity.Player, "Come on, let me in.\n");
+    speak(5, "You want a piece of me?\nI'll knock you out!\n");
+    setDialogOwner(Entity.Player);
+    choice { "Let's fight" -> L5, "Don't bully me" -> L6 }
+  }
 }
 
 section(51) {

@@ -67,7 +67,7 @@ section(9) {
   speak(9, "Dumb, dumb!\n");
   speak(9, "Eau de Geek!\n");
   speak(Entity.Player, "What did you say?!\n");
-  setSelection(L1, L4);
+  setSelection(L1, L3);
   showTextbox("That gets me mad\nI'll just ignore them\n");
 
 L1:
@@ -89,15 +89,14 @@ L1:
   goto L2;
 
 L2:
-  move(entity: 9, to: (-174, -388), sprint: 1);
-  if (pstat[101] >= 3) goto L3;
-  addPStat(101, 1);
-  delay(20);
-  look(entity: Entity.Player, at: 9);
-  look(entity: Entity.Partner, at: 9);
-  goto L2;
-
-L3:
+  loop {
+    move(entity: 9, to: (-174, -388), sprint: 1);
+    if (pstat[101] >= 3) break;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 9);
+    look(entity: Entity.Partner, at: 9);
+  }
   waitForEntity(9);
   unloadEntity(9);
   setPStat(101, 0);
@@ -123,7 +122,7 @@ L3:
   speak(Entity.Player, "Oh no!\n");
   warp(to: Map.GKYO02, spawn: 0, trigger: 5);
 
-L4:
+L3:
   playAnimation(Entity.Player, 25);
   delay(20);
   speak(Entity.Player, "Ha ha ha, he's bluffing.\nI won't deal with kids.\n");

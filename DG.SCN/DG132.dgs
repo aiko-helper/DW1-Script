@@ -75,19 +75,19 @@ section(51) {
 section(5) {
   storeDigimonType(103);
   if (pstat[103] != 3 && pstat[103] != 5 && pstat[103] != 8 && pstat[103] != 9 && pstat[103] != 47) goto L1;
-  goto L7;
+  goto L6;
 
 L1:
   if (pstat[103] != 19 && pstat[103] != 32 && pstat[103] != 51 && pstat[103] != 1 && pstat[103] != 2) goto L2;
-  goto L7;
+  goto L6;
 
 L2:
   if (pstat[103] != 15 && pstat[103] != 16 && pstat[103] != 29 && pstat[103] != 30 && pstat[103] != 43) goto L3;
-  goto L7;
+  goto L6;
 
 L3:
   if (pstat[103] != 44 && pstat[103] != 21) goto L4;
-  goto L7;
+  goto L6;
 
 L4:
   speak(Entity.Player, "Hello again.\n");
@@ -112,15 +112,14 @@ L4:
   goto L5;
 
 L5:
-  move(entity: 5, to: (93, -1700), sprint: 1);
-  if (pstat[101] >= 3) goto L6;
-  addPStat(101, 1);
-  delay(20);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  goto L5;
-
-L6:
+  loop {
+    move(entity: 5, to: (93, -1700), sprint: 1);
+    if (pstat[101] >= 3) break;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+  }
   waitForEntity(5);
   unloadEntity(5);
   setPStat(101, 0);
@@ -130,7 +129,7 @@ L6:
   addPStat(1, 2);
   return;
 
-L7:
+L6:
   speak(5, "That Digimon can't stand\ncold very well!\n");
   playAnimation(Entity.Player, 15);
   delay(15);

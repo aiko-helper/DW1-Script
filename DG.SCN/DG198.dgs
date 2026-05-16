@@ -76,7 +76,7 @@ L1:
   speak(11, "...\n");
   speak(Entity.Player, "Don't you need to fight?\n");
   setDialogOwner(Entity.Player);
-  choice { "We should hurry up and go." -> L5, "We have to test our skills." -> L2 }
+  choice { "We should hurry up and go." -> L4, "We have to test our skills." -> L2 }
   goto L2;
 
 L2:
@@ -96,15 +96,14 @@ L2:
   goto L3;
 
 L3:
-  move(entity: 11, to: (0, 0), sprint: 1);
-  if (pstat[101] >= 3) goto L4;
-  addPStat(101, 1);
-  delay(20);
-  look(entity: Entity.Player, at: 11);
-  look(entity: Entity.Partner, at: 11);
-  goto L3;
-
-L4:
+  loop {
+    move(entity: 11, to: (0, 0), sprint: 1);
+    if (pstat[101] >= 3) break;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 11);
+    look(entity: Entity.Partner, at: 11);
+  }
   waitForEntity(11);
   unloadEntity(11);
   setPStat(101, 0);
@@ -115,7 +114,7 @@ L4:
   waitForEntity(200);
   return;
 
-L5:
+L4:
   move(entity: Entity.Player, to: (43, 1754), sprint: 1, withCamera: true);
   waitForEntity(Entity.Player);
   return;

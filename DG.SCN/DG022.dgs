@@ -53,7 +53,7 @@ section(5) {
   callSubroutine(0);
   if (!trigger(3)) goto L1;
   speak(Entity.Player, "I don't have anything\nright now.\n");
-  goto L7;
+  goto L6;
 
 L1:
   if (pstat[254] != 0 && pstat[254] != 1 && pstat[254] != 2 && pstat[254] != 3) goto L2;
@@ -68,7 +68,7 @@ L2:
 
 L3:
   speak(Entity.Player, "This won't do.\n");
-  goto L7;
+  goto L6;
 
 L4:
   speak(5, "It's much better. Thank you.\n");
@@ -87,16 +87,15 @@ L4:
   goto L5;
 
 L5:
-  move(entity: 5, to: (-192, -1849), sprint: 1);
-  if (pstat[101] >= 10) goto L6;
-  addPStat(101, 1);
-  playSound(8, 0);
-  delay(15);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  goto L5;
-
-L6:
+  loop {
+    move(entity: 5, to: (-192, -1849), sprint: 1);
+    if (pstat[101] >= 10) break;
+    addPStat(101, 1);
+    playSound(8, 0);
+    delay(15);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+  }
   waitForEntity(5);
   unloadEntity(5);
   setPStat(101, 0);
@@ -104,14 +103,14 @@ L6:
   speak(Entity.System, "Unimon joins the city!\n");
   setTrigger(233);
   addPStat(1, 2);
-  goto L8;
+  goto L7;
 
-L7:
+L6:
   speak(Entity.Player, "I don't have anything to\ntreat your wound.\nI'll get you something.\n");
   speak(5, "I'm sorry, please hurry.\n");
-  goto L8;
+  goto L7;
 
-L8:
+L7:
   return;
 }
 
@@ -133,7 +132,7 @@ L2:
   goto L4;
 
 L3:
-  goto L9;
+  goto L8;
 
 L4:
   speak(Entity.System, "There are some strange\ndrawings on the ground.\n");
@@ -192,16 +191,15 @@ L6:
   goto L7;
 
 L7:
-  move(entity: 6, to: (199, -3166), sprint: 1);
-  if (pstat[101] >= 2) goto L8;
-  addPStat(101, 1);
-  playSound(8, 5);
-  delay(40);
-  look(entity: Entity.Player, at: 6);
-  look(entity: Entity.Partner, at: 6);
-  goto L7;
-
-L8:
+  loop {
+    move(entity: 6, to: (199, -3166), sprint: 1);
+    if (pstat[101] >= 2) break;
+    addPStat(101, 1);
+    playSound(8, 5);
+    delay(40);
+    look(entity: Entity.Player, at: 6);
+    look(entity: Entity.Partner, at: 6);
+  }
   waitForEntity(6);
   unloadEntity(6);
   setPStat(101, 0);
@@ -213,7 +211,7 @@ L8:
   addPStat(1, 3);
   return;
 
-L9:
+L8:
   return;
 }
 

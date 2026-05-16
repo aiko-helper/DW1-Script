@@ -112,15 +112,14 @@ L2:
   goto L3;
 
 L3:
-  move(entity: 6, to: (-105, 1821), sprint: 1);
-  if (pstat[101] >= 3) goto L4;
-  addPStat(101, 1);
-  delay(20);
-  look(entity: Entity.Player, at: 6);
-  look(entity: Entity.Partner, at: 6);
-  goto L3;
-
-L4:
+  loop {
+    move(entity: 6, to: (-105, 1821), sprint: 1);
+    if (pstat[101] >= 3) break;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 6);
+    look(entity: Entity.Partner, at: 6);
+  }
   waitForEntity(6);
   unloadEntity(6);
   setPStat(101, 0);
@@ -150,52 +149,49 @@ L2:
   speak(6, "Wow, you're amazing, man. \nI lost again.\n");
   speak(6, "Well, what can I say.\nHere's your prize.\n");
   roll(pstat: 102, max: 49);
+  loop {
+    if (pstat[102] > 0) goto L3;
+    giveItem(Item.Rooster, 1);
+    setPStat(110, 85);
+    goto L8;
 
 L3:
-  if (pstat[102] > 0) goto L4;
-  giveItem(Item.Rooster, 1);
-  setPStat(110, 85);
-  goto L9;
+    if (pstat[102] > 5) goto L4;
+    giveItem(Item.Restore, 1);
+    setPStat(110, 11);
+    goto L8;
 
 L4:
-  if (pstat[102] > 5) goto L5;
-  giveItem(Item.Restore, 1);
-  setPStat(110, 11);
-  goto L9;
+    if (pstat[102] > 15) goto L5;
+    giveItem(Item.OmniDisk, 1);
+    setPStat(110, 18);
+    goto L8;
 
 L5:
-  if (pstat[102] > 15) goto L6;
-  giveItem(Item.OmniDisk, 1);
-  setPStat(110, 18);
-  goto L9;
+    if (pstat[102] > 22) goto L6;
+    giveItem(Item.GiantMeat, 1);
+    setPStat(110, 39);
+    goto L8;
 
 L6:
-  if (pstat[102] > 22) goto L7;
-  giveItem(Item.GiantMeat, 1);
-  setPStat(110, 39);
-  goto L9;
+    if (pstat[102] > 30) goto L7;
+    giveItem(Item.LargeRecovery, 1);
+    setPStat(110, 2);
+    goto L8;
 
 L7:
-  if (pstat[102] > 30) goto L8;
-  giveItem(Item.LargeRecovery, 1);
-  setPStat(110, 2);
-  goto L9;
+    if (pstat[102] > 50) goto L8;
+    giveItem(Item.MediumMP, 1);
+    setPStat(110, 5);
+    goto L8;
 
 L8:
-  if (pstat[102] > 50) goto L9;
-  giveItem(Item.MediumMP, 1);
-  setPStat(110, 5);
-  goto L9;
-
-L9:
-  if (!trigger(0)) goto L10;
-  speak(6, "You have too many Items!\n");
-  unsetTrigger(3);
-  callSubroutine(0);
-  callSubroutine(13);
-  goto L3;
-
-L10:
+    if (!trigger(0)) break;
+    speak(6, "You have too many Items!\n");
+    unsetTrigger(3);
+    callSubroutine(0);
+    callSubroutine(13);
+  }
   speak(Entity.System, "I got a <LIGHTBLUE><TREASURE ITEM><WHITE>!\n");
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
@@ -269,64 +265,61 @@ L1:
 L2:
   speak(6, "You are good, <LIGHTBLUE><PLAYER><WHITE>!\nHere's the prize\nI promised you!\n");
   roll(pstat: 102, max: 49);
+  loop {
+    if (pstat[102] > 0) goto L3;
+    giveItem(Item.SilverBall, 1);
+    setPStat(110, 103);
+    goto L10;
 
 L3:
-  if (pstat[102] > 0) goto L4;
-  giveItem(Item.SilverBall, 1);
-  setPStat(110, 103);
-  goto L11;
+    if (pstat[102] > 1) goto L4;
+    giveItem(Item.MetalArmor, 1);
+    setPStat(110, 104);
+    goto L10;
 
 L4:
-  if (pstat[102] > 1) goto L5;
-  giveItem(Item.MetalArmor, 1);
-  setPStat(110, 104);
-  goto L11;
+    if (pstat[102] > 2) goto L5;
+    giveItem(Item.Chainsaw, 1);
+    setPStat(110, 105);
+    goto L10;
 
 L5:
-  if (pstat[102] > 2) goto L6;
-  giveItem(Item.Chainsaw, 1);
-  setPStat(110, 105);
-  goto L11;
+    if (pstat[102] > 3) goto L6;
+    giveItem(Item.SmallSpear, 1);
+    setPStat(110, 106);
+    goto L10;
 
 L6:
-  if (pstat[102] > 3) goto L7;
-  giveItem(Item.SmallSpear, 1);
-  setPStat(110, 106);
-  goto L11;
+    if (pstat[102] > 11) goto L7;
+    giveItem(Item.SuperRecovery, 1);
+    setPStat(110, 3);
+    goto L10;
 
 L7:
-  if (pstat[102] > 11) goto L8;
-  giveItem(Item.SuperRecovery, 1);
-  setPStat(110, 3);
-  goto L11;
+    if (pstat[102] > 21) goto L8;
+    giveItem(Item.Restore, 1);
+    setPStat(110, 11);
+    goto L10;
 
 L8:
-  if (pstat[102] > 21) goto L9;
-  giveItem(Item.Restore, 1);
-  setPStat(110, 11);
-  goto L11;
+    if (pstat[102] > 33) goto L9;
+    giveItem(Item.Omnipotent, 1);
+    setPStat(110, 9);
+    goto L10;
 
 L9:
-  if (pstat[102] > 33) goto L10;
-  giveItem(Item.Omnipotent, 1);
-  setPStat(110, 9);
-  goto L11;
+    if (pstat[102] > 49) goto L10;
+    giveItem(Item.Sirloin, 1);
+    setPStat(110, 40);
+    goto L10;
 
 L10:
-  if (pstat[102] > 49) goto L11;
-  giveItem(Item.Sirloin, 1);
-  setPStat(110, 40);
-  goto L11;
-
-L11:
-  if (!trigger(0)) goto L12;
-  speak(6, "You have too many Items.\n");
-  unsetTrigger(3);
-  callSubroutine(0);
-  callSubroutine(13);
-  goto L3;
-
-L12:
+    if (!trigger(0)) break;
+    speak(6, "You have too many Items.\n");
+    unsetTrigger(3);
+    callSubroutine(0);
+    callSubroutine(13);
+  }
   speak(Entity.System, "I got a <LIGHTBLUE><TREASURE ITEM><WHITE>!\n");
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);

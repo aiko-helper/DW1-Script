@@ -2637,102 +2637,101 @@ L12:
   goto L22;
 
 L13:
-  addPStat(38, 1);
-  loadAndSetDigimon(Digimon.Tsunomon, 4, 0);
-  if (pstat[38] != 3) goto L14;
-  return;
+  loop {
+    addPStat(38, 1);
+    loadAndSetDigimon(Digimon.Tsunomon, 4, 0);
+    if (pstat[38] != 3) goto L14;
+    return;
 
 L14:
-  if (!trigger(204)) goto L15;
-  if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L15;
-  addPStat(38, 1);
-  loadAndSetDigimon(Digimon.NPCBetamon, 2, 0);
-  if (pstat[38] != 3) goto L15;
-  return;
+    if (!trigger(204)) goto L15;
+    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L15;
+    addPStat(38, 1);
+    loadAndSetDigimon(Digimon.NPCBetamon, 2, 0);
+    if (pstat[38] != 3) goto L15;
+    return;
 
 L15:
-  roll(pstat: 110, max: 1);
-  if (pstat[110] != 0 || !trigger(235) || !trigger(78)) goto L16;
-  goto L18;
+    roll(pstat: 110, max: 1);
+    if (pstat[110] != 0 || !trigger(235) || !trigger(78)) goto L16;
+    goto L18;
 
 L16:
-  if (!trigger(234)) goto L17;
-  addPStat(38, 1);
-  loadAndSetDigimon(Digimon.NPCOgremon, 7, 0);
+    if (!trigger(234)) goto L17;
+    addPStat(38, 1);
+    loadAndSetDigimon(Digimon.NPCOgremon, 7, 0);
 
 L17:
-  if (pstat[38] != 3) goto L18;
-  return;
+    if (pstat[38] != 3) goto L18;
+    return;
 
 L18:
-  if (!trigger(235) || !trigger(78)) goto L19;
-  addPStat(38, 1);
-  loadAndSetDigimon(Digimon.NPCShellmon, 1, 0);
+    if (!trigger(235) || !trigger(78)) goto L19;
+    addPStat(38, 1);
+    loadAndSetDigimon(Digimon.NPCShellmon, 1, 0);
 
 L19:
-  if (pstat[38] != 3) goto L20;
-  return;
+    if (pstat[38] != 3) goto L20;
+    return;
 
 L20:
-  addPStat(39, 1);
-  if (pstat[39] >= 2) goto L21;
-  goto L22;
+    addPStat(39, 1);
+    if (pstat[39] >= 2) goto L21;
+    goto L22;
 
 L21:
-  return;
+    return;
 
 L22:
-  pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L23;
-  goto L25;
+    pstat[:SavedTime] = time();
+    if (pstat[107] not in 7..19) goto L23;
+    goto L25;
 
 L23:
-  if (!trigger(237) || !trigger(77)) goto L24;
-  addPStat(38, 1);
-  loadAndSetDigimon(Digimon.NPCBakemon, 0, 0);
+    if (!trigger(237) || !trigger(77)) goto L24;
+    addPStat(38, 1);
+    loadAndSetDigimon(Digimon.NPCBakemon, 0, 0);
 
 L24:
-  if (pstat[38] != 3) goto L25;
-  return;
+    if (pstat[38] != 3) goto L25;
+    return;
 
 L25:
-  if (!trigger(218)) goto L26;
-  addPStat(38, 1);
-  loadAndSetDigimon(Digimon.NPCElecmon, 5, 0);
+    if (!trigger(218)) goto L26;
+    addPStat(38, 1);
+    loadAndSetDigimon(Digimon.NPCElecmon, 5, 0);
 
 L26:
-  if (pstat[38] != 3) goto L27;
-  return;
+    if (pstat[38] != 3) goto L27;
+    return;
 
 L27:
-  roll(pstat: 110, max: 1);
-  if (pstat[110] != 0 || !trigger(254)) goto L28;
-  goto L30;
+    roll(pstat: 110, max: 1);
+    if (pstat[110] != 0 || !trigger(254)) goto L28;
+    goto L30;
 
 L28:
-  if (!trigger(232) || !trigger(79)) goto L29;
-  addPStat(38, 1);
-  loadAndSetDigimon(Digimon.NPCKunemon, 3, 0);
+    if (!trigger(232) || !trigger(79)) goto L29;
+    addPStat(38, 1);
+    loadAndSetDigimon(Digimon.NPCKunemon, 3, 0);
 
 L29:
-  if (pstat[38] != 3) goto L30;
-  return;
+    if (pstat[38] != 3) goto L30;
+    return;
 
 L30:
-  if (!trigger(254)) goto L31;
-  addPStat(38, 1);
-  loadAndSetDigimon(Digimon.NPCMegadramon, 6, 0);
+    if (!trigger(254)) goto L31;
+    addPStat(38, 1);
+    loadAndSetDigimon(Digimon.NPCMegadramon, 6, 0);
 
 L31:
-  if (pstat[38] != 3) goto L32;
-  return;
+    if (pstat[38] != 3) goto L32;
+    return;
 
 L32:
-  addPStat(39, 1);
-  if (pstat[39] >= 2) goto L33;
-  goto L13;
-
-L33:
+    addPStat(39, 1);
+    if (pstat[39] >= 2) break;
+  }
   return;
 }
 

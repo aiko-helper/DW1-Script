@@ -10,8 +10,8 @@ section onEnter(254) {
 section(5) {
   speak(5, "I want to beat Kabuterimon.\nWhat do I need to do to win?\n");
   setDialogOwner(Entity.Player);
-  choice { "Hmm. You gotta get stronger." -> L1, "Actually, there is a sure fire" -> L2, "way.... well, hang in there." -> L5 }
-  goto L5;
+  choice { "Hmm. You gotta get stronger." -> L1, "Actually, there is a sure fire" -> L2, "way.... well, hang in there." -> L4 }
+  goto L4;
 
 L1:
   speak(5, "I see. Alright, I'll train.\n");
@@ -28,15 +28,14 @@ L2:
   goto L3;
 
 L3:
-  move(entity: 5, to: (664, -1963), sprint: 1);
-  if (pstat[101] >= 3) goto L4;
-  addPStat(101, 1);
-  delay(20);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  goto L3;
-
-L4:
+  loop {
+    move(entity: 5, to: (664, -1963), sprint: 1);
+    if (pstat[101] >= 3) break;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 5);
+    look(entity: Entity.Partner, at: 5);
+  }
   waitForEntity(5);
   unloadEntity(5);
   setPStat(101, 0);
@@ -46,7 +45,7 @@ L4:
   addPStat(1, 2);
   return;
 
-L5:
+L4:
   speak(5, "Man, you're not nice.\nI'm disappointed!\n");
   return;
 }

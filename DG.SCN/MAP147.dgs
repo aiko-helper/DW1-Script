@@ -48,8 +48,8 @@ section(9) {
   showTextbox("I'm MetalMamemon, unbeaten\nin ninety nine battles!\nYou will be one hundred!\n");
   showTextbox("I don't believe anyone like\n<LIGHTBLUE><PLAYER><WHITE>would run away.\n");
   setDialogOwner(Entity.Player);
-  choice { "OK, let's fight" -> L1, "Sorry, laters" -> L4 }
-  goto L4;
+  choice { "OK, let's fight" -> L1, "Sorry, laters" -> L3 }
+  goto L3;
 
 L1:
   setTrigger(1);
@@ -70,15 +70,14 @@ L1:
   goto L2;
 
 L2:
-  move(entity: 9, to: (-3120, 1836), sprint: 1);
-  if (pstat[101] >= 3) goto L3;
-  addPStat(101, 1);
-  delay(20);
-  look(entity: Entity.Player, at: 9);
-  look(entity: Entity.Partner, at: 9);
-  goto L2;
-
-L3:
+  loop {
+    move(entity: 9, to: (-3120, 1836), sprint: 1);
+    if (pstat[101] >= 3) break;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 9);
+    look(entity: Entity.Partner, at: 9);
+  }
   waitForEntity(9);
   unloadEntity(9);
   setPStat(101, 0);
@@ -91,20 +90,19 @@ L3:
   waitForEntity(200);
   return;
 
-L4:
+L3:
   speak(9, "I knew you would chicken out.\nWell, let's meet when you\nget more guts.\n");
-  goto L5;
+  goto L4;
 
-L5:
-  move(entity: 9, to: (-3120, 1836), sprint: 1);
-  if (pstat[101] >= 3) goto L6;
-  addPStat(101, 1);
-  delay(20);
-  look(entity: Entity.Player, at: 9);
-  look(entity: Entity.Partner, at: 9);
-  goto L5;
-
-L6:
+L4:
+  loop {
+    move(entity: 9, to: (-3120, 1836), sprint: 1);
+    if (pstat[101] >= 3) break;
+    addPStat(101, 1);
+    delay(20);
+    look(entity: Entity.Player, at: 9);
+    look(entity: Entity.Partner, at: 9);
+  }
   waitForEntity(9);
   unloadEntity(9);
   setPStat(101, 0);
