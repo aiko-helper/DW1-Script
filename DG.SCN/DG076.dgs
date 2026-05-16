@@ -114,17 +114,7 @@ section(51) {
   goto L1;
 
 L1:
-  loop {
-    move(entity: 5, to: (-293, 1172), sprint: 1);
-    if (pstat[101] >= 3) break;
-    addPStat(PStat.LoopIterator, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
-  }
-  waitForEntity(5);
-  unloadEntity(5);
-  setPStat(PStat.LoopIterator, 0);
+  approach(who: 5, x: -293, y: 1172, tries: 3, wait: 20);
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
   return;

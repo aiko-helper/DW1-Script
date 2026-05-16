@@ -96,17 +96,7 @@ L2:
   goto L3;
 
 L3:
-  loop {
-    move(entity: 11, to: (0, 0), sprint: 1);
-    if (pstat[101] >= 3) break;
-    addPStat(PStat.LoopIterator, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 11);
-    look(entity: Entity.Partner, at: 11);
-  }
-  waitForEntity(11);
-  unloadEntity(11);
-  setPStat(PStat.LoopIterator, 0);
+  approach(who: 11, x: 0, y: 0, tries: 3, wait: 20);
   speak(Entity.Player, "Did we win?\n");
   setTrigger(254);
   addPStat(1, 3);

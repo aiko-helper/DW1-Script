@@ -89,17 +89,7 @@ L1:
   goto L2;
 
 L2:
-  loop {
-    move(entity: 9, to: (-174, -388), sprint: 1);
-    if (pstat[101] >= 3) break;
-    addPStat(PStat.LoopIterator, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 9);
-    look(entity: Entity.Partner, at: 9);
-  }
-  waitForEntity(9);
-  unloadEntity(9);
-  setPStat(PStat.LoopIterator, 0);
+  approach(who: 9, x: -174, y: -388, tries: 3, wait: 20);
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
   speak(Entity.Player, "Wait, what is it?\n");

@@ -112,17 +112,7 @@ L2:
   goto L3;
 
 L3:
-  loop {
-    move(entity: 6, to: (-105, 1821), sprint: 1);
-    if (pstat[101] >= 3) break;
-    addPStat(PStat.LoopIterator, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 6);
-    look(entity: Entity.Partner, at: 6);
-  }
-  waitForEntity(6);
-  unloadEntity(6);
-  setPStat(PStat.LoopIterator, 0);
+  approach(who: 6, x: -105, y: 1821, tries: 3, wait: 20);
   playSound(8, 11);
   speak(Entity.System, "Penguinmon joins the city!\n");
   moveCamera(to: Entity.Player, speed: 10);

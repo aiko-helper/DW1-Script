@@ -99,17 +99,7 @@ L4:
   goto L5;
 
 L5:
-  loop {
-    move(entity: 7, to: (170, 1863), sprint: 1);
-    if (pstat[101] >= 3) break;
-    addPStat(PStat.LoopIterator, 1);
-    delay(18);
-    look(entity: Entity.Player, at: 7);
-    look(entity: Entity.Partner, at: 7);
-  }
-  waitForEntity(7);
-  unloadEntity(7);
-  setPStat(PStat.LoopIterator, 0);
+  approach(who: 7, x: 170, y: 1863, tries: 3, wait: 18);
   moveCamera(to: Entity.Player, speed: 10);
   playSound(8, 11);
   speak(Entity.System, "Palmon joins the city!\n");

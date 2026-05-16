@@ -59,17 +59,7 @@ L1:
   goto L2;
 
 L2:
-  loop {
-    move(entity: 5, to: (3800, -3100), sprint: 1);
-    if (pstat[101] >= 10) break;
-    addPStat(PStat.LoopIterator, 1);
-    delay(10);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
-  }
-  waitForEntity(5);
-  unloadEntity(5);
-  setPStat(PStat.LoopIterator, 0);
+  approach(who: 5, x: 3800, y: -3100, tries: 10, wait: 10);
   playSound(8, 8);
   speak(Entity.System, "Mamemon joins the city!\n");
   unsetTrigger(1);
@@ -84,17 +74,7 @@ L3:
   goto L4;
 
 L4:
-  loop {
-    move(entity: 5, to: (3800, -3100), sprint: 1);
-    if (pstat[101] >= 10) break;
-    addPStat(PStat.LoopIterator, 1);
-    delay(10);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
-  }
-  waitForEntity(5);
-  unloadEntity(5);
-  setPStat(PStat.LoopIterator, 0);
+  approach(who: 5, x: 3800, y: -3100, tries: 10, wait: 10);
   return;
 }
 

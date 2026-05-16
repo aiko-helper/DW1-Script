@@ -108,17 +108,7 @@ L3:
   goto L4;
 
 L4:
-  loop {
-    move(entity: 5, to: (-171, -2105), sprint: 1);
-    if (pstat[101] >= 6) break;
-    addPStat(PStat.LoopIterator, 1);
-    delay(10);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
-  }
-  waitForEntity(5);
-  unloadEntity(5);
-  setPStat(PStat.LoopIterator, 0);
+  approach(who: 5, x: -171, y: -2105, tries: 6, wait: 10);
   playSound(8, 5);
   speak(Entity.System, "Elecmon joins the city!\n");
   setTrigger(218);

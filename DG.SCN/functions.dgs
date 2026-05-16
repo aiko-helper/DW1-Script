@@ -277,3 +277,25 @@ function learnMoves(moves: Move[]) {
     learnMove(m);
   }
 }
+
+// Stereotyped "NPC walks up to the camera, party watches, then despawns" routine. 
+// Drives `who` toward (x, y) up to `tries` times, waiting `wait` ticks between 
+// attempts; the player and partner turn to track it; finally waits for `who` to 
+// settle, unloads it, and resets the retry counter. 
+//
+// Parameter names avoid the macro-expansion shadowing trap: `entity` and
+// `delay` would textually replace the named-arg label and the opcode name
+// inside the body. (This is a compiler bug)
+function approach(who: Entity, x, y, tries, wait) {
+  loop {
+    move(entity: who, to: (x, y), sprint: 1);
+    if (pstat[101] >= tries) break;
+    addPStat(101, 1);
+    delay(wait);
+    look(entity: Entity.Player, at: who);
+    look(entity: Entity.Partner, at: who);
+  }
+  waitForEntity(who);
+  unloadEntity(who);
+  setPStat(101, 0);
+}

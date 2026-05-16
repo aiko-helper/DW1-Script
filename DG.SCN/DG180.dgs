@@ -112,17 +112,7 @@ section(6) {
   goto L1;
 
 L1:
-  loop {
-    move(entity: 6, to: (-137, 34), sprint: 1);
-    if (pstat[101] >= 6) break;
-    addPStat(PStat.LoopIterator, 1);
-    delay(10);
-    look(entity: Entity.Player, at: 6);
-    look(entity: Entity.Partner, at: 6);
-  }
-  waitForEntity(6);
-  unloadEntity(6);
-  setPStat(PStat.LoopIterator, 0);
+  approach(who: 6, x: -137, y: 34, tries: 6, wait: 10);
   playSound(8, 10);
   speak(Entity.System, "Numemon joins the city!\n");
   moveCamera(to: Entity.Player, speed: 10);

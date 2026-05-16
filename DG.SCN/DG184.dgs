@@ -47,17 +47,7 @@ L2:
   goto L3;
 
 L3:
-  loop {
-    move(entity: 8, to: (0, -2500), sprint: 1);
-    if (pstat[101] >= 3) break;
-    addPStat(PStat.LoopIterator, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 8);
-    look(entity: Entity.Partner, at: 8);
-  }
-  waitForEntity(8);
-  unloadEntity(8);
-  setPStat(PStat.LoopIterator, 0);
+  approach(who: 8, x: 0, y: -2500, tries: 3, wait: 20);
   playSound(8, 0);
   speak(Entity.System, "Digitamamon joins the city!\n");
   moveCamera(to: Entity.Player, speed: 10);

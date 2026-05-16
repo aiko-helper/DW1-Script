@@ -112,17 +112,7 @@ L14:
   goto L15;
 
 L15:
-  loop {
-    move(entity: 7, to: (-1300, -1351), sprint: 1);
-    if (pstat[101] >= 3) break;
-    addPStat(PStat.LoopIterator, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 7);
-    look(entity: Entity.Partner, at: 7);
-  }
-  waitForEntity(7);
-  unloadEntity(7);
-  setPStat(PStat.LoopIterator, 0);
+  approach(who: 7, x: -1300, y: -1351, tries: 3, wait: 20);
   playSound(8, 11);
   speak(Entity.System, "Mojyamon joins the city!\n");
   setTrigger(252);

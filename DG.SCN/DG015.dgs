@@ -229,17 +229,7 @@ L12:
   goto L13;
 
 L13:
-  loop {
-    move(entity: 6, to: (911, -2266), sprint: 1);
-    if (pstat[101] >= 10) break;
-    addPStat(PStat.LoopIterator, 1);
-    delay(10);
-    look(entity: Entity.Player, at: 6);
-    look(entity: Entity.Partner, at: 6);
-  }
-  waitForEntity(6);
-  unloadEntity(6);
-  setPStat(PStat.LoopIterator, 0);
+  approach(who: 6, x: 911, y: -2266, tries: 10, wait: 10);
   playSound(8, 3);
   speak(Entity.System, "Vegiemon joins the city!\n");
   moveCamera(to: Entity.Player, speed: 10);

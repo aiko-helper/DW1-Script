@@ -143,17 +143,7 @@ section(60) {
   goto L1;
 
 L1:
-  loop {
-    move(entity: 8, to: (-40, -2800), sprint: 1);
-    if (pstat[101] >= 3) break;
-    addPStat(PStat.LoopIterator, 1);
-    delay(20);
-    look(entity: Entity.Player, at: 8);
-    look(entity: Entity.Partner, at: 8);
-  }
-  waitForEntity(8);
-  unloadEntity(8);
-  setPStat(PStat.LoopIterator, 0);
+  approach(who: 8, x: -40, y: -2800, tries: 3, wait: 20);
   playAnimation(Entity.Player, 16);
   delay(40);
   speak(Entity.Player, "The curse of Analogman!\nDon't worry, it'll be OK.\n");
