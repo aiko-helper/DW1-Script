@@ -292,7 +292,7 @@ function finishEncounter(trigger) {
   return;
 }
 
-function anim(e: Entity, a, wait) {
+function anim(e: Entity, a, [PreferNamed] wait) {
   playAnimation(e, a);
   delay(wait);
 }
@@ -319,12 +319,12 @@ function setObjectsVisibleRange(start, end, vis) {
   }
 }
 
-function sfx(sound, channel, wait) {
+function sfx(sound, channel, [PreferNamed] wait) {
   playSound(sound, channel);
   delay(wait);
 }
 
-function approach(who: Entity, x, y, tries, wait) {
+function approach(who: Entity, [PreferNamed] x, [PreferNamed] y, [PreferNamed] tries, [PreferNamed] wait) {
   loop {
     move(entity: who, to: (x, y), sprint: 1);
     if (pstat[101] >= tries) break;
