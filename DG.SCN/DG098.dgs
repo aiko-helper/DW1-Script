@@ -20,23 +20,17 @@ section(51) {
 
 section(5) {
   speak(5, "Shouldn't you go home?\n");
-  startBattle();
-  setTrigger(294);
-  return;
+  finishEncounter(294);
 }
 
 section(6) {
   speak(6, "Go home!\n");
-  startBattle();
-  setTrigger(272);
-  return;
+  finishEncounter(272);
 }
 
 section(7) {
   speak(7, "You should go back!\n");
-  startBattle();
-  setTrigger(272);
-  return;
+  finishEncounter(272);
 }
 
 section(52) {
@@ -45,8 +39,7 @@ section(52) {
 
 L1:
   playAnimation(Entity.Player, 22);
-  playSound(8, 9);
-  delay(15);
+  sfx(8, 9, wait: 15);
   speak(Entity.Player, "Oh, it's so blinding!\n");
   playAnimation(Entity.Player, 0);
   setPStat(254, 40);
@@ -58,11 +51,9 @@ L1:
   setObjectVisibility(0, 1);
   callSubroutine(46);
   delay(40);
-  playAnimation(Entity.Player, 24);
-  delay(15);
+  anim(Entity.Player, 24, wait: 15);
   speak(Entity.Player, "What was that?  The light is\ngone. There's nothing else\nhere. That means it's above?!\n");
-  playAnimation(Entity.Player, 23);
-  delay(15);
+  anim(Entity.Player, 23, wait: 15);
   playAnimation(Entity.Player, 0);
   setTrigger(322);
   return;

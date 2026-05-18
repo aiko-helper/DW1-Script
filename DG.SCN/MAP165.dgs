@@ -38,9 +38,7 @@ L1:
 
 L2:
   speak(Entity.Player, "I have too many Items.\n");
-  setTrigger(3);
-  callSubroutine(0);
-  callSubroutine(13);
+  inventoryFullBailout();
   giveItem(Item.ChainMelon, 1);
 
 L3:
@@ -77,8 +75,7 @@ section(20) {
   delay(20);
   addStats(currentHP: 9999, currentMP: 9999);
   unsetTrigger(1);
-  playAnimation(5, 29);
-  delay(5);
+  anim(5, 29, wait: 5);
   speak(5, "You woke up. I'm so sorry.\n");
   playAnimation(5, 0);
   return;

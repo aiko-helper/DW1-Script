@@ -286,6 +286,44 @@ function learnMoves(moves: Move[]) {
 // Parameter names avoid the macro-expansion shadowing trap: `entity` and
 // `delay` would textually replace the named-arg label and the opcode name
 // inside the body. (This is a compiler bug)
+function finishEncounter(trigger) {
+  startBattle();
+  setTrigger(trigger);
+  return;
+}
+
+function anim(e: Entity, a, wait) {
+  playAnimation(e, a);
+  delay(wait);
+}
+
+function inventoryFullBailout() {
+  setTrigger(3);
+  callSubroutine(0);
+  callSubroutine(13);
+}
+
+function waitForPair() {
+  waitForEntity(Entity.Player);
+  waitForEntity(Entity.Partner);
+}
+
+function lookPairAt(target) {
+  look(entity: Entity.Player, at: target);
+  look(entity: Entity.Partner, at: target);
+}
+
+function setObjectsVisibleRange(start, end, vis) {
+  for id in start..end {
+    setObjectVisibility(id, vis);
+  }
+}
+
+function sfx(sound, channel, wait) {
+  playSound(sound, channel);
+  delay(wait);
+}
+
 function approach(who: Entity, x, y, tries, wait) {
   loop {
     move(entity: who, to: (x, y), sprint: 1);

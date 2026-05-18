@@ -10,26 +10,21 @@ section onEnter(254) {
 section(5) {
   move(entity: Entity.Player, to: (-77, 119), sprint: 0, withCamera: true);
   move(entity: Entity.Partner, to: (397, 151), sprint: 0);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
+  waitForPair();
+  lookPairAt(5);
   delay(10);
   moveCamera(to: (-400, 2100), slowdown: 20);
   waitForEntity(200);
   playSound(8, 1);
   speak(5, " <LIGHTBLUE><PLAYER><WHITE> and <ORANGE><DIGIMON><WHITE>,\nright? Thanks for coming\nto Volume Villa!\n");
-  playAnimation(Entity.Player, 22);
-  delay(20);
+  anim(Entity.Player, 22, wait: 20);
   speak(Entity.Player, "I'm sorry for what\nwe did to Otamamon.\n");
   playAnimation(Entity.Player, 0);
   speak(5, "Never mind.\n");
-  playAnimation(Entity.Player, 23);
-  delay(20);
+  anim(Entity.Player, 23, wait: 20);
   speak(Entity.Player, "Huh?\n");
   playAnimation(Entity.Player, 0);
-  playAnimation(5, 5);
-  delay(38);
+  anim(5, 5, wait: 38);
   playAnimation(5, 0);
   speak(5, "I'm grateful. I heard that\nyou've been working hard\nto save this island.\n");
   speak(Entity.Player, "You did?\n");
@@ -48,16 +43,13 @@ L2:
   goto L4;
 
 L3:
-  playAnimation(Entity.Player, 16);
-  delay(20);
+  anim(Entity.Player, 16, wait: 20);
   speak(Entity.Player, "Cherrymon? I've never heard\nof such a Digimon.\n");
   speak(5, "Cherrymon makes the fog\nin Misty Trees.\n");
   showTextbox("He created fog to protect\nthe forest from danger.\n");
-  playAnimation(Entity.Player, 25);
-  delay(20);
+  anim(Entity.Player, 25, wait: 20);
   speak(Entity.Player, "But that's a problem for us.\n");
-  playAnimation(5, 5);
-  delay(38);
+  anim(5, 5, wait: 38);
   playAnimation(5, 0);
   speak(5, "I think Cherrymon knows\nsomething about the cause\nof the island's trouble.\n");
   showTextbox("It's worth going thru\nthe fog to see him.\n");
@@ -67,20 +59,16 @@ L3:
   speak(Entity.Player, "What's gonna happen?\n");
   speak(5, "You'll be able to see\nthe road even in the fog.\n");
   playAnimation(5, 0);
-  playAnimation(Entity.Player, 19);
-  delay(20);
+  anim(Entity.Player, 19, wait: 20);
   speak(Entity.Player, "Oh, that's good!\n");
   speak(5, "OK, then I'll start.\n");
   speak(5, "Ribbit, ribbit!\n");
   playAnimation(5, 31);
-  playSound(8, 0);
-  delay(70);
+  sfx(8, 0, wait: 70);
   playAnimation(5, 0);
-  playAnimation(Entity.Player, 15);
-  delay(30);
+  anim(Entity.Player, 15, wait: 30);
   speak(5, "Good. That's perfect.\nNow, go to Misty Trees.\n");
-  playAnimation(5, 30);
-  delay(55);
+  anim(5, 30, wait: 55);
   playAnimation(5, 0);
   setTrigger(319);
   setTrigger(114);
@@ -103,13 +91,11 @@ L4:
 L5:
   giveItem(Item.Digiseabass, 1);
   speak(5, "It's a very rare thing.\nIt'll be useful to you.\n");
-  playAnimation(Entity.Player, 19);
-  delay(20);
+  anim(Entity.Player, 19, wait: 20);
   speak(Entity.Player, "Thanks. So why don't you\ncome to the city, Shogun?\n");
   speak(5, "I'm chief of a hund Gekomon\nin Geko Swamp. I'm sorry,\nbut I can't come with you.\n");
   showTextbox("But instead, I'll do\nanything I can from here.\nCome anytime you want.\n");
-  playAnimation(5, 30);
-  delay(55);
+  anim(5, 30, wait: 55);
   playAnimation(5, 0);
   setTrigger(319);
   moveCamera(to: Entity.Player, speed: 10);
@@ -118,8 +104,7 @@ L5:
 }
 
 section(81) {
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
+  lookPairAt(5);
   delay(10);
   moveCamera(to: (-400, 2100), slowdown: 20);
   waitForEntity(200);

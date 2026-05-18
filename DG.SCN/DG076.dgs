@@ -21,30 +21,22 @@ L2:
 
 section(6) {
   speak(6, "Taaa!\n");
-  startBattle();
-  setTrigger(288);
-  return;
+  finishEncounter(288);
 }
 
 section(7) {
   speak(7, "Alright, take that!\n");
-  startBattle();
-  setTrigger(288);
-  return;
+  finishEncounter(288);
 }
 
 section(8) {
   speak(8, "Shaaaa!\n");
-  startBattle();
-  setTrigger(267);
-  return;
+  finishEncounter(267);
 }
 
 section(9) {
   speak(9, "Buooon!\n");
-  startBattle();
-  setTrigger(267);
-  return;
+  finishEncounter(267);
 }
 
 section(51) {
@@ -52,13 +44,11 @@ section(51) {
   move(entity: 5, to: (-421, 374), sprint: 1);
   waitForEntity(5);
   look(entity: 5, at: Entity.Player);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
+  lookPairAt(5);
   waitForEntity(5);
   playSound(8, 10);
   speak(5, "Who are you? I won't let\nanyone mess up this place!\n");
-  playAnimation(Entity.Player, 19);
-  delay(15);
+  anim(Entity.Player, 19, wait: 15);
   speak(Entity.Player, "Don't worry. We're just\ntravelling through\nto save the island.\n");
   playAnimation(Entity.Player, 0);
   playSound(8, 10);
@@ -82,8 +72,7 @@ section(51) {
   look(entity: 5, at: Entity.Player);
   look(entity: Entity.Partner, at: 5);
   speak(5, "Are you by any chance...?\n");
-  playAnimation(Entity.Player, 7);
-  delay(15);
+  anim(Entity.Player, 7, wait: 15);
   speak(Entity.Player, "I told you so!\n");
   playAnimation(Entity.Player, 0);
   speak(5, "I'm sorry. We don't get\nvisitors often, so I get\nexcited about my new job.\n");
@@ -94,8 +83,7 @@ section(51) {
   speak(5, "Ancient Dino Region is\ndivided in two sections.\n");
   showTextbox("Where we live is called\nGlacial Time Zone.\n");
   showTextbox("It's a special place\nwhere time goes slow.\n");
-  playAnimation(Entity.Player, 16);
-  delay(15);
+  anim(Entity.Player, 16, wait: 15);
   speak(Entity.Player, "Time goes slow?\n");
   playAnimation(Entity.Player, 0);
   speak(5, "The other place is\nSpeedy Time Zone.\n");

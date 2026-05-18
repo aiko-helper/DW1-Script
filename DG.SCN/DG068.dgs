@@ -23,9 +23,7 @@ L3:
   goto L5;
 
 L4:
-  for id in 38..40 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(38, 40, 1);
 
 L5:
   return;
@@ -44,8 +42,7 @@ L1:
   callSubroutine(21);
   spawnSpriteAtEntity(5, 10498);
   playSound(8, 0);
-  playAnimation(Entity.Partner, 40);
-  delay(3);
+  anim(Entity.Partner, 40, wait: 3);
   playAnimation(Entity.Player, 17);
   look(entity: 5, at: Entity.Player);
   waitForEntity(5);
@@ -67,8 +64,7 @@ L2:
   callSubroutine(21);
   spawnSpriteAtEntity(5, 10498);
   playSound(8, 0);
-  playAnimation(Entity.Partner, 40);
-  delay(3);
+  anim(Entity.Partner, 40, wait: 3);
   playAnimation(Entity.Player, 17);
   look(entity: 5, at: Entity.Player);
   waitForEntity(5);
@@ -90,8 +86,7 @@ L3:
   callSubroutine(21);
   spawnSpriteAtEntity(5, 10498);
   playSound(8, 0);
-  playAnimation(Entity.Partner, 40);
-  delay(3);
+  anim(Entity.Partner, 40, wait: 3);
   playAnimation(Entity.Player, 17);
   look(entity: 5, at: Entity.Player);
   waitForEntity(5);
@@ -120,44 +115,32 @@ L4:
 
 section(6) {
   speak(6, "Ugghh!\n");
-  startBattle();
-  setTrigger(295);
-  return;
+  finishEncounter(295);
 }
 
 section(7) {
   speak(7, "Ahhh!\n");
-  startBattle();
-  setTrigger(295);
-  return;
+  finishEncounter(295);
 }
 
 section(8) {
   speak(8, "You're dead meat!\n");
-  startBattle();
-  setTrigger(297);
-  return;
+  finishEncounter(297);
 }
 
 section(9) {
   speak(9, "Not Bad.\n");
-  startBattle();
-  setTrigger(282);
-  return;
+  finishEncounter(282);
 }
 
 section(10) {
   speak(10, "You got poor taste.\n");
-  startBattle();
-  setTrigger(282);
-  return;
+  finishEncounter(282);
 }
 
 section(11) {
   speak(11, "You're cocky! I'll teach you.\n");
-  startBattle();
-  setTrigger(295);
-  return;
+  finishEncounter(295);
 }
 
 section(51) {

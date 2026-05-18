@@ -10,8 +10,7 @@ section onEnter(254) {
 
 section(81) {
   rotate3DObject(1, 1);
-  playSound(8, 1);
-  delay(10);
+  sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (336, 1300), sprint: 0);
   warp(to: Map.YAKA22, spawn: 0, trigger: 255);
   return;
@@ -20,11 +19,9 @@ section(81) {
 section(82) {
   if (trigger(117)) goto L1;
   rotate(entity: Entity.Player, to: 3072);
+  sfx(8, 2, wait: 5);
   playSound(8, 2);
-  delay(5);
-  playSound(8, 2);
-  playAnimation(Entity.Player, 16);
-  delay(15);
+  anim(Entity.Player, 16, wait: 15);
   speak(Entity.Player, "I think it's locked.\n");
   playAnimation(Entity.Player, 0);
   showTextbox("Will the knob open?\n");
@@ -34,8 +31,7 @@ section(82) {
 
 L1:
   rotate3DObject(0, 1);
-  playSound(8, 1);
-  delay(10);
+  sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (1700, 226), sprint: 0);
   warp(to: Map.YAKA11B, spawn: 2, trigger: 255);
   return;
@@ -44,16 +40,14 @@ L1:
 section(52) {
   if (trigger(132)) goto L1;
   playAnimation(Entity.Player, 18);
-  playAnimation(Entity.Partner, 43);
-  delay(20);
+  anim(Entity.Partner, 43, wait: 20);
   playAnimation(Entity.Partner, 44);
   setPStat(200, 30);
   dealMapDamage(200);
   setPStat(254, 253);
   callSubroutine(55);
   speak(Entity.Player, "Are you alright, <ORANGE><DIGIMON><WHITE>?\n");
-  playAnimation(Entity.Player, 24);
-  delay(15);
+  anim(Entity.Player, 24, wait: 15);
   showTextbox("What kind of place is this?\n");
   playAnimation(Entity.Player, 0);
   move(entity: Entity.Player, to: (150, -340), sprint: 0, withCamera: true);

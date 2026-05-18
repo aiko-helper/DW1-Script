@@ -9,8 +9,7 @@ section onEnter(254) {
 
 section(81) {
   rotate3DObject(0, 1);
-  playSound(8, 1);
-  delay(10);
+  sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (1110, -2300), sprint: 0);
   warp(to: Map.YAKA23, spawn: 1, trigger: 255);
   return;
@@ -18,14 +17,11 @@ section(81) {
 
 section(82) {
   speak(Entity.Player, "Here it is!\n");
-  for id in 0..57 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(0, 57, 0);
   setPStat(247, 0);
   setPStat(248, 57);
   callSubroutine(21);
-  playSound(8, 7);
-  delay(35);
+  sfx(8, 7, wait: 35);
   move(entity: Entity.Player, to: (750, 0), sprint: 0);
   delay(10);
   warp(to: Map.CHKA01, spawn: 0, trigger: 255);

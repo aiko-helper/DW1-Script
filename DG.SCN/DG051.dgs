@@ -12,8 +12,7 @@ section(57) {
   setTrigger(360);
   loadAndSetDigimon(Digimon.Devimon, 0, 0);
   setDialogOwner(Entity.Player);
-  playAnimation(Entity.Player, 25);
-  delay(15);
+  anim(Entity.Player, 25, wait: 15);
   showTextbox("I got a bad feeling....\n");
   playAnimation(Entity.Player, 0);
   look(entity: Entity.Player, at: 5);
@@ -23,23 +22,19 @@ section(57) {
   speak(5, "I knew you'd come!\n");
   move(entity: Entity.Player, to: (-150, -239), sprint: 1);
   move(entity: Entity.Partner, to: (150, -239), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
+  waitForPair();
+  lookPairAt(5);
   delay(5);
   speak(Entity.Player, "Who are you?\n");
   speak(5, "I'm Devimon, a dark angel.\nI hold the power of darkness.\n");
   speak(Entity.Player, "Do you know something?\n");
   speak(5, "Myotismon, is in the mansion.\nMaybe he's alive.\n");
-  playAnimation(Entity.Player, 20);
-  delay(15);
+  anim(Entity.Player, 20, wait: 15);
   speak(Entity.Player, "Did you do this?\n");
   playAnimation(Entity.Player, 0);
   speak(5, "I don't know...all I know\nis that you're my enemy.\n");
   playAnimation(5, 28);
-  playSound(8, 8);
-  delay(20);
+  sfx(8, 8, wait: 20);
   speak(Entity.Player, "You won't get away!\n");
   move(entity: Entity.Player, to: (-150, 921), sprint: 1);
   move(entity: Entity.Partner, to: (150, 721), sprint: 1);
@@ -99,16 +94,13 @@ L1:
   waitForEntity(200);
   rotate(entity: Entity.Player, to: 2048);
   rotate(entity: Entity.Partner, to: 2048);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   speak(Entity.Player, "What a big mansion!\n");
   move(entity: Entity.Player, to: (-6, -1255), sprint: 0, withCamera: true);
   waitForEntity(Entity.Player);
-  playAnimation(Entity.Player, 24);
-  delay(15);
+  anim(Entity.Player, 24, wait: 15);
   speak(Entity.Player, "Anybody home?\n");
-  playAnimation(Entity.Player, 0);
-  delay(40);
+  anim(Entity.Player, 0, wait: 40);
   look(entity: Entity.Player, at: Entity.Partner);
   waitForEntity(Entity.Player);
   look(entity: Entity.Partner, at: Entity.Player);
@@ -140,16 +132,14 @@ section(84) {
 L1:
   if (item[Item.MansionKey] >= 1 || trigger(111)) goto L2;
   rotate(entity: Entity.Player, to: 1024);
-  playSound(8, 2);
-  delay(5);
+  sfx(8, 2, wait: 5);
   playSound(8, 2);
   speak(Entity.System, "It doesn't open.\nIt's locked.\n");
   return;
 
 L2:
   rotate3DObject(4, 1);
-  playSound(8, 1);
-  delay(10);
+  sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (-2000, 1433), sprint: 0);
   warp(to: Map.YAKA13, spawn: 1, trigger: 255);
   return;
@@ -166,16 +156,14 @@ section(85) {
 L1:
   if (item[Item.MansionKey] >= 1 || trigger(113)) goto L2;
   rotate(entity: Entity.Player, to: 1024);
-  playSound(8, 2);
-  delay(5);
+  sfx(8, 2, wait: 5);
   playSound(8, 2);
   speak(Entity.System, "It doesn't open.\nIt's locked.\n");
   return;
 
 L2:
   rotate3DObject(5, 1);
-  playSound(8, 1);
-  delay(10);
+  sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (-2000, -882), sprint: 0);
   warp(to: Map.YAKA13, spawn: 2, trigger: 255);
   return;
@@ -192,16 +180,14 @@ section(82) {
 L1:
   if (item[Item.MansionKey] >= 1 || trigger(123)) goto L2;
   rotate(entity: Entity.Player, to: 3072);
-  playSound(8, 2);
-  delay(5);
+  sfx(8, 2, wait: 5);
   playSound(8, 2);
   speak(Entity.System, "It doesn't open.\nIt's locked.\n");
   return;
 
 L2:
   rotate3DObject(2, 1);
-  playSound(8, 1);
-  delay(10);
+  sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (2000, 1171), sprint: 0);
   warp(to: Map.YAKA17, spawn: 0, trigger: 255);
   return;
@@ -217,16 +203,14 @@ section(58) {
 section(81) {
   if (trigger(360)) goto L1;
   rotate(entity: Entity.Player, to: 3072);
-  playSound(8, 2);
-  delay(5);
+  sfx(8, 2, wait: 5);
   playSound(8, 2);
   speak(Entity.System, "It doesn't open. It's sealed\nwith a weird force.\n");
   return;
 
 L1:
   rotate3DObject(1, 1);
-  playSound(8, 1);
-  delay(10);
+  sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (2000, -722), sprint: 0);
   warp(to: Map.YAKA18, spawn: 0, trigger: 255);
   return;
@@ -234,8 +218,7 @@ L1:
 
 section(83) {
   rotate3DObject(3, 1);
-  playSound(8, 1);
-  delay(10);
+  sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (1005, 3000), sprint: 0);
   warp(to: Map.YAKA15, spawn: 2, trigger: 255);
   return;

@@ -33,49 +33,36 @@ L5:
 
 section(6) {
   speak(6, "Ha! You're scared.\n");
-  startBattle();
-  setTrigger(296);
-  return;
+  finishEncounter(296);
 }
 
 section(7) {
   speak(7, "You'd better go home!\n");
-  startBattle();
-  setTrigger(296);
-  return;
+  finishEncounter(296);
 }
 
 section(8) {
   speak(8, "Once you go in,\nyou can't come out.\n");
-  startBattle();
-  setTrigger(296);
-  return;
+  finishEncounter(296);
 }
 
 section(9) {
   speak(9, "Heh, heh!\n");
-  startBattle();
-  setTrigger(307);
-  return;
+  finishEncounter(307);
 }
 
 section(10) {
   speak(10, "Wait.\n");
-  startBattle();
-  setTrigger(307);
-  return;
+  finishEncounter(307);
 }
 
 section(11) {
   speak(11, "You'll be possessed.\n");
-  startBattle();
-  setTrigger(307);
-  return;
+  finishEncounter(307);
 }
 
 section(5) {
-  playAnimation(5, 11);
-  delay(50);
+  anim(5, 11, wait: 50);
   playAnimation(5, 0);
   speak(5, "Bakke-bakke?\n");
   playAnimation(Entity.Player, 16);
@@ -85,8 +72,7 @@ section(5) {
   showTextbox("?...Yes\n?...No\n");
 
 L1:
-  playAnimation(5, 11);
-  delay(45);
+  anim(5, 11, wait: 45);
   playAnimation(5, 0);
   speak(5, "Bakke! Bakke bakke?\n");
   setDialogOwner(Entity.Player);
@@ -94,8 +80,7 @@ L1:
   showTextbox("Yes\nNo\n");
 
 L2:
-  playAnimation(5, 12);
-  delay(58);
+  anim(5, 12, wait: 58);
   playAnimation(5, 0);
   playAnimation(Entity.Player, 15);
   speak(5, "Bakkeee...bakke bakke?\n");
@@ -105,8 +90,7 @@ L2:
   showTextbox("Yes\nNo\n");
 
 L3:
-  playAnimation(5, 13);
-  delay(34);
+  anim(5, 13, wait: 34);
   playAnimation(5, 13);
   speak(5, "Bakke bakke!\nBakkeee bakke bakkeee!\n");
   goto L4;
@@ -118,8 +102,7 @@ L4:
     if (pstat[101] >= 10) break;
     addPStat(PStat.LoopIterator, 1);
     delay(5);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    lookPairAt(5);
   }
   waitForEntity(5);
   unloadEntity(5);
@@ -135,8 +118,7 @@ L4:
 L5:
   unsetTrigger(49);
   playAnimation(5, 29);
-  playSound(8, 0);
-  delay(40);
+  sfx(8, 0, wait: 40);
   waitForEntity(5);
   unloadEntity(5);
   speak(Entity.Player, "Maybe I made him mad?\n");
@@ -164,8 +146,7 @@ L2:
   fadeOutHUD();
   move(entity: Entity.Player, to: (-200, 3658), sprint: 1, withCamera: true);
   move(entity: Entity.Partner, to: (100, 3658), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   delay(10);
   rotate(entity: Entity.Player, to: 3100);
   delay(10);

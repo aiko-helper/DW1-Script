@@ -31,18 +31,15 @@ L1:
   return;
 
 L2:
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  lookPairAt(5);
+  waitForPair();
   setTrigger(189);
   moveCamera(to: (-285, 3964), slowdown: 30);
   waitForEntity(200);
   speak(5, "I've heard about you.\n");
   look(entity: 5, at: Entity.Player);
   waitForEntity(5);
-  playAnimation(Entity.Player, 19);
-  delay(15);
+  anim(Entity.Player, 19, wait: 15);
   speak(Entity.Player, "If you've heard about us\nand the city, why don't you\ncome with me?\n");
   playAnimation(Entity.Player, 0);
   speak(5, "I'm also thinking about the\nisland's future. I've been\nsearching for something.\n");
@@ -68,8 +65,7 @@ L4:
   return;
 
 L5:
-  playAnimation(Entity.Player, 19);
-  delay(15);
+  anim(Entity.Player, 19, wait: 15);
   speak(Entity.Player, "Is this it?\n");
   playAnimation(Entity.Player, 0);
   look(entity: 5, at: Entity.Player);
@@ -83,8 +79,7 @@ L5:
   look(entity: Entity.Player, at: 5);
   waitForEntity(5);
   waitForEntity(Entity.Player);
-  playAnimation(5, 25);
-  delay(30);
+  anim(5, 25, wait: 30);
   speak(5, "This is what my ancestors\nhad written. Let me see.\n");
   speak(5, "When danger comes to the\nisland, go to the city.\n");
   playAnimation(5, 24);

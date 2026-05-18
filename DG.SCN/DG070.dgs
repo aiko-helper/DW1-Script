@@ -33,10 +33,8 @@ section(5) {
   jumpAndLink(L3);
   playSound(8, 6);
   speak(5, "Bye!\n");
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  lookPairAt(5);
+  waitForPair();
   playAnimation(Entity.Player, 16);
   speak(Entity.Player, "If we go on like this, we'll\njust repeat ourselves.\n");
   speak(Entity.Player, "Maybe I should wait here.\n");
@@ -54,10 +52,8 @@ L1:
   delay(20);
   playSound(8, 6);
   speak(5, "Ahhh!\n");
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  lookPairAt(5);
+  waitForPair();
   playAnimation(Entity.Player, 14);
   speak(Entity.Player, "Wait up!\n");
   move(entity: 5, to: (-240, -1076), sprint: 1);
@@ -77,8 +73,7 @@ L3:
     delay(20);
     setPStat(PStat.LastBiyomonChaseLocation, 0);
     speak(Entity.Player, "Not again! Wait!\n");
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    lookPairAt(5);
     move(entity: 5, to: (-1025, 2740), sprint: 1);
     waitForEntity(5);
     jumpReturn();
@@ -89,8 +84,7 @@ L4:
     delay(20);
     setPStat(PStat.LastBiyomonChaseLocation, 1);
     speak(Entity.Player, "Not again! Wait!\n");
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    lookPairAt(5);
     move(entity: 5, to: (-566, -320), sprint: 1);
     waitForEntity(5);
     jumpReturn();
@@ -101,8 +95,7 @@ L5:
     delay(20);
     setPStat(PStat.LastBiyomonChaseLocation, 2);
     speak(Entity.Player, "Not again! Wait!\n");
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    lookPairAt(5);
     move(entity: 5, to: (1869, -939), sprint: 1);
     waitForEntity(5);
     jumpReturn();
@@ -113,8 +106,7 @@ L6:
     delay(20);
     setPStat(PStat.LastBiyomonChaseLocation, 3);
     speak(Entity.Player, "Not again! Wait!\n");
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    lookPairAt(5);
     move(entity: 5, to: (1664, 3125), sprint: 1);
     waitForEntity(5);
     jumpReturn();
@@ -129,8 +121,7 @@ L8:
     move(entity: 5, to: (-1025, 2740), sprint: 1);
     delay(20);
     setPStat(PStat.LastBiyomonChaseLocation, 0);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    lookPairAt(5);
     move(entity: 5, to: (-1025, 2740), sprint: 1);
     waitForEntity(5);
     jumpReturn();
@@ -140,8 +131,7 @@ L9:
     move(entity: 5, to: (-566, -320), sprint: 1);
     delay(20);
     setPStat(PStat.LastBiyomonChaseLocation, 1);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    lookPairAt(5);
     move(entity: 5, to: (-566, -320), sprint: 1);
     waitForEntity(5);
     jumpReturn();
@@ -151,8 +141,7 @@ L10:
     move(entity: 5, to: (1869, -939), sprint: 1);
     delay(20);
     setPStat(PStat.LastBiyomonChaseLocation, 2);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    lookPairAt(5);
     move(entity: 5, to: (1869, -939), sprint: 1);
     waitForEntity(5);
     jumpReturn();
@@ -162,8 +151,7 @@ L11:
     move(entity: 5, to: (1664, 3125), sprint: 1);
     delay(20);
     setPStat(PStat.LastBiyomonChaseLocation, 3);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    lookPairAt(5);
     move(entity: 5, to: (1664, 3125), sprint: 1);
     waitForEntity(5);
     jumpReturn();
@@ -192,8 +180,7 @@ L2:
   waitForEntity(Entity.Player);
   playAnimation(Entity.Player, 8);
   speak(Entity.Player, "Alright, <ORANGE><DIGIMON><WHITE>,\nget rid of Biyomon!\n");
-  playAnimation(Entity.Partner, 22);
-  delay(20);
+  anim(Entity.Partner, 22, wait: 20);
   move(entity: Entity.Player, to: (-1282, 3173), sprint: 1);
   move(entity: Entity.Partner, to: 5, sprint: 1);
   waitForEntity(Entity.Partner);
@@ -238,8 +225,7 @@ L2:
   waitForEntity(Entity.Player);
   playAnimation(Entity.Player, 8);
   speak(Entity.Player, "Alright, <ORANGE><DIGIMON><WHITE>,\nget rid of Biyomon!\n");
-  playAnimation(Entity.Partner, 22);
-  delay(20);
+  anim(Entity.Partner, 22, wait: 20);
   move(entity: Entity.Player, to: (-268, -1362), sprint: 1);
   move(entity: Entity.Partner, to: 5, sprint: 1);
   waitForEntity(Entity.Partner);
@@ -281,8 +267,7 @@ L2:
   waitForEntity(Entity.Player);
   playAnimation(Entity.Player, 8);
   speak(Entity.Player, "Alright, <ORANGE><DIGIMON><WHITE>,\nget rid of Biyomon!\n");
-  playAnimation(Entity.Partner, 22);
-  delay(20);
+  anim(Entity.Partner, 22, wait: 20);
   move(entity: Entity.Player, to: (2143, -1254), sprint: 1);
   move(entity: Entity.Partner, to: 5, sprint: 1);
   waitForEntity(Entity.Partner);
@@ -325,8 +310,7 @@ L2:
   setDialogOwner(Entity.Player);
   playAnimation(Entity.Player, 8);
   showTextbox("Alright, <ORANGE><DIGIMON><WHITE>,\nget rid of Biyomon!\n");
-  playAnimation(Entity.Partner, 22);
-  delay(20);
+  anim(Entity.Partner, 22, wait: 20);
   move(entity: Entity.Player, to: (1753, 3341), sprint: 1);
   move(entity: Entity.Partner, to: 5, sprint: 1);
   waitForEntity(Entity.Partner);
@@ -348,10 +332,8 @@ L4:
   return;
 
 L5:
-  playAnimation(Entity.Player, 11);
-  delay(10);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
+  anim(Entity.Player, 11, wait: 10);
+  lookPairAt(5);
   look(entity: 5, at: Entity.Player);
   for x in [Entity.Player, Entity.Partner, 5] {
     waitForEntity(x);
@@ -361,13 +343,11 @@ L5:
   speak(5, "Help me out!\n");
   playAnimation(Entity.Player, 19);
   speak(Entity.Player, "Don't panic. We're not\nthe bad guys here.\n");
-  playAnimation(5, 28);
-  delay(20);
+  anim(5, 28, wait: 20);
   speak(5, "Are you the famous\nDigimon kidnapper?\n");
   playAnimation(Entity.Player, 16);
   speak(Entity.Player, "I think everyone has\nthe wrong idea.\n");
-  playAnimation(5, 19);
-  delay(40);
+  anim(5, 19, wait: 40);
   playAnimation(Entity.Player, 19);
   speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> tried\nto convince them.\n");
   playAnimation(5, 0);
@@ -381,16 +361,14 @@ L6:
     if (pstat[101] >= 6 || pstat[112] == 0) goto L7;
     addPStat(PStat.LoopIterator, 1);
     delay(10);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    lookPairAt(5);
     continue;
 
 L7:
     if (pstat[101] >= 4 || pstat[112] != 0) break;
     addPStat(PStat.LoopIterator, 1);
     delay(5);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    lookPairAt(5);
   }
   waitForEntity(5);
   unloadEntity(5);
@@ -426,43 +404,31 @@ section(64) {
 
 section(6) {
   speak(6, "Come and get me!\n");
-  startBattle();
-  setTrigger(275);
-  return;
+  finishEncounter(275);
 }
 
 section(7) {
   speak(7, "You're brave!\n");
-  startBattle();
-  setTrigger(275);
-  return;
+  finishEncounter(275);
 }
 
 section(8) {
   speak(8, "Wow!\n");
-  startBattle();
-  setTrigger(295);
-  return;
+  finishEncounter(295);
 }
 
 section(9) {
   speak(9, "I'm first!\n");
-  startBattle();
-  setTrigger(297);
-  return;
+  finishEncounter(297);
 }
 
 section(10) {
   speak(10, "I'm strong.\nYou can't handle me!\n");
-  startBattle();
-  setTrigger(297);
-  return;
+  finishEncounter(297);
 }
 
 section(11) {
   speak(11, "Don't get mad if I win.\n");
-  startBattle();
-  setTrigger(296);
-  return;
+  finishEncounter(296);
   garbage { 44 00 fe 00 44 00 05 00 9e 00 33 00 a4 04 34 00 f0 05 35 00 3a 07 36 00 84 08 3d 00 aa 0c 3e 00 b0 0c 3f 00 b6 0c 40 00 bc 0c 06 00 c2 0c 07 00 f8 0c 08 00 28 0d 09 00 46 0d 0a 00 70 0d 0b 00 c6 0d ff ff 24 00 6e 63 19 00 0b 00 6e 0f 18 00 5a 00 19 00 74 2c 26 00 48 00 24 00 6e 63 19 00 0b 00 6e 07 18 00 70 00 19 00 74 2c 2e 00 51 00 24 00 6e 63 19 00 0b 00 6e 12 18 00 86 00 19 00 74 2c 3c 00 53 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 9c 00 19 00 74 2c 45 00 47 00 fe 00 19 00 0a 00 6f 01 18 00 b6 01 19 00 1b 05 1a 00 82 68 81 75 82 8d 81 40 82 88 82 85 82 92 82 85 81 40 82 81 82 87 82 81 82 89 82 8e 81 42 0d 00 00 00 13 00 54 02 5a 00 08 06 1b 05 1a 00 82 61 82 99 82 85 81 49 0d 00 00 00 4c 00 fd 05 4c 00 fc 05 4a fd 4a fc 56 00 fd 10 1b fd 1a 00 82 68 82 86 81 40 82 97 82 85 81 40 82 87 82 8f 81 40 82 8f 82 8e 81 40 82 8c 82 89 82 8b 82 85 81 40 82 94 82 88 82 89 82 93 81 43 81 40 82 97 82 85 81 75 82 8c 82 8c 0d 00 82 8a 82 95 82 93 82 94 81 40 82 92 82 85 82 90 82 85 82 81 82 94 81 40 82 8f 82 95 82 92 82 93 82 85 82 8c 82 96 82 85 82 93 81 42 0d 00 00 00 1b fd 1a 00 82 6c 82 81 82 99 82 82 82 85 81 40 82 68 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 97 82 81 82 89 82 94 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 00 00 1e 00 6f 02 1c 00 bf 00 1c 00 c0 00 1c 00 c1 00 1c 00 c2 00 fe 00 19 00 08 00 6f 00 18 00 52 02 19 00 1b 05 1a 00 82 76 82 88 82 8f 81 40 82 89 82 93 81 40 82 89 82 94 81 48 0d 00 00 00 1b 05 1a 00 82 6d 82 8f 81 40 82 97 82 81 82 99 81 42 0d 00 00 00 }
 }

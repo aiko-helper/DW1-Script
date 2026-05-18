@@ -47,8 +47,7 @@ L3:
 L4:
   setTrigger(199);
   speak(5, "Who are you? Go away!\n");
-  playAnimation(Entity.Player, 24);
-  delay(15);
+  anim(Entity.Player, 24, wait: 15);
   speak(Entity.Player, "Is this where you live?\n");
   playAnimation(Entity.Player, 0);
   speak(5, "I can't tell you!\n");
@@ -72,18 +71,15 @@ L5:
   delay(40);
   move(entity: Entity.Player, to: (-349, -1355), sprint: 1);
   move(entity: Entity.Partner, to: (-345, -1751), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
+  waitForPair();
+  lookPairAt(5);
   move(entity: 5, to: (-250, -950), sprint: 1);
   waitForEntity(5);
   unloadEntity(5);
   playSound(8, 2);
   rotate3DObject(0, 255);
   delay(40);
-  playSound(8, 3);
-  delay(10);
+  sfx(8, 3, wait: 10);
   move(entity: Entity.Player, to: (-350, -1145), sprint: 1);
   move(entity: Entity.Partner, to: (-359, -1355), sprint: 1);
   speak(Entity.Player, "Oh no! Hey!\n");
@@ -103,8 +99,7 @@ L6:
 L7:
     speak(Entity.Player, "You are an Ogremon bandit!\nThis is your hideout!\n");
     speak(5, "What are you talking about?\n");
-    playAnimation(Entity.Player, 7);
-    delay(15);
+    anim(Entity.Player, 7, wait: 15);
     speak(Entity.Player, "You were lucky last time!\nGive up!\n");
     playAnimation(Entity.Player, 0);
     goto L8;
@@ -115,10 +110,8 @@ L8:
     delay(40);
     move(entity: Entity.Player, to: (-349, -1375), sprint: 1);
     move(entity: Entity.Partner, to: (-355, -1761), sprint: 1);
-    waitForEntity(Entity.Player);
-    waitForEntity(Entity.Partner);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    waitForPair();
+    lookPairAt(5);
     move(entity: 5, to: (-250, -930), sprint: 1);
     waitForEntity(5);
     unloadEntity(5);
@@ -132,8 +125,7 @@ L8:
 L9:
     speak(Entity.Player, "You tricked me last time,\nbut now I'll get you.\n");
     speak(5, "What are you talking about?\n");
-    playAnimation(Entity.Player, 7);
-    delay(15);
+    anim(Entity.Player, 7, wait: 15);
     speak(Entity.Player, "You won't get away this time!\n");
     playAnimation(Entity.Player, 0);
     goto L8;

@@ -36,14 +36,11 @@ L4:
   delay(10);
   moveCamera(to: Entity.Partner, speed: 20);
   waitForEntity(200);
-  playSound(8, 2);
-  delay(40);
-  playSound(8, 3);
-  delay(20);
+  sfx(8, 2, wait: 40);
+  sfx(8, 3, wait: 20);
   removeCondition(Condition.Injured);
   removeCondition(Condition.Sick);
-  playAnimation(Entity.Partner, 11);
-  delay(20);
+  anim(Entity.Partner, 11, wait: 20);
   speak(5, "Everything is OK now.\nJust be careful from now on.\n");
   if (stat[Stat.Tiredness] < 50) goto L5;
   setStats(tiredness: 50);

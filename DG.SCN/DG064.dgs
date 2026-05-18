@@ -5,9 +5,7 @@
 
 section onEnter(254) {
   if (!trigger(345)) goto L1;
-  for id in 0..2 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(0, 2, 1);
   goto L2;
 
 L1:
@@ -24,8 +22,7 @@ L3:
 
 section(81) {
   look(entity: Entity.Player, at: 5);
-  playAnimation(Entity.Player, 19);
-  delay(15);
+  anim(Entity.Player, 19, wait: 15);
   speak(Entity.Player, "Myotismon! What happened?\n");
   playAnimation(Entity.Player, 0);
   return;
@@ -60,11 +57,9 @@ L1:
 L2:
   speak(Entity.Player, "Myotismon, you alright?\n");
   playAnimation(5, 21);
-  playAnimation(6, 21);
-  delay(20);
+  anim(6, 21, wait: 20);
   playAnimation(5, 0);
-  playAnimation(6, 0);
-  delay(10);
+  anim(6, 0, wait: 10);
   look(entity: 5, at: Entity.Player);
   look(entity: 6, at: Entity.Player);
   delay(5);
@@ -73,8 +68,7 @@ L2:
   speak(5, "Have you seen Devimon?\n");
   speak(Entity.Player, "I have. He's mean.\n");
   speak(5, "He runied my research\nwith evil.\n");
-  playAnimation(Entity.Player, 19);
-  delay(15);
+  anim(Entity.Player, 19, wait: 15);
   speak(Entity.Player, "Your research\non SkullGreymon?\n");
   playAnimation(Entity.Player, 0);
   speak(5, "I was collecting bones and\nputting them together.\nI'll be more careful.\n");

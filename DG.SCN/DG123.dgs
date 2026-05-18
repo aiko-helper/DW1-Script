@@ -20,23 +20,17 @@ L2:
 
 section(5) {
   speak(5, "Hey!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(6) {
   speak(6, "Haaaa!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(7) {
   speak(7, "Wow!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(81) {
@@ -89,8 +83,7 @@ L3:
   showTextbox("Alright, let's go <ORANGE><DIGIMON><WHITE>.\n");
   move(entity: Entity.Player, to: (1925, 468), sprint: 0);
   move(entity: Entity.Partner, to: (1925, 78), sprint: 0);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   loadDigimon(Digimon.NPCOgremon);
   loadDigimon(Digimon.Agumon);
   setDigimon(Digimon.NPCOgremon, 3, 0);
@@ -117,8 +110,7 @@ L3:
   delay(10);
   playSound(8, 11);
   speak(8, "Give up and leave your stuff\nhere or you'll regret it!\n");
-  playAnimation(Entity.Player, 20);
-  delay(15);
+  anim(Entity.Player, 20, wait: 15);
   speak(Entity.Player, "Give up!\n");
   playAnimation(Entity.Player, 0);
   speak(8, "What?! You...\n");

@@ -24,8 +24,7 @@ section(5) {
   move(entity: Entity.Player, to: (-253, -1358), sprint: 1, withCamera: true);
   waitForEntity(Entity.Player);
   look(entity: Entity.Player, at: 5);
-  playAnimation(5, 29);
-  delay(5);
+  anim(5, 29, wait: 5);
   if (item[Item.Steak] < 1) goto L1;
   goto L7;
 
@@ -75,8 +74,7 @@ L6:
 L7:
   removeItem(Item.Steak, 1);
   speak(5, "Phew!\n");
-  playAnimation(5, 30);
-  delay(40);
+  anim(5, 30, wait: 40);
   playAnimation(5, 0);
   look(entity: 5, at: Entity.Player);
   speak(5, "I'm saved. Thanks so much.\nSorry for the trouble.\n");
@@ -101,8 +99,7 @@ L7:
 section(60) {
   delay(40);
   moveCamera(to: (-1455, 1463), slowdown: 20);
-  playAnimation(Entity.Player, 15);
-  delay(20);
+  anim(Entity.Player, 15, wait: 20);
   speak(Entity.Player, "Wow!\n");
   speak(7, "...\n");
   speak(Entity.Player, "Are you serious?\n");
@@ -110,8 +107,7 @@ section(60) {
   unloadEntity(7);
   delay(20);
   speak(Entity.Player, "It's gone. Is this a dream?\n");
-  playAnimation(6, 28);
-  delay(40);
+  anim(6, 28, wait: 40);
   delay(40);
   setTrigger(1);
   setPStat(250, 1);
@@ -123,8 +119,7 @@ section(60) {
   setPStat(250, 0);
   move(entity: 6, to: (-100, 800), sprint: 0);
   waitForEntity(6);
-  playAnimation(6, 43);
-  delay(40);
+  anim(6, 43, wait: 40);
   speak(Entity.Player, "I think we took care of it.\n");
   look(entity: Entity.Player, at: 6);
   waitForEntity(6);
@@ -144,8 +139,7 @@ section(60) {
 
 L1:
   approach(who: 8, x: -40, y: -2800, tries: 3, wait: 20);
-  playAnimation(Entity.Player, 16);
-  delay(40);
+  anim(Entity.Player, 16, wait: 40);
   speak(Entity.Player, "The curse of Analogman!\nDon't worry, it'll be OK.\n");
   delay(20);
   if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L2;

@@ -19,44 +19,32 @@ L2:
 
 section(5) {
   speak(5, "It's not going well!\n");
-  startBattle();
-  setTrigger(293);
-  return;
+  finishEncounter(293);
 }
 
 section(6) {
   speak(6, "Did you say something?\n");
-  startBattle();
-  setTrigger(293);
-  return;
+  finishEncounter(293);
 }
 
 section(7) {
   speak(7, "I told you it's impossible.\n");
-  startBattle();
-  setTrigger(299);
-  return;
+  finishEncounter(299);
 }
 
 section(8) {
   speak(8, "I don't have much confidence.\n");
-  startBattle();
-  setTrigger(299);
-  return;
+  finishEncounter(299);
 }
 
 section(9) {
   speak(9, "Go easy on me.\n");
-  startBattle();
-  setTrigger(299);
-  return;
+  finishEncounter(299);
 }
 
 section(10) {
   speak(10, "Don't make fun of me!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(81) {
@@ -69,8 +57,7 @@ section(81) {
 
 L1:
   if (trigger(155)) goto L2;
-  playAnimation(Entity.Player, 16);
-  delay(15);
+  anim(Entity.Player, 16, wait: 15);
   speak(Entity.Player, "It doesn't do anything.\n");
   playAnimation(Entity.Player, 0);
   rotate(entity: Entity.Player, to: 2297);
@@ -79,8 +66,7 @@ L1:
   delay(10);
   rotate(entity: Entity.Player, to: 2297);
   showTextbox("There's a rock stuck in\nthe machine. Maybe this is...\n");
-  playAnimation(Entity.Player, 25);
-  delay(20);
+  anim(Entity.Player, 25, wait: 20);
   speak(Entity.System, "I removed the rock!\n");
   speak(Entity.Player, "That should do it!\n");
   setTrigger(155);
@@ -115,8 +101,7 @@ L3:
 L4:
   fadeOutHUD();
   if (trigger(155)) goto L5;
-  playAnimation(Entity.Player, 16);
-  delay(15);
+  anim(Entity.Player, 16, wait: 15);
   speak(Entity.Player, "It doesn't do anything.\n");
   playAnimation(Entity.Player, 0);
   rotate(entity: Entity.Player, to: 2297);

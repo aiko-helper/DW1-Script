@@ -37,15 +37,12 @@ L4:
   rotate(entity: Entity.Partner, to: 2048);
   delay(40);
   speak(Entity.Player, "I'm back!\n");
-  playAnimation(Entity.Player, 11);
-  delay(20);
+  anim(Entity.Player, 11, wait: 20);
   look(entity: Entity.Player, at: Entity.Partner);
   delay(5);
   speak(Entity.Player, "Thanks for inviting me.\nI hope we can work\ntogether <ORANGE><DIGIMON><WHITE>.\n");
-  playAnimation(Entity.Player, 5);
-  delay(10);
-  playAnimation(Entity.Partner, 11);
-  delay(40);
+  anim(Entity.Player, 5, wait: 10);
+  anim(Entity.Partner, 11, wait: 40);
   setTrigger(43);
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
@@ -62,33 +59,23 @@ L5:
 
 L6:
   if (!trigger(238)) goto L7;
-  for id in 0..2 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(0, 2, 0);
 
 L7:
   if (!trigger(224)) goto L8;
-  for id in 3..12 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(3, 12, 0);
 
 L8:
   if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L9;
-  for id in 13..20 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(13, 20, 0);
 
 L9:
   if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L10;
-  for id in 21..26 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(21, 26, 0);
 
 L10:
   if (!trigger(250)) goto L11;
-  for id in 27..32 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(27, 32, 0);
   setRectImpassible(33, 69, 3, 2);
 
 L11:
@@ -98,22 +85,16 @@ L11:
 
 L12:
   if (!trigger(250)) goto L13;
-  for id in 59..62 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(59, 62, 0);
 
 L13:
   if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L14;
   if (!trigger(218)) goto L14;
-  for id in 63..67 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(63, 67, 0);
 
 L14:
   if (!trigger(246)) goto L15;
-  for id in 68..70 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(68, 70, 0);
 
 L15:
   if (!trigger(225)) goto L16;
@@ -125,12 +106,8 @@ L16:
 
 L17:
   if (!trigger(354)) goto L18;
-  for id in 73..78 {
-    setObjectVisibility(id, 1);
-  }
-  for id in 79..83 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(73, 78, 1);
+  setObjectsVisibleRange(79, 83, 0);
 
 L18:
   return;
@@ -620,8 +597,7 @@ section(55) {
 L1:
   move(entity: Entity.Player, to: (2594, 630), sprint: 1);
   move(entity: Entity.Partner, to: (2189, 545), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   rotate(entity: Entity.Player, to: 2128);
   rotate(entity: Entity.Partner, to: 2128);
   delay(5);
@@ -647,8 +623,7 @@ L5:
   move(entity: Entity.Partner, to: (1184, 316), sprint: 1);
   delay(10);
   move(entity: Entity.Player, to: (1556, 348), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
   return;
@@ -674,8 +649,7 @@ L2:
 L3:
   unsetTrigger(87);
   loadAndSetDigimon(Digimon.NPCGreymon, 4, 0);
-  look(entity: Entity.Player, at: 9);
-  look(entity: Entity.Partner, at: 9);
+  lookPairAt(9);
   rotate(entity: 9, to: 2048);
   delay(20);
   moveCamera(to: 9, speed: 20);
@@ -684,21 +658,18 @@ L3:
   speak(9, "I found you!\n");
   moveCamera(to: Entity.Player, speed: 20);
   waitForEntity(200);
-  playAnimation(Entity.Player, 15);
-  delay(5);
+  anim(Entity.Player, 15, wait: 5);
   speak(Entity.Player, "Oh no, he's coming\nright for us!\n");
   move(entity: 9, to: (432, -2236), sprint: 0);
   waitForEntity(9);
   look(entity: 9, at: Entity.Player);
   delay(5);
   speak(9, "I finally met you!\nI'm Greymon.\nNow let's settle things!\n");
-  playAnimation(Entity.Player, 1);
-  delay(5);
+  anim(Entity.Player, 1, wait: 5);
   speak(Entity.Player, "What?!\n");
   speak(9, "I got here by following\nthe rumors about you.\nI want to fight you!\n");
   showTextbox("If I win,\nI want this street sign!\n");
-  playAnimation(Entity.Player, 16);
-  delay(30);
+  anim(Entity.Player, 16, wait: 30);
   speak(Entity.Player, "There's no sign.\n");
   speak(9, "I don't care,\nlet's fight anyway!\n");
   move(entity: Entity.Partner, to: (50, -1950), sprint: 1);
@@ -717,8 +688,7 @@ L3:
   look(entity: 9, at: Entity.Player);
   look(entity: Entity.Partner, at: 9);
   speak(9, "Hey, you guys are good!\nBut to finish your goal,\nyou're still amateurs.\n");
-  playAnimation(Entity.Player, 1);
-  delay(5);
+  anim(Entity.Player, 1, wait: 5);
   speak(Entity.Player, "Hmmm\n");
   speak(9, "I'll stay and train you.\nYou'll get much better!\n");
   goto L4;
@@ -737,8 +707,7 @@ L4:
 L5:
   unsetTrigger(354);
   loadAndSetDigimon(Digimon.NPCAirdramon, 5, 0);
-  look(entity: Entity.Player, at: 10);
-  look(entity: Entity.Partner, at: 10);
+  lookPairAt(10);
   look(entity: 10, at: Entity.Player);
   delay(20);
   moveCamera(to: 10, speed: 20);
@@ -756,8 +725,7 @@ L5:
   waitForEntity(200);
   move(entity: 10, to: (432, -2236), sprint: 1);
   waitForEntity(10);
-  look(entity: Entity.Player, at: 10);
-  look(entity: Entity.Partner, at: 10);
+  lookPairAt(10);
   look(entity: 10, at: Entity.Player);
   delay(5);
   speak(10, "Alright, I found you, <LIGHTBLUE><PLAYER><WHITE>!\n");
@@ -780,10 +748,8 @@ L5:
   look(entity: 10, at: Entity.Player);
   look(entity: Entity.Partner, at: 10);
   speak(10, "No matter what I do,\nI must defeat him.\n");
-  playAnimation(10, 29);
-  delay(30);
-  playAnimation(Entity.Player, 7);
-  delay(5);
+  anim(10, 29, wait: 30);
+  anim(Entity.Player, 7, wait: 5);
   speak(Entity.Player, "What are you talking about?\nYou gotta get treatment.\n");
   move(entity: Entity.Player, to: 10, sprint: 1);
   move(entity: Entity.Partner, to: 10, sprint: 1);

@@ -50,9 +50,7 @@ L1:
 
 L2:
   speak(Entity.Player, "I have too many Items.\n");
-  setTrigger(3);
-  callSubroutine(0);
-  callSubroutine(13);
+  inventoryFullBailout();
   giveItem(Item.ChainMelon, 1);
 
 L3:
@@ -77,16 +75,13 @@ L5:
 L6:
   if (trigger(55)) goto section_6;
   playAnimation(5, 0);
-  playAnimation(5, 29);
-  delay(5);
+  anim(5, 29, wait: 5);
   speak(5, "I'm back and I'm planning\nto rebuild File City with\nhelp from <ORANGE><DIGIMON><WHITE>.\n");
   playAnimation(5, 0);
-  playAnimation(5, 29);
-  delay(5);
+  anim(5, 29, wait: 5);
   speak(5, "I want to build\nshops that are useful\nto you and <ORANGE><DIGIMON><WHITE>.\n");
   playAnimation(5, 0);
-  playAnimation(5, 29);
-  delay(5);
+  anim(5, 29, wait: 5);
   speak(5, "You should explore Native\nForest just outside the city.\n");
   playAnimation(5, 0);
   return;
@@ -188,8 +183,7 @@ section(20) {
   delay(20);
   addStats(currentHP: 9999, currentMP: 9999);
   unsetTrigger(1);
-  playAnimation(5, 29);
-  delay(5);
+  anim(5, 29, wait: 5);
   speak(5, "You woke up...\nI'm so sorry.\n");
   playAnimation(5, 0);
   return;

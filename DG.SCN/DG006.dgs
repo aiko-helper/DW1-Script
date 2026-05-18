@@ -25,16 +25,12 @@ L3:
 
 L4:
   if (!trigger(185) || trigger(249)) goto L5;
-  for id in 13..28 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(13, 28, 0);
 
 L5:
   pstat[:SavedTime] = time();
   if (pstat[107] < 15 || pstat[107] > 19 || trigger(249)) goto L6;
-  for id in 13..28 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(13, 28, 0);
 
 L6:
   return;
@@ -80,9 +76,7 @@ section(51) {
   move(entity: Entity.Player, to: (1642, -107), sprint: 0);
   move(entity: Entity.Partner, to: (1252, -547), sprint: 1);
   delay(80);
-  for id in 13..28 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(13, 28, 1);
   setDigimon(Digimon.Coelamon, 0, 0);
   playSound(8, 7);
   setObjectVisibility(31, 0);
@@ -92,8 +86,7 @@ section(51) {
   delay(10);
   setObjectVisibility(31, 1);
   setObjectVisibility(34, 0);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
+  lookPairAt(5);
   delay(20);
   look(entity: 5, at: Entity.Player);
   speak(5, "Oh, it's you, <LIGHTBLUE><PLAYER><WHITE>.\nThe bridge is fixed.\n");
@@ -101,8 +94,7 @@ section(51) {
   showTextbox("I got a request.\nI want you to help me\njust like I helped you.\n");
   speak(Entity.Player, "?\n");
   speak(5, "Making a city means\nsaving this island.\nEveryone will be saved.\n");
-  playAnimation(Entity.Player, 19);
-  delay(15);
+  anim(Entity.Player, 19, wait: 15);
   speak(Entity.Player, "Does that mean you'll\ncome to the city?\n");
   playAnimation(Entity.Player, 0);
   speak(5, "Yes. I'll go to your city.\n");
@@ -152,9 +144,7 @@ L3:
   move(entity: Entity.Player, to: (1642, -107), sprint: 0);
   move(entity: Entity.Partner, to: (1252, -547), sprint: 1);
   delay(80);
-  for id in 13..28 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(13, 28, 1);
   setDigimon(Digimon.Coelamon, 0, 0);
   playSound(8, 7);
   setObjectVisibility(31, 0);
@@ -164,12 +154,10 @@ L3:
   delay(10);
   setObjectVisibility(31, 1);
   setObjectVisibility(34, 0);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
+  lookPairAt(5);
   delay(20);
   look(entity: 5, at: Entity.Player);
-  playAnimation(Entity.Player, 15);
-  delay(20);
+  anim(Entity.Player, 15, wait: 20);
   if (!trigger(96)) goto L4;
   goto L8;
 
@@ -182,27 +170,22 @@ L4:
   showTextbox("Yes, we looked all over\nNow that you mention it\n");
 
 L5:
-  playAnimation(Entity.Player, 19);
-  delay(20);
+  anim(Entity.Player, 19, wait: 20);
   unsetTrigger(49);
   speak(5, "Ha-ha, is that so!\n");
   goto L7;
 
 L6:
-  playAnimation(Entity.Player, 19);
-  delay(20);
+  anim(Entity.Player, 19, wait: 20);
   unsetTrigger(49);
   speak(5, "I already know what\nyou want.\n");
 
 L7:
   speak(5, "The bridge upstream is\nbroken and you want to go\nacross. Right?\n");
   playSound(8, 8);
-  playAnimation(Entity.Player, 22);
-  delay(8);
-  playAnimation(Entity.Player, 22);
-  delay(8);
-  playAnimation(Entity.Player, 0);
-  delay(3);
+  anim(Entity.Player, 22, wait: 8);
+  anim(Entity.Player, 22, wait: 8);
+  anim(Entity.Player, 0, wait: 3);
   playSound(8, 14);
   showTextbox("I see.\nFine, I'll help you.\n");
 
@@ -252,22 +235,17 @@ L9:
   look(entity: 5, at: Entity.Player);
   delay(20);
   speak(5, "Now, walk on our heads.\nDon't worry.\n");
-  playSound(8, 14);
-  delay(10);
-  playSound(8, 14);
-  delay(10);
-  playSound(8, 14);
-  delay(10);
-  playAnimation(Entity.Player, 11);
-  delay(20);
+  sfx(8, 14, wait: 10);
+  sfx(8, 14, wait: 10);
+  sfx(8, 14, wait: 10);
+  anim(Entity.Player, 11, wait: 20);
   speak(Entity.Player, "Okay, here we go!\n");
   look(entity: Entity.Player, at: 5);
   delay(3);
   playAnimation(Entity.Player, 21);
   move(entity: Entity.Player, to: (2214, 865), animDuration: 15);
   delay(5);
-  playSound(8, 9);
-  delay(12);
+  sfx(8, 9, wait: 12);
   playSound(8, 7);
   setObjectVisibility(31, 0);
   setPStat(247, 31);
@@ -278,8 +256,7 @@ L9:
   playAnimation(Entity.Player, 21);
   move(entity: Entity.Player, to: (2900, 1300), animDuration: 14);
   delay(5);
-  playSound(8, 9);
-  delay(12);
+  sfx(8, 9, wait: 12);
   setObjectVisibility(31, 1);
   playSound(8, 7);
   setObjectVisibility(32, 0);
@@ -291,8 +268,7 @@ L9:
   playAnimation(Entity.Player, 21);
   move(entity: Entity.Player, to: (3967, 3068), animDuration: 15);
   delay(5);
-  playSound(8, 9);
-  delay(12);
+  sfx(8, 9, wait: 12);
   setObjectVisibility(32, 1);
   playSound(8, 7);
   setObjectVisibility(33, 0);
@@ -304,8 +280,7 @@ L9:
   playAnimation(Entity.Player, 21);
   move(entity: Entity.Player, to: (5009, 4260), animDuration: 15);
   delay(5);
-  playSound(8, 9);
-  delay(12);
+  sfx(8, 9, wait: 12);
   playSound(8, 7);
   setObjectVisibility(33, 1);
   look(entity: 5, at: Entity.Player);

@@ -16,15 +16,12 @@ section(51) {
   return;
 
 L1:
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
+  lookPairAt(5);
   delay(5);
   speak(Entity.Player, "Somebody's here! Who is it?!\n");
   moveCamera(to: (1032, 622), slowdown: 20);
   waitForEntity(200);
-  for id in 166..168 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(166, 168, 0);
   for x in [-23039, -22783, -22527] {
     spawnSpriteAtEntity(5, x);
   }
@@ -34,21 +31,15 @@ L1:
   moveObjectTo(2, 171, 1, 0, 0, 150, 180);
   playSound(8, 3);
   speak(5, "He he, I'll crash the bad\ncomputer! He he he!\n");
-  for id in 166..168 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(166, 168, 1);
   move(entity: 5, to: (708, 102), sprint: 0);
   waitForEntity(5);
-  playAnimation(5, 28);
-  delay(7);
-  for id in 169..171 {
-    setObjectVisibility(id, 0);
-  }
+  anim(5, 28, wait: 7);
+  setObjectsVisibleRange(169, 171, 0);
   setPStat(247, 169);
   setPStat(248, 7);
   callSubroutine(21);
-  playSound(8, 4);
-  delay(6);
+  sfx(8, 4, wait: 6);
   for id in 169..171 {
     moveObjectTo(0, id, 1, 0, 0, 195, 164);
   }
@@ -77,9 +68,7 @@ L1:
   setPStat(248, 7);
   callSubroutine(21);
   delay(6);
-  for id in 169..171 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(169, 171, 1);
   moveObjectTo(0, 169, 1, 0, 0, 424, 165);
   moveObjectTo(1, 170, 1, 0, 0, 424, 165);
   moveObjectTo(2, 171, 1, 0, 0, 424, 165);
@@ -87,38 +76,27 @@ L1:
   for x in [-23039, -22783, -22527] {
     spawnSpriteAtEntity(5, x);
   }
-  for id in 166..168 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(166, 168, 0);
   delay(20);
   move(entity: Entity.Player, to: (1743, 309), sprint: 1);
   move(entity: Entity.Partner, to: (2006, 484), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
+  waitForPair();
+  lookPairAt(5);
   delay(5);
-  playAnimation(Entity.Player, 7);
-  delay(15);
+  anim(Entity.Player, 7, wait: 15);
   speak(Entity.Player, "He's the one... Hey!\nHey, what are you doing?!\n");
   playAnimation(Entity.Player, 0);
   playSound(8, 3);
   speak(5, "Yeah! I'll destroy!\nI'll destroy everything.\nAll bad things!\n");
-  for id in 166..168 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(166, 168, 1);
   move(entity: 5, to: (1392, 1228), sprint: 0);
   waitForEntity(5);
-  playAnimation(5, 28);
-  delay(7);
-  for id in 169..171 {
-    setObjectVisibility(id, 0);
-  }
+  anim(5, 28, wait: 7);
+  setObjectsVisibleRange(169, 171, 0);
   setPStat(247, 169);
   setPStat(248, 7);
   callSubroutine(21);
-  playSound(8, 4);
-  delay(6);
+  sfx(8, 4, wait: 6);
   for id in 169..171 {
     moveObjectTo(0, id, 1, 0, 0, 378, 164);
   }
@@ -147,9 +125,7 @@ L1:
   setPStat(248, 7);
   callSubroutine(21);
   delay(6);
-  for id in 169..171 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(169, 171, 1);
   moveObjectTo(0, 169, 1, 0, 0, 410, 198);
   moveObjectTo(1, 170, 1, 0, 0, 410, 198);
   moveObjectTo(2, 171, 1, 0, 0, 410, 198);
@@ -157,26 +133,18 @@ L1:
   for x in [-23039, -22783, -22527] {
     spawnSpriteAtEntity(5, x);
   }
-  for id in 166..168 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(166, 168, 0);
   delay(20);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
+  lookPairAt(5);
   delay(5);
   speak(Entity.Player, "Oh no, he's crazy.\nHe is an Ultimate Digimon,\nbut, we have to stop him!\n");
   playSound(8, 3);
   speak(5, "He he he,\nI'll destroy you all!\n");
-  for id in 166..168 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(166, 168, 1);
   look(entity: 5, at: Entity.Player);
   delay(5);
-  playAnimation(5, 28);
-  delay(7);
-  for id in 169..171 {
-    setObjectVisibility(id, 0);
-  }
+  anim(5, 28, wait: 7);
+  setObjectsVisibleRange(169, 171, 0);
   setPStat(247, 169);
   setPStat(248, 7);
   callSubroutine(21);
@@ -187,8 +155,7 @@ L1:
   setPStat(247, 169);
   setPStat(248, 7);
   callSubroutine(21);
-  playSound(8, 4);
-  delay(6);
+  sfx(8, 4, wait: 6);
   for id in 169..171 {
     moveObjectTo(0, id, 1, 0, 0, 387, 134);
   }
@@ -209,11 +176,8 @@ L1:
   setPStat(247, 169);
   setPStat(248, 7);
   callSubroutine(21);
-  playSound(8, 4);
-  delay(6);
-  for id in 169..171 {
-    setObjectVisibility(id, 1);
-  }
+  sfx(8, 4, wait: 6);
+  setObjectsVisibleRange(169, 171, 1);
   playAnimation(5, 0);
   setTrigger(1);
   setPStat(250, 1);
@@ -223,8 +187,7 @@ L1:
   startBattle();
   unsetTrigger(1);
   setPStat(250, 0);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
+  lookPairAt(5);
   move(entity: 5, to: (1257, 479), sprint: 0);
   speak(5, "Ugghhh! I'm losing power.\n");
   playAnimation(5, 43);

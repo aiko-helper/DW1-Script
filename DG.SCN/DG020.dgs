@@ -25,8 +25,7 @@ L3:
 section(5) {
   playSound(8, 11);
   speak(5, "Are we gonna battle?\nChicken?!\n");
-  playAnimation(Entity.Player, 16);
-  delay(20);
+  anim(Entity.Player, 16, wait: 20);
   setDialogOwner(Entity.Player);
   choice { "Okay, let's fight" -> L1, "Wait a minute" -> L3 }
   goto L3;
@@ -34,25 +33,20 @@ section(5) {
 L1:
   setTrigger(1);
   startBattle();
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
+  lookPairAt(5);
   look(entity: 5, at: Entity.Player);
   waitForEntity(Entity.Player);
   speak(5, "Oh no! I lost!\n");
-  playAnimation(5, 29);
-  delay(40);
-  playAnimation(Entity.Player, 20);
-  delay(20);
+  anim(5, 29, wait: 40);
+  anim(Entity.Player, 20, wait: 20);
   speak(Entity.Player, "He was pretty tough.\n");
   playAnimation(Entity.Player, 0);
-  playAnimation(5, 28);
-  delay(20);
+  anim(5, 28, wait: 20);
   playAnimation(5, 0);
   look(entity: 5, at: Entity.Player);
   playSound(8, 11);
   speak(5, "You're nice. I'm Mamemon.\nI'll go with you.\n");
-  playAnimation(Entity.Player, 19);
-  delay(20);
+  anim(Entity.Player, 19, wait: 20);
   speak(Entity.Player, "Coming with us? Well, why\ndon't you go to the city?\n");
   playSound(8, 11);
   speak(5, "OK. I'll go there.\n");
@@ -80,23 +74,17 @@ L4:
 
 section(6) {
   speak(6, "Daaaa!\n");
-  startBattle();
-  setTrigger(281);
-  return;
+  finishEncounter(281);
 }
 
 section(7) {
   speak(7, "Ha, ha, ha.\n");
-  startBattle();
-  setTrigger(281);
-  return;
+  finishEncounter(281);
 }
 
 section(8) {
   speak(8, "Ugghh!\n");
-  startBattle();
-  setTrigger(281);
-  return;
+  finishEncounter(281);
 }
 
 section(81) {

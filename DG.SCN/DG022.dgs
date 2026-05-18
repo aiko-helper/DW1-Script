@@ -41,12 +41,10 @@ L6:
 
 section(5) {
   speak(5, "My wing hurts.\n");
-  playAnimation(Entity.Player, 19);
-  delay(20);
+  anim(Entity.Player, 19, wait: 20);
   speak(Entity.Player, "What happened?\n");
   speak(5, "I injured my wing... Do you\nhave anything to treat it?\n");
-  playAnimation(Entity.Player, 4);
-  delay(20);
+  anim(Entity.Player, 4, wait: 20);
   speak(Entity.Player, "Wow, it looks pretty bad!\nHold on. Let me see.\n");
   playAnimation(Entity.Player, 0);
   setTrigger(3);
@@ -74,12 +72,10 @@ L4:
   speak(5, "It's much better. Thank you.\n");
   playAnimation(5, 29);
   waitForEntity(5);
-  playAnimation(Entity.Player, 25);
-  delay(20);
+  anim(Entity.Player, 25, wait: 20);
   speak(Entity.Player, "Can you fly now?\n");
   speak(5, "I don't think I can fly far.\n");
-  playAnimation(Entity.Player, 19);
-  delay(20);
+  anim(Entity.Player, 19, wait: 20);
   speak(Entity.Player, "There's a clinic in the city.\nYou should go there.\nIt's not far.\n");
   speak(5, "I heard about the city.\nIt's bigger than I thought.\n");
   speak(Entity.Player, "Go to the city and rest.\n");
@@ -91,10 +87,8 @@ L5:
     move(entity: 5, to: (-192, -1849), sprint: 1);
     if (pstat[101] >= 10) break;
     addPStat(PStat.LoopIterator, 1);
-    playSound(8, 0);
-    delay(15);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    sfx(8, 0, wait: 15);
+    lookPairAt(5);
   }
   waitForEntity(5);
   unloadEntity(5);
@@ -177,8 +171,7 @@ L6:
   speak(6, "...\n");
   speak(Entity.Player, "Well...\n");
   speak(6, "...\n");
-  playSound(8, 6);
-  delay(10);
+  sfx(8, 6, wait: 10);
   speak(Entity.System, "Vademon holds a gun.\n");
   speak(Entity.Player, "No, stop!\nI'm not your enemy!\n");
   speak(Entity.System, "Vademon drops the gun.\n");
@@ -195,10 +188,8 @@ L7:
     move(entity: 6, to: (199, -3166), sprint: 1);
     if (pstat[101] >= 2) break;
     addPStat(PStat.LoopIterator, 1);
-    playSound(8, 5);
-    delay(40);
-    look(entity: Entity.Player, at: 6);
-    look(entity: Entity.Partner, at: 6);
+    sfx(8, 5, wait: 40);
+    lookPairAt(6);
   }
   waitForEntity(6);
   unloadEntity(6);

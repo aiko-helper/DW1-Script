@@ -35,13 +35,10 @@ section(51) {
 
 L1:
   move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
+  waitForPair();
+  lookPairAt(5);
   speak(5, "It's the Speedy Time Zone\nbeyond this point.\nDon't get too close.\n");
-  playAnimation(Entity.Player, 19);
-  delay(15);
+  anim(Entity.Player, 19, wait: 15);
   speak(Entity.Player, "There are two goals for me.\nOne is to find the\nIsland's danger.\n");
   showTextbox("The other is to get\nDigimon into the city.\n");
   playAnimation(Entity.Player, 0);
@@ -57,8 +54,7 @@ L2:
   showTextbox("I remember a big rock\nfalling from the sky\nnot too long ago.\n");
   speak(Entity.Player, "Where did it fall?\n");
   speak(5, "In Speedy Time Zone. On\nthe other side of the forest.\n");
-  playAnimation(Entity.Player, 19);
-  delay(15);
+  anim(Entity.Player, 19, wait: 15);
   speak(Entity.Player, "Let me go! I may be able\nto find some clues!\n");
   playAnimation(Entity.Player, 0);
   speak(5, "...\n");
@@ -114,8 +110,7 @@ L3:
   setDigimon(Digimon.MasterTyrannomon, 2, 0);
   playSound(8, 7);
   speak(7, "Get this!\n");
-  look(entity: Entity.Player, at: 7);
-  look(entity: Entity.Partner, at: 7);
+  lookPairAt(7);
   look(entity: 6, at: 7);
   for x in [Entity.Player, Entity.Partner, 6] {
     waitForEntity(x);
@@ -123,26 +118,22 @@ L3:
   move(entity: 7, to: (64, 1093), sprint: 0);
   delay(15);
   playSound(8, 6);
-  look(entity: Entity.Player, at: 7);
-  look(entity: Entity.Partner, at: 7);
+  lookPairAt(7);
   look(entity: 6, at: 7);
   move(entity: 7, to: (64, 1093), sprint: 0);
   delay(15);
   playSound(8, 6);
-  look(entity: Entity.Player, at: 7);
-  look(entity: Entity.Partner, at: 7);
+  lookPairAt(7);
   look(entity: 6, at: 7);
   move(entity: 7, to: (64, 1093), sprint: 0);
   delay(15);
   playSound(8, 6);
-  look(entity: Entity.Player, at: 7);
-  look(entity: Entity.Partner, at: 7);
+  lookPairAt(7);
   look(entity: 6, at: 7);
   move(entity: 7, to: (64, 1093), sprint: 0);
   waitForEntity(7);
   playSound(8, 6);
-  look(entity: Entity.Player, at: 7);
-  look(entity: Entity.Partner, at: 7);
+  lookPairAt(7);
   look(entity: 6, at: 7);
   look(entity: 7, at: Entity.Player);
   for x in [Entity.Player, Entity.Partner, 6, 7] {
@@ -153,8 +144,7 @@ L3:
   speak(6, "Master?!\n");
   speak(7, "I can't believe\nyou're still here!\n");
   playSound(8, 8);
-  playAnimation(Entity.Player, 16);
-  delay(15);
+  anim(Entity.Player, 16, wait: 15);
   speak(Entity.Player, "Master? Who is he?\n");
   playAnimation(Entity.Player, 0);
   speak(6, "But Master, who will guard\nthe Ancient Dino Region?\n");
@@ -185,8 +175,7 @@ L4:
     if (pstat[101] >= 6) break;
     addPStat(PStat.LoopIterator, 1);
     delay(10);
-    look(entity: Entity.Player, at: 6);
-    look(entity: Entity.Partner, at: 6);
+    lookPairAt(6);
     look(entity: 7, at: 6);
   }
   waitForEntity(6);

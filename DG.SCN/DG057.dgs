@@ -9,15 +9,12 @@ section onEnter(254) {
 
 section(5) {
   speak(5, "Hey, you aren't Master...\n");
-  startBattle();
-  setTrigger(296);
-  return;
+  finishEncounter(296);
 }
 
 section(81) {
   rotate3DObject(0, 1);
-  playSound(8, 1);
-  delay(10);
+  sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (-1400, 300), sprint: 0);
   warp(to: Map.YAKA15, spawn: 3, trigger: 255);
   return;

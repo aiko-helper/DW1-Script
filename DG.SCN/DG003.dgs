@@ -24,30 +24,22 @@ L3:
 
 section(5) {
   speak(5, "Get away!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(6) {
   speak(6, "Get lost!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(8) {
   speak(8, "It's mine!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(9) {
   speak(9, "I got it!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(7) {
@@ -83,10 +75,8 @@ L4:
   unsetTrigger(1);
   setPStat(250, 0);
   look(entity: 7, at: Entity.Player);
-  look(entity: Entity.Player, at: 7);
-  look(entity: Entity.Partner, at: 7);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  lookPairAt(7);
+  waitForPair();
   playSound(8, 12);
   speak(7, "I hate fighting.\n");
   playAnimation(Entity.Player, 19);

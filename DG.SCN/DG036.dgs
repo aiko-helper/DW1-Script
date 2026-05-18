@@ -29,36 +29,27 @@ L4:
 
 section(5) {
   speak(5, "Hey!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(6) {
   speak(6, "Don't make me mad!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(7) {
   speak(7, "You think that's funny?!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(8) {
   speak(8, "Come on let's go for it!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(51) {
   if (trigger(124)) goto L1;
-  playAnimation(Entity.Player, 15);
-  delay(15);
+  anim(Entity.Player, 15, wait: 15);
   speak(Entity.Player, "Oh no, it's dangerous!\n");
   move(entity: Entity.Player, to: (73, 971), sprint: 1, withCamera: true);
   waitForEntity(Entity.Player);
@@ -69,8 +60,7 @@ L1:
 
 section(52) {
   if (trigger(124)) goto L1;
-  playAnimation(Entity.Player, 15);
-  delay(15);
+  anim(Entity.Player, 15, wait: 15);
   speak(Entity.Player, "Oh no, it's dangerous!\n");
   move(entity: Entity.Player, to: (-782, 1580), sprint: 1, withCamera: true);
   waitForEntity(Entity.Player);
@@ -81,8 +71,7 @@ L1:
 
 section(53) {
   if (trigger(124)) goto L1;
-  playAnimation(Entity.Player, 15);
-  delay(15);
+  anim(Entity.Player, 15, wait: 15);
   speak(Entity.Player, "Oh no, it's dangerous!\n");
   move(entity: Entity.Player, to: (856, 1137), sprint: 1, withCamera: true);
   waitForEntity(Entity.Player);
@@ -93,16 +82,14 @@ L1:
   if (trigger(103) || !trigger(124)) goto L2;
   rotate(entity: Entity.Player, to: 2000);
   delay(10);
-  playAnimation(Entity.Player, 24);
-  delay(15);
+  anim(Entity.Player, 24, wait: 15);
   speak(Entity.Player, "Is there really an\ninvisible bridge here?\n");
   playAnimation(Entity.Player, 0);
   speak(Entity.Player, "What?\n");
   move(entity: Entity.Player, to: (66, 3240), sprint: 0, withCamera: true);
   delay(20);
   move(entity: Entity.Partner, to: (30, 2646), sprint: 0);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   speak(Entity.Player, "Hey, I can walk over this!\n");
   setTrigger(103);
 

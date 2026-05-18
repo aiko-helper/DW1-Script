@@ -16,21 +16,17 @@ L1:
   goto L4;
 
 L2:
-  look(entity: Entity.Player, at: 8);
-  look(entity: Entity.Partner, at: 8);
+  lookPairAt(8);
   delay(5);
   speak(Entity.Player, "!!!\n");
   move(entity: Entity.Player, to: (150, -1050), sprint: 1, withCamera: true);
   move(entity: Entity.Partner, to: (-250, -1050), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
-  look(entity: Entity.Player, at: 8);
-  look(entity: Entity.Partner, at: 8);
+  waitForPair();
+  lookPairAt(8);
   delay(5);
   speak(Entity.Player, "An egg!\n");
   showTextbox("Could it be Machinedramon's?\n");
-  playAnimation(8, 28);
-  delay(40);
+  anim(8, 28, wait: 40);
   speak(Entity.Player, "Could be trouble!\n");
   setTrigger(1);
   setPStat(250, 1);
@@ -57,16 +53,13 @@ L3:
   return;
 
 L4:
-  look(entity: Entity.Player, at: 6);
-  look(entity: Entity.Partner, at: 6);
+  lookPairAt(6);
   delay(5);
   speak(Entity.Player, "!\n");
   move(entity: Entity.Player, to: (150, -1443), sprint: 1, withCamera: true);
   move(entity: Entity.Partner, to: (-250, -1443), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
-  look(entity: Entity.Player, at: 6);
-  look(entity: Entity.Partner, at: 6);
+  waitForPair();
+  lookPairAt(6);
   delay(5);
   speak(Entity.Player, "He's there! I found him!\n");
   moveCamera(to: (14, -416), slowdown: 20);
@@ -80,12 +73,10 @@ L4:
   showTextbox("I was so close to ruling\nthe Net World.\n");
   speak(Entity.Player, "You're a grown up! Stop\nthis, you're hurting everyone.\n");
   speak(6, "I don't care if\nI'm hurting Digimon.\n");
-  playAnimation(6, 29);
-  delay(20);
+  anim(6, 29, wait: 20);
   speak(6, "Digimon should obey\nhumans like slaves.\n");
   callSubroutine(51);
-  playAnimation(Entity.Player, 19);
-  delay(20);
+  anim(Entity.Player, 19, wait: 20);
   speak(Entity.Player, "You're wrong! Digimon have\nhearts and minds!\nWe're friends!\n");
   speak(6, "Let's fight and see if\nslaves or friends are better.\n");
   move(entity: 6, to: (780, 530), sprint: 0);
@@ -95,8 +86,7 @@ L4:
   setDigimon(Digimon.Machinedramon, 0, 0);
   callSubroutine(40);
   playAnimation(6, 28);
-  playSound(8, 6);
-  delay(5);
+  sfx(8, 6, wait: 5);
   speak(6, "Your turn, Machinedramon!\n");
   move(entity: 6, to: (1984, 1681), sprint: 0);
   waitForEntity(6);
@@ -106,8 +96,7 @@ L4:
   waitForEntity(201);
   delay(40);
   playAnimation(5, 28);
-  playSound(8, 1);
-  delay(40);
+  sfx(8, 1, wait: 40);
   setTrigger(1);
   setPStat(250, 1);
   setPStat(251, 5);
@@ -123,8 +112,7 @@ L4:
   speak(Entity.Player, "We did it, <ORANGE><DIGIMON><WHITE>!\n");
   move(entity: Entity.Player, to: (-50, -261), sprint: 1);
   move(entity: Entity.Partner, to: (-50, 424), sprint: 0);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   playAnimation(Entity.Player, 11);
   move(entity: 6, to: (1022, 881), sprint: 0);
   waitForEntity(6);
@@ -152,14 +140,12 @@ L4:
   rotate(entity: 6, to: 2048);
   delay(5);
   playAnimation(6, 28);
-  playSound(8, 6);
-  delay(40);
+  sfx(8, 6, wait: 40);
   speak(Entity.Player, "What are you going to do?!\n");
   rotate(entity: 6, to: 1024);
   delay(5);
   speak(Entity.System, "<YELLOW>Analogman <WHITE>\nI'm going to blow the island\nup and will escape to\nanother world. Too bad kid!\n");
-  playAnimation(6, 29);
-  delay(40);
+  anim(6, 29, wait: 40);
   playSound(8, 7);
   for x in [11, 9, 10] {
     setObjectVisibility(x, 0);
@@ -178,8 +164,7 @@ L4:
   callSubroutine(21);
   speak(Entity.System, "<YELLOW>Analogman <WHITE>\nYou're done for now!\n");
   speak(Entity.Player, "I'm sorry guys. There's\nnothing I can do now.\n");
-  playAnimation(Entity.Player, 22);
-  delay(20);
+  anim(Entity.Player, 22, wait: 20);
   speak(Entity.System, "<YELLOW>??? <WHITE>\nIt's alright.\n");
   rotate(entity: Entity.Player, to: 1024);
   delay(20);
@@ -196,8 +181,7 @@ L4:
   rotate(entity: Entity.Player, to: 0);
   delay(20);
   speak(Entity.Player, "I can hear everyone's voices!\nWho is there?\n");
-  playAnimation(Entity.Player, 23);
-  delay(5);
+  anim(Entity.Player, 23, wait: 5);
   speak(Entity.System, "<YELLOW>Jijimon <WHITE>\nI am sending our energy\nto you right now.\n");
   speak(Entity.System, "<YELLOW>Tokomon <WHITE>\nCan you hear our voices?\n");
   speak(Entity.System, "<YELLOW>Agumon <WHITE>\nI guess we made it in time!\n");
@@ -221,9 +205,7 @@ L4:
   delay(20);
   rotate(entity: Entity.Player, to: 2048);
   setObjectVisibility(5, 1);
-  for id in 9..11 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(9, 11, 1);
   setObjectVisibility(6, 0);
   setPStat(247, 6);
   setPStat(248, 1);
@@ -257,8 +239,7 @@ L4:
   setObjectVisibility(12, 0);
   delay(20);
   loadAndSetDigimon(Digimon.NPCAirdramon, 2, 0);
-  look(entity: Entity.Player, at: 7);
-  look(entity: Entity.Partner, at: 7);
+  lookPairAt(7);
   move(entity: 7, to: (-808, 124), animDuration: 15);
   delay(40);
   move(entity: Entity.Player, to: (-358, 124), sprint: 1, withCamera: true);
@@ -270,14 +251,10 @@ L4:
   delay(30);
   setPStat(254, 20);
   callSubroutine(45);
-  playSound(8, 12);
-  delay(20);
-  playSound(8, 13);
-  delay(20);
-  playSound(8, 14);
-  delay(20);
-  playSound(8, 12);
-  delay(20);
+  sfx(8, 12, wait: 20);
+  sfx(8, 13, wait: 20);
+  sfx(8, 14, wait: 20);
+  sfx(8, 12, wait: 20);
   speak(Entity.System, "Analogman is gone.\n");
   speak(Entity.System, "Peace has returned to\nFile Island.\n");
   speak(Entity.System, "And...\n");

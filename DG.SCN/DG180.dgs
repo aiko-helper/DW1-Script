@@ -45,16 +45,13 @@ section(52) {
   delay(20);
   move(entity: Entity.Player, to: (1931, -482), sprint: 0, withCamera: true);
   move(entity: Entity.Partner, to: (1822, -891), sprint: 0);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   speak(Entity.Player, "What's this?\n");
-  playAnimation(Entity.Partner, 23);
-  delay(40);
+  anim(Entity.Partner, 23, wait: 40);
   look(entity: Entity.Player, at: Entity.Partner);
   delay(5);
   speak(Entity.Player, "What happened, <ORANGE><DIGIMON><WHITE>?!\n");
-  playAnimation(Entity.Player, 16);
-  delay(20);
+  anim(Entity.Player, 16, wait: 20);
   speak(Entity.Player, "This fog stinks!\n");
   speak(Entity.Player, "It's weird, kinda nasty.\n");
   return;
@@ -67,15 +64,13 @@ section(6) {
   moveCamera(to: (2381, -698), slowdown: 20);
   waitForEntity(200);
   playSound(8, 13);
-  playAnimation(6, 15);
-  delay(20);
+  anim(6, 15, wait: 20);
   speak(Entity.Player, "Something's wrong!\n");
   look(entity: 6, at: Entity.Player);
   delay(10);
   playSound(8, 11);
   playAnimation(6, 28);
-  playSound(8, 13);
-  delay(40);
+  sfx(8, 13, wait: 40);
   speak(6, "Da da da!\n");
   setTrigger(1);
   setPStat(250, 1);
@@ -104,8 +99,7 @@ section(6) {
   speak(Entity.Player, "Ugghh. He doesn't get it\nat all! Well, no matter.\n");
   speak(6, "Hey, I'll be a savior. Cool!\n");
   setDialogOwner(Entity.Player);
-  playAnimation(Entity.Player, 19);
-  delay(15);
+  anim(Entity.Player, 19, wait: 15);
   showTextbox("Please come to our city.\nDo you know where it is?\n");
   playAnimation(Entity.Player, 0);
   speak(6, "I know a little.\n");
@@ -124,8 +118,7 @@ L1:
 
 section(7) {
   delay(10);
-  playAnimation(7, 28);
-  delay(10);
+  anim(7, 28, wait: 10);
   speak(Entity.Player, "Who is it?!\n");
   speak(7, "Who are you?!\n");
   rotate(entity: 7, to: 1276);
@@ -151,8 +144,7 @@ section(7) {
   setObjectVisibility(23, 0);
   move(entity: Entity.Player, to: (2068, 760), sprint: 1);
   waitForEntity(Entity.Player);
-  playAnimation(Entity.Player, 12);
-  delay(10);
+  anim(Entity.Player, 12, wait: 10);
   setObjectVisibility(23, 1);
   playSound(0, 7);
   speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can now\nhold up to twenty Items!\n");
@@ -165,8 +157,7 @@ L1:
   setObjectVisibility(22, 0);
   move(entity: Entity.Player, to: (2068, 760), sprint: 1);
   waitForEntity(Entity.Player);
-  playAnimation(Entity.Player, 12);
-  delay(10);
+  anim(Entity.Player, 12, wait: 10);
   setObjectVisibility(22, 1);
   playSound(0, 7);
   speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can now\nhold up to thirty Items!\n");

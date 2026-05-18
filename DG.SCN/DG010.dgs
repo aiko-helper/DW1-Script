@@ -5,9 +5,7 @@
 
 section onEnter(254) {
   if (!trigger(232)) goto L1;
-  for id in 68..70 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(68, 70, 1);
   goto L2;
 
 L1:
@@ -15,9 +13,7 @@ L1:
 
 L2:
   if (!trigger(232) || pstat[1] < 35) goto L3;
-  for id in 71..73 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(71, 73, 0);
 
 L3:
   roll(pstat: 110, max: 99);
@@ -35,16 +31,12 @@ L5:
 
 section(5) {
   speak(5, "You think you're big stuff!\n");
-  startBattle();
-  setTrigger(286);
-  return;
+  finishEncounter(286);
 }
 
 section(7) {
   speak(7, "What did I ever do to you!?\n");
-  startBattle();
-  setTrigger(296);
-  return;
+  finishEncounter(296);
 }
 
 section(55) {
@@ -64,13 +56,11 @@ L2:
 
 L3:
   speak(Entity.System, "<YELLOW>? ? ? <WHITE>\nWait!\n");
-  playAnimation(Entity.Player, 16);
-  delay(20);
+  anim(Entity.Player, 16, wait: 20);
   playAnimation(Entity.Player, 0);
   move(entity: Entity.Player, to: (-1050, -1473), sprint: 1);
   move(entity: Entity.Partner, to: (-709, -1473), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   rotate(entity: Entity.Player, to: 2048);
   rotate(entity: Entity.Partner, to: 2048);
   callSubroutine(38);
@@ -89,24 +79,17 @@ L3:
   moveObjectTo(1, 41, 1, 7, 0, 153, 475);
   delay(12);
   setDigimon(Digimon.NPCNinjamon, 1, 1);
-  for id in 42..67 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(42, 67, 0);
   setPStat(247, 42);
   setPStat(248, 26);
   callSubroutine(21);
   setObjectVisibility(41, 1);
   playSound(8, 0);
-  playAnimation(6, 28);
-  delay(10);
-  for id in 42..67 {
-    setObjectVisibility(id, 1);
-  }
-  playSound(8, 1);
-  delay(10);
+  anim(6, 28, wait: 10);
+  setObjectsVisibleRange(42, 67, 1);
+  sfx(8, 1, wait: 10);
   speak(6, "I'm called Ninjamon!\n");
-  playAnimation(Entity.Player, 15);
-  delay(20);
+  anim(Entity.Player, 15, wait: 20);
   look(entity: 6, at: Entity.Player);
   delay(10);
   look(entity: 6, at: Entity.Partner);
@@ -140,26 +123,19 @@ L5:
   look(entity: Entity.Partner, at: 6);
   waitForEntity(Entity.Player);
   speak(6, "You're just as strong as\nthey say you are. Please\nmake me your disciple!\n");
-  playAnimation(Entity.Player, 19);
-  delay(20);
+  anim(Entity.Player, 19, wait: 20);
   speak(Entity.Player, "Disciple? Well, I don't\ndo that. But you can help us\nmake a city.\n");
   speak(6, "Okay.\nThat's good training too.\nI'll work hard.\n");
   delay(20);
-  playAnimation(6, 28);
-  delay(10);
-  for id in 42..67 {
-    setObjectVisibility(id, 0);
-  }
+  anim(6, 28, wait: 10);
+  setObjectsVisibleRange(42, 67, 0);
   setPStat(247, 42);
   setPStat(248, 26);
   callSubroutine(21);
-  playSound(8, 0);
-  delay(10);
+  sfx(8, 0, wait: 10);
   unloadEntity(6);
   delay(40);
-  for id in 42..67 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(42, 67, 1);
   delay(10);
   playSound(8, 11);
   speak(Entity.System, "Ninjamon joins the city!\n");
@@ -198,9 +174,7 @@ L2:
 
 L3:
   speak(Entity.Player, "Oops, I have too much!\n");
-  setTrigger(3);
-  callSubroutine(0);
-  callSubroutine(13);
+  inventoryFullBailout();
   giveItem(Item.GoldBanana, 1);
 
 L4:

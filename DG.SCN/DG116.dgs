@@ -24,30 +24,22 @@ L3:
 
 section(6) {
   speak(6, "Wow!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(7) {
   speak(7, "Mmmm.\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(8) {
   speak(8, "Uh, let's call it quits.\n");
-  startBattle();
-  setTrigger(296);
-  return;
+  finishEncounter(296);
 }
 
 section(9) {
   speak(9, "We can't let our\nguard down yet.\n");
-  startBattle();
-  setTrigger(301);
-  return;
+  finishEncounter(301);
 }
 
 section(5) {
@@ -61,20 +53,16 @@ section(5) {
   unsetTrigger(1);
   setPStat(250, 0);
   look(entity: 5, at: Entity.Player);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  lookPairAt(5);
+  waitForPair();
   speak(5, "No, I don't want to!\nI don't want to fight!\n");
   speak(Entity.Player, "If you don't want to\nfight, then run away.\n");
   speak(5, "That's too bad.\n");
-  playAnimation(Entity.Player, 16);
-  delay(20);
+  anim(Entity.Player, 16, wait: 20);
   speak(Entity.Player, "I don't understand you.\n");
   showTextbox("Oh well, why don't you come\nto our city? Better than\nhiding out here.\n");
   speak(5, "Uh, city?\n");
-  playAnimation(Entity.Player, 19);
-  delay(20);
+  anim(Entity.Player, 19, wait: 20);
   speak(Entity.Player, "We are not going to\nforce you.\n");
   speak(5, "That makes me want to go.\nOkay, I'll go!\n");
   fadeOutHUD();
@@ -84,8 +72,7 @@ L1:
   approach(who: 5, x: -330, y: -2751, tries: 5, wait: 20);
   playSound(8, 10);
   speak(Entity.System, "Gabumon joins the city!\n");
-  playAnimation(Entity.Player, 16);
-  delay(20);
+  anim(Entity.Player, 16, wait: 20);
   speak(Entity.Player, "What a weird fellow.\n");
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);

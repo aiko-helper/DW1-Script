@@ -15,16 +15,12 @@ L1:
 
 section(5) {
   speak(5, "Ah!\n");
-  startBattle();
-  setTrigger(203);
-  return;
+  finishEncounter(203);
 }
 
 section(6) {
   speak(6, "Ah!\n");
-  startBattle();
-  setTrigger(203);
-  return;
+  finishEncounter(203);
 }
 
 section(51) {
@@ -43,8 +39,7 @@ L2:
 L3:
   move(entity: Entity.Player, to: (1220, 3988), sprint: 0);
   move(entity: Entity.Partner, to: (1201, 3486), sprint: 0);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   playSound(8, 5);
   warp(to: Map.GCAN02, spawn: 3, trigger: 53);
   return;
@@ -65,10 +60,8 @@ L1:
 L2:
   moveCamera(to: (40, 2922), slowdown: 30);
   waitForEntity(200);
-  look(entity: Entity.Player, at: 7);
-  look(entity: Entity.Partner, at: 7);
-  playAnimation(Entity.Player, 7);
-  delay(15);
+  lookPairAt(7);
+  anim(Entity.Player, 7, wait: 15);
   speak(Entity.Player, "Hey!\n");
   playAnimation(Entity.Player, 0);
   look(entity: 7, at: Entity.Player);
@@ -77,8 +70,7 @@ L2:
   speak(7, "What?\n");
   showTextbox("Did you come here to lose?\n");
   playSound(8, 11);
-  playAnimation(Entity.Player, 20);
-  delay(15);
+  anim(Entity.Player, 20, wait: 15);
   speak(Entity.Player, "That's my line!\n");
   playAnimation(Entity.Player, 0);
   speak(7, "I'm holding nothing back\nthis time. I'll make you cry!\n");
@@ -102,24 +94,18 @@ L2:
   unloadEntity(8);
   unloadEntity(9);
   speak(7, "Darn it!\n");
-  playAnimation(7, 46);
-  delay(30);
+  anim(7, 46, wait: 30);
   playSound(8, 9);
-  for id in 0..25 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(0, 25, 0);
   delay(40);
   setPStat(254, 40);
   callSubroutine(45);
   delay(40);
   unloadEntity(7);
-  playAnimation(Entity.Player, 24);
-  delay(15);
+  anim(Entity.Player, 24, wait: 15);
   speak(Entity.Player, "What is it?\n");
   playAnimation(Entity.Player, 0);
-  for id in 0..25 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(0, 25, 1);
   setDigimon(Digimon.NPCOgremon, 5, 0);
   rotate(entity: 10, to: 0);
   moveObjectTo(0, 45, 1, 10, 0, 385, -50);
@@ -136,8 +122,7 @@ L2:
   speak(Entity.Player, "Darn, he got away!\n");
   move(entity: Entity.Player, to: (1234, 2267), sprint: 1, withCamera: true);
   move(entity: Entity.Partner, to: (774, 2251), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   rotate(entity: Entity.Player, to: 2037);
   rotate(entity: Entity.Partner, to: 2300);
   speak(Entity.Player, "There is an escape elevator.\nChasing him will do no good.\n");
@@ -151,8 +136,7 @@ section(53) {
   if (trigger(175)) goto L1;
   move(entity: Entity.Player, to: (245, 1250), sprint: 1, withCamera: true);
   move(entity: Entity.Partner, to: (-50, 1250), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   goto section_52.L2;
 
 L1:
@@ -169,8 +153,7 @@ section(54) {
 
 section(11) {
   delay(10);
-  playAnimation(11, 28);
-  delay(10);
+  anim(11, 28, wait: 10);
   speak(Entity.Player, "Who are you?\n");
   speak(11, "Who am I? Who are you?\n");
   rotate(entity: 11, to: 1276);
@@ -196,8 +179,7 @@ section(11) {
   setObjectVisibility(43, 0);
   move(entity: Entity.Player, to: (32, 829), sprint: 1);
   waitForEntity(Entity.Player);
-  playAnimation(Entity.Player, 12);
-  delay(10);
+  anim(Entity.Player, 12, wait: 10);
   setObjectVisibility(43, 1);
   playSound(0, 7);
   speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry twenty Items!\n");
@@ -210,8 +192,7 @@ L1:
   setObjectVisibility(42, 0);
   move(entity: Entity.Player, to: (32, 829), sprint: 1);
   waitForEntity(Entity.Player);
-  playAnimation(Entity.Player, 12);
-  delay(10);
+  anim(Entity.Player, 12, wait: 10);
   setObjectVisibility(42, 1);
   playSound(0, 7);
   speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry thirty Items!\n");

@@ -24,44 +24,32 @@ L3:
 
 section(5) {
   speak(5, "Shwaa!\n");
-  startBattle();
-  setTrigger(302);
-  return;
+  finishEncounter(302);
 }
 
 section(6) {
   speak(6, "Sha sha shaaaa!\n");
-  startBattle();
-  setTrigger(302);
-  return;
+  finishEncounter(302);
 }
 
 section(7) {
   speak(7, "Doesn't look like he's hurt.\n");
-  startBattle();
-  setTrigger(299);
-  return;
+  finishEncounter(299);
 }
 
 section(8) {
   speak(8, "I'll give you a discount.\n");
-  startBattle();
-  setTrigger(268);
-  return;
+  finishEncounter(268);
 }
 
 section(9) {
   speak(9, "Don't make fun of us!\n");
-  startBattle();
-  setTrigger(268);
-  return;
+  finishEncounter(268);
 }
 
 section(10) {
   speak(10, "You're not gonna\nmake it home alive!\n");
-  startBattle();
-  setTrigger(305);
-  return;
+  finishEncounter(305);
 }
 
 section(51) {
@@ -81,8 +69,7 @@ L3:
   goto L5;
 
 L4:
-  playAnimation(Entity.Player, 18);
-  delay(20);
+  anim(Entity.Player, 18, wait: 20);
   speak(Entity.Player, "Ouch!\n");
   setPStat(254, 253);
   callSubroutine(55);
@@ -90,8 +77,7 @@ L4:
   look(entity: Entity.Player, at: Entity.Partner);
   delay(20);
   look(entity: Entity.Partner, at: Entity.Player);
-  playAnimation(Entity.Player, 19);
-  delay(15);
+  anim(Entity.Player, 19, wait: 15);
   speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>,\nare you alright?\n");
   playAnimation(Entity.Player, 0);
   showTextbox("Wow, you look okay!\n");
@@ -103,10 +89,8 @@ L4:
 
 L5:
   playAnimation(Entity.Partner, 43);
-  playAnimation(Entity.Player, 18);
-  delay(40);
-  playAnimation(Entity.Partner, 44);
-  delay(40);
+  anim(Entity.Player, 18, wait: 40);
+  anim(Entity.Partner, 44, wait: 40);
   playAnimation(Entity.Partner, 0);
   speak(Entity.Player, "Ouch!\n");
   setPStat(254, 253);
@@ -114,8 +98,7 @@ L5:
   speak(Entity.Player, "For such a big fall,\nhe looks okay.\n");
   rotate(entity: Entity.Player, to: 2002);
   delay(20);
-  playAnimation(Entity.Player, 19);
-  delay(15);
+  anim(Entity.Player, 19, wait: 15);
   speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>,\nare you alright?\n");
   playAnimation(Entity.Player, 0);
   showTextbox("I guess it hurts. I'm sorry.\n");

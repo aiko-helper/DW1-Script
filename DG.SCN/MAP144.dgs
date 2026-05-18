@@ -32,8 +32,7 @@ L1:
   rotate(entity: Entity.Player, to: 2048);
   rotate(entity: Entity.Partner, to: 2048);
   delay(5);
-  playSound(0, 11);
-  delay(10);
+  sfx(0, 11, wait: 10);
   setObjectVisibility(0, 0);
   setPStat(247, 0);
   setPStat(248, 1);
@@ -45,28 +44,20 @@ L1:
   playSound(8, 13);
   setObjectVisibility(0, 1);
   moveObjectTo(0, 0, 1, 2, 0, 28, -32);
-  for id in 3..7 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(3, 7, 0);
   setPStat(247, 3);
   setPStat(248, 5);
   callSubroutine(21);
   delay(15);
-  for id in 3..7 {
-    setObjectVisibility(id, 1);
-  }
-  for id in 18..33 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(3, 7, 1);
+  setObjectsVisibleRange(18, 33, 0);
   setPStat(247, 18);
   setPStat(248, 16);
   callSubroutine(21);
   setPStat(200, 10);
   dealMapDamage(200);
   delay(10);
-  for id in 18..33 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(18, 33, 1);
   delay(20);
   return;
 }
@@ -88,8 +79,7 @@ L1:
   rotate(entity: Entity.Player, to: 2048);
   rotate(entity: Entity.Partner, to: 2048);
   delay(5);
-  playSound(0, 11);
-  delay(10);
+  sfx(0, 11, wait: 10);
   setObjectVisibility(1, 0);
   setPStat(247, 1);
   setPStat(248, 1);
@@ -101,28 +91,20 @@ L1:
   playSound(8, 13);
   setObjectVisibility(1, 1);
   moveObjectTo(1, 1, 1, 2, 0, 218, -32);
-  for id in 8..12 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(8, 12, 0);
   setPStat(247, 8);
   setPStat(248, 5);
   callSubroutine(21);
   delay(15);
-  for id in 8..12 {
-    setObjectVisibility(id, 1);
-  }
-  for id in 34..49 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(8, 12, 1);
+  setObjectsVisibleRange(34, 49, 0);
   setPStat(247, 34);
   setPStat(248, 16);
   callSubroutine(21);
   setPStat(200, 10);
   dealMapDamage(200);
   delay(10);
-  for id in 34..49 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(34, 49, 1);
   delay(20);
   return;
 }
@@ -144,8 +126,7 @@ L1:
   rotate(entity: Entity.Player, to: 2048);
   rotate(entity: Entity.Partner, to: 2048);
   delay(5);
-  playSound(0, 11);
-  delay(10);
+  sfx(0, 11, wait: 10);
   setObjectVisibility(2, 0);
   setPStat(247, 2);
   setPStat(248, 1);
@@ -157,28 +138,20 @@ L1:
   playSound(8, 13);
   setObjectVisibility(2, 1);
   moveObjectTo(2, 2, 1, 2, 0, 328, -32);
-  for id in 13..17 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(13, 17, 0);
   setPStat(247, 13);
   setPStat(248, 5);
   callSubroutine(21);
   delay(15);
-  for id in 13..17 {
-    setObjectVisibility(id, 1);
-  }
-  for id in 50..65 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(13, 17, 1);
+  setObjectsVisibleRange(50, 65, 0);
   setPStat(247, 50);
   setPStat(248, 16);
   callSubroutine(21);
   setPStat(200, 10);
   dealMapDamage(200);
   delay(10);
-  for id in 50..65 {
-    setObjectVisibility(id, 1);
-  }
+  setObjectsVisibleRange(50, 65, 1);
   delay(20);
   return;
 }
@@ -191,16 +164,12 @@ section(51) {
 
 section(5) {
   speak(5, "What is it?!\n");
-  startBattle();
-  setTrigger(298);
-  return;
+  finishEncounter(298);
 }
 
 section(6) {
   speak(6, "Get out of here!\n");
-  startBattle();
-  setTrigger(298);
-  return;
+  finishEncounter(298);
 }
 
 section(7) {

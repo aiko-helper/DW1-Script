@@ -30,14 +30,12 @@ L1:
   look(entity: 5, at: Entity.Player);
   delay(5);
   speak(5, "We're here at last.\n");
-  playAnimation(Entity.Player, 20);
-  delay(15);
+  anim(Entity.Player, 20, wait: 15);
   speak(Entity.Player, "Are you the boss?\n");
   playAnimation(Entity.Player, 0);
   speak(5, "I'm sorry, I'm not.\nI'm MetalGreymon!\n");
   setDialogOwner(Entity.Player);
-  playAnimation(Entity.Player, 19);
-  delay(15);
+  anim(Entity.Player, 19, wait: 15);
   showTextbox("I'll deal with you later!\nMove!\n");
   playAnimation(Entity.Player, 0);
   speak(5, "I will not move for you.\nYou won't get past me.\n");
@@ -66,8 +64,7 @@ L2:
     if (pstat[101] >= 3) break;
     addPStat(PStat.LoopIterator, 1);
     delay(20);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    lookPairAt(5);
   }
   waitForEntity(5);
   unloadEntity(5);

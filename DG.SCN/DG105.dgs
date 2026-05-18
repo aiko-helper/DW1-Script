@@ -30,9 +30,7 @@ L4:
 
 L5:
   if (pstat[1] < 25) goto L6;
-  for id in 28..33 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(28, 33, 0);
 
 L6:
   return;
@@ -40,15 +38,12 @@ L6:
 
 section(5) {
   speak(5, "What do you want?!\n");
-  startBattle();
-  setTrigger(274);
-  return;
+  finishEncounter(274);
 }
 
 section(6) {
   speak(Entity.Player, "Wow!\n");
-  playAnimation(Entity.Player, 15);
-  delay(20);
+  anim(Entity.Player, 15, wait: 20);
   playAnimation(Entity.Player, 0);
   speak(6, "...? ...!\n");
   speak(Entity.Player, "What? Now?!\nOkay, let's fight!\n");
@@ -61,10 +56,8 @@ section(6) {
   unsetTrigger(1);
   setPStat(250, 0);
   look(entity: 6, at: Entity.Player);
-  look(entity: Entity.Player, at: 6);
-  look(entity: Entity.Partner, at: 6);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  lookPairAt(6);
+  waitForPair();
   speak(6, "I lost. Rats!\n");
   playAnimation(6, 18);
   speak(Entity.Player, "I should invite him\nto the city.\n");
@@ -97,31 +90,24 @@ L1:
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
   speak(Entity.Player, "Alright, it pays to try.\nI'll keep on asking!\n");
-  playAnimation(Entity.Player, 11);
-  delay(20);
+  anim(Entity.Player, 11, wait: 20);
   playAnimation(Entity.Player, 0);
   return;
 }
 
 section(7) {
   speak(7, "This is my territory!\n");
-  startBattle();
-  setTrigger(283);
-  return;
+  finishEncounter(283);
 }
 
 section(8) {
   speak(8, "What?!\n");
-  startBattle();
-  setTrigger(274);
-  return;
+  finishEncounter(274);
 }
 
 section(9) {
   speak(9, "Now's my chance!\n");
-  startBattle();
-  setTrigger(283);
-  return;
+  finishEncounter(283);
 }
 
 section(51) {

@@ -24,19 +24,16 @@ section(5) {
   showTextbox("Crack it and check\nLeave it alone\n");
 
 L1:
-  playAnimation(Entity.Player, 5);
-  delay(20);
+  anim(Entity.Player, 5, wait: 20);
   speak(Entity.Player, "Hmmm\n");
-  playAnimation(Entity.Player, 16);
-  delay(5);
+  anim(Entity.Player, 16, wait: 5);
   showTextbox("Looks like a plain\nold meteorite to me.\n");
   speak(Entity.System, "<YELLOW>???mon <WHITE>\nSorry to look\nso plain and old.\n");
   goto L2;
 
 L2:
   loop {
-    playAnimation(5, 29);
-    delay(10);
+    anim(5, 29, wait: 10);
     speak(Entity.Player, "Wow!\n");
     speak(Entity.Player, "You're a Digimon?!\nWho are you?\n");
     look(entity: 5, at: Entity.Player);
@@ -61,19 +58,16 @@ L2:
     look(entity: Entity.Partner, at: 5);
     speak(5, "I give up. You're so strong.\n");
     speak(Entity.Player, "Whatever you know, tell me\nabout the island's danger.\n");
-    playAnimation(Entity.Player, 19);
-    delay(5);
+    anim(Entity.Player, 19, wait: 5);
     speak(5, "I was just born, so\nI don't know anything!\n");
     speak(Entity.Player, "What?!\n");
-    playAnimation(Entity.Player, 0);
-    delay(5);
+    anim(Entity.Player, 0, wait: 5);
     speak(5, "The Meteorite Tribe is\nborn in the sky and then\nfalls to the ground.\n");
     speak(5, "Then we sleep for a long time.\nActually, I was supposed to\nsleep much longer, but...\n");
     speak(Entity.Player, "Time goes much faster here.\n");
     speak(5, "Probably. Anyway, I'll go\ncheck out the island.");
     dead_string("?o\nSee ya!\n");
-    playAnimation(5, 30);
-    delay(10);
+    anim(5, 30, wait: 10);
     goto L3;
 
 L3:
@@ -82,8 +76,7 @@ L3:
     addPStat(PStat.LoopIterator, 1);
     delay(20);
     playSound(8, 5);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    lookPairAt(5);
     goto L3;
 
 L4:
@@ -101,11 +94,9 @@ L5:
     speak(Entity.Player, "We looked at it, and\nwe can't tell anything.\nLet's crack it!\n");
     move(entity: Entity.Partner, to: 5, sprint: 0);
     waitForEntity(Entity.Partner);
-    playAnimation(Entity.Partner, 46);
-    delay(20);
+    anim(Entity.Partner, 46, wait: 20);
     speak(Entity.System, "<YELLOW>???mon <WHITE>\nWhadda ya think you're doing?\nYou reckless clod!\n");
-    playAnimation(5, 29);
-    delay(20);
+    anim(5, 29, wait: 20);
     look(entity: 5, at: Entity.Player);
     look(entity: Entity.Player, at: 5);
     delay(5);
@@ -114,8 +105,7 @@ L5:
 
 section(6) {
   delay(10);
-  playAnimation(6, 28);
-  delay(10);
+  anim(6, 28, wait: 10);
   speak(Entity.Player, "Huh? Who are you?!\n");
   speak(6, "Who am I? Who are you?!\n");
   rotate(entity: 6, to: 1276);
@@ -141,8 +131,7 @@ section(6) {
   setObjectVisibility(3, 0);
   move(entity: Entity.Player, to: (150, -138), sprint: 1);
   waitForEntity(Entity.Player);
-  playAnimation(Entity.Player, 12);
-  delay(10);
+  anim(Entity.Player, 12, wait: 10);
   setObjectVisibility(3, 1);
   playSound(0, 7);
   speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>.\nI can carry twenty Items!\n");
@@ -155,8 +144,7 @@ L1:
   setObjectVisibility(2, 0);
   move(entity: Entity.Player, to: (150, -138), sprint: 1);
   waitForEntity(Entity.Player);
-  playAnimation(Entity.Player, 12);
-  delay(10);
+  anim(Entity.Player, 12, wait: 10);
   setObjectVisibility(2, 1);
   playSound(0, 7);
   speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>.\nI can carry thirty Items!\n");

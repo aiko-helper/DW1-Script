@@ -52,8 +52,7 @@ L1:
   speak(Entity.Player, "It looks bad. Hold on.\nWhat should I do?\n");
 
 L2:
-  playAnimation(Entity.Player, 4);
-  delay(10);
+  anim(Entity.Player, 4, wait: 10);
   setTrigger(3);
   callSubroutine(0);
   if (!trigger(3)) goto L3;
@@ -76,10 +75,8 @@ L5:
   goto L8;
 
 L6:
-  playAnimation(Entity.Player, 5);
-  delay(20);
-  playAnimation(Entity.Player, 0);
-  delay(5);
+  anim(Entity.Player, 5, wait: 20);
+  anim(Entity.Player, 0, wait: 5);
   playSound(8, 9);
   speak(5, "It's much better. Thanks.\n");
   playAnimation(5, 29);
@@ -98,10 +95,8 @@ L7:
     move(entity: 5, to: (-93, -1821), sprint: 1);
     if (pstat[101] >= 3) break;
     addPStat(PStat.LoopIterator, 1);
-    playSound(8, 0);
-    delay(20);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    sfx(8, 0, wait: 20);
+    lookPairAt(5);
   }
   waitForEntity(5);
   unloadEntity(5);

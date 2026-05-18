@@ -27,39 +27,31 @@ L2:
   return;
 
 L3:
-  playSound(8, 13);
-  delay(60);
+  sfx(8, 13, wait: 60);
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
   move(entity: Entity.Player, to: (445, -1448), sprint: 1, withCamera: true);
   move(entity: Entity.Partner, to: (743, -2280), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   rotate(entity: Entity.Player, to: 1536);
   rotate(entity: Entity.Partner, to: 1536);
   moveCamera(to: (242, -1810), slowdown: 10);
   waitForEntity(200);
   loadAndSetDigimon(Digimon.NPCSeadramon, 0, 0);
   playAnimation(5, 28);
-  for id in 38..44 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(38, 44, 0);
   setPStat(247, 40);
   setPStat(248, 5);
   callSubroutine(21);
   playAnimation(Entity.Player, 15);
   waitForEntity(5);
-  playSound(8, 12);
-  delay(60);
-  for id in 40..44 {
-    setObjectVisibility(id, 1);
-  }
+  sfx(8, 12, wait: 60);
+  setObjectsVisibleRange(40, 44, 1);
   setObjectVisibility(45, 0);
   playAnimation(5, 32);
   playSound(8, 7);
   speak(5, "Do you need help my friend?\n");
-  playAnimation(Entity.Player, 19);
-  delay(15);
+  anim(Entity.Player, 19, wait: 15);
   speak(Entity.Player, "Take me to the other side.\n");
   playAnimation(Entity.Player, 0);
   speak(5, "Sure. Get on.\n");
@@ -73,8 +65,7 @@ L3:
   delay(20);
   setObjectVisibility(46, 1);
   setObjectVisibility(47, 1);
-  playAnimation(5, 30);
-  delay(10);
+  anim(5, 30, wait: 10);
   moveCamera(to: (-310, -1980), slowdown: 15);
   waitForEntity(200);
   move(entity: Entity.Player, axis: 1, to: -200, speed: 2);
@@ -95,8 +86,7 @@ L3:
 section(82) {
   move(entity: Entity.Player, to: (445, -1448), sprint: 1, withCamera: true);
   move(entity: Entity.Partner, to: (743, -2280), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   rotate(entity: Entity.Player, to: 1536);
   rotate(entity: Entity.Partner, to: 1536);
   moveCamera(to: (242, -1810), slowdown: 10);
@@ -107,19 +97,14 @@ section(82) {
   setObjectVisibility(39, 0);
   loadAndSetDigimon(Digimon.NPCSeadramon, 0, 0);
   playAnimation(5, 28);
-  for id in 40..44 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(40, 44, 0);
   setPStat(247, 40);
   setPStat(248, 5);
   callSubroutine(21);
   playAnimation(Entity.Player, 15);
   waitForEntity(5);
-  playSound(8, 12);
-  delay(60);
-  for id in 40..44 {
-    setObjectVisibility(id, 1);
-  }
+  sfx(8, 12, wait: 60);
+  setObjectsVisibleRange(40, 44, 1);
   setObjectVisibility(45, 0);
   playAnimation(5, 32);
   playSound(8, 7);
@@ -151,19 +136,14 @@ L5:
     setTrigger(339);
     loadAndSetDigimon(Digimon.NPCSeadramon, 0, 0);
     playAnimation(5, 28);
-    for id in 38..44 {
-      setObjectVisibility(id, 0);
-    }
+    setObjectsVisibleRange(38, 44, 0);
     setPStat(247, 40);
     setPStat(248, 5);
     callSubroutine(21);
     playAnimation(Entity.Player, 15);
     waitForEntity(5);
-    playSound(8, 12);
-    delay(60);
-    for id in 40..44 {
-      setObjectVisibility(id, 1);
-    }
+    sfx(8, 12, wait: 60);
+    setObjectsVisibleRange(40, 44, 1);
     setObjectVisibility(45, 0);
     playAnimation(5, 32);
     playSound(8, 7);
@@ -279,8 +259,7 @@ L14:
   delay(20);
   setObjectVisibility(46, 1);
   setObjectVisibility(47, 1);
-  playAnimation(5, 30);
-  delay(10);
+  anim(5, 30, wait: 10);
   moveCamera(to: (-310, -1980), slowdown: 15);
   waitForEntity(200);
   move(entity: Entity.Player, axis: 1, to: -200, speed: 2);

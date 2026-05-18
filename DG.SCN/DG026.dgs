@@ -31,9 +31,7 @@ section(5) {
 
 L1:
   speak(5, "What? You wanna fight?\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(6) {
@@ -43,9 +41,7 @@ section(6) {
 
 L1:
   speak(6, "Leave it!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(7) {
@@ -55,9 +51,7 @@ section(7) {
 
 L1:
   speak(7, "Let's fight, punk!\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(9) {
@@ -77,8 +71,7 @@ section(51) {
 L1:
   move(entity: Entity.Player, to: (-165, 221), sprint: 0, withCamera: true);
   move(entity: Entity.Partner, to: (171, 615), sprint: 0);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
   move(entity: 9, to: (-323, 93), sprint: 0);
   move(entity: 10, to: (498, -51), sprint: 0);
   move(entity: 8, to: (160, -193), sprint: 0);
@@ -112,15 +105,12 @@ L1:
   move(entity: 8, to: (89, -659), sprint: 0);
   waitForEntity(8);
   rotate(entity: 8, to: 100);
-  look(entity: Entity.Player, at: 8);
-  look(entity: Entity.Partner, at: 8);
+  lookPairAt(8);
   waitForEntity(8);
-  playAnimation(8, 28);
-  delay(30);
+  anim(8, 28, wait: 30);
   speak(8, "How come...I can't win?\n");
   playAnimation(8, 29);
-  playAnimation(Entity.Player, 19);
-  delay(20);
+  anim(Entity.Player, 19, wait: 20);
   speak(Entity.Player, "What's wrong?\nAren't you going to run?\n");
   playAnimation(Entity.Player, 0);
   speak(8, "I'm too tired.\n");
@@ -128,13 +118,11 @@ L1:
   speak(8, "I became a bandit cuz I\nthought this island was done\nfor, so I just did whatever.\n");
   speak(Entity.Player, "Did you know the island\nwas in trouble?\n");
   speak(8, "Yes, then you showed up.\nI guess it's dumb to\nstart helping you now.\n");
-  playAnimation(Entity.Player, 19);
-  delay(15);
+  anim(Entity.Player, 19, wait: 15);
   speak(Entity.Player, "I don't think so.\nCome to the city.\n");
   playAnimation(Entity.Player, 0);
   speak(8, "No, I can't. Plus, I don't\nthink anybody would forgive\nme for what I've done.\n");
-  playAnimation(Entity.Player, 7);
-  delay(15);
+  anim(Entity.Player, 7, wait: 15);
   speak(Entity.Player, "Oh, just be quiet\nand come with me!\n");
   playAnimation(Entity.Player, 0);
   move(entity: Entity.Player, to: (160, -193), sprint: 1, withCamera: true);
@@ -157,8 +145,7 @@ L2:
   if (pstat[101] >= 6) goto L3;
   addPStat(PStat.LoopIterator, 1);
   delay(10);
-  look(entity: Entity.Player, at: 8);
-  look(entity: Entity.Partner, at: 8);
+  lookPairAt(8);
 
 L3:
   waitForEntity(8);

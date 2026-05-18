@@ -10,9 +10,7 @@ section onEnter(254) {
 
 section(6) {
   speak(6, "Am I bothering you?\n");
-  startBattle();
-  setTrigger(280);
-  return;
+  finishEncounter(280);
 }
 
 section(51) {
@@ -32,11 +30,9 @@ L3:
   rotate(entity: Entity.Player, to: 1321);
   rotate(entity: Entity.Partner, to: 1321);
   delay(10);
-  playAnimation(Entity.Player, 23);
-  delay(15);
+  anim(Entity.Player, 23, wait: 15);
   speak(Entity.Player, "I hear a voice from above.\nAnybody there?\n");
-  playAnimation(Entity.Player, 0);
-  delay(10);
+  anim(Entity.Player, 0, wait: 10);
   speak(Entity.System, "<YELLOW>??? <WHITE>\nAnybody there?\n");
   delay(10);
   speak(Entity.Player, "Yes, there is.\n");
@@ -48,11 +44,9 @@ L3:
   playSound(8, 11);
   speak(Entity.System, "<YELLOW>??? <WHITE>\nNo, it's true.\nI hear some machinery noise.\n");
   delay(10);
-  playAnimation(Entity.Player, 16);
-  delay(15);
+  anim(Entity.Player, 16, wait: 15);
   speak(Entity.Player, "A machine? It must be coming\nfrom Ogremon's hideout.\n");
-  playAnimation(Entity.Player, 0);
-  delay(10);
+  anim(Entity.Player, 0, wait: 10);
   speak(Entity.System, "<YELLOW>??? <WHITE>\nYou must have done\nsomething wrong there, no?\n");
   delay(10);
   speak(Entity.Player, "I did many things. It could\nbe the elevator.... I'll go\nback to the hideout and check.\n");

@@ -19,12 +19,9 @@ L1:
   speak(Entity.Player, "!\n");
   move(entity: Entity.Player, to: (-835, -37), sprint: 1, withCamera: true);
   move(entity: Entity.Partner, to: (-353, 32), sprint: 1);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
-  look(entity: Entity.Player, at: 5);
-  look(entity: Entity.Partner, at: 5);
-  waitForEntity(Entity.Player);
-  waitForEntity(Entity.Partner);
+  waitForPair();
+  lookPairAt(5);
+  waitForPair();
   playAnimation(5, 29);
   waitForEntity(5);
   speak(5, "Are you <LIGHTBLUE><PLAYER><WHITE>?\n");
@@ -45,8 +42,7 @@ L1:
   setTrigger(345);
   speak(5, "I'll attack you!\n");
   playSound(8, 9);
-  playAnimation(5, 28);
-  delay(60);
+  anim(5, 28, wait: 60);
   unloadEntity(5);
   rotate(entity: Entity.Player, to: 3072);
   speak(Entity.Player, "I gotta save Myotismon\nas soon as possible!\n");

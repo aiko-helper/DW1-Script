@@ -9,50 +9,37 @@ section onEnter(254) {
 
 section(5) {
   speak(5, "Too much!\n");
-  startBattle();
-  setTrigger(287);
-  return;
+  finishEncounter(287);
 }
 
 section(6) {
   speak(6, "Phew!\n");
-  startBattle();
-  setTrigger(287);
-  return;
+  finishEncounter(287);
 }
 
 section(7) {
   speak(7, "Do you need to see me?\n");
-  startBattle();
-  setTrigger(287);
-  return;
+  finishEncounter(287);
 }
 
 section(8) {
   speak(8, "Don't move!\n");
-  startBattle();
-  setTrigger(292);
-  return;
+  finishEncounter(292);
 }
 
 section(9) {
   speak(9, "Wait! I'm telling you.\n");
-  startBattle();
-  setTrigger(292);
-  return;
+  finishEncounter(292);
 }
 
 section(10) {
   speak(10, "I'll talk to you later.\n");
-  startBattle();
-  setTrigger(292);
-  return;
+  finishEncounter(292);
 }
 
 section(81) {
   rotate3DObject(1, 1);
-  playSound(8, 2);
-  delay(20);
+  sfx(8, 2, wait: 20);
   move(entity: Entity.Player, to: (-1999, 800), sprint: 0);
   if (!trigger(329)) goto L1;
   if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L1;
@@ -65,8 +52,7 @@ L1:
 
 section(82) {
   rotate3DObject(0, 1);
-  playSound(8, 2);
-  delay(20);
+  sfx(8, 2, wait: 20);
   move(entity: Entity.Player, to: (683, 4120), sprint: 0);
   warp(to: Map.FACT10, spawn: 0, trigger: 255);
   return;

@@ -28,8 +28,7 @@ L3:
   playSound(8, 10);
   speak(5, "It's hot! Do something!\n");
   playAnimation(5, 28);
-  playAnimation(Entity.Player, 16);
-  delay(20);
+  anim(Entity.Player, 16, wait: 20);
   speak(Entity.Player, "What's going on?\n");
   playSound(8, 10);
   speak(5, "It's too hot!\nI can't take it anymore!\n");
@@ -45,17 +44,14 @@ L3:
   look(entity: 5, at: Entity.Player);
   look(entity: Entity.Partner, at: 5);
   speak(5, "I got weird\nbecause of the heat.\n");
-  playAnimation(Entity.Player, 25);
-  delay(20);
+  anim(Entity.Player, 25, wait: 20);
   speak(Entity.Player, "I know it's hot, but...\nbe cool man!\n");
   speak(5, "The more we dig, the hotter\nit gets. The tunnel\nis in a volcano.\n");
   speak(5, "I don't think it's the only\nreason. Maybe there's\na fire nearby.\n");
-  playAnimation(Entity.Player, 16);
-  delay(20);
+  anim(Entity.Player, 16, wait: 20);
   speak(Entity.Player, "Hmmm\n");
   speak(5, "I don't got a choice.\nI must bear this heat\nand keep on digging.\n");
-  playAnimation(Entity.Player, 19);
-  delay(20);
+  anim(Entity.Player, 19, wait: 20);
   speak(Entity.Player, "We'll check out the cause.\nIt'd be great if\nthe tunnel goes thru.\n");
   speak(5, "You are a nice guy.\nI'll hurry and\ndig this tunnel!\n");
   delay(10);
@@ -68,8 +64,7 @@ L4:
     if (pstat[101] >= 3) break;
     addPStat(PStat.LoopIterator, 1);
     delay(20);
-    look(entity: Entity.Player, at: 5);
-    look(entity: Entity.Partner, at: 5);
+    lookPairAt(5);
   }
   setPStat(PStat.LoopIterator, 0);
   waitForEntity(5);

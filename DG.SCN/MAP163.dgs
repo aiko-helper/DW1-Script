@@ -14,18 +14,14 @@ L1:
 L2:
   if (!trigger(204)) goto L3;
   setRectImpassible(47, 48, 7, 8);
-  for id in 0..6 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(0, 6, 0);
   setObjectVisibility(65, 0);
   setObjectVisibility(66, 0);
 
 L3:
   if (!trigger(50)) goto L4;
   setRectImpassible(47, 48, 7, 8);
-  for id in 0..12 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(0, 12, 0);
   setObjectVisibility(65, 0);
   setObjectVisibility(66, 1);
   setObjectVisibility(67, 0);
@@ -33,16 +29,12 @@ L3:
 L4:
   if (!trigger(235)) goto L5;
   setRectImpassible(71, 50, 1, 9);
-  for id in 13..23 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(13, 23, 0);
 
 L5:
   if (pstat[107] in 7..19) goto L6;
   if (!trigger(218) || !trigger(235)) goto L6;
-  for id in 68..73 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(68, 73, 0);
 
 L6:
   if (!trigger(232)) goto L7;
@@ -66,16 +58,12 @@ L9:
 
 L10:
   if (!trigger(218)) goto L11;
-  for id in 53..56 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(53, 56, 0);
 
 L11:
   if (pstat[107] in 7..19) goto L12;
   if (!trigger(218)) goto L12;
-  for id in 57..60 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(57, 60, 0);
 
 L12:
   if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L13;
@@ -87,9 +75,7 @@ L13:
 L14:
   if (pstat[107] in 7..19) goto L15;
   if (!trigger(218)) goto L15;
-  for id in 61..64 {
-    setObjectVisibility(id, 0);
-  }
+  setObjectsVisibleRange(61, 64, 0);
 
 L15:
   if (trigger(249) || pstat[43] != 2) goto L16;
@@ -150,8 +136,7 @@ section(5) {
   if (pstat[103] != 37) goto L1;
   look(entity: Entity.Player, at: Entity.Partner);
   delay(5);
-  playAnimation(Entity.Partner, 11);
-  delay(10);
+  anim(Entity.Partner, 11, wait: 10);
   look(entity: Entity.Player, at: Entity.Partner);
   delay(5);
   speak(Entity.Player, "I see. You're\npatrolling for us?!\n");
@@ -346,8 +331,7 @@ section(12) {
 
 section(81) {
   rotate(entity: Entity.Player, to: 1024);
-  playSound(0, 0);
-  delay(5);
+  sfx(0, 0, wait: 5);
   setTextboxOrigin(-628, 0, 2226);
   if (!trigger(249) || trigger(52) || trigger(204)) goto L1;
   setTrigger(52);

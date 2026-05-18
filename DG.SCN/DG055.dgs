@@ -11,23 +11,17 @@ section onEnter(254) {
 
 section(5) {
   speak(5, "I'll handle you!\n");
-  startBattle();
-  setTrigger(307);
-  return;
+  finishEncounter(307);
 }
 
 section(6) {
   speak(6, "I'll handle you!\n");
-  startBattle();
-  setTrigger(307);
-  return;
+  finishEncounter(307);
 }
 
 section(7) {
   speak(7, "I'll handle you!\n");
-  startBattle();
-  setTrigger(307);
-  return;
+  finishEncounter(307);
 }
 
 section(83) {
@@ -54,8 +48,7 @@ L2:
   rotate3DObject(3, 1);
   delay(60);
   removeItem(Item.FridgeKey, 1);
-  playAnimation(Entity.Player, 24);
-  delay(15);
+  anim(Entity.Player, 24, wait: 15);
   speak(Entity.Player, "I don't see it.\n");
   playAnimation(Entity.Player, 0);
   speak(Entity.Player, "There's a memo.\n");
@@ -76,8 +69,7 @@ L4:
 
 section(81) {
   rotate3DObject(1, 1);
-  playSound(8, 1);
-  delay(10);
+  sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (81, -1600), sprint: 0);
   warp(to: Map.YAKA12, spawn: 0, trigger: 255);
   return;
@@ -85,8 +77,7 @@ section(81) {
 
 section(82) {
   rotate3DObject(0, 1);
-  playSound(8, 1);
-  delay(10);
+  sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (-117, 1200), sprint: 0);
   warp(to: Map.YAKA15, spawn: 1, trigger: 255);
   return;
