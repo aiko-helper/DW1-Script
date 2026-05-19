@@ -10,18 +10,15 @@ section onEnter(254) {
 
 section(51) {
   move(entity: Entity.Player, to: (2718, 1041), sprint: 0);
-  if (pstat[16] != 1) goto L1;
-  warp(to: Map.FRZL05, spawn: 1, trigger: 255);
-
-L1:
-  if (pstat[16] != 2) goto L2;
-  warp(to: Map.DGHA02, spawn: 1, trigger: 255);
-
-L2:
-  if (pstat[16] != 3) goto L3;
-  warp(to: Map.GCAN05, spawn: 1, trigger: 255);
-
-L3:
+  if (pstat[16] == 1) {
+    warp(to: Map.FRZL05, spawn: 1, trigger: 255);
+  }
+  if (pstat[16] == 2) {
+    warp(to: Map.DGHA02, spawn: 1, trigger: 255);
+  }
+  if (pstat[16] == 3) {
+    warp(to: Map.GCAN05, spawn: 1, trigger: 255);
+  }
   return;
 }
 

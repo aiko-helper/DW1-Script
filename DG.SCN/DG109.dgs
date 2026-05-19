@@ -4,63 +4,59 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  if (!trigger(135)) goto L1;
-  setObjectVisibility(2, 1);
-
-L1:
+  if (trigger(135)) {
+    setObjectVisibility(2, 1);
+  }
   return;
 }
 
 section(51) {
-  if (trigger(134)) goto L1;
-  rotate(entity: Entity.Player, to: 1900);
-  waitForEntity(Entity.Player);
-  speak(Entity.Player, "Wow, it's amazing!\n");
-  moveCamera(to: (-400, 4000), slowdown: 50);
-  waitForEntity(200);
-  delay(40);
-  moveCamera(to: Entity.Player, speed: 20);
-  waitForEntity(200);
-  setTrigger(134);
-  return;
-
-L1:
+  if (!trigger(134)) {
+    rotate(entity: Entity.Player, to: 1900);
+    waitForEntity(Entity.Player);
+    speak(Entity.Player, "Wow, it's amazing!\n");
+    moveCamera(to: (-400, 4000), slowdown: 50);
+    waitForEntity(200);
+    delay(40);
+    moveCamera(to: Entity.Player, speed: 20);
+    waitForEntity(200);
+    setTrigger(134);
+    return;
+  }
   return;
 }
 
 section(52) {
-  if (trigger(135)) goto L2;
-  rotate(entity: Entity.Player, to: 1900);
-  waitForEntity(Entity.Player);
-  speak(Entity.Player, "Hey, there's a stone tablet.\nLet's see...\n");
-  move(entity: Entity.Player, to: (-477, 2801), sprint: 0, withCamera: true);
-  waitForEntity(Entity.Player);
-  rotate(entity: Entity.Player, to: 1900);
-  delay(10);
-  anim(Entity.Player, 25, wait: 10);
-  playSound(8, 7);
-  setObjectVisibility(2, 1);
-  delay(10);
-  speak(Entity.Player, "It says Leomon.\nI can't read the rest.\n");
-  anim(Entity.Player, 16, wait: 15);
-  showTextbox("I can understand speech,\nbut not writing...\n");
-  playAnimation(Entity.Player, 0);
-  showTextbox("Let's take it.\n");
-  giveItem(Item.Leomonstone, 1);
-  if (!trigger(0)) goto L1;
-  speak(Entity.Player, "Oops, I have to throw\nsomething away.\n");
-  unsetTrigger(3);
-  callSubroutine(0);
-  callSubroutine(13);
-  giveItem(Item.Leomonstone, 1);
-
-L1:
-  playSound(0, 7);
-  speak(Entity.System, "I got <LIGHTBLUE>Leomon's\nStone<WHITE> Tablet!\n");
-  setTrigger(135);
-  return;
-
-L2:
+  if (!trigger(135)) {
+    rotate(entity: Entity.Player, to: 1900);
+    waitForEntity(Entity.Player);
+    speak(Entity.Player, "Hey, there's a stone tablet.\nLet's see...\n");
+    move(entity: Entity.Player, to: (-477, 2801), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 1900);
+    delay(10);
+    anim(Entity.Player, 25, wait: 10);
+    playSound(8, 7);
+    setObjectVisibility(2, 1);
+    delay(10);
+    speak(Entity.Player, "It says Leomon.\nI can't read the rest.\n");
+    anim(Entity.Player, 16, wait: 15);
+    showTextbox("I can understand speech,\nbut not writing...\n");
+    playAnimation(Entity.Player, 0);
+    showTextbox("Let's take it.\n");
+    giveItem(Item.Leomonstone, 1);
+    if (trigger(0)) {
+      speak(Entity.Player, "Oops, I have to throw\nsomething away.\n");
+      unsetTrigger(3);
+      callSubroutine(0);
+      callSubroutine(13);
+      giveItem(Item.Leomonstone, 1);
+    }
+    playSound(0, 7);
+    speak(Entity.System, "I got <LIGHTBLUE>Leomon's\nStone<WHITE> Tablet!\n");
+    setTrigger(135);
+    return;
+  }
   return;
 }
 
@@ -88,33 +84,31 @@ section(5) {
   move(entity: 5, to: (-1412, 1251), sprint: 1);
   waitForEntity(5);
   unloadEntity(5);
-  if (pstat[21] != 0) goto L1;
-  setObjectVisibility(3, 0);
-  move(entity: Entity.Player, to: (-1878, 2900), sprint: 1);
-  waitForEntity(Entity.Player);
-  anim(Entity.Player, 12, wait: 10);
-  setObjectVisibility(3, 1);
-  playSound(0, 7);
-  speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can now\ncarry up to twenty Items!\n");
-  playSound(0, 7);
-  setInventorySize(20);
-  setTrigger(47);
-
-L1:
-  if (pstat[21] != 4) goto L2;
-  setObjectVisibility(4, 0);
-  move(entity: Entity.Player, to: (-1878, 2900), sprint: 1);
-  waitForEntity(Entity.Player);
-  anim(Entity.Player, 12, wait: 10);
-  setObjectVisibility(4, 1);
-  playSound(0, 7);
-  speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can now\ncarry up to thirty Items!\n");
-  setTrigger(48);
-  setInventorySize(30);
-  setTrigger(253);
-  addPStat(1, 1);
-
-L2:
+  if (pstat[21] == 0) {
+    setObjectVisibility(3, 0);
+    move(entity: Entity.Player, to: (-1878, 2900), sprint: 1);
+    waitForEntity(Entity.Player);
+    anim(Entity.Player, 12, wait: 10);
+    setObjectVisibility(3, 1);
+    playSound(0, 7);
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can now\ncarry up to twenty Items!\n");
+    playSound(0, 7);
+    setInventorySize(20);
+    setTrigger(47);
+  }
+  if (pstat[21] == 4) {
+    setObjectVisibility(4, 0);
+    move(entity: Entity.Player, to: (-1878, 2900), sprint: 1);
+    waitForEntity(Entity.Player);
+    anim(Entity.Player, 12, wait: 10);
+    setObjectVisibility(4, 1);
+    playSound(0, 7);
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can now\ncarry up to thirty Items!\n");
+    setTrigger(48);
+    setInventorySize(30);
+    setTrigger(253);
+    addPStat(1, 1);
+  }
   addPStat(21, 1);
   setTrigger(333);
   return;

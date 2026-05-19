@@ -40,20 +40,18 @@ L4:
 }
 
 section(6) {
-  if (!trigger(346)) goto L1;
-  speak(6, "Hey, you've been in these\nbug battle contests, right?\n");
-  showTextbox("Well, I'll teach you\nsomething useful.\n");
-  showTextbox("Do you know where Kunemon\nsleeps? In Native Forest?\n");
-  showTextbox("Kid Digimons sleep there.\nWhen they wake up, they\nbecome Kunemon.\n");
-  showTextbox("But, sometimes they don't.\nIt's a matter of luck.\n");
-  return;
-
-L1:
+  if (trigger(346)) {
+    speak(6, "Hey, you've been in these\nbug battle contests, right?\n");
+    showTextbox("Well, I'll teach you\nsomething useful.\n");
+    showTextbox("Do you know where Kunemon\nsleeps? In Native Forest?\n");
+    showTextbox("Kid Digimons sleep there.\nWhen they wake up, they\nbecome Kunemon.\n");
+    showTextbox("But, sometimes they don't.\nIt's a matter of luck.\n");
+    return;
+  }
   storeDigimonType(103);
-  if (pstat[103] != 19 && pstat[103] != 32 && pstat[103] != 51 && pstat[103] != 60) goto L2;
-  goto L3;
-
-L2:
+  if (pstat[103] == 19 || pstat[103] == 32 || pstat[103] == 51 || pstat[103] == 60) {
+    goto L1;
+  }
   speak(6, "Hey, you've been in these\nbug battle contests, right?\n");
   showTextbox("Uh...The way you are now,\nyou won't make it.\n");
   showTextbox("Well, I'll teach you\nsomething useful.\n");
@@ -62,7 +60,7 @@ L2:
   showTextbox("But sometimes they don't.\nIt's a matter of luck.\n");
   return;
 
-L3:
+L1:
   speak(6, "Hey, do you want to enter the\nbug battle contest?\n");
   speak(Entity.Player, "What's that?\n");
   speak(6, "You gotta sign up by ten\no'clock on the twenty second.\n");

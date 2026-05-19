@@ -9,17 +9,16 @@ section onEnter(254) {
 }
 
 section(5) {
-  if (trigger(97)) goto L1;
-  speak(5, "I know what you are...\nHe he he...\n");
-  setTrigger(1);
-  startBattle();
-  setTrigger(306);
-  unsetTrigger(1);
-  setTrigger(97);
-  move(entity: 5, to: (-554, -1006), sprint: 0);
-  waitForEntity(5);
-
-L1:
+  if (!trigger(97)) {
+    speak(5, "I know what you are...\nHe he he...\n");
+    setTrigger(1);
+    startBattle();
+    setTrigger(306);
+    unsetTrigger(1);
+    setTrigger(97);
+    move(entity: 5, to: (-554, -1006), sprint: 0);
+    waitForEntity(5);
+  }
   speak(5, "He he he...turn at the side\nof the bone tunnel.\n");
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);

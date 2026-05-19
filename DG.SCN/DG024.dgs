@@ -5,20 +5,17 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 7) goto L1;
-  spawnItem(Item.Digimushroom, x: 44, y: 33);
-
-L1:
+  if (pstat[110] <= 7) {
+    spawnItem(Item.Digimushroom, x: 44, y: 33);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 15) goto L2;
-  spawnItem(Item.Digimushroom, x: 23, y: 49);
-
-L2:
+  if (pstat[110] <= 15) {
+    spawnItem(Item.Digimushroom, x: 23, y: 49);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 3) goto L3;
-  spawnItem(Item.BigBerry, x: 25, y: 74);
-
-L3:
+  if (pstat[110] <= 3) {
+    spawnItem(Item.BigBerry, x: 25, y: 74);
+  }
   return;
 }
 
@@ -63,31 +60,30 @@ section(12) {
 }
 
 section(51) {
-  if (!trigger(150) || trigger(234)) goto L1;
-  speak(Entity.Player, "I got bad feeling.\n");
-  look(entity: Entity.Player, at: Entity.Partner);
-  look(entity: Entity.Partner, at: Entity.Player);
-  delay(5);
-  speak(Entity.Player, "You too? I thought so.\n");
-  move(entity: Entity.Player, to: (1745, -1614), sprint: 0);
-  waitForEntity(Entity.Player);
-  return;
+  if (trigger(150) && !trigger(234)) {
+    speak(Entity.Player, "I got bad feeling.\n");
+    look(entity: Entity.Player, at: Entity.Partner);
+    look(entity: Entity.Partner, at: Entity.Player);
+    delay(5);
+    speak(Entity.Player, "You too? I thought so.\n");
+    move(entity: Entity.Player, to: (1745, -1614), sprint: 0);
+    waitForEntity(Entity.Player);
+    return;
+  }
+  if (!trigger(238)) goto L1;
+  if (trigger(150) && !trigger(234)) goto L1;
+  speak(Entity.Player, "There's nothing in the\ntunnel. Should we go thru?\n");
+  choice { "Go" -> L2, "Don't go" -> L3 }
+  goto L3;
 
 L1:
-  if (!trigger(238)) goto L2;
-  if (trigger(150) && !trigger(234)) goto L2;
-  speak(Entity.Player, "There's nothing in the\ntunnel. Should we go thru?\n");
-  choice { "Go" -> L3, "Don't go" -> L4 }
-  goto L4;
-
-L2:
   return;
 
-L3:
+L2:
   move(entity: Entity.Player, to: (2876, -1583), sprint: 1);
   warp(to: Map.MAYO11, spawn: 1, trigger: 255);
 
-L4:
+L3:
   move(entity: Entity.Player, to: (2876, -1583), sprint: 0);
   warp(to: Map.TUNN09, spawn: 1, trigger: 255);
   return;

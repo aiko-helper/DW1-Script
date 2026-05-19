@@ -6,15 +6,13 @@
 section onEnter(254) {
   spawnChest(Item.MediumMP, -1511, 1093, 0, 706);
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 14) goto L1;
-  spawnItem(Item.Digimushroom, x: 74, y: 62);
-
-L1:
+  if (pstat[110] <= 14) {
+    spawnItem(Item.Digimushroom, x: 74, y: 62);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 24) goto L2;
-  spawnItem(Item.Digimushroom, x: 31, y: 45);
-
-L2:
+  if (pstat[110] <= 24) {
+    spawnItem(Item.Digimushroom, x: 31, y: 45);
+  }
   return;
 }
 
@@ -23,61 +21,55 @@ section(81) {
   rotate(entity: Entity.Player, to: 2048);
   delay(5);
   speak(Entity.Player, "My gosh, it's so expensive!\n");
-  choice { "Meat : three hund bits" -> L1, "DigiMushrooms:six hund bits" -> L3, "Don't buy" -> L5 }
-  goto L5;
+  choice { "Meat : three hund bits" -> L1, "DigiMushrooms:six hund bits" -> L2, "Don't buy" -> L3 }
+  goto L3;
   return;
 
 L1:
-  if (money < 300) goto L2;
-  goto L6;
-  goto L3;
+  if (money >= 300) {
+    goto L4;
+    goto L2;
+  }
+  speak(Entity.Player, "I don't got enough money.\n");
+  return;
 
 L2:
+  if (money >= 600) {
+    goto L5;
+    goto L3;
+  }
   speak(Entity.Player, "I don't got enough money.\n");
   return;
 
 L3:
-  if (money < 600) goto L4;
-  goto L9;
-  goto L5;
+  return;
 
 L4:
-  speak(Entity.Player, "I don't got enough money.\n");
-  return;
-
-L5:
-  return;
-
-L6:
   reduceMoney(300);
   speak(Entity.System, "<LIGHTBLUE>Meat <WHITE>came out!\n");
   giveItem(Item.Meat, 1);
-  if (!trigger(0)) goto L8;
-  if (item[Item.Meat] < 99) goto L7;
+  if (trigger(0)) {
+    if (item[Item.Meat] >= 99) {
+      return;
+    }
+    speak(Entity.Player, "Oops, too many things.\n");
+    inventoryFullBailout();
+    giveItem(Item.Meat, 1);
+  }
   return;
 
-L7:
-  speak(Entity.Player, "Oops, too many things.\n");
-  inventoryFullBailout();
-  giveItem(Item.Meat, 1);
-
-L8:
-  return;
-
-L9:
+L5:
   reduceMoney(600);
   speak(Entity.System, "A <LIGHTBLUE>Digital Mushroom <WHITE>\ncame out!\n");
   giveItem(Item.Digimushroom, 1);
-  if (!trigger(0)) goto L11;
-  if (item[Item.Digimushroom] < 99) goto L10;
-  return;
-
-L10:
-  speak(Entity.Player, "Oops, too many things.\n");
-  inventoryFullBailout();
-  giveItem(Item.Digimushroom, 1);
-
-L11:
+  if (trigger(0)) {
+    if (item[Item.Digimushroom] >= 99) {
+      return;
+    }
+    speak(Entity.Player, "Oops, too many things.\n");
+    inventoryFullBailout();
+    giveItem(Item.Digimushroom, 1);
+  }
   return;
 }
 

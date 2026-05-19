@@ -9,434 +9,370 @@ section onEnter(254) {
 
 section(51) {
   speak(Entity.Player, "It's a Digimon card vending\nmachine. I think you can\nget a card for one hund bits.\n");
-  setSelection(L1, L7);
+  setSelection(L1, L2);
   showTextbox("Let's try it");
   dead_string("??one hund bits.\nNot now\n");
   waitForSelectionChoice();
   return;
 
 L1:
-  if (money >= 100) goto L2;
-  speak(Entity.Player, "I don't have enough bits.\n");
-  return;
-
-L2:
+  if (money < 100) {
+    speak(Entity.Player, "I don't have enough bits.\n");
+    return;
+  }
   reduceMoney(100);
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 0) goto L3;
-  goto L8;
+  if (pstat[110] <= 0) {
+    goto L3;
+  }
+  if (pstat[110] <= 2) {
+    goto L4;
+  }
+  if (pstat[110] <= 9) {
+    goto L5;
+  }
+  if (pstat[110] <= 29) {
+    goto L6;
+  }
+  if (pstat[110] > 99) goto L2;
+  goto L7;
 
-L3:
-  if (pstat[110] > 2) goto L4;
-  goto L13;
-
-L4:
-  if (pstat[110] > 9) goto L5;
-  goto L33;
-
-L5:
-  if (pstat[110] > 29) goto L6;
-  goto L58;
-
-L6:
-  if (pstat[110] > 99) goto L7;
-  goto L68;
-
-L7:
+L2:
   return;
 
-L8:
+L3:
   roll(pstat: 110, max: 4);
-  if (pstat[110] > 0) goto L9;
-  giveCard(1);
-  speak(Entity.Player, "A Phoenixmon Card!\n");
-  goto L72;
-
-L9:
-  if (pstat[110] > 1) goto L10;
-  giveCard(2);
-  speak(Entity.Player, "A HerculesKabuterimon Card!\n");
-  goto L72;
-
-L10:
-  if (pstat[110] > 2) goto L11;
-  giveCard(3);
-  speak(Entity.Player, "A MegaSeadramon Card!\n");
-  goto L72;
-
-L11:
-  if (pstat[110] > 3) goto L12;
-  giveCard(4);
-  speak(Entity.Player, "A ShogunGekomon Card!\n");
-  goto L72;
-
-L12:
-  if (pstat[110] > 4) goto L13;
+  if (pstat[110] <= 0) {
+    giveCard(1);
+    speak(Entity.Player, "A Phoenixmon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 1) {
+    giveCard(2);
+    speak(Entity.Player, "A HerculesKabuterimon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 2) {
+    giveCard(3);
+    speak(Entity.Player, "A MegaSeadramon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 3) {
+    giveCard(4);
+    speak(Entity.Player, "A ShogunGekomon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] > 4) goto L4;
   giveCard(5);
   speak(Entity.Player, "A Myotismon Card!\n");
-  goto L72;
+  goto L8;
 
-L13:
+L4:
   roll(pstat: 110, max: 19);
-  if (pstat[110] > 0) goto L14;
-  giveCard(6);
-  speak(Entity.Player, "A MetalGreymon Card!\n");
-  goto L72;
-
-L14:
-  if (pstat[110] > 1) goto L15;
-  giveCard(7);
-  speak(Entity.Player, "A Mamemon Card!\n");
-  goto L72;
-
-L15:
-  if (pstat[110] > 2) goto L16;
-  giveCard(8);
-  speak(Entity.Player, "A Monzaemon Card!\n");
-  goto L72;
-
-L16:
-  if (pstat[110] > 3) goto L17;
-  giveCard(9);
-  speak(Entity.Player, "A SkullGreymon Card!\n");
-  goto L72;
-
-L17:
-  if (pstat[110] > 4) goto L18;
-  giveCard(10);
-  speak(Entity.Player, "A MetalMamemon Card!\n");
-  goto L72;
-
-L18:
-  if (pstat[110] > 5) goto L19;
-  giveCard(11);
-  speak(Entity.Player, "A Vademon Card!\n");
-  goto L72;
-
-L19:
-  if (pstat[110] > 6) goto L20;
-  giveCard(12);
-  speak(Entity.Player, "An Andromon Card!\n");
-  goto L72;
-
-L20:
-  if (pstat[110] > 7) goto L21;
-  giveCard(13);
-  speak(Entity.Player, "A Giromon Card!\n");
-  goto L72;
-
-L21:
-  if (pstat[110] > 8) goto L22;
-  giveCard(14);
-  speak(Entity.Player, "An Etemon Card!\n");
-  goto L72;
-
-L22:
-  if (pstat[110] > 9) goto L23;
-  giveCard(15);
-  speak(Entity.Player, "A Megadramon Card!\n");
-  goto L72;
-
-L23:
-  if (pstat[110] > 10) goto L24;
-  giveCard(16);
-  speak(Entity.Player, "A Piximon Card!\n");
-  goto L72;
-
-L24:
-  if (pstat[110] > 11) goto L25;
-  giveCard(17);
-  speak(Entity.Player, "A Digitamamon Card!\n");
-  goto L72;
-
-L25:
-  if (pstat[110] > 12) goto L26;
-  giveCard(18);
-  speak(Entity.Player, "A Gekomon Card!\n");
-  goto L72;
-
-L26:
-  if (pstat[110] > 13) goto L27;
-  giveCard(19);
-  speak(Entity.Player, "A WaruMonzaemon Card!\n");
-  goto L72;
-
-L27:
-  if (pstat[110] > 14) goto L28;
-  giveCard(20);
-  speak(Entity.Player, "A Jijimon Card!\n");
-  goto L72;
-
-L28:
-  if (pstat[110] > 15) goto L29;
-  giveCard(21);
-  speak(Entity.Player, "A King of Sukamon Card!\n");
-  goto L72;
-
-L29:
-  if (pstat[110] > 16) goto L30;
-  giveCard(22);
-  speak(Entity.Player, "A Cherrymon Card!\n");
-  goto L72;
-
-L30:
-  if (pstat[110] > 17) goto L31;
-  giveCard(23);
-  speak(Entity.Player, "A Guardromon Card!\n");
-  goto L72;
-
-L31:
-  if (pstat[110] > 18) goto L32;
-  giveCard(24);
-  speak(Entity.Player, "A Hagurumon Card!\n");
-  goto L72;
-
-L32:
-  if (pstat[110] > 19) goto L33;
+  if (pstat[110] <= 0) {
+    giveCard(6);
+    speak(Entity.Player, "A MetalGreymon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 1) {
+    giveCard(7);
+    speak(Entity.Player, "A Mamemon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 2) {
+    giveCard(8);
+    speak(Entity.Player, "A Monzaemon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 3) {
+    giveCard(9);
+    speak(Entity.Player, "A SkullGreymon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 4) {
+    giveCard(10);
+    speak(Entity.Player, "A MetalMamemon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 5) {
+    giveCard(11);
+    speak(Entity.Player, "A Vademon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 6) {
+    giveCard(12);
+    speak(Entity.Player, "An Andromon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 7) {
+    giveCard(13);
+    speak(Entity.Player, "A Giromon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 8) {
+    giveCard(14);
+    speak(Entity.Player, "An Etemon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 9) {
+    giveCard(15);
+    speak(Entity.Player, "A Megadramon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 10) {
+    giveCard(16);
+    speak(Entity.Player, "A Piximon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 11) {
+    giveCard(17);
+    speak(Entity.Player, "A Digitamamon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 12) {
+    giveCard(18);
+    speak(Entity.Player, "A Gekomon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 13) {
+    giveCard(19);
+    speak(Entity.Player, "A WaruMonzaemon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 14) {
+    giveCard(20);
+    speak(Entity.Player, "A Jijimon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 15) {
+    giveCard(21);
+    speak(Entity.Player, "A King of Sukamon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 16) {
+    giveCard(22);
+    speak(Entity.Player, "A Cherrymon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 17) {
+    giveCard(23);
+    speak(Entity.Player, "A Guardromon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 18) {
+    giveCard(24);
+    speak(Entity.Player, "A Hagurumon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] > 19) goto L5;
   giveCard(25);
   speak(Entity.Player, "A Brachiomon Card!\n");
-  goto L72;
+  goto L8;
 
-L33:
+L5:
   roll(pstat: 110, max: 24);
-  if (pstat[110] > 0) goto L34;
-  giveCard(26);
-  speak(Entity.Player, "A Greymon Card!\n");
-  goto L72;
-
-L34:
-  if (pstat[110] > 1) goto L35;
-  giveCard(27);
-  speak(Entity.Player, "A Devimon Card!\n");
-  goto L72;
-
-L35:
-  if (pstat[110] > 2) goto L36;
-  giveCard(28);
-  speak(Entity.Player, "An Airdramon Card!\n");
-  goto L72;
-
-L36:
-  if (pstat[110] > 3) goto L37;
-  giveCard(29);
-  speak(Entity.Player, "A Tyrannomon Card!\n");
-  goto L72;
-
-L37:
-  if (pstat[110] > 4) goto L38;
-  giveCard(30);
-  speak(Entity.Player, "A Meramon Card!\n");
-  goto L72;
-
-L38:
-  if (pstat[110] > 5) goto L39;
-  giveCard(31);
-  speak(Entity.Player, "A Seadramon Card!\n");
-  goto L72;
-
-L39:
-  if (pstat[110] > 6) goto L40;
-  giveCard(32);
-  speak(Entity.Player, "A Kabuterimon Card!\n");
-  goto L72;
-
-L40:
-  if (pstat[110] > 7) goto L41;
-  giveCard(33);
-  speak(Entity.Player, "An Angemon Card!\n");
-  goto L72;
-
-L41:
-  if (pstat[110] > 8) goto L42;
-  giveCard(34);
-  speak(Entity.Player, "A Birdramon Card!\n");
-  goto L72;
-
-L42:
-  if (pstat[110] > 9) goto L43;
-  giveCard(35);
-  speak(Entity.Player, "A Garurumon Card!\n");
-  goto L72;
-
-L43:
-  if (pstat[110] > 10) goto L44;
-  giveCard(36);
-  speak(Entity.Player, "A Frigimon Card!\n");
-  goto L72;
-
-L44:
-  if (pstat[110] > 11) goto L45;
-  giveCard(37);
-  speak(Entity.Player, "A Whamon Card!\n");
-  goto L72;
-
-L45:
-  if (pstat[110] > 12) goto L46;
-  giveCard(38);
-  speak(Entity.Player, "A Unimon Card!\n");
-  goto L72;
-
-L46:
-  if (pstat[110] > 13) goto L47;
-  giveCard(39);
-  speak(Entity.Player, "A Ogremon Card!\n");
-  goto L72;
-
-L47:
-  if (pstat[110] > 14) goto L48;
-  giveCard(40);
-  speak(Entity.Player, "A Shellmon Card!\n");
-  goto L72;
-
-L48:
-  if (pstat[110] > 15) goto L49;
-  giveCard(41);
-  speak(Entity.Player, "A Centarumon Card!\n");
-  goto L72;
-
-L49:
-  if (pstat[110] > 16) goto L50;
-  giveCard(42);
-  speak(Entity.Player, "A Bakemon Card!\n");
-  goto L72;
-
-L50:
-  if (pstat[110] > 17) goto L51;
-  giveCard(43);
-  speak(Entity.Player, "A Drimogemon Card!\n");
-  goto L72;
-
-L51:
-  if (pstat[110] > 18) goto L52;
-  giveCard(44);
-  speak(Entity.Player, "A Monochromon Card!\n");
-  goto L72;
-
-L52:
-  if (pstat[110] > 19) goto L53;
-  giveCard(45);
-  speak(Entity.Player, "A Leomon Card!\n");
-  goto L72;
-
-L53:
-  if (pstat[110] > 20) goto L54;
-  giveCard(46);
-  speak(Entity.Player, "A Coelamon Card!\n");
-  goto L72;
-
-L54:
-  if (pstat[110] > 21) goto L55;
-  giveCard(47);
-  speak(Entity.Player, "A Kokatorimon Card!\n");
-  goto L72;
-
-L55:
-  if (pstat[110] > 22) goto L56;
-  giveCard(48);
-  speak(Entity.Player, "A Kuwagamon Card!\n");
-  goto L72;
-
-L56:
-  if (pstat[110] > 23) goto L57;
-  giveCard(49);
-  speak(Entity.Player, "A Mojyamon Card!\n");
-  goto L72;
-
-L57:
-  if (pstat[110] > 24) goto L58;
+  if (pstat[110] <= 0) {
+    giveCard(26);
+    speak(Entity.Player, "A Greymon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 1) {
+    giveCard(27);
+    speak(Entity.Player, "A Devimon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 2) {
+    giveCard(28);
+    speak(Entity.Player, "An Airdramon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 3) {
+    giveCard(29);
+    speak(Entity.Player, "A Tyrannomon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 4) {
+    giveCard(30);
+    speak(Entity.Player, "A Meramon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 5) {
+    giveCard(31);
+    speak(Entity.Player, "A Seadramon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 6) {
+    giveCard(32);
+    speak(Entity.Player, "A Kabuterimon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 7) {
+    giveCard(33);
+    speak(Entity.Player, "An Angemon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 8) {
+    giveCard(34);
+    speak(Entity.Player, "A Birdramon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 9) {
+    giveCard(35);
+    speak(Entity.Player, "A Garurumon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 10) {
+    giveCard(36);
+    speak(Entity.Player, "A Frigimon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 11) {
+    giveCard(37);
+    speak(Entity.Player, "A Whamon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 12) {
+    giveCard(38);
+    speak(Entity.Player, "A Unimon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 13) {
+    giveCard(39);
+    speak(Entity.Player, "A Ogremon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 14) {
+    giveCard(40);
+    speak(Entity.Player, "A Shellmon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 15) {
+    giveCard(41);
+    speak(Entity.Player, "A Centarumon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 16) {
+    giveCard(42);
+    speak(Entity.Player, "A Bakemon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 17) {
+    giveCard(43);
+    speak(Entity.Player, "A Drimogemon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 18) {
+    giveCard(44);
+    speak(Entity.Player, "A Monochromon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 19) {
+    giveCard(45);
+    speak(Entity.Player, "A Leomon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 20) {
+    giveCard(46);
+    speak(Entity.Player, "A Coelamon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 21) {
+    giveCard(47);
+    speak(Entity.Player, "A Kokatorimon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 22) {
+    giveCard(48);
+    speak(Entity.Player, "A Kuwagamon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 23) {
+    giveCard(49);
+    speak(Entity.Player, "A Mojyamon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] > 24) goto L6;
   giveCard(50);
   speak(Entity.Player, "An Ninjamon Card!\n");
-  goto L72;
+  goto L8;
 
-L58:
+L6:
   roll(pstat: 110, max: 9);
-  if (pstat[110] > 0) goto L59;
-  giveCard(51);
-  speak(Entity.Player, "A Penguinmon Card!\n");
-  goto L72;
-
-L59:
-  if (pstat[110] > 1) goto L60;
-  giveCard(52);
-  speak(Entity.Player, "A Otamamon Card!\n");
-  goto L72;
-
-L60:
-  if (pstat[110] > 2) goto L61;
-  giveCard(53);
-  speak(Entity.Player, "A Tentomon Card!\n");
-  goto L72;
-
-L61:
-  if (pstat[110] > 3) goto L62;
-  giveCard(54);
-  speak(Entity.Player, "A Yanmamon Card!\n");
-  goto L72;
-
-L62:
-  if (pstat[110] > 4) goto L63;
-  giveCard(55);
-  speak(Entity.Player, "A Gotsumon Card!\n");
-  goto L72;
-
-L63:
-  if (pstat[110] > 5) goto L64;
-  giveCard(56);
-  speak(Entity.Player, "A Flarerizamon Card!\n");
-  goto L72;
-
-L64:
-  if (pstat[110] > 6) goto L65;
-  giveCard(57);
-  speak(Entity.Player, "A ToyAgumon Card!\n");
-  goto L72;
-
-L65:
-  if (pstat[110] > 7) goto L66;
-  giveCard(58);
-  speak(Entity.Player, "A DemiMeramon Card!\n");
-  goto L72;
-
-L66:
-  if (pstat[110] > 8) goto L67;
-  giveCard(59);
-  speak(Entity.Player, "A Tankmon Card!\n");
-  goto L72;
-
-L67:
-  if (pstat[110] > 9) goto L68;
+  if (pstat[110] <= 0) {
+    giveCard(51);
+    speak(Entity.Player, "A Penguinmon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 1) {
+    giveCard(52);
+    speak(Entity.Player, "A Otamamon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 2) {
+    giveCard(53);
+    speak(Entity.Player, "A Tentomon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 3) {
+    giveCard(54);
+    speak(Entity.Player, "A Yanmamon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 4) {
+    giveCard(55);
+    speak(Entity.Player, "A Gotsumon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 5) {
+    giveCard(56);
+    speak(Entity.Player, "A Flarerizamon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 6) {
+    giveCard(57);
+    speak(Entity.Player, "A ToyAgumon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 7) {
+    giveCard(58);
+    speak(Entity.Player, "A DemiMeramon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 8) {
+    giveCard(59);
+    speak(Entity.Player, "A Tankmon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] > 9) goto L7;
   giveCard(60);
   speak(Entity.Player, "A Goburimon Card\n");
-  goto L72;
+  goto L8;
 
-L68:
+L7:
   roll(pstat: 110, max: 3);
-  if (pstat[110] > 0) goto L69;
-  giveCard(61);
-  speak(Entity.Player, "It's a Numemon Card!\n");
-  goto L72;
-
-L69:
-  if (pstat[110] > 1) goto L70;
-  giveCard(62);
-  speak(Entity.Player, "It's a Vegiemon Card!\n");
-  goto L72;
-
-L70:
-  if (pstat[110] > 2) goto L71;
-  giveCard(63);
-  speak(Entity.Player, "It's a Sukamon Card!\n");
-  goto L72;
-
-L71:
-  if (pstat[110] > 3) goto L72;
+  if (pstat[110] <= 0) {
+    giveCard(61);
+    speak(Entity.Player, "It's a Numemon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 1) {
+    giveCard(62);
+    speak(Entity.Player, "It's a Vegiemon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] <= 2) {
+    giveCard(63);
+    speak(Entity.Player, "It's a Sukamon Card!\n");
+    goto L8;
+  }
+  if (pstat[110] > 3) goto L8;
   giveCard(64);
   speak(Entity.Player, "It's a Nanimon Card!\n");
-  goto L72;
+  goto L8;
 
-L72:
+L8:
   setDialogOwner(Entity.Player);
-  choice { "Try again" -> L1, "No more" -> L7 }
+  choice { "Try again" -> L1, "No more" -> L2 }
   return;
   return;
   garbage { 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 1b fd 1a 00 82 68 82 94 81 75 82 93 81 40 82 81 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 40 82 83 82 81 82 92 82 84 81 40 82 96 82 85 82 8e 82 84 82 89 82 8e 82 87 0d 00 82 8d 82 81 82 83 82 88 82 89 82 8e 82 85 81 42 81 40 82 68 81 40 82 94 82 88 82 89 82 8e 82 8b 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 0d 00 82 87 82 85 82 94 81 40 82 81 81 40 82 83 82 81 82 92 82 84 81 40 82 86 82 8f 82 92 81 40 82 8f 82 8e 82 85 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 42 0d 00 00 00 10 02 14 01 ba 01 1a 00 82 6b 82 85 82 94 81 75 82 93 81 40 82 94 82 92 82 99 81 40 82 89 82 94 00 00 81 48 81 48 82 8f 82 8e 82 85 81 40 82 88 82 95 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 42 0d 00 82 6d 82 8f 82 94 81 40 82 8e 82 8f 82 97 0d 00 00 00 12 00 fe 00 19 00 25 00 00 05 64 00 00 00 18 00 60 01 19 00 1b fd 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 81 40 82 85 82 8e 82 8f 82 95 82 87 82 88 81 40 82 82 82 89 82 94 82 93 81 42 0d 00 00 00 fe 00 2b 00 64 00 00 00 24 00 6e 63 19 00 0b 00 6e 00 18 00 7a 01 19 00 16 00 bc 01 19 00 0b 00 6e 02 18 00 8a 01 19 00 16 00 12 03 19 00 0b 00 6e 09 18 00 9a 01 19 00 16 00 da 07 19 00 0b 00 6e 1d 18 00 aa 01 19 00 16 00 9e 0d 19 00 0b 00 6e 63 18 00 ba 01 19 00 16 00 f8 0f fe 00 24 00 6e 04 19 00 0b 00 6e 00 18 00 fe 01 19 00 2f 01 1b fd 1a 00 82 60 81 40 82 6f 82 88 82 8f 82 85 82 8e 82 89 82 98 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 01 18 00 4e 02 19 00 2f 02 1b fd 1a 00 82 60 81 40 82 67 82 85 82 92 82 83 82 95 82 8c 82 85 82 93 82 6a 82 81 82 82 82 95 82 94 82 85 82 92 82 89 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 02 18 00 92 02 19 00 2f 03 1b fd 1a 00 82 60 81 40 82 6c 82 85 82 87 82 81 82 72 82 85 82 81 82 84 82 92 82 81 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 03 18 00 d6 02 19 00 2f 04 1b fd 1a 00 82 60 81 40 82 72 82 88 82 8f 82 87 82 95 82 8e 82 66 82 85 82 8b 82 8f 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 04 18 00 12 03 19 00 2f 05 1b fd 1a 00 82 60 81 40 82 6c 82 99 82 8f 82 94 82 89 82 93 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 24 00 6e 13 19 00 0b 00 6e 00 18 00 58 03 19 00 2f 06 1b fd 1a 00 82 60 81 40 82 6c 82 85 82 94 82 81 82 8c 82 66 82 92 82 85 82 99 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 01 18 00 90 03 19 00 2f 07 1b fd 1a 00 82 60 81 40 82 6c 82 81 82 8d 82 85 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 02 18 00 cc 03 19 00 2f 08 1b fd 1a 00 82 60 81 40 82 6c 82 8f 82 8e 82 9a 82 81 82 85 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 03 18 00 0e 04 19 00 2f 09 1b fd 1a 00 82 60 81 40 82 72 82 8b 82 95 82 8c 82 8c 82 66 82 92 82 85 82 99 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 04 18 00 50 04 19 00 2f 0a 1b fd 1a 00 82 60 81 40 82 6c 82 85 82 94 82 81 82 8c 82 6c 82 81 82 8d 82 85 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 05 18 00 88 04 19 00 2f 0b 1b fd 1a 00 82 60 81 40 82 75 82 81 82 84 82 85 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 06 18 00 c4 04 19 00 2f 0c 1b fd 1a 00 82 60 82 8e 81 40 82 60 82 8e 82 84 82 92 82 8f 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 07 18 00 fc 04 19 00 2f 0d 1b fd 1a 00 82 60 81 40 82 66 82 89 82 92 82 8f 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 08 18 00 34 05 19 00 2f 0e 1b fd 1a 00 82 60 82 8e 81 40 82 64 82 94 82 85 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 09 18 00 72 05 19 00 2f 0f 1b fd 1a 00 82 60 81 40 82 6c 82 85 82 87 82 81 82 84 82 92 82 81 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 0a 18 00 aa 05 19 00 2f 10 1b fd 1a 00 82 60 81 40 82 6f 82 89 82 98 82 89 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 0b 18 00 ea 05 19 00 2f 11 1b fd 1a 00 82 60 81 40 82 63 82 89 82 87 82 89 82 94 82 81 82 8d 82 81 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 0c 18 00 22 06 19 00 2f 12 1b fd 1a 00 82 60 81 40 82 66 82 85 82 8b 82 8f 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 0d 18 00 66 06 19 00 2f 13 1b fd 1a 00 82 60 81 40 82 76 82 81 82 92 82 95 82 6c 82 8f 82 8e 82 9a 82 81 82 85 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 0e 18 00 9e 06 19 00 2f 14 1b fd 1a 00 82 60 81 40 82 69 82 89 82 8a 82 89 82 8d 82 8f 82 8e 81 40 82 62 82 81 82 92 82 84 81 49 0d 00 00 00 16 00 06 11 19 00 0b 00 6e 0f 18 00 e6 06 19 00 2f 15 1b fd 1a 00 82 60 81 40 82 6a 82 89 82 8e 82 87 81 40 82 8f 82 86 }

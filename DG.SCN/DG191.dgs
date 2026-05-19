@@ -9,38 +9,33 @@ section onEnter(254) {
 
 section(6) {
   setPStat(113, 1);
-  if (pstat[122] != 0) goto L1;
-  jumpToScriptSection(206, 6);
-
-L1:
-  if (pstat[122] != 1) goto L2;
-  jumpToScriptSection(206, 7);
-
-L2:
+  if (pstat[122] == 0) {
+    jumpToScriptSection(206, 6);
+  }
+  if (pstat[122] == 1) {
+    jumpToScriptSection(206, 7);
+  }
   return;
 }
 
 section(11) {
-  if (pstat[122] != 0) goto L1;
-  jumpToScriptSection(206, 11);
-
-L1:
-  if (pstat[122] != 1) goto L2;
-  jumpToScriptSection(206, 12);
-
-L2:
+  if (pstat[122] == 0) {
+    jumpToScriptSection(206, 11);
+  }
+  if (pstat[122] == 1) {
+    jumpToScriptSection(206, 12);
+  }
   return;
 }
 
 section(51) {
-  if (trigger(50)) goto L1;
-  warp(to: Map.ROOM13, spawn: 0, trigger: 255);
-  goto L2;
-
-L1:
+  if (!trigger(50)) {
+    warp(to: Map.ROOM13, spawn: 0, trigger: 255);
+    goto L1;
+  }
   warp(to: Map.ROOM19, spawn: 0, trigger: 255);
 
-L2:
+L1:
   return;
 }
 

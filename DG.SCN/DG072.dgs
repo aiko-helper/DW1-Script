@@ -5,15 +5,13 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 16) goto L1;
-  spawnItem(Item.Digimushroom, x: 49, y: 70);
-
-L1:
+  if (pstat[110] <= 16) {
+    spawnItem(Item.Digimushroom, x: 49, y: 70);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 2) goto L2;
-  spawnItem(Item.Happymushroom, x: 25, y: 68);
-
-L2:
+  if (pstat[110] <= 2) {
+    spawnItem(Item.Happymushroom, x: 25, y: 68);
+  }
   return;
 }
 

@@ -20,10 +20,9 @@ section(52) {
 }
 
 section(53) {
-  if (!trigger(326)) goto L1;
-  return;
-
-L1:
+  if (trigger(326)) {
+    return;
+  }
   look(entity: Entity.Player, at: 5);
   moveCamera(to: (-400, 2400), slowdown: 15);
   waitForEntity(200);
@@ -56,9 +55,9 @@ L1:
   speak(Entity.Player, "You regained your senses!\n");
   speak(5, "I guess so...\n");
   showTextbox("If you beat them\nmaybe I'll see you again.\nUntil then, I'm gone.\n");
-  goto L2;
+  goto L1;
 
-L2:
+L1:
   loop {
     move(entity: 5, to: (-400, -500), sprint: 0);
     if (pstat[101] >= 3) break;

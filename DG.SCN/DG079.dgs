@@ -5,35 +5,30 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 15) goto L1;
-  spawnItem(Item.Digimushroom, x: 54, y: 55);
-
-L1:
+  if (pstat[110] <= 15) {
+    spawnItem(Item.Digimushroom, x: 54, y: 55);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 6) goto L2;
-  spawnItem(Item.Digimushroom, x: 40, y: 47);
-
-L2:
+  if (pstat[110] <= 6) {
+    spawnItem(Item.Digimushroom, x: 40, y: 47);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 17) goto L3;
-  spawnItem(Item.Digimushroom, x: 39, y: 46);
-
-L3:
+  if (pstat[110] <= 17) {
+    spawnItem(Item.Digimushroom, x: 39, y: 46);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 3) goto L4;
-  spawnItem(Item.Happymushroom, x: 58, y: 34);
-
-L4:
+  if (pstat[110] <= 3) {
+    spawnItem(Item.Happymushroom, x: 58, y: 34);
+  }
   setPStat(254, 0);
   callSubroutine(25);
   return;
 }
 
 section(51) {
-  if (!trigger(187)) goto L1;
-  return;
-
-L1:
+  if (trigger(187)) {
+    return;
+  }
   move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
   waitForPair();
   lookPairAt(5);
@@ -44,10 +39,10 @@ L1:
   playAnimation(Entity.Player, 0);
   speak(5, "And your point is?\n");
   setDialogOwner(Entity.Player);
-  setSelection(L2, L4);
+  setSelection(L1, L3);
   showTextbox("Please help me\nOh, never mind\n");
 
-L2:
+L1:
   speak(5, "I can't. I gotta guard\nthis forest.\n");
   speak(Entity.Player, "Then, do you know anything\nabout the island's danger?\n");
   speak(5, "I know nothing. Wait up.\n");
@@ -64,12 +59,12 @@ L2:
   look(entity: 5, at: Entity.Player);
   setTrigger(187);
 
-L3:
+L2:
   speak(5, "Beyond this point,\ntime goes twice as fast.\nTake enough food with you.\n");
   showTextbox("You must also watch out\nfor growing too old.\n");
   return;
 
-L4:
+L3:
   speak(5, "You should check\nout other places.\n");
   move(entity: Entity.Player, to: (-326, 1203), sprint: 0, withCamera: true);
   waitForEntity(Entity.Player);
@@ -77,31 +72,28 @@ L4:
 }
 
 section(5) {
-  goto section_51.L3;
+  goto section_51.L2;
 
 L1:
   return;
 }
 
 section(6) {
-  if (trigger(188)) goto L1;
-  speak(6, "Beyond this point,\ntime goes twice as fast.\nTake enough food with you.\n");
-  showTextbox("You must also watch out for\ngrowing too old.\n");
-  return;
-
-L1:
-  if (trigger(313)) goto L2;
-  speak(6, "Has anything happened?\n");
-  speak(Entity.Player, "Not yet.\n");
-  speak(6, "According to my master,\nthere's a secret passage.\n");
-  showTextbox("But I don't know where.\n");
-  return;
-
-L2:
-  if (!trigger(313) || !trigger(208)) goto L3;
-  return;
-
-L3:
+  if (!trigger(188)) {
+    speak(6, "Beyond this point,\ntime goes twice as fast.\nTake enough food with you.\n");
+    showTextbox("You must also watch out for\ngrowing too old.\n");
+    return;
+  }
+  if (!trigger(313)) {
+    speak(6, "Has anything happened?\n");
+    speak(Entity.Player, "Not yet.\n");
+    speak(6, "According to my master,\nthere's a secret passage.\n");
+    showTextbox("But I don't know where.\n");
+    return;
+  }
+  if (trigger(313) && trigger(208)) {
+    return;
+  }
   speak(6, "What is it?\n");
   speak(Entity.Player, "Looks like a meteorite!\nIt's nothing to worry about.\n");
   playAnimation(Entity.Player, 22);
@@ -167,9 +159,9 @@ L3:
   playAnimation(Entity.Player, 19);
   speak(Entity.Player, "You must work hard.\n");
   speak(6, "I will!\nMaster, see you later!\n");
-  goto L4;
+  goto L1;
 
-L4:
+L1:
   loop {
     move(entity: 6, to: (-243, -614), sprint: 1);
     if (pstat[101] >= 6) break;

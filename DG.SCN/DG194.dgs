@@ -5,11 +5,10 @@
 
 section onEnter(254) {
   spawnChest(Item.Sirloin, 3758, 1159, 1024, 686);
-  if (trigger(321)) goto L1;
-  playAnimation(10, 28);
-  return;
-
-L1:
+  if (!trigger(321)) {
+    playAnimation(10, 28);
+    return;
+  }
   return;
 }
 
@@ -51,10 +50,9 @@ section(9) {
 }
 
 section(53) {
-  if (!trigger(321)) goto L1;
-  return;
-
-L1:
+  if (trigger(321)) {
+    return;
+  }
   speak(10, "Ha ha ha!\n");
   playAnimation(10, 28);
   move(entity: 10, axis: 1, to: 0, speed: 20);
@@ -76,9 +74,9 @@ L1:
   speak(10, "He's strong.\nCan you defeat him?\nWhy are you doing this?\n");
   speak(Entity.Player, "I'll fight for the island\nLet's settle this now.\n");
   speak(10, "We don't want a ruler,\nyou're our only hope.\n");
-  goto L2;
+  goto L1;
 
-L2:
+L1:
   loop {
     playAnimation(10, 28);
     move(entity: 10, to: (-4562, 41), animDuration: 20);

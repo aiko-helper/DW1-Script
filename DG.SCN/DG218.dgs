@@ -8,35 +8,32 @@ section onEnter(254) {
 }
 
 section(51) {
-  if (!trigger(223) || pstat[27] != 3) goto L1;
-  speak(5, "What will you eat?\n");
-  goto L3;
+  if (trigger(223) && pstat[27] == 3) {
+    speak(5, "What will you eat?\n");
+    goto L1;
+  }
+  if (trigger(228) && pstat[27] == 4) {
+    speak(5, "What do you want to eat?\n");
+    goto L12;
+  }
+  if (!trigger(256) || pstat[27] != 5) goto L1;
+  speak(5, "......?\n");
+  goto L23;
 
 L1:
-  if (!trigger(228) || pstat[27] != 4) goto L2;
-  speak(5, "What do you want to eat?\n");
-  goto L17;
+  setDialogOwner(Entity.System);
+  choice { "Snow Shake: three hund bits" -> L2, "Ice Cream:  seven hund bits" -> L5, "Snow Cone:sixteen hund bits" -> L8 }
+  goto L11;
 
 L2:
-  if (!trigger(256) || pstat[27] != 5) goto L3;
-  speak(5, "......?\n");
-  goto L31;
-
-L3:
-  setDialogOwner(Entity.System);
-  choice { "Snow Shake: three hund bits" -> L4, "Ice Cream:  seven hund bits" -> L8, "Snow Cone:sixteen hund bits" -> L12 }
-  goto L16;
-
-L4:
-  if (money < 300) goto L5;
-  goto L6;
-
-L5:
+  if (money >= 300) {
+    goto L3;
+  }
   speak(5, "You don't have enough bits.\n");
   return;
 
-L6:
-  if (trigger(640) && (cond & 0x04) == 0x00) goto L7;
+L3:
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L4;
   speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\na Snow Shake!\n");
   addStats(offense: 0, defense: 0, speed: 1, brains: 0, maxHP: 0, maxMP: 10);
   reduceStats(tiredness: 2);
@@ -46,24 +43,23 @@ L6:
   showTextbox("Happiness went up!\nTiredness went down!\n");
   playAnimation(Entity.Partner, 11);
   waitForEntity(Entity.Partner);
-  goto L16;
+  goto L11;
 
-L7:
+L4:
   playAnimation(Entity.Partner, 13);
   waitForEntity(Entity.System);
   speak(5, "<ORANGE><DIGIMON><WHITE> isn't hungry.\n");
   return;
 
-L8:
-  if (money < 700) goto L9;
-  goto L10;
-
-L9:
+L5:
+  if (money >= 700) {
+    goto L6;
+  }
   speak(5, "You don't have enough bits.\n");
   return;
 
-L10:
-  if (trigger(640) && (cond & 0x04) == 0x00) goto L11;
+L6:
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L7;
   speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\nan Ice Cream!\n");
   addStats(offense: 0, defense: 0, speed: 2, brains: 0, maxHP: 0, maxMP: 30);
   reduceStats(tiredness: 2);
@@ -73,24 +69,23 @@ L10:
   showTextbox("Happiness went up!\nTiredness went down!\n");
   playAnimation(Entity.Partner, 11);
   waitForEntity(Entity.Partner);
-  goto L16;
+  goto L11;
 
-L11:
+L7:
   playAnimation(Entity.Partner, 13);
   waitForEntity(Entity.System);
   speak(5, "<ORANGE><DIGIMON><WHITE> isn't hungry.\n");
   return;
 
-L12:
-  if (money < 1600) goto L13;
-  goto L14;
-
-L13:
+L8:
+  if (money >= 1600) {
+    goto L9;
+  }
   speak(5, "You don't have enough bits.\n");
   return;
 
-L14:
-  if (trigger(640) && (cond & 0x04) == 0x00) goto L15;
+L9:
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L10;
   speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\na Snow Cone!\n");
   addStats(offense: 0, defense: 0, speed: 2, brains: 0, maxHP: 0, maxMP: 50);
   reduceStats(tiredness: 2);
@@ -100,33 +95,32 @@ L14:
   showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
   playAnimation(Entity.Partner, 11);
   waitForEntity(Entity.Partner);
-  goto L16;
+  goto L11;
 
-L15:
+L10:
   playAnimation(Entity.Partner, 13);
   waitForEntity(Entity.System);
   speak(5, "<ORANGE><DIGIMON><WHITE> isn't hungry.\n");
   return;
 
-L16:
+L11:
   speak(5, "See you later!\n");
   return;
 
-L17:
+L12:
   setDialogOwner(Entity.System);
-  choice { "Space Salad:fifteen hund bit" -> L18, "UFO Soup:     four thous bit" -> L22, "Galaxy Course:nine thous bit" -> L26 }
-  goto L30;
+  choice { "Space Salad:fifteen hund bit" -> L13, "UFO Soup:     four thous bit" -> L16, "Galaxy Course:nine thous bit" -> L19 }
+  goto L22;
 
-L18:
-  if (money < 1500) goto L19;
-  goto L20;
-
-L19:
+L13:
+  if (money >= 1500) {
+    goto L14;
+  }
   speak(5, "You're short of bits.\n");
   return;
 
-L20:
-  if (trigger(640) && (cond & 0x04) == 0x00) goto L21;
+L14:
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L15;
   speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\na Space Salad!\n");
   addStats(offense: 1, defense: 1, speed: 1, brains: 1, maxHP: 10, maxMP: 10);
   reduceStats(tiredness: 5);
@@ -137,24 +131,23 @@ L20:
   showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
   playAnimation(Entity.Partner, 11);
   waitForEntity(Entity.Partner);
-  goto L30;
+  goto L22;
 
-L21:
+L15:
   playAnimation(Entity.Partner, 13);
   waitForEntity(Entity.System);
   speak(5, "<ORANGE><DIGIMON><WHITE> is full.\n");
   return;
 
-L22:
-  if (money < 4000) goto L23;
-  goto L24;
-
-L23:
+L16:
+  if (money >= 4000) {
+    goto L17;
+  }
   speak(5, "You're short of bits.\n");
   return;
 
-L24:
-  if (trigger(640) && (cond & 0x04) == 0x00) goto L25;
+L17:
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L18;
   speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\na UFO Soup!\n");
   addStats(offense: 2, defense: 2, speed: 2, brains: 2, maxHP: 20, maxMP: 20);
   reduceStats(tiredness: 5);
@@ -165,24 +158,23 @@ L24:
   showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
   playAnimation(Entity.Partner, 11);
   waitForEntity(Entity.Partner);
-  goto L30;
+  goto L22;
 
-L25:
+L18:
   playAnimation(Entity.Partner, 13);
   waitForEntity(Entity.System);
   speak(5, "<ORANGE><DIGIMON><WHITE> is full.\n");
   return;
 
-L26:
-  if (money < 9000) goto L27;
-  goto L28;
-
-L27:
+L19:
+  if (money >= 9000) {
+    goto L20;
+  }
   speak(5, "You're short of bits.\n");
   return;
 
-L28:
-  if (trigger(640) && (cond & 0x04) == 0x00) goto L29;
+L20:
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L21;
   speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed\na Galaxy Course!\n");
   addStats(offense: 3, defense: 3, speed: 3, brains: 3, maxHP: 30, maxMP: 30);
   reduceStats(tiredness: 5);
@@ -193,183 +185,171 @@ L28:
   showTextbox("Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
   playAnimation(Entity.Partner, 11);
   waitForEntity(Entity.Partner);
-  goto L30;
+  goto L22;
 
-L29:
+L21:
   playAnimation(Entity.Partner, 13);
   waitForEntity(Entity.System);
   speak(5, "<ORANGE><DIGIMON><WHITE> is full.\n");
   return;
 
-L30:
+L22:
   speak(5, "See you guys later.\n");
   return;
 
-L31:
+L23:
   setDialogOwner(Entity.System);
-  choice { "Boiled Egg:   one thous bits" -> L32, "Omelet:twenty five hund bits" -> L39, "Egg Bowl:     six thous bits" -> L46 }
-  goto L53;
+  choice { "Boiled Egg:   one thous bits" -> L24, "Omelet:twenty five hund bits" -> L27, "Egg Bowl:     six thous bits" -> L30 }
+  goto L33;
 
-L32:
-  if (money < 1000) goto L33;
-  goto L34;
-
-L33:
+L24:
+  if (money >= 1000) {
+    goto L25;
+  }
   speak(5, ".......\n");
   return;
 
-L34:
-  if (trigger(640) && (cond & 0x04) == 0x00) goto L35;
+L25:
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L26;
   speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed a\nWonder Boiled Egg!\n");
   roll(pstat: 110, max: 2);
 
-L35:
-  if (pstat[110] > 0) goto L36;
-  addStats(offense: 1, defense: 0, speed: 1, brains: 0, maxHP: 10, maxMP: 0);
-  reduceStats(tiredness: 5);
-  addStats(happiness: 1, discipline: 0, energy: 18, weight: 1);
-  reduceMoney(1000);
-  speak(Entity.System, "HP went up ten!\nOffensive Power went up one!\nSpeed went up one!\n");
-  speak(Entity.System, "Happiness went up!\nTiredness went down!\n");
-  goto L53;
-
-L36:
-  if (pstat[110] > 1) goto L37;
-  addStats(offense: 0, defense: 1, speed: 0, brains: 1, maxHP: 0, maxMP: 10);
-  reduceStats(tiredness: 5);
-  addStats(happiness: 1, discipline: 0, energy: 18, weight: 1);
-  reduceMoney(1000);
-  speak(Entity.System, "MP went up ten!\nDefensive Power went up one!\nBrains went up one!\n");
-  speak(Entity.System, "Happiness went up!\nTiredness went down!\n");
-  goto L53;
-
-L37:
-  if (pstat[110] > 2) goto L38;
-  addStats(offense: 2, defense: 2, speed: 2, brains: 2, maxHP: 20, maxMP: 20);
-  reduceStats(tiredness: 5);
-  addStats(happiness: 2, discipline: 1, energy: 18, weight: 1);
-  reduceMoney(1000);
-  speak(Entity.System, "HP went up twenty!\nMP went up twenty!\nOffensive Power went up two!\n");
-  showTextbox("Defensive Power went up two!\nSpeed went up two!\nBrains went up two!\n");
-  speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
-  goto L53;
-
-L38:
+L26:
+  if (pstat[110] <= 0) {
+    addStats(offense: 1, defense: 0, speed: 1, brains: 0, maxHP: 10, maxMP: 0);
+    reduceStats(tiredness: 5);
+    addStats(happiness: 1, discipline: 0, energy: 18, weight: 1);
+    reduceMoney(1000);
+    speak(Entity.System, "HP went up ten!\nOffensive Power went up one!\nSpeed went up one!\n");
+    speak(Entity.System, "Happiness went up!\nTiredness went down!\n");
+    goto L33;
+  }
+  if (pstat[110] <= 1) {
+    addStats(offense: 0, defense: 1, speed: 0, brains: 1, maxHP: 0, maxMP: 10);
+    reduceStats(tiredness: 5);
+    addStats(happiness: 1, discipline: 0, energy: 18, weight: 1);
+    reduceMoney(1000);
+    speak(Entity.System, "MP went up ten!\nDefensive Power went up one!\nBrains went up one!\n");
+    speak(Entity.System, "Happiness went up!\nTiredness went down!\n");
+    goto L33;
+  }
+  if (pstat[110] <= 2) {
+    addStats(offense: 2, defense: 2, speed: 2, brains: 2, maxHP: 20, maxMP: 20);
+    reduceStats(tiredness: 5);
+    addStats(happiness: 2, discipline: 1, energy: 18, weight: 1);
+    reduceMoney(1000);
+    speak(Entity.System, "HP went up twenty!\nMP went up twenty!\nOffensive Power went up two!\n");
+    showTextbox("Defensive Power went up two!\nSpeed went up two!\nBrains went up two!\n");
+    speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
+    goto L33;
+  }
   playAnimation(Entity.Partner, 11);
   waitForEntity(Entity.Partner);
-  goto L53;
+  goto L33;
   playAnimation(Entity.Partner, 13);
   waitForEntity(Entity.System);
   speak(5, ".......!\n");
   return;
 
-L39:
-  if (money < 2500) goto L40;
-  goto L41;
-
-L40:
+L27:
+  if (money >= 2500) {
+    goto L28;
+  }
   speak(5, "..........\n");
   return;
 
-L41:
-  if (trigger(640) && (cond & 0x04) == 0x00) goto L42;
+L28:
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L29;
   speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed a\nWonder Egg Omelet!\n");
   roll(pstat: 110, max: 2);
 
-L42:
-  if (pstat[110] > 0) goto L43;
-  addStats(offense: 2, defense: 0, speed: 2, brains: 0, maxHP: 20, maxMP: 0);
-  reduceStats(tiredness: 5);
-  addStats(happiness: 2, discipline: 0, energy: 24, weight: 2);
-  reduceMoney(2500);
-  speak(Entity.System, "HP went up twenty!\nOffensive Power went up two!\nSpeed went up two!\n");
-  speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
-  goto L53;
-
-L43:
-  if (pstat[110] > 1) goto L44;
-  addStats(offense: 0, defense: 2, speed: 0, brains: 2, maxHP: 0, maxMP: 20);
-  reduceStats(tiredness: 5);
-  addStats(happiness: 2, discipline: 0, energy: 24, weight: 2);
-  reduceMoney(2500);
-  speak(Entity.System, "MP went up twenty!\nDefensive Power went up two!\nBrains went up two!\n");
-  speak(Entity.System, "Happiness went up!\nTiredness went down!\n");
-  goto L53;
-
-L44:
-  if (pstat[110] > 2) goto L45;
-  addStats(offense: 3, defense: 3, speed: 3, brains: 3, maxHP: 30, maxMP: 30);
-  reduceStats(tiredness: 5);
-  addStats(happiness: 3, discipline: 1, energy: 24, weight: 2);
-  reduceMoney(2500);
-  speak(Entity.System, "HP went up thirty!\nMP went up thirty!\nOffense Power went up three!\n");
-  showTextbox("Defense Power went up three!\nSpeed went up three!\nBrains went up three!\n");
-  speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
-  goto L53;
-
-L45:
+L29:
+  if (pstat[110] <= 0) {
+    addStats(offense: 2, defense: 0, speed: 2, brains: 0, maxHP: 20, maxMP: 0);
+    reduceStats(tiredness: 5);
+    addStats(happiness: 2, discipline: 0, energy: 24, weight: 2);
+    reduceMoney(2500);
+    speak(Entity.System, "HP went up twenty!\nOffensive Power went up two!\nSpeed went up two!\n");
+    speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
+    goto L33;
+  }
+  if (pstat[110] <= 1) {
+    addStats(offense: 0, defense: 2, speed: 0, brains: 2, maxHP: 0, maxMP: 20);
+    reduceStats(tiredness: 5);
+    addStats(happiness: 2, discipline: 0, energy: 24, weight: 2);
+    reduceMoney(2500);
+    speak(Entity.System, "MP went up twenty!\nDefensive Power went up two!\nBrains went up two!\n");
+    speak(Entity.System, "Happiness went up!\nTiredness went down!\n");
+    goto L33;
+  }
+  if (pstat[110] <= 2) {
+    addStats(offense: 3, defense: 3, speed: 3, brains: 3, maxHP: 30, maxMP: 30);
+    reduceStats(tiredness: 5);
+    addStats(happiness: 3, discipline: 1, energy: 24, weight: 2);
+    reduceMoney(2500);
+    speak(Entity.System, "HP went up thirty!\nMP went up thirty!\nOffense Power went up three!\n");
+    showTextbox("Defense Power went up three!\nSpeed went up three!\nBrains went up three!\n");
+    speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
+    goto L33;
+  }
   playAnimation(Entity.Partner, 11);
   waitForEntity(Entity.Partner);
-  goto L53;
+  goto L33;
   playAnimation(Entity.Partner, 13);
   waitForEntity(Entity.System);
   speak(5, ".......!\n");
   return;
 
-L46:
-  if (money < 6000) goto L47;
-  goto L48;
-
-L47:
+L30:
+  if (money >= 6000) {
+    goto L31;
+  }
   speak(5, "..........\n");
   return;
 
-L48:
-  if (trigger(640) && (cond & 0x04) == 0x00) goto L49;
+L31:
+  if (trigger(640) && (cond & 0x04) == 0x00) goto L32;
   speak(Entity.System, "<ORANGE><DIGIMON><WHITE> enjoyed a\nWonder Egg Bowl!\n");
   roll(pstat: 110, max: 2);
 
-L49:
-  if (pstat[110] > 0) goto L50;
-  addStats(offense: 3, defense: 0, speed: 3, brains: 0, maxHP: 30, maxMP: 0);
-  reduceStats(tiredness: 5);
-  addStats(happiness: 3, discipline: 1, energy: 36, weight: 3);
-  reduceMoney(6000);
-  speak(Entity.System, "HP went up thirty!\nOffense Power went up thirty!\nSpeed went up thirty!\n");
-  speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
-  goto L53;
-
-L50:
-  if (pstat[110] > 1) goto L51;
-  addStats(offense: 0, defense: 3, speed: 0, brains: 3, maxHP: 0, maxMP: 30);
-  reduceStats(tiredness: 5);
-  addStats(happiness: 3, discipline: 1, energy: 36, weight: 3);
-  reduceMoney(6000);
-  speak(Entity.System, "MP went up thirty!\nDefense Power went up three!\nBrains went up three!\n");
-  speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness has went up!\n");
-  goto L53;
-
-L51:
-  if (pstat[110] > 2) goto L52;
-  addStats(offense: 4, defense: 4, speed: 4, brains: 4, maxHP: 40, maxMP: 40);
-  reduceStats(tiredness: 5);
-  addStats(happiness: 4, discipline: 3, energy: 36, weight: 3);
-  reduceMoney(6000);
-  speak(Entity.System, "HP went up forty!\nMP went up forty!\nOffense Power went up four!\n");
-  showTextbox("Defense Power went up four!\nSpeed went up four!\nBrains went up four!\n");
-  speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down.\n");
-  goto L53;
-
-L52:
+L32:
+  if (pstat[110] <= 0) {
+    addStats(offense: 3, defense: 0, speed: 3, brains: 0, maxHP: 30, maxMP: 0);
+    reduceStats(tiredness: 5);
+    addStats(happiness: 3, discipline: 1, energy: 36, weight: 3);
+    reduceMoney(6000);
+    speak(Entity.System, "HP went up thirty!\nOffense Power went up thirty!\nSpeed went up thirty!\n");
+    speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down!\n");
+    goto L33;
+  }
+  if (pstat[110] <= 1) {
+    addStats(offense: 0, defense: 3, speed: 0, brains: 3, maxHP: 0, maxMP: 30);
+    reduceStats(tiredness: 5);
+    addStats(happiness: 3, discipline: 1, energy: 36, weight: 3);
+    reduceMoney(6000);
+    speak(Entity.System, "MP went up thirty!\nDefense Power went up three!\nBrains went up three!\n");
+    speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness has went up!\n");
+    goto L33;
+  }
+  if (pstat[110] <= 2) {
+    addStats(offense: 4, defense: 4, speed: 4, brains: 4, maxHP: 40, maxMP: 40);
+    reduceStats(tiredness: 5);
+    addStats(happiness: 4, discipline: 3, energy: 36, weight: 3);
+    reduceMoney(6000);
+    speak(Entity.System, "HP went up forty!\nMP went up forty!\nOffense Power went up four!\n");
+    showTextbox("Defense Power went up four!\nSpeed went up four!\nBrains went up four!\n");
+    speak(Entity.System, "Happiness went up!\nDiscipline went up!\nTiredness went down.\n");
+    goto L33;
+  }
   playAnimation(Entity.Partner, 11);
   waitForEntity(Entity.Partner);
-  goto L53;
+  goto L33;
   playAnimation(Entity.Partner, 13);
   waitForEntity(Entity.System);
   speak(5, "........!\n");
   return;
 
-L53:
+L33:
   speak(5, "..........\n");
   return;
   garbage { 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 19 00 00 00 df 00 88 00 1b 03 18 00 4e 00 19 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 40 82 97 82 89 82 8c 82 8c 81 40 82 99 82 8f 82 95 81 40 82 85 82 81 82 94 81 48 0d 00 00 00 16 00 c4 00 19 00 00 00 e4 00 88 00 1b 04 18 00 9a 00 19 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 85 82 81 82 94 81 48 0d 00 00 00 16 00 da 06 19 00 00 00 00 01 88 00 1b 05 18 00 c4 00 19 00 1b 05 1a 00 }

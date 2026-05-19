@@ -8,33 +8,30 @@ section onEnter(254) {
 }
 
 section(83) {
-  if (!trigger(203)) goto L1;
-  return;
-
-L1:
+  if (trigger(203)) {
+    return;
+  }
   playSound(0, 0);
   speak(Entity.System, "<YELLOW>Poyomon <WHITE>\nPoyomon. My name is Poyomon.\n");
-  if (pstat[1] < 30) goto L2;
-  speak(Entity.System, "<YELLOW>Poyomon <WHITE>\nI'll talk about digivolution.\nWell... It's about the next\nstage after Champion Digimon.\n");
-  showTextbox("<YELLOW>Poyomon <WHITE>\nIt's called Ultimate Digimon.\nBut there is no guarantee a\nChampion always digivolves.\n");
-  showTextbox("<YELLOW>Poyomon <WHITE>\nConditions to digivolve are\ntough, but once at Ultimate,\nyour life span gets longer.\n");
-  showTextbox("<YELLOW>Poyomon <WHITE>\nWith Digivolution Items,\nlife span doesn't increase.\n");
-  playSound(0, 1);
-  return;
-
-L2:
-  if (pstat[1] < 15) goto L3;
-  speak(Entity.System, "<YELLOW>Poyomon <WHITE>\nI'll talk about digivolution.\nWell... It's about the \nconditions to digivolve.\n");
-  showTextbox("<YELLOW>Poyomon <WHITE>\nFirst, weight has to be close\nto next stage weight range.\n");
-  showTextbox("<YELLOW>Poyomon <WHITE>\nNext, higher parameters are\nbetter, but the effects of\neach are different.\n");
-  showTextbox("<YELLOW>Poyomon <WHITE>\nCare mistakes. Depending on\nthe kind of Digimon you want,\nsometimes mistakes are good.\n");
-  showTextbox("<YELLOW>Poyomon <WHITE>\nOh yeah, there are other\nspecial conditions to\nbecome certain Digimon.\n");
-  showTextbox("<YELLOW>Poyomon <WHITE>\nLike, especially high\nDiscipline, or many battles.\n");
-  showTextbox("<YELLOW>Poyomon <WHITE>\nIf you do this, even if the\nthree basic conditions are not\nfully met, you can digivolve.\n");
-  playSound(0, 1);
-  return;
-
-L3:
+  if (pstat[1] >= 30) {
+    speak(Entity.System, "<YELLOW>Poyomon <WHITE>\nI'll talk about digivolution.\nWell... It's about the next\nstage after Champion Digimon.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nIt's called Ultimate Digimon.\nBut there is no guarantee a\nChampion always digivolves.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nConditions to digivolve are\ntough, but once at Ultimate,\nyour life span gets longer.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nWith Digivolution Items,\nlife span doesn't increase.\n");
+    playSound(0, 1);
+    return;
+  }
+  if (pstat[1] >= 15) {
+    speak(Entity.System, "<YELLOW>Poyomon <WHITE>\nI'll talk about digivolution.\nWell... It's about the \nconditions to digivolve.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nFirst, weight has to be close\nto next stage weight range.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nNext, higher parameters are\nbetter, but the effects of\neach are different.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nCare mistakes. Depending on\nthe kind of Digimon you want,\nsometimes mistakes are good.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nOh yeah, there are other\nspecial conditions to\nbecome certain Digimon.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nLike, especially high\nDiscipline, or many battles.\n");
+    showTextbox("<YELLOW>Poyomon <WHITE>\nIf you do this, even if the\nthree basic conditions are not\nfully met, you can digivolve.\n");
+    playSound(0, 1);
+    return;
+  }
   speak(Entity.System, "<YELLOW>Poyomon <WHITE>\nJiji told me that <ORANGE><DIGIMON><WHITE>\nwould be digivolving.\n");
   showTextbox("<YELLOW>Poyomon <WHITE>\nIt takes six hours from Baby\nto In-Training Digimon.\n");
   showTextbox("<YELLOW>Poyomon <WHITE>\nAnd it only takes one day to\ngo to Rookie Digimon stage.\n");

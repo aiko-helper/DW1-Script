@@ -5,29 +5,25 @@
 
 section onEnter(254) {
   setPStat(122, 255);
-  if (trigger(257)) goto L1;
-  setObjectsVisibleRange(0, 3, 0);
-  goto L2;
-
-L1:
+  if (!trigger(257)) {
+    setObjectsVisibleRange(0, 3, 0);
+    goto L1;
+  }
   setObjectsVisibleRange(0, 3, 1);
   setObjectVisibility(5, 0);
   setObjectVisibility(6, 0);
 
-L2:
-  if (!trigger(257) || trigger(50)) goto L3;
-  setObjectVisibility(4, 0);
-
-L3:
-  if (!trigger(257) || !trigger(50)) goto L4;
-  setObjectVisibility(4, 1);
-
-L4:
-  if (!trigger(50)) goto L5;
-  setObjectVisibility(7, 0);
-  setObjectVisibility(8, 0);
-
-L5:
+L1:
+  if (trigger(257) && !trigger(50)) {
+    setObjectVisibility(4, 0);
+  }
+  if (trigger(257) && trigger(50)) {
+    setObjectVisibility(4, 1);
+  }
+  if (trigger(50)) {
+    setObjectVisibility(7, 0);
+    setObjectVisibility(8, 0);
+  }
   return;
 }
 
@@ -46,11 +42,10 @@ section(61) {
 }
 
 section(51) {
-  if (!trigger(257)) goto L1;
-  warp(to: Map.ROOM20, spawn: 0, trigger: 255);
-  setPStat(122, 255);
-
-L1:
+  if (trigger(257)) {
+    warp(to: Map.ROOM20, spawn: 0, trigger: 255);
+    setPStat(122, 255);
+  }
   return;
 }
 
@@ -89,51 +84,42 @@ section(84) {
   speak(7, "<ORANGE><DIGIMON><WHITE>, let me think of\nyour nickname... a hero\nwho has saved the world.\n");
   showTextbox("Let's see.\n");
   roll(pstat: 110, max: 9);
-  if (pstat[110] != 0) goto L1;
-  speak(7, "How about\n'Invincible <ORANGE><DIGIMON><WHITE>'?\n");
-  return;
-
-L1:
-  if (pstat[110] != 1) goto L2;
-  speak(7, "How about\n'Legendary Hero <ORANGE><DIGIMON><WHITE>'?\n");
-  return;
-
-L2:
-  if (pstat[110] != 2) goto L3;
-  speak(7, "How about\n'<ORANGE><DIGIMON><WHITE> The Great'?\n");
-  return;
-
-L3:
-  if (pstat[110] != 3) goto L4;
-  speak(7, "How about\n'Peacemaker <ORANGE><DIGIMON><WHITE>'?\n");
-  return;
-
-L4:
-  if (pstat[110] != 4) goto L5;
-  speak(7, "How about\n'<ORANGE><DIGIMON><WHITE> The Champ'?\n");
-  return;
-
-L5:
-  if (pstat[110] != 5) goto L6;
-  speak(7, "How about\n'<ORANGE><DIGIMON><WHITE> The Brave'?\n");
-  return;
-
-L6:
-  if (pstat[110] != 6) goto L7;
-  speak(7, "How about\n'Cool Dude, <ORANGE><DIGIMON><WHITE>'?\n");
-  return;
-
-L7:
-  if (pstat[110] != 7) goto L8;
-  speak(7, "How about\n'The Mighty <ORANGE><DIGIMON><WHITE>'?\n");
-  return;
-
-L8:
-  if (pstat[110] != 8) goto L9;
-  speak(7, "How about\n'Augustas <ORANGE><DIGIMON><WHITE>'?\n");
-  return;
-
-L9:
+  if (pstat[110] == 0) {
+    speak(7, "How about\n'Invincible <ORANGE><DIGIMON><WHITE>'?\n");
+    return;
+  }
+  if (pstat[110] == 1) {
+    speak(7, "How about\n'Legendary Hero <ORANGE><DIGIMON><WHITE>'?\n");
+    return;
+  }
+  if (pstat[110] == 2) {
+    speak(7, "How about\n'<ORANGE><DIGIMON><WHITE> The Great'?\n");
+    return;
+  }
+  if (pstat[110] == 3) {
+    speak(7, "How about\n'Peacemaker <ORANGE><DIGIMON><WHITE>'?\n");
+    return;
+  }
+  if (pstat[110] == 4) {
+    speak(7, "How about\n'<ORANGE><DIGIMON><WHITE> The Champ'?\n");
+    return;
+  }
+  if (pstat[110] == 5) {
+    speak(7, "How about\n'<ORANGE><DIGIMON><WHITE> The Brave'?\n");
+    return;
+  }
+  if (pstat[110] == 6) {
+    speak(7, "How about\n'Cool Dude, <ORANGE><DIGIMON><WHITE>'?\n");
+    return;
+  }
+  if (pstat[110] == 7) {
+    speak(7, "How about\n'The Mighty <ORANGE><DIGIMON><WHITE>'?\n");
+    return;
+  }
+  if (pstat[110] == 8) {
+    speak(7, "How about\n'Augustas <ORANGE><DIGIMON><WHITE>'?\n");
+    return;
+  }
   if (pstat[110] != 9) goto section_6;
   speak(7, "How about\n'Mastermind <ORANGE><DIGIMON><WHITE>'?\n");
   return;
@@ -159,282 +145,259 @@ section(53) {
 section(52) {
   move(entity: Entity.Player, to: (250, -5000), sprint: 0);
   unsetTrigger(69);
-  if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L1;
-  goto L48;
-  goto L2;
+  if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
+    goto L32;
+    goto L1;
+  }
+  goto L1;
 
 L1:
-  goto L2;
+  if (trigger(204) || trigger(249)) {
+    goto L2;
+    goto L2;
+  }
+  goto L17;
 
 L2:
-  if (!trigger(204) && !trigger(249)) goto L3;
-  goto L4;
-  goto L4;
+  if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) {
+    goto L10;
+    goto L3;
+  }
+  goto L3;
 
 L3:
-  goto L26;
+  if (trigger(236)) {
+    goto L7;
+    goto L4;
+  }
+  goto L4;
 
 L4:
-  if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L5;
-  goto L16;
-  goto L6;
+  if (trigger(205)) {
+    goto L6;
+    goto L5;
+  }
+  goto L5;
 
 L5:
-  goto L6;
-
-L6:
-  if (!trigger(236)) goto L7;
-  goto L12;
-  goto L8;
-
-L7:
-  goto L8;
-
-L8:
-  if (!trigger(205)) goto L9;
-  goto L11;
-  goto L10;
-
-L9:
-  goto L10;
-
-L10:
   warp(to: Map.TWNB02, spawn: 6, trigger: 255);
   return;
 
-L11:
+L6:
   warp(to: Map.TWNB09, spawn: 6, trigger: 255);
   return;
 
-L12:
-  if (!trigger(205)) goto L13;
-  goto L15;
-  goto L14;
+L7:
+  if (trigger(205)) {
+    goto L9;
+    goto L8;
+  }
+  goto L8;
 
-L13:
-  goto L14;
-
-L14:
+L8:
   warp(to: Map.TWNB07, spawn: 6, trigger: 255);
   return;
 
-L15:
+L9:
   warp(to: Map.TWNB08, spawn: 6, trigger: 255);
   return;
 
-L16:
-  if (!trigger(236)) goto L17;
-  goto L22;
-  goto L18;
+L10:
+  if (trigger(236)) {
+    goto L14;
+    goto L11;
+  }
+  goto L11;
 
-L17:
-  goto L18;
+L11:
+  if (trigger(205)) {
+    goto L13;
+    goto L12;
+  }
+  goto L12;
 
-L18:
-  if (!trigger(205)) goto L19;
-  goto L21;
-  goto L20;
-
-L19:
-  goto L20;
-
-L20:
+L12:
   warp(to: Map.TWNB03, spawn: 6, trigger: 255);
   return;
 
-L21:
+L13:
   warp(to: Map.TWNB06, spawn: 6, trigger: 255);
   return;
 
-L22:
-  if (!trigger(205)) goto L23;
-  goto L25;
-  goto L24;
+L14:
+  if (trigger(205)) {
+    goto L16;
+    goto L15;
+  }
+  goto L15;
 
-L23:
-  goto L24;
-
-L24:
+L15:
   warp(to: Map.TWNB04, spawn: 6, trigger: 255);
   return;
 
-L25:
+L16:
   warp(to: Map.TWNB05, spawn: 6, trigger: 255);
   return;
 
-L26:
-  if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L27;
-  goto L38;
-  goto L28;
+L17:
+  if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) {
+    goto L25;
+    goto L18;
+  }
+  goto L18;
 
-L27:
-  goto L28;
+L18:
+  if (trigger(236)) {
+    goto L22;
+    goto L19;
+  }
+  goto L19;
 
-L28:
-  if (!trigger(236)) goto L29;
-  goto L34;
-  goto L30;
+L19:
+  if (trigger(205)) {
+    goto L21;
+    goto L20;
+  }
+  goto L20;
 
-L29:
-  goto L30;
-
-L30:
-  if (!trigger(205)) goto L31;
-  goto L33;
-  goto L32;
-
-L31:
-  goto L32;
-
-L32:
+L20:
   warp(to: Map.TWNB01, spawn: 6, trigger: 255);
   return;
 
-L33:
+L21:
   warp(to: Map.TWNB24, spawn: 6, trigger: 255);
   return;
 
-L34:
-  if (!trigger(205)) goto L35;
-  goto L36;
-  goto L36;
+L22:
+  if (trigger(205)) {
+    goto L23;
+    goto L23;
+  }
+  goto L24;
 
-L35:
-  goto L37;
-
-L36:
+L23:
   warp(to: Map.TWNB23, spawn: 6, trigger: 255);
   return;
 
-L37:
+L24:
   warp(to: Map.TWNB22, spawn: 6, trigger: 255);
   return;
 
-L38:
-  if (!trigger(236)) goto L39;
-  goto L44;
-  goto L40;
+L25:
+  if (trigger(236)) {
+    goto L29;
+    goto L26;
+  }
+  goto L26;
 
-L39:
-  goto L40;
+L26:
+  if (trigger(205)) {
+    goto L28;
+    goto L27;
+  }
+  goto L27;
 
-L40:
-  if (!trigger(205)) goto L41;
-  goto L43;
-  goto L42;
-
-L41:
-  goto L42;
-
-L42:
+L27:
   warp(to: Map.TWNB18, spawn: 6, trigger: 255);
   return;
 
-L43:
+L28:
   warp(to: Map.TWNB21, spawn: 6, trigger: 255);
   return;
 
-L44:
-  if (!trigger(205)) goto L45;
-  goto L47;
-  goto L46;
+L29:
+  if (trigger(205)) {
+    goto L31;
+    goto L30;
+  }
+  goto L30;
 
-L45:
-  goto L46;
-
-L46:
+L30:
   warp(to: Map.TWNB19, spawn: 6, trigger: 255);
   return;
 
-L47:
+L31:
   warp(to: Map.TWNB20, spawn: 6, trigger: 255);
   return;
 
-L48:
-  if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L49;
-  goto L60;
-  goto L50;
+L32:
+  if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) {
+    goto L40;
+    goto L33;
+  }
+  goto L33;
 
-L49:
-  goto L50;
+L33:
+  if (trigger(236)) {
+    goto L37;
+    goto L34;
+  }
+  goto L34;
 
-L50:
-  if (!trigger(236)) goto L51;
-  goto L56;
-  goto L52;
+L34:
+  if (trigger(205)) {
+    goto L36;
+    goto L35;
+  }
+  goto L35;
 
-L51:
-  goto L52;
-
-L52:
-  if (!trigger(205)) goto L53;
-  goto L55;
-  goto L54;
-
-L53:
-  goto L54;
-
-L54:
+L35:
   warp(to: Map.TWNB10, spawn: 6, trigger: 255);
   return;
 
-L55:
+L36:
   warp(to: Map.TWNB17, spawn: 6, trigger: 255);
   return;
 
-L56:
-  if (!trigger(205)) goto L57;
-  goto L59;
-  goto L58;
+L37:
+  if (trigger(205)) {
+    goto L39;
+    goto L38;
+  }
+  goto L38;
 
-L57:
-  goto L58;
-
-L58:
+L38:
   warp(to: Map.TWNB15, spawn: 6, trigger: 255);
   return;
 
-L59:
+L39:
   warp(to: Map.TWNB16, spawn: 6, trigger: 255);
   return;
 
-L60:
-  if (!trigger(236)) goto L61;
-  goto L66;
-  goto L62;
+L40:
+  if (trigger(236)) {
+    goto L44;
+    goto L41;
+  }
+  goto L41;
 
-L61:
-  goto L62;
+L41:
+  if (trigger(205)) {
+    goto L43;
+    goto L42;
+  }
+  goto L42;
 
-L62:
-  if (!trigger(205)) goto L63;
-  goto L65;
-  goto L64;
-
-L63:
-  goto L64;
-
-L64:
+L42:
   warp(to: Map.TWNB11, spawn: 6, trigger: 255);
   return;
 
-L65:
+L43:
   warp(to: Map.TWNB14, spawn: 6, trigger: 255);
   return;
 
-L66:
-  if (!trigger(205)) goto L67;
-  goto L69;
-  goto L68;
+L44:
+  if (trigger(205)) {
+    goto L46;
+    goto L45;
+  }
+  goto L45;
 
-L67:
-  goto L68;
-
-L68:
+L45:
   warp(to: Map.TWNB12, spawn: 6, trigger: 255);
   return;
 
-L69:
+L46:
   warp(to: Map.TWNB13, spawn: 6, trigger: 255);
   return;
 }

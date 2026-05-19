@@ -4,11 +4,10 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  if (trigger(328)) goto L1;
-  setRectImpassible(75, 67, 20, 8);
-  return;
-
-L1:
+  if (!trigger(328)) {
+    setRectImpassible(75, 67, 20, 8);
+    return;
+  }
   setObjectVisibility(0, 1);
   setObjectVisibility(1, 1);
   setObjectsVisibleRange(2, 4, 0);

@@ -17,21 +17,18 @@ section(51) {
 
 section(52) {
   move(entity: Entity.Player, to: (-2797, 365), sprint: 0);
-  if (pstat[16] != 1) goto L1;
-  warp(to: Map.ICSA08, spawn: 0, trigger: 60);
-  return;
-
-L1:
-  if (pstat[16] != 2) goto L2;
-  warp(to: Map.CHKA01, spawn: 1, trigger: 60);
-  return;
-
-L2:
-  if (pstat[16] != 3) goto L3;
-  warp(to: Map.OGRE02, spawn: 0, trigger: 60);
-  return;
-
-L3:
+  if (pstat[16] == 1) {
+    warp(to: Map.ICSA08, spawn: 0, trigger: 60);
+    return;
+  }
+  if (pstat[16] == 2) {
+    warp(to: Map.CHKA01, spawn: 1, trigger: 60);
+    return;
+  }
+  if (pstat[16] == 3) {
+    warp(to: Map.OGRE02, spawn: 0, trigger: 60);
+    return;
+  }
   return;
 }
 

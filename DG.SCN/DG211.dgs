@@ -8,881 +8,793 @@ section onEnter(254) {
 }
 
 section(8) {
-  if (trigger(81)) goto L1;
-  setTrigger(81);
-  speak(6, "Welcome back, <LIGHTBLUE><PLAYER><WHITE>.\n");
-  speak(6, "I'm Jijimon's recordkeeper.\n");
-  speak(6, "I record Jijimon's info\nand give it to you.\n");
-  speak(6, "If you don't know what to do\nask me, and I'll tell you\nwhere to go.\n");
-  return;
-
-L1:
-  if (pstat[1] != 100) goto L2;
-  speak(6, "All the Digimon have\ngathered in the city.\nThank you so much!\n");
-  return;
-
-L2:
+  if (!trigger(81)) {
+    setTrigger(81);
+    speak(6, "Welcome back, <LIGHTBLUE><PLAYER><WHITE>.\n");
+    speak(6, "I'm Jijimon's recordkeeper.\n");
+    speak(6, "I record Jijimon's info\nand give it to you.\n");
+    speak(6, "If you don't know what to do\nask me, and I'll tell you\nwhere to go.\n");
+    return;
+  }
+  if (pstat[1] == 100) {
+    speak(6, "All the Digimon have\ngathered in the city.\nThank you so much!\n");
+    return;
+  }
   speak(6, "Let me tell you what I know.\nLet's see...\n");
-  goto L7;
+  goto L3;
   loop {
     speak(6, "And then...\n");
-    goto L7;
+    goto L3;
 
-L3:
+L1:
     speak(6, "And also...\n");
-    goto L7;
+    goto L3;
 
-L4:
+L2:
     if (pstat[40] != 1) break;
   }
-  if (pstat[40] != 2) goto L5;
-  goto L3;
-
-L5:
-  if (pstat[40] != 3) goto L6;
-  goto L216;
-
-L6:
+  if (pstat[40] == 2) {
+    goto L1;
+  }
+  if (pstat[40] == 3) {
+    goto L128;
+  }
   jumpReturn();
 
+L3:
+  if (pstat[41] < 1) {
+    addPStat(41, 1);
+    goto L4;
+  }
+  goto L6;
+
+L4:
+  if (!trigger(246)) {
+    speak(6, "Vegetation Digimon are in the\nforest. The closer they are\nthe harder they are to see.\n");
+    addPStat(40, 1);
+    goto L5;
+  }
+  goto L6;
+
+L5:
+  jumpAndLink(L2);
+
+L6:
+  if (pstat[41] < 2) {
+    addPStat(41, 1);
+    goto L7;
+  }
+  goto L9;
+
 L7:
-  if (pstat[41] >= 1) goto L8;
-  addPStat(41, 1);
+  if (!trigger(232)) {
+    speak(6, "Insectoid Digimons like\ngreenery. Like the kind\naround the city...\n");
+    addPStat(40, 1);
+    goto L8;
+  }
   goto L9;
 
 L8:
-  goto L12;
+  jumpAndLink(L2);
 
 L9:
-  if (trigger(246)) goto L10;
-  speak(6, "Vegetation Digimon are in the\nforest. The closer they are\nthe harder they are to see.\n");
-  addPStat(40, 1);
-  goto L11;
+  if (pstat[41] < 3) {
+    addPStat(41, 1);
+    goto L10;
+  }
+  goto L12;
 
 L10:
+  if (!trigger(236)) {
+    speak(6, "In Tropical Jungle there is\na maze-like forest.\nA strong Digimon guards it.\n");
+    addPStat(40, 1);
+    goto L11;
+  }
   goto L12;
 
 L11:
-  jumpAndLink(L4);
+  jumpAndLink(L2);
 
 L12:
-  if (pstat[41] >= 2) goto L13;
-  addPStat(41, 1);
-  goto L14;
+  if (pstat[41] < 4) {
+    addPStat(41, 1);
+    goto L13;
+  }
+  goto L15;
 
 L13:
-  goto L17;
+  if (!trigger(249)) {
+    speak(6, "An old-timer in the river\nis waiting for someone.\n");
+    addPStat(40, 1);
+    goto L14;
+  }
+  goto L15;
 
 L14:
-  if (trigger(232)) goto L15;
-  speak(6, "Insectoid Digimons like\ngreenery. Like the kind\naround the city...\n");
-  addPStat(40, 1);
-  goto L16;
+  jumpAndLink(L2);
 
 L15:
-  goto L17;
+  if (pstat[41] < 5) {
+    addPStat(41, 1);
+    goto L16;
+  }
+  goto L18;
 
 L16:
-  jumpAndLink(L4);
+  if (!trigger(204)) {
+    speak(6, "There is a Digimon who\nloves warm water shores.\n");
+    addPStat(40, 1);
+    goto L17;
+  }
+  goto L18;
 
 L17:
-  if (pstat[41] >= 3) goto L18;
-  addPStat(41, 1);
-  goto L19;
+  jumpAndLink(L2);
 
 L18:
-  goto L22;
+  if (pstat[41] < 6) {
+    addPStat(41, 1);
+    goto L19;
+  }
+  goto L21;
 
 L19:
-  if (trigger(236)) goto L20;
-  speak(6, "In Tropical Jungle there is\na maze-like forest.\nA strong Digimon guards it.\n");
-  addPStat(40, 1);
+  if (!trigger(237)) {
+    speak(6, "Graveyards have ghosts.\nGhosts love talking to you.\n");
+    addPStat(40, 1);
+    goto L20;
+  }
   goto L21;
 
 L20:
-  goto L22;
+  jumpAndLink(L2);
 
 L21:
-  jumpAndLink(L4);
+  if (pstat[41] < 7) {
+    addPStat(41, 1);
+    goto L22;
+  }
+  goto L24;
 
 L22:
-  if (pstat[41] >= 4) goto L23;
-  addPStat(41, 1);
+  if (!trigger(225)) {
+    speak(6, "A secret lies in the flower\nbed of the city. Ask a plant\nabout another plant.\n");
+    addPStat(40, 1);
+    goto L23;
+  }
   goto L24;
 
 L23:
-  goto L27;
+  jumpAndLink(L2);
 
 L24:
-  if (trigger(249)) goto L25;
-  speak(6, "An old-timer in the river\nis waiting for someone.\n");
-  addPStat(40, 1);
-  goto L26;
+  if (pstat[41] < 8) {
+    addPStat(41, 1);
+    goto L25;
+  }
+  goto L27;
 
 L25:
+  if (!trigger(208)) {
+    speak(6, "The Ancient Dino Region\nis dangerous, but it's\nbest to check it out.\n");
+    addPStat(40, 1);
+    goto L26;
+  }
   goto L27;
 
 L26:
-  jumpAndLink(L4);
+  jumpAndLink(L2);
 
 L27:
-  if (pstat[41] >= 5) goto L28;
-  addPStat(41, 1);
-  goto L29;
+  if (pstat[41] < 9) {
+    addPStat(41, 1);
+    goto L28;
+  }
+  goto L30;
 
 L28:
-  goto L32;
+  if (!trigger(209)) {
+    speak(6, "Lava flows inside of\nMt. Panorama. Some Digimon\nlove the heat.\n");
+    addPStat(40, 1);
+    goto L29;
+  }
+  goto L30;
 
 L29:
-  if (trigger(204)) goto L30;
-  speak(6, "There is a Digimon who\nloves warm water shores.\n");
-  addPStat(40, 1);
-  goto L31;
+  jumpAndLink(L2);
 
 L30:
-  goto L32;
+  if (pstat[41] < 10) {
+    addPStat(41, 1);
+    goto L31;
+  }
+  goto L33;
 
 L31:
-  jumpAndLink(L4);
+  if (!trigger(223)) {
+    speak(6, "Taking a Digimon, who loves\nhot places, to a cold place\nis against the rules, but...\n");
+    addPStat(40, 1);
+    goto L32;
+  }
+  goto L33;
 
 L32:
-  if (pstat[41] >= 6) goto L33;
-  addPStat(41, 1);
-  goto L34;
+  jumpAndLink(L2);
 
 L33:
-  goto L37;
+  if (pstat[41] < 11) {
+    addPStat(41, 1);
+    goto L34;
+  }
+  goto L36;
 
 L34:
-  if (trigger(237)) goto L35;
-  speak(6, "Graveyards have ghosts.\nGhosts love talking to you.\n");
-  addPStat(40, 1);
+  if (!trigger(222)) {
+    speak(6, "In Freezeland there are many\nDigimon who'll come with you.\nGo to the west.\n");
+    addPStat(40, 1);
+    goto L35;
+  }
   goto L36;
 
 L35:
-  goto L37;
+  jumpAndLink(L2);
 
 L36:
-  jumpAndLink(L4);
+  if (pstat[41] < 12) {
+    addPStat(41, 1);
+    goto L37;
+  }
+  goto L39;
 
 L37:
-  if (pstat[41] >= 7) goto L38;
-  addPStat(41, 1);
+  if (!trigger(221)) {
+    speak(6, "On the peak of Great Canyon,\na Bird Digimon lives.\n");
+    addPStat(40, 1);
+    goto L38;
+  }
   goto L39;
 
 L38:
-  goto L42;
+  jumpAndLink(L2);
 
 L39:
-  if (trigger(225)) goto L40;
-  speak(6, "A secret lies in the flower\nbed of the city. Ask a plant\nabout another plant.\n");
-  addPStat(40, 1);
-  goto L41;
+  if (pstat[41] < 13) {
+    addPStat(41, 1);
+    goto L40;
+  }
+  goto L42;
 
 L40:
+  if (!trigger(235)) {
+    speak(6, "Great Canyon is like a\nmaze. Once entered,\nit's hard to leave.\n");
+    addPStat(40, 1);
+    goto L41;
+  }
   goto L42;
 
 L41:
-  jumpAndLink(L4);
+  jumpAndLink(L2);
 
 L42:
-  if (pstat[41] >= 8) goto L43;
-  addPStat(41, 1);
-  goto L44;
+  if (pstat[41] < 14) {
+    addPStat(41, 1);
+    goto L43;
+  }
+  goto L45;
 
 L43:
-  goto L47;
+  if (!trigger(218)) {
+    speak(6, "In Gear Savanna,\nthere is a Digimon\nwho loves electricity.\n");
+    addPStat(40, 1);
+    goto L44;
+  }
+  goto L45;
 
 L44:
-  if (trigger(208)) goto L45;
-  speak(6, "The Ancient Dino Region\nis dangerous, but it's\nbest to check it out.\n");
-  addPStat(40, 1);
-  goto L46;
+  jumpAndLink(L2);
 
 L45:
-  goto L47;
+  if (pstat[41] < 15) {
+    addPStat(41, 1);
+    goto L46;
+  }
+  goto L48;
 
 L46:
-  jumpAndLink(L4);
+  if (!trigger(250)) {
+    speak(6, "In Misty Trees, an early\nrising Digimon may appear.\n");
+    addPStat(40, 1);
+    goto L47;
+  }
+  goto L48;
 
 L47:
-  if (pstat[41] >= 9) goto L48;
-  addPStat(41, 1);
-  goto L49;
+  jumpAndLink(L2);
 
 L48:
-  goto L52;
+  if (pstat[41] < 16) {
+    addPStat(41, 1);
+    goto L49;
+  }
+  goto L51;
 
 L49:
-  if (trigger(209)) goto L50;
-  speak(6, "Lava flows inside of\nMt. Panorama. Some Digimon\nlove the heat.\n");
-  addPStat(40, 1);
+  if (!trigger(247)) {
+    speak(6, "In Great Canyon,\nthere is a shop\nowned by a Digimon.\n");
+    addPStat(40, 1);
+    goto L50;
+  }
   goto L51;
 
 L50:
-  goto L52;
+  jumpAndLink(L2);
 
 L51:
-  jumpAndLink(L4);
+  if (pstat[41] < 17) {
+    addPStat(41, 1);
+    goto L52;
+  }
+  goto L54;
 
 L52:
-  if (pstat[41] >= 10) goto L53;
-  addPStat(41, 1);
+  if (!trigger(233)) {
+    speak(6, "You might meet a Digimon\nwith wings that can fly over\nMt. Panorama in one flap.\n");
+    addPStat(40, 1);
+    goto L53;
+  }
   goto L54;
 
 L53:
-  goto L57;
+  jumpAndLink(L2);
 
 L54:
-  if (trigger(223)) goto L55;
-  speak(6, "Taking a Digimon, who loves\nhot places, to a cold place\nis against the rules, but...\n");
-  addPStat(40, 1);
-  goto L56;
+  if (pstat[41] < 18) {
+    addPStat(41, 1);
+    goto L55;
+  }
+  goto L57;
 
 L55:
+  if (!trigger(231) || !trigger(245)) {
+    speak(6, "Gear Savanna suits Digimon\nwho can't fly high.\nYou should search there.\n");
+    addPStat(40, 1);
+    goto L56;
+  }
   goto L57;
 
 L56:
-  jumpAndLink(L4);
+  jumpAndLink(L2);
 
 L57:
-  if (pstat[41] >= 11) goto L58;
-  addPStat(41, 1);
-  goto L59;
+  if (pstat[41] < 19) {
+    addPStat(41, 1);
+    goto L58;
+  }
+  goto L60;
 
 L58:
-  goto L62;
+  if (!trigger(205)) {
+    speak(6, "Some Digimon may know about\nyou and challenge you.\n");
+    addPStat(40, 1);
+    goto L59;
+  }
+  goto L60;
 
 L59:
-  if (trigger(222)) goto L60;
-  speak(6, "In Freezeland there are many\nDigimon who'll come with you.\nGo to the west.\n");
-  addPStat(40, 1);
-  goto L61;
+  jumpAndLink(L2);
 
 L60:
-  goto L62;
+  if (pstat[41] < 20) {
+    addPStat(41, 1);
+    goto L61;
+  }
+  goto L63;
 
 L61:
-  jumpAndLink(L4);
+  if (!trigger(257)) {
+    speak(6, "In Freezeland, there are\nDigimons that live in caves\nand invite others in.\n");
+    addPStat(40, 1);
+    goto L62;
+  }
+  goto L63;
 
 L62:
-  if (pstat[41] >= 12) goto L63;
-  addPStat(41, 1);
-  goto L64;
+  jumpAndLink(L2);
 
 L63:
-  goto L67;
+  if (pstat[41] < 21) {
+    addPStat(41, 1);
+    goto L64;
+  }
+  goto L66;
 
 L64:
-  if (trigger(221)) goto L65;
-  speak(6, "On the peak of Great Canyon,\na Bird Digimon lives.\n");
-  addPStat(40, 1);
+  if (!trigger(238)) {
+    speak(6, "You should ask hard working\nDigimon to come to the city,\nonce their duties are over.\n");
+    addPStat(40, 1);
+    goto L65;
+  }
   goto L66;
 
 L65:
-  goto L67;
+  jumpAndLink(L2);
 
 L66:
-  jumpAndLink(L4);
+  if (pstat[41] < 22) {
+    addPStat(41, 1);
+    goto L67;
+  }
+  goto L69;
 
 L67:
-  if (pstat[41] >= 13) goto L68;
-  addPStat(41, 1);
+  if (!trigger(217)) {
+    speak(6, "Misty Trees is perfect for\nhiding. Your job is also\nto guide Digimon in hiding.\n");
+    addPStat(40, 1);
+    goto L68;
+  }
   goto L69;
 
 L68:
-  goto L72;
+  jumpAndLink(L2);
 
 L69:
-  if (trigger(235)) goto L70;
-  speak(6, "Great Canyon is like a\nmaze. Once entered,\nit's hard to leave.\n");
-  addPStat(40, 1);
-  goto L71;
+  if (pstat[41] < 23) {
+    addPStat(41, 1);
+    goto L70;
+  }
+  goto L72;
 
 L70:
+  if (!trigger(258)) {
+    speak(6, "When rumors about you spread,\nyou should come back.\n");
+    addPStat(40, 1);
+    goto L71;
+  }
   goto L72;
 
 L71:
-  jumpAndLink(L4);
+  jumpAndLink(L2);
 
 L72:
-  if (pstat[41] >= 14) goto L73;
-  addPStat(41, 1);
-  goto L74;
+  if (pstat[41] < 24) {
+    addPStat(41, 1);
+    goto L73;
+  }
+  goto L75;
 
 L73:
-  goto L77;
+  if (!trigger(224)) {
+    speak(6, "A huge shadow appears along\nthe coasts of Freezeland.\nPerhaps it is a Digimon.\n");
+    addPStat(40, 1);
+    goto L74;
+  }
+  goto L75;
 
 L74:
-  if (trigger(218)) goto L75;
-  speak(6, "In Gear Savanna,\nthere is a Digimon\nwho loves electricity.\n");
-  addPStat(40, 1);
-  goto L76;
+  jumpAndLink(L2);
 
 L75:
-  goto L77;
+  if (pstat[41] < 25) {
+    addPStat(41, 1);
+    goto L76;
+  }
+  goto L78;
 
 L76:
-  jumpAndLink(L4);
+  if (!trigger(252)) {
+    speak(6, "Help Digimon that\nlove to collect things.\nTry going to Freezeland.\n");
+    addPStat(40, 1);
+    goto L77;
+  }
+  goto L78;
 
 L77:
-  if (pstat[41] >= 15) goto L78;
-  addPStat(41, 1);
-  goto L79;
+  jumpAndLink(L2);
 
 L78:
-  goto L82;
+  if (pstat[41] < 26) {
+    addPStat(41, 1);
+    goto L79;
+  }
+  goto L81;
 
 L79:
-  if (trigger(250)) goto L80;
-  speak(6, "In Misty Trees, an early\nrising Digimon may appear.\n");
-  addPStat(40, 1);
+  if (!trigger(213)) {
+    speak(6, "On the top of Mt. Panorama,\na Digimon will challenge you\nto fight if you see him.\n");
+    addPStat(40, 1);
+    goto L80;
+  }
   goto L81;
 
 L80:
-  goto L82;
+  jumpAndLink(L2);
 
 L81:
-  jumpAndLink(L4);
+  if (pstat[41] < 27) {
+    addPStat(41, 1);
+    goto L82;
+  }
+  goto L84;
 
 L82:
-  if (pstat[41] >= 16) goto L83;
-  addPStat(41, 1);
+  if (!trigger(211)) {
+    speak(6, "Digimon are also in damp\nplaces such as sewers. Help\nthem with their problems.\n");
+    addPStat(40, 1);
+    goto L83;
+  }
   goto L84;
 
 L83:
-  goto L87;
+  jumpAndLink(L2);
 
 L84:
-  if (trigger(247)) goto L85;
-  speak(6, "In Great Canyon,\nthere is a shop\nowned by a Digimon.\n");
-  addPStat(40, 1);
-  goto L86;
+  if (pstat[41] < 28) {
+    addPStat(41, 1);
+    goto L85;
+  }
+  goto L87;
 
 L85:
+  if (!trigger(210)) {
+    speak(6, "Some Insectoid Digimon live\nbeyond Dragon Eye Lake.\nGo fishing there.\n");
+    addPStat(40, 1);
+    goto L86;
+  }
   goto L87;
 
 L86:
-  jumpAndLink(L4);
+  jumpAndLink(L2);
 
 L87:
-  if (pstat[41] >= 17) goto L88;
-  addPStat(41, 1);
-  goto L89;
+  if (pstat[41] < 29) {
+    addPStat(41, 1);
+    goto L88;
+  }
+  goto L90;
 
 L88:
-  goto L92;
+  if (!trigger(241)) {
+    speak(6, "When Android Digimon\nbreaks, he can repair\nhimself completely quickly.\n");
+    addPStat(40, 1);
+    goto L89;
+  }
+  goto L90;
 
 L89:
-  if (trigger(233)) goto L90;
-  speak(6, "You might meet a Digimon\nwith wings that can fly over\nMt. Panorama in one flap.\n");
-  addPStat(40, 1);
-  goto L91;
+  jumpAndLink(L2);
 
 L90:
-  goto L92;
+  if (pstat[41] < 30) {
+    addPStat(41, 1);
+    goto L91;
+  }
+  goto L93;
 
 L91:
-  jumpAndLink(L4);
+  if (!trigger(142)) {
+    speak(6, "If you fear danger, you'll\nlose sight of your goal.\n");
+    showTextbox("You gotta be brave enough to\ntry climbing a dangerous\ncliff at least once.\n");
+    addPStat(40, 1);
+    goto L92;
+  }
+  goto L93;
 
 L92:
-  if (pstat[41] >= 18) goto L93;
-  addPStat(41, 1);
-  goto L94;
+  jumpAndLink(L2);
 
 L93:
-  goto L97;
+  if (pstat[41] < 31) {
+    addPStat(41, 1);
+    goto L94;
+  }
+  goto L96;
 
 L94:
-  if (trigger(231) && trigger(245)) goto L95;
-  speak(6, "Gear Savanna suits Digimon\nwho can't fly high.\nYou should search there.\n");
-  addPStat(40, 1);
+  if (!trigger(198)) {
+    speak(6, "Listen to anything you hear\nfrom the city about\npeople who need help.\n");
+    addPStat(40, 1);
+    goto L95;
+  }
   goto L96;
 
 L95:
-  goto L97;
+  jumpAndLink(L2);
 
 L96:
-  jumpAndLink(L4);
+  if (pstat[41] < 32) {
+    addPStat(41, 1);
+    goto L97;
+  }
+  goto L99;
 
 L97:
-  if (pstat[41] >= 19) goto L98;
-  addPStat(41, 1);
+  if (!trigger(150)) {
+    speak(6, "There's a mean guy that has\nmoved into a very populated\narea recently. Maybe it's...\n");
+    addPStat(40, 1);
+    goto L98;
+  }
   goto L99;
 
 L98:
-  goto L102;
+  jumpAndLink(L2);
 
 L99:
-  if (trigger(205)) goto L100;
-  speak(6, "Some Digimon may know about\nyou and challenge you.\n");
-  addPStat(40, 1);
-  goto L101;
+  if (pstat[41] < 33) {
+    addPStat(41, 1);
+    goto L100;
+  }
+  goto L102;
 
 L100:
+  if (!trigger(135)) {
+    speak(6, "There is supposedly a\nburied old tablet, but\nsomeone has to dig it up.\n");
+    addPStat(40, 1);
+    goto L101;
+  }
   goto L102;
 
 L101:
-  jumpAndLink(L4);
+  jumpAndLink(L2);
 
 L102:
-  if (pstat[41] >= 20) goto L103;
-  addPStat(41, 1);
-  goto L104;
+  if (pstat[41] < 34) {
+    addPStat(41, 1);
+    goto L103;
+  }
+  goto L105;
 
 L103:
-  goto L107;
+  if (!trigger(255)) {
+    speak(6, "A rare Digimon appears\nin a jungle and challenges\nothers to fight.\n");
+    addPStat(40, 1);
+    goto L104;
+  }
+  goto L105;
 
 L104:
-  if (trigger(257)) goto L105;
-  speak(6, "In Freezeland, there are\nDigimons that live in caves\nand invite others in.\n");
-  addPStat(40, 1);
-  goto L106;
+  jumpAndLink(L2);
 
 L105:
-  goto L107;
+  if (pstat[41] < 35) {
+    addPStat(41, 1);
+    goto L106;
+  }
+  goto L108;
 
 L106:
-  jumpAndLink(L4);
+  if (!trigger(242)) {
+    speak(6, "There might be Digimon that\nlive in trees, but who knows?\n");
+    addPStat(40, 1);
+    goto L107;
+  }
+  goto L108;
 
 L107:
-  if (pstat[41] >= 21) goto L108;
-  addPStat(41, 1);
-  goto L109;
+  jumpAndLink(L2);
 
 L108:
-  goto L112;
+  if (pstat[41] < 36) {
+    addPStat(41, 1);
+    goto L109;
+  }
+  goto L111;
 
 L109:
-  if (trigger(238)) goto L110;
-  speak(6, "You should ask hard working\nDigimon to come to the city,\nonce their duties are over.\n");
-  addPStat(40, 1);
+  if (!trigger(227)) {
+    speak(6, "In an Iron City to the west a\nrare Digimon may appear and\nchallenge others to fight.\n");
+    addPStat(40, 1);
+    goto L110;
+  }
   goto L111;
 
 L110:
-  goto L112;
+  jumpAndLink(L2);
 
 L111:
-  jumpAndLink(L4);
+  if (pstat[41] < 37) {
+    addPStat(41, 1);
+    goto L112;
+  }
+  goto L114;
 
 L112:
-  if (pstat[41] >= 22) goto L113;
-  addPStat(41, 1);
+  if (!trigger(228)) {
+    speak(6, "There is an Alien Digimon.\nYou may meet him someday.\n");
+    addPStat(40, 1);
+    goto L113;
+  }
   goto L114;
 
 L113:
-  goto L117;
+  jumpAndLink(L2);
 
 L114:
-  if (trigger(217)) goto L115;
-  speak(6, "Misty Trees is perfect for\nhiding. Your job is also\nto guide Digimon in hiding.\n");
-  addPStat(40, 1);
-  goto L116;
+  if (pstat[41] < 38) {
+    addPStat(41, 1);
+    goto L115;
+  }
+  goto L117;
 
 L115:
+  if (pstat[21] == 0) {
+    speak(6, "There is a Mythical Animal\nDigimon. He is in a house\nthat has lost its owners.\n");
+    addPStat(40, 1);
+    goto L116;
+  }
   goto L117;
 
 L116:
-  jumpAndLink(L4);
+  jumpAndLink(L2);
 
 L117:
-  if (pstat[41] >= 23) goto L118;
-  addPStat(41, 1);
-  goto L119;
+  if (pstat[41] < 39) {
+    addPStat(41, 1);
+    goto L118;
+  }
+  goto L120;
 
 L118:
-  goto L122;
+  if (pstat[21] == 1) {
+    speak(6, "You must keep looking for\nNanimon until you get the\nreal treasure.\n");
+    addPStat(40, 1);
+    goto L119;
+  }
+  goto L120;
 
 L119:
-  if (trigger(258)) goto L120;
-  speak(6, "When rumors about you spread,\nyou should come back.\n");
-  addPStat(40, 1);
-  goto L121;
+  jumpAndLink(L2);
 
 L120:
-  goto L122;
+  if (pstat[41] < 40) {
+    addPStat(41, 1);
+    goto L121;
+  }
+  goto L123;
 
 L121:
-  jumpAndLink(L4);
+  if (!trigger(129)) {
+    speak(6, "Myotismon is missing.\nFollow the clues that\nare in his mansion.\n");
+    addPStat(40, 1);
+    goto L122;
+  }
+  goto L123;
 
 L122:
-  if (pstat[41] >= 24) goto L123;
-  addPStat(41, 1);
-  goto L124;
+  jumpAndLink(L2);
 
 L123:
-  goto L127;
+  if (pstat[41] < 41) {
+    addPStat(41, 1);
+    goto L124;
+  }
+  goto L126;
 
 L124:
-  if (trigger(224)) goto L125;
-  speak(6, "A huge shadow appears along\nthe coasts of Freezeland.\nPerhaps it is a Digimon.\n");
-  addPStat(40, 1);
+  if (!trigger(50)) {
+    speak(6, "There are still some unknown\nDigimon, but finish your\npriority work first!\n");
+    addPStat(40, 1);
+    goto L125;
+  }
   goto L126;
 
 L125:
-  goto L127;
+  jumpAndLink(L2);
 
 L126:
-  jumpAndLink(L4);
+  if (pstat[41] < 42) {
+    addPStat(41, 1);
+    goto L127;
+  }
+  goto L128;
 
 L127:
-  if (pstat[41] >= 25) goto L128;
-  addPStat(41, 1);
-  goto L129;
+  if (!trigger(256) && trigger(50)) {
+    speak(6, "The last Digimon will be\nborn at the last place you go\nto. Do you understand this?\n");
+    addPStat(40, 1);
+  }
+  goto L128;
 
 L128:
-  goto L132;
-
-L129:
-  if (trigger(252)) goto L130;
-  speak(6, "Help Digimon that\nlove to collect things.\nTry going to Freezeland.\n");
-  addPStat(40, 1);
-  goto L131;
-
-L130:
-  goto L132;
-
-L131:
-  jumpAndLink(L4);
-
-L132:
-  if (pstat[41] >= 26) goto L133;
-  addPStat(41, 1);
-  goto L134;
-
-L133:
-  goto L137;
-
-L134:
-  if (trigger(213)) goto L135;
-  speak(6, "On the top of Mt. Panorama,\na Digimon will challenge you\nto fight if you see him.\n");
-  addPStat(40, 1);
-  goto L136;
-
-L135:
-  goto L137;
-
-L136:
-  jumpAndLink(L4);
-
-L137:
-  if (pstat[41] >= 27) goto L138;
-  addPStat(41, 1);
-  goto L139;
-
-L138:
-  goto L142;
-
-L139:
-  if (trigger(211)) goto L140;
-  speak(6, "Digimon are also in damp\nplaces such as sewers. Help\nthem with their problems.\n");
-  addPStat(40, 1);
-  goto L141;
-
-L140:
-  goto L142;
-
-L141:
-  jumpAndLink(L4);
-
-L142:
-  if (pstat[41] >= 28) goto L143;
-  addPStat(41, 1);
-  goto L144;
-
-L143:
-  goto L147;
-
-L144:
-  if (trigger(210)) goto L145;
-  speak(6, "Some Insectoid Digimon live\nbeyond Dragon Eye Lake.\nGo fishing there.\n");
-  addPStat(40, 1);
-  goto L146;
-
-L145:
-  goto L147;
-
-L146:
-  jumpAndLink(L4);
-
-L147:
-  if (pstat[41] >= 29) goto L148;
-  addPStat(41, 1);
-  goto L149;
-
-L148:
-  goto L152;
-
-L149:
-  if (trigger(241)) goto L150;
-  speak(6, "When Android Digimon\nbreaks, he can repair\nhimself completely quickly.\n");
-  addPStat(40, 1);
-  goto L151;
-
-L150:
-  goto L152;
-
-L151:
-  jumpAndLink(L4);
-
-L152:
-  if (pstat[41] >= 30) goto L153;
-  addPStat(41, 1);
-  goto L154;
-
-L153:
-  goto L157;
-
-L154:
-  if (trigger(142)) goto L155;
-  speak(6, "If you fear danger, you'll\nlose sight of your goal.\n");
-  showTextbox("You gotta be brave enough to\ntry climbing a dangerous\ncliff at least once.\n");
-  addPStat(40, 1);
-  goto L156;
-
-L155:
-  goto L157;
-
-L156:
-  jumpAndLink(L4);
-
-L157:
-  if (pstat[41] >= 31) goto L158;
-  addPStat(41, 1);
-  goto L159;
-
-L158:
-  goto L162;
-
-L159:
-  if (trigger(198)) goto L160;
-  speak(6, "Listen to anything you hear\nfrom the city about\npeople who need help.\n");
-  addPStat(40, 1);
-  goto L161;
-
-L160:
-  goto L162;
-
-L161:
-  jumpAndLink(L4);
-
-L162:
-  if (pstat[41] >= 32) goto L163;
-  addPStat(41, 1);
-  goto L164;
-
-L163:
-  goto L167;
-
-L164:
-  if (trigger(150)) goto L165;
-  speak(6, "There's a mean guy that has\nmoved into a very populated\narea recently. Maybe it's...\n");
-  addPStat(40, 1);
-  goto L166;
-
-L165:
-  goto L167;
-
-L166:
-  jumpAndLink(L4);
-
-L167:
-  if (pstat[41] >= 33) goto L168;
-  addPStat(41, 1);
-  goto L169;
-
-L168:
-  goto L172;
-
-L169:
-  if (trigger(135)) goto L170;
-  speak(6, "There is supposedly a\nburied old tablet, but\nsomeone has to dig it up.\n");
-  addPStat(40, 1);
-  goto L171;
-
-L170:
-  goto L172;
-
-L171:
-  jumpAndLink(L4);
-
-L172:
-  if (pstat[41] >= 34) goto L173;
-  addPStat(41, 1);
-  goto L174;
-
-L173:
-  goto L177;
-
-L174:
-  if (trigger(255)) goto L175;
-  speak(6, "A rare Digimon appears\nin a jungle and challenges\nothers to fight.\n");
-  addPStat(40, 1);
-  goto L176;
-
-L175:
-  goto L177;
-
-L176:
-  jumpAndLink(L4);
-
-L177:
-  if (pstat[41] >= 35) goto L178;
-  addPStat(41, 1);
-  goto L179;
-
-L178:
-  goto L182;
-
-L179:
-  if (trigger(242)) goto L180;
-  speak(6, "There might be Digimon that\nlive in trees, but who knows?\n");
-  addPStat(40, 1);
-  goto L181;
-
-L180:
-  goto L182;
-
-L181:
-  jumpAndLink(L4);
-
-L182:
-  if (pstat[41] >= 36) goto L183;
-  addPStat(41, 1);
-  goto L184;
-
-L183:
-  goto L187;
-
-L184:
-  if (trigger(227)) goto L185;
-  speak(6, "In an Iron City to the west a\nrare Digimon may appear and\nchallenge others to fight.\n");
-  addPStat(40, 1);
-  goto L186;
-
-L185:
-  goto L187;
-
-L186:
-  jumpAndLink(L4);
-
-L187:
-  if (pstat[41] >= 37) goto L188;
-  addPStat(41, 1);
-  goto L189;
-
-L188:
-  goto L192;
-
-L189:
-  if (trigger(228)) goto L190;
-  speak(6, "There is an Alien Digimon.\nYou may meet him someday.\n");
-  addPStat(40, 1);
-  goto L191;
-
-L190:
-  goto L192;
-
-L191:
-  jumpAndLink(L4);
-
-L192:
-  if (pstat[41] >= 38) goto L193;
-  addPStat(41, 1);
-  goto L194;
-
-L193:
-  goto L197;
-
-L194:
-  if (pstat[21] != 0) goto L195;
-  speak(6, "There is a Mythical Animal\nDigimon. He is in a house\nthat has lost its owners.\n");
-  addPStat(40, 1);
-  goto L196;
-
-L195:
-  goto L197;
-
-L196:
-  jumpAndLink(L4);
-
-L197:
-  if (pstat[41] >= 39) goto L198;
-  addPStat(41, 1);
-  goto L199;
-
-L198:
-  goto L202;
-
-L199:
-  if (pstat[21] != 1) goto L200;
-  speak(6, "You must keep looking for\nNanimon until you get the\nreal treasure.\n");
-  addPStat(40, 1);
-  goto L201;
-
-L200:
-  goto L202;
-
-L201:
-  jumpAndLink(L4);
-
-L202:
-  if (pstat[41] >= 40) goto L203;
-  addPStat(41, 1);
-  goto L204;
-
-L203:
-  goto L207;
-
-L204:
-  if (trigger(129)) goto L205;
-  speak(6, "Myotismon is missing.\nFollow the clues that\nare in his mansion.\n");
-  addPStat(40, 1);
-  goto L206;
-
-L205:
-  goto L207;
-
-L206:
-  jumpAndLink(L4);
-
-L207:
-  if (pstat[41] >= 41) goto L208;
-  addPStat(41, 1);
-  goto L209;
-
-L208:
-  goto L212;
-
-L209:
-  if (trigger(50)) goto L210;
-  speak(6, "There are still some unknown\nDigimon, but finish your\npriority work first!\n");
-  addPStat(40, 1);
-  goto L211;
-
-L210:
-  goto L212;
-
-L211:
-  jumpAndLink(L4);
-
-L212:
-  if (pstat[41] >= 42) goto L213;
-  addPStat(41, 1);
-  goto L214;
-
-L213:
-  goto L216;
-
-L214:
-  if (trigger(256) || !trigger(50)) goto L215;
-  speak(6, "The last Digimon will be\nborn at the last place you go\nto. Do you understand this?\n");
-  addPStat(40, 1);
-
-L215:
-  goto L216;
-
-L216:
   setPStat(41, 0);
   setPStat(40, 0);
   return;

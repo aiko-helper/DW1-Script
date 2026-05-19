@@ -6,13 +6,12 @@
 section onEnter(254) {
   unsetTrigger(116);
   storeDigimonType(103);
-  if (pstat[103] != 14 && !trigger(214)) goto L1;
-  goto L2;
-
-L1:
+  if (pstat[103] == 14 || trigger(214)) {
+    goto L1;
+  }
   anim(5, 31, wait: 5);
 
-L2:
+L1:
   return;
 }
 
@@ -23,18 +22,16 @@ section(5) {
 section(81) {
   setTrigger(44);
   storeDigimonType(103);
-  if (!trigger(270) && pstat[103] != 14) goto L1;
-  return;
-
-L1:
+  if (trigger(270) || pstat[103] == 14) {
+    return;
+  }
   anim(Entity.Player, 16, wait: 15);
   speak(Entity.Player, "This costume seems different\nfrom others. It has some\noverpowering presence.\n");
   fadeOutHUD();
   playAnimation(Entity.Player, 0);
-  if (!trigger(116)) goto L2;
-  return;
-
-L2:
+  if (trigger(116)) {
+    return;
+  }
   setTrigger(116);
   playAnimation(5, 28);
   anim(Entity.Player, 15, wait: 40);
@@ -44,24 +41,23 @@ L2:
   delay(10);
   speak(Entity.Player, "There's a zipper on the back.\n");
   fadeOutHUD();
-  if (pstat[103] != 11) goto L3;
-  move(entity: Entity.Partner, to: 5, sprint: 0);
-  waitForEntity(Entity.Partner);
-  look(entity: Entity.Player, at: Entity.Partner);
-  delay(5);
-  speak(Entity.Player, "What happened, <ORANGE><DIGIMON><WHITE>?!\n");
-  fadeOutHUD();
-  delay(10);
-  waitForEntity(5);
-  unloadEntity(5);
-  setPStat(254, 14);
-  callDigimonSubroutine(10);
-  waitForEntity(Entity.System);
-  delay(10);
-  speak(Entity.Player, "What? Did you turn into\nanother Digimon?\nIt's kinda nice.\n");
-  return;
-
-L3:
+  if (pstat[103] == 11) {
+    move(entity: Entity.Partner, to: 5, sprint: 0);
+    waitForEntity(Entity.Partner);
+    look(entity: Entity.Player, at: Entity.Partner);
+    delay(5);
+    speak(Entity.Player, "What happened, <ORANGE><DIGIMON><WHITE>?!\n");
+    fadeOutHUD();
+    delay(10);
+    waitForEntity(5);
+    unloadEntity(5);
+    setPStat(254, 14);
+    callDigimonSubroutine(10);
+    waitForEntity(Entity.System);
+    delay(10);
+    speak(Entity.Player, "What? Did you turn into\nanother Digimon?\nIt's kinda nice.\n");
+    return;
+  }
   speak(Entity.Player, " <ORANGE><DIGIMON><WHITE>,\ndo you want to get in?\n");
   look(entity: Entity.Player, at: Entity.Partner);
   move(entity: Entity.Partner, to: (900, 90), sprint: 0);

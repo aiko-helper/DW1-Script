@@ -4,23 +4,20 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  if (trigger(247)) goto L1;
-  playAnimation(5, 28);
-
-L1:
+  if (!trigger(247)) {
+    playAnimation(5, 28);
+  }
   return;
 }
 
 section(81) {
-  if (!trigger(247)) goto L1;
-  return;
-
-L1:
+  if (trigger(247)) {
+    return;
+  }
   look(entity: Entity.Player, at: 5);
-  if (!trigger(136)) goto L2;
-  goto L5;
-
-L2:
+  if (trigger(136)) {
+    goto L3;
+  }
   setTrigger(136);
   speak(5, "Welcome. I've never seen you\nbefore. Where are you from?\n");
   speak(Entity.Player, "The city. Actually, I'm\nfrom another world.\n");
@@ -39,10 +36,10 @@ L2:
   speak(5, "Don't worry. It'll be good\nfor me. How about eight hours?\n");
   loop {
     setDialogOwner(Entity.Player);
-    choice { "I'll try" -> L3, "No thanks" -> L4 }
-    goto L4;
+    choice { "I'll try" -> L1, "No thanks" -> L2 }
+    goto L2;
 
-L3:
+L1:
     fadeOutHUD();
     move(entity: 5, to: (133, 292), sprint: 0);
     move(entity: Entity.Player, to: (-980, -432), sprint: 0);
@@ -77,94 +74,85 @@ L3:
     unsetTrigger(101);
     goto section_82;
 
-L4:
+L2:
     speak(5, "That's too bad. Come back\nwhen you have time.\n");
     return;
 
-L5:
+L3:
     speak(5, "You want to work?\n");
   }
   return;
 }
 
 section(82) {
-  if (pstat[123] < 20) goto L1;
-  goto L9;
-
-L1:
-  if (pstat[123] < 10 || trigger(101)) goto L2;
-  setTrigger(101);
-  speak(5, "Well, it's half way done.\n \n");
-  look(entity: 5, at: Entity.Player);
-  look(entity: Entity.Player, at: 5);
-  delay(10);
-  goto L6;
-
-L2:
+  if (pstat[123] >= 20) {
+    goto L2;
+  }
+  if (pstat[123] >= 10 && !trigger(101)) {
+    setTrigger(101);
+    speak(5, "Well, it's half way done.\n \n");
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(10);
+    goto L1;
+  }
   loop {
     roll(pstat: 110, max: 8);
-    if (pstat[110] > 2) goto L3;
-    jumpToScriptSection(199, 51);
-
-L3:
-    if (pstat[110] > 5) goto L4;
-    jumpToScriptSection(200, 51);
-
-L4:
-    if (pstat[110] > 7) goto L5;
-    jumpToScriptSection(201, 51);
-
-L5:
+    if (pstat[110] <= 2) {
+      jumpToScriptSection(199, 51);
+    }
+    if (pstat[110] <= 5) {
+      jumpToScriptSection(200, 51);
+    }
+    if (pstat[110] <= 7) {
+      jumpToScriptSection(201, 51);
+    }
     jumpToScriptSection(202, 51);
     return;
 
-L6:
+L1:
     callSubroutine(56);
-    if (pstat[243] > 2) goto L7;
-    speak(5, "The way it's going, we won't\nmake any money. Try harder.\n \n");
-    rotate(entity: Entity.Player, to: 80);
-    fadeOutHUD();
-    continue;
-
-L7:
-    if (pstat[243] > 5) goto L8;
-    speak(5, "The sales are good.\nWe can make some money.\n");
-    rotate(entity: Entity.Player, to: 80);
-    fadeOutHUD();
-    continue;
-
-L8:
+    if (pstat[243] <= 2) {
+      speak(5, "The way it's going, we won't\nmake any money. Try harder.\n \n");
+      rotate(entity: Entity.Player, to: 80);
+      fadeOutHUD();
+      continue;
+    }
+    if (pstat[243] <= 5) {
+      speak(5, "The sales are good.\nWe can make some money.\n");
+      rotate(entity: Entity.Player, to: 80);
+      fadeOutHUD();
+      continue;
+    }
     speak(5, "I haven't had this much\nbusiness in a long time.\nKeep it up!\n");
     rotate(entity: Entity.Player, to: 80);
     fadeOutHUD();
   }
 
-L9:
+L2:
   delay(40);
   speak(5, "I think it's time.\nThank you for your work.\n");
   callSubroutine(56);
-  if (pstat[243] > 6) goto L10;
-  speak(5, "It could have been better,\nbut it wasn't that bad.\nDon't give up.\n");
-  addMoney(500);
-  speak(Entity.System, "I got five hund bits!\n");
-  pstat[:SavedTime] = time();
-  addMinutesToDate(PStat.SavedTime, 480);
-  advanceToDate(PStat.SavedTime);
-  warp(to: Map.GCAN09, spawn: 2, trigger: 255);
-  return;
-
-L10:
-  if (pstat[243] > 11) goto L11;
-  speak(5, "You can do better.\nI want you to work more.\n");
-  addMoney(1500);
-  speak(Entity.System, "I got fifteen hund bits!\n");
-  pstat[:SavedTime] = time();
-  addMinutesToDate(PStat.SavedTime, 480);
-  advanceToDate(PStat.SavedTime);
-  warp(to: Map.GCAN09, spawn: 2, trigger: 255);
-  return;
-
-L11:
+  if (pstat[243] <= 6) {
+    speak(5, "It could have been better,\nbut it wasn't that bad.\nDon't give up.\n");
+    addMoney(500);
+    speak(Entity.System, "I got five hund bits!\n");
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 480);
+    advanceToDate(PStat.SavedTime);
+    warp(to: Map.GCAN09, spawn: 2, trigger: 255);
+    return;
+  }
+  if (pstat[243] <= 11) {
+    speak(5, "You can do better.\nI want you to work more.\n");
+    addMoney(1500);
+    speak(Entity.System, "I got fifteen hund bits!\n");
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 480);
+    advanceToDate(PStat.SavedTime);
+    warp(to: Map.GCAN09, spawn: 2, trigger: 255);
+    return;
+  }
   speak(5, "Your wisdom, character and\nguts are what we need to\nsave this island.\n");
   speak(Entity.Player, "What are you talking about?\n");
   speak(5, "I was testing you to see if\nyou are capable of saving us.\n");

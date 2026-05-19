@@ -4,14 +4,12 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  if (trigger(340)) goto L1;
-  goto section_52;
-
-L1:
-  if (!trigger(341) || trigger(211)) goto L2;
-  goto section_6;
-
-L2:
+  if (!trigger(340)) {
+    goto section_52;
+  }
+  if (trigger(341) && !trigger(211)) {
+    goto section_6;
+  }
   return;
 }
 
@@ -24,16 +22,15 @@ section(51) {
 }
 
 section(5) {
-  if (trigger(342)) goto L1;
-  setTrigger(342);
-  speak(5, "I don't feel well.\n");
-  speak(Entity.Player, "Are you alright?\n");
-  speak(5, "I don't feel good.\n");
-  speak(Entity.Player, "Is this where you live?\n");
-  speak(5, "I feel sick. No energy.\n");
-  speak(Entity.Player, "You look awful.\n");
-
-L1:
+  if (!trigger(342)) {
+    setTrigger(342);
+    speak(5, "I don't feel well.\n");
+    speak(Entity.Player, "Are you alright?\n");
+    speak(5, "I don't feel good.\n");
+    speak(Entity.Player, "Is this where you live?\n");
+    speak(5, "I feel sick. No energy.\n");
+    speak(Entity.Player, "You look awful.\n");
+  }
   speak(5, "It's getting worse.\n");
   speak(Entity.Player, "I have to figure out why.\n");
   speak(Entity.Player, "Where is this drainage\ncoming from?\nI'm gonna check it out!\n");
@@ -140,33 +137,31 @@ section(7) {
   move(entity: 7, to: (2392, -114), sprint: 1);
   waitForEntity(7);
   unloadEntity(7);
-  if (pstat[21] != 0) goto L1;
-  setObjectVisibility(23, 0);
-  move(entity: Entity.Player, to: (2068, 760), sprint: 1);
-  waitForEntity(Entity.Player);
-  anim(Entity.Player, 12, wait: 10);
-  setObjectVisibility(23, 1);
-  playSound(0, 7);
-  speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can now\nhold up to twenty Items!\n");
-  playSound(0, 7);
-  setInventorySize(20);
-  setTrigger(47);
-
-L1:
-  if (pstat[21] != 4) goto L2;
-  setObjectVisibility(22, 0);
-  move(entity: Entity.Player, to: (2068, 760), sprint: 1);
-  waitForEntity(Entity.Player);
-  anim(Entity.Player, 12, wait: 10);
-  setObjectVisibility(22, 1);
-  playSound(0, 7);
-  speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can now\nhold up to thirty Items!\n");
-  setTrigger(48);
-  setInventorySize(30);
-  setTrigger(253);
-  addPStat(1, 1);
-
-L2:
+  if (pstat[21] == 0) {
+    setObjectVisibility(23, 0);
+    move(entity: Entity.Player, to: (2068, 760), sprint: 1);
+    waitForEntity(Entity.Player);
+    anim(Entity.Player, 12, wait: 10);
+    setObjectVisibility(23, 1);
+    playSound(0, 7);
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can now\nhold up to twenty Items!\n");
+    playSound(0, 7);
+    setInventorySize(20);
+    setTrigger(47);
+  }
+  if (pstat[21] == 4) {
+    setObjectVisibility(22, 0);
+    move(entity: Entity.Player, to: (2068, 760), sprint: 1);
+    waitForEntity(Entity.Player);
+    anim(Entity.Player, 12, wait: 10);
+    setObjectVisibility(22, 1);
+    playSound(0, 7);
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can now\nhold up to thirty Items!\n");
+    setTrigger(48);
+    setInventorySize(30);
+    setTrigger(253);
+    addPStat(1, 1);
+  }
   addPStat(21, 1);
   setTrigger(336);
   return;

@@ -5,10 +5,9 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 1) goto L1;
-  spawnItem(Item.Happymushroom, x: 22, y: 69);
-
-L1:
+  if (pstat[110] <= 1) {
+    spawnItem(Item.Happymushroom, x: 22, y: 69);
+  }
   return;
 }
 
@@ -24,20 +23,19 @@ section(51) {
   setTrigger(149);
   if (trigger(54)) goto L1;
   setDialogOwner(Entity.Player);
-  choice { "Normal" -> L3, "Ogre mode" -> L4 }
-  goto L3;
+  choice { "Normal" -> L2, "Ogre mode" -> L3 }
+  goto L2;
 
 L1:
-  if (!trigger(150) || trigger(151)) goto L2;
-  goto L4;
+  if (trigger(150) && !trigger(151)) {
+    goto L3;
+  }
+  return;
 
 L2:
   return;
 
 L3:
-  return;
-
-L4:
   setTrigger(151);
   setObjectVisibility(5, 1);
   setObjectVisibility(6, 0);
@@ -82,11 +80,10 @@ section(5) {
 }
 
 section(52) {
-  if (!trigger(106)) goto L1;
-  move(entity: Entity.Player, to: (2000, -152), sprint: 0);
-  warp(to: Map.MAYO02_2, spawn: 2, trigger: 255);
-
-L1:
+  if (trigger(106)) {
+    move(entity: Entity.Player, to: (2000, -152), sprint: 0);
+    warp(to: Map.MAYO02_2, spawn: 2, trigger: 255);
+  }
   move(entity: Entity.Player, to: (2000, -152), sprint: 0);
   warp(to: Map.MAYO01_2, spawn: 1, trigger: 255);
   return;

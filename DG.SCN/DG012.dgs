@@ -5,15 +5,13 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 9) goto L1;
-  spawnItem(Item.Digimushroom, x: 55, y: 43);
-
-L1:
+  if (pstat[110] <= 9) {
+    spawnItem(Item.Digimushroom, x: 55, y: 43);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 4) goto L2;
-  spawnItem(Item.Digimushroom, x: 68, y: 46);
-
-L2:
+  if (pstat[110] <= 4) {
+    spawnItem(Item.Digimushroom, x: 68, y: 46);
+  }
   return;
 }
 
@@ -21,47 +19,44 @@ section(81) {
   speak(Entity.System, "MP Vending Machine\n");
   rotate(entity: Entity.Player, to: 2048);
   speak(Entity.Player, "This machine recovers MP.\n");
-  choice { "Hund MP: two hund bits" -> L1, "Thous MP:eighteen hund bits" -> L4, "Don't use" -> L7 }
-  goto L7;
+  choice { "Hund MP: two hund bits" -> L1, "Thous MP:eighteen hund bits" -> L3, "Don't use" -> L5 }
+  goto L5;
 
 L1:
-  if (money < 200) goto L2;
-  addStats(currentMP: 100);
-  reduceMoney(200);
-  speak(Entity.System, "My MP level went back up!\n");
-  goto L3;
+  if (money >= 200) {
+    addStats(currentMP: 100);
+    reduceMoney(200);
+    speak(Entity.System, "My MP level went back up!\n");
+    goto L2;
+  }
+  speak(Entity.Player, "I don't have enough bits.\n");
+  return;
 
 L2:
-  speak(Entity.Player, "I don't have enough bits.\n");
   return;
 
 L3:
-  return;
-
-L4:
-  if (money < 1800) goto L5;
-  addStats(currentMP: 1000);
-  reduceMoney(1800);
-  speak(Entity.System, "My MP level went back up!\n");
-  goto L6;
-
-L5:
+  if (money >= 1800) {
+    addStats(currentMP: 1000);
+    reduceMoney(1800);
+    speak(Entity.System, "My MP level went back up!\n");
+    goto L4;
+  }
   speak(Entity.Player, "I don't have enough bits.\n");
   return;
 
-L6:
+L4:
   return;
 
-L7:
+L5:
   speak(Entity.Player, "Forget about it.\n");
   return;
 }
 
 section(53) {
-  if (!trigger(185)) goto L1;
-  return;
-
-L1:
+  if (trigger(185)) {
+    return;
+  }
   speak(Entity.Player, "Oh, a bridge!\n");
   setTrigger(185);
   return;

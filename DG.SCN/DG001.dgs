@@ -5,32 +5,27 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 39) goto L1;
-  spawnItem(Item.Digimushroom, x: 78, y: 31);
-
-L1:
+  if (pstat[110] <= 39) {
+    spawnItem(Item.Digimushroom, x: 78, y: 31);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 1) goto L2;
-  spawnItem(Item.DeluxeMushroom, x: 39, y: 43);
-
-L2:
+  if (pstat[110] <= 1) {
+    spawnItem(Item.DeluxeMushroom, x: 39, y: 43);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 9) goto L3;
-  spawnItem(Item.Digimushroom, x: 35, y: 88);
-  spawnItem(Item.Digimushroom, x: 31, y: 85);
-  spawnItem(Item.Digimushroom, x: 30, y: 79);
-
-L3:
+  if (pstat[110] <= 9) {
+    spawnItem(Item.Digimushroom, x: 35, y: 88);
+    spawnItem(Item.Digimushroom, x: 31, y: 85);
+    spawnItem(Item.Digimushroom, x: 30, y: 79);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 14) goto L4;
-  spawnItem(Item.Digimushroom, x: 68, y: 84);
-
-L4:
+  if (pstat[110] <= 14) {
+    spawnItem(Item.Digimushroom, x: 68, y: 84);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 24) goto L5;
-  spawnItem(Item.Digimushroom, x: 49, y: 46);
-
-L5:
+  if (pstat[110] <= 24) {
+    spawnItem(Item.Digimushroom, x: 49, y: 46);
+  }
   return;
 }
 
@@ -75,11 +70,10 @@ section(12) {
 }
 
 section(51) {
-  if (!trigger(106)) goto L1;
-  move(entity: Entity.Player, to: (-2315, 4000), sprint: 0);
-  warp(to: Map.MAYO02_2, spawn: 3, trigger: 255);
-
-L1:
+  if (trigger(106)) {
+    move(entity: Entity.Player, to: (-2315, 4000), sprint: 0);
+    warp(to: Map.MAYO02_2, spawn: 3, trigger: 255);
+  }
   move(entity: Entity.Player, to: (-2315, 4000), sprint: 0);
   warp(to: Map.MAYO01_2, spawn: 2, trigger: 255);
   return;

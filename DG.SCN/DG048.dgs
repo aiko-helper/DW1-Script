@@ -5,11 +5,10 @@
 
 section onEnter(254) {
   spawnChest(Item.PortaPotty, -1455, 184, 3072, 671);
-  if (!trigger(175)) goto L1;
-  moveObjectTo(0, 45, 1, 10, 0, 385, -50);
-  delay(10);
-
-L1:
+  if (trigger(175)) {
+    moveObjectTo(0, 45, 1, 10, 0, 385, -50);
+    delay(10);
+  }
   return;
 }
 
@@ -24,19 +23,17 @@ section(6) {
 }
 
 section(51) {
-  if (!trigger(182) || trigger(235)) goto L1;
-  speak(Entity.Player, "Is the elevator causing\nthe ground to rise?\n");
+  if (trigger(182) && !trigger(235)) {
+    speak(Entity.Player, "Is the elevator causing\nthe ground to rise?\n");
+  }
+  if (!trigger(175)) {
+    return;
+  }
+  setDialogOwner(Entity.Player);
+  choice { "Get in" -> L1, "Don't get in" -> L2 }
+  goto L2;
 
 L1:
-  if (trigger(175)) goto L2;
-  return;
-
-L2:
-  setDialogOwner(Entity.Player);
-  choice { "Get in" -> L3, "Don't get in" -> L4 }
-  goto L4;
-
-L3:
   move(entity: Entity.Player, to: (1220, 3988), sprint: 0);
   move(entity: Entity.Partner, to: (1201, 3486), sprint: 0);
   waitForPair();
@@ -44,20 +41,19 @@ L3:
   warp(to: Map.GCAN02, spawn: 3, trigger: 53);
   return;
 
-L4:
+L2:
   move(entity: Entity.Player, to: (1152, 2851), sprint: 0);
   waitForEntity(Entity.Player);
   return;
 }
 
 section(52) {
-  if (trigger(175)) goto L1;
-  goto L2;
-
-L1:
+  if (!trigger(175)) {
+    goto L1;
+  }
   return;
 
-L2:
+L1:
   moveCamera(to: (40, 2922), slowdown: 30);
   waitForEntity(200);
   lookPairAt(7);
@@ -133,13 +129,12 @@ L2:
 }
 
 section(53) {
-  if (trigger(175)) goto L1;
-  move(entity: Entity.Player, to: (245, 1250), sprint: 1, withCamera: true);
-  move(entity: Entity.Partner, to: (-50, 1250), sprint: 1);
-  waitForPair();
-  goto section_52.L2;
-
-L1:
+  if (!trigger(175)) {
+    move(entity: Entity.Player, to: (245, 1250), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (-50, 1250), sprint: 1);
+    waitForPair();
+    goto section_52.L1;
+  }
   return;
 }
 
@@ -175,33 +170,31 @@ section(11) {
   move(entity: 11, to: (179, -74), sprint: 1);
   waitForEntity(11);
   unloadEntity(11);
-  if (pstat[21] != 0) goto L1;
-  setObjectVisibility(43, 0);
-  move(entity: Entity.Player, to: (32, 829), sprint: 1);
-  waitForEntity(Entity.Player);
-  anim(Entity.Player, 12, wait: 10);
-  setObjectVisibility(43, 1);
-  playSound(0, 7);
-  speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry twenty Items!\n");
-  playSound(0, 7);
-  setInventorySize(20);
-  setTrigger(47);
-
-L1:
-  if (pstat[21] != 4) goto L2;
-  setObjectVisibility(42, 0);
-  move(entity: Entity.Player, to: (32, 829), sprint: 1);
-  waitForEntity(Entity.Player);
-  anim(Entity.Player, 12, wait: 10);
-  setObjectVisibility(42, 1);
-  playSound(0, 7);
-  speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry thirty Items!\n");
-  setInventorySize(30);
-  setTrigger(48);
-  setTrigger(253);
-  addPStat(1, 1);
-
-L2:
+  if (pstat[21] == 0) {
+    setObjectVisibility(43, 0);
+    move(entity: Entity.Player, to: (32, 829), sprint: 1);
+    waitForEntity(Entity.Player);
+    anim(Entity.Player, 12, wait: 10);
+    setObjectVisibility(43, 1);
+    playSound(0, 7);
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry twenty Items!\n");
+    playSound(0, 7);
+    setInventorySize(20);
+    setTrigger(47);
+  }
+  if (pstat[21] == 4) {
+    setObjectVisibility(42, 0);
+    move(entity: Entity.Player, to: (32, 829), sprint: 1);
+    waitForEntity(Entity.Player);
+    anim(Entity.Player, 12, wait: 10);
+    setObjectVisibility(42, 1);
+    playSound(0, 7);
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry thirty Items!\n");
+    setInventorySize(30);
+    setTrigger(48);
+    setTrigger(253);
+    addPStat(1, 1);
+  }
   addPStat(21, 1);
   setTrigger(334);
   return;

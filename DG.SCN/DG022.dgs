@@ -5,37 +5,31 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 14) goto L1;
-  spawnItem(Item.Digimushroom, x: 15, y: 41);
-
-L1:
+  if (pstat[110] <= 14) {
+    spawnItem(Item.Digimushroom, x: 15, y: 41);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 14) goto L2;
-  spawnItem(Item.Digimushroom, x: 49, y: 28);
-
-L2:
+  if (pstat[110] <= 14) {
+    spawnItem(Item.Digimushroom, x: 49, y: 28);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 14) goto L3;
-  spawnItem(Item.Digimushroom, x: 63, y: 67);
-
-L3:
+  if (pstat[110] <= 14) {
+    spawnItem(Item.Digimushroom, x: 63, y: 67);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 14) goto L4;
-  spawnItem(Item.Digimushroom, x: 25, y: 64);
-
-L4:
+  if (pstat[110] <= 14) {
+    spawnItem(Item.Digimushroom, x: 25, y: 64);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 5) goto L5;
-  spawnItem(Item.Happymushroom, x: 84, y: 49);
-
-L5:
+  if (pstat[110] <= 5) {
+    spawnItem(Item.Happymushroom, x: 84, y: 49);
+  }
   spawnChest(Item.MediumRecovery, 3545, 855, 1024, 696);
   spawnChest(Item.MediumMP, 3545, 455, 1024, 697);
   spawnChest(Item.Various, 3545, 155, 1024, 698);
-  if (trigger(233) || !trigger(53)) goto L6;
-  playAnimation(5, 28);
-
-L6:
+  if (!trigger(233) && trigger(53)) {
+    playAnimation(5, 28);
+  }
   return;
 }
 
@@ -49,26 +43,23 @@ section(5) {
   playAnimation(Entity.Player, 0);
   setTrigger(3);
   callSubroutine(0);
-  if (!trigger(3)) goto L1;
-  speak(Entity.Player, "I don't have anything\nright now.\n");
-  goto L6;
+  if (trigger(3)) {
+    speak(Entity.Player, "I don't have anything\nright now.\n");
+    goto L3;
+  }
+  if (pstat[254] == 0 || pstat[254] == 1 || pstat[254] == 2 || pstat[254] == 3) {
+    callSubroutine(12);
+    goto L1;
+  }
+  if (pstat[254] == 7 || pstat[254] == 9 || pstat[254] == 13 || pstat[254] == 14) {
+    callSubroutine(12);
+    goto L1;
+    goto L1;
+  }
+  speak(Entity.Player, "This won't do.\n");
+  goto L3;
 
 L1:
-  if (pstat[254] != 0 && pstat[254] != 1 && pstat[254] != 2 && pstat[254] != 3) goto L2;
-  callSubroutine(12);
-  goto L4;
-
-L2:
-  if (pstat[254] != 7 && pstat[254] != 9 && pstat[254] != 13 && pstat[254] != 14) goto L3;
-  callSubroutine(12);
-  goto L4;
-  goto L4;
-
-L3:
-  speak(Entity.Player, "This won't do.\n");
-  goto L6;
-
-L4:
   speak(5, "It's much better. Thank you.\n");
   playAnimation(5, 29);
   waitForEntity(5);
@@ -80,9 +71,9 @@ L4:
   speak(5, "I heard about the city.\nIt's bigger than I thought.\n");
   speak(Entity.Player, "Go to the city and rest.\n");
   speak(5, "Thank you. Maybe\nI can help you someday.\n");
-  goto L5;
+  goto L2;
 
-L5:
+L2:
   loop {
     move(entity: 5, to: (-192, -1849), sprint: 1);
     if (pstat[101] >= 10) break;
@@ -97,14 +88,14 @@ L5:
   speak(Entity.System, "Unimon joins the city!\n");
   setTrigger(233);
   addPStat(1, 2);
-  goto L7;
+  goto L4;
 
-L6:
+L3:
   speak(Entity.Player, "I don't have anything to\ntreat your wound.\nI'll get you something.\n");
   speak(5, "I'm sorry, please hurry.\n");
-  goto L7;
+  goto L4;
 
-L7:
+L4:
   return;
 }
 
@@ -113,35 +104,32 @@ section(6) {
 }
 
 section(51) {
-  if (trigger(118)) goto L1;
-  goto L4;
-
-L1:
-  if (trigger(154) || !trigger(152) || trigger(153)) goto L2;
+  if (!trigger(118)) {
+    goto L1;
+  }
+  if (!trigger(154) && trigger(152) && !trigger(153)) {
+    goto L2;
+  }
+  if (trigger(153) && !trigger(228)) {
+    goto L3;
+    goto L1;
+  }
   goto L5;
 
-L2:
-  if (!trigger(153) || trigger(228)) goto L3;
-  goto L6;
-  goto L4;
-
-L3:
-  goto L8;
-
-L4:
+L1:
   speak(Entity.System, "There are some strange\ndrawings on the ground.\n");
   speak(Entity.Player, "Is that one of those\nMystery Circles?\nIt still looks new.\n");
   setTrigger(118);
   setTrigger(152);
   return;
 
-L5:
+L2:
   speak(Entity.Player, "I see more of them now!\nI wonder if this is\nrelated to the UFO...?\n");
   setTrigger(154);
   setTrigger(153);
   return;
 
-L6:
+L3:
   speak(Entity.Player, "Wow!? There are more\nof them than before!\n");
   showTextbox("What does this mean?\n");
   playSound(8, 5);
@@ -181,9 +169,9 @@ L6:
   speak(Entity.Player, "Maybe he doesn't get it?\n");
   speak(6, "Okay.\n");
   fadeOutHUD();
-  goto L7;
+  goto L4;
 
-L7:
+L4:
   loop {
     move(entity: 6, to: (199, -3166), sprint: 1);
     if (pstat[101] >= 2) break;
@@ -202,7 +190,7 @@ L7:
   addPStat(1, 3);
   return;
 
-L8:
+L5:
   return;
 }
 

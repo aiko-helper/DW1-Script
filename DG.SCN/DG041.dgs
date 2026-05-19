@@ -5,15 +5,13 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 9) goto L1;
-  spawnItem(Item.Digimushroom, x: 69, y: 49);
-
-L1:
+  if (pstat[110] <= 9) {
+    spawnItem(Item.Digimushroom, x: 69, y: 49);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 2) goto L2;
-  spawnItem(Item.Happymushroom, x: 37, y: 33);
-
-L2:
+  if (pstat[110] <= 2) {
+    spawnItem(Item.Happymushroom, x: 37, y: 33);
+  }
   return;
 }
 
@@ -52,28 +50,27 @@ section(81) {
   delay(5);
   speak(Entity.System, "Elevator\n");
   setDialogOwner(Entity.Player);
-  choice { "Hit Rooftop" -> L1, "Hit Up" -> L4, "Don't get on" -> L7 }
-  goto L7;
+  choice { "Hit Rooftop" -> L1, "Hit Up" -> L3, "Don't get on" -> L5 }
+  goto L5;
 
 L1:
-  if (trigger(155)) goto L2;
-  anim(Entity.Player, 16, wait: 15);
-  speak(Entity.Player, "It doesn't do anything.\n");
-  playAnimation(Entity.Player, 0);
-  rotate(entity: Entity.Player, to: 2297);
-  delay(10);
-  rotate(entity: Entity.Player, to: 1785);
-  delay(10);
-  rotate(entity: Entity.Player, to: 2297);
-  showTextbox("There's a rock stuck in\nthe machine. Maybe this is...\n");
-  anim(Entity.Player, 25, wait: 20);
-  speak(Entity.System, "I removed the rock!\n");
-  speak(Entity.Player, "That should do it!\n");
-  setTrigger(155);
-  return;
-  goto L3;
-
-L2:
+  if (!trigger(155)) {
+    anim(Entity.Player, 16, wait: 15);
+    speak(Entity.Player, "It doesn't do anything.\n");
+    playAnimation(Entity.Player, 0);
+    rotate(entity: Entity.Player, to: 2297);
+    delay(10);
+    rotate(entity: Entity.Player, to: 1785);
+    delay(10);
+    rotate(entity: Entity.Player, to: 2297);
+    showTextbox("There's a rock stuck in\nthe machine. Maybe this is...\n");
+    anim(Entity.Player, 25, wait: 20);
+    speak(Entity.System, "I removed the rock!\n");
+    speak(Entity.Player, "That should do it!\n");
+    setTrigger(155);
+    return;
+    goto L2;
+  }
   playSound(8, 4);
   rotate3DObject(0, 1);
   delay(1);
@@ -95,29 +92,28 @@ L2:
   warp(to: Map.GCAN10, spawn: 0, trigger: 52);
   return;
 
+L2:
+  return;
+
 L3:
-  return;
-
-L4:
   fadeOutHUD();
-  if (trigger(155)) goto L5;
-  anim(Entity.Player, 16, wait: 15);
-  speak(Entity.Player, "It doesn't do anything.\n");
-  playAnimation(Entity.Player, 0);
-  rotate(entity: Entity.Player, to: 2297);
-  delay(10);
-  rotate(entity: Entity.Player, to: 1785);
-  delay(10);
-  rotate(entity: Entity.Player, to: 2297);
-  showTextbox("There's a rock stuck in\nthe machine. Maybe this is...\n");
-  speak(Entity.System, "I removed the rock!");
-  dead_string("?is is...\n");
-  speak(Entity.Player, "That should do it.\n");
-  setTrigger(155);
-  return;
-  goto L6;
-
-L5:
+  if (!trigger(155)) {
+    anim(Entity.Player, 16, wait: 15);
+    speak(Entity.Player, "It doesn't do anything.\n");
+    playAnimation(Entity.Player, 0);
+    rotate(entity: Entity.Player, to: 2297);
+    delay(10);
+    rotate(entity: Entity.Player, to: 1785);
+    delay(10);
+    rotate(entity: Entity.Player, to: 2297);
+    showTextbox("There's a rock stuck in\nthe machine. Maybe this is...\n");
+    speak(Entity.System, "I removed the rock!");
+    dead_string("?is is...\n");
+    speak(Entity.Player, "That should do it.\n");
+    setTrigger(155);
+    return;
+    goto L4;
+  }
   playSound(8, 4);
   rotate3DObject(0, 1);
   delay(1);
@@ -139,10 +135,10 @@ L5:
   warp(to: Map.GCAN03, spawn: 2, trigger: 55);
   return;
 
-L6:
+L4:
   return;
 
-L7:
+L5:
   return;
 }
 

@@ -11,25 +11,24 @@ section(5) {
   speak(5, "I'm tired of training here.\nWhat should I do?\n");
   speak(Entity.Player, "What to do?\n");
   speak(5, "Where do you train?\n");
-  if (trigger(205)) goto L1;
-  speak(Entity.Player, "Is that a training ground?\n");
-  speak(5, "I'm tired of training.\nI want to do live battle.\n");
-  return;
-
-L1:
+  if (!trigger(205)) {
+    speak(Entity.Player, "Is that a training ground?\n");
+    speak(5, "I'm tired of training.\nI want to do live battle.\n");
+    return;
+  }
   setDialogOwner(Entity.Player);
-  setSelection(L2, L3);
+  setSelection(L1, L2);
   showTextbox("Maybe it's a training ground\nMaybe it's an Arena\n");
 
-L2:
+L1:
   speak(5, "I'm tired of training.\nI want to do live battle.\n");
   return;
 
-L3:
+L2:
   speak(5, "I want to go there.\nI'll train there.\n");
-  goto L4;
+  goto L3;
 
-L4:
+L3:
   approach(who: 5, x: -1342, y: -2147, tries: 3, wait: 20);
   playSound(8, 17);
   speak(Entity.System, "Kabuterimon joins the city!\n");
@@ -42,14 +41,13 @@ section(6) {
   speak(6, "The Insectoid Warrior\nTournament takes place here\nevery year...\n");
   showTextbox("...on days with two two's.\nThe winner gets great stuff!\n");
   showTextbox("But only Insectoid\nDigimon can enter.\n");
-  if (!trigger(346)) goto L1;
-  speak(6, "There's Kabuterimon,\nKuragamon, Kunemon,\nand one other Insectoid.\n");
-  showTextbox("But, no Numemon.\n");
-  showTextbox("On days with two two's, the\nInsectoid Warrior Contest\ntakes place every year.\n");
-  showTextbox("You've won before, right?\n");
-  return;
-
-L1:
+  if (trigger(346)) {
+    speak(6, "There's Kabuterimon,\nKuragamon, Kunemon,\nand one other Insectoid.\n");
+    showTextbox("But, no Numemon.\n");
+    showTextbox("On days with two two's, the\nInsectoid Warrior Contest\ntakes place every year.\n");
+    showTextbox("You've won before, right?\n");
+    return;
+  }
   speak(6, "There's Kabuterimon,\nKuragamon, Kunemon,\nand one other Insectoid.\n");
   showTextbox("That's HerculesKabuterimon.\n");
   showTextbox("Hercules-Kabuterimon is\nsuper strong.\n");
@@ -67,26 +65,23 @@ L1:
   speak(7, "We're researching Techniques.\nIt's difficult to master\nhard Techniques.\n");
   showTextbox("If you have ability, you\nmight master the Techniques.\nWant to master the hard ones?\n");
   setDialogOwner(Entity.Player);
-  choice { "Of course!" -> L2, "No, I don't" -> L6 }
+  choice { "Of course!" -> L2, "No, I don't" -> L3 }
   return;
 
 L2:
   speak(7, "Then I'll try it.\n");
-  if (stat[Stat.Defense] >= 500) goto L3;
-  speak(7, "You lack Defensive Power.\nTrain more.\n");
-  return;
-
-L3:
-  if (stat[Stat.Speed] >= 500) goto L4;
-  speak(7, "You lack Speed.\nTrain more.\n");
-  return;
-
-L4:
-  if (stat[Stat.MaxHP] >= 500) goto L5;
-  speak(7, "You lack HP.\nTrain more.\n");
-  return;
-
-L5:
+  if (stat[Stat.Defense] < 500) {
+    speak(7, "You lack Defensive Power.\nTrain more.\n");
+    return;
+  }
+  if (stat[Stat.Speed] < 500) {
+    speak(7, "You lack Speed.\nTrain more.\n");
+    return;
+  }
+  if (stat[Stat.MaxHP] < 500) {
+    speak(7, "You lack HP.\nTrain more.\n");
+    return;
+  }
   learnMove(Move.MassMorph);
   speak(7, "You mastered a Technique.\n");
   speak(Entity.System, "You mastered the 'Bug'!\n");
@@ -95,7 +90,7 @@ L5:
   waitForEntity(200);
   return;
 
-L6:
+L3:
   return;
 }
 

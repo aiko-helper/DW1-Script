@@ -15,49 +15,45 @@ section(5) {
   waitForEntity(Entity.Player);
   speak(5, "We are going to remodel.\nThe fee is two thous bits.\n");
   storeDigimonType(103);
-  if (pstat[103] == 13) goto L1;
-  speak(5, "The style is different.\nWe can't remodel.\n");
+  if (pstat[103] != 13) {
+    speak(5, "The style is different.\nWe can't remodel.\n");
+    return;
+  }
+  setDialogOwner(Entity.Player);
+  choice { "Do it" -> L1, "No thanks" -> L2 }
   return;
 
 L1:
-  setDialogOwner(Entity.Player);
-  choice { "Do it" -> L2, "No thanks" -> L6 }
-  return;
-
-L2:
-  if (money >= 2000) goto L3;
-  speak(5, "You don't have enough bits.\n");
-  return;
-
-L3:
+  if (money < 2000) {
+    speak(5, "You don't have enough bits.\n");
+    return;
+  }
   reduceMoney(2000);
   speak(5, "Wait a minute.\n");
   roll(pstat: 110, max: 10);
-  if (pstat[110] > 0) goto L4;
-  speak(5, "It didn't work, but...\n");
-  fadeOutHUD();
-  setPStat(254, 41);
-  callDigimonSubroutine(10);
-  delay(570);
-  speak(Entity.Player, "Wow, it turned into Giromon!\n");
-  return;
-
-L4:
-  if (pstat[110] > 5) goto L5;
-  speak(5, "It was successful!\n");
-  fadeOutHUD();
-  setPStat(254, 27);
-  callDigimonSubroutine(10);
-  delay(570);
-  speak(Entity.Player, "Wow, it turned into\nMetalMamemon!\n");
-  return;
-
-L5:
+  if (pstat[110] <= 0) {
+    speak(5, "It didn't work, but...\n");
+    fadeOutHUD();
+    setPStat(254, 41);
+    callDigimonSubroutine(10);
+    delay(570);
+    speak(Entity.Player, "Wow, it turned into Giromon!\n");
+    return;
+  }
+  if (pstat[110] <= 5) {
+    speak(5, "It was successful!\n");
+    fadeOutHUD();
+    setPStat(254, 27);
+    callDigimonSubroutine(10);
+    delay(570);
+    speak(Entity.Player, "Wow, it turned into\nMetalMamemon!\n");
+    return;
+  }
   speak(5, "It didn't work.\n");
   speak(Entity.Player, "That's awful!\n");
   speak(5, "I'm sorry...\n");
 
-L6:
+L2:
   return;
 }
 

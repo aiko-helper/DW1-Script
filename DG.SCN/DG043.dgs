@@ -5,15 +5,13 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 9) goto L1;
-  spawnItem(Item.Digimushroom, x: 48, y: 68);
-
-L1:
+  if (pstat[110] <= 9) {
+    spawnItem(Item.Digimushroom, x: 48, y: 68);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 3) goto L2;
-  spawnItem(Item.Pricklypear, x: 76, y: 49);
-
-L2:
+  if (pstat[110] <= 3) {
+    spawnItem(Item.Pricklypear, x: 76, y: 49);
+  }
   unsetTrigger(98);
   return;
 }
@@ -37,94 +35,91 @@ section(81) {
   rotate(entity: Entity.Player, to: 1944);
   waitForEntity(Entity.Player);
   speak(Entity.System, "East: Elevator\nWest: Danger, Cliff\n");
-  if (!trigger(54)) goto L1;
-  return;
-
-L1:
+  if (trigger(54)) {
+    return;
+  }
   setDialogOwner(Entity.System);
-  setSelection(L2, L3);
+  setSelection(L1, L2);
   showTextbox("Ogre mode : ON\nOgre mode : OFF\n");
 
-L2:
+L1:
   setTrigger(197);
   warp(to: Map.GCAN08_1, spawn: 0, trigger: 255);
   return;
 
-L3:
+L2:
   unsetTrigger(197);
   warp(to: Map.GCAN08_1, spawn: 0, trigger: 255);
   return;
 }
 
 section(53) {
-  if (trigger(143) || trigger(141)) goto L1;
-  setTrigger(143);
-  setTrigger(141);
-  speak(Entity.Player, "What?\n");
-  move(entity: Entity.Player, to: (-1048, -498), sprint: 0, withCamera: true);
-  delay(20);
-  move(entity: Entity.Partner, to: (-1048, -498), sprint: 0);
-  waitForEntity(Entity.Player);
-  move(entity: Entity.Player, to: (-1473, 823), sprint: 0, withCamera: true);
-  delay(20);
-  move(entity: Entity.Partner, to: (-1473, 823), sprint: 0);
-  waitForEntity(Entity.Player);
-  move(entity: Entity.Player, to: (-2333, 261), sprint: 0, withCamera: true);
-  delay(20);
-  move(entity: Entity.Partner, to: (-1952, 165), sprint: 0);
-  waitForEntity(Entity.Player);
-  delay(20);
-  look(entity: Entity.Player, at: Entity.Partner);
-  delay(20);
-  rotate(entity: Entity.Player, to: 1000);
-  speak(Entity.Player, "I felt the ground move.\nWas it my imagination?\n");
-
-L1:
-  if (trigger(143) || !trigger(141)) goto L2;
-  setTrigger(142);
-  move(entity: Entity.Player, to: (-1048, -498), sprint: 0, withCamera: true);
-  delay(20);
-  move(entity: Entity.Partner, to: (-1048, -498), sprint: 0);
-  waitForEntity(Entity.Player);
-  move(entity: Entity.Player, to: (-1473, 823), sprint: 0, withCamera: true);
-  delay(20);
-  move(entity: Entity.Partner, to: (-1473, 823), sprint: 0);
-  waitForEntity(Entity.Player);
-  move(entity: Entity.Player, to: (-2333, 261), sprint: 0, withCamera: true);
-  delay(20);
-  move(entity: Entity.Partner, to: (-1952, 165), sprint: 0);
-  waitForEntity(Entity.Player);
-  delay(20);
-  look(entity: Entity.Player, at: Entity.Partner);
-  delay(20);
-  rotate(entity: Entity.Player, to: 1000);
-  playSound(8, 8);
-  speak(Entity.Player, "What? No way!\n");
-  look(entity: Entity.Player, at: Entity.Partner);
-  look(entity: Entity.Partner, at: Entity.Player);
-  setPStat(247, 2);
-  setPStat(248, 2);
-  callSubroutine(21);
-  setObjectVisibility(0, 1);
-  setObjectVisibility(1, 1);
-  setObjectVisibility(2, 0);
-  setObjectVisibility(3, 0);
-  playSound(8, 8);
-  anim(Entity.Player, 15, wait: 40);
-  setObjectVisibility(2, 1);
-  setObjectVisibility(3, 1);
-  setObjectVisibility(7, 0);
-  anim(Entity.Player, 26, wait: 2);
-  move(entity: Entity.Partner, axis: 1, to: 5000, speed: 5);
-  delay(1);
-  move(entity: Entity.Player, axis: 1, to: 5000, speed: 5);
-  playSound(8, 0);
-  setTexboxMode(2, 20);
-  speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE>Wow!!\n");
-  warp(to: Map.GCAN07, spawn: 1, trigger: 51);
-  return;
-
-L2:
+  if (!trigger(143) && !trigger(141)) {
+    setTrigger(143);
+    setTrigger(141);
+    speak(Entity.Player, "What?\n");
+    move(entity: Entity.Player, to: (-1048, -498), sprint: 0, withCamera: true);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1048, -498), sprint: 0);
+    waitForEntity(Entity.Player);
+    move(entity: Entity.Player, to: (-1473, 823), sprint: 0, withCamera: true);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1473, 823), sprint: 0);
+    waitForEntity(Entity.Player);
+    move(entity: Entity.Player, to: (-2333, 261), sprint: 0, withCamera: true);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1952, 165), sprint: 0);
+    waitForEntity(Entity.Player);
+    delay(20);
+    look(entity: Entity.Player, at: Entity.Partner);
+    delay(20);
+    rotate(entity: Entity.Player, to: 1000);
+    speak(Entity.Player, "I felt the ground move.\nWas it my imagination?\n");
+  }
+  if (!trigger(143) && trigger(141)) {
+    setTrigger(142);
+    move(entity: Entity.Player, to: (-1048, -498), sprint: 0, withCamera: true);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1048, -498), sprint: 0);
+    waitForEntity(Entity.Player);
+    move(entity: Entity.Player, to: (-1473, 823), sprint: 0, withCamera: true);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1473, 823), sprint: 0);
+    waitForEntity(Entity.Player);
+    move(entity: Entity.Player, to: (-2333, 261), sprint: 0, withCamera: true);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1952, 165), sprint: 0);
+    waitForEntity(Entity.Player);
+    delay(20);
+    look(entity: Entity.Player, at: Entity.Partner);
+    delay(20);
+    rotate(entity: Entity.Player, to: 1000);
+    playSound(8, 8);
+    speak(Entity.Player, "What? No way!\n");
+    look(entity: Entity.Player, at: Entity.Partner);
+    look(entity: Entity.Partner, at: Entity.Player);
+    setPStat(247, 2);
+    setPStat(248, 2);
+    callSubroutine(21);
+    setObjectVisibility(0, 1);
+    setObjectVisibility(1, 1);
+    setObjectVisibility(2, 0);
+    setObjectVisibility(3, 0);
+    playSound(8, 8);
+    anim(Entity.Player, 15, wait: 40);
+    setObjectVisibility(2, 1);
+    setObjectVisibility(3, 1);
+    setObjectVisibility(7, 0);
+    anim(Entity.Player, 26, wait: 2);
+    move(entity: Entity.Partner, axis: 1, to: 5000, speed: 5);
+    delay(1);
+    move(entity: Entity.Player, axis: 1, to: 5000, speed: 5);
+    playSound(8, 0);
+    setTexboxMode(2, 20);
+    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE>Wow!!\n");
+    warp(to: Map.GCAN07, spawn: 1, trigger: 51);
+    return;
+  }
   return;
 }
 
@@ -141,18 +136,15 @@ section(82) {
 }
 
 section(51) {
-  if (trigger(197)) goto L1;
-  return;
-
-L1:
-  if (!trigger(198)) goto L2;
-  return;
-
-L2:
-  if (!trigger(98)) goto L3;
-  return;
-
-L3:
+  if (!trigger(197)) {
+    return;
+  }
+  if (trigger(198)) {
+    return;
+  }
+  if (trigger(98)) {
+    return;
+  }
   rotate(entity: Entity.Player, to: 1944);
   moveCamera(to: (2000, 173), slowdown: 30);
   waitForEntity(200);

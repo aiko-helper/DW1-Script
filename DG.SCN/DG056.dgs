@@ -8,22 +8,21 @@ section onEnter(254) {
 }
 
 section(81) {
-  if (item[Item.MansionKey] < 1 || trigger(115)) goto L1;
-  rotate(entity: Entity.Player, to: 3138);
-  playSound(8, 3);
-  speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
-  setTrigger(115);
-  goto L2;
-
-L1:
-  if (item[Item.MansionKey] >= 1 || trigger(115)) goto L2;
+  if (item[Item.MansionKey] >= 1 && !trigger(115)) {
+    rotate(entity: Entity.Player, to: 3138);
+    playSound(8, 3);
+    speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
+    setTrigger(115);
+    goto L1;
+  }
+  if (item[Item.MansionKey] >= 1 || trigger(115)) goto L1;
   rotate(entity: Entity.Player, to: 3138);
   sfx(8, 2, wait: 5);
   playSound(8, 2);
   speak(Entity.System, "It doesn't open.\nIt's locked.\n");
   return;
 
-L2:
+L1:
   rotate3DObject(3, 1);
   sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (700, 50), sprint: 0);

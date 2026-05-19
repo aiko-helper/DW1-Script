@@ -8,22 +8,21 @@ section onEnter(254) {
 }
 
 section(82) {
-  if (item[Item.MansionKey] < 1 || trigger(125)) goto L1;
-  rotate(entity: Entity.Player, to: 3072);
-  playSound(8, 3);
-  speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
-  setTrigger(125);
-  goto L2;
-
-L1:
-  if (item[Item.MansionKey] >= 1 || trigger(125)) goto L2;
+  if (item[Item.MansionKey] >= 1 && !trigger(125)) {
+    rotate(entity: Entity.Player, to: 3072);
+    playSound(8, 3);
+    speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
+    setTrigger(125);
+    goto L1;
+  }
+  if (item[Item.MansionKey] >= 1 || trigger(125)) goto L1;
   rotate(entity: Entity.Player, to: 3072);
   sfx(8, 2, wait: 5);
   playSound(8, 2);
   speak(Entity.System, "It doesn't open.\nIt's locked.\n");
   return;
 
-L2:
+L1:
   rotate3DObject(1, 1);
   sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (2000, 2500), sprint: 0);
@@ -32,14 +31,13 @@ L2:
 }
 
 section(83) {
-  if (trigger(117)) goto L1;
-  rotate(entity: Entity.Player, to: 1024);
-  sfx(8, 2, wait: 5);
-  playSound(8, 2);
-  speak(Entity.System, "It doesn't open.\nIt's locked.\nThere's no key hole.\n");
-  return;
-
-L1:
+  if (!trigger(117)) {
+    rotate(entity: Entity.Player, to: 1024);
+    sfx(8, 2, wait: 5);
+    playSound(8, 2);
+    speak(Entity.System, "It doesn't open.\nIt's locked.\nThere's no key hole.\n");
+    return;
+  }
   move(entity: Entity.Player, to: (-2000, 554), sprint: 0);
   rotate3DObject(2, 1);
   sfx(8, 1, wait: 10);
@@ -48,22 +46,21 @@ L1:
 }
 
 section(81, 0x019a) {
-  if (item[Item.MansionKey] < 1 || trigger(127)) goto L1;
-  rotate(entity: Entity.Player, to: 3072);
-  playSound(8, 3);
-  speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
-  setTrigger(127);
-  goto L2;
-
-L1:
-  if (item[Item.MansionKey] >= 1 || trigger(127)) goto L2;
+  if (item[Item.MansionKey] >= 1 && !trigger(127)) {
+    rotate(entity: Entity.Player, to: 3072);
+    playSound(8, 3);
+    speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
+    setTrigger(127);
+    goto L1;
+  }
+  if (item[Item.MansionKey] >= 1 || trigger(127)) goto L1;
   rotate(entity: Entity.Player, to: 3072);
   sfx(8, 2, wait: 5);
   playSound(8, 2);
   speak(Entity.System, "It doesn't open.\nIt's locked.\n");
   return;
 
-L2:
+L1:
   rotate3DObject(0, 1);
   sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (2000, 550), sprint: 0);

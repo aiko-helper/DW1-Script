@@ -9,83 +9,76 @@ section onEnter(254) {
 
 section(6) {
   setPStat(122, 0);
-  if (trigger(257) || trigger(357)) goto L1;
-  speak(6, "Hey, do you want to play a\nmatch with me? If you win,\nI'll do whatever you say.\n");
-  speak(Entity.Player, "What kind of match?\n");
-  speak(6, "What I call...\nDigimon Curling! \nI'll tell you more inside.\n");
-  speak(Entity.Player, "Hmm, what happens if I lose?\n");
-  speak(6, "Nothing the first time.\nBut next time you have to\ngive me a fish first.\n");
-  speak(Entity.Player, "Then if I win, you come to\nthe city with me. OK?");
-  dead_string("? to\nThen, let's do it.\n");
-  speak(6, "Alright, that's fine. \nLet's go inside.\n");
-  setTrigger(357);
-  move(entity: 6, to: (1905, 1667), sprint: 0);
-  delay(10);
-  move(entity: Entity.Player, to: (1905, 1667), sprint: 0);
-  delay(10);
-  move(entity: Entity.Partner, to: (1905, 1667), sprint: 0);
-  delay(10);
-  warp(to: Map.FRZL17, spawn: 1, trigger: 255);
-  return;
-
-L1:
-  if (trigger(257)) goto L2;
-  speak(6, "Hey, do you want to play a\nmatch with me? Give me a\nfish and you can play me.\n");
-  setDialogOwner(Entity.Player);
-  choice { "I'll get you" -> L5, "No thanks" -> L4 }
-  return;
-
-L2:
-  if (trigger(92)) goto L3;
-  setTrigger(92);
-  speak(6, "Hey bro! I made a\nskating rink here.\n");
-  showTextbox("One fish for one match.\nBut if you win, I'll give\nyou a nice prize.\n");
-
-L3:
+  if (!trigger(257) && !trigger(357)) {
+    speak(6, "Hey, do you want to play a\nmatch with me? If you win,\nI'll do whatever you say.\n");
+    speak(Entity.Player, "What kind of match?\n");
+    speak(6, "What I call...\nDigimon Curling! \nI'll tell you more inside.\n");
+    speak(Entity.Player, "Hmm, what happens if I lose?\n");
+    speak(6, "Nothing the first time.\nBut next time you have to\ngive me a fish first.\n");
+    speak(Entity.Player, "Then if I win, you come to\nthe city with me. OK?");
+    dead_string("? to\nThen, let's do it.\n");
+    speak(6, "Alright, that's fine. \nLet's go inside.\n");
+    setTrigger(357);
+    move(entity: 6, to: (1905, 1667), sprint: 0);
+    delay(10);
+    move(entity: Entity.Player, to: (1905, 1667), sprint: 0);
+    delay(10);
+    move(entity: Entity.Partner, to: (1905, 1667), sprint: 0);
+    delay(10);
+    warp(to: Map.FRZL17, spawn: 1, trigger: 255);
+    return;
+  }
+  if (!trigger(257)) {
+    speak(6, "Hey, do you want to play a\nmatch with me? Give me a\nfish and you can play me.\n");
+    setDialogOwner(Entity.Player);
+    choice { "I'll get you" -> L2, "No thanks" -> L1 }
+    return;
+  }
+  if (!trigger(92)) {
+    setTrigger(92);
+    speak(6, "Hey bro! I made a\nskating rink here.\n");
+    showTextbox("One fish for one match.\nBut if you win, I'll give\nyou a nice prize.\n");
+  }
   setPStat(122, 0);
   speak(6, "Hey dude, don't you want to\nhave a match with me? You can\nchallenge me with one fish.\n");
   setDialogOwner(Entity.Player);
-  choice { "You're on" -> L5, "No thanks" -> L4 }
+  choice { "You're on" -> L2, "No thanks" -> L1 }
   return;
 
-L4:
+L1:
   setPStat(113, 0);
   speak(6, "Shoot, that's no fun.\n");
   return;
 
-L5:
+L2:
   speak(6, "Give me a fish!\n");
   setTrigger(3);
   callSubroutine(0);
-  if (!trigger(3)) goto L6;
-  speak(Entity.Player, "I don't got anything now...\n");
-  goto L11;
-
-L6:
-  if (pstat[254] != 62 && pstat[254] != 63 && pstat[254] != 64 && pstat[254] != 65) goto L7;
-  callSubroutine(12);
-  goto L10;
-
-L7:
-  if (pstat[254] != 66 && pstat[254] != 67) goto L8;
-  callSubroutine(12);
-  goto L10;
-
-L8:
-  if (pstat[254] != 255) goto L9;
-  goto L11;
-  goto L10;
-
-L9:
+  if (trigger(3)) {
+    speak(Entity.Player, "I don't got anything now...\n");
+    goto L4;
+  }
+  if (pstat[254] == 62 || pstat[254] == 63 || pstat[254] == 64 || pstat[254] == 65) {
+    callSubroutine(12);
+    goto L3;
+  }
+  if (pstat[254] == 66 || pstat[254] == 67) {
+    callSubroutine(12);
+    goto L3;
+  }
+  if (pstat[254] == 255) {
+    goto L4;
+    goto L3;
+  }
   speak(Entity.Player, "Oh no, giving you this\ndoesn't do any good.\n");
-  goto L11;
+  goto L4;
 
-L10:
+L3:
   speak(6, "Wow, it looks tasty. Ooops,\nwe have to have a match first.\nLet's go inside.\n");
   warp(to: Map.FRZL17, spawn: 1, trigger: 255);
   return;
 
-L11:
+L4:
   setPStat(113, 0);
   speak(6, "Oh come on, dude.\nWhy don't you go fishing\nat Dragon Eye Lake.\n");
   return;
@@ -93,25 +86,24 @@ L11:
 }
 
 section(10) {
-  if (pstat[121] != 0) goto L1;
-  speak(6, "Sorry bro. Come back again\nto challenge me. And don't\nforget to bring another fish.\n");
-  return;
-
-L1:
-  if (pstat[121] != 2) goto L2;
+  if (pstat[121] == 0) {
+    speak(6, "Sorry bro. Come back again\nto challenge me. And don't\nforget to bring another fish.\n");
+    return;
+  }
+  if (pstat[121] != 2) goto L1;
   speak(6, "Impressive! Perfect score!\nAre you by any chance...\na professional?\n");
-  if (trigger(372)) goto L2;
+  if (trigger(372)) goto L1;
   setTrigger(372);
   playSound(0, 7);
   speak(Entity.System, "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
 
-L2:
+L1:
   speak(6, "Amazing dude. I lost a\nmatch for the first time.\n");
   speak(Entity.Player, "Alright, now come to the city\nwith me as you promised.\n");
   speak(6, "Oh well, I guess I have to.\nBut I already decided what\nI'm going to do in the city.\n");
-  goto L3;
+  goto L2;
 
-L3:
+L2:
   approach(who: 6, x: -105, y: 1821, tries: 3, wait: 20);
   playSound(8, 11);
   speak(Entity.System, "Penguinmon joins the city!\n");
@@ -123,59 +115,53 @@ L3:
 }
 
 section(11) {
-  if (pstat[121] != 0) goto L1;
-  speak(6, "Sorry bro. Come back again\nto challenge me. And don't\nforget to bring a fish.\n");
-  return;
-
-L1:
-  if (pstat[121] != 2) goto L2;
+  if (pstat[121] == 0) {
+    speak(6, "Sorry bro. Come back again\nto challenge me. And don't\nforget to bring a fish.\n");
+    return;
+  }
+  if (pstat[121] != 2) goto L1;
   speak(6, "Impressive! Perfect score!\nAre you by any chance...\na professional?\n");
-  if (trigger(372)) goto L2;
+  if (trigger(372)) goto L1;
   setTrigger(372);
   playSound(0, 7);
   speak(Entity.System, "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
 
-L2:
+L1:
   speak(6, "Wow, you're amazing, man. \nI lost again.\n");
   speak(6, "Well, what can I say.\nHere's your prize.\n");
   roll(pstat: 102, max: 49);
   loop {
-    if (pstat[102] > 0) goto L3;
-    giveItem(Item.Rooster, 1);
-    setPStat(110, 85);
-    goto L8;
-
-L3:
-    if (pstat[102] > 5) goto L4;
-    giveItem(Item.Restore, 1);
-    setPStat(110, 11);
-    goto L8;
-
-L4:
-    if (pstat[102] > 15) goto L5;
-    giveItem(Item.OmniDisk, 1);
-    setPStat(110, 18);
-    goto L8;
-
-L5:
-    if (pstat[102] > 22) goto L6;
-    giveItem(Item.GiantMeat, 1);
-    setPStat(110, 39);
-    goto L8;
-
-L6:
-    if (pstat[102] > 30) goto L7;
-    giveItem(Item.LargeRecovery, 1);
-    setPStat(110, 2);
-    goto L8;
-
-L7:
-    if (pstat[102] > 50) goto L8;
+    if (pstat[102] <= 0) {
+      giveItem(Item.Rooster, 1);
+      setPStat(110, 85);
+      goto L2;
+    }
+    if (pstat[102] <= 5) {
+      giveItem(Item.Restore, 1);
+      setPStat(110, 11);
+      goto L2;
+    }
+    if (pstat[102] <= 15) {
+      giveItem(Item.OmniDisk, 1);
+      setPStat(110, 18);
+      goto L2;
+    }
+    if (pstat[102] <= 22) {
+      giveItem(Item.GiantMeat, 1);
+      setPStat(110, 39);
+      goto L2;
+    }
+    if (pstat[102] <= 30) {
+      giveItem(Item.LargeRecovery, 1);
+      setPStat(110, 2);
+      goto L2;
+    }
+    if (pstat[102] > 50) goto L2;
     giveItem(Item.MediumMP, 1);
     setPStat(110, 5);
-    goto L8;
+    goto L2;
 
-L8:
+L2:
     if (!trigger(0)) break;
     speak(6, "You have too many Items!\n");
     unsetTrigger(3);
@@ -194,116 +180,104 @@ section(7) {
   speak(6, "Hey <LIGHTBLUE><PLAYER><WHITE>. I'm watching\nthe shop now as a favor for\nPenguinmon.\n");
   showTextbox("Have a match with me!\nIf you win, I'll give you my\nspecial prize. How's that?\n");
   setDialogOwner(Entity.Player);
-  choice { "Alright, let's do it" -> L1, "No thanks" -> L8 }
+  choice { "Alright, let's do it" -> L1, "No thanks" -> L4 }
   return;
 
 L1:
   speak(6, "Let me get the fish\nbefore the match.\n");
   setTrigger(3);
   callSubroutine(0);
-  if (!trigger(3)) goto L2;
-  speak(Entity.Player, "Oh, I don't have\nanything right now.\n");
-  goto L7;
+  if (trigger(3)) {
+    speak(Entity.Player, "Oh, I don't have\nanything right now.\n");
+    goto L3;
+  }
+  if (pstat[254] == 62 || pstat[254] == 63 || pstat[254] == 64 || pstat[254] == 65) {
+    callSubroutine(12);
+    goto L2;
+  }
+  if (pstat[254] == 66 || pstat[254] == 67) {
+    callSubroutine(12);
+    goto L2;
+  }
+  if (pstat[254] == 255) {
+    goto L3;
+    goto L2;
+  }
+  speak(Entity.Player, "Giving this to you\nwon't do any good.\n");
+  goto L3;
 
 L2:
-  if (pstat[254] != 62 && pstat[254] != 63 && pstat[254] != 64 && pstat[254] != 65) goto L3;
-  callSubroutine(12);
-  goto L6;
-
-L3:
-  if (pstat[254] != 66 && pstat[254] != 67) goto L4;
-  callSubroutine(12);
-  goto L6;
-
-L4:
-  if (pstat[254] != 255) goto L5;
-  goto L7;
-  goto L6;
-
-L5:
-  speak(Entity.Player, "Giving this to you\nwon't do any good.\n");
-  goto L7;
-
-L6:
   speak(6, "Well, this time, I'm gonna\nwin. Let's go inside.\n");
   warp(to: Map.FRZL17, spawn: 1, trigger: 255);
   return;
 
-L7:
+L3:
   setPStat(113, 0);
   speak(6, "I can't have a match\nwithout a fish. Come back\nagain some other time.\n");
   return;
 
-L8:
+L4:
   speak(6, "What? Are you\nturning me down?\n");
   return;
 }
 
 section(12) {
-  if (pstat[121] != 0) goto L1;
-  speak(6, "If you want to win against\nme, you better use your head!\nI'll see you again someday.\n");
-  return;
-
-L1:
-  if (pstat[121] != 2) goto L2;
+  if (pstat[121] == 0) {
+    speak(6, "If you want to win against\nme, you better use your head!\nI'll see you again someday.\n");
+    return;
+  }
+  if (pstat[121] != 2) goto L1;
   speak(6, "You got a perfect score\nagainst me!! Are you\na Curling genius?!\n");
-  if (trigger(372)) goto L2;
+  if (trigger(372)) goto L1;
   setTrigger(372);
   playSound(0, 7);
   speak(Entity.System, "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
 
-L2:
+L1:
   speak(6, "You are good, <LIGHTBLUE><PLAYER><WHITE>!\nHere's the prize\nI promised you!\n");
   roll(pstat: 102, max: 49);
   loop {
-    if (pstat[102] > 0) goto L3;
-    giveItem(Item.SilverBall, 1);
-    setPStat(110, 103);
-    goto L10;
-
-L3:
-    if (pstat[102] > 1) goto L4;
-    giveItem(Item.MetalArmor, 1);
-    setPStat(110, 104);
-    goto L10;
-
-L4:
-    if (pstat[102] > 2) goto L5;
-    giveItem(Item.Chainsaw, 1);
-    setPStat(110, 105);
-    goto L10;
-
-L5:
-    if (pstat[102] > 3) goto L6;
-    giveItem(Item.SmallSpear, 1);
-    setPStat(110, 106);
-    goto L10;
-
-L6:
-    if (pstat[102] > 11) goto L7;
-    giveItem(Item.SuperRecovery, 1);
-    setPStat(110, 3);
-    goto L10;
-
-L7:
-    if (pstat[102] > 21) goto L8;
-    giveItem(Item.Restore, 1);
-    setPStat(110, 11);
-    goto L10;
-
-L8:
-    if (pstat[102] > 33) goto L9;
-    giveItem(Item.Omnipotent, 1);
-    setPStat(110, 9);
-    goto L10;
-
-L9:
-    if (pstat[102] > 49) goto L10;
+    if (pstat[102] <= 0) {
+      giveItem(Item.SilverBall, 1);
+      setPStat(110, 103);
+      goto L2;
+    }
+    if (pstat[102] <= 1) {
+      giveItem(Item.MetalArmor, 1);
+      setPStat(110, 104);
+      goto L2;
+    }
+    if (pstat[102] <= 2) {
+      giveItem(Item.Chainsaw, 1);
+      setPStat(110, 105);
+      goto L2;
+    }
+    if (pstat[102] <= 3) {
+      giveItem(Item.SmallSpear, 1);
+      setPStat(110, 106);
+      goto L2;
+    }
+    if (pstat[102] <= 11) {
+      giveItem(Item.SuperRecovery, 1);
+      setPStat(110, 3);
+      goto L2;
+    }
+    if (pstat[102] <= 21) {
+      giveItem(Item.Restore, 1);
+      setPStat(110, 11);
+      goto L2;
+    }
+    if (pstat[102] <= 33) {
+      giveItem(Item.Omnipotent, 1);
+      setPStat(110, 9);
+      goto L2;
+    }
+    if (pstat[102] > 49) goto L2;
     giveItem(Item.Sirloin, 1);
     setPStat(110, 40);
-    goto L10;
+    goto L2;
 
-L10:
+L2:
     if (!trigger(0)) break;
     speak(6, "You have too many Items.\n");
     unsetTrigger(3);

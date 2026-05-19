@@ -4,18 +4,16 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L1;
-  setObjectVisibility(7, 1);
-
-L1:
-  if (!trigger(203)) goto L2;
-  setObjectVisibility(8, 1);
-  goto L3;
-
-L2:
+  if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
+    setObjectVisibility(7, 1);
+  }
+  if (trigger(203)) {
+    setObjectVisibility(8, 1);
+    goto L1;
+  }
   setRectImpassible(40, 38, 2, 2);
 
-L3:
+L1:
   return;
 }
 
@@ -33,34 +31,31 @@ section(5) {
   showTextbox("I know where it comes from.\n");
   speak(Entity.Player, "Again? Ok, leave it to me!\n");
   speak(5, "Thanks. By the way...\n");
-  goto L5;
+  goto L2;
 
 L1:
-  if (!trigger(202) || trigger(215)) goto L4;
-  speak(5, "I heard you beat\nMachinedramon!\n");
-  speak(Entity.Player, "Yeah, but I don't get it.\nIt seemed like the curse\nof Analogman.\n");
-  speak(5, "His grudge was so strong.\nMaybe we can have peace now.\n");
-  speak(Entity.Player, "If Machinedramon returns,\nwe'll beat him again.\n");
-  speak(5, "You're trustworthy. This was\ngrowing in our Meat farm,\nit's for you.\n");
-  speak(Entity.Player, "Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
-  giveItem(Item.ChainMelon, 1);
-  if (!trigger(0)) goto L3;
-  if (item[Item.SpikeClub] < 99) goto L2;
-  return;
-
-L2:
-  speak(Entity.Player, "I have too many Items.\n");
-  inventoryFullBailout();
-  giveItem(Item.ChainMelon, 1);
-
-L3:
-  speak(Entity.Player, "Thank you!\n");
-  setPStat(28, 0);
-  setTrigger(215);
-  return;
-
-L4:
-  if (!trigger(50) || trigger(201)) goto L5;
+  if (trigger(202) && !trigger(215)) {
+    speak(5, "I heard you beat\nMachinedramon!\n");
+    speak(Entity.Player, "Yeah, but I don't get it.\nIt seemed like the curse\nof Analogman.\n");
+    speak(5, "His grudge was so strong.\nMaybe we can have peace now.\n");
+    speak(Entity.Player, "If Machinedramon returns,\nwe'll beat him again.\n");
+    speak(5, "You're trustworthy. This was\ngrowing in our Meat farm,\nit's for you.\n");
+    speak(Entity.Player, "Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
+    giveItem(Item.ChainMelon, 1);
+    if (trigger(0)) {
+      if (item[Item.SpikeClub] >= 99) {
+        return;
+      }
+      speak(Entity.Player, "I have too many Items.\n");
+      inventoryFullBailout();
+      giveItem(Item.ChainMelon, 1);
+    }
+    speak(Entity.Player, "Thank you!\n");
+    setPStat(28, 0);
+    setTrigger(215);
+    return;
+  }
+  if (!trigger(50) || trigger(201)) goto L2;
   speak(5, "You're here!\nThis is something I can't\nask anybody else.\n");
   speak(Entity.Player, "Never fear, I'm here.\nDo you mean\nAnalogman is back?\n");
   speak(5, "I can feel his evil, but\nI can't tell where it is.\n");
@@ -68,11 +63,10 @@ L4:
   speak(5, "Thank you.\nBy the way...\n");
   setTrigger(201);
 
-L5:
-  if (!trigger(203)) goto L6;
-  jumpToScriptSection(210, 51);
-
-L6:
+L2:
+  if (trigger(203)) {
+    jumpToScriptSection(210, 51);
+  }
   if (trigger(55)) goto section_6;
   playAnimation(5, 0);
   anim(5, 29, wait: 5);
@@ -88,11 +82,10 @@ L6:
 }
 
 section(6) {
-  if (trigger(56)) goto L2;
-  if (!trigger(96) && pstat[18] < 10) goto L1;
-  goto L2;
-
-L1:
+  if (trigger(56)) goto L1;
+  if (trigger(96) || pstat[18] >= 10) {
+    goto L1;
+  }
   speak(6, "You can have this. Good luck.\n");
   speak(Entity.System, "I got lots of Items!\n");
   for x in [:SmallRecovery, :Meat, :MPFloppy] {
@@ -106,22 +99,19 @@ L1:
   setTrigger(56);
   return;
 
-L2:
-  if (trigger(224) || !trigger(175)) goto L3;
-  speak(6, "Sounds like Yuramon has\ngathered more rumors.\n");
-  return;
-
-L3:
-  if (!trigger(124) || !trigger(103)) goto L4;
-  speak(6, "I hear Yuramon\nhas some new rumors.\n");
-  return;
-
-L4:
-  if (pstat[1] < 6) goto L5;
-  speak(6, "The city is starting to\ngrow and I hear it's\nchanging now.\n");
-  return;
-
-L5:
+L1:
+  if (!trigger(224) && trigger(175)) {
+    speak(6, "Sounds like Yuramon has\ngathered more rumors.\n");
+    return;
+  }
+  if (trigger(124) && trigger(103)) {
+    speak(6, "I hear Yuramon\nhas some new rumors.\n");
+    return;
+  }
+  if (pstat[1] >= 6) {
+    speak(6, "The city is starting to\ngrow and I hear it's\nchanging now.\n");
+    return;
+  }
   speak(6, "I will teach you about the\ncommon sense in our world.\n");
   showTextbox("There are twenty four hours\na day and there is morning,\nday and night.\n");
   showTextbox("You may feel\nthe pace is quick.\n");
@@ -140,32 +130,28 @@ L5:
 }
 
 section(7) {
-  if (trigger(54)) goto L1;
-  jumpToScriptSection(209, 5);
-  return;
-
-L1:
+  if (!trigger(54)) {
+    jumpToScriptSection(209, 5);
+    return;
+  }
   roll(pstat: 110, max: 2);
-  if (pstat[1] < 3 || pstat[110] != 0) goto L2;
-  speak(7, "Talk to Tsunomon and\nYuramon as often as you can.\n");
-  return;
-
-L2:
-  if (pstat[1] < 3 || pstat[110] != 1) goto L3;
-  speak(7, "I'll tell you about\nthe Tamer level.\n");
-  showTextbox("With a high Tamer level,\nwhen your Digimon fades away,\n");
-  showTextbox("your next Digimon will have\nbetter parameters.\n");
-  showTextbox("In the beginning\nit won't go up much,\n");
-  showTextbox("but keep steadily raising him\nand it will get better.\n");
-  return;
-
-L3:
-  if (pstat[1] < 3 || pstat[110] != 2) goto L4;
-  speak(7, "When you use your Finishing\nTechnique, make sure to\nrapidly hit L and R buttons.\n");
-  showTextbox("When Finish Gauge is full,\ncompared to when empty, the\ndamage to enemy is double!\n");
-  return;
-
-L4:
+  if (pstat[1] >= 3 && pstat[110] == 0) {
+    speak(7, "Talk to Tsunomon and\nYuramon as often as you can.\n");
+    return;
+  }
+  if (pstat[1] >= 3 && pstat[110] == 1) {
+    speak(7, "I'll tell you about\nthe Tamer level.\n");
+    showTextbox("With a high Tamer level,\nwhen your Digimon fades away,\n");
+    showTextbox("your next Digimon will have\nbetter parameters.\n");
+    showTextbox("In the beginning\nit won't go up much,\n");
+    showTextbox("but keep steadily raising him\nand it will get better.\n");
+    return;
+  }
+  if (pstat[1] >= 3 && pstat[110] == 2) {
+    speak(7, "When you use your Finishing\nTechnique, make sure to\nrapidly hit L and R buttons.\n");
+    showTextbox("When Finish Gauge is full,\ncompared to when empty, the\ndamage to enemy is double!\n");
+    return;
+  }
   speak(7, "I'll tell you about a\nDigimon's life.\n");
   showTextbox("When Digimon gets hungry,\nhe'll tell you.\n");
   showTextbox("He also needs to go potty.\nMake sure he does it\nin the toilet.\n");
@@ -205,30 +191,29 @@ section(73) {
 }
 
 section(85) {
-  if (trigger(94)) goto L1;
-  setTrigger(94);
-  speak(Entity.Player, "What's this machine?\n");
-  look(entity: 5, at: Entity.Player);
-  look(entity: Entity.Player, at: 5);
-  delay(5);
-  speak(5, "Oh that? That is a\n<PINK>Save Machine for\nMemory Card Battle Data<WHITE>.\n");
-  showTextbox("Using that machine, you can\nsave your current partner's\ndata for battle.\n");
-  showTextbox("Just press <LIGHTBLUE><X> <WHITE>,\nand the machine will tell\nyou what to do.\n");
-  rotate(entity: Entity.Player, to: 0);
-  delay(5);
+  if (!trigger(94)) {
+    setTrigger(94);
+    speak(Entity.Player, "What's this machine?\n");
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    speak(5, "Oh that? That is a\n<PINK>Save Machine for\nMemory Card Battle Data<WHITE>.\n");
+    showTextbox("Using that machine, you can\nsave your current partner's\ndata for battle.\n");
+    showTextbox("Just press <LIGHTBLUE><X> <WHITE>,\nand the machine will tell\nyou what to do.\n");
+    rotate(entity: Entity.Player, to: 0);
+    delay(5);
+    return;
+  }
+  speak(Entity.System, "Do you want to use\n<PINK>Save Machine for\nMemory Card Battle Data<WHITE>?\n");
+  choice { "Yes" -> L1, "No" -> L2 }
   return;
 
 L1:
-  speak(Entity.System, "Do you want to use\n<PINK>Save Machine for\nMemory Card Battle Data<WHITE>?\n");
-  choice { "Yes" -> L2, "No" -> L3 }
-  return;
-
-L2:
   fadeOutHUD();
   callSubroutine(48);
   return;
 
-L3:
+L2:
   return;
 }
 
@@ -236,21 +221,20 @@ section(82) {
   rotate(entity: Entity.Player, to: 3072);
   delay(5);
   playSound(0, 0);
-  if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L1;
-  speak(Entity.Player, "I don't see Punimon, but\nI think I'll rest here.\n");
-  goto L2;
-
-L1:
+  if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
+    speak(Entity.Player, "I don't see Punimon, but\nI think I'll rest here.\n");
+    goto L1;
+  }
   speak(Entity.System, "<YELLOW>Punimon <WHITE>\nI'm Punimon! Why don't you\nrest here a while?\n");
   showTextbox("<YELLOW>Punimon <WHITE>\nOne hour rest recovers HP,\nMP and lowers Tiredness.\n");
 
-L2:
+L1:
   setDialogOwner(Entity.Player);
-  choice { "Rest" -> L3, "Don't rest" -> L4 }
+  choice { "Rest" -> L2, "Don't rest" -> L3 }
   playSound(0, 1);
   return;
 
-L3:
+L2:
   pstat[:SavedTime] = time();
   addMinutesToDate(PStat.SavedTime, 60);
   advanceToDate(PStat.SavedTime);
@@ -259,16 +243,15 @@ L3:
   warp(to: Map.ROOM08, spawn: 2, trigger: 255);
   return;
 
-L4:
+L3:
   playSound(0, 1);
   return;
 }
 
 section(83) {
-  if (!trigger(203)) goto L1;
-  return;
-
-L1:
+  if (trigger(203)) {
+    return;
+  }
   rotate(entity: Entity.Player, to: 3072);
   delay(5);
   jumpToScriptSection(220, 83);
@@ -276,10 +259,9 @@ L1:
 }
 
 section(84) {
-  if (!trigger(203)) goto L1;
-  return;
-
-L1:
+  if (trigger(203)) {
+    return;
+  }
   rotate(entity: Entity.Player, to: 1024);
   delay(5);
   jumpToScriptSection(220, 83);
@@ -287,10 +269,9 @@ L1:
 }
 
 section(86) {
-  if (!trigger(203)) goto L1;
-  return;
-
-L1:
+  if (trigger(203)) {
+    return;
+  }
   rotate(entity: Entity.Player, to: 2048);
   delay(5);
   jumpToScriptSection(220, 83);
@@ -299,75 +280,63 @@ L1:
 
 section(51) {
   move(entity: Entity.Player, to: (-470, -1970), sprint: 0);
-  if (trigger(203)) goto L1;
-  warp(to: Map.TWNA01, spawn: 2, trigger: 255);
+  if (!trigger(203)) {
+    warp(to: Map.TWNA01, spawn: 2, trigger: 255);
+  }
+  if (trigger(220) || trigger(214) || pstat[1] >= 50) {
+    goto L4;
+    goto L1;
+  }
+  goto L1;
 
 L1:
-  if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L2;
-  goto L11;
-  goto L3;
+  if (trigger(221)) {
+    goto L3;
+    goto L2;
+  }
+  goto L2;
 
 L2:
-  goto L3;
+  if (trigger(225)) {
+    warp(to: Map.TWNA04, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA03, spawn: 2, trigger: 255);
+  }
+  warp(to: Map.TWNA02, spawn: 2, trigger: 255);
 
 L3:
-  if (!trigger(221)) goto L4;
-  goto L8;
-  goto L5;
+  if (trigger(225)) {
+    warp(to: Map.TWNA07, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA06, spawn: 2, trigger: 255);
+  }
+  warp(to: Map.TWNA05, spawn: 2, trigger: 255);
 
 L4:
+  if (trigger(221)) {
+    goto L6;
+    goto L5;
+  }
   goto L5;
 
 L5:
-  if (!trigger(225)) goto L6;
-  warp(to: Map.TWNA04, spawn: 2, trigger: 255);
-
-L6:
-  if (!trigger(246)) goto L7;
-  warp(to: Map.TWNA03, spawn: 2, trigger: 255);
-
-L7:
-  warp(to: Map.TWNA02, spawn: 2, trigger: 255);
-
-L8:
-  if (!trigger(225)) goto L9;
-  warp(to: Map.TWNA07, spawn: 2, trigger: 255);
-
-L9:
-  if (!trigger(246)) goto L10;
-  warp(to: Map.TWNA06, spawn: 2, trigger: 255);
-
-L10:
-  warp(to: Map.TWNA05, spawn: 2, trigger: 255);
-
-L11:
-  if (!trigger(221)) goto L12;
-  goto L16;
-  goto L13;
-
-L12:
-  goto L13;
-
-L13:
-  if (!trigger(225)) goto L14;
-  warp(to: Map.TWNA10, spawn: 2, trigger: 255);
-
-L14:
-  if (!trigger(246)) goto L15;
-  warp(to: Map.TWNA09, spawn: 2, trigger: 255);
-
-L15:
+  if (trigger(225)) {
+    warp(to: Map.TWNA10, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA09, spawn: 2, trigger: 255);
+  }
   warp(to: Map.TWNA08, spawn: 2, trigger: 255);
 
-L16:
-  if (!trigger(225)) goto L17;
-  warp(to: Map.TWNA13, spawn: 2, trigger: 255);
-
-L17:
-  if (!trigger(246)) goto L18;
-  warp(to: Map.TWNA12, spawn: 2, trigger: 255);
-
-L18:
+L6:
+  if (trigger(225)) {
+    warp(to: Map.TWNA13, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA12, spawn: 2, trigger: 255);
+  }
   warp(to: Map.TWNA11, spawn: 2, trigger: 255);
   return;
   garbage { 40 00 fe 00 40 00 36 00 7a 00 05 00 82 00 06 00 7a 09 07 00 16 13 14 00 98 1a 47 00 fe 1a 48 00 06 1b 49 00 0e 1b 55 00 16 1b 52 00 a8 1d 53 00 88 1f 54 00 a6 1f 56 00 c4 1f 33 00 e2 1f ff ff 19 00 00 00 e7 00 40 00 f5 00 40 00 e9 00 40 00 f7 00 18 00 5c 00 19 00 57 00 07 01 19 00 00 00 cb 00 18 00 70 00 19 00 57 00 08 01 16 00 78 00 7c 00 28 00 26 00 02 02 fe 00 17 00 c1 00 37 00 fe 00 19 00 01 00 ca 00 81 00 d7 00 89 00 10 00 18 00 a6 02 19 00 19 00 00 00 c9 00 80 00 f3 00 18 00 a6 02 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 88 82 81 82 84 81 40 82 90 82 85 82 92 82 86 82 85 82 83 82 94 81 40 82 94 82 89 82 8d 82 89 82 8e 82 87 81 40 82 89 82 8e 0d 00 82 83 82 8f 82 8d 82 89 82 8e 82 87 81 40 82 88 82 85 82 92 82 85 81 49 81 40 82 68 81 40 82 88 82 81 82 96 82 85 81 40 82 81 81 40 82 86 82 81 82 96 82 8f 82 92 0d 00 82 94 82 88 82 81 82 94 81 40 82 8f 82 8e 82 8c 82 99 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 40 82 84 82 8f 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 89 82 93 81 40 82 89 82 94 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 40 82 8a 82 95 82 93 82 94 81 40 82 87 82 8f 82 94 81 40 82 94 82 88 82 85 81 40 82 93 82 81 82 8d 82 85 81 40 82 85 82 96 82 89 82 8c 0d 00 82 86 82 85 82 85 82 8c 82 89 82 8e 82 87 81 40 82 94 82 88 82 81 82 94 81 40 82 60 82 8e 82 81 82 8c 82 8f 82 87 82 8d 82 81 82 8e 0d 00 82 81 82 8e 82 84 81 40 82 6c 82 81 82 83 82 88 82 89 82 8e 82 85 82 84 82 92 82 81 82 8d 82 8f 82 8e 81 40 82 87 82 89 82 96 82 85 81 42 0d 00 00 00 1a 00 82 68 81 40 82 8b 82 8e 82 8f 82 97 81 40 82 97 82 88 82 85 82 92 82 85 81 40 82 89 82 94 81 40 82 83 82 8f 82 8d 82 85 82 93 81 40 82 86 82 92 82 8f 82 8d 81 42 0d 00 00 00 1b fd 1a 00 82 60 82 87 82 81 82 89 82 8e 81 48 81 40 82 6e 82 8b 81 43 81 40 82 8c 82 85 82 81 82 96 82 85 81 40 82 89 82 94 81 40 82 94 82 8f 81 40 82 8d 82 85 81 49 0d 00 00 00 1b 05 1a 00 82 73 82 88 82 81 82 8e 82 8b 82 93 81 42 81 40 82 61 82 99 81 40 82 94 82 88 82 85 81 40 82 97 82 81 82 99 81 42 81 42 81 42 0d 00 00 00 16 00 be 07 19 00 00 00 ca 00 81 00 d7 00 18 00 ac 05 19 00 1b 05 1a 00 82 68 81 40 82 88 82 85 82 81 82 92 82 84 81 40 82 99 82 8f 82 95 81 40 82 82 82 85 82 81 82 94 0d 00 82 6c 82 81 82 83 82 88 82 89 82 8e 82 85 82 84 82 92 82 81 82 8d 82 8f 82 8e 81 49 0d 00 00 00 1b fd 1a 00 82 78 82 85 82 81 82 88 81 43 81 40 82 82 82 95 82 94 81 40 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 87 82 85 82 94 81 40 82 89 82 94 81 42 0d 00 82 68 82 94 81 40 82 93 82 85 82 85 82 8d 82 85 82 84 81 40 82 8c 82 89 82 8b 82 85 81 40 82 94 82 88 82 85 81 40 82 83 82 95 82 92 82 93 82 85 0d 00 82 8f 82 86 81 40 82 60 82 8e 82 81 82 8c 82 8f 82 87 82 8d 82 81 82 8e 81 42 0d 00 00 00 1b 05 1a 00 82 67 82 89 82 93 81 40 82 87 82 92 82 95 82 84 82 87 82 85 81 40 82 97 82 81 82 93 81 40 82 93 82 8f 81 40 82 93 82 94 82 92 82 8f 82 8e 82 87 81 42 0d 00 82 6c 82 81 82 99 82 82 82 85 81 40 82 97 82 85 81 40 82 83 82 81 82 8e 81 40 82 88 82 81 82 96 82 85 81 40 82 90 82 85 82 81 82 83 82 85 81 40 82 8e 82 8f 82 97 81 42 0d 00 00 00 1b fd 1a 00 82 68 82 86 81 40 82 6c 82 81 82 83 82 88 82 89 82 8e 82 85 82 84 82 92 82 81 82 8d 82 8f 82 8e 81 40 82 92 82 85 82 94 82 95 82 92 82 8e 82 93 81 43 0d 00 82 97 82 85 81 75 82 8c 82 8c 81 40 82 82 82 85 82 81 82 94 81 40 82 88 82 89 82 8d 81 40 82 81 82 87 82 81 82 89 82 8e 81 42 0d 00 00 00 1b 05 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 94 82 92 82 95 82 93 82 94 82 97 82 8f 82 92 82 94 82 88 82 99 81 42 81 40 82 73 82 88 82 89 82 93 81 40 82 97 82 81 82 93 0d 00 82 87 82 92 82 8f 82 97 82 89 82 8e 82 87 81 40 82 89 82 8e 81 40 82 8f 82 95 82 92 81 40 82 6c 82 85 82 81 82 94 81 40 82 86 82 81 82 92 82 8d 81 43 0d 00 82 89 82 94 81 75 82 93 81 40 82 86 82 8f 82 92 81 40 82 99 82 8f 82 95 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 8f 82 81 82 88 81 49 81 40 82 60 81 40 01 06 82 62 82 88 82 81 82 89 82 8e 82 85 82 84 0d 00 82 6c 82 85 82 8c 82 8f 82 8e 01 01 81 48 0d 00 00 00 28 00 46 01 19 00 00 00 00 00 18 00 86 05 19 00 19 00 24 00 4f 02 63 00 18 00 46 05 19 00 fe 00 1b fd 1a 00 82 68 81 40 82 88 82 81 82 96 82 85 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 81 82 8e 82 99 81 40 82 68 82 94 82 85 82 8d 82 93 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 46 01 1b fd 1a 00 82 73 82 88 82 81 82 8e 82 8b 81 40 82 99 82 8f 82 95 81 49 0d 00 00 00 1e 00 1c 00 1c 00 d7 00 fe 00 19 00 00 00 32 00 81 00 c9 00 18 00 be 07 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 88 82 85 82 92 82 85 81 49 0d 00 82 73 82 88 82 89 82 93 81 40 82 89 82 93 81 40 82 93 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 40 82 68 81 40 82 83 82 81 82 8e 81 75 82 94 0d 00 82 81 82 93 82 8b 81 40 82 81 82 8e 82 99 82 82 82 8f 82 84 82 99 81 40 82 85 82 8c 82 93 82 85 81 42 0d 00 00 00 1b fd 1a 00 82 6d 82 85 82 96 82 85 82 92 81 40 82 86 82 85 82 81 82 92 81 43 81 40 82 68 81 75 82 8d 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 82 63 82 8f 81 40 82 99 82 8f 82 95 81 40 82 8d 82 85 82 81 82 8e 0d 00 82 60 82 8e 82 81 82 8c 82 8f 82 87 82 8d 82 81 82 8e 81 40 82 89 82 93 81 40 82 82 82 81 82 83 82 8b 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 40 82 83 82 81 82 8e 81 40 82 86 82 85 82 85 82 8c 81 40 82 88 82 89 82 93 81 40 82 85 82 96 82 89 82 8c 81 43 81 40 82 82 82 95 82 94 0d 00 82 68 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 94 82 85 82 8c 82 8c 81 40 82 97 82 88 82 85 82 92 82 85 81 40 82 89 82 94 81 40 82 89 82 93 81 42 0d 00 00 00 1b fd 1a 00 82 6b 82 85 82 81 82 96 82 85 81 40 82 89 }

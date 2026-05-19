@@ -4,18 +4,16 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  if (trigger(320)) goto L1;
-  setObjectVisibility(10, 0);
-  goto L2;
-
-L1:
+  if (!trigger(320)) {
+    setObjectVisibility(10, 0);
+    goto L1;
+  }
   setObjectVisibility(10, 1);
 
-L2:
-  if (trigger(362)) goto L3;
-  goto section_6;
-
-L3:
+L1:
+  if (!trigger(362)) {
+    goto section_6;
+  }
   return;
 }
 
@@ -32,38 +30,35 @@ section(81) {
   look(entity: 5, at: Entity.Player);
   delay(5);
   storeDigimonType(103);
-  if (!trigger(363) || pstat[103] != 39) goto L1;
-  playSound(8, 20);
-  speak(5, "You again! Get out of here!\n");
-  anim(Entity.Player, 16, wait: 15);
-  speak(Entity.Player, "Uhh...\n");
-  playAnimation(Entity.Player, 0);
-  speak(5, "You... you're a pest!\nIs that okay now?!\n");
-  goto L6;
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  return;
+  if (trigger(363) && pstat[103] == 39) {
+    playSound(8, 20);
+    speak(5, "You again! Get out of here!\n");
+    anim(Entity.Player, 16, wait: 15);
+    speak(Entity.Player, "Uhh...\n");
+    playAnimation(Entity.Player, 0);
+    speak(5, "You... you're a pest!\nIs that okay now?!\n");
+    goto L3;
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+  }
+  if (trigger(363)) {
+    playSound(8, 20);
+    speak(5, "You again! Get out of here\nright now!\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+  }
+  if (pstat[103] == 39) {
+    speak(5, "Good to see you, my friends.\nIf you want to live here,\nI give you permission.\n");
+    setTrigger(49);
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L2);
+    showTextbox("We want to live here\nWe want to return\n");
+  }
+  goto L4;
 
 L1:
-  if (!trigger(363)) goto L2;
-  playSound(8, 20);
-  speak(5, "You again! Get out of here\nright now!\n");
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  return;
-
-L2:
-  if (pstat[103] != 39) goto L3;
-  speak(5, "Good to see you, my friends.\nIf you want to live here,\nI give you permission.\n");
-  setTrigger(49);
-  setDialogOwner(Entity.Player);
-  setSelection(L4, L5);
-  showTextbox("We want to live here\nWe want to return\n");
-
-L3:
-  goto L8;
-
-L4:
   unsetTrigger(49);
   playSound(8, 20);
   speak(5, "Hmmm, that's good. What?\nBut you are analog,\nso you can't live here.\n");
@@ -73,7 +68,7 @@ L4:
   waitForEntity(200);
   return;
 
-L5:
+L2:
   unsetTrigger(49);
   speak(5, "What? What are you saying?\n");
   anim(Entity.Player, 16, wait: 15);
@@ -86,12 +81,11 @@ L5:
   playSound(8, 20);
   speak(5, "You guys are unbelievable!\n");
 
-L6:
-  if (pstat[200] != 39) goto L7;
-  storeDigimonType(200);
-  copyPStat(5, 254);
-
-L7:
+L3:
+  if (pstat[200] == 39) {
+    storeDigimonType(200);
+    copyPStat(5, 254);
+  }
   fadeOutHUD();
   playAnimation(5, 30);
   sfx(8, 19, wait: 60);
@@ -106,7 +100,7 @@ L7:
   waitForEntity(200);
   return;
 
-L8:
+L4:
   playSound(8, 20);
   speak(5, "Did you come here for\nsomething?\n");
   speak(Entity.Player, "Well...\n");
@@ -118,52 +112,48 @@ L8:
 }
 
 section(6) {
-  if (!trigger(362)) goto L2;
-  speak(6, "I am collecting\nDigimon cards myself.\n");
-  showTextbox("I really want a King of\nSukamon card. Will you trade\nfor my Etemon card?\n");
-  if (card[21] < 1) goto L1;
-  setDialogOwner(Entity.Player);
-  choice { "Trade" -> L6, "Don't trade" -> L8 }
-  return;
-
-L1:
-  speak(Entity.Player, "Sorry, but I don't have it.\n");
-  return;
-
-L2:
+  if (trigger(362)) {
+    speak(6, "I am collecting\nDigimon cards myself.\n");
+    showTextbox("I really want a King of\nSukamon card. Will you trade\nfor my Etemon card?\n");
+    if (card[21] >= 1) {
+      setDialogOwner(Entity.Player);
+      choice { "Trade" -> L2, "Don't trade" -> L3 }
+      return;
+    }
+    speak(Entity.Player, "Sorry, but I don't have it.\n");
+    return;
+  }
   anim(Entity.Player, 24, wait: 15);
   speak(Entity.Player, "Wow it stinks! Is this\nTrash Pile?\n");
   showTextbox("I didn't know there's one\nin Digimon World.\n");
   playAnimation(Entity.Player, 0);
   storeDigimonType(103);
-  if (trigger(362) || pstat[103] != 39) goto L3;
-  move(entity: 6, to: (192, -2979), sprint: 0);
-  waitForEntity(6);
-  speak(6, "I'm glad you came.\nWe welcome new friends.\n");
-  speak(Entity.Player, "Is this a community for\nthe Sukamon Tribe?\n");
-  speak(6, "Exactly. This is a paradise\nfor the Sukamon Tribe,\nit's called Dust Kingdom.\n");
-  showTextbox("King of Sukamon is here, too.\n");
-  speak(Entity.Player, "King of Sukamon...?\n");
-  speak(6, "King of Sukamon is amazing!\nIf you don't listen to him,\nyou'll be digivolved!\n");
-  speak(Entity.Player, "Do you mean we turn into\nsomething besides Sukamon?\n");
-  showTextbox("That means we return\nto our original form?!\n");
-  speak(6, "Yeah, it's scary. Creepy.\n");
-  speak(Entity.Player, "I learned something useful...\n");
-  move(entity: 6, to: (189, -1273), sprint: 0);
-  waitForEntity(6);
-  setTrigger(362);
-  return;
-
-L3:
-  if (trigger(362) || !trigger(550)) goto L4;
-  move(entity: 6, to: (192, -2979), sprint: 0);
-  waitForEntity(6);
-  speak(Entity.Player, "Oh, Sukamon?!\n");
-  speak(6, "Huh? Do you know about me?\n");
-  speak(Entity.Player, "Well, kind of.\nDo we need to take Sukamon\nto the city as well?\n");
-  goto L5;
-
-L4:
+  if (!trigger(362) && pstat[103] == 39) {
+    move(entity: 6, to: (192, -2979), sprint: 0);
+    waitForEntity(6);
+    speak(6, "I'm glad you came.\nWe welcome new friends.\n");
+    speak(Entity.Player, "Is this a community for\nthe Sukamon Tribe?\n");
+    speak(6, "Exactly. This is a paradise\nfor the Sukamon Tribe,\nit's called Dust Kingdom.\n");
+    showTextbox("King of Sukamon is here, too.\n");
+    speak(Entity.Player, "King of Sukamon...?\n");
+    speak(6, "King of Sukamon is amazing!\nIf you don't listen to him,\nyou'll be digivolved!\n");
+    speak(Entity.Player, "Do you mean we turn into\nsomething besides Sukamon?\n");
+    showTextbox("That means we return\nto our original form?!\n");
+    speak(6, "Yeah, it's scary. Creepy.\n");
+    speak(Entity.Player, "I learned something useful...\n");
+    move(entity: 6, to: (189, -1273), sprint: 0);
+    waitForEntity(6);
+    setTrigger(362);
+    return;
+  }
+  if (!trigger(362) && trigger(550)) {
+    move(entity: 6, to: (192, -2979), sprint: 0);
+    waitForEntity(6);
+    speak(Entity.Player, "Oh, Sukamon?!\n");
+    speak(6, "Huh? Do you know about me?\n");
+    speak(Entity.Player, "Well, kind of.\nDo we need to take Sukamon\nto the city as well?\n");
+    goto L1;
+  }
   move(entity: 6, to: (192, -2979), sprint: 0);
   waitForEntity(6);
   speak(6, "Wow, this is interesting!\nI've never seen anything\nlike this!\n");
@@ -173,7 +163,7 @@ L4:
   speak(6, "In a way, you are right,\ncuz we are made from\nDigital Waste.\n");
   speak(Entity.Player, "Should we ask him to come\nto the city, too? We\nshouldn't be prejudiced.\n");
 
-L5:
+L1:
   speak(6, "Are you planning to\nlive here?\n");
   speak(Entity.Player, "What? I never thought\nabout it.\n");
   speak(6, "Well, this is a paradise\nonly for the Sukamon Tribe.\nOthers can't live here.\n");
@@ -189,31 +179,29 @@ L5:
   setTrigger(362);
   return;
 
-L6:
-  if (card[14] < 9) goto L7;
-  speak(6, "Hey, you have too many\nEtemon cards!\nDon't do it.\n");
-  return;
-
-L7:
+L2:
+  if (card[14] >= 9) {
+    speak(6, "Hey, you have too many\nEtemon cards!\nDon't do it.\n");
+    return;
+  }
   speak(6, "Oh, thank you!\n");
   takeCard(21);
   giveCard(14);
   return;
 
-L8:
+L3:
   return;
 }
 
 section(7) {
-  if (trigger(239)) goto L1;
-  setTrigger(239);
-  addPStat(1, 1);
-  speak(7, "Hey guys, are you from ...\nwhat-cha-ma-call-it...city?\n");
-  showTextbox("This is just between\nyou and me. I'm interested\na little bit.\n");
-  showTextbox("I'll visit you guys\nthere some day.\n");
-  return;
-
-L1:
+  if (!trigger(239)) {
+    setTrigger(239);
+    addPStat(1, 1);
+    speak(7, "Hey guys, are you from ...\nwhat-cha-ma-call-it...city?\n");
+    showTextbox("This is just between\nyou and me. I'm interested\na little bit.\n");
+    showTextbox("I'll visit you guys\nthere some day.\n");
+    return;
+  }
   speak(7, "Hey, guys, do you know\nthe Sukamon Tribe's\nspecial Technique?\n");
   showTextbox("We absorb poop on the ground\ninto our bodies and\nturn them into energy!\n");
   return;
@@ -226,17 +214,16 @@ section(8) {
 }
 
 section(51) {
-  if (trigger(45)) goto L1;
-  speak(Entity.Player, "Wow, it's an\n<LIGHTBLUE>Old Fishrod<WHITE>!\n");
-  delay(10);
-  anim(Entity.Player, 12, wait: 10);
-  playSound(0, 7);
-  setObjectVisibility(10, 1);
-  delay(10);
-  setTrigger(45);
-  setTrigger(320);
-
-L1:
+  if (!trigger(45)) {
+    speak(Entity.Player, "Wow, it's an\n<LIGHTBLUE>Old Fishrod<WHITE>!\n");
+    delay(10);
+    anim(Entity.Player, 12, wait: 10);
+    playSound(0, 7);
+    setObjectVisibility(10, 1);
+    delay(10);
+    setTrigger(45);
+    setTrigger(320);
+  }
   return;
 }
 

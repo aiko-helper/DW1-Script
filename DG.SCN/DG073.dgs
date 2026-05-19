@@ -5,34 +5,29 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 5) goto L1;
-  spawnItem(Item.Digimushroom, x: 39, y: 59);
-
-L1:
+  if (pstat[110] <= 5) {
+    spawnItem(Item.Digimushroom, x: 39, y: 59);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 14) goto L2;
-  spawnItem(Item.Digimushroom, x: 62, y: 89);
-
-L2:
+  if (pstat[110] <= 14) {
+    spawnItem(Item.Digimushroom, x: 62, y: 89);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 11) goto L3;
-  spawnItem(Item.Digimushroom, x: 40, y: 24);
-
-L3:
+  if (pstat[110] <= 11) {
+    spawnItem(Item.Digimushroom, x: 40, y: 24);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 6) goto L4;
-  spawnItem(Item.Digimushroom, x: 61, y: 35);
-
-L4:
+  if (pstat[110] <= 6) {
+    spawnItem(Item.Digimushroom, x: 61, y: 35);
+  }
   unsetTrigger(338);
   return;
 }
 
 section(51) {
-  if (!trigger(196) && !trigger(338)) goto L1;
-  return;
-
-L1:
+  if (trigger(196) || trigger(338)) {
+    return;
+  }
   rotate(entity: Entity.Player, to: 2048);
   rotate(entity: Entity.Partner, to: 2048);
   delay(5);

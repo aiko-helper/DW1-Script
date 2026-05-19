@@ -4,37 +4,34 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  if (trigger(120)) goto L1;
-  spawnBoulder();
-  setRectImpassible(42, 39, 9, 6);
-
-L1:
+  if (!trigger(120)) {
+    spawnBoulder();
+    setRectImpassible(42, 39, 9, 6);
+  }
   setObjectVisibility(0, 1);
   return;
 }
 
 section(51) {
-  if (trigger(209)) goto L1;
-  warp(to: Map.TUNN07, spawn: 0, trigger: 255);
-  return;
-
-L1:
+  if (!trigger(209)) {
+    warp(to: Map.TUNN07, spawn: 0, trigger: 255);
+    return;
+  }
   warp(to: Map.TUNN07_2, spawn: 0, trigger: 255);
   return;
 }
 
 section(5) {
-  if (trigger(120)) goto L1;
+  if (!trigger(120)) {
+    goto L2;
+    goto L1;
+  }
   goto L3;
-  goto L2;
 
 L1:
-  goto L8;
-
-L2:
   return;
 
-L3:
+L2:
   speak(5, "Shoot! We hit a big rock!\n");
   showTextbox("I can't drill thru.\n");
   speak(Entity.Player, "You can't? Oh no!\n");
@@ -52,22 +49,18 @@ L3:
   look(entity: 5, at: Entity.Partner);
   look(entity: Entity.Player, at: Entity.Partner);
   storeDigimonType(103);
-  if (pstat[103] != 1 && pstat[103] != 2 && pstat[103] != 3 && pstat[103] != 4 && pstat[103] != 15) goto L4;
-  goto L9;
-
-L4:
-  if (pstat[103] != 16 && pstat[103] != 17 && pstat[103] != 18 && pstat[103] != 29 && pstat[103] != 30) goto L5;
-  goto L9;
-
-L5:
-  if (pstat[103] != 31 && pstat[103] != 32 && pstat[103] != 43 && pstat[103] != 44 && pstat[103] != 45) goto L6;
-  goto L9;
-
-L6:
-  if (pstat[103] != 46 && pstat[103] != 57) goto L7;
-  goto L9;
-
-L7:
+  if (pstat[103] == 1 || pstat[103] == 2 || pstat[103] == 3 || pstat[103] == 4 || pstat[103] == 15) {
+    goto L4;
+  }
+  if (pstat[103] == 16 || pstat[103] == 17 || pstat[103] == 18 || pstat[103] == 29 || pstat[103] == 30) {
+    goto L4;
+  }
+  if (pstat[103] == 31 || pstat[103] == 32 || pstat[103] == 43 || pstat[103] == 44 || pstat[103] == 45) {
+    goto L4;
+  }
+  if (pstat[103] == 46 || pstat[103] == 57) {
+    goto L4;
+  }
   playAnimation(Entity.Partner, 27);
   setObjectVisibility(0, 0);
   moveBoulder(0, 50);
@@ -118,11 +111,11 @@ L7:
   warp(to: Map.TUNN07, spawn: 0, trigger: 255);
   return;
 
-L8:
+L3:
   speak(5, "Are you going inside?\nBe careful!\n");
   return;
 
-L9:
+L4:
   delay(20);
   anim(Entity.Partner, 27, wait: 20);
   anim(Entity.Partner, 1, wait: 30);

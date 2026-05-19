@@ -5,25 +5,21 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 9) goto L1;
-  spawnItem(Item.Digimushroom, x: 40, y: 84);
-
-L1:
+  if (pstat[110] <= 9) {
+    spawnItem(Item.Digimushroom, x: 40, y: 84);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 5) goto L2;
-  spawnItem(Item.Digimushroom, x: 68, y: 72);
-
-L2:
+  if (pstat[110] <= 5) {
+    spawnItem(Item.Digimushroom, x: 68, y: 72);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 17) goto L3;
-  spawnItem(Item.Digimushroom, x: 39, y: 59);
-
-L3:
+  if (pstat[110] <= 17) {
+    spawnItem(Item.Digimushroom, x: 39, y: 59);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 3) goto L4;
-  spawnItem(Item.SweetNut, x: 67, y: 24);
-
-L4:
+  if (pstat[110] <= 3) {
+    spawnItem(Item.SweetNut, x: 67, y: 24);
+  }
   return;
 }
 
@@ -59,11 +55,10 @@ section(10) {
 
 section(51) {
   pstat[:SavedTime] = time();
-  if (pstat[106] not in 15..30) goto L1;
-  move(entity: Entity.Player, to: (-2800, 1723), sprint: 0);
-  warp(to: Map.GIAS06A, spawn: 0, trigger: 255);
-
-L1:
+  if (pstat[106] in 15..30) {
+    move(entity: Entity.Player, to: (-2800, 1723), sprint: 0);
+    warp(to: Map.GIAS06A, spawn: 0, trigger: 255);
+  }
   move(entity: Entity.Player, to: (-2800, 1723), sprint: 0);
   warp(to: Map.GIAS06B, spawn: 0, trigger: 255);
   return;

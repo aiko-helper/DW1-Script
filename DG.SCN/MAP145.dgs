@@ -6,10 +6,9 @@
 section onEnter(254) {
   spawnChest(Item.HPChip, -857, 483, 0, 668);
   callSubroutine(43);
-  if (trigger(270)) goto L1;
-  goto section_5;
-
-L1:
+  if (!trigger(270)) {
+    goto section_5;
+  }
   return;
 }
 
@@ -20,13 +19,12 @@ section(51) {
 }
 
 section(5) {
-  if (!trigger(270)) goto L1;
-  playAnimation(Entity.Player, 20);
-  speak(Entity.Player, "Quit messing around!\n");
-  speak(5, "Alright. I don't think\nI'll do it again.\n");
-  return;
-
-L1:
+  if (trigger(270)) {
+    playAnimation(Entity.Player, 20);
+    speak(Entity.Player, "Quit messing around!\n");
+    speak(5, "Alright. I don't think\nI'll do it again.\n");
+    return;
+  }
   delay(60);
   speak(Entity.Player, "I think this is\nthe last room.\n");
   move(entity: Entity.Player, to: (14, -754), sprint: 0);
@@ -47,10 +45,10 @@ L1:
   delay(5);
   speak(Entity.Player, "That voice...sounds like\nWaruMonzaemon!\n");
   showTextbox("A big box or a small box.\nI can read your mind!\n");
-  setSelection(L2, L3);
+  setSelection(L1, L2);
   showTextbox("Big box\nSmall box\n");
 
-L2:
+L1:
   setPStat(254, 1);
   callSubroutine(44);
   delay(10);
@@ -98,9 +96,9 @@ L2:
   waitForEntity(5);
   rotate(entity: 5, to: 0);
   delay(5);
-  goto L4;
+  goto L3;
 
-L3:
+L2:
   setPStat(254, 2);
   callSubroutine(44);
   delay(40);
@@ -116,9 +114,9 @@ L3:
   waitForEntity(5);
   rotate(entity: 5, to: 0);
   delay(5);
-  goto L4;
+  goto L3;
 
-L4:
+L3:
   speak(Entity.Player, "Darn, what's so funny?\n");
   speak(5, "Wow, don't get excited.\nWhy are you here today?\nDo you want to work for me?\n");
   anim(Entity.Player, 20, wait: 5);
@@ -211,14 +209,13 @@ L4:
   playAnimation(Entity.Player, 1);
   speak(Entity.Player, "Somehow I don't believe you,\nbut I have so much stuff\nto take care of.\n");
   giveItem(Item.Gear, 1);
-  if (!trigger(0)) goto L5;
-  unsetTrigger(3);
-  speak(Entity.Player, "Oh no, I have too many\nItems. I have to\nthrow one away.\n");
-  callSubroutine(0);
-  callSubroutine(13);
-  giveItem(Item.Gear, 1);
-
-L5:
+  if (trigger(0)) {
+    unsetTrigger(3);
+    speak(Entity.Player, "Oh no, I have too many\nItems. I have to\nthrow one away.\n");
+    callSubroutine(0);
+    callSubroutine(13);
+    giveItem(Item.Gear, 1);
+  }
   speak(Entity.System, "I got a <LIGHTBLUE>Gear<WHITE>!\n");
   setTrigger(270);
   return;
@@ -248,33 +245,31 @@ section(6) {
   move(entity: 6, to: (20, -1041), sprint: 1);
   waitForEntity(6);
   unloadEntity(6);
-  if (pstat[21] != 0) goto L1;
-  setObjectVisibility(54, 0);
-  move(entity: Entity.Player, to: (-126, -518), sprint: 1);
-  waitForEntity(Entity.Player);
-  anim(Entity.Player, 12, wait: 10);
-  setObjectVisibility(54, 1);
-  playSound(0, 7);
-  speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can hold\nup to twenty Items now.\n");
-  playSound(0, 7);
-  setInventorySize(20);
-  setTrigger(47);
-
-L1:
-  if (pstat[21] != 4) goto L2;
-  setObjectVisibility(53, 0);
-  move(entity: Entity.Player, to: (-126, -518), sprint: 1);
-  waitForEntity(Entity.Player);
-  anim(Entity.Player, 12, wait: 10);
-  setObjectVisibility(53, 1);
-  playSound(0, 7);
-  speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can hold\nup to twenty Items now.\n");
-  setInventorySize(30);
-  setTrigger(48);
-  setTrigger(253);
-  addPStat(1, 1);
-
-L2:
+  if (pstat[21] == 0) {
+    setObjectVisibility(54, 0);
+    move(entity: Entity.Player, to: (-126, -518), sprint: 1);
+    waitForEntity(Entity.Player);
+    anim(Entity.Player, 12, wait: 10);
+    setObjectVisibility(54, 1);
+    playSound(0, 7);
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can hold\nup to twenty Items now.\n");
+    playSound(0, 7);
+    setInventorySize(20);
+    setTrigger(47);
+  }
+  if (pstat[21] == 4) {
+    setObjectVisibility(53, 0);
+    move(entity: Entity.Player, to: (-126, -518), sprint: 1);
+    waitForEntity(Entity.Player);
+    anim(Entity.Player, 12, wait: 10);
+    setObjectVisibility(53, 1);
+    playSound(0, 7);
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>! I can hold\nup to twenty Items now.\n");
+    setInventorySize(30);
+    setTrigger(48);
+    setTrigger(253);
+    addPStat(1, 1);
+  }
   addPStat(21, 1);
   setTrigger(337);
   return;

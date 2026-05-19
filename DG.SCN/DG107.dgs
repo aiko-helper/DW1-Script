@@ -5,29 +5,25 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 19) goto L1;
-  spawnItem(Item.Digimushroom, x: 61, y: 54);
-
-L1:
+  if (pstat[110] <= 19) {
+    spawnItem(Item.Digimushroom, x: 61, y: 54);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 4) goto L2;
-  spawnItem(Item.Happymushroom, x: 39, y: 46);
-
-L2:
+  if (pstat[110] <= 4) {
+    spawnItem(Item.Happymushroom, x: 39, y: 46);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 14) goto L3;
-  spawnItem(Item.Digimushroom, x: 55, y: 63);
-
-L3:
+  if (pstat[110] <= 14) {
+    spawnItem(Item.Digimushroom, x: 55, y: 63);
+  }
   return;
 }
 
 section(51) {
-  if (trigger(105) || !trigger(230)) goto L1;
-  speak(Entity.System, "During the last earthquake,\nthe dirt and sand disappeared!\n");
-  setTrigger(105);
-
-L1:
+  if (!trigger(105) && trigger(230)) {
+    speak(Entity.System, "During the last earthquake,\nthe dirt and sand disappeared!\n");
+    setTrigger(105);
+  }
   return;
 }
 
@@ -36,18 +32,15 @@ section(5) {
   speak(5, "The present time is\n<YEAR>month, <DAY>day,\n<HOUR>hours, <MINUTE>minutes.\n");
   storeDigimonType(103);
   storeDigimonTypus(103, 109);
-  if (pstat[109] != 1) goto L1;
-  speak(5, "<ORANGE><DIGIMON><WHITE> is a Data\nType Digimon, right?\n");
-
-L1:
-  if (pstat[109] != 2) goto L2;
-  speak(5, "<ORANGE><DIGIMON><WHITE> is a Vaccine\nType Digimon, right?\n");
-
-L2:
-  if (pstat[109] != 3) goto L3;
-  speak(5, "<ORANGE><DIGIMON><WHITE> is a Virus\nType Digimon, right?\n");
-
-L3:
+  if (pstat[109] == 1) {
+    speak(5, "<ORANGE><DIGIMON><WHITE> is a Data\nType Digimon, right?\n");
+  }
+  if (pstat[109] == 2) {
+    speak(5, "<ORANGE><DIGIMON><WHITE> is a Vaccine\nType Digimon, right?\n");
+  }
+  if (pstat[109] == 3) {
+    speak(5, "<ORANGE><DIGIMON><WHITE> is a Virus\nType Digimon, right?\n");
+  }
   addStats(tiredness: 10);
   reduceStats(happiness: 10);
   return;

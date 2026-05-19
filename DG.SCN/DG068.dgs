@@ -5,27 +5,23 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 8) goto L1;
-  spawnItem(Item.Digimushroom, x: 57, y: 61);
-
-L1:
+  if (pstat[110] <= 8) {
+    spawnItem(Item.Digimushroom, x: 57, y: 61);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 19) goto L2;
-  spawnItem(Item.Digimushroom, x: 35, y: 43);
-
-L2:
+  if (pstat[110] <= 19) {
+    spawnItem(Item.Digimushroom, x: 35, y: 43);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 2) goto L3;
-  spawnItem(Item.SweetNut, x: 39, y: 18);
-
-L3:
-  if (!trigger(328)) goto L4;
-  goto L5;
-
-L4:
+  if (pstat[110] <= 2) {
+    spawnItem(Item.SweetNut, x: 39, y: 18);
+  }
+  if (trigger(328)) {
+    goto L1;
+  }
   setObjectsVisibleRange(38, 40, 1);
 
-L5:
+L1:
   return;
 }
 
@@ -144,11 +140,10 @@ section(11) {
 }
 
 section(51) {
-  if (!trigger(328)) goto L1;
-  move(entity: Entity.Player, to: (1020, 4048), sprint: 0);
-  warp(to: Map.FACT05, spawn: 1, trigger: 255);
-
-L1:
+  if (trigger(328)) {
+    move(entity: Entity.Player, to: (1020, 4048), sprint: 0);
+    warp(to: Map.FACT05, spawn: 1, trigger: 255);
+  }
   rotate(entity: Entity.Player, to: 2048);
   delay(10);
   speak(Entity.Player, "This iron door is hard.\nIf it doesn't open,\nwe can't get in.\n");

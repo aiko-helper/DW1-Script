@@ -5,32 +5,27 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 8) goto L1;
-  spawnItem(Item.Digimushroom, x: 33, y: 39);
-
-L1:
+  if (pstat[110] <= 8) {
+    spawnItem(Item.Digimushroom, x: 33, y: 39);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 16) goto L2;
-  spawnItem(Item.Digimushroom, x: 33, y: 22);
-
-L2:
+  if (pstat[110] <= 16) {
+    spawnItem(Item.Digimushroom, x: 33, y: 22);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 2) goto L3;
-  spawnItem(Item.SweetNut, x: 52, y: 35);
-
-L3:
+  if (pstat[110] <= 2) {
+    spawnItem(Item.SweetNut, x: 52, y: 35);
+  }
   return;
 }
 
 section(51) {
-  if (!trigger(189)) goto L1;
-  return;
-
-L1:
-  if (!trigger(248) && trigger(196)) goto L2;
-  return;
-
-L2:
+  if (trigger(189)) {
+    return;
+  }
+  if (trigger(248) || !trigger(196)) {
+    return;
+  }
   lookPairAt(5);
   waitForPair();
   setTrigger(189);
@@ -50,13 +45,12 @@ L2:
   speak(Entity.Player, "What are you looking for?\n");
   speak(5, "Something that my ancestors\nleft behind, but\nI don't know what it is.\n");
 
-L3:
-  if (item[Item.Leomonstone] < 1) goto L4;
-  removeItem(Item.Leomonstone, 1);
-  goto L5;
-  goto L5;
-
-L4:
+L1:
+  if (item[Item.Leomonstone] >= 1) {
+    removeItem(Item.Leomonstone, 1);
+    goto L2;
+    goto L2;
+  }
   speak(Entity.Player, "I see. If I find it,\nI'll let you know.\n");
   speak(5, "I've been looking\na long time.\nIt won't be easy to find.\n");
   speak(5, "But if you find it,\nI promise,\nI'll go to your city.\n");
@@ -64,7 +58,7 @@ L4:
   waitForEntity(200);
   return;
 
-L5:
+L2:
   anim(Entity.Player, 19, wait: 15);
   speak(Entity.Player, "Is this it?\n");
   playAnimation(Entity.Player, 0);
@@ -89,9 +83,9 @@ L5:
   playAnimation(5, 22);
   waitForEntity(5);
   speak(5, "You can count on me!\n");
-  goto L6;
+  goto L3;
 
-L6:
+L3:
   approach(who: 5, x: -374, y: -1119, tries: 3, wait: 20);
   playSound(8, 17);
   speak(Entity.System, "Leomon joins the city!\n");
@@ -104,7 +98,7 @@ L6:
 
 section(5) {
   speak(5, "I have to look for something.\nExcuse me, but I have to...\n");
-  goto section_51.L3;
+  goto section_51.L1;
 }
 
 section(83) {

@@ -4,18 +4,16 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  if (trigger(345)) goto L1;
-  playAnimation(5, 28);
-
-L1:
+  if (!trigger(345)) {
+    playAnimation(5, 28);
+  }
   return;
 }
 
 section(51) {
-  if (!trigger(345)) goto L1;
-  return;
-
-L1:
+  if (trigger(345)) {
+    return;
+  }
   speak(Entity.Player, "!\n");
   move(entity: Entity.Player, to: (-835, -37), sprint: 1, withCamera: true);
   move(entity: Entity.Partner, to: (-353, 32), sprint: 1);

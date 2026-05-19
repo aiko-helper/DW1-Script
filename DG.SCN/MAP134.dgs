@@ -5,29 +5,25 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 11) goto L1;
-  spawnItem(Item.Digimushroom, x: 59, y: 50);
-
-L1:
+  if (pstat[110] <= 11) {
+    spawnItem(Item.Digimushroom, x: 59, y: 50);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 17) goto L2;
-  spawnItem(Item.Digimushroom, x: 33, y: 42);
-
-L2:
+  if (pstat[110] <= 17) {
+    spawnItem(Item.Digimushroom, x: 33, y: 42);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 2) goto L3;
-  spawnItem(Item.Happymushroom, x: 37, y: 61);
-
-L3:
-  if (!trigger(319)) goto L4;
-  setObjectsVisibleRange(24, 27, 1);
-  goto L5;
-
-L4:
+  if (pstat[110] <= 2) {
+    spawnItem(Item.Happymushroom, x: 37, y: 61);
+  }
+  if (trigger(319)) {
+    setObjectsVisibleRange(24, 27, 1);
+    goto L1;
+  }
   setRectImpassible(32, 39, 9, 8);
   setRectImpassible(35, 34, 8, 8);
 
-L5:
+L1:
   return;
 }
 

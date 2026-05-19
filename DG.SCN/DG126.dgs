@@ -5,36 +5,33 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 16) goto L1;
-  spawnItem(Item.Digimushroom, x: 49, y: 70);
-
-L1:
+  if (pstat[110] <= 16) {
+    spawnItem(Item.Digimushroom, x: 49, y: 70);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 2) goto L2;
-  spawnItem(Item.Happymushroom, x: 25, y: 68);
-
-L2:
+  if (pstat[110] <= 2) {
+    spawnItem(Item.Happymushroom, x: 25, y: 68);
+  }
   return;
 }
 
 section(81) {
   look(entity: 5, at: Entity.Player);
   look(entity: Entity.Player, at: 5);
-  if (trigger(139)) goto L1;
-  setTrigger(139);
-  playSound(8, 4);
-  speak(5, "This is a Digimon Card Shop.\n");
-  speak(Entity.Player, "What's a Digimon Card?\n");
-  speak(5, "Everyone's collecting them.\nYou can't lose with them.\n");
-  speak(Entity.Player, "Oh?\n");
-  playSound(8, 4);
-  speak(5, "I'll give you one free for\nstarters. It's a good one.\n");
-  speak(Entity.Player, "Hey! This card's about ME!\n");
-  speak(Entity.System, "Got a card of <LIGHTBLUE><PLAYER><WHITE>!\n");
-  giveCard(0);
-  return;
-
-L1:
+  if (!trigger(139)) {
+    setTrigger(139);
+    playSound(8, 4);
+    speak(5, "This is a Digimon Card Shop.\n");
+    speak(Entity.Player, "What's a Digimon Card?\n");
+    speak(5, "Everyone's collecting them.\nYou can't lose with them.\n");
+    speak(Entity.Player, "Oh?\n");
+    playSound(8, 4);
+    speak(5, "I'll give you one free for\nstarters. It's a good one.\n");
+    speak(Entity.Player, "Hey! This card's about ME!\n");
+    speak(Entity.System, "Got a card of <LIGHTBLUE><PLAYER><WHITE>!\n");
+    giveCard(0);
+    return;
+  }
   speak(5, "This is a Digimon Card Shop.\n");
   setPStat(254, 5);
   playSound(8, 4);
@@ -42,26 +39,25 @@ L1:
   callSubroutine(15);
   loop {
     setDialogOwner(Entity.Player);
-    choice { "I'll buy a card" -> L2, "I'll sell a card" -> L7, "Quit" -> L_04e0 }
+    choice { "I'll buy a card" -> L1, "I'll sell a card" -> L5, "Quit" -> L_04e0 }
     break;
 
+L1:
+    if (money >= 500) {
+      choice { "Buy a pack of three" -> L2, "Buy one" -> L4, "Quit" -> L6 }
+      goto L6;
+      goto L2;
+    }
+    choice { "Buy one" -> L4, "Quit" -> L6 }
+    goto L6;
+
 L2:
-    if (money < 500) goto L3;
-    choice { "Buy a pack of three" -> L4, "Buy one" -> L6, "Quit" -> L8 }
-    goto L8;
-    goto L4;
-
-L3:
-    choice { "Buy one" -> L6, "Quit" -> L8 }
-    goto L8;
-
-L4:
     speak(5, "Five hundred bits for a pack.\nNo telling what's inside.\n");
     setDialogOwner(Entity.Player);
-    choice { "I'll buy it" -> L5, "No thanks" -> L8 }
-    goto L8;
+    choice { "I'll buy it" -> L3, "No thanks" -> L6 }
+    goto L6;
 
-L5:
+L3:
     reduceMoney(500);
     callSubroutine(15);
     speak(5, "Open the pack right away.\n");
@@ -69,20 +65,20 @@ L5:
     unsetTrigger(4);
     callSubroutine(14);
     callSubroutine(22);
-    goto L8;
+    goto L6;
 
-L6:
+L4:
     unsetTrigger(3);
     setTrigger(4);
     callSubroutine(14);
     callSubroutine(22);
-    goto L8;
+    goto L6;
 
-L7:
+L5:
     setTrigger(3);
     callSubroutine(14);
 
-L8:
+L6:
     speak(5, "You want something else?\n");
   }
   callSubroutine(16);
@@ -128,10 +124,9 @@ L3:
 }
 
 section(51) {
-  if (!trigger(190)) goto L1;
-  return;
-
-L1:
+  if (trigger(190)) {
+    return;
+  }
   speak(Entity.Player, "Hey!?\n");
   moveCamera(to: (800, 4000), slowdown: 30);
   waitForEntity(200);

@@ -7,84 +7,75 @@
 section(0) {
   switchToMap(1, Map.MAYO01, 0, 1);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.ModokiBetamon);
-  loadDigimon(Digimon.RedVegimon);
-  setDigimon(Digimon.ModokiBetamon, 0, 1);
-  setDigimon(Digimon.ModokiBetamon, 1, 1);
-  setDigimon(Digimon.RedVegimon, 2, 1);
-  setDigimon(Digimon.RedVegimon, 3, 1);
-  setDigimon(Digimon.ModokiBetamon, 4, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.ModokiBetamon);
+    loadDigimon(Digimon.RedVegimon);
+    setDigimon(Digimon.ModokiBetamon, 0, 1);
+    setDigimon(Digimon.ModokiBetamon, 1, 1);
+    setDigimon(Digimon.RedVegimon, 2, 1);
+    setDigimon(Digimon.RedVegimon, 3, 1);
+    setDigimon(Digimon.ModokiBetamon, 4, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Dokunemon);
   for id in 5..7 {
     setDigimon(Digimon.Dokunemon, id, 1);
   }
 
-L2:
+L1:
   return;
 }
 
 section(1) {
   switchToMap(2, Map.MAYO02, 0, 1);
-  if (trigger(232)) goto L1;
-  loadAndSetDigimon(Digimon.NPCKunemon, 1, 0);
-
-L1:
-  if (pstat[107] < 7 || pstat[107] >= 19 || !trigger(232)) goto L2;
-  loadAndSetDigimon(Digimon.RedVegimon, 0, 1);
-  setDigimon(Digimon.RedVegimon, 2, 1);
-
-L2:
-  if ((pstat[107] >= 7 && pstat[107] < 19) || !trigger(232)) goto L3;
-  loadAndSetDigimon(Digimon.Dokunemon, 3, 1);
-  setDigimon(Digimon.Dokunemon, 4, 1);
-
-L3:
+  if (!trigger(232)) {
+    loadAndSetDigimon(Digimon.NPCKunemon, 1, 0);
+  }
+  if (pstat[107] >= 7 && pstat[107] < 19 && trigger(232)) {
+    loadAndSetDigimon(Digimon.RedVegimon, 0, 1);
+    setDigimon(Digimon.RedVegimon, 2, 1);
+  }
+  if (pstat[107] < 7 || pstat[107] >= 19 && trigger(232)) {
+    loadAndSetDigimon(Digimon.Dokunemon, 3, 1);
+    setDigimon(Digimon.Dokunemon, 4, 1);
+  }
   return;
 }
 
 section(2) {
   switchToMap(3, Map.MAYO03, 0, 1);
-  if (trigger(246)) goto L1;
-  loadAndSetDigimon(Digimon.NPCPalmon, 2, 0);
-  goto L2;
-
-L1:
+  if (!trigger(246)) {
+    loadAndSetDigimon(Digimon.NPCPalmon, 2, 0);
+    goto L1;
+  }
   loadDigimon(Digimon.Goburimon);
   for x in [0, 1, 3, 4] {
     setDigimon(Digimon.Goburimon, x, 1);
   }
 
-L2:
+L1:
   return;
 }
 
 section(3) {
   switchToMap(4, Map.MAYO04A, 0, 1);
-  if (trigger(242)) goto L1;
-  loadAndSetDigimon(Digimon.NPCEtemon, 0, 1);
-
-L1:
+  if (!trigger(242)) {
+    loadAndSetDigimon(Digimon.NPCEtemon, 0, 1);
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L2;
-  loadAndSetDigimon(Digimon.Aruraumon, 2, 1);
-  goto L3;
-
-L2:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Aruraumon, 2, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Goburimon, 4, 1);
 
-L3:
-  if (pstat[107] < 7 || pstat[107] >= 19 || !trigger(242)) goto L4;
-  loadAndSetDigimon(Digimon.Aruraumon, 1, 1);
-
-L4:
-  if ((pstat[107] >= 7 && pstat[107] < 19) || !trigger(242)) goto L5;
-  setDigimon(Digimon.Goburimon, 3, 1);
-
-L5:
+L1:
+  if (pstat[107] >= 7 && pstat[107] < 19 && trigger(242)) {
+    loadAndSetDigimon(Digimon.Aruraumon, 1, 1);
+  }
+  if (pstat[107] < 7 || pstat[107] >= 19 && trigger(242)) {
+    setDigimon(Digimon.Goburimon, 3, 1);
+  }
   return;
 }
 
@@ -117,62 +108,57 @@ section(8) {
 
 section(9) {
   switchToMap(10, Map.MAYO08A, 0, 1);
-  if (!trigger(242) || !trigger(258)) goto L1;
-  loadAndSetDigimon(Digimon.NPCEtemon, 3, 0);
-  return;
-
-L1:
-  if (trigger(258)) goto L2;
-  loadDigimon(Digimon.NPCNinjamon);
-  return;
-
-L2:
+  if (trigger(242) && trigger(258)) {
+    loadAndSetDigimon(Digimon.NPCEtemon, 3, 0);
+    return;
+  }
+  if (!trigger(258)) {
+    loadDigimon(Digimon.NPCNinjamon);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L3;
-  loadAndSetDigimon(Digimon.Aruraumon, 0, 1);
-  goto L4;
-
-L3:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Aruraumon, 0, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Tsukaimon, 2, 1);
 
-L4:
+L1:
   return;
 }
 
 section(10) {
   switchToMap(11, Map.MAYO08B, 0, 1);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.ModokiBetamon);
-  loadDigimon(Digimon.Aruraumon);
-  setDigimon(Digimon.ModokiBetamon, 0, 1);
-  setDigimon(Digimon.ModokiBetamon, 1, 1);
-  setDigimon(Digimon.Aruraumon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.ModokiBetamon);
+    loadDigimon(Digimon.Aruraumon);
+    setDigimon(Digimon.ModokiBetamon, 0, 1);
+    setDigimon(Digimon.ModokiBetamon, 1, 1);
+    setDigimon(Digimon.Aruraumon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Tsukaimon);
   for id in 3..5 {
     setDigimon(Digimon.Tsukaimon, id, 1);
   }
 
-L2:
+L1:
   return;
 }
 
 section(11) {
   switchToMap(12, Map.TROP00, 0, 2);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.Aruraumon, 0, 1);
-  setDigimon(Digimon.Aruraumon, 1, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Aruraumon, 0, 1);
+    setDigimon(Digimon.Aruraumon, 1, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Tsukaimon, 2, 1);
   setDigimon(Digimon.Tsukaimon, 3, 1);
 
-L2:
+L1:
   return;
   return;
 }
@@ -180,102 +166,94 @@ L2:
 section(12) {
   switchToMap(13, Map.TROP01, 0, 2);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.Muchomon, 1, 1);
-  setDigimon(Digimon.Muchomon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Muchomon, 1, 1);
+    setDigimon(Digimon.Muchomon, 2, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.JMojyamon, 4, 1);
   setDigimon(Digimon.JMojyamon, 3, 1);
 
-L2:
-  if (!trigger(255)) goto L3;
-  return;
-
-L3:
+L1:
+  if (trigger(255)) {
+    return;
+  }
   roll(pstat: 100, max: 99);
-  if (pstat[100] > 2) goto L4;
-  loadAndSetDigimon(Digimon.NPCPiximon, 0, 1);
-
-L4:
+  if (pstat[100] <= 2) {
+    loadAndSetDigimon(Digimon.NPCPiximon, 0, 1);
+  }
   return;
 }
 
 section(13) {
   switchToMap(14, Map.TROP02, 0, 2);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Yanmamon);
-  for id in 0..2 {
-    setDigimon(Digimon.Yanmamon, id, 1);
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Yanmamon);
+    for id in 0..2 {
+      setDigimon(Digimon.Yanmamon, id, 1);
+    }
+    goto L1;
   }
-  goto L2;
-
-L1:
   loadDigimon(Digimon.Tsukaimon);
   loadDigimon(Digimon.JMojyamon);
   setDigimon(Digimon.Tsukaimon, 3, 1);
   setDigimon(Digimon.JMojyamon, 4, 1);
   setDigimon(Digimon.JMojyamon, 5, 1);
 
-L2:
+L1:
   return;
 }
 
 section(14) {
   switchToMap(15, Map.TROP03, 0, 2);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.RedVegimon, 0, 1);
-  setDigimon(Digimon.RedVegimon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.RedVegimon, 0, 1);
+    setDigimon(Digimon.RedVegimon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Tsukaimon);
   loadDigimon(Digimon.JMojyamon);
   setDigimon(Digimon.Tsukaimon, 3, 1);
   setDigimon(Digimon.JMojyamon, 4, 1);
 
-L2:
+L1:
   return;
 }
 
 section(15) {
   switchToMap(16, Map.TROP04, 0, 2);
-  if (trigger(204)) goto L1;
-  loadAndSetDigimon(Digimon.NPCBetamon, 0, 1);
-
-L1:
+  if (!trigger(204)) {
+    loadAndSetDigimon(Digimon.NPCBetamon, 0, 1);
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L2;
-  loadAndSetDigimon(Digimon.ModokiBetamon, 1, 1);
-  goto L3;
-
-L2:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.ModokiBetamon, 1, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Tsukaimon);
   loadAndSetDigimon(Digimon.JMojyamon, 2, 1);
 
-L3:
+L1:
   return;
 }
 
 section(16) {
   switchToMap(17, Map.TROP05, 0, 2);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.Yanmamon, 0, 1);
-  setDigimon(Digimon.Yanmamon, 1, 1);
-  loadAndSetDigimon(Digimon.Muchomon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Yanmamon, 0, 1);
+    setDigimon(Digimon.Yanmamon, 1, 1);
+    loadAndSetDigimon(Digimon.Muchomon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.JMojyamon);
   for id in 3..5 {
     setDigimon(Digimon.JMojyamon, id, 1);
   }
 
-L2:
+L1:
   return;
 }
 
@@ -288,20 +266,19 @@ section(17) {
 section(18) {
   switchToMap(19, Map.MIHA00, 0, 3);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.Goburimon, 0, 1);
-  setDigimon(Digimon.Goburimon, 1, 1);
-  loadAndSetDigimon(Digimon.Aruraumon, 2, 1);
-  setDigimon(Digimon.Aruraumon, 3, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Goburimon, 0, 1);
+    setDigimon(Digimon.Goburimon, 1, 1);
+    loadAndSetDigimon(Digimon.Aruraumon, 2, 1);
+    setDigimon(Digimon.Aruraumon, 3, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Goburimon, 4, 1);
   setDigimon(Digimon.Goburimon, 5, 1);
   loadAndSetDigimon(Digimon.Gotsumon, 6, 1);
   setDigimon(Digimon.Gotsumon, 7, 1);
 
-L2:
+L1:
   return;
   return;
 }
@@ -309,17 +286,16 @@ L2:
 section(19) {
   switchToMap(20, Map.MIHA01, 0, 3);
   roll(pstat: 100, max: 99);
-  if (pstat[100] > 2 || trigger(213)) goto L1;
-  loadAndSetDigimon(Digimon.NPCMamemon, 0, 1);
-  goto L2;
-
-L1:
+  if (pstat[100] <= 2 && !trigger(213)) {
+    loadAndSetDigimon(Digimon.NPCMamemon, 0, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.MudFrigimon);
   for id in 1..3 {
     setDigimon(Digimon.MudFrigimon, id, 1);
   }
 
-L2:
+L1:
   return;
 }
 
@@ -340,44 +316,42 @@ section(21) {
 section(22) {
   switchToMap(23, Map.MIHA04A, 0, 3);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Flareizamon);
-  loadDigimon(Digimon.Aruraumon);
-  setDigimon(Digimon.Flareizamon, 0, 1);
-  setDigimon(Digimon.Flareizamon, 1, 1);
-  setDigimon(Digimon.Aruraumon, 2, 1);
-  setDigimon(Digimon.Aruraumon, 3, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Flareizamon);
+    loadDigimon(Digimon.Aruraumon);
+    setDigimon(Digimon.Flareizamon, 0, 1);
+    setDigimon(Digimon.Flareizamon, 1, 1);
+    setDigimon(Digimon.Aruraumon, 2, 1);
+    setDigimon(Digimon.Aruraumon, 3, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Tsukaimon, 4, 1);
   setDigimon(Digimon.Tsukaimon, 5, 1);
   loadAndSetDigimon(Digimon.Goburimon, 6, 1);
   setDigimon(Digimon.Goburimon, 7, 1);
 
-L2:
+L1:
   return;
 }
 
 section(23) {
   switchToMap(24, Map.MIHA04B, 0, 3);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Flareizamon);
-  loadDigimon(Digimon.Aruraumon);
-  setDigimon(Digimon.Flareizamon, 0, 1);
-  setDigimon(Digimon.Flareizamon, 1, 1);
-  setDigimon(Digimon.Aruraumon, 2, 1);
-  setDigimon(Digimon.Aruraumon, 3, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Flareizamon);
+    loadDigimon(Digimon.Aruraumon);
+    setDigimon(Digimon.Flareizamon, 0, 1);
+    setDigimon(Digimon.Flareizamon, 1, 1);
+    setDigimon(Digimon.Aruraumon, 2, 1);
+    setDigimon(Digimon.Aruraumon, 3, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Tsukaimon, 4, 1);
   setDigimon(Digimon.Tsukaimon, 5, 1);
   loadAndSetDigimon(Digimon.Goburimon, 6, 1);
   setDigimon(Digimon.Goburimon, 7, 1);
 
-L2:
+L1:
   return;
 }
 
@@ -389,16 +363,15 @@ section(24) {
 
 section(25) {
   setScript(26, Map.TUNN02);
-  if (trigger(150) && !trigger(234)) goto L1;
-  setPStat(245, 1);
-  setBGM(4);
-  loadDigimon(Digimon.Goburimon);
-  for id in 0..2 {
-    setDigimon(Digimon.Goburimon, id, 1);
+  if (!trigger(150) || trigger(234)) {
+    setPStat(245, 1);
+    setBGM(4);
+    loadDigimon(Digimon.Goburimon);
+    for id in 0..2 {
+      setDigimon(Digimon.Goburimon, id, 1);
+    }
+    goto L1;
   }
-  goto L2;
-
-L1:
   setPStat(245, 2);
   setBGM(6);
   loadDigimon(Digimon.NPCOgremon);
@@ -407,11 +380,10 @@ L1:
   setDigimon(Digimon.Agumon, 4, 0);
   setDigimon(Digimon.Agumon, 5, 0);
 
-L2:
-  if (pstat[17] != 2) goto L3;
-  setPStat(17, 1);
-
-L3:
+L1:
+  if (pstat[17] == 2) {
+    setPStat(17, 1);
+  }
   return;
 }
 
@@ -429,29 +401,25 @@ section(27) {
 
 section(28) {
   switchToMap(29, Map.TUNN05, 1, 4);
-  if (pstat[30] < 5 || pstat[17] >= 3 || pstat[17] < 1) goto L1;
-  return;
-
-L1:
-  if (pstat[18] < 10) goto L2;
-  return;
-
-L2:
-  if (pstat[18] < 5) goto L3;
-  loadAndSetDigimon(Digimon.NPCDrimogemon, 1, 0);
-  return;
-
-L3:
+  if (pstat[30] >= 5 && pstat[17] < 3 && pstat[17] >= 1) {
+    return;
+  }
+  if (pstat[18] >= 10) {
+    return;
+  }
+  if (pstat[18] >= 5) {
+    loadAndSetDigimon(Digimon.NPCDrimogemon, 1, 0);
+    return;
+  }
   loadAndSetDigimon(Digimon.NPCDrimogemon, 0, 0);
   return;
 }
 
 section(29) {
   switchToMap(30, Map.TUNN06, 1, 4);
-  if (trigger(209)) goto L1;
-  loadAndSetDigimon(Digimon.NPCDrimogemon, 0, 0);
-
-L1:
+  if (!trigger(209)) {
+    loadAndSetDigimon(Digimon.NPCDrimogemon, 0, 0);
+  }
   return;
 }
 
@@ -462,19 +430,17 @@ section(30) {
 
 section(31) {
   switchToMap(31, Map.TUNN08, 1, 9);
-  if (trigger(209)) goto L1;
-  loadAndSetDigimon(Digimon.NPCMeramon, 0, 1);
-
-L1:
+  if (!trigger(209)) {
+    loadAndSetDigimon(Digimon.NPCMeramon, 0, 1);
+  }
   return;
 }
 
 section(32) {
   switchToMap(32, Map.TUNN09, 1, 4);
-  if (trigger(238)) goto L1;
-  loadAndSetDigimon(Digimon.NPCDrimogemon, 0, 0);
-
-L1:
+  if (!trigger(238)) {
+    loadAndSetDigimon(Digimon.NPCDrimogemon, 0, 0);
+  }
   return;
 }
 
@@ -488,14 +454,13 @@ section(33) {
 section(34) {
   switchToMap(34, Map.DGHA01, 1, 5);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Darkrizamon);
-  for id in 0..3 {
-    setDigimon(Digimon.Darkrizamon, id, 1);
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Darkrizamon);
+    for id in 0..3 {
+      setDigimon(Digimon.Darkrizamon, id, 1);
+    }
+    goto L1;
   }
-  goto L2;
-
-L1:
   loadDigimon(Digimon.Darkrizamon);
   loadDigimon(Digimon.Tsukaimon);
   setDigimon(Digimon.Darkrizamon, 4, 1);
@@ -503,162 +468,151 @@ L1:
   setDigimon(Digimon.Tsukaimon, 6, 1);
   setDigimon(Digimon.Tsukaimon, 7, 1);
 
-L2:
+L1:
   return;
 }
 
 section(35) {
   switchToMap(35, Map.DGHA02, 1, 5);
-  if (trigger(237)) goto L1;
-  loadAndSetDigimon(Digimon.NPCBakemon, 0, 1);
-  loadAndSetDigimon(Digimon.Tsukaimon, 1, 1);
-  setDigimon(Digimon.Tsukaimon, 2, 1);
-  return;
-
-L1:
+  if (!trigger(237)) {
+    loadAndSetDigimon(Digimon.NPCBakemon, 0, 1);
+    loadAndSetDigimon(Digimon.Tsukaimon, 1, 1);
+    setDigimon(Digimon.Tsukaimon, 2, 1);
+    return;
+  }
   roll(pstat: 110, max: 1);
-  if (pstat[110] != 0) goto L2;
-  loadDigimon(Digimon.Tsukaimon);
-  for id in 1..3 {
-    setDigimon(Digimon.Tsukaimon, id, 1);
+  if (pstat[110] == 0) {
+    loadDigimon(Digimon.Tsukaimon);
+    for id in 1..3 {
+      setDigimon(Digimon.Tsukaimon, id, 1);
+    }
   }
-
-L2:
-  if (pstat[110] != 1) goto L3;
-  loadDigimon(Digimon.Soulmon);
-  for id in 4..6 {
-    setDigimon(Digimon.Soulmon, id, 1);
+  if (pstat[110] == 1) {
+    loadDigimon(Digimon.Soulmon);
+    for id in 4..6 {
+      setDigimon(Digimon.Soulmon, id, 1);
+    }
   }
-
-L3:
   return;
 }
 
 section(36) {
   switchToMap(36, Map.GCAN01, 0, 6);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.Goburimon, 0, 1);
-  setDigimon(Digimon.Goburimon, 1, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Goburimon, 0, 1);
+    setDigimon(Digimon.Goburimon, 1, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Gotsumon, 2, 1);
   setDigimon(Digimon.Gotsumon, 3, 1);
 
-L2:
+L1:
   return;
 }
 
 section(37) {
   switchToMap(37, Map.GCAN02, 0, 6);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Goburimon);
-  for id in 0..2 {
-    setDigimon(Digimon.Goburimon, id, 1);
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Goburimon);
+    for id in 0..2 {
+      setDigimon(Digimon.Goburimon, id, 1);
+    }
+    goto L1;
   }
-  goto L2;
-
-L1:
   loadDigimon(Digimon.Weedmon);
   for id in 3..5 {
     setDigimon(Digimon.Weedmon, id, 1);
   }
 
-L2:
+L1:
   return;
 }
 
 section(38) {
   switchToMap(38, Map.GCAN03, 0, 6);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Weedmon);
-  loadDigimon(Digimon.SandYanmamon);
-  setDigimon(Digimon.Weedmon, 0, 1);
-  setDigimon(Digimon.SandYanmamon, 1, 1);
-  setDigimon(Digimon.SandYanmamon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Weedmon);
+    loadDigimon(Digimon.SandYanmamon);
+    setDigimon(Digimon.Weedmon, 0, 1);
+    setDigimon(Digimon.SandYanmamon, 1, 1);
+    setDigimon(Digimon.SandYanmamon, 2, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Gotsumon, 3, 1);
   setDigimon(Digimon.Gotsumon, 4, 1);
 
-L2:
+L1:
   return;
 }
 
 section(39) {
   switchToMap(39, Map.GCAN04, 0, 6);
-  if (!trigger(175) || !trigger(180) || trigger(235)) goto L1;
-  loadAndSetDigimon(Digimon.NPCShellmon, 0, 0);
-
-L1:
+  if (trigger(175) && trigger(180) && !trigger(235)) {
+    loadAndSetDigimon(Digimon.NPCShellmon, 0, 0);
+  }
   loadAndSetDigimon(Digimon.Goburimon, 1, 1);
   return;
 }
 
 section(40) {
   switchToMap(40, Map.GCAN05, 0, 6);
-  if (trigger(200)) goto L1;
-  loadAndSetDigimon(Digimon.Agumon, 0, 0);
-
-L1:
+  if (!trigger(200)) {
+    loadAndSetDigimon(Digimon.Agumon, 0, 0);
+  }
   return;
 }
 
 section(41) {
   switchToMap(41, Map.GCAN06, 0, 6);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Weedmon);
-  loadAndSetDigimon(Digimon.Muchomon, 0, 1);
-  setDigimon(Digimon.Muchomon, 1, 1);
-  setDigimon(Digimon.Weedmon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Weedmon);
+    loadAndSetDigimon(Digimon.Muchomon, 0, 1);
+    setDigimon(Digimon.Muchomon, 1, 1);
+    setDigimon(Digimon.Weedmon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Weedmon);
   loadDigimon(Digimon.Goburimon);
   setDigimon(Digimon.Weedmon, 3, 1);
   setDigimon(Digimon.Weedmon, 4, 1);
   setDigimon(Digimon.Goburimon, 5, 1);
 
-L2:
+L1:
   return;
 }
 
 section(42) {
   switchToMap(42, Map.GCAN07, 0, 6);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.SandYanmamon);
-  loadDigimon(Digimon.Weedmon);
-  setDigimon(Digimon.SandYanmamon, 0, 1);
-  setDigimon(Digimon.SandYanmamon, 1, 1);
-  setDigimon(Digimon.Weedmon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.SandYanmamon);
+    loadDigimon(Digimon.Weedmon);
+    setDigimon(Digimon.SandYanmamon, 0, 1);
+    setDigimon(Digimon.SandYanmamon, 1, 1);
+    setDigimon(Digimon.Weedmon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Gotsumon);
   loadDigimon(Digimon.Gururumon);
   setDigimon(Digimon.Gotsumon, 3, 1);
   setDigimon(Digimon.Gotsumon, 4, 1);
   setDigimon(Digimon.Gururumon, 5, 1);
 
-L2:
+L1:
   return;
 }
 
 section(43) {
   setScript(43, Map.GCAN08_1);
-  if (!trigger(197)) goto L1;
-  setPStat(245, 2);
-  setBGM(6);
-  return;
-
-L1:
+  if (trigger(197)) {
+    setPStat(245, 2);
+    setBGM(6);
+    return;
+  }
   setPStat(245, 0);
   setBGM(6);
   loadDigimon(Digimon.Goburimon);
@@ -671,93 +625,85 @@ L1:
 section(44) {
   switchToMap(44, Map.GCAN09, 0, 6);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Gotsumon);
-  loadDigimon(Digimon.Weedmon);
-  setDigimon(Digimon.Gotsumon, 0, 1);
-  setDigimon(Digimon.Weedmon, 1, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Gotsumon);
+    loadDigimon(Digimon.Weedmon);
+    setDigimon(Digimon.Gotsumon, 0, 1);
+    setDigimon(Digimon.Weedmon, 1, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Gururumon, 2, 1);
   setDigimon(Digimon.Gururumon, 3, 1);
 
-L2:
+L1:
   return;
 }
 
 section(45) {
   switchToMap(45, Map.OGRE00, 1, 8);
-  if (trigger(175)) goto L1;
-  loadDigimon(Digimon.NPCGabumon);
-  for id in 0..2 {
-    setDigimon(Digimon.NPCGabumon, id, 1);
+  if (!trigger(175)) {
+    loadDigimon(Digimon.NPCGabumon);
+    for id in 0..2 {
+      setDigimon(Digimon.NPCGabumon, id, 1);
+    }
   }
-
-L1:
   return;
 }
 
 section(46) {
   switchToMap(46, Map.OGRE01, 1, 8);
-  if (trigger(175)) goto L1;
-  loadDigimon(Digimon.NPCGabumon);
-  loadDigimon(Digimon.Agumon);
-  setDigimon(Digimon.NPCGabumon, 0, 1);
-  setDigimon(Digimon.NPCGabumon, 1, 1);
-  setDigimon(Digimon.Agumon, 2, 1);
-
-L1:
+  if (!trigger(175)) {
+    loadDigimon(Digimon.NPCGabumon);
+    loadDigimon(Digimon.Agumon);
+    setDigimon(Digimon.NPCGabumon, 0, 1);
+    setDigimon(Digimon.NPCGabumon, 1, 1);
+    setDigimon(Digimon.Agumon, 2, 1);
+  }
   return;
 }
 
 section(47) {
   switchToMap(47, Map.OGRE02, 1, 8);
-  if (pstat[16] != 3) goto L1;
-  loadDigimon(Digimon.Machinedramon);
-  loadDigimon(Digimon.Analogman);
-  setDigimon(Digimon.Machinedramon, 3, 1);
-  setDigimon(Digimon.Analogman, 4, 1);
-  return;
-
-L1:
-  if (trigger(175)) goto L2;
-  loadDigimon(Digimon.Agumon);
-  for id in 0..2 {
-    setDigimon(Digimon.Agumon, id, 1);
+  if (pstat[16] == 3) {
+    loadDigimon(Digimon.Machinedramon);
+    loadDigimon(Digimon.Analogman);
+    setDigimon(Digimon.Machinedramon, 3, 1);
+    setDigimon(Digimon.Analogman, 4, 1);
+    return;
   }
-
-L2:
+  if (!trigger(175)) {
+    loadDigimon(Digimon.Agumon);
+    for id in 0..2 {
+      setDigimon(Digimon.Agumon, id, 1);
+    }
+  }
   return;
 }
 
 section(48) {
   switchToMap(48, Map.OGRE03, 1, 8);
-  if (trigger(175)) goto L1;
-  setPStat(245, 2);
-  setBGM(6);
-  loadDigimon(Digimon.Agumon);
-  loadDigimon(Digimon.NPCOgremon);
-  setDigimon(Digimon.Agumon, 0, 1);
-  setDigimon(Digimon.Agumon, 1, 1);
-  setDigimon(Digimon.NPCOgremon, 2, 1);
-  setDigimon(Digimon.Agumon, 3, 1);
-  setDigimon(Digimon.Agumon, 4, 1);
-
-L1:
-  if (!trigger(150) || trigger(334)) goto L2;
-  loadAndSetDigimon(Digimon.NPCNanimon, 6, 0);
-
-L2:
+  if (!trigger(175)) {
+    setPStat(245, 2);
+    setBGM(6);
+    loadDigimon(Digimon.Agumon);
+    loadDigimon(Digimon.NPCOgremon);
+    setDigimon(Digimon.Agumon, 0, 1);
+    setDigimon(Digimon.Agumon, 1, 1);
+    setDigimon(Digimon.NPCOgremon, 2, 1);
+    setDigimon(Digimon.Agumon, 3, 1);
+    setDigimon(Digimon.Agumon, 4, 1);
+  }
+  if (trigger(150) && !trigger(334)) {
+    loadAndSetDigimon(Digimon.NPCNanimon, 6, 0);
+  }
   return;
 }
 
 section(49) {
   switchToMap(49, Map.GCAN11, 1, 7);
-  if (trigger(247)) goto L1;
-  loadAndSetDigimon(Digimon.NPCMonochromon, 0, 0);
-
-L1:
+  if (!trigger(247)) {
+    loadAndSetDigimon(Digimon.NPCMonochromon, 0, 0);
+  }
   return;
 }
 
@@ -790,15 +736,13 @@ section(54) {
 
 section(55) {
   switchToMap(54, Map.YAKA13, 1, 10);
-  if (!trigger(226)) goto L1;
-  loadAndSetDigimon(Digimon.NPCMyotismon, 0, 0);
-  return;
-
-L1:
-  if (!trigger(128) || trigger(356)) goto L2;
-  loadAndSetDigimon(Digimon.NPCMyotismon, 0, 0);
-
-L2:
+  if (trigger(226)) {
+    loadAndSetDigimon(Digimon.NPCMyotismon, 0, 0);
+    return;
+  }
+  if (trigger(128) && !trigger(356)) {
+    loadAndSetDigimon(Digimon.NPCMyotismon, 0, 0);
+  }
   return;
 }
 
@@ -861,30 +805,27 @@ section(65) {
 
 section(66) {
   switchToMap(63, Map.CHKA01, 1, 10);
-  if (pstat[16] != 2) goto L1;
-  loadDigimon(Digimon.Machinedramon);
-  loadDigimon(Digimon.Analogman);
-  setDigimon(Digimon.Machinedramon, 1, 0);
-  setDigimon(Digimon.Analogman, 2, 0);
-  return;
-
-L1:
-  if (trigger(128)) goto L2;
-  loadAndSetDigimon(Digimon.NPCMyotismon, 0, 0);
-
-L2:
+  if (pstat[16] == 2) {
+    loadDigimon(Digimon.Machinedramon);
+    loadDigimon(Digimon.Analogman);
+    setDigimon(Digimon.Machinedramon, 1, 0);
+    setDigimon(Digimon.Analogman, 2, 0);
+    return;
+  }
+  if (!trigger(128)) {
+    loadAndSetDigimon(Digimon.NPCMyotismon, 0, 0);
+  }
   return;
 }
 
 section(67) {
   switchToMap(64, Map.SAIB01, 1, 10);
-  if (trigger(129)) goto L1;
-  loadDigimon(Digimon.NPCMyotismon);
-  loadDigimon(Digimon.NPCBakemon);
-  setDigimon(Digimon.NPCMyotismon, 0, 0);
-  setDigimon(Digimon.NPCBakemon, 1, 0);
-
-L1:
+  if (!trigger(129)) {
+    loadDigimon(Digimon.NPCMyotismon);
+    loadDigimon(Digimon.NPCBakemon);
+    setDigimon(Digimon.NPCMyotismon, 0, 0);
+    setDigimon(Digimon.NPCBakemon, 1, 0);
+  }
   return;
 }
 
@@ -894,173 +835,161 @@ section(68) {
   for id in 1..5 {
     setDigimon(Digimon.Darkrizamon, id, 1);
   }
-  if (trigger(130)) goto L1;
-  loadAndSetDigimon(Digimon.Tekkamon, 0, 1);
-
-L1:
+  if (!trigger(130)) {
+    loadAndSetDigimon(Digimon.Tekkamon, 0, 1);
+  }
   return;
 }
 
 section(69) {
   switchToMap(66, Map.GIAS00, 0, 11);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.ShimaUnimon, 0, 1);
-  setDigimon(Digimon.ShimaUnimon, 1, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.ShimaUnimon, 0, 1);
+    setDigimon(Digimon.ShimaUnimon, 1, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Tsukaimon);
   loadDigimon(Digimon.NiseDrimogemon);
   setDigimon(Digimon.Tsukaimon, 2, 1);
   setDigimon(Digimon.NiseDrimogemon, 3, 1);
 
-L2:
+L1:
   return;
 }
 
 section(70) {
   switchToMap(67, Map.GIAS01, 0, 11);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.Psychemon, 0, 1);
-  setDigimon(Digimon.Psychemon, 1, 1);
-  loadAndSetDigimon(Digimon.ShimaUnimon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Psychemon, 0, 1);
+    setDigimon(Digimon.Psychemon, 1, 1);
+    loadAndSetDigimon(Digimon.ShimaUnimon, 2, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.NiseDrimogemon, 3, 1);
   setDigimon(Digimon.NiseDrimogemon, 4, 1);
   loadAndSetDigimon(Digimon.Sharmamon, 5, 1);
 
-L2:
+L1:
   return;
 }
 
 section(71) {
   switchToMap(68, Map.GIAS02, 0, 11);
-  if (trigger(218)) goto L1;
-  loadAndSetDigimon(Digimon.NPCElecmon, 0, 0);
-  return;
-
-L1:
+  if (!trigger(218)) {
+    loadAndSetDigimon(Digimon.NPCElecmon, 0, 0);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L2;
-  loadDigimon(Digimon.Sharmamon);
-  loadAndSetDigimon(Digimon.Akatorimon, 1, 1);
-  setDigimon(Digimon.Akatorimon, 2, 1);
-  setDigimon(Digimon.Sharmamon, 3, 1);
-  goto L3;
-
-L2:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Sharmamon);
+    loadAndSetDigimon(Digimon.Akatorimon, 1, 1);
+    setDigimon(Digimon.Akatorimon, 2, 1);
+    setDigimon(Digimon.Sharmamon, 3, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Psychemon);
   loadDigimon(Digimon.Sharmamon);
   setDigimon(Digimon.Psychemon, 4, 1);
   setDigimon(Digimon.Psychemon, 5, 1);
   setDigimon(Digimon.Sharmamon, 6, 1);
 
-L3:
+L1:
   return;
 }
 
 section(72) {
   switchToMap(69, Map.GIAS03, 0, 11);
-  if (trigger(231)) goto L1;
-  loadAndSetDigimon(Digimon.NPCPatamon, 0, 1);
-  return;
-
-L1:
+  if (!trigger(231)) {
+    loadAndSetDigimon(Digimon.NPCPatamon, 0, 1);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L2;
-  loadDigimon(Digimon.ShimaUnimon);
-  loadDigimon(Digimon.Sharmamon);
-  setDigimon(Digimon.ShimaUnimon, 1, 1);
-  setDigimon(Digimon.Sharmamon, 2, 1);
-  goto L3;
-
-L2:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.ShimaUnimon);
+    loadDigimon(Digimon.Sharmamon);
+    setDigimon(Digimon.ShimaUnimon, 1, 1);
+    setDigimon(Digimon.Sharmamon, 2, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Sharmamon, 3, 1);
   setDigimon(Digimon.Sharmamon, 4, 1);
 
-L3:
+L1:
   return;
 }
 
 section(73) {
   switchToMap(70, Map.GIAS04, 0, 11);
-  if (trigger(245)) goto L1;
-  setPStat(111, 0);
-  loadAndSetDigimon(Digimon.NPCBiyomon, 0, 1);
-  return;
-
-L1:
+  if (!trigger(245)) {
+    setPStat(111, 0);
+    loadAndSetDigimon(Digimon.NPCBiyomon, 0, 1);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L2;
-  loadDigimon(Digimon.ShimaUnimon);
-  loadDigimon(Digimon.Akatorimon);
-  setDigimon(Digimon.ShimaUnimon, 1, 1);
-  setDigimon(Digimon.ShimaUnimon, 2, 1);
-  setDigimon(Digimon.Akatorimon, 3, 1);
-  goto L3;
-
-L2:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.ShimaUnimon);
+    loadDigimon(Digimon.Akatorimon);
+    setDigimon(Digimon.ShimaUnimon, 1, 1);
+    setDigimon(Digimon.ShimaUnimon, 2, 1);
+    setDigimon(Digimon.Akatorimon, 3, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Sharmamon);
   loadDigimon(Digimon.Tsukaimon);
   setDigimon(Digimon.Sharmamon, 4, 1);
   setDigimon(Digimon.Sharmamon, 5, 1);
   setDigimon(Digimon.Tsukaimon, 6, 1);
 
-L3:
+L1:
   return;
 }
 
 section(74) {
   switchToMap(71, Map.GIAS05, 0, 11);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Psychemon);
-  loadDigimon(Digimon.Akatorimon);
-  setDigimon(Digimon.Psychemon, 0, 1);
-  setDigimon(Digimon.Psychemon, 1, 1);
-  setDigimon(Digimon.Akatorimon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Psychemon);
+    loadDigimon(Digimon.Akatorimon);
+    setDigimon(Digimon.Psychemon, 0, 1);
+    setDigimon(Digimon.Psychemon, 1, 1);
+    setDigimon(Digimon.Akatorimon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Tsukaimon);
   loadDigimon(Digimon.Sharmamon);
   setDigimon(Digimon.Tsukaimon, 3, 1);
   setDigimon(Digimon.Tsukaimon, 4, 1);
   setDigimon(Digimon.Sharmamon, 5, 1);
 
-L2:
+L1:
   return;
 }
 
 section(75) {
   switchToMap(72, Map.GIAS06A, 0, 11);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.Psychemon, 2, 1);
-  setDigimon(Digimon.Psychemon, 3, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Psychemon, 2, 1);
+    setDigimon(Digimon.Psychemon, 3, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Sharmamon, 4, 1);
   setDigimon(Digimon.Sharmamon, 5, 1);
 
-L2:
+L1:
   return;
 }
 
 section(76) {
   switchToMap(73, Map.GIAS07, 0, 11);
-  if (trigger(196)) goto L1;
-  for x in [:NPCGobiromon, :NPCPatamon, :NPCLeomon] {
-    loadDigimon(x);
+  if (!trigger(196)) {
+    for x in [:NPCGobiromon, :NPCPatamon, :NPCLeomon] {
+      loadDigimon(x);
+    }
+    return;
   }
-  return;
-
-L1:
   loadAndSetDigimon(Digimon.Sharmamon, 3, 1);
   setDigimon(Digimon.Sharmamon, 4, 1);
   return;
@@ -1069,53 +998,49 @@ L1:
 section(77) {
   switchToMap(74, Map.GIAS08, 0, 11);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.ShimaUnimon);
-  loadDigimon(Digimon.Sharmamon);
-  setDigimon(Digimon.ShimaUnimon, 0, 1);
-  setDigimon(Digimon.Sharmamon, 1, 1);
-  setDigimon(Digimon.Sharmamon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.ShimaUnimon);
+    loadDigimon(Digimon.Sharmamon);
+    setDigimon(Digimon.ShimaUnimon, 0, 1);
+    setDigimon(Digimon.Sharmamon, 1, 1);
+    setDigimon(Digimon.Sharmamon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.NiseDrimogemon);
   loadDigimon(Digimon.Sharmamon);
   setDigimon(Digimon.NiseDrimogemon, 3, 1);
   setDigimon(Digimon.Sharmamon, 4, 1);
   setDigimon(Digimon.Sharmamon, 5, 1);
 
-L2:
+L1:
   return;
 }
 
 section(78) {
   switchToMap(75, Map.GIAS09, 0, 11);
-  if (trigger(248) || !trigger(196)) goto L1;
-  loadAndSetDigimon(Digimon.NPCLeomon, 0, 1);
-
-L1:
+  if (!trigger(248) && trigger(196)) {
+    loadAndSetDigimon(Digimon.NPCLeomon, 0, 1);
+  }
   return;
 }
 
 section(79) {
   switchToMap(76, Map.KODA00, 0, 14);
   loadDigimon(Digimon.NPCTyrannomon);
-  if (trigger(144)) goto L1;
-  setDigimon(Digimon.NPCTyrannomon, 0, 1);
-  return;
-
-L1:
+  if (!trigger(144)) {
+    setDigimon(Digimon.NPCTyrannomon, 0, 1);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L2;
-  loadAndSetDigimon(Digimon.Vermilimon, 1, 1);
-  setDigimon(Digimon.Vermilimon, 2, 1);
-  goto L3;
-
-L2:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Vermilimon, 1, 1);
+    setDigimon(Digimon.Vermilimon, 2, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Yanmamon, 3, 1);
   setDigimon(Digimon.Yanmamon, 4, 1);
 
-L3:
+L1:
   return;
 }
 
@@ -1124,18 +1049,17 @@ section(80) {
   loadDigimon(Digimon.Vermilimon);
   loadDigimon(Digimon.Yanmamon);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  setDigimon(Digimon.Vermilimon, 0, 1);
-  setDigimon(Digimon.Yanmamon, 1, 1);
-  setDigimon(Digimon.Vermilimon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    setDigimon(Digimon.Vermilimon, 0, 1);
+    setDigimon(Digimon.Yanmamon, 1, 1);
+    setDigimon(Digimon.Vermilimon, 2, 1);
+    goto L1;
+  }
   setDigimon(Digimon.Yanmamon, 3, 1);
   setDigimon(Digimon.Vermilimon, 4, 1);
   setDigimon(Digimon.Vermilimon, 5, 1);
 
-L2:
+L1:
   return;
 }
 
@@ -1155,40 +1079,36 @@ section(82) {
   switchToMap(79, Map.KODA03, 0, 14);
   loadDigimon(Digimon.NPCTyrannomon);
   loadDigimon(Digimon.MasterTyrannomon);
-  if (trigger(187)) goto L1;
-  setDigimon(Digimon.NPCTyrannomon, 0, 0);
-
-L1:
-  if (!trigger(187) || trigger(208)) goto L2;
-  setDigimon(Digimon.NPCTyrannomon, 1, 0);
-
-L2:
-  if (!trigger(208)) goto L3;
-  setDigimon(Digimon.MasterTyrannomon, 3, 0);
-
-L3:
+  if (!trigger(187)) {
+    setDigimon(Digimon.NPCTyrannomon, 0, 0);
+  }
+  if (trigger(187) && !trigger(208)) {
+    setDigimon(Digimon.NPCTyrannomon, 1, 0);
+  }
+  if (trigger(208)) {
+    setDigimon(Digimon.MasterTyrannomon, 3, 0);
+  }
   return;
 }
 
 section(83) {
   switchToMap(80, Map.KODA04, 0, 13);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Gotsumon);
-  loadDigimon(Digimon.Saberdramon);
-  setDigimon(Digimon.Gotsumon, 0, 1);
-  setDigimon(Digimon.Gotsumon, 1, 1);
-  setDigimon(Digimon.Saberdramon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Gotsumon);
+    loadDigimon(Digimon.Saberdramon);
+    setDigimon(Digimon.Gotsumon, 0, 1);
+    setDigimon(Digimon.Gotsumon, 1, 1);
+    setDigimon(Digimon.Saberdramon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Darkrizamon);
   loadDigimon(Digimon.Gotsumon);
   setDigimon(Digimon.Darkrizamon, 3, 1);
   setDigimon(Digimon.Darkrizamon, 4, 1);
   setDigimon(Digimon.Gotsumon, 5, 1);
 
-L2:
+L1:
   return;
 }
 
@@ -1205,100 +1125,93 @@ section(85) {
 
 section(86) {
   switchToMap(82, Map.KODA07, 0, 13);
-  if (trigger(313)) goto L1;
-  loadAndSetDigimon(Digimon.Meteormon, 0, 0);
-
-L1:
-  if (!trigger(313) || trigger(335) || !trigger(208)) goto L2;
-  loadAndSetDigimon(Digimon.NPCNanimon, 1, 0);
-
-L2:
+  if (!trigger(313)) {
+    loadAndSetDigimon(Digimon.Meteormon, 0, 0);
+  }
+  if (trigger(313) && !trigger(335) && trigger(208)) {
+    loadAndSetDigimon(Digimon.NPCNanimon, 1, 0);
+  }
   return;
 }
 
 section(87) {
   switchToMap(83, Map.KODA08, 0, 13);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.Saberdramon, 0, 1);
-  setDigimon(Digimon.Saberdramon, 1, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Saberdramon, 0, 1);
+    setDigimon(Digimon.Saberdramon, 1, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Darkrizamon, 2, 1);
   setDigimon(Digimon.Darkrizamon, 3, 1);
 
-L2:
+L1:
   return;
 }
 
 section(88) {
   switchToMap(84, Map.FRZL01, 0, 15);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.SnowAgumon);
-  loadDigimon(Digimon.SnowGoburimon);
-  setDigimon(Digimon.SnowAgumon, 0, 1);
-  setDigimon(Digimon.SnowGoburimon, 1, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.SnowAgumon);
+    loadDigimon(Digimon.SnowGoburimon);
+    setDigimon(Digimon.SnowAgumon, 0, 1);
+    setDigimon(Digimon.SnowGoburimon, 1, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.IceDevimon, 2, 1);
   setDigimon(Digimon.IceDevimon, 3, 1);
 
-L2:
+L1:
   return;
 }
 
 section(89) {
   switchToMap(85, Map.FRZL02, 0, 15);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.Hyogamon, 0, 1);
-  setDigimon(Digimon.Hyogamon, 1, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Hyogamon, 0, 1);
+    setDigimon(Digimon.Hyogamon, 1, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.IceDevimon, 2, 1);
   setDigimon(Digimon.IceDevimon, 3, 1);
 
-L2:
+L1:
   return;
 }
 
 section(90) {
   switchToMap(86, Map.FRZL03, 0, 15);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.SnowAgumon, 0, 1);
-  setDigimon(Digimon.SnowAgumon, 1, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.SnowAgumon, 0, 1);
+    setDigimon(Digimon.SnowAgumon, 1, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.SnowGoburimon, 2, 1);
   setDigimon(Digimon.SnowGoburimon, 3, 1);
 
-L2:
+L1:
   return;
 }
 
 section(91) {
   switchToMap(87, Map.FRZL04, 0, 15);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Hyogamon);
-  loadAndSetDigimon(Digimon.SnowGoburimon, 0, 1);
-  setDigimon(Digimon.SnowGoburimon, 1, 1);
-  setDigimon(Digimon.Hyogamon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Hyogamon);
+    loadAndSetDigimon(Digimon.SnowGoburimon, 0, 1);
+    setDigimon(Digimon.SnowGoburimon, 1, 1);
+    setDigimon(Digimon.Hyogamon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.IceDevimon);
   for id in 3..5 {
     setDigimon(Digimon.IceDevimon, id, 1);
   }
 
-L2:
+L1:
   return;
 }
 
@@ -1310,85 +1223,78 @@ section(92) {
 section(93) {
   switchToMap(89, Map.FRZL06, 0, 15);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Hyogamon);
-  for id in 0..2 {
-    setDigimon(Digimon.Hyogamon, id, 1);
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Hyogamon);
+    for id in 0..2 {
+      setDigimon(Digimon.Hyogamon, id, 1);
+    }
+    goto L1;
   }
-  goto L2;
-
-L1:
   loadDigimon(Digimon.IceDevimon);
   loadDigimon(Digimon.Hyogamon);
   setDigimon(Digimon.IceDevimon, 3, 1);
   setDigimon(Digimon.IceDevimon, 4, 1);
   setDigimon(Digimon.Hyogamon, 5, 1);
 
-L2:
+L1:
   return;
 }
 
 section(94) {
   switchToMap(90, Map.FRZL07, 0, 15);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.SnowGoburimon, 0, 1);
-  setDigimon(Digimon.SnowGoburimon, 1, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.SnowGoburimon, 0, 1);
+    setDigimon(Digimon.SnowGoburimon, 1, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.IceDevimon, 2, 1);
   setDigimon(Digimon.IceDevimon, 3, 1);
 
-L2:
+L1:
   return;
 }
 
 section(95) {
   switchToMap(91, Map.FRZL08, 0, 15);
-  if (trigger(195)) goto L1;
-  loadAndSetDigimon(Digimon.NPCGarurumon, 0, 0);
-  return;
-
-L1:
+  if (!trigger(195)) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, 0, 0);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (!trigger(195) || pstat[107] < 15 || pstat[107] >= 17 || trigger(222) || pstat[29] < 1) goto L2;
-  loadAndSetDigimon(Digimon.NPCGarurumon, 5, 0);
-  return;
-
-L2:
-  if (!trigger(195) || pstat[107] < 17 || trigger(222) || pstat[29] < 1) goto L3;
-  loadAndSetDigimon(Digimon.NPCGarurumon, 0, 0);
-  return;
-
-L3:
+  if (trigger(195) && pstat[107] >= 15 && pstat[107] < 17 && !trigger(222) && pstat[29] >= 1) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, 5, 0);
+    return;
+  }
+  if (trigger(195) && pstat[107] >= 17 && !trigger(222) && pstat[29] >= 1) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, 0, 0);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L4;
-  loadAndSetDigimon(Digimon.SnowAgumon, 1, 1);
-  setDigimon(Digimon.SnowAgumon, 2, 1);
-  goto L5;
-
-L4:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.SnowAgumon, 1, 1);
+    setDigimon(Digimon.SnowAgumon, 2, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Hyogamon, 3, 1);
   setDigimon(Digimon.Hyogamon, 4, 1);
 
-L5:
+L1:
   return;
 }
 
 section(96) {
   switchToMap(92, Map.FRZL12, 0, 15);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.SnowAgumon, 0, 1);
-  setDigimon(Digimon.SnowAgumon, 1, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.SnowAgumon, 0, 1);
+    setDigimon(Digimon.SnowAgumon, 1, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.SnowGoburimon, 2, 1);
   setDigimon(Digimon.SnowGoburimon, 3, 1);
 
-L2:
+L1:
   return;
 }
 
@@ -1462,23 +1368,22 @@ section(104) {
 section(105) {
   switchToMap(101, Map.BETL01, 0, 25);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Tentomon);
-  loadDigimon(Digimon.Dokunemon);
-  for id in 0..2 {
-    setDigimon(Digimon.Tentomon, id, 1);
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Tentomon);
+    loadDigimon(Digimon.Dokunemon);
+    for id in 0..2 {
+      setDigimon(Digimon.Tentomon, id, 1);
+    }
+    setDigimon(Digimon.Dokunemon, 3, 1);
+    goto L1;
   }
-  setDigimon(Digimon.Dokunemon, 3, 1);
-  goto L2;
-
-L1:
   loadDigimon(Digimon.Tentomon);
   loadAndSetDigimon(Digimon.Dokunemon, 4, 1);
   setDigimon(Digimon.Dokunemon, 5, 1);
   setDigimon(Digimon.Tentomon, 6, 1);
   setDigimon(Digimon.Tentomon, 7, 1);
 
-L2:
+L1:
   return;
 }
 
@@ -1490,10 +1395,9 @@ section(106) {
 
 section(107) {
   switchToMap(103, Map.BETL03, 0, 25);
-  if (trigger(219)) goto L1;
-  loadAndSetDigimon(Digimon.NPCKabuterimon, 0, 0);
-
-L1:
+  if (!trigger(219)) {
+    loadAndSetDigimon(Digimon.NPCKabuterimon, 0, 0);
+  }
   loadAndSetDigimon(Digimon.NPCKabuterimon, 1, 0);
   setDigimon(Digimon.NPCKabuterimon, 2, 0);
   return;
@@ -1501,10 +1405,9 @@ L1:
 
 section(108) {
   switchToMap(104, Map.BETL04, 0, 25);
-  if (trigger(251)) goto L1;
-  loadAndSetDigimon(Digimon.NPCKuwagamon, 0, 0);
-
-L1:
+  if (!trigger(251)) {
+    loadAndSetDigimon(Digimon.NPCKuwagamon, 0, 0);
+  }
   loadAndSetDigimon(Digimon.NPCKuwagamon, 1, 0);
   setDigimon(Digimon.NPCKuwagamon, 2, 0);
   return;
@@ -1512,31 +1415,28 @@ L1:
 
 section(109) {
   switchToMap(105, Map.MAYO00, 0, 1);
-  if (trigger(203)) goto L1;
-  loadAndSetDigimon(Digimon.Agumon, 2, 1);
-  return;
-
-L1:
+  if (!trigger(203)) {
+    loadAndSetDigimon(Digimon.Agumon, 2, 1);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L2;
-  loadAndSetDigimon(Digimon.ModokiBetamon, 3, 1);
-  setDigimon(Digimon.ModokiBetamon, 4, 1);
-  goto L3;
-
-L2:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.ModokiBetamon, 3, 1);
+    setDigimon(Digimon.ModokiBetamon, 4, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Dokunemon, 0, 1);
   setDigimon(Digimon.Dokunemon, 1, 1);
 
-L3:
+L1:
   return;
 }
 
 section(110) {
   switchToMap(106, Map.MAYO01_2, 0, 1);
-  if (!trigger(54)) goto L1;
-  return;
-
-L1:
+  if (trigger(54)) {
+    return;
+  }
   loadAndSetDigimon(Digimon.Sukamon, 0, 0);
   setDigimon(Digimon.Sukamon, 1, 0);
   return;
@@ -1544,10 +1444,9 @@ L1:
 
 section(111) {
   switchToMap(107, Map.MAYO02_2, 0, 1);
-  if (!trigger(54)) goto L1;
-  return;
-
-L1:
+  if (trigger(54)) {
+    return;
+  }
   loadAndSetDigimon(Digimon.Sukamon, 0, 0);
   setDigimon(Digimon.Sukamon, 1, 0);
   return;
@@ -1556,23 +1455,20 @@ L1:
 section(112) {
   switchToMap(108, Map.TRAI00, 0, 1);
   loadAndSetDigimon(Digimon.Koromon, 0, 0);
-  if (!trigger(219)) goto L1;
-  loadAndSetDigimon(Digimon.NPCKabuterimon, 1, 0);
-
-L1:
-  if (!trigger(251)) goto L2;
-  loadAndSetDigimon(Digimon.NPCKuwagamon, 2, 0);
-
-L2:
+  if (trigger(219)) {
+    loadAndSetDigimon(Digimon.NPCKabuterimon, 1, 0);
+  }
+  if (trigger(251)) {
+    loadAndSetDigimon(Digimon.NPCKuwagamon, 2, 0);
+  }
   return;
 }
 
 section(113) {
   switchToMap(109, Map.LEOM01, 1, 4);
-  if (!trigger(248) || trigger(333)) goto L1;
-  loadAndSetDigimon(Digimon.NPCNanimon, 0, 0);
-
-L1:
+  if (trigger(248) && !trigger(333)) {
+    loadAndSetDigimon(Digimon.NPCNanimon, 0, 0);
+  }
   return;
 }
 
@@ -1585,46 +1481,43 @@ section(114) {
 section(115) {
   switchToMap(111, Map.MIST01, 0, 20);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Fugamon);
-  loadDigimon(Digimon.MoriShellmon);
-  setDigimon(Digimon.Fugamon, 0, 1);
-  setDigimon(Digimon.Fugamon, 1, 1);
-  setDigimon(Digimon.MoriShellmon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Fugamon);
+    loadDigimon(Digimon.MoriShellmon);
+    setDigimon(Digimon.Fugamon, 0, 1);
+    setDigimon(Digimon.Fugamon, 1, 1);
+    setDigimon(Digimon.MoriShellmon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Darkrizamon);
   loadDigimon(Digimon.Tsukaimon);
   setDigimon(Digimon.Darkrizamon, 3, 1);
   setDigimon(Digimon.Darkrizamon, 4, 1);
   setDigimon(Digimon.Tsukaimon, 5, 1);
 
-L2:
+L1:
   return;
 }
 
 section(116) {
   switchToMap(112, Map.MIST02, 0, 20);
-  if (trigger(114) || trigger(147)) goto L1;
-  loadDigimon(Digimon.MoriShellmon);
-  for id in 0..2 {
-    setDigimon(Digimon.MoriShellmon, id, 1);
+  if (!trigger(114) && !trigger(147)) {
+    loadDigimon(Digimon.MoriShellmon);
+    for id in 0..2 {
+      setDigimon(Digimon.MoriShellmon, id, 1);
+    }
+    return;
   }
-  return;
-
-L1:
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L2;
-  loadAndSetDigimon(Digimon.Fugamon, 3, 1);
-  setDigimon(Digimon.Fugamon, 4, 1);
-  goto L3;
-
-L2:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Fugamon, 3, 1);
+    setDigimon(Digimon.Fugamon, 4, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Darkrizamon, 5, 1);
   setDigimon(Digimon.Darkrizamon, 6, 1);
 
-L3:
+L1:
   return;
 }
 
@@ -1632,54 +1525,49 @@ section(117) {
   switchToMap(113, Map.MIST03, 0, 20);
   pstat[:SavedTime] = time();
   unsetTrigger(174);
-  if (pstat[107] < 4 || pstat[107] > 6 || trigger(250)) goto L1;
-  loadAndSetDigimon(Digimon.NPCKokatorimon, 0, 1);
-  setTrigger(174);
-  return;
-
-L1:
-  if (trigger(114) || trigger(147)) goto L2;
-  loadDigimon(Digimon.Goburimon);
-  for id in 1..3 {
-    setDigimon(Digimon.Goburimon, id, 1);
+  if (pstat[107] >= 4 && pstat[107] <= 6 && !trigger(250)) {
+    loadAndSetDigimon(Digimon.NPCKokatorimon, 0, 1);
+    setTrigger(174);
+    return;
   }
-  return;
-
-L2:
+  if (!trigger(114) && !trigger(147)) {
+    loadDigimon(Digimon.Goburimon);
+    for id in 1..3 {
+      setDigimon(Digimon.Goburimon, id, 1);
+    }
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L3;
-  loadAndSetDigimon(Digimon.MoriShellmon, 4, 1);
-  setDigimon(Digimon.MoriShellmon, 5, 1);
-  goto L4;
-
-L3:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.MoriShellmon, 4, 1);
+    setDigimon(Digimon.MoriShellmon, 5, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Goburimon, 6, 1);
   setDigimon(Digimon.Goburimon, 7, 1);
 
-L4:
+L1:
   return;
 }
 
 section(118) {
   switchToMap(114, Map.MIST04, 0, 20);
-  if (trigger(114) || trigger(147)) goto L1;
-  loadAndSetDigimon(Digimon.Goburimon, 0, 1);
-  return;
-
-L1:
+  if (!trigger(114) && !trigger(147)) {
+    loadAndSetDigimon(Digimon.Goburimon, 0, 1);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L2;
-  loadDigimon(Digimon.Fugamon);
-  loadDigimon(Digimon.MoriShellmon);
-  setDigimon(Digimon.Fugamon, 1, 1);
-  setDigimon(Digimon.MoriShellmon, 2, 1);
-  goto L3;
-
-L2:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Fugamon);
+    loadDigimon(Digimon.MoriShellmon);
+    setDigimon(Digimon.Fugamon, 1, 1);
+    setDigimon(Digimon.MoriShellmon, 2, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Saberdramon, 3, 1);
   setDigimon(Digimon.Saberdramon, 4, 1);
 
-L3:
+L1:
   return;
 }
 
@@ -1691,51 +1579,47 @@ section(119) {
 
 section(120) {
   switchToMap(116, Map.MIST06, 0, 20);
-  if (trigger(217)) goto L1;
-  loadAndSetDigimon(Digimon.NPCGabumon, 0, 1);
-  return;
-
-L1:
+  if (!trigger(217)) {
+    loadAndSetDigimon(Digimon.NPCGabumon, 0, 1);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L2;
-  loadAndSetDigimon(Digimon.Goburimon, 1, 1);
-  setDigimon(Digimon.Goburimon, 2, 1);
-  goto L3;
-
-L2:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Goburimon, 1, 1);
+    setDigimon(Digimon.Goburimon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Tsukaimon);
   loadDigimon(Digimon.Darkrizamon);
   setDigimon(Digimon.Tsukaimon, 3, 1);
   setDigimon(Digimon.Darkrizamon, 4, 1);
 
-L3:
+L1:
   return;
 }
 
 section(121) {
   switchToMap(117, Map.MIST07, 0, 20);
-  if (trigger(114) || trigger(147)) goto L1;
-  loadDigimon(Digimon.Fugamon);
-  for id in 0..2 {
-    setDigimon(Digimon.Fugamon, id, 1);
+  if (!trigger(114) && !trigger(147)) {
+    loadDigimon(Digimon.Fugamon);
+    for id in 0..2 {
+      setDigimon(Digimon.Fugamon, id, 1);
+    }
+    return;
   }
-  return;
-
-L1:
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L2;
-  loadDigimon(Digimon.Goburimon);
-  loadDigimon(Digimon.Fugamon);
-  setDigimon(Digimon.Goburimon, 3, 1);
-  setDigimon(Digimon.Goburimon, 4, 1);
-  setDigimon(Digimon.Fugamon, 5, 1);
-  goto L3;
-
-L2:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Goburimon);
+    loadDigimon(Digimon.Fugamon);
+    setDigimon(Digimon.Goburimon, 3, 1);
+    setDigimon(Digimon.Goburimon, 4, 1);
+    setDigimon(Digimon.Fugamon, 5, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Tsukaimon, 6, 1);
   setDigimon(Digimon.Tsukaimon, 7, 1);
 
-L3:
+L1:
   return;
 }
 
@@ -1770,20 +1654,18 @@ section(127) {
   switchToMap(122, Map.GCAN04_2, 0, 6);
   loadDigimon(Digimon.Goburimon);
   loadDigimon(Digimon.NPCShellmon);
-  if (!trigger(181) || !trigger(182) || trigger(235)) goto L1;
-  setDigimon(Digimon.NPCShellmon, 0, 0);
-
-L1:
+  if (trigger(181) && trigger(182) && !trigger(235)) {
+    setDigimon(Digimon.NPCShellmon, 0, 0);
+  }
   setDigimon(Digimon.Goburimon, 1, 1);
   return;
 }
 
 section(128) {
   switchToMap(123, Map.GCAN08_2, 0, 6);
-  if (!trigger(197)) goto L1;
-  return;
-
-L1:
+  if (trigger(197)) {
+    return;
+  }
   loadDigimon(Digimon.Goburimon);
   for id in 0..2 {
     setDigimon(Digimon.Goburimon, id, 1);
@@ -1812,126 +1694,113 @@ section(131) {
 section(132) {
   switchToMap(127, Map.FRZL13, 0, 15);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.Hyogamon, 0, 1);
-  setDigimon(Digimon.Hyogamon, 1, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Hyogamon, 0, 1);
+    setDigimon(Digimon.Hyogamon, 1, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.IceDevimon, 2, 1);
   setDigimon(Digimon.IceDevimon, 3, 1);
 
-L2:
+L1:
   return;
 }
 
 section(133) {
   switchToMap(128, Map.FRZL14, 0, 15);
   loadDigimon(Digimon.NPCMojyamon);
-  if (trigger(108)) goto L1;
-  setDigimon(Digimon.NPCMojyamon, 0, 0);
-
-L1:
-  if (trigger(109)) goto L2;
-  setDigimon(Digimon.NPCMojyamon, 1, 0);
-
-L2:
+  if (!trigger(108)) {
+    setDigimon(Digimon.NPCMojyamon, 0, 0);
+  }
+  if (!trigger(109)) {
+    setDigimon(Digimon.NPCMojyamon, 1, 0);
+  }
   return;
 }
 
 section(134) {
   switchToMap(129, Map.FRZL15, 0, 15);
-  if (trigger(257)) goto L1;
-  loadAndSetDigimon(Digimon.Penguinmon, 0, 0);
-
-L1:
-  if (trigger(107)) goto L2;
-  loadAndSetDigimon(Digimon.NPCMojyamon, 1, 0);
-
-L2:
+  if (!trigger(257)) {
+    loadAndSetDigimon(Digimon.Penguinmon, 0, 0);
+  }
+  if (!trigger(107)) {
+    loadAndSetDigimon(Digimon.NPCMojyamon, 1, 0);
+  }
   return;
 }
 
 section(135) {
   switchToMap(130, Map.FRZL16, 0, 15);
-  if (!trigger(175) || trigger(224)) goto L1;
-  loadAndSetDigimon(Digimon.NPCWhamon, 1, 0);
-
-L1:
+  if (trigger(175) && !trigger(224)) {
+    loadAndSetDigimon(Digimon.NPCWhamon, 1, 0);
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L2;
-  loadAndSetDigimon(Digimon.SnowGoburimon, 0, 1);
-  goto L3;
-
-L2:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.SnowGoburimon, 0, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.IceDevimon, 2, 1);
 
-L3:
+L1:
   return;
 }
 
 section(136) {
   switchToMap(131, Map.FRZL17, 1, 16);
-  if (pstat[122] != 1) goto L1;
-  loadAndSetDigimon(Digimon.NPCMetalMamemon, 1, 0);
-  return;
-
-L1:
-  if (pstat[113] != 1) goto L2;
-  loadAndSetDigimon(Digimon.Penguinmon, 0, 0);
-
-L2:
+  if (pstat[122] == 1) {
+    loadAndSetDigimon(Digimon.NPCMetalMamemon, 1, 0);
+    return;
+  }
+  if (pstat[113] == 1) {
+    loadAndSetDigimon(Digimon.Penguinmon, 0, 0);
+  }
   return;
 }
 
 section(137) {
   switchToMap(132, Map.FRZL18, 4, 15);
-  if (trigger(223)) goto L1;
-  loadAndSetDigimon(Digimon.NPCFrigimon, 0, 0);
-
-L1:
+  if (!trigger(223)) {
+    loadAndSetDigimon(Digimon.NPCFrigimon, 0, 0);
+  }
   return;
 }
 
 section(138) {
   switchToMap(133, Map.STIC01, 0, 19);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Yanmamon);
-  for id in 0..2 {
-    setDigimon(Digimon.Yanmamon, id, 1);
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Yanmamon);
+    for id in 0..2 {
+      setDigimon(Digimon.Yanmamon, id, 1);
+    }
+    goto L1;
   }
-  goto L2;
-
-L1:
   loadDigimon(Digimon.Gekomon);
   for id in 3..5 {
     setDigimon(Digimon.Gekomon, id, 1);
   }
 
-L2:
+L1:
   return;
 }
 
 section(139) {
   switchToMap(134, Map.STIC02, 0, 19);
   roll(pstat: 110, max: 2);
-  if (pstat[110] > 0 || trigger(309)) goto L1;
-  loadAndSetDigimon(Digimon.Otamamon, 4, 0);
-  return;
-
-L1:
+  if (pstat[110] <= 0 && !trigger(309)) {
+    loadAndSetDigimon(Digimon.Otamamon, 4, 0);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L2;
-  loadAndSetDigimon(Digimon.Yanmamon, 0, 1);
-  setDigimon(Digimon.Yanmamon, 1, 1);
-  goto L3;
-
-L2:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Yanmamon, 0, 1);
+    setDigimon(Digimon.Yanmamon, 1, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Gekomon, 2, 1);
   setDigimon(Digimon.Gekomon, 3, 1);
 
-L3:
+L1:
   return;
 }
 
@@ -1959,75 +1828,69 @@ section(142) {
 
 section(143) {
   switchToMap(137, Map.OGRE11, 8, 26);
-  if (trigger(150)) goto L1;
-  for x in [:NPCOgremon, :NPCGabumon, :WaruSeadramon] {
-    loadDigimon(x);
+  if (!trigger(150)) {
+    for x in [:NPCOgremon, :NPCGabumon, :WaruSeadramon] {
+      loadDigimon(x);
+    }
+    setDigimon(Digimon.NPCOgremon, 0, 0);
+    setDigimon(Digimon.NPCGabumon, 1, 0);
+    setDigimon(Digimon.NPCGabumon, 2, 0);
   }
-  setDigimon(Digimon.NPCOgremon, 0, 0);
-  setDigimon(Digimon.NPCGabumon, 1, 0);
-  setDigimon(Digimon.NPCGabumon, 2, 0);
-
-L1:
   return;
 }
 
 section(144) {
   setScript(138, Map.OMOC01);
-  if (!trigger(350)) goto L1;
-  setPStat(245, 6);
-  setBGM(21);
-  goto L2;
-
-L1:
+  if (trigger(350)) {
+    setPStat(245, 6);
+    setBGM(21);
+    goto L1;
+  }
   setPStat(245, 5);
   setBGM(21);
 
-L2:
-  if (!trigger(350)) goto L3;
-  for x in [:ClearAgumon, :ToyAgumon, :Tankmon] {
-    loadDigimon(x);
+L1:
+  if (trigger(350)) {
+    for x in [:ClearAgumon, :ToyAgumon, :Tankmon] {
+      loadDigimon(x);
+    }
+    setDigimon(Digimon.ClearAgumon, 0, 0);
+    setDigimon(Digimon.ToyAgumon, 1, 0);
+    setDigimon(Digimon.Tankmon, 2, 0);
   }
-  setDigimon(Digimon.ClearAgumon, 0, 0);
-  setDigimon(Digimon.ToyAgumon, 1, 0);
-  setDigimon(Digimon.Tankmon, 2, 0);
-
-L3:
   return;
 }
 
 section(145) {
   setScript(139, Map.OMOC02);
-  if (!trigger(350)) goto L1;
-  setPStat(245, 6);
-  setBGM(21);
-  goto L2;
-
-L1:
+  if (trigger(350)) {
+    setPStat(245, 6);
+    setBGM(21);
+    goto L1;
+  }
   setPStat(245, 5);
   setBGM(21);
 
-L2:
+L1:
   storeDigimonType(103);
-  if (!trigger(350) && pstat[103] != 14) goto L3;
-  return;
-
-L3:
+  if (trigger(350) || pstat[103] == 14) {
+    return;
+  }
   loadAndSetDigimon(Digimon.NPCMonzaemon, 0, 0);
   return;
 }
 
 section(146) {
   setScript(140, Map.OMOC03);
-  if (!trigger(350)) goto L1;
-  setPStat(245, 6);
-  setBGM(21);
-  goto L2;
-
-L1:
+  if (trigger(350)) {
+    setPStat(245, 6);
+    setBGM(21);
+    goto L1;
+  }
   setPStat(245, 5);
   setBGM(21);
 
-L2:
+L1:
   loadDigimon(Digimon.Tinmon);
   for x in [0, 2, 3] {
     setDigimon(Digimon.Tinmon, x, 0);
@@ -2037,31 +1900,29 @@ L2:
 
 section(147) {
   setScript(141, Map.OMOC04);
-  if (!trigger(350)) goto L1;
-  setPStat(245, 6);
-  setBGM(21);
-  goto L2;
-
-L1:
+  if (trigger(350)) {
+    setPStat(245, 6);
+    setBGM(21);
+    goto L1;
+  }
   setPStat(245, 5);
   setBGM(21);
 
-L2:
+L1:
   return;
 }
 
 section(148) {
   setScript(142, Map.OMOC05);
-  if (!trigger(350)) goto L1;
-  setPStat(245, 6);
-  setBGM(21);
-  goto L2;
-
-L1:
+  if (trigger(350)) {
+    setPStat(245, 6);
+    setBGM(21);
+    goto L1;
+  }
   setPStat(245, 5);
   setBGM(21);
 
-L2:
+L1:
   loadDigimon(Digimon.ToyAgumon);
   for id in 0..2 {
     setDigimon(Digimon.ToyAgumon, id, 1);
@@ -2071,16 +1932,15 @@ L2:
 
 section(149) {
   setScript(143, Map.OMOC06);
-  if (!trigger(350)) goto L1;
-  setPStat(245, 6);
-  setBGM(21);
-  goto L2;
-
-L1:
+  if (trigger(350)) {
+    setPStat(245, 6);
+    setBGM(21);
+    goto L1;
+  }
   setPStat(245, 5);
   setBGM(21);
 
-L2:
+L1:
   loadAndSetDigimon(Digimon.Tankmon, 0, 1);
   setDigimon(Digimon.Tankmon, 1, 1);
   return;
@@ -2088,16 +1948,15 @@ L2:
 
 section(150) {
   setScript(144, Map.OMOC07);
-  if (!trigger(350)) goto L1;
-  setPStat(245, 6);
-  setBGM(21);
-  goto L2;
-
-L1:
+  if (trigger(350)) {
+    setPStat(245, 6);
+    setBGM(21);
+    goto L1;
+  }
   setPStat(245, 5);
   setBGM(21);
 
-L2:
+L1:
   loadDigimon(Digimon.ClearAgumon);
   for id in 0..2 {
     setDigimon(Digimon.ClearAgumon, id, 1);
@@ -2107,38 +1966,35 @@ L2:
 
 section(151) {
   setScript(145, Map.OMOC08);
-  if (!trigger(350)) goto L1;
-  setPStat(245, 6);
-  setBGM(21);
-  goto L2;
-
-L1:
+  if (trigger(350)) {
+    setPStat(245, 6);
+    setBGM(21);
+    goto L1;
+  }
   setPStat(245, 5);
   setBGM(21);
 
-L2:
+L1:
   loadDigimon(Digimon.WaruMonzaemon);
   loadDigimon(Digimon.Hagurumon);
-  if (!trigger(350) || trigger(337)) goto L3;
-  loadAndSetDigimon(Digimon.NPCNanimon, 1, 0);
-
-L3:
+  if (trigger(350) && !trigger(337)) {
+    loadAndSetDigimon(Digimon.NPCNanimon, 1, 0);
+  }
   return;
 }
 
 section(152) {
   switchToMap(146, Map.FACT01, 0, 22);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadAndSetDigimon(Digimon.Guardromon, 0, 1);
-  setDigimon(Digimon.Guardromon, 1, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Guardromon, 0, 1);
+    setDigimon(Digimon.Guardromon, 1, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.PlatinumSukamon, 2, 1);
   setDigimon(Digimon.PlatinumSukamon, 3, 1);
 
-L2:
+L1:
   loadAndSetDigimon(Digimon.NPCWhamon, 4, 0);
   return;
 }
@@ -2146,87 +2002,78 @@ L2:
 section(153) {
   switchToMap(147, Map.FACT02, 0, 22);
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 2 || trigger(227)) goto L1;
-  loadAndSetDigimon(Digimon.NPCMetalMamemon, 4, 1);
-  return;
-
-L1:
+  if (pstat[110] <= 2 && !trigger(227)) {
+    loadAndSetDigimon(Digimon.NPCMetalMamemon, 4, 1);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L2;
-  loadAndSetDigimon(Digimon.Guardromon, 0, 1);
-  setDigimon(Digimon.Guardromon, 1, 1);
-  goto L3;
-
-L2:
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Guardromon, 0, 1);
+    setDigimon(Digimon.Guardromon, 1, 1);
+    goto L1;
+  }
   loadAndSetDigimon(Digimon.Geremon, 2, 1);
   setDigimon(Digimon.Geremon, 3, 1);
 
-L3:
+L1:
   return;
 }
 
 section(154) {
   switchToMap(148, Map.FACT03, 0, 22);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Guardromon);
-  loadDigimon(Digimon.PlatinumSukamon);
-  setDigimon(Digimon.Guardromon, 0, 1);
-  setDigimon(Digimon.PlatinumSukamon, 1, 1);
-  setDigimon(Digimon.PlatinumSukamon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Guardromon);
+    loadDigimon(Digimon.PlatinumSukamon);
+    setDigimon(Digimon.Guardromon, 0, 1);
+    setDigimon(Digimon.PlatinumSukamon, 1, 1);
+    setDigimon(Digimon.PlatinumSukamon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Geremon);
   loadDigimon(Digimon.Guardromon);
   setDigimon(Digimon.Geremon, 3, 1);
   setDigimon(Digimon.Guardromon, 4, 1);
   setDigimon(Digimon.Guardromon, 5, 1);
 
-L2:
+L1:
   return;
 }
 
 section(155) {
   switchToMap(149, Map.FACT04, 0, 22);
   pstat[:SavedTime] = time();
-  if (pstat[107] != 11 || pstat[108] < 55) goto L1;
-  return;
-
-L1:
-  if (pstat[107] != 12 || pstat[108] > 5) goto L2;
-  return;
-
-L2:
-  if (pstat[107] != 23 || pstat[108] < 55) goto L3;
-  return;
-
-L3:
-  if (pstat[107] != 0 || pstat[108] > 5) goto L4;
-  return;
-
-L4:
-  if (trigger(332)) goto L5;
-  loadAndSetDigimon(Digimon.Guardromon, 6, 0);
-  setDigimon(Digimon.Guardromon, 7, 0);
-  return;
-
-L5:
-  pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L6;
-  loadDigimon(Digimon.Geremon);
-  for id in 0..2 {
-    setDigimon(Digimon.Geremon, id, 1);
+  if (pstat[107] == 11 && pstat[108] >= 55) {
+    return;
   }
-  goto L7;
-
-L6:
+  if (pstat[107] == 12 && pstat[108] <= 5) {
+    return;
+  }
+  if (pstat[107] == 23 && pstat[108] >= 55) {
+    return;
+  }
+  if (pstat[107] == 0 && pstat[108] <= 5) {
+    return;
+  }
+  if (!trigger(332)) {
+    loadAndSetDigimon(Digimon.Guardromon, 6, 0);
+    setDigimon(Digimon.Guardromon, 7, 0);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Geremon);
+    for id in 0..2 {
+      setDigimon(Digimon.Geremon, id, 1);
+    }
+    goto L1;
+  }
   loadDigimon(Digimon.PlatinumSukamon);
   for id in 3..5 {
     setDigimon(Digimon.PlatinumSukamon, id, 1);
   }
 
-L7:
+L1:
   return;
 }
 
@@ -2244,30 +2091,28 @@ section(157) {
 section(158) {
   switchToMap(152, Map.FACT07, 0, 22);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Guardromon);
-  loadAndSetDigimon(Digimon.Geremon, 0, 1);
-  setDigimon(Digimon.Geremon, 1, 1);
-  setDigimon(Digimon.Guardromon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Guardromon);
+    loadAndSetDigimon(Digimon.Geremon, 0, 1);
+    setDigimon(Digimon.Geremon, 1, 1);
+    setDigimon(Digimon.Guardromon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Guardromon);
   for id in 3..5 {
     setDigimon(Digimon.Guardromon, id, 1);
   }
 
-L2:
+L1:
   return;
 }
 
 section(159) {
   switchToMap(153, Map.FACT08A, 0, 22);
-  if (trigger(241)) goto L1;
-  loadAndSetDigimon(Digimon.NPCGiromon, 0, 0);
-  return;
-
-L1:
+  if (!trigger(241)) {
+    loadAndSetDigimon(Digimon.NPCGiromon, 0, 0);
+    return;
+  }
   return;
 }
 
@@ -2280,21 +2125,20 @@ section(160) {
 section(161) {
   switchToMap(155, Map.FACT09, 0, 22);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Guardromon);
-  loadDigimon(Digimon.PlatinumSukamon);
-  setDigimon(Digimon.Guardromon, 0, 1);
-  setDigimon(Digimon.PlatinumSukamon, 1, 1);
-  setDigimon(Digimon.Guardromon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Guardromon);
+    loadDigimon(Digimon.PlatinumSukamon);
+    setDigimon(Digimon.Guardromon, 0, 1);
+    setDigimon(Digimon.PlatinumSukamon, 1, 1);
+    setDigimon(Digimon.Guardromon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Geremon);
   for id in 3..5 {
     setDigimon(Digimon.Geremon, id, 1);
   }
 
-L2:
+L1:
   return;
 }
 
@@ -2314,21 +2158,20 @@ section(163) {
 section(164) {
   switchToMap(158, Map.GOMI01, 0, 24);
   pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L1;
-  loadDigimon(Digimon.Psychemon);
-  loadDigimon(Digimon.Geremon);
-  setDigimon(Digimon.Psychemon, 0, 1);
-  setDigimon(Digimon.Geremon, 1, 1);
-  setDigimon(Digimon.Geremon, 2, 1);
-  goto L2;
-
-L1:
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Psychemon);
+    loadDigimon(Digimon.Geremon);
+    setDigimon(Digimon.Psychemon, 0, 1);
+    setDigimon(Digimon.Geremon, 1, 1);
+    setDigimon(Digimon.Geremon, 2, 1);
+    goto L1;
+  }
   loadDigimon(Digimon.Psychemon);
   loadAndSetDigimon(Digimon.Geremon, 3, 1);
   setDigimon(Digimon.Psychemon, 4, 1);
   setDigimon(Digimon.Psychemon, 5, 1);
 
-L2:
+L1:
   return;
 }
 
@@ -2451,71 +2294,59 @@ L1:
   addPStat(42, 1);
 
 L2:
-  if (!trigger(224)) goto L3;
-  loadAndSetDigimon(Digimon.NPCWhamon, 7, 0);
-  addPStat(42, 1);
+  if (trigger(224)) {
+    loadAndSetDigimon(Digimon.NPCWhamon, 7, 0);
+    addPStat(42, 1);
+  }
+  if (trigger(87) && !trigger(205)) {
+    return;
+  }
+  if (trigger(354) && !trigger(355)) {
+    return;
+  }
+  if (!trigger(84) && trigger(250)) {
+    loadAndSetDigimon(Digimon.NPCKokatorimon, 3, 0);
+    addPStat(42, 1);
+  }
+  if (pstat[42] == 3) {
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    goto L3;
+    goto L3;
+  }
+  goto L4;
 
 L3:
-  if (!trigger(87) || trigger(205)) goto L4;
-  return;
-
-L4:
-  if (!trigger(354) || trigger(355)) goto L5;
-  return;
-
-L5:
-  if (trigger(84) || !trigger(250)) goto L6;
-  loadAndSetDigimon(Digimon.NPCKokatorimon, 3, 0);
-  addPStat(42, 1);
-
-L6:
-  if (pstat[42] != 3) goto L7;
-  return;
-
-L7:
-  pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L8;
-  goto L9;
-  goto L9;
-
-L8:
-  goto L12;
-
-L9:
   roll(pstat: 110, max: 3);
-  if (!trigger(240) || pstat[110] > 0 || pstat[42] > 2) goto L10;
-  loadAndSetDigimon(Digimon.NPCAndromon, 2, 0);
-  addPStat(42, 1);
-
-L10:
-  if (pstat[42] != 3) goto L11;
-  return;
-
-L11:
+  if (trigger(240) && pstat[110] <= 0 && pstat[42] <= 2) {
+    loadAndSetDigimon(Digimon.NPCAndromon, 2, 0);
+    addPStat(42, 1);
+  }
+  if (pstat[42] == 3) {
+    return;
+  }
   loadAndSetDigimon(Digimon.Yuramon, 0, 0);
   return;
 
-L12:
-  if (pstat[42] > 2) goto L13;
-  goto L14;
-
-L13:
+L4:
+  if (pstat[42] <= 2) {
+    goto L5;
+  }
   return;
 
-L14:
-  if (!trigger(250) || !trigger(84) || pstat[107] < 4 || pstat[107] >= 8) goto L15;
-  loadAndSetDigimon(Digimon.NPCKokatorimon, 3, 0);
-  addPStat(42, 1);
-
-L15:
-  if (pstat[42] != 3) goto L16;
-  return;
-
-L16:
-  if (!trigger(239)) goto L17;
-  loadAndSetDigimon(Digimon.NPCSukamon, 1, 0);
-
-L17:
+L5:
+  if (trigger(250) && trigger(84) && pstat[107] >= 4 && pstat[107] < 8) {
+    loadAndSetDigimon(Digimon.NPCKokatorimon, 3, 0);
+    addPStat(42, 1);
+  }
+  if (pstat[42] == 3) {
+    return;
+  }
+  if (trigger(239)) {
+    loadAndSetDigimon(Digimon.NPCSukamon, 1, 0);
+  }
   return;
 }
 
@@ -2612,153 +2443,130 @@ section(192) {
 L1:
   setPStat(38, 0);
   setPStat(39, 0);
-  if (!trigger(204)) goto L3;
-  if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L2;
-  goto L3;
-
-L2:
+  if (!trigger(204)) goto L2;
+  if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
+    goto L2;
+  }
   addPStat(38, 1);
   loadAndSetDigimon(Digimon.NPCBetamon, 2, 0);
 
+L2:
+  if (!trigger(77) && trigger(237)) {
+    addPStat(38, 1);
+    loadAndSetDigimon(Digimon.NPCBakemon, 0, 0);
+  }
+  if (!trigger(78) && trigger(235)) {
+    addPStat(38, 1);
+    loadAndSetDigimon(Digimon.NPCShellmon, 1, 0);
+  }
+  if (pstat[38] == 3) {
+    return;
+  }
+  if (!trigger(79) && trigger(232)) {
+    addPStat(38, 1);
+    loadAndSetDigimon(Digimon.NPCKunemon, 3, 0);
+  }
+  if (pstat[38] == 3) {
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    goto L3;
+  }
+  if (!trigger(80) && trigger(218)) {
+    addPStat(38, 1);
+    loadAndSetDigimon(Digimon.NPCElecmon, 5, 0);
+  }
+  if (pstat[38] != 3) goto L3;
+  return;
+
 L3:
-  if (trigger(77) || !trigger(237)) goto L4;
-  addPStat(38, 1);
-  loadAndSetDigimon(Digimon.NPCBakemon, 0, 0);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    goto L4;
+    goto L4;
+  }
+  goto L7;
 
 L4:
-  if (trigger(78) || !trigger(235)) goto L5;
-  addPStat(38, 1);
-  loadAndSetDigimon(Digimon.NPCShellmon, 1, 0);
-
-L5:
-  if (pstat[38] != 3) goto L6;
-  return;
-
-L6:
-  if (trigger(79) || !trigger(232)) goto L7;
-  addPStat(38, 1);
-  loadAndSetDigimon(Digimon.NPCKunemon, 3, 0);
-
-L7:
-  if (pstat[38] != 3) goto L8;
-  return;
-
-L8:
-  pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L9;
-  goto L11;
-
-L9:
-  if (trigger(80) || !trigger(218)) goto L10;
-  addPStat(38, 1);
-  loadAndSetDigimon(Digimon.NPCElecmon, 5, 0);
-
-L10:
-  if (pstat[38] != 3) goto L11;
-  return;
-
-L11:
-  pstat[:SavedTime] = time();
-  if (pstat[107] not in 7..19) goto L12;
-  goto L13;
-  goto L13;
-
-L12:
-  goto L22;
-
-L13:
   loop {
     addPStat(38, 1);
     loadAndSetDigimon(Digimon.Tsunomon, 4, 0);
-    if (pstat[38] != 3) goto L14;
-    return;
-
-L14:
-    if (!trigger(204)) goto L15;
-    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L15;
+    if (pstat[38] == 3) {
+      return;
+    }
+    if (!trigger(204)) goto L5;
+    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L5;
     addPStat(38, 1);
     loadAndSetDigimon(Digimon.NPCBetamon, 2, 0);
-    if (pstat[38] != 3) goto L15;
+    if (pstat[38] != 3) goto L5;
     return;
 
-L15:
+L5:
     roll(pstat: 110, max: 1);
-    if (pstat[110] != 0 || !trigger(235) || !trigger(78)) goto L16;
-    goto L18;
-
-L16:
-    if (!trigger(234)) goto L17;
-    addPStat(38, 1);
-    loadAndSetDigimon(Digimon.NPCOgremon, 7, 0);
-
-L17:
-    if (pstat[38] != 3) goto L18;
+    if (pstat[110] == 0 && trigger(235) && trigger(78)) {
+      goto L6;
+    }
+    if (trigger(234)) {
+      addPStat(38, 1);
+      loadAndSetDigimon(Digimon.NPCOgremon, 7, 0);
+    }
+    if (pstat[38] != 3) goto L6;
     return;
 
-L18:
-    if (!trigger(235) || !trigger(78)) goto L19;
-    addPStat(38, 1);
-    loadAndSetDigimon(Digimon.NPCShellmon, 1, 0);
-
-L19:
-    if (pstat[38] != 3) goto L20;
-    return;
-
-L20:
+L6:
+    if (trigger(235) && trigger(78)) {
+      addPStat(38, 1);
+      loadAndSetDigimon(Digimon.NPCShellmon, 1, 0);
+    }
+    if (pstat[38] == 3) {
+      return;
+    }
     addPStat(39, 1);
-    if (pstat[39] >= 2) goto L21;
-    goto L22;
-
-L21:
+    if (pstat[39] < 2) {
+      goto L7;
+    }
     return;
 
-L22:
+L7:
     pstat[:SavedTime] = time();
-    if (pstat[107] not in 7..19) goto L23;
-    goto L25;
-
-L23:
-    if (!trigger(237) || !trigger(77)) goto L24;
-    addPStat(38, 1);
-    loadAndSetDigimon(Digimon.NPCBakemon, 0, 0);
-
-L24:
-    if (pstat[38] != 3) goto L25;
+    if (pstat[107] in 7..19) {
+      goto L8;
+    }
+    if (trigger(237) && trigger(77)) {
+      addPStat(38, 1);
+      loadAndSetDigimon(Digimon.NPCBakemon, 0, 0);
+    }
+    if (pstat[38] != 3) goto L8;
     return;
 
-L25:
-    if (!trigger(218)) goto L26;
-    addPStat(38, 1);
-    loadAndSetDigimon(Digimon.NPCElecmon, 5, 0);
-
-L26:
-    if (pstat[38] != 3) goto L27;
-    return;
-
-L27:
+L8:
+    if (trigger(218)) {
+      addPStat(38, 1);
+      loadAndSetDigimon(Digimon.NPCElecmon, 5, 0);
+    }
+    if (pstat[38] == 3) {
+      return;
+    }
     roll(pstat: 110, max: 1);
-    if (pstat[110] != 0 || !trigger(254)) goto L28;
-    goto L30;
-
-L28:
-    if (!trigger(232) || !trigger(79)) goto L29;
-    addPStat(38, 1);
-    loadAndSetDigimon(Digimon.NPCKunemon, 3, 0);
-
-L29:
-    if (pstat[38] != 3) goto L30;
+    if (pstat[110] == 0 && trigger(254)) {
+      goto L9;
+    }
+    if (trigger(232) && trigger(79)) {
+      addPStat(38, 1);
+      loadAndSetDigimon(Digimon.NPCKunemon, 3, 0);
+    }
+    if (pstat[38] != 3) goto L9;
     return;
 
-L30:
-    if (!trigger(254)) goto L31;
-    addPStat(38, 1);
-    loadAndSetDigimon(Digimon.NPCMegadramon, 6, 0);
-
-L31:
-    if (pstat[38] != 3) goto L32;
-    return;
-
-L32:
+L9:
+    if (trigger(254)) {
+      addPStat(38, 1);
+      loadAndSetDigimon(Digimon.NPCMegadramon, 6, 0);
+    }
+    if (pstat[38] == 3) {
+      return;
+    }
     addPStat(39, 1);
     if (pstat[39] >= 2) break;
   }
@@ -2844,23 +2652,21 @@ section(203) {
 
 section(204) {
   switchToMap(164, Map.TWNA01, 0, 28);
-  if (!trigger(55)) goto L1;
-  loadDigimon(Digimon.Jijimon);
-  loadAndSetDigimon(Digimon.Tokomon, 5, 0);
-  setDigimon(Digimon.Jijimon, 3, 0);
-  return;
-
-L1:
-  if (trigger(54)) goto L2;
-  loadDigimon(Digimon.Jijimon);
-  loadDigimon(Digimon.Tokomon);
-  setDigimon(Digimon.Jijimon, 0, 0);
-  setDigimon(Digimon.Tokomon, 1, 0);
-  setDigimon(Digimon.Jijimon, 2, 0);
-  setDigimon(Digimon.Jijimon, 3, 0);
-  return;
-
-L2:
+  if (trigger(55)) {
+    loadDigimon(Digimon.Jijimon);
+    loadAndSetDigimon(Digimon.Tokomon, 5, 0);
+    setDigimon(Digimon.Jijimon, 3, 0);
+    return;
+  }
+  if (!trigger(54)) {
+    loadDigimon(Digimon.Jijimon);
+    loadDigimon(Digimon.Tokomon);
+    setDigimon(Digimon.Jijimon, 0, 0);
+    setDigimon(Digimon.Tokomon, 1, 0);
+    setDigimon(Digimon.Jijimon, 2, 0);
+    setDigimon(Digimon.Jijimon, 3, 0);
+    return;
+  }
   loadDigimon(Digimon.Yuramon);
   loadDigimon(Digimon.Tanemon);
   setDigimon(Digimon.Yuramon, 4, 0);
@@ -2871,10 +2677,9 @@ L2:
 section(205) {
   switchToMap(165, Map.ROOM10, 0, 28);
   loadAndSetDigimon(Digimon.Jijimon, 0, 0);
-  if (!trigger(220)) goto L1;
-  loadAndSetDigimon(Digimon.NPCAngemon, 1, 0);
-
-L1:
+  if (trigger(220)) {
+    loadAndSetDigimon(Digimon.NPCAngemon, 1, 0);
+  }
   loadAndSetDigimon(Digimon.Tokomon, 2, 0);
   return;
 }
@@ -2882,24 +2687,21 @@ L1:
 section(206) {
   switchToMap(166, Map.ROOM11, 0, 28);
   loadAndSetDigimon(Digimon.Botamon, 0, 0);
-  if (!trigger(214)) goto L1;
-  loadAndSetDigimon(Digimon.NPCMonzaemon, 1, 0);
-
-L1:
-  if (!trigger(88) || trigger(50)) goto L2;
-  loadAndSetDigimon(Digimon.NPCAirdramon, 2, 0);
-
-L2:
+  if (trigger(214)) {
+    loadAndSetDigimon(Digimon.NPCMonzaemon, 1, 0);
+  }
+  if (trigger(88) && !trigger(50)) {
+    loadAndSetDigimon(Digimon.NPCAirdramon, 2, 0);
+  }
   return;
 }
 
 section(207) {
   switchToMap(167, Map.ROOM12, 0, 28);
   loadAndSetDigimon(Digimon.NPCBirdramon, 0, 0);
-  if (!trigger(248)) goto L1;
-  loadAndSetDigimon(Digimon.NPCLeomon, 1, 0);
-
-L1:
+  if (trigger(248)) {
+    loadAndSetDigimon(Digimon.NPCLeomon, 1, 0);
+  }
   return;
 }
 
@@ -2912,10 +2714,9 @@ section(208) {
 section(209) {
   switchToMap(169, Map.ROOM14, 0, 28);
   loadAndSetDigimon(Digimon.NPCDrimogemon, 0, 0);
-  if (!trigger(217)) goto L1;
-  loadAndSetDigimon(Digimon.NPCGabumon, 1, 0);
-
-L1:
+  if (trigger(217)) {
+    loadAndSetDigimon(Digimon.NPCGabumon, 1, 0);
+  }
   return;
 }
 
@@ -2935,10 +2736,9 @@ section(211) {
   loadDigimon(Digimon.Poyomon);
   setDigimon(Digimon.Agumon, 0, 0);
   setDigimon(Digimon.Poyomon, 1, 0);
-  if (!trigger(253)) goto L1;
-  loadAndSetDigimon(Digimon.NPCNanimon, 2, 0);
-
-L1:
+  if (trigger(253)) {
+    loadAndSetDigimon(Digimon.NPCNanimon, 2, 0);
+  }
   return;
 }
 
@@ -2966,356 +2766,302 @@ L1:
 
 section(214) {
   switchToMap(174, Map.ROOM05A, 0, 28);
-  if (!trigger(209) || trigger(58)) goto L1;
-  loadAndSetDigimon(Digimon.NPCMeramon, 0, 0);
-  setPStat(27, 0);
-  return;
-
-L1:
-  if (!trigger(208) || trigger(61)) goto L2;
-  loadAndSetDigimon(Digimon.NPCTyrannomon, 1, 0);
-  setPStat(27, 1);
-  return;
-
-L2:
-  if (!trigger(222) || trigger(60)) goto L3;
-  loadAndSetDigimon(Digimon.NPCGarurumon, 2, 0);
-  setPStat(27, 2);
-  return;
-
-L3:
-  if (!trigger(223) || trigger(59)) goto L4;
-  loadAndSetDigimon(Digimon.NPCFrigimon, 3, 0);
-  setPStat(27, 3);
-  return;
-
-L4:
+  if (trigger(209) && !trigger(58)) {
+    loadAndSetDigimon(Digimon.NPCMeramon, 0, 0);
+    setPStat(27, 0);
+    return;
+  }
+  if (trigger(208) && !trigger(61)) {
+    loadAndSetDigimon(Digimon.NPCTyrannomon, 1, 0);
+    setPStat(27, 1);
+    return;
+  }
+  if (trigger(222) && !trigger(60)) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, 2, 0);
+    setPStat(27, 2);
+    return;
+  }
+  if (trigger(223) && !trigger(59)) {
+    loadAndSetDigimon(Digimon.NPCFrigimon, 3, 0);
+    setPStat(27, 3);
+    return;
+  }
   roll(pstat: 110, max: 99);
-  if (!trigger(228) || pstat[110] > 19) goto L5;
-  loadAndSetDigimon(Digimon.NPCVademon, 4, 0);
-  setPStat(27, 4);
-  return;
-
-L5:
+  if (trigger(228) && pstat[110] <= 19) {
+    loadAndSetDigimon(Digimon.NPCVademon, 4, 0);
+    setPStat(27, 4);
+    return;
+  }
   roll(pstat: 110, max: 99);
-  if (!trigger(256) || pstat[110] > 9) goto L6;
-  loadAndSetDigimon(Digimon.NPCDigitamamon, 5, 0);
-  setPStat(27, 5);
-  return;
-
-L6:
+  if (trigger(256) && pstat[110] <= 9) {
+    loadAndSetDigimon(Digimon.NPCDigitamamon, 5, 0);
+    setPStat(27, 5);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (!trigger(58) || pstat[107] < 12 || pstat[107] >= 18) goto L7;
-  loadAndSetDigimon(Digimon.NPCMeramon, 0, 0);
-  setPStat(27, 0);
-  return;
-
-L7:
-  if (!trigger(61) || pstat[107] < 6 || pstat[107] >= 12) goto L8;
-  loadAndSetDigimon(Digimon.NPCTyrannomon, 1, 0);
-  setPStat(27, 1);
-  return;
-
-L8:
-  if (!trigger(60) || pstat[107] < 0 || pstat[107] >= 6) goto L9;
-  loadAndSetDigimon(Digimon.NPCGarurumon, 2, 0);
-  setPStat(27, 2);
-  return;
-
-L9:
-  if (!trigger(59) || pstat[107] < 18) goto L10;
-  loadAndSetDigimon(Digimon.NPCFrigimon, 3, 0);
-  setPStat(27, 3);
-  return;
-
-L10:
-  if (!trigger(209)) goto L11;
-  loadAndSetDigimon(Digimon.NPCMeramon, 0, 0);
-  setPStat(27, 0);
-  return;
-
-L11:
-  if (!trigger(208)) goto L12;
-  loadAndSetDigimon(Digimon.NPCTyrannomon, 1, 0);
-  setPStat(27, 1);
-  return;
-
-L12:
-  if (!trigger(222)) goto L13;
-  loadAndSetDigimon(Digimon.NPCGarurumon, 2, 0);
-  setPStat(27, 2);
-  return;
-
-L13:
-  if (!trigger(223)) goto L14;
-  loadAndSetDigimon(Digimon.NPCFrigimon, 3, 0);
-  setPStat(27, 3);
-  return;
-
-L14:
+  if (trigger(58) && pstat[107] >= 12 && pstat[107] < 18) {
+    loadAndSetDigimon(Digimon.NPCMeramon, 0, 0);
+    setPStat(27, 0);
+    return;
+  }
+  if (trigger(61) && pstat[107] >= 6 && pstat[107] < 12) {
+    loadAndSetDigimon(Digimon.NPCTyrannomon, 1, 0);
+    setPStat(27, 1);
+    return;
+  }
+  if (trigger(60) && pstat[107] >= 0 && pstat[107] < 6) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, 2, 0);
+    setPStat(27, 2);
+    return;
+  }
+  if (trigger(59) && pstat[107] >= 18) {
+    loadAndSetDigimon(Digimon.NPCFrigimon, 3, 0);
+    setPStat(27, 3);
+    return;
+  }
+  if (trigger(209)) {
+    loadAndSetDigimon(Digimon.NPCMeramon, 0, 0);
+    setPStat(27, 0);
+    return;
+  }
+  if (trigger(208)) {
+    loadAndSetDigimon(Digimon.NPCTyrannomon, 1, 0);
+    setPStat(27, 1);
+    return;
+  }
+  if (trigger(222)) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, 2, 0);
+    setPStat(27, 2);
+    return;
+  }
+  if (trigger(223)) {
+    loadAndSetDigimon(Digimon.NPCFrigimon, 3, 0);
+    setPStat(27, 3);
+    return;
+  }
   return;
 }
 
 section(215) {
   switchToMap(175, Map.ROOM05B, 0, 28);
   loadAndSetDigimon(Digimon.NPCGiromon, 6, 0);
-  if (!trigger(209) || trigger(58)) goto L1;
-  loadAndSetDigimon(Digimon.NPCMeramon, 0, 0);
-  setPStat(27, 0);
-  return;
-
-L1:
-  if (!trigger(208) || trigger(61)) goto L2;
-  loadAndSetDigimon(Digimon.NPCTyrannomon, 1, 0);
-  setPStat(27, 1);
-  return;
-
-L2:
-  if (!trigger(222) || trigger(60)) goto L3;
-  loadAndSetDigimon(Digimon.NPCGarurumon, 2, 0);
-  setPStat(27, 2);
-  return;
-
-L3:
-  if (!trigger(223) || trigger(59)) goto L4;
-  loadAndSetDigimon(Digimon.NPCFrigimon, 3, 0);
-  setPStat(27, 3);
-  return;
-
-L4:
+  if (trigger(209) && !trigger(58)) {
+    loadAndSetDigimon(Digimon.NPCMeramon, 0, 0);
+    setPStat(27, 0);
+    return;
+  }
+  if (trigger(208) && !trigger(61)) {
+    loadAndSetDigimon(Digimon.NPCTyrannomon, 1, 0);
+    setPStat(27, 1);
+    return;
+  }
+  if (trigger(222) && !trigger(60)) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, 2, 0);
+    setPStat(27, 2);
+    return;
+  }
+  if (trigger(223) && !trigger(59)) {
+    loadAndSetDigimon(Digimon.NPCFrigimon, 3, 0);
+    setPStat(27, 3);
+    return;
+  }
   roll(pstat: 110, max: 99);
-  if (!trigger(228) || pstat[110] > 19) goto L5;
-  loadAndSetDigimon(Digimon.NPCVademon, 4, 0);
-  setPStat(27, 4);
-  return;
-
-L5:
+  if (trigger(228) && pstat[110] <= 19) {
+    loadAndSetDigimon(Digimon.NPCVademon, 4, 0);
+    setPStat(27, 4);
+    return;
+  }
   roll(pstat: 110, max: 99);
-  if (!trigger(256) || pstat[110] > 9) goto L6;
-  loadAndSetDigimon(Digimon.NPCDigitamamon, 5, 0);
-  setPStat(27, 5);
-  return;
-
-L6:
+  if (trigger(256) && pstat[110] <= 9) {
+    loadAndSetDigimon(Digimon.NPCDigitamamon, 5, 0);
+    setPStat(27, 5);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (!trigger(58) || pstat[107] < 12 || pstat[107] >= 18) goto L7;
-  loadAndSetDigimon(Digimon.NPCMeramon, 0, 0);
-  setPStat(27, 0);
-  return;
-
-L7:
-  if (!trigger(61) || pstat[107] < 6 || pstat[107] >= 12) goto L8;
-  loadAndSetDigimon(Digimon.NPCTyrannomon, 1, 0);
-  setPStat(27, 1);
-  return;
-
-L8:
-  if (!trigger(60) || pstat[107] < 0 || pstat[107] >= 6) goto L9;
-  loadAndSetDigimon(Digimon.NPCGarurumon, 2, 0);
-  setPStat(27, 2);
-  return;
-
-L9:
-  if (!trigger(59) || pstat[107] < 18) goto L10;
-  loadAndSetDigimon(Digimon.NPCFrigimon, 3, 0);
-  setPStat(27, 3);
-  return;
-
-L10:
-  if (!trigger(209)) goto L11;
-  loadAndSetDigimon(Digimon.NPCMeramon, 0, 0);
-  setPStat(27, 0);
-  return;
-
-L11:
-  if (!trigger(208)) goto L12;
-  loadAndSetDigimon(Digimon.NPCTyrannomon, 1, 0);
-  setPStat(27, 1);
-  return;
-
-L12:
-  if (!trigger(222)) goto L13;
-  loadAndSetDigimon(Digimon.NPCGarurumon, 2, 0);
-  setPStat(27, 2);
-  return;
-
-L13:
-  if (!trigger(223)) goto L14;
-  loadAndSetDigimon(Digimon.NPCFrigimon, 3, 0);
-  setPStat(27, 3);
-  return;
-
-L14:
+  if (trigger(58) && pstat[107] >= 12 && pstat[107] < 18) {
+    loadAndSetDigimon(Digimon.NPCMeramon, 0, 0);
+    setPStat(27, 0);
+    return;
+  }
+  if (trigger(61) && pstat[107] >= 6 && pstat[107] < 12) {
+    loadAndSetDigimon(Digimon.NPCTyrannomon, 1, 0);
+    setPStat(27, 1);
+    return;
+  }
+  if (trigger(60) && pstat[107] >= 0 && pstat[107] < 6) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, 2, 0);
+    setPStat(27, 2);
+    return;
+  }
+  if (trigger(59) && pstat[107] >= 18) {
+    loadAndSetDigimon(Digimon.NPCFrigimon, 3, 0);
+    setPStat(27, 3);
+    return;
+  }
+  if (trigger(209)) {
+    loadAndSetDigimon(Digimon.NPCMeramon, 0, 0);
+    setPStat(27, 0);
+    return;
+  }
+  if (trigger(208)) {
+    loadAndSetDigimon(Digimon.NPCTyrannomon, 1, 0);
+    setPStat(27, 1);
+    return;
+  }
+  if (trigger(222)) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, 2, 0);
+    setPStat(27, 2);
+    return;
+  }
+  if (trigger(223)) {
+    loadAndSetDigimon(Digimon.NPCFrigimon, 3, 0);
+    setPStat(27, 3);
+    return;
+  }
   return;
 }
 
 section(216) {
   switchToMap(176, Map.ROOM06, 0, 28);
   loadAndSetDigimon(Digimon.Punimon, 5, 0);
-  if (!trigger(231) || trigger(65)) goto L1;
-  loadAndSetDigimon(Digimon.NPCPatamon, 0, 0);
-  setPStat(25, 0);
-  return;
-
-L1:
-  if (!trigger(245) || trigger(66)) goto L2;
-  loadAndSetDigimon(Digimon.NPCBiyomon, 1, 0);
-  setPStat(25, 1);
-  return;
-
-L2:
-  if (!trigger(233) || trigger(67)) goto L3;
-  loadAndSetDigimon(Digimon.NPCUnimon, 2, 0);
-  setPStat(25, 2);
-  return;
-
-L3:
-  if (!trigger(247) || trigger(68)) goto L4;
-  loadAndSetDigimon(Digimon.NPCMonochromon, 3, 0);
-  setPStat(25, 3);
-  return;
-
-L4:
+  if (trigger(231) && !trigger(65)) {
+    loadAndSetDigimon(Digimon.NPCPatamon, 0, 0);
+    setPStat(25, 0);
+    return;
+  }
+  if (trigger(245) && !trigger(66)) {
+    loadAndSetDigimon(Digimon.NPCBiyomon, 1, 0);
+    setPStat(25, 1);
+    return;
+  }
+  if (trigger(233) && !trigger(67)) {
+    loadAndSetDigimon(Digimon.NPCUnimon, 2, 0);
+    setPStat(25, 2);
+    return;
+  }
+  if (trigger(247) && !trigger(68)) {
+    loadAndSetDigimon(Digimon.NPCMonochromon, 3, 0);
+    setPStat(25, 3);
+    return;
+  }
   unsetTrigger(69);
   roll(pstat: 110, max: 9);
-  if (!trigger(255) || pstat[110] > 1) goto L5;
-  loadAndSetDigimon(Digimon.NPCPiximon, 4, 0);
-  setTrigger(69);
-
-L5:
+  if (trigger(255) && pstat[110] <= 1) {
+    loadAndSetDigimon(Digimon.NPCPiximon, 4, 0);
+    setTrigger(69);
+  }
   pstat[:SavedTime] = time();
-  if (!trigger(65) || pstat[107] < 12 || pstat[107] >= 18) goto L6;
-  loadAndSetDigimon(Digimon.NPCPatamon, 0, 0);
-  setPStat(25, 0);
-  return;
-
-L6:
-  if (!trigger(66) || pstat[107] < 6 || pstat[107] >= 12) goto L7;
-  loadAndSetDigimon(Digimon.NPCBiyomon, 1, 0);
-  setPStat(25, 1);
-  return;
-
-L7:
-  if (!trigger(67) || pstat[107] < 0 || pstat[107] >= 6) goto L8;
-  loadAndSetDigimon(Digimon.NPCUnimon, 2, 0);
-  setPStat(25, 2);
-  return;
-
-L8:
-  if (!trigger(68) || pstat[107] < 18) goto L9;
-  loadAndSetDigimon(Digimon.NPCMonochromon, 3, 0);
-  setPStat(25, 3);
-  return;
-
-L9:
+  if (trigger(65) && pstat[107] >= 12 && pstat[107] < 18) {
+    loadAndSetDigimon(Digimon.NPCPatamon, 0, 0);
+    setPStat(25, 0);
+    return;
+  }
+  if (trigger(66) && pstat[107] >= 6 && pstat[107] < 12) {
+    loadAndSetDigimon(Digimon.NPCBiyomon, 1, 0);
+    setPStat(25, 1);
+    return;
+  }
+  if (trigger(67) && pstat[107] >= 0 && pstat[107] < 6) {
+    loadAndSetDigimon(Digimon.NPCUnimon, 2, 0);
+    setPStat(25, 2);
+    return;
+  }
+  if (trigger(68) && pstat[107] >= 18) {
+    loadAndSetDigimon(Digimon.NPCMonochromon, 3, 0);
+    setPStat(25, 3);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (!trigger(231)) goto L10;
-  loadAndSetDigimon(Digimon.NPCPatamon, 0, 0);
-  setPStat(25, 0);
-  return;
-
-L10:
-  if (!trigger(245)) goto L11;
-  loadAndSetDigimon(Digimon.NPCBiyomon, 1, 0);
-  setPStat(25, 1);
-  return;
-
-L11:
-  if (!trigger(233)) goto L12;
-  loadAndSetDigimon(Digimon.NPCUnimon, 2, 0);
-  setPStat(25, 2);
-  return;
-
-L12:
-  if (!trigger(247)) goto L13;
-  loadAndSetDigimon(Digimon.NPCMonochromon, 3, 0);
-  setPStat(25, 3);
-  return;
-
-L13:
+  if (trigger(231)) {
+    loadAndSetDigimon(Digimon.NPCPatamon, 0, 0);
+    setPStat(25, 0);
+    return;
+  }
+  if (trigger(245)) {
+    loadAndSetDigimon(Digimon.NPCBiyomon, 1, 0);
+    setPStat(25, 1);
+    return;
+  }
+  if (trigger(233)) {
+    loadAndSetDigimon(Digimon.NPCUnimon, 2, 0);
+    setPStat(25, 2);
+    return;
+  }
+  if (trigger(247)) {
+    loadAndSetDigimon(Digimon.NPCMonochromon, 3, 0);
+    setPStat(25, 3);
+    return;
+  }
   return;
 }
 
 section(217) {
   switchToMap(177, Map.ROOM07, 0, 28);
-  if (!trigger(258)) goto L1;
-  loadAndSetDigimon(Digimon.NPCNinjamon, 4, 0);
-
-L1:
-  if (!trigger(211) || trigger(70)) goto L2;
-  loadAndSetDigimon(Digimon.NPCNumemon, 0, 0);
-  setPStat(24, 0);
-  return;
-
-L2:
-  if (!trigger(252) || trigger(71)) goto L3;
-  loadAndSetDigimon(Digimon.NPCMojyamon, 1, 0);
-  setPStat(24, 1);
-  return;
-
-L3:
-  if (!trigger(213) || trigger(72)) goto L4;
-  loadAndSetDigimon(Digimon.NPCMamemon, 2, 0);
-  setPStat(24, 2);
-  return;
-
-L4:
-  if (!trigger(206) || trigger(73)) goto L5;
-  loadAndSetDigimon(Digimon.NPCDevimon, 3, 0);
-  setPStat(24, 3);
-  return;
-
-L5:
+  if (trigger(258)) {
+    loadAndSetDigimon(Digimon.NPCNinjamon, 4, 0);
+  }
+  if (trigger(211) && !trigger(70)) {
+    loadAndSetDigimon(Digimon.NPCNumemon, 0, 0);
+    setPStat(24, 0);
+    return;
+  }
+  if (trigger(252) && !trigger(71)) {
+    loadAndSetDigimon(Digimon.NPCMojyamon, 1, 0);
+    setPStat(24, 1);
+    return;
+  }
+  if (trigger(213) && !trigger(72)) {
+    loadAndSetDigimon(Digimon.NPCMamemon, 2, 0);
+    setPStat(24, 2);
+    return;
+  }
+  if (trigger(206) && !trigger(73)) {
+    loadAndSetDigimon(Digimon.NPCDevimon, 3, 0);
+    setPStat(24, 3);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (!trigger(70) || pstat[107] < 0 || pstat[107] >= 6) goto L6;
-  loadAndSetDigimon(Digimon.NPCNumemon, 0, 0);
-  setPStat(24, 0);
-  return;
-
-L6:
-  if (!trigger(71) || pstat[107] < 6 || pstat[107] >= 12) goto L7;
-  loadAndSetDigimon(Digimon.NPCMojyamon, 1, 0);
-  setPStat(24, 1);
-  return;
-
-L7:
-  if (!trigger(72) || pstat[107] < 12 || pstat[107] >= 18) goto L8;
-  loadAndSetDigimon(Digimon.NPCMamemon, 2, 0);
-  setPStat(24, 2);
-  return;
-
-L8:
-  if (!trigger(73) || pstat[107] < 18) goto L9;
-  loadAndSetDigimon(Digimon.NPCDevimon, 3, 0);
-  setPStat(24, 3);
-  return;
-
-L9:
+  if (trigger(70) && pstat[107] >= 0 && pstat[107] < 6) {
+    loadAndSetDigimon(Digimon.NPCNumemon, 0, 0);
+    setPStat(24, 0);
+    return;
+  }
+  if (trigger(71) && pstat[107] >= 6 && pstat[107] < 12) {
+    loadAndSetDigimon(Digimon.NPCMojyamon, 1, 0);
+    setPStat(24, 1);
+    return;
+  }
+  if (trigger(72) && pstat[107] >= 12 && pstat[107] < 18) {
+    loadAndSetDigimon(Digimon.NPCMamemon, 2, 0);
+    setPStat(24, 2);
+    return;
+  }
+  if (trigger(73) && pstat[107] >= 18) {
+    loadAndSetDigimon(Digimon.NPCDevimon, 3, 0);
+    setPStat(24, 3);
+    return;
+  }
   pstat[:SavedTime] = time();
-  if (!trigger(211)) goto L10;
-  loadAndSetDigimon(Digimon.NPCNumemon, 0, 0);
-  setPStat(24, 0);
-  return;
-
-L10:
-  if (!trigger(252)) goto L11;
-  loadAndSetDigimon(Digimon.NPCMojyamon, 1, 0);
-  setPStat(24, 1);
-  return;
-
-L11:
-  if (!trigger(213)) goto L12;
-  loadAndSetDigimon(Digimon.NPCMamemon, 2, 0);
-  setPStat(24, 2);
-  return;
-
-L12:
-  if (!trigger(206)) goto L13;
-  loadAndSetDigimon(Digimon.NPCDevimon, 3, 0);
-  setPStat(24, 3);
-  return;
-
-L13:
+  if (trigger(211)) {
+    loadAndSetDigimon(Digimon.NPCNumemon, 0, 0);
+    setPStat(24, 0);
+    return;
+  }
+  if (trigger(252)) {
+    loadAndSetDigimon(Digimon.NPCMojyamon, 1, 0);
+    setPStat(24, 1);
+    return;
+  }
+  if (trigger(213)) {
+    loadAndSetDigimon(Digimon.NPCMamemon, 2, 0);
+    setPStat(24, 2);
+    return;
+  }
+  if (trigger(206)) {
+    loadAndSetDigimon(Digimon.NPCDevimon, 3, 0);
+    setPStat(24, 3);
+    return;
+  }
   return;
 }
 
@@ -3342,50 +3088,44 @@ section(219) {
 
 section(220) {
   switchToMap(180, Map.FACT11B, 1, 23);
-  if (!trigger(341) || trigger(211)) goto L1;
-  loadAndSetDigimon(Digimon.NPCNumemon, 1, 0);
-  return;
-
-L1:
-  if (trigger(211)) goto L2;
-  loadAndSetDigimon(Digimon.NPCNumemon, 0, 0);
-
-L2:
-  if (!trigger(330) || trigger(336)) goto L3;
-  loadAndSetDigimon(Digimon.NPCNanimon, 2, 0);
-
-L3:
+  if (trigger(341) && !trigger(211)) {
+    loadAndSetDigimon(Digimon.NPCNumemon, 1, 0);
+    return;
+  }
+  if (!trigger(211)) {
+    loadAndSetDigimon(Digimon.NPCNumemon, 0, 0);
+  }
+  if (trigger(330) && !trigger(336)) {
+    loadAndSetDigimon(Digimon.NPCNanimon, 2, 0);
+  }
   return;
 }
 
 section(221) {
   switchToMap(181, Map.SAIB03, 1, 10);
-  if (trigger(345)) goto L1;
-  loadAndSetDigimon(Digimon.NPCSkullGreymon, 0, 1);
-
-L1:
+  if (!trigger(345)) {
+    loadAndSetDigimon(Digimon.NPCSkullGreymon, 0, 1);
+  }
   return;
 }
 
 section(222) {
   switchToMap(182, Map.MGEN98, 1, 27);
-  if (trigger(326)) goto L1;
-  loadAndSetDigimon(Digimon.NPCMetalGreymon, 0, 1);
-
-L1:
+  if (!trigger(326)) {
+    loadAndSetDigimon(Digimon.NPCMetalGreymon, 0, 1);
+  }
   return;
 }
 
 section(223) {
   switchToMap(168, Map.ROOM19, 0, 28);
   loadAndSetDigimon(Digimon.NPC2Greymon, 0, 0);
-  if (!trigger(50)) goto L1;
-  loadDigimon(Digimon.NPCAirdramon);
-  loadDigimon(Digimon.NPC2MetalGreymon);
-  setDigimon(Digimon.NPCAirdramon, 1, 0);
-  setDigimon(Digimon.NPC2MetalGreymon, 2, 0);
-
-L1:
+  if (trigger(50)) {
+    loadDigimon(Digimon.NPCAirdramon);
+    loadDigimon(Digimon.NPC2MetalGreymon);
+    setDigimon(Digimon.NPCAirdramon, 1, 0);
+    setDigimon(Digimon.NPC2MetalGreymon, 2, 0);
+  }
   return;
 }
 
@@ -3397,16 +3137,14 @@ section(224) {
 
 section(225) {
   switchToMap(184, Map.MGEN99, 10, 27);
-  if (trigger(50)) goto L1;
-  loadAndSetDigimon(Digimon.Analogman, 1, 0);
-  loadDigimon(Digimon.Machinedramon);
-  return;
-
-L1:
-  if (trigger(256) || !trigger(50)) goto L2;
-  loadAndSetDigimon(Digimon.NPCDigitamamon, 3, 0);
-
-L2:
+  if (!trigger(50)) {
+    loadAndSetDigimon(Digimon.Analogman, 1, 0);
+    loadDigimon(Digimon.Machinedramon);
+    return;
+  }
+  if (!trigger(256) && trigger(50)) {
+    loadAndSetDigimon(Digimon.NPCDigitamamon, 3, 0);
+  }
   return;
 }
 
@@ -3465,10 +3203,9 @@ section(232) {
 
 section(233) {
   switchToMap(189, Map.MIHA05, 0, 3);
-  if (trigger(233) || !trigger(53)) goto L1;
-  loadAndSetDigimon(Digimon.NPCUnimon, 0, 0);
-
-L1:
+  if (!trigger(233) && trigger(53)) {
+    loadAndSetDigimon(Digimon.NPCUnimon, 0, 0);
+  }
   return;
 }
 
@@ -3480,28 +3217,24 @@ section(234) {
 
 section(235) {
   switchToMap(191, Map.ROOM20, 0, 28);
-  if (pstat[122] != 1) goto L1;
-  loadAndSetDigimon(Digimon.NPCMetalMamemon, 1, 0);
-  return;
-
-L1:
-  if (pstat[122] != 0) goto L2;
-  loadAndSetDigimon(Digimon.NPCPenguinmon, 0, 0);
-  return;
-
-L2:
+  if (pstat[122] == 1) {
+    loadAndSetDigimon(Digimon.NPCMetalMamemon, 1, 0);
+    return;
+  }
+  if (pstat[122] == 0) {
+    loadAndSetDigimon(Digimon.NPCPenguinmon, 0, 0);
+    return;
+  }
   roll(pstat: 110, max: 7);
-  if (!trigger(227) || pstat[110] > 0) goto L3;
-  setPStat(122, 1);
-  loadAndSetDigimon(Digimon.NPCMetalMamemon, 1, 0);
-  return;
-
-L3:
-  if (!trigger(257)) goto L4;
-  setPStat(122, 0);
-  loadAndSetDigimon(Digimon.NPCPenguinmon, 0, 0);
-
-L4:
+  if (trigger(227) && pstat[110] <= 0) {
+    setPStat(122, 1);
+    loadAndSetDigimon(Digimon.NPCMetalMamemon, 1, 0);
+    return;
+  }
+  if (trigger(257)) {
+    setPStat(122, 0);
+    loadAndSetDigimon(Digimon.NPCPenguinmon, 0, 0);
+  }
   return;
   return;
 }
@@ -3530,16 +3263,15 @@ section(237) {
 
 section(238) {
   switchToMap(193, Map.TOPN01, 0, 28);
-  if (!trigger(55)) goto L1;
-  for x in [:Jijimon, :Tokomon, :Poyomon] {
-    loadDigimon(x);
+  if (trigger(55)) {
+    for x in [:Jijimon, :Tokomon, :Poyomon] {
+      loadDigimon(x);
+    }
+    setDigimon(Digimon.Tokomon, 5, 0);
+    setDigimon(Digimon.Jijimon, 3, 0);
+    setDigimon(Digimon.Poyomon, 7, 0);
+    return;
   }
-  setDigimon(Digimon.Tokomon, 5, 0);
-  setDigimon(Digimon.Jijimon, 3, 0);
-  setDigimon(Digimon.Poyomon, 7, 0);
-  return;
-
-L1:
   return;
 }
 
@@ -3585,11 +3317,10 @@ section(246) {
 
 section(247) {
   switchToMap(194, Map.MGEN06, 1, 27);
-  if (trigger(321)) goto L1;
-  loadAndSetDigimon(Digimon.NPCDevimon, 5, 1);
-  return;
-
-L1:
+  if (!trigger(321)) {
+    loadAndSetDigimon(Digimon.NPCDevimon, 5, 1);
+    return;
+  }
   loadDigimon(Digimon.Vermilimon);
   loadDigimon(Digimon.Piddomon);
   setDigimon(Digimon.Vermilimon, 0, 1);
@@ -3647,11 +3378,10 @@ section(253) {
 
 section onEnter(254) {
   switchToMap(198, Map.MGEN10, 1, 27);
-  if (trigger(254)) goto L1;
-  loadAndSetDigimon(Digimon.NPCMegadramon, 6, 1);
-  return;
-
-L1:
+  if (!trigger(254)) {
+    loadAndSetDigimon(Digimon.NPCMegadramon, 6, 1);
+    return;
+  }
   loadDigimon(Digimon.Gururumon);
   loadAndSetDigimon(Digimon.Piddomon, 0, 1);
   setDigimon(Digimon.Gururumon, 1, 1);
@@ -4903,88 +4633,75 @@ L11:
 section(1244) {
   sfx(0, 7, wait: 10);
   setDialogOwner(Entity.Player);
-  if (pstat[254] != 0) goto L1;
-  showTextbox("It's <LIGHTBLUE><SOME ITEM><WHITE>!\n");
-  goto L2;
-
-L1:
+  if (pstat[254] == 0) {
+    showTextbox("It's <LIGHTBLUE><SOME ITEM><WHITE>!\n");
+    goto L1;
+  }
   showTextbox("But we got too many Items.\n");
 
-L2:
+L1:
   return;
 }
 
 section(1245) {
   playSound(0, 9);
-  if (trigger(203)) goto L1;
-  warp(to: Map.TWNA01, spawn: 0, trigger: 255);
+  if (!trigger(203)) {
+    warp(to: Map.TWNA01, spawn: 0, trigger: 255);
+  }
+  if (trigger(220) || trigger(214) || pstat[1] >= 50) {
+    goto L4;
+    goto L1;
+  }
+  goto L1;
 
 L1:
-  if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L2;
-  goto L11;
-  goto L3;
+  if (trigger(221)) {
+    goto L3;
+    goto L2;
+  }
+  goto L2;
 
 L2:
-  goto L3;
+  if (trigger(225)) {
+    warp(to: Map.TWNA04, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA03, spawn: 0, trigger: 255);
+  }
+  warp(to: Map.TWNA02, spawn: 0, trigger: 255);
 
 L3:
-  if (!trigger(221)) goto L4;
-  goto L8;
-  goto L5;
+  if (trigger(225)) {
+    warp(to: Map.TWNA07, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA06, spawn: 0, trigger: 255);
+  }
+  warp(to: Map.TWNA05, spawn: 0, trigger: 255);
 
 L4:
+  if (trigger(221)) {
+    goto L6;
+    goto L5;
+  }
   goto L5;
 
 L5:
-  if (!trigger(225)) goto L6;
-  warp(to: Map.TWNA04, spawn: 0, trigger: 255);
-
-L6:
-  if (!trigger(246)) goto L7;
-  warp(to: Map.TWNA03, spawn: 0, trigger: 255);
-
-L7:
-  warp(to: Map.TWNA02, spawn: 0, trigger: 255);
-
-L8:
-  if (!trigger(225)) goto L9;
-  warp(to: Map.TWNA07, spawn: 0, trigger: 255);
-
-L9:
-  if (!trigger(246)) goto L10;
-  warp(to: Map.TWNA06, spawn: 0, trigger: 255);
-
-L10:
-  warp(to: Map.TWNA05, spawn: 0, trigger: 255);
-
-L11:
-  if (!trigger(221)) goto L12;
-  goto L16;
-  goto L13;
-
-L12:
-  goto L13;
-
-L13:
-  if (!trigger(225)) goto L14;
-  warp(to: Map.TWNA10, spawn: 0, trigger: 255);
-
-L14:
-  if (!trigger(246)) goto L15;
-  warp(to: Map.TWNA09, spawn: 0, trigger: 255);
-
-L15:
+  if (trigger(225)) {
+    warp(to: Map.TWNA10, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA09, spawn: 0, trigger: 255);
+  }
   warp(to: Map.TWNA08, spawn: 0, trigger: 255);
 
-L16:
-  if (!trigger(225)) goto L17;
-  warp(to: Map.TWNA13, spawn: 0, trigger: 255);
-
-L17:
-  if (!trigger(246)) goto L18;
-  warp(to: Map.TWNA12, spawn: 0, trigger: 255);
-
-L18:
+L6:
+  if (trigger(225)) {
+    warp(to: Map.TWNA13, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA12, spawn: 0, trigger: 255);
+  }
   warp(to: Map.TWNA11, spawn: 0, trigger: 255);
   return;
 }
@@ -4992,21 +4709,18 @@ L18:
 section(1246) {
   unsetTrigger(1);
   setTrigger(41);
-  if (stat[Stat.Lives] != 0 || stat[Stat.CurrentHP] != 0) goto L1;
-  runDigimonRoutine(73, 7);
-  return;
-
-L1:
-  if (stat[Stat.Lives] != 0 || stat[Stat.CurrentHP] == 0) goto L2;
-  runDigimonRoutine(73, 7);
-  return;
-
-L2:
-  if (stat[Stat.Lifetime] > 0) goto L3;
-  runDigimonRoutine(71, 3);
-  return;
-
-L3:
+  if (stat[Stat.Lives] == 0 && stat[Stat.CurrentHP] == 0) {
+    runDigimonRoutine(73, 7);
+    return;
+  }
+  if (stat[Stat.Lives] == 0 && stat[Stat.CurrentHP] != 0) {
+    runDigimonRoutine(73, 7);
+    return;
+  }
+  if (stat[Stat.Lifetime] <= 0) {
+    runDigimonRoutine(71, 3);
+    return;
+  }
   runDigimonRoutine(72, 9);
   return;
 }

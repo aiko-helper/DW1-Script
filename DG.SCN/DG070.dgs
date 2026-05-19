@@ -5,173 +5,158 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 15) goto L1;
-  spawnItem(Item.Digimushroom, x: 38, y: 72);
-
-L1:
+  if (pstat[110] <= 15) {
+    spawnItem(Item.Digimushroom, x: 38, y: 72);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 7) goto L2;
-  spawnItem(Item.Digimushroom, x: 46, y: 81);
-
-L2:
+  if (pstat[110] <= 7) {
+    spawnItem(Item.Digimushroom, x: 46, y: 81);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 18) goto L3;
-  spawnItem(Item.Digimushroom, x: 60, y: 83);
-
-L3:
+  if (pstat[110] <= 18) {
+    spawnItem(Item.Digimushroom, x: 60, y: 83);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 14) goto L4;
-  spawnItem(Item.Digimushroom, x: 69, y: 71);
-
-L4:
+  if (pstat[110] <= 14) {
+    spawnItem(Item.Digimushroom, x: 69, y: 71);
+  }
   return;
 }
 
 section(5) {
-  if (pstat[111] < 1) goto L1;
-  speak(5, "I'm here again.\n");
-  jumpAndLink(L3);
-  playSound(8, 6);
-  speak(5, "Bye!\n");
-  lookPairAt(5);
-  waitForPair();
-  playAnimation(Entity.Player, 16);
-  speak(Entity.Player, "If we go on like this, we'll\njust repeat ourselves.\n");
-  speak(Entity.Player, "Maybe I should wait here.\n");
-  setPStat(111, 2);
-  for id in 191..194 {
-    setTrigger(id);
+  if (pstat[111] >= 1) {
+    speak(5, "I'm here again.\n");
+    jumpAndLink(L1);
+    playSound(8, 6);
+    speak(5, "Bye!\n");
+    lookPairAt(5);
+    waitForPair();
+    playAnimation(Entity.Player, 16);
+    speak(Entity.Player, "If we go on like this, we'll\njust repeat ourselves.\n");
+    speak(Entity.Player, "Maybe I should wait here.\n");
+    setPStat(111, 2);
+    for id in 191..194 {
+      setTrigger(id);
+    }
+    return;
+  }
+  if (pstat[111] == 0) {
+    speak(5, "Who is it?\n");
+    speak(5, "No way.\n");
+    move(entity: 5, to: (-240, -1076), sprint: 1);
+    delay(20);
+    playSound(8, 6);
+    speak(5, "Ahhh!\n");
+    lookPairAt(5);
+    waitForPair();
+    playAnimation(Entity.Player, 14);
+    speak(Entity.Player, "Wait up!\n");
+    move(entity: 5, to: (-240, -1076), sprint: 1);
+    waitForEntity(5);
+    addPStat(111, 1);
+    setPStat(PStat.LastBiyomonChaseLocation, 1);
+    return;
   }
   return;
 
 L1:
-  if (pstat[111] != 0) goto L2;
-  speak(5, "Who is it?\n");
-  speak(5, "No way.\n");
-  move(entity: 5, to: (-240, -1076), sprint: 1);
-  delay(20);
-  playSound(8, 6);
-  speak(5, "Ahhh!\n");
-  lookPairAt(5);
-  waitForPair();
-  playAnimation(Entity.Player, 14);
-  speak(Entity.Player, "Wait up!\n");
-  move(entity: 5, to: (-240, -1076), sprint: 1);
-  waitForEntity(5);
-  addPStat(111, 1);
-  setPStat(PStat.LastBiyomonChaseLocation, 1);
-  return;
-
-L2:
-  return;
-
-L3:
   loop {
     roll(pstat: 110, max: 3);
-    if (pstat[110] != 0 || pstat[112] == 0) goto L4;
-    move(entity: 5, to: (-1055, 2740), sprint: 1);
-    delay(20);
-    setPStat(PStat.LastBiyomonChaseLocation, 0);
-    speak(Entity.Player, "Not again! Wait!\n");
-    lookPairAt(5);
-    move(entity: 5, to: (-1025, 2740), sprint: 1);
-    waitForEntity(5);
-    jumpReturn();
-
-L4:
-    if (pstat[110] != 1 || pstat[112] == 1) goto L5;
-    move(entity: 5, to: (-566, -350), sprint: 1);
-    delay(20);
-    setPStat(PStat.LastBiyomonChaseLocation, 1);
-    speak(Entity.Player, "Not again! Wait!\n");
-    lookPairAt(5);
-    move(entity: 5, to: (-566, -320), sprint: 1);
-    waitForEntity(5);
-    jumpReturn();
-
-L5:
-    if (pstat[110] != 2 || pstat[112] == 2) goto L6;
-    move(entity: 5, to: (1869, -939), sprint: 1);
-    delay(20);
-    setPStat(PStat.LastBiyomonChaseLocation, 2);
-    speak(Entity.Player, "Not again! Wait!\n");
-    lookPairAt(5);
-    move(entity: 5, to: (1869, -939), sprint: 1);
-    waitForEntity(5);
-    jumpReturn();
-
-L6:
-    if (pstat[110] != 3 || pstat[112] == 3) goto L7;
-    move(entity: 5, to: (1664, 3155), sprint: 1);
-    delay(20);
-    setPStat(PStat.LastBiyomonChaseLocation, 3);
-    speak(Entity.Player, "Not again! Wait!\n");
-    lookPairAt(5);
-    move(entity: 5, to: (1664, 3125), sprint: 1);
-    waitForEntity(5);
-    jumpReturn();
-
-L7:
+    if (pstat[110] == 0 && pstat[112] != 0) {
+      move(entity: 5, to: (-1055, 2740), sprint: 1);
+      delay(20);
+      setPStat(PStat.LastBiyomonChaseLocation, 0);
+      speak(Entity.Player, "Not again! Wait!\n");
+      lookPairAt(5);
+      move(entity: 5, to: (-1025, 2740), sprint: 1);
+      waitForEntity(5);
+      jumpReturn();
+    }
+    if (pstat[110] == 1 && pstat[112] != 1) {
+      move(entity: 5, to: (-566, -350), sprint: 1);
+      delay(20);
+      setPStat(PStat.LastBiyomonChaseLocation, 1);
+      speak(Entity.Player, "Not again! Wait!\n");
+      lookPairAt(5);
+      move(entity: 5, to: (-566, -320), sprint: 1);
+      waitForEntity(5);
+      jumpReturn();
+    }
+    if (pstat[110] == 2 && pstat[112] != 2) {
+      move(entity: 5, to: (1869, -939), sprint: 1);
+      delay(20);
+      setPStat(PStat.LastBiyomonChaseLocation, 2);
+      speak(Entity.Player, "Not again! Wait!\n");
+      lookPairAt(5);
+      move(entity: 5, to: (1869, -939), sprint: 1);
+      waitForEntity(5);
+      jumpReturn();
+    }
+    if (pstat[110] == 3 && pstat[112] != 3) {
+      move(entity: 5, to: (1664, 3155), sprint: 1);
+      delay(20);
+      setPStat(PStat.LastBiyomonChaseLocation, 3);
+      speak(Entity.Player, "Not again! Wait!\n");
+      lookPairAt(5);
+      move(entity: 5, to: (1664, 3125), sprint: 1);
+      waitForEntity(5);
+      jumpReturn();
+    }
   }
 
-L8:
+L2:
   loop {
     roll(pstat: 110, max: 3);
-    if (pstat[110] != 0 || pstat[112] == 0) goto L9;
-    move(entity: 5, to: (-1025, 2740), sprint: 1);
-    delay(20);
-    setPStat(PStat.LastBiyomonChaseLocation, 0);
-    lookPairAt(5);
-    move(entity: 5, to: (-1025, 2740), sprint: 1);
-    waitForEntity(5);
-    jumpReturn();
-
-L9:
-    if (pstat[110] != 1 || pstat[112] == 1) goto L10;
-    move(entity: 5, to: (-566, -320), sprint: 1);
-    delay(20);
-    setPStat(PStat.LastBiyomonChaseLocation, 1);
-    lookPairAt(5);
-    move(entity: 5, to: (-566, -320), sprint: 1);
-    waitForEntity(5);
-    jumpReturn();
-
-L10:
-    if (pstat[110] != 2 || pstat[112] == 2) goto L11;
-    move(entity: 5, to: (1869, -939), sprint: 1);
-    delay(20);
-    setPStat(PStat.LastBiyomonChaseLocation, 2);
-    lookPairAt(5);
-    move(entity: 5, to: (1869, -939), sprint: 1);
-    waitForEntity(5);
-    jumpReturn();
-
-L11:
-    if (pstat[110] != 3 || pstat[112] == 3) goto L12;
-    move(entity: 5, to: (1664, 3125), sprint: 1);
-    delay(20);
-    setPStat(PStat.LastBiyomonChaseLocation, 3);
-    lookPairAt(5);
-    move(entity: 5, to: (1664, 3125), sprint: 1);
-    waitForEntity(5);
-    jumpReturn();
-
-L12:
+    if (pstat[110] == 0 && pstat[112] != 0) {
+      move(entity: 5, to: (-1025, 2740), sprint: 1);
+      delay(20);
+      setPStat(PStat.LastBiyomonChaseLocation, 0);
+      lookPairAt(5);
+      move(entity: 5, to: (-1025, 2740), sprint: 1);
+      waitForEntity(5);
+      jumpReturn();
+    }
+    if (pstat[110] == 1 && pstat[112] != 1) {
+      move(entity: 5, to: (-566, -320), sprint: 1);
+      delay(20);
+      setPStat(PStat.LastBiyomonChaseLocation, 1);
+      lookPairAt(5);
+      move(entity: 5, to: (-566, -320), sprint: 1);
+      waitForEntity(5);
+      jumpReturn();
+    }
+    if (pstat[110] == 2 && pstat[112] != 2) {
+      move(entity: 5, to: (1869, -939), sprint: 1);
+      delay(20);
+      setPStat(PStat.LastBiyomonChaseLocation, 2);
+      lookPairAt(5);
+      move(entity: 5, to: (1869, -939), sprint: 1);
+      waitForEntity(5);
+      jumpReturn();
+    }
+    if (pstat[110] == 3 && pstat[112] != 3) {
+      move(entity: 5, to: (1664, 3125), sprint: 1);
+      delay(20);
+      setPStat(PStat.LastBiyomonChaseLocation, 3);
+      lookPairAt(5);
+      move(entity: 5, to: (1664, 3125), sprint: 1);
+      waitForEntity(5);
+      jumpReturn();
+    }
   }
 }
 
 section(51) {
-  if (pstat[111] < 2 || pstat[112] == 0 || trigger(191) || trigger(245)) goto L1;
-  setTrigger(191);
-  playAnimation(Entity.Player, 16);
-  speak(Entity.Player, "Maybe I'll wait.\n");
-  choice { "Wait" -> L2, "Go" -> L5 }
+  if (pstat[111] >= 2 && pstat[112] != 0 && !trigger(191) && !trigger(245)) {
+    setTrigger(191);
+    playAnimation(Entity.Player, 16);
+    speak(Entity.Player, "Maybe I'll wait.\n");
+    choice { "Wait" -> L1, "Go" -> L3 }
+    return;
+  }
   return;
 
 L1:
-  return;
-
-L2:
   move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
   waitForEntity(Entity.Partner);
   look(entity: Entity.Partner, at: Entity.Player);
@@ -185,38 +170,36 @@ L2:
   move(entity: Entity.Partner, to: 5, sprint: 1);
   waitForEntity(Entity.Partner);
   look(entity: Entity.Player, at: 5);
-  jumpAndLink(section_5.L8);
-  if (pstat[112] != 0) goto L3;
-  move(entity: Entity.Partner, to: 5, sprint: 1);
-  waitForEntity(Entity.Partner);
-  goto section_54.L5;
-  goto L4;
-
-L3:
+  jumpAndLink(section_5.L2);
+  if (pstat[112] == 0) {
+    move(entity: Entity.Partner, to: 5, sprint: 1);
+    waitForEntity(Entity.Partner);
+    goto section_54.L3;
+    goto L2;
+  }
   playAnimation(Entity.Player, 16);
   speak(Entity.Player, "He went to the wrong place!\n");
 
-L4:
+L2:
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
   return;
 
-L5:
+L3:
   return;
 }
 
 section(52) {
-  if (pstat[111] < 2 || pstat[112] == 1 || trigger(192) || trigger(245)) goto L1;
-  setTrigger(192);
-  playAnimation(Entity.Player, 16);
-  speak(Entity.Player, "Maybe I'll wait.\n");
-  choice { "Wait" -> L2, "Go" -> section_51.L5 }
+  if (pstat[111] >= 2 && pstat[112] != 1 && !trigger(192) && !trigger(245)) {
+    setTrigger(192);
+    playAnimation(Entity.Player, 16);
+    speak(Entity.Player, "Maybe I'll wait.\n");
+    choice { "Wait" -> L1, "Go" -> section_51.L3 }
+    return;
+  }
   return;
 
 L1:
-  return;
-
-L2:
   move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
   waitForEntity(Entity.Partner);
   look(entity: Entity.Partner, at: Entity.Player);
@@ -230,35 +213,33 @@ L2:
   move(entity: Entity.Partner, to: 5, sprint: 1);
   waitForEntity(Entity.Partner);
   look(entity: Entity.Player, at: 5);
-  jumpAndLink(section_5.L8);
-  if (pstat[112] != 1) goto L3;
-  move(entity: Entity.Partner, to: 5, sprint: 1);
-  waitForEntity(Entity.Partner);
-  goto section_54.L5;
-  goto L4;
-
-L3:
+  jumpAndLink(section_5.L2);
+  if (pstat[112] == 1) {
+    move(entity: Entity.Partner, to: 5, sprint: 1);
+    waitForEntity(Entity.Partner);
+    goto section_54.L3;
+    goto L2;
+  }
   playAnimation(Entity.Player, 16);
   speak(Entity.Player, "He went to the wrong place!\n");
 
-L4:
+L2:
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
   return;
 }
 
 section(53) {
-  if (pstat[111] < 2 || pstat[112] == 2 || trigger(193) || trigger(245)) goto L1;
-  setTrigger(193);
-  playAnimation(Entity.Player, 16);
-  speak(Entity.Player, "Maybe I'll wait.\n");
-  choice { "Wait" -> L2, "Go" -> section_51.L5 }
+  if (pstat[111] >= 2 && pstat[112] != 2 && !trigger(193) && !trigger(245)) {
+    setTrigger(193);
+    playAnimation(Entity.Player, 16);
+    speak(Entity.Player, "Maybe I'll wait.\n");
+    choice { "Wait" -> L1, "Go" -> section_51.L3 }
+    return;
+  }
   return;
 
 L1:
-  return;
-
-L2:
   move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
   waitForEntity(Entity.Partner);
   look(entity: Entity.Partner, at: Entity.Player);
@@ -272,35 +253,33 @@ L2:
   move(entity: Entity.Partner, to: 5, sprint: 1);
   waitForEntity(Entity.Partner);
   look(entity: Entity.Player, at: 5);
-  jumpAndLink(section_5.L8);
-  if (pstat[112] != 2) goto L3;
-  move(entity: Entity.Partner, to: 5, sprint: 1);
-  waitForEntity(Entity.Partner);
-  goto section_54.L5;
-  goto L4;
-
-L3:
+  jumpAndLink(section_5.L2);
+  if (pstat[112] == 2) {
+    move(entity: Entity.Partner, to: 5, sprint: 1);
+    waitForEntity(Entity.Partner);
+    goto section_54.L3;
+    goto L2;
+  }
   playAnimation(Entity.Player, 16);
   speak(Entity.Player, "He went to the wrong place!\n");
 
-L4:
+L2:
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
   return;
 }
 
 section(54) {
-  if (pstat[111] < 2 || pstat[112] == 3 || trigger(194) || trigger(245)) goto L1;
-  setTrigger(194);
-  playAnimation(Entity.Player, 16);
-  speak(Entity.Player, "Maybe I'll wait.\n");
-  choice { "Wait" -> L2, "Go" -> section_51.L5 }
+  if (pstat[111] >= 2 && pstat[112] != 3 && !trigger(194) && !trigger(245)) {
+    setTrigger(194);
+    playAnimation(Entity.Player, 16);
+    speak(Entity.Player, "Maybe I'll wait.\n");
+    choice { "Wait" -> L1, "Go" -> section_51.L3 }
+    return;
+  }
   return;
 
 L1:
-  return;
-
-L2:
   move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
   waitForEntity(Entity.Partner);
   look(entity: Entity.Partner, at: Entity.Player);
@@ -315,23 +294,22 @@ L2:
   move(entity: Entity.Partner, to: 5, sprint: 1);
   waitForEntity(Entity.Partner);
   look(entity: Entity.Player, at: 5);
-  jumpAndLink(section_5.L8);
-  if (pstat[112] != 3) goto L3;
-  move(entity: Entity.Partner, to: 5, sprint: 1);
-  waitForEntity(Entity.Partner);
-  goto L5;
-  goto L4;
-
-L3:
+  jumpAndLink(section_5.L2);
+  if (pstat[112] == 3) {
+    move(entity: Entity.Partner, to: 5, sprint: 1);
+    waitForEntity(Entity.Partner);
+    goto L3;
+    goto L2;
+  }
   playAnimation(Entity.Player, 16);
   speak(Entity.Player, "He went to the wrong place!\n");
 
-L4:
+L2:
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
   return;
 
-L5:
+L3:
   anim(Entity.Player, 11, wait: 10);
   lookPairAt(5);
   look(entity: 5, at: Entity.Player);
@@ -353,18 +331,17 @@ L5:
   playAnimation(5, 0);
   speak(5, "I see. It's my mistake.\n");
   speak(5, "I'll go to the city.\n");
-  goto L6;
+  goto L4;
 
-L6:
+L4:
   loop {
     move(entity: 5, to: (-1232, 4250), sprint: 1);
-    if (pstat[101] >= 6 || pstat[112] == 0) goto L7;
-    addPStat(PStat.LoopIterator, 1);
-    delay(10);
-    lookPairAt(5);
-    continue;
-
-L7:
+    if (pstat[101] < 6 && pstat[112] != 0) {
+      addPStat(PStat.LoopIterator, 1);
+      delay(10);
+      lookPairAt(5);
+      continue;
+    }
     if (pstat[101] >= 4 || pstat[112] != 0) break;
     addPStat(PStat.LoopIterator, 1);
     delay(5);

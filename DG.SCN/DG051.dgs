@@ -8,136 +8,133 @@ section onEnter(254) {
 }
 
 section(57) {
-  if (!trigger(358) || !trigger(359) || trigger(360)) goto L1;
-  setTrigger(360);
-  loadAndSetDigimon(Digimon.Devimon, 0, 0);
-  setDialogOwner(Entity.Player);
-  anim(Entity.Player, 25, wait: 15);
-  showTextbox("I got a bad feeling....\n");
-  playAnimation(Entity.Player, 0);
-  look(entity: Entity.Player, at: 5);
-  delay(10);
-  moveCamera(to: (0, 1614), slowdown: 20);
-  waitForEntity(200);
-  speak(5, "I knew you'd come!\n");
-  move(entity: Entity.Player, to: (-150, -239), sprint: 1);
-  move(entity: Entity.Partner, to: (150, -239), sprint: 1);
-  waitForPair();
-  lookPairAt(5);
-  delay(5);
-  speak(Entity.Player, "Who are you?\n");
-  speak(5, "I'm Devimon, a dark angel.\nI hold the power of darkness.\n");
-  speak(Entity.Player, "Do you know something?\n");
-  speak(5, "Myotismon, is in the mansion.\nMaybe he's alive.\n");
-  anim(Entity.Player, 20, wait: 15);
-  speak(Entity.Player, "Did you do this?\n");
-  playAnimation(Entity.Player, 0);
-  speak(5, "I don't know...all I know\nis that you're my enemy.\n");
-  playAnimation(5, 28);
-  sfx(8, 8, wait: 20);
-  speak(Entity.Player, "You won't get away!\n");
-  move(entity: Entity.Player, to: (-150, 921), sprint: 1);
-  move(entity: Entity.Partner, to: (150, 721), sprint: 1);
-  delay(20);
-  look(entity: Entity.Player, at: 5);
-  delay(5);
-  speak(5, "Ha ha ha!\n");
-  move(entity: 5, to: (145, 795), animDuration: 5);
-  waitForEntity(5);
-  moveCamera(to: (0, 1614), slowdown: 20);
-  waitForEntity(200);
-  move(entity: 5, to: (0, -489), animDuration: 5);
-  waitForEntity(5);
-  look(entity: Entity.Player, at: 5);
-  delay(10);
-  speak(Entity.Player, "Oh no!\n");
-  look(entity: Entity.Player, at: 5);
-  delay(10);
-  look(entity: 5, at: Entity.Player);
-  delay(10);
-  speak(5, "Say hi to Myotismon for me.\n");
-  move(entity: Entity.Player, to: (50, 250), sprint: 1);
-  move(entity: 5, to: (50, -1640), animDuration: 12);
-  waitForEntity(5);
-  waitForEntity(Entity.Player);
-  unloadEntity(5);
-  move(entity: Entity.Player, to: (50, -480), sprint: 1);
-  waitForEntity(Entity.Player);
-  speak(Entity.Player, "He got away!\nI don't like that guy.\n");
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  return;
-
-L1:
-  if (trigger(121)) goto L2;
-  setTrigger(121);
-  delay(20);
-  rotate(entity: Entity.Player, to: 2048);
-  waitForEntity(Entity.Player);
-  delay(10);
-  rotate(entity: Entity.Player, to: 2560);
-  waitForEntity(Entity.Player);
-  delay(10);
-  rotate(entity: Entity.Player, to: 1536);
-  waitForEntity(Entity.Player);
-  delay(10);
-  moveCamera(to: (-997, -977), slowdown: 30);
-  waitForEntity(200);
-  moveCamera(to: (-1035, 4000), slowdown: 50);
-  waitForEntity(200);
-  moveCamera(to: (1222, 4000), slowdown: 30);
-  waitForEntity(200);
-  moveCamera(to: (1066, -977), slowdown: 50);
-  waitForEntity(200);
-  rotate(entity: Entity.Player, to: 2560);
-  moveCamera(to: Entity.Player, speed: 30);
-  waitForEntity(200);
-  rotate(entity: Entity.Player, to: 2048);
-  rotate(entity: Entity.Partner, to: 2048);
-  waitForPair();
-  speak(Entity.Player, "What a big mansion!\n");
-  move(entity: Entity.Player, to: (-6, -1255), sprint: 0, withCamera: true);
-  waitForEntity(Entity.Player);
-  anim(Entity.Player, 24, wait: 15);
-  speak(Entity.Player, "Anybody home?\n");
-  anim(Entity.Player, 0, wait: 40);
-  look(entity: Entity.Player, at: Entity.Partner);
-  waitForEntity(Entity.Player);
-  look(entity: Entity.Partner, at: Entity.Player);
-  waitForEntity(Entity.Partner);
-  speak(Entity.Player, "No one's home or\nthey can't hear me.\n");
-  rotate(entity: Entity.Player, to: 3584);
-  waitForEntity(Entity.Player);
-  rotate(entity: Entity.Player, to: 3072);
-  waitForEntity(Entity.Player);
-  rotate(entity: Entity.Player, to: 2560);
-  waitForEntity(Entity.Player);
-  rotate(entity: Entity.Player, to: 2048);
-  waitForEntity(Entity.Player);
-  showTextbox("Alright. Start exploring!\n");
-  return;
-
-L2:
+  if (trigger(358) && trigger(359) && !trigger(360)) {
+    setTrigger(360);
+    loadAndSetDigimon(Digimon.Devimon, 0, 0);
+    setDialogOwner(Entity.Player);
+    anim(Entity.Player, 25, wait: 15);
+    showTextbox("I got a bad feeling....\n");
+    playAnimation(Entity.Player, 0);
+    look(entity: Entity.Player, at: 5);
+    delay(10);
+    moveCamera(to: (0, 1614), slowdown: 20);
+    waitForEntity(200);
+    speak(5, "I knew you'd come!\n");
+    move(entity: Entity.Player, to: (-150, -239), sprint: 1);
+    move(entity: Entity.Partner, to: (150, -239), sprint: 1);
+    waitForPair();
+    lookPairAt(5);
+    delay(5);
+    speak(Entity.Player, "Who are you?\n");
+    speak(5, "I'm Devimon, a dark angel.\nI hold the power of darkness.\n");
+    speak(Entity.Player, "Do you know something?\n");
+    speak(5, "Myotismon, is in the mansion.\nMaybe he's alive.\n");
+    anim(Entity.Player, 20, wait: 15);
+    speak(Entity.Player, "Did you do this?\n");
+    playAnimation(Entity.Player, 0);
+    speak(5, "I don't know...all I know\nis that you're my enemy.\n");
+    playAnimation(5, 28);
+    sfx(8, 8, wait: 20);
+    speak(Entity.Player, "You won't get away!\n");
+    move(entity: Entity.Player, to: (-150, 921), sprint: 1);
+    move(entity: Entity.Partner, to: (150, 721), sprint: 1);
+    delay(20);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    speak(5, "Ha ha ha!\n");
+    move(entity: 5, to: (145, 795), animDuration: 5);
+    waitForEntity(5);
+    moveCamera(to: (0, 1614), slowdown: 20);
+    waitForEntity(200);
+    move(entity: 5, to: (0, -489), animDuration: 5);
+    waitForEntity(5);
+    look(entity: Entity.Player, at: 5);
+    delay(10);
+    speak(Entity.Player, "Oh no!\n");
+    look(entity: Entity.Player, at: 5);
+    delay(10);
+    look(entity: 5, at: Entity.Player);
+    delay(10);
+    speak(5, "Say hi to Myotismon for me.\n");
+    move(entity: Entity.Player, to: (50, 250), sprint: 1);
+    move(entity: 5, to: (50, -1640), animDuration: 12);
+    waitForEntity(5);
+    waitForEntity(Entity.Player);
+    unloadEntity(5);
+    move(entity: Entity.Player, to: (50, -480), sprint: 1);
+    waitForEntity(Entity.Player);
+    speak(Entity.Player, "He got away!\nI don't like that guy.\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+  }
+  if (!trigger(121)) {
+    setTrigger(121);
+    delay(20);
+    rotate(entity: Entity.Player, to: 2048);
+    waitForEntity(Entity.Player);
+    delay(10);
+    rotate(entity: Entity.Player, to: 2560);
+    waitForEntity(Entity.Player);
+    delay(10);
+    rotate(entity: Entity.Player, to: 1536);
+    waitForEntity(Entity.Player);
+    delay(10);
+    moveCamera(to: (-997, -977), slowdown: 30);
+    waitForEntity(200);
+    moveCamera(to: (-1035, 4000), slowdown: 50);
+    waitForEntity(200);
+    moveCamera(to: (1222, 4000), slowdown: 30);
+    waitForEntity(200);
+    moveCamera(to: (1066, -977), slowdown: 50);
+    waitForEntity(200);
+    rotate(entity: Entity.Player, to: 2560);
+    moveCamera(to: Entity.Player, speed: 30);
+    waitForEntity(200);
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    waitForPair();
+    speak(Entity.Player, "What a big mansion!\n");
+    move(entity: Entity.Player, to: (-6, -1255), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    anim(Entity.Player, 24, wait: 15);
+    speak(Entity.Player, "Anybody home?\n");
+    anim(Entity.Player, 0, wait: 40);
+    look(entity: Entity.Player, at: Entity.Partner);
+    waitForEntity(Entity.Player);
+    look(entity: Entity.Partner, at: Entity.Player);
+    waitForEntity(Entity.Partner);
+    speak(Entity.Player, "No one's home or\nthey can't hear me.\n");
+    rotate(entity: Entity.Player, to: 3584);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 3072);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 2560);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 2048);
+    waitForEntity(Entity.Player);
+    showTextbox("Alright. Start exploring!\n");
+    return;
+  }
   return;
 }
 
 section(84) {
-  if (item[Item.MansionKey] < 1 || trigger(111)) goto L1;
-  rotate(entity: Entity.Player, to: 1024);
-  playSound(8, 3);
-  speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
-  setTrigger(111);
-  goto L2;
-
-L1:
-  if (item[Item.MansionKey] >= 1 || trigger(111)) goto L2;
+  if (item[Item.MansionKey] >= 1 && !trigger(111)) {
+    rotate(entity: Entity.Player, to: 1024);
+    playSound(8, 3);
+    speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
+    setTrigger(111);
+    goto L1;
+  }
+  if (item[Item.MansionKey] >= 1 || trigger(111)) goto L1;
   rotate(entity: Entity.Player, to: 1024);
   sfx(8, 2, wait: 5);
   playSound(8, 2);
   speak(Entity.System, "It doesn't open.\nIt's locked.\n");
   return;
 
-L2:
+L1:
   rotate3DObject(4, 1);
   sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (-2000, 1433), sprint: 0);
@@ -146,22 +143,21 @@ L2:
 }
 
 section(85) {
-  if (item[Item.MansionKey] < 1 || trigger(113)) goto L1;
-  rotate(entity: Entity.Player, to: 1024);
-  playSound(8, 3);
-  speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
-  setTrigger(113);
-  goto L2;
-
-L1:
-  if (item[Item.MansionKey] >= 1 || trigger(113)) goto L2;
+  if (item[Item.MansionKey] >= 1 && !trigger(113)) {
+    rotate(entity: Entity.Player, to: 1024);
+    playSound(8, 3);
+    speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
+    setTrigger(113);
+    goto L1;
+  }
+  if (item[Item.MansionKey] >= 1 || trigger(113)) goto L1;
   rotate(entity: Entity.Player, to: 1024);
   sfx(8, 2, wait: 5);
   playSound(8, 2);
   speak(Entity.System, "It doesn't open.\nIt's locked.\n");
   return;
 
-L2:
+L1:
   rotate3DObject(5, 1);
   sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (-2000, -882), sprint: 0);
@@ -170,22 +166,21 @@ L2:
 }
 
 section(82) {
-  if (item[Item.MansionKey] < 1 || trigger(123)) goto L1;
-  rotate(entity: Entity.Player, to: 3072);
-  playSound(8, 3);
-  speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
-  setTrigger(123);
-  goto L2;
-
-L1:
-  if (item[Item.MansionKey] >= 1 || trigger(123)) goto L2;
+  if (item[Item.MansionKey] >= 1 && !trigger(123)) {
+    rotate(entity: Entity.Player, to: 3072);
+    playSound(8, 3);
+    speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
+    setTrigger(123);
+    goto L1;
+  }
+  if (item[Item.MansionKey] >= 1 || trigger(123)) goto L1;
   rotate(entity: Entity.Player, to: 3072);
   sfx(8, 2, wait: 5);
   playSound(8, 2);
   speak(Entity.System, "It doesn't open.\nIt's locked.\n");
   return;
 
-L2:
+L1:
   rotate3DObject(2, 1);
   sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (2000, 1171), sprint: 0);
@@ -201,14 +196,13 @@ section(58) {
 }
 
 section(81) {
-  if (trigger(360)) goto L1;
-  rotate(entity: Entity.Player, to: 3072);
-  sfx(8, 2, wait: 5);
-  playSound(8, 2);
-  speak(Entity.System, "It doesn't open. It's sealed\nwith a weird force.\n");
-  return;
-
-L1:
+  if (!trigger(360)) {
+    rotate(entity: Entity.Player, to: 3072);
+    sfx(8, 2, wait: 5);
+    playSound(8, 2);
+    speak(Entity.System, "It doesn't open. It's sealed\nwith a weird force.\n");
+    return;
+  }
   rotate3DObject(1, 1);
   sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (2000, -722), sprint: 0);

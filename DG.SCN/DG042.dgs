@@ -5,20 +5,17 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 9) goto L1;
-  spawnItem(Item.Digimushroom, x: 79, y: 63);
-
-L1:
+  if (pstat[110] <= 9) {
+    spawnItem(Item.Digimushroom, x: 79, y: 63);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 14) goto L2;
-  spawnItem(Item.Digimushroom, x: 48, y: 37);
-
-L2:
+  if (pstat[110] <= 14) {
+    spawnItem(Item.Digimushroom, x: 48, y: 37);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 0) goto L3;
-  spawnItem(Item.DeluxeMushroom, x: 48, y: 51);
-
-L3:
+  if (pstat[110] <= 0) {
+    spawnItem(Item.DeluxeMushroom, x: 48, y: 51);
+  }
   return;
 }
 
@@ -54,21 +51,18 @@ section(10) {
 
 section(51) {
   storeDigimonType(103);
-  if (pstat[103] != 6 && pstat[103] != 7 && pstat[103] != 12 && pstat[103] != 19 && pstat[103] != 20) goto L1;
-  goto L4;
+  if (pstat[103] == 6 || pstat[103] == 7 || pstat[103] == 12 || pstat[103] == 19 || pstat[103] == 20) {
+    goto L1;
+  }
+  if (pstat[103] == 21 || pstat[103] == 28 || pstat[103] == 33 || pstat[103] == 37 || pstat[103] == 41) {
+    goto L1;
+  }
+  if (pstat[103] == 45 || pstat[103] == 31 || pstat[103] == 51 || pstat[103] == 54 || pstat[103] == 55) {
+    goto L1;
+  }
+  goto L2;
 
 L1:
-  if (pstat[103] != 21 && pstat[103] != 28 && pstat[103] != 33 && pstat[103] != 37 && pstat[103] != 41) goto L2;
-  goto L4;
-
-L2:
-  if (pstat[103] != 45 && pstat[103] != 31 && pstat[103] != 51 && pstat[103] != 54 && pstat[103] != 55) goto L3;
-  goto L4;
-
-L3:
-  goto L5;
-
-L4:
   anim(Entity.Player, 18, wait: 20);
   speak(Entity.Player, "Ouch!\n");
   setPStat(254, 253);
@@ -87,7 +81,7 @@ L4:
   speak(Entity.Player, "Let's go!\n");
   return;
 
-L5:
+L2:
   playAnimation(Entity.Partner, 43);
   anim(Entity.Player, 18, wait: 40);
   anim(Entity.Partner, 44, wait: 40);

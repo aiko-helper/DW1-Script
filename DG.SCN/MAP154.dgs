@@ -4,18 +4,16 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  if (!trigger(344)) goto L1;
-  playAnimation(5, 43);
-
-L1:
+  if (trigger(344)) {
+    playAnimation(5, 43);
+  }
   return;
 }
 
 section(51) {
-  if (!trigger(344)) goto L1;
-  return;
-
-L1:
+  if (trigger(344)) {
+    return;
+  }
   lookPairAt(5);
   delay(5);
   speak(Entity.Player, "Somebody's here! Who is it?!\n");

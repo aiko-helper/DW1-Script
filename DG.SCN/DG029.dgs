@@ -6,64 +6,58 @@
 section onEnter(254) {
   callSubroutine(26);
   callSubroutine(27);
-  if (pstat[30] < 5 || pstat[17] >= 3 || pstat[17] < 1) goto L1;
-  callSubroutine(20);
-  callSubroutine(20);
-  callSubroutine(20);
-  callSubroutine(20);
-  callSubroutine(20);
-  callSubroutine(20);
-  callSubroutine(20);
-  callSubroutine(20);
-  callSubroutine(20);
-  callSubroutine(20);
-  setPStat(254, 2);
-  callSubroutine(19);
-  setPStat(19, 2);
-  setObjectVisibility(19, 1);
-  setObjectVisibility(18, 1);
-  setPStat(18, 10);
-  return;
-
-L1:
+  if (pstat[30] >= 5 && pstat[17] < 3 && pstat[17] >= 1) {
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    setPStat(254, 2);
+    callSubroutine(19);
+    setPStat(19, 2);
+    setObjectVisibility(19, 1);
+    setObjectVisibility(18, 1);
+    setPStat(18, 10);
+    return;
+  }
   playAnimation(5, 29);
   setObjectVisibility(19, 1);
   setObjectVisibility(18, 0);
-  if (pstat[18] < 5) goto L2;
-  setObjectVisibility(19, 0);
-  setObjectVisibility(18, 1);
-  setPStat(19, 1);
-
-L2:
-  if (pstat[18] < 10) goto L3;
-  if (pstat[17] >= 3) goto L3;
+  if (pstat[18] >= 5) {
+    setObjectVisibility(19, 0);
+    setObjectVisibility(18, 1);
+    setPStat(19, 1);
+  }
+  if (pstat[18] < 10) goto L1;
+  if (pstat[17] >= 3) goto L1;
   setObjectVisibility(19, 1);
   setObjectVisibility(18, 1);
   setPStat(19, 2);
 
-L3:
-  if (pstat[17] != 3) goto L4;
-  setPStat(254, 0);
-  callSubroutine(19);
-
-L4:
-  if (pstat[17] != 4) goto L5;
-  setPStat(254, 1);
-  callSubroutine(19);
-
-L5:
-  if (pstat[18] >= 8) goto L6;
-  setRectImpassible(69, 41, 3, 2);
-
-L6:
+L1:
+  if (pstat[17] == 3) {
+    setPStat(254, 0);
+    callSubroutine(19);
+  }
+  if (pstat[17] == 4) {
+    setPStat(254, 1);
+    callSubroutine(19);
+  }
+  if (pstat[18] < 8) {
+    setRectImpassible(69, 41, 3, 2);
+  }
   return;
 }
 
 section(52) {
-  if (pstat[19] < 2) goto L1;
-  return;
-
-L1:
+  if (pstat[19] >= 2) {
+    return;
+  }
   goto section_51.L1;
 }
 
@@ -75,81 +69,74 @@ L1:
   look(entity: 5, at: Entity.Player);
   look(entity: Entity.Player, at: 5);
   waitForEntity(5);
-  if (pstat[18] < 10) goto L2;
-  speak(5, "I think we're finished moving\nout most of the dirt.\n");
-  showTextbox("Our job is going well.\nThanks.\nPlease wait a little more.\n");
-  rotate(entity: 5, to: 1900);
-  waitForEntity(5);
-  move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
-  waitForEntity(Entity.Player);
-  playAnimation(5, 29);
-  return;
-
-L2:
-  if (pstat[17] != 4) goto L3;
-  speak(5, "Thanks for your work.\nHere's your payment.\n");
-  setPStat(254, 2);
-  callSubroutine(19);
-  addMoney(500);
-  addStats(offense: 5, defense: 5, maxHP: 50, tiredness: 10);
-  speak(Entity.System, "I got five hund bits\nfor work!\n");
-  showTextbox("HP is up by fifty!\nOffense Power is up five!\nDefense Power is up five!\n");
-  addPStat(18, 1);
-  setPStat(17, 1);
-  rotate(entity: 5, to: 1900);
-  waitForEntity(5);
-  move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
-  waitForEntity(Entity.Player);
-  playAnimation(5, 29);
-  return;
-
-L3:
-  if (pstat[17] != 3) goto L4;
-  speak(5, "Please dump the dirt\noutside the tunnel.\n");
-  move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
-  waitForEntity(Entity.Player);
-  rotate(entity: 5, to: 1900);
-  return;
-
-L4:
-  if (pstat[17] != 2) goto L5;
-  speak(5, "Take it from the pile of dirt.\n");
-  rotate(entity: 5, to: 1900);
-  waitForEntity(5);
-  move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
-  waitForEntity(Entity.Player);
-  playAnimation(5, 29);
-  return;
-
-L5:
-  if (pstat[17] != 1 || stat[Stat.Tiredness] < 70) goto L6;
-  speak(5, "Are you going to carry dirt?\n");
-  showTextbox("Your Digimon looks tired.\nWhy don't you rest him first.\n");
-  rotate(entity: 5, to: 1900);
-  waitForEntity(5);
-  move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
-  waitForEntity(Entity.Player);
-  playAnimation(5, 29);
-  return;
-
-L6:
-  if (pstat[17] != 1) goto L7;
-  speak(5, "Are you going to carry dirt?\n");
-  setDialogOwner(Entity.Player);
-  choice { "Yes" -> L9, "No" -> L10 }
-  goto L10;
-
-L7:
-  if (trigger(140)) goto L8;
-  speak(5, "This is not a place for\namateurs. Stay away,\nit's too dangerous.\n");
-  move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
-  waitForEntity(Entity.Player);
-  rotate(entity: 5, to: 1900);
-  waitForEntity(5);
-  playAnimation(5, 29);
-  return;
-
-L8:
+  if (pstat[18] >= 10) {
+    speak(5, "I think we're finished moving\nout most of the dirt.\n");
+    showTextbox("Our job is going well.\nThanks.\nPlease wait a little more.\n");
+    rotate(entity: 5, to: 1900);
+    waitForEntity(5);
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    playAnimation(5, 29);
+    return;
+  }
+  if (pstat[17] == 4) {
+    speak(5, "Thanks for your work.\nHere's your payment.\n");
+    setPStat(254, 2);
+    callSubroutine(19);
+    addMoney(500);
+    addStats(offense: 5, defense: 5, maxHP: 50, tiredness: 10);
+    speak(Entity.System, "I got five hund bits\nfor work!\n");
+    showTextbox("HP is up by fifty!\nOffense Power is up five!\nDefense Power is up five!\n");
+    addPStat(18, 1);
+    setPStat(17, 1);
+    rotate(entity: 5, to: 1900);
+    waitForEntity(5);
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    playAnimation(5, 29);
+    return;
+  }
+  if (pstat[17] == 3) {
+    speak(5, "Please dump the dirt\noutside the tunnel.\n");
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    rotate(entity: 5, to: 1900);
+    return;
+  }
+  if (pstat[17] == 2) {
+    speak(5, "Take it from the pile of dirt.\n");
+    rotate(entity: 5, to: 1900);
+    waitForEntity(5);
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    playAnimation(5, 29);
+    return;
+  }
+  if (pstat[17] == 1 && stat[Stat.Tiredness] >= 70) {
+    speak(5, "Are you going to carry dirt?\n");
+    showTextbox("Your Digimon looks tired.\nWhy don't you rest him first.\n");
+    rotate(entity: 5, to: 1900);
+    waitForEntity(5);
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    playAnimation(5, 29);
+    return;
+  }
+  if (pstat[17] == 1) {
+    speak(5, "Are you going to carry dirt?\n");
+    setDialogOwner(Entity.Player);
+    choice { "Yes" -> L2, "No" -> L3 }
+    goto L3;
+  }
+  if (!trigger(140)) {
+    speak(5, "This is not a place for\namateurs. Stay away,\nit's too dangerous.\n");
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    rotate(entity: 5, to: 1900);
+    waitForEntity(5);
+    playAnimation(5, 29);
+    return;
+  }
   setPStat(17, 1);
   setPStat(30, 0);
   speak(5, "This tunnel hasn't been\nopened yet. Don't get\nin our way.\n");
@@ -167,10 +154,10 @@ L8:
   speak(5, "It's a hard job, so I'll\npay you five hund bits\nfor each round trip.\n");
   speak(Entity.Player, "This will make digging go\nfaster. I can make money,\nand it's good training.\n");
   setDialogOwner(Entity.Player);
-  choice { "OK" -> L9, "No thanks" -> L10 }
-  goto L10;
+  choice { "OK" -> L2, "No thanks" -> L3 }
+  goto L3;
 
-L9:
+L2:
   setTextboxSize(21, 6);
   showTextbox("Dirt Transport Job\nUse <LIGHTBLUE><X> <WHITE>to set a\ndirt box in front of dirt.\nDump dirt outside tunnel.\nOnce you finish a round,\nplease tell Drimogemon.\n");
   fadeOutHUD();
@@ -179,7 +166,7 @@ L9:
   setPStat(17, 2);
   return;
 
-L10:
+L3:
   speak(5, "Are you scared?\n");
   rotate(entity: 5, to: 1900);
   waitForEntity(5);
@@ -190,14 +177,13 @@ L10:
 }
 
 section(81) {
-  if (pstat[17] != 2) goto L1;
-  speak(Entity.System, "Dirt box is added.\n");
-  setPStat(17, 3);
-  setPStat(254, 0);
-  callSubroutine(19);
-  callSubroutine(20);
-
-L1:
+  if (pstat[17] == 2) {
+    speak(Entity.System, "Dirt box is added.\n");
+    setPStat(17, 3);
+    setPStat(254, 0);
+    callSubroutine(19);
+    callSubroutine(20);
+  }
   return;
 }
 

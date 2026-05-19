@@ -4,19 +4,17 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  if (!trigger(345)) goto L1;
-  setObjectsVisibleRange(0, 2, 1);
-  goto L2;
-
-L1:
+  if (trigger(345)) {
+    setObjectsVisibleRange(0, 2, 1);
+    goto L1;
+  }
   setRectImpassible(62, 39, 2, 13);
 
-L2:
-  if (trigger(129)) goto L3;
-  playAnimation(5, 28);
-  playAnimation(6, 28);
-
-L3:
+L1:
+  if (!trigger(129)) {
+    playAnimation(5, 28);
+    playAnimation(6, 28);
+  }
   return;
 }
 
@@ -30,31 +28,28 @@ section(81) {
 
 section(6) {
   setTrigger(44);
-  if (!trigger(129)) goto L1;
-  look(entity: 6, at: Entity.Player);
-  speak(6, "Bakke!\n");
-  return;
-
-L1:
+  if (trigger(129)) {
+    look(entity: 6, at: Entity.Player);
+    speak(6, "Bakke!\n");
+    return;
+  }
   speak(6, "...\n");
   return;
 }
 
 section(5) {
   setTrigger(44);
-  if (!trigger(129)) goto L1;
-  look(entity: 5, at: Entity.Player);
-  speak(5, "I'll join you at the Arena.\nSome of my men may miss me.\n");
-  return;
-
-L1:
-  if (!trigger(325)) goto L2;
-  look(entity: 5, at: Entity.Player);
-  speak(5, "My men don't behave.\nSo I'll take SkullGreymon.\n");
-  speak(5, "SkullGreymon isn't the same.\nHe listens to others now.\n");
-  return;
-
-L2:
+  if (trigger(129)) {
+    look(entity: 5, at: Entity.Player);
+    speak(5, "I'll join you at the Arena.\nSome of my men may miss me.\n");
+    return;
+  }
+  if (trigger(325)) {
+    look(entity: 5, at: Entity.Player);
+    speak(5, "My men don't behave.\nSo I'll take SkullGreymon.\n");
+    speak(5, "SkullGreymon isn't the same.\nHe listens to others now.\n");
+    return;
+  }
   speak(Entity.Player, "Myotismon, you alright?\n");
   playAnimation(5, 21);
   anim(6, 21, wait: 20);

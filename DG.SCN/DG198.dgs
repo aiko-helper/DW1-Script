@@ -52,10 +52,9 @@ section(10) {
 }
 
 section(53) {
-  if (!trigger(254)) goto L1;
-  return;
-
-L1:
+  if (trigger(254)) {
+    return;
+  }
   look(entity: Entity.Player, at: 11);
   delay(5);
   speak(Entity.Player, "How scary! I feel it\nin my bones.\n");
@@ -64,10 +63,10 @@ L1:
   speak(11, "...\n");
   speak(Entity.Player, "Don't you need to fight?\n");
   setDialogOwner(Entity.Player);
-  choice { "We should hurry up and go." -> L4, "We have to test our skills." -> L2 }
-  goto L2;
+  choice { "We should hurry up and go." -> L3, "We have to test our skills." -> L1 }
+  goto L1;
 
-L2:
+L1:
   speak(Entity.Player, "Let's go, <ORANGE><DIGIMON><WHITE>!\n");
   setTrigger(1);
   setPStat(250, 1);
@@ -81,9 +80,9 @@ L2:
   look(entity: 11, at: Entity.Player);
   look(entity: Entity.Partner, at: 11);
   speak(11, "...\n");
-  goto L3;
+  goto L2;
 
-L3:
+L2:
   approach(who: 11, x: 0, y: 0, tries: 3, wait: 20);
   speak(Entity.Player, "Did we win?\n");
   setTrigger(254);
@@ -92,7 +91,7 @@ L3:
   waitForEntity(200);
   return;
 
-L4:
+L3:
   move(entity: Entity.Player, to: (43, 1754), sprint: 1, withCamera: true);
   waitForEntity(Entity.Player);
   return;

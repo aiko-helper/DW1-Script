@@ -5,25 +5,21 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 2) goto L1;
-  spawnItem(Item.BlueApple, x: 44, y: 31);
-
-L1:
+  if (pstat[110] <= 2) {
+    spawnItem(Item.BlueApple, x: 44, y: 31);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 24) goto L2;
-  spawnItem(Item.Digimushroom, x: 42, y: 57);
-
-L2:
+  if (pstat[110] <= 24) {
+    spawnItem(Item.Digimushroom, x: 42, y: 57);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 2) goto L3;
-  spawnItem(Item.DeluxeMushroom, x: 52, y: 51);
-
-L3:
+  if (pstat[110] <= 2) {
+    spawnItem(Item.DeluxeMushroom, x: 52, y: 51);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 59) goto L4;
-  spawnItem(Item.Digimushroom, x: 65, y: 41);
-
-L4:
+  if (pstat[110] <= 59) {
+    spawnItem(Item.Digimushroom, x: 65, y: 41);
+  }
   return;
 }
 
@@ -34,18 +30,16 @@ section(81) {
   speak(Entity.Player, "There are engraved\nletters here.\n");
   playAnimation(Entity.Player, 0);
   speak(Entity.System, "No one's here! Go home!\n");
-  if (trigger(242)) goto L1;
-  speak(Entity.Player, "Is someone living here?\n");
-
-L1:
+  if (!trigger(242)) {
+    speak(Entity.Player, "Is someone living here?\n");
+  }
   return;
 }
 
 section(51) {
-  if (!trigger(242) && pstat[1] >= 50) goto L1;
-  return;
-
-L1:
+  if (trigger(242) || pstat[1] < 50) {
+    return;
+  }
   move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
   waitForEntity(Entity.Partner);
   rotate(entity: Entity.Partner, to: 2048);
@@ -82,9 +76,9 @@ L1:
   playAnimation(5, 7);
   speak(5, "Ugh! You leave me\nno choice but to...\n");
   showTextbox("In that city of yours,\nI'll show you how strong\nI am! Just you watch!\n");
-  goto L2;
+  goto L1;
 
-L2:
+L1:
   approach(who: 5, x: 0, y: 0, tries: 4, wait: 20);
   moveCamera(to: Entity.Player, speed: 10);
   playSound(8, 11);

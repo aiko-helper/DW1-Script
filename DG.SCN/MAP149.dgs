@@ -5,35 +5,30 @@
 
 section onEnter(254) {
   pstat[:SavedTime] = time();
-  if (pstat[107] != 11 || pstat[108] < 55) goto L1;
-  goto L5;
-
-L1:
-  if (pstat[107] != 12 || pstat[108] > 5) goto L2;
-  goto L5;
-
-L2:
-  if (pstat[107] != 23 || pstat[108] < 55) goto L3;
-  goto L5;
-
-L3:
-  if (pstat[107] != 0 || pstat[108] > 5) goto L4;
-  goto L5;
-
-L4:
+  if (pstat[107] == 11 && pstat[108] >= 55) {
+    goto L1;
+  }
+  if (pstat[107] == 12 && pstat[108] <= 5) {
+    goto L1;
+  }
+  if (pstat[107] == 23 && pstat[108] >= 55) {
+    goto L1;
+  }
+  if (pstat[107] == 0 && pstat[108] <= 5) {
+    goto L1;
+  }
   return;
 
-L5:
-  if (trigger(332)) goto L6;
-  anim(Entity.Player, 24, wait: 15);
-  speak(Entity.Player, "There's no guard!\n");
-  playAnimation(Entity.Player, 0);
-  moveCamera(to: (2799, 74), slowdown: 20);
-  waitForEntity(200);
-  moveCamera(to: Entity.Player, speed: 15);
-  waitForEntity(200);
-
-L6:
+L1:
+  if (!trigger(332)) {
+    anim(Entity.Player, 24, wait: 15);
+    speak(Entity.Player, "There's no guard!\n");
+    playAnimation(Entity.Player, 0);
+    moveCamera(to: (2799, 74), slowdown: 20);
+    waitForEntity(200);
+    moveCamera(to: Entity.Player, speed: 15);
+    waitForEntity(200);
+  }
   return;
 }
 
@@ -59,98 +54,91 @@ section(11) {
   playSound(8, 9);
   speak(11, "You can't get thru here.\n");
   pstat[:SavedTime] = time();
-  if (!trigger(331) || pstat[107] != 11 || pstat[108] < 55) goto L1;
-  goto L14;
-
-L1:
-  if (!trigger(331) || pstat[107] != 12 || pstat[108] > 5) goto L2;
-  goto L14;
-
-L2:
-  if (!trigger(331) || pstat[107] != 23 || pstat[108] < 55) goto L3;
-  goto L14;
-
-L3:
-  if (!trigger(331) || pstat[107] != 0 || pstat[108] > 5) goto L4;
-  goto L14;
-
-L4:
-  if (!trigger(331)) goto L5;
-  speak(11, "......\n");
-  speak(Entity.Player, "Wow, he's staring at us!\nMaybe he's suspicious\nabout us.\n");
-  showTextbox("We should hide from them\nand wait, then come back.\nIt's twelve o'clock.\n");
-  return;
-
-L5:
-  if (!trigger(342) || trigger(343)) goto L6;
-  speak(Entity.Player, "This factory must be\ndraining their waste to\nsewage. I must find out.\n");
-  look(entity: Entity.Player, at: Entity.Partner);
-  delay(5);
-  playAnimation(Entity.Player, 22);
-  anim(Entity.Partner, 22, wait: 5);
-  playAnimation(Entity.Player, 22);
-  anim(Entity.Partner, 22, wait: 5);
-  look(entity: Entity.Player, at: 11);
-  anim(Entity.Partner, 0, wait: 10);
-  anim(Entity.Player, 19, wait: 15);
-  speak(Entity.Player, "Can you move, please?\n");
-  playAnimation(Entity.Player, 0);
-  sfx(8, 9, wait: 5);
-  speak(11, "You can't go thru here\nwithout a permit issued by\nthe person in charge.\n");
-  speak(Entity.Player, "I'm in a hurry.\n");
-  speak(11, "Sorry, you gotta have\na permit.\n");
-  anim(Entity.Player, 25, wait: 15);
-  speak(Entity.Player, "OK, if that's the way\nit is.\n");
-  playAnimation(Entity.Player, 0);
-  setTrigger(347);
-  return;
-
-L6:
-  if (trigger(343)) goto L7;
-  return;
-
-L7:
-  if (!trigger(343)) goto L8;
+  if (trigger(331) && pstat[107] == 11 && pstat[108] >= 55) {
+    goto L7;
+  }
+  if (trigger(331) && pstat[107] == 12 && pstat[108] <= 5) {
+    goto L7;
+  }
+  if (trigger(331) && pstat[107] == 23 && pstat[108] >= 55) {
+    goto L7;
+  }
+  if (trigger(331) && pstat[107] == 0 && pstat[108] <= 5) {
+    goto L7;
+  }
+  if (trigger(331)) {
+    speak(11, "......\n");
+    speak(Entity.Player, "Wow, he's staring at us!\nMaybe he's suspicious\nabout us.\n");
+    showTextbox("We should hide from them\nand wait, then come back.\nIt's twelve o'clock.\n");
+    return;
+  }
+  if (trigger(342) && !trigger(343)) {
+    speak(Entity.Player, "This factory must be\ndraining their waste to\nsewage. I must find out.\n");
+    look(entity: Entity.Player, at: Entity.Partner);
+    delay(5);
+    playAnimation(Entity.Player, 22);
+    anim(Entity.Partner, 22, wait: 5);
+    playAnimation(Entity.Player, 22);
+    anim(Entity.Partner, 22, wait: 5);
+    look(entity: Entity.Player, at: 11);
+    anim(Entity.Partner, 0, wait: 10);
+    anim(Entity.Player, 19, wait: 15);
+    speak(Entity.Player, "Can you move, please?\n");
+    playAnimation(Entity.Player, 0);
+    sfx(8, 9, wait: 5);
+    speak(11, "You can't go thru here\nwithout a permit issued by\nthe person in charge.\n");
+    speak(Entity.Player, "I'm in a hurry.\n");
+    speak(11, "Sorry, you gotta have\na permit.\n");
+    anim(Entity.Player, 25, wait: 15);
+    speak(Entity.Player, "OK, if that's the way\nit is.\n");
+    playAnimation(Entity.Player, 0);
+    setTrigger(347);
+    return;
+  }
+  if (!trigger(343)) {
+    return;
+  }
+  if (!trigger(343)) goto L1;
   speak(Entity.Player, "So, what should we do?\n");
   setDialogOwner(Entity.Player);
-  choice { "Time for shift change" -> L8, "Let me thru or else" -> L11, "No, nothing" -> L13 }
+  choice { "Time for shift change" -> L1, "Let me thru or else" -> L4, "No, nothing" -> L6 }
   return;
 
-L8:
+L1:
   playSound(8, 9);
   speak(11, "It's not the time for\nthe shift change yet.\n");
   setDialogOwner(Entity.Player);
-  choice { "That's OK, don't worry." -> L9, "When is shift change?" -> L10 }
+  choice { "That's OK, don't worry." -> L2, "When is shift change?" -> L3 }
   return;
 
-L9:
+L2:
   playSound(8, 9);
   speak(11, "No, we have to follow\nthe time strictly.\n");
   return;
 
-L10:
+L3:
   speak(11, "The shift changes are\nat midnight and noon.\n");
   speak(Entity.Player, "Oh, I see.\n");
   setTrigger(331);
   return;
 
-L11:
+L4:
   playSound(8, 9);
   speak(11, "You can't threaten me.\nYou have to get a permit.\n");
   setDialogOwner(Entity.Player);
-  choice { "A permit? I got one." -> L12, "I'll give you permission!" -> L12 }
+  choice { "A permit? I got one." -> L5, "I'll give you permission!" -> L5 }
   return;
 
-L12:
+L5:
   playSound(8, 9);
   speak(11, "We can't give you a permit.\nYou have to go thru\nproper channels.\n");
   speak(Entity.Player, "Wow, you're so strict!\n");
   return;
 
-L13:
+L6:
   return;
 
-L14:
+L7:
   speak(Entity.Player, "Isn't it shift change yet?\n");
   speak(11, "...\n");
   speak(Entity.Player, "Wow, he's staring at us!\nI guess he won't change\nthe shift.\n");

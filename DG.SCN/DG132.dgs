@@ -67,22 +67,18 @@ section(51) {
 
 section(5) {
   storeDigimonType(103);
-  if (pstat[103] != 3 && pstat[103] != 5 && pstat[103] != 8 && pstat[103] != 9 && pstat[103] != 47) goto L1;
-  goto L6;
-
-L1:
-  if (pstat[103] != 19 && pstat[103] != 32 && pstat[103] != 51 && pstat[103] != 1 && pstat[103] != 2) goto L2;
-  goto L6;
-
-L2:
-  if (pstat[103] != 15 && pstat[103] != 16 && pstat[103] != 29 && pstat[103] != 30 && pstat[103] != 43) goto L3;
-  goto L6;
-
-L3:
-  if (pstat[103] != 44 && pstat[103] != 21) goto L4;
-  goto L6;
-
-L4:
+  if (pstat[103] == 3 || pstat[103] == 5 || pstat[103] == 8 || pstat[103] == 9 || pstat[103] == 47) {
+    goto L2;
+  }
+  if (pstat[103] == 19 || pstat[103] == 32 || pstat[103] == 51 || pstat[103] == 1 || pstat[103] == 2) {
+    goto L2;
+  }
+  if (pstat[103] == 15 || pstat[103] == 16 || pstat[103] == 29 || pstat[103] == 30 || pstat[103] == 43) {
+    goto L2;
+  }
+  if (pstat[103] == 44 || pstat[103] == 21) {
+    goto L2;
+  }
   speak(Entity.Player, "Hello again.\n");
   speak(5, "What happen to\nthe other Digimon?\n");
   speak(Entity.Player, "Oh, it's the same one.\n");
@@ -100,9 +96,9 @@ L4:
   speak(5, "A shop! Snow cones and\nice cream. This is\ngonna be great!\n");
   move(entity: 5, to: (-540, -336), sprint: 1);
   waitForEntity(5);
-  goto L5;
+  goto L1;
 
-L5:
+L1:
   approach(who: 5, x: 93, y: -1700, tries: 3, wait: 20);
   playSound(8, 11);
   speak(Entity.System, "Frigimon joins the city!\n");
@@ -110,7 +106,7 @@ L5:
   addPStat(1, 2);
   return;
 
-L6:
+L2:
   speak(5, "That Digimon can't stand\ncold very well!\n");
   anim(Entity.Player, 15, wait: 15);
   speak(Entity.Player, "I'll be back!\n");

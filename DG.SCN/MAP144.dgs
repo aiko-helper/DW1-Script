@@ -4,29 +4,27 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  if (trigger(270)) goto L1;
-  roll(pstat: 110, max: 2);
-  goto L2;
-
-L1:
+  if (!trigger(270)) {
+    roll(pstat: 110, max: 2);
+    goto L1;
+  }
   setPStat(110, 3);
 
-L2:
+L1:
   return;
 }
 
 section(81) {
   move(entity: Entity.Player, to: (-996, 694), sprint: 0);
   waitForEntity(Entity.Player);
-  if (pstat[110] != 0 && pstat[110] != 3) goto L1;
-  rotate(entity: Entity.Player, to: 2048);
-  delay(5);
-  rotate3DObject(0, 1);
-  delay(20);
-  move(entity: Entity.Player, to: (-890, 3131), sprint: 0);
-  warp(to: Map.OMOC08, spawn: 0, trigger: 255);
-
-L1:
+  if (pstat[110] == 0 || pstat[110] == 3) {
+    rotate(entity: Entity.Player, to: 2048);
+    delay(5);
+    rotate3DObject(0, 1);
+    delay(20);
+    move(entity: Entity.Player, to: (-890, 3131), sprint: 0);
+    warp(to: Map.OMOC08, spawn: 0, trigger: 255);
+  }
   move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
   waitForEntity(Entity.Partner);
   rotate(entity: Entity.Player, to: 2048);
@@ -65,15 +63,14 @@ L1:
 section(82) {
   move(entity: Entity.Player, to: (18, 749), sprint: 0);
   waitForEntity(Entity.Player);
-  if (pstat[110] != 1 && pstat[110] != 3) goto L1;
-  rotate(entity: Entity.Player, to: 2048);
-  delay(5);
-  rotate3DObject(1, 1);
-  delay(20);
-  move(entity: Entity.Player, to: (281, 3075), sprint: 0);
-  warp(to: Map.OMOC08, spawn: 0, trigger: 255);
-
-L1:
+  if (pstat[110] == 1 || pstat[110] == 3) {
+    rotate(entity: Entity.Player, to: 2048);
+    delay(5);
+    rotate3DObject(1, 1);
+    delay(20);
+    move(entity: Entity.Player, to: (281, 3075), sprint: 0);
+    warp(to: Map.OMOC08, spawn: 0, trigger: 255);
+  }
   move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
   waitForEntity(Entity.Partner);
   rotate(entity: Entity.Player, to: 2048);
@@ -112,15 +109,14 @@ L1:
 section(83) {
   move(entity: Entity.Player, to: (1019, 712), sprint: 0);
   waitForEntity(Entity.Player);
-  if (pstat[110] != 2 && pstat[110] != 3) goto L1;
-  rotate(entity: Entity.Player, to: 2048);
-  delay(5);
-  rotate3DObject(2, 1);
-  delay(20);
-  move(entity: Entity.Player, to: (1464, 2634), sprint: 0);
-  warp(to: Map.OMOC08, spawn: 0, trigger: 255);
-
-L1:
+  if (pstat[110] == 2 || pstat[110] == 3) {
+    rotate(entity: Entity.Player, to: 2048);
+    delay(5);
+    rotate3DObject(2, 1);
+    delay(20);
+    move(entity: Entity.Player, to: (1464, 2634), sprint: 0);
+    warp(to: Map.OMOC08, spawn: 0, trigger: 255);
+  }
   move(entity: Entity.Partner, to: Entity.Player, sprint: 1);
   waitForEntity(Entity.Partner);
   rotate(entity: Entity.Player, to: 2048);

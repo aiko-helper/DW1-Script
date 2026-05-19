@@ -5,65 +5,62 @@
 
 section onEnter(254) {
   callSubroutine(41);
-  if (!trigger(350)) goto L1;
-  setPStat(245, 4);
-  setBGM(22);
-  setPStat(254, 0);
-  callSubroutine(42);
-  loadAndSetDigimon(Digimon.Hagurumon, 1, 0);
-  move(entity: 6, to: (-100, 1758), animDuration: 1);
-  waitForEntity(6);
-  playAnimation(6, 29);
-  rotate(entity: 6, to: 0);
-
-L1:
+  if (trigger(350)) {
+    setPStat(245, 4);
+    setBGM(22);
+    setPStat(254, 0);
+    callSubroutine(42);
+    loadAndSetDigimon(Digimon.Hagurumon, 1, 0);
+    move(entity: 6, to: (-100, 1758), animDuration: 1);
+    waitForEntity(6);
+    playAnimation(6, 29);
+    rotate(entity: 6, to: 0);
+  }
   return;
 }
 
 section(51) {
-  if (trigger(350) || !trigger(270)) goto L1;
-  move(entity: Entity.Player, to: (-52, 650), sprint: 0, withCamera: true);
-  waitForEntity(Entity.Player);
-  rotate(entity: Entity.Player, to: 2065);
-  delay(5);
-  goto section_5;
-
-L1:
+  if (!trigger(350) && trigger(270)) {
+    move(entity: Entity.Player, to: (-52, 650), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 2065);
+    delay(5);
+    goto section_5;
+  }
   return;
 }
 
 section(5) {
-  if (!trigger(270) || trigger(350) || item[Item.Gear] < 1) goto L1;
-  removeItem(Item.Gear, 1);
-  loadAndSetDigimon(Digimon.Hagurumon, 1, 0);
-  playAnimation(6, 29);
-  anim(Entity.Player, 15, wait: 20);
-  playSound(8, 4);
-  anim(Entity.Player, 16, wait: 15);
-  speak(Entity.Player, "What is it?!\n");
-  playAnimation(Entity.Player, 0);
-  look(entity: Entity.Player, at: 6);
-  sfx(8, 9, wait: 10);
-  speak(5, "Oh, welcome back, Hagurumon!\n");
-  speak(Entity.Player, "Hagurumon?!\n");
-  playSound(8, 8);
-  moveCamera(to: (-80, 1048), slowdown: 18);
-  move(entity: 6, to: (-100, 1758), animDuration: 20);
-  waitForEntity(6);
-  rotate(entity: 6, to: 0);
-  delay(5);
-  playAnimation(6, 30);
-  anim(Entity.Player, 16, wait: 15);
-  speak(Entity.Player, "What's going on?!\n");
-  playAnimation(Entity.Player, 0);
-  setPStat(254, 1);
-  callSubroutine(42);
+  if (trigger(270) && !trigger(350) && item[Item.Gear] >= 1) {
+    removeItem(Item.Gear, 1);
+    loadAndSetDigimon(Digimon.Hagurumon, 1, 0);
+    playAnimation(6, 29);
+    anim(Entity.Player, 15, wait: 20);
+    playSound(8, 4);
+    anim(Entity.Player, 16, wait: 15);
+    speak(Entity.Player, "What is it?!\n");
+    playAnimation(Entity.Player, 0);
+    look(entity: Entity.Player, at: 6);
+    sfx(8, 9, wait: 10);
+    speak(5, "Oh, welcome back, Hagurumon!\n");
+    speak(Entity.Player, "Hagurumon?!\n");
+    playSound(8, 8);
+    moveCamera(to: (-80, 1048), slowdown: 18);
+    move(entity: 6, to: (-100, 1758), animDuration: 20);
+    waitForEntity(6);
+    rotate(entity: 6, to: 0);
+    delay(5);
+    playAnimation(6, 30);
+    anim(Entity.Player, 16, wait: 15);
+    speak(Entity.Player, "What's going on?!\n");
+    playAnimation(Entity.Player, 0);
+    setPStat(254, 1);
+    callSubroutine(42);
+    goto L1;
+  }
   goto L2;
 
 L1:
-  goto L4;
-
-L2:
   moveCamera(to: (-80, 1048), slowdown: 18);
   setPStat(245, 4);
   setBGM(22);
@@ -111,10 +108,9 @@ L2:
     playAnimation(x, 0);
   }
   delay(10);
-  if (!trigger(350)) goto L3;
-  return;
-
-L3:
+  if (trigger(350)) {
+    return;
+  }
   setTrigger(350);
   speak(Entity.Player, "Hmmm, I feel joyous...\nOh, wait up.\n");
   showTextbox("That story from the song\nis an old tale of this\nisland, isn't it?\n");
@@ -132,34 +128,31 @@ L3:
   callSubroutine(42);
   return;
 
-L4:
-  if (!trigger(270) || !trigger(350) || item[Item.Gear] >= 1 || trigger(350)) goto L5;
-  speak(5, "Wait, didn't WaruMonzaemon\ndrop something?\n");
-  return;
-
-L5:
-  if (!trigger(349) || trigger(270)) goto L6;
-  speak(5, "Good luck!\nIt's the house next door!\n");
-  return;
-
-L6:
+L2:
+  if (trigger(270) && trigger(350) && item[Item.Gear] < 1 && !trigger(350)) {
+    speak(5, "Wait, didn't WaruMonzaemon\ndrop something?\n");
+    return;
+  }
+  if (trigger(349) && !trigger(270)) {
+    speak(5, "Good luck!\nIt's the house next door!\n");
+    return;
+  }
   storeDigimonType(103);
-  if (pstat[103] != 14 || trigger(349)) goto L7;
-  goto L9;
-  goto L8;
-
-L7:
+  if (pstat[103] == 14 && !trigger(349)) {
+    goto L4;
+    goto L3;
+  }
   speak(5, "......\n");
   return;
 
-L8:
-  if (!trigger(350)) goto L9;
+L3:
+  if (!trigger(350)) goto L4;
   speak(5, "Are we going to listen\nto the chorus again?\n");
   setDialogOwner(Entity.Player);
-  choice { "Yes" -> L2, "No" -> L10 }
+  choice { "Yes" -> L1, "No" -> L5 }
   return;
 
-L9:
+L4:
   setTrigger(349);
   speak(5, "Oh, Monzaemon!\nYou're back alive!\n");
   speak(Entity.Player, "Wow, what is it?\n");
@@ -177,7 +170,7 @@ L9:
   speak(Entity.Player, "I see. Alright,\nI'll help you!\n");
   return;
 
-L10:
+L5:
   return;
 }
 
@@ -188,20 +181,18 @@ section(6) {
 }
 
 section(7) {
-  if (!trigger(350)) goto L1;
-  playSound(8, 9);
-  speak(7, "Thanks!\n");
-
-L1:
+  if (trigger(350)) {
+    playSound(8, 9);
+    speak(7, "Thanks!\n");
+  }
   return;
 }
 
 section(8) {
-  if (!trigger(350)) goto L1;
-  playSound(8, 9);
-  speak(8, "Thanks!\n");
-
-L1:
+  if (trigger(350)) {
+    playSound(8, 9);
+    speak(8, "Thanks!\n");
+  }
   return;
   garbage { 1c 00 fe 00 1c 00 33 00 50 00 05 00 78 00 06 00 5a 0e 07 00 76 0e 08 00 9e 0e ff ff 64 29 19 00 00 00 5e 01 18 00 4e 00 19 00 1e 00 f5 04 5d 16 1e 00 fe 00 64 2a 46 7a 47 7a 01 00 6c 06 9c ff de 06 01 00 4a 06 56 00 06 1d 4d 06 00 00 fe 00 19 00 01 00 5e 01 80 00 0e 01 18 00 76 00 19 00 52 fd cc ff 8a 02 00 00 4a fd 4d fd 11 08 67 00 05 00 16 00 78 00 fe 00 19 00 00 00 0e 01 81 00 5e 01 a4 00 78 02 01 00 18 00 9e 01 19 00 29 00 78 01 46 7a 47 7a 01 00 56 00 06 1d 56 00 fd 0f 67 00 14 00 5a 00 08 04 56 00 fd 10 67 00 0f 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 89 82 93 81 40 82 89 82 94 81 48 81 49 0d 00 00 00 56 00 fd 00 4c 00 fd 06 5a 00 08 09 67 00 0a 00 1b 05 1a 00 82 6e 82 88 81 43 81 40 82 97 82 85 82 8c 82 83 82 8f 82 8d 82 85 81 40 82 82 82 81 82 83 82 8b 81 43 81 40 82 67 82 81 82 87 82 95 82 92 82 95 82 8d 82 8f 82 8e 81 49 0d 00 00 00 1b fd 1a 00 82 67 82 81 82 87 82 95 82 92 82 95 82 8d 82 8f 82 8e 81 48 }
 }

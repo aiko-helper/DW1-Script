@@ -6,10 +6,9 @@
 section onEnter(254) {
   spawnChest(Item.SuperRecovery, 9, 1196, 0, 660);
   spawnChest(Item.LargeMP, 1223, 266, 1024, 661);
-  if (!trigger(322)) goto L1;
-  setObjectVisibility(0, 1);
-
-L1:
+  if (trigger(322)) {
+    setObjectVisibility(0, 1);
+  }
   return;
 }
 
@@ -34,10 +33,9 @@ section(7) {
 }
 
 section(52) {
-  if (!trigger(322)) goto L1;
-  return;
-
-L1:
+  if (trigger(322)) {
+    return;
+  }
   playAnimation(Entity.Player, 22);
   sfx(8, 9, wait: 15);
   speak(Entity.Player, "Oh, it's so blinding!\n");

@@ -16,75 +16,63 @@ section(51) {
 
 section(52) {
   move(entity: Entity.Player, to: (-1958, 2679), sprint: 0);
-  if (trigger(203)) goto L1;
-  warp(to: Map.TWNA01, spawn: 0, trigger: 255);
+  if (!trigger(203)) {
+    warp(to: Map.TWNA01, spawn: 0, trigger: 255);
+  }
+  if (trigger(220) || trigger(214) || pstat[1] >= 50) {
+    goto L4;
+    goto L1;
+  }
+  goto L1;
 
 L1:
-  if (!trigger(220) && !trigger(214) && pstat[1] < 50) goto L2;
-  goto L11;
-  goto L3;
+  if (trigger(221)) {
+    goto L3;
+    goto L2;
+  }
+  goto L2;
 
 L2:
-  goto L3;
+  if (trigger(225)) {
+    warp(to: Map.TWNA04, spawn: 9, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA03, spawn: 9, trigger: 255);
+  }
+  warp(to: Map.TWNA02, spawn: 9, trigger: 255);
 
 L3:
-  if (!trigger(221)) goto L4;
-  goto L8;
-  goto L5;
+  if (trigger(225)) {
+    warp(to: Map.TWNA07, spawn: 9, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA06, spawn: 9, trigger: 255);
+  }
+  warp(to: Map.TWNA05, spawn: 9, trigger: 255);
 
 L4:
+  if (trigger(221)) {
+    goto L6;
+    goto L5;
+  }
   goto L5;
 
 L5:
-  if (!trigger(225)) goto L6;
-  warp(to: Map.TWNA04, spawn: 9, trigger: 255);
-
-L6:
-  if (!trigger(246)) goto L7;
-  warp(to: Map.TWNA03, spawn: 9, trigger: 255);
-
-L7:
-  warp(to: Map.TWNA02, spawn: 9, trigger: 255);
-
-L8:
-  if (!trigger(225)) goto L9;
-  warp(to: Map.TWNA07, spawn: 9, trigger: 255);
-
-L9:
-  if (!trigger(246)) goto L10;
-  warp(to: Map.TWNA06, spawn: 9, trigger: 255);
-
-L10:
-  warp(to: Map.TWNA05, spawn: 9, trigger: 255);
-
-L11:
-  if (!trigger(221)) goto L12;
-  goto L16;
-  goto L13;
-
-L12:
-  goto L13;
-
-L13:
-  if (!trigger(225)) goto L14;
-  warp(to: Map.TWNA10, spawn: 9, trigger: 255);
-
-L14:
-  if (!trigger(246)) goto L15;
-  warp(to: Map.TWNA09, spawn: 9, trigger: 255);
-
-L15:
+  if (trigger(225)) {
+    warp(to: Map.TWNA10, spawn: 9, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA09, spawn: 9, trigger: 255);
+  }
   warp(to: Map.TWNA08, spawn: 9, trigger: 255);
 
-L16:
-  if (!trigger(225)) goto L17;
-  warp(to: Map.TWNA13, spawn: 9, trigger: 255);
-
-L17:
-  if (!trigger(246)) goto L18;
-  warp(to: Map.TWNA12, spawn: 9, trigger: 255);
-
-L18:
+L6:
+  if (trigger(225)) {
+    warp(to: Map.TWNA13, spawn: 9, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA12, spawn: 9, trigger: 255);
+  }
   warp(to: Map.TWNA11, spawn: 9, trigger: 255);
   return;
 }

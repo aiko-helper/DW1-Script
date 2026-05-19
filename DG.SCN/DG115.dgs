@@ -5,45 +5,39 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 18) goto L1;
-  spawnItem(Item.Digimushroom, x: 56, y: 34);
-
-L1:
+  if (pstat[110] <= 18) {
+    spawnItem(Item.Digimushroom, x: 56, y: 34);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 12) goto L2;
-  spawnItem(Item.Digimushroom, x: 56, y: 80);
-
-L2:
+  if (pstat[110] <= 12) {
+    spawnItem(Item.Digimushroom, x: 56, y: 80);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 3) goto L3;
-  spawnItem(Item.Digipine, x: 35, y: 64);
-
-L3:
+  if (pstat[110] <= 3) {
+    spawnItem(Item.Digipine, x: 35, y: 64);
+  }
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 0) goto L4;
-  spawnItem(Item.CalmBerry, x: 67, y: 32);
-
-L4:
-  if (!trigger(147)) goto L5;
-  move(entity: 5, to: (-2017, 1378), animDuration: 3);
-  waitForEntity(20);
-  rotate(entity: 5, to: 0);
-  delay(5);
-
-L5:
+  if (pstat[110] <= 0) {
+    spawnItem(Item.CalmBerry, x: 67, y: 32);
+  }
+  if (trigger(147)) {
+    move(entity: 5, to: (-2017, 1378), animDuration: 3);
+    waitForEntity(20);
+    rotate(entity: 5, to: 0);
+    delay(5);
+  }
   return;
 }
 
 section(51) {
-  if (trigger(147)) goto L1;
-  setTrigger(147);
-  goto L2;
-  goto L2;
-
-L1:
+  if (!trigger(147)) {
+    setTrigger(147);
+    goto L1;
+    goto L1;
+  }
   return;
 
-L2:
+L1:
   move(entity: Entity.Player, to: (-1606, 166), sprint: 1, withCamera: true);
   move(entity: Entity.Partner, to: (-1407, 465), sprint: 1);
   waitForEntity(Entity.Partner);
@@ -54,24 +48,22 @@ L2:
   playSound(8, 18);
   speak(5, "Welcome young man.\n");
   anim(Entity.Player, 20, wait: 15);
-  if (!trigger(309)) goto L3;
-  speak(Entity.Player, "You're Cherrymon, right?\n");
-  goto L4;
-
-L3:
+  if (trigger(309)) {
+    speak(Entity.Player, "You're Cherrymon, right?\n");
+    goto L2;
+  }
   speak(Entity.Player, "Who is it?\n");
 
-L4:
+L2:
   playAnimation(Entity.Player, 0);
   speak(5, "What do you want with\nan old man like me?\n");
-  if (!trigger(309)) goto L5;
-  speak(Entity.Player, "First, clear the fog.\n");
-  goto L6;
-
-L5:
+  if (trigger(309)) {
+    speak(Entity.Player, "First, clear the fog.\n");
+    goto L3;
+  }
   speak(Entity.Player, "I can't see with the fog.\nCan you get rid of it?\n");
 
-L6:
+L3:
   playSound(8, 18);
   speak(5, "So, that's it. I see.\n");
   anim(Entity.Player, 19, wait: 15);
@@ -81,7 +73,7 @@ L6:
   speak(Entity.Player, "If you know about the\nemergency on the island,\nplease tell me about it.\n");
   speak(5, "I see, I see.\nThe emergency.\n");
 
-L7:
+L4:
   playSound(8, 18);
   speak(5, "This island began to change\neighty years ago after the\nland changes happened.\n");
   showTextbox("The northeastern parts of\nthe island suddenly\nappeared eighty years ago.\n");
@@ -99,17 +91,16 @@ L7:
   showTextbox("The only thing that can stop\nthis is you and the power of\nFile City to unify Digimon!\n");
   showTextbox("Gather Digimon in the city\nand create a miracle.\nIt will definitely happen.\n");
   showTextbox("Well, I got all worked up.\nPhew, I've said it all.\n");
-  if (trigger(148)) goto L8;
-  setTrigger(148);
-  playSound(8, 18);
-  speak(5, "Now, let's get rid of the fog.\n");
-  callSubroutine(37);
-  goto L9;
-
-L8:
+  if (!trigger(148)) {
+    setTrigger(148);
+    playSound(8, 18);
+    speak(5, "Now, let's get rid of the fog.\n");
+    callSubroutine(37);
+    goto L5;
+  }
   return;
 
-L9:
+L5:
   speak(5, "The reason for the forest fog\nwas to be able to speak\nto you. Oh, one more thing...\n");
   playSound(8, 18);
   showTextbox("There are others\nin the forest who know\nabout the past.\n");
@@ -127,7 +118,7 @@ section(5) {
 
 L1:
   speak(5, "Here's what I have to say.\n");
-  goto section_51.L7;
+  goto section_51.L4;
   return;
 
 L2:

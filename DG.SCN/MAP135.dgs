@@ -29,20 +29,17 @@ section(5) {
   speak(5, "I'm grateful. I heard that\nyou've been working hard\nto save this island.\n");
   speak(Entity.Player, "You did?\n");
   speak(5, "I've been wanting to help you.\nHave you been to Misty Trees\njust north of here?\n");
-  if (trigger(112)) goto L1;
-  speak(Entity.Player, "Not yet.\n");
-
-L1:
-  if (!trigger(112)) goto L2;
-  speak(Entity.Player, "Yes.\n");
-
-L2:
+  if (!trigger(112)) {
+    speak(Entity.Player, "Not yet.\n");
+  }
+  if (trigger(112)) {
+    speak(Entity.Player, "Yes.\n");
+  }
   speak(5, "It's always foggy there.\nIt'll probably be hard\nfor you to get around.\n");
   showTextbox("But you should meet\nCherrymon, who is the\nforest chief.\n");
-  if (!trigger(147)) goto L3;
-  goto L4;
-
-L3:
+  if (trigger(147)) {
+    goto L1;
+  }
   anim(Entity.Player, 16, wait: 20);
   speak(Entity.Player, "Cherrymon? I've never heard\nof such a Digimon.\n");
   speak(5, "Cherrymon makes the fog\nin Misty Trees.\n");
@@ -76,19 +73,18 @@ L3:
   waitForEntity(200);
   return;
 
-L4:
+L1:
   speak(Entity.Player, "I met him.\nThe fog is gone now.\n");
   speak(5, "Wow, that's amazing! Well,\nwhat can I do to help you?\n");
   showTextbox("Okay, let me give you this.\n");
   playAnimation(5, 0);
   speak(Entity.System, "I got a\n<LIGHTBLUE>Digital Sea Bass<WHITE>!\n");
-  if (!trigger(0) || item[Item.Digiseabass] >= 1) goto L5;
-  speak(Entity.System, "Throw away something else.\n");
-  unsetTrigger(3);
-  callSubroutine(0);
-  callSubroutine(13);
-
-L5:
+  if (trigger(0) && item[Item.Digiseabass] < 1) {
+    speak(Entity.System, "Throw away something else.\n");
+    unsetTrigger(3);
+    callSubroutine(0);
+    callSubroutine(13);
+  }
   giveItem(Item.Digiseabass, 1);
   speak(5, "It's a very rare thing.\nIt'll be useful to you.\n");
   anim(Entity.Player, 19, wait: 20);
@@ -110,32 +106,29 @@ section(81) {
   waitForEntity(200);
   playSound(8, 1);
   storeDigimonType(103);
-  if (!trigger(116) || pstat[103] == 14) goto L1;
-  speak(5, "Looks like you got a problem.\nAbout the costume, right?\n");
-  speak(Entity.Player, "You know about it?\n");
-  speak(5, "Don't underrate me. Numemon\nwill be able to wear it.\n");
-  showTextbox("Shocked? Not only that, once\nhe wears it... You won't\nbelieve... Well, try it out.\n");
-  unsetTrigger(116);
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  return;
-
-L1:
-  if (!trigger(122)) goto L3;
-  setPStat(254, 5);
-  callSubroutine(1);
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  if (item[Item.AmazingRod] < 1) goto L2;
-  removeItem(Item.AmazingRod, 1);
-  setTrigger(46);
-  speak(5, "By the way, I'll remove the\n<LIGHTBLUE>Amazing Rod <WHITE>for\nFishing from your Items.\n");
-  showTextbox("It's a Special Item.\n");
-
-L2:
-  return;
-
-L3:
+  if (trigger(116) && pstat[103] != 14) {
+    speak(5, "Looks like you got a problem.\nAbout the costume, right?\n");
+    speak(Entity.Player, "You know about it?\n");
+    speak(5, "Don't underrate me. Numemon\nwill be able to wear it.\n");
+    showTextbox("Shocked? Not only that, once\nhe wears it... You won't\nbelieve... Well, try it out.\n");
+    unsetTrigger(116);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+  }
+  if (trigger(122)) {
+    setPStat(254, 5);
+    callSubroutine(1);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    if (item[Item.AmazingRod] >= 1) {
+      removeItem(Item.AmazingRod, 1);
+      setTrigger(46);
+      speak(5, "By the way, I'll remove the\n<LIGHTBLUE>Amazing Rod <WHITE>for\nFishing from your Items.\n");
+      showTextbox("It's a Special Item.\n");
+    }
+    return;
+  }
   if (!trigger(319)) goto section_6;
   playSound(8, 1);
   speak(5, "Good luck!\n");
@@ -145,11 +138,10 @@ L3:
 }
 
 section(6) {
-  if (!trigger(122)) goto L1;
-  speak(6, "You can fish only at\nDragon Eye Lake.\n");
-  return;
-
-L1:
+  if (trigger(122)) {
+    speak(6, "You can fish only at\nDragon Eye Lake.\n");
+    return;
+  }
   speak(6, "Stay back, stay back!\n");
   return;
 }
@@ -166,11 +158,10 @@ section(7) {
 }
 
 section(8) {
-  if (trigger(205)) goto L1;
-  speak(8, "Well... no, nothing. Ribbit.\n");
-  return;
-
-L1:
+  if (!trigger(205)) {
+    speak(8, "Well... no, nothing. Ribbit.\n");
+    return;
+  }
   speak(8, "Excuse me... I want to go to\nthe city. Ribbit!\n");
   speak(Entity.Player, "OK, but what happened?\n");
   speak(8, "I wanna fight at the Arena.\nIt seems like we,\nthe Gekomon Tribe,");

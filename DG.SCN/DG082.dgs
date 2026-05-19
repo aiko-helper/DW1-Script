@@ -5,22 +5,20 @@
 
 section onEnter(254) {
   roll(pstat: 110, max: 99);
-  if (pstat[110] > 0) goto L1;
-  spawnItem(Item.SageFruit, x: 60, y: 53);
-
-L1:
-  if (trigger(313)) goto L2;
-  delay(5);
-  playAnimation(5, 28);
-
-L2:
+  if (pstat[110] <= 0) {
+    spawnItem(Item.SageFruit, x: 60, y: 53);
+  }
+  if (!trigger(313)) {
+    delay(5);
+    playAnimation(5, 28);
+  }
   return;
 }
 
 section(5) {
   setTrigger(44);
   speak(Entity.Player, "This must be it!\nNo matter how I look at it,\nit looks a plain meteorite.\n");
-  setSelection(L1, L5);
+  setSelection(L1, L4);
   showTextbox("Crack it and check\nLeave it alone\n");
 
 L1:
@@ -72,14 +70,13 @@ L2:
 
 L3:
     move(entity: 5, to: (1, -1050), animDuration: 40);
-    if (pstat[101] >= 3) goto L4;
-    addPStat(PStat.LoopIterator, 1);
-    delay(20);
-    playSound(8, 5);
-    lookPairAt(5);
-    goto L3;
-
-L4:
+    if (pstat[101] < 3) {
+      addPStat(PStat.LoopIterator, 1);
+      delay(20);
+      playSound(8, 5);
+      lookPairAt(5);
+      goto L3;
+    }
     waitForEntity(5);
     unloadEntity(5);
     setPStat(PStat.LoopIterator, 0);
@@ -90,7 +87,7 @@ L4:
     waitForEntity(200);
     return;
 
-L5:
+L4:
     speak(Entity.Player, "We looked at it, and\nwe can't tell anything.\nLet's crack it!\n");
     move(entity: Entity.Partner, to: 5, sprint: 0);
     waitForEntity(Entity.Partner);
@@ -127,33 +124,31 @@ section(6) {
   move(entity: 6, to: (182, -571), sprint: 1);
   waitForEntity(6);
   unloadEntity(6);
-  if (pstat[21] != 0) goto L1;
-  setObjectVisibility(3, 0);
-  move(entity: Entity.Player, to: (150, -138), sprint: 1);
-  waitForEntity(Entity.Player);
-  anim(Entity.Player, 12, wait: 10);
-  setObjectVisibility(3, 1);
-  playSound(0, 7);
-  speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>.\nI can carry twenty Items!\n");
-  playSound(0, 7);
-  setInventorySize(20);
-  setTrigger(47);
-
-L1:
-  if (pstat[21] != 4) goto L2;
-  setObjectVisibility(2, 0);
-  move(entity: Entity.Player, to: (150, -138), sprint: 1);
-  waitForEntity(Entity.Player);
-  anim(Entity.Player, 12, wait: 10);
-  setObjectVisibility(2, 1);
-  playSound(0, 7);
-  speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>.\nI can carry thirty Items!\n");
-  setInventorySize(30);
-  setTrigger(48);
-  setTrigger(253);
-  addPStat(1, 1);
-
-L2:
+  if (pstat[21] == 0) {
+    setObjectVisibility(3, 0);
+    move(entity: Entity.Player, to: (150, -138), sprint: 1);
+    waitForEntity(Entity.Player);
+    anim(Entity.Player, 12, wait: 10);
+    setObjectVisibility(3, 1);
+    playSound(0, 7);
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>.\nI can carry twenty Items!\n");
+    playSound(0, 7);
+    setInventorySize(20);
+    setTrigger(47);
+  }
+  if (pstat[21] == 4) {
+    setObjectVisibility(2, 0);
+    move(entity: Entity.Player, to: (150, -138), sprint: 1);
+    waitForEntity(Entity.Player);
+    anim(Entity.Player, 12, wait: 10);
+    setObjectVisibility(2, 1);
+    playSound(0, 7);
+    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>.\nI can carry thirty Items!\n");
+    setInventorySize(30);
+    setTrigger(48);
+    setTrigger(253);
+    addPStat(1, 1);
+  }
   moveCamera(to: Entity.Player, speed: 15);
   waitForEntity(200);
   addPStat(21, 1);

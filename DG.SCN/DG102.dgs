@@ -12,86 +12,79 @@ section(81, 0x0022) {
   look(entity: Entity.Player, at: 5);
   look(entity: 5, at: Entity.Player);
   delay(5);
-  if (trigger(37)) goto L1;
-  goto L2;
-  goto L2;
+  if (!trigger(37)) {
+    goto L1;
+    goto L1;
+  }
+  goto L6;
 
 L1:
-  goto L11;
-
-L2:
-  if (pstat[106] != 21 || pstat[107] < 10) goto L3;
-  speak(5, "Unfortunately, you're\ntoo late to register.\nWait another year.\n");
-  return;
-
-L3:
-  if (pstat[106] not in 20..=21) goto L4;
-  goto L5;
-
-L4:
+  if (pstat[106] == 21 && pstat[107] >= 10) {
+    speak(5, "Unfortunately, you're\ntoo late to register.\nWait another year.\n");
+    return;
+  }
+  if (pstat[106] in 20..=21) {
+    goto L2;
+  }
   speak(5, "We're between tournaments.\nI don't have anything to do.\n");
   return;
 
-L5:
-  if (pstat[106] != 21 || pstat[107] < 23) goto L6;
-  speak(5, "The tournament just ended.\nWait another year.\n");
-
-L6:
+L2:
+  if (pstat[106] == 21 && pstat[107] >= 23) {
+    speak(5, "The tournament just ended.\nWait another year.\n");
+  }
   storeDigimonType(103);
-  if (pstat[103] != 19 && pstat[103] != 32 && pstat[103] != 51 && pstat[103] != 60) goto L7;
-  goto L8;
-
-L7:
+  if (pstat[103] == 19 || pstat[103] == 32 || pstat[103] == 51 || pstat[103] == 60) {
+    goto L3;
+  }
   speak(5, "You're not an insectoid.\nYou can't enter the contest.\n");
   return;
 
-L8:
-  if (trigger(37)) goto L9;
+L3:
+  if (trigger(37)) goto L4;
   speak(5, "You want to enter the contest?\n");
   setDialogOwner(5);
-  choice { "Explain" -> L9, "Don't explain" -> L10 }
-  goto L10;
+  choice { "Explain" -> L4, "Don't explain" -> L5 }
+  goto L5;
 
-L9:
+L4:
   speak(5, "On the twenty second,\nthere's a tournament for\nInsectoid Digimon only.\n");
   showTextbox("You can register for\nthat one right now.\n");
   showTextbox("Unless you're an Insectoid\nDigimon, you can't\nregister for the contest.\n");
   showTextbox("If you win, you'll receive\ndeluxe gifts. Just register.\n");
-  goto L10;
+  goto L5;
 
-L10:
+L5:
   setDialogOwner(5);
-  choice { "Register" -> L17, "Don't register" -> L16 }
+  choice { "Register" -> L10, "Don't register" -> L9 }
   return;
 
-L11:
-  if (pstat[106] not in 20..=21) goto L12;
-  goto L13;
-
-L12:
+L6:
+  if (pstat[106] in 20..=21) {
+    goto L7;
+  }
   speak(5, "We're between tournaments.\nI don't have anything to do.\n");
   return;
 
-L13:
-  if (pstat[106] != 21 || pstat[107] < 23) goto L14;
-  speak(5, "The tournament just ended.\nWait another year.\n");
-
-L14:
+L7:
+  if (pstat[106] == 21 && pstat[107] >= 23) {
+    speak(5, "The tournament just ended.\nWait another year.\n");
+  }
   speak(5, "You're scheduled to\nregister in  ' - <SELECTED TOURNAMENT>- '.\nDo you want to cancel?\n");
   setDialogOwner(Entity.Player);
-  choice { "I won't cancel" -> L16, "I'll cancel" -> L15 }
+  choice { "I won't cancel" -> L9, "I'll cancel" -> L8 }
   return;
 
-L15:
+L8:
   unsetTrigger(37);
   speak(5, "I canceled.\n");
   return;
 
-L16:
+L9:
   speak(5, "Sure you want to do that?\n");
   return;
 
-L17:
+L10:
   callSubroutine(33);
   speak(5, "I registered.\n");
   return;
@@ -99,46 +92,42 @@ L17:
 
 section(51) {
   pstat[:SavedTime] = time();
-  if (pstat[106] == 21) goto L1;
-  look(entity: 5, at: Entity.Player);
-  look(entity: Entity.Player, at: 5);
-  delay(5);
-  speak(5, "There's no tournament today.\n");
-  move(entity: Entity.Player, to: (-126, 546), sprint: 1);
-  waitForEntity(Entity.Player);
-  return;
-
-L1:
-  if (trigger(37)) goto L2;
-  look(entity: 5, at: Entity.Player);
-  look(entity: Entity.Player, at: 5);
-  delay(5);
-  speak(5, "Those who aren't registered\ncan't come in.\n");
-  move(entity: Entity.Player, to: (-126, 546), sprint: 1);
-  waitForEntity(Entity.Player);
-  return;
-
-L2:
-  if (pstat[107] >= 10) goto L3;
-  look(entity: 5, at: Entity.Player);
-  look(entity: Entity.Player, at: 5);
-  delay(5);
-  speak(5, "It's not open yet. Register\non the twenty second, between\nten am and eleven pm.\n");
-  move(entity: Entity.Player, to: (-126, 546), sprint: 1);
-  waitForEntity(Entity.Player);
-  return;
-
-L3:
-  if (pstat[107] < 23) goto L4;
-  look(entity: 5, at: Entity.Player);
-  look(entity: Entity.Player, at: 5);
-  delay(5);
-  speak(5, "Too bad, the tournament is\nover. Come again next year.\n");
-  move(entity: Entity.Player, to: (-126, 546), sprint: 1);
-  waitForEntity(Entity.Player);
-  return;
-
-L4:
+  if (pstat[106] != 21) {
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    speak(5, "There's no tournament today.\n");
+    move(entity: Entity.Player, to: (-126, 546), sprint: 1);
+    waitForEntity(Entity.Player);
+    return;
+  }
+  if (!trigger(37)) {
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    speak(5, "Those who aren't registered\ncan't come in.\n");
+    move(entity: Entity.Player, to: (-126, 546), sprint: 1);
+    waitForEntity(Entity.Player);
+    return;
+  }
+  if (pstat[107] < 10) {
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    speak(5, "It's not open yet. Register\non the twenty second, between\nten am and eleven pm.\n");
+    move(entity: Entity.Player, to: (-126, 546), sprint: 1);
+    waitForEntity(Entity.Player);
+    return;
+  }
+  if (pstat[107] >= 23) {
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Player, at: 5);
+    delay(5);
+    speak(5, "Too bad, the tournament is\nover. Come again next year.\n");
+    move(entity: Entity.Player, to: (-126, 546), sprint: 1);
+    waitForEntity(Entity.Player);
+    return;
+  }
   setPStat(254, 5);
   callSubroutine(6);
   pstat[:SavedTime] = time();
@@ -157,67 +146,59 @@ L1:
 
 section(82) {
   unsetTrigger(37);
-  if (pstat[255] != 3) goto L1;
-  goto L4;
-
-L1:
-  if (pstat[255] != 2) goto L2;
-  goto L6;
-
-L2:
+  if (pstat[255] == 3) {
+    goto L1;
+  }
+  if (pstat[255] == 2) {
+    goto L2;
+  }
   speak(5, "Too bad.\nIt'll have to be next year.\n");
   speak(Entity.System, "I got a <LIGHTBLUE>Giant Meat <WHITE>\nfor participating!\n");
   giveItem(Item.GiantMeat, 1);
-  if (!trigger(0)) goto L3;
-  speak(5, "Too much stuff.\nThrow some away.\n");
-  inventoryFullBailout();
-  giveItem(Item.GiantMeat, 1);
-
-L3:
+  if (trigger(0)) {
+    speak(5, "Too much stuff.\nThrow some away.\n");
+    inventoryFullBailout();
+    giveItem(Item.GiantMeat, 1);
+  }
   return;
 
-L4:
-  if (pstat[3] != 22) goto L6;
+L1:
+  if (pstat[3] != 22) goto L2;
   addMoney(5000);
   speak(Entity.System, "Championship prize money :\nfive thous bits.\nI got a <LIGHTBLUE>Beetle Pearl <WHITE>\nas a championship prize!\n");
   giveItem(Item.Beetlepearl, 1);
-  if (!trigger(0)) goto L5;
-  speak(5, "Too much stuff!\n");
-  inventoryFullBailout();
-  giveItem(Item.Beetlepearl, 1);
-
-L5:
+  if (trigger(0)) {
+    speak(5, "Too much stuff!\n");
+    inventoryFullBailout();
+    giveItem(Item.Beetlepearl, 1);
+  }
   jumpToScriptSection(204, 51);
 
-L6:
+L2:
   roll(pstat: 110, max: 1);
-  if (pstat[3] != 22 || pstat[110] != 0) goto L8;
-  addMoney(2000);
-  speak(Entity.System, "Second place prize money :\ntwo thous bits!\nI got a <LIGHTBLUE>Horn Helmet <WHITE>\nas a second place prize!\n");
-  giveItem(Item.HornHelmet, 1);
-  setTrigger(346);
-  if (!trigger(0)) goto L7;
-  speak(5, "Too much stuff!\n");
-  inventoryFullBailout();
-  giveItem(Item.HornHelmet, 1);
-
-L7:
-  return;
-
-L8:
-  if (pstat[3] != 22 || pstat[110] != 1) goto L10;
-  addMoney(2000);
-  speak(Entity.System, "Second place prize money:\ntwo thous bits!\nI got <LIGHTBLUE>Scissor Jaw <WHITE>\nas a second place prize!\n");
-  giveItem(Item.ScissorJaw, 1);
-  if (!trigger(0)) goto L9;
-  speak(5, "Too much stuff!\n");
-  inventoryFullBailout();
-  giveItem(Item.ScissorJaw, 1);
-
-L9:
-  return;
-
-L10:
+  if (pstat[3] == 22 && pstat[110] == 0) {
+    addMoney(2000);
+    speak(Entity.System, "Second place prize money :\ntwo thous bits!\nI got a <LIGHTBLUE>Horn Helmet <WHITE>\nas a second place prize!\n");
+    giveItem(Item.HornHelmet, 1);
+    setTrigger(346);
+    if (trigger(0)) {
+      speak(5, "Too much stuff!\n");
+      inventoryFullBailout();
+      giveItem(Item.HornHelmet, 1);
+    }
+    return;
+  }
+  if (pstat[3] == 22 && pstat[110] == 1) {
+    addMoney(2000);
+    speak(Entity.System, "Second place prize money:\ntwo thous bits!\nI got <LIGHTBLUE>Scissor Jaw <WHITE>\nas a second place prize!\n");
+    giveItem(Item.ScissorJaw, 1);
+    if (trigger(0)) {
+      speak(5, "Too much stuff!\n");
+      inventoryFullBailout();
+      giveItem(Item.ScissorJaw, 1);
+    }
+    return;
+  }
   return;
 }
 
