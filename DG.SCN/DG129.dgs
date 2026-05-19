@@ -4,10 +4,7 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 10) {
-    spawnItem(Item.Digimushroom, x: 40, y: 54);
-  }
+  spawnItemChance(110, max: 99, chance: 10, item: Item.Digimushroom, x: 40, y: 54);
   setPStat(113, 0);
   if (trigger(5) || trigger(6) || trigger(7)) {
     playAnimation(5, 29);

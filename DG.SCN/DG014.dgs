@@ -4,18 +4,9 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 15) {
-    spawnItem(Item.Digimushroom, x: 25, y: 33);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 4) {
-    spawnItem(Item.Digimushroom, x: 63, y: 31);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 1) {
-    spawnItem(Item.DeluxeMushroom, x: 53, y: 81);
-  }
+  spawnItemChance(110, max: 99, chance: 15, item: Item.Digimushroom, x: 25, y: 33);
+  spawnItemChance(110, max: 99, chance: 4, item: Item.Digimushroom, x: 63, y: 31);
+  spawnItemChance(110, max: 99, chance: 1, item: Item.DeluxeMushroom, x: 53, y: 81);
   return;
 }
 

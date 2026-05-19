@@ -11,18 +11,9 @@ section onEnter(254) {
     setObjectVisibility(18, 1);
     setObjectVisibility(23, 0);
   }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 2) {
-    spawnItem(Item.Happymushroom, x: 61, y: 64);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 29) {
-    spawnItem(Item.Digimushroom, x: 55, y: 71);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 39) {
-    spawnItem(Item.Digimushroom, x: 36, y: 44);
-  }
+  spawnItemChance(110, max: 99, chance: 2, item: Item.Happymushroom, x: 61, y: 64);
+  spawnItemChance(110, max: 99, chance: 29, item: Item.Digimushroom, x: 55, y: 71);
+  spawnItemChance(110, max: 99, chance: 39, item: Item.Digimushroom, x: 36, y: 44);
   if (pstat[1] >= 25) {
     setObjectsVisibleRange(28, 33, 0);
   }

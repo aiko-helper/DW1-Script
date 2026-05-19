@@ -4,26 +4,11 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 14) {
-    spawnItem(Item.Digimushroom, x: 53, y: 64);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 14) {
-    spawnItem(Item.Digimushroom, x: 56, y: 61);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 14) {
-    spawnItem(Item.Digimushroom, x: 60, y: 59);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 14) {
-    spawnItem(Item.Digimushroom, x: 63, y: 55);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 5) {
-    spawnItem(Item.Happymushroom, x: 56, y: 65);
-  }
+  spawnItemChance(110, max: 99, chance: 14, item: Item.Digimushroom, x: 53, y: 64);
+  spawnItemChance(110, max: 99, chance: 14, item: Item.Digimushroom, x: 56, y: 61);
+  spawnItemChance(110, max: 99, chance: 14, item: Item.Digimushroom, x: 60, y: 59);
+  spawnItemChance(110, max: 99, chance: 14, item: Item.Digimushroom, x: 63, y: 55);
+  spawnItemChance(110, max: 99, chance: 5, item: Item.Happymushroom, x: 56, y: 65);
   if (!trigger(233) && trigger(53)) {
     playAnimation(5, 28);
   }

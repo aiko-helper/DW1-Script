@@ -4,18 +4,9 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 8) {
-    spawnItem(Item.Digimushroom, x: 57, y: 61);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 19) {
-    spawnItem(Item.Digimushroom, x: 35, y: 43);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 2) {
-    spawnItem(Item.SweetNut, x: 39, y: 18);
-  }
+  spawnItemChance(110, max: 99, chance: 8, item: Item.Digimushroom, x: 57, y: 61);
+  spawnItemChance(110, max: 99, chance: 19, item: Item.Digimushroom, x: 35, y: 43);
+  spawnItemChance(110, max: 99, chance: 2, item: Item.SweetNut, x: 39, y: 18);
   if (trigger(328)) {
   } else {
     setObjectsVisibleRange(38, 40, 1);

@@ -4,22 +4,10 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 14) {
-    spawnItem(Item.Digimushroom, x: 30, y: 89);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 8) {
-    spawnItem(Item.Digimushroom, x: 55, y: 61);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 13) {
-    spawnItem(Item.Digimushroom, x: 26, y: 52);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 2) {
-    spawnItem(Item.RedBerry, x: 44, y: 17);
-  }
+  spawnItemChance(110, max: 99, chance: 14, item: Item.Digimushroom, x: 30, y: 89);
+  spawnItemChance(110, max: 99, chance: 8, item: Item.Digimushroom, x: 55, y: 61);
+  spawnItemChance(110, max: 99, chance: 13, item: Item.Digimushroom, x: 26, y: 52);
+  spawnItemChance(110, max: 99, chance: 2, item: Item.RedBerry, x: 44, y: 17);
   return;
 }
 

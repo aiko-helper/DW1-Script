@@ -4,22 +4,10 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 9) {
-    spawnItem(Item.Digimushroom, x: 35, y: 9);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 4) {
-    spawnItem(Item.Digimushroom, x: 19, y: 31);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 0) {
-    spawnItem(Item.Happymushroom, x: 11, y: 10);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 0) {
-    spawnItem(Item.DeluxeMushroom, x: 46, y: 46);
-  }
+  spawnItemChance(110, max: 99, chance: 9, item: Item.Digimushroom, x: 35, y: 9);
+  spawnItemChance(110, max: 99, chance: 4, item: Item.Digimushroom, x: 19, y: 31);
+  spawnItemChance(110, max: 99, chance: 0, item: Item.Happymushroom, x: 11, y: 10);
+  spawnItemChance(110, max: 99, chance: 0, item: Item.DeluxeMushroom, x: 46, y: 46);
   if (!trigger(180)) {
     setObjectVisibility(2, 0);
     return;

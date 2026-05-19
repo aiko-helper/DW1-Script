@@ -12,14 +12,8 @@ section onEnter(254) {
   if (trigger(232) && pstat[1] >= 35) {
     setObjectsVisibleRange(71, 73, 0);
   }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 39) {
-    spawnItem(Item.Digimushroom, x: 37, y: 48);
-  }
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 3) {
-    spawnItem(Item.BlueApple, x: 38, y: 52);
-  }
+  spawnItemChance(110, max: 99, chance: 39, item: Item.Digimushroom, x: 37, y: 48);
+  spawnItemChance(110, max: 99, chance: 3, item: Item.BlueApple, x: 38, y: 52);
   return;
 }
 
