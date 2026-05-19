@@ -151,7 +151,7 @@ section(51) {
     setTrigger(191);
     playAnimation(Entity.Player, 16);
     speak(Entity.Player, "Maybe I'll wait.\n");
-    choice { "Wait" -> L1, "Go" -> L3 }
+    choice { "Wait" -> L1, "Go" -> L2 }
     return;
   }
   return;
@@ -174,18 +174,16 @@ L1:
   if (pstat[112] == 0) {
     move(entity: Entity.Partner, to: 5, sprint: 1);
     waitForEntity(Entity.Partner);
-    goto section_54.L3;
-    goto L2;
+    goto section_54.L2;
+  } else {
+    playAnimation(Entity.Player, 16);
+    speak(Entity.Player, "He went to the wrong place!\n");
   }
-  playAnimation(Entity.Player, 16);
-  speak(Entity.Player, "He went to the wrong place!\n");
-
-L2:
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
   return;
 
-L3:
+L2:
   return;
 }
 
@@ -194,7 +192,7 @@ section(52) {
     setTrigger(192);
     playAnimation(Entity.Player, 16);
     speak(Entity.Player, "Maybe I'll wait.\n");
-    choice { "Wait" -> L1, "Go" -> section_51.L3 }
+    choice { "Wait" -> L1, "Go" -> section_51.L2 }
     return;
   }
   return;
@@ -217,13 +215,11 @@ L1:
   if (pstat[112] == 1) {
     move(entity: Entity.Partner, to: 5, sprint: 1);
     waitForEntity(Entity.Partner);
-    goto section_54.L3;
-    goto L2;
+    goto section_54.L2;
+  } else {
+    playAnimation(Entity.Player, 16);
+    speak(Entity.Player, "He went to the wrong place!\n");
   }
-  playAnimation(Entity.Player, 16);
-  speak(Entity.Player, "He went to the wrong place!\n");
-
-L2:
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
   return;
@@ -234,7 +230,7 @@ section(53) {
     setTrigger(193);
     playAnimation(Entity.Player, 16);
     speak(Entity.Player, "Maybe I'll wait.\n");
-    choice { "Wait" -> L1, "Go" -> section_51.L3 }
+    choice { "Wait" -> L1, "Go" -> section_51.L2 }
     return;
   }
   return;
@@ -257,13 +253,11 @@ L1:
   if (pstat[112] == 2) {
     move(entity: Entity.Partner, to: 5, sprint: 1);
     waitForEntity(Entity.Partner);
-    goto section_54.L3;
-    goto L2;
+    goto section_54.L2;
+  } else {
+    playAnimation(Entity.Player, 16);
+    speak(Entity.Player, "He went to the wrong place!\n");
   }
-  playAnimation(Entity.Player, 16);
-  speak(Entity.Player, "He went to the wrong place!\n");
-
-L2:
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
   return;
@@ -274,7 +268,7 @@ section(54) {
     setTrigger(194);
     playAnimation(Entity.Player, 16);
     speak(Entity.Player, "Maybe I'll wait.\n");
-    choice { "Wait" -> L1, "Go" -> section_51.L3 }
+    choice { "Wait" -> L1, "Go" -> section_51.L2 }
     return;
   }
   return;
@@ -298,18 +292,16 @@ L1:
   if (pstat[112] == 3) {
     move(entity: Entity.Partner, to: 5, sprint: 1);
     waitForEntity(Entity.Partner);
-    goto L3;
     goto L2;
+  } else {
+    playAnimation(Entity.Player, 16);
+    speak(Entity.Player, "He went to the wrong place!\n");
   }
-  playAnimation(Entity.Player, 16);
-  speak(Entity.Player, "He went to the wrong place!\n");
-
-L2:
   moveCamera(to: Entity.Player, speed: 10);
   waitForEntity(200);
   return;
 
-L3:
+L2:
   anim(Entity.Player, 11, wait: 10);
   lookPairAt(5);
   look(entity: 5, at: Entity.Player);
@@ -331,9 +323,9 @@ L3:
   playAnimation(5, 0);
   speak(5, "I see. It's my mistake.\n");
   speak(5, "I'll go to the city.\n");
-  goto L4;
+  goto L3;
 
-L4:
+L3:
   loop {
     move(entity: 5, to: (-1232, 4250), sprint: 1);
     if (pstat[101] < 6 && pstat[112] != 0) {

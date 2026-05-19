@@ -45,59 +45,57 @@ section(9) {
 
 section(5) {
   if (trigger(195)) {
-    goto L4;
-  }
-  speak(5, "If you want to go thru,\nyou must accept my challenge.\n");
-  setTrigger(1);
-  setPStat(250, 1);
-  setPStat(251, 5);
-  setPStat(252, 255);
-  setPStat(253, 255);
-  startBattle();
-  unsetTrigger(1);
-  setPStat(250, 0);
-  look(entity: Entity.Player, at: 5);
-  look(entity: 5, at: Entity.Player);
-  look(entity: Entity.Partner, at: 5);
-  speak(5, "I let my guard down,\nbut two on one isn't fair.\n");
-  playAnimation(Entity.Player, 16);
-  setTrigger(49);
-  setDialogOwner(Entity.Player);
-  setSelection(L1, L1);
-  showTextbox("Well, that maybe so\nDon't be a sore loser\n");
+  } else {
+    speak(5, "If you want to go thru,\nyou must accept my challenge.\n");
+    setTrigger(1);
+    setPStat(250, 1);
+    setPStat(251, 5);
+    setPStat(252, 255);
+    setPStat(253, 255);
+    startBattle();
+    unsetTrigger(1);
+    setPStat(250, 0);
+    look(entity: Entity.Player, at: 5);
+    look(entity: 5, at: Entity.Player);
+    look(entity: Entity.Partner, at: 5);
+    speak(5, "I let my guard down,\nbut two on one isn't fair.\n");
+    playAnimation(Entity.Player, 16);
+    setTrigger(49);
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L1);
+    showTextbox("Well, that maybe so\nDon't be a sore loser\n");
 
 L1:
-  speak(5, "I never lose to anybody\nwhen it's a fair fight.\n");
-  showTextbox("Let's fight one on one. Come\nback tomorrow at four O'clock.\nOnly Digimon will fight.\n");
-  setDialogOwner(Entity.Player);
-  setSelection(L2, L2);
-  showTextbox("Alright\nNo thanks\n");
+    speak(5, "I never lose to anybody\nwhen it's a fair fight.\n");
+    showTextbox("Let's fight one on one. Come\nback tomorrow at four O'clock.\nOnly Digimon will fight.\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L2, L2);
+    showTextbox("Alright\nNo thanks\n");
 
 L2:
-  playAnimation(Entity.Player, 16);
-  unsetTrigger(49);
-  speak(5, "It's a promise then.\nSee you tomorrow!\n");
-  setTrigger(195);
-  pstat[29] = time();
-  goto L3;
+    playAnimation(Entity.Player, 16);
+    unsetTrigger(49);
+    speak(5, "It's a promise then.\nSee you tomorrow!\n");
+    setTrigger(195);
+    pstat[29] = time();
+    goto L3;
 
 L3:
-  approach(who: 5, x: -2050, y: -150, tries: 6, wait: 10);
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  return;
-
-L4:
+    approach(who: 5, x: -2050, y: -150, tries: 6, wait: 10);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+  }
   pstat[:SavedTime] = time();
   if (trigger(195) && pstat[107] >= 15 && pstat[107] <= 17 && pstat[29] == 1) {
     speak(5, "You came back, good.\nToday, we'll fight fair!\n");
-    goto L5;
-    goto L5;
+    goto L4;
+    goto L4;
   }
   speak(5, "You're late, but that gave\nme time to nurse my injury.\nNow let's go for it.\n");
-  goto L5;
+  goto L4;
 
-L5:
+L4:
   speak(Entity.Player, "I'll just watch. Start!\n");
   look(entity: Entity.Player, at: Entity.Partner);
   waitForEntity(Entity.Player);
@@ -122,9 +120,9 @@ L5:
   speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> tries so hard\nto convince him!\n");
   anim(Entity.Player, 19, wait: 40);
   speak(5, "I'll help you. But, I'll\nhave to see that city first.\n");
-  goto L6;
+  goto L5;
 
-L6:
+L5:
   approach(who: 5, x: -2000, y: -100, tries: 6, wait: 10);
   playSound(8, 11);
   speak(Entity.System, "Garurumon joins the city!\n");

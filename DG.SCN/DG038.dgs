@@ -58,8 +58,8 @@ section(82) {
   delay(5);
   speak(Entity.System, "Elevator\n");
   setDialogOwner(Entity.Player);
-  choice { "Press UP" -> L1, "Press DOWN" -> L2, "Don't get on" -> L4 }
-  goto L4;
+  choice { "Press UP" -> L1, "Press DOWN" -> L2, "Don't get on" -> L3 }
+  goto L3;
   return;
 
 L1:
@@ -94,37 +94,35 @@ L2:
     speak(Entity.Player, "What?\n");
     showTextbox("Nothing happens.\n");
     return;
-    goto L3;
+  } else {
+    playSound(8, 4);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    playSound(8, 5);
+    warp(to: Map.GCAN06, spawn: 2, trigger: 53);
+    return;
   }
-  playSound(8, 4);
-  rotate3DObject(0, 1);
-  delay(1);
-  rotate3DObject(1, 1);
-  delay(1);
-  rotate3DObject(0, 1);
-  delay(1);
-  rotate3DObject(1, 1);
-  delay(1);
-  rotate3DObject(0, 1);
-  delay(1);
-  rotate3DObject(1, 1);
-  delay(1);
-  rotate3DObject(0, 1);
-  delay(1);
-  rotate3DObject(1, 1);
-  delay(1);
-  rotate3DObject(0, 1);
-  delay(1);
-  rotate3DObject(1, 1);
-  delay(1);
-  playSound(8, 5);
-  warp(to: Map.GCAN06, spawn: 2, trigger: 53);
   return;
 
 L3:
-  return;
-
-L4:
   return;
 }
 

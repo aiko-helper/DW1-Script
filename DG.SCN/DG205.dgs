@@ -10,103 +10,101 @@ section onEnter(254) {
 section(6) {
   speak(6, "Which shop would you want?\n");
   setDialogOwner(Entity.Player);
-  choice { "Clinic" -> L1, "Treasure Hunter" -> L13, "Fortune Teller" -> L26 }
+  choice { "Clinic" -> L1, "Treasure Hunter" -> L12, "Fortune Teller" -> L24 }
   return;
 
 L1:
   speak(6, "I changed it into a hospital.\n");
   if ((cond & 0x20) == 0x01 || (cond & 0x40) == 0x01) goto L2;
-  goto L4;
+  goto L3;
 
 L2:
   speak(6, "He doesn't feel well,\ndoes he? You have to take\ncare of his health!\n");
   showTextbox("Let me treat him right away.\nFee will be discounted\nto three hundred bits.\n");
   if (money >= 300) {
     reduceMoney(300);
-    goto L3;
+  } else {
+    speak(6, "You don't have enough bits?!\nPay me what you can. Save\nyour money for a rainy day.\n");
+    reduceMoney(300);
   }
-  speak(6, "You don't have enough bits?!\nPay me what you can. Save\nyour money for a rainy day.\n");
-  reduceMoney(300);
-
-L3:
   removeCondition(Condition.Injured);
   removeCondition(Condition.Sick);
   showTextbox("Everything is OK now.\nJust be careful from now on.\n");
   return;
 
-L4:
+L3:
   speak(6, "He doesn't look sick or\ninjured. What do you need?\n");
   setDialogOwner(Entity.Player);
-  setSelection(L5, L8, L9);
+  setSelection(L4, L7, L8);
   showTextbox("Check him out\nSell me Medicine\nNothing\n");
 
-L5:
+L4:
   speak(6, "OK, let me look at\nhow <ORANGE><DIGIMON><WHITE> is doing.\n");
   if (stat[Stat.Tiredness] >= 80) {
     speak(6, "Oh no. <ORANGE><DIGIMON><WHITE>'s Tiredness\nis at a very dangerous level.\nHe has to rest right now!\n");
-    goto L6;
+    goto L5;
   }
   if (stat[Stat.Tiredness] >= 50) {
     speak(6, "<ORANGE><DIGIMON><WHITE> has too much\nTiredness. He should rest\nbefore it's too late.\n");
-    goto L6;
+    goto L5;
   }
   if (stat[Stat.Tiredness] >= 20) {
     speak(6, "<ORANGE><DIGIMON><WHITE> seems to be a bit\ntired. He shouldn't push\nhimself so much.\n");
-    goto L6;
+    goto L5;
   }
   speak(6, "<ORANGE><DIGIMON><WHITE> is fine, but\nTiredness can cause all kinds\nof bad things. Be careful.\n");
 
-L6:
+L5:
   speak(6, "Well, how does he feel?\n");
   if (stat[Stat.Happiness] >= 100) {
     speak(6, "Mentally, <ORANGE><DIGIMON><WHITE> is at\nmax relaxation. He'll\nlive for a long time.\n");
-    goto L7;
+    goto L6;
   }
   if (stat[Stat.Happiness] >= 70) {
     speak(6, "<ORANGE><DIGIMON><WHITE>'s mental state is\nexcellent. It's the sign\nof a healthy lifestyle.\n");
-    goto L7;
+    goto L6;
   }
   if (stat[Stat.Happiness] >= 30) {
     speak(6, "<ORANGE><DIGIMON><WHITE> seems to be very\nrelaxed. Did something\nnice happen to him?\n");
-    goto L7;
+    goto L6;
   }
   if (stat[Stat.Happiness] >= 0) {
     speak(6, "I don't think <ORANGE><DIGIMON><WHITE> is\nfeeling really stressed.\nI would say he's normal.\n");
-    goto L7;
+    goto L6;
   }
   if (stat[Stat.Happiness] >= -20) {
     speak(6, "<ORANGE><DIGIMON><WHITE> seems to be stressed\na bit. Go easy on training.\n");
-    goto L7;
+    goto L6;
   }
   if (stat[Stat.Happiness] >= -50) {
     speak(6, "<ORANGE><DIGIMON><WHITE> has excess stress.\nHe needs some fun.\n");
-    goto L7;
+    goto L6;
   }
   if (stat[Stat.Happiness] >= -80) {
     speak(6, "<ORANGE><DIGIMON><WHITE> has too much stress\nand isn't happy. He shouldn't\npush himself so much.\n");
-    goto L7;
+    goto L6;
   }
   speak(6, "<ORANGE><DIGIMON><WHITE> has too much stress!\nIf he goes on like this,\nhe won't live long!\n");
-  goto L7;
+  goto L6;
 
-L7:
+L6:
   speak(6, "Hmmm.... This is the best\nI can do for <ORANGE><DIGIMON><WHITE>.\n");
   showTextbox("Do you still need me\nfor something?\n");
   setDialogOwner(Entity.Player);
-  choice { "Check him out" -> L5, "Sell me Medicine" -> L8, "Nothing" -> L9 }
+  choice { "Check him out" -> L4, "Sell me Medicine" -> L7, "Nothing" -> L8 }
+  return;
+
+L7:
+  speak(6, "Hmmm, he should be fine.\n");
+  setDialogOwner(Entity.Player);
+  choice { "Bandage:    four hund bits" -> L9, "Medicine: twelve hund bits" -> L10, "Don't buy anything" -> L8 }
   return;
 
 L8:
-  speak(6, "Hmmm, he should be fine.\n");
-  setDialogOwner(Entity.Player);
-  choice { "Bandage:    four hund bits" -> L10, "Medicine: twelve hund bits" -> L11, "Don't buy anything" -> L9 }
-  return;
-
-L9:
   speak(6, "When he doesn't feel well,\ncome to see me right away.\n");
   return;
 
-L10:
+L9:
   if (item[Item.Bandage] < 1 && trigger(0)) {
     speak(6, "You have a lot of stuff.\n");
     return;
@@ -114,12 +112,12 @@ L10:
   if (money >= 400) {
     reduceMoney(400);
     giveItem(Item.Bandage, 1);
-    goto L12;
+    goto L11;
   }
   speak(6, "You don't have enough bits.\nI can't sell you that.\n");
   return;
 
-L11:
+L10:
   if (item[Item.Medicine] < 1 && trigger(0)) {
     speak(6, "You have a lot of stuff.\n");
     return;
@@ -127,156 +125,154 @@ L11:
   if (money >= 1200) {
     reduceMoney(1200);
     giveItem(Item.Medicine, 1);
-    goto L12;
+    goto L11;
   }
   speak(6, "You don't have enough bits.\nI can't sell you that.\n");
   return;
 
-L12:
+L11:
   speak(6, "Do you still need me\nfor something?\n");
   setDialogOwner(Entity.Player);
-  choice { "Check him out" -> L5, "Sell me Medicine" -> L8, "Nothing" -> L9 }
+  choice { "Check him out" -> L4, "Sell me Medicine" -> L7, "Nothing" -> L8 }
   return;
 
-L13:
+L12:
   speak(6, "I changed jobs to become\nthe Treasure Hunter.\n");
   if (trigger(178) || trigger(178)) {
-    goto L20;
-  }
-  speak(6, "Do you have a request for\nTreasure Hunting? Do you\nwant some information?\n");
-  setDialogOwner(Entity.Player);
-  choice { "Want some info" -> L14, "Don't need any info" -> L15, "Never mind" -> L16 }
-  goto L16;
+  } else {
+    speak(6, "Do you have a request for\nTreasure Hunting? Do you\nwant some information?\n");
+    setDialogOwner(Entity.Player);
+    choice { "Want some info" -> L13, "Don't need any info" -> L14, "Never mind" -> L15 }
+    goto L15;
+
+L13:
+    speak(6, "There are two courses with\ndifferent times and prices.\n");
+    showTextbox("Reg:three day, one thous bits\nSpec:ten day, five thous bits\n");
+    showTextbox("The chances of finding\nbetter treasure is higher\nwith the Special Plan.\n");
+    showTextbox("That's about it.\nSo, what do you want to do?\n");
+    setDialogOwner(6);
+    choice { "Explain again" -> L13, "Find treasure" -> L14, "Nothing" -> L15 }
+    goto L15;
 
 L14:
-  speak(6, "There are two courses with\ndifferent times and prices.\n");
-  showTextbox("Reg:three day, one thous bits\nSpec:ten day, five thous bits\n");
-  showTextbox("The chances of finding\nbetter treasure is higher\nwith the Special Plan.\n");
-  showTextbox("That's about it.\nSo, what do you want to do?\n");
-  setDialogOwner(6);
-  choice { "Explain again" -> L14, "Find treasure" -> L15, "Nothing" -> L16 }
-  goto L16;
+    speak(6, "Choose a plan!\n");
+    setDialogOwner(Entity.Player);
+    choice { "Reg:three day, one thous bits" -> L16, "Spec:ten day, five thous bits" -> L17, "Cancel" -> L15 }
+    goto L15;
 
 L15:
-  speak(6, "Choose a plan!\n");
-  setDialogOwner(Entity.Player);
-  choice { "Reg:three day, one thous bits" -> L17, "Spec:ten day, five thous bits" -> L18, "Cancel" -> L16 }
-  goto L16;
+    speak(6, "OK then, goodbye.\n");
+    return;
 
 L16:
-  speak(6, "OK then, goodbye.\n");
-  return;
+    if (money < 1000) {
+      goto L18;
+    }
+    reduceMoney(1000);
+    setTrigger(178);
+    pstat[30] = time();
+    speak(6, "Alright, you'll get results\nin three days. Wish me luck.\n");
+    roll(pstat: 22, max: 49);
+    return;
 
 L17:
-  if (money < 1000) {
-    goto L19;
-  }
-  reduceMoney(1000);
-  setTrigger(178);
-  pstat[30] = time();
-  speak(6, "Alright, you'll get results\nin three days. Wish me luck.\n");
-  roll(pstat: 22, max: 49);
-  return;
+    if (money < 5000) {
+      goto L18;
+    }
+    reduceMoney(5000);
+    setTrigger(179);
+    pstat[30] = time();
+    speak(6, "Alright, you'll get results\nin three days. Wish me luck.\n");
+    roll(pstat: 23, max: 49);
+    return;
 
 L18:
-  if (money < 5000) {
+    speak(6, "You don't have enough bits.\nI need some money to\nfind treasure.\n");
+    return;
+  }
+  if (pstat[30] < 3 && trigger(178)) {
     goto L19;
   }
-  reduceMoney(5000);
-  setTrigger(179);
-  pstat[30] = time();
-  speak(6, "Alright, you'll get results\nin three days. Wish me luck.\n");
-  roll(pstat: 23, max: 49);
-  return;
+  if (pstat[30] < 10 && trigger(179)) {
+    goto L19;
+  }
+  goto L20;
 
 L19:
-  speak(6, "You don't have enough bits.\nI need some money to\nfind treasure.\n");
-  return;
-
-L20:
-  if (pstat[30] < 3 && trigger(178)) {
-    goto L21;
-  }
-  if (pstat[30] < 10 && trigger(179)) {
-    goto L21;
-  }
-  goto L22;
-
-L21:
   speak(Entity.System, "<YELLOW>Sign <WHITE>\nI'm looking for treasure\nright now. Please wait\na while: Drimogemon.\n");
   return;
 
-L22:
+L20:
   speak(6, "You know what?\nWe got some treasure.\n");
   if (trigger(178)) {
-    goto L23;
+    goto L21;
   }
-  if (!trigger(179)) goto L23;
+  if (!trigger(179)) goto L21;
   unsetTrigger(179);
-  goto L25;
+  goto L23;
 
-L23:
+L21:
   if (pstat[22] <= 0) {
     giveItem(Item.KogaLaws, 1);
     setPStat(110, 90);
-    goto L24;
+    goto L22;
   }
   if (pstat[22] <= 1) {
     giveItem(Item.FlameWing, 1);
     setPStat(110, 73);
-    goto L24;
+    goto L22;
   }
   if (pstat[22] <= 2) {
     giveItem(Item.TornTatter, 1);
     setPStat(110, 82);
-    goto L24;
+    goto L22;
   }
   if (pstat[22] <= 12) {
     giveItem(Item.SuperRecovery, 1);
     setPStat(110, 3);
-    goto L24;
+    goto L22;
   }
   if (pstat[22] <= 15) {
     giveItem(Item.Restore, 1);
     setPStat(110, 11);
-    goto L24;
+    goto L22;
   }
   if (pstat[22] <= 19) {
     giveItem(Item.Omnipotent, 1);
     setPStat(110, 9);
-    goto L24;
+    goto L22;
   }
   if (pstat[22] <= 23) {
     giveItem(Item.Protection, 1);
     setPStat(110, 10);
-    goto L24;
+    goto L22;
   }
   if (pstat[22] <= 33) {
     giveItem(Item.LargeMP, 1);
     setPStat(110, 6);
-    goto L24;
+    goto L22;
   }
   if (pstat[22] <= 37) {
     giveItem(Item.SuperOffenseDisk, 1);
     setPStat(110, 19);
-    goto L24;
+    goto L22;
   }
   if (pstat[22] <= 41) {
     giveItem(Item.SuperDefenseDisk, 1);
     setPStat(110, 20);
-    goto L24;
+    goto L22;
   }
   if (pstat[22] <= 45) {
     giveItem(Item.SuperSpeedDisk, 1);
     setPStat(110, 21);
-    goto L24;
+    goto L22;
   }
-  if (pstat[22] > 49) goto L24;
+  if (pstat[22] > 49) goto L22;
   giveItem(Item.OmniDisk, 1);
   setPStat(110, 18);
-  goto L24;
+  goto L22;
 
-L24:
+L22:
   loop {
     if (trigger(0)) {
       speak(6, "Empty your belongings!\n");
@@ -287,7 +283,7 @@ L24:
     unsetTrigger(179);
     break;
 
-L25:
+L23:
     if (pstat[23] <= 0) {
       giveItem(Item.OffenseChip, 1);
       setPStat(110, 23);
@@ -350,7 +346,7 @@ L25:
   speak(6, "Thanks for your business!\n");
   return;
 
-L26:
+L24:
   jumpToScriptSection(215, 6);
   return;
   garbage { 0c 00 fe 00 0c 00 06 00 0e 00 ff ff fe 00 1b 06 1a 00 82 76 82 88 82 89 82 83 82 88 81 40 82 93 82 88 82 8f 82 90 81 40 82 97 82 8f 82 95 82 8c 82 84 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 48 0d 00 00 00 1b fd 10 03 a8 00 9a 10 2c 1b 1a 00 82 62 82 8c 82 89 82 8e 82 89 82 83 0d 00 82 73 82 92 82 85 82 81 82 93 82 95 82 92 82 85 81 40 82 67 82 95 82 8e 82 94 82 85 82 92 0d 00 82 65 82 8f 82 92 82 94 82 95 82 8e 82 85 81 40 82 73 82 85 82 8c 82 8c 82 85 82 92 0d 00 00 00 12 00 fe 00 1b 06 1a 00 82 68 81 40 82 83 82 88 82 81 82 8e 82 87 82 85 82 84 81 40 82 89 82 94 81 40 82 89 82 8e 82 94 82 8f 81 40 82 81 81 40 82 88 82 8f 82 93 82 90 82 89 82 94 82 81 82 8c 81 42 0d 00 00 00 19 00 23 00 20 01 a3 00 40 01 18 00 fe 00 19 00 16 00 62 03 1b 06 1a 00 82 67 82 85 81 40 82 84 82 8f 82 85 82 93 82 8e 81 75 82 94 81 40 82 86 82 85 82 85 82 8c 81 40 82 97 82 85 82 8c 82 8c 81 43 0d 00 82 84 82 8f 82 85 82 93 81 40 82 88 82 85 81 48 81 40 82 78 82 8f 82 95 81 40 82 88 82 81 82 96 82 85 81 40 82 94 82 8f 81 40 82 94 82 81 82 8b 82 85 0d 00 82 83 82 81 82 92 82 85 81 40 82 8f 82 86 81 40 82 88 82 89 82 93 81 40 82 88 82 85 82 81 82 8c 82 94 82 88 81 49 0d 00 00 00 1a 00 82 6b 82 85 82 94 81 40 82 8d 82 85 81 40 82 94 82 92 82 85 82 81 82 94 81 40 82 88 82 89 82 8d 81 40 82 92 82 89 82 87 82 88 82 94 81 40 82 81 82 97 82 81 82 99 81 42 0d 00 82 65 82 85 82 85 81 40 82 97 82 89 82 8c 82 8c 81 40 82 82 82 85 81 40 82 84 82 89 82 93 82 83 82 8f 82 95 82 8e 82 94 82 85 82 84 0d 00 82 94 82 8f 81 40 82 94 82 88 82 92 82 85 82 85 81 40 82 88 82 95 82 8e 82 84 82 92 82 85 82 84 81 40 82 82 82 89 82 94 82 93 81 42 0d 00 00 00 19 00 25 00 00 02 2c 01 00 00 18 00 40 02 19 00 2b 00 2c 01 00 00 16 00 f2 02 1b 06 1a 00 82 78 82 8f 82 95 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 81 40 82 85 82 8e 82 8f 82 95 82 87 82 88 81 40 82 82 82 89 82 94 82 93 81 48 81 49 0d 00 82 6f 82 81 82 99 81 40 82 8d 82 85 81 40 82 97 82 88 82 81 82 94 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 42 81 40 82 72 82 81 82 96 82 85 0d 00 82 99 82 8f 82 95 82 92 81 40 82 8d 82 8f 82 8e 82 85 82 99 81 40 82 86 82 8f 82 92 81 40 82 81 81 40 82 92 82 81 82 89 82 8e 82 99 81 40 82 84 82 81 82 99 81 42 0d 00 00 00 2b 00 2c 01 00 00 65 20 65 40 1a 00 82 64 82 96 82 85 82 92 82 99 82 94 82 88 82 89 82 8e 82 87 81 40 82 89 82 93 81 40 82 6e 82 6a 81 40 82 8e 82 8f 82 97 81 42 0d 00 82 69 82 95 82 93 82 94 81 40 82 82 82 85 81 40 82 83 82 81 82 92 82 85 82 86 82 95 82 8c 81 40 82 86 82 92 82 8f 82 8d 81 40 82 8e 82 8f 82 97 81 40 82 8f 82 8e 81 42 0d 00 00 00 fe 00 1b 06 1a 00 82 67 82 85 81 40 82 84 82 8f 82 85 82 93 82 8e 81 75 82 94 81 40 82 8c 82 8f 82 8f 82 8b 81 40 82 93 82 89 82 83 82 8b 81 40 82 8f 82 92 0d 00 82 89 82 8e 82 8a 82 95 82 92 82 85 82 84 81 42 81 40 82 76 82 88 82 81 82 94 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 8e 82 85 82 85 82 84 81 48 0d 00 00 00 1b fd 10 03 2a 04 ec 0c c8 0d 1a 00 82 62 82 88 82 85 82 83 82 8b 81 40 82 88 82 89 82 8d 81 40 82 8f 82 95 82 94 0d 00 82 72 82 85 82 8c 82 8c 81 40 82 8d 82 85 81 40 82 6c 82 85 82 84 82 89 82 83 82 89 82 8e 82 85 0d 00 82 6d 82 8f 82 94 82 88 82 89 82 8e 82 87 0d 00 00 00 1b 06 1a 00 82 6e 82 6a 81 43 81 40 82 8c 82 85 82 94 81 40 82 8d 82 85 81 40 82 8c 82 8f 82 8f 82 8b 81 40 82 81 82 94 0d 00 82 88 82 8f 82 97 81 40 01 0a 06 00 01 01 81 40 82 89 82 93 81 40 82 84 82 8f 82 89 82 8e 82 87 81 42 0d 00 00 00 19 00 20 00 08 02 50 00 18 00 30 05 19 00 1b 06 1a 00 82 6e 82 88 81 40 82 8e 82 8f 81 42 81 40 01 0a 06 00 01 01 81 75 82 93 81 40 82 73 82 89 82 92 82 85 82 84 82 8e 82 85 82 93 82 93 0d 00 82 89 82 93 81 40 82 81 82 94 81 40 82 81 81 40 }

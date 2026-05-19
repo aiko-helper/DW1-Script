@@ -52,44 +52,40 @@ section(51) {
   if (trigger(186)) {
     speak(Entity.Player, "Oh no, if I don't do\nanything, it will dry up...\n");
     showTextbox("I hope it rains...\n");
-    goto L1;
+  } else {
+    setTrigger(186);
+    speak(Entity.Player, "Wow, interesting.\nIt's sprouting.\n");
+    delay(20);
+    anim(Entity.Player, 16, wait: 20);
+    speak(Entity.Player, "It moved a little bit.\nIs this the mysterious plant\neveryone is talking about?\n");
+    anim(Entity.Player, 22, wait: 20);
+    speak(Entity.Player, "It's wilting. If I don't\ndo anything, it'll die.\n");
+    playAnimation(Entity.Player, 0);
   }
-  setTrigger(186);
-  speak(Entity.Player, "Wow, interesting.\nIt's sprouting.\n");
-  delay(20);
-  anim(Entity.Player, 16, wait: 20);
-  speak(Entity.Player, "It moved a little bit.\nIs this the mysterious plant\neveryone is talking about?\n");
-  anim(Entity.Player, 22, wait: 20);
-  speak(Entity.Player, "It's wilting. If I don't\ndo anything, it'll die.\n");
-  playAnimation(Entity.Player, 0);
-
-L1:
   speak(Entity.System, "Gonna use some Items?\n");
   setDialogOwner(Entity.Player);
-  choice { "Yes" -> L2, "No" -> L8 }
-  goto L8;
+  choice { "Yes" -> L1, "No" -> L6 }
+  goto L6;
 
-L2:
+L1:
   setTrigger(3);
   callSubroutine(0);
   if (trigger(3)) {
     speak(Entity.Player, "I don't have anything now.\n");
-    goto L8;
+    goto L6;
   }
   if (pstat[254] == 255) {
     speak(Entity.Player, "Nothing I have is useful.\n");
-    goto L8;
+    goto L6;
   }
   if (pstat[254] == 121) {
     fadeOutHUD();
     callSubroutine(12);
-    goto L3;
+  } else {
+    speak(Entity.Player, "This won't work...\n");
+    goto L6;
+    return;
   }
-  speak(Entity.Player, "This won't work...\n");
-  goto L8;
-  return;
-
-L3:
   loadDigimon(Digimon.NPCVegimon);
   setObjectsVisibleRange(3, 15, 0);
   setPStat(247, 3);
@@ -150,24 +146,24 @@ L3:
   anim(Entity.Player, 16, wait: 20);
   speak(Entity.Player, "Why are you asking me\nabout veggies? Well?\n");
   setTrigger(49);
-  setSelection(L4, L5);
+  setSelection(L2, L3);
   showTextbox("I like them\nI don't\n");
   speak(Entity.Player, "Well, I changed my mind.\n");
   return;
 
-L4:
+L2:
   unsetTrigger(49);
   playSound(8, 5);
   speak(6, "Anyone who likes veggies\nmust be a nice guy.\n");
-  goto L6;
+  goto L4;
 
-L5:
+L3:
   unsetTrigger(49);
   playSound(8, 5);
   speak(6, "No, no!\nVeggies are good!\n");
-  goto L6;
+  goto L4;
 
-L6:
+L4:
   speak(Entity.Player, " ? ? ? \n");
   speak(6, "Alright, I've decided.\nI'll come with you!\n");
   anim(Entity.Player, 19, wait: 20);
@@ -183,9 +179,9 @@ L6:
   speak(6, "Alright, sounds good.\nI've been here way too long.\n");
   move(entity: Entity.Player, to: (-1024, -1820), sprint: 1, withCamera: true);
   move(entity: Entity.Partner, to: (-741, -1923), sprint: 1);
-  goto L7;
+  goto L5;
 
-L7:
+L5:
   approach(who: 6, x: 911, y: -2266, tries: 10, wait: 10);
   playSound(8, 3);
   speak(Entity.System, "Vegiemon joins the city!\n");
@@ -195,7 +191,7 @@ L7:
   addPStat(1, 2);
   return;
 
-L8:
+L6:
   move(entity: Entity.Player, to: (-61, -2273), sprint: 0, withCamera: true);
   waitForEntity(Entity.Player);
   return;

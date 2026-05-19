@@ -576,14 +576,12 @@ section(56) {
 
 section(57) {
   if (trigger(87) && !trigger(205)) {
-    goto L1;
+  } else {
+    if (trigger(354) && !trigger(88)) {
+      goto L2;
+    }
+    return;
   }
-  if (trigger(354) && !trigger(88)) {
-    goto L3;
-  }
-  return;
-
-L1:
   unsetTrigger(87);
   loadAndSetDigimon(Digimon.NPCGreymon, 4, 0);
   lookPairAt(9);
@@ -628,9 +626,9 @@ L1:
   anim(Entity.Player, 1, wait: 5);
   speak(Entity.Player, "Hmmm\n");
   speak(9, "I'll stay and train you.\nYou'll get much better!\n");
-  goto L2;
+  goto L1;
 
-L2:
+L1:
   approach(who: 9, x: 412, y: -4500, tries: 3, wait: 20);
   playSound(8, 12);
   speak(Entity.System, "Greymon joins the city!\n");
@@ -641,7 +639,7 @@ L2:
   waitForEntity(200);
   return;
 
-L3:
+L2:
   unsetTrigger(354);
   loadAndSetDigimon(Digimon.NPCAirdramon, 5, 0);
   lookPairAt(10);

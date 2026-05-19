@@ -108,27 +108,25 @@ section(82) {
     playSound(8, 7);
     speak(Entity.Player, "Seadramon!\n");
     speak(5, "So we meet again.\nDo you have a request?\n");
-    goto L1;
+  } else {
+    goto L2;
   }
-  goto L3;
-
-L1:
   loop {
     setTrigger(49);
     setDialogOwner(Entity.Player);
-    setSelection(L2, L5, L9);
+    setSelection(L1, L4, L8);
     showTextbox("Let's be friends\nTeach me a Technique\nI want an Item\n");
 
-L2:
+L1:
     unsetTrigger(49);
     if (trigger(210)) {
       speak(5, "We're already friends.\nAny other requests?\n");
       continue;
       return;
     }
-    goto L4;
+    goto L3;
 
-L3:
+L2:
     setTrigger(339);
     loadAndSetDigimon(Digimon.NPCSeadramon, 0, 0);
     playAnimation(5, 28);
@@ -149,10 +147,10 @@ L3:
     showTextbox("So you are the one who's\nbeen fishing so much!\nSo be it. Any requests?\n");
     speak(Entity.Player, "What!? I see why they\ncall you Guardian.\nYes, I have a request.\n");
     setTrigger(49);
-    setSelection(L4, L5, L9);
+    setSelection(L3, L4, L8);
     showTextbox("Let's be friends\nTeach me a Technique\nI want an Item\n");
 
-L4:
+L3:
     unsetTrigger(49);
     speak(5, "Okay, fine.\n");
     showTextbox("We're friends from now on. I\ngive you this flute as proof.\n");
@@ -172,30 +170,30 @@ L4:
     speak(5, "Beyond the lake, there is\na strange forest. Do you\nwant go there right now?\n");
     setTrigger(49);
     setDialogOwner(Entity.Player);
-    setSelection(L10, L11);
+    setSelection(L9, L10);
     showTextbox("Yeah, I'll go\nNo, maybe later\n");
 
-L5:
+L4:
     unsetTrigger(49);
     speak(5, "I'll teach you a Technique.\n");
-    if (hasTech(Move.AquaMagic) == 1) goto L6;
+    if (hasTech(Move.AquaMagic) == 1) goto L5;
     learnMove(Move.AquaMagic);
     speak(Entity.System, "I mastered 'Aqua Magic'!\n");
     break;
 
-L6:
-    if (hasTech(Move.WinterBlast) == 1) goto L7;
+L5:
+    if (hasTech(Move.WinterBlast) == 1) goto L6;
     learnMove(Move.WinterBlast);
     speak(Entity.System, "I mastered 'Winter Blast'!\n");
     break;
 
-L7:
-    if (hasTech(Move.GigaFreeze) == 1) goto L8;
+L6:
+    if (hasTech(Move.GigaFreeze) == 1) goto L7;
     learnMove(Move.GigaFreeze);
     speak(Entity.System, "I mastered 'Giga Freeze'!\n");
     break;
 
-L8:
+L7:
     speak(5, "Uh, I don't think there are\nany more Techniques\nI can teach you...\n");
   }
   speak(5, "See ya!\n");
@@ -213,7 +211,7 @@ L8:
   unloadEntity(5);
   return;
 
-L9:
+L8:
   unsetTrigger(49);
   speak(5, "Well, I'll give you the\n<LIGHTBLUE>Water Bottle<WHITE>.\n");
   giveItem(Item.Waterbottle, 1);
@@ -240,7 +238,7 @@ L9:
   unloadEntity(5);
   return;
 
-L10:
+L9:
   unsetTrigger(49);
   speak(5, "Well then, hop on my back.\n");
   playAnimation(5, 29);
@@ -269,7 +267,7 @@ L10:
   warp(to: Map.BETL01, spawn: 0, trigger: 255);
   return;
 
-L11:
+L10:
   unsetTrigger(49);
   speak(5, "Bye for now.\n");
   playAnimation(5, 29);

@@ -19,36 +19,32 @@ section(81) {
   speak(Entity.System, "MP Vending Machine\n");
   rotate(entity: Entity.Player, to: 2048);
   speak(Entity.Player, "This machine recovers MP.\n");
-  choice { "Hund MP: two hund bits" -> L1, "Thous MP:eighteen hund bits" -> L3, "Don't use" -> L5 }
-  goto L5;
+  choice { "Hund MP: two hund bits" -> L1, "Thous MP:eighteen hund bits" -> L2, "Don't use" -> L3 }
+  goto L3;
 
 L1:
   if (money >= 200) {
     addStats(currentMP: 100);
     reduceMoney(200);
     speak(Entity.System, "My MP level went back up!\n");
-    goto L2;
+  } else {
+    speak(Entity.Player, "I don't have enough bits.\n");
+    return;
   }
-  speak(Entity.Player, "I don't have enough bits.\n");
   return;
 
 L2:
-  return;
-
-L3:
   if (money >= 1800) {
     addStats(currentMP: 1000);
     reduceMoney(1800);
     speak(Entity.System, "My MP level went back up!\n");
-    goto L4;
+  } else {
+    speak(Entity.Player, "I don't have enough bits.\n");
+    return;
   }
-  speak(Entity.Player, "I don't have enough bits.\n");
   return;
 
-L4:
-  return;
-
-L5:
+L3:
   speak(Entity.Player, "Forget about it.\n");
   return;
 }

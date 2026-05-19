@@ -45,16 +45,14 @@ section(52) {
     speak(Entity.Player, "You should come to the city.\nYou'll find things to do!\n");
     playAnimation(Entity.Player, 0);
     speak(5, "I still have lots of energy.\nI gladly accept your offer.\n");
-    goto L1;
+  } else {
+    speak(5, "It'll be open soon!\n");
+    rotate(entity: 5, to: 512);
+    anim(5, 29, wait: 5);
+    move(entity: Entity.Player, to: (-334, -853), sprint: 0);
+    waitForEntity(Entity.Player);
+    return;
   }
-  speak(5, "It'll be open soon!\n");
-  rotate(entity: 5, to: 512);
-  anim(5, 29, wait: 5);
-  move(entity: Entity.Player, to: (-334, -853), sprint: 0);
-  waitForEntity(Entity.Player);
-  return;
-
-L1:
   approach(who: 5, x: 600, y: 1700, tries: 3, wait: 25);
   playSound(8, 8);
   speak(Entity.System, "Drimogemon joins the city!\n");

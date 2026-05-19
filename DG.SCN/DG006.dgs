@@ -123,11 +123,9 @@ section(51) {
   }
   pstat[:SavedTime] = time();
   if (pstat[107] >= 15 && pstat[107] <= 19 && !trigger(249)) {
-    goto L1;
+  } else {
+    return;
   }
-  return;
-
-L1:
   moveCamera(to: (2214, 865), slowdown: 20);
   waitForEntity(200);
   setPStat(247, 13);
@@ -151,36 +149,34 @@ L1:
   look(entity: 5, at: Entity.Player);
   anim(Entity.Player, 15, wait: 20);
   if (trigger(96)) {
-    goto L5;
-  }
-  speak(5, "Hey, are you human?\n");
-  showTextbox("I am Coelamon,\nthe fish Digimon.\nDid you come to see me?\n");
-  setTrigger(49);
-  setDialogOwner(Entity.Player);
-  setSelection(L2, L3);
-  showTextbox("Yes, we looked all over\nNow that you mention it\n");
+  } else {
+    speak(5, "Hey, are you human?\n");
+    showTextbox("I am Coelamon,\nthe fish Digimon.\nDid you come to see me?\n");
+    setTrigger(49);
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L2);
+    showTextbox("Yes, we looked all over\nNow that you mention it\n");
+
+L1:
+    anim(Entity.Player, 19, wait: 20);
+    unsetTrigger(49);
+    speak(5, "Ha-ha, is that so!\n");
+    goto L3;
 
 L2:
-  anim(Entity.Player, 19, wait: 20);
-  unsetTrigger(49);
-  speak(5, "Ha-ha, is that so!\n");
-  goto L4;
+    anim(Entity.Player, 19, wait: 20);
+    unsetTrigger(49);
+    speak(5, "I already know what\nyou want.\n");
 
 L3:
-  anim(Entity.Player, 19, wait: 20);
-  unsetTrigger(49);
-  speak(5, "I already know what\nyou want.\n");
-
-L4:
-  speak(5, "The bridge upstream is\nbroken and you want to go\nacross. Right?\n");
-  playSound(8, 8);
-  anim(Entity.Player, 22, wait: 8);
-  anim(Entity.Player, 22, wait: 8);
-  anim(Entity.Player, 0, wait: 3);
-  playSound(8, 14);
-  showTextbox("I see.\nFine, I'll help you.\n");
-
-L5:
+    speak(5, "The bridge upstream is\nbroken and you want to go\nacross. Right?\n");
+    playSound(8, 8);
+    anim(Entity.Player, 22, wait: 8);
+    anim(Entity.Player, 22, wait: 8);
+    anim(Entity.Player, 0, wait: 3);
+    playSound(8, 14);
+    showTextbox("I see.\nFine, I'll help you.\n");
+  }
   if (trigger(96)) {
     speak(5, "Aa-ha, you've come again.\n");
   }

@@ -139,20 +139,18 @@ L2:
   }
   storeDigimonType(103);
   if (pstat[103] == 14 && !trigger(349)) {
-    goto L4;
     goto L3;
+  } else {
+    speak(5, "......\n");
+    return;
   }
-  speak(5, "......\n");
+  if (!trigger(350)) goto L3;
+  speak(5, "Are we going to listen\nto the chorus again?\n");
+  setDialogOwner(Entity.Player);
+  choice { "Yes" -> L1, "No" -> L4 }
   return;
 
 L3:
-  if (!trigger(350)) goto L4;
-  speak(5, "Are we going to listen\nto the chorus again?\n");
-  setDialogOwner(Entity.Player);
-  choice { "Yes" -> L1, "No" -> L5 }
-  return;
-
-L4:
   setTrigger(349);
   speak(5, "Oh, Monzaemon!\nYou're back alive!\n");
   speak(Entity.Player, "Wow, what is it?\n");
@@ -170,7 +168,7 @@ L4:
   speak(Entity.Player, "I see. Alright,\nI'll help you!\n");
   return;
 
-L5:
+L4:
   return;
 }
 

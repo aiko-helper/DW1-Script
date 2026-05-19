@@ -86,50 +86,48 @@ L3:
 
 section(82) {
   if (pstat[123] >= 20) {
-    goto L2;
-  }
-  if (pstat[123] >= 10 && !trigger(101)) {
-    setTrigger(101);
-    speak(5, "Well, it's half way done.\n \n");
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Player, at: 5);
-    delay(10);
-    goto L1;
-  }
-  loop {
-    roll(pstat: 110, max: 8);
-    if (pstat[110] <= 2) {
-      jumpToScriptSection(199, 51);
+  } else {
+    if (pstat[123] >= 10 && !trigger(101)) {
+      setTrigger(101);
+      speak(5, "Well, it's half way done.\n \n");
+      look(entity: 5, at: Entity.Player);
+      look(entity: Entity.Player, at: 5);
+      delay(10);
+      goto L1;
     }
-    if (pstat[110] <= 5) {
-      jumpToScriptSection(200, 51);
-    }
-    if (pstat[110] <= 7) {
-      jumpToScriptSection(201, 51);
-    }
-    jumpToScriptSection(202, 51);
-    return;
+    loop {
+      roll(pstat: 110, max: 8);
+      if (pstat[110] <= 2) {
+        jumpToScriptSection(199, 51);
+      }
+      if (pstat[110] <= 5) {
+        jumpToScriptSection(200, 51);
+      }
+      if (pstat[110] <= 7) {
+        jumpToScriptSection(201, 51);
+      }
+      jumpToScriptSection(202, 51);
+      return;
 
 L1:
-    callSubroutine(56);
-    if (pstat[243] <= 2) {
-      speak(5, "The way it's going, we won't\nmake any money. Try harder.\n \n");
+      callSubroutine(56);
+      if (pstat[243] <= 2) {
+        speak(5, "The way it's going, we won't\nmake any money. Try harder.\n \n");
+        rotate(entity: Entity.Player, to: 80);
+        fadeOutHUD();
+        continue;
+      }
+      if (pstat[243] <= 5) {
+        speak(5, "The sales are good.\nWe can make some money.\n");
+        rotate(entity: Entity.Player, to: 80);
+        fadeOutHUD();
+        continue;
+      }
+      speak(5, "I haven't had this much\nbusiness in a long time.\nKeep it up!\n");
       rotate(entity: Entity.Player, to: 80);
       fadeOutHUD();
-      continue;
     }
-    if (pstat[243] <= 5) {
-      speak(5, "The sales are good.\nWe can make some money.\n");
-      rotate(entity: Entity.Player, to: 80);
-      fadeOutHUD();
-      continue;
-    }
-    speak(5, "I haven't had this much\nbusiness in a long time.\nKeep it up!\n");
-    rotate(entity: Entity.Player, to: 80);
-    fadeOutHUD();
   }
-
-L2:
   delay(40);
   speak(5, "I think it's time.\nThank you for your work.\n");
   callSubroutine(56);

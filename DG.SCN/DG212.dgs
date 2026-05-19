@@ -102,28 +102,26 @@ L1:
     goto L2;
   }
   if (pstat[103] == 12 || pstat[103] == 54) {
-    goto L3;
-  }
-  if (pstat[103] == 50) {
-    goto L4;
-  }
-  if (pstat[103] == 20) {
-    goto L5;
-  }
-  return;
+  } else {
+    if (pstat[103] == 50) {
+      goto L3;
+    }
+    if (pstat[103] == 20) {
+      goto L4;
+    }
+    return;
 
 L2:
-  roll(pstat: 110, max: 99);
-  if (pstat[110] <= 9) {
-    setPStat(254, 37);
-    callDigimonSubroutine(10);
-    delay(550);
-    speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+    roll(pstat: 110, max: 99);
+    if (pstat[110] <= 9) {
+      setPStat(254, 37);
+      callDigimonSubroutine(10);
+      delay(550);
+      speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");
+      return;
+    }
     return;
   }
-  return;
-
-L3:
   roll(pstat: 110, max: 99);
   if (pstat[110] <= 9) {
     setPStat(254, 26);
@@ -134,7 +132,7 @@ L3:
   }
   return;
 
-L4:
+L3:
   roll(pstat: 110, max: 99);
   if (pstat[110] <= 9) {
     setPStat(254, 59);
@@ -145,7 +143,7 @@ L4:
   }
   return;
 
-L5:
+L4:
   roll(pstat: 110, max: 99);
   if (pstat[110] <= 49 && stat[Stat.Discipline] <= 49) {
     setPStat(254, 6);

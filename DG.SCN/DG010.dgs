@@ -6,11 +6,9 @@
 section onEnter(254) {
   if (trigger(232)) {
     setObjectsVisibleRange(68, 70, 1);
-    goto L1;
+  } else {
+    setRectImpassible(22, 16, 3, 12);
   }
-  setRectImpassible(22, 16, 3, 12);
-
-L1:
   if (trigger(232) && pstat[1] >= 35) {
     setObjectsVisibleRange(71, 73, 0);
   }
@@ -44,11 +42,9 @@ section(51) {
     return;
   }
   if (trigger(206) || trigger(211) || trigger(252) || trigger(213)) {
-    goto L1;
+  } else {
+    return;
   }
-  return;
-
-L1:
   speak(Entity.System, "<YELLOW>? ? ? <WHITE>\nWait!\n");
   anim(Entity.Player, 16, wait: 20);
   playAnimation(Entity.Player, 0);
@@ -92,14 +88,14 @@ L1:
   showTextbox("You're <LIGHTBLUE><PLAYER><WHITE>?\nAnd you must be <ORANGE><DIGIMON><WHITE>!\n");
   showTextbox("You're famous, even as far\nas Ninja Village.  Accept\nmy challenge to fight.\n");
   setDialogOwner(Entity.Player);
-  choice { "Sure" -> L3, "Another time" -> L2 }
+  choice { "Sure" -> L2, "Another time" -> L1 }
+  goto L1;
+
+L1:
+  speak(6, "Ha, that's what you think!\n");
   goto L2;
 
 L2:
-  speak(6, "Ha, that's what you think!\n");
-  goto L3;
-
-L3:
   setTrigger(1);
   setPStat(250, 1);
   setPStat(251, 6);

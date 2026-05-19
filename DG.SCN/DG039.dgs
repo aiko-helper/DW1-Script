@@ -15,14 +15,12 @@ section(6) {
 
 section(51) {
   if (trigger(175) && trigger(180) && !trigger(182)) {
-    goto L1;
-  }
-  if (trigger(181) && trigger(182) && !trigger(235)) {
+  } else {
+    if (trigger(181) && trigger(182) && !trigger(235)) {
+      return;
+    }
     return;
   }
-  return;
-
-L1:
   playSound(8, 12);
   speak(Entity.System, "<YELLOW>??? <WHITE>\nHelp me!\n");
   rotate(entity: Entity.Player, to: 1321);

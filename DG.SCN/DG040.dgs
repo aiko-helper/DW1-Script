@@ -27,17 +27,15 @@ section onEnter(254) {
 
 section(5) {
   if (!trigger(199) && !trigger(198)) {
-    goto L1;
-  }
-  if (!trigger(199) && trigger(198)) {
-    goto L4;
-  }
-  if (trigger(199) && trigger(198)) {
+  } else {
+    if (!trigger(199) && trigger(198)) {
+      goto L3;
+    }
+    if (trigger(199) && trigger(198)) {
+      goto L5;
+    }
     goto L6;
   }
-  goto L7;
-
-L1:
   setTrigger(199);
   speak(5, "Who are you? Go away!\n");
   anim(Entity.Player, 24, wait: 15);
@@ -47,10 +45,10 @@ L1:
   speak(Entity.Player, "Are you a guard or something?\n");
   speak(5, "Want to fight? I'll beat you!\n");
   setDialogOwner(Entity.Player);
-  choice { "I guess I'll fight" -> L2, "You can't bully me" -> L3 }
-  goto L3;
+  choice { "I guess I'll fight" -> L1, "You can't bully me" -> L2 }
+  goto L2;
 
-L2:
+L1:
   setTrigger(1);
   setPStat(250, 1);
   setPStat(251, 5);
@@ -84,20 +82,20 @@ L2:
   waitForEntity(200);
   return;
 
-L3:
+L2:
   loop {
     speak(Entity.Player, "Keep up your guard work!\n");
     return;
 
-L4:
+L3:
     speak(Entity.Player, "You are an Ogremon bandit!\nThis is your hideout!\n");
     speak(5, "What are you talking about?\n");
     anim(Entity.Player, 7, wait: 15);
     speak(Entity.Player, "You were lucky last time!\nGive up!\n");
     playAnimation(Entity.Player, 0);
-    goto L5;
+    goto L4;
 
-L5:
+L4:
     speak(5, "Wow!\n");
     move(entity: 5, to: (-356, -1058), sprint: 1);
     delay(40);
@@ -115,20 +113,20 @@ L5:
     setTrigger(200);
     warp(to: Map.OGRE00, spawn: 0, trigger: 255);
 
-L6:
+L5:
     speak(Entity.Player, "You tricked me last time,\nbut now I'll get you.\n");
     speak(5, "What are you talking about?\n");
     anim(Entity.Player, 7, wait: 15);
     speak(Entity.Player, "You won't get away this time!\n");
     playAnimation(Entity.Player, 0);
-    goto L5;
+    goto L4;
     return;
 
-L7:
+L6:
     speak(Entity.Player, "Come on, let me in.\n");
     speak(5, "You want a piece of me?\nI'll knock you out!\n");
     setDialogOwner(Entity.Player);
-    choice { "Let's fight" -> L2, "Don't bully me" -> L3 }
+    choice { "Let's fight" -> L1, "Don't bully me" -> L2 }
   }
 }
 

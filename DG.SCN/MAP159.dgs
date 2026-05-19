@@ -6,11 +6,9 @@
 section onEnter(254) {
   if (!trigger(320)) {
     setObjectVisibility(10, 0);
-    goto L1;
+  } else {
+    setObjectVisibility(10, 1);
   }
-  setObjectVisibility(10, 1);
-
-L1:
   if (!trigger(362)) {
     goto section_6;
   }
@@ -117,7 +115,7 @@ section(6) {
     showTextbox("I really want a King of\nSukamon card. Will you trade\nfor my Etemon card?\n");
     if (card[21] >= 1) {
       setDialogOwner(Entity.Player);
-      choice { "Trade" -> L2, "Don't trade" -> L3 }
+      choice { "Trade" -> L1, "Don't trade" -> L2 }
       return;
     }
     speak(Entity.Player, "Sorry, but I don't have it.\n");
@@ -152,18 +150,16 @@ section(6) {
     speak(Entity.Player, "Oh, Sukamon?!\n");
     speak(6, "Huh? Do you know about me?\n");
     speak(Entity.Player, "Well, kind of.\nDo we need to take Sukamon\nto the city as well?\n");
-    goto L1;
+  } else {
+    move(entity: 6, to: (192, -2979), sprint: 0);
+    waitForEntity(6);
+    speak(6, "Wow, this is interesting!\nI've never seen anything\nlike this!\n");
+    speak(Entity.Player, "Oh my goodness! The poop\nare moving and talking!\n");
+    speak(6, "Are you talking about me?\nI'm Sukamon...\nI'm a Mutant Digimon.\n");
+    speak(Entity.Player, "You are not poop?\n");
+    speak(6, "In a way, you are right,\ncuz we are made from\nDigital Waste.\n");
+    speak(Entity.Player, "Should we ask him to come\nto the city, too? We\nshouldn't be prejudiced.\n");
   }
-  move(entity: 6, to: (192, -2979), sprint: 0);
-  waitForEntity(6);
-  speak(6, "Wow, this is interesting!\nI've never seen anything\nlike this!\n");
-  speak(Entity.Player, "Oh my goodness! The poop\nare moving and talking!\n");
-  speak(6, "Are you talking about me?\nI'm Sukamon...\nI'm a Mutant Digimon.\n");
-  speak(Entity.Player, "You are not poop?\n");
-  speak(6, "In a way, you are right,\ncuz we are made from\nDigital Waste.\n");
-  speak(Entity.Player, "Should we ask him to come\nto the city, too? We\nshouldn't be prejudiced.\n");
-
-L1:
   speak(6, "Are you planning to\nlive here?\n");
   speak(Entity.Player, "What? I never thought\nabout it.\n");
   speak(6, "Well, this is a paradise\nonly for the Sukamon Tribe.\nOthers can't live here.\n");
@@ -179,7 +175,7 @@ L1:
   setTrigger(362);
   return;
 
-L2:
+L1:
   if (card[14] >= 9) {
     speak(6, "Hey, you have too many\nEtemon cards!\nDon't do it.\n");
     return;
@@ -189,7 +185,7 @@ L2:
   giveCard(14);
   return;
 
-L3:
+L2:
   return;
 }
 

@@ -50,8 +50,8 @@ section(81) {
   delay(5);
   speak(Entity.System, "Elevator\n");
   setDialogOwner(Entity.Player);
-  choice { "Hit Rooftop" -> L1, "Hit Up" -> L3, "Don't get on" -> L5 }
-  goto L5;
+  choice { "Hit Rooftop" -> L1, "Hit Up" -> L2, "Don't get on" -> L3 }
+  goto L3;
 
 L1:
   if (!trigger(155)) {
@@ -69,33 +69,31 @@ L1:
     speak(Entity.Player, "That should do it!\n");
     setTrigger(155);
     return;
-    goto L2;
+  } else {
+    playSound(8, 4);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    playSound(8, 5);
+    warp(to: Map.GCAN10, spawn: 0, trigger: 52);
+    return;
   }
-  playSound(8, 4);
-  rotate3DObject(0, 1);
-  delay(1);
-  rotate3DObject(1, 1);
-  delay(1);
-  rotate3DObject(0, 1);
-  delay(1);
-  rotate3DObject(1, 1);
-  delay(1);
-  rotate3DObject(0, 1);
-  delay(1);
-  rotate3DObject(1, 1);
-  delay(1);
-  rotate3DObject(0, 1);
-  delay(1);
-  rotate3DObject(1, 1);
-  delay(1);
-  playSound(8, 5);
-  warp(to: Map.GCAN10, spawn: 0, trigger: 52);
   return;
 
 L2:
-  return;
-
-L3:
   fadeOutHUD();
   if (!trigger(155)) {
     anim(Entity.Player, 16, wait: 15);
@@ -112,33 +110,31 @@ L3:
     speak(Entity.Player, "That should do it.\n");
     setTrigger(155);
     return;
-    goto L4;
+  } else {
+    playSound(8, 4);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    rotate3DObject(0, 1);
+    delay(1);
+    rotate3DObject(1, 1);
+    delay(1);
+    playSound(8, 5);
+    warp(to: Map.GCAN03, spawn: 2, trigger: 55);
+    return;
   }
-  playSound(8, 4);
-  rotate3DObject(0, 1);
-  delay(1);
-  rotate3DObject(1, 1);
-  delay(1);
-  rotate3DObject(0, 1);
-  delay(1);
-  rotate3DObject(1, 1);
-  delay(1);
-  rotate3DObject(0, 1);
-  delay(1);
-  rotate3DObject(1, 1);
-  delay(1);
-  rotate3DObject(0, 1);
-  delay(1);
-  rotate3DObject(1, 1);
-  delay(1);
-  playSound(8, 5);
-  warp(to: Map.GCAN03, spawn: 2, trigger: 55);
   return;
 
-L4:
-  return;
-
-L5:
+L3:
   return;
 }
 

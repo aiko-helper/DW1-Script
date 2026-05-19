@@ -50,20 +50,16 @@ L1:
   anim(Entity.Player, 20, wait: 15);
   if (trigger(309)) {
     speak(Entity.Player, "You're Cherrymon, right?\n");
-    goto L2;
+  } else {
+    speak(Entity.Player, "Who is it?\n");
   }
-  speak(Entity.Player, "Who is it?\n");
-
-L2:
   playAnimation(Entity.Player, 0);
   speak(5, "What do you want with\nan old man like me?\n");
   if (trigger(309)) {
     speak(Entity.Player, "First, clear the fog.\n");
-    goto L3;
+  } else {
+    speak(Entity.Player, "I can't see with the fog.\nCan you get rid of it?\n");
   }
-  speak(Entity.Player, "I can't see with the fog.\nCan you get rid of it?\n");
-
-L3:
   playSound(8, 18);
   speak(5, "So, that's it. I see.\n");
   anim(Entity.Player, 19, wait: 15);
@@ -73,7 +69,7 @@ L3:
   speak(Entity.Player, "If you know about the\nemergency on the island,\nplease tell me about it.\n");
   speak(5, "I see, I see.\nThe emergency.\n");
 
-L4:
+L2:
   playSound(8, 18);
   speak(5, "This island began to change\neighty years ago after the\nland changes happened.\n");
   showTextbox("The northeastern parts of\nthe island suddenly\nappeared eighty years ago.\n");
@@ -96,11 +92,9 @@ L4:
     playSound(8, 18);
     speak(5, "Now, let's get rid of the fog.\n");
     callSubroutine(37);
-    goto L5;
+  } else {
+    return;
   }
-  return;
-
-L5:
   speak(5, "The reason for the forest fog\nwas to be able to speak\nto you. Oh, one more thing...\n");
   playSound(8, 18);
   showTextbox("There are others\nin the forest who know\nabout the past.\n");
@@ -118,7 +112,7 @@ section(5) {
 
 L1:
   speak(5, "Here's what I have to say.\n");
-  goto section_51.L4;
+  goto section_51.L2;
   return;
 
 L2:

@@ -6,23 +6,19 @@
 section onEnter(254) {
   if (trigger(206) || trigger(211) || trigger(213) || trigger(252)) {
     setObjectVisibility(21, 1);
-    goto L1;
+  } else {
+    setRectImpassible(35, 45, 2, 16);
   }
-  setRectImpassible(35, 45, 2, 16);
-
-L1:
   if (pstat[25] == 3) {
     playAnimation(5, 28);
   }
   if (pstat[26] < 3) {
     setObjectVisibility(18, 0);
     setObjectVisibility(20, 0);
-    goto L2;
+  } else {
+    setObjectVisibility(18, 1);
+    setObjectVisibility(20, 1);
   }
-  setObjectVisibility(18, 1);
-  setObjectVisibility(20, 1);
-
-L2:
   return;
 }
 
@@ -498,18 +494,16 @@ section(82) {
   showTextbox("Yes! 'Training Manual'!\nWith this, your training\nwill get better!\n");
   showTextbox("It's very valuable. I'll\nsell it for fifty thous bits.\nYou'll regret not buying it.\n");
   setDialogOwner(Entity.Player);
-  setSelection(L1, L3);
+  setSelection(L1, L2);
   showTextbox("Buy\nDon't buy\n");
 
 L1:
   if (money >= 50000) {
     reduceMoney(50000);
-    goto L2;
+  } else {
+    speak(6, "You don't have enough bits.\n");
+    return;
   }
-  speak(6, "You don't have enough bits.\n");
-  return;
-
-L2:
   giveItem(Item.TrainingManual, 1);
   if (trigger(0)) {
     speak(6, "Hmmm, you have lots of\nstuff with you.\n");
@@ -519,7 +513,7 @@ L2:
   playSound(0, 5);
   speak(Entity.System, "I got a\n<LIGHTBLUE>Training Manual<WHITE>!\n");
 
-L3:
+L2:
   speak(6, "I won't give you a discount.\n");
   return;
 }

@@ -9,11 +9,9 @@ section onEnter(254) {
   }
   if (trigger(203)) {
     setObjectVisibility(8, 1);
-    goto L1;
+  } else {
+    setRectImpassible(40, 38, 2, 2);
   }
-  setRectImpassible(40, 38, 2, 2);
-
-L1:
   return;
 }
 
@@ -223,18 +221,16 @@ section(82) {
   playSound(0, 0);
   if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
     speak(Entity.Player, "I don't see Punimon, but\nI think I'll rest here.\n");
-    goto L1;
+  } else {
+    speak(Entity.System, "<YELLOW>Punimon <WHITE>\nI'm Punimon! Why don't you\nrest here a while?\n");
+    showTextbox("<YELLOW>Punimon <WHITE>\nOne hour rest recovers HP,\nMP and lowers Tiredness.\n");
   }
-  speak(Entity.System, "<YELLOW>Punimon <WHITE>\nI'm Punimon! Why don't you\nrest here a while?\n");
-  showTextbox("<YELLOW>Punimon <WHITE>\nOne hour rest recovers HP,\nMP and lowers Tiredness.\n");
-
-L1:
   setDialogOwner(Entity.Player);
-  choice { "Rest" -> L2, "Don't rest" -> L3 }
+  choice { "Rest" -> L1, "Don't rest" -> L2 }
   playSound(0, 1);
   return;
 
-L2:
+L1:
   pstat[:SavedTime] = time();
   addMinutesToDate(PStat.SavedTime, 60);
   advanceToDate(PStat.SavedTime);
@@ -243,7 +239,7 @@ L2:
   warp(to: Map.ROOM08, spawn: 2, trigger: 255);
   return;
 
-L3:
+L2:
   playSound(0, 1);
   return;
 }

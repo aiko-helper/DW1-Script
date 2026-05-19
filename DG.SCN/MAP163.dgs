@@ -6,18 +6,16 @@
 section onEnter(254) {
   pstat[:SavedTime] = time();
   if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
+  } else {
     goto L1;
   }
-  goto L2;
-
-L1:
-  if (!trigger(204)) goto L2;
+  if (!trigger(204)) goto L1;
   setRectImpassible(47, 48, 7, 8);
   setObjectsVisibleRange(0, 6, 0);
   setObjectVisibility(65, 0);
   setObjectVisibility(66, 0);
 
-L2:
+L1:
   if (trigger(50)) {
     setRectImpassible(47, 48, 7, 8);
     setObjectsVisibleRange(0, 12, 0);
@@ -29,48 +27,44 @@ L2:
     setRectImpassible(71, 50, 1, 9);
     setObjectsVisibleRange(13, 23, 0);
   }
-  if (pstat[107] in 7..19) goto L3;
-  if (!trigger(218) || !trigger(235)) goto L3;
+  if (pstat[107] in 7..19) goto L2;
+  if (!trigger(218) || !trigger(235)) goto L2;
   setObjectsVisibleRange(68, 73, 0);
 
-L3:
+L2:
   if (trigger(232)) {
     setObjectVisibility(24, 1);
     setObjectVisibility(25, 1);
-    goto L4;
+  } else {
+    setRectImpassible(79, 38, 2, 4);
+    setRectImpassible(80, 42, 2, 8);
   }
-  setRectImpassible(79, 38, 2, 4);
-  setRectImpassible(80, 42, 2, 8);
+  if (!trigger(236)) {
+    goto L3;
+  }
+  if (pstat[107] in 7..19) goto L3;
+  if (!trigger(218)) goto L3;
+  setObjectVisibility(49, 0);
+  setObjectVisibility(50, 0);
+
+L3:
+  if (trigger(218)) {
+    setObjectsVisibleRange(53, 56, 0);
+  }
+  if (pstat[107] in 7..19) goto L4;
+  if (!trigger(218)) goto L4;
+  setObjectsVisibleRange(57, 60, 0);
 
 L4:
-  if (!trigger(236)) {
+  if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) {
+  } else {
     goto L5;
   }
   if (pstat[107] in 7..19) goto L5;
   if (!trigger(218)) goto L5;
-  setObjectVisibility(49, 0);
-  setObjectVisibility(50, 0);
-
-L5:
-  if (trigger(218)) {
-    setObjectsVisibleRange(53, 56, 0);
-  }
-  if (pstat[107] in 7..19) goto L6;
-  if (!trigger(218)) goto L6;
-  setObjectsVisibleRange(57, 60, 0);
-
-L6:
-  if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) {
-    goto L7;
-  }
-  goto L8;
-
-L7:
-  if (pstat[107] in 7..19) goto L8;
-  if (!trigger(218)) goto L8;
   setObjectsVisibleRange(61, 64, 0);
 
-L8:
+L5:
   if (!trigger(249) && pstat[43] == 2) {
     setObjectVisibility(108, 1);
   }
@@ -100,14 +94,12 @@ L8:
     return;
   }
   if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
-    goto L9;
+  } else {
+    move(entity: 7, to: (-1232, 2903), animDuration: 10);
+    delay(15);
+    rotate(entity: 7, to: 3664);
+    delay(5);
   }
-  move(entity: 7, to: (-1232, 2903), animDuration: 10);
-  delay(15);
-  rotate(entity: 7, to: 3664);
-  delay(5);
-
-L9:
   return;
 }
 
@@ -345,11 +337,9 @@ section(81) {
   unsetTrigger(3);
   if (trigger(249)) {
     setPStat(254, 255);
-    goto L1;
+  } else {
+    setPStat(254, 7);
   }
-  setPStat(254, 7);
-
-L1:
   callSubroutine(8);
   for x in [384, 388, 422] {
     unsetTrigger(x);
@@ -377,12 +367,10 @@ section(53) {
   if (trigger(185)) {
     move(entity: Entity.Player, to: (3500, 952), sprint: 0);
     warp(to: Map.MAYO08A, spawn: 0, trigger: 255);
-    goto L1;
+  } else {
+    move(entity: Entity.Player, to: (3500, 952), sprint: 0);
+    warp(to: Map.MAYO08B, spawn: 0, trigger: 255);
   }
-  move(entity: Entity.Player, to: (3500, 952), sprint: 0);
-  warp(to: Map.MAYO08B, spawn: 0, trigger: 255);
-
-L1:
   return;
 }
 

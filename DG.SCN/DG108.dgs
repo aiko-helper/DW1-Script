@@ -13,27 +13,25 @@ section(81) {
   callSubroutine(39);
   if (trigger(219)) {
     speak(200, "<GREEN>Training:\nBoulder Moving, revision <WHITE>\n");
-    goto L1;
+  } else {
+    speak(200, "<GREEN>Training:\nBoulder Moving <WHITE>\n");
   }
-  speak(200, "<GREEN>Training:\nBoulder Moving <WHITE>\n");
+  choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
+  return;
 
 L1:
-  choice { "Begin" -> L2, "Explain" -> L3, "Quit" -> L4 }
+  choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
   return;
 
 L2:
-  choice { "Normal" -> L5, "Bonus Try" -> L6, "Quit" -> L4 }
+  showTextbox("Boost power by pushing\nagainst boulder. Boosts Max\nHP and Offensive Power.\n");
+  choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
   return;
 
 L3:
-  showTextbox("Boost power by pushing\nagainst boulder. Boosts Max\nHP and Offensive Power.\n");
-  choice { "Explain again" -> L3, "Begin" -> L2, "Quit" -> L4 }
   return;
 
 L4:
-  return;
-
-L5:
   fadeOutHUD();
   setPStat(254, 0);
   setPStat(246, 0);
@@ -41,7 +39,7 @@ L5:
   callSubroutine(7);
   return;
 
-L6:
+L5:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
   setPStat(254, 0);
@@ -58,28 +56,26 @@ section(82) {
   callSubroutine(39);
   if (trigger(219)) {
     speak(200, "<GREEN>Training:\nWaterfall, revision <WHITE>\n");
-    goto L1;
+  } else {
+    speak(200, "<GREEN>Training: Waterfall <WHITE>\n");
   }
-  speak(200, "<GREEN>Training: Waterfall <WHITE>\n");
+  choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
+  return;
 
 L1:
-  choice { "Begin" -> L2, "Explain" -> L3, "Quit" -> L4 }
+  setDialogOwner(200);
+  choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
   return;
 
 L2:
-  setDialogOwner(200);
-  choice { "Normal" -> L5, "Bonus Try" -> L6, "Quit" -> L4 }
+  speak(200, "Get hit by Waterfall.\nBoosts maximum MP\nand Defensive Power.\n");
+  choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
   return;
 
 L3:
-  speak(200, "Get hit by Waterfall.\nBoosts maximum MP\nand Defensive Power.\n");
-  choice { "Explain again" -> L3, "Begin" -> L2, "Quit" -> L4 }
   return;
 
 L4:
-  return;
-
-L5:
   fadeOutHUD();
   setPStat(254, 4);
   setPStat(246, 0);
@@ -87,7 +83,7 @@ L5:
   callSubroutine(7);
   return;
 
-L6:
+L5:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
   setPStat(254, 4);
@@ -104,28 +100,26 @@ section(83) {
   callSubroutine(39);
   if (trigger(219)) {
     speak(200, "<GREEN>Training:\nTree Striking, revise <WHITE>\n");
-    goto L1;
+  } else {
+    speak(200, "<GREEN>Training: Tree Striking <WHITE>\n");
   }
-  speak(200, "<GREEN>Training: Tree Striking <WHITE>\n");
+  choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
+  return;
 
 L1:
-  choice { "Begin" -> L2, "Explain" -> L3, "Quit" -> L4 }
+  setDialogOwner(200);
+  choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
   return;
 
 L2:
-  setDialogOwner(200);
-  choice { "Normal" -> L5, "Bonus Try" -> L6, "Quit" -> L4 }
+  speak(200, "Strike a tree for practice.\nGreatly boosts Offensive\nPower and Speed.\n");
+  choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
   return;
 
 L3:
-  speak(200, "Strike a tree for practice.\nGreatly boosts Offensive\nPower and Speed.\n");
-  choice { "Explain again" -> L3, "Begin" -> L2, "Quit" -> L4 }
   return;
 
 L4:
-  return;
-
-L5:
   fadeOutHUD();
   setPStat(254, 1);
   setPStat(246, 0);
@@ -133,7 +127,7 @@ L5:
   callSubroutine(7);
   return;
 
-L6:
+L5:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures\n");
   setPStat(254, 1);
@@ -150,28 +144,26 @@ section(84) {
   callSubroutine(39);
   if (trigger(219)) {
     speak(200, "<GREEN>Training: Punching Glove,\nrevision <WHITE>\n");
-    goto L1;
+  } else {
+    speak(200, "<GREEN>Training: Punching Glove <WHITE>\n");
   }
-  speak(200, "<GREEN>Training: Punching Glove <WHITE>\n");
+  choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
+  return;
 
 L1:
-  choice { "Begin" -> L2, "Explain" -> L3, "Quit" -> L4 }
+  setDialogOwner(200);
+  choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
   return;
 
 L2:
-  setDialogOwner(200);
-  choice { "Normal" -> L5, "Bonus Try" -> L6, "Quit" -> L4 }
+  speak(200, "Gain strength with punching\nmachine. Boosts Defensive\nPower and Brains.\n");
+  choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
   return;
 
 L3:
-  speak(200, "Gain strength with punching\nmachine. Boosts Defensive\nPower and Brains.\n");
-  choice { "Explain again" -> L3, "Begin" -> L2, "Quit" -> L4 }
   return;
 
 L4:
-  return;
-
-L5:
   fadeOutHUD();
   setPStat(254, 3);
   setPStat(246, 0);
@@ -179,7 +171,7 @@ L5:
   callSubroutine(7);
   return;
 
-L6:
+L5:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
   setPStat(254, 3);
@@ -196,28 +188,26 @@ section(85) {
   callSubroutine(39);
   if (trigger(219)) {
     speak(200, "<GREEN>Training:\nRunning, revision <WHITE>\n");
-    goto L1;
+  } else {
+    speak(200, "<GREEN>Training: Running <WHITE>\n");
   }
-  speak(200, "<GREEN>Training: Running <WHITE>\n");
+  choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
+  return;
 
 L1:
-  choice { "Begin" -> L2, "Explain" -> L3, "Quit" -> L4 }
+  setDialogOwner(200);
+  choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
   return;
 
 L2:
-  setDialogOwner(200);
-  choice { "Normal" -> L5, "Bonus Try" -> L6, "Quit" -> L4 }
+  speak(200, "Run around course.\nGreatly boosts\nSpeed and Max HP.\n");
+  choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
   return;
 
 L3:
-  speak(200, "Run around course.\nGreatly boosts\nSpeed and Max HP.\n");
-  choice { "Explain again" -> L3, "Begin" -> L2, "Quit" -> L4 }
   return;
 
 L4:
-  return;
-
-L5:
   fadeOutHUD();
   setPStat(254, 2);
   setPStat(246, 0);
@@ -225,7 +215,7 @@ L5:
   callSubroutine(7);
   return;
 
-L6:
+L5:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
   setPStat(254, 2);
@@ -242,28 +232,26 @@ section(86) {
   callSubroutine(39);
   if (trigger(219)) {
     speak(200, "<GREEN>Training:\n<LIGHTBLUE><PLAYER><WHITE>'s <GREEN>Classroom,\nrevision <WHITE>\n");
-    goto L1;
+  } else {
+    speak(200, "<GREEN>Training:\n<LIGHTBLUE><PLAYER><WHITE>'s <GREEN>Classroom <WHITE>\n");
   }
-  speak(200, "<GREEN>Training:\n<LIGHTBLUE><PLAYER><WHITE>'s <GREEN>Classroom <WHITE>\n");
+  choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
+  return;
 
 L1:
-  choice { "Begin" -> L2, "Explain" -> L3, "Quit" -> L4 }
+  setDialogOwner(200);
+  choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
   return;
 
 L2:
-  setDialogOwner(200);
-  choice { "Normal" -> L5, "Bonus Try" -> L6, "Quit" -> L4 }
+  speak(200, "<LIGHTBLUE><PLAYER><WHITE> will teach many\nthings. Boosts\nBrains and Max MP.\n");
+  choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
   return;
 
 L3:
-  speak(200, "<LIGHTBLUE><PLAYER><WHITE> will teach many\nthings. Boosts\nBrains and Max MP.\n");
-  choice { "Explain again" -> L3, "Begin" -> L2, "Quit" -> L4 }
   return;
 
 L4:
-  return;
-
-L5:
   fadeOutHUD();
   setPStat(254, 5);
   setPStat(246, 0);
@@ -271,7 +259,7 @@ L5:
   callSubroutine(7);
   return;
 
-L6:
+L5:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
   setPStat(254, 5);

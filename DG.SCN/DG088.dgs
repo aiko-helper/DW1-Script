@@ -16,20 +16,18 @@ section(51) {
   storeDigimonTypus(103, 109);
   if (pstat[109] == 2) {
     return;
-    goto L1;
+  } else {
+    speak(Entity.System, "Stopped by a strange\nwhite force!\n");
+    fadeOutHUD();
+    move(entity: Entity.Player, to: (45, -850), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (349, -753), sprint: 1);
+    waitForPair();
+    delay(10);
+    rotate(entity: Entity.Player, to: 2949);
+    delay(10);
+    rotate(entity: Entity.Player, to: 1925);
+    speak(Entity.Player, "What? My legs are...\n");
   }
-  speak(Entity.System, "Stopped by a strange\nwhite force!\n");
-  fadeOutHUD();
-  move(entity: Entity.Player, to: (45, -850), sprint: 1, withCamera: true);
-  move(entity: Entity.Partner, to: (349, -753), sprint: 1);
-  waitForPair();
-  delay(10);
-  rotate(entity: Entity.Player, to: 2949);
-  delay(10);
-  rotate(entity: Entity.Player, to: 1925);
-  speak(Entity.Player, "What? My legs are...\n");
-
-L1:
   return;
 }
 

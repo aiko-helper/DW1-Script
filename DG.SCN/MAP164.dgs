@@ -484,11 +484,9 @@ section(11) {
     speak(Entity.Player, "Nothing...it's alright.\nPlease continue...\n");
     speak(11, "Jiji and I decided to give\nyou three pieces of Meat\na day, <LIGHTBLUE><PLAYER><WHITE>.\n");
     showTextbox("So, here's today's Meat.\n");
+  } else {
     goto L1;
   }
-  goto L2;
-
-L1:
   giveItem(Item.Meat, 3);
   if (item[Item.Meat] >= 99) {
     speak(11, "You got too much Meat.\nI guess you don't\nneed any today.\n");
@@ -511,15 +509,13 @@ L1:
   setPStat(31, 0);
   return;
 
-L2:
+L1:
   roll(pstat: 110, max: 9);
   if (pstat[31] >= 1 && pstat[110] <= 0) {
     speak(11, "We harvested lots of Meat!\nSo I'll give you\nfive pieces of Meat.\n");
-    goto L3;
+  } else {
+    goto L2;
   }
-  goto L4;
-
-L3:
   if (item[Item.Meat] >= 99) {
     speak(11, "You got too much Meat.\nI guess you don't\nneed any today.\n");
     return;
@@ -542,14 +538,12 @@ L3:
   setPStat(31, 0);
   return;
 
-L4:
+L2:
   if (pstat[31] >= 1) {
     speak(11, "Here's today's Meat.\n");
-    goto L5;
+  } else {
+    goto L3;
   }
-  goto L6;
-
-L5:
   if (item[Item.Meat] >= 99) {
     speak(11, "You got too much Meat.\nI guess you don't\nneed any today.\n");
     return;
@@ -572,7 +566,7 @@ L5:
   setPStat(31, 0);
   return;
 
-L6:
+L3:
   speak(11, "What? I gave you Meat today,\nremember?\n");
   showTextbox("If you run out of food,\nlook for mushrooms\nin Native Forest.\n");
   return;

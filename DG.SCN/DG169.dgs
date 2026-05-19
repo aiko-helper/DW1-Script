@@ -32,80 +32,78 @@ section(81) {
     waitForEntity(200);
   }
   if (trigger(178) || trigger(179)) {
-    goto L7;
-  }
-  speak(5, "Do you want me to find\nsomething? Do you want me to\nexplain how we do it?\n");
-  setDialogOwner(Entity.Player);
-  choice { "Explain" -> L1, "Don't explain" -> L2, "Never mind" -> L3 }
-  goto L3;
+  } else {
+    speak(5, "Do you want me to find\nsomething? Do you want me to\nexplain how we do it?\n");
+    setDialogOwner(Entity.Player);
+    choice { "Explain" -> L1, "Don't explain" -> L2, "Never mind" -> L3 }
+    goto L3;
 
 L1:
-  speak(5, "We have two plans with\ndifferent days and prices.\n");
-  showTextbox("Reg:three day, one thous bits\nSpec:ten day, five thous bits\n");
-  showTextbox("The chances of finding\nbetter treasure is higher\nwith Special Plan.\n");
-  showTextbox("That's about it.\nWhat do you want to do?\n");
-  setDialogOwner(5);
-  choice { "Find treasure" -> L2, "Explain again" -> L1, "Never mind" -> L3 }
-  goto L3;
+    speak(5, "We have two plans with\ndifferent days and prices.\n");
+    showTextbox("Reg:three day, one thous bits\nSpec:ten day, five thous bits\n");
+    showTextbox("The chances of finding\nbetter treasure is higher\nwith Special Plan.\n");
+    showTextbox("That's about it.\nWhat do you want to do?\n");
+    setDialogOwner(5);
+    choice { "Find treasure" -> L2, "Explain again" -> L1, "Never mind" -> L3 }
+    goto L3;
 
 L2:
-  speak(5, "Choose a plan!\n");
-  setDialogOwner(Entity.Player);
-  choice { "Reg:three day, one thous bits" -> L4, "Spec:ten day, five thous bits" -> L5, "Cancel" -> L3 }
-  goto L3;
+    speak(5, "Choose a plan!\n");
+    setDialogOwner(Entity.Player);
+    choice { "Reg:three day, one thous bits" -> L4, "Spec:ten day, five thous bits" -> L5, "Cancel" -> L3 }
+    goto L3;
 
 L3:
-  speak(5, "OK then, good bye.\n");
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  return;
+    speak(5, "OK then, good bye.\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
 
 L4:
-  if (money < 1000) {
-    goto L6;
-  }
-  reduceMoney(1000);
-  setTrigger(178);
-  setPStat(30, 0);
-  speak(5, "You'll get our results in\nthree days. Wish me luck.\n");
-  roll(pstat: 22, max: 49);
-  move(entity: 5, to: (169, 2232), sprint: 1);
-  waitForEntity(5);
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  return;
+    if (money < 1000) {
+      goto L6;
+    }
+    reduceMoney(1000);
+    setTrigger(178);
+    setPStat(30, 0);
+    speak(5, "You'll get our results in\nthree days. Wish me luck.\n");
+    roll(pstat: 22, max: 49);
+    move(entity: 5, to: (169, 2232), sprint: 1);
+    waitForEntity(5);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
 
 L5:
-  if (money < 5000) {
-    goto L6;
-  }
-  reduceMoney(5000);
-  setTrigger(179);
-  setPStat(30, 0);
-  speak(5, "You'll get our results in\nten days. Wish me luck.\n");
-  roll(pstat: 23, max: 49);
-  move(entity: 5, to: (169, 2232), sprint: 1);
-  waitForEntity(5);
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  return;
+    if (money < 5000) {
+      goto L6;
+    }
+    reduceMoney(5000);
+    setTrigger(179);
+    setPStat(30, 0);
+    speak(5, "You'll get our results in\nten days. Wish me luck.\n");
+    roll(pstat: 23, max: 49);
+    move(entity: 5, to: (169, 2232), sprint: 1);
+    waitForEntity(5);
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
 
 L6:
-  speak(5, "You don't have enough bits.\nI need money to\nfind treasure.\n");
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  return;
-
-L7:
+    speak(5, "You don't have enough bits.\nI need money to\nfind treasure.\n");
+    moveCamera(to: Entity.Player, speed: 10);
+    waitForEntity(200);
+    return;
+  }
   if (pstat[30] < 3 && trigger(178)) {
-    goto L8;
+    goto L7;
   }
   if (pstat[30] < 10 && trigger(179)) {
-    goto L8;
+    goto L7;
   }
-  goto L9;
+  goto L8;
 
-L8:
+L7:
   move(entity: 5, to: (180, 840), sprint: 1);
   waitForEntity(5);
   speak(5, "I'm looking for treasure\nright now. Please be patient.\n");
@@ -115,141 +113,141 @@ L8:
   waitForEntity(200);
   return;
 
-L9:
+L8:
   speak(5, "You know what?\nWe've got some treasure.\n");
   if (trigger(178)) {
-    goto L10;
+    goto L9;
   }
-  if (!trigger(179)) goto L10;
+  if (!trigger(179)) goto L9;
   unsetTrigger(179);
-  goto L13;
+  goto L12;
 
-L10:
+L9:
   if (trigger(217)) {
-    goto L11;
+    goto L10;
   }
   if (pstat[22] <= 0) {
     giveItem(Item.KogaLaws, 1);
     setPStat(110, 90);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 1) {
     giveItem(Item.FlameWing, 1);
     setPStat(110, 73);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 2) {
     giveItem(Item.TornTatter, 1);
     setPStat(110, 82);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 12) {
     giveItem(Item.SuperRecovery, 1);
     setPStat(110, 3);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 15) {
     giveItem(Item.Restore, 1);
     setPStat(110, 11);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 19) {
     giveItem(Item.Omnipotent, 1);
     setPStat(110, 9);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 23) {
     giveItem(Item.Protection, 1);
     setPStat(110, 10);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 33) {
     giveItem(Item.LargeMP, 1);
     setPStat(110, 6);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 37) {
     giveItem(Item.SuperOffenseDisk, 1);
     setPStat(110, 19);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 41) {
     giveItem(Item.SuperDefenseDisk, 1);
     setPStat(110, 20);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 45) {
     giveItem(Item.SuperSpeedDisk, 1);
     setPStat(110, 21);
-    goto L12;
+    goto L11;
   }
-  if (pstat[22] > 49) goto L11;
+  if (pstat[22] > 49) goto L10;
   giveItem(Item.OmniDisk, 1);
   setPStat(110, 18);
-  goto L12;
+  goto L11;
 
-L11:
+L10:
   if (pstat[22] <= 0) {
     giveItem(Item.KogaLaws, 1);
     setPStat(110, 90);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 2) {
     giveItem(Item.FlameWing, 1);
     setPStat(110, 73);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 4) {
     giveItem(Item.TornTatter, 1);
     setPStat(110, 82);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 12) {
     giveItem(Item.SuperRecovery, 1);
     setPStat(110, 3);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 15) {
     giveItem(Item.Restore, 1);
     setPStat(110, 11);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 19) {
     giveItem(Item.Omnipotent, 1);
     setPStat(110, 9);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 23) {
     giveItem(Item.Protection, 1);
     setPStat(110, 10);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 33) {
     giveItem(Item.LargeMP, 1);
     setPStat(110, 6);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 37) {
     giveItem(Item.SuperOffenseDisk, 1);
     setPStat(110, 19);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 41) {
     giveItem(Item.SuperDefenseDisk, 1);
     setPStat(110, 20);
-    goto L12;
+    goto L11;
   }
   if (pstat[22] <= 45) {
     giveItem(Item.SuperSpeedDisk, 1);
     setPStat(110, 21);
-    goto L12;
+    goto L11;
   }
-  if (pstat[22] > 49) goto L12;
+  if (pstat[22] > 49) goto L11;
   giveItem(Item.OmniDisk, 1);
   setPStat(110, 18);
-  goto L12;
+  goto L11;
 
-L12:
+L11:
   loop {
     if (trigger(0)) {
       speak(5, "Empty your stuff!\n");
@@ -262,9 +260,9 @@ L12:
     unsetTrigger(179);
     break;
 
-L13:
+L12:
     if (trigger(217)) {
-      goto L14;
+      goto L13;
     }
     if (pstat[23] <= 0) {
       giveItem(Item.OffenseChip, 1);
@@ -321,12 +319,12 @@ L13:
       setPStat(110, 11);
       continue;
     }
-    if (pstat[23] > 49) goto L14;
+    if (pstat[23] > 49) goto L13;
     giveItem(Item.Omnipotent, 1);
     setPStat(110, 9);
     continue;
 
-L14:
+L13:
     if (pstat[23] <= 1) {
       giveItem(Item.OffenseChip, 1);
       setPStat(110, 23);
