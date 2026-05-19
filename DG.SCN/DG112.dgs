@@ -4,9 +4,9 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  spawnItemChance(110, max: 99, chance: 11, item: Item.Digimushroom, x: 31, y: 56);
-  spawnItemChance(110, max: 99, chance: 17, item: Item.Digimushroom, x: 55, y: 52);
-  spawnItemChance(110, max: 99, chance: 1, item: Item.Happymushroom, x: 40, y: 80);
+  spawnItemChance(max: 99, chance: 11, item: Item.Digimushroom, x: 31, y: 56);
+  spawnItemChance(max: 99, chance: 17, item: Item.Digimushroom, x: 55, y: 52);
+  spawnItemChance(max: 99, chance: 1, item: Item.Happymushroom, x: 40, y: 80);
   return;
 }
 
@@ -50,7 +50,7 @@ section(51) {
   if (trigger(114) || trigger(147)) {
     warp(to: Map.MIST03, spawn: 0, trigger: 255);
   }
-  roll(pstat: 110, max: 99);
+  roll(pstat: PStat.RollScratch, max: 99);
   if (pstat[110] < 69) {
     warp(to: Map.MIST03, spawn: 0, trigger: 255);
     goto section_52;
@@ -63,7 +63,7 @@ section(52) {
   if (trigger(114) || trigger(147)) {
     warp(to: Map.MIST04, spawn: 0, trigger: 255);
   }
-  roll(pstat: 110, max: 99);
+  roll(pstat: PStat.RollScratch, max: 99);
   if (pstat[110] < 49) {
     warp(to: Map.MIST04, spawn: 0, trigger: 255);
   } else {

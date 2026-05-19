@@ -4,10 +4,10 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  spawnItemChance(110, max: 99, chance: 19, item: Item.Digimushroom, x: 37, y: 84);
-  spawnItemChance(110, max: 99, chance: 16, item: Item.Digimushroom, x: 33, y: 67);
-  spawnItemChance(110, max: 99, chance: 12, item: Item.Digimushroom, x: 56, y: 63);
-  spawnItemChance(110, max: 99, chance: 2, item: Item.Digipine, x: 56, y: 83);
+  spawnItemChance(max: 99, chance: 19, item: Item.Digimushroom, x: 37, y: 84);
+  spawnItemChance(max: 99, chance: 16, item: Item.Digimushroom, x: 33, y: 67);
+  spawnItemChance(max: 99, chance: 12, item: Item.Digimushroom, x: 56, y: 63);
+  spawnItemChance(max: 99, chance: 2, item: Item.Digipine, x: 56, y: 83);
   return;
 }
 
@@ -111,7 +111,7 @@ section(51) {
   if (trigger(114) || trigger(147)) {
     warp(to: Map.MIST02, spawn: 1, trigger: 255);
   }
-  roll(pstat: 110, max: 99);
+  roll(pstat: PStat.RollScratch, max: 99);
   if (pstat[110] < 49) {
     warp(to: Map.MIST02, spawn: 1, trigger: 255);
     goto section_53;
@@ -124,7 +124,7 @@ section(53) {
   if (trigger(114) || trigger(147)) {
     warp(to: Map.MIST07, spawn: 0, trigger: 255);
   }
-  roll(pstat: 110, max: 99);
+  roll(pstat: PStat.RollScratch, max: 99);
   if (pstat[110] < 69) {
     warp(to: Map.MIST07, spawn: 0, trigger: 255);
   } else {

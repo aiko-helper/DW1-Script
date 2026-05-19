@@ -338,9 +338,10 @@ function approach(who: Entity, [PreferNamed] x, [PreferNamed] y, [PreferNamed] t
   setPStat(101, 0);
 }
 
-function spawnItemChance(slot: PStat, [PreferNamed] max, [PreferNamed] chance, item: Item, [PreferNamed] x, [PreferNamed] y) {
-  roll(pstat: slot, max: max);
-  if (pstat[slot] <= chance) {
+function spawnItemChance([PreferNamed] max, [PreferNamed] chance, item: Item, [PreferNamed] x, [PreferNamed] y) {
+  roll(pstat: 110, max: max);
+  if (pstat[110] <= chance) {
     spawnItem(item, x: x, y: y);
   }
 }
+
