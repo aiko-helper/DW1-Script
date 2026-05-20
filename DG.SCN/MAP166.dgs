@@ -24,18 +24,10 @@ section(60) {
   speak(Entity(8), "We must defeat the boss\nas soon as possible.\n");
   speak(Entity.Player, "I know...\n");
   delay(40);
-  if (trigger(220) || trigger(214) || pstat[1] >= 50) {
-    goto L4;
-    goto L1;
-  }
-  goto L1;
+  if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L4; else goto L1;
 
 L1:
-  if (trigger(221)) {
-    goto L3;
-    goto L2;
-  }
-  goto L2;
+  if (trigger(221)) goto L3; else goto L2;
 
 L2:
   if (trigger(225)) {
@@ -56,11 +48,7 @@ L3:
   warp(to: Map.TWNA05, spawn: 2, trigger: 255);
 
 L4:
-  if (trigger(221)) {
-    goto L6;
-    goto L5;
-  }
-  goto L5;
+  if (trigger(221)) goto L6; else goto L5;
 
 L5:
   if (trigger(225)) {
