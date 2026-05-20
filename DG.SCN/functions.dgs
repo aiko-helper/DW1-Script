@@ -292,6 +292,24 @@ function setDigimonAt(t: Digimon, entities: Entity[], autotalk) {
   }
 }
 
+// Place a heterogenous sequence of digimon at specific entity slots, preserving
+// emit order (so an interleaved bytecode pattern like
+// `setDigimon(A, 0); setDigimon(A, 1); setDigimon(B, 2); setDigimon(A, 3)`
+// folds into one batch instead of breaking at every type boundary).
+function setDigimonBatch(pairs: (Digimon, Entity)[], [PreferNamed] autotalk: int) {
+  for d, e in pairs {
+    setDigimon(d, e, autotalk);
+  }
+}
+
+// Preload several digimon models at once.  Emits N back-to-back `loadDigimon`
+// ops; folds runs of >=3 consecutive `loadDigimon` calls back into this form.
+function loadDigimonBatch(digimon: Digimon[]) {
+  for d in digimon {
+    loadDigimon(d);
+  }
+}
+
 // Stereotyped "NPC walks up to the camera, party watches, then despawns" routine. 
 // Drives `who` toward (x, y) up to `tries` times, waiting `wait` ticks between 
 // attempts; the player and partner turn to track it; finally waits for `who` to 

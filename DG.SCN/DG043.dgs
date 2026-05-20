@@ -148,9 +148,11 @@ section(51) {
   waitForPair();
   loadDigimon(Digimon.NPCOgremon);
   loadDigimon(Digimon.Agumon);
-  setDigimon(Digimon.NPCOgremon, Entity(3), 0);
-  setDigimon(Digimon.Agumon, Entity(4), 0);
-  setDigimon(Digimon.Agumon, Entity(5), 0);
+  setDigimonBatch([
+    Digimon.NPCOgremon => Entity(3),
+    Digimon.Agumon => Entity(4),
+    Digimon.Agumon => Entity(5),
+  ], autotalk: 0);
   speak(Entity(9), "You-hoo!\n");
   playSound(8, 11);
   speak(Entity(8), "Ha ha!\n");
