@@ -90,20 +90,20 @@ section(10) {
     speak(Entity(6), "Sorry bro. Come back again\nto challenge me. And don't\nforget to bring another fish.\n");
     return;
   }
-  if (pstat[121] != 2) goto L1;
-  speak(Entity(6), "Impressive! Perfect score!\nAre you by any chance...\na professional?\n");
-  if (trigger(372)) goto L1;
-  setTrigger(Trigger(372));
-  playSound(0, 7);
-  speak(Entity.System, "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
-
-L1:
+  {
+    if (pstat[121] != 2) break;
+    speak(Entity(6), "Impressive! Perfect score!\nAre you by any chance...\na professional?\n");
+    if (trigger(372)) break;
+    setTrigger(Trigger(372));
+    playSound(0, 7);
+    speak(Entity.System, "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
+  }
   speak(Entity(6), "Amazing dude. I lost a\nmatch for the first time.\n");
   speak(Entity.Player, "Alright, now come to the city\nwith me as you promised.\n");
   speak(Entity(6), "Oh well, I guess I have to.\nBut I already decided what\nI'm going to do in the city.\n");
-  goto L2;
+  goto L1;
 
-L2:
+L1:
   approach(who: Entity(6), x: -105, y: 1821, tries: 3, wait: 20);
   playSound(8, 11);
   speak(Entity.System, "Penguinmon joins the city!\n");
@@ -118,14 +118,14 @@ section(11) {
     speak(Entity(6), "Sorry bro. Come back again\nto challenge me. And don't\nforget to bring a fish.\n");
     return;
   }
-  if (pstat[121] != 2) goto L1;
-  speak(Entity(6), "Impressive! Perfect score!\nAre you by any chance...\na professional?\n");
-  if (trigger(372)) goto L1;
-  setTrigger(Trigger(372));
-  playSound(0, 7);
-  speak(Entity.System, "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
-
-L1:
+  {
+    if (pstat[121] != 2) break;
+    speak(Entity(6), "Impressive! Perfect score!\nAre you by any chance...\na professional?\n");
+    if (trigger(372)) break;
+    setTrigger(Trigger(372));
+    playSound(0, 7);
+    speak(Entity.System, "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
+  }
   speak(Entity(6), "Wow, you're amazing, man. \nI lost again.\n");
   speak(Entity(6), "Well, what can I say.\nHere's your prize.\n");
   roll(pstat: PStat(102), max: 49);
@@ -133,34 +133,34 @@ L1:
     if (pstat[102] <= 0) {
       giveItem(Item.Rooster, 1);
       setPStat(PStat.RollScratch, 85);
-      goto L2;
+      goto L1;
     }
     if (pstat[102] <= 5) {
       giveItem(Item.Restore, 1);
       setPStat(PStat.RollScratch, 11);
-      goto L2;
+      goto L1;
     }
     if (pstat[102] <= 15) {
       giveItem(Item.OmniDisk, 1);
       setPStat(PStat.RollScratch, 18);
-      goto L2;
+      goto L1;
     }
     if (pstat[102] <= 22) {
       giveItem(Item.GiantMeat, 1);
       setPStat(PStat.RollScratch, 39);
-      goto L2;
+      goto L1;
     }
     if (pstat[102] <= 30) {
       giveItem(Item.LargeRecovery, 1);
       setPStat(PStat.RollScratch, 2);
-      goto L2;
+      goto L1;
     }
-    if (pstat[102] > 50) goto L2;
+    if (pstat[102] > 50) goto L1;
     giveItem(Item.MediumMP, 1);
     setPStat(PStat.RollScratch, 5);
-    goto L2;
+    goto L1;
 
-L2:
+L1:
     if (!trigger(0)) break;
     speak(Entity(6), "You have too many Items!\n");
     unsetTrigger(Trigger(3));
@@ -224,58 +224,58 @@ section(12) {
     speak(Entity(6), "If you want to win against\nme, you better use your head!\nI'll see you again someday.\n");
     return;
   }
-  if (pstat[121] != 2) goto L1;
-  speak(Entity(6), "You got a perfect score\nagainst me!! Are you\na Curling genius?!\n");
-  if (trigger(372)) goto L1;
-  setTrigger(Trigger(372));
-  playSound(0, 7);
-  speak(Entity.System, "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
-
-L1:
+  {
+    if (pstat[121] != 2) break;
+    speak(Entity(6), "You got a perfect score\nagainst me!! Are you\na Curling genius?!\n");
+    if (trigger(372)) break;
+    setTrigger(Trigger(372));
+    playSound(0, 7);
+    speak(Entity.System, "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
+  }
   speak(Entity(6), "You are good, <LIGHTBLUE><PLAYER><WHITE>!\nHere's the prize\nI promised you!\n");
   roll(pstat: PStat(102), max: 49);
   loop {
     if (pstat[102] <= 0) {
       giveItem(Item.SilverBall, 1);
       setPStat(PStat.RollScratch, 103);
-      goto L2;
+      goto L1;
     }
     if (pstat[102] <= 1) {
       giveItem(Item.MetalArmor, 1);
       setPStat(PStat.RollScratch, 104);
-      goto L2;
+      goto L1;
     }
     if (pstat[102] <= 2) {
       giveItem(Item.Chainsaw, 1);
       setPStat(PStat.RollScratch, 105);
-      goto L2;
+      goto L1;
     }
     if (pstat[102] <= 3) {
       giveItem(Item.SmallSpear, 1);
       setPStat(PStat.RollScratch, 106);
-      goto L2;
+      goto L1;
     }
     if (pstat[102] <= 11) {
       giveItem(Item.SuperRecovery, 1);
       setPStat(PStat.RollScratch, 3);
-      goto L2;
+      goto L1;
     }
     if (pstat[102] <= 21) {
       giveItem(Item.Restore, 1);
       setPStat(PStat.RollScratch, 11);
-      goto L2;
+      goto L1;
     }
     if (pstat[102] <= 33) {
       giveItem(Item.Omnipotent, 1);
       setPStat(PStat.RollScratch, 9);
-      goto L2;
+      goto L1;
     }
-    if (pstat[102] > 49) goto L2;
+    if (pstat[102] > 49) goto L1;
     giveItem(Item.Sirloin, 1);
     setPStat(PStat.RollScratch, 40);
-    goto L2;
+    goto L1;
 
-L2:
+L1:
     if (!trigger(0)) break;
     speak(Entity(6), "You have too many Items.\n");
     unsetTrigger(Trigger(3));

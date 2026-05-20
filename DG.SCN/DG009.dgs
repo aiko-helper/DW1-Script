@@ -11,16 +11,24 @@ section onEnter(254) {
 }
 
 section(81) {
-  speak(Entity.System, "Vending Machine\n");
-  rotate(entity: Entity.Player, to: 2048);
-  delay(5);
-  speak(Entity.Player, "My gosh, it's so expensive!\n");
-  choice { "Meat : three hund bits" -> L1, "DigiMushrooms:six hund bits" -> L2, "Don't buy" -> L3 }
-  goto L3;
-  return;
+  {
+    speak(Entity.System, "Vending Machine\n");
+    rotate(entity: Entity.Player, to: 2048);
+    delay(5);
+    speak(Entity.Player, "My gosh, it's so expensive!\n");
+    choice { "Meat : three hund bits" -> L1, "DigiMushrooms:six hund bits" -> L_014e, "Don't buy" -> L2 }
+    goto L2;
+    return;
 
 L1:
-  if (money >= 300) {
+    if (money >= 300) {
+      goto L3;
+      break;
+    }
+    speak(Entity.Player, "I don't got enough money.\n");
+    return;
+  }
+  if (money >= 600) {
     goto L4;
     goto L2;
   }
@@ -28,17 +36,9 @@ L1:
   return;
 
 L2:
-  if (money >= 600) {
-    goto L5;
-    goto L3;
-  }
-  speak(Entity.Player, "I don't got enough money.\n");
   return;
 
 L3:
-  return;
-
-L4:
   reduceMoney(300);
   speak(Entity.System, "<LIGHTBLUE>Meat <WHITE>came out!\n");
   giveItem(Item.Meat, 1);
@@ -52,7 +52,7 @@ L4:
   }
   return;
 
-L5:
+L4:
   reduceMoney(600);
   speak(Entity.System, "A <LIGHTBLUE>Digital Mushroom <WHITE>\ncame out!\n");
   giveItem(Item.Digimushroom, 1);

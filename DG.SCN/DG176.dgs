@@ -528,16 +528,16 @@ section(83) {
 }
 
 section(7) {
-  roll(pstat: PStat.RollScratch, max: 2);
-  if (pstat[1] < 20) goto L1;
-  if (pstat[110] != 0) goto L1;
-  speak(Entity(7), "Are you having trouble\nbecause you've got\ntoo much stuff?\n");
-  showTextbox("There is a place to find a\nkey chain that connects your\nbag to another dimension.\n");
-  showTextbox("It increases the number of\nItems you can carry.\n");
-  showTextbox("Even if you've been to some\nplace before, look again.\n");
-  return;
-
-L1:
+  {
+    roll(pstat: PStat.RollScratch, max: 2);
+    if (pstat[1] < 20) break;
+    if (pstat[110] != 0) break;
+    speak(Entity(7), "Are you having trouble\nbecause you've got\ntoo much stuff?\n");
+    showTextbox("There is a place to find a\nkey chain that connects your\nbag to another dimension.\n");
+    showTextbox("It increases the number of\nItems you can carry.\n");
+    showTextbox("Even if you've been to some\nplace before, look again.\n");
+    return;
+  }
   speak(Entity(7), "I'll tell you the secret to\nItem buying.\n");
   showTextbox("Press the Start button\non the Item you want to\nget information for!\n");
   showTextbox("Choose the Item with <LIGHTBLUE><X><WHITE>,\nand press <PINK><SQUARE><WHITE>, if you\nwant to buy a lot.\n");

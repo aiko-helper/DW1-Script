@@ -94,26 +94,26 @@ L3:
 }
 
 section(81) {
-  rotate(entity: Entity.Player, to: 2128);
-  setTextboxOrigin(-541, 0, 1823);
-  callSubroutine(39);
-  speak(Entity(200), "<GREEN>Training: Rock Pushing <WHITE>\n");
-  choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
-  return;
+  {
+    rotate(entity: Entity.Player, to: 2128);
+    setTextboxOrigin(-541, 0, 1823);
+    callSubroutine(39);
+    speak(Entity(200), "<GREEN>Training: Rock Pushing <WHITE>\n");
+    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L_0182 }
+    return;
 
 L1:
-  choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
-  return;
+    choice { "Normal" -> L3, "Bonus Try" -> L4, "Quit" -> L_0182 }
+    return;
 
 L2:
-  showTextbox("Get power by pushing\non the rock. Maximum\nHP is boosted greatly.\n");
-  choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
+    showTextbox("Get power by pushing\non the rock. Maximum\nHP is boosted greatly.\n");
+    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L_0182 }
+    return;
+  }
   return;
 
 L3:
-  return;
-
-L4:
   fadeOutHUD();
   setPStat(PStat(254), 0);
   setPStat(PStat(246), 0);
@@ -121,7 +121,7 @@ L4:
   callSubroutine(7);
   return;
 
-L5:
+L4:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
   setPStat(PStat(254), 0);
@@ -133,27 +133,27 @@ L5:
 }
 
 section(83) {
-  rotate(entity: Entity.Player, to: 1968);
-  setTextboxOrigin(-1330, 0, 1434);
-  callSubroutine(39);
-  speak(Entity(200), "<GREEN>Training: Striking <WHITE>\n");
-  choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
-  return;
+  {
+    rotate(entity: Entity.Player, to: 1968);
+    setTextboxOrigin(-1330, 0, 1434);
+    callSubroutine(39);
+    speak(Entity(200), "<GREEN>Training: Striking <WHITE>\n");
+    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L_018e }
+    return;
 
 L1:
-  setDialogOwner(Entity(200));
-  choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
-  return;
+    setDialogOwner(Entity(200));
+    choice { "Normal" -> L3, "Bonus Try" -> L4, "Quit" -> L_018e }
+    return;
 
 L2:
-  speak(Entity(200), "Using a dummy, strike at\nfull force. Offensive Power\nis boosted greatly.\n");
-  choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
+    speak(Entity(200), "Using a dummy, strike at\nfull force. Offensive Power\nis boosted greatly.\n");
+    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L_018e }
+    return;
+  }
   return;
 
 L3:
-  return;
-
-L4:
   fadeOutHUD();
   setPStat(PStat(254), 1);
   setPStat(PStat(246), 0);
@@ -161,7 +161,7 @@ L4:
   callSubroutine(7);
   return;
 
-L5:
+L4:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
   setPStat(PStat(254), 1);

@@ -20,28 +20,30 @@ section(8) {
     speak(Entity(6), "All the Digimon have\ngathered in the city.\nThank you so much!\n");
     return;
   }
-  speak(Entity(6), "Let me tell you what I know.\nLet's see...\n");
-  goto L3;
-  loop {
-    speak(Entity(6), "And then...\n");
-    goto L3;
+  {
+    speak(Entity(6), "Let me tell you what I know.\nLet's see...\n");
+    break;
+    loop {
+      speak(Entity(6), "And then...\n");
+      goto L3;
 
 L1:
-    speak(Entity(6), "And also...\n");
-    goto L3;
+      speak(Entity(6), "And also...\n");
+      goto L3;
 
 L2:
-    if (pstat[40] != 1) break;
-  }
-  if (pstat[40] == 2) {
-    goto L1;
-  }
-  if (pstat[40] == 3) {
-    goto L45;
-  }
-  jumpReturn();
+      if (pstat[40] != 1) break;
+    }
+    if (pstat[40] == 2) {
+      goto L1;
+    }
+    if (pstat[40] == 3) {
+      goto L45;
+    }
+    jumpReturn();
 
 L3:
+  }
   if (pstat[41] < 1) {
     addPStat(PStat(41), 1);
   } else {

@@ -29,19 +29,19 @@ section(51) {
   if (!trigger(175)) {
     return;
   }
-  setDialogOwner(Entity.Player);
-  choice { "Get in" -> L1, "Don't get in" -> L2 }
-  goto L2;
+  {
+    setDialogOwner(Entity.Player);
+    choice { "Get in" -> L1, "Don't get in" -> L_00d4 }
+    break;
 
 L1:
-  move(entity: Entity.Player, to: (1220, 3988), sprint: 0);
-  move(entity: Entity.Partner, to: (1201, 3486), sprint: 0);
-  waitForPair();
-  playSound(8, 5);
-  warp(to: Map.GCAN02, spawn: 3, trigger: 53);
-  return;
-
-L2:
+    move(entity: Entity.Player, to: (1220, 3988), sprint: 0);
+    move(entity: Entity.Partner, to: (1201, 3486), sprint: 0);
+    waitForPair();
+    playSound(8, 5);
+    warp(to: Map.GCAN02, spawn: 3, trigger: 53);
+    return;
+  }
   move(entity: Entity.Player, to: (1152, 2851), sprint: 0);
   waitForEntity(Entity.Player);
   return;

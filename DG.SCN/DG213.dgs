@@ -143,14 +143,14 @@ section(54) {
     followEntity(Entity.Player, speed: 10);
     return;
   }
-  roll(pstat: PStat.RollScratch, max: 99);
-  if (!trigger(40)) goto L1;
-  if (stat[Stat.TamerLevel] == 0) goto L1;
-  if (pstat[110] > 29) goto L1;
-  reduceStats(tamerLevel: 1);
-  speak(Entity.System, " \n<PINK>Tamer Level went down!<WHITE>\n");
-
-L1:
+  {
+    roll(pstat: PStat.RollScratch, max: 99);
+    if (!trigger(40)) break;
+    if (stat[Stat.TamerLevel] == 0) break;
+    if (pstat[110] > 29) break;
+    reduceStats(tamerLevel: 1);
+    speak(Entity.System, " \n<PINK>Tamer Level went down!<WHITE>\n");
+  }
   setPStat(PStat(254), 5);
   callSubroutine(6);
   pstat[:SavedTime] = time();

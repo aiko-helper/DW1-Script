@@ -81,39 +81,39 @@ L6:
 }
 
 section(82) {
-  look(entity: Entity(6), at: Entity.Player);
-  look(entity: Entity.Player, at: Entity(6));
-  playSound(8, 4);
-  speak(Entity(6), "This's a Recycled Goods shop.\n");
-  setDialogOwner(Entity.Player);
-  choice { "I want a regular item" -> L1, "I want a recycled item" -> L2, "Next time" -> L3 }
-  goto L3;
+  {
+    look(entity: Entity(6), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(6));
+    playSound(8, 4);
+    speak(Entity(6), "This's a Recycled Goods shop.\n");
+    setDialogOwner(Entity.Player);
+    choice { "I want a regular item" -> L1, "I want a recycled item" -> L2, "Next time" -> L_0120 }
+    break;
 
 L1:
-  for x in [Trigger(385), Trigger(389), Trigger(406), Trigger(423)] {
-    setTrigger(x);
-  }
-  for id in Trigger(399)..Trigger(401) {
-    setTrigger(id);
-  }
-  unsetTrigger(Trigger(3));
-  setPStat(PStat(254), 6);
-  callSubroutine(8);
-  for x in [Trigger(385), Trigger(389), Trigger(406), Trigger(423)] {
-    unsetTrigger(x);
-  }
-  for id in Trigger(399)..Trigger(401) {
-    unsetTrigger(id);
-  }
-  return;
+    for x in [Trigger(385), Trigger(389), Trigger(406), Trigger(423)] {
+      setTrigger(x);
+    }
+    for id in Trigger(399)..Trigger(401) {
+      setTrigger(id);
+    }
+    unsetTrigger(Trigger(3));
+    setPStat(PStat(254), 6);
+    callSubroutine(8);
+    for x in [Trigger(385), Trigger(389), Trigger(406), Trigger(423)] {
+      unsetTrigger(x);
+    }
+    for id in Trigger(399)..Trigger(401) {
+      unsetTrigger(id);
+    }
+    return;
 
 L2:
-  setTrigger(Trigger(3));
-  setPStat(PStat(254), 6);
-  callSubroutine(8);
-  return;
-
-L3:
+    setTrigger(Trigger(3));
+    setPStat(PStat(254), 6);
+    callSubroutine(8);
+    return;
+  }
   return;
 }
 

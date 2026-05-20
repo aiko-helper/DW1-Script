@@ -33,13 +33,13 @@ section onEnter(254) {
     setObjectVisibility(18, 1);
     setPStat(PStat(19), 1);
   }
-  if (pstat[18] < 10) goto L1;
-  if (pstat[17] >= 3) goto L1;
-  setObjectVisibility(19, 1);
-  setObjectVisibility(18, 1);
-  setPStat(PStat(19), 2);
-
-L1:
+  {
+    if (pstat[18] < 10) break;
+    if (pstat[17] >= 3) break;
+    setObjectVisibility(19, 1);
+    setObjectVisibility(18, 1);
+    setPStat(PStat(19), 2);
+  }
   if (pstat[17] == 3) {
     setPStat(PStat(254), 0);
     callSubroutine(19);

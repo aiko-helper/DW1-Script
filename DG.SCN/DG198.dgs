@@ -55,18 +55,18 @@ section(53) {
   if (trigger(254)) {
     return;
   }
-  look(entity: Entity.Player, at: Entity(11));
-  delay(5);
-  speak(Entity.Player, "How scary! I feel it\nin my bones.\n");
-  speak(Entity(11), "...\n");
-  speak(Entity.Player, "Why doesn't he attack me?\n");
-  speak(Entity(11), "...\n");
-  speak(Entity.Player, "Don't you need to fight?\n");
-  setDialogOwner(Entity.Player);
-  choice { "We should hurry up and go." -> L3, "We have to test our skills." -> L1 }
-  goto L1;
-
-L1:
+  {
+    look(entity: Entity.Player, at: Entity(11));
+    delay(5);
+    speak(Entity.Player, "How scary! I feel it\nin my bones.\n");
+    speak(Entity(11), "...\n");
+    speak(Entity.Player, "Why doesn't he attack me?\n");
+    speak(Entity(11), "...\n");
+    speak(Entity.Player, "Don't you need to fight?\n");
+    setDialogOwner(Entity.Player);
+    choice { "We should hurry up and go." -> L2, "We have to test our skills." -> L_016e }
+    break;
+  }
   speak(Entity.Player, "Let's go, <ORANGE><DIGIMON><WHITE>!\n");
   setTrigger(Trigger(1));
   setPStat(PStat(250), 1);
@@ -80,9 +80,9 @@ L1:
   look(entity: Entity(11), at: Entity.Player);
   look(entity: Entity.Partner, at: Entity(11));
   speak(Entity(11), "...\n");
-  goto L2;
+  goto L1;
 
-L2:
+L1:
   approach(who: Entity(11), x: 0, y: 0, tries: 3, wait: 20);
   speak(Entity.Player, "Did we win?\n");
   setTrigger(Trigger(254));
@@ -90,7 +90,7 @@ L2:
   followEntity(Entity.Player, speed: 15);
   return;
 
-L3:
+L2:
   move(entity: Entity.Player, to: (43, 1754), sprint: 1, withCamera: true);
   waitForEntity(Entity.Player);
   return;

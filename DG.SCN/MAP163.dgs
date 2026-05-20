@@ -27,11 +27,11 @@ L1:
     setRectImpassible(71, 50, 1, 9);
     setObjectsVisibleRange(13, 23, 0);
   }
-  if (pstat[107] in 7..19) goto L2;
-  if (!trigger(218) || !trigger(235)) goto L2;
-  setObjectsVisibleRange(68, 73, 0);
-
-L2:
+  {
+    if (pstat[107] in 7..19) break;
+    if (!trigger(218) || !trigger(235)) break;
+    setObjectsVisibleRange(68, 73, 0);
+  }
   if (trigger(232)) {
     setObjectVisibility(24, 1);
     setObjectVisibility(25, 1);
@@ -40,31 +40,31 @@ L2:
     setRectImpassible(80, 42, 2, 8);
   }
   if (!trigger(236)) {
+    goto L2;
+  }
+  if (pstat[107] in 7..19) goto L2;
+  if (!trigger(218)) goto L2;
+  setObjectVisibility(49, 0);
+  setObjectVisibility(50, 0);
+
+L2:
+  if (trigger(218)) {
+    setObjectsVisibleRange(53, 56, 0);
+  }
+  {
+    if (pstat[107] in 7..19) break;
+    if (!trigger(218)) break;
+    setObjectsVisibleRange(57, 60, 0);
+  }
+  if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) {
+  } else {
     goto L3;
   }
   if (pstat[107] in 7..19) goto L3;
   if (!trigger(218)) goto L3;
-  setObjectVisibility(49, 0);
-  setObjectVisibility(50, 0);
-
-L3:
-  if (trigger(218)) {
-    setObjectsVisibleRange(53, 56, 0);
-  }
-  if (pstat[107] in 7..19) goto L4;
-  if (!trigger(218)) goto L4;
-  setObjectsVisibleRange(57, 60, 0);
-
-L4:
-  if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) {
-  } else {
-    goto L5;
-  }
-  if (pstat[107] in 7..19) goto L5;
-  if (!trigger(218)) goto L5;
   setObjectsVisibleRange(61, 64, 0);
 
-L5:
+L3:
   if (!trigger(249) && pstat[43] == 2) {
     setObjectVisibility(108, 1);
   }

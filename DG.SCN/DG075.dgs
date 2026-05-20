@@ -89,28 +89,28 @@ section(5) {
 }
 
 section(83) {
-  rotate(entity: Entity.Player, to: 2048);
-  setTextboxOrigin(-829, 0, 4099);
-  callSubroutine(39);
-  speak(Entity(200), "<GREEN>Training:\nStriking Special <WHITE>\n");
-  choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
-  return;
+  {
+    rotate(entity: Entity.Player, to: 2048);
+    setTextboxOrigin(-829, 0, 4099);
+    callSubroutine(39);
+    speak(Entity(200), "<GREEN>Training:\nStriking Special <WHITE>\n");
+    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L_01c0 }
+    return;
 
 L1:
-  setDialogOwner(Entity(200));
-  choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
-  return;
+    setDialogOwner(Entity(200));
+    choice { "Normal" -> L3, "Bonus Try" -> L4, "Quit" -> L_01c0 }
+    return;
 
 L2:
-  speak(Entity(200), "Using a concrete bag,\nstrike at full force.\n");
-  showTextbox("This will boost Offensive\nPower and Max HP.\n");
-  choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
+    speak(Entity(200), "Using a concrete bag,\nstrike at full force.\n");
+    showTextbox("This will boost Offensive\nPower and Max HP.\n");
+    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L_01c0 }
+    return;
+  }
   return;
 
 L3:
-  return;
-
-L4:
   fadeOutHUD();
   setPStat(PStat(254), 1);
   setPStat(PStat(246), 0);
@@ -118,7 +118,7 @@ L4:
   callSubroutine(7);
   return;
 
-L5:
+L4:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
   setPStat(PStat(254), 1);
@@ -130,28 +130,28 @@ L5:
 }
 
 section(85) {
-  rotate(entity: Entity.Player, to: 2560);
-  setTextboxOrigin(766, 0, 106);
-  callSubroutine(39);
-  speak(Entity(200), "<GREEN>Training: \nSavanna Course <WHITE>\n");
-  choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
-  return;
+  {
+    rotate(entity: Entity.Player, to: 2560);
+    setTextboxOrigin(766, 0, 106);
+    callSubroutine(39);
+    speak(Entity(200), "<GREEN>Training: \nSavanna Course <WHITE>\n");
+    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L_01ae }
+    return;
 
 L1:
-  setDialogOwner(Entity(200));
-  choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
-  return;
+    setDialogOwner(Entity(200));
+    choice { "Normal" -> L3, "Bonus Try" -> L4, "Quit" -> L_01ae }
+    return;
 
 L2:
-  speak(Entity(200), "Run around Savanna Course.\n");
-  showTextbox("This will boost Speed greatly\nand boost Max HP also.\n");
-  choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
+    speak(Entity(200), "Run around Savanna Course.\n");
+    showTextbox("This will boost Speed greatly\nand boost Max HP also.\n");
+    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L_01ae }
+    return;
+  }
   return;
 
 L3:
-  return;
-
-L4:
   fadeOutHUD();
   setPStat(PStat(254), 2);
   setPStat(PStat(246), 0);
@@ -159,7 +159,7 @@ L4:
   callSubroutine(7);
   return;
 
-L5:
+L4:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
   setPStat(PStat(254), 2);

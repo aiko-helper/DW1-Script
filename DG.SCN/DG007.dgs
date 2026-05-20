@@ -105,88 +105,90 @@ section(82) {
     goto L2;
   }
   loop {
-    setTrigger(Trigger(49));
-    setDialogOwner(Entity.Player);
-    setSelection(L1, L4, L8);
-    showTextbox("Let's be friends\nTeach me a Technique\nI want an Item\n");
+    {
+      setTrigger(Trigger(49));
+      setDialogOwner(Entity.Player);
+      setSelection(L1, L3, L7);
+      showTextbox("Let's be friends\nTeach me a Technique\nI want an Item\n");
 
 L1:
-    unsetTrigger(Trigger(49));
-    if (trigger(210)) {
-      speak(Entity(5), "We're already friends.\nAny other requests?\n");
-      continue;
-      return;
-    }
-    goto L3;
+      unsetTrigger(Trigger(49));
+      if (trigger(210)) {
+        speak(Entity(5), "We're already friends.\nAny other requests?\n");
+        continue;
+        return;
+      }
+      {
+        break;
 
 L2:
-    setTrigger(Trigger(339));
-    loadAndSetDigimon(Digimon.NPCSeadramon, Entity(0), 0);
-    playAnimation(Entity(5), Animation(28));
-    setObjectsVisibleRange(38, 44, 0);
-    setPStat(PStat(247), 40);
-    setPStat(PStat(248), 5);
-    callSubroutine(21);
-    playAnimation(Entity.Player, Animation(15));
-    waitForEntity(Entity(5));
-    sfx(8, 12, wait: 60);
-    setObjectsVisibleRange(40, 44, 1);
-    setObjectVisibility(45, 0);
-    playAnimation(Entity(5), Animation(32));
-    playSound(8, 7);
-    speak(Entity.Player, "What the... oh no!\nIt's the Lake Guardian!\n");
-    playAnimation(Entity.Player, Animation(0));
-    speak(Entity(5), "Uh, yes. I'm Seadramon.\n");
-    showTextbox("So you are the one who's\nbeen fishing so much!\nSo be it. Any requests?\n");
-    speak(Entity.Player, "What!? I see why they\ncall you Guardian.\nYes, I have a request.\n");
-    setTrigger(Trigger(49));
-    setSelection(L3, L4, L8);
-    showTextbox("Let's be friends\nTeach me a Technique\nI want an Item\n");
+        setTrigger(Trigger(339));
+        loadAndSetDigimon(Digimon.NPCSeadramon, Entity(0), 0);
+        playAnimation(Entity(5), Animation(28));
+        setObjectsVisibleRange(38, 44, 0);
+        setPStat(PStat(247), 40);
+        setPStat(PStat(248), 5);
+        callSubroutine(21);
+        playAnimation(Entity.Player, Animation(15));
+        waitForEntity(Entity(5));
+        sfx(8, 12, wait: 60);
+        setObjectsVisibleRange(40, 44, 1);
+        setObjectVisibility(45, 0);
+        playAnimation(Entity(5), Animation(32));
+        playSound(8, 7);
+        speak(Entity.Player, "What the... oh no!\nIt's the Lake Guardian!\n");
+        playAnimation(Entity.Player, Animation(0));
+        speak(Entity(5), "Uh, yes. I'm Seadramon.\n");
+        showTextbox("So you are the one who's\nbeen fishing so much!\nSo be it. Any requests?\n");
+        speak(Entity.Player, "What!? I see why they\ncall you Guardian.\nYes, I have a request.\n");
+        setTrigger(Trigger(49));
+        setSelection(L_048a, L3, L7);
+        showTextbox("Let's be friends\nTeach me a Technique\nI want an Item\n");
+      }
+      unsetTrigger(Trigger(49));
+      speak(Entity(5), "Okay, fine.\n");
+      showTextbox("We're friends from now on. I\ngive you this flute as proof.\n");
+      setTrigger(Trigger(210));
+      addPStat(PStat(1), 2);
+      giveItem(Item.BlueFlute, 1);
+      if (trigger(0)) {
+        unsetTrigger(Trigger(3));
+        speak(Entity.Player, "Oh no! Too many Items.\nI need to throw some away.\n");
+        callSubroutine(0);
+        callSubroutine(13);
+        giveItem(Item.BlueFlute, 1);
+      }
+      speak(Entity.System, "I got the Lake Guardian's\n<LIGHTBLUE>Blue Flute<WHITE>!\n");
+      speak(Entity(5), "If you play the flute near\nthe lake, I'll come. I'll\ntake you to the other side.\n");
+      speak(Entity.Player, "You mean I can go to\nthe other side? Thanks!\n");
+      speak(Entity(5), "Beyond the lake, there is\na strange forest. Do you\nwant go there right now?\n");
+      setTrigger(Trigger(49));
+      setDialogOwner(Entity.Player);
+      setSelection(L8, L9);
+      showTextbox("Yeah, I'll go\nNo, maybe later\n");
 
 L3:
-    unsetTrigger(Trigger(49));
-    speak(Entity(5), "Okay, fine.\n");
-    showTextbox("We're friends from now on. I\ngive you this flute as proof.\n");
-    setTrigger(Trigger(210));
-    addPStat(PStat(1), 2);
-    giveItem(Item.BlueFlute, 1);
-    if (trigger(0)) {
-      unsetTrigger(Trigger(3));
-      speak(Entity.Player, "Oh no! Too many Items.\nI need to throw some away.\n");
-      callSubroutine(0);
-      callSubroutine(13);
-      giveItem(Item.BlueFlute, 1);
     }
-    speak(Entity.System, "I got the Lake Guardian's\n<LIGHTBLUE>Blue Flute<WHITE>!\n");
-    speak(Entity(5), "If you play the flute near\nthe lake, I'll come. I'll\ntake you to the other side.\n");
-    speak(Entity.Player, "You mean I can go to\nthe other side? Thanks!\n");
-    speak(Entity(5), "Beyond the lake, there is\na strange forest. Do you\nwant go there right now?\n");
-    setTrigger(Trigger(49));
-    setDialogOwner(Entity.Player);
-    setSelection(L9, L10);
-    showTextbox("Yeah, I'll go\nNo, maybe later\n");
-
-L4:
     unsetTrigger(Trigger(49));
     speak(Entity(5), "I'll teach you a Technique.\n");
-    if (hasTech(Move.AquaMagic) == 1) goto L5;
+    if (hasTech(Move.AquaMagic) == 1) goto L4;
     learnMove(Move.AquaMagic);
     speak(Entity.System, "I mastered 'Aqua Magic'!\n");
     break;
 
-L5:
-    if (hasTech(Move.WinterBlast) == 1) goto L6;
+L4:
+    if (hasTech(Move.WinterBlast) == 1) goto L5;
     learnMove(Move.WinterBlast);
     speak(Entity.System, "I mastered 'Winter Blast'!\n");
     break;
 
-L6:
-    if (hasTech(Move.GigaFreeze) == 1) goto L7;
+L5:
+    if (hasTech(Move.GigaFreeze) == 1) goto L6;
     learnMove(Move.GigaFreeze);
     speak(Entity.System, "I mastered 'Giga Freeze'!\n");
     break;
 
-L7:
+L6:
     speak(Entity(5), "Uh, I don't think there are\nany more Techniques\nI can teach you...\n");
   }
   speak(Entity(5), "See ya!\n");
@@ -204,7 +206,7 @@ L7:
   unloadEntity(Entity(5));
   return;
 
-L8:
+L7:
   unsetTrigger(Trigger(49));
   speak(Entity(5), "Well, I'll give you the\n<LIGHTBLUE>Water Bottle<WHITE>.\n");
   giveItem(Item.Waterbottle, 1);
@@ -231,7 +233,7 @@ L8:
   unloadEntity(Entity(5));
   return;
 
-L9:
+L8:
   unsetTrigger(Trigger(49));
   speak(Entity(5), "Well then, hop on my back.\n");
   playAnimation(Entity(5), Animation(29));
@@ -259,7 +261,7 @@ L9:
   warp(to: Map.BETL01, spawn: 0, trigger: 255);
   return;
 
-L10:
+L9:
   unsetTrigger(Trigger(49));
   speak(Entity(5), "Bye for now.\n");
   playAnimation(Entity(5), Animation(29));

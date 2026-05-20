@@ -16,7 +16,7 @@ section(81, 0x0022) {
     goto L1;
     goto L1;
   }
-  goto L4;
+  goto L3;
 
 L1:
   if (pstat[106] == 21 && pstat[107] >= 10) {
@@ -37,48 +37,48 @@ L1:
     speak(Entity(5), "You're not an insectoid.\nYou can't enter the contest.\n");
     return;
   }
-  if (trigger(37)) goto L2;
-  speak(Entity(5), "You want to enter the contest?\n");
-  setDialogOwner(Entity(5));
-  choice { "Explain" -> L2, "Don't explain" -> L3 }
-  goto L3;
-
-L2:
+  {
+    if (trigger(37)) break;
+    speak(Entity(5), "You want to enter the contest?\n");
+    setDialogOwner(Entity(5));
+    choice { "Explain" -> L_02da, "Don't explain" -> L2 }
+    goto L2;
+  }
   speak(Entity(5), "On the twenty second,\nthere's a tournament for\nInsectoid Digimon only.\n");
   showTextbox("You can register for\nthat one right now.\n");
   showTextbox("Unless you're an Insectoid\nDigimon, you can't\nregister for the contest.\n");
   showTextbox("If you win, you'll receive\ndeluxe gifts. Just register.\n");
-  goto L3;
+  goto L2;
+
+L2:
+  {
+    setDialogOwner(Entity(5));
+    choice { "Register" -> L5, "Don't register" -> L_0702 }
+    return;
 
 L3:
-  setDialogOwner(Entity(5));
-  choice { "Register" -> L7, "Don't register" -> L6 }
-  return;
+    if (pstat[106] in 20..=21) {
+    } else {
+      speak(Entity(5), "We're between tournaments.\nI don't have anything to do.\n");
+      return;
+    }
+    if (pstat[106] == 21 && pstat[107] >= 23) {
+      speak(Entity(5), "The tournament just ended.\nWait another year.\n");
+    }
+    speak(Entity(5), "You're scheduled to\nregister in  ' - <SELECTED TOURNAMENT>- '.\nDo you want to cancel?\n");
+    setDialogOwner(Entity.Player);
+    choice { "I won't cancel" -> L_0702, "I'll cancel" -> L4 }
+    return;
 
 L4:
-  if (pstat[106] in 20..=21) {
-  } else {
-    speak(Entity(5), "We're between tournaments.\nI don't have anything to do.\n");
+    unsetTrigger(Trigger(37));
+    speak(Entity(5), "I canceled.\n");
     return;
   }
-  if (pstat[106] == 21 && pstat[107] >= 23) {
-    speak(Entity(5), "The tournament just ended.\nWait another year.\n");
-  }
-  speak(Entity(5), "You're scheduled to\nregister in  ' - <SELECTED TOURNAMENT>- '.\nDo you want to cancel?\n");
-  setDialogOwner(Entity.Player);
-  choice { "I won't cancel" -> L6, "I'll cancel" -> L5 }
-  return;
-
-L5:
-  unsetTrigger(Trigger(37));
-  speak(Entity(5), "I canceled.\n");
-  return;
-
-L6:
   speak(Entity(5), "Sure you want to do that?\n");
   return;
 
-L7:
+L5:
   callSubroutine(33);
   speak(Entity(5), "I registered.\n");
   return;

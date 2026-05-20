@@ -53,16 +53,16 @@ section(11) {
   speak(Entity(11), "You can't get thru here.\n");
   pstat[:SavedTime] = time();
   if (trigger(331) && pstat[107] == 11 && pstat[108] >= 55) {
-    goto L7;
+    goto L5;
   }
   if (trigger(331) && pstat[107] == 12 && pstat[108] <= 5) {
-    goto L7;
+    goto L5;
   }
   if (trigger(331) && pstat[107] == 23 && pstat[108] >= 55) {
-    goto L7;
+    goto L5;
   }
   if (trigger(331) && pstat[107] == 0 && pstat[108] <= 5) {
-    goto L7;
+    goto L5;
   }
   if (trigger(331)) {
     speak(Entity(11), "......\n");
@@ -96,47 +96,47 @@ section(11) {
   if (!trigger(343)) {
     return;
   }
-  if (!trigger(343)) goto L1;
-  speak(Entity.Player, "So, what should we do?\n");
+  {
+    if (!trigger(343)) break;
+    speak(Entity.Player, "So, what should we do?\n");
+    setDialogOwner(Entity.Player);
+    choice { "Time for shift change" -> L_0500, "Let me thru or else" -> L3, "No, nothing" -> L4 }
+    return;
+  }
+  playSound(8, 9);
+  speak(Entity(11), "It's not the time for\nthe shift change yet.\n");
   setDialogOwner(Entity.Player);
-  choice { "Time for shift change" -> L1, "Let me thru or else" -> L4, "No, nothing" -> L6 }
+  choice { "That's OK, don't worry." -> L1, "When is shift change?" -> L2 }
   return;
 
 L1:
   playSound(8, 9);
-  speak(Entity(11), "It's not the time for\nthe shift change yet.\n");
-  setDialogOwner(Entity.Player);
-  choice { "That's OK, don't worry." -> L2, "When is shift change?" -> L3 }
-  return;
-
-L2:
-  playSound(8, 9);
   speak(Entity(11), "No, we have to follow\nthe time strictly.\n");
   return;
 
-L3:
+L2:
   speak(Entity(11), "The shift changes are\nat midnight and noon.\n");
   speak(Entity.Player, "Oh, I see.\n");
   setTrigger(Trigger(331));
   return;
 
-L4:
-  playSound(8, 9);
-  speak(Entity(11), "You can't threaten me.\nYou have to get a permit.\n");
-  setDialogOwner(Entity.Player);
-  choice { "A permit? I got one." -> L5, "I'll give you permission!" -> L5 }
-  return;
-
-L5:
+L3:
+  {
+    playSound(8, 9);
+    speak(Entity(11), "You can't threaten me.\nYou have to get a permit.\n");
+    setDialogOwner(Entity.Player);
+    choice { "A permit? I got one." -> L_0786, "I'll give you permission!" -> L_0786 }
+    return;
+  }
   playSound(8, 9);
   speak(Entity(11), "We can't give you a permit.\nYou have to go thru\nproper channels.\n");
   speak(Entity.Player, "Wow, you're so strict!\n");
   return;
 
-L6:
+L4:
   return;
 
-L7:
+L5:
   speak(Entity.Player, "Isn't it shift change yet?\n");
   speak(Entity(11), "...\n");
   speak(Entity.Player, "Wow, he's staring at us!\nI guess he won't change\nthe shift.\n");

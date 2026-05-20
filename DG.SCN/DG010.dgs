@@ -39,56 +39,56 @@ section(51) {
   } else {
     return;
   }
-  speak(Entity.System, "<YELLOW>? ? ? <WHITE>\nWait!\n");
-  anim(Entity.Player, Animation(16), wait: 20);
-  playAnimation(Entity.Player, Animation(0));
-  move(entity: Entity.Player, to: (-1050, -1473), sprint: 1);
-  move(entity: Entity.Partner, to: (-709, -1473), sprint: 1);
-  waitForPair();
-  rotate(entity: Entity.Player, to: 2048);
-  rotate(entity: Entity.Partner, to: 2048);
-  callSubroutine(38);
-  playSound(8, 0);
-  panTo(x: -836, y: -663, slowdown: 20);
-  setObjectVisibility(41, 0);
-  moveObjectTo(1, 41, 1, 7, 0, 153, 349);
-  delay(12);
-  moveObjectTo(1, 41, 1, 7, 0, 184, 381);
-  delay(12);
-  moveObjectTo(1, 41, 1, 7, 0, 153, 411);
-  delay(12);
-  moveObjectTo(1, 41, 1, 7, 0, 184, 443);
-  delay(12);
-  moveObjectTo(1, 41, 1, 7, 0, 153, 475);
-  delay(12);
-  setDigimon(Digimon.NPCNinjamon, Entity(1), 1);
-  setObjectsVisibleRange(42, 67, 0);
-  setPStat(PStat(247), 42);
-  setPStat(PStat(248), 26);
-  callSubroutine(21);
-  setObjectVisibility(41, 1);
-  playSound(8, 0);
-  anim(Entity(6), Animation(28), wait: 10);
-  setObjectsVisibleRange(42, 67, 1);
-  sfx(8, 1, wait: 10);
-  speak(Entity(6), "I'm called Ninjamon!\n");
-  anim(Entity.Player, Animation(15), wait: 20);
-  look(entity: Entity(6), at: Entity.Player);
-  delay(10);
-  look(entity: Entity(6), at: Entity.Partner);
-  delay(10);
-  look(entity: Entity(6), at: Entity.Player);
-  showTextbox("You're <LIGHTBLUE><PLAYER><WHITE>?\nAnd you must be <ORANGE><DIGIMON><WHITE>!\n");
-  showTextbox("You're famous, even as far\nas Ninja Village.  Accept\nmy challenge to fight.\n");
-  setDialogOwner(Entity.Player);
-  choice { "Sure" -> L2, "Another time" -> L1 }
+  {
+    speak(Entity.System, "<YELLOW>? ? ? <WHITE>\nWait!\n");
+    anim(Entity.Player, Animation(16), wait: 20);
+    playAnimation(Entity.Player, Animation(0));
+    move(entity: Entity.Player, to: (-1050, -1473), sprint: 1);
+    move(entity: Entity.Partner, to: (-709, -1473), sprint: 1);
+    waitForPair();
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    callSubroutine(38);
+    playSound(8, 0);
+    panTo(x: -836, y: -663, slowdown: 20);
+    setObjectVisibility(41, 0);
+    moveObjectTo(1, 41, 1, 7, 0, 153, 349);
+    delay(12);
+    moveObjectTo(1, 41, 1, 7, 0, 184, 381);
+    delay(12);
+    moveObjectTo(1, 41, 1, 7, 0, 153, 411);
+    delay(12);
+    moveObjectTo(1, 41, 1, 7, 0, 184, 443);
+    delay(12);
+    moveObjectTo(1, 41, 1, 7, 0, 153, 475);
+    delay(12);
+    setDigimon(Digimon.NPCNinjamon, Entity(1), 1);
+    setObjectsVisibleRange(42, 67, 0);
+    setPStat(PStat(247), 42);
+    setPStat(PStat(248), 26);
+    callSubroutine(21);
+    setObjectVisibility(41, 1);
+    playSound(8, 0);
+    anim(Entity(6), Animation(28), wait: 10);
+    setObjectsVisibleRange(42, 67, 1);
+    sfx(8, 1, wait: 10);
+    speak(Entity(6), "I'm called Ninjamon!\n");
+    anim(Entity.Player, Animation(15), wait: 20);
+    look(entity: Entity(6), at: Entity.Player);
+    delay(10);
+    look(entity: Entity(6), at: Entity.Partner);
+    delay(10);
+    look(entity: Entity(6), at: Entity.Player);
+    showTextbox("You're <LIGHTBLUE><PLAYER><WHITE>?\nAnd you must be <ORANGE><DIGIMON><WHITE>!\n");
+    showTextbox("You're famous, even as far\nas Ninja Village.  Accept\nmy challenge to fight.\n");
+    setDialogOwner(Entity.Player);
+    choice { "Sure" -> L1, "Another time" -> L_032a }
+    break;
+  }
+  speak(Entity(6), "Ha, that's what you think!\n");
   goto L1;
 
 L1:
-  speak(Entity(6), "Ha, that's what you think!\n");
-  goto L2;
-
-L2:
   setTrigger(Trigger(1));
   setPStat(PStat(250), 1);
   setPStat(PStat(251), 6);
@@ -137,30 +137,30 @@ section(8) {
   if (money < 50000) {
     return;
   }
-  speak(Entity(8), "I hear you're doing\nreal good these days.\nI'll sell you something good!\n");
-  showTextbox("It's the extremely valuable\n<LIGHTBLUE>Golden Banana<WHITE>.\n");
-  showTextbox("That'll be fifty thous bits.\nNo loans, please.\n");
-  setDialogOwner(Entity.Player);
-  choice { "Pay" -> L1, "Don't pay" -> L2 }
-  goto L2;
+  {
+    speak(Entity(8), "I hear you're doing\nreal good these days.\nI'll sell you something good!\n");
+    showTextbox("It's the extremely valuable\n<LIGHTBLUE>Golden Banana<WHITE>.\n");
+    showTextbox("That'll be fifty thous bits.\nNo loans, please.\n");
+    setDialogOwner(Entity.Player);
+    choice { "Pay" -> L1, "Don't pay" -> L_0378 }
+    break;
 
 L1:
-  reduceMoney(50000);
-  giveItem(Item.GoldBanana, 1);
-  if (trigger(0)) {
-    if (item[Item.GoldBanana] >= 99) {
-      speak(Entity(8), "You fool! You have too much!\n");
-      addMoney(50000);
-      return;
-    }
-    speak(Entity.Player, "Oops, I have too much!\n");
-    inventoryFullBailout();
+    reduceMoney(50000);
     giveItem(Item.GoldBanana, 1);
+    if (trigger(0)) {
+      if (item[Item.GoldBanana] >= 99) {
+        speak(Entity(8), "You fool! You have too much!\n");
+        addMoney(50000);
+        return;
+      }
+      speak(Entity.Player, "Oops, I have too much!\n");
+      inventoryFullBailout();
+      giveItem(Item.GoldBanana, 1);
+    }
+    speak(Entity(8), "Thank you very much!\n");
+    return;
   }
-  speak(Entity(8), "Thank you very much!\n");
-  return;
-
-L2:
   speak(Entity(8), "Humans should use live money.\n");
   return;
 }

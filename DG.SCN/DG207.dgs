@@ -169,29 +169,29 @@ L3:
     return;
 
 L4:
-    speak(Entity(11), "I'll give you more tomorrow.\nOr you can buy more now.\nFive hund bits each?\n");
-    setDialogOwner(Entity.Player);
-    choice { "Buy" -> L5, "Don't buy" -> L6 }
-    goto L6;
+    {
+      speak(Entity(11), "I'll give you more tomorrow.\nOr you can buy more now.\nFive hund bits each?\n");
+      setDialogOwner(Entity.Player);
+      choice { "Buy" -> L5, "Don't buy" -> L_11f2 }
+      break;
 
 L5:
-    if (money < 500) {
-      speak(Entity(11), "You need more money.\n");
-      return;
+      if (money < 500) {
+        speak(Entity(11), "You need more money.\n");
+        return;
+      }
+      giveItem(Item.GiantMeat, 1);
+      if (trigger(0)) {
+        showTextbox("You've got too many Items.\n");
+        return;
+      }
+      reduceMoney(500);
+      sfx(0, 5, wait: 5);
+      speak(Entity(11), "Do you want to buy more?\n");
+      setDialogOwner(Entity.Player);
+      choice { "Buy" -> L5, "Don't buy" -> L_11f2 }
+      break;
     }
-    giveItem(Item.GiantMeat, 1);
-    if (trigger(0)) {
-      showTextbox("You've got too many Items.\n");
-      return;
-    }
-    reduceMoney(500);
-    sfx(0, 5, wait: 5);
-    speak(Entity(11), "Do you want to buy more?\n");
-    setDialogOwner(Entity.Player);
-    choice { "Buy" -> L5, "Don't buy" -> L6 }
-    goto L6;
-
-L6:
     speak(Entity(11), "See you tomorrow.\n");
     return;
   }
@@ -208,7 +208,7 @@ L6:
   if (pstat[31] >= 1 && pstat[110] <= 0) {
     speak(Entity(11), "I feel good today,\nso I'll give you five pieces\nof Sirloin.\n");
   } else {
-    goto L7;
+    goto L6;
   }
   if (item[Item.Sirloin] >= 99) {
     speak(Entity(11), "You got too much Sirloin.\nYou don't need any today\n");
@@ -232,11 +232,11 @@ L6:
   setPStat(PStat(31), 0);
   return;
 
-L7:
+L6:
   if (pstat[31] >= 1) {
     speak(Entity(11), "Here's today's portion of\nSirloin times three!\n");
   } else {
-    goto L8;
+    goto L7;
   }
   if (item[Item.Sirloin] >= 99) {
     speak(Entity(11), "You got too much Sirloin.\nYou don't need any today.\n");
@@ -259,50 +259,50 @@ L7:
   setPStat(PStat(31), 0);
   return;
 
+L7:
+  {
+    speak(Entity(11), "It's not tomorrow yet!\nDo you want to buy veggies?\n");
+    setDialogOwner(Entity.Player);
+    choice { "Buy" -> L8, "Don't buy" -> L_1ab8 }
+    break;
+
 L8:
-  speak(Entity(11), "It's not tomorrow yet!\nDo you want to buy veggies?\n");
-  setDialogOwner(Entity.Player);
-  choice { "Buy" -> L9, "Don't buy" -> L13 }
-  goto L13;
+    setDialogOwner(Entity.Player);
+    choice { "Super Carrot: five hund bits" -> L9, "Hawk Radish: five hund bits" -> L10, "Don't buy" -> L_1ab8 }
+    break;
 
 L9:
-  setDialogOwner(Entity.Player);
-  choice { "Super Carrot: five hund bits" -> L10, "Hawk Radish: five hund bits" -> L11, "Don't buy" -> L13 }
-  goto L13;
+    if (money < 500) {
+      speak(Entity(11), "You don't got enough money.\n");
+      return;
+    }
+    giveItem(Item.Supercarrot, 1);
+    if (trigger(0)) {
+      showTextbox("You got too many Items!\n");
+      return;
+    }
+    {
+      break;
 
 L10:
-  if (money < 500) {
-    speak(Entity(11), "You don't got enough money.\n");
-    return;
+      if (money < 500) {
+        speak(Entity(11), "You don't got enough money.\n");
+        return;
+      }
+      giveItem(Item.HawkRadish, 1);
+      if (trigger(0)) {
+        showTextbox("You got too many Items!\n");
+        return;
+      }
+      break;
+    }
+    reduceMoney(500);
+    sfx(0, 5, wait: 5);
+    speak(Entity(11), "Do you want to buy more?\n");
+    setDialogOwner(Entity.Player);
+    choice { "Buy" -> L8, "Don't buy" -> L_1ab8 }
+    break;
   }
-  giveItem(Item.Supercarrot, 1);
-  if (trigger(0)) {
-    showTextbox("You got too many Items!\n");
-    return;
-  }
-  goto L12;
-
-L11:
-  if (money < 500) {
-    speak(Entity(11), "You don't got enough money.\n");
-    return;
-  }
-  giveItem(Item.HawkRadish, 1);
-  if (trigger(0)) {
-    showTextbox("You got too many Items!\n");
-    return;
-  }
-  goto L12;
-
-L12:
-  reduceMoney(500);
-  sfx(0, 5, wait: 5);
-  speak(Entity(11), "Do you want to buy more?\n");
-  setDialogOwner(Entity.Player);
-  choice { "Buy" -> L9, "Don't buy" -> L13 }
-  goto L13;
-
-L13:
   speak(Entity(11), "See ya!\n");
   return;
   garbage { 0c 00 fe 00 0c 00 0b 00 0e 00 ff ff fe 00 19 00 00 00 e1 00 18 00 1e 00 19 00 16 00 2c 12 19 00 00 00 f6 00 18 00 2e 00 19 00 16 00 90 09 19 00 00 00 4a 00 18 00 3e 00 19 00 16 00 5a 04 1c 00 4a 00 1b 0b 1a 00 82 67 82 89 81 43 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 8e 82 85 82 85 82 84 81 40 82 81 82 8e 82 99 81 40 82 6c 82 85 82 81 82 94 81 48 0d 00 00 00 1a 00 82 6e 82 88 81 43 81 40 82 68 81 40 82 88 82 81 82 96 82 85 82 8e 81 75 82 94 81 40 82 94 82 8f 82 8c 82 84 81 40 82 99 82 8f 82 95 0d 00 82 81 82 8e 82 99 82 94 82 88 82 89 82 8e 82 87 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 94 82 88 82 89 82 93 81 42 0d 00 00 00 1a 00 82 73 82 88 82 89 82 93 81 40 82 89 82 93 81 40 82 81 81 40 82 6c 82 85 82 81 82 94 81 40 82 86 82 81 82 92 82 8d 81 42 0d 00 82 76 82 85 81 40 82 87 82 92 82 8f 82 97 81 40 82 6c 82 85 82 81 82 94 81 40 82 86 82 8f 82 92 81 40 82 85 82 96 82 85 82 92 82 99 82 8f 82 8e 82 85 81 42 0d 00 00 00 1b fd 1a 00 82 78 82 8f 82 95 81 40 82 87 82 92 82 8f 82 97 81 40 82 6c 82 85 82 81 82 94 81 40 82 8f 82 8e 81 40 82 81 81 40 82 86 82 81 82 92 82 8d 81 48 0d 00 00 00 1b 0b 1a 00 82 78 82 85 82 81 82 88 81 43 81 40 82 97 82 88 82 99 81 48 0d 00 00 00 1b fd 1a 00 82 76 82 85 82 8c 82 8c 81 42 81 42 81 42 81 40 82 8e 82 8f 82 94 82 88 82 89 82 8e 82 87 0d 00 00 00 1b 0b 1a 00 82 69 82 89 82 8a 82 89 81 40 82 81 82 8e 82 84 81 40 82 68 81 75 82 96 82 85 81 40 82 84 82 85 82 83 82 89 82 84 82 85 82 84 81 40 82 94 82 8f 0d 00 82 87 82 89 82 96 82 85 81 40 82 99 82 8f 82 95 81 40 82 94 82 88 82 92 82 85 82 85 81 40 82 90 82 89 82 85 82 83 82 85 82 93 81 40 82 8f 82 86 0d 00 82 6c 82 85 82 81 82 94 81 40 82 84 82 81 82 89 82 8c 82 99 81 43 81 40 01 06 05 00 01 01 81 42 0d 00 00 00 1a 00 82 67 82 85 82 92 82 85 81 75 82 93 81 40 82 99 82 8f 82 95 82 92 81 40 82 6c 82 85 82 81 82 94 81 40 82 86 82 8f 82 92 81 40 82 94 82 8f 82 84 82 81 82 99 81 42 0d 00 00 00 19 00 24 00 26 02 63 00 18 00 fa 02 19 00 1b 0b 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 6c 82 85 82 81 82 94 81 42 0d 00 82 78 82 8f 82 95 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 8e 82 85 82 85 82 84 81 40 82 81 82 8e 82 99 81 40 82 94 82 8f 82 84 82 81 82 99 81 42 0d 00 00 00 1e 00 1f 01 fe 00 19 00 24 00 26 02 61 00 18 00 ca 03 19 00 1b 0b 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 6c 82 85 82 81 82 94 81 42 81 40 82 68 81 75 82 8c 82 8c 0d 00 82 94 82 81 82 8b 82 85 81 40 82 97 82 88 82 81 82 94 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 88 82 8f 82 8c 82 84 81 42 0d 00 00 00 28 00 26 03 1b ff 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 94 82 88 82 92 82 85 82 85 81 40 82 90 82 89 82 85 82 83 82 85 82 93 0d 00 82 8f 82 86 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 81 49 0d 00 00 00 1c 00 4a 00 1e 00 1f 00 fe 00 28 00 26 03 19 00 00 00 00 00 18 00 12 04 19 00 1b 0b 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 81 82 8e 82 99 81 40 82 68 82 94 82 85 82 8d 82 93 81 42 0d 00 00 00 fe 00 1b ff 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 94 82 88 82 92 82 85 82 85 81 40 82 90 82 89 82 85 82 83 82 85 82 93 81 40 82 8f 82 86 0d 00 01 06 82 6c 82 85 82 81 82 94 01 01 81 49 0d 00 00 00 1e 00 1f 00 fe 00 24 00 6e 09 19 00 0a 00 1f 01 8b 00 6e 00 18 00 f4 04 19 00 1b 0b 1a 00 82 76 82 85 81 40 82 88 82 81 82 92 82 96 82 85 82 93 82 94 82 85 82 84 81 40 82 81 81 40 82 8c 82 8f 82 94 81 40 82 8f 82 86 81 40 82 6c 82 85 82 81 82 94 0d 00 82 94 82 8f 82 84 82 81 82 99 81 49 81 40 82 76 82 85 81 75 82 8c 82 8c 81 40 82 87 82 89 82 96 82 85 81 40 82 99 82 8f 82 95 0d 00 82 86 82 89 82 96 82 85 81 40 82 90 82 89 82 85 82 83 82 85 82 93 81 42 0d 00 00 00 16 00 f8 04 16 00 d6 06 19 00 24 00 26 02 63 00 18 00 3c 05 19 00 1b 0b 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f }

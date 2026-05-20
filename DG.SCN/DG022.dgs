@@ -66,21 +66,21 @@ L2:
     sfx(8, 0, wait: 15);
     lookPairAt(Entity(5));
   }
-  waitForEntity(Entity(5));
-  unloadEntity(Entity(5));
-  setPStat(PStat.LoopIterator, 0);
-  playSound(8, 9);
-  speak(Entity.System, "Unimon joins the city!\n");
-  setTrigger(Trigger(233));
-  addPStat(PStat(1), 2);
-  goto L4;
+  {
+    waitForEntity(Entity(5));
+    unloadEntity(Entity(5));
+    setPStat(PStat.LoopIterator, 0);
+    playSound(8, 9);
+    speak(Entity.System, "Unimon joins the city!\n");
+    setTrigger(Trigger(233));
+    addPStat(PStat(1), 2);
+    break;
 
 L3:
-  speak(Entity.Player, "I don't have anything to\ntreat your wound.\nI'll get you something.\n");
-  speak(Entity(5), "I'm sorry, please hurry.\n");
-  goto L4;
-
-L4:
+    speak(Entity.Player, "I don't have anything to\ntreat your wound.\nI'll get you something.\n");
+    speak(Entity(5), "I'm sorry, please hurry.\n");
+    break;
+  }
   return;
 }
 

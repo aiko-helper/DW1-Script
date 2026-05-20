@@ -21,17 +21,17 @@ section(54) {
 }
 
 section(5) {
-  if (trigger(202) || trigger(215) || pstat[16] == 0) goto L1;
-  if (!trigger(201) || !trigger(243)) goto L1;
-  speak(Entity(5), "You had perfect timing in\ncoming here! I have a favor\nthat only you can do.\n");
-  speak(Entity.Player, "What is it?\n");
-  speak(Entity(5), "I just got the same evil\nfeeling that Analogman\nand Machinedramon give.\n");
-  showTextbox("I know where it comes from.\n");
-  speak(Entity.Player, "Again? Ok, leave it to me!\n");
-  speak(Entity(5), "Thanks. By the way...\n");
-  goto L2;
-
-L1:
+  {
+    if (trigger(202) || trigger(215) || pstat[16] == 0) break;
+    if (!trigger(201) || !trigger(243)) break;
+    speak(Entity(5), "You had perfect timing in\ncoming here! I have a favor\nthat only you can do.\n");
+    speak(Entity.Player, "What is it?\n");
+    speak(Entity(5), "I just got the same evil\nfeeling that Analogman\nand Machinedramon give.\n");
+    showTextbox("I know where it comes from.\n");
+    speak(Entity.Player, "Again? Ok, leave it to me!\n");
+    speak(Entity(5), "Thanks. By the way...\n");
+    goto L1;
+  }
   if (trigger(202) && !trigger(215)) {
     speak(Entity(5), "I heard you beat\nMachinedramon!\n");
     speak(Entity.Player, "Yeah, but I don't get it.\nIt seemed like the curse\nof Analogman.\n");
@@ -53,7 +53,7 @@ L1:
     setTrigger(Trigger(215));
     return;
   }
-  if (!trigger(50) || trigger(201)) goto L2;
+  if (!trigger(50) || trigger(201)) goto L1;
   speak(Entity(5), "You're here!\nThis is something I can't\nask anybody else.\n");
   speak(Entity.Player, "Never fear, I'm here.\nDo you mean\nAnalogman is back?\n");
   speak(Entity(5), "I can feel his evil, but\nI can't tell where it is.\n");
@@ -61,7 +61,7 @@ L1:
   speak(Entity(5), "Thank you.\nBy the way...\n");
   setTrigger(Trigger(201));
 
-L2:
+L1:
   if (trigger(203)) {
     jumpToScriptSection(210, 51);
   }
@@ -80,24 +80,24 @@ L2:
 }
 
 section(6) {
-  if (trigger(56)) goto L1;
-  if (trigger(96) || pstat[18] >= 10) {
-    goto L1;
+  {
+    if (trigger(56)) break;
+    if (trigger(96) || pstat[18] >= 10) {
+      break;
+    }
+    speak(Entity(6), "You can have this. Good luck.\n");
+    speak(Entity.System, "I got lots of Items!\n");
+    for x in [:SmallRecovery, :Meat, :MPFloppy] {
+      giveItem(x, 3);
+    }
+    giveItem(Item.Restore, 1);
+    giveItem(Item.Bandage, 2);
+    giveItem(Item.Medicine, 1);
+    speak(Entity(6), "To look up Items, press\n<GREEN><TRIANGLE> <WHITE>...\n");
+    showTextbox("...then select 'Item'\nand look by using\n<LIGHTBLUE><X> <WHITE>.\n");
+    setTrigger(Trigger(56));
+    return;
   }
-  speak(Entity(6), "You can have this. Good luck.\n");
-  speak(Entity.System, "I got lots of Items!\n");
-  for x in [:SmallRecovery, :Meat, :MPFloppy] {
-    giveItem(x, 3);
-  }
-  giveItem(Item.Restore, 1);
-  giveItem(Item.Bandage, 2);
-  giveItem(Item.Medicine, 1);
-  speak(Entity(6), "To look up Items, press\n<GREEN><TRIANGLE> <WHITE>...\n");
-  showTextbox("...then select 'Item'\nand look by using\n<LIGHTBLUE><X> <WHITE>.\n");
-  setTrigger(Trigger(56));
-  return;
-
-L1:
   if (!trigger(224) && trigger(175)) {
     speak(Entity(6), "Sounds like Yuramon has\ngathered more rumors.\n");
     return;

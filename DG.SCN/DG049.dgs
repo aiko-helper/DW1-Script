@@ -16,7 +16,7 @@ section(81) {
   }
   look(entity: Entity.Player, at: Entity(5));
   if (trigger(136)) {
-    goto L3;
+    goto L2;
   }
   setTrigger(Trigger(136));
   speak(Entity(5), "Welcome. I've never seen you\nbefore. Where are you from?\n");
@@ -35,50 +35,50 @@ section(81) {
   speak(Entity.Player, "You might lose money.\n");
   speak(Entity(5), "Don't worry. It'll be good\nfor me. How about eight hours?\n");
   loop {
-    setDialogOwner(Entity.Player);
-    choice { "I'll try" -> L1, "No thanks" -> L2 }
-    goto L2;
+    {
+      setDialogOwner(Entity.Player);
+      choice { "I'll try" -> L1, "No thanks" -> L_05d6 }
+      break;
 
 L1:
-    fadeOutHUD();
-    move(entity: Entity(5), to: (133, 292), sprint: 0);
-    move(entity: Entity.Player, to: (-980, -432), sprint: 0);
-    waitForEntity(Entity.Player);
-    waitForEntity(Entity(5));
-    setPStat(PStat(247), 9);
-    setPStat(PStat(248), 12);
-    callSubroutine(21);
-    setObjectsVisibleRange(33, 35, 1);
-    setObjectsVisibleRange(9, 20, 0);
-    look(entity: Entity(5), at: Entity.Player);
-    move(entity: Entity.Player, to: (-980, 292), sprint: 0);
-    move(entity: Entity.Partner, to: (-980, -432), sprint: 0);
-    waitForPair();
-    look(entity: Entity(5), at: Entity.Player);
-    move(entity: Entity.Player, to: (-341, 292), sprint: 0);
-    move(entity: Entity.Partner, to: (-980, 292), sprint: 0);
-    waitForPair();
-    setPStat(PStat(247), 21);
-    setPStat(PStat(248), 12);
-    callSubroutine(21);
-    setObjectsVisibleRange(9, 20, 1);
-    setObjectsVisibleRange(21, 32, 0);
-    delay(60);
-    rotate(entity: Entity.Player, to: 0);
-    look(entity: Entity.Partner, at: Entity.Player);
-    waitForEntity(Entity.Player);
-    setObjectsVisibleRange(21, 32, 1);
-    setObjectsVisibleRange(33, 35, 0);
-    callSubroutine(30);
-    setPStat(PStat(123), 0);
-    unsetTrigger(Trigger(101));
-    goto section_82;
-
-L2:
+      fadeOutHUD();
+      move(entity: Entity(5), to: (133, 292), sprint: 0);
+      move(entity: Entity.Player, to: (-980, -432), sprint: 0);
+      waitForEntity(Entity.Player);
+      waitForEntity(Entity(5));
+      setPStat(PStat(247), 9);
+      setPStat(PStat(248), 12);
+      callSubroutine(21);
+      setObjectsVisibleRange(33, 35, 1);
+      setObjectsVisibleRange(9, 20, 0);
+      look(entity: Entity(5), at: Entity.Player);
+      move(entity: Entity.Player, to: (-980, 292), sprint: 0);
+      move(entity: Entity.Partner, to: (-980, -432), sprint: 0);
+      waitForPair();
+      look(entity: Entity(5), at: Entity.Player);
+      move(entity: Entity.Player, to: (-341, 292), sprint: 0);
+      move(entity: Entity.Partner, to: (-980, 292), sprint: 0);
+      waitForPair();
+      setPStat(PStat(247), 21);
+      setPStat(PStat(248), 12);
+      callSubroutine(21);
+      setObjectsVisibleRange(9, 20, 1);
+      setObjectsVisibleRange(21, 32, 0);
+      delay(60);
+      rotate(entity: Entity.Player, to: 0);
+      look(entity: Entity.Partner, at: Entity.Player);
+      waitForEntity(Entity.Player);
+      setObjectsVisibleRange(21, 32, 1);
+      setObjectsVisibleRange(33, 35, 0);
+      callSubroutine(30);
+      setPStat(PStat(123), 0);
+      unsetTrigger(Trigger(101));
+      goto section_82;
+    }
     speak(Entity(5), "That's too bad. Come back\nwhen you have time.\n");
     return;
 
-L3:
+L2:
     speak(Entity(5), "You want to work?\n");
   }
   return;

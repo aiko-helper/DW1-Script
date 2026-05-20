@@ -13,17 +13,17 @@ section(54) {
 }
 
 section(5) {
-  if (trigger(202) || trigger(215) || pstat[16] == 0) goto L1;
-  if (!trigger(201) || !trigger(243)) goto L1;
-  speak(Entity(5), "You came here at the perfect\ntime! I have a big favor to\nask that only you can do.\n");
-  speak(Entity.Player, "What is it?\n");
-  speak(Entity(5), "It's the same evil\nI felt from Analogman\nand Machinedramon.\n");
-  showTextbox("But I can't tell\nwhere it's coming from.\n");
-  speak(Entity.Player, "Alright, leave it to me!\n");
-  speak(Entity(5), "Thank you. By the way...\n");
-  goto L2;
-
-L1:
+  {
+    if (trigger(202) || trigger(215) || pstat[16] == 0) break;
+    if (!trigger(201) || !trigger(243)) break;
+    speak(Entity(5), "You came here at the perfect\ntime! I have a big favor to\nask that only you can do.\n");
+    speak(Entity.Player, "What is it?\n");
+    speak(Entity(5), "It's the same evil\nI felt from Analogman\nand Machinedramon.\n");
+    showTextbox("But I can't tell\nwhere it's coming from.\n");
+    speak(Entity.Player, "Alright, leave it to me!\n");
+    speak(Entity(5), "Thank you. By the way...\n");
+    goto L1;
+  }
   if (trigger(202) && !trigger(215)) {
     speak(Entity(5), "I heard that you\nbeat Machinedramon!\n");
     speak(Entity.Player, "Yeah, but I don't get it.\nIt seemed like the\ncurse of Analogman.\n");
@@ -45,7 +45,7 @@ L1:
     setTrigger(Trigger(215));
     return;
   }
-  if (!trigger(50) || trigger(201)) goto L2;
+  if (!trigger(50) || trigger(201)) goto L1;
   speak(Entity(5), "Oh, you're back!\nThis is something I can't\nask anybody else.\n");
   speak(Entity.Player, "Okay. Do you mean\nAnalogman is back?\n");
   speak(Entity(5), "I felt his evil, but\nI can't tell where it is.\n");
@@ -53,7 +53,7 @@ L1:
   speak(Entity(5), "Oh, thank you. By the way...\n");
   setTrigger(Trigger(201));
 
-L2:
+L1:
   if (trigger(203)) {
     jumpToScriptSection(210, 51);
   }

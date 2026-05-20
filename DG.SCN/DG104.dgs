@@ -8,33 +8,33 @@ section onEnter(254) {
 }
 
 section(5) {
-  speak(Entity(5), "I want to beat Kabuterimon.\nWhat do I need to do to win?\n");
-  setDialogOwner(Entity.Player);
-  choice { "Hmm. You gotta get stronger." -> L1, "Actually, there is a sure fire" -> L2, "way.... well, hang in there." -> L4 }
-  goto L4;
+  {
+    speak(Entity(5), "I want to beat Kabuterimon.\nWhat do I need to do to win?\n");
+    setDialogOwner(Entity.Player);
+    choice { "Hmm. You gotta get stronger." -> L1, "Actually, there is a sure fire" -> L2, "way.... well, hang in there." -> L_02e4 }
+    break;
 
 L1:
-  speak(Entity(5), "I see. Alright, I'll train.\n");
-  return;
+    speak(Entity(5), "I see. Alright, I'll train.\n");
+    return;
 
 L2:
-  speak(Entity(5), "Really?! Then I'll train you!\n");
-  anim(Entity.Player, Animation(19), wait: 15);
-  speak(Entity.Player, "Just come to the city.\n");
-  playAnimation(Entity.Player, Animation(0));
-  speak(Entity(5), "...\n");
-  showTextbox("You're really nice.\nI'll go to the city.\n");
-  goto L3;
+    speak(Entity(5), "Really?! Then I'll train you!\n");
+    anim(Entity.Player, Animation(19), wait: 15);
+    speak(Entity.Player, "Just come to the city.\n");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(5), "...\n");
+    showTextbox("You're really nice.\nI'll go to the city.\n");
+    goto L3;
 
 L3:
-  approach(who: Entity(5), x: 664, y: -1963, tries: 3, wait: 20);
-  playSound(8, 17);
-  speak(Entity.System, "Kuwagamon went to the city!\n");
-  setTrigger(Trigger(251));
-  addPStat(PStat(1), 2);
-  return;
-
-L4:
+    approach(who: Entity(5), x: 664, y: -1963, tries: 3, wait: 20);
+    playSound(8, 17);
+    speak(Entity.System, "Kuwagamon went to the city!\n");
+    setTrigger(Trigger(251));
+    addPStat(PStat(1), 2);
+    return;
+  }
   speak(Entity(5), "Man, you're not nice.\nI'm disappointed!\n");
   return;
 }
@@ -89,27 +89,27 @@ L2:
 }
 
 section(84) {
-  rotate(entity: Entity.Player, to: 2048);
-  setTextboxOrigin(-162, 0, 2558);
-  callSubroutine(39);
-  speak(Entity(200), "<GREEN>Training :\nHammer Machine <WHITE>\n");
-  choice { "Start" -> L1, "Explain" -> L2, "Quit" -> L3 }
-  return;
+  {
+    rotate(entity: Entity.Player, to: 2048);
+    setTextboxOrigin(-162, 0, 2558);
+    callSubroutine(39);
+    speak(Entity(200), "<GREEN>Training :\nHammer Machine <WHITE>\n");
+    choice { "Start" -> L1, "Explain" -> L2, "Quit" -> L_01b0 }
+    return;
 
 L1:
-  setDialogOwner(Entity(200));
-  choice { "Normal" -> L4, "Bonus Try" -> L5, "Never mind" -> L3 }
-  return;
+    setDialogOwner(Entity(200));
+    choice { "Normal" -> L3, "Bonus Try" -> L4, "Never mind" -> L_01b0 }
+    return;
 
 L2:
-  speak(Entity(200), "Getting hit by the Hammer\nMachine makes you strong.\nDefensive Power goes up.\n");
-  choice { "Explain again" -> L2, "Start" -> L1, "Quit" -> L3 }
+    speak(Entity(200), "Getting hit by the Hammer\nMachine makes you strong.\nDefensive Power goes up.\n");
+    choice { "Explain again" -> L2, "Start" -> L1, "Quit" -> L_01b0 }
+    return;
+  }
   return;
 
 L3:
-  return;
-
-L4:
   fadeOutHUD();
   setPStat(PStat(254), 3);
   setPStat(PStat(246), 0);
@@ -117,7 +117,7 @@ L4:
   callSubroutine(7);
   return;
 
-L5:
+L4:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> C?? \nto match three pictures.\n");
   setPStat(PStat(254), 3);
@@ -129,27 +129,27 @@ L5:
 }
 
 section(85) {
-  rotate(entity: Entity.Player, to: 2048);
-  setTextboxOrigin(823, 0, 2144);
-  callSubroutine(39);
-  speak(Entity(200), "<GREEN>Training: Treadmill <WHITE>\n");
-  choice { "Start" -> L1, "Explain" -> L2, "Quit" -> L3 }
-  return;
+  {
+    rotate(entity: Entity.Player, to: 2048);
+    setTextboxOrigin(823, 0, 2144);
+    callSubroutine(39);
+    speak(Entity(200), "<GREEN>Training: Treadmill <WHITE>\n");
+    choice { "Start" -> L1, "Explain" -> L2, "Quit" -> L_018a }
+    return;
 
 L1:
-  setDialogOwner(Entity(200));
-  choice { "Normal" -> L4, "Bonus Try" -> L5, "Never mind" -> L3 }
-  return;
+    setDialogOwner(Entity(200));
+    choice { "Normal" -> L3, "Bonus Try" -> L4, "Never mind" -> L_018a }
+    return;
 
 L2:
-  speak(Entity(200), "Run the opposite\nway of the moving belt.\nYour Speed will go up.\n");
-  choice { "Explain again" -> L2, "Start" -> L1, "Quit" -> L3 }
+    speak(Entity(200), "Run the opposite\nway of the moving belt.\nYour Speed will go up.\n");
+    choice { "Explain again" -> L2, "Start" -> L1, "Quit" -> L_018a }
+    return;
+  }
   return;
 
 L3:
-  return;
-
-L4:
   fadeOutHUD();
   setPStat(PStat(254), 2);
   setPStat(PStat(246), 0);
@@ -157,7 +157,7 @@ L4:
   callSubroutine(7);
   return;
 
-L5:
+L4:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
   setPStat(PStat(254), 2);

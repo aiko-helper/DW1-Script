@@ -42,15 +42,23 @@ section(10) {
 }
 
 section(81) {
-  speak(Entity.System, "Vending Machine\n");
-  rotate(entity: Entity.Player, to: 1536);
-  speak(Entity.Player, "A vending machine with\nspecial prizes.\nShould I buy something?\n");
-  choice { "Small Recovery:two hund bits" -> L1, "Portable potty:five hund bits" -> L2, "Don't buy" -> L3 }
-  goto L3;
-  return;
+  {
+    speak(Entity.System, "Vending Machine\n");
+    rotate(entity: Entity.Player, to: 1536);
+    speak(Entity.Player, "A vending machine with\nspecial prizes.\nShould I buy something?\n");
+    choice { "Small Recovery:two hund bits" -> L1, "Portable potty:five hund bits" -> L_019e, "Don't buy" -> L2 }
+    goto L2;
+    return;
 
 L1:
-  if (money >= 200) {
+    if (money >= 200) {
+      goto L3;
+      break;
+    }
+    speak(Entity.Player, "I don't got enough bits.\n");
+    return;
+  }
+  if (money >= 500) {
     goto L4;
     goto L2;
   }
@@ -58,17 +66,9 @@ L1:
   return;
 
 L2:
-  if (money >= 500) {
-    goto L5;
-    goto L3;
-  }
-  speak(Entity.Player, "I don't got enough bits.\n");
   return;
 
 L3:
-  return;
-
-L4:
   giveItem(Item.SmallRecovery, 1);
   if (trigger(0)) {
     speak(Entity.Player, "I got too many Items.\n");
@@ -78,11 +78,11 @@ L4:
   reduceMoney(200);
   roll(pstat: PStat(102), max: 99);
   if (pstat[102] < 9) {
-    goto L6;
+    goto L5;
   }
   return;
 
-L5:
+L4:
   giveItem(Item.PortaPotty, 1);
   if (trigger(0)) {
     speak(Entity.Player, "I got too many Items.\n");
@@ -92,11 +92,11 @@ L5:
   reduceMoney(500);
   roll(pstat: PStat(102), max: 99);
   if (pstat[102] < 9) {
-    goto L6;
+    goto L5;
   }
   return;
 
-L6:
+L5:
   speak(Entity.Player, "Alright, I won!\n");
   speak(Entity.System, "A <LIGHTBLUE>Double Floppy <WHITE>\ncame out!\n");
   giveItem(Item.DoubleFloppy, 1);
@@ -111,36 +111,36 @@ L6:
 }
 
 section(82) {
-  speak(Entity.System, "MP Stand\n");
-  rotate(entity: Entity.Player, to: 2048);
-  speak(Entity.Player, "Can this machine recover MP?\n");
-  choice { "Hund MP: two hund bits" -> L1, "Thous MP:eighteen hund bits" -> L2, "Don't use" -> L3 }
-  goto L3;
-  return;
+  {
+    speak(Entity.System, "MP Stand\n");
+    rotate(entity: Entity.Player, to: 2048);
+    speak(Entity.Player, "Can this machine recover MP?\n");
+    choice { "Hund MP: two hund bits" -> L1, "Thous MP:eighteen hund bits" -> L2, "Don't use" -> L_021a }
+    break;
+    return;
 
 L1:
-  if (money >= 200) {
-    addStats(currentMP: 100);
-    reduceMoney(200);
-    speak(Entity.System, "Our MP level has recovered!\n");
-  } else {
-    speak(Entity.Player, "I don't got enough bits.\n");
+    if (money >= 200) {
+      addStats(currentMP: 100);
+      reduceMoney(200);
+      speak(Entity.System, "Our MP level has recovered!\n");
+    } else {
+      speak(Entity.Player, "I don't got enough bits.\n");
+      return;
+    }
     return;
-  }
-  return;
 
 L2:
-  if (money >= 1800) {
-    addStats(currentMP: 1000);
-    reduceMoney(1800);
-    speak(Entity.System, "Our MP level has recovered!\n");
-  } else {
-    speak(Entity.Player, "I don't got enough bits.\n");
+    if (money >= 1800) {
+      addStats(currentMP: 1000);
+      reduceMoney(1800);
+      speak(Entity.System, "Our MP level has recovered!\n");
+    } else {
+      speak(Entity.Player, "I don't got enough bits.\n");
+      return;
+    }
     return;
   }
-  return;
-
-L3:
   return;
   garbage { 28 00 fe 00 28 00 }
 }

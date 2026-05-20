@@ -2411,16 +2411,16 @@ section(192) {
   setTrigger(Trigger(329));
 
 L1:
-  setPStat(PStat(38), 0);
-  setPStat(PStat(39), 0);
-  if (!trigger(204)) goto L2;
-  if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
-    goto L2;
+  {
+    setPStat(PStat(38), 0);
+    setPStat(PStat(39), 0);
+    if (!trigger(204)) break;
+    if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
+      break;
+    }
+    addPStat(PStat(38), 1);
+    loadAndSetDigimon(Digimon.NPCBetamon, Entity(2), 0);
   }
-  addPStat(PStat(38), 1);
-  loadAndSetDigimon(Digimon.NPCBetamon, Entity(2), 0);
-
-L2:
   if (!trigger(77) && trigger(237)) {
     addPStat(PStat(38), 1);
     loadAndSetDigimon(Digimon.NPCBakemon, Entity(0), 0);
@@ -2441,50 +2441,50 @@ L2:
   }
   pstat[:SavedTime] = time();
   if (pstat[107] in 7..19) {
-    goto L3;
+    goto L2;
   }
   if (!trigger(80) && trigger(218)) {
     addPStat(PStat(38), 1);
     loadAndSetDigimon(Digimon.NPCElecmon, Entity(5), 0);
   }
-  if (pstat[38] != 3) goto L3;
+  if (pstat[38] != 3) goto L2;
   return;
 
-L3:
+L2:
   pstat[:SavedTime] = time();
   if (pstat[107] in 7..19) {
-    goto L4;
-    goto L4;
+    goto L3;
+    goto L3;
   }
-  goto L7;
+  goto L5;
 
-L4:
+L3:
   loop {
     addPStat(PStat(38), 1);
     loadAndSetDigimon(Digimon.Tsunomon, Entity(4), 0);
     if (pstat[38] == 3) {
       return;
     }
-    if (!trigger(204)) goto L5;
-    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L5;
-    addPStat(PStat(38), 1);
-    loadAndSetDigimon(Digimon.NPCBetamon, Entity(2), 0);
-    if (pstat[38] != 3) goto L5;
-    return;
-
-L5:
+    {
+      if (!trigger(204)) break;
+      if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) break;
+      addPStat(PStat(38), 1);
+      loadAndSetDigimon(Digimon.NPCBetamon, Entity(2), 0);
+      if (pstat[38] != 3) break;
+      return;
+    }
     roll(pstat: PStat.RollScratch, max: 1);
     if (pstat[110] == 0 && trigger(235) && trigger(78)) {
-      goto L6;
+      goto L4;
     }
     if (trigger(234)) {
       addPStat(PStat(38), 1);
       loadAndSetDigimon(Digimon.NPCOgremon, Entity(7), 0);
     }
-    if (pstat[38] != 3) goto L6;
+    if (pstat[38] != 3) goto L4;
     return;
 
-L6:
+L4:
     if (trigger(235) && trigger(78)) {
       addPStat(PStat(38), 1);
       loadAndSetDigimon(Digimon.NPCShellmon, Entity(1), 0);
@@ -2494,23 +2494,23 @@ L6:
     }
     addPStat(PStat(39), 1);
     if (pstat[39] < 2) {
-      goto L7;
+      goto L5;
     }
     return;
 
-L7:
+L5:
     pstat[:SavedTime] = time();
     if (pstat[107] in 7..19) {
-      goto L8;
+      goto L6;
     }
     if (trigger(237) && trigger(77)) {
       addPStat(PStat(38), 1);
       loadAndSetDigimon(Digimon.NPCBakemon, Entity(0), 0);
     }
-    if (pstat[38] != 3) goto L8;
+    if (pstat[38] != 3) goto L6;
     return;
 
-L8:
+L6:
     if (trigger(218)) {
       addPStat(PStat(38), 1);
       loadAndSetDigimon(Digimon.NPCElecmon, Entity(5), 0);
@@ -2520,16 +2520,16 @@ L8:
     }
     roll(pstat: PStat.RollScratch, max: 1);
     if (pstat[110] == 0 && trigger(254)) {
-      goto L9;
+      goto L7;
     }
     if (trigger(232) && trigger(79)) {
       addPStat(PStat(38), 1);
       loadAndSetDigimon(Digimon.NPCKunemon, Entity(3), 0);
     }
-    if (pstat[38] != 3) goto L9;
+    if (pstat[38] != 3) goto L7;
     return;
 
-L9:
+L7:
     if (trigger(254)) {
       addPStat(PStat(38), 1);
       loadAndSetDigimon(Digimon.NPCMegadramon, Entity(6), 0);
@@ -2731,13 +2731,13 @@ section(212) {
 }
 
 section(213) {
-  switchToMap(173, Map.ROOM04, 0, 28);
-  loadAndSetDigimon(Digimon.NPCCentarumon, Entity(0), 0);
-  if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) goto L1;
-  if (!trigger(249)) goto L1;
-  loadAndSetDigimon(Digimon.NPCCoelamon, Entity(1), 0);
-
-L1:
+  {
+    switchToMap(173, Map.ROOM04, 0, 28);
+    loadAndSetDigimon(Digimon.NPCCentarumon, Entity(0), 0);
+    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) break;
+    if (!trigger(249)) break;
+    loadAndSetDigimon(Digimon.NPCCoelamon, Entity(1), 0);
+  }
   return;
 }
 

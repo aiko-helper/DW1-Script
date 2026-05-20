@@ -38,14 +38,14 @@ section(10) {
 }
 
 section(81) {
-  rotate3DObject(1, 1);
-  sfx(8, 2, wait: 20);
-  move(entity: Entity.Player, to: (-1999, 800), sprint: 0);
-  if (!trigger(329)) goto L1;
-  if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) goto L1;
-  warp(to: Map.FACT08A, spawn: 0, trigger: 255);
-
-L1:
+  {
+    rotate3DObject(1, 1);
+    sfx(8, 2, wait: 20);
+    move(entity: Entity.Player, to: (-1999, 800), sprint: 0);
+    if (!trigger(329)) break;
+    if (!trigger(209) && !trigger(208) && !trigger(222) && !trigger(223)) break;
+    warp(to: Map.FACT08A, spawn: 0, trigger: 255);
+  }
   warp(to: Map.FACT08B, spawn: 0, trigger: 255);
   return;
 }
