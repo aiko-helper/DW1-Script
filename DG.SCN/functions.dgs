@@ -249,12 +249,17 @@ function loadAndSetDigimon(digimon: Digimon, entity: Entity, autotalk) {
   setDigimon(digimon, entity, autotalk);
 }
 
+// pstat[245] is the script-start sentinel the engine reads when entering a new
+// map; the value selects the entry section/branch and is map-specific.
 function switchToMap(scriptId, map: Map, pStatValue, musicId) {
   setScript(scriptId, map);
   setPStat(245, pStatValue);
   setBGM(musicId);
 }
 
+// Installs a section-exit trigger, fires a digimon subroutine, and blocks
+// on Entity.System so any spawns/animations queued by the subroutine settle
+// before the caller continues.
 function runDigimonRoutine(trigger, routine) {
   sectionOnExit(trigger);
   callDigimonSubroutine(routine);
@@ -278,6 +283,15 @@ function learnMoves(moves: Move[]) {
   }
 }
 
+// Place the same digimon model at multiple entity slots with one call.
+// Compiles to N back-to-back setDigimon ops; identical bytecode to writing
+// them out individually but kinder to read.
+function setDigimonAt(t: Digimon, entities: Entity[], autotalk) {
+  for e in entities {
+    setDigimon(t, e, autotalk);
+  }
+}
+
 // Stereotyped "NPC walks up to the camera, party watches, then despawns" routine. 
 // Drives `who` toward (x, y) up to `tries` times, waiting `wait` ticks between 
 // attempts; the player and partner turn to track it; finally waits for `who` to 
@@ -297,6 +311,9 @@ function anim(e: Entity, a, [PreferNamed] wait) {
   delay(wait);
 }
 
+// Trigger 3 is the engine-wide "inventory full" flag; subroutines 0 and 13 are
+// the standard message + restore-state cleanup pair that every encounter uses
+// when it can't hand the player an item.
 function inventoryFullBailout() {
   setTrigger(3);
   callSubroutine(0);
@@ -327,20 +344,23 @@ function sfx(sound, channel, [PreferNamed] wait) {
 function approach(who: Entity, [PreferNamed] x, [PreferNamed] y, [PreferNamed] tries, [PreferNamed] wait) {
   loop {
     move(entity: who, to: (x, y), sprint: 1);
-    if (pstat[101] >= tries) break;
-    addPStat(101, 1);
+    if (pstat[:LoopIterator] >= tries) break;
+    addPStat(PStat.LoopIterator, 1);
     delay(wait);
     look(entity: Entity.Player, at: who);
     look(entity: Entity.Partner, at: who);
   }
   waitForEntity(who);
   unloadEntity(who);
-  setPStat(101, 0);
+  setPStat(PStat.LoopIterator, 0);
 }
 
+// Rolls 0..max into pstat[:RollScratch]; if the result is <= chance, spawns
+// `item` at (x, y).  Always uses :RollScratch -- callers cannot nest these
+// because the slot is shared.
 function spawnItemChance([PreferNamed] max, [PreferNamed] chance, item: Item, [PreferNamed] x, [PreferNamed] y) {
-  roll(pstat: 110, max: max);
-  if (pstat[110] <= chance) {
+  roll(pstat: PStat.RollScratch, max: max);
+  if (pstat[:RollScratch] <= chance) {
     spawnItem(item, x: x, y: y);
   }
 }

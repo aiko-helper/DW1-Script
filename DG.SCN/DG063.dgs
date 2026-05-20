@@ -27,38 +27,34 @@ section(5) {
   } else {
     if (trigger(104)) {
       speak(5, "Uh... my Meat fridge key?\n");
-      goto L2;
-    }
-    setTrigger(104);
-    speak(Entity.Player, " ! \n");
-    speak(5, "Someone came to help me?\n");
-    speak(Entity.Player, "Digimon? Are you ok?\n");
-    speak(5, "Who are you? Give me food!\n");
-    speak(Entity.Player, "Hungry? What do you want?\n");
-    speak(5, "Meat.\n");
-    if (item[Item.Meat] >= 1 || item[Item.GiantMeat] >= 1 || item[Item.Sirloin] >= 1) {
-      speak(Entity.Player, "I got Meat!\n");
+    } else {
+      setTrigger(104);
+      speak(Entity.Player, " ! \n");
+      speak(5, "Someone came to help me?\n");
+      speak(Entity.Player, "Digimon? Are you ok?\n");
+      speak(5, "Who are you? Give me food!\n");
+      speak(Entity.Player, "Hungry? What do you want?\n");
       speak(5, "Meat.\n");
-      speak(Entity.Player, "What?\n");
-      goto L1;
-    }
-    speak(Entity.Player, "Meat? No, I don't got any.\n");
-
-L1:
-    speak(5, "Here.\n");
-    giveItem(Item.FridgeKey, 1);
-    speak(Entity.Player, "A key?\n");
-    if (trigger(0)) {
-      speak(Entity.Player, "I gotta get rid of something.\n");
-      unsetTrigger(3);
-      callSubroutine(0);
-      callSubroutine(13);
+      if (item[Item.Meat] >= 1 || item[Item.GiantMeat] >= 1 || item[Item.Sirloin] >= 1) {
+        speak(Entity.Player, "I got Meat!\n");
+        speak(5, "Meat.\n");
+        speak(Entity.Player, "What?\n");
+      } else {
+        speak(Entity.Player, "Meat? No, I don't got any.\n");
+      }
+      speak(5, "Here.\n");
       giveItem(Item.FridgeKey, 1);
+      speak(Entity.Player, "A key?\n");
+      if (trigger(0)) {
+        speak(Entity.Player, "I gotta get rid of something.\n");
+        unsetTrigger(3);
+        callSubroutine(0);
+        callSubroutine(13);
+        giveItem(Item.FridgeKey, 1);
+      }
+      speak(Entity.System, "I got a <LIGHTBLUE>Frige Key<WHITE>!\n");
+      speak(5, "Okay...\n");
     }
-    speak(Entity.System, "I got a <LIGHTBLUE>Frige Key<WHITE>!\n");
-    speak(5, "Okay...\n");
-
-L2:
     speak(Entity.Player, "I don't have much time!\n");
     showTextbox("I'll bring something soon.\nHang on little more.\n");
     playAnimation(5, 28);
