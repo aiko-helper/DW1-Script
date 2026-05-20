@@ -19,81 +19,80 @@ section onEnter(254) {
 }
 
 section(6) {
-  speak(6, "I'm gonna win!\n");
+  speak(Entity(6), "I'm gonna win!\n");
   startBattle();
   return;
 }
 
 section(7) {
-  speak(7, "Don't come here! Go away!\n");
+  speak(Entity(7), "Don't come here! Go away!\n");
   startBattle();
   return;
 }
 
 section(8) {
-  speak(8, "Now I'm really angry!\n");
+  speak(Entity(8), "Now I'm really angry!\n");
   startBattle();
   return;
 }
 
 section(9) {
-  speak(9, "Hit me and I'll hit back!\n");
+  speak(Entity(9), "Hit me and I'll hit back!\n");
   startBattle();
   return;
 }
 
 section(10) {
-  speak(10, "Try it, if you can!\n");
+  speak(Entity(10), "Try it, if you can!\n");
   startBattle();
   return;
 }
 
 section(51) {
   if (trigger(185) && !trigger(249)) {
-    moveCamera(to: (2214, 865), slowdown: 20);
-    waitForEntity(200);
-    setPStat(247, 13);
-    setPStat(248, 16);
+    panTo(x: 2214, y: 865, slowdown: 20);
+    setPStat(PStat(247), 13);
+    setPStat(PStat(248), 16);
     callSubroutine(21);
     move(entity: Entity.Player, to: (1642, -107), sprint: 0);
     move(entity: Entity.Partner, to: (1252, -547), sprint: 1);
     delay(80);
     setObjectsVisibleRange(13, 28, 1);
-    setDigimon(Digimon.Coelamon, 0, 0);
+    setDigimon(Digimon.Coelamon, Entity(0), 0);
     playSound(8, 7);
     setObjectVisibility(31, 0);
-    setPStat(247, 31);
-    setPStat(248, 1);
+    setPStat(PStat(247), 31);
+    setPStat(PStat(248), 1);
     callSubroutine(21);
     delay(10);
     setObjectVisibility(31, 1);
     setObjectVisibility(34, 0);
-    lookPairAt(5);
+    lookPairAt(Entity(5));
     delay(20);
-    look(entity: 5, at: Entity.Player);
-    speak(5, "Oh, it's you, <LIGHTBLUE><PLAYER><WHITE>.\nThe bridge is fixed.\n");
+    look(entity: Entity(5), at: Entity.Player);
+    speak(Entity(5), "Oh, it's you, <LIGHTBLUE><PLAYER><WHITE>.\nThe bridge is fixed.\n");
     showTextbox("I hear you're making a city.\n");
     showTextbox("I got a request.\nI want you to help me\njust like I helped you.\n");
     speak(Entity.Player, "?\n");
-    speak(5, "Making a city means\nsaving this island.\nEveryone will be saved.\n");
-    anim(Entity.Player, 19, wait: 15);
+    speak(Entity(5), "Making a city means\nsaving this island.\nEveryone will be saved.\n");
+    anim(Entity.Player, Animation(19), wait: 15);
     speak(Entity.Player, "Does that mean you'll\ncome to the city?\n");
-    playAnimation(Entity.Player, 0);
-    speak(5, "Yes. I'll go to your city.\n");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(5), "Yes. I'll go to your city.\n");
     delay(10);
     setObjectVisibility(34, 1);
-    unloadEntity(5);
+    unloadEntity(Entity(5));
     playSound(8, 7);
     setObjectVisibility(37, 0);
-    setPStat(247, 37);
-    setPStat(248, 1);
+    setPStat(PStat(247), 37);
+    setPStat(PStat(248), 1);
     callSubroutine(21);
     delay(10);
     setObjectVisibility(37, 1);
     setObjectVisibility(29, 0);
     setObjectVisibility(30, 0);
-    setPStat(247, 29);
-    setPStat(248, 2);
+    setPStat(PStat(247), 29);
+    setPStat(PStat(248), 2);
     callSubroutine(21);
     moveObjectTo(0, 29, 1, 30, 0, 640, 130);
     moveObjectTo(1, 30, 1, 30, 0, 640, 130);
@@ -105,8 +104,8 @@ section(51) {
     speak(Entity.System, "Coelamon joins the city!\n");
     move(entity: Entity.Player, to: (1000, -461), sprint: 1);
     moveCamera(to: Entity.Player, speed: 10);
-    setTrigger(249);
-    addPStat(1, 2);
+    setTrigger(Trigger(249));
+    addPStat(PStat(1), 2);
     return;
   }
   pstat[:SavedTime] = time();
@@ -114,163 +113,161 @@ section(51) {
   } else {
     return;
   }
-  moveCamera(to: (2214, 865), slowdown: 20);
-  waitForEntity(200);
-  setPStat(247, 13);
-  setPStat(248, 16);
+  panTo(x: 2214, y: 865, slowdown: 20);
+  setPStat(PStat(247), 13);
+  setPStat(PStat(248), 16);
   callSubroutine(21);
   move(entity: Entity.Player, to: (1642, -107), sprint: 0);
   move(entity: Entity.Partner, to: (1252, -547), sprint: 1);
   delay(80);
   setObjectsVisibleRange(13, 28, 1);
-  setDigimon(Digimon.Coelamon, 0, 0);
+  setDigimon(Digimon.Coelamon, Entity(0), 0);
   playSound(8, 7);
   setObjectVisibility(31, 0);
-  setPStat(247, 31);
-  setPStat(248, 1);
+  setPStat(PStat(247), 31);
+  setPStat(PStat(248), 1);
   callSubroutine(21);
   delay(10);
   setObjectVisibility(31, 1);
   setObjectVisibility(34, 0);
-  lookPairAt(5);
+  lookPairAt(Entity(5));
   delay(20);
-  look(entity: 5, at: Entity.Player);
-  anim(Entity.Player, 15, wait: 20);
+  look(entity: Entity(5), at: Entity.Player);
+  anim(Entity.Player, Animation(15), wait: 20);
   if (trigger(96)) {
   } else {
-    speak(5, "Hey, are you human?\n");
+    speak(Entity(5), "Hey, are you human?\n");
     showTextbox("I am Coelamon,\nthe fish Digimon.\nDid you come to see me?\n");
-    setTrigger(49);
+    setTrigger(Trigger(49));
     setDialogOwner(Entity.Player);
     setSelection(L1, L2);
     showTextbox("Yes, we looked all over\nNow that you mention it\n");
 
 L1:
-    anim(Entity.Player, 19, wait: 20);
-    unsetTrigger(49);
-    speak(5, "Ha-ha, is that so!\n");
+    anim(Entity.Player, Animation(19), wait: 20);
+    unsetTrigger(Trigger(49));
+    speak(Entity(5), "Ha-ha, is that so!\n");
     goto L3;
 
 L2:
-    anim(Entity.Player, 19, wait: 20);
-    unsetTrigger(49);
-    speak(5, "I already know what\nyou want.\n");
+    anim(Entity.Player, Animation(19), wait: 20);
+    unsetTrigger(Trigger(49));
+    speak(Entity(5), "I already know what\nyou want.\n");
 
 L3:
-    speak(5, "The bridge upstream is\nbroken and you want to go\nacross. Right?\n");
+    speak(Entity(5), "The bridge upstream is\nbroken and you want to go\nacross. Right?\n");
     playSound(8, 8);
-    anim(Entity.Player, 22, wait: 8);
-    anim(Entity.Player, 22, wait: 8);
-    anim(Entity.Player, 0, wait: 3);
+    anim(Entity.Player, Animation(22), wait: 8);
+    anim(Entity.Player, Animation(22), wait: 8);
+    anim(Entity.Player, Animation(0), wait: 3);
     playSound(8, 14);
     showTextbox("I see.\nFine, I'll help you.\n");
   }
   if (trigger(96)) {
-    speak(5, "Aa-ha, you've come again.\n");
+    speak(Entity(5), "Aa-ha, you've come again.\n");
   }
-  moveCamera(to: 5, speed: 10);
-  waitForEntity(200);
+  followEntity(Entity(5), speed: 10);
   setObjectVisibility(34, 1);
-  unloadEntity(5);
+  unloadEntity(Entity(5));
   playSound(8, 7);
   setObjectVisibility(37, 0);
-  setPStat(247, 37);
-  setPStat(248, 1);
+  setPStat(PStat(247), 37);
+  setPStat(PStat(248), 1);
   callSubroutine(21);
   delay(60);
   setObjectVisibility(37, 1);
-  setDigimon(Digimon.Coelamon, 0, 0);
+  setDigimon(Digimon.Coelamon, Entity(0), 0);
   playSound(8, 7);
   setObjectVisibility(31, 0);
-  setPStat(247, 31);
-  setPStat(248, 1);
+  setPStat(PStat(247), 31);
+  setPStat(PStat(248), 1);
   callSubroutine(21);
   delay(15);
   setObjectVisibility(31, 1);
   setObjectVisibility(34, 0);
-  setDigimon(Digimon.Coelamon, 6, 0);
+  setDigimon(Digimon.Coelamon, Entity(6), 0);
   playSound(8, 7);
   setObjectVisibility(32, 0);
-  setPStat(247, 32);
-  setPStat(248, 1);
+  setPStat(PStat(247), 32);
+  setPStat(PStat(248), 1);
   callSubroutine(21);
   delay(15);
   setObjectVisibility(32, 1);
   setObjectVisibility(35, 0);
-  setDigimon(Digimon.Coelamon, 7, 0);
+  setDigimon(Digimon.Coelamon, Entity(7), 0);
   playSound(8, 7);
   setObjectVisibility(33, 0);
-  setPStat(247, 33);
-  setPStat(248, 1);
+  setPStat(PStat(247), 33);
+  setPStat(PStat(248), 1);
   callSubroutine(21);
   delay(15);
   setObjectVisibility(33, 1);
   setObjectVisibility(36, 0);
-  look(entity: 5, at: Entity.Player);
+  look(entity: Entity(5), at: Entity.Player);
   delay(20);
-  speak(5, "Now, walk on our heads.\nDon't worry.\n");
+  speak(Entity(5), "Now, walk on our heads.\nDon't worry.\n");
   sfx(8, 14, wait: 10);
   sfx(8, 14, wait: 10);
   sfx(8, 14, wait: 10);
-  anim(Entity.Player, 11, wait: 20);
+  anim(Entity.Player, Animation(11), wait: 20);
   speak(Entity.Player, "Okay, here we go!\n");
-  look(entity: Entity.Player, at: 5);
+  look(entity: Entity.Player, at: Entity(5));
   delay(3);
-  playAnimation(Entity.Player, 21);
+  playAnimation(Entity.Player, Animation(21));
   move(entity: Entity.Player, to: (2214, 865), animDuration: 15);
   delay(5);
   sfx(8, 9, wait: 12);
   playSound(8, 7);
   setObjectVisibility(31, 0);
-  setPStat(247, 31);
-  setPStat(248, 1);
+  setPStat(PStat(247), 31);
+  setPStat(PStat(248), 1);
   callSubroutine(21);
-  look(entity: Entity.Player, at: 11);
+  look(entity: Entity.Player, at: Entity(11));
   delay(3);
-  playAnimation(Entity.Player, 21);
+  playAnimation(Entity.Player, Animation(21));
   move(entity: Entity.Player, to: (2900, 1300), animDuration: 14);
   delay(5);
   sfx(8, 9, wait: 12);
   setObjectVisibility(31, 1);
   playSound(8, 7);
   setObjectVisibility(32, 0);
-  setPStat(247, 32);
-  setPStat(248, 1);
+  setPStat(PStat(247), 32);
+  setPStat(PStat(248), 1);
   callSubroutine(21);
-  look(entity: Entity.Player, at: 12);
+  look(entity: Entity.Player, at: Entity(12));
   delay(3);
-  playAnimation(Entity.Player, 21);
+  playAnimation(Entity.Player, Animation(21));
   move(entity: Entity.Player, to: (3967, 3068), animDuration: 15);
   delay(5);
   sfx(8, 9, wait: 12);
   setObjectVisibility(32, 1);
   playSound(8, 7);
   setObjectVisibility(33, 0);
-  setPStat(247, 33);
-  setPStat(248, 1);
+  setPStat(PStat(247), 33);
+  setPStat(PStat(248), 1);
   callSubroutine(21);
-  look(entity: Entity.Player, at: 12);
+  look(entity: Entity.Player, at: Entity(12));
   delay(3);
-  playAnimation(Entity.Player, 21);
+  playAnimation(Entity.Player, Animation(21));
   move(entity: Entity.Player, to: (5009, 4260), animDuration: 15);
   delay(5);
   sfx(8, 9, wait: 12);
   playSound(8, 7);
   setObjectVisibility(33, 1);
-  look(entity: 5, at: Entity.Player);
+  look(entity: Entity(5), at: Entity.Player);
   playSound(8, 7);
   setObjectVisibility(31, 0);
-  setPStat(247, 31);
-  setPStat(248, 1);
+  setPStat(PStat(247), 31);
+  setPStat(PStat(248), 1);
   callSubroutine(21);
   delay(15);
   setObjectVisibility(31, 1);
-  look(entity: 11, at: Entity.Player);
-  look(entity: 12, at: Entity.Player);
+  look(entity: Entity(11), at: Entity.Player);
+  look(entity: Entity(12), at: Entity.Player);
   delay(20);
-  speak(5, "This world needs more\nteamwork. Let's meet again.\n");
+  speak(Entity(5), "This world needs more\nteamwork. Let's meet again.\n");
   playSound(8, 14);
-  setTrigger(96);
+  setTrigger(Trigger(96));
   move(entity: Entity.Partner, to: (3500, 2500), sprint: 0);
   warp(to: Map.TROP01, spawn: 4, trigger: 255);
   return;

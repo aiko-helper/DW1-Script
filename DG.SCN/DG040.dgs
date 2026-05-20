@@ -24,37 +24,37 @@ section(5) {
     }
     goto L6;
   }
-  setTrigger(199);
-  speak(5, "Who are you? Go away!\n");
-  anim(Entity.Player, 24, wait: 15);
+  setTrigger(Trigger(199));
+  speak(Entity(5), "Who are you? Go away!\n");
+  anim(Entity.Player, Animation(24), wait: 15);
   speak(Entity.Player, "Is this where you live?\n");
-  playAnimation(Entity.Player, 0);
-  speak(5, "I can't tell you!\n");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(5), "I can't tell you!\n");
   speak(Entity.Player, "Are you a guard or something?\n");
-  speak(5, "Want to fight? I'll beat you!\n");
+  speak(Entity(5), "Want to fight? I'll beat you!\n");
   setDialogOwner(Entity.Player);
   choice { "I guess I'll fight" -> L1, "You can't bully me" -> L2 }
   goto L2;
 
 L1:
-  setTrigger(1);
-  setPStat(250, 1);
-  setPStat(251, 5);
-  setPStat(252, 255);
-  setPStat(253, 255);
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 5);
+  setPStat(PStat(252), 255);
+  setPStat(PStat(253), 255);
   startBattle();
-  unsetTrigger(1);
-  setPStat(250, 0);
-  speak(5, "Wow!\n");
-  move(entity: 5, to: (-356, -1058), sprint: 1);
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  speak(Entity(5), "Wow!\n");
+  move(entity: Entity(5), to: (-356, -1058), sprint: 1);
   delay(40);
   move(entity: Entity.Player, to: (-349, -1355), sprint: 1);
   move(entity: Entity.Partner, to: (-345, -1751), sprint: 1);
   waitForPair();
-  lookPairAt(5);
-  move(entity: 5, to: (-250, -950), sprint: 1);
-  waitForEntity(5);
-  unloadEntity(5);
+  lookPairAt(Entity(5));
+  move(entity: Entity(5), to: (-250, -950), sprint: 1);
+  waitForEntity(Entity(5));
+  unloadEntity(Entity(5));
   playSound(8, 2);
   rotate3DObject(0, 255);
   delay(40);
@@ -66,8 +66,7 @@ L1:
   speak(Entity.Player, "Who is it?\n");
   speak(Entity.System, "<YELLOW>???mon <WHITE>\nI have done nothing wrong.\nDon't come in my house\nwithout permission!\n");
   speak(Entity.Player, "I guess I should leave now.\n");
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  followEntity(Entity.Player, speed: 10);
   return;
 
 L2:
@@ -77,42 +76,42 @@ L2:
 
 L3:
     speak(Entity.Player, "You are an Ogremon bandit!\nThis is your hideout!\n");
-    speak(5, "What are you talking about?\n");
-    anim(Entity.Player, 7, wait: 15);
+    speak(Entity(5), "What are you talking about?\n");
+    anim(Entity.Player, Animation(7), wait: 15);
     speak(Entity.Player, "You were lucky last time!\nGive up!\n");
-    playAnimation(Entity.Player, 0);
+    playAnimation(Entity.Player, Animation(0));
     goto L4;
 
 L4:
-    speak(5, "Wow!\n");
-    move(entity: 5, to: (-356, -1058), sprint: 1);
+    speak(Entity(5), "Wow!\n");
+    move(entity: Entity(5), to: (-356, -1058), sprint: 1);
     delay(40);
     move(entity: Entity.Player, to: (-349, -1375), sprint: 1);
     move(entity: Entity.Partner, to: (-355, -1761), sprint: 1);
     waitForPair();
-    lookPairAt(5);
-    move(entity: 5, to: (-250, -930), sprint: 1);
-    waitForEntity(5);
-    unloadEntity(5);
+    lookPairAt(Entity(5));
+    move(entity: Entity(5), to: (-250, -930), sprint: 1);
+    waitForEntity(Entity(5));
+    unloadEntity(Entity(5));
     move(entity: Entity.Player, to: (-250, -930), sprint: 1);
     waitForEntity(Entity.Player);
     move(entity: Entity.Partner, to: (-250, -930), sprint: 1);
     waitForEntity(Entity.Partner);
-    setTrigger(200);
+    setTrigger(Trigger(200));
     warp(to: Map.OGRE00, spawn: 0, trigger: 255);
 
 L5:
     speak(Entity.Player, "You tricked me last time,\nbut now I'll get you.\n");
-    speak(5, "What are you talking about?\n");
-    anim(Entity.Player, 7, wait: 15);
+    speak(Entity(5), "What are you talking about?\n");
+    anim(Entity.Player, Animation(7), wait: 15);
     speak(Entity.Player, "You won't get away this time!\n");
-    playAnimation(Entity.Player, 0);
+    playAnimation(Entity.Player, Animation(0));
     goto L4;
     return;
 
 L6:
     speak(Entity.Player, "Come on, let me in.\n");
-    speak(5, "You want a piece of me?\nI'll knock you out!\n");
+    speak(Entity(5), "You want a piece of me?\nI'll knock you out!\n");
     setDialogOwner(Entity.Player);
     choice { "Let's fight" -> L1, "Don't bully me" -> L2 }
   }

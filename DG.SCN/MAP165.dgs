@@ -15,21 +15,21 @@ section(54) {
 section(5) {
   if (trigger(202) || trigger(215) || pstat[16] == 0) goto L1;
   if (!trigger(201) || !trigger(243)) goto L1;
-  speak(5, "You came here at the perfect\ntime! I have a big favor to\nask that only you can do.\n");
+  speak(Entity(5), "You came here at the perfect\ntime! I have a big favor to\nask that only you can do.\n");
   speak(Entity.Player, "What is it?\n");
-  speak(5, "It's the same evil\nI felt from Analogman\nand Machinedramon.\n");
+  speak(Entity(5), "It's the same evil\nI felt from Analogman\nand Machinedramon.\n");
   showTextbox("But I can't tell\nwhere it's coming from.\n");
   speak(Entity.Player, "Alright, leave it to me!\n");
-  speak(5, "Thank you. By the way...\n");
+  speak(Entity(5), "Thank you. By the way...\n");
   goto L2;
 
 L1:
   if (trigger(202) && !trigger(215)) {
-    speak(5, "I heard that you\nbeat Machinedramon!\n");
+    speak(Entity(5), "I heard that you\nbeat Machinedramon!\n");
     speak(Entity.Player, "Yeah, but I don't get it.\nIt seemed like the\ncurse of Analogman.\n");
-    speak(5, "His grudge was so strong.\nMaybe we can have peace now.\n");
+    speak(Entity(5), "His grudge was so strong.\nMaybe we can have peace now.\n");
     speak(Entity.Player, "If Machinedramon returns,\nwe can beat him again.\n");
-    speak(5, "You are trustworthy. Here's\na sign of my gratitude.\nIt grew in our Meat farm.\n");
+    speak(Entity(5), "You are trustworthy. Here's\na sign of my gratitude.\nIt grew in our Meat farm.\n");
     speak(Entity.Player, "Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
     giveItem(Item.ChainMelon, 1);
     if (trigger(0)) {
@@ -41,17 +41,17 @@ L1:
       giveItem(Item.ChainMelon, 1);
     }
     speak(Entity.Player, "I gladly accept, thank you!\n");
-    setPStat(28, 0);
-    setTrigger(215);
+    setPStat(PStat(28), 0);
+    setTrigger(Trigger(215));
     return;
   }
   if (!trigger(50) || trigger(201)) goto L2;
-  speak(5, "Oh, you're back!\nThis is something I can't\nask anybody else.\n");
+  speak(Entity(5), "Oh, you're back!\nThis is something I can't\nask anybody else.\n");
   speak(Entity.Player, "Okay. Do you mean\nAnalogman is back?\n");
-  speak(5, "I felt his evil, but\nI can't tell where it is.\n");
+  speak(Entity(5), "I felt his evil, but\nI can't tell where it is.\n");
   speak(Entity.Player, "Alright, leave it to me!\nI'll go find him and\ntake care of it.\n");
-  speak(5, "Oh, thank you. By the way...\n");
-  setTrigger(201);
+  speak(Entity(5), "Oh, thank you. By the way...\n");
+  setTrigger(Trigger(201));
 
 L2:
   if (trigger(203)) {
@@ -66,14 +66,13 @@ section(6) {
 }
 
 section(20) {
-  moveCamera(to: (183, 221), slowdown: 20);
-  waitForEntity(200);
+  panTo(x: 183, y: 221, slowdown: 20);
   delay(20);
   addStats(currentHP: 9999, currentMP: 9999);
-  unsetTrigger(1);
-  anim(5, 29, wait: 5);
-  speak(5, "You woke up. I'm so sorry.\n");
-  playAnimation(5, 0);
+  unsetTrigger(Trigger(1));
+  anim(Entity(5), Animation(29), wait: 5);
+  speak(Entity(5), "You woke up. I'm so sorry.\n");
+  playAnimation(Entity(5), Animation(0));
   return;
 }
 
@@ -94,12 +93,12 @@ section(73) {
 
 section(85) {
   if (!trigger(94)) {
-    setTrigger(94);
+    setTrigger(Trigger(94));
     speak(Entity.Player, "What's this machine?\n");
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Player, at: 5);
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
     delay(5);
-    speak(5, "That's a <PINK>Save Machine\nfor Memory Card Battle\nData<WHITE>.\n");
+    speak(Entity(5), "That's a <PINK>Save Machine\nfor Memory Card Battle\nData<WHITE>.\n");
     showTextbox("Using that machine, you can\nsave your current partner's\ndata for battle.\n");
     showTextbox("All you have to do is press\n<LIGHTBLUE><X> <WHITE>and the machine\nwill tell you what to do.\n");
     rotate(entity: Entity.Player, to: 0);
@@ -121,18 +120,18 @@ L2:
 
 section(7) {
   if (!trigger(224) && trigger(175)) {
-    speak(7, "Sounds like Yuramon has\ngathered more rumors.\n");
+    speak(Entity(7), "Sounds like Yuramon has\ngathered more rumors.\n");
     return;
   }
   if (trigger(124) && trigger(103)) {
-    speak(7, "I heard Yuramon\nknows some new rumors.\n");
+    speak(Entity(7), "I heard Yuramon\nknows some new rumors.\n");
     return;
   }
   if (pstat[1] >= 6) {
-    speak(7, "The city's starting to\ngrow and change\nnow that we're here.\n");
+    speak(Entity(7), "The city's starting to\ngrow and change\nnow that we're here.\n");
     return;
   }
-  speak(7, "<LIGHTBLUE><PLAYER><WHITE>, you have a\nway different\napproach to adventure.\n");
+  speak(Entity(7), "<LIGHTBLUE><PLAYER><WHITE>, you have a\nway different\napproach to adventure.\n");
   return;
 }
 

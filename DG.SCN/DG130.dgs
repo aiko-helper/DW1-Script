@@ -9,13 +9,13 @@ section onEnter(254) {
 }
 
 section(5) {
-  speak(5, "I'm gonna get you!\n");
-  finishEncounter(303);
+  speak(Entity(5), "I'm gonna get you!\n");
+  finishEncounter(Trigger(303));
 }
 
 section(7) {
-  speak(7, "Oh Really!\n");
-  finishEncounter(300);
+  speak(Entity(7), "Oh Really!\n");
+  finishEncounter(Trigger(300));
 }
 
 section(6) {
@@ -26,83 +26,81 @@ section(81) {
   if (trigger(224) || !trigger(175)) {
     return;
   }
-  lookPairAt(6);
+  lookPairAt(Entity(6));
   delay(5);
-  moveCamera(to: (-2852, 2621), slowdown: 30);
-  waitForEntity(200);
+  panTo(x: -2852, y: 2621, slowdown: 30);
   if (trigger(352)) {
-    speak(6, "Who are you?\n");
+    speak(Entity(6), "Who are you?\n");
     setDialogOwner(Entity.Player);
     setSelection(L2, L1);
     showTextbox("I came here to help you\nI'm not ready yet...\n");
   }
-  setTrigger(352);
-  speak(6, "Is somebody there?\n");
-  anim(Entity.Player, 25, wait: 15);
+  setTrigger(Trigger(352));
+  speak(Entity(6), "Is somebody there?\n");
+  anim(Entity.Player, Animation(25), wait: 15);
   speak(Entity.Player, "You can't see?\n");
-  playAnimation(Entity.Player, 0);
-  speak(6, "I'm Whamon. Usually\nI live in the sea.\n");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(6), "I'm Whamon. Usually\nI live in the sea.\n");
   showTextbox("I don't have eyes, but\nI can feel most things.\n");
-  storeDigimonType(103);
+  storeDigimonType(PStat(103));
   speak(Entity.Player, "I'm human. My name is\n<LIGHTBLUE><PLAYER><WHITE>.\n");
   showTextbox("This is <ORANGE><DIGIMON><WHITE>,\nmy partner and he is <DIGIMONTYPE2>.\n");
-  speak(6, "I feel some strong power.\n");
-  speak(6, "Will you listen to my story?\nThere's a beach cave near\nhere where I rest.\n");
+  speak(Entity(6), "I feel some strong power.\n");
+  speak(Entity(6), "Will you listen to my story?\nThere's a beach cave near\nhere where I rest.\n");
   showTextbox("But, some mean guys kicked me\nout and I lost my important\ntreasure there.\n");
-  anim(Entity.Player, 16, wait: 15);
+  anim(Entity.Player, Animation(16), wait: 15);
   speak(Entity.Player, "Mean guys, huh?\nDoesn't sound good.\n");
-  playAnimation(Entity.Player, 0);
-  speak(6, "Please kick them out.\nI want you to help me\nget the cave back.\n");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(6), "Please kick them out.\nI want you to help me\nget the cave back.\n");
   setDialogOwner(Entity.Player);
   setSelection(L2, L1);
   showTextbox("I'll help you\nCan't help right now\n");
 
 L1:
-  speak(6, "I see.\n");
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  speak(Entity(6), "I see.\n");
+  followEntity(Entity.Player, speed: 10);
   return;
 
 L2:
-  speak(6, "Then get on my back.\n");
+  speak(Entity(6), "Then get on my back.\n");
   moveCamera(to: (-3150, 3000), slowdown: 30);
-  playAnimation(6, 28);
+  playAnimation(Entity(6), Animation(28));
   sfx(8, 3, wait: 40);
-  rotate(entity: 6, to: 3459);
+  rotate(entity: Entity(6), to: 3459);
   playSound(8, 3);
-  rotate(entity: 6, to: 3331);
+  rotate(entity: Entity(6), to: 3331);
   delay(3);
-  rotate(entity: 6, to: 3203);
+  rotate(entity: Entity(6), to: 3203);
   delay(3);
-  rotate(entity: 6, to: 3075);
+  rotate(entity: Entity(6), to: 3075);
   delay(3);
-  rotate(entity: 6, to: 2947);
+  rotate(entity: Entity(6), to: 2947);
   delay(3);
-  rotate(entity: 6, to: 2819);
+  rotate(entity: Entity(6), to: 2819);
   delay(3);
-  rotate(entity: 6, to: 2691);
+  rotate(entity: Entity(6), to: 2691);
   delay(3);
-  rotate(entity: 6, to: 2563);
+  rotate(entity: Entity(6), to: 2563);
   sfx(8, 3, wait: 10);
-  rotate(entity: 6, to: 2435);
+  rotate(entity: Entity(6), to: 2435);
   delay(3);
-  rotate(entity: 6, to: 2307);
+  rotate(entity: Entity(6), to: 2307);
   delay(3);
-  rotate(entity: 6, to: 2179);
+  rotate(entity: Entity(6), to: 2179);
   delay(3);
-  rotate(entity: 6, to: 2051);
+  rotate(entity: Entity(6), to: 2051);
   delay(3);
-  rotate(entity: 6, to: 1923);
+  rotate(entity: Entity(6), to: 1923);
   sfx(8, 3, wait: 10);
-  rotate(entity: 6, to: 1795);
+  rotate(entity: Entity(6), to: 1795);
   delay(3);
-  rotate(entity: 6, to: 1667);
+  rotate(entity: Entity(6), to: 1667);
   delay(3);
-  rotate(entity: 6, to: 1539);
+  rotate(entity: Entity(6), to: 1539);
   delay(3);
-  rotate(entity: 6, to: 1411);
+  rotate(entity: Entity(6), to: 1411);
   delay(3);
-  rotate(entity: 6, to: 1283);
+  rotate(entity: Entity(6), to: 1283);
   delay(3);
   move(entity: Entity.Player, to: (-2454, 2707), sprint: 0);
   waitForEntity(Entity.Player);
@@ -119,7 +117,7 @@ L2:
   playSound(8, 3);
   move(entity: Entity.Player, to: (-4053, 3680), animDuration: 99);
   move(entity: Entity.Partner, to: (-4053, 3680), animDuration: 99);
-  move(entity: 6, to: (-4053, 3680), animDuration: 99);
+  move(entity: Entity(6), to: (-4053, 3680), animDuration: 99);
   moveObjectTo(0, 35, 1, 0, 0, 350, 410);
   moveObjectTo(1, 36, 1, 0, 0, 438, 410);
   moveObjectTo(2, 37, 1, 0, 0, 412, 410);
@@ -131,8 +129,8 @@ L2:
   delay(10);
   playSound(8, 3);
   setObjectsVisibleRange(35, 42, 0);
-  setPStat(247, 35);
-  setPStat(248, 8);
+  setPStat(PStat(247), 35);
+  setPStat(PStat(248), 8);
   callSubroutine(21);
   delay(10);
   moveObjectTo(0, 35, 1, 120, 0, 0, 730);
@@ -146,7 +144,7 @@ L2:
   delay(10);
   move(entity: Entity.Player, to: (-4053, 3680), animDuration: 99);
   move(entity: Entity.Partner, to: (-4053, 3680), animDuration: 99);
-  move(entity: 6, to: (-4053, 3680), animDuration: 99);
+  move(entity: Entity(6), to: (-4053, 3680), animDuration: 99);
   delay(30);
   warp(to: Map.OGRE10, spawn: 1, trigger: 60);
   return;
@@ -157,7 +155,7 @@ section(51) {
   return;
 
 L1:
-  storeDigimonType(103);
+  storeDigimonType(PStat(103));
   if (pstat[103] == 3 || pstat[103] == 5 || pstat[103] == 8 || pstat[103] == 9 || pstat[103] == 47) {
     jumpToScriptSection(203, 51);
   }

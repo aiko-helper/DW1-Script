@@ -5,15 +5,15 @@
 
 section onEnter(254) {
   if (trigger(353) && pstat[30] >= 3) {
-    setTrigger(126);
+    setTrigger(Trigger(126));
     setObjectVisibility(4, 1);
-    move(entity: 5, to: (-1134, -566), animDuration: 3);
+    move(entity: Entity(5), to: (-1134, -566), animDuration: 3);
     delay(5);
-    rotate(entity: 5, to: 3072);
+    rotate(entity: Entity(5), to: 3072);
     delay(5);
   }
   if (pstat[30] < 3 && !trigger(238)) {
-    playAnimation(5, 29);
+    playAnimation(Entity(5), Animation(29));
   }
   return;
 }
@@ -22,44 +22,43 @@ section(52) {
   if (trigger(238)) {
     return;
   }
-  look(entity: 5, at: Entity.Player);
-  look(entity: Entity.Player, at: 5);
+  look(entity: Entity(5), at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(5));
   delay(5);
   if (!trigger(353)) {
-    speak(5, "Hey, it'll be open soon!\n");
-    rotate(entity: 5, to: 512);
+    speak(Entity(5), "Hey, it'll be open soon!\n");
+    rotate(entity: Entity(5), to: 512);
     delay(5);
-    playAnimation(5, 29);
-    setTrigger(353);
-    setPStat(30, 0);
+    playAnimation(Entity(5), Animation(29));
+    setTrigger(Trigger(353));
+    setPStat(PStat(30), 0);
     move(entity: Entity.Player, to: (-334, -853), sprint: 0);
     waitForEntity(Entity.Player);
     return;
   }
   if (trigger(353) && pstat[30] >= 3) {
-    speak(5, "We've been waiting for this!\nThe tunnel is open!\n");
+    speak(Entity(5), "We've been waiting for this!\nThe tunnel is open!\n");
     speak(Entity.Player, "We don't have to go over the\nmountain anymore. Thanks.\n");
-    speak(5, "Thanks. I couldn't have\nmoved the big rock by myself.\n");
-    speak(5, "What should I do now?\n");
-    anim(Entity.Player, 19, wait: 15);
+    speak(Entity(5), "Thanks. I couldn't have\nmoved the big rock by myself.\n");
+    speak(Entity(5), "What should I do now?\n");
+    anim(Entity.Player, Animation(19), wait: 15);
     speak(Entity.Player, "You should come to the city.\nYou'll find things to do!\n");
-    playAnimation(Entity.Player, 0);
-    speak(5, "I still have lots of energy.\nI gladly accept your offer.\n");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(5), "I still have lots of energy.\nI gladly accept your offer.\n");
   } else {
-    speak(5, "It'll be open soon!\n");
-    rotate(entity: 5, to: 512);
-    anim(5, 29, wait: 5);
+    speak(Entity(5), "It'll be open soon!\n");
+    rotate(entity: Entity(5), to: 512);
+    anim(Entity(5), Animation(29), wait: 5);
     move(entity: Entity.Player, to: (-334, -853), sprint: 0);
     waitForEntity(Entity.Player);
     return;
   }
-  approach(who: 5, x: 600, y: 1700, tries: 3, wait: 25);
+  approach(who: Entity(5), x: 600, y: 1700, tries: 3, wait: 25);
   playSound(8, 8);
   speak(Entity.System, "Drimogemon joins the city!\n");
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  setTrigger(238);
-  addPStat(1, 2);
+  followEntity(Entity.Player, speed: 10);
+  setTrigger(Trigger(238));
+  addPStat(PStat(1), 2);
   return;
 }
 

@@ -4,7 +4,7 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  setPStat(122, 255);
+  setPStat(PStat(122), 255);
   if (!trigger(257)) {
     setObjectsVisibleRange(0, 3, 0);
   } else {
@@ -42,7 +42,7 @@ section(61) {
 section(51) {
   if (trigger(257)) {
     warp(to: Map.ROOM20, spawn: 0, trigger: 255);
-    setPStat(122, 255);
+    setPStat(PStat(122), 255);
   }
   return;
 }
@@ -76,50 +76,50 @@ section(83) {
 }
 
 section(84) {
-  look(entity: 7, at: Entity.Player);
-  look(entity: Entity.Player, at: 7);
+  look(entity: Entity(7), at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(7));
   delay(10);
-  speak(7, "<ORANGE><DIGIMON><WHITE>, let me think of\nyour nickname... a hero\nwho has saved the world.\n");
+  speak(Entity(7), "<ORANGE><DIGIMON><WHITE>, let me think of\nyour nickname... a hero\nwho has saved the world.\n");
   showTextbox("Let's see.\n");
   roll(pstat: PStat.RollScratch, max: 9);
   if (pstat[110] == 0) {
-    speak(7, "How about\n'Invincible <ORANGE><DIGIMON><WHITE>'?\n");
+    speak(Entity(7), "How about\n'Invincible <ORANGE><DIGIMON><WHITE>'?\n");
     return;
   }
   if (pstat[110] == 1) {
-    speak(7, "How about\n'Legendary Hero <ORANGE><DIGIMON><WHITE>'?\n");
+    speak(Entity(7), "How about\n'Legendary Hero <ORANGE><DIGIMON><WHITE>'?\n");
     return;
   }
   if (pstat[110] == 2) {
-    speak(7, "How about\n'<ORANGE><DIGIMON><WHITE> The Great'?\n");
+    speak(Entity(7), "How about\n'<ORANGE><DIGIMON><WHITE> The Great'?\n");
     return;
   }
   if (pstat[110] == 3) {
-    speak(7, "How about\n'Peacemaker <ORANGE><DIGIMON><WHITE>'?\n");
+    speak(Entity(7), "How about\n'Peacemaker <ORANGE><DIGIMON><WHITE>'?\n");
     return;
   }
   if (pstat[110] == 4) {
-    speak(7, "How about\n'<ORANGE><DIGIMON><WHITE> The Champ'?\n");
+    speak(Entity(7), "How about\n'<ORANGE><DIGIMON><WHITE> The Champ'?\n");
     return;
   }
   if (pstat[110] == 5) {
-    speak(7, "How about\n'<ORANGE><DIGIMON><WHITE> The Brave'?\n");
+    speak(Entity(7), "How about\n'<ORANGE><DIGIMON><WHITE> The Brave'?\n");
     return;
   }
   if (pstat[110] == 6) {
-    speak(7, "How about\n'Cool Dude, <ORANGE><DIGIMON><WHITE>'?\n");
+    speak(Entity(7), "How about\n'Cool Dude, <ORANGE><DIGIMON><WHITE>'?\n");
     return;
   }
   if (pstat[110] == 7) {
-    speak(7, "How about\n'The Mighty <ORANGE><DIGIMON><WHITE>'?\n");
+    speak(Entity(7), "How about\n'The Mighty <ORANGE><DIGIMON><WHITE>'?\n");
     return;
   }
   if (pstat[110] == 8) {
-    speak(7, "How about\n'Augustas <ORANGE><DIGIMON><WHITE>'?\n");
+    speak(Entity(7), "How about\n'Augustas <ORANGE><DIGIMON><WHITE>'?\n");
     return;
   }
   if (pstat[110] != 9) goto section_6;
-  speak(7, "How about\n'Mastermind <ORANGE><DIGIMON><WHITE>'?\n");
+  speak(Entity(7), "How about\n'Mastermind <ORANGE><DIGIMON><WHITE>'?\n");
   return;
 }
 
@@ -129,20 +129,19 @@ section(6) {
 }
 
 section(53) {
-  look(entity: 5, at: Entity.Player);
-  look(entity: Entity.Player, at: 5);
+  look(entity: Entity(5), at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(5));
   delay(5);
-  speak(5, "Hey, those seats are\nfor our guests.\n");
+  speak(Entity(5), "Hey, those seats are\nfor our guests.\n");
   move(entity: Entity.Player, to: (450, 124), sprint: 1);
   waitForEntity(Entity.Player);
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  followEntity(Entity.Player, speed: 10);
   return;
 }
 
 section(52) {
   move(entity: Entity.Player, to: (250, -5000), sprint: 0);
-  unsetTrigger(69);
+  unsetTrigger(Trigger(69));
   if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
     goto L32;
     goto L1;

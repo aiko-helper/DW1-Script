@@ -18,13 +18,13 @@ section onEnter(254) {
 }
 
 section(5) {
-  speak(5, "You think you're big stuff!\n");
-  finishEncounter(286);
+  speak(Entity(5), "You think you're big stuff!\n");
+  finishEncounter(Trigger(286));
 }
 
 section(7) {
-  speak(7, "What did I ever do to you!?\n");
-  finishEncounter(296);
+  speak(Entity(7), "What did I ever do to you!?\n");
+  finishEncounter(Trigger(296));
 }
 
 section(55) {
@@ -40,8 +40,8 @@ section(51) {
     return;
   }
   speak(Entity.System, "<YELLOW>? ? ? <WHITE>\nWait!\n");
-  anim(Entity.Player, 16, wait: 20);
-  playAnimation(Entity.Player, 0);
+  anim(Entity.Player, Animation(16), wait: 20);
+  playAnimation(Entity.Player, Animation(0));
   move(entity: Entity.Player, to: (-1050, -1473), sprint: 1);
   move(entity: Entity.Partner, to: (-709, -1473), sprint: 1);
   waitForPair();
@@ -49,8 +49,7 @@ section(51) {
   rotate(entity: Entity.Partner, to: 2048);
   callSubroutine(38);
   playSound(8, 0);
-  moveCamera(to: (-836, -663), slowdown: 20);
-  waitForEntity(200);
+  panTo(x: -836, y: -663, slowdown: 20);
   setObjectVisibility(41, 0);
   moveObjectTo(1, 41, 1, 7, 0, 153, 349);
   delay(12);
@@ -62,23 +61,23 @@ section(51) {
   delay(12);
   moveObjectTo(1, 41, 1, 7, 0, 153, 475);
   delay(12);
-  setDigimon(Digimon.NPCNinjamon, 1, 1);
+  setDigimon(Digimon.NPCNinjamon, Entity(1), 1);
   setObjectsVisibleRange(42, 67, 0);
-  setPStat(247, 42);
-  setPStat(248, 26);
+  setPStat(PStat(247), 42);
+  setPStat(PStat(248), 26);
   callSubroutine(21);
   setObjectVisibility(41, 1);
   playSound(8, 0);
-  anim(6, 28, wait: 10);
+  anim(Entity(6), Animation(28), wait: 10);
   setObjectsVisibleRange(42, 67, 1);
   sfx(8, 1, wait: 10);
-  speak(6, "I'm called Ninjamon!\n");
-  anim(Entity.Player, 15, wait: 20);
-  look(entity: 6, at: Entity.Player);
+  speak(Entity(6), "I'm called Ninjamon!\n");
+  anim(Entity.Player, Animation(15), wait: 20);
+  look(entity: Entity(6), at: Entity.Player);
   delay(10);
-  look(entity: 6, at: Entity.Partner);
+  look(entity: Entity(6), at: Entity.Partner);
   delay(10);
-  look(entity: 6, at: Entity.Player);
+  look(entity: Entity(6), at: Entity.Player);
   showTextbox("You're <LIGHTBLUE><PLAYER><WHITE>?\nAnd you must be <ORANGE><DIGIMON><WHITE>!\n");
   showTextbox("You're famous, even as far\nas Ninja Village.  Accept\nmy challenge to fight.\n");
   setDialogOwner(Entity.Player);
@@ -86,60 +85,59 @@ section(51) {
   goto L1;
 
 L1:
-  speak(6, "Ha, that's what you think!\n");
+  speak(Entity(6), "Ha, that's what you think!\n");
   goto L2;
 
 L2:
-  setTrigger(1);
-  setPStat(250, 1);
-  setPStat(251, 6);
-  setPStat(252, 255);
-  setPStat(253, 255);
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 6);
+  setPStat(PStat(252), 255);
+  setPStat(PStat(253), 255);
   startBattle();
-  unsetTrigger(1);
-  setPStat(250, 0);
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
   move(entity: Entity.Partner, to: (-633, -581), sprint: 1);
   move(entity: Entity.Partner, to: (-1033, -481), sprint: 1);
-  move(entity: 6, to: (-905, -1096), sprint: 1);
-  waitForEntity(20);
-  look(entity: Entity.Player, at: 6);
-  look(entity: 6, at: Entity.Player);
-  look(entity: Entity.Partner, at: 6);
+  move(entity: Entity(6), to: (-905, -1096), sprint: 1);
+  waitForEntity(Entity(20));
+  look(entity: Entity.Player, at: Entity(6));
+  look(entity: Entity(6), at: Entity.Player);
+  look(entity: Entity.Partner, at: Entity(6));
   waitForEntity(Entity.Player);
-  speak(6, "You're just as strong as\nthey say you are. Please\nmake me your disciple!\n");
-  anim(Entity.Player, 19, wait: 20);
+  speak(Entity(6), "You're just as strong as\nthey say you are. Please\nmake me your disciple!\n");
+  anim(Entity.Player, Animation(19), wait: 20);
   speak(Entity.Player, "Disciple? Well, I don't\ndo that. But you can help us\nmake a city.\n");
-  speak(6, "Okay.\nThat's good training too.\nI'll work hard.\n");
+  speak(Entity(6), "Okay.\nThat's good training too.\nI'll work hard.\n");
   delay(20);
-  anim(6, 28, wait: 10);
+  anim(Entity(6), Animation(28), wait: 10);
   setObjectsVisibleRange(42, 67, 0);
-  setPStat(247, 42);
-  setPStat(248, 26);
+  setPStat(PStat(247), 42);
+  setPStat(PStat(248), 26);
   callSubroutine(21);
   sfx(8, 0, wait: 10);
-  unloadEntity(6);
+  unloadEntity(Entity(6));
   delay(40);
   setObjectsVisibleRange(42, 67, 1);
   delay(10);
   playSound(8, 11);
   speak(Entity.System, "Ninjamon joins the city!\n");
-  unsetTrigger(1);
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  setTrigger(258);
-  addPStat(1, 2);
+  unsetTrigger(Trigger(1));
+  followEntity(Entity.Player, speed: 10);
+  setTrigger(Trigger(258));
+  addPStat(PStat(1), 2);
   return;
 }
 
 section(8) {
-  speak(8, "Hey, you!\n");
+  speak(Entity(8), "Hey, you!\n");
   showTextbox("What do you mean?\nWhy are you here?\n");
   showTextbox("Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
   showTextbox("When I tried to make\nmy own harem in the city,\nI was kicked out!\n");
   if (money < 50000) {
     return;
   }
-  speak(8, "I hear you're doing\nreal good these days.\nI'll sell you something good!\n");
+  speak(Entity(8), "I hear you're doing\nreal good these days.\nI'll sell you something good!\n");
   showTextbox("It's the extremely valuable\n<LIGHTBLUE>Golden Banana<WHITE>.\n");
   showTextbox("That'll be fifty thous bits.\nNo loans, please.\n");
   setDialogOwner(Entity.Player);
@@ -151,7 +149,7 @@ L1:
   giveItem(Item.GoldBanana, 1);
   if (trigger(0)) {
     if (item[Item.GoldBanana] >= 99) {
-      speak(8, "You fool! You have too much!\n");
+      speak(Entity(8), "You fool! You have too much!\n");
       addMoney(50000);
       return;
     }
@@ -159,11 +157,11 @@ L1:
     inventoryFullBailout();
     giveItem(Item.GoldBanana, 1);
   }
-  speak(8, "Thank you very much!\n");
+  speak(Entity(8), "Thank you very much!\n");
   return;
 
 L2:
-  speak(8, "Humans should use live money.\n");
+  speak(Entity(8), "Humans should use live money.\n");
   return;
 }
 

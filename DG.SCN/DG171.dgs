@@ -8,23 +8,23 @@ section onEnter(254) {
 }
 
 section(81) {
-  look(entity: Entity.Player, at: 5);
-  look(entity: 5, at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(5));
+  look(entity: Entity(5), at: Entity.Player);
   delay(5);
   if (!trigger(51)) {
-    setTrigger(51);
-    speak(5, "Welcome! My new business\nis 'Item Keeper'.\nI keep Items for people.\n");
+    setTrigger(Trigger(51));
+    speak(Entity(5), "Welcome! My new business\nis 'Item Keeper'.\nI keep Items for people.\n");
     showTextbox("I'll keep your Items for\nfree as a special service.\n");
     return;
   }
-  setPStat(254, 5);
+  setPStat(PStat(254), 5);
   callSubroutine(11);
   return;
 }
 
 section(6) {
   if (pstat[1] >= 30) {
-    speak(6, "About Digivolution...\nRegarding the next generation\nafter Champion Digimon...\n");
+    speak(Entity(6), "About Digivolution...\nRegarding the next generation\nafter Champion Digimon...\n");
     showTextbox("It's the Ultimate Digimon.\nHe doesn't always digivolve\nafter Champion Digimon.\n");
     showTextbox("In order to digivolve,\ncertain conditions have\nto be met exactly.\n");
     showTextbox("But once it digivolves to\nUltimate Digimon, the life\nexpectancy will grow.\n");
@@ -32,7 +32,7 @@ section(6) {
     return;
   }
   if (pstat[1] >= 15) {
-    speak(6, "More about digivolution.\nAbout the conditions.\n");
+    speak(Entity(6), "More about digivolution.\nAbout the conditions.\n");
     showTextbox("First of all, I hear that\nthe weight has to be close\nto the target weight.\n");
     showTextbox("And the higher the parameters\nthe better.\n");
     showTextbox("But depending on which\nparameter is higher\nthe result is different.\n");
@@ -43,7 +43,7 @@ section(6) {
     showTextbox("If those conditions are met,\neven if some others are\nnot, he still can digivolve.\n");
     return;
   }
-  speak(6, "I heard from Jiji that\n<ORANGE><DIGIMON><WHITE> will digivolve.\n");
+  speak(Entity(6), "I heard from Jiji that\n<ORANGE><DIGIMON><WHITE> will digivolve.\n");
   showTextbox("From Fresh Digimon to\nIn-Training Digimon,\nit only takes six hours.\n");
   showTextbox("From there to Rookie\nDigimon, it takes about\na day to digivolve.\n");
   showTextbox("Then to the next Champion\nDigimon, it takes about\nthree days to digivolve.\n");

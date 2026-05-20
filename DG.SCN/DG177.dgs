@@ -14,17 +14,17 @@ section(51) {
 
 section(6) {
   if (pstat[44] == 0) {
-    speak(6, "I know about Items.\n");
+    speak(Entity(6), "I know about Items.\n");
     showTextbox("There are one hund and twenty\neight kinds of Items in all.\n");
     showTextbox("Thirty two are food.\n");
     showTextbox("Rare Items grow naturally\nin some areas and can't be\nfound in others.\n");
     showTextbox("For example, you can\nfind a Blue Apple in\nNative Forest.\n");
     showTextbox("These foods have special\neffects, so be careful on\nthe timing of eating them.\n");
-    setPStat(44, 1);
+    setPStat(PStat(44), 1);
     return;
   }
   if (pstat[44] == 1) {
-    speak(6, "Now I'll talk about\nDigivolution Items.\n");
+    speak(Entity(6), "Now I'll talk about\nDigivolution Items.\n");
     showTextbox("Digivolution Items make\nDigimon digivolve, as the\nname suggests.\n");
     showTextbox("There are many different\nkinds of Digivolution Items.\n");
     showTextbox("Each kind causes Digimon\nto digivolve into different\ntypes of Digimon.\n");
@@ -35,101 +35,101 @@ section(6) {
     showTextbox("At the same time, it's nice\nto digivolve into the kind of\nDigimon you want to be.\n");
     showTextbox("You can only digivolve from\none generation before the\nDigimon you want to become.\n");
     showTextbox("So be careful.\n");
-    setPStat(44, 0);
+    setPStat(PStat(44), 0);
   }
   return;
 }
 
 section(5) {
-  look(entity: Entity.Player, at: 5);
-  look(entity: 5, at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(5));
+  look(entity: Entity(5), at: Entity.Player);
   if (trigger(70) || trigger(71) || trigger(72) || trigger(73)) {
     goto L1;
   }
   if (trigger(211) && !trigger(70) && pstat[24] == 0) {
-    speak(5, "Hey! Hola amigos!\n");
+    speak(Entity(5), "Hey! Hola amigos!\n");
     showTextbox("What kind of shop is this?\nIt's my shop?\nBuy something please.\n");
-    setTrigger(70);
+    setTrigger(Trigger(70));
     return;
   }
   if (trigger(252) && !trigger(71) && pstat[24] == 1) {
-    speak(5, "Look <LIGHTBLUE><PLAYER><WHITE>! My shop\nsells interesting stuff. I\nhope you'll come here a lot.\n");
-    setTrigger(71);
+    speak(Entity(5), "Look <LIGHTBLUE><PLAYER><WHITE>! My shop\nsells interesting stuff. I\nhope you'll come here a lot.\n");
+    setTrigger(Trigger(71));
     return;
   }
   if (trigger(213) && !trigger(72) && pstat[24] == 2) {
-    speak(5, "The stuff you see here\nisn't ordinary stuff,\nso go ahead and shop!\n");
-    setTrigger(72);
+    speak(Entity(5), "The stuff you see here\nisn't ordinary stuff,\nso go ahead and shop!\n");
+    setTrigger(Trigger(72));
     return;
   }
   if (!trigger(206) || trigger(73) || pstat[24] != 3) goto L1;
-  speak(5, "Hey stranger! I knew\nyou'd come <LIGHTBLUE><PLAYER><WHITE>.\nDon't look so surprised.\n");
+  speak(Entity(5), "Hey stranger! I knew\nyou'd come <LIGHTBLUE><PLAYER><WHITE>.\nDon't look so surprised.\n");
   showTextbox("Can you master how to use\nmy Items? The answer depends\non your ability as a Tamer.\n");
-  setTrigger(73);
+  setTrigger(Trigger(73));
   return;
 
 L1:
   if (trigger(211) && !trigger(70) && pstat[24] == 0) {
-    speak(5, "Where am I?\nI love dark places and this\nshop shows that very well!\n");
-    setTrigger(70);
+    speak(Entity(5), "Where am I?\nI love dark places and this\nshop shows that very well!\n");
+    setTrigger(Trigger(70));
     return;
   }
   if (trigger(252) && !trigger(71) && pstat[24] == 1) {
-    speak(5, "Alright <LIGHTBLUE><PLAYER><WHITE>, thanks\nfor coming. Since you're here,\nwhy don't you buy something?\n");
-    setTrigger(71);
+    speak(Entity(5), "Alright <LIGHTBLUE><PLAYER><WHITE>, thanks\nfor coming. Since you're here,\nwhy don't you buy something?\n");
+    setTrigger(Trigger(71));
     return;
   }
   if (trigger(213) && !trigger(72) && pstat[24] == 2) {
-    speak(5, "Hey, <LIGHTBLUE><PLAYER><WHITE>. You're here!\nCome on, get some of my\nvery useful Items.\n");
-    setTrigger(72);
+    speak(Entity(5), "Hey, <LIGHTBLUE><PLAYER><WHITE>. You're here!\nCome on, get some of my\nvery useful Items.\n");
+    setTrigger(Trigger(72));
     return;
   }
   if (trigger(206) && !trigger(73) && pstat[24] == 3) {
-    speak(5, "Hey stranger!\nI knew you'd come <LIGHTBLUE><PLAYER><WHITE>.\nDon't look so surprised.\n");
+    speak(Entity(5), "Hey stranger!\nI knew you'd come <LIGHTBLUE><PLAYER><WHITE>.\nDon't look so surprised.\n");
     showTextbox("Can you master how to use\nmy Items? The answer depends\non your ability as a Tamer.\n");
-    setTrigger(73);
+    setTrigger(Trigger(73));
     return;
   }
   if (pstat[24] == 0) {
-    setTrigger(419);
-    setTrigger(420);
-    unsetTrigger(3);
-    setPStat(254, 5);
+    setTrigger(Trigger(419));
+    setTrigger(Trigger(420));
+    unsetTrigger(Trigger(3));
+    setPStat(PStat(254), 5);
     callSubroutine(8);
-    unsetTrigger(419);
-    unsetTrigger(420);
+    unsetTrigger(Trigger(419));
+    unsetTrigger(Trigger(420));
     return;
   }
   if (pstat[24] == 1) {
-    setTrigger(418);
-    setTrigger(421);
-    unsetTrigger(3);
-    setPStat(254, 5);
+    setTrigger(Trigger(418));
+    setTrigger(Trigger(421));
+    unsetTrigger(Trigger(3));
+    setPStat(PStat(254), 5);
     callSubroutine(8);
-    unsetTrigger(418);
-    unsetTrigger(421);
+    unsetTrigger(Trigger(418));
+    unsetTrigger(Trigger(421));
     return;
   }
   if (pstat[24] == 2) {
-    for id in 402..405 {
+    for id in Trigger(402)..Trigger(405) {
       setTrigger(id);
     }
-    unsetTrigger(3);
-    setPStat(254, 5);
+    unsetTrigger(Trigger(3));
+    setPStat(PStat(254), 5);
     callSubroutine(8);
-    for id in 402..405 {
+    for id in Trigger(402)..Trigger(405) {
       unsetTrigger(id);
     }
     return;
   }
   if (pstat[24] == 3) {
-    for id in 413..415 {
+    for id in Trigger(413)..Trigger(415) {
       setTrigger(id);
     }
-    unsetTrigger(3);
-    setPStat(254, 5);
+    unsetTrigger(Trigger(3));
+    setPStat(PStat(254), 5);
     callSubroutine(8);
-    for id in 413..415 {
+    for id in Trigger(413)..Trigger(415) {
       unsetTrigger(id);
     }
     return;

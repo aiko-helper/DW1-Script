@@ -15,11 +15,11 @@ section(5) {
 section(6) {
   roll(pstat: PStat.RollScratch, max: 3);
   if (pstat[110] == 0) {
-    speak(6, "Rest as much as possible.\nThat's the key to\nyour Digimon's health.\n");
+    speak(Entity(6), "Rest as much as possible.\nThat's the key to\nyour Digimon's health.\n");
     return;
   }
   if (pstat[110] == 1) {
-    speak(6, "Alright. Let me tell you\nhow the city will\ngrow and prosper...\n");
+    speak(Entity(6), "Alright. Let me tell you\nhow the city will\ngrow and prosper...\n");
     showTextbox("When a Rookie Digimon\ncomes to the city,\nit's plus one point.\n");
     showTextbox("And when a Champion\nDigimon comes to the city,\nit's plus two points.\n");
     showTextbox("If an Ultimate Digimon\ncomes to city,\nit's plus three points.\n");
@@ -28,14 +28,14 @@ section(6) {
     return;
   }
   if (pstat[110] == 2) {
-    speak(6, "Let me tell you a little\nbit about Types.\n");
+    speak(Entity(6), "Let me tell you a little\nbit about Types.\n");
     showTextbox("If an opponent is the\nsame Type as your Digimon\npartner, he may not battle.\n");
     showTextbox("And if your Digimon's Type\nis not compatible, he can be\nrefused at a door.\n");
     showTextbox("Other than that, maybe\nyou don't have to\nworry about it.\n");
     return;
   }
   if (pstat[110] == 3) {
-    speak(6, "Let me tell you about\nTamer Level.\n");
+    speak(Entity(6), "Let me tell you about\nTamer Level.\n");
     showTextbox("Tamer Level will increase\nif you can raise Digimon\nto Ultimate Digimon.\n");
     showTextbox("And winning a championship\nin a high level tournament\nis very good.\n");
     showTextbox("It will go up naturally.\nYou don't have to worry\nabout it too much.\n");
@@ -49,7 +49,7 @@ section(6) {
 
 section(51) {
   move(entity: Entity.Player, to: (1909, 860), sprint: 0);
-  unsetTrigger(69);
+  unsetTrigger(Trigger(69));
   if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
     goto L32;
     goto L1;

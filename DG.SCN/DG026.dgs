@@ -6,16 +6,16 @@
 section onEnter(254) {
   callSubroutine(26);
   if (pstat[17] == 3) {
-    setPStat(254, 0);
+    setPStat(PStat(254), 0);
     callSubroutine(19);
-    for id in 5..7 {
+    for id in Entity(5)..Entity(7) {
       setAutotalk(id, 0);
     }
   }
   if (pstat[17] == 4) {
-    setPStat(254, 1);
+    setPStat(PStat(254), 1);
     callSubroutine(19);
-    for id in 5..7 {
+    for id in Entity(5)..Entity(7) {
       setAutotalk(id, 0);
     }
   }
@@ -24,38 +24,38 @@ section onEnter(254) {
 
 section(5) {
   if (pstat[17] >= 3) {
-    speak(5, "Oh, thanks so much!\n");
+    speak(Entity(5), "Oh, thanks so much!\n");
     return;
   }
-  speak(5, "What? You wanna fight?\n");
-  finishEncounter(280);
+  speak(Entity(5), "What? You wanna fight?\n");
+  finishEncounter(Trigger(280));
 }
 
 section(6) {
   if (pstat[17] >= 3) {
-    speak(6, "Oh, thanks a lot!\n");
+    speak(Entity(6), "Oh, thanks a lot!\n");
     return;
   }
-  speak(6, "Leave it!\n");
-  finishEncounter(280);
+  speak(Entity(6), "Leave it!\n");
+  finishEncounter(Trigger(280));
 }
 
 section(7) {
   if (pstat[17] >= 3) {
-    speak(7, "Don't push yourself!\n");
+    speak(Entity(7), "Don't push yourself!\n");
     return;
   }
-  speak(7, "Let's fight, punk!\n");
-  finishEncounter(280);
+  speak(Entity(7), "Let's fight, punk!\n");
+  finishEncounter(Trigger(280));
 }
 
 section(9) {
-  speak(9, "I give up!\n");
+  speak(Entity(9), "I give up!\n");
   return;
 }
 
 section(10) {
-  speak(10, "The boss is gone.\n");
+  speak(Entity(10), "The boss is gone.\n");
   return;
 }
 
@@ -66,90 +66,89 @@ section(51) {
   move(entity: Entity.Player, to: (-165, 221), sprint: 0, withCamera: true);
   move(entity: Entity.Partner, to: (171, 615), sprint: 0);
   waitForPair();
-  move(entity: 9, to: (-323, 93), sprint: 0);
-  move(entity: 10, to: (498, -51), sprint: 0);
-  move(entity: 8, to: (160, -193), sprint: 0);
-  for x in [5, 6, 8] {
+  move(entity: Entity(9), to: (-323, 93), sprint: 0);
+  move(entity: Entity(10), to: (498, -51), sprint: 0);
+  move(entity: Entity(8), to: (160, -193), sprint: 0);
+  for x in [Entity(5), Entity(6), Entity(8)] {
     waitForEntity(x);
   }
   rotate(entity: Entity.Player, to: 100);
   rotate(entity: Entity.Partner, to: 100);
-  look(entity: 9, at: Entity.Player);
-  look(entity: 10, at: Entity.Player);
-  look(entity: 8, at: Entity.Player);
-  speak(8, "Hey guys, if you want\nto get thru here,");
+  look(entity: Entity(9), at: Entity.Player);
+  look(entity: Entity(10), at: Entity.Player);
+  look(entity: Entity(8), at: Entity.Player);
+  speak(Entity(8), "Hey guys, if you want\nto get thru here,");
   dead_string("?nt\nleave all your stuff!\n");
   speak(Entity.Player, "Long time no see.\n");
-  speak(8, "Mmm. You guys again!\n");
+  speak(Entity(8), "Mmm. You guys again!\n");
   speak(Entity.Player, "That's my line!\nIt was so easy to find you.\nReady to lose?\n");
-  playAnimation(8, 32);
-  speak(8, "Lose? No way!\nI'll show you what I do\nwhen I get serious!\n");
-  playAnimation(8, 0);
+  playAnimation(Entity(8), Animation(32));
+  speak(Entity(8), "Lose? No way!\nI'll show you what I do\nwhen I get serious!\n");
+  playAnimation(Entity(8), Animation(0));
   speak(Entity.Player, "Let's settle this\nonce and for all!\n");
-  setTrigger(1);
-  setPStat(250, 1);
-  setPStat(251, 9);
-  setPStat(252, 10);
-  setPStat(253, 8);
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 9);
+  setPStat(PStat(252), 10);
+  setPStat(PStat(253), 8);
   startBattle();
-  unsetTrigger(1);
-  setPStat(250, 0);
-  playAnimation(9, 43);
-  playAnimation(10, 43);
-  move(entity: 8, to: (89, -659), sprint: 0);
-  waitForEntity(8);
-  rotate(entity: 8, to: 100);
-  lookPairAt(8);
-  waitForEntity(8);
-  anim(8, 28, wait: 30);
-  speak(8, "How come...I can't win?\n");
-  playAnimation(8, 29);
-  anim(Entity.Player, 19, wait: 20);
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  playAnimation(Entity(9), Animation(43));
+  playAnimation(Entity(10), Animation(43));
+  move(entity: Entity(8), to: (89, -659), sprint: 0);
+  waitForEntity(Entity(8));
+  rotate(entity: Entity(8), to: 100);
+  lookPairAt(Entity(8));
+  waitForEntity(Entity(8));
+  anim(Entity(8), Animation(28), wait: 30);
+  speak(Entity(8), "How come...I can't win?\n");
+  playAnimation(Entity(8), Animation(29));
+  anim(Entity.Player, Animation(19), wait: 20);
   speak(Entity.Player, "What's wrong?\nAren't you going to run?\n");
-  playAnimation(Entity.Player, 0);
-  speak(8, "I'm too tired.\n");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(8), "I'm too tired.\n");
   speak(Entity.Player, "...\n");
-  speak(8, "I became a bandit cuz I\nthought this island was done\nfor, so I just did whatever.\n");
+  speak(Entity(8), "I became a bandit cuz I\nthought this island was done\nfor, so I just did whatever.\n");
   speak(Entity.Player, "Did you know the island\nwas in trouble?\n");
-  speak(8, "Yes, then you showed up.\nI guess it's dumb to\nstart helping you now.\n");
-  anim(Entity.Player, 19, wait: 15);
+  speak(Entity(8), "Yes, then you showed up.\nI guess it's dumb to\nstart helping you now.\n");
+  anim(Entity.Player, Animation(19), wait: 15);
   speak(Entity.Player, "I don't think so.\nCome to the city.\n");
-  playAnimation(Entity.Player, 0);
-  speak(8, "No, I can't. Plus, I don't\nthink anybody would forgive\nme for what I've done.\n");
-  anim(Entity.Player, 7, wait: 15);
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(8), "No, I can't. Plus, I don't\nthink anybody would forgive\nme for what I've done.\n");
+  anim(Entity.Player, Animation(7), wait: 15);
   speak(Entity.Player, "Oh, just be quiet\nand come with me!\n");
-  playAnimation(Entity.Player, 0);
+  playAnimation(Entity.Player, Animation(0));
   move(entity: Entity.Player, to: (160, -193), sprint: 1, withCamera: true);
   waitForEntity(Entity.Player);
   rotate(entity: Entity.Player, to: 100);
   showTextbox("You can be helpful!\nEveryone has something\nto offer!\n");
-  speak(8, "!!!\n");
-  playAnimation(8, 30);
-  look(entity: 8, at: Entity.Player);
-  speak(8, "Can this island be saved?\nYou're going to save it\nfor us, right?!\n");
-  move(entity: 8, to: (119, -494), sprint: 1);
-  waitForEntity(8);
-  look(entity: 8, at: Entity.Player);
+  speak(Entity(8), "!!!\n");
+  playAnimation(Entity(8), Animation(30));
+  look(entity: Entity(8), at: Entity.Player);
+  speak(Entity(8), "Can this island be saved?\nYou're going to save it\nfor us, right?!\n");
+  move(entity: Entity(8), to: (119, -494), sprint: 1);
+  waitForEntity(Entity(8));
+  look(entity: Entity(8), at: Entity.Player);
   speak(Entity.Player, "Of course! You know\nwhere the city is, right?\n");
-  speak(8, "Ohhhhh!\nI'll be there!\n");
+  speak(Entity(8), "Ohhhhh!\nI'll be there!\n");
   goto L1;
 
 L1:
-  move(entity: 8, to: (155, 873), sprint: 1);
+  move(entity: Entity(8), to: (155, 873), sprint: 1);
   if (pstat[101] < 6) {
     addPStat(PStat.LoopIterator, 1);
     delay(10);
-    lookPairAt(8);
+    lookPairAt(Entity(8));
   }
-  waitForEntity(8);
-  unloadEntity(8);
+  waitForEntity(Entity(8));
+  unloadEntity(Entity(8));
   setPStat(PStat.LoopIterator, 0);
   playSound(8, 8);
   speak(Entity.System, "Ogremon joins the city!\n");
-  setTrigger(234);
-  addPStat(1, 2);
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  setTrigger(Trigger(234));
+  addPStat(PStat(1), 2);
+  followEntity(Entity.Player, speed: 10);
   return;
 }
 
@@ -158,16 +157,14 @@ section(52) {
     speak(Entity.Player, "Ooops!\nExit isn't this way!\n");
     move(entity: Entity.Player, to: (-51, -1550), sprint: 1);
     waitForEntity(Entity.Player);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    followEntity(Entity.Player, speed: 10);
     return;
   }
   if (pstat[17] == 4) {
     speak(Entity.Player, "Oh no! I have to return\nthe dirt box to Drimogemon!\n");
     move(entity: Entity.Player, to: (-51, -1550), sprint: 1);
     waitForEntity(Entity.Player);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    followEntity(Entity.Player, speed: 10);
     return;
   }
   if (trigger(209) && pstat[1] >= 45) {
@@ -183,16 +180,14 @@ section(53) {
     speak(Entity.Player, "Ooops! Exit isn't this way!\n");
     move(entity: Entity.Player, to: (-2253, 359), sprint: 1);
     waitForEntity(Entity.Player);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    followEntity(Entity.Player, speed: 10);
     return;
   }
   if (pstat[17] == 4) {
     speak(Entity.Player, "Oh no! I have to return\nthe dirt box to Drimogemon!\n");
     move(entity: Entity.Player, to: (-2253, 359), sprint: 1);
     waitForEntity(Entity.Player);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    followEntity(Entity.Player, speed: 10);
     return;
   }
   return;

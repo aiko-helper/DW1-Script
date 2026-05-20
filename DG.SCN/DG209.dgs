@@ -14,12 +14,12 @@ L1:
   goto L27;
 
 L2:
-  setPStat(254, 2);
+  setPStat(PStat(254), 2);
   callSubroutine(32);
   return;
 
 L3:
-  setPStat(254, 3);
+  setPStat(PStat(254), 3);
   callSubroutine(32);
   return;
 
@@ -30,38 +30,38 @@ L4:
 
 L5:
   for x in [
-    385, 396, 404, 406,
-    407, 416, 434, 455,
-    456, 458, 462, 465,
-    470, 473, 480, 482,
-    484, 485, 489, 491,
-    493, 401, 423, 428,
-    425, 449, 446, 453,
-    466, 457, 435, 460,
-    476, 490, 452, 463,
-    475, 481, 492, 497,
-    459, 464, 469, 494,
-    495, 477, 471, 472,
-    496, 468, 474, 478,
-    479, 487, 488, 499,
-    451, 454, 506, 422,
-    424, 417
+    Trigger(385), Trigger(396), Trigger(404), Trigger(406),
+    Trigger(407), Trigger(416), Trigger(434), Trigger(455),
+    Trigger(456), Trigger(458), Trigger(462), Trigger(465),
+    Trigger(470), Trigger(473), Trigger(480), Trigger(482),
+    Trigger(484), Trigger(485), Trigger(489), Trigger(491),
+    Trigger(493), Trigger(401), Trigger(423), Trigger(428),
+    Trigger(425), Trigger(449), Trigger(446), Trigger(453),
+    Trigger(466), Trigger(457), Trigger(435), Trigger(460),
+    Trigger(476), Trigger(490), Trigger(452), Trigger(463),
+    Trigger(475), Trigger(481), Trigger(492), Trigger(497),
+    Trigger(459), Trigger(464), Trigger(469), Trigger(494),
+    Trigger(495), Trigger(477), Trigger(471), Trigger(472),
+    Trigger(496), Trigger(468), Trigger(474), Trigger(478),
+    Trigger(479), Trigger(487), Trigger(488), Trigger(499),
+    Trigger(451), Trigger(454), Trigger(506), Trigger(422),
+    Trigger(424), Trigger(417)
   ] {
     setTrigger(x);
   }
-  unsetTrigger(3);
-  setPStat(254, 7);
+  unsetTrigger(Trigger(3));
+  setPStat(PStat(254), 7);
   callSubroutine(8);
   goto L27;
 
 L6:
-  setTrigger(3);
-  setPStat(254, 7);
+  setTrigger(Trigger(3));
+  setPStat(PStat(254), 7);
   callSubroutine(8);
   goto L27;
 
 L7:
-  setPStat(254, 7);
+  setPStat(PStat(254), 7);
   callSubroutine(1);
   goto L27;
 
@@ -71,13 +71,13 @@ L8:
   goto L27;
 
 L9:
-  setPStat(254, 7);
+  setPStat(PStat(254), 7);
   callSubroutine(11);
   return;
 
 L10:
-  setPStat(254, 7);
-  speak(7, "I have fresh cards today,\nas usual.\n");
+  setPStat(PStat(254), 7);
+  speak(Entity(7), "I have fresh cards today,\nas usual.\n");
   callSubroutine(15);
   loop {
     setDialogOwner(Entity.Player);
@@ -94,7 +94,7 @@ L11:
     goto L16;
 
 L12:
-    speak(7, "One pack will cost\nfive hund bits. What's\ninside is a surprise.\n");
+    speak(Entity(7), "One pack will cost\nfive hund bits. What's\ninside is a surprise.\n");
     setDialogOwner(Entity.Player);
     choice { "Buy" -> L13, "Cancel" -> L16 }
     goto L16;
@@ -102,29 +102,29 @@ L12:
 L13:
     reduceMoney(500);
     callSubroutine(15);
-    speak(7, "Open your pack right away.\n");
-    unsetTrigger(3);
-    unsetTrigger(4);
+    speak(Entity(7), "Open your pack right away.\n");
+    unsetTrigger(Trigger(3));
+    unsetTrigger(Trigger(4));
     callSubroutine(14);
     callSubroutine(22);
     goto L16;
 
 L14:
-    unsetTrigger(3);
-    setTrigger(4);
+    unsetTrigger(Trigger(3));
+    setTrigger(Trigger(4));
     callSubroutine(14);
     callSubroutine(22);
     goto L16;
 
 L15:
-    setTrigger(3);
+    setTrigger(Trigger(3));
     callSubroutine(14);
 
 L16:
-    speak(7, "What else do ya need amigo?\n");
+    speak(Entity(7), "What else do ya need amigo?\n");
   }
   callSubroutine(16);
-  speak(7, "Come again.\n");
+  speak(Entity(7), "Come again.\n");
   return;
 
 L17:
@@ -133,18 +133,18 @@ L17:
   goto L27;
 
 L18:
-  setPStat(254, 7);
+  setPStat(PStat(254), 7);
   callSubroutine(9);
   return;
 
 L19:
-  setPStat(254, 7);
+  setPStat(PStat(254), 7);
   callSubroutine(10);
   return;
 
 L20:
-  setPStat(254, 7);
-  setPStat(249, 2);
+  setPStat(PStat(254), 7);
+  setPStat(PStat(249), 2);
   callSubroutine(2);
   return;
 
@@ -167,22 +167,22 @@ L24:
   callDigimonSubroutine(6);
   waitForEntity(Entity.System);
   return;
-  setTrigger(3);
+  setTrigger(Trigger(3));
   callSubroutine(0);
   if (trigger(3)) {
     speak(Entity.Player, "I didn't have anything.\n");
     goto L27;
   }
   if (pstat[254] == 255) {
-    speak(7, "You're not going to\ngive me anything?\n");
+    speak(Entity(7), "You're not going to\ngive me anything?\n");
   } else {
     callSubroutine(12);
-    speak(7, "Thanks.\n");
+    speak(Entity(7), "Thanks.\n");
   }
   goto L27;
   giveItem(Item.SuperSpeedDisk, 1);
   if (trigger(0)) {
-    unsetTrigger(3);
+    unsetTrigger(Trigger(3));
     callSubroutine(0);
     callSubroutine(13);
     giveItem(Item.SuperSpeedDisk, 1);
@@ -191,18 +191,18 @@ L24:
   goto L27;
 
 L25:
-  storeDigimonType(200);
+  storeDigimonType(PStat(200));
   if (pstat[200] == 39) {
     speak(Entity.Player, "Digivolve to original form.\n");
-    copyPStat(5, 254);
+    copyPStat(PStat(5), PStat(254));
   } else {
     speak(Entity.Player, "Digivolve to Sukamon.\n");
-    storeDigimonType(5);
-    setPStat(254, 39);
+    storeDigimonType(PStat(5));
+    setPStat(PStat(254), 39);
   }
   fadeOutHUD();
   callDigimonSubroutine(2);
-  waitForEntity(201);
+  waitForEntity(Entity(201));
   speak(Entity.Player, "Complete.\n");
   goto L27;
 
@@ -214,19 +214,19 @@ L27:
 
 L28:
   if (!trigger(37)) {
-    setPStat(254, 7);
+    setPStat(PStat(254), 7);
     callSubroutine(18);
   } else {
-    speak(7, "Registering to ' - <SELECTED TOURNAMENT>- '\n");
+    speak(Entity(7), "Registering to ' - <SELECTED TOURNAMENT>- '\n");
   }
   return;
 
 L29:
   if (!trigger(37)) {
-    speak(7, "There's no entry.\n");
+    speak(Entity(7), "There's no entry.\n");
     return;
   }
-  setPStat(254, 7);
+  setPStat(PStat(254), 7);
   callSubroutine(6);
   warp(to: Map.TWNB01, spawn: 0, trigger: 255);
   callSubroutine(22);
@@ -246,8 +246,8 @@ L32:
     continue;
 
 L33:
-    setPStat(243, 19);
-    setPStat(244, 136);
+    setPStat(PStat(243), 19);
+    setPStat(PStat(244), 136);
     callSubroutine(31);
   }
 }

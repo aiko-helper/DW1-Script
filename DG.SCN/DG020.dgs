@@ -12,67 +12,66 @@ section onEnter(254) {
 
 section(5) {
   playSound(8, 11);
-  speak(5, "Are we gonna battle?\nChicken?!\n");
-  anim(Entity.Player, 16, wait: 20);
+  speak(Entity(5), "Are we gonna battle?\nChicken?!\n");
+  anim(Entity.Player, Animation(16), wait: 20);
   setDialogOwner(Entity.Player);
   choice { "Okay, let's fight" -> L1, "Wait a minute" -> L3 }
   goto L3;
 
 L1:
-  setTrigger(1);
+  setTrigger(Trigger(1));
   startBattle();
-  lookPairAt(5);
-  look(entity: 5, at: Entity.Player);
+  lookPairAt(Entity(5));
+  look(entity: Entity(5), at: Entity.Player);
   waitForEntity(Entity.Player);
-  speak(5, "Oh no! I lost!\n");
-  anim(5, 29, wait: 40);
-  anim(Entity.Player, 20, wait: 20);
+  speak(Entity(5), "Oh no! I lost!\n");
+  anim(Entity(5), Animation(29), wait: 40);
+  anim(Entity.Player, Animation(20), wait: 20);
   speak(Entity.Player, "He was pretty tough.\n");
-  playAnimation(Entity.Player, 0);
-  anim(5, 28, wait: 20);
-  playAnimation(5, 0);
-  look(entity: 5, at: Entity.Player);
+  playAnimation(Entity.Player, Animation(0));
+  anim(Entity(5), Animation(28), wait: 20);
+  playAnimation(Entity(5), Animation(0));
+  look(entity: Entity(5), at: Entity.Player);
   playSound(8, 11);
-  speak(5, "You're nice. I'm Mamemon.\nI'll go with you.\n");
-  anim(Entity.Player, 19, wait: 20);
+  speak(Entity(5), "You're nice. I'm Mamemon.\nI'll go with you.\n");
+  anim(Entity.Player, Animation(19), wait: 20);
   speak(Entity.Player, "Coming with us? Well, why\ndon't you go to the city?\n");
   playSound(8, 11);
-  speak(5, "OK. I'll go there.\n");
+  speak(Entity(5), "OK. I'll go there.\n");
   goto L2;
 
 L2:
-  approach(who: 5, x: 3800, y: -3100, tries: 10, wait: 10);
+  approach(who: Entity(5), x: 3800, y: -3100, tries: 10, wait: 10);
   playSound(8, 8);
   speak(Entity.System, "Mamemon joins the city!\n");
-  unsetTrigger(1);
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  addPStat(1, 3);
-  setTrigger(213);
+  unsetTrigger(Trigger(1));
+  followEntity(Entity.Player, speed: 10);
+  addPStat(PStat(1), 3);
+  setTrigger(Trigger(213));
   return;
 
 L3:
-  speak(5, "Come back when\nyou get tougher.\n");
+  speak(Entity(5), "Come back when\nyou get tougher.\n");
   goto L4;
 
 L4:
-  approach(who: 5, x: 3800, y: -3100, tries: 10, wait: 10);
+  approach(who: Entity(5), x: 3800, y: -3100, tries: 10, wait: 10);
   return;
 }
 
 section(6) {
-  speak(6, "Daaaa!\n");
-  finishEncounter(281);
+  speak(Entity(6), "Daaaa!\n");
+  finishEncounter(Trigger(281));
 }
 
 section(7) {
-  speak(7, "Ha, ha, ha.\n");
-  finishEncounter(281);
+  speak(Entity(7), "Ha, ha, ha.\n");
+  finishEncounter(Trigger(281));
 }
 
 section(8) {
-  speak(8, "Ugghh!\n");
-  finishEncounter(281);
+  speak(Entity(8), "Ugghh!\n");
+  finishEncounter(Trigger(281));
 }
 
 section(81) {

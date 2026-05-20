@@ -11,158 +11,151 @@ section(5) {
   move(entity: Entity.Player, to: (-77, 119), sprint: 0, withCamera: true);
   move(entity: Entity.Partner, to: (397, 151), sprint: 0);
   waitForPair();
-  lookPairAt(5);
+  lookPairAt(Entity(5));
   delay(10);
-  moveCamera(to: (-400, 2100), slowdown: 20);
-  waitForEntity(200);
+  panTo(x: -400, y: 2100, slowdown: 20);
   playSound(8, 1);
-  speak(5, " <LIGHTBLUE><PLAYER><WHITE> and <ORANGE><DIGIMON><WHITE>,\nright? Thanks for coming\nto Volume Villa!\n");
-  anim(Entity.Player, 22, wait: 20);
+  speak(Entity(5), " <LIGHTBLUE><PLAYER><WHITE> and <ORANGE><DIGIMON><WHITE>,\nright? Thanks for coming\nto Volume Villa!\n");
+  anim(Entity.Player, Animation(22), wait: 20);
   speak(Entity.Player, "I'm sorry for what\nwe did to Otamamon.\n");
-  playAnimation(Entity.Player, 0);
-  speak(5, "Never mind.\n");
-  anim(Entity.Player, 23, wait: 20);
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(5), "Never mind.\n");
+  anim(Entity.Player, Animation(23), wait: 20);
   speak(Entity.Player, "Huh?\n");
-  playAnimation(Entity.Player, 0);
-  anim(5, 5, wait: 38);
-  playAnimation(5, 0);
-  speak(5, "I'm grateful. I heard that\nyou've been working hard\nto save this island.\n");
+  playAnimation(Entity.Player, Animation(0));
+  anim(Entity(5), Animation(5), wait: 38);
+  playAnimation(Entity(5), Animation(0));
+  speak(Entity(5), "I'm grateful. I heard that\nyou've been working hard\nto save this island.\n");
   speak(Entity.Player, "You did?\n");
-  speak(5, "I've been wanting to help you.\nHave you been to Misty Trees\njust north of here?\n");
+  speak(Entity(5), "I've been wanting to help you.\nHave you been to Misty Trees\njust north of here?\n");
   if (!trigger(112)) {
     speak(Entity.Player, "Not yet.\n");
   }
   if (trigger(112)) {
     speak(Entity.Player, "Yes.\n");
   }
-  speak(5, "It's always foggy there.\nIt'll probably be hard\nfor you to get around.\n");
+  speak(Entity(5), "It's always foggy there.\nIt'll probably be hard\nfor you to get around.\n");
   showTextbox("But you should meet\nCherrymon, who is the\nforest chief.\n");
   if (trigger(147)) {
   } else {
-    anim(Entity.Player, 16, wait: 20);
+    anim(Entity.Player, Animation(16), wait: 20);
     speak(Entity.Player, "Cherrymon? I've never heard\nof such a Digimon.\n");
-    speak(5, "Cherrymon makes the fog\nin Misty Trees.\n");
+    speak(Entity(5), "Cherrymon makes the fog\nin Misty Trees.\n");
     showTextbox("He created fog to protect\nthe forest from danger.\n");
-    anim(Entity.Player, 25, wait: 20);
+    anim(Entity.Player, Animation(25), wait: 20);
     speak(Entity.Player, "But that's a problem for us.\n");
-    anim(5, 5, wait: 38);
-    playAnimation(5, 0);
-    speak(5, "I think Cherrymon knows\nsomething about the cause\nof the island's trouble.\n");
+    anim(Entity(5), Animation(5), wait: 38);
+    playAnimation(Entity(5), Animation(0));
+    speak(Entity(5), "I think Cherrymon knows\nsomething about the cause\nof the island's trouble.\n");
     showTextbox("It's worth going thru\nthe fog to see him.\n");
     speak(Entity.Player, "If we can do something\nabout the fog.\n");
-    speak(5, "The only one who can get rid\nof the fog is Cherrymon.\n");
+    speak(Entity(5), "The only one who can get rid\nof the fog is Cherrymon.\n");
     showTextbox("But here's a way to get thru.\nI'll put a spell on you.\n");
     speak(Entity.Player, "What's gonna happen?\n");
-    speak(5, "You'll be able to see\nthe road even in the fog.\n");
-    playAnimation(5, 0);
-    anim(Entity.Player, 19, wait: 20);
+    speak(Entity(5), "You'll be able to see\nthe road even in the fog.\n");
+    playAnimation(Entity(5), Animation(0));
+    anim(Entity.Player, Animation(19), wait: 20);
     speak(Entity.Player, "Oh, that's good!\n");
-    speak(5, "OK, then I'll start.\n");
-    speak(5, "Ribbit, ribbit!\n");
-    playAnimation(5, 31);
+    speak(Entity(5), "OK, then I'll start.\n");
+    speak(Entity(5), "Ribbit, ribbit!\n");
+    playAnimation(Entity(5), Animation(31));
     sfx(8, 0, wait: 70);
-    playAnimation(5, 0);
-    anim(Entity.Player, 15, wait: 30);
-    speak(5, "Good. That's perfect.\nNow, go to Misty Trees.\n");
-    anim(5, 30, wait: 55);
-    playAnimation(5, 0);
-    setTrigger(319);
-    setTrigger(114);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    playAnimation(Entity(5), Animation(0));
+    anim(Entity.Player, Animation(15), wait: 30);
+    speak(Entity(5), "Good. That's perfect.\nNow, go to Misty Trees.\n");
+    anim(Entity(5), Animation(30), wait: 55);
+    playAnimation(Entity(5), Animation(0));
+    setTrigger(Trigger(319));
+    setTrigger(Trigger(114));
+    followEntity(Entity.Player, speed: 10);
     return;
   }
   speak(Entity.Player, "I met him.\nThe fog is gone now.\n");
-  speak(5, "Wow, that's amazing! Well,\nwhat can I do to help you?\n");
+  speak(Entity(5), "Wow, that's amazing! Well,\nwhat can I do to help you?\n");
   showTextbox("Okay, let me give you this.\n");
-  playAnimation(5, 0);
+  playAnimation(Entity(5), Animation(0));
   speak(Entity.System, "I got a\n<LIGHTBLUE>Digital Sea Bass<WHITE>!\n");
   if (trigger(0) && item[Item.Digiseabass] < 1) {
     speak(Entity.System, "Throw away something else.\n");
-    unsetTrigger(3);
+    unsetTrigger(Trigger(3));
     callSubroutine(0);
     callSubroutine(13);
   }
   giveItem(Item.Digiseabass, 1);
-  speak(5, "It's a very rare thing.\nIt'll be useful to you.\n");
-  anim(Entity.Player, 19, wait: 20);
+  speak(Entity(5), "It's a very rare thing.\nIt'll be useful to you.\n");
+  anim(Entity.Player, Animation(19), wait: 20);
   speak(Entity.Player, "Thanks. So why don't you\ncome to the city, Shogun?\n");
-  speak(5, "I'm chief of a hund Gekomon\nin Geko Swamp. I'm sorry,\nbut I can't come with you.\n");
+  speak(Entity(5), "I'm chief of a hund Gekomon\nin Geko Swamp. I'm sorry,\nbut I can't come with you.\n");
   showTextbox("But instead, I'll do\nanything I can from here.\nCome anytime you want.\n");
-  anim(5, 30, wait: 55);
-  playAnimation(5, 0);
-  setTrigger(319);
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  anim(Entity(5), Animation(30), wait: 55);
+  playAnimation(Entity(5), Animation(0));
+  setTrigger(Trigger(319));
+  followEntity(Entity.Player, speed: 10);
   return;
 }
 
 section(81) {
-  lookPairAt(5);
+  lookPairAt(Entity(5));
   delay(10);
-  moveCamera(to: (-400, 2100), slowdown: 20);
-  waitForEntity(200);
+  panTo(x: -400, y: 2100, slowdown: 20);
   playSound(8, 1);
-  storeDigimonType(103);
+  storeDigimonType(PStat(103));
   if (trigger(116) && pstat[103] != 14) {
-    speak(5, "Looks like you got a problem.\nAbout the costume, right?\n");
+    speak(Entity(5), "Looks like you got a problem.\nAbout the costume, right?\n");
     speak(Entity.Player, "You know about it?\n");
-    speak(5, "Don't underrate me. Numemon\nwill be able to wear it.\n");
+    speak(Entity(5), "Don't underrate me. Numemon\nwill be able to wear it.\n");
     showTextbox("Shocked? Not only that, once\nhe wears it... You won't\nbelieve... Well, try it out.\n");
-    unsetTrigger(116);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    unsetTrigger(Trigger(116));
+    followEntity(Entity.Player, speed: 10);
     return;
   }
   if (trigger(122)) {
-    setPStat(254, 5);
+    setPStat(PStat(254), 5);
     callSubroutine(1);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    followEntity(Entity.Player, speed: 10);
     if (item[Item.AmazingRod] >= 1) {
       removeItem(Item.AmazingRod, 1);
-      setTrigger(46);
-      speak(5, "By the way, I'll remove the\n<LIGHTBLUE>Amazing Rod <WHITE>for\nFishing from your Items.\n");
+      setTrigger(Trigger(46));
+      speak(Entity(5), "By the way, I'll remove the\n<LIGHTBLUE>Amazing Rod <WHITE>for\nFishing from your Items.\n");
       showTextbox("It's a Special Item.\n");
     }
     return;
   }
   if (!trigger(319)) goto section_6;
   playSound(8, 1);
-  speak(5, "Good luck!\n");
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  speak(Entity(5), "Good luck!\n");
+  followEntity(Entity.Player, speed: 10);
   return;
 }
 
 section(6) {
   if (trigger(122)) {
-    speak(6, "You can fish only at\nDragon Eye Lake.\n");
+    speak(Entity(6), "You can fish only at\nDragon Eye Lake.\n");
     return;
   }
-  speak(6, "Stay back, stay back!\n");
+  speak(Entity(6), "Stay back, stay back!\n");
   return;
 }
 
 section(7) {
-  speak(7, "Shogun is collecting\nrare Items. He used to\ncollect Items.\n");
+  speak(Entity(7), "Shogun is collecting\nrare Items. He used to\ncollect Items.\n");
   showTextbox("But now he's really\ninto Digimon cards.\n");
-  speak(7, "If you bring a rare card,\nhe will give you\nMerit points.\n");
-  speak(7, "You can collect");
+  speak(Entity(7), "If you bring a rare card,\nhe will give you\nMerit points.\n");
+  speak(Entity(7), "You can collect");
   dead_string("?");
   dead_string("? card,\nMerit points and\ntrade them for Items.\n");
-  setTrigger(122);
+  setTrigger(Trigger(122));
   return;
 }
 
 section(8) {
   if (!trigger(205)) {
-    speak(8, "Well... no, nothing. Ribbit.\n");
+    speak(Entity(8), "Well... no, nothing. Ribbit.\n");
     return;
   }
-  speak(8, "Excuse me... I want to go to\nthe city. Ribbit!\n");
+  speak(Entity(8), "Excuse me... I want to go to\nthe city. Ribbit!\n");
   speak(Entity.Player, "OK, but what happened?\n");
-  speak(8, "I wanna fight at the Arena.\nIt seems like we,\nthe Gekomon Tribe,");
+  speak(Entity(8), "I wanna fight at the Arena.\nIt seems like we,\nthe Gekomon Tribe,");
   dead_string("? Arena.\n");
   showTextbox("are looked down upon\nas country Digimon. Ribbit.\n");
   showTextbox("Yeah, we're from the country,\nbut we have our pride too!");

@@ -21,13 +21,13 @@ section(82) {
     rotate(entity: Entity.Player, to: 3072);
     sfx(8, 2, wait: 5);
     playSound(8, 2);
-    anim(Entity.Player, 16, wait: 15);
+    anim(Entity.Player, Animation(16), wait: 15);
     speak(Entity.Player, "I think it's locked.\n");
-    playAnimation(Entity.Player, 0);
+    playAnimation(Entity.Player, Animation(0));
     showTextbox("Will the knob open?\n");
     playSound(8, 3);
     speak(Entity.Player, "It opened!\n");
-    setTrigger(117);
+    setTrigger(Trigger(117));
   }
   rotate3DObject(0, 1);
   sfx(8, 1, wait: 10);
@@ -38,17 +38,17 @@ section(82) {
 
 section(52) {
   if (!trigger(132)) {
-    playAnimation(Entity.Player, 18);
-    anim(Entity.Partner, 43, wait: 20);
-    playAnimation(Entity.Partner, 44);
-    setPStat(200, 30);
-    dealMapDamage(200);
-    setPStat(254, 253);
+    playAnimation(Entity.Player, Animation(18));
+    anim(Entity.Partner, Animation(43), wait: 20);
+    playAnimation(Entity.Partner, Animation(44));
+    setPStat(PStat(200), 30);
+    dealMapDamage(PStat(200));
+    setPStat(PStat(254), 253);
     callSubroutine(55);
     speak(Entity.Player, "Are you alright, <ORANGE><DIGIMON><WHITE>?\n");
-    anim(Entity.Player, 24, wait: 15);
+    anim(Entity.Player, Animation(24), wait: 15);
     showTextbox("What kind of place is this?\n");
-    playAnimation(Entity.Player, 0);
+    playAnimation(Entity.Player, Animation(0));
     move(entity: Entity.Player, to: (150, -340), sprint: 0, withCamera: true);
     waitForEntity(Entity.Player);
     rotate(entity: Entity.Player, to: 1260);
@@ -57,7 +57,7 @@ section(52) {
     delay(10);
     look(entity: Entity.Player, at: Entity.Partner);
     speak(Entity.Player, "Looks like we entered a room\nwe've never been to before.\n");
-    setTrigger(132);
+    setTrigger(Trigger(132));
     return;
   } else {
     speak(Entity.Player, "Good landing!\n");

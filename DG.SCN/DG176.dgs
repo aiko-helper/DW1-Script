@@ -10,7 +10,7 @@ section onEnter(254) {
     setRectImpassible(35, 45, 2, 16);
   }
   if (pstat[25] == 3) {
-    playAnimation(5, 28);
+    playAnimation(Entity(5), Animation(28));
   }
   if (pstat[26] < 3) {
     setObjectVisibility(18, 0);
@@ -24,7 +24,7 @@ section onEnter(254) {
 
 section(51) {
   move(entity: Entity.Player, to: (250, -5000), sprint: 0);
-  unsetTrigger(69);
+  unsetTrigger(Trigger(69));
   if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
     goto L32;
     goto L1;
@@ -283,19 +283,19 @@ L46:
 }
 
 section(81) {
-  look(entity: Entity.Player, at: 5);
+  look(entity: Entity.Player, at: Entity(5));
   if (pstat[25] != 3) {
-    look(entity: 5, at: Entity.Player);
+    look(entity: Entity(5), at: Entity.Player);
   }
   if (trigger(65) || trigger(66) || trigger(67) || trigger(68)) {
     goto L1;
   }
   if (trigger(231) && !trigger(65) && pstat[25] == 0) {
-    speak(5, "Welcome to my shop.\n");
+    speak(Entity(5), "Welcome to my shop.\n");
     showTextbox("Look, <LIGHTBLUE><PLAYER><WHITE>. This is\nmy shop. I'm going to sell\nall kinds of Items.\n");
     showTextbox("I'll have more stuff soon.\nBut I need Digimon who can\nhelp me here.\n");
-    setTrigger(65);
-    addPStat(26, 1);
+    setTrigger(Trigger(65));
+    addPStat(PStat(26), 1);
     if (pstat[26] >= 3) {
       setObjectVisibility(18, 1);
       setObjectVisibility(20, 1);
@@ -303,10 +303,10 @@ section(81) {
     return;
   }
   if (trigger(245) && !trigger(66) && pstat[25] == 1) {
-    speak(5, "I'm gonna buy and sell\nItems. Come and visit me\nwhen you need my services.\n");
+    speak(Entity(5), "I'm gonna buy and sell\nItems. Come and visit me\nwhen you need my services.\n");
     showTextbox("We don't have much variety,\nbut if I can find a helper,\nmaybe I can do better.\n");
-    setTrigger(66);
-    addPStat(26, 1);
+    setTrigger(Trigger(66));
+    addPStat(PStat(26), 1);
     if (pstat[26] >= 3) {
       setObjectVisibility(18, 1);
       setObjectVisibility(20, 1);
@@ -314,10 +314,10 @@ section(81) {
     return;
   }
   if (trigger(233) && !trigger(67) && pstat[25] == 2) {
-    speak(5, "I've decided\nto open a shop for Items.\nI hope you come here often.\n");
+    speak(Entity(5), "I've decided\nto open a shop for Items.\nI hope you come here often.\n");
     showTextbox("We are not well stocked yet,\nbut we want to expand soon.\nPlease bear with us for now.\n");
-    setTrigger(67);
-    addPStat(26, 1);
+    setTrigger(Trigger(67));
+    addPStat(PStat(26), 1);
     if (pstat[26] >= 3) {
       setObjectVisibility(18, 1);
       setObjectVisibility(20, 1);
@@ -325,10 +325,10 @@ section(81) {
     return;
   }
   if (!trigger(247) || trigger(68) || pstat[25] != 3) goto L1;
-  speak(5, "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>,\nI opened my Item shop.\nI think I'll do well!\n");
+  speak(Entity(5), "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>,\nI opened my Item shop.\nI think I'll do well!\n");
   showTextbox("With more Digimon in the\ncity, we can get more stuff.\n");
-  setTrigger(68);
-  addPStat(26, 1);
+  setTrigger(Trigger(68));
+  addPStat(PStat(26), 1);
   if (pstat[26] >= 3) {
     setObjectVisibility(18, 1);
     setObjectVisibility(20, 1);
@@ -337,9 +337,9 @@ section(81) {
 
 L1:
   if (trigger(231) && !trigger(65) && pstat[25] == 0) {
-    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, I just started to\nhelp running this shop.\nPlease buy lots of stuff!\n");
-    setTrigger(65);
-    addPStat(26, 1);
+    speak(Entity(5), "<LIGHTBLUE><PLAYER><WHITE>, I just started to\nhelp running this shop.\nPlease buy lots of stuff!\n");
+    setTrigger(Trigger(65));
+    addPStat(PStat(26), 1);
     if (pstat[26] >= 3) {
       setObjectVisibility(18, 1);
       setObjectVisibility(20, 1);
@@ -347,9 +347,9 @@ L1:
     return;
   }
   if (trigger(245) && !trigger(66) && pstat[25] == 1) {
-    speak(5, "Welcome. Starting today,\nI'm going to work here.\nPlease come here often.\n");
-    setTrigger(66);
-    addPStat(26, 1);
+    speak(Entity(5), "Welcome. Starting today,\nI'm going to work here.\nPlease come here often.\n");
+    setTrigger(Trigger(66));
+    addPStat(PStat(26), 1);
     if (pstat[26] >= 3) {
       setObjectVisibility(18, 1);
       setObjectVisibility(20, 1);
@@ -357,9 +357,9 @@ L1:
     return;
   }
   if (trigger(233) && !trigger(67) && pstat[25] == 2) {
-    speak(5, "I have decided to help\nrun this shop.\nPlease come by anytime.\n");
-    setTrigger(67);
-    addPStat(26, 1);
+    speak(Entity(5), "I have decided to help\nrun this shop.\nPlease come by anytime.\n");
+    setTrigger(Trigger(67));
+    addPStat(PStat(26), 1);
     if (pstat[26] >= 3) {
       setObjectVisibility(18, 1);
       setObjectVisibility(20, 1);
@@ -367,9 +367,9 @@ L1:
     return;
   }
   if (trigger(247) && !trigger(68) && pstat[25] == 3) {
-    speak(5, "Oh, <LIGHTBLUE><PLAYER><WHITE>. This is the\nperfect place for me.\nI will work hard here.\n");
-    setTrigger(68);
-    addPStat(26, 1);
+    speak(Entity(5), "Oh, <LIGHTBLUE><PLAYER><WHITE>. This is the\nperfect place for me.\nI will work hard here.\n");
+    setTrigger(Trigger(68));
+    addPStat(PStat(26), 1);
     if (pstat[26] >= 3) {
       setObjectVisibility(18, 1);
       setObjectVisibility(20, 1);
@@ -377,106 +377,106 @@ L1:
     return;
   }
   if (pstat[26] == 1) {
-    for x in [384, 385, 388, 392] {
+    for x in [Trigger(384), Trigger(385), Trigger(388), Trigger(392)] {
       setTrigger(x);
     }
-    for id in 399..401 {
+    for id in Trigger(399)..Trigger(401) {
       setTrigger(id);
     }
-    for x in [406, 416, 422] {
+    for x in [Trigger(406), Trigger(416), Trigger(422)] {
       setTrigger(x);
     }
   }
   if (pstat[25] == 0) {
-    setTrigger(393);
+    setTrigger(Trigger(393));
   }
   if (pstat[25] == 1) {
-    setTrigger(387);
+    setTrigger(Trigger(387));
   }
   if (pstat[25] == 2) {
-    setTrigger(396);
+    setTrigger(Trigger(396));
   }
   if (pstat[25] == 3) {
-    setTrigger(394);
+    setTrigger(Trigger(394));
   }
-  unsetTrigger(3);
+  unsetTrigger(Trigger(3));
   if (pstat[26] == 2 || pstat[26] == 3) {
-    for x in [384, 385, 388, 392] {
+    for x in [Trigger(384), Trigger(385), Trigger(388), Trigger(392)] {
       setTrigger(x);
     }
-    for id in 399..401 {
+    for id in Trigger(399)..Trigger(401) {
       setTrigger(id);
     }
-    for x in [406, 416, 422, 386, 389] {
+    for x in [Trigger(406), Trigger(416), Trigger(422), Trigger(386), Trigger(389)] {
       setTrigger(x);
     }
   }
   if (pstat[25] == 0) {
-    setTrigger(393);
+    setTrigger(Trigger(393));
   }
   if (pstat[25] == 1) {
-    setTrigger(387);
+    setTrigger(Trigger(387));
   }
   if (pstat[25] == 2) {
-    setTrigger(396);
+    setTrigger(Trigger(396));
   }
   if (pstat[25] == 3) {
-    setTrigger(394);
+    setTrigger(Trigger(394));
   }
   if (pstat[26] == 4) {
-    for x in [384, 385, 388, 392] {
+    for x in [Trigger(384), Trigger(385), Trigger(388), Trigger(392)] {
       setTrigger(x);
     }
-    for id in 399..401 {
+    for id in Trigger(399)..Trigger(401) {
       setTrigger(id);
     }
     for x in [
-      406, 416, 422, 386,
-      389, 391, 390, 395
+      Trigger(406), Trigger(416), Trigger(422), Trigger(386),
+      Trigger(389), Trigger(391), Trigger(390), Trigger(395)
     ] {
       setTrigger(x);
     }
   }
   if (pstat[25] == 0) {
-    setTrigger(393);
+    setTrigger(Trigger(393));
   }
   if (pstat[25] == 1) {
-    setTrigger(387);
+    setTrigger(Trigger(387));
   }
   if (pstat[25] == 2) {
-    setTrigger(396);
+    setTrigger(Trigger(396));
   }
   if (pstat[25] == 3) {
-    setTrigger(394);
+    setTrigger(Trigger(394));
   }
   if (pstat[26] == 5) {
-    for x in [384, 385, 388, 392] {
+    for x in [Trigger(384), Trigger(385), Trigger(388), Trigger(392)] {
       setTrigger(x);
     }
-    for id in 399..401 {
+    for id in Trigger(399)..Trigger(401) {
       setTrigger(id);
     }
     for x in [
-      406, 416, 422, 386,
-      389, 391, 390, 395,
-      393, 387, 394, 396
+      Trigger(406), Trigger(416), Trigger(422), Trigger(386),
+      Trigger(389), Trigger(391), Trigger(390), Trigger(395),
+      Trigger(393), Trigger(387), Trigger(394), Trigger(396)
     ] {
       setTrigger(x);
     }
   }
-  unsetTrigger(3);
-  setPStat(254, 5);
+  unsetTrigger(Trigger(3));
+  setPStat(PStat(254), 5);
   callSubroutine(8);
-  for x in [384, 385, 388, 392] {
+  for x in [Trigger(384), Trigger(385), Trigger(388), Trigger(392)] {
     unsetTrigger(x);
   }
-  for id in 399..401 {
+  for id in Trigger(399)..Trigger(401) {
     unsetTrigger(id);
   }
   for x in [
-    406, 416, 422, 386,
-    389, 391, 390, 395,
-    393, 387, 394, 396
+    Trigger(406), Trigger(416), Trigger(422), Trigger(386),
+    Trigger(389), Trigger(391), Trigger(390), Trigger(395),
+    Trigger(393), Trigger(387), Trigger(394), Trigger(396)
   ] {
     unsetTrigger(x);
   }
@@ -487,9 +487,9 @@ section(82) {
   if (!trigger(69)) {
     return;
   }
-  look(entity: Entity.Player, at: 6);
-  look(entity: 6, at: Entity.Player);
-  speak(6, "Hi, I'm busy all the time\nrunning this shop... Not!\n");
+  look(entity: Entity.Player, at: Entity(6));
+  look(entity: Entity(6), at: Entity.Player);
+  speak(Entity(6), "Hi, I'm busy all the time\nrunning this shop... Not!\n");
   showTextbox("I'm kinda lazy and I won't\nbe in the shop much. \nBut I got some cool stuff.\n");
   showTextbox("Yes! 'Training Manual'!\nWith this, your training\nwill get better!\n");
   showTextbox("It's very valuable. I'll\nsell it for fifty thous bits.\nYou'll regret not buying it.\n");
@@ -501,12 +501,12 @@ L1:
   if (money >= 50000) {
     reduceMoney(50000);
   } else {
-    speak(6, "You don't have enough bits.\n");
+    speak(Entity(6), "You don't have enough bits.\n");
     return;
   }
   giveItem(Item.TrainingManual, 1);
   if (trigger(0)) {
-    speak(6, "Hmmm, you have lots of\nstuff with you.\n");
+    speak(Entity(6), "Hmmm, you have lots of\nstuff with you.\n");
     addMoney(50000);
     return;
   }
@@ -514,7 +514,7 @@ L1:
   speak(Entity.System, "I got a\n<LIGHTBLUE>Training Manual<WHITE>!\n");
 
 L2:
-  speak(6, "I won't give you a discount.\n");
+  speak(Entity(6), "I won't give you a discount.\n");
   return;
 }
 
@@ -531,14 +531,14 @@ section(7) {
   roll(pstat: PStat.RollScratch, max: 2);
   if (pstat[1] < 20) goto L1;
   if (pstat[110] != 0) goto L1;
-  speak(7, "Are you having trouble\nbecause you've got\ntoo much stuff?\n");
+  speak(Entity(7), "Are you having trouble\nbecause you've got\ntoo much stuff?\n");
   showTextbox("There is a place to find a\nkey chain that connects your\nbag to another dimension.\n");
   showTextbox("It increases the number of\nItems you can carry.\n");
   showTextbox("Even if you've been to some\nplace before, look again.\n");
   return;
 
 L1:
-  speak(7, "I'll tell you the secret to\nItem buying.\n");
+  speak(Entity(7), "I'll tell you the secret to\nItem buying.\n");
   showTextbox("Press the Start button\non the Item you want to\nget information for!\n");
   showTextbox("Choose the Item with <LIGHTBLUE><X><WHITE>,\nand press <PINK><SQUARE><WHITE>, if you\nwant to buy a lot.\n");
   showTextbox("To raise or lower by ten, use\nUp or Down on Dir. Pad,\nwhile pressing <ORANGE><O><WHITE>.\n");

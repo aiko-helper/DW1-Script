@@ -6,97 +6,96 @@
 section onEnter(254) {
   spawnItemChance(max: 99, chance: 9, item: Item.Digimushroom, x: 34, y: 56);
   spawnItemChance(max: 99, chance: 5, item: Item.Digimushroom, x: 37, y: 43);
-  setPStat(254, 2);
+  setPStat(PStat(254), 2);
   callSubroutine(25);
   return;
 }
 
 section(6) {
-  speak(6, "Taaa!\n");
-  finishEncounter(288);
+  speak(Entity(6), "Taaa!\n");
+  finishEncounter(Trigger(288));
 }
 
 section(7) {
-  speak(7, "Alright, take that!\n");
-  finishEncounter(288);
+  speak(Entity(7), "Alright, take that!\n");
+  finishEncounter(Trigger(288));
 }
 
 section(8) {
-  speak(8, "Shaaaa!\n");
-  finishEncounter(267);
+  speak(Entity(8), "Shaaaa!\n");
+  finishEncounter(Trigger(267));
 }
 
 section(9) {
-  speak(9, "Buooon!\n");
-  finishEncounter(267);
+  speak(Entity(9), "Buooon!\n");
+  finishEncounter(Trigger(267));
 }
 
 section(51) {
   if (!trigger(144)) {
-    move(entity: 5, to: (-421, 374), sprint: 1);
-    waitForEntity(5);
-    look(entity: 5, at: Entity.Player);
-    lookPairAt(5);
-    waitForEntity(5);
+    move(entity: Entity(5), to: (-421, 374), sprint: 1);
+    waitForEntity(Entity(5));
+    look(entity: Entity(5), at: Entity.Player);
+    lookPairAt(Entity(5));
+    waitForEntity(Entity(5));
     playSound(8, 10);
-    speak(5, "Who are you? I won't let\nanyone mess up this place!\n");
-    anim(Entity.Player, 19, wait: 15);
+    speak(Entity(5), "Who are you? I won't let\nanyone mess up this place!\n");
+    anim(Entity.Player, Animation(19), wait: 15);
     speak(Entity.Player, "Don't worry. We're just\ntravelling through\nto save the island.\n");
-    playAnimation(Entity.Player, 0);
+    playAnimation(Entity.Player, Animation(0));
     playSound(8, 10);
-    speak(5, "I don't trust you, get lost!\n");
+    speak(Entity(5), "I don't trust you, get lost!\n");
     speak(Entity.Player, "Wait a sec.\n");
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 255);
-    setPStat(253, 255);
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 5);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
     startBattle();
-    unsetTrigger(1);
-    setPStat(250, 0);
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
     move(entity: Entity.Player, to: (-97, -448), sprint: 0);
     move(entity: Entity.Partner, to: (-597, -443), sprint: 0);
-    move(entity: 5, to: (-421, 374), sprint: 1);
-    for x in [Entity.Player, Entity.Partner, 5] {
+    move(entity: Entity(5), to: (-421, 374), sprint: 1);
+    for x in [Entity.Player, Entity.Partner, Entity(5)] {
       waitForEntity(x);
     }
-    look(entity: Entity.Player, at: 5);
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Partner, at: 5);
-    speak(5, "Are you by any chance...?\n");
-    anim(Entity.Player, 7, wait: 15);
+    look(entity: Entity.Player, at: Entity(5));
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(5));
+    speak(Entity(5), "Are you by any chance...?\n");
+    anim(Entity.Player, Animation(7), wait: 15);
     speak(Entity.Player, "I told you so!\n");
-    playAnimation(Entity.Player, 0);
-    speak(5, "I'm sorry. We don't get\nvisitors often, so I get\nexcited about my new job.\n");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(5), "I'm sorry. We don't get\nvisitors often, so I get\nexcited about my new job.\n");
     speak(Entity.Player, "Job?\n");
-    speak(5, "I'm guarding a place called\nAncient Dino Region.\n");
+    speak(Entity(5), "I'm guarding a place called\nAncient Dino Region.\n");
     showTextbox("It's an unexplored region.\n");
     speak(Entity.Player, "Will you show me around?\n");
-    speak(5, "Ancient Dino Region is\ndivided in two sections.\n");
+    speak(Entity(5), "Ancient Dino Region is\ndivided in two sections.\n");
     showTextbox("Where we live is called\nGlacial Time Zone.\n");
     showTextbox("It's a special place\nwhere time goes slow.\n");
-    anim(Entity.Player, 16, wait: 15);
+    anim(Entity.Player, Animation(16), wait: 15);
     speak(Entity.Player, "Time goes slow?\n");
-    playAnimation(Entity.Player, 0);
-    speak(5, "The other place is\nSpeedy Time Zone.\n");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(5), "The other place is\nSpeedy Time Zone.\n");
     showTextbox("It's dangerous and further\nthan the Glacial Time Zone.\n");
     showTextbox("It's dangerous cuz\ntime goes very fast.\n");
     showTextbox("The land is bare. Bones\nand fossils everywhere.\n");
     speak(Entity.Player, "That's cuz time passes faster\nthere than in other places?\n");
-    speak(5, "Right. Don't stay there long.\n");
+    speak(Entity(5), "Right. Don't stay there long.\n");
     showTextbox("Since I'm blocking your\nway, you can't go there.\n");
     speak(Entity.Player, "You lost.\n");
     playSound(8, 10);
-    speak(5, "I was unlucky! It doesn't\nhappen often.\n");
+    speak(Entity(5), "I was unlucky! It doesn't\nhappen often.\n");
     speak(Entity.Player, "Is that right?\n");
-    speak(5, "I have to go back home.\nAsk other Digimon\nif you have questions.\n");
-    setTrigger(144);
+    speak(Entity(5), "I have to go back home.\nAsk other Digimon\nif you have questions.\n");
+    setTrigger(Trigger(144));
     goto L1;
 
 L1:
-    approach(who: 5, x: -293, y: 1172, tries: 3, wait: 20);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    approach(who: Entity(5), x: -293, y: 1172, tries: 3, wait: 20);
+    followEntity(Entity.Player, speed: 10);
     return;
   }
   return;

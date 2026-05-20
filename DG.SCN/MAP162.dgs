@@ -5,28 +5,28 @@
 
 section onEnter(254) {
   if (!trigger(202) || !trigger(215) || pstat[28] < 20) goto L1;
-  unsetTrigger(202);
-  unsetTrigger(215);
-  roll(pstat: 16, max: 2);
+  unsetTrigger(Trigger(202));
+  unsetTrigger(Trigger(215));
+  roll(pstat: PStat(16), max: 2);
   if (pstat[16] != 0) goto L1;
-  setPStat(16, 3);
-  for id in 707..713 {
+  setPStat(PStat(16), 3);
+  for id in Trigger(707)..Trigger(713) {
     unsetTrigger(id);
   }
 
 L1:
-  setPStat(254, 0);
+  setPStat(PStat(254), 0);
   callSubroutine(25);
-  unsetTrigger(2);
+  unsetTrigger(Trigger(2));
   if (pstat[17] >= 3) {
-    addPStat(18, 1);
+    addPStat(PStat(18), 1);
   }
   if (pstat[17] >= 1) {
-    setPStat(17, 1);
+    setPStat(PStat(17), 1);
   }
   pstat[:SavedTime] = time();
   if (pstat[106] != 14) {
-    unsetTrigger(76);
+    unsetTrigger(Trigger(76));
   }
   if (trigger(50) && !trigger(43)) {
     move(entity: Entity.Partner, to: (302, -2961), animDuration: 5);
@@ -34,20 +34,19 @@ L1:
     rotate(entity: Entity.Partner, to: 2048);
     delay(40);
     speak(Entity.Player, "I'm back!\n");
-    anim(Entity.Player, 11, wait: 20);
+    anim(Entity.Player, Animation(11), wait: 20);
     look(entity: Entity.Player, at: Entity.Partner);
     delay(5);
     speak(Entity.Player, "Thanks for inviting me.\nI hope we can work\ntogether <ORANGE><DIGIMON><WHITE>.\n");
-    anim(Entity.Player, 5, wait: 10);
-    anim(Entity.Partner, 11, wait: 40);
-    setTrigger(43);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    anim(Entity.Player, Animation(5), wait: 10);
+    anim(Entity.Partner, Animation(11), wait: 40);
+    setTrigger(Trigger(43));
+    followEntity(Entity.Player, speed: 10);
     if (stat[Stat.TamerLevel] != 10) {
       addStats(tamerLevel: 1);
       speak(Entity.System, "<YELLOW>Tamer Level\nhas gone up! <WHITE>\n");
     }
-    setTrigger(374);
+    setTrigger(Trigger(374));
     playSound(0, 7);
     speak(Entity.System, "<YELLOW>Congratulations!\nHere's a medal\nfor you. <WHITE>\n");
     giveCard(65);
@@ -359,48 +358,48 @@ L46:
 section(5) {
   if (trigger(210) || pstat[1] < 40 || trigger(224) || !trigger(175)) goto L1;
   if (trigger(250)) goto L1;
-  speak(5, "Have you seen\nthe Lake Guardian?\n");
+  speak(Entity(5), "Have you seen\nthe Lake Guardian?\n");
   showTextbox("If not, you should\nwait on the south side.\n");
   return;
 
 L1:
   if (!trigger(250) && pstat[1] >= 25 && !trigger(224) && trigger(175)) {
-    speak(5, "Get up very early and\nwalk in the mist.\nSomething good will happen!\n");
+    speak(Entity(5), "Get up very early and\nwalk in the mist.\nSomething good will happen!\n");
     return;
   }
   if (!trigger(224) && trigger(175)) {
-    speak(5, "Did you know there's\na place in the north\ncalled Iceberg Beach?\n");
+    speak(Entity(5), "Did you know there's\na place in the north\ncalled Iceberg Beach?\n");
     showTextbox("Rumor has it that a huge\nDigimon often appears\nat the beach.\n");
     return;
   }
   if (!trigger(175) && trigger(198)) {
-    speak(5, "Are the bandits defeated?\nI heard there is a gang\nof bandits.\n");
+    speak(Entity(5), "Are the bandits defeated?\nI heard there is a gang\nof bandits.\n");
     return;
   }
   if (!trigger(198) && trigger(103)) {
-    setTrigger(197);
-    speak(5, "Ever been to Great Canyon?\n");
+    setTrigger(Trigger(197));
+    speak(Entity(5), "Ever been to Great Canyon?\n");
     showTextbox("Rumor has it that\nthe bandits are there.\n");
     speak(Entity.Player, "Are they bad guys?\n");
-    speak(5, "They jump you and rob you.\n");
+    speak(Entity(5), "They jump you and rob you.\n");
     speak(Entity.Player, "Let's do something about it.\n");
     return;
   }
   if (pstat[1] >= 6) {
-    setTrigger(124);
-    speak(5, "Ever been to Great Canyon?\n");
+    setTrigger(Trigger(124));
+    speak(Entity(5), "Ever been to Great Canyon?\n");
     showTextbox("Rumor has it that there is an\nInvisible Bridge there.\n");
     return;
   }
   if (trigger(50) && !trigger(202)) {
-    speak(5, "I hear\nMachinedramon is back.\n");
+    speak(Entity(5), "I hear\nMachinedramon is back.\n");
     return;
   }
   if (trigger(50) && trigger(202)) {
-    speak(5, "You beat\nMachinedramon again.\n");
+    speak(Entity(5), "You beat\nMachinedramon again.\n");
     return;
   }
-  speak(5, "I'll explain the city\nsurroundings to you.\n");
+  speak(Entity(5), "I'll explain the city\nsurroundings to you.\n");
   showTextbox("Native Forest\nsurrounds the city.\n");
   showTextbox("The Digimon around there\naren't too strong.\n");
   showTextbox("To the west there's a\nTraining Camp.\n");
@@ -415,13 +414,13 @@ L1:
 }
 
 section(6) {
-  speak(6, "Let's see what's around here.\n");
+  speak(Entity(6), "Let's see what's around here.\n");
   showTextbox("I don't like the toilet, but\neverything else seems Ok!\n");
   return;
 }
 
 section(7) {
-  speak(7, "It looks pretty lively.\n");
+  speak(Entity(7), "It looks pretty lively.\n");
   showTextbox("Don't I have to go back\nto Factorial Town?\n");
   showTextbox("My scheduling function is\nworking. No problem.\n");
   return;
@@ -429,15 +428,15 @@ section(7) {
 
 section(8) {
   if (!trigger(84)) {
-    setTrigger(84);
-    speak(8, "You came at the right time!\n");
+    setTrigger(Trigger(84));
+    speak(Entity(8), "You came at the right time!\n");
     showTextbox("Look at this sculpture!\nWhat do you think?\n");
     showTextbox("What a masterpiece.\nI amaze myself.\n");
     showTextbox("What do you mean?\nYou're making fun of me!\n");
     showTextbox("What were we talking about?\nWell, whatever.\n");
     return;
   }
-  speak(8, "What image did I have?\nWhen you figure it out,\nlet me know.\n");
+  speak(Entity(8), "What image did I have?\nWhen you figure it out,\nlet me know.\n");
   return;
 }
 
@@ -455,25 +454,25 @@ section(81) {
   if (trigger(225) && pstat[107] >= 7 && pstat[107] < 19) {
   }
   if (pstat[107] not in 7..19) {
-    speak(204, "sleeping...\n");
+    speak(Entity(204), "sleeping...\n");
     return;
   }
   if (pstat[1] >= 10 && !trigger(225)) {
-    setTrigger(86);
-    speak(204, "Have you heard? There is\na strange plant growing\nin Tropical Jungle.\n");
+    setTrigger(Trigger(86));
+    speak(Entity(204), "Have you heard? There is\na strange plant growing\nin Tropical Jungle.\n");
   }
   if (pstat[1] >= 20) {
-    speak(204, "Oh yeah,\n");
+    speak(Entity(204), "Oh yeah,\n");
     showTextbox("I planted a <LIGHTBLUE>Rain Plant\n<WHITE>right there.\n");
     showTextbox("It bears fruit every year\naround the fifteenth.\nYou may take those.\n");
     showTextbox("For what?\n");
     return;
   }
   if (pstat[1] < 10) {
-    speak(204, "Oh, it feels good!\nSun rays.\n");
+    speak(Entity(204), "Oh, it feels good!\nSun rays.\n");
     return;
   }
-  speak(204, "Oh, it feels good!\nSun rays.\n");
+  speak(Entity(204), "Oh, it feels good!\nSun rays.\n");
   return;
 }
 
@@ -482,7 +481,7 @@ section(82) {
     return;
   }
   setTextboxOrigin(600, 0, 1502);
-  speak(205, "Alright, this is great!\n");
+  speak(Entity(205), "Alright, this is great!\n");
   return;
 }
 
@@ -501,7 +500,7 @@ section(83) {
   }
   setObjectVisibility(72, 1);
   speak(Entity.System, "I got a <LIGHTBLUE>Rain\nPlant Fruit<WHITE>!\n");
-  setTrigger(76);
+  setTrigger(Trigger(76));
   return;
 }
 
@@ -542,12 +541,12 @@ section(55) {
   rotate(entity: Entity.Partner, to: 2128);
   delay(5);
   if (!trigger(83)) {
-    setTrigger(83);
-    speak(12, "I'll take you to the ocean.\nThat's my job.\n");
+    setTrigger(Trigger(83));
+    speak(Entity(12), "I'll take you to the ocean.\nThat's my job.\n");
     showTextbox("I'll take you to a place you\ncan only go to by sea.\n");
     showTextbox("Well, then...\n");
   }
-  speak(12, "Hmmm, where should we go?\nFactorial Town or maybe\nBeach Cave.\n");
+  speak(Entity(12), "Hmmm, where should we go?\nFactorial Town or maybe\nBeach Cave.\n");
   setDialogOwner(Entity.Player);
   choice { "Factorial Town" -> L1, "Secret Beach Cave" -> L2, "Nowhere" -> L3 }
   goto L3;
@@ -563,8 +562,7 @@ L3:
   delay(10);
   move(entity: Entity.Player, to: (1556, 348), sprint: 1);
   waitForPair();
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  followEntity(Entity.Player, speed: 10);
   return;
 }
 
@@ -582,114 +580,109 @@ section(57) {
     }
     return;
   }
-  unsetTrigger(87);
-  loadAndSetDigimon(Digimon.NPCGreymon, 4, 0);
-  lookPairAt(9);
-  rotate(entity: 9, to: 2048);
+  unsetTrigger(Trigger(87));
+  loadAndSetDigimon(Digimon.NPCGreymon, Entity(4), 0);
+  lookPairAt(Entity(9));
+  rotate(entity: Entity(9), to: 2048);
   delay(20);
-  moveCamera(to: 9, speed: 20);
-  waitForEntity(200);
-  move(entity: 9, to: (256, -3385), sprint: 0);
-  speak(9, "I found you!\n");
-  moveCamera(to: Entity.Player, speed: 20);
-  waitForEntity(200);
-  anim(Entity.Player, 15, wait: 5);
+  followEntity(Entity(9), speed: 20);
+  move(entity: Entity(9), to: (256, -3385), sprint: 0);
+  speak(Entity(9), "I found you!\n");
+  followEntity(Entity.Player, speed: 20);
+  anim(Entity.Player, Animation(15), wait: 5);
   speak(Entity.Player, "Oh no, he's coming\nright for us!\n");
-  move(entity: 9, to: (432, -2236), sprint: 0);
-  waitForEntity(9);
-  look(entity: 9, at: Entity.Player);
+  move(entity: Entity(9), to: (432, -2236), sprint: 0);
+  waitForEntity(Entity(9));
+  look(entity: Entity(9), at: Entity.Player);
   delay(5);
-  speak(9, "I finally met you!\nI'm Greymon.\nNow let's settle things!\n");
-  anim(Entity.Player, 1, wait: 5);
+  speak(Entity(9), "I finally met you!\nI'm Greymon.\nNow let's settle things!\n");
+  anim(Entity.Player, Animation(1), wait: 5);
   speak(Entity.Player, "What?!\n");
-  speak(9, "I got here by following\nthe rumors about you.\nI want to fight you!\n");
+  speak(Entity(9), "I got here by following\nthe rumors about you.\nI want to fight you!\n");
   showTextbox("If I win,\nI want this street sign!\n");
-  anim(Entity.Player, 16, wait: 30);
+  anim(Entity.Player, Animation(16), wait: 30);
   speak(Entity.Player, "There's no sign.\n");
-  speak(9, "I don't care,\nlet's fight anyway!\n");
+  speak(Entity(9), "I don't care,\nlet's fight anyway!\n");
   move(entity: Entity.Partner, to: (50, -1950), sprint: 1);
   waitForEntity(Entity.Partner);
-  look(entity: Entity.Partner, at: 9);
+  look(entity: Entity.Partner, at: Entity(9));
   delay(5);
-  setTrigger(1);
-  setPStat(250, 1);
-  setPStat(251, 9);
-  setPStat(252, 255);
-  setPStat(253, 255);
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 9);
+  setPStat(PStat(252), 255);
+  setPStat(PStat(253), 255);
   startBattle();
-  unsetTrigger(1);
-  setPStat(250, 0);
-  look(entity: Entity.Player, at: 9);
-  look(entity: 9, at: Entity.Player);
-  look(entity: Entity.Partner, at: 9);
-  speak(9, "Hey, you guys are good!\nBut to finish your goal,\nyou're still amateurs.\n");
-  anim(Entity.Player, 1, wait: 5);
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  look(entity: Entity.Player, at: Entity(9));
+  look(entity: Entity(9), at: Entity.Player);
+  look(entity: Entity.Partner, at: Entity(9));
+  speak(Entity(9), "Hey, you guys are good!\nBut to finish your goal,\nyou're still amateurs.\n");
+  anim(Entity.Player, Animation(1), wait: 5);
   speak(Entity.Player, "Hmmm\n");
-  speak(9, "I'll stay and train you.\nYou'll get much better!\n");
+  speak(Entity(9), "I'll stay and train you.\nYou'll get much better!\n");
   goto L1;
 
 L1:
-  approach(who: 9, x: 412, y: -4500, tries: 3, wait: 20);
+  approach(who: Entity(9), x: 412, y: -4500, tries: 3, wait: 20);
   playSound(8, 12);
   speak(Entity.System, "Greymon joins the city!\n");
-  setTrigger(87);
-  setTrigger(205);
-  addPStat(1, 2);
-  moveCamera(to: Entity.Player, speed: 20);
-  waitForEntity(200);
+  setTrigger(Trigger(87));
+  setTrigger(Trigger(205));
+  addPStat(PStat(1), 2);
+  followEntity(Entity.Player, speed: 20);
   return;
 
 L2:
-  unsetTrigger(354);
-  loadAndSetDigimon(Digimon.NPCAirdramon, 5, 0);
-  lookPairAt(10);
-  look(entity: 10, at: Entity.Player);
+  unsetTrigger(Trigger(354));
+  loadAndSetDigimon(Digimon.NPCAirdramon, Entity(5), 0);
+  lookPairAt(Entity(10));
+  look(entity: Entity(10), at: Entity.Player);
   delay(20);
-  moveCamera(to: 10, speed: 20);
-  waitForEntity(200);
-  move(entity: 10, to: (2084, -211), animDuration: 30);
+  followEntity(Entity(10), speed: 20);
+  move(entity: Entity(10), to: (2084, -211), animDuration: 30);
   moveCamera(to: Entity.Player, speed: 20);
   delay(20);
-  playAnimation(Entity.Player, 17);
-  playAnimation(Entity.Partner, 40);
-  setPStat(200, 10);
-  dealMapDamage(200);
+  playAnimation(Entity.Player, Animation(17));
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 10);
+  dealMapDamage(PStat(200));
   delay(15);
-  move(entity: 10, to: (432, -2236), sprint: 1);
-  moveCamera(to: (410, -1474), slowdown: 2);
-  waitForEntity(200);
-  move(entity: 10, to: (432, -2236), sprint: 1);
-  waitForEntity(10);
-  lookPairAt(10);
-  look(entity: 10, at: Entity.Player);
+  move(entity: Entity(10), to: (432, -2236), sprint: 1);
+  panTo(x: 410, y: -1474, slowdown: 2);
+  move(entity: Entity(10), to: (432, -2236), sprint: 1);
+  waitForEntity(Entity(10));
+  lookPairAt(Entity(10));
+  look(entity: Entity(10), at: Entity.Player);
   delay(5);
-  speak(10, "Alright, I found you, <LIGHTBLUE><PLAYER><WHITE>!\n");
+  speak(Entity(10), "Alright, I found you, <LIGHTBLUE><PLAYER><WHITE>!\n");
   speak(Entity.Player, "Ambush!\n");
-  speak(10, "My goal is to beat you.\n");
+  speak(Entity(10), "My goal is to beat you.\n");
   speak(Entity.Player, "Those eyes! He must be\nbrain washed!\n");
   move(entity: Entity.Partner, to: (50, -1950), sprint: 1);
   waitForEntity(Entity.Partner);
-  look(entity: Entity.Partner, at: 10);
+  look(entity: Entity.Partner, at: Entity(10));
   delay(5);
-  setTrigger(1);
-  setPStat(250, 1);
-  setPStat(251, 10);
-  setPStat(252, 255);
-  setPStat(253, 255);
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 10);
+  setPStat(PStat(252), 255);
+  setPStat(PStat(253), 255);
   startBattle();
-  unsetTrigger(1);
-  setPStat(250, 0);
-  look(entity: Entity.Player, at: 10);
-  look(entity: 10, at: Entity.Player);
-  look(entity: Entity.Partner, at: 10);
-  speak(10, "No matter what I do,\nI must defeat him.\n");
-  anim(10, 29, wait: 30);
-  anim(Entity.Player, 7, wait: 5);
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  look(entity: Entity.Player, at: Entity(10));
+  look(entity: Entity(10), at: Entity.Player);
+  look(entity: Entity.Partner, at: Entity(10));
+  speak(Entity(10), "No matter what I do,\nI must defeat him.\n");
+  anim(Entity(10), Animation(29), wait: 30);
+  anim(Entity.Player, Animation(7), wait: 5);
   speak(Entity.Player, "What are you talking about?\nYou gotta get treatment.\n");
-  move(entity: Entity.Player, to: 10, sprint: 1);
-  move(entity: Entity.Partner, to: 10, sprint: 1);
+  move(entity: Entity.Player, to: Entity(10), sprint: 1);
+  move(entity: Entity.Partner, to: Entity(10), sprint: 1);
   delay(40);
-  for x in [88, 355, 354] {
+  for x in [Trigger(88), Trigger(355), Trigger(354)] {
     setTrigger(x);
   }
   warp(to: Map.ROOM11, spawn: 1, trigger: 60);

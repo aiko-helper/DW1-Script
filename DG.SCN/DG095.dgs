@@ -17,7 +17,7 @@ section(81) {
   rotate(entity: Entity.Player, to: 2048);
   setTextboxOrigin(-11, 0, 1049);
   callSubroutine(39);
-  speak(200, "<GREEN>Training: Moving Ice <WHITE>\n");
+  speak(Entity(200), "<GREEN>Training: Moving Ice <WHITE>\n");
   choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
   return;
 
@@ -36,8 +36,8 @@ L3:
 
 L4:
   fadeOutHUD();
-  setPStat(254, 0);
-  setPStat(246, 0);
+  setPStat(PStat(254), 0);
+  setPStat(PStat(246), 0);
   callDigimonSubroutine(214);
   callSubroutine(7);
   return;
@@ -45,8 +45,8 @@ L4:
 L5:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to match\nthree pictures.\n");
-  setPStat(254, 0);
-  setPStat(246, 1);
+  setPStat(PStat(254), 0);
+  setPStat(PStat(246), 1);
   callDigimonSubroutine(214);
   callSubroutine(7);
   setTexboxMode(0, 0);
@@ -57,17 +57,17 @@ section(84) {
   rotate(entity: Entity.Player, to: 2048);
   setTextboxOrigin(1574, 0, 116);
   callSubroutine(39);
-  speak(200, "<GREEN>Training: Icicle Fall <WHITE>\n");
+  speak(Entity(200), "<GREEN>Training: Icicle Fall <WHITE>\n");
   choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
   return;
 
 L1:
-  setDialogOwner(200);
+  setDialogOwner(Entity(200));
   choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
   return;
 
 L2:
-  speak(200, "Train in catching\na big icicle.\n");
+  speak(Entity(200), "Train in catching\na big icicle.\n");
   showTextbox("Defensive Power is\ngreatly boosted.\nSpeed will also increase.\n");
   choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
   return;
@@ -77,8 +77,8 @@ L3:
 
 L4:
   fadeOutHUD();
-  setPStat(254, 3);
-  setPStat(246, 0);
+  setPStat(PStat(254), 3);
+  setPStat(PStat(246), 0);
   callDigimonSubroutine(214);
   callSubroutine(7);
   return;
@@ -86,8 +86,8 @@ L4:
 L5:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures\n");
-  setPStat(254, 3);
-  setPStat(246, 1);
+  setPStat(PStat(254), 3);
+  setPStat(PStat(246), 1);
   callDigimonSubroutine(214);
   callSubroutine(7);
   setTexboxMode(0, 0);

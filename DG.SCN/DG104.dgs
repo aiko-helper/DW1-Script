@@ -8,50 +8,50 @@ section onEnter(254) {
 }
 
 section(5) {
-  speak(5, "I want to beat Kabuterimon.\nWhat do I need to do to win?\n");
+  speak(Entity(5), "I want to beat Kabuterimon.\nWhat do I need to do to win?\n");
   setDialogOwner(Entity.Player);
   choice { "Hmm. You gotta get stronger." -> L1, "Actually, there is a sure fire" -> L2, "way.... well, hang in there." -> L4 }
   goto L4;
 
 L1:
-  speak(5, "I see. Alright, I'll train.\n");
+  speak(Entity(5), "I see. Alright, I'll train.\n");
   return;
 
 L2:
-  speak(5, "Really?! Then I'll train you!\n");
-  anim(Entity.Player, 19, wait: 15);
+  speak(Entity(5), "Really?! Then I'll train you!\n");
+  anim(Entity.Player, Animation(19), wait: 15);
   speak(Entity.Player, "Just come to the city.\n");
-  playAnimation(Entity.Player, 0);
-  speak(5, "...\n");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(5), "...\n");
   showTextbox("You're really nice.\nI'll go to the city.\n");
   goto L3;
 
 L3:
-  approach(who: 5, x: 664, y: -1963, tries: 3, wait: 20);
+  approach(who: Entity(5), x: 664, y: -1963, tries: 3, wait: 20);
   playSound(8, 17);
   speak(Entity.System, "Kuwagamon went to the city!\n");
-  setTrigger(251);
-  addPStat(1, 2);
+  setTrigger(Trigger(251));
+  addPStat(PStat(1), 2);
   return;
 
 L4:
-  speak(5, "Man, you're not nice.\nI'm disappointed!\n");
+  speak(Entity(5), "Man, you're not nice.\nI'm disappointed!\n");
   return;
 }
 
 section(6) {
   if (trigger(346)) {
-    speak(6, "Hey, you've been in these\nbug battle contests, right?\n");
+    speak(Entity(6), "Hey, you've been in these\nbug battle contests, right?\n");
     showTextbox("Well, I'll teach you\nsomething useful.\n");
     showTextbox("Do you know where Kunemon\nsleeps? In Native Forest?\n");
     showTextbox("Kid Digimons sleep there.\nWhen they wake up, they\nbecome Kunemon.\n");
     showTextbox("But, sometimes they don't.\nIt's a matter of luck.\n");
     return;
   }
-  storeDigimonType(103);
+  storeDigimonType(PStat(103));
   if (pstat[103] == 19 || pstat[103] == 32 || pstat[103] == 51 || pstat[103] == 60) {
   } else {
-    speak(6, "Hey, you've been in these\nbug battle contests, right?\n");
+    speak(Entity(6), "Hey, you've been in these\nbug battle contests, right?\n");
     showTextbox("Uh...The way you are now,\nyou won't make it.\n");
     showTextbox("Well, I'll teach you\nsomething useful.\n");
     showTextbox("Do you know where Kunemon\nsleeps? In Native Forest.\n");
@@ -59,17 +59,17 @@ section(6) {
     showTextbox("But sometimes they don't.\nIt's a matter of luck.\n");
     return;
   }
-  speak(6, "Hey, do you want to enter the\nbug battle contest?\n");
+  speak(Entity(6), "Hey, do you want to enter the\nbug battle contest?\n");
   speak(Entity.Player, "What's that?\n");
-  speak(6, "You gotta sign up by ten\no'clock on the twenty second.\n");
+  speak(Entity(6), "You gotta sign up by ten\no'clock on the twenty second.\n");
   speak(Entity.Player, "Huh???\n");
-  speak(6, "You'll get the details\nthe day of the contest.\n");
-  speak(6, "I wonder what he's?\ntalking about?\n");
+  speak(Entity(6), "You'll get the details\nthe day of the contest.\n");
+  speak(Entity(6), "I wonder what he's?\ntalking about?\n");
   return;
 }
 
 section(7) {
-  speak(7, "We will train hard, but\nwe must rest too.\n");
+  speak(Entity(7), "We will train hard, but\nwe must rest too.\n");
   showTextbox("Shall we rest for an hour?\n");
   setDialogOwner(Entity.Player);
   choice { "Let's rest" -> L1, "No rest" -> L2 }
@@ -92,17 +92,17 @@ section(84) {
   rotate(entity: Entity.Player, to: 2048);
   setTextboxOrigin(-162, 0, 2558);
   callSubroutine(39);
-  speak(200, "<GREEN>Training :\nHammer Machine <WHITE>\n");
+  speak(Entity(200), "<GREEN>Training :\nHammer Machine <WHITE>\n");
   choice { "Start" -> L1, "Explain" -> L2, "Quit" -> L3 }
   return;
 
 L1:
-  setDialogOwner(200);
+  setDialogOwner(Entity(200));
   choice { "Normal" -> L4, "Bonus Try" -> L5, "Never mind" -> L3 }
   return;
 
 L2:
-  speak(200, "Getting hit by the Hammer\nMachine makes you strong.\nDefensive Power goes up.\n");
+  speak(Entity(200), "Getting hit by the Hammer\nMachine makes you strong.\nDefensive Power goes up.\n");
   choice { "Explain again" -> L2, "Start" -> L1, "Quit" -> L3 }
   return;
 
@@ -111,8 +111,8 @@ L3:
 
 L4:
   fadeOutHUD();
-  setPStat(254, 3);
-  setPStat(246, 0);
+  setPStat(PStat(254), 3);
+  setPStat(PStat(246), 0);
   callDigimonSubroutine(214);
   callSubroutine(7);
   return;
@@ -120,8 +120,8 @@ L4:
 L5:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> C?? \nto match three pictures.\n");
-  setPStat(254, 3);
-  setPStat(246, 1);
+  setPStat(PStat(254), 3);
+  setPStat(PStat(246), 1);
   callDigimonSubroutine(214);
   callSubroutine(7);
   setTexboxMode(0, 0);
@@ -132,17 +132,17 @@ section(85) {
   rotate(entity: Entity.Player, to: 2048);
   setTextboxOrigin(823, 0, 2144);
   callSubroutine(39);
-  speak(200, "<GREEN>Training: Treadmill <WHITE>\n");
+  speak(Entity(200), "<GREEN>Training: Treadmill <WHITE>\n");
   choice { "Start" -> L1, "Explain" -> L2, "Quit" -> L3 }
   return;
 
 L1:
-  setDialogOwner(200);
+  setDialogOwner(Entity(200));
   choice { "Normal" -> L4, "Bonus Try" -> L5, "Never mind" -> L3 }
   return;
 
 L2:
-  speak(200, "Run the opposite\nway of the moving belt.\nYour Speed will go up.\n");
+  speak(Entity(200), "Run the opposite\nway of the moving belt.\nYour Speed will go up.\n");
   choice { "Explain again" -> L2, "Start" -> L1, "Quit" -> L3 }
   return;
 
@@ -151,8 +151,8 @@ L3:
 
 L4:
   fadeOutHUD();
-  setPStat(254, 2);
-  setPStat(246, 0);
+  setPStat(PStat(254), 2);
+  setPStat(PStat(246), 0);
   callDigimonSubroutine(214);
   callSubroutine(7);
   return;
@@ -160,8 +160,8 @@ L4:
 L5:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
-  setPStat(254, 2);
-  setPStat(246, 1);
+  setPStat(PStat(254), 2);
+  setPStat(PStat(246), 1);
   callDigimonSubroutine(214);
   callSubroutine(7);
   setTexboxMode(0, 0);

@@ -4,7 +4,7 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  setPStat(254, 0);
+  setPStat(PStat(254), 0);
   callSubroutine(25);
   setObjectsVisibleRange(73, 78, 0);
   setObjectsVisibleRange(79, 83, 1);
@@ -304,10 +304,10 @@ section(52) {
 
 section(5) {
   setStats(tournamentsWon: 99, tournamentWins: 99, tournamentsLost: 99);
-  speak(5, "<WHITE>White White White\n<BLUE>Blue Blue Blue\n<RED>Red Red Red\n<PINK>Pink <GREEN>Green\n<LIGHTBLUE>LightBlue LightBlue\n<YELLOW>Yellow <ORANGE>Orange\n<ORANGE>a <LIGHTBLUE>b <PINK>c <GREEN>d\n");
+  speak(Entity(5), "<WHITE>White White White\n<BLUE>Blue Blue Blue\n<RED>Red Red Red\n<PINK>Pink <GREEN>Green\n<LIGHTBLUE>LightBlue LightBlue\n<YELLOW>Yellow <ORANGE>Orange\n<ORANGE>a <LIGHTBLUE>b <PINK>c <GREEN>d\n");
   pstat[:SavedTime] = time();
-  speak(5, "Right now, <HOUR>: <MINUTE>on\nthe <DAY>th day of\nthe <YEAR>th month.\n");
-  speak(5, "I'm Mr. Warp.\nWhere do you want to go?\n");
+  speak(Entity(5), "Right now, <HOUR>: <MINUTE>on\nthe <DAY>th day of\nthe <YEAR>th month.\n");
+  speak(Entity(5), "I'm Mr. Warp.\nWhere do you want to go?\n");
   setDialogOwner(Entity.Player);
   choice { "Near" -> L1, "Far away" -> L2, "Very far away" -> L3 }
   return;
@@ -369,26 +369,26 @@ L15:
 
 section(6) {
   setStats(lives: 3);
-  speak(5, "Life three\n");
-  speak(6, "I'm Mr. Digivolution.\nWhat do you want to be?\n");
+  speak(Entity(5), "Life three\n");
+  speak(Entity(6), "I'm Mr. Digivolution.\nWhat do you want to be?\n");
   setDialogOwner(Entity.Player);
   choice { "Numemon" -> L1, "Sukamon" -> L2, "Botamon" -> L3 }
   return;
 
 L1:
-  setPStat(254, 11);
+  setPStat(PStat(254), 11);
   callDigimonSubroutine(10);
   waitForEntity(Entity.System);
   return;
 
 L2:
-  setPStat(254, 39);
+  setPStat(PStat(254), 39);
   callDigimonSubroutine(10);
   waitForEntity(Entity.System);
   return;
 
 L3:
-  setPStat(254, 1);
+  setPStat(PStat(254), 1);
   callDigimonSubroutine(10);
   waitForEntity(Entity.System);
   return;
@@ -403,7 +403,7 @@ section(66) {
   if (trigger(75) || trigger(54)) {
     return;
   }
-  setTrigger(75);
+  setTrigger(Trigger(75));
   goto section_8.L2;
   setDialogOwner(Entity.Player);
   choice { "Debug high" -> L1, "Debug initial" -> L2, "To Opening" -> section_8.L2 }
@@ -436,7 +436,7 @@ L2:
 }
 
 section(8) {
-  setDialogOwner(8);
+  setDialogOwner(Entity(8));
   choice { "Half dead" -> L1, "Opening mode" -> L2, "Fast forward time" -> L3 }
   return;
 
@@ -445,8 +445,8 @@ L1:
   return;
 
 L2:
-  setTrigger(54);
-  setTrigger(55);
+  setTrigger(Trigger(54));
+  setTrigger(Trigger(55));
   warp(to: Map.TOPN01, spawn: 9, trigger: 255);
   return;
 
@@ -476,104 +476,104 @@ L6:
 
 section(11) {
   if (!trigger(74)) {
-    speak(11, "Would you like some Meat?\n");
+    speak(Entity(11), "Would you like some Meat?\n");
     showTextbox("Oh, I'm sorry.\nI forgot to explain.\n");
     showTextbox("This is a Meat Farm.\nWe grow Meat for everyone.\n");
     speak(Entity.Player, "You grow Meat on a farm?\n");
-    speak(11, "Yes, what's wrong?\n");
+    speak(Entity(11), "Yes, what's wrong?\n");
     speak(Entity.Player, "Nothing...it's alright.\nPlease continue...\n");
-    speak(11, "Jiji and I decided to give\nyou three pieces of Meat\na day, <LIGHTBLUE><PLAYER><WHITE>.\n");
+    speak(Entity(11), "Jiji and I decided to give\nyou three pieces of Meat\na day, <LIGHTBLUE><PLAYER><WHITE>.\n");
     showTextbox("So, here's today's Meat.\n");
   } else {
     goto L1;
   }
   giveItem(Item.Meat, 3);
   if (item[Item.Meat] >= 99) {
-    speak(11, "You got too much Meat.\nI guess you don't\nneed any today.\n");
-    setPStat(31, 1);
+    speak(Entity(11), "You got too much Meat.\nI guess you don't\nneed any today.\n");
+    setPStat(PStat(31), 1);
     return;
   }
   if (item[Item.Meat] >= 97) {
-    speak(11, "You got too much Meat.\nI will take what\nyou can't carry.\n");
+    speak(Entity(11), "You got too much Meat.\nI will take what\nyou can't carry.\n");
     speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
-    setTrigger(74);
-    setPStat(31, 0);
+    setTrigger(Trigger(74));
+    setPStat(PStat(31), 0);
     return;
   }
   if (trigger(0)) {
-    speak(11, "You got too many Items.\n");
+    speak(Entity(11), "You got too many Items.\n");
     return;
   }
   speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
-  setTrigger(74);
-  setPStat(31, 0);
+  setTrigger(Trigger(74));
+  setPStat(PStat(31), 0);
   return;
 
 L1:
   roll(pstat: PStat.RollScratch, max: 9);
   if (pstat[31] >= 1 && pstat[110] <= 0) {
-    speak(11, "We harvested lots of Meat!\nSo I'll give you\nfive pieces of Meat.\n");
+    speak(Entity(11), "We harvested lots of Meat!\nSo I'll give you\nfive pieces of Meat.\n");
   } else {
     goto L2;
   }
   if (item[Item.Meat] >= 99) {
-    speak(11, "You got too much Meat.\nI guess you don't\nneed any today.\n");
+    speak(Entity(11), "You got too much Meat.\nI guess you don't\nneed any today.\n");
     return;
   }
   if (item[Item.Meat] >= 95) {
-    speak(11, "You got too much Meat.\nI'm happy to take\nwhat you can't carry\n");
+    speak(Entity(11), "You got too much Meat.\nI'm happy to take\nwhat you can't carry\n");
     speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
     giveItem(Item.Meat, 5);
-    setTrigger(74);
-    setPStat(31, 0);
+    setTrigger(Trigger(74));
+    setPStat(PStat(31), 0);
     return;
   }
   giveItem(Item.Meat, 5);
   if (trigger(0)) {
-    speak(11, "I'm sorry, but\nyou got too many Items.\n");
+    speak(Entity(11), "I'm sorry, but\nyou got too many Items.\n");
     return;
   }
   speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
-  speak(11, "I'll give you more tomorrow.\n");
-  setPStat(31, 0);
+  speak(Entity(11), "I'll give you more tomorrow.\n");
+  setPStat(PStat(31), 0);
   return;
 
 L2:
   if (pstat[31] >= 1) {
-    speak(11, "Here's today's Meat.\n");
+    speak(Entity(11), "Here's today's Meat.\n");
   } else {
     goto L3;
   }
   if (item[Item.Meat] >= 99) {
-    speak(11, "You got too much Meat.\nI guess you don't\nneed any today.\n");
+    speak(Entity(11), "You got too much Meat.\nI guess you don't\nneed any today.\n");
     return;
   }
   if (item[Item.Meat] >= 97) {
-    speak(11, "You got too much Meat.\nI'm happy to take\nwhat you can't carry.\n");
+    speak(Entity(11), "You got too much Meat.\nI'm happy to take\nwhat you can't carry.\n");
     speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
     giveItem(Item.Meat, 3);
-    setTrigger(74);
-    setPStat(31, 0);
+    setTrigger(Trigger(74));
+    setPStat(PStat(31), 0);
     return;
   }
   giveItem(Item.Meat, 3);
   if (trigger(0)) {
-    speak(11, "You have too many Items.\n");
+    speak(Entity(11), "You have too many Items.\n");
     return;
   }
   speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
-  speak(11, "I'll give you more tomorrow.\n");
-  setPStat(31, 0);
+  speak(Entity(11), "I'll give you more tomorrow.\n");
+  setPStat(PStat(31), 0);
   return;
 
 L3:
-  speak(11, "What? I gave you Meat today,\nremember?\n");
+  speak(Entity(11), "What? I gave you Meat today,\nremember?\n");
   showTextbox("If you run out of food,\nlook for mushrooms\nin Native Forest.\n");
   return;
 }
 
 section(9) {
-  speak(9, "OK, I'll explain to you the\nsurroundings of this city.\n");
+  speak(Entity(9), "OK, I'll explain to you the\nsurroundings of this city.\n");
   showTextbox("Native Forest\nsurrounds the city.\n");
   showTextbox("The Digimon around there\nare not very strong.\n");
   showTextbox("There's a Training Camp on\nthe west side. I think you\nwill go there often.\n");

@@ -13,23 +13,23 @@ section onEnter(254) {
 }
 
 section(5) {
-  speak(5, "Are you a Digimon?\n");
-  finishEncounter(277);
+  speak(Entity(5), "Are you a Digimon?\n");
+  finishEncounter(Trigger(277));
 }
 
 section(7) {
-  speak(7, "Where you from Homie?!\n");
-  finishEncounter(277);
+  speak(Entity(7), "Where you from Homie?!\n");
+  finishEncounter(Trigger(277));
 }
 
 section(8) {
-  speak(8, "Don't make fun of me!\n");
-  finishEncounter(296);
+  speak(Entity(8), "Don't make fun of me!\n");
+  finishEncounter(Trigger(296));
 }
 
 section(9) {
-  speak(9, "I'm gonna gobble you!\n");
-  finishEncounter(278);
+  speak(Entity(9), "I'm gonna gobble you!\n");
+  finishEncounter(Trigger(278));
 }
 
 section(51) {
@@ -47,14 +47,14 @@ section(51) {
     speak(Entity.Player, "Oh no, if I don't do\nanything, it will dry up...\n");
     showTextbox("I hope it rains...\n");
   } else {
-    setTrigger(186);
+    setTrigger(Trigger(186));
     speak(Entity.Player, "Wow, interesting.\nIt's sprouting.\n");
     delay(20);
-    anim(Entity.Player, 16, wait: 20);
+    anim(Entity.Player, Animation(16), wait: 20);
     speak(Entity.Player, "It moved a little bit.\nIs this the mysterious plant\neveryone is talking about?\n");
-    anim(Entity.Player, 22, wait: 20);
+    anim(Entity.Player, Animation(22), wait: 20);
     speak(Entity.Player, "It's wilting. If I don't\ndo anything, it'll die.\n");
-    playAnimation(Entity.Player, 0);
+    playAnimation(Entity.Player, Animation(0));
   }
   speak(Entity.System, "Gonna use some Items?\n");
   setDialogOwner(Entity.Player);
@@ -62,7 +62,7 @@ section(51) {
   goto L6;
 
 L1:
-  setTrigger(3);
+  setTrigger(Trigger(3));
   callSubroutine(0);
   if (trigger(3)) {
     speak(Entity.Player, "I don't have anything now.\n");
@@ -82,107 +82,106 @@ L1:
   }
   loadDigimon(Digimon.NPCVegimon);
   setObjectsVisibleRange(3, 15, 0);
-  setPStat(247, 3);
-  setPStat(248, 13);
+  setPStat(PStat(247), 3);
+  setPStat(PStat(248), 13);
   callSubroutine(21);
   setObjectsVisibleRange(16, 19, 0);
-  setPStat(247, 16);
-  setPStat(248, 4);
+  setPStat(PStat(247), 16);
+  setPStat(PStat(248), 4);
   callSubroutine(21);
   setObjectsVisibleRange(20, 32, 0);
-  setPStat(247, 20);
-  setPStat(248, 13);
+  setPStat(PStat(247), 20);
+  setPStat(PStat(248), 13);
   callSubroutine(21);
   delay(50);
   sfx(8, 1, wait: 100);
   setObjectsVisibleRange(3, 32, 1);
   setObjectsVisibleRange(33, 76, 0);
-  setPStat(247, 33);
-  setPStat(248, 44);
+  setPStat(PStat(247), 33);
+  setPStat(PStat(248), 44);
   callSubroutine(21);
   delay(30);
   setObjectsVisibleRange(0, 3, 1);
   delay(40);
   playSound(8, 2);
-  setDigimon(Digimon.NPCVegimon, 1, 0);
+  setDigimon(Digimon.NPCVegimon, Entity(1), 0);
   delay(5);
-  playAnimation(6, 28);
-  waitForEntity(6);
-  anim(6, 0, wait: 20);
+  playAnimation(Entity(6), Animation(28));
+  waitForEntity(Entity(6));
+  anim(Entity(6), Animation(0), wait: 20);
   setObjectsVisibleRange(33, 75, 1);
-  anim(Entity.Player, 15, wait: 10);
+  anim(Entity.Player, Animation(15), wait: 10);
   playSound(8, 2);
-  anim(6, 28, wait: 20);
+  anim(Entity(6), Animation(28), wait: 20);
   playSound(8, 2);
-  playAnimation(6, 28);
-  move(entity: 6, to: (-977, -1946), animDuration: 3);
+  playAnimation(Entity(6), Animation(28));
+  move(entity: Entity(6), to: (-977, -1946), animDuration: 3);
   delay(20);
   playSound(8, 2);
-  playAnimation(6, 28);
-  move(entity: 6, to: (-1254, -2263), animDuration: 3);
+  playAnimation(Entity(6), Animation(28));
+  move(entity: Entity(6), to: (-1254, -2263), animDuration: 3);
   delay(20);
   playSound(8, 2);
-  playAnimation(6, 28);
-  move(entity: 6, to: (-1025, -2799), animDuration: 3);
+  playAnimation(Entity(6), Animation(28));
+  move(entity: Entity(6), to: (-1025, -2799), animDuration: 3);
   delay(20);
   playSound(8, 2);
-  playAnimation(6, 28);
-  move(entity: 6, to: (-1025, -2349), animDuration: 3);
+  playAnimation(Entity(6), Animation(28));
+  move(entity: Entity(6), to: (-1025, -2349), animDuration: 3);
   delay(20);
-  look(entity: 6, at: Entity.Player);
+  look(entity: Entity(6), at: Entity.Player);
   delay(5);
-  speak(6, "He he he.\n");
+  speak(Entity(6), "He he he.\n");
   showTextbox("Hey, I'm Vegiemon!\n");
-  anim(Entity.Player, 15, wait: 20);
+  anim(Entity.Player, Animation(15), wait: 20);
   speak(Entity.Player, "What! A plant Digimon?\n");
-  speak(6, "By the way, do you like\nveggies?\n");
+  speak(Entity(6), "By the way, do you like\nveggies?\n");
   playSound(8, 5);
-  anim(Entity.Player, 16, wait: 20);
+  anim(Entity.Player, Animation(16), wait: 20);
   speak(Entity.Player, "Why are you asking me\nabout veggies? Well?\n");
-  setTrigger(49);
+  setTrigger(Trigger(49));
   setSelection(L2, L3);
   showTextbox("I like them\nI don't\n");
   speak(Entity.Player, "Well, I changed my mind.\n");
   return;
 
 L2:
-  unsetTrigger(49);
+  unsetTrigger(Trigger(49));
   playSound(8, 5);
-  speak(6, "Anyone who likes veggies\nmust be a nice guy.\n");
+  speak(Entity(6), "Anyone who likes veggies\nmust be a nice guy.\n");
   goto L4;
 
 L3:
-  unsetTrigger(49);
+  unsetTrigger(Trigger(49));
   playSound(8, 5);
-  speak(6, "No, no!\nVeggies are good!\n");
+  speak(Entity(6), "No, no!\nVeggies are good!\n");
   goto L4;
 
 L4:
   speak(Entity.Player, " ? ? ? \n");
-  speak(6, "Alright, I've decided.\nI'll come with you!\n");
-  anim(Entity.Player, 19, wait: 20);
+  speak(Entity(6), "Alright, I've decided.\nI'll come with you!\n");
+  anim(Entity.Player, Animation(19), wait: 20);
   speak(Entity.Player, "What a persistent guy...\nHey, wait!\n");
   playSound(8, 5);
-  speak(6, "Well, then I won't come!\nBye!\n");
+  speak(Entity(6), "Well, then I won't come!\nBye!\n");
   speak(Entity.Player, "Make up your mind!\n");
-  speak(6, "What do you want me to do?\n");
-  anim(Entity.Player, 20, wait: 10);
+  speak(Entity(6), "What do you want me to do?\n");
+  anim(Entity.Player, Animation(20), wait: 10);
   speak(Entity.Player, "Why don't you come to\nthe city and help us!\n");
-  playAnimation(Entity.Player, 0);
+  playAnimation(Entity.Player, Animation(0));
   playSound(8, 5);
-  speak(6, "Alright, sounds good.\nI've been here way too long.\n");
+  speak(Entity(6), "Alright, sounds good.\nI've been here way too long.\n");
   move(entity: Entity.Player, to: (-1024, -1820), sprint: 1, withCamera: true);
   move(entity: Entity.Partner, to: (-741, -1923), sprint: 1);
   goto L5;
 
 L5:
-  approach(who: 6, x: 911, y: -2266, tries: 10, wait: 10);
+  approach(who: Entity(6), x: 911, y: -2266, tries: 10, wait: 10);
   playSound(8, 3);
   speak(Entity.System, "Vegiemon joins the city!\n");
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  setTrigger(225);
-  addPStat(1, 2);
+  followEntity(Entity.Player, speed: 10);
+  setTrigger(Trigger(225));
+  addPStat(PStat(1), 2);
   return;
 
 L6:

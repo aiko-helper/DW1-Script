@@ -11,12 +11,10 @@ section onEnter(254) {
     delay(20);
     rotate(entity: Entity.Player, to: 1024);
     delay(5);
-    moveCamera(to: (234, 211), slowdown: 30);
-    waitForEntity(200);
+    panTo(x: 234, y: 211, slowdown: 30);
     speak(Entity.Player, "Myotismon is gone.\n");
-    setTrigger(358);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    setTrigger(Trigger(358));
+    followEntity(Entity.Player, speed: 10);
   }
   return;
 }
@@ -24,19 +22,19 @@ section onEnter(254) {
 section(81) {
   if (!trigger(110)) {
     speak(Entity.Player, "Oh!\n");
-    anim(Entity.Player, 12, wait: 20);
+    anim(Entity.Player, Animation(12), wait: 20);
     setObjectVisibility(14, 1);
     giveItem(Item.MansionKey, 1);
     speak(Entity.Player, "I found a key. Maybe it'll\nopen some of those doors.\n");
     speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
     if (trigger(0)) {
       speak(Entity.Player, "I gotta get rid of something.\n");
-      unsetTrigger(3);
+      unsetTrigger(Trigger(3));
       callSubroutine(0);
       callSubroutine(13);
       giveItem(Item.MansionKey, 1);
     }
-    setTrigger(110);
+    setTrigger(Trigger(110));
   } else {
     return;
   }
@@ -48,7 +46,7 @@ section(82) {
     rotate(entity: Entity.Player, to: 2954);
     playSound(8, 3);
     speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
-    setTrigger(111);
+    setTrigger(Trigger(111));
     goto L1;
   }
   if (item[Item.MansionKey] >= 1 || trigger(111)) goto L1;
@@ -79,7 +77,7 @@ section(83) {
     rotate(entity: Entity.Player, to: 2954);
     playSound(8, 3);
     speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
-    setTrigger(113);
+    setTrigger(Trigger(113));
     goto L1;
   }
   if (item[Item.MansionKey] >= 1 || trigger(113)) goto L1;
@@ -98,47 +96,47 @@ L1:
 }
 
 section(60) {
-  setDigimon(Digimon.Devimon, 0, 0);
+  setDigimon(Digimon.Devimon, Entity(0), 0);
   rotate(entity: Entity.Player, to: 906);
   move(entity: Entity.Partner, to: (775, -69), sprint: 1);
   waitForEntity(Entity.Partner);
   rotate(entity: Entity.Partner, to: 906);
   speak(Entity.Player, "Yum, yum....\n");
-  speak(5, "Well.\n");
-  look(entity: 5, at: Entity.Player);
-  speak(5, "Listen to me.\n");
+  speak(Entity(5), "Well.\n");
+  look(entity: Entity(5), at: Entity.Player);
+  speak(Entity(5), "Listen to me.\n");
   speak(Entity.Player, "Yummy, yummy....\n");
-  speak(5, "My guys don't behave anymore.\n");
+  speak(Entity(5), "My guys don't behave anymore.\n");
   showTextbox("I don't think they can\nremember my orders.\n");
   showTextbox("They don't understand now.\nThey should be bringing\nme my meals, but....\n");
   speak(Entity.Player, "Yum, yum....\n");
-  speak(5, "While I was working,\nthey didn't bring my meals,\nso I forgot to eat.\n");
-  look(entity: Entity.Player, at: 5);
+  speak(Entity(5), "While I was working,\nthey didn't bring my meals,\nso I forgot to eat.\n");
+  look(entity: Entity.Player, at: Entity(5));
   speak(Entity.Player, "You're too wrapped up in\nyour work.\n");
-  speak(5, "I'm so embarrassed.\n");
+  speak(Entity(5), "I'm so embarrassed.\n");
   speak(Entity.Player, "I think there's trouble\nin the mansion.\n");
-  speak(5, "Any problem on the island?\nIs everyone like my men?\n");
+  speak(Entity(5), "Any problem on the island?\nIs everyone like my men?\n");
   speak(Entity.Player, "Yes, they're all\nlosing their memory.\n");
-  speak(5, "Do you think someone is\nplanning this?\n");
+  speak(Entity(5), "Do you think someone is\nplanning this?\n");
   speak(Entity.Player, "Hmm?\n");
-  speak(5, "What can I do?\n");
+  speak(Entity(5), "What can I do?\n");
   speak(Entity.Player, "We're building a city to\nunite the hearts of Digimon.\n");
   showTextbox("We're looking for friends.\n");
-  speak(5, "What can I do? My men\nonly have fighting skills.\n");
+  speak(Entity(5), "What can I do? My men\nonly have fighting skills.\n");
   showTextbox("I can't leave them here.\n");
   speak(Entity.Player, "I see.\n");
-  speak(5, "Let me think about it.\nI'm very sorry.\n");
+  speak(Entity(5), "Let me think about it.\nI'm very sorry.\n");
   speak(Entity.Player, "I'll come back again.\nDon't forget to eat.\n");
   return;
   speak(Entity.Player, "Want to enter a match?\n");
-  speak(5, "A match? That's perfect.\nIt will refresh my men.\n");
+  speak(Entity(5), "A match? That's perfect.\nIt will refresh my men.\n");
   speak(Entity.Player, "So, you want to join?\n");
-  speak(5, "Yes, but I still have\nsome research to do.\nI'll go there soon.\n");
+  speak(Entity(5), "Yes, but I still have\nsome research to do.\nI'll go there soon.\n");
 }
 
 section(5) {
   if (trigger(226)) {
-    speak(5, "Thanks for your help.\nI'll show you my research.\n");
+    speak(Entity(5), "Thanks for your help.\nI'll show you my research.\n");
     showTextbox("Sometimes, if MetalGreymon\nfades away, he'll ");
     dead_string("?reymon\ndigivolve into SkullGreymon.\n");
     showTextbox("Bakemon, Devimon and\nPhoenixmon also digivolve\nthat way.\n");
@@ -146,18 +144,18 @@ section(5) {
     return;
   }
   if (trigger(266)) {
-    speak(5, "The matches have\nhelped my men.\n");
+    speak(Entity(5), "The matches have\nhelped my men.\n");
     showTextbox("A match is a good\nbreak from my research.\n");
     speak(Entity.Player, "What's the research about?\n");
     return;
   }
   if (trigger(205)) {
-    speak(5, "An Arena has been\nmade in the city!\n");
-    speak(5, "I wonder if my men\ncould help?\n");
+    speak(Entity(5), "An Arena has been\nmade in the city!\n");
+    speak(Entity(5), "I wonder if my men\ncould help?\n");
     speak(Entity.Player, "Yes, they can be as\nforceful as they want.\n");
-    setTrigger(266);
+    setTrigger(Trigger(266));
   } else {
-    speak(5, "My men's condition is worse.\nIt's time to leave\nthe mansion.\n");
+    speak(Entity(5), "My men's condition is worse.\nIt's time to leave\nthe mansion.\n");
     return;
   }
   return;

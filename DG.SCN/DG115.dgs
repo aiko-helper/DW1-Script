@@ -9,9 +9,9 @@ section onEnter(254) {
   spawnItemChance(max: 99, chance: 3, item: Item.Digipine, x: 35, y: 64);
   spawnItemChance(max: 99, chance: 0, item: Item.CalmBerry, x: 67, y: 32);
   if (trigger(147)) {
-    move(entity: 5, to: (-2017, 1378), animDuration: 3);
-    waitForEntity(20);
-    rotate(entity: 5, to: 0);
+    move(entity: Entity(5), to: (-2017, 1378), animDuration: 3);
+    waitForEntity(Entity(20));
+    rotate(entity: Entity(5), to: 0);
     delay(5);
   }
   return;
@@ -19,7 +19,7 @@ section onEnter(254) {
 
 section(51) {
   if (!trigger(147)) {
-    setTrigger(147);
+    setTrigger(Trigger(147));
     goto L1;
     goto L1;
   }
@@ -30,36 +30,36 @@ L1:
   move(entity: Entity.Partner, to: (-1407, 465), sprint: 1);
   waitForEntity(Entity.Partner);
   waitForEntity(Entity.Player);
-  look(entity: Entity.Player, at: 5);
-  look(entity: 5, at: Entity.Player);
-  look(entity: Entity.Partner, at: 5);
+  look(entity: Entity.Player, at: Entity(5));
+  look(entity: Entity(5), at: Entity.Player);
+  look(entity: Entity.Partner, at: Entity(5));
   playSound(8, 18);
-  speak(5, "Welcome young man.\n");
-  anim(Entity.Player, 20, wait: 15);
+  speak(Entity(5), "Welcome young man.\n");
+  anim(Entity.Player, Animation(20), wait: 15);
   if (trigger(309)) {
     speak(Entity.Player, "You're Cherrymon, right?\n");
   } else {
     speak(Entity.Player, "Who is it?\n");
   }
-  playAnimation(Entity.Player, 0);
-  speak(5, "What do you want with\nan old man like me?\n");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(5), "What do you want with\nan old man like me?\n");
   if (trigger(309)) {
     speak(Entity.Player, "First, clear the fog.\n");
   } else {
     speak(Entity.Player, "I can't see with the fog.\nCan you get rid of it?\n");
   }
   playSound(8, 18);
-  speak(5, "So, that's it. I see.\n");
-  anim(Entity.Player, 19, wait: 15);
+  speak(Entity(5), "So, that's it. I see.\n");
+  anim(Entity.Player, Animation(19), wait: 15);
   speak(Entity.Player, "... can't you do it?\n");
-  playAnimation(Entity.Player, 0);
-  speak(5, "First, listen to what I\ngot to say. Now... \nwhere should I begin?\n");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(5), "First, listen to what I\ngot to say. Now... \nwhere should I begin?\n");
   speak(Entity.Player, "If you know about the\nemergency on the island,\nplease tell me about it.\n");
-  speak(5, "I see, I see.\nThe emergency.\n");
+  speak(Entity(5), "I see, I see.\nThe emergency.\n");
 
 L2:
   playSound(8, 18);
-  speak(5, "This island began to change\neighty years ago after the\nland changes happened.\n");
+  speak(Entity(5), "This island began to change\neighty years ago after the\nland changes happened.\n");
   showTextbox("The northeastern parts of\nthe island suddenly\nappeared eighty years ago.\n");
   showTextbox("Since then, Digimon\nstarted to move away.\nThe species separated.\n");
   showTextbox("And each species started\nto speak their own tongue.\n");
@@ -76,35 +76,35 @@ L2:
   showTextbox("Gather Digimon in the city\nand create a miracle.\nIt will definitely happen.\n");
   showTextbox("Well, I got all worked up.\nPhew, I've said it all.\n");
   if (!trigger(148)) {
-    setTrigger(148);
+    setTrigger(Trigger(148));
     playSound(8, 18);
-    speak(5, "Now, let's get rid of the fog.\n");
+    speak(Entity(5), "Now, let's get rid of the fog.\n");
     callSubroutine(37);
   } else {
     return;
   }
-  speak(5, "The reason for the forest fog\nwas to be able to speak\nto you. Oh, one more thing...\n");
+  speak(Entity(5), "The reason for the forest fog\nwas to be able to speak\nto you. Oh, one more thing...\n");
   playSound(8, 18);
   showTextbox("There are others\nin the forest who know\nabout the past.\n");
   showTextbox("Go deep into the forest\nto find them, if you can.\n");
-  anim(5, 29, wait: 60);
+  anim(Entity(5), Animation(29), wait: 60);
   return;
 }
 
 section(5) {
-  setTrigger(44);
-  speak(5, "Did you come here again\nto hear an old man talk?\n");
+  setTrigger(Trigger(44));
+  speak(Entity(5), "Did you come here again\nto hear an old man talk?\n");
   setDialogOwner(Entity.Player);
   choice { "About the island..." -> L1, "Please train <ORANGE><DIGIMON><WHITE>" -> L2, "Never mind" -> L8 }
   goto L8;
 
 L1:
-  speak(5, "Here's what I have to say.\n");
+  speak(Entity(5), "Here's what I have to say.\n");
   goto section_51.L2;
   return;
 
 L2:
-  speak(5, "Oh, Okay.\n");
+  speak(Entity(5), "Oh, Okay.\n");
   callSubroutine(39);
   setTextboxOrigin(-2017, 0, 1378);
   speak(Entity.System, "<GREEN>Training: The Teachings \nof the Forest <WHITE>\n");
@@ -126,8 +126,8 @@ L5:
 
 L6:
   fadeOutHUD();
-  setPStat(254, 5);
-  setPStat(246, 0);
+  setPStat(PStat(254), 5);
+  setPStat(PStat(246), 0);
   callDigimonSubroutine(214);
   callSubroutine(7);
   return;
@@ -135,15 +135,15 @@ L6:
 L7:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
-  setPStat(254, 5);
-  setPStat(246, 1);
+  setPStat(PStat(254), 5);
+  setPStat(PStat(246), 1);
   callDigimonSubroutine(214);
   callSubroutine(7);
   setTexboxMode(0, 0);
   return;
 
 L8:
-  speak(5, "Ha ha ha.\n");
+  speak(Entity(5), "Ha ha ha.\n");
   return;
   garbage { 10 00 fe 00 10 00 33 00 88 00 05 00 b6 0d ff ff 24 00 6e 63 19 00 0b 00 6e 12 18 00 26 00 19 00 74 2c 38 00 22 00 24 00 6e 63 19 00 0b 00 6e 0c 18 00 3c 00 19 00 74 2c 38 00 50 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 52 00 19 00 74 2f 23 00 40 00 24 00 6e 63 19 00 0b 00 6e 00 18 00 68 00 19 00 74 3d 43 00 20 00 19 00 00 00 93 00 18 00 86 00 19 00 6c 05 1f f8 62 05 03 00 4a 14 4d 05 00 00 67 00 05 00 fe 00 19 00 01 00 93 00 18 00 a0 00 19 00 1c 00 93 00 16 00 a2 00 16 00 a2 00 fe 00 52 fd ba f9 a6 00 01 00 4e fc 81 fa d1 01 01 00 4a fc 4a fd 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 5a 00 08 12 1b 05 1a 00 82 76 82 85 82 8c 82 83 82 8f 82 8d 82 85 81 40 82 99 82 8f 82 95 82 8e 82 87 81 40 82 8d 82 81 82 8e 81 42 0d 00 00 00 56 00 fd 14 67 00 0f 00 19 00 00 00 35 01 18 00 42 01 19 00 1b fd 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 62 82 88 82 85 82 92 82 92 82 99 82 8d 82 8f 82 8e 81 43 81 40 82 92 82 89 82 87 82 88 82 94 81 48 0d 00 00 00 16 00 5e 01 1b fd 1a 00 82 76 82 88 82 8f 81 40 82 89 82 93 81 40 82 89 82 94 81 48 0d 00 00 00 56 00 fd 00 1b 05 1a 00 82 76 82 88 82 81 82 94 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 97 82 89 82 94 82 88 0d 00 82 81 82 8e 81 40 82 8f 82 8c 82 84 81 40 82 8d 82 81 82 8e 81 40 82 8c 82 89 82 8b 82 85 81 40 82 8d 82 85 81 48 0d 00 00 00 19 00 00 00 35 01 18 00 fe 01 19 00 1b fd 1a 00 82 65 82 89 82 92 82 93 82 94 81 43 81 40 82 83 82 8c 82 85 82 81 82 92 81 40 82 94 82 88 82 85 81 40 82 86 82 8f 82 87 81 42 0d 00 00 00 16 00 66 02 1b fd 1a 00 82 68 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 93 82 85 82 85 81 40 82 97 82 89 82 94 82 88 81 40 82 94 82 88 82 85 81 40 82 86 82 8f 82 87 81 42 0d 00 82 62 82 81 82 8e 81 40 82 99 82 8f 82 95 81 40 82 87 82 85 82 94 81 40 82 92 82 89 82 84 81 40 82 8f 82 86 81 40 82 89 82 94 81 48 0d 00 00 00 5a 00 08 12 1b 05 1a 00 82 72 82 8f 81 43 81 40 82 94 82 88 82 81 82 94 81 75 82 93 81 40 82 89 82 94 81 42 81 40 82 68 81 40 82 93 82 85 82 85 81 42 0d 00 00 00 56 00 fd 13 67 00 0f 00 1b fd 1a 00 81 42 81 42 81 42 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 99 82 8f 82 95 81 40 82 84 82 8f 81 40 82 89 82 94 81 48 0d 00 00 00 56 00 fd 00 1b 05 1a 00 82 65 82 89 82 92 82 93 82 94 81 43 81 40 82 8c 82 89 82 93 82 94 82 85 82 8e 81 40 82 94 82 8f 81 40 82 97 82 88 82 81 82 94 81 40 82 68 0d 00 82 87 82 8f 82 94 81 40 82 94 82 8f 81 40 82 93 82 81 82 99 81 42 81 40 82 6d 82 8f 82 97 81 42 81 42 81 42 81 40 0d 00 82 97 82 88 82 85 82 92 82 85 81 40 82 93 82 88 82 8f 82 95 82 8c 82 84 81 40 82 68 81 40 82 82 82 85 82 87 82 89 82 8e 81 48 0d 00 00 00 1b fd 1a 00 82 68 82 86 81 40 82 99 82 8f 82 95 81 40 82 8b 82 8e 82 8f 82 97 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 94 82 88 82 85 0d 00 82 85 82 8d 82 85 82 92 82 87 82 85 82 8e 82 83 82 99 81 40 82 8f 82 8e 81 40 82 94 82 88 82 85 81 40 82 89 82 93 82 8c 82 81 82 8e 82 84 81 43 0d 00 82 90 82 8c 82 85 82 81 82 93 82 85 81 40 82 94 82 85 82 8c 82 8c 81 40 82 8d 82 85 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 89 82 94 81 42 0d 00 00 00 1b 05 1a 00 82 68 81 40 82 93 82 85 82 85 81 43 81 40 82 68 81 40 82 93 82 85 82 85 81 42 0d 00 82 73 82 88 82 85 81 40 82 85 82 8d 82 85 82 92 82 87 82 85 82 8e 82 83 82 99 81 42 0d 00 00 00 5a 00 08 12 1b 05 1a 00 82 73 82 88 82 89 82 93 81 40 82 89 82 93 82 8c 82 81 82 8e 82 84 81 40 82 82 82 85 82 87 82 81 82 8e 81 40 82 94 82 8f 81 40 82 83 82 88 82 81 82 8e 82 87 82 85 0d 00 82 85 82 89 82 87 82 88 82 94 82 99 81 40 82 99 82 85 82 81 82 92 82 93 81 40 82 81 82 87 82 8f 81 40 82 81 82 86 82 94 82 85 82 92 81 40 82 94 82 88 82 85 0d 00 82 8c 82 81 82 8e 82 84 81 40 82 83 82 88 82 81 82 8e 82 87 82 85 82 93 81 40 82 88 82 81 82 90 82 90 82 85 82 8e 82 85 82 84 81 42 0d 00 00 00 1a 00 82 73 82 88 82 85 81 40 82 8e 82 8f 82 92 82 94 82 88 82 85 82 81 82 93 82 94 82 85 82 92 82 8e 81 40 82 90 82 81 82 92 82 94 82 93 81 40 82 8f 82 86 0d 00 82 94 82 88 82 85 81 40 82 89 82 93 82 8c 82 81 82 8e 82 84 81 40 82 93 82 95 82 84 82 84 82 85 82 8e 82 8c 82 99 0d 00 82 81 82 90 82 90 82 85 82 81 82 92 82 85 82 84 81 40 82 85 82 89 82 87 82 88 82 94 82 99 81 40 82 99 82 85 82 81 82 92 82 93 81 40 82 81 82 87 82 8f 81 42 0d 00 00 00 1a 00 82 72 82 89 82 8e 82 83 82 85 81 40 82 94 82 88 82 85 82 8e 81 43 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 0d 00 82 93 82 94 82 81 82 92 82 94 82 85 82 84 81 40 82 94 82 8f 81 40 82 8d 82 8f 82 96 82 85 81 40 82 81 82 97 82 81 82 99 81 42 0d 00 82 73 82 88 82 85 81 40 82 93 82 90 82 85 82 83 82 89 82 85 82 93 81 40 82 93 82 85 82 90 82 81 82 92 82 81 82 94 82 85 82 84 81 42 0d 00 00 00 1a 00 82 60 82 8e 82 84 81 40 82 85 82 81 82 83 82 88 81 40 82 93 82 90 82 85 82 83 82 89 82 85 82 93 81 40 82 93 82 94 82 81 82 92 82 94 82 85 82 84 0d 00 82 94 82 8f 81 40 82 93 82 90 82 85 82 81 82 8b 81 40 82 94 82 88 82 85 82 89 82 92 81 40 82 8f 82 97 82 8e 81 40 82 94 82 8f 82 8e 82 87 82 95 82 85 81 42 0d 00 00 00 5a 00 08 12 1a 00 82 73 82 88 82 85 82 99 81 40 82 86 82 8f 82 92 82 87 82 8f 82 94 81 40 82 94 82 88 82 85 81 40 82 8c 82 81 82 8e 82 87 82 95 82 81 82 87 82 85 0d 00 82 94 82 88 82 85 82 99 81 40 82 95 82 93 }
 }

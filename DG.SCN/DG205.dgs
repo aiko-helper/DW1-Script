@@ -8,23 +8,23 @@ section onEnter(254) {
 }
 
 section(6) {
-  speak(6, "Which shop would you want?\n");
+  speak(Entity(6), "Which shop would you want?\n");
   setDialogOwner(Entity.Player);
   choice { "Clinic" -> L1, "Treasure Hunter" -> L12, "Fortune Teller" -> L24 }
   return;
 
 L1:
-  speak(6, "I changed it into a hospital.\n");
+  speak(Entity(6), "I changed it into a hospital.\n");
   if ((cond & 0x20) == 0x01 || (cond & 0x40) == 0x01) goto L2;
   goto L3;
 
 L2:
-  speak(6, "He doesn't feel well,\ndoes he? You have to take\ncare of his health!\n");
+  speak(Entity(6), "He doesn't feel well,\ndoes he? You have to take\ncare of his health!\n");
   showTextbox("Let me treat him right away.\nFee will be discounted\nto three hundred bits.\n");
   if (money >= 300) {
     reduceMoney(300);
   } else {
-    speak(6, "You don't have enough bits?!\nPay me what you can. Save\nyour money for a rainy day.\n");
+    speak(Entity(6), "You don't have enough bits?!\nPay me what you can. Save\nyour money for a rainy day.\n");
     reduceMoney(300);
   }
   removeCondition(Condition.Injured);
@@ -33,80 +33,80 @@ L2:
   return;
 
 L3:
-  speak(6, "He doesn't look sick or\ninjured. What do you need?\n");
+  speak(Entity(6), "He doesn't look sick or\ninjured. What do you need?\n");
   setDialogOwner(Entity.Player);
   setSelection(L4, L7, L8);
   showTextbox("Check him out\nSell me Medicine\nNothing\n");
 
 L4:
-  speak(6, "OK, let me look at\nhow <ORANGE><DIGIMON><WHITE> is doing.\n");
+  speak(Entity(6), "OK, let me look at\nhow <ORANGE><DIGIMON><WHITE> is doing.\n");
   if (stat[Stat.Tiredness] >= 80) {
-    speak(6, "Oh no. <ORANGE><DIGIMON><WHITE>'s Tiredness\nis at a very dangerous level.\nHe has to rest right now!\n");
+    speak(Entity(6), "Oh no. <ORANGE><DIGIMON><WHITE>'s Tiredness\nis at a very dangerous level.\nHe has to rest right now!\n");
     goto L5;
   }
   if (stat[Stat.Tiredness] >= 50) {
-    speak(6, "<ORANGE><DIGIMON><WHITE> has too much\nTiredness. He should rest\nbefore it's too late.\n");
+    speak(Entity(6), "<ORANGE><DIGIMON><WHITE> has too much\nTiredness. He should rest\nbefore it's too late.\n");
     goto L5;
   }
   if (stat[Stat.Tiredness] >= 20) {
-    speak(6, "<ORANGE><DIGIMON><WHITE> seems to be a bit\ntired. He shouldn't push\nhimself so much.\n");
+    speak(Entity(6), "<ORANGE><DIGIMON><WHITE> seems to be a bit\ntired. He shouldn't push\nhimself so much.\n");
     goto L5;
   }
-  speak(6, "<ORANGE><DIGIMON><WHITE> is fine, but\nTiredness can cause all kinds\nof bad things. Be careful.\n");
+  speak(Entity(6), "<ORANGE><DIGIMON><WHITE> is fine, but\nTiredness can cause all kinds\nof bad things. Be careful.\n");
 
 L5:
-  speak(6, "Well, how does he feel?\n");
+  speak(Entity(6), "Well, how does he feel?\n");
   if (stat[Stat.Happiness] >= 100) {
-    speak(6, "Mentally, <ORANGE><DIGIMON><WHITE> is at\nmax relaxation. He'll\nlive for a long time.\n");
+    speak(Entity(6), "Mentally, <ORANGE><DIGIMON><WHITE> is at\nmax relaxation. He'll\nlive for a long time.\n");
     goto L6;
   }
   if (stat[Stat.Happiness] >= 70) {
-    speak(6, "<ORANGE><DIGIMON><WHITE>'s mental state is\nexcellent. It's the sign\nof a healthy lifestyle.\n");
+    speak(Entity(6), "<ORANGE><DIGIMON><WHITE>'s mental state is\nexcellent. It's the sign\nof a healthy lifestyle.\n");
     goto L6;
   }
   if (stat[Stat.Happiness] >= 30) {
-    speak(6, "<ORANGE><DIGIMON><WHITE> seems to be very\nrelaxed. Did something\nnice happen to him?\n");
+    speak(Entity(6), "<ORANGE><DIGIMON><WHITE> seems to be very\nrelaxed. Did something\nnice happen to him?\n");
     goto L6;
   }
   if (stat[Stat.Happiness] >= 0) {
-    speak(6, "I don't think <ORANGE><DIGIMON><WHITE> is\nfeeling really stressed.\nI would say he's normal.\n");
+    speak(Entity(6), "I don't think <ORANGE><DIGIMON><WHITE> is\nfeeling really stressed.\nI would say he's normal.\n");
     goto L6;
   }
   if (stat[Stat.Happiness] >= -20) {
-    speak(6, "<ORANGE><DIGIMON><WHITE> seems to be stressed\na bit. Go easy on training.\n");
+    speak(Entity(6), "<ORANGE><DIGIMON><WHITE> seems to be stressed\na bit. Go easy on training.\n");
     goto L6;
   }
   if (stat[Stat.Happiness] >= -50) {
-    speak(6, "<ORANGE><DIGIMON><WHITE> has excess stress.\nHe needs some fun.\n");
+    speak(Entity(6), "<ORANGE><DIGIMON><WHITE> has excess stress.\nHe needs some fun.\n");
     goto L6;
   }
   if (stat[Stat.Happiness] >= -80) {
-    speak(6, "<ORANGE><DIGIMON><WHITE> has too much stress\nand isn't happy. He shouldn't\npush himself so much.\n");
+    speak(Entity(6), "<ORANGE><DIGIMON><WHITE> has too much stress\nand isn't happy. He shouldn't\npush himself so much.\n");
     goto L6;
   }
-  speak(6, "<ORANGE><DIGIMON><WHITE> has too much stress!\nIf he goes on like this,\nhe won't live long!\n");
+  speak(Entity(6), "<ORANGE><DIGIMON><WHITE> has too much stress!\nIf he goes on like this,\nhe won't live long!\n");
   goto L6;
 
 L6:
-  speak(6, "Hmmm.... This is the best\nI can do for <ORANGE><DIGIMON><WHITE>.\n");
+  speak(Entity(6), "Hmmm.... This is the best\nI can do for <ORANGE><DIGIMON><WHITE>.\n");
   showTextbox("Do you still need me\nfor something?\n");
   setDialogOwner(Entity.Player);
   choice { "Check him out" -> L4, "Sell me Medicine" -> L7, "Nothing" -> L8 }
   return;
 
 L7:
-  speak(6, "Hmmm, he should be fine.\n");
+  speak(Entity(6), "Hmmm, he should be fine.\n");
   setDialogOwner(Entity.Player);
   choice { "Bandage:    four hund bits" -> L9, "Medicine: twelve hund bits" -> L10, "Don't buy anything" -> L8 }
   return;
 
 L8:
-  speak(6, "When he doesn't feel well,\ncome to see me right away.\n");
+  speak(Entity(6), "When he doesn't feel well,\ncome to see me right away.\n");
   return;
 
 L9:
   if (item[Item.Bandage] < 1 && trigger(0)) {
-    speak(6, "You have a lot of stuff.\n");
+    speak(Entity(6), "You have a lot of stuff.\n");
     return;
   }
   if (money >= 400) {
@@ -114,12 +114,12 @@ L9:
     giveItem(Item.Bandage, 1);
     goto L11;
   }
-  speak(6, "You don't have enough bits.\nI can't sell you that.\n");
+  speak(Entity(6), "You don't have enough bits.\nI can't sell you that.\n");
   return;
 
 L10:
   if (item[Item.Medicine] < 1 && trigger(0)) {
-    speak(6, "You have a lot of stuff.\n");
+    speak(Entity(6), "You have a lot of stuff.\n");
     return;
   }
   if (money >= 1200) {
@@ -127,41 +127,41 @@ L10:
     giveItem(Item.Medicine, 1);
     goto L11;
   }
-  speak(6, "You don't have enough bits.\nI can't sell you that.\n");
+  speak(Entity(6), "You don't have enough bits.\nI can't sell you that.\n");
   return;
 
 L11:
-  speak(6, "Do you still need me\nfor something?\n");
+  speak(Entity(6), "Do you still need me\nfor something?\n");
   setDialogOwner(Entity.Player);
   choice { "Check him out" -> L4, "Sell me Medicine" -> L7, "Nothing" -> L8 }
   return;
 
 L12:
-  speak(6, "I changed jobs to become\nthe Treasure Hunter.\n");
+  speak(Entity(6), "I changed jobs to become\nthe Treasure Hunter.\n");
   if (trigger(178) || trigger(178)) {
   } else {
-    speak(6, "Do you have a request for\nTreasure Hunting? Do you\nwant some information?\n");
+    speak(Entity(6), "Do you have a request for\nTreasure Hunting? Do you\nwant some information?\n");
     setDialogOwner(Entity.Player);
     choice { "Want some info" -> L13, "Don't need any info" -> L14, "Never mind" -> L15 }
     goto L15;
 
 L13:
-    speak(6, "There are two courses with\ndifferent times and prices.\n");
+    speak(Entity(6), "There are two courses with\ndifferent times and prices.\n");
     showTextbox("Reg:three day, one thous bits\nSpec:ten day, five thous bits\n");
     showTextbox("The chances of finding\nbetter treasure is higher\nwith the Special Plan.\n");
     showTextbox("That's about it.\nSo, what do you want to do?\n");
-    setDialogOwner(6);
+    setDialogOwner(Entity(6));
     choice { "Explain again" -> L13, "Find treasure" -> L14, "Nothing" -> L15 }
     goto L15;
 
 L14:
-    speak(6, "Choose a plan!\n");
+    speak(Entity(6), "Choose a plan!\n");
     setDialogOwner(Entity.Player);
     choice { "Reg:three day, one thous bits" -> L16, "Spec:ten day, five thous bits" -> L17, "Cancel" -> L15 }
     goto L15;
 
 L15:
-    speak(6, "OK then, goodbye.\n");
+    speak(Entity(6), "OK then, goodbye.\n");
     return;
 
 L16:
@@ -169,10 +169,10 @@ L16:
       goto L18;
     }
     reduceMoney(1000);
-    setTrigger(178);
-    pstat[30] = time();
-    speak(6, "Alright, you'll get results\nin three days. Wish me luck.\n");
-    roll(pstat: 22, max: 49);
+    setTrigger(Trigger(178));
+    pstat[PStat(30)] = time();
+    speak(Entity(6), "Alright, you'll get results\nin three days. Wish me luck.\n");
+    roll(pstat: PStat(22), max: 49);
     return;
 
 L17:
@@ -180,14 +180,14 @@ L17:
       goto L18;
     }
     reduceMoney(5000);
-    setTrigger(179);
-    pstat[30] = time();
-    speak(6, "Alright, you'll get results\nin three days. Wish me luck.\n");
-    roll(pstat: 23, max: 49);
+    setTrigger(Trigger(179));
+    pstat[PStat(30)] = time();
+    speak(Entity(6), "Alright, you'll get results\nin three days. Wish me luck.\n");
+    roll(pstat: PStat(23), max: 49);
     return;
 
 L18:
-    speak(6, "You don't have enough bits.\nI need some money to\nfind treasure.\n");
+    speak(Entity(6), "You don't have enough bits.\nI need some money to\nfind treasure.\n");
     return;
   }
   if (pstat[30] < 3 && trigger(178)) {
@@ -203,12 +203,12 @@ L19:
   return;
 
 L20:
-  speak(6, "You know what?\nWe got some treasure.\n");
+  speak(Entity(6), "You know what?\nWe got some treasure.\n");
   if (trigger(178)) {
     goto L21;
   }
   if (!trigger(179)) goto L21;
-  unsetTrigger(179);
+  unsetTrigger(Trigger(179));
   goto L23;
 
 L21:
@@ -275,12 +275,12 @@ L21:
 L22:
   loop {
     if (trigger(0)) {
-      speak(6, "Empty your belongings!\n");
+      speak(Entity(6), "Empty your belongings!\n");
       return;
     }
     showTextbox("I got <LIGHTBLUE><TREASURE ITEM><WHITE>!\n");
-    unsetTrigger(178);
-    unsetTrigger(179);
+    unsetTrigger(Trigger(178));
+    unsetTrigger(Trigger(179));
     break;
 
 L23:
@@ -343,7 +343,7 @@ L23:
     giveItem(Item.Omnipotent, 1);
     setPStat(PStat.RollScratch, 9);
   }
-  speak(6, "Thanks for your business!\n");
+  speak(Entity(6), "Thanks for your business!\n");
   return;
 
 L24:

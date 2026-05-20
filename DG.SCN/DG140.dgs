@@ -6,15 +6,15 @@
 section onEnter(254) {
   callSubroutine(41);
   if (trigger(350)) {
-    setPStat(245, 4);
+    setPStat(PStat(245), 4);
     setBGM(22);
-    setPStat(254, 0);
+    setPStat(PStat(254), 0);
     callSubroutine(42);
-    loadAndSetDigimon(Digimon.Hagurumon, 1, 0);
-    move(entity: 6, to: (-100, 1758), animDuration: 1);
-    waitForEntity(6);
-    playAnimation(6, 29);
-    rotate(entity: 6, to: 0);
+    loadAndSetDigimon(Digimon.Hagurumon, Entity(1), 0);
+    move(entity: Entity(6), to: (-100, 1758), animDuration: 1);
+    waitForEntity(Entity(6));
+    playAnimation(Entity(6), Animation(29));
+    rotate(entity: Entity(6), to: 0);
   }
   return;
 }
@@ -33,28 +33,28 @@ section(51) {
 section(5) {
   if (trigger(270) && !trigger(350) && item[Item.Gear] >= 1) {
     removeItem(Item.Gear, 1);
-    loadAndSetDigimon(Digimon.Hagurumon, 1, 0);
-    playAnimation(6, 29);
-    anim(Entity.Player, 15, wait: 20);
+    loadAndSetDigimon(Digimon.Hagurumon, Entity(1), 0);
+    playAnimation(Entity(6), Animation(29));
+    anim(Entity.Player, Animation(15), wait: 20);
     playSound(8, 4);
-    anim(Entity.Player, 16, wait: 15);
+    anim(Entity.Player, Animation(16), wait: 15);
     speak(Entity.Player, "What is it?!\n");
-    playAnimation(Entity.Player, 0);
-    look(entity: Entity.Player, at: 6);
+    playAnimation(Entity.Player, Animation(0));
+    look(entity: Entity.Player, at: Entity(6));
     sfx(8, 9, wait: 10);
-    speak(5, "Oh, welcome back, Hagurumon!\n");
+    speak(Entity(5), "Oh, welcome back, Hagurumon!\n");
     speak(Entity.Player, "Hagurumon?!\n");
     playSound(8, 8);
     moveCamera(to: (-80, 1048), slowdown: 18);
-    move(entity: 6, to: (-100, 1758), animDuration: 20);
-    waitForEntity(6);
-    rotate(entity: 6, to: 0);
+    move(entity: Entity(6), to: (-100, 1758), animDuration: 20);
+    waitForEntity(Entity(6));
+    rotate(entity: Entity(6), to: 0);
     delay(5);
-    playAnimation(6, 30);
-    anim(Entity.Player, 16, wait: 15);
+    playAnimation(Entity(6), Animation(30));
+    anim(Entity.Player, Animation(16), wait: 15);
     speak(Entity.Player, "What's going on?!\n");
-    playAnimation(Entity.Player, 0);
-    setPStat(254, 1);
+    playAnimation(Entity.Player, Animation(0));
+    setPStat(PStat(254), 1);
     callSubroutine(42);
     goto L1;
   }
@@ -62,108 +62,107 @@ section(5) {
 
 L1:
   moveCamera(to: (-80, 1048), slowdown: 18);
-  setPStat(245, 4);
+  setPStat(PStat(245), 4);
   setBGM(22);
-  move(entity: 7, to: (248, -447), sprint: 0);
-  move(entity: 8, to: (-747, 459), sprint: 0);
-  waitForEntity(7);
-  waitForEntity(8);
-  for x in [5, 7, 8] {
-    playAnimation(x, 29);
+  move(entity: Entity(7), to: (248, -447), sprint: 0);
+  move(entity: Entity(8), to: (-747, 459), sprint: 0);
+  waitForEntity(Entity(7));
+  waitForEntity(Entity(8));
+  for x in [Entity(5), Entity(7), Entity(8)] {
+    playAnimation(x, Animation(29));
   }
   delay(10);
   playSound(8, 9);
   speak(Entity.System, "<YELLOW>Toys <WHITE>\nIt's an old tale.\nA bad guy came from\nfar away to this island.\n");
-  for x in [5, 7, 8] {
-    playAnimation(x, 29);
+  for x in [Entity(5), Entity(7), Entity(8)] {
+    playAnimation(x, Animation(29));
   }
   delay(10);
   playSound(8, 9);
   speak(Entity.System, "<YELLOW>Toys <WHITE>\nThe bad guys told Digimon:\nThis island is ours.\n");
-  for x in [5, 7, 8] {
-    playAnimation(x, 29);
+  for x in [Entity(5), Entity(7), Entity(8)] {
+    playAnimation(x, Animation(29));
   }
   delay(10);
   playSound(8, 9);
   speak(Entity.System, "<YELLOW>Toys <WHITE>\nDigimon told them:\nThat's not true. This island\nis for everybody.\n");
-  for x in [5, 7, 8] {
-    playAnimation(x, 29);
+  for x in [Entity(5), Entity(7), Entity(8)] {
+    playAnimation(x, Animation(29));
   }
   delay(10);
   playSound(8, 9);
   speak(Entity.System, "<YELLOW>Toys <WHITE>\nBecause Digimons unified and\nchallenged the bad guys, the\nbad guys were taught a lesson.\n");
-  for x in [5, 7, 8] {
-    playAnimation(x, 29);
+  for x in [Entity(5), Entity(7), Entity(8)] {
+    playAnimation(x, Animation(29));
   }
   delay(10);
   playSound(8, 9);
   speak(Entity.System, "<YELLOW>Toys <WHITE>\nBut the bad guys said:\nWait, we'll get you later.\n...and they disappeared.\n");
-  for x in [5, 7, 8] {
-    playAnimation(x, 29);
+  for x in [Entity(5), Entity(7), Entity(8)] {
+    playAnimation(x, Animation(29));
   }
   delay(10);
   playSound(8, 9);
   speak(Entity.System, "<YELLOW>Toys <WHITE>\nIt's an old tale.\n");
-  for x in [5, 7, 8] {
-    playAnimation(x, 0);
+  for x in [Entity(5), Entity(7), Entity(8)] {
+    playAnimation(x, Animation(0));
   }
   delay(10);
   if (trigger(350)) {
     return;
   }
-  setTrigger(350);
+  setTrigger(Trigger(350));
   speak(Entity.Player, "Hmmm, I feel joyous...\nOh, wait up.\n");
   showTextbox("That story from the song\nis an old tale of this\nisland, isn't it?\n");
   showTextbox("About the Digimon\ndefeating the bad guys...\n");
   showTextbox("Hmmm, I wonder who the\nbad guys were in the story?\n");
   playSound(8, 8);
-  speak(5, "Thanks for helping me.\nThis is to show my gratitude.\n");
-  setTrigger(214);
-  addPStat(1, 3);
+  speak(Entity(5), "Thanks for helping me.\nThis is to show my gratitude.\n");
+  setTrigger(Trigger(214));
+  addPStat(PStat(1), 3);
   playSound(8, 10);
   speak(Entity.System, "Monzaemon's Stuffed\nAnimal joins the city!\n");
-  moveCamera(to: Entity.Player, speed: 15);
-  waitForEntity(200);
-  setPStat(254, 0);
+  followEntity(Entity.Player, speed: 15);
+  setPStat(PStat(254), 0);
   callSubroutine(42);
   return;
 
 L2:
   if (trigger(270) && trigger(350) && item[Item.Gear] < 1 && !trigger(350)) {
-    speak(5, "Wait, didn't WaruMonzaemon\ndrop something?\n");
+    speak(Entity(5), "Wait, didn't WaruMonzaemon\ndrop something?\n");
     return;
   }
   if (trigger(349) && !trigger(270)) {
-    speak(5, "Good luck!\nIt's the house next door!\n");
+    speak(Entity(5), "Good luck!\nIt's the house next door!\n");
     return;
   }
-  storeDigimonType(103);
+  storeDigimonType(PStat(103));
   if (pstat[103] == 14 && !trigger(349)) {
     goto L3;
   } else {
-    speak(5, "......\n");
+    speak(Entity(5), "......\n");
     return;
   }
   if (!trigger(350)) goto L3;
-  speak(5, "Are we going to listen\nto the chorus again?\n");
+  speak(Entity(5), "Are we going to listen\nto the chorus again?\n");
   setDialogOwner(Entity.Player);
   choice { "Yes" -> L1, "No" -> L4 }
   return;
 
 L3:
-  setTrigger(349);
-  speak(5, "Oh, Monzaemon!\nYou're back alive!\n");
+  setTrigger(Trigger(349));
+  speak(Entity(5), "Oh, Monzaemon!\nYou're back alive!\n");
   speak(Entity.Player, "Wow, what is it?\n");
-  speak(5, "Go fight WaruMonzaemon!\nQuickly, everybody get\nmoving! Quick, quick!\n");
+  speak(Entity(5), "Go fight WaruMonzaemon!\nQuickly, everybody get\nmoving! Quick, quick!\n");
   speak(Entity.Player, "Wait...wait! He's not the\nMonzaemon you all know.\n");
-  speak(5, "Huh? What do you mean? But \nhe is a Monzaemon, right?\n");
-  anim(Entity.Player, 25, wait: 15);
+  speak(Entity(5), "Huh? What do you mean? But \nhe is a Monzaemon, right?\n");
+  anim(Entity.Player, Animation(25), wait: 15);
   speak(Entity.Player, "Yeah, it's true that\nhe's a Monzaemon.\n");
-  playAnimation(Entity.Player, 0);
-  speak(5, "A bad guy called WaruMonzaemon\nkidnapped my friends.\n");
-  speak(5, "I think the only one who can\ndefeat him is Monzaemon!\n");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(5), "A bad guy called WaruMonzaemon\nkidnapped my friends.\n");
+  speak(Entity(5), "I think the only one who can\ndefeat him is Monzaemon!\n");
   speak(Entity.Player, "Hmm, then we got to find that\nbad guy. Where is he?\n");
-  speak(5, "He's next door. I'll unlock\nthe seal at the door.\n");
+  speak(Entity(5), "He's next door. I'll unlock\nthe seal at the door.\n");
   showTextbox("So please go and see\nwhat you can do.\n");
   speak(Entity.Player, "I see. Alright,\nI'll help you!\n");
   return;
@@ -174,14 +173,14 @@ L4:
 
 section(6) {
   playSound(8, 8);
-  speak(6, "Thanks!\n");
+  speak(Entity(6), "Thanks!\n");
   return;
 }
 
 section(7) {
   if (trigger(350)) {
     playSound(8, 9);
-    speak(7, "Thanks!\n");
+    speak(Entity(7), "Thanks!\n");
   }
   return;
 }
@@ -189,7 +188,7 @@ section(7) {
 section(8) {
   if (trigger(350)) {
     playSound(8, 9);
-    speak(8, "Thanks!\n");
+    speak(Entity(8), "Thanks!\n");
   }
   return;
   garbage { 1c 00 fe 00 1c 00 33 00 50 00 05 00 78 00 06 00 5a 0e 07 00 76 0e 08 00 9e 0e ff ff 64 29 19 00 00 00 5e 01 18 00 4e 00 19 00 1e 00 f5 04 5d 16 1e 00 fe 00 64 2a 46 7a 47 7a 01 00 6c 06 9c ff de 06 01 00 4a 06 56 00 06 1d 4d 06 00 00 fe 00 19 00 01 00 5e 01 80 00 0e 01 18 00 76 00 19 00 52 fd cc ff 8a 02 00 00 4a fd 4d fd 11 08 67 00 05 00 16 00 78 00 fe 00 19 00 00 00 0e 01 81 00 5e 01 a4 00 78 02 01 00 18 00 9e 01 19 00 29 00 78 01 46 7a 47 7a 01 00 56 00 06 1d 56 00 fd 0f 67 00 14 00 5a 00 08 04 56 00 fd 10 67 00 0f 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 89 82 93 81 40 82 89 82 94 81 48 81 49 0d 00 00 00 56 00 fd 00 4c 00 fd 06 5a 00 08 09 67 00 0a 00 1b 05 1a 00 82 6e 82 88 81 43 81 40 82 97 82 85 82 8c 82 83 82 8f 82 8d 82 85 81 40 82 82 82 81 82 83 82 8b 81 43 81 40 82 67 82 81 82 87 82 95 82 92 82 95 82 8d 82 8f 82 8e 81 49 0d 00 00 00 1b fd 1a 00 82 67 82 81 82 87 82 95 82 92 82 95 82 8d 82 8f 82 8e 81 48 }

@@ -30,11 +30,11 @@ function storeDigimonType(p: PStat) {
   raw(0x22, p);
 }
 
-function setInventorySize(s) {
+function setInventorySize(s: int) {
   raw(0x23, s);
 }
 
-function setTextboxSize(w, h) {
+function setTextboxSize(w: int, h: int) {
   raw(0x26, 0, w, h);
 }
 
@@ -90,7 +90,7 @@ function waitForEntity(e: Entity) {
   raw(0x4a, e);
 }
 
-function playAnimation(e: Entity, a) {
+function playAnimation(e: Entity, a: Animation) {
   raw(0x56, 0, e, a);
 }
 
@@ -334,6 +334,24 @@ function setObjectsVisibleRange(start, end, vis) {
   for id in start..end {
     setObjectVisibility(id, vis);
   }
+}
+
+// Camera-choreography helpers.  `Entity(200)` is the camera-move completion
+// entity; `waitForEntity(Entity(200))` blocks until the in-flight camera op
+// finishes, which is what every observed `moveCamera + wait` site does.
+
+// Pan the camera to a fixed (x, y) point with the given slowdown, then wait
+// for the move to settle.
+function panTo([PreferNamed] x: int, [PreferNamed] y: int, [PreferNamed] slowdown: int) {
+  moveCamera(to: (x, y), slowdown: slowdown);
+  waitForEntity(Entity(200));
+}
+
+// Snap the camera onto an entity (typically Entity.Player/Entity.Partner) and
+// wait for the move to settle.
+function followEntity(target: Entity, [PreferNamed] speed: int) {
+  moveCamera(to: target, speed: speed);
+  waitForEntity(Entity(200));
 }
 
 function sfx(sound, channel, [PreferNamed] wait) {

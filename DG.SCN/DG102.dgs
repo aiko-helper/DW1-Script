@@ -9,8 +9,8 @@ section onEnter(254) {
 
 section(81, 0x0022) {
   pstat[:SavedTime] = time();
-  look(entity: Entity.Player, at: 5);
-  look(entity: 5, at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(5));
+  look(entity: Entity(5), at: Entity.Player);
   delay(5);
   if (!trigger(37)) {
     goto L1;
@@ -20,109 +20,109 @@ section(81, 0x0022) {
 
 L1:
   if (pstat[106] == 21 && pstat[107] >= 10) {
-    speak(5, "Unfortunately, you're\ntoo late to register.\nWait another year.\n");
+    speak(Entity(5), "Unfortunately, you're\ntoo late to register.\nWait another year.\n");
     return;
   }
   if (pstat[106] in 20..=21) {
   } else {
-    speak(5, "We're between tournaments.\nI don't have anything to do.\n");
+    speak(Entity(5), "We're between tournaments.\nI don't have anything to do.\n");
     return;
   }
   if (pstat[106] == 21 && pstat[107] >= 23) {
-    speak(5, "The tournament just ended.\nWait another year.\n");
+    speak(Entity(5), "The tournament just ended.\nWait another year.\n");
   }
-  storeDigimonType(103);
+  storeDigimonType(PStat(103));
   if (pstat[103] == 19 || pstat[103] == 32 || pstat[103] == 51 || pstat[103] == 60) {
   } else {
-    speak(5, "You're not an insectoid.\nYou can't enter the contest.\n");
+    speak(Entity(5), "You're not an insectoid.\nYou can't enter the contest.\n");
     return;
   }
   if (trigger(37)) goto L2;
-  speak(5, "You want to enter the contest?\n");
-  setDialogOwner(5);
+  speak(Entity(5), "You want to enter the contest?\n");
+  setDialogOwner(Entity(5));
   choice { "Explain" -> L2, "Don't explain" -> L3 }
   goto L3;
 
 L2:
-  speak(5, "On the twenty second,\nthere's a tournament for\nInsectoid Digimon only.\n");
+  speak(Entity(5), "On the twenty second,\nthere's a tournament for\nInsectoid Digimon only.\n");
   showTextbox("You can register for\nthat one right now.\n");
   showTextbox("Unless you're an Insectoid\nDigimon, you can't\nregister for the contest.\n");
   showTextbox("If you win, you'll receive\ndeluxe gifts. Just register.\n");
   goto L3;
 
 L3:
-  setDialogOwner(5);
+  setDialogOwner(Entity(5));
   choice { "Register" -> L7, "Don't register" -> L6 }
   return;
 
 L4:
   if (pstat[106] in 20..=21) {
   } else {
-    speak(5, "We're between tournaments.\nI don't have anything to do.\n");
+    speak(Entity(5), "We're between tournaments.\nI don't have anything to do.\n");
     return;
   }
   if (pstat[106] == 21 && pstat[107] >= 23) {
-    speak(5, "The tournament just ended.\nWait another year.\n");
+    speak(Entity(5), "The tournament just ended.\nWait another year.\n");
   }
-  speak(5, "You're scheduled to\nregister in  ' - <SELECTED TOURNAMENT>- '.\nDo you want to cancel?\n");
+  speak(Entity(5), "You're scheduled to\nregister in  ' - <SELECTED TOURNAMENT>- '.\nDo you want to cancel?\n");
   setDialogOwner(Entity.Player);
   choice { "I won't cancel" -> L6, "I'll cancel" -> L5 }
   return;
 
 L5:
-  unsetTrigger(37);
-  speak(5, "I canceled.\n");
+  unsetTrigger(Trigger(37));
+  speak(Entity(5), "I canceled.\n");
   return;
 
 L6:
-  speak(5, "Sure you want to do that?\n");
+  speak(Entity(5), "Sure you want to do that?\n");
   return;
 
 L7:
   callSubroutine(33);
-  speak(5, "I registered.\n");
+  speak(Entity(5), "I registered.\n");
   return;
 }
 
 section(51) {
   pstat[:SavedTime] = time();
   if (pstat[106] != 21) {
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Player, at: 5);
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
     delay(5);
-    speak(5, "There's no tournament today.\n");
+    speak(Entity(5), "There's no tournament today.\n");
     move(entity: Entity.Player, to: (-126, 546), sprint: 1);
     waitForEntity(Entity.Player);
     return;
   }
   if (!trigger(37)) {
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Player, at: 5);
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
     delay(5);
-    speak(5, "Those who aren't registered\ncan't come in.\n");
+    speak(Entity(5), "Those who aren't registered\ncan't come in.\n");
     move(entity: Entity.Player, to: (-126, 546), sprint: 1);
     waitForEntity(Entity.Player);
     return;
   }
   if (pstat[107] < 10) {
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Player, at: 5);
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
     delay(5);
-    speak(5, "It's not open yet. Register\non the twenty second, between\nten am and eleven pm.\n");
+    speak(Entity(5), "It's not open yet. Register\non the twenty second, between\nten am and eleven pm.\n");
     move(entity: Entity.Player, to: (-126, 546), sprint: 1);
     waitForEntity(Entity.Player);
     return;
   }
   if (pstat[107] >= 23) {
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Player, at: 5);
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
     delay(5);
-    speak(5, "Too bad, the tournament is\nover. Come again next year.\n");
+    speak(Entity(5), "Too bad, the tournament is\nover. Come again next year.\n");
     move(entity: Entity.Player, to: (-126, 546), sprint: 1);
     waitForEntity(Entity.Player);
     return;
   }
-  setPStat(254, 5);
+  setPStat(PStat(254), 5);
   callSubroutine(6);
   pstat[:SavedTime] = time();
   addMinutesToDate(PStat.SavedTime, 360);
@@ -139,17 +139,17 @@ L1:
 }
 
 section(82) {
-  unsetTrigger(37);
+  unsetTrigger(Trigger(37));
   if (pstat[255] == 3) {
   } else {
     if (pstat[255] == 2) {
       goto L1;
     }
-    speak(5, "Too bad.\nIt'll have to be next year.\n");
+    speak(Entity(5), "Too bad.\nIt'll have to be next year.\n");
     speak(Entity.System, "I got a <LIGHTBLUE>Giant Meat <WHITE>\nfor participating!\n");
     giveItem(Item.GiantMeat, 1);
     if (trigger(0)) {
-      speak(5, "Too much stuff.\nThrow some away.\n");
+      speak(Entity(5), "Too much stuff.\nThrow some away.\n");
       inventoryFullBailout();
       giveItem(Item.GiantMeat, 1);
     }
@@ -160,7 +160,7 @@ section(82) {
   speak(Entity.System, "Championship prize money :\nfive thous bits.\nI got a <LIGHTBLUE>Beetle Pearl <WHITE>\nas a championship prize!\n");
   giveItem(Item.Beetlepearl, 1);
   if (trigger(0)) {
-    speak(5, "Too much stuff!\n");
+    speak(Entity(5), "Too much stuff!\n");
     inventoryFullBailout();
     giveItem(Item.Beetlepearl, 1);
   }
@@ -172,9 +172,9 @@ L1:
     addMoney(2000);
     speak(Entity.System, "Second place prize money :\ntwo thous bits!\nI got a <LIGHTBLUE>Horn Helmet <WHITE>\nas a second place prize!\n");
     giveItem(Item.HornHelmet, 1);
-    setTrigger(346);
+    setTrigger(Trigger(346));
     if (trigger(0)) {
-      speak(5, "Too much stuff!\n");
+      speak(Entity(5), "Too much stuff!\n");
       inventoryFullBailout();
       giveItem(Item.HornHelmet, 1);
     }
@@ -185,7 +185,7 @@ L1:
     speak(Entity.System, "Second place prize money:\ntwo thous bits!\nI got <LIGHTBLUE>Scissor Jaw <WHITE>\nas a second place prize!\n");
     giveItem(Item.ScissorJaw, 1);
     if (trigger(0)) {
-      speak(5, "Too much stuff!\n");
+      speak(Entity(5), "Too much stuff!\n");
       inventoryFullBailout();
       giveItem(Item.ScissorJaw, 1);
     }

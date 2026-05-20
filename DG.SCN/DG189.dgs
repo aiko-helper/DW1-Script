@@ -10,26 +10,26 @@ section onEnter(254) {
   spawnItemChance(max: 99, chance: 14, item: Item.Digimushroom, x: 63, y: 55);
   spawnItemChance(max: 99, chance: 5, item: Item.Happymushroom, x: 56, y: 65);
   if (!trigger(233) && trigger(53)) {
-    playAnimation(5, 28);
+    playAnimation(Entity(5), Animation(28));
   }
   return;
 }
 
 section(5) {
-  setTrigger(44);
+  setTrigger(Trigger(44));
   if (trigger(229)) {
     playSound(8, 9);
-    speak(5, "Did you bring something\nto treat the wound?\n");
+    speak(Entity(5), "Did you bring something\nto treat the wound?\n");
     speak(Entity.Player, "Wait a second. Let me see...\n");
   } else {
     playSound(8, 9);
-    speak(5, "My wing hurts!\n");
+    speak(Entity(5), "My wing hurts!\n");
     speak(Entity.Player, "What happened?\n");
-    speak(5, "I hurt my wing. Do you got\nsomething to treat my wound?\n");
+    speak(Entity(5), "I hurt my wing. Do you got\nsomething to treat my wound?\n");
     speak(Entity.Player, "It looks bad. Hold on.\nWhat should I do?\n");
   }
-  anim(Entity.Player, 4, wait: 10);
-  setTrigger(3);
+  anim(Entity.Player, Animation(4), wait: 10);
+  setTrigger(Trigger(3));
   callSubroutine(0);
   if (trigger(3)) {
     speak(Entity.Player, "I got nothing right now.\n");
@@ -48,43 +48,43 @@ section(5) {
   goto L3;
 
 L1:
-  anim(Entity.Player, 5, wait: 20);
-  anim(Entity.Player, 0, wait: 5);
+  anim(Entity.Player, Animation(5), wait: 20);
+  anim(Entity.Player, Animation(0), wait: 5);
   playSound(8, 9);
-  speak(5, "It's much better. Thanks.\n");
-  playAnimation(5, 29);
-  waitForEntity(5);
+  speak(Entity(5), "It's much better. Thanks.\n");
+  playAnimation(Entity(5), Animation(29));
+  waitForEntity(Entity(5));
   speak(Entity.Player, "Can you fly already?\n");
-  speak(5, "I don't think I can fly far.\n");
+  speak(Entity(5), "I don't think I can fly far.\n");
   speak(Entity.Player, "There's a clinic in city.\nYou should go there.\nIt isn't far from here.\n");
-  speak(5, "I heard about the city.\nIt's bigger than I thought.\n");
+  speak(Entity(5), "I heard about the city.\nIt's bigger than I thought.\n");
   speak(Entity.Player, "Go to the city and rest.\n");
   playSound(8, 9);
-  speak(5, "Thanks. Maybe\nI can help you someday.\n");
+  speak(Entity(5), "Thanks. Maybe\nI can help you someday.\n");
   goto L2;
 
 L2:
   loop {
-    move(entity: 5, to: (-93, -1821), sprint: 1);
+    move(entity: Entity(5), to: (-93, -1821), sprint: 1);
     if (pstat[101] >= 3) break;
     addPStat(PStat.LoopIterator, 1);
     sfx(8, 0, wait: 20);
-    lookPairAt(5);
+    lookPairAt(Entity(5));
   }
-  waitForEntity(5);
-  unloadEntity(5);
+  waitForEntity(Entity(5));
+  unloadEntity(Entity(5));
   setPStat(PStat.LoopIterator, 0);
   playSound(8, 8);
   speak(Entity.System, "Unimon joins the city!\n");
-  setTrigger(233);
-  addPStat(1, 2);
+  setTrigger(Trigger(233));
+  addPStat(PStat(1), 2);
   goto L4;
 
 L3:
   speak(Entity.Player, "I'll bring something to cure\nyour wound. Wait for me.\n");
   playSound(8, 9);
-  speak(5, "Thanks. Please hurry!\n");
-  setTrigger(229);
+  speak(Entity(5), "Thanks. Please hurry!\n");
+  setTrigger(Trigger(229));
   goto L4;
 
 L4:

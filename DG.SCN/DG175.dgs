@@ -8,60 +8,60 @@ section onEnter(254) {
 }
 
 section(81) {
-  look(entity: Entity.Player, at: 5);
-  look(entity: 5, at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(5));
+  look(entity: Entity(5), at: Entity.Player);
   if (trigger(58) || trigger(61) || trigger(60) || trigger(59)) {
     goto L1;
   }
   if (trigger(209) && !trigger(58) && pstat[27] == 0) {
-    speak(5, "Welcome to my restaurant.\n");
+    speak(Entity(5), "Welcome to my restaurant.\n");
     showTextbox("I have decided to be\na manager and chef\nof this restaurant.\n");
     showTextbox("Enjoy my flaming cuisine\nas much as you like.\n");
-    setTrigger(58);
+    setTrigger(Trigger(58));
     return;
   }
   if (trigger(208) && !trigger(61) && pstat[27] == 1) {
-    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>,\nwon't you try my\nhome cooking?\n");
+    speak(Entity(5), "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>,\nwon't you try my\nhome cooking?\n");
     showTextbox("Unlike Items you get, this\nis true cooking. It's my\nsecret talent.\n");
-    setTrigger(61);
+    setTrigger(Trigger(61));
     return;
   }
   if (trigger(222) && !trigger(60) && pstat[27] == 2) {
-    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\nI decided to make living\nwith cooking. I'm good!\n");
+    speak(Entity(5), "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\nI decided to make living\nwith cooking. I'm good!\n");
     showTextbox("You should relax and\neat at my restaurant\nsometime.\n");
-    setTrigger(60);
+    setTrigger(Trigger(60));
     return;
   }
   if (!trigger(223) || trigger(59) || pstat[27] != 3) goto L1;
-  speak(5, "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>.\nMy restaurant is finally\nopen!\n");
+  speak(Entity(5), "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>.\nMy restaurant is finally\nopen!\n");
   showTextbox("Try the frozen dessert!\nIt's my specialty.\n");
-  setTrigger(59);
+  setTrigger(Trigger(59));
   return;
 
 L1:
   if (trigger(209) && !trigger(58) && pstat[27] == 0) {
-    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, I have decided\nto work as a chef\nin this restaurant.\n");
+    speak(Entity(5), "<LIGHTBLUE><PLAYER><WHITE>, I have decided\nto work as a chef\nin this restaurant.\n");
     showTextbox("You can enjoy a\nhot meal here.\n");
-    setTrigger(58);
+    setTrigger(Trigger(58));
     return;
   }
   if (trigger(208) && !trigger(61) && pstat[27] == 1) {
-    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>,\nI'm a professional cook now!\n");
+    speak(Entity(5), "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>,\nI'm a professional cook now!\n");
     showTextbox("If you want to try my\ncooking, you'd better\ncome in the morning!\n");
-    setTrigger(61);
+    setTrigger(Trigger(61));
     return;
   }
   if (trigger(222) && !trigger(60) && pstat[27] == 2) {
-    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\nI decided to make living\nwith cooking. I'm good!\n");
+    speak(Entity(5), "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\nI decided to make living\nwith cooking. I'm good!\n");
     showTextbox("You can eat my special\ncuisine early in the morning\nand the middle of the night.\n");
-    setTrigger(60);
+    setTrigger(Trigger(60));
     return;
   }
   if (trigger(223) && !trigger(59) && pstat[27] == 3) {
-    speak(5, "Hey <LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\n");
+    speak(Entity(5), "Hey <LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\n");
     showTextbox("I decided to help\nthis restaurant.\nThey let me make dessert.\n");
     showTextbox("I'm really proud of\nmy dessert.\nBe sure to try it, OK?\n");
-    setTrigger(59);
+    setTrigger(Trigger(59));
     return;
   }
   if (pstat[27] == 0 || pstat[27] == 1 || pstat[27] == 2) {
@@ -73,12 +73,12 @@ L1:
 
 section(6) {
   if (!trigger(64)) {
-    speak(6, "Wow! Hey <LIGHTBLUE><PLAYER><WHITE>!\nWhat's this machine for?\n");
+    speak(Entity(6), "Wow! Hey <LIGHTBLUE><PLAYER><WHITE>!\nWhat's this machine for?\n");
     showTextbox("Don't be scared! This is\na jukebox that makes my\nheart pump! Alright!\n");
     showTextbox("You should boogie!\nCome on, let loose! I'm\nwaiting for your order!\n");
-    setTrigger(64);
+    setTrigger(Trigger(64));
   }
-  setPStat(254, 6);
+  setPStat(PStat(254), 6);
   callSubroutine(9);
   return;
 }

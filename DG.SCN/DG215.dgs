@@ -9,13 +9,13 @@ section onEnter(254) {
 
 section(6) {
   if (!trigger(93)) {
-    setTrigger(93);
-    speak(6, "Since my injury is healed,\nI want to work. Thanks\nfor taking care of me.\n");
+    setTrigger(Trigger(93));
+    speak(Entity(6), "Since my injury is healed,\nI want to work. Thanks\nfor taking care of me.\n");
     showTextbox("I can predict the future\nof any creature and that's\nwhat I'll do.\n");
     showTextbox("If you're interested, please\ncome to visit my shop.\nI won't charge you.\n");
     return;
   }
-  speak(6, "Are you interested in finding\nout your fortune?\nOK, let me look at it.\n");
+  speak(Entity(6), "Are you interested in finding\nout your fortune?\nOK, let me look at it.\n");
   showTextbox("Hmmm, oh... oh, wow!\n");
   delay(20);
   showTextbox("Well, first of all...\n");
@@ -36,7 +36,7 @@ section(6) {
   goto L5;
 
 L1:
-  speak(6, "Overall, you have\nvery good luck.\n");
+  speak(Entity(6), "Overall, you have\nvery good luck.\n");
   roll(pstat: PStat.RollScratch, max: 2);
   if (pstat[110] <= 0) {
     goto L6;
@@ -47,7 +47,7 @@ L1:
     goto L7;
 
 L2:
-    speak(6, "Overall, it looks quite good.\n");
+    speak(Entity(6), "Overall, it looks quite good.\n");
     roll(pstat: PStat.RollScratch, max: 3);
     if (pstat[110] <= 0) {
       goto L8;
@@ -62,7 +62,7 @@ L2:
     goto L11;
 
 L3:
-    speak(6, "Your overall luck is fair.\n");
+    speak(Entity(6), "Your overall luck is fair.\n");
     roll(pstat: PStat.RollScratch, max: 3);
     if (pstat[110] <= 0) {
       goto L12;
@@ -77,7 +77,7 @@ L3:
     goto L15;
 
 L4:
-    speak(6, "Your overall luck is\nnot so good.\n");
+    speak(Entity(6), "Your overall luck is\nnot so good.\n");
     roll(pstat: PStat.RollScratch, max: 3);
     if (pstat[110] <= 0) {
       goto L16;
@@ -92,7 +92,7 @@ L4:
     goto L19;
 
 L5:
-    speak(6, "Overall, it's not good.\n");
+    speak(Entity(6), "Overall, it's not good.\n");
     roll(pstat: PStat.RollScratch, max: 2);
     if (pstat[110] <= 0) {
       goto L20;
@@ -104,139 +104,139 @@ L5:
     goto L22;
 
 L6:
-    speak(6, "Whatever you do,\nit will go well.\n");
+    speak(Entity(6), "Whatever you do,\nit will go well.\n");
     goto L23;
   }
-  speak(6, "You'll have a wonderful\nchance coming to you.\n");
+  speak(Entity(6), "You'll have a wonderful\nchance coming to you.\n");
   goto L23;
 
 L7:
-  speak(6, "You might have a\nmemorable event.\n");
+  speak(Entity(6), "You might have a\nmemorable event.\n");
   goto L23;
 
 L8:
-  speak(6, "You might find\nan unexpected thing.\n");
+  speak(Entity(6), "You might find\nan unexpected thing.\n");
   goto L23;
 
 L9:
-  speak(6, "Your question will be\nanswered.\n");
+  speak(Entity(6), "Your question will be\nanswered.\n");
   goto L23;
 
 L10:
-  speak(6, "Your wallet will get fatter.\n");
+  speak(Entity(6), "Your wallet will get fatter.\n");
   goto L23;
 
 L11:
-  speak(6, "You might get good news\nfrom your friends.\n");
+  speak(Entity(6), "You might get good news\nfrom your friends.\n");
   goto L23;
 
 L12:
-  speak(6, "Changing your mood may be\ngood for you.\n");
+  speak(Entity(6), "Changing your mood may be\ngood for you.\n");
   goto L23;
 
 L13:
-  speak(6, "Try going somewhere you\ndon't usually go.\n");
+  speak(Entity(6), "Try going somewhere you\ndon't usually go.\n");
   goto L23;
 
 L14:
-  speak(6, "You might have an\ninteresting dream.\n");
+  speak(Entity(6), "You might have an\ninteresting dream.\n");
   goto L23;
 
 L15:
-  speak(6, "Try not spending\ntoo much money.\n");
+  speak(Entity(6), "Try not spending\ntoo much money.\n");
   goto L23;
 
 L16:
-  speak(6, "Your secret may be revealed.\n");
+  speak(Entity(6), "Your secret may be revealed.\n");
   goto L23;
 
 L17:
-  speak(6, "Better to go to bed early.\n");
+  speak(Entity(6), "Better to go to bed early.\n");
   goto L23;
 
 L18:
-  speak(6, "Guard your stuff well.\n");
+  speak(Entity(6), "Guard your stuff well.\n");
   goto L23;
 
 L19:
-  speak(6, "Your friend may get his\nfrustration out on you.\n");
+  speak(Entity(6), "Your friend may get his\nfrustration out on you.\n");
   goto L23;
 
 L20:
-  speak(6, "Multiple disasters may fall.\nupon you...\n");
+  speak(Entity(6), "Multiple disasters may fall.\nupon you...\n");
   goto L23;
 
 L21:
-  speak(6, "You might encounter a\nperson you don't like.\n");
+  speak(Entity(6), "You might encounter a\nperson you don't like.\n");
   goto L23;
 
 L22:
-  speak(6, "A big loss may fall\nupon you...\n");
+  speak(Entity(6), "A big loss may fall\nupon you...\n");
   goto L23;
 
 L23:
   roll(pstat: PStat.RollScratch, max: 9);
   if (pstat[110] <= 0) {
-    speak(6, "Your lucky color is red.\n");
+    speak(Entity(6), "Your lucky color is red.\n");
     goto L24;
   }
   if (pstat[110] <= 1) {
-    speak(6, "Your lucky color is white.\n");
+    speak(Entity(6), "Your lucky color is white.\n");
     goto L24;
   }
   if (pstat[110] <= 2) {
-    speak(6, "Your lucky color is blue.\n");
+    speak(Entity(6), "Your lucky color is blue.\n");
     goto L24;
   }
   if (pstat[110] <= 3) {
-    speak(6, "Your lucky color is black.\n");
+    speak(Entity(6), "Your lucky color is black.\n");
     goto L24;
   }
   if (pstat[110] <= 4) {
-    speak(6, "Your lucky color is green.\n");
+    speak(Entity(6), "Your lucky color is green.\n");
     goto L24;
   }
   if (pstat[110] <= 5) {
-    speak(6, "Your lucky color is gray.\n");
+    speak(Entity(6), "Your lucky color is gray.\n");
     goto L24;
   }
   if (pstat[110] <= 6) {
-    speak(6, "Your lucky color is brown.\n");
+    speak(Entity(6), "Your lucky color is brown.\n");
     goto L24;
   }
   if (pstat[110] <= 7) {
-    speak(6, "Your lucky color is yellow.\n");
+    speak(Entity(6), "Your lucky color is yellow.\n");
     goto L24;
   }
   if (pstat[110] <= 8) {
-    speak(6, "Your lucky color is purple.\n");
+    speak(Entity(6), "Your lucky color is purple.\n");
     goto L24;
   }
   if (pstat[110] > 9) goto L24;
-  speak(6, "Your lucky color is gold.\n");
+  speak(Entity(6), "Your lucky color is gold.\n");
   goto L24;
 
 L24:
-  speak(6, "Finally, about your\ncompatibility with\n<ORANGE><DIGIMON><WHITE>...\n");
+  speak(Entity(6), "Finally, about your\ncompatibility with\n<ORANGE><DIGIMON><WHITE>...\n");
   roll(pstat: PStat.RollScratch, max: 4);
   if (pstat[110] <= 0) {
-    speak(6, "It's a perfect match.\n");
+    speak(Entity(6), "It's a perfect match.\n");
     goto L25;
   }
   if (pstat[110] <= 1) {
-    speak(6, "It's pretty good.\n");
+    speak(Entity(6), "It's pretty good.\n");
     goto L25;
   }
   if (pstat[110] <= 2) {
-    speak(6, "It's ok.\n");
+    speak(Entity(6), "It's ok.\n");
     goto L25;
   }
   if (pstat[110] <= 3) {
-    speak(6, "It's so so.\n");
+    speak(Entity(6), "It's so so.\n");
     goto L25;
   }
   if (pstat[110] > 4) goto L25;
-  speak(6, "It's not bad...\n");
+  speak(Entity(6), "It's not bad...\n");
   goto L25;
 
 L25:

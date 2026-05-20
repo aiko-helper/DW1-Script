@@ -10,33 +10,33 @@ section onEnter(254) {
 }
 
 section(5) {
-  speak(5, "It's not going well!\n");
-  finishEncounter(293);
+  speak(Entity(5), "It's not going well!\n");
+  finishEncounter(Trigger(293));
 }
 
 section(6) {
-  speak(6, "Did you say something?\n");
-  finishEncounter(293);
+  speak(Entity(6), "Did you say something?\n");
+  finishEncounter(Trigger(293));
 }
 
 section(7) {
-  speak(7, "I told you it's impossible.\n");
-  finishEncounter(299);
+  speak(Entity(7), "I told you it's impossible.\n");
+  finishEncounter(Trigger(299));
 }
 
 section(8) {
-  speak(8, "I don't have much confidence.\n");
-  finishEncounter(299);
+  speak(Entity(8), "I don't have much confidence.\n");
+  finishEncounter(Trigger(299));
 }
 
 section(9) {
-  speak(9, "Go easy on me.\n");
-  finishEncounter(299);
+  speak(Entity(9), "Go easy on me.\n");
+  finishEncounter(Trigger(299));
 }
 
 section(10) {
-  speak(10, "Don't make fun of me!\n");
-  finishEncounter(280);
+  speak(Entity(10), "Don't make fun of me!\n");
+  finishEncounter(Trigger(280));
 }
 
 section(81) {
@@ -49,19 +49,19 @@ section(81) {
 
 L1:
   if (!trigger(155)) {
-    anim(Entity.Player, 16, wait: 15);
+    anim(Entity.Player, Animation(16), wait: 15);
     speak(Entity.Player, "It doesn't do anything.\n");
-    playAnimation(Entity.Player, 0);
+    playAnimation(Entity.Player, Animation(0));
     rotate(entity: Entity.Player, to: 2297);
     delay(10);
     rotate(entity: Entity.Player, to: 1785);
     delay(10);
     rotate(entity: Entity.Player, to: 2297);
     showTextbox("There's a rock stuck in\nthe machine. Maybe this is...\n");
-    anim(Entity.Player, 25, wait: 20);
+    anim(Entity.Player, Animation(25), wait: 20);
     speak(Entity.System, "I removed the rock!\n");
     speak(Entity.Player, "That should do it!\n");
-    setTrigger(155);
+    setTrigger(Trigger(155));
     return;
   } else {
     playSound(8, 4);
@@ -90,9 +90,9 @@ L1:
 L2:
   fadeOutHUD();
   if (!trigger(155)) {
-    anim(Entity.Player, 16, wait: 15);
+    anim(Entity.Player, Animation(16), wait: 15);
     speak(Entity.Player, "It doesn't do anything.\n");
-    playAnimation(Entity.Player, 0);
+    playAnimation(Entity.Player, Animation(0));
     rotate(entity: Entity.Player, to: 2297);
     delay(10);
     rotate(entity: Entity.Player, to: 1785);
@@ -102,7 +102,7 @@ L2:
     speak(Entity.System, "I removed the rock!");
     dead_string("?is is...\n");
     speak(Entity.Player, "That should do it.\n");
-    setTrigger(155);
+    setTrigger(Trigger(155));
     return;
   } else {
     playSound(8, 4);
@@ -134,8 +134,8 @@ L3:
 
 section(53) {
   playSound(8, 5);
-  setTrigger(180);
-  unsetTrigger(181);
+  setTrigger(Trigger(180));
+  unsetTrigger(Trigger(181));
   return;
   garbage { 28 00 fe 00 28 00 05 00 56 00 06 00 94 00 07 00 d6 00 08 00 22 01 09 00 72 01 0a 00 a4 01 51 00 e4 01 35 00 84 05 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 3e 00 19 00 74 2c 45 00 31 00 24 00 6e 63 19 00 0b 00 6e 02 18 00 54 00 19 00 74 45 25 00 21 00 fe 00 1b 05 1a 00 82 68 82 94 81 75 82 93 81 40 82 8e 82 8f 82 94 81 40 82 87 82 8f 82 89 82 8e 82 87 81 40 82 97 82 85 82 8c 82 8c 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 25 01 fe 00 1b 06 1a 00 82 63 82 89 82 84 81 40 82 99 82 8f 82 95 81 40 82 93 82 81 82 99 81 40 82 93 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 48 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 25 01 fe 00 1b 07 1a 00 82 68 81 40 82 94 82 8f 82 8c 82 84 81 40 82 99 82 8f 82 95 81 40 82 89 82 94 81 75 82 93 81 40 82 89 82 8d 82 90 82 8f 82 93 82 93 82 89 82 82 82 8c 82 85 81 42 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2b 01 fe 00 1b 08 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 88 82 81 82 96 82 85 81 40 82 8d 82 95 82 83 82 88 81 40 82 83 82 8f 82 8e 82 86 82 89 82 84 82 85 82 8e 82 83 82 85 81 42 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2b 01 fe 00 1b 09 1a 00 82 66 82 8f 81 40 82 85 82 81 82 93 82 99 81 40 82 8f 82 8e 81 40 82 8d 82 85 81 42 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2b 01 fe 00 1b 0a 1a 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 8d 82 81 82 8b 82 85 81 40 82 86 82 95 82 8e 81 40 82 8f 82 86 81 40 82 8d 82 85 81 49 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 4d fd 50 08 67 00 05 00 1b ff 1a 00 82 64 82 8c 82 85 82 96 82 81 82 94 82 8f 82 92 0d 00 00 00 1b fd 10 03 58 02 e6 03 82 05 1a 00 82 67 82 89 82 94 81 40 82 71 82 8f 82 8f 82 86 82 94 82 8f 82 90 0d 00 82 67 82 89 82 94 81 40 82 74 82 90 0d 00 82 63 82 8f 82 8e 81 75 82 94 81 40 82 87 82 85 82 94 81 40 82 8f 82 8e 0d 00 00 00 12 00 16 00 82 05 19 00 01 00 9b 00 18 00 96 03 19 00 56 00 fd 10 67 00 0f 00 }
 }

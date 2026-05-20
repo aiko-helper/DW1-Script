@@ -8,14 +8,13 @@ section onEnter(254) {
 }
 
 section(81) {
-  look(entity: Entity.Player, at: 5);
-  look(entity: 5, at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(5));
+  look(entity: Entity(5), at: Entity.Player);
   delay(5);
-  moveCamera(to: (83, 1113), slowdown: 20);
-  waitForEntity(200);
+  panTo(x: 83, y: 1113, slowdown: 20);
   if (!trigger(91)) {
-    setTrigger(91);
-    speak(5, "Oh, <LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>\nyou came. Look at this great\nFile City Arena. Cool, huh!\n");
+    setTrigger(Trigger(91));
+    speak(Entity(5), "Oh, <LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>\nyou came. Look at this great\nFile City Arena. Cool, huh!\n");
     showTextbox("Soon contestants and fans will\nfill this up. You will also\nbring joy to the fans, right?!\n");
     showTextbox("They'll prepare money and\nprizes for tournament winners.\nYou got nothing to lose.\n");
     showTextbox("For details on the tournament,\ncheck out the machine there.\n");
@@ -28,17 +27,17 @@ L1:
     return;
 
 L2:
-    storeDigimonType(103);
+    storeDigimonType(PStat(103));
     if (pstat[103] == 1 || pstat[103] == 2 || pstat[103] == 15 || pstat[103] == 16) {
-      speak(5, "Oh yeah, In-Training\nDigimon can't enter though.\nShall I check the schedule?\n");
+      speak(Entity(5), "Oh yeah, In-Training\nDigimon can't enter though.\nShall I check the schedule?\n");
       goto L3;
     }
     if (pstat[103] == 29 || pstat[103] == 30 || pstat[103] == 43 || pstat[103] == 44) {
-      speak(5, "Oh yeah, In-Training\nDigimon can't enter though.\nShall I check the schedule?\n");
+      speak(Entity(5), "Oh yeah, In-Training\nDigimon can't enter though.\nShall I check the schedule?\n");
       goto L3;
     }
     if (!trigger(37)) {
-      speak(5, "I'm glad you came. Do you\nwanna enter the tournament?\n");
+      speak(Entity(5), "I'm glad you came. Do you\nwanna enter the tournament?\n");
       goto L3;
     }
     goto L5;
@@ -49,10 +48,9 @@ L3:
     return;
 
 L4:
-    setPStat(254, 5);
+    setPStat(PStat(254), 5);
     callSubroutine(18);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    followEntity(Entity.Player, speed: 10);
     return;
 
 L5:
@@ -63,45 +61,42 @@ L5:
     goto L7;
 
 L6:
-    speak(5, "So you're entering\ntommorrow's\ncompetition, right?\n");
+    speak(Entity(5), "So you're entering\ntommorrow's\ncompetition, right?\n");
     showTextbox("Are you going to cancel\nyour entry?\n");
     setDialogOwner(Entity.Player);
     choice { "No, I won't cancel" -> L1, "Yes, I'm cancelling" -> L9 }
     continue;
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    followEntity(Entity.Player, speed: 10);
     return;
 
 L7:
     pstat[:SavedTime] = time();
     if (pstat[107] in 0..10) {
-      speak(5, "So you've entered today's\ncompetition, right?\nYou can go in from ten am.\n");
+      speak(Entity(5), "So you've entered today's\ncompetition, right?\nYou can go in from ten am.\n");
       showTextbox("You're not planning to cancel,\nare you?!\n");
       setDialogOwner(Entity.Player);
       choice { "No, I won't cancel" -> L1, "Yes, I'm cancelling" -> L9 }
       continue;
-      moveCamera(to: Entity.Player, speed: 10);
-      waitForEntity(200);
+      followEntity(Entity.Player, speed: 10);
       goto L8;
     }
-    speak(5, "So you've entered today's\ncompetition, right?\nGo in by eleven pm.\n");
+    speak(Entity(5), "So you've entered today's\ncompetition, right?\nGo in by eleven pm.\n");
     showTextbox("You're not planning to\ncancel, are you?!\n");
     setDialogOwner(Entity.Player);
     choice { "No, I won't cancel" -> L1, "Yes, I'm cancelling" -> L9 }
   }
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  followEntity(Entity.Player, speed: 10);
 
 L8:
   return;
 
 L9:
-  unsetTrigger(37);
-  speak(5, "Well, I'll cancel for you.\n");
+  unsetTrigger(Trigger(37));
+  speak(Entity(5), "Well, I'll cancel for you.\n");
   return;
 
 L10:
-  speak(5, "Once inside, at start time,\ngo down the left stairs in\norder to compete in battle.\n");
+  speak(Entity(5), "Once inside, at start time,\ngo down the left stairs in\norder to compete in battle.\n");
   showTextbox("Registration is free. You can\nregister for only today's and\ntommorrow's competition.\n");
   showTextbox("However, for that day's\ncompetition, you have to\nregister by ten am.\n");
   showTextbox("You can check the schedule\nfive days ahead, so check it\nand make your plans.\n");
@@ -118,37 +113,34 @@ L10:
 
 section(54) {
   if (!trigger(37) || pstat[3] == 22) {
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Player, at: 5);
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
     delay(5);
-    speak(5, "Hey! You haven't\nregistered, you know!\n");
+    speak(Entity(5), "Hey! You haven't\nregistered, you know!\n");
     move(entity: Entity.Player, to: (-824, 1146), sprint: 1);
     waitForEntity(Entity.Player);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    followEntity(Entity.Player, speed: 10);
     return;
   }
   if (pstat[2] >= 128) {
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Player, at: 5);
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
     delay(5);
-    speak(5, "Hey! The tournament is\ntomorrow, you know!\n");
+    speak(Entity(5), "Hey! The tournament is\ntomorrow, you know!\n");
     move(entity: Entity.Player, to: (-824, 1146), sprint: 1);
     waitForEntity(Entity.Player);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    followEntity(Entity.Player, speed: 10);
     return;
   }
   pstat[:SavedTime] = time();
   if (pstat[107] < 10) {
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Player, at: 5);
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
     delay(5);
-    speak(5, "It's still early to enter.\nWaiting until ten o'clock.\n");
+    speak(Entity(5), "It's still early to enter.\nWaiting until ten o'clock.\n");
     move(entity: Entity.Player, to: (-824, 1146), sprint: 1);
     waitForEntity(Entity.Player);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    followEntity(Entity.Player, speed: 10);
     return;
   }
   roll(pstat: PStat.RollScratch, max: 99);
@@ -159,7 +151,7 @@ section(54) {
   speak(Entity.System, " \n<PINK>Tamer Level went down!<WHITE>\n");
 
 L1:
-  setPStat(254, 5);
+  setPStat(PStat(254), 5);
   callSubroutine(6);
   pstat[:SavedTime] = time();
   addMinutesToDate(PStat.SavedTime, 360);

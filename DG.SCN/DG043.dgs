@@ -6,23 +6,23 @@
 section onEnter(254) {
   spawnItemChance(max: 99, chance: 9, item: Item.Digimushroom, x: 48, y: 68);
   spawnItemChance(max: 99, chance: 3, item: Item.Pricklypear, x: 76, y: 49);
-  unsetTrigger(98);
+  unsetTrigger(Trigger(98));
   return;
 }
 
 section(5) {
-  speak(5, "Daa!\n");
-  finishEncounter(280);
+  speak(Entity(5), "Daa!\n");
+  finishEncounter(Trigger(280));
 }
 
 section(6) {
-  speak(6, "Haa!\n");
-  finishEncounter(280);
+  speak(Entity(6), "Haa!\n");
+  finishEncounter(Trigger(280));
 }
 
 section(7) {
-  speak(7, "Gghhee!\n");
-  finishEncounter(280);
+  speak(Entity(7), "Gghhee!\n");
+  finishEncounter(Trigger(280));
 }
 
 section(81) {
@@ -37,20 +37,20 @@ section(81) {
   showTextbox("Ogre mode : ON\nOgre mode : OFF\n");
 
 L1:
-  setTrigger(197);
+  setTrigger(Trigger(197));
   warp(to: Map.GCAN08_1, spawn: 0, trigger: 255);
   return;
 
 L2:
-  unsetTrigger(197);
+  unsetTrigger(Trigger(197));
   warp(to: Map.GCAN08_1, spawn: 0, trigger: 255);
   return;
 }
 
 section(53) {
   if (!trigger(143) && !trigger(141)) {
-    setTrigger(143);
-    setTrigger(141);
+    setTrigger(Trigger(143));
+    setTrigger(Trigger(141));
     speak(Entity.Player, "What?\n");
     move(entity: Entity.Player, to: (-1048, -498), sprint: 0, withCamera: true);
     delay(20);
@@ -71,7 +71,7 @@ section(53) {
     speak(Entity.Player, "I felt the ground move.\nWas it my imagination?\n");
   }
   if (!trigger(143) && trigger(141)) {
-    setTrigger(142);
+    setTrigger(Trigger(142));
     move(entity: Entity.Player, to: (-1048, -498), sprint: 0, withCamera: true);
     delay(20);
     move(entity: Entity.Partner, to: (-1048, -498), sprint: 0);
@@ -92,19 +92,19 @@ section(53) {
     speak(Entity.Player, "What? No way!\n");
     look(entity: Entity.Player, at: Entity.Partner);
     look(entity: Entity.Partner, at: Entity.Player);
-    setPStat(247, 2);
-    setPStat(248, 2);
+    setPStat(PStat(247), 2);
+    setPStat(PStat(248), 2);
     callSubroutine(21);
     setObjectVisibility(0, 1);
     setObjectVisibility(1, 1);
     setObjectVisibility(2, 0);
     setObjectVisibility(3, 0);
     playSound(8, 8);
-    anim(Entity.Player, 15, wait: 40);
+    anim(Entity.Player, Animation(15), wait: 40);
     setObjectVisibility(2, 1);
     setObjectVisibility(3, 1);
     setObjectVisibility(7, 0);
-    anim(Entity.Player, 26, wait: 2);
+    anim(Entity.Player, Animation(26), wait: 2);
     move(entity: Entity.Partner, axis: 1, to: 5000, speed: 5);
     delay(1);
     move(entity: Entity.Player, axis: 1, to: 5000, speed: 5);
@@ -118,7 +118,7 @@ section(53) {
 }
 
 section(54) {
-  unsetTrigger(143);
+  unsetTrigger(Trigger(143));
   return;
 }
 
@@ -140,8 +140,7 @@ section(51) {
     return;
   }
   rotate(entity: Entity.Player, to: 1944);
-  moveCamera(to: (2000, 173), slowdown: 30);
-  waitForEntity(200);
+  panTo(x: 2000, y: 173, slowdown: 30);
   speak(Entity.Player, "I heard this road is where\nthe bandits attack.\n");
   showTextbox("Let's go, <ORANGE><DIGIMON><WHITE>.\n");
   move(entity: Entity.Player, to: (1925, 468), sprint: 0);
@@ -149,68 +148,67 @@ section(51) {
   waitForPair();
   loadDigimon(Digimon.NPCOgremon);
   loadDigimon(Digimon.Agumon);
-  setDigimon(Digimon.NPCOgremon, 3, 0);
-  setDigimon(Digimon.Agumon, 4, 0);
-  setDigimon(Digimon.Agumon, 5, 0);
-  speak(9, "You-hoo!\n");
+  setDigimon(Digimon.NPCOgremon, Entity(3), 0);
+  setDigimon(Digimon.Agumon, Entity(4), 0);
+  setDigimon(Digimon.Agumon, Entity(5), 0);
+  speak(Entity(9), "You-hoo!\n");
   playSound(8, 11);
-  speak(8, "Ha ha!\n");
-  speak(10, "Yaa-hoo!\n");
+  speak(Entity(8), "Ha ha!\n");
+  speak(Entity(10), "Yaa-hoo!\n");
   delay(10);
   playSound(8, 1);
-  playAnimation(8, 31);
-  move(entity: 8, to: (1000, 1288), animDuration: 30);
-  move(entity: 9, to: (2067, 1561), sprint: 1);
-  move(entity: 10, to: (2059, -383), sprint: 1);
-  for id in 8..10 {
+  playAnimation(Entity(8), Animation(31));
+  move(entity: Entity(8), to: (1000, 1288), animDuration: 30);
+  move(entity: Entity(9), to: (2067, 1561), sprint: 1);
+  move(entity: Entity(10), to: (2059, -383), sprint: 1);
+  for id in Entity(8)..Entity(10) {
     waitForEntity(id);
   }
-  look(entity: 8, at: Entity.Player);
-  look(entity: 9, at: Entity.Player);
-  look(entity: 10, at: Entity.Player);
-  look(entity: Entity.Player, at: 8);
-  look(entity: Entity.Partner, at: 9);
+  look(entity: Entity(8), at: Entity.Player);
+  look(entity: Entity(9), at: Entity.Player);
+  look(entity: Entity(10), at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(8));
+  look(entity: Entity.Partner, at: Entity(9));
   delay(10);
   playSound(8, 11);
-  speak(8, "Give up and leave your stuff!\nOr else!\n");
+  speak(Entity(8), "Give up and leave your stuff!\nOr else!\n");
   speak(Entity.Player, "No, you give up!\n");
-  speak(8, "What?! You...?\n");
-  speak(8, "It can't be.\n");
-  speak(9, "Boss, what'll we do?\n");
-  look(entity: 9, at: 8);
-  speak(8, "Don't worry, we're stronger\nand there's more of us.\nGo get'um!\n");
-  look(entity: 8, at: 9);
-  setTrigger(1);
-  setPStat(250, 1);
-  setPStat(251, 8);
-  setPStat(252, 9);
-  setPStat(253, 10);
+  speak(Entity(8), "What?! You...?\n");
+  speak(Entity(8), "It can't be.\n");
+  speak(Entity(9), "Boss, what'll we do?\n");
+  look(entity: Entity(9), at: Entity(8));
+  speak(Entity(8), "Don't worry, we're stronger\nand there's more of us.\nGo get'um!\n");
+  look(entity: Entity(8), at: Entity(9));
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 8);
+  setPStat(PStat(252), 9);
+  setPStat(PStat(253), 10);
   startBattle();
-  unsetTrigger(1);
-  setPStat(250, 0);
-  look(entity: Entity.Player, at: 8);
-  look(entity: 8, at: Entity.Player);
-  look(entity: Entity.Partner, at: 8);
-  move(entity: 9, to: (1350, 2350), sprint: 1);
-  move(entity: 10, to: (1850, 2350), sprint: 1);
-  waitForEntity(9);
-  waitForEntity(10);
-  unloadEntity(9);
-  unloadEntity(10);
-  speak(8, "I'll get even with\nyou someday!\n");
-  move(entity: 8, to: (1650, 2350), sprint: 1);
-  waitForEntity(8);
-  unloadEntity(8);
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  look(entity: Entity.Player, at: Entity(8));
+  look(entity: Entity(8), at: Entity.Player);
+  look(entity: Entity.Partner, at: Entity(8));
+  move(entity: Entity(9), to: (1350, 2350), sprint: 1);
+  move(entity: Entity(10), to: (1850, 2350), sprint: 1);
+  waitForEntity(Entity(9));
+  waitForEntity(Entity(10));
+  unloadEntity(Entity(9));
+  unloadEntity(Entity(10));
+  speak(Entity(8), "I'll get even with\nyou someday!\n");
+  move(entity: Entity(8), to: (1650, 2350), sprint: 1);
+  waitForEntity(Entity(8));
+  unloadEntity(Entity(8));
   speak(Entity.Player, "Look at them go! They won't\nbe back for a while.\n");
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  setTrigger(198);
-  setTrigger(155);
+  followEntity(Entity.Player, speed: 10);
+  setTrigger(Trigger(198));
+  setTrigger(Trigger(155));
   return;
 }
 
 section(52) {
-  setTrigger(98);
+  setTrigger(Trigger(98));
   return;
   garbage { 2c 00 fe 00 2c 00 05 00 5e 00 06 00 7c 00 07 00 9a 00 51 00 be 00 35 00 7c 01 36 00 62 03 52 00 68 03 33 00 9e 03 34 00 9a 07 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 42 00 19 00 74 2c 30 00 44 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 58 00 19 00 74 36 4c 00 31 00 1d 00 62 00 fe 00 }
 }

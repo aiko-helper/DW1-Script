@@ -8,19 +8,19 @@ section onEnter(254) {
 }
 
 section(71) {
-  unsetTrigger(1);
-  setPStat(250, 0);
-  waitForEntity(213);
-  speak(5, "It seems <ORANGE><DIGIMON><WHITE> has\nfaded away...\n");
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  waitForEntity(Entity(213));
+  speak(Entity(5), "It seems <ORANGE><DIGIMON><WHITE> has\nfaded away...\n");
   showTextbox("Before fading away, he gave\nbirth to a Digitama. He will\nbe reborn with his abilities.\n");
   showTextbox("Which egg do you want?\n");
   callSubroutine(29);
   fadeOutHUD();
   callDigimonSubroutine(4);
   waitForEntity(Entity.System);
-  setPStat(245, 0);
+  setPStat(PStat(245), 0);
   setBGM(28);
-  speak(5, "You can change the name\n<ORANGE><DIGIMON><WHITE> if you want.\n");
+  speak(Entity(5), "You can change the name\n<ORANGE><DIGIMON><WHITE> if you want.\n");
   setDialogOwner(Entity.Player);
   choice { "I want a new name" -> L1, "I'll keep his name" -> L2 }
   return;
@@ -28,10 +28,10 @@ section(71) {
 L1:
   loop {
     callSubroutine(35);
-    waitForEntity(214);
-    setPStat(254, 3);
+    waitForEntity(Entity(214));
+    setPStat(PStat(254), 3);
     callSubroutine(32);
-    speak(5, "Is <ORANGE><DIGIMON><WHITE> okay?\n");
+    speak(Entity(5), "Is <ORANGE><DIGIMON><WHITE> okay?\n");
     setDialogOwner(Entity.Player);
     choice { "I want another name" -> L1, "Okay" -> L2 }
   }
@@ -41,36 +41,36 @@ L2:
 }
 
 section(72) {
-  unsetTrigger(1);
-  setPStat(250, 0);
-  waitForEntity(213);
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  waitForEntity(Entity(213));
   callSubroutine(35);
   if (stat[Stat.CurrentHP] != 0) {
     removeCondition(Condition.Injured);
     removeCondition(Condition.Sick);
     addStats(currentHP: 9999, currentMP: 9999);
-    speak(5, "Hey, don't get sick!\n");
+    speak(Entity(5), "Hey, don't get sick!\n");
     showTextbox("With the small bit of life\nleft, <ORANGE><DIGIMON><WHITE> was able\nto survive.\n");
     showTextbox("You must be careful.\n");
-    waitForEntity(214);
+    waitForEntity(Entity(214));
     goto section_73.L1;
   }
   addStats(currentHP: 9999, currentMP: 9999);
-  speak(5, "Oh my gosh!\nYou're back after losing.\n");
+  speak(Entity(5), "Oh my gosh!\nYou're back after losing.\n");
   showTextbox("With the small bit of life\nleft, <ORANGE><DIGIMON><WHITE> was able\nto survive.\n");
   showTextbox("Maybe your things were stolen.\n");
   showTextbox("Those who lose a battle might\nhave their things stolen.\n");
   showTextbox("Stolen objects may be sold\nsomewhere. Don't give up\nfinding them!\n");
-  waitForEntity(214);
+  waitForEntity(Entity(214));
   goto section_73.L1;
   return;
 }
 
 section(73) {
-  unsetTrigger(1);
-  setPStat(250, 0);
-  waitForEntity(213);
-  speak(5, "Oh no! <ORANGE><DIGIMON><WHITE>\nhas lost all life.\n");
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  waitForEntity(Entity(213));
+  speak(Entity(5), "Oh no! <ORANGE><DIGIMON><WHITE>\nhas lost all life.\n");
   showTextbox("Before fading away,\n<ORANGE><DIGIMON><WHITE> gave\nbirth to a Digitama.\n");
   showTextbox("Due to the danger,\nDigitama did not inherit\nall abilities...\n");
   if (stat[Stat.TamerLevel] != 0) {
@@ -80,21 +80,21 @@ section(73) {
   callSubroutine(47);
   callDigimonSubroutine(4);
   waitForEntity(Entity.System);
-  setPStat(245, 0);
+  setPStat(PStat(245), 0);
   setBGM(28);
-  speak(5, "If you want,\nyou can change the name\n<ORANGE><DIGIMON><WHITE>.\n");
+  speak(Entity(5), "If you want,\nyou can change the name\n<ORANGE><DIGIMON><WHITE>.\n");
   setDialogOwner(Entity.Player);
   choice { "I want a new name" -> section_71.L1, "I'll keep his name" -> section_71.L2 }
   return;
-  setPStat(254, 3);
+  setPStat(PStat(254), 3);
   callSubroutine(32);
   callSubroutine(35);
-  waitForEntity(214);
+  waitForEntity(Entity(214));
   return;
 
 L1:
   fadeOutHUD();
-  storeDigimonType(103);
+  storeDigimonType(PStat(103));
   if (pstat[103] == 3 || pstat[103] == 4 || pstat[103] == 17 || pstat[103] == 18) {
     goto L2;
   }
@@ -114,7 +114,7 @@ L1:
 L2:
     roll(pstat: PStat.RollScratch, max: 99);
     if (pstat[110] <= 9) {
-      setPStat(254, 37);
+      setPStat(PStat(254), 37);
       callDigimonSubroutine(10);
       delay(550);
       speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");
@@ -124,7 +124,7 @@ L2:
   }
   roll(pstat: PStat.RollScratch, max: 99);
   if (pstat[110] <= 9) {
-    setPStat(254, 26);
+    setPStat(PStat(254), 26);
     callDigimonSubroutine(10);
     delay(550);
     speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");
@@ -135,7 +135,7 @@ L2:
 L3:
   roll(pstat: PStat.RollScratch, max: 99);
   if (pstat[110] <= 9) {
-    setPStat(254, 59);
+    setPStat(PStat(254), 59);
     callDigimonSubroutine(10);
     delay(550);
     speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");
@@ -146,7 +146,7 @@ L3:
 L4:
   roll(pstat: PStat.RollScratch, max: 99);
   if (pstat[110] <= 49 && stat[Stat.Discipline] <= 49) {
-    setPStat(254, 6);
+    setPStat(PStat(254), 6);
     callDigimonSubroutine(10);
     delay(550);
     speak(Entity.System, "<ORANGE><DIGIMON><WHITE> has digivolved!\n");

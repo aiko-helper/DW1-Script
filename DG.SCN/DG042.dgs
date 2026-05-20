@@ -11,37 +11,37 @@ section onEnter(254) {
 }
 
 section(5) {
-  speak(5, "Shwaa!\n");
-  finishEncounter(302);
+  speak(Entity(5), "Shwaa!\n");
+  finishEncounter(Trigger(302));
 }
 
 section(6) {
-  speak(6, "Sha sha shaaaa!\n");
-  finishEncounter(302);
+  speak(Entity(6), "Sha sha shaaaa!\n");
+  finishEncounter(Trigger(302));
 }
 
 section(7) {
-  speak(7, "Doesn't look like he's hurt.\n");
-  finishEncounter(299);
+  speak(Entity(7), "Doesn't look like he's hurt.\n");
+  finishEncounter(Trigger(299));
 }
 
 section(8) {
-  speak(8, "I'll give you a discount.\n");
-  finishEncounter(268);
+  speak(Entity(8), "I'll give you a discount.\n");
+  finishEncounter(Trigger(268));
 }
 
 section(9) {
-  speak(9, "Don't make fun of us!\n");
-  finishEncounter(268);
+  speak(Entity(9), "Don't make fun of us!\n");
+  finishEncounter(Trigger(268));
 }
 
 section(10) {
-  speak(10, "You're not gonna\nmake it home alive!\n");
-  finishEncounter(305);
+  speak(Entity(10), "You're not gonna\nmake it home alive!\n");
+  finishEncounter(Trigger(305));
 }
 
 section(51) {
-  storeDigimonType(103);
+  storeDigimonType(PStat(103));
   if (pstat[103] == 6 || pstat[103] == 7 || pstat[103] == 12 || pstat[103] == 19 || pstat[103] == 20) {
     goto L1;
   }
@@ -54,17 +54,17 @@ section(51) {
   goto L2;
 
 L1:
-  anim(Entity.Player, 18, wait: 20);
+  anim(Entity.Player, Animation(18), wait: 20);
   speak(Entity.Player, "Ouch!\n");
-  setPStat(254, 253);
+  setPStat(PStat(254), 253);
   callSubroutine(55);
   speak(Entity.Player, "For such a big fall,\nyou look okay.\n");
   look(entity: Entity.Player, at: Entity.Partner);
   delay(20);
   look(entity: Entity.Partner, at: Entity.Player);
-  anim(Entity.Player, 19, wait: 15);
+  anim(Entity.Player, Animation(19), wait: 15);
   speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>,\nare you alright?\n");
-  playAnimation(Entity.Player, 0);
+  playAnimation(Entity.Player, Animation(0));
   showTextbox("Wow, you look okay!\n");
   showTextbox("You flew? That's cheating!\nWell, not really, I guess.\n");
   rotate(entity: Entity.Player, to: 2002);
@@ -73,19 +73,19 @@ L1:
   return;
 
 L2:
-  playAnimation(Entity.Partner, 43);
-  anim(Entity.Player, 18, wait: 40);
-  anim(Entity.Partner, 44, wait: 40);
-  playAnimation(Entity.Partner, 0);
+  playAnimation(Entity.Partner, Animation(43));
+  anim(Entity.Player, Animation(18), wait: 40);
+  anim(Entity.Partner, Animation(44), wait: 40);
+  playAnimation(Entity.Partner, Animation(0));
   speak(Entity.Player, "Ouch!\n");
-  setPStat(254, 253);
+  setPStat(PStat(254), 253);
   callSubroutine(55);
   speak(Entity.Player, "For such a big fall,\nhe looks okay.\n");
   rotate(entity: Entity.Player, to: 2002);
   delay(20);
-  anim(Entity.Player, 19, wait: 15);
+  anim(Entity.Player, Animation(19), wait: 15);
   speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>,\nare you alright?\n");
-  playAnimation(Entity.Player, 0);
+  playAnimation(Entity.Player, Animation(0));
   showTextbox("I guess it hurts. I'm sorry.\n");
   speak(Entity.Player, "Let's go!\n");
   return;

@@ -5,23 +5,23 @@
 
 section onEnter(254) {
   spawnChest(Item.Sirloin, 500, 567, 0, 653);
-  unsetTrigger(100);
+  unsetTrigger(Trigger(100));
   return;
 }
 
 section(5) {
-  speak(5, "I'll handle you!\n");
-  finishEncounter(307);
+  speak(Entity(5), "I'll handle you!\n");
+  finishEncounter(Trigger(307));
 }
 
 section(6) {
-  speak(6, "I'll handle you!\n");
-  finishEncounter(307);
+  speak(Entity(6), "I'll handle you!\n");
+  finishEncounter(Trigger(307));
 }
 
 section(7) {
-  speak(7, "I'll handle you!\n");
-  finishEncounter(307);
+  speak(Entity(7), "I'll handle you!\n");
+  finishEncounter(Trigger(307));
 }
 
 section(83) {
@@ -35,24 +35,24 @@ section(83) {
     delay(20);
     speak(Entity.Player, "What does it say?\n");
     speak(Entity.System, "Return to the position\nwhere you got the points\nfrom the dumb one.\n");
-    setTrigger(100);
+    setTrigger(Trigger(100));
     return;
   }
   if (item[Item.FridgeKey] >= 1 && !trigger(348)) {
-    setTrigger(100);
+    setTrigger(Trigger(100));
     playSound(8, 3);
     speak(Entity.System, "I used a <LIGHTBLUE>\nrefrigerator key. <WHITE>\n");
     rotate3DObject(2, 1);
     rotate3DObject(3, 1);
     delay(60);
     removeItem(Item.FridgeKey, 1);
-    anim(Entity.Player, 24, wait: 15);
+    anim(Entity.Player, Animation(24), wait: 15);
     speak(Entity.Player, "I don't see it.\n");
-    playAnimation(Entity.Player, 0);
+    playAnimation(Entity.Player, Animation(0));
     speak(Entity.Player, "There's a memo.\n");
     speak(Entity.System, "Return to the position\nwhere you got the points\nfrom the dumb one.\n");
     speak(Entity.Player, "I should listen to this memo.\n");
-    setTrigger(348);
+    setTrigger(Trigger(348));
     return;
   }
   if (item[Item.FridgeKey] < 1 && !trigger(348)) {

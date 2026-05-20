@@ -8,132 +8,129 @@ section onEnter(254) {
 }
 
 section(5) {
-  speak(5, "Formation C!\n");
-  move(entity: 6, to: (-230, 547), sprint: 1);
-  move(entity: 7, to: (483, 70), sprint: 1);
-  waitForEntity(6);
-  waitForEntity(7);
+  speak(Entity(5), "Formation C!\n");
+  move(entity: Entity(6), to: (-230, 547), sprint: 1);
+  move(entity: Entity(7), to: (483, 70), sprint: 1);
+  waitForEntity(Entity(6));
+  waitForEntity(Entity(7));
   delay(10);
-  setTrigger(1);
-  setPStat(250, 1);
-  setPStat(251, 5);
-  setPStat(252, 6);
-  setPStat(253, 7);
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 5);
+  setPStat(PStat(252), 6);
+  setPStat(PStat(253), 7);
   startBattle();
-  setPStat(250, 0);
-  unsetTrigger(1);
-  move(entity: 5, to: (550, -2050), sprint: 1);
-  move(entity: 6, to: (550, -2050), sprint: 1);
-  move(entity: 7, to: (550, -2050), sprint: 1);
-  for id in 5..7 {
+  setPStat(PStat(250), 0);
+  unsetTrigger(Trigger(1));
+  move(entity: Entity(5), to: (550, -2050), sprint: 1);
+  move(entity: Entity(6), to: (550, -2050), sprint: 1);
+  move(entity: Entity(7), to: (550, -2050), sprint: 1);
+  for id in Entity(5)..Entity(7) {
     waitForEntity(id);
   }
-  for id in 5..7 {
+  for id in Entity(5)..Entity(7) {
     unloadEntity(id);
   }
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  followEntity(Entity.Player, speed: 10);
   return;
 }
 
 section(6) {
-  speak(6, "Formation A!\n");
-  move(entity: 5, to: (-815, 312), sprint: 1);
-  move(entity: 7, to: (686, 312), sprint: 1);
-  waitForEntity(5);
-  waitForEntity(7);
+  speak(Entity(6), "Formation A!\n");
+  move(entity: Entity(5), to: (-815, 312), sprint: 1);
+  move(entity: Entity(7), to: (686, 312), sprint: 1);
+  waitForEntity(Entity(5));
+  waitForEntity(Entity(7));
   delay(10);
-  setTrigger(1);
-  setPStat(250, 1);
-  setPStat(251, 5);
-  setPStat(252, 6);
-  setPStat(253, 7);
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 5);
+  setPStat(PStat(252), 6);
+  setPStat(PStat(253), 7);
   startBattle();
-  setPStat(250, 0);
-  unsetTrigger(1);
-  move(entity: 5, to: (550, -2050), sprint: 1);
-  move(entity: 6, to: (550, -2050), sprint: 1);
-  move(entity: 7, to: (550, -2050), sprint: 1);
-  for id in 5..7 {
+  setPStat(PStat(250), 0);
+  unsetTrigger(Trigger(1));
+  move(entity: Entity(5), to: (550, -2050), sprint: 1);
+  move(entity: Entity(6), to: (550, -2050), sprint: 1);
+  move(entity: Entity(7), to: (550, -2050), sprint: 1);
+  for id in Entity(5)..Entity(7) {
     waitForEntity(id);
   }
-  for id in 5..7 {
+  for id in Entity(5)..Entity(7) {
     unloadEntity(id);
   }
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  followEntity(Entity.Player, speed: 10);
   return;
 }
 
 section(7) {
-  speak(7, "Formation B!\n");
-  move(entity: 6, to: (702, 855), sprint: 1);
-  move(entity: 5, to: (29, 586), sprint: 1);
-  waitForEntity(5);
-  waitForEntity(6);
+  speak(Entity(7), "Formation B!\n");
+  move(entity: Entity(6), to: (702, 855), sprint: 1);
+  move(entity: Entity(5), to: (29, 586), sprint: 1);
+  waitForEntity(Entity(5));
+  waitForEntity(Entity(6));
   delay(10);
-  setTrigger(1);
-  setPStat(250, 1);
-  setPStat(251, 5);
-  setPStat(252, 6);
-  setPStat(253, 7);
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 5);
+  setPStat(PStat(252), 6);
+  setPStat(PStat(253), 7);
   startBattle();
-  setPStat(250, 0);
-  unsetTrigger(1);
-  move(entity: 5, to: (550, -2050), sprint: 1);
-  move(entity: 6, to: (550, -2050), sprint: 1);
-  move(entity: 7, to: (550, -2050), sprint: 1);
-  for id in 5..7 {
+  setPStat(PStat(250), 0);
+  unsetTrigger(Trigger(1));
+  move(entity: Entity(5), to: (550, -2050), sprint: 1);
+  move(entity: Entity(6), to: (550, -2050), sprint: 1);
+  move(entity: Entity(7), to: (550, -2050), sprint: 1);
+  for id in Entity(5)..Entity(7) {
     waitForEntity(id);
   }
-  for id in 5..7 {
+  for id in Entity(5)..Entity(7) {
     unloadEntity(id);
   }
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  followEntity(Entity.Player, speed: 10);
   return;
 }
 
 section(60) {
   delay(40);
   moveCamera(to: (-200, 320), slowdown: 20);
-  anim(Entity.Player, 15, wait: 20);
+  anim(Entity.Player, Animation(15), wait: 20);
   speak(Entity.Player, "Uggh!\n");
-  speak(9, "...\n");
+  speak(Entity(9), "...\n");
   speak(Entity.Player, "Are you serious?!\n");
-  waitForEntity(9);
-  unloadEntity(9);
+  waitForEntity(Entity(9));
+  unloadEntity(Entity(9));
   delay(20);
   speak(Entity.Player, "He's gone.\nWas that my imagination?\n");
-  anim(8, 28, wait: 40);
-  setTrigger(1);
-  setPStat(250, 1);
-  setPStat(251, 8);
-  setPStat(252, 255);
-  setPStat(253, 255);
+  anim(Entity(8), Animation(28), wait: 40);
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 8);
+  setPStat(PStat(252), 255);
+  setPStat(PStat(253), 255);
   startBattle();
-  unsetTrigger(1);
-  setPStat(250, 0);
-  move(entity: 8, to: (-156, 1092), sprint: 0);
-  waitForEntity(8);
-  anim(8, 43, wait: 40);
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  move(entity: Entity(8), to: (-156, 1092), sprint: 0);
+  waitForEntity(Entity(8));
+  anim(Entity(8), Animation(43), wait: 40);
   speak(Entity.Player, "We dealt with him?!\n");
-  look(entity: Entity.Player, at: 8);
-  waitForEntity(8);
+  look(entity: Entity.Player, at: Entity(8));
+  waitForEntity(Entity(8));
   waitForEntity(Entity.Player);
-  unloadEntity(8);
+  unloadEntity(Entity(8));
   speak(Entity.Player, "What?!\n");
-  loadAndSetDigimon(Digimon.Muchomon, 5, 0);
-  speak(10, "What?\n");
-  look(entity: 10, at: Entity.Player);
+  loadAndSetDigimon(Digimon.Muchomon, Entity(5), 0);
+  speak(Entity(10), "What?\n");
+  look(entity: Entity(10), at: Entity.Player);
   delay(20);
-  speak(10, "All of a sudden, I passed out.\nI'm sorry.\n");
-  setTrigger(202);
-  setPStat(16, 0);
-  setTrigger(243);
-  setPStat(28, 0);
-  approach(who: 10, x: 320, y: -1546, tries: 3, wait: 20);
-  anim(Entity.Player, 16, wait: 40);
+  speak(Entity(10), "All of a sudden, I passed out.\nI'm sorry.\n");
+  setTrigger(Trigger(202));
+  setPStat(PStat(16), 0);
+  setTrigger(Trigger(243));
+  setPStat(PStat(28), 0);
+  approach(who: Entity(10), x: 320, y: -1546, tries: 3, wait: 20);
+  anim(Entity.Player, Animation(16), wait: 40);
   speak(Entity.Player, "Is it the curse of Analogman?\nI don't care.\n");
   delay(20);
   if (trigger(220) || trigger(214) || pstat[1] >= 50) {

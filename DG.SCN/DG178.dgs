@@ -23,21 +23,21 @@ section(54) {
 section(5) {
   if (trigger(202) || trigger(215) || pstat[16] == 0) goto L1;
   if (!trigger(201) || !trigger(243)) goto L1;
-  speak(5, "You had perfect timing in\ncoming here! I have a favor\nthat only you can do.\n");
+  speak(Entity(5), "You had perfect timing in\ncoming here! I have a favor\nthat only you can do.\n");
   speak(Entity.Player, "What is it?\n");
-  speak(5, "I just got the same evil\nfeeling that Analogman\nand Machinedramon give.\n");
+  speak(Entity(5), "I just got the same evil\nfeeling that Analogman\nand Machinedramon give.\n");
   showTextbox("I know where it comes from.\n");
   speak(Entity.Player, "Again? Ok, leave it to me!\n");
-  speak(5, "Thanks. By the way...\n");
+  speak(Entity(5), "Thanks. By the way...\n");
   goto L2;
 
 L1:
   if (trigger(202) && !trigger(215)) {
-    speak(5, "I heard you beat\nMachinedramon!\n");
+    speak(Entity(5), "I heard you beat\nMachinedramon!\n");
     speak(Entity.Player, "Yeah, but I don't get it.\nIt seemed like the curse\nof Analogman.\n");
-    speak(5, "His grudge was so strong.\nMaybe we can have peace now.\n");
+    speak(Entity(5), "His grudge was so strong.\nMaybe we can have peace now.\n");
     speak(Entity.Player, "If Machinedramon returns,\nwe'll beat him again.\n");
-    speak(5, "You're trustworthy. This was\ngrowing in our Meat farm,\nit's for you.\n");
+    speak(Entity(5), "You're trustworthy. This was\ngrowing in our Meat farm,\nit's for you.\n");
     speak(Entity.Player, "Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
     giveItem(Item.ChainMelon, 1);
     if (trigger(0)) {
@@ -49,33 +49,33 @@ L1:
       giveItem(Item.ChainMelon, 1);
     }
     speak(Entity.Player, "Thank you!\n");
-    setPStat(28, 0);
-    setTrigger(215);
+    setPStat(PStat(28), 0);
+    setTrigger(Trigger(215));
     return;
   }
   if (!trigger(50) || trigger(201)) goto L2;
-  speak(5, "You're here!\nThis is something I can't\nask anybody else.\n");
+  speak(Entity(5), "You're here!\nThis is something I can't\nask anybody else.\n");
   speak(Entity.Player, "Never fear, I'm here.\nDo you mean\nAnalogman is back?\n");
-  speak(5, "I can feel his evil, but\nI can't tell where it is.\n");
+  speak(Entity(5), "I can feel his evil, but\nI can't tell where it is.\n");
   speak(Entity.Player, "Leave it up to me! I'll find\nhim and take care of it.\n");
-  speak(5, "Thank you.\nBy the way...\n");
-  setTrigger(201);
+  speak(Entity(5), "Thank you.\nBy the way...\n");
+  setTrigger(Trigger(201));
 
 L2:
   if (trigger(203)) {
     jumpToScriptSection(210, 51);
   }
   if (trigger(55)) goto section_6;
-  playAnimation(5, 0);
-  anim(5, 29, wait: 5);
-  speak(5, "I'm back and I'm planning\nto rebuild File City with\nhelp from <ORANGE><DIGIMON><WHITE>.\n");
-  playAnimation(5, 0);
-  anim(5, 29, wait: 5);
-  speak(5, "I want to build\nshops that are useful\nto you and <ORANGE><DIGIMON><WHITE>.\n");
-  playAnimation(5, 0);
-  anim(5, 29, wait: 5);
-  speak(5, "You should explore Native\nForest just outside the city.\n");
-  playAnimation(5, 0);
+  playAnimation(Entity(5), Animation(0));
+  anim(Entity(5), Animation(29), wait: 5);
+  speak(Entity(5), "I'm back and I'm planning\nto rebuild File City with\nhelp from <ORANGE><DIGIMON><WHITE>.\n");
+  playAnimation(Entity(5), Animation(0));
+  anim(Entity(5), Animation(29), wait: 5);
+  speak(Entity(5), "I want to build\nshops that are useful\nto you and <ORANGE><DIGIMON><WHITE>.\n");
+  playAnimation(Entity(5), Animation(0));
+  anim(Entity(5), Animation(29), wait: 5);
+  speak(Entity(5), "You should explore Native\nForest just outside the city.\n");
+  playAnimation(Entity(5), Animation(0));
   return;
 }
 
@@ -84,7 +84,7 @@ section(6) {
   if (trigger(96) || pstat[18] >= 10) {
     goto L1;
   }
-  speak(6, "You can have this. Good luck.\n");
+  speak(Entity(6), "You can have this. Good luck.\n");
   speak(Entity.System, "I got lots of Items!\n");
   for x in [:SmallRecovery, :Meat, :MPFloppy] {
     giveItem(x, 3);
@@ -92,25 +92,25 @@ section(6) {
   giveItem(Item.Restore, 1);
   giveItem(Item.Bandage, 2);
   giveItem(Item.Medicine, 1);
-  speak(6, "To look up Items, press\n<GREEN><TRIANGLE> <WHITE>...\n");
+  speak(Entity(6), "To look up Items, press\n<GREEN><TRIANGLE> <WHITE>...\n");
   showTextbox("...then select 'Item'\nand look by using\n<LIGHTBLUE><X> <WHITE>.\n");
-  setTrigger(56);
+  setTrigger(Trigger(56));
   return;
 
 L1:
   if (!trigger(224) && trigger(175)) {
-    speak(6, "Sounds like Yuramon has\ngathered more rumors.\n");
+    speak(Entity(6), "Sounds like Yuramon has\ngathered more rumors.\n");
     return;
   }
   if (trigger(124) && trigger(103)) {
-    speak(6, "I hear Yuramon\nhas some new rumors.\n");
+    speak(Entity(6), "I hear Yuramon\nhas some new rumors.\n");
     return;
   }
   if (pstat[1] >= 6) {
-    speak(6, "The city is starting to\ngrow and I hear it's\nchanging now.\n");
+    speak(Entity(6), "The city is starting to\ngrow and I hear it's\nchanging now.\n");
     return;
   }
-  speak(6, "I will teach you about the\ncommon sense in our world.\n");
+  speak(Entity(6), "I will teach you about the\ncommon sense in our world.\n");
   showTextbox("There are twenty four hours\na day and there is morning,\nday and night.\n");
   showTextbox("You may feel\nthe pace is quick.\n");
   showTextbox("There are thirty days a year.\nMonth? What's that? Seasons?\nCan you eat that?\n");
@@ -134,11 +134,11 @@ section(7) {
   }
   roll(pstat: PStat.RollScratch, max: 2);
   if (pstat[1] >= 3 && pstat[110] == 0) {
-    speak(7, "Talk to Tsunomon and\nYuramon as often as you can.\n");
+    speak(Entity(7), "Talk to Tsunomon and\nYuramon as often as you can.\n");
     return;
   }
   if (pstat[1] >= 3 && pstat[110] == 1) {
-    speak(7, "I'll tell you about\nthe Tamer level.\n");
+    speak(Entity(7), "I'll tell you about\nthe Tamer level.\n");
     showTextbox("With a high Tamer level,\nwhen your Digimon fades away,\n");
     showTextbox("your next Digimon will have\nbetter parameters.\n");
     showTextbox("In the beginning\nit won't go up much,\n");
@@ -146,11 +146,11 @@ section(7) {
     return;
   }
   if (pstat[1] >= 3 && pstat[110] == 2) {
-    speak(7, "When you use your Finishing\nTechnique, make sure to\nrapidly hit L and R buttons.\n");
+    speak(Entity(7), "When you use your Finishing\nTechnique, make sure to\nrapidly hit L and R buttons.\n");
     showTextbox("When Finish Gauge is full,\ncompared to when empty, the\ndamage to enemy is double!\n");
     return;
   }
-  speak(7, "I'll tell you about a\nDigimon's life.\n");
+  speak(Entity(7), "I'll tell you about a\nDigimon's life.\n");
   showTextbox("When Digimon gets hungry,\nhe'll tell you.\n");
   showTextbox("He also needs to go potty.\nMake sure he does it\nin the toilet.\n");
   showTextbox("Digimon get sleepy and\nneed sleep, but you have to\nmake him sleep.\n");
@@ -162,14 +162,13 @@ section(7) {
 }
 
 section(20) {
-  moveCamera(to: (183, 221), slowdown: 20);
-  waitForEntity(200);
+  panTo(x: 183, y: 221, slowdown: 20);
   delay(20);
   addStats(currentHP: 9999, currentMP: 9999);
-  unsetTrigger(1);
-  anim(5, 29, wait: 5);
-  speak(5, "You woke up...\nI'm so sorry.\n");
-  playAnimation(5, 0);
+  unsetTrigger(Trigger(1));
+  anim(Entity(5), Animation(29), wait: 5);
+  speak(Entity(5), "You woke up...\nI'm so sorry.\n");
+  playAnimation(Entity(5), Animation(0));
   return;
 }
 
@@ -190,12 +189,12 @@ section(73) {
 
 section(85) {
   if (!trigger(94)) {
-    setTrigger(94);
+    setTrigger(Trigger(94));
     speak(Entity.Player, "What's this machine?\n");
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Player, at: 5);
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
     delay(5);
-    speak(5, "Oh that? That is a\n<PINK>Save Machine for\nMemory Card Battle Data<WHITE>.\n");
+    speak(Entity(5), "Oh that? That is a\n<PINK>Save Machine for\nMemory Card Battle Data<WHITE>.\n");
     showTextbox("Using that machine, you can\nsave your current partner's\ndata for battle.\n");
     showTextbox("Just press <LIGHTBLUE><X> <WHITE>,\nand the machine will tell\nyou what to do.\n");
     rotate(entity: Entity.Player, to: 0);

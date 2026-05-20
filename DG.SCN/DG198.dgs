@@ -22,45 +22,45 @@ section(52) {
 }
 
 section(5) {
-  speak(5, "This's the last one.\n");
-  finishEncounter(285);
+  speak(Entity(5), "This's the last one.\n");
+  finishEncounter(Trigger(285));
 }
 
 section(6) {
-  speak(6, "We are here at last!\n");
-  finishEncounter(305);
+  speak(Entity(6), "We are here at last!\n");
+  finishEncounter(Trigger(305));
 }
 
 section(7) {
-  speak(7, "Pathway is clear!\n");
-  finishEncounter(285);
+  speak(Entity(7), "Pathway is clear!\n");
+  finishEncounter(Trigger(285));
 }
 
 section(8) {
-  speak(8, "Let's make it easy.\n");
-  finishEncounter(305);
+  speak(Entity(8), "Let's make it easy.\n");
+  finishEncounter(Trigger(305));
 }
 
 section(9) {
-  speak(9, "This is the last chance!\n");
-  finishEncounter(285);
+  speak(Entity(9), "This is the last chance!\n");
+  finishEncounter(Trigger(285));
 }
 
 section(10) {
-  speak(10, "Are you really going?\n");
-  finishEncounter(305);
+  speak(Entity(10), "Are you really going?\n");
+  finishEncounter(Trigger(305));
 }
 
 section(53) {
   if (trigger(254)) {
     return;
   }
-  look(entity: Entity.Player, at: 11);
+  look(entity: Entity.Player, at: Entity(11));
   delay(5);
   speak(Entity.Player, "How scary! I feel it\nin my bones.\n");
-  speak(11, "...\n");
+  speak(Entity(11), "...\n");
   speak(Entity.Player, "Why doesn't he attack me?\n");
-  speak(11, "...\n");
+  speak(Entity(11), "...\n");
   speak(Entity.Player, "Don't you need to fight?\n");
   setDialogOwner(Entity.Player);
   choice { "We should hurry up and go." -> L3, "We have to test our skills." -> L1 }
@@ -68,27 +68,26 @@ section(53) {
 
 L1:
   speak(Entity.Player, "Let's go, <ORANGE><DIGIMON><WHITE>!\n");
-  setTrigger(1);
-  setPStat(250, 1);
-  setPStat(251, 11);
-  setPStat(252, 255);
-  setPStat(253, 255);
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 11);
+  setPStat(PStat(252), 255);
+  setPStat(PStat(253), 255);
   startBattle();
-  unsetTrigger(1);
-  setPStat(250, 0);
-  look(entity: Entity.Player, at: 11);
-  look(entity: 11, at: Entity.Player);
-  look(entity: Entity.Partner, at: 11);
-  speak(11, "...\n");
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  look(entity: Entity.Player, at: Entity(11));
+  look(entity: Entity(11), at: Entity.Player);
+  look(entity: Entity.Partner, at: Entity(11));
+  speak(Entity(11), "...\n");
   goto L2;
 
 L2:
-  approach(who: 11, x: 0, y: 0, tries: 3, wait: 20);
+  approach(who: Entity(11), x: 0, y: 0, tries: 3, wait: 20);
   speak(Entity.Player, "Did we win?\n");
-  setTrigger(254);
-  addPStat(1, 3);
-  moveCamera(to: Entity.Player, speed: 15);
-  waitForEntity(200);
+  setTrigger(Trigger(254));
+  addPStat(PStat(1), 3);
+  followEntity(Entity.Player, speed: 15);
   return;
 
 L3:

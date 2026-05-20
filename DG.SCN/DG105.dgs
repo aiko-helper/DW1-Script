@@ -21,77 +21,76 @@ section onEnter(254) {
 }
 
 section(5) {
-  speak(5, "What do you want?!\n");
-  finishEncounter(274);
+  speak(Entity(5), "What do you want?!\n");
+  finishEncounter(Trigger(274));
 }
 
 section(6) {
   speak(Entity.Player, "Wow!\n");
-  anim(Entity.Player, 15, wait: 20);
-  playAnimation(Entity.Player, 0);
-  speak(6, "...? ...!\n");
+  anim(Entity.Player, Animation(15), wait: 20);
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(6), "...? ...!\n");
   speak(Entity.Player, "What? Now?!\nOkay, let's fight!\n");
-  setTrigger(1);
-  setPStat(250, 1);
-  setPStat(251, 6);
-  setPStat(252, 255);
-  setPStat(253, 255);
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 6);
+  setPStat(PStat(252), 255);
+  setPStat(PStat(253), 255);
   startBattle();
-  unsetTrigger(1);
-  setPStat(250, 0);
-  look(entity: 6, at: Entity.Player);
-  lookPairAt(6);
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  look(entity: Entity(6), at: Entity.Player);
+  lookPairAt(Entity(6));
   waitForPair();
-  speak(6, "I lost. Rats!\n");
-  playAnimation(6, 18);
+  speak(Entity(6), "I lost. Rats!\n");
+  playAnimation(Entity(6), Animation(18));
   speak(Entity.Player, "I should invite him\nto the city.\n");
-  playAnimation(Entity.Player, 25);
+  playAnimation(Entity.Player, Animation(25));
   showTextbox("Uh, excuse me.\n");
-  playAnimation(Entity.Player, 19);
+  playAnimation(Entity.Player, Animation(19));
   showTextbox("Could you...\ncome to the city...?\n");
-  playAnimation(Entity.Player, 0);
-  playAnimation(6, 0);
-  speak(6, "What? City?!\n");
+  playAnimation(Entity.Player, Animation(0));
+  playAnimation(Entity(6), Animation(0));
+  speak(Entity(6), "What? City?!\n");
   showTextbox("You mean that...old place?\n");
-  playAnimation(6, 19);
-  speak(6, "Well...\n");
+  playAnimation(Entity(6), Animation(19));
+  speak(Entity(6), "Well...\n");
   showTextbox("Uh......\n");
   showTextbox("Uhm.........\n");
   fadeOutHUD();
-  playAnimation(6, 22);
-  waitForEntity(6);
-  playAnimation(6, 22);
-  speak(6, "Well, okay.\nI'm Agumon.\nNice meeting you.\n");
+  playAnimation(Entity(6), Animation(22));
+  waitForEntity(Entity(6));
+  playAnimation(Entity(6), Animation(22));
+  speak(Entity(6), "Well, okay.\nI'm Agumon.\nNice meeting you.\n");
   fadeOutHUD();
   goto L1;
 
 L1:
-  approach(who: 6, x: 2400, y: 1663, tries: 3, wait: 20);
+  approach(who: Entity(6), x: 2400, y: 1663, tries: 3, wait: 20);
   playSound(8, 11);
   speak(Entity.System, "Agumon joins the city!\n");
-  setTrigger(203);
-  addPStat(1, 1);
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  setTrigger(Trigger(203));
+  addPStat(PStat(1), 1);
+  followEntity(Entity.Player, speed: 10);
   speak(Entity.Player, "Alright, it pays to try.\nI'll keep on asking!\n");
-  anim(Entity.Player, 11, wait: 20);
-  playAnimation(Entity.Player, 0);
+  anim(Entity.Player, Animation(11), wait: 20);
+  playAnimation(Entity.Player, Animation(0));
   return;
 }
 
 section(7) {
-  speak(7, "This is my territory!\n");
-  finishEncounter(283);
+  speak(Entity(7), "This is my territory!\n");
+  finishEncounter(Trigger(283));
 }
 
 section(8) {
-  speak(8, "What?!\n");
-  finishEncounter(274);
+  speak(Entity(8), "What?!\n");
+  finishEncounter(Trigger(274));
 }
 
 section(9) {
-  speak(9, "Now's my chance!\n");
-  finishEncounter(283);
+  speak(Entity(9), "Now's my chance!\n");
+  finishEncounter(Trigger(283));
 }
 
 section(51) {
@@ -358,8 +357,7 @@ section(52) {
     speak(Entity.Player, "I just can't get away\nfrom this guy!\n");
     move(entity: Entity.Player, to: (-1115, -1503), sprint: 1);
     waitForEntity(Entity.Player);
-    moveCamera(to: Entity.Player, speed: 10);
-    waitForEntity(200);
+    followEntity(Entity.Player, speed: 10);
     return;
   }
   if (trigger(106)) {

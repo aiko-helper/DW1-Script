@@ -4,36 +4,36 @@
 #include "entities.dgs"
 
 section onEnter(254) {
-  playAnimation(5, 30);
+  playAnimation(Entity(5), Animation(30));
   return;
 }
 
 section(81) {
-  look(entity: Entity.Player, at: 5);
+  look(entity: Entity.Player, at: Entity(5));
   delay(5);
   if (!trigger(89)) {
-    setTrigger(89);
-    speak(5, "Oh, <LIGHTBLUE><PLAYER><WHITE>and <ORANGE><DIGIMON><WHITE>,\nyou are here.\n");
+    setTrigger(Trigger(89));
+    speak(Entity(5), "Oh, <LIGHTBLUE><PLAYER><WHITE>and <ORANGE><DIGIMON><WHITE>,\nyou are here.\n");
     showTextbox("I'm a delivery man.\nI deliver anything.\n");
     showTextbox("The only thing you can\ncarry is yourself, right?\n");
     showTextbox("Why don't I carry you guys?\nGreat idea, Huh?\n");
     showTextbox("I'll take you\nanyplace, anytime.\nI'll charge you, of course.\n");
   }
-  setPStat(254, 5);
+  setPStat(PStat(254), 5);
   callSubroutine(10);
   return;
 }
 
 section(5) {
-  setTrigger(44);
+  setTrigger(Trigger(44));
   goto section_81;
   return;
 }
 
 section(6) {
-  speak(6, "Hey, <LIGHTBLUE><PLAYER><WHITE>.\n");
-  speak(6, "Sometimes I return to\nGear Savanna to patrol.\n");
-  speak(6, "I heard there are some shops\nalong the beach in Gear\nSavanna. Did you see them?\n");
+  speak(Entity(6), "Hey, <LIGHTBLUE><PLAYER><WHITE>.\n");
+  speak(Entity(6), "Sometimes I return to\nGear Savanna to patrol.\n");
+  speak(Entity(6), "I heard there are some shops\nalong the beach in Gear\nSavanna. Did you see them?\n");
   return;
 }
 

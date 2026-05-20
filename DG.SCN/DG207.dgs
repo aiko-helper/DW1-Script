@@ -14,121 +14,121 @@ section(11) {
     } else {
       if (trigger(74)) {
       } else {
-        setTrigger(74);
-        speak(11, "Hi, do you need any Meat?\n");
+        setTrigger(Trigger(74));
+        speak(Entity(11), "Hi, do you need any Meat?\n");
         showTextbox("Oh, I haven't told you\nanything about this.\n");
         showTextbox("This is a Meat farm.\nWe grow Meat for everyone.\n");
         speak(Entity.Player, "You grow Meat on a farm?\n");
-        speak(11, "Yeah, why?\n");
+        speak(Entity(11), "Yeah, why?\n");
         speak(Entity.Player, "Well... nothing\n");
-        speak(11, "Jiji and I've decided to\ngive you three pieces of\nMeat daily, <LIGHTBLUE><PLAYER><WHITE>.\n");
+        speak(Entity(11), "Jiji and I've decided to\ngive you three pieces of\nMeat daily, <LIGHTBLUE><PLAYER><WHITE>.\n");
         showTextbox("Here's your Meat for today.\n");
         if (item[Item.Meat] >= 99) {
-          speak(11, "You got too much Meat.\nYou don't need any today.\n");
-          setPStat(31, 1);
+          speak(Entity(11), "You got too much Meat.\nYou don't need any today.\n");
+          setPStat(PStat(31), 1);
           return;
         }
         if (item[Item.Meat] >= 97) {
-          speak(11, "You got too much Meat. I'll\ntake what you can't hold.\n");
+          speak(Entity(11), "You got too much Meat. I'll\ntake what you can't hold.\n");
           giveItem(Item.Meat, 3);
           speak(Entity.System, "I got three pieces\nof <LIGHTBLUE>Meat<WHITE>!\n");
-          setTrigger(74);
-          setPStat(31, 0);
+          setTrigger(Trigger(74));
+          setPStat(PStat(31), 0);
           return;
         }
         giveItem(Item.Meat, 3);
         if (trigger(0)) {
-          speak(11, "You got too many Items.\n");
+          speak(Entity(11), "You got too many Items.\n");
           return;
         }
         speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
-        setPStat(31, 0);
+        setPStat(PStat(31), 0);
         return;
       }
       roll(pstat: PStat.RollScratch, max: 9);
       if (pstat[31] >= 1 && pstat[110] <= 0) {
-        speak(11, "We harvested a lot of Meat\ntoday! We'll give you\nfive pieces.\n");
+        speak(Entity(11), "We harvested a lot of Meat\ntoday! We'll give you\nfive pieces.\n");
       } else {
         goto L1;
       }
       if (item[Item.Meat] >= 99) {
-        speak(11, "You got too much Meat.\n");
+        speak(Entity(11), "You got too much Meat.\n");
         return;
       }
       if (item[Item.Meat] >= 95) {
-        speak(11, "You got too much Meat. I'll\ntake what you can't hold.\n");
+        speak(Entity(11), "You got too much Meat. I'll\ntake what you can't hold.\n");
         giveItem(Item.Meat, 5);
         speak(Entity.System, "I got a five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
-        setTrigger(74);
-        setPStat(31, 0);
+        setTrigger(Trigger(74));
+        setPStat(PStat(31), 0);
         return;
       }
       giveItem(Item.Meat, 5);
       if (trigger(0)) {
-        speak(11, "You got too many Items.\n");
+        speak(Entity(11), "You got too many Items.\n");
         return;
       }
       speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
-      speak(11, "You'll get more tomorrow.\n");
-      setPStat(31, 0);
+      speak(Entity(11), "You'll get more tomorrow.\n");
+      setPStat(PStat(31), 0);
       return;
 
 L1:
       if (pstat[31] >= 1) {
-        speak(11, "Here's today's Meat.\n");
+        speak(Entity(11), "Here's today's Meat.\n");
       } else {
         goto L2;
       }
       if (item[Item.Meat] >= 99) {
-        speak(11, "You got too much Meat.\n");
+        speak(Entity(11), "You got too much Meat.\n");
         return;
       }
       if (item[Item.Meat] >= 97) {
-        speak(11, "You got too much Meat. I'll\ntake what you can't hold.\n");
+        speak(Entity(11), "You got too much Meat. I'll\ntake what you can't hold.\n");
         giveItem(Item.Meat, 3);
         speak(Entity.System, "I got <LIGHTBLUE>Meat<WHITE>!\n");
-        setTrigger(74);
-        setPStat(31, 0);
+        setTrigger(Trigger(74));
+        setPStat(PStat(31), 0);
         return;
       }
       giveItem(Item.Meat, 3);
       if (trigger(0)) {
-        speak(11, "You got too many Items.\n");
+        speak(Entity(11), "You got too many Items.\n");
         return;
       }
       speak(Entity.System, "I got <LIGHTBLUE>Meat<WHITE>!\n");
-      speak(11, "I'll give you more tomorrow.\n");
-      setPStat(31, 0);
+      speak(Entity(11), "I'll give you more tomorrow.\n");
+      setPStat(PStat(31), 0);
       return;
 
 L2:
-      speak(11, "I thought I gave you\ntoday's Meat.\n");
+      speak(Entity(11), "I thought I gave you\ntoday's Meat.\n");
       showTextbox("If you run out of food,\ngo to Native Forest and\nfind mushrooms.\n");
       return;
     }
     if (!trigger(82)) {
-      setTrigger(82);
-      speak(11, "Hi, <LIGHTBLUE><PLAYER><WHITE>, I expanded\nmy Meat farm.\n");
+      setTrigger(Trigger(82));
+      speak(Entity(11), "Hi, <LIGHTBLUE><PLAYER><WHITE>, I expanded\nmy Meat farm.\n");
       showTextbox("I'll give you three pieces\nof Giant Meat a day.\n");
       showTextbox("If you want extra,\nI'll sell it to you for\nfive hund bits each.\n");
       showTextbox("I'll be in charge of\nthis farm for Tanemon.\nHe's resting somewhere.\n");
     }
     roll(pstat: PStat.RollScratch, max: 9);
     if (pstat[31] >= 1 && pstat[110] <= 0) {
-      speak(11, "I harvested a lot of\nMeat today!\n");
+      speak(Entity(11), "I harvested a lot of\nMeat today!\n");
     } else {
       goto L3;
     }
     if (item[Item.GiantMeat] >= 99) {
-      speak(11, "You got too much Giant Meat.\nYou don't need any today.\n");
+      speak(Entity(11), "You got too much Giant Meat.\nYou don't need any today.\n");
       return;
     }
     if (item[Item.GiantMeat] >= 95) {
-      speak(11, "You got too much Giant Meat.\nYou don't need any today.\n");
+      speak(Entity(11), "You got too much Giant Meat.\nYou don't need any today.\n");
       giveItem(Item.GiantMeat, 5);
       speak(Entity.System, "I got <LIGHTBLUE>Giant Meat<WHITE>!\n");
-      setTrigger(74);
-      setPStat(31, 0);
+      setTrigger(Trigger(74));
+      setPStat(PStat(31), 0);
       return;
     }
     giveItem(Item.GiantMeat, 5);
@@ -137,26 +137,26 @@ L2:
       return;
     }
     speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Giant Meat<WHITE>!\n");
-    speak(11, "I'll give you more tomorrow.\n");
-    setPStat(31, 0);
+    speak(Entity(11), "I'll give you more tomorrow.\n");
+    setPStat(PStat(31), 0);
     return;
 
 L3:
     if (pstat[31] >= 1) {
-      speak(11, "Here's three pieces of\nGiant Meat for today.\n");
+      speak(Entity(11), "Here's three pieces of\nGiant Meat for today.\n");
     } else {
       goto L4;
     }
     if (item[Item.GiantMeat] >= 99) {
-      speak(11, "You got too much Giant Meat.\nYou don't need any today\n");
+      speak(Entity(11), "You got too much Giant Meat.\nYou don't need any today\n");
       return;
     }
     if (item[Item.GiantMeat] >= 97) {
-      speak(11, "You got too much\nGiant Meat. I'll take\nwhat you can't hold.\n");
+      speak(Entity(11), "You got too much\nGiant Meat. I'll take\nwhat you can't hold.\n");
       giveItem(Item.GiantMeat, 3);
       speak(Entity.System, "I got <LIGHTBLUE>Giant Meat<WHITE>!\n");
-      setTrigger(74);
-      setPStat(31, 0);
+      setTrigger(Trigger(74));
+      setPStat(PStat(31), 0);
       return;
     }
     giveItem(Item.GiantMeat, 3);
@@ -165,18 +165,18 @@ L3:
       return;
     }
     speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Giant Meat<WHITE>!\n");
-    setPStat(31, 0);
+    setPStat(PStat(31), 0);
     return;
 
 L4:
-    speak(11, "I'll give you more tomorrow.\nOr you can buy more now.\nFive hund bits each?\n");
+    speak(Entity(11), "I'll give you more tomorrow.\nOr you can buy more now.\nFive hund bits each?\n");
     setDialogOwner(Entity.Player);
     choice { "Buy" -> L5, "Don't buy" -> L6 }
     goto L6;
 
 L5:
     if (money < 500) {
-      speak(11, "You need more money.\n");
+      speak(Entity(11), "You need more money.\n");
       return;
     }
     giveItem(Item.GiantMeat, 1);
@@ -186,42 +186,40 @@ L5:
     }
     reduceMoney(500);
     sfx(0, 5, wait: 5);
-    speak(11, "Do you want to buy more?\n");
+    speak(Entity(11), "Do you want to buy more?\n");
     setDialogOwner(Entity.Player);
     choice { "Buy" -> L5, "Don't buy" -> L6 }
     goto L6;
 
 L6:
-    speak(11, "See you tomorrow.\n");
+    speak(Entity(11), "See you tomorrow.\n");
     return;
   }
   if (!trigger(186)) {
-    setTrigger(186);
-    speak(11, "Heh, heh, heh!\n<LIGHTBLUE><PLAYER><WHITE>, look!\n");
-    moveCamera(to: (-2243, 1914), slowdown: 30);
-    waitForEntity(200);
+    setTrigger(Trigger(186));
+    speak(Entity(11), "Heh, heh, heh!\n<LIGHTBLUE><PLAYER><WHITE>, look!\n");
+    panTo(x: -2243, y: 1914, slowdown: 30);
     delay(20);
-    moveCamera(to: Entity.Player, speed: 20);
-    waitForEntity(200);
-    speak(11, "We can grow lots of\nSirloin. I'll give you\nthree Sirloins a day.\n");
+    followEntity(Entity.Player, speed: 20);
+    speak(Entity(11), "We can grow lots of\nSirloin. I'll give you\nthree Sirloins a day.\n");
     showTextbox("I also started to\ngrow rare veggies!\nBuy as many as you want!\n");
   }
   roll(pstat: PStat.RollScratch, max: 9);
   if (pstat[31] >= 1 && pstat[110] <= 0) {
-    speak(11, "I feel good today,\nso I'll give you five pieces\nof Sirloin.\n");
+    speak(Entity(11), "I feel good today,\nso I'll give you five pieces\nof Sirloin.\n");
   } else {
     goto L7;
   }
   if (item[Item.Sirloin] >= 99) {
-    speak(11, "You got too much Sirloin.\nYou don't need any today\n");
+    speak(Entity(11), "You got too much Sirloin.\nYou don't need any today\n");
     return;
   }
   if (item[Item.Sirloin] >= 95) {
-    speak(11, "You got too much Sirloin.\n");
+    speak(Entity(11), "You got too much Sirloin.\n");
     giveItem(Item.Sirloin, 5);
     speak(Entity.System, "I got <LIGHTBLUE>Sirloin<WHITE>!\n");
-    setTrigger(74);
-    setPStat(31, 0);
+    setTrigger(Trigger(74));
+    setPStat(PStat(31), 0);
     return;
   }
   giveItem(Item.Sirloin, 5);
@@ -230,39 +228,39 @@ L6:
     return;
   }
   speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Sirloin<WHITE>!\n");
-  speak(11, "See you tomorrow!\n");
-  setPStat(31, 0);
+  speak(Entity(11), "See you tomorrow!\n");
+  setPStat(PStat(31), 0);
   return;
 
 L7:
   if (pstat[31] >= 1) {
-    speak(11, "Here's today's portion of\nSirloin times three!\n");
+    speak(Entity(11), "Here's today's portion of\nSirloin times three!\n");
   } else {
     goto L8;
   }
   if (item[Item.Sirloin] >= 99) {
-    speak(11, "You got too much Sirloin.\nYou don't need any today.\n");
+    speak(Entity(11), "You got too much Sirloin.\nYou don't need any today.\n");
     return;
   }
   if (item[Item.Sirloin] >= 97) {
-    speak(11, "You got too much Sirloin.\n");
+    speak(Entity(11), "You got too much Sirloin.\n");
     giveItem(Item.Sirloin, 3);
     speak(Entity.System, "I got <LIGHTBLUE>Sirloin<WHITE>!\n");
-    setTrigger(74);
-    setPStat(31, 0);
+    setTrigger(Trigger(74));
+    setPStat(PStat(31), 0);
     return;
   }
   giveItem(Item.Sirloin, 3);
   if (trigger(0)) {
-    speak(11, "You got too many Items.\n");
+    speak(Entity(11), "You got too many Items.\n");
     return;
   }
   speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Sirloin<WHITE>!\n");
-  setPStat(31, 0);
+  setPStat(PStat(31), 0);
   return;
 
 L8:
-  speak(11, "It's not tomorrow yet!\nDo you want to buy veggies?\n");
+  speak(Entity(11), "It's not tomorrow yet!\nDo you want to buy veggies?\n");
   setDialogOwner(Entity.Player);
   choice { "Buy" -> L9, "Don't buy" -> L13 }
   goto L13;
@@ -274,7 +272,7 @@ L9:
 
 L10:
   if (money < 500) {
-    speak(11, "You don't got enough money.\n");
+    speak(Entity(11), "You don't got enough money.\n");
     return;
   }
   giveItem(Item.Supercarrot, 1);
@@ -286,7 +284,7 @@ L10:
 
 L11:
   if (money < 500) {
-    speak(11, "You don't got enough money.\n");
+    speak(Entity(11), "You don't got enough money.\n");
     return;
   }
   giveItem(Item.HawkRadish, 1);
@@ -299,13 +297,13 @@ L11:
 L12:
   reduceMoney(500);
   sfx(0, 5, wait: 5);
-  speak(11, "Do you want to buy more?\n");
+  speak(Entity(11), "Do you want to buy more?\n");
   setDialogOwner(Entity.Player);
   choice { "Buy" -> L9, "Don't buy" -> L13 }
   goto L13;
 
 L13:
-  speak(11, "See ya!\n");
+  speak(Entity(11), "See ya!\n");
   return;
   garbage { 0c 00 fe 00 0c 00 0b 00 0e 00 ff ff fe 00 19 00 00 00 e1 00 18 00 1e 00 19 00 16 00 2c 12 19 00 00 00 f6 00 18 00 2e 00 19 00 16 00 90 09 19 00 00 00 4a 00 18 00 3e 00 19 00 16 00 5a 04 1c 00 4a 00 1b 0b 1a 00 82 67 82 89 81 43 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 8e 82 85 82 85 82 84 81 40 82 81 82 8e 82 99 81 40 82 6c 82 85 82 81 82 94 81 48 0d 00 00 00 1a 00 82 6e 82 88 81 43 81 40 82 68 81 40 82 88 82 81 82 96 82 85 82 8e 81 75 82 94 81 40 82 94 82 8f 82 8c 82 84 81 40 82 99 82 8f 82 95 0d 00 82 81 82 8e 82 99 82 94 82 88 82 89 82 8e 82 87 81 40 82 81 82 82 82 8f 82 95 82 94 81 40 82 94 82 88 82 89 82 93 81 42 0d 00 00 00 1a 00 82 73 82 88 82 89 82 93 81 40 82 89 82 93 81 40 82 81 81 40 82 6c 82 85 82 81 82 94 81 40 82 86 82 81 82 92 82 8d 81 42 0d 00 82 76 82 85 81 40 82 87 82 92 82 8f 82 97 81 40 82 6c 82 85 82 81 82 94 81 40 82 86 82 8f 82 92 81 40 82 85 82 96 82 85 82 92 82 99 82 8f 82 8e 82 85 81 42 0d 00 00 00 1b fd 1a 00 82 78 82 8f 82 95 81 40 82 87 82 92 82 8f 82 97 81 40 82 6c 82 85 82 81 82 94 81 40 82 8f 82 8e 81 40 82 81 81 40 82 86 82 81 82 92 82 8d 81 48 0d 00 00 00 1b 0b 1a 00 82 78 82 85 82 81 82 88 81 43 81 40 82 97 82 88 82 99 81 48 0d 00 00 00 1b fd 1a 00 82 76 82 85 82 8c 82 8c 81 42 81 42 81 42 81 40 82 8e 82 8f 82 94 82 88 82 89 82 8e 82 87 0d 00 00 00 1b 0b 1a 00 82 69 82 89 82 8a 82 89 81 40 82 81 82 8e 82 84 81 40 82 68 81 75 82 96 82 85 81 40 82 84 82 85 82 83 82 89 82 84 82 85 82 84 81 40 82 94 82 8f 0d 00 82 87 82 89 82 96 82 85 81 40 82 99 82 8f 82 95 81 40 82 94 82 88 82 92 82 85 82 85 81 40 82 90 82 89 82 85 82 83 82 85 82 93 81 40 82 8f 82 86 0d 00 82 6c 82 85 82 81 82 94 81 40 82 84 82 81 82 89 82 8c 82 99 81 43 81 40 01 06 05 00 01 01 81 42 0d 00 00 00 1a 00 82 67 82 85 82 92 82 85 81 75 82 93 81 40 82 99 82 8f 82 95 82 92 81 40 82 6c 82 85 82 81 82 94 81 40 82 86 82 8f 82 92 81 40 82 94 82 8f 82 84 82 81 82 99 81 42 0d 00 00 00 19 00 24 00 26 02 63 00 18 00 fa 02 19 00 1b 0b 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 6c 82 85 82 81 82 94 81 42 0d 00 82 78 82 8f 82 95 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 8e 82 85 82 85 82 84 81 40 82 81 82 8e 82 99 81 40 82 94 82 8f 82 84 82 81 82 99 81 42 0d 00 00 00 1e 00 1f 01 fe 00 19 00 24 00 26 02 61 00 18 00 ca 03 19 00 1b 0b 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 6c 82 85 82 81 82 94 81 42 81 40 82 68 81 75 82 8c 82 8c 0d 00 82 94 82 81 82 8b 82 85 81 40 82 97 82 88 82 81 82 94 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 75 82 94 81 40 82 88 82 8f 82 8c 82 84 81 42 0d 00 00 00 28 00 26 03 1b ff 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 94 82 88 82 92 82 85 82 85 81 40 82 90 82 89 82 85 82 83 82 85 82 93 0d 00 82 8f 82 86 81 40 01 06 82 6c 82 85 82 81 82 94 01 01 81 49 0d 00 00 00 1c 00 4a 00 1e 00 1f 00 fe 00 28 00 26 03 19 00 00 00 00 00 18 00 12 04 19 00 1b 0b 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 81 82 8e 82 99 81 40 82 68 82 94 82 85 82 8d 82 93 81 42 0d 00 00 00 fe 00 1b ff 1a 00 82 68 81 40 82 87 82 8f 82 94 81 40 82 94 82 88 82 92 82 85 82 85 81 40 82 90 82 89 82 85 82 83 82 85 82 93 81 40 82 8f 82 86 0d 00 01 06 82 6c 82 85 82 81 82 94 01 01 81 49 0d 00 00 00 1e 00 1f 00 fe 00 24 00 6e 09 19 00 0a 00 1f 01 8b 00 6e 00 18 00 f4 04 19 00 1b 0b 1a 00 82 76 82 85 81 40 82 88 82 81 82 92 82 96 82 85 82 93 82 94 82 85 82 84 81 40 82 81 81 40 82 8c 82 8f 82 94 81 40 82 8f 82 86 81 40 82 6c 82 85 82 81 82 94 0d 00 82 94 82 8f 82 84 82 81 82 99 81 49 81 40 82 76 82 85 81 75 82 8c 82 8c 81 40 82 87 82 89 82 96 82 85 81 40 82 99 82 8f 82 95 0d 00 82 86 82 89 82 96 82 85 81 40 82 90 82 89 82 85 82 83 82 85 82 93 81 42 0d 00 00 00 16 00 f8 04 16 00 d6 06 19 00 24 00 26 02 63 00 18 00 3c 05 19 00 1b 0b 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f }
 }

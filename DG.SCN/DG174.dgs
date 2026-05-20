@@ -8,60 +8,60 @@ section onEnter(254) {
 }
 
 section(81) {
-  look(entity: Entity.Player, at: 5);
-  look(entity: 5, at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(5));
+  look(entity: Entity(5), at: Entity.Player);
   if (trigger(58) || trigger(61) || trigger(60) || trigger(59)) {
     goto L1;
   }
   if (trigger(209) && !trigger(58) && pstat[27] == 0) {
-    speak(5, "Welcome to my restaurant.\n");
+    speak(Entity(5), "Welcome to my restaurant.\n");
     showTextbox("I've decided to be a manager\nand chef of this restaurant.\n");
     showTextbox("Enjoy my flaming cuisine\nas much as you like.\n");
-    setTrigger(58);
+    setTrigger(Trigger(58));
     return;
   }
   if (trigger(208) && !trigger(61) && pstat[27] == 1) {
-    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>, won't\nyou try my home cooking?\n");
+    speak(Entity(5), "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>, won't\nyou try my home cooking?\n");
     showTextbox("Unlike Items you get, this\nis true cooking. It's my\nsecret talent.\n");
-    setTrigger(61);
+    setTrigger(Trigger(61));
     return;
   }
   if (trigger(222) && !trigger(60) && pstat[27] == 2) {
-    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\nI decided to make a living\nwith cooking. I'm good!\n");
+    speak(Entity(5), "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\nI decided to make a living\nwith cooking. I'm good!\n");
     showTextbox("You should relax and eat at\nmy restaurant sometime.\n");
-    setTrigger(60);
+    setTrigger(Trigger(60));
     return;
   }
   if (!trigger(223) || trigger(59) || pstat[27] != 3) goto L1;
-  speak(5, "C???NC?? , C???MC?? .\nMy restaurant finally opened!\n");
+  speak(Entity(5), "C???NC?? , C???MC?? .\nMy restaurant finally opened!\n");
   showTextbox("Try the frozen dessert!\nIt's my specialty.\n");
-  setTrigger(59);
+  setTrigger(Trigger(59));
   return;
 
 L1:
   if (trigger(209) && !trigger(58) && pstat[27] == 0) {
-    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, I've decided\nto work as a chef\nin this restaurant.\n");
+    speak(Entity(5), "<LIGHTBLUE><PLAYER><WHITE>, I've decided\nto work as a chef\nin this restaurant.\n");
     showTextbox("Enjoy a hot meal here.\n");
-    setTrigger(58);
+    setTrigger(Trigger(58));
     return;
   }
   if (trigger(208) && !trigger(61) && pstat[27] == 1) {
-    speak(5, "Alright!\n<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>\nI'm a cook now!\n");
+    speak(Entity(5), "Alright!\n<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>\nI'm a cook now!\n");
     showTextbox("My cooking is so much\nbetter than what you can\nget anywhere else. Try it!\n");
-    setTrigger(61);
+    setTrigger(Trigger(61));
     return;
   }
   if (trigger(222) && !trigger(60) && pstat[27] == 2) {
-    speak(5, "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\nI decided to give my life\nto cooking!\n");
+    speak(Entity(5), "<LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\nI decided to give my life\nto cooking!\n");
     showTextbox("My special home cooking\nis very healthy! So come\nand visit me when I cook.\n");
-    setTrigger(60);
+    setTrigger(Trigger(60));
     return;
   }
   if (trigger(223) && !trigger(59) && pstat[27] == 3) {
-    speak(5, "Hey!  <LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\n");
+    speak(Entity(5), "Hey!  <LIGHTBLUE><PLAYER><WHITE>, <ORANGE><DIGIMON><WHITE>!\n");
     showTextbox("I decided to help\nthis restaurant.\nThey let me make dessert.\n");
     showTextbox("I'm really proud of\nmy dessert.\nBe sure to try it, OK?\n");
-    setTrigger(59);
+    setTrigger(Trigger(59));
     return;
   }
   if (pstat[27] == 0 || pstat[27] == 1 || pstat[27] == 2) {

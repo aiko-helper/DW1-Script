@@ -8,18 +8,18 @@ section onEnter(254) {
 }
 
 section(6) {
-  setPStat(122, 0);
+  setPStat(PStat(122), 0);
   if (!trigger(257) && !trigger(357)) {
-    speak(6, "Hey, do you want to play a\nmatch with me? If you win,\nI'll do whatever you say.\n");
+    speak(Entity(6), "Hey, do you want to play a\nmatch with me? If you win,\nI'll do whatever you say.\n");
     speak(Entity.Player, "What kind of match?\n");
-    speak(6, "What I call...\nDigimon Curling! \nI'll tell you more inside.\n");
+    speak(Entity(6), "What I call...\nDigimon Curling! \nI'll tell you more inside.\n");
     speak(Entity.Player, "Hmm, what happens if I lose?\n");
-    speak(6, "Nothing the first time.\nBut next time you have to\ngive me a fish first.\n");
+    speak(Entity(6), "Nothing the first time.\nBut next time you have to\ngive me a fish first.\n");
     speak(Entity.Player, "Then if I win, you come to\nthe city with me. OK?");
     dead_string("? to\nThen, let's do it.\n");
-    speak(6, "Alright, that's fine. \nLet's go inside.\n");
-    setTrigger(357);
-    move(entity: 6, to: (1905, 1667), sprint: 0);
+    speak(Entity(6), "Alright, that's fine. \nLet's go inside.\n");
+    setTrigger(Trigger(357));
+    move(entity: Entity(6), to: (1905, 1667), sprint: 0);
     delay(10);
     move(entity: Entity.Player, to: (1905, 1667), sprint: 0);
     delay(10);
@@ -29,30 +29,30 @@ section(6) {
     return;
   }
   if (!trigger(257)) {
-    speak(6, "Hey, do you want to play a\nmatch with me? Give me a\nfish and you can play me.\n");
+    speak(Entity(6), "Hey, do you want to play a\nmatch with me? Give me a\nfish and you can play me.\n");
     setDialogOwner(Entity.Player);
     choice { "I'll get you" -> L2, "No thanks" -> L1 }
     return;
   }
   if (!trigger(92)) {
-    setTrigger(92);
-    speak(6, "Hey bro! I made a\nskating rink here.\n");
+    setTrigger(Trigger(92));
+    speak(Entity(6), "Hey bro! I made a\nskating rink here.\n");
     showTextbox("One fish for one match.\nBut if you win, I'll give\nyou a nice prize.\n");
   }
-  setPStat(122, 0);
-  speak(6, "Hey dude, don't you want to\nhave a match with me? You can\nchallenge me with one fish.\n");
+  setPStat(PStat(122), 0);
+  speak(Entity(6), "Hey dude, don't you want to\nhave a match with me? You can\nchallenge me with one fish.\n");
   setDialogOwner(Entity.Player);
   choice { "You're on" -> L2, "No thanks" -> L1 }
   return;
 
 L1:
-  setPStat(113, 0);
-  speak(6, "Shoot, that's no fun.\n");
+  setPStat(PStat(113), 0);
+  speak(Entity(6), "Shoot, that's no fun.\n");
   return;
 
 L2:
-  speak(6, "Give me a fish!\n");
-  setTrigger(3);
+  speak(Entity(6), "Give me a fish!\n");
+  setTrigger(Trigger(3));
   callSubroutine(0);
   if (trigger(3)) {
     speak(Entity.Player, "I don't got anything now...\n");
@@ -74,62 +74,61 @@ L2:
   goto L4;
 
 L3:
-  speak(6, "Wow, it looks tasty. Ooops,\nwe have to have a match first.\nLet's go inside.\n");
+  speak(Entity(6), "Wow, it looks tasty. Ooops,\nwe have to have a match first.\nLet's go inside.\n");
   warp(to: Map.FRZL17, spawn: 1, trigger: 255);
   return;
 
 L4:
-  setPStat(113, 0);
-  speak(6, "Oh come on, dude.\nWhy don't you go fishing\nat Dragon Eye Lake.\n");
+  setPStat(PStat(113), 0);
+  speak(Entity(6), "Oh come on, dude.\nWhy don't you go fishing\nat Dragon Eye Lake.\n");
   return;
   return;
 }
 
 section(10) {
   if (pstat[121] == 0) {
-    speak(6, "Sorry bro. Come back again\nto challenge me. And don't\nforget to bring another fish.\n");
+    speak(Entity(6), "Sorry bro. Come back again\nto challenge me. And don't\nforget to bring another fish.\n");
     return;
   }
   if (pstat[121] != 2) goto L1;
-  speak(6, "Impressive! Perfect score!\nAre you by any chance...\na professional?\n");
+  speak(Entity(6), "Impressive! Perfect score!\nAre you by any chance...\na professional?\n");
   if (trigger(372)) goto L1;
-  setTrigger(372);
+  setTrigger(Trigger(372));
   playSound(0, 7);
   speak(Entity.System, "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
 
 L1:
-  speak(6, "Amazing dude. I lost a\nmatch for the first time.\n");
+  speak(Entity(6), "Amazing dude. I lost a\nmatch for the first time.\n");
   speak(Entity.Player, "Alright, now come to the city\nwith me as you promised.\n");
-  speak(6, "Oh well, I guess I have to.\nBut I already decided what\nI'm going to do in the city.\n");
+  speak(Entity(6), "Oh well, I guess I have to.\nBut I already decided what\nI'm going to do in the city.\n");
   goto L2;
 
 L2:
-  approach(who: 6, x: -105, y: 1821, tries: 3, wait: 20);
+  approach(who: Entity(6), x: -105, y: 1821, tries: 3, wait: 20);
   playSound(8, 11);
   speak(Entity.System, "Penguinmon joins the city!\n");
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
-  setTrigger(257);
-  addPStat(1, 1);
+  followEntity(Entity.Player, speed: 10);
+  setTrigger(Trigger(257));
+  addPStat(PStat(1), 1);
   return;
 }
 
 section(11) {
   if (pstat[121] == 0) {
-    speak(6, "Sorry bro. Come back again\nto challenge me. And don't\nforget to bring a fish.\n");
+    speak(Entity(6), "Sorry bro. Come back again\nto challenge me. And don't\nforget to bring a fish.\n");
     return;
   }
   if (pstat[121] != 2) goto L1;
-  speak(6, "Impressive! Perfect score!\nAre you by any chance...\na professional?\n");
+  speak(Entity(6), "Impressive! Perfect score!\nAre you by any chance...\na professional?\n");
   if (trigger(372)) goto L1;
-  setTrigger(372);
+  setTrigger(Trigger(372));
   playSound(0, 7);
   speak(Entity.System, "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
 
 L1:
-  speak(6, "Wow, you're amazing, man. \nI lost again.\n");
-  speak(6, "Well, what can I say.\nHere's your prize.\n");
-  roll(pstat: 102, max: 49);
+  speak(Entity(6), "Wow, you're amazing, man. \nI lost again.\n");
+  speak(Entity(6), "Well, what can I say.\nHere's your prize.\n");
+  roll(pstat: PStat(102), max: 49);
   loop {
     if (pstat[102] <= 0) {
       giveItem(Item.Rooster, 1);
@@ -163,29 +162,28 @@ L1:
 
 L2:
     if (!trigger(0)) break;
-    speak(6, "You have too many Items!\n");
-    unsetTrigger(3);
+    speak(Entity(6), "You have too many Items!\n");
+    unsetTrigger(Trigger(3));
     callSubroutine(0);
     callSubroutine(13);
   }
   speak(Entity.System, "I got a <LIGHTBLUE><TREASURE ITEM><WHITE>!\n");
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  followEntity(Entity.Player, speed: 10);
   return;
   return;
 }
 
 section(7) {
-  setPStat(122, 1);
-  speak(6, "Hey <LIGHTBLUE><PLAYER><WHITE>. I'm watching\nthe shop now as a favor for\nPenguinmon.\n");
+  setPStat(PStat(122), 1);
+  speak(Entity(6), "Hey <LIGHTBLUE><PLAYER><WHITE>. I'm watching\nthe shop now as a favor for\nPenguinmon.\n");
   showTextbox("Have a match with me!\nIf you win, I'll give you my\nspecial prize. How's that?\n");
   setDialogOwner(Entity.Player);
   choice { "Alright, let's do it" -> L1, "No thanks" -> L4 }
   return;
 
 L1:
-  speak(6, "Let me get the fish\nbefore the match.\n");
-  setTrigger(3);
+  speak(Entity(6), "Let me get the fish\nbefore the match.\n");
+  setTrigger(Trigger(3));
   callSubroutine(0);
   if (trigger(3)) {
     speak(Entity.Player, "Oh, I don't have\nanything right now.\n");
@@ -207,35 +205,35 @@ L1:
   goto L3;
 
 L2:
-  speak(6, "Well, this time, I'm gonna\nwin. Let's go inside.\n");
+  speak(Entity(6), "Well, this time, I'm gonna\nwin. Let's go inside.\n");
   warp(to: Map.FRZL17, spawn: 1, trigger: 255);
   return;
 
 L3:
-  setPStat(113, 0);
-  speak(6, "I can't have a match\nwithout a fish. Come back\nagain some other time.\n");
+  setPStat(PStat(113), 0);
+  speak(Entity(6), "I can't have a match\nwithout a fish. Come back\nagain some other time.\n");
   return;
 
 L4:
-  speak(6, "What? Are you\nturning me down?\n");
+  speak(Entity(6), "What? Are you\nturning me down?\n");
   return;
 }
 
 section(12) {
   if (pstat[121] == 0) {
-    speak(6, "If you want to win against\nme, you better use your head!\nI'll see you again someday.\n");
+    speak(Entity(6), "If you want to win against\nme, you better use your head!\nI'll see you again someday.\n");
     return;
   }
   if (pstat[121] != 2) goto L1;
-  speak(6, "You got a perfect score\nagainst me!! Are you\na Curling genius?!\n");
+  speak(Entity(6), "You got a perfect score\nagainst me!! Are you\na Curling genius?!\n");
   if (trigger(372)) goto L1;
-  setTrigger(372);
+  setTrigger(Trigger(372));
   playSound(0, 7);
   speak(Entity.System, "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
 
 L1:
-  speak(6, "You are good, <LIGHTBLUE><PLAYER><WHITE>!\nHere's the prize\nI promised you!\n");
-  roll(pstat: 102, max: 49);
+  speak(Entity(6), "You are good, <LIGHTBLUE><PLAYER><WHITE>!\nHere's the prize\nI promised you!\n");
+  roll(pstat: PStat(102), max: 49);
   loop {
     if (pstat[102] <= 0) {
       giveItem(Item.SilverBall, 1);
@@ -279,14 +277,13 @@ L1:
 
 L2:
     if (!trigger(0)) break;
-    speak(6, "You have too many Items.\n");
-    unsetTrigger(3);
+    speak(Entity(6), "You have too many Items.\n");
+    unsetTrigger(Trigger(3));
     callSubroutine(0);
     callSubroutine(13);
   }
   speak(Entity.System, "I got a <LIGHTBLUE><TREASURE ITEM><WHITE>!\n");
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  followEntity(Entity.Player, speed: 10);
   return;
   garbage { 1c 00 fe 00 1c 00 06 00 1e 00 0a 00 c8 08 0b 00 c4 0c 07 00 64 10 0c 00 7a 14 ff ff fe 00 1e 00 7a 00 19 00 01 00 01 01 81 00 65 01 18 00 76 03 19 00 1b 06 1a 00 82 67 82 85 82 99 81 43 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 90 82 8c 82 81 82 99 81 40 82 81 0d 00 82 8d 82 81 82 94 82 83 82 88 81 40 82 97 82 89 82 94 82 88 81 40 82 8d 82 85 81 48 81 40 82 68 82 86 81 40 82 99 82 8f 82 95 81 40 82 97 82 89 82 8e 81 43 0d 00 82 68 81 75 82 8c 82 8c 81 40 82 84 82 8f 81 40 82 97 82 88 82 81 82 94 82 85 82 96 82 85 82 92 81 40 82 99 82 8f 82 95 81 40 82 93 82 81 82 99 81 42 0d 00 00 00 1b fd 1a 00 82 76 82 88 82 81 82 94 81 40 82 8b 82 89 82 8e 82 84 81 40 82 8f 82 86 81 40 82 8d 82 81 82 94 82 83 82 88 81 48 0d 00 00 00 1b 06 1a 00 82 76 82 88 82 81 82 94 81 40 82 68 81 40 82 83 82 81 82 8c 82 8c 81 42 81 42 81 42 0d 00 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 40 82 62 82 95 82 92 82 8c 82 89 82 8e 82 87 81 49 81 40 0d 00 82 68 81 75 82 8c 82 8c 81 40 82 94 82 85 82 8c 82 8c 81 40 82 99 82 8f 82 95 81 40 82 8d 82 8f 82 92 82 85 81 40 82 89 82 8e 82 93 82 89 82 84 82 85 81 42 0d 00 00 00 1b fd 1a 00 82 67 82 8d 82 8d 81 43 81 40 82 97 82 88 82 81 82 94 81 40 82 88 82 81 82 90 82 90 82 85 82 8e 82 93 81 40 82 89 82 86 81 40 82 68 81 40 82 8c 82 8f 82 93 82 85 81 48 0d 00 00 00 1b 06 1a 00 82 6d 82 8f 82 94 82 88 82 89 82 8e 82 87 81 40 82 94 82 88 82 85 81 40 82 86 82 89 82 92 82 93 82 94 81 40 82 94 82 89 82 8d 82 85 81 42 0d 00 82 61 82 95 82 94 81 40 82 8e 82 85 82 98 82 94 81 40 82 94 82 89 82 8d 82 85 81 40 82 99 82 8f 82 95 81 40 82 88 82 81 82 96 82 85 81 40 82 94 82 8f 0d 00 82 87 82 89 82 96 82 85 81 40 82 8d 82 85 81 40 82 81 81 40 82 86 82 89 82 93 82 88 81 40 82 86 82 89 82 92 82 93 82 94 81 42 0d 00 00 00 1b fd 1a 00 82 73 82 88 82 85 82 8e 81 40 82 89 82 86 81 40 82 68 81 40 82 97 82 89 82 8e 81 43 81 40 82 99 82 8f 82 95 81 40 82 83 82 8f 82 8d 82 85 81 40 82 94 82 8f 0d 00 82 94 82 88 82 85 81 40 82 83 82 89 82 94 82 99 81 40 82 97 82 89 82 94 82 88 81 40 82 8d 82 85 81 42 81 40 82 6e 82 6a 81 48 00 00 81 48 81 40 82 94 82 8f 0d 00 82 73 82 88 82 85 82 8e 81 43 81 40 82 8c 82 85 82 94 81 75 82 93 81 40 82 84 82 8f 81 40 82 89 82 94 81 42 0d 00 00 00 1b 06 1a 00 82 60 82 8c 82 92 82 89 82 87 82 88 82 94 81 43 81 40 82 94 82 88 82 81 82 94 81 75 82 93 81 40 82 86 82 89 82 8e 82 85 81 42 81 40 0d 00 82 6b 82 85 82 94 81 75 82 93 81 40 82 87 82 8f 81 40 82 89 82 8e 82 93 82 89 82 84 82 85 81 42 0d 00 00 00 1c 00 65 01 4e 06 71 07 83 06 00 00 67 00 0a 00 4e fd 71 07 83 06 00 00 67 00 0a 00 4e fc 71 07 83 06 00 00 67 00 0a 00 4b 88 01 ff fe 00 19 00 01 00 01 01 18 00 62 04 19 00 1b 06 1a 00 82 67 82 85 82 99 81 43 81 40 82 84 82 8f 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 81 40 82 90 82 8c 82 81 82 99 81 40 82 81 0d 00 82 8d 82 81 82 94 82 83 82 88 81 40 82 97 82 89 82 94 82 88 81 40 82 8d 82 85 81 48 81 40 82 66 82 89 82 96 82 85 81 40 82 8d 82 85 81 40 82 81 0d 00 82 86 82 89 82 93 82 88 81 40 82 81 82 8e 82 84 81 40 82 99 82 8f 82 95 81 40 82 83 82 81 82 8e 81 40 82 90 82 8c 82 81 82 99 81 40 82 8d 82 85 81 42 0d 00 00 00 1b fd 10 02 74 06 3c 06 1a 00 82 68 81 75 82 8c 82 8c 81 40 82 87 82 85 82 94 81 40 82 99 82 8f 82 95 0d 00 82 6d 82 8f 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 0d 00 00 00 12 00 fe 00 19 00 01 00 5c 00 18 00 4e 05 19 00 1c 00 5c 00 1b 06 1a 00 82 67 82 85 82 99 81 40 82 82 82 92 82 8f 81 49 81 40 82 68 81 40 82 8d 82 81 82 84 82 85 81 40 82 81 0d 00 82 93 82 8b 82 81 82 94 82 89 82 8e 82 87 81 40 82 92 82 89 82 8e 82 8b 81 40 82 88 82 85 82 92 82 85 81 42 0d 00 00 00 1a 00 82 6e 82 8e 82 85 81 40 82 86 82 89 82 93 82 88 81 40 82 86 82 8f 82 92 81 40 82 8f 82 8e 82 85 81 40 82 8d 82 81 82 94 82 83 82 88 81 42 0d 00 82 61 82 95 82 94 81 40 82 89 82 86 81 40 82 99 82 8f 82 95 81 40 82 97 82 89 82 8e 81 43 81 40 82 68 81 75 82 8c 82 8c 81 40 82 87 82 89 82 96 82 85 0d 00 82 99 82 8f 82 95 81 40 82 81 81 40 82 8e 82 89 82 83 82 85 81 40 82 90 82 92 82 89 82 9a 82 85 81 42 0d 00 00 00 1e 00 7a 00 1b 06 1a 00 82 67 82 85 82 99 81 40 82 84 82 95 82 84 82 85 81 43 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 99 82 8f 82 95 81 40 82 97 82 81 82 8e 82 94 81 40 82 94 82 8f 0d 00 82 88 82 81 82 96 82 85 81 40 82 81 81 40 82 8d 82 81 82 94 82 83 82 88 81 40 82 97 82 89 82 94 82 88 81 40 82 8d 82 85 81 48 81 40 82 78 82 8f 82 95 81 40 82 83 82 81 82 8e 0d 00 82 83 82 88 82 81 82 8c 82 8c 82 85 82 8e 82 87 82 85 81 40 82 8d 82 85 81 40 82 97 82 89 82 94 82 88 81 40 82 8f 82 8e 82 85 81 40 82 86 82 89 82 93 82 88 81 42 0d 00 00 00 1b fd 10 02 74 06 3c 06 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 8f 82 8e 0d 00 82 6d 82 8f 81 40 82 94 82 88 82 81 82 8e 82 8b 82 93 0d 00 00 00 12 00 fe 00 1e 00 71 00 1b 06 1a 00 82 72 82 88 82 8f 82 8f 82 94 81 43 81 40 82 94 82 88 82 81 82 94 81 75 82 93 81 40 82 8e 82 8f 81 40 82 86 82 95 82 8e 81 42 0d 00 00 00 fe 00 1b 06 1a 00 82 66 82 89 82 96 82 85 81 40 82 8d 82 85 81 40 82 81 81 40 82 86 82 89 82 93 82 88 81 49 0d 00 00 00 1c 00 03 00 64 00 19 00 00 00 03 00 18 00 ee 06 19 00 1b fd 1a 00 82 68 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 87 82 8f 82 94 81 40 82 81 82 8e 82 99 82 94 82 88 82 89 82 8e 82 87 81 40 82 8e 82 8f 82 97 81 42 81 42 81 42 0d 00 00 00 16 00 3c 08 19 00 08 00 fe 3e 48 00 fe 3f 48 00 fe 40 48 00 fe 41 18 00 0c 07 19 00 64 0c 16 00 98 07 19 00 08 00 fe 42 48 00 fe 43 18 00 22 07 19 00 64 0c 16 00 98 07 19 00 08 00 fe ff 18 00 36 07 19 00 16 00 3c 08 16 00 98 07 1b fd 1a 00 82 6e 82 88 81 40 82 8e 82 8f 81 43 81 40 82 87 82 89 82 96 82 89 82 8e 82 87 81 40 82 99 82 8f 82 95 81 40 82 94 82 88 82 89 82 93 0d 00 82 84 82 8f 82 85 82 93 82 8e 81 75 82 94 81 40 82 84 82 8f 81 40 82 81 82 8e 82 99 81 40 82 87 82 8f 82 8f 82 84 81 42 0d 00 00 00 16 00 3c 08 1b 06 1a 00 82 76 82 8f 82 97 81 43 81 40 82 89 82 94 81 40 82 8c 82 8f 82 8f 82 8b 82 93 81 40 82 94 82 81 82 93 82 94 82 99 81 42 81 40 82 6e 82 8f 82 8f 82 90 82 93 81 43 0d 00 82 97 82 85 81 40 82 88 82 81 82 96 82 85 81 40 82 94 82 8f 81 40 82 88 82 81 82 96 82 85 }
 }

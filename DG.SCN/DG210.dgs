@@ -8,7 +8,7 @@ section onEnter(254) {
 }
 
 section(51) {
-  storeDigimonType(103);
+  storeDigimonType(PStat(103));
   if (pstat[103] == 1 || pstat[103] == 2 || pstat[103] == 3 || pstat[103] == 4) {
     jumpToScriptSection(221, 5);
   }
@@ -22,24 +22,24 @@ section(51) {
     jumpToScriptSection(221, 5);
   }
   if (!trigger(87) && !trigger(205) && pstat[1] >= 15) {
-    setTrigger(87);
+    setTrigger(Trigger(87));
   }
   if (!trigger(354) && pstat[1] >= 50 && trigger(205)) {
-    setTrigger(354);
-    speak(5, "I was waiting for you,\n<LIGHTBLUE><PLAYER><WHITE>.\nFinally, this day has come\n");
+    setTrigger(Trigger(354));
+    speak(Entity(5), "I was waiting for you,\n<LIGHTBLUE><PLAYER><WHITE>.\nFinally, this day has come\n");
     speak(Entity.Player, "What happened?\n");
-    speak(5, "The entrance to Mt. Infinity\nappeared.\n");
+    speak(Entity(5), "The entrance to Mt. Infinity\nappeared.\n");
     speak(Entity.Player, "What? Really? Where?\n");
-    speak(5, "It's beyond the falls\nof the city.\n");
+    speak(Entity(5), "It's beyond the falls\nof the city.\n");
     speak(Entity.Player, "Gosh, it's so close!\n");
-    speak(5, "The way I see it, the last\nenemy is on Mt. Infinity.\n");
+    speak(Entity(5), "The way I see it, the last\nenemy is on Mt. Infinity.\n");
     speak(Entity.Player, "So it's the Last Dungeon.\nI'll do it!\n");
-    speak(5, "Good luck! But don't be\nhasty. Don't make a move\nuntil you're fully prepared.\n");
+    speak(Entity(5), "Good luck! But don't be\nhasty. Don't make a move\nuntil you're fully prepared.\n");
     return;
   }
   if (trigger(354) && !trigger(50) && trigger(205)) {
-    speak(5, "On the other side of the\nwaterfall, in the city, is\nthe entrance to Mt. Infinity.\n");
-    speak(5, "The way I see it, the last\nenemy is on Mt. Infinity.\n");
+    speak(Entity(5), "On the other side of the\nwaterfall, in the city, is\nthe entrance to Mt. Infinity.\n");
+    speak(Entity(5), "The way I see it, the last\nenemy is on Mt. Infinity.\n");
     showTextbox("Go there fully prepared!\n");
     showTextbox("In any case...\n");
   }
@@ -47,34 +47,34 @@ section(51) {
 }
 
 section(77) {
-  speak(5, "The prosperity rate of\nthe current city is <PROSPERITY>.\n");
+  speak(Entity(5), "The prosperity rate of\nthe current city is <PROSPERITY>.\n");
   if (pstat[1] <= 10) {
-    speak(5, "It's far from\nhow it used to look.\n");
+    speak(Entity(5), "It's far from\nhow it used to look.\n");
     return;
   }
   if (pstat[1] <= 30) {
-    speak(5, "It's finally taking shape.\n");
+    speak(Entity(5), "It's finally taking shape.\n");
     return;
   }
   if (pstat[1] <= 50) {
-    speak(5, "It's developing well.\n");
+    speak(Entity(5), "It's developing well.\n");
     return;
   }
   if (pstat[1] <= 70) {
-    speak(5, "It's becoming a fine city.\n");
+    speak(Entity(5), "It's becoming a fine city.\n");
     return;
   }
   if (pstat[1] <= 99) {
-    speak(5, "You've done a fine job.\nSplendid!\n");
+    speak(Entity(5), "You've done a fine job.\nSplendid!\n");
     return;
   }
   if (pstat[1] > 100) goto L1;
-  speak(5, "There's nothing more I need\nto say. It's fantastic!\n");
+  speak(Entity(5), "There's nothing more I need\nto say. It's fantastic!\n");
   if (stat[Stat.TamerLevel] == 10 || trigger(216)) goto L1;
   addStats(tamerLevel: 1);
   speak(Entity.System, "<YELLOW>Tamer Level\nhas gone up! <WHITE>\n");
-  setTrigger(216);
-  setTrigger(375);
+  setTrigger(Trigger(216));
+  setTrigger(Trigger(375));
   playSound(0, 7);
   speak(Entity.System, "<YELLOW>Congratulations!\nHere's a medal\nfor your great work! <WHITE>\n");
 

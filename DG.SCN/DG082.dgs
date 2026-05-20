@@ -7,149 +7,147 @@ section onEnter(254) {
   spawnItemChance(max: 99, chance: 0, item: Item.SageFruit, x: 60, y: 53);
   if (!trigger(313)) {
     delay(5);
-    playAnimation(5, 28);
+    playAnimation(Entity(5), Animation(28));
   }
   return;
 }
 
 section(5) {
-  setTrigger(44);
+  setTrigger(Trigger(44));
   speak(Entity.Player, "This must be it!\nNo matter how I look at it,\nit looks a plain meteorite.\n");
   setSelection(L1, L4);
   showTextbox("Crack it and check\nLeave it alone\n");
 
 L1:
-  anim(Entity.Player, 5, wait: 20);
+  anim(Entity.Player, Animation(5), wait: 20);
   speak(Entity.Player, "Hmmm\n");
-  anim(Entity.Player, 16, wait: 5);
+  anim(Entity.Player, Animation(16), wait: 5);
   showTextbox("Looks like a plain\nold meteorite to me.\n");
   speak(Entity.System, "<YELLOW>???mon <WHITE>\nSorry to look\nso plain and old.\n");
   goto L2;
 
 L2:
   loop {
-    anim(5, 29, wait: 10);
+    anim(Entity(5), Animation(29), wait: 10);
     speak(Entity.Player, "Wow!\n");
     speak(Entity.Player, "You're a Digimon?!\nWho are you?\n");
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Player, at: 5);
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
     delay(5);
     speak(Entity.System, "<YELLOW>???mon <WHITE>\nMy name is Meteormon.\n");
     speak(Entity.Player, "Do you know about\nthe island's danger?\n");
-    speak(5, "I know nothing!\n");
+    speak(Entity(5), "I know nothing!\n");
     speak(Entity.Player, "You know nothing?! You sure\nyou're not hiding something?\n");
-    speak(5, "How rude! Alright!\nWhy don't we battle\nto prove who is right!\n");
+    speak(Entity(5), "How rude! Alright!\nWhy don't we battle\nto prove who is right!\n");
     speak(Entity.Player, "Alright! Let's go for it.\n");
-    setTrigger(1);
-    setPStat(250, 1);
-    setPStat(251, 5);
-    setPStat(252, 255);
-    setPStat(253, 255);
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 5);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
     startBattle();
-    unsetTrigger(1);
-    setPStat(250, 0);
-    look(entity: Entity.Player, at: 5);
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Partner, at: 5);
-    speak(5, "I give up. You're so strong.\n");
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    look(entity: Entity.Player, at: Entity(5));
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(5));
+    speak(Entity(5), "I give up. You're so strong.\n");
     speak(Entity.Player, "Whatever you know, tell me\nabout the island's danger.\n");
-    anim(Entity.Player, 19, wait: 5);
-    speak(5, "I was just born, so\nI don't know anything!\n");
+    anim(Entity.Player, Animation(19), wait: 5);
+    speak(Entity(5), "I was just born, so\nI don't know anything!\n");
     speak(Entity.Player, "What?!\n");
-    anim(Entity.Player, 0, wait: 5);
-    speak(5, "The Meteorite Tribe is\nborn in the sky and then\nfalls to the ground.\n");
-    speak(5, "Then we sleep for a long time.\nActually, I was supposed to\nsleep much longer, but...\n");
+    anim(Entity.Player, Animation(0), wait: 5);
+    speak(Entity(5), "The Meteorite Tribe is\nborn in the sky and then\nfalls to the ground.\n");
+    speak(Entity(5), "Then we sleep for a long time.\nActually, I was supposed to\nsleep much longer, but...\n");
     speak(Entity.Player, "Time goes much faster here.\n");
-    speak(5, "Probably. Anyway, I'll go\ncheck out the island.");
+    speak(Entity(5), "Probably. Anyway, I'll go\ncheck out the island.");
     dead_string("?o\nSee ya!\n");
-    anim(5, 30, wait: 10);
+    anim(Entity(5), Animation(30), wait: 10);
     goto L3;
 
 L3:
-    move(entity: 5, to: (1, -1050), animDuration: 40);
+    move(entity: Entity(5), to: (1, -1050), animDuration: 40);
     if (pstat[101] < 3) {
       addPStat(PStat.LoopIterator, 1);
       delay(20);
       playSound(8, 5);
-      lookPairAt(5);
+      lookPairAt(Entity(5));
       goto L3;
     }
-    waitForEntity(5);
-    unloadEntity(5);
+    waitForEntity(Entity(5));
+    unloadEntity(Entity(5));
     setPStat(PStat.LoopIterator, 0);
     speak(Entity.Player, "We couldn't find any clues.\nLet's get out fast.\n");
-    unsetTrigger(1);
-    setTrigger(313);
-    moveCamera(to: Entity.Player, speed: 15);
-    waitForEntity(200);
+    unsetTrigger(Trigger(1));
+    setTrigger(Trigger(313));
+    followEntity(Entity.Player, speed: 15);
     return;
 
 L4:
     speak(Entity.Player, "We looked at it, and\nwe can't tell anything.\nLet's crack it!\n");
-    move(entity: Entity.Partner, to: 5, sprint: 0);
+    move(entity: Entity.Partner, to: Entity(5), sprint: 0);
     waitForEntity(Entity.Partner);
-    anim(Entity.Partner, 46, wait: 20);
+    anim(Entity.Partner, Animation(46), wait: 20);
     speak(Entity.System, "<YELLOW>???mon <WHITE>\nWhadda ya think you're doing?\nYou reckless clod!\n");
-    anim(5, 29, wait: 20);
-    look(entity: 5, at: Entity.Player);
-    look(entity: Entity.Player, at: 5);
+    anim(Entity(5), Animation(29), wait: 20);
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
     delay(5);
   }
 }
 
 section(6) {
   delay(10);
-  anim(6, 28, wait: 10);
+  anim(Entity(6), Animation(28), wait: 10);
   speak(Entity.Player, "Huh? Who are you?!\n");
-  speak(6, "Who am I? Who are you?!\n");
-  rotate(entity: 6, to: 1276);
+  speak(Entity(6), "Who am I? Who are you?!\n");
+  rotate(entity: Entity(6), to: 1276);
   delay(5);
-  rotate(entity: 6, to: 2300);
+  rotate(entity: Entity(6), to: 2300);
   delay(5);
-  rotate(entity: 6, to: 3324);
+  rotate(entity: Entity(6), to: 3324);
   delay(5);
-  rotate(entity: 6, to: 252);
+  rotate(entity: Entity(6), to: 252);
   delay(5);
-  rotate(entity: 6, to: 1276);
+  rotate(entity: Entity(6), to: 1276);
   delay(5);
-  rotate(entity: 6, to: 2300);
+  rotate(entity: Entity(6), to: 2300);
   delay(5);
-  rotate(entity: 6, to: 3324);
+  rotate(entity: Entity(6), to: 3324);
   delay(5);
-  rotate(entity: 6, to: 252);
+  rotate(entity: Entity(6), to: 252);
   delay(5);
-  move(entity: 6, to: (182, -571), sprint: 1);
-  waitForEntity(6);
-  unloadEntity(6);
+  move(entity: Entity(6), to: (182, -571), sprint: 1);
+  waitForEntity(Entity(6));
+  unloadEntity(Entity(6));
   if (pstat[21] == 0) {
     setObjectVisibility(3, 0);
     move(entity: Entity.Player, to: (150, -138), sprint: 1);
     waitForEntity(Entity.Player);
-    anim(Entity.Player, 12, wait: 10);
+    anim(Entity.Player, Animation(12), wait: 10);
     setObjectVisibility(3, 1);
     playSound(0, 7);
     speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>.\nI can carry twenty Items!\n");
     playSound(0, 7);
     setInventorySize(20);
-    setTrigger(47);
+    setTrigger(Trigger(47));
   }
   if (pstat[21] == 4) {
     setObjectVisibility(2, 0);
     move(entity: Entity.Player, to: (150, -138), sprint: 1);
     waitForEntity(Entity.Player);
-    anim(Entity.Player, 12, wait: 10);
+    anim(Entity.Player, Animation(12), wait: 10);
     setObjectVisibility(2, 1);
     playSound(0, 7);
     speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>.\nI can carry thirty Items!\n");
     setInventorySize(30);
-    setTrigger(48);
-    setTrigger(253);
-    addPStat(1, 1);
+    setTrigger(Trigger(48));
+    setTrigger(Trigger(253));
+    addPStat(PStat(1), 1);
   }
-  moveCamera(to: Entity.Player, speed: 15);
-  waitForEntity(200);
-  addPStat(21, 1);
-  setTrigger(335);
+  followEntity(Entity.Player, speed: 15);
+  addPStat(PStat(21), 1);
+  setTrigger(Trigger(335));
   return;
   garbage { 10 00 fe 00 10 00 05 00 3c 00 06 00 8a 09 ff ff 24 00 6e 63 19 00 0b 00 6e 00 18 00 26 00 19 00 74 3b 3c 00 35 00 19 00 01 00 39 01 18 00 3a 00 19 00 67 00 05 00 56 00 05 1c fe 00 1c 00 2c 00 1b fd 1a 00 82 73 82 88 82 89 82 93 81 40 82 8d 82 95 82 93 82 94 81 40 82 82 82 85 81 40 82 89 82 94 81 49 0d 00 82 6d 82 8f 81 40 82 8d 82 81 82 94 82 94 82 85 82 92 81 40 82 88 82 8f 82 97 81 40 82 68 81 40 82 8c 82 8f 82 8f 82 8b 81 40 82 81 82 94 81 40 82 89 82 94 81 43 0d 00 82 89 82 94 81 40 82 8c 82 8f 82 8f 82 8b 82 93 81 40 82 81 81 40 82 90 82 8c 82 81 82 89 82 8e 81 40 82 8d 82 85 82 94 82 85 82 8f 82 92 82 89 82 94 82 85 81 42 0d 00 00 00 10 02 26 01 68 08 1a 00 82 62 82 92 82 81 82 83 82 8b 81 40 82 89 82 94 81 40 82 81 82 8e 82 84 81 40 82 83 82 88 82 85 82 83 82 8b 0d 00 82 6b 82 85 82 81 82 96 82 85 81 40 82 89 82 94 81 40 82 81 82 8c 82 8f 82 8e 82 85 0d 00 00 00 56 00 fd 05 67 00 14 00 1b fd 1a 00 82 67 82 8d 82 8d 82 8d 0d 00 00 00 56 00 fd 10 67 00 05 00 1a 00 82 6b 82 8f 82 8f 82 8b 82 93 81 40 82 8c 82 89 82 8b 82 85 81 40 82 81 81 40 82 90 82 8c 82 81 82 89 82 8e 0d 00 82 8f 82 8c 82 84 81 40 82 8d 82 85 82 94 82 85 82 8f 82 92 82 89 82 94 82 85 81 40 82 94 82 8f 81 40 82 8d 82 85 81 42 0d 00 00 00 1b ff 1a 00 01 07 81 48 81 48 81 48 82 8d 82 8f 82 8e 81 40 01 01 0d 00 82 72 82 8f 82 92 82 92 82 99 81 40 82 94 82 8f 81 40 82 8c 82 8f 82 8f 82 8b 0d 00 82 93 82 8f 81 40 82 90 82 8c 82 81 82 89 82 8e 81 40 82 81 82 8e 82 84 81 40 82 8f 82 8c 82 84 81 42 0d 00 00 00 16 00 f8 01 56 00 05 1d 67 00 0a 00 1b fd 1a 00 82 76 82 8f 82 97 81 49 0d 00 00 00 1b fd 1a 00 82 78 82 8f 82 95 81 75 82 92 82 85 81 40 82 81 81 40 82 63 82 89 82 87 82 89 82 8d 82 8f 82 8e 81 48 81 49 0d 00 82 76 82 88 82 8f 81 40 82 81 82 92 82 85 81 40 82 99 82 8f 82 95 81 48 0d 00 00 00 4c 00 05 fd 4c 00 fd 05 67 00 05 00 1b ff 1a 00 01 07 81 48 81 48 81 48 82 8d 82 8f 82 8e 81 40 01 01 0d 00 82 6c 82 99 81 40 82 8e 82 81 82 8d 82 85 81 40 82 89 82 93 81 40 82 6c 82 85 82 94 82 85 82 8f 82 92 82 8d 82 8f 82 8e 81 42 0d 00 00 00 1b fd 1a 00 82 63 82 8f 81 40 82 99 82 8f 82 95 81 40 82 8b 82 8e 82 8f 82 97 81 40 82 81 82 82 82 8f 82 95 82 94 0d 00 82 94 82 88 82 85 81 40 82 89 82 93 82 8c 82 81 82 8e 82 84 81 75 82 93 81 40 82 84 82 81 82 8e 82 87 82 85 82 92 81 48 0d 00 00 00 1b 05 1a 00 82 68 81 40 82 8b 82 8e 82 8f 82 97 81 40 82 8e 82 8f 82 94 82 88 82 89 82 8e 82 87 81 49 0d 00 00 00 1b fd 1a 00 82 78 82 8f 82 95 81 40 82 8b 82 8e 82 8f 82 97 81 40 82 8e 82 8f 82 94 82 88 82 89 82 8e 82 87 81 48 81 49 81 40 82 78 82 8f 82 95 81 40 82 93 82 95 82 92 82 85 0d 00 82 99 82 8f 82 95 81 75 82 92 82 85 81 40 82 8e 82 8f 82 94 81 40 82 88 82 89 82 84 82 89 82 8e 82 87 81 40 82 93 82 8f 82 8d 82 85 82 94 82 88 82 89 82 8e 82 87 81 48 0d 00 00 00 1b 05 1a 00 82 67 82 8f 82 97 81 40 82 92 82 95 82 84 82 85 81 49 81 40 82 60 82 8c 82 92 82 89 82 87 82 88 82 94 81 49 0d 00 82 76 82 88 82 99 81 40 82 84 82 8f 82 8e 81 75 82 94 81 40 82 97 82 85 81 40 82 82 82 81 82 94 82 94 82 8c 82 85 0d 00 82 94 82 8f 81 40 82 90 82 92 82 8f 82 96 82 85 81 40 82 97 82 88 82 8f 81 40 82 89 82 93 81 40 82 92 82 89 82 87 82 88 82 94 81 49 0d 00 00 00 1b fd 1a 00 82 60 82 8c 82 92 82 89 82 87 82 88 82 94 81 49 81 40 82 6b 82 85 82 94 81 75 82 93 81 40 82 87 82 8f 81 40 82 86 }
 }

@@ -30,23 +30,23 @@ section(5) {
   return;
 
 L1:
-  speak(5, "Shoot! We hit a big rock!\n");
+  speak(Entity(5), "Shoot! We hit a big rock!\n");
   showTextbox("I can't drill thru.\n");
   speak(Entity.Player, "You can't? Oh no!\n");
-  speak(5, "We gotta figure out how to\nmove it. Can you do it?\n");
-  anim(Entity.Player, 19, wait: 20);
+  speak(Entity(5), "We gotta figure out how to\nmove it. Can you do it?\n");
+  anim(Entity.Player, Animation(19), wait: 20);
   speak(Entity.Player, "I don't know.\n");
   look(entity: Entity.Player, at: Entity.Partner);
-  anim(Entity.Player, 14, wait: 20);
+  anim(Entity.Player, Animation(14), wait: 20);
   speak(Entity.Player, "<ORANGE><DIGIMON><WHITE>,\nI need your help.\n");
   move(entity: Entity.Partner, to: (-337, 170), sprint: 0);
   look(entity: Entity.Player, at: Entity.Partner);
   waitForEntity(Entity.Partner);
   delay(20);
   rotate(entity: Entity.Partner, to: 2000);
-  look(entity: 5, at: Entity.Partner);
+  look(entity: Entity(5), at: Entity.Partner);
   look(entity: Entity.Player, at: Entity.Partner);
-  storeDigimonType(103);
+  storeDigimonType(PStat(103));
   if (pstat[103] == 1 || pstat[103] == 2 || pstat[103] == 3 || pstat[103] == 4 || pstat[103] == 15) {
     goto L3;
   }
@@ -59,7 +59,7 @@ L1:
   if (pstat[103] == 46 || pstat[103] == 57) {
     goto L3;
   }
-  playAnimation(Entity.Partner, 27);
+  playAnimation(Entity.Partner, Animation(27));
   setObjectVisibility(0, 0);
   moveBoulder(0, 50);
   sfx(8, 3, wait: 20);
@@ -93,10 +93,10 @@ L1:
   sfx(8, 3, wait: 1);
   despawnBoulder();
   sfx(8, 3, wait: 20);
-  anim(Entity.Partner, 0, wait: 5);
+  anim(Entity.Partner, Animation(0), wait: 5);
   setObjectVisibility(0, 1);
   speak(Entity.Player, "We did it!\n");
-  speak(5, "Wow, amazing power!\nWe moved the rock!\n");
+  speak(Entity(5), "Wow, amazing power!\nWe moved the rock!\n");
   speak(Entity.Player, "I think it's empty past\nthis point.\n");
   rotate(entity: Entity.Player, to: 2000);
   move(entity: Entity.Player, to: (-131, 1250), sprint: 0);
@@ -104,20 +104,20 @@ L1:
   rotate(entity: Entity.Player, to: 2000);
   speak(Entity.Player, "It's a lava river!\nIt's dangerous!\n");
   showTextbox("There's a path along\nthe river. Let's go!\n");
-  speak(5, "Are you going inside?\nBe careful!\n");
-  setTrigger(120);
+  speak(Entity(5), "Are you going inside?\nBe careful!\n");
+  setTrigger(Trigger(120));
   warp(to: Map.TUNN07, spawn: 0, trigger: 255);
   return;
 
 L2:
-  speak(5, "Are you going inside?\nBe careful!\n");
+  speak(Entity(5), "Are you going inside?\nBe careful!\n");
   return;
 
 L3:
   delay(20);
-  anim(Entity.Partner, 27, wait: 20);
-  anim(Entity.Partner, 1, wait: 30);
-  speak(5, "Come back <ORANGE><DIGIMON><WHITE>\nwhen you grow more.\n");
+  anim(Entity.Partner, Animation(27), wait: 20);
+  anim(Entity.Partner, Animation(1), wait: 30);
+  speak(Entity(5), "Come back <ORANGE><DIGIMON><WHITE>\nwhen you grow more.\n");
   move(entity: Entity.Player, to: (-337, 0), sprint: 0);
   waitForEntity(Entity.Player);
   return;

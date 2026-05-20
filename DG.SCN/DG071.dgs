@@ -12,33 +12,33 @@ section onEnter(254) {
 }
 
 section(5) {
-  speak(5, "Well, I see your point.\n");
-  finishEncounter(282);
+  speak(Entity(5), "Well, I see your point.\n");
+  finishEncounter(Trigger(282));
 }
 
 section(6) {
-  speak(6, "Can you see its beauty?\n");
-  finishEncounter(282);
+  speak(Entity(6), "Can you see its beauty?\n");
+  finishEncounter(Trigger(282));
 }
 
 section(7) {
-  speak(7, "Uggghhhh!!\n");
-  finishEncounter(295);
+  speak(Entity(7), "Uggghhhh!!\n");
+  finishEncounter(Trigger(295));
 }
 
 section(8) {
-  speak(8, "I'm desperate now!\n");
-  finishEncounter(296);
+  speak(Entity(8), "I'm desperate now!\n");
+  finishEncounter(Trigger(296));
 }
 
 section(9) {
-  speak(9, "Shoooot! Awh heck.\n");
-  finishEncounter(296);
+  speak(Entity(9), "Shoooot! Awh heck.\n");
+  finishEncounter(Trigger(296));
 }
 
 section(10) {
-  speak(10, "I have a tummy ache.\n");
-  finishEncounter(297);
+  speak(Entity(10), "I have a tummy ache.\n");
+  finishEncounter(Trigger(297));
 }
 
 section(81) {
@@ -76,7 +76,7 @@ L4:
   }
   speak(Entity.System, "A <LIGHTBLUE>Small Recovery\nFloppy<WHITE>came out!\n");
   reduceMoney(200);
-  roll(pstat: 102, max: 99);
+  roll(pstat: PStat(102), max: 99);
   if (pstat[102] < 9) {
     goto L6;
   }
@@ -90,7 +90,7 @@ L5:
   }
   speak(Entity.System, "A <LIGHTBLUE>Portable Potty <WHITE>\ncame out!\n");
   reduceMoney(500);
-  roll(pstat: 102, max: 99);
+  roll(pstat: PStat(102), max: 99);
   if (pstat[102] < 9) {
     goto L6;
   }
@@ -101,7 +101,7 @@ L6:
   speak(Entity.System, "A <LIGHTBLUE>Double Floppy <WHITE>\ncame out!\n");
   giveItem(Item.DoubleFloppy, 1);
   if (trigger(0)) {
-    setTrigger(3);
+    setTrigger(Trigger(3));
     speak(Entity.Player, "I got too many Items.\n");
     callSubroutine(0);
     callSubroutine(13);

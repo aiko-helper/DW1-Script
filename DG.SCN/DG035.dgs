@@ -15,95 +15,95 @@ section onEnter(254) {
 }
 
 section(6) {
-  speak(6, "Ha! You're scared.\n");
-  finishEncounter(296);
+  speak(Entity(6), "Ha! You're scared.\n");
+  finishEncounter(Trigger(296));
 }
 
 section(7) {
-  speak(7, "You'd better go home!\n");
-  finishEncounter(296);
+  speak(Entity(7), "You'd better go home!\n");
+  finishEncounter(Trigger(296));
 }
 
 section(8) {
-  speak(8, "Once you go in,\nyou can't come out.\n");
-  finishEncounter(296);
+  speak(Entity(8), "Once you go in,\nyou can't come out.\n");
+  finishEncounter(Trigger(296));
 }
 
 section(9) {
-  speak(9, "Heh, heh!\n");
-  finishEncounter(307);
+  speak(Entity(9), "Heh, heh!\n");
+  finishEncounter(Trigger(307));
 }
 
 section(10) {
-  speak(10, "Wait.\n");
-  finishEncounter(307);
+  speak(Entity(10), "Wait.\n");
+  finishEncounter(Trigger(307));
 }
 
 section(11) {
-  speak(11, "You'll be possessed.\n");
-  finishEncounter(307);
+  speak(Entity(11), "You'll be possessed.\n");
+  finishEncounter(Trigger(307));
 }
 
 section(5) {
-  anim(5, 11, wait: 50);
-  playAnimation(5, 0);
-  speak(5, "Bakke-bakke?\n");
-  playAnimation(Entity.Player, 16);
+  anim(Entity(5), Animation(11), wait: 50);
+  playAnimation(Entity(5), Animation(0));
+  speak(Entity(5), "Bakke-bakke?\n");
+  playAnimation(Entity.Player, Animation(16));
   speak(Entity.Player, "Looks like he's\nasking something.\n");
-  setTrigger(49);
+  setTrigger(Trigger(49));
   setSelection(L1, L5);
   showTextbox("?...Yes\n?...No\n");
 
 L1:
-  anim(5, 11, wait: 45);
-  playAnimation(5, 0);
-  speak(5, "Bakke! Bakke bakke?\n");
+  anim(Entity(5), Animation(11), wait: 45);
+  playAnimation(Entity(5), Animation(0));
+  speak(Entity(5), "Bakke! Bakke bakke?\n");
   setDialogOwner(Entity.Player);
   setSelection(L2, L5);
   showTextbox("Yes\nNo\n");
 
 L2:
-  anim(5, 12, wait: 58);
-  playAnimation(5, 0);
-  playAnimation(Entity.Player, 15);
-  speak(5, "Bakkeee...bakke bakke?\n");
-  playAnimation(Entity.Player, 16);
+  anim(Entity(5), Animation(12), wait: 58);
+  playAnimation(Entity(5), Animation(0));
+  playAnimation(Entity.Player, Animation(15));
+  speak(Entity(5), "Bakkeee...bakke bakke?\n");
+  playAnimation(Entity.Player, Animation(16));
   setDialogOwner(Entity.Player);
   setSelection(L5, L3);
   showTextbox("Yes\nNo\n");
 
 L3:
-  anim(5, 13, wait: 34);
-  playAnimation(5, 13);
-  speak(5, "Bakke bakke!\nBakkeee bakke bakkeee!\n");
+  anim(Entity(5), Animation(13), wait: 34);
+  playAnimation(Entity(5), Animation(13));
+  speak(Entity(5), "Bakke bakke!\nBakkeee bakke bakkeee!\n");
   goto L4;
 
 L4:
   loop {
-    unsetTrigger(49);
-    move(entity: 5, to: (1299, -1074), sprint: 1);
+    unsetTrigger(Trigger(49));
+    move(entity: Entity(5), to: (1299, -1074), sprint: 1);
     if (pstat[101] >= 10) break;
     addPStat(PStat.LoopIterator, 1);
     delay(5);
-    lookPairAt(5);
+    lookPairAt(Entity(5));
   }
-  waitForEntity(5);
-  unloadEntity(5);
+  waitForEntity(Entity(5));
+  unloadEntity(Entity(5));
   setPStat(PStat.LoopIterator, 0);
   playSound(8, 11);
   speak(Entity.System, "Bakemon joins the city!\n");
-  playAnimation(Entity.Player, 16);
+  playAnimation(Entity.Player, Animation(16));
   speak(Entity.Player, "I think it went OK.\n");
-  setTrigger(237);
-  addPStat(1, 2);
+  setTrigger(Trigger(237));
+  addPStat(PStat(1), 2);
   return;
 
 L5:
-  unsetTrigger(49);
-  playAnimation(5, 29);
+  unsetTrigger(Trigger(49));
+  playAnimation(Entity(5), Animation(29));
   sfx(8, 0, wait: 40);
-  waitForEntity(5);
-  unloadEntity(5);
+  waitForEntity(Entity(5));
+  unloadEntity(Entity(5));
   speak(Entity.Player, "Maybe I made him mad?\n");
   return;
 }
@@ -113,8 +113,8 @@ section(51) {
     move(entity: Entity.Player, to: (-140, 4669), sprint: 0);
     warp(to: Map.MGEN11, spawn: 0, trigger: 60);
   }
-  storeDigimonType(103);
-  storeDigimonTypus(103, 109);
+  storeDigimonType(PStat(103));
+  storeDigimonTypus(103, PStat(109));
   if (pstat[109] == 3) {
     move(entity: Entity.Player, to: (0, 5000), sprint: 0);
     move(entity: Entity.Partner, to: (0, 5000), sprint: 0);

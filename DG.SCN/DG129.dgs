@@ -5,27 +5,27 @@
 
 section onEnter(254) {
   spawnItemChance(max: 99, chance: 10, item: Item.Digimushroom, x: 40, y: 54);
-  setPStat(113, 0);
+  setPStat(PStat(113), 0);
   if (trigger(5) || trigger(6) || trigger(7)) {
-    playAnimation(5, 29);
+    playAnimation(Entity(5), Animation(29));
   }
   if (trigger(5) && trigger(6)) {
-    playAnimation(5, 30);
+    playAnimation(Entity(5), Animation(30));
   }
   if (trigger(5) && trigger(7)) {
-    playAnimation(5, 30);
+    playAnimation(Entity(5), Animation(30));
   }
   if (trigger(6) && trigger(7)) {
-    playAnimation(5, 30);
+    playAnimation(Entity(5), Animation(30));
   }
   if (trigger(5) ?? !trigger(6) && trigger(7)) {
-    playAnimation(5, 31);
+    playAnimation(Entity(5), Animation(31));
   }
   return;
 }
 
 section(6) {
-  setPStat(113, 1);
+  setPStat(PStat(113), 1);
   jumpToScriptSection(206, 6);
   return;
 }
@@ -37,41 +37,41 @@ section(10) {
 
 section(7) {
   if (trigger(5) && trigger(6)) {
-    speak(7, "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+    speak(Entity(7), "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
     goto L1;
   }
   if (trigger(5) && trigger(7)) {
-    speak(7, "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+    speak(Entity(7), "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
     goto L1;
   }
   if (trigger(6) && trigger(7)) {
-    speak(7, "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+    speak(Entity(7), "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
     goto L1;
   }
   if (trigger(5) || trigger(6) || trigger(7)) {
-    speak(7, "Thanks for coming again.\n");
+    speak(Entity(7), "Thanks for coming again.\n");
     goto L1;
   }
-  speak(7, "Hi, I'm Mojyamon!\n");
+  speak(Entity(7), "Hi, I'm Mojyamon!\n");
 
 L1:
-  setPStat(254, 7);
-  setPStat(249, 0);
+  setPStat(PStat(254), 7);
+  setPStat(PStat(249), 0);
   callSubroutine(2);
   if (trigger(5) || trigger(6) || trigger(7)) {
-    playAnimation(5, 29);
+    playAnimation(Entity(5), Animation(29));
   }
   if (trigger(5) && trigger(6)) {
-    playAnimation(5, 30);
+    playAnimation(Entity(5), Animation(30));
   }
   if (trigger(5) && trigger(7)) {
-    playAnimation(5, 30);
+    playAnimation(Entity(5), Animation(30));
   }
   if (trigger(6) && trigger(7)) {
-    playAnimation(5, 30);
+    playAnimation(Entity(5), Animation(30));
   }
   if (trigger(5) ?? !trigger(6) && trigger(7)) {
-    playAnimation(5, 31);
+    playAnimation(Entity(5), Animation(31));
   }
   if (!trigger(5) || !trigger(6) || !trigger(7)) {
     return;
@@ -85,17 +85,17 @@ L1:
   if (trigger(252)) {
     return;
   }
-  speak(7, "<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n");
+  speak(Entity(7), "<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n");
   showTextbox("I've decided I'm going\nto the city. We'll work\ntogether, alright?\n");
   goto L2;
 
 L2:
-  approach(who: 7, x: -1300, y: -1351, tries: 3, wait: 20);
+  approach(who: Entity(7), x: -1300, y: -1351, tries: 3, wait: 20);
   playSound(8, 11);
   speak(Entity.System, "Mojyamon joins the city!\n");
-  setTrigger(252);
-  setTrigger(107);
-  addPStat(1, 2);
+  setTrigger(Trigger(252));
+  setTrigger(Trigger(107));
+  addPStat(PStat(1), 2);
   return;
 }
 
@@ -104,7 +104,7 @@ section(51) {
   return;
 
 L1:
-  storeDigimonType(103);
+  storeDigimonType(PStat(103));
   if (pstat[103] == 3 || pstat[103] == 5 || pstat[103] == 8 || pstat[103] == 9 || pstat[103] == 47) {
     jumpToScriptSection(203, 51);
   }

@@ -8,12 +8,12 @@ section onEnter(254) {
 }
 
 section(5) {
-  speak(5, "I'm tired of training here.\nWhat should I do?\n");
+  speak(Entity(5), "I'm tired of training here.\nWhat should I do?\n");
   speak(Entity.Player, "What to do?\n");
-  speak(5, "Where do you train?\n");
+  speak(Entity(5), "Where do you train?\n");
   if (!trigger(205)) {
     speak(Entity.Player, "Is that a training ground?\n");
-    speak(5, "I'm tired of training.\nI want to do live battle.\n");
+    speak(Entity(5), "I'm tired of training.\nI want to do live battle.\n");
     return;
   }
   setDialogOwner(Entity.Player);
@@ -21,34 +21,34 @@ section(5) {
   showTextbox("Maybe it's a training ground\nMaybe it's an Arena\n");
 
 L1:
-  speak(5, "I'm tired of training.\nI want to do live battle.\n");
+  speak(Entity(5), "I'm tired of training.\nI want to do live battle.\n");
   return;
 
 L2:
-  speak(5, "I want to go there.\nI'll train there.\n");
+  speak(Entity(5), "I want to go there.\nI'll train there.\n");
   goto L3;
 
 L3:
-  approach(who: 5, x: -1342, y: -2147, tries: 3, wait: 20);
+  approach(who: Entity(5), x: -1342, y: -2147, tries: 3, wait: 20);
   playSound(8, 17);
   speak(Entity.System, "Kabuterimon joins the city!\n");
-  setTrigger(219);
-  addPStat(1, 2);
+  setTrigger(Trigger(219));
+  addPStat(PStat(1), 2);
   return;
 }
 
 section(6) {
-  speak(6, "The Insectoid Warrior\nTournament takes place here\nevery year...\n");
+  speak(Entity(6), "The Insectoid Warrior\nTournament takes place here\nevery year...\n");
   showTextbox("...on days with two two's.\nThe winner gets great stuff!\n");
   showTextbox("But only Insectoid\nDigimon can enter.\n");
   if (trigger(346)) {
-    speak(6, "There's Kabuterimon,\nKuragamon, Kunemon,\nand one other Insectoid.\n");
+    speak(Entity(6), "There's Kabuterimon,\nKuragamon, Kunemon,\nand one other Insectoid.\n");
     showTextbox("But, no Numemon.\n");
     showTextbox("On days with two two's, the\nInsectoid Warrior Contest\ntakes place every year.\n");
     showTextbox("You've won before, right?\n");
     return;
   }
-  speak(6, "There's Kabuterimon,\nKuragamon, Kunemon,\nand one other Insectoid.\n");
+  speak(Entity(6), "There's Kabuterimon,\nKuragamon, Kunemon,\nand one other Insectoid.\n");
   showTextbox("That's HerculesKabuterimon.\n");
   showTextbox("Hercules-Kabuterimon is\nsuper strong.\n");
   showTextbox("The contest winner can\nbecome Hercules-Kabuterimon\nand get Items.\n");
@@ -58,36 +58,35 @@ section(6) {
 
 section(7) {
   if (hasTech(Move.MassMorph) == 0) goto L1;
-  speak(7, "You're strong.\nThere's nothing to teach you.\n");
+  speak(Entity(7), "You're strong.\nThere's nothing to teach you.\n");
   return;
 
 L1:
-  speak(7, "We're researching Techniques.\nIt's difficult to master\nhard Techniques.\n");
+  speak(Entity(7), "We're researching Techniques.\nIt's difficult to master\nhard Techniques.\n");
   showTextbox("If you have ability, you\nmight master the Techniques.\nWant to master the hard ones?\n");
   setDialogOwner(Entity.Player);
   choice { "Of course!" -> L2, "No, I don't" -> L3 }
   return;
 
 L2:
-  speak(7, "Then I'll try it.\n");
+  speak(Entity(7), "Then I'll try it.\n");
   if (stat[Stat.Defense] < 500) {
-    speak(7, "You lack Defensive Power.\nTrain more.\n");
+    speak(Entity(7), "You lack Defensive Power.\nTrain more.\n");
     return;
   }
   if (stat[Stat.Speed] < 500) {
-    speak(7, "You lack Speed.\nTrain more.\n");
+    speak(Entity(7), "You lack Speed.\nTrain more.\n");
     return;
   }
   if (stat[Stat.MaxHP] < 500) {
-    speak(7, "You lack HP.\nTrain more.\n");
+    speak(Entity(7), "You lack HP.\nTrain more.\n");
     return;
   }
   learnMove(Move.MassMorph);
-  speak(7, "You mastered a Technique.\n");
+  speak(Entity(7), "You mastered a Technique.\n");
   speak(Entity.System, "You mastered the 'Bug'!\n");
-  waitForEntity(7);
-  moveCamera(to: Entity.Player, speed: 10);
-  waitForEntity(200);
+  waitForEntity(Entity(7));
+  followEntity(Entity.Player, speed: 10);
   return;
 
 L3:
@@ -98,7 +97,7 @@ section(81) {
   rotate(entity: Entity.Player, to: 2128);
   setTextboxOrigin(-541, 0, 1823);
   callSubroutine(39);
-  speak(200, "<GREEN>Training: Rock Pushing <WHITE>\n");
+  speak(Entity(200), "<GREEN>Training: Rock Pushing <WHITE>\n");
   choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
   return;
 
@@ -116,8 +115,8 @@ L3:
 
 L4:
   fadeOutHUD();
-  setPStat(254, 0);
-  setPStat(246, 0);
+  setPStat(PStat(254), 0);
+  setPStat(PStat(246), 0);
   callDigimonSubroutine(214);
   callSubroutine(7);
   return;
@@ -125,8 +124,8 @@ L4:
 L5:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
-  setPStat(254, 0);
-  setPStat(246, 1);
+  setPStat(PStat(254), 0);
+  setPStat(PStat(246), 1);
   callDigimonSubroutine(214);
   callSubroutine(7);
   setTexboxMode(0, 0);
@@ -137,17 +136,17 @@ section(83) {
   rotate(entity: Entity.Player, to: 1968);
   setTextboxOrigin(-1330, 0, 1434);
   callSubroutine(39);
-  speak(200, "<GREEN>Training: Striking <WHITE>\n");
+  speak(Entity(200), "<GREEN>Training: Striking <WHITE>\n");
   choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
   return;
 
 L1:
-  setDialogOwner(200);
+  setDialogOwner(Entity(200));
   choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
   return;
 
 L2:
-  speak(200, "Using a dummy, strike at\nfull force. Offensive Power\nis boosted greatly.\n");
+  speak(Entity(200), "Using a dummy, strike at\nfull force. Offensive Power\nis boosted greatly.\n");
   choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
   return;
 
@@ -156,8 +155,8 @@ L3:
 
 L4:
   fadeOutHUD();
-  setPStat(254, 1);
-  setPStat(246, 0);
+  setPStat(PStat(254), 1);
+  setPStat(PStat(246), 0);
   callDigimonSubroutine(214);
   callSubroutine(7);
   return;
@@ -165,8 +164,8 @@ L4:
 L5:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
-  setPStat(254, 1);
-  setPStat(246, 1);
+  setPStat(PStat(254), 1);
+  setPStat(PStat(246), 1);
   callDigimonSubroutine(214);
   callSubroutine(7);
   setTexboxMode(0, 0);
