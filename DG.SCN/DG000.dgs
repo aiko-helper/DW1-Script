@@ -2284,13 +2284,13 @@ L2:
     return;
   }
   pstat[:SavedTime] = time();
-  if (pstat[107] in 7..19) {
-    goto L3;
+  {
+    if (pstat[107] in 7..19) {
+      break;
+      break;
+    }
     goto L3;
   }
-  goto L4;
-
-L3:
   roll(pstat: PStat.RollScratch, max: 3);
   if (trigger(240) && pstat[110] <= 0 && pstat[42] <= 2) {
     loadAndSetDigimon(Digimon.NPCAndromon, Entity(2), 0);
@@ -2302,7 +2302,7 @@ L3:
   loadAndSetDigimon(Digimon.Yuramon, Entity(0), 0);
   return;
 
-L4:
+L3:
   if (pstat[42] <= 2) {
   } else {
     return;
@@ -2440,25 +2440,25 @@ L1:
     return;
   }
   pstat[:SavedTime] = time();
-  if (pstat[107] in 7..19) {
+  {
+    if (pstat[107] in 7..19) {
+      break;
+    }
+    if (!trigger(80) && trigger(218)) {
+      addPStat(PStat(38), 1);
+      loadAndSetDigimon(Digimon.NPCElecmon, Entity(5), 0);
+    }
+    if (pstat[38] != 3) break;
+    return;
+  }
+  pstat[:SavedTime] = time();
+  {
+    if (pstat[107] in 7..19) {
+      break;
+      break;
+    }
     goto L2;
   }
-  if (!trigger(80) && trigger(218)) {
-    addPStat(PStat(38), 1);
-    loadAndSetDigimon(Digimon.NPCElecmon, Entity(5), 0);
-  }
-  if (pstat[38] != 3) goto L2;
-  return;
-
-L2:
-  pstat[:SavedTime] = time();
-  if (pstat[107] in 7..19) {
-    goto L3;
-    goto L3;
-  }
-  goto L5;
-
-L3:
   loop {
     addPStat(PStat(38), 1);
     loadAndSetDigimon(Digimon.Tsunomon, Entity(4), 0);
@@ -2474,17 +2474,17 @@ L3:
       return;
     }
     roll(pstat: PStat.RollScratch, max: 1);
-    if (pstat[110] == 0 && trigger(235) && trigger(78)) {
-      goto L4;
+    {
+      if (pstat[110] == 0 && trigger(235) && trigger(78)) {
+        break;
+      }
+      if (trigger(234)) {
+        addPStat(PStat(38), 1);
+        loadAndSetDigimon(Digimon.NPCOgremon, Entity(7), 0);
+      }
+      if (pstat[38] != 3) break;
+      return;
     }
-    if (trigger(234)) {
-      addPStat(PStat(38), 1);
-      loadAndSetDigimon(Digimon.NPCOgremon, Entity(7), 0);
-    }
-    if (pstat[38] != 3) goto L4;
-    return;
-
-L4:
     if (trigger(235) && trigger(78)) {
       addPStat(PStat(38), 1);
       loadAndSetDigimon(Digimon.NPCShellmon, Entity(1), 0);
@@ -2494,23 +2494,23 @@ L4:
     }
     addPStat(PStat(39), 1);
     if (pstat[39] < 2) {
-      goto L5;
+      goto L2;
     }
     return;
 
-L5:
+L2:
     pstat[:SavedTime] = time();
-    if (pstat[107] in 7..19) {
-      goto L6;
+    {
+      if (pstat[107] in 7..19) {
+        break;
+      }
+      if (trigger(237) && trigger(77)) {
+        addPStat(PStat(38), 1);
+        loadAndSetDigimon(Digimon.NPCBakemon, Entity(0), 0);
+      }
+      if (pstat[38] != 3) break;
+      return;
     }
-    if (trigger(237) && trigger(77)) {
-      addPStat(PStat(38), 1);
-      loadAndSetDigimon(Digimon.NPCBakemon, Entity(0), 0);
-    }
-    if (pstat[38] != 3) goto L6;
-    return;
-
-L6:
     if (trigger(218)) {
       addPStat(PStat(38), 1);
       loadAndSetDigimon(Digimon.NPCElecmon, Entity(5), 0);
@@ -2519,17 +2519,17 @@ L6:
       return;
     }
     roll(pstat: PStat.RollScratch, max: 1);
-    if (pstat[110] == 0 && trigger(254)) {
-      goto L7;
+    {
+      if (pstat[110] == 0 && trigger(254)) {
+        break;
+      }
+      if (trigger(232) && trigger(79)) {
+        addPStat(PStat(38), 1);
+        loadAndSetDigimon(Digimon.NPCKunemon, Entity(3), 0);
+      }
+      if (pstat[38] != 3) break;
+      return;
     }
-    if (trigger(232) && trigger(79)) {
-      addPStat(PStat(38), 1);
-      loadAndSetDigimon(Digimon.NPCKunemon, Entity(3), 0);
-    }
-    if (pstat[38] != 3) goto L7;
-    return;
-
-L7:
     if (trigger(254)) {
       addPStat(PStat(38), 1);
       loadAndSetDigimon(Digimon.NPCMegadramon, Entity(6), 0);

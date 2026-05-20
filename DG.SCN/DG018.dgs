@@ -10,63 +10,63 @@ section onEnter(254) {
     return;
   }
   roll(pstat: PStat.RollScratch, max: 99);
-  if (pstat[110] <= 29) {
-    spawnItem(Item.GiantMeat, x: 33, y: 49);
-    goto L1;
+  {
+    if (pstat[110] <= 29) {
+      spawnItem(Item.GiantMeat, x: 33, y: 49);
+      break;
+    }
+    if (pstat[110] > 49) break;
+    spawnItem(Item.OffenseDisk, x: 33, y: 49);
   }
-  if (pstat[110] > 49) goto L1;
-  spawnItem(Item.OffenseDisk, x: 33, y: 49);
-
-L1:
   roll(pstat: PStat.RollScratch, max: 99);
-  if (pstat[110] <= 29) {
-    spawnItem(Item.MPFloppy, x: 49, y: 53);
-    goto L2;
+  {
+    if (pstat[110] <= 29) {
+      spawnItem(Item.MPFloppy, x: 49, y: 53);
+      break;
+    }
+    if (pstat[110] > 49) break;
+    spawnItem(Item.SmallRecovery, x: 49, y: 53);
   }
-  if (pstat[110] > 49) goto L2;
-  spawnItem(Item.SmallRecovery, x: 49, y: 53);
-
-L2:
   roll(pstat: PStat.RollScratch, max: 99);
-  if (pstat[110] <= 29) {
-    spawnItem(Item.DefenseDisk, x: 67, y: 42);
-    goto L3;
+  {
+    if (pstat[110] <= 29) {
+      spawnItem(Item.DefenseDisk, x: 67, y: 42);
+      break;
+    }
+    if (pstat[110] > 49) break;
+    spawnItem(Item.Meat, x: 67, y: 42);
   }
-  if (pstat[110] > 49) goto L3;
-  spawnItem(Item.Meat, x: 67, y: 42);
-
-L3:
   roll(pstat: PStat.RollScratch, max: 99);
-  if (pstat[110] <= 9) {
-    spawnItem(Item.PortaPotty, x: 34, y: 29);
-    goto L4;
+  {
+    if (pstat[110] <= 9) {
+      spawnItem(Item.PortaPotty, x: 34, y: 29);
+      break;
+    }
+    if (pstat[110] > 29) break;
+    spawnItem(Item.SpeedDisk, x: 34, y: 29);
   }
-  if (pstat[110] > 29) goto L4;
-  spawnItem(Item.SpeedDisk, x: 34, y: 29);
-
-L4:
   roll(pstat: PStat.RollScratch, max: 99);
-  if (pstat[110] <= 9) {
-    spawnItem(Item.MediumRecovery, x: 50, y: 34);
-    goto L5;
+  {
+    if (pstat[110] <= 9) {
+      spawnItem(Item.MediumRecovery, x: 50, y: 34);
+      break;
+    }
+    if (pstat[110] > 29) break;
+    spawnItem(Item.MoldyMeat, x: 50, y: 34);
   }
-  if (pstat[110] > 29) goto L5;
-  spawnItem(Item.MoldyMeat, x: 50, y: 34);
-
-L5:
   roll(pstat: PStat.RollScratch, max: 99);
-  if (pstat[110] <= 1) {
-    spawnItem(Item.OrangeBanana, x: 49, y: 18);
-    goto L6;
+  {
+    if (pstat[110] <= 1) {
+      spawnItem(Item.OrangeBanana, x: 49, y: 18);
+      break;
+    }
+    if (pstat[110] <= 9) {
+      spawnItem(Item.Happymushroom, x: 49, y: 18);
+      break;
+    }
+    if (pstat[110] > 29) break;
+    spawnItem(Item.Autopilot, x: 49, y: 18);
   }
-  if (pstat[110] <= 9) {
-    spawnItem(Item.Happymushroom, x: 49, y: 18);
-    goto L6;
-  }
-  if (pstat[110] > 29) goto L6;
-  spawnItem(Item.Autopilot, x: 49, y: 18);
-
-L6:
   roll(pstat: PStat.RollScratch, max: 99);
   if (pstat[110] <= 4) {
     spawnItem(Item.OmniDisk, x: 65, y: 22);
@@ -399,15 +399,15 @@ section(57) {
   }
   setTrigger(Trigger(163));
   roll(pstat: PStat.RollScratch, max: 1);
-  if (trigger(159) && trigger(162)) {
-    goto L1;
+  {
+    if (trigger(159) && trigger(162)) {
+      break;
+    }
+    if (trigger(166)) {
+      break;
+    }
+    return;
   }
-  if (trigger(166)) {
-    goto L1;
-  }
-  return;
-
-L1:
   rotate(entity: Entity.Player, to: 2048);
   rotate(entity: Entity.Partner, to: 2048);
   jumpAndLink(section_10.L3);
@@ -500,15 +500,15 @@ section(59) {
   }
   setTrigger(Trigger(165));
   roll(pstat: PStat.RollScratch, max: 1);
-  if (trigger(158) && trigger(161)) {
-    goto L1;
+  {
+    if (trigger(158) && trigger(161)) {
+      break;
+    }
+    if (trigger(167)) {
+      break;
+    }
+    return;
   }
-  if (trigger(167)) {
-    goto L1;
-  }
-  return;
-
-L1:
   rotate(entity: Entity.Player, to: 2048);
   rotate(entity: Entity.Partner, to: 2048);
   jumpAndLink(section_10.L3);
@@ -553,15 +553,15 @@ section(60) {
   }
   setTrigger(Trigger(166));
   roll(pstat: PStat.RollScratch, max: 1);
-  if (trigger(163) && trigger(162)) {
-    goto L1;
+  {
+    if (trigger(163) && trigger(162)) {
+      break;
+    }
+    if (trigger(168)) {
+      break;
+    }
+    return;
   }
-  if (trigger(168)) {
-    goto L1;
-  }
-  return;
-
-L1:
   rotate(entity: Entity.Player, to: 2048);
   rotate(entity: Entity.Partner, to: 2048);
   jumpAndLink(section_10.L3);
@@ -606,15 +606,15 @@ section(61) {
   }
   setTrigger(Trigger(167));
   roll(pstat: PStat.RollScratch, max: 1);
-  if (trigger(161) && trigger(165)) {
-    goto L1;
+  {
+    if (trigger(161) && trigger(165)) {
+      break;
+    }
+    if (trigger(171)) {
+      break;
+    }
+    return;
   }
-  if (trigger(171)) {
-    goto L1;
-  }
-  return;
-
-L1:
   rotate(entity: Entity.Player, to: 2048);
   rotate(entity: Entity.Partner, to: 2048);
   jumpAndLink(section_10.L3);
@@ -659,15 +659,15 @@ section(62) {
   }
   setTrigger(Trigger(168));
   roll(pstat: PStat.RollScratch, max: 1);
-  if (trigger(163) && trigger(166)) {
-    goto L1;
+  {
+    if (trigger(163) && trigger(166)) {
+      break;
+    }
+    if (trigger(170)) {
+      break;
+    }
+    return;
   }
-  if (trigger(170)) {
-    goto L1;
-  }
-  return;
-
-L1:
   rotate(entity: Entity.Player, to: 2048);
   rotate(entity: Entity.Partner, to: 2048);
   jumpAndLink(section_10.L3);
@@ -703,15 +703,15 @@ section(63) {
   }
   setTrigger(Trigger(169));
   roll(pstat: PStat.RollScratch, max: 1);
-  if (trigger(160) && trigger(164)) {
-    goto L1;
+  {
+    if (trigger(160) && trigger(164)) {
+      break;
+    }
+    if (trigger(173)) {
+      break;
+    }
+    return;
   }
-  if (trigger(173)) {
-    goto L1;
-  }
-  return;
-
-L1:
   rotate(entity: Entity.Player, to: 2048);
   rotate(entity: Entity.Partner, to: 2048);
   jumpAndLink(section_10.L3);
@@ -756,15 +756,15 @@ section(64) {
   }
   setTrigger(Trigger(170));
   roll(pstat: PStat.RollScratch, max: 1);
-  if (trigger(166) && trigger(168)) {
-    goto L1;
+  {
+    if (trigger(166) && trigger(168)) {
+      break;
+    }
+    if (trigger(172)) {
+      break;
+    }
+    return;
   }
-  if (trigger(172)) {
-    goto L1;
-  }
-  return;
-
-L1:
   rotate(entity: Entity.Player, to: 2048);
   rotate(entity: Entity.Partner, to: 2048);
   jumpAndLink(section_10.L3);

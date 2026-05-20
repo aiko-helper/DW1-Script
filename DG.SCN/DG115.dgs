@@ -18,14 +18,14 @@ section onEnter(254) {
 }
 
 section(51) {
-  if (!trigger(147)) {
-    setTrigger(Trigger(147));
-    goto L1;
-    goto L1;
+  {
+    if (!trigger(147)) {
+      setTrigger(Trigger(147));
+      break;
+      break;
+    }
+    return;
   }
-  return;
-
-L1:
   move(entity: Entity.Player, to: (-1606, 166), sprint: 1, withCamera: true);
   move(entity: Entity.Partner, to: (-1407, 465), sprint: 1);
   waitForEntity(Entity.Partner);
@@ -57,7 +57,7 @@ L1:
   speak(Entity.Player, "If you know about the\nemergency on the island,\nplease tell me about it.\n");
   speak(Entity(5), "I see, I see.\nThe emergency.\n");
 
-L2:
+L1:
   playSound(8, 18);
   speak(Entity(5), "This island began to change\neighty years ago after the\nland changes happened.\n");
   showTextbox("The northeastern parts of\nthe island suddenly\nappeared eighty years ago.\n");
@@ -101,7 +101,7 @@ section(5) {
 
 L1:
     speak(Entity(5), "Here's what I have to say.\n");
-    goto section_51.L2;
+    goto section_51.L1;
     return;
 
 L2:

@@ -38,7 +38,7 @@ section(6) {
     playAnimation(Entity(6), Animation(29));
     speak(Entity(6), "I'm hungry.\n");
     setDialogOwner(Entity.Player);
-    choice { "Give food" -> L1, "Don't give food" -> L_03a8 }
+    choice { "Give food" -> L1, "Don't give food" -> L3 }
     break;
 
 L1:
@@ -51,19 +51,19 @@ L1:
     if (pstat[254] == 255) {
       break;
     }
-    if (pstat[254] == 38 || pstat[254] == 39 || pstat[254] == 40 || pstat[254] == 41) {
-      callSubroutine(12);
-      goto L2;
+    {
+      if (pstat[254] == 38 || pstat[254] == 39 || pstat[254] == 40 || pstat[254] == 41) {
+        callSubroutine(12);
+        break;
+      }
+      if (pstat[254] == 42 || pstat[254] == 44 || pstat[254] == 62 || pstat[254] == 68) {
+        callSubroutine(12);
+        break;
+        break;
+      }
+      speak(Entity.Player, "Oops, I can't give you this.\n");
+      goto L3;
     }
-    if (pstat[254] == 42 || pstat[254] == 44 || pstat[254] == 62 || pstat[254] == 68) {
-      callSubroutine(12);
-      goto L2;
-      goto L2;
-    }
-    speak(Entity.Player, "Oops, I can't give you this.\n");
-    break;
-
-L2:
     anim(Entity(6), Animation(30), wait: 20);
     playAnimation(Entity(6), Animation(8));
     waitForEntity(Entity(6));
@@ -87,9 +87,9 @@ L2:
     speak(Entity.Player, "Come to the city and work\noff what you ate!\n");
     anim(Entity.Player, Animation(0), wait: 10);
     speak(Entity(6), "Okay, I'll do that. I'm an\nInsectoid-Digimon named\nKunemon. Nice meeting you.\n");
-    goto L3;
+    goto L2;
 
-L3:
+L2:
     approach(who: Entity(6), x: 1219, y: 984, tries: 3, wait: 20);
     playSound(8, 11);
     speak(Entity.System, "Kunemon joins the city!\n");
@@ -97,6 +97,8 @@ L3:
     setTrigger(Trigger(232));
     addPStat(PStat(1), 1);
     goto L4;
+
+L3:
   }
   speak(Entity(6), "Bring some next time.\n");
   anim(Entity(6), Animation(28), wait: 20);

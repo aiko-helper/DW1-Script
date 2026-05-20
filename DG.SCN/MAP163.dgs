@@ -39,15 +39,15 @@ L1:
     setRectImpassible(79, 38, 2, 4);
     setRectImpassible(80, 42, 2, 8);
   }
-  if (!trigger(236)) {
-    goto L2;
+  {
+    if (!trigger(236)) {
+      break;
+    }
+    if (pstat[107] in 7..19) break;
+    if (!trigger(218)) break;
+    setObjectVisibility(49, 0);
+    setObjectVisibility(50, 0);
   }
-  if (pstat[107] in 7..19) goto L2;
-  if (!trigger(218)) goto L2;
-  setObjectVisibility(49, 0);
-  setObjectVisibility(50, 0);
-
-L2:
   if (trigger(218)) {
     setObjectsVisibleRange(53, 56, 0);
   }
@@ -58,13 +58,13 @@ L2:
   }
   if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) {
   } else {
-    goto L3;
+    goto L2;
   }
-  if (pstat[107] in 7..19) goto L3;
-  if (!trigger(218)) goto L3;
+  if (pstat[107] in 7..19) goto L2;
+  if (!trigger(218)) goto L2;
   setObjectsVisibleRange(61, 64, 0);
 
-L3:
+L2:
   if (!trigger(249) && pstat[43] == 2) {
     setObjectVisibility(108, 1);
   }

@@ -50,21 +50,21 @@ L2:
   goto section_52.L2;
 
 L3:
-  if (stat[Stat.Tiredness] >= 80) {
-    speak(Entity(5), "<ORANGE><DIGIMON><WHITE>'s Tiredness is very\nhigh, he needs to rest now.\n");
-    goto L4;
+  {
+    if (stat[Stat.Tiredness] >= 80) {
+      speak(Entity(5), "<ORANGE><DIGIMON><WHITE>'s Tiredness is very\nhigh, he needs to rest now.\n");
+      break;
+    }
+    if (stat[Stat.Tiredness] >= 50) {
+      speak(Entity(5), "<ORANGE><DIGIMON><WHITE> is tired.\nHe should rest now.\n");
+      break;
+    }
+    if (stat[Stat.Tiredness] >= 20) {
+      speak(Entity(5), "<ORANGE><DIGIMON><WHITE> seems to be a\nbit tired. He shouldn't\npush himself.\n");
+      break;
+    }
+    speak(Entity(5), "<ORANGE><DIGIMON><WHITE> is fine.\nWatch his Tiredness level.\n");
   }
-  if (stat[Stat.Tiredness] >= 50) {
-    speak(Entity(5), "<ORANGE><DIGIMON><WHITE> is tired.\nHe should rest now.\n");
-    goto L4;
-  }
-  if (stat[Stat.Tiredness] >= 20) {
-    speak(Entity(5), "<ORANGE><DIGIMON><WHITE> seems to be a\nbit tired. He shouldn't\npush himself.\n");
-    goto L4;
-  }
-  speak(Entity(5), "<ORANGE><DIGIMON><WHITE> is fine.\nWatch his Tiredness level.\n");
-
-L4:
   pstat[:SavedTime] = time();
   addMinutesToDate(PStat.SavedTime, 60);
   advanceToDate(PStat.SavedTime);
@@ -119,34 +119,34 @@ L2:
     return;
 
 L3:
-    if (money < 400) {
-      speak(Entity(5), "You don't have enough bits.\nI can't sell you that.\n");
-      goto L5;
-      return;
-    }
-    giveItem(Item.Bandage, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You have too many Items.\n");
-      return;
-    }
-    reduceMoney(400);
-    goto L5;
+    {
+      if (money < 400) {
+        speak(Entity(5), "You don't have enough bits.\nI can't sell you that.\n");
+        break;
+        return;
+      }
+      giveItem(Item.Bandage, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You have too many Items.\n");
+        return;
+      }
+      reduceMoney(400);
+      break;
 
 L4:
-    if (money < 1200) {
-      speak(Entity(5), "You don't have enough bits.\nI can't sell you that.\n");
-      goto L5;
-      return;
+      if (money < 1200) {
+        speak(Entity(5), "You don't have enough bits.\nI can't sell you that.\n");
+        break;
+        return;
+      }
+      giveItem(Item.Medicine, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You have too many Items.\n");
+        return;
+      }
+      reduceMoney(1200);
+      break;
     }
-    giveItem(Item.Medicine, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You have too many Items.\n");
-      return;
-    }
-    reduceMoney(1200);
-    goto L5;
-
-L5:
     speak(Entity(5), "Still need something?\n");
     setDialogOwner(Entity.Player);
     choice { "Get rid of his Tiredness" -> section_51.L3, "Sell me more Medicine" -> L1, "No, nothing" -> L2 }

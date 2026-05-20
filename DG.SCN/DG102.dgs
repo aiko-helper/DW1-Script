@@ -12,13 +12,13 @@ section(81, 0x0022) {
   look(entity: Entity.Player, at: Entity(5));
   look(entity: Entity(5), at: Entity.Player);
   delay(5);
-  if (!trigger(37)) {
-    goto L1;
-    goto L1;
+  {
+    if (!trigger(37)) {
+      break;
+      break;
+    }
+    goto L2;
   }
-  goto L3;
-
-L1:
   if (pstat[106] == 21 && pstat[107] >= 10) {
     speak(Entity(5), "Unfortunately, you're\ntoo late to register.\nWait another year.\n");
     return;
@@ -38,25 +38,27 @@ L1:
     return;
   }
   {
-    if (trigger(37)) break;
-    speak(Entity(5), "You want to enter the contest?\n");
-    setDialogOwner(Entity(5));
-    choice { "Explain" -> L_02da, "Don't explain" -> L2 }
-    goto L2;
-  }
-  speak(Entity(5), "On the twenty second,\nthere's a tournament for\nInsectoid Digimon only.\n");
-  showTextbox("You can register for\nthat one right now.\n");
-  showTextbox("Unless you're an Insectoid\nDigimon, you can't\nregister for the contest.\n");
-  showTextbox("If you win, you'll receive\ndeluxe gifts. Just register.\n");
-  goto L2;
+    {
+      if (trigger(37)) break;
+      speak(Entity(5), "You want to enter the contest?\n");
+      setDialogOwner(Entity(5));
+      choice { "Explain" -> L_02da, "Don't explain" -> L1 }
+      goto L1;
+    }
+    speak(Entity(5), "On the twenty second,\nthere's a tournament for\nInsectoid Digimon only.\n");
+    showTextbox("You can register for\nthat one right now.\n");
+    showTextbox("Unless you're an Insectoid\nDigimon, you can't\nregister for the contest.\n");
+    showTextbox("If you win, you'll receive\ndeluxe gifts. Just register.\n");
+    break;
 
-L2:
+L1:
+  }
   {
     setDialogOwner(Entity(5));
-    choice { "Register" -> L5, "Don't register" -> L_0702 }
+    choice { "Register" -> L4, "Don't register" -> L_0702 }
     return;
 
-L3:
+L2:
     if (pstat[106] in 20..=21) {
     } else {
       speak(Entity(5), "We're between tournaments.\nI don't have anything to do.\n");
@@ -67,10 +69,10 @@ L3:
     }
     speak(Entity(5), "You're scheduled to\nregister in  ' - <SELECTED TOURNAMENT>- '.\nDo you want to cancel?\n");
     setDialogOwner(Entity.Player);
-    choice { "I won't cancel" -> L_0702, "I'll cancel" -> L4 }
+    choice { "I won't cancel" -> L_0702, "I'll cancel" -> L3 }
     return;
 
-L4:
+L3:
     unsetTrigger(Trigger(37));
     speak(Entity(5), "I canceled.\n");
     return;
@@ -78,7 +80,7 @@ L4:
   speak(Entity(5), "Sure you want to do that?\n");
   return;
 
-L5:
+L4:
   callSubroutine(33);
   speak(Entity(5), "I registered.\n");
   return;

@@ -74,15 +74,15 @@ L1:
     return;
   }
   pstat[:SavedTime] = time();
-  if (trigger(195) && pstat[107] >= 15 && pstat[107] <= 17 && pstat[29] == 1) {
-    speak(Entity(5), "You came back, good.\nToday, we'll fight fair!\n");
-    goto L2;
-    goto L2;
+  {
+    if (trigger(195) && pstat[107] >= 15 && pstat[107] <= 17 && pstat[29] == 1) {
+      speak(Entity(5), "You came back, good.\nToday, we'll fight fair!\n");
+      break;
+      break;
+    }
+    speak(Entity(5), "You're late, but that gave\nme time to nurse my injury.\nNow let's go for it.\n");
+    break;
   }
-  speak(Entity(5), "You're late, but that gave\nme time to nurse my injury.\nNow let's go for it.\n");
-  goto L2;
-
-L2:
   speak(Entity.Player, "I'll just watch. Start!\n");
   look(entity: Entity.Player, at: Entity.Partner);
   waitForEntity(Entity.Player);
@@ -107,9 +107,9 @@ L2:
   speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> tries so hard\nto convince him!\n");
   anim(Entity.Player, Animation(19), wait: 40);
   speak(Entity(5), "I'll help you. But, I'll\nhave to see that city first.\n");
-  goto L3;
+  goto L2;
 
-L3:
+L2:
   approach(who: Entity(5), x: -2000, y: -100, tries: 6, wait: 10);
   playSound(8, 11);
   speak(Entity.System, "Garurumon joins the city!\n");

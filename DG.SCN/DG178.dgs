@@ -22,46 +22,48 @@ section(54) {
 
 section(5) {
   {
-    if (trigger(202) || trigger(215) || pstat[16] == 0) break;
-    if (!trigger(201) || !trigger(243)) break;
-    speak(Entity(5), "You had perfect timing in\ncoming here! I have a favor\nthat only you can do.\n");
-    speak(Entity.Player, "What is it?\n");
-    speak(Entity(5), "I just got the same evil\nfeeling that Analogman\nand Machinedramon give.\n");
-    showTextbox("I know where it comes from.\n");
-    speak(Entity.Player, "Again? Ok, leave it to me!\n");
-    speak(Entity(5), "Thanks. By the way...\n");
-    goto L1;
-  }
-  if (trigger(202) && !trigger(215)) {
-    speak(Entity(5), "I heard you beat\nMachinedramon!\n");
-    speak(Entity.Player, "Yeah, but I don't get it.\nIt seemed like the curse\nof Analogman.\n");
-    speak(Entity(5), "His grudge was so strong.\nMaybe we can have peace now.\n");
-    speak(Entity.Player, "If Machinedramon returns,\nwe'll beat him again.\n");
-    speak(Entity(5), "You're trustworthy. This was\ngrowing in our Meat farm,\nit's for you.\n");
-    speak(Entity.Player, "Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
-    giveItem(Item.ChainMelon, 1);
-    if (trigger(0)) {
-      if (item[Item.SpikeClub] >= 99) {
-        return;
-      }
-      speak(Entity.Player, "I have too many Items.\n");
-      inventoryFullBailout();
-      giveItem(Item.ChainMelon, 1);
+    {
+      if (trigger(202) || trigger(215) || pstat[16] == 0) break;
+      if (!trigger(201) || !trigger(243)) break;
+      speak(Entity(5), "You had perfect timing in\ncoming here! I have a favor\nthat only you can do.\n");
+      speak(Entity.Player, "What is it?\n");
+      speak(Entity(5), "I just got the same evil\nfeeling that Analogman\nand Machinedramon give.\n");
+      showTextbox("I know where it comes from.\n");
+      speak(Entity.Player, "Again? Ok, leave it to me!\n");
+      speak(Entity(5), "Thanks. By the way...\n");
+      goto L1;
     }
-    speak(Entity.Player, "Thank you!\n");
-    setPStat(PStat(28), 0);
-    setTrigger(Trigger(215));
-    return;
-  }
-  if (!trigger(50) || trigger(201)) goto L1;
-  speak(Entity(5), "You're here!\nThis is something I can't\nask anybody else.\n");
-  speak(Entity.Player, "Never fear, I'm here.\nDo you mean\nAnalogman is back?\n");
-  speak(Entity(5), "I can feel his evil, but\nI can't tell where it is.\n");
-  speak(Entity.Player, "Leave it up to me! I'll find\nhim and take care of it.\n");
-  speak(Entity(5), "Thank you.\nBy the way...\n");
-  setTrigger(Trigger(201));
+    if (trigger(202) && !trigger(215)) {
+      speak(Entity(5), "I heard you beat\nMachinedramon!\n");
+      speak(Entity.Player, "Yeah, but I don't get it.\nIt seemed like the curse\nof Analogman.\n");
+      speak(Entity(5), "His grudge was so strong.\nMaybe we can have peace now.\n");
+      speak(Entity.Player, "If Machinedramon returns,\nwe'll beat him again.\n");
+      speak(Entity(5), "You're trustworthy. This was\ngrowing in our Meat farm,\nit's for you.\n");
+      speak(Entity.Player, "Woah! A <LIGHTBLUE>Chained\nMelon<WHITE>?\n");
+      giveItem(Item.ChainMelon, 1);
+      if (trigger(0)) {
+        if (item[Item.SpikeClub] >= 99) {
+          return;
+        }
+        speak(Entity.Player, "I have too many Items.\n");
+        inventoryFullBailout();
+        giveItem(Item.ChainMelon, 1);
+      }
+      speak(Entity.Player, "Thank you!\n");
+      setPStat(PStat(28), 0);
+      setTrigger(Trigger(215));
+      return;
+    }
+    if (!trigger(50) || trigger(201)) break;
+    speak(Entity(5), "You're here!\nThis is something I can't\nask anybody else.\n");
+    speak(Entity.Player, "Never fear, I'm here.\nDo you mean\nAnalogman is back?\n");
+    speak(Entity(5), "I can feel his evil, but\nI can't tell where it is.\n");
+    speak(Entity.Player, "Leave it up to me! I'll find\nhim and take care of it.\n");
+    speak(Entity(5), "Thank you.\nBy the way...\n");
+    setTrigger(Trigger(201));
 
 L1:
+  }
   if (trigger(203)) {
     jumpToScriptSection(210, 51);
   }

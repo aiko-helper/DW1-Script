@@ -42,18 +42,18 @@ section(10) {
 
 section(51) {
   storeDigimonType(PStat(103));
-  if (pstat[103] == 6 || pstat[103] == 7 || pstat[103] == 12 || pstat[103] == 19 || pstat[103] == 20) {
+  {
+    if (pstat[103] == 6 || pstat[103] == 7 || pstat[103] == 12 || pstat[103] == 19 || pstat[103] == 20) {
+      break;
+    }
+    if (pstat[103] == 21 || pstat[103] == 28 || pstat[103] == 33 || pstat[103] == 37 || pstat[103] == 41) {
+      break;
+    }
+    if (pstat[103] == 45 || pstat[103] == 31 || pstat[103] == 51 || pstat[103] == 54 || pstat[103] == 55) {
+      break;
+    }
     goto L1;
   }
-  if (pstat[103] == 21 || pstat[103] == 28 || pstat[103] == 33 || pstat[103] == 37 || pstat[103] == 41) {
-    goto L1;
-  }
-  if (pstat[103] == 45 || pstat[103] == 31 || pstat[103] == 51 || pstat[103] == 54 || pstat[103] == 55) {
-    goto L1;
-  }
-  goto L2;
-
-L1:
   anim(Entity.Player, Animation(18), wait: 20);
   speak(Entity.Player, "Ouch!\n");
   setPStat(PStat(254), 253);
@@ -72,7 +72,7 @@ L1:
   speak(Entity.Player, "Let's go!\n");
   return;
 
-L2:
+L1:
   playAnimation(Entity.Partner, Animation(43));
   anim(Entity.Player, Animation(18), wait: 40);
   anim(Entity.Partner, Animation(44), wait: 40);

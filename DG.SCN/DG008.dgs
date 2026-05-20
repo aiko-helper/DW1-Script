@@ -10,28 +10,30 @@ section onEnter(254) {
 
 section(51) {
   {
-    if (trigger(149)) break;
-    moveCamera(to: (-5000, 2000), slowdown: 30);
-    rotate(entity: Entity.Player, to: 1117);
-    waitForEntity(Entity(200));
-    delay(50);
-    speak(Entity.Player, "Drill Tunnel\n");
-    followEntity(Entity.Player, speed: 20);
-    setTrigger(Trigger(149));
-    if (trigger(54)) break;
-    setDialogOwner(Entity.Player);
-    choice { "Normal" -> L1, "Ogre mode" -> L2 }
-    goto L1;
-  }
-  if (trigger(150) && !trigger(151)) {
-    goto L2;
-  }
-  return;
+    {
+      if (trigger(149)) break;
+      moveCamera(to: (-5000, 2000), slowdown: 30);
+      rotate(entity: Entity.Player, to: 1117);
+      waitForEntity(Entity(200));
+      delay(50);
+      speak(Entity.Player, "Drill Tunnel\n");
+      followEntity(Entity.Player, speed: 20);
+      setTrigger(Trigger(149));
+      if (trigger(54)) break;
+      setDialogOwner(Entity.Player);
+      choice { "Normal" -> L1, "Ogre mode" -> L2 }
+      goto L1;
+    }
+    if (trigger(150) && !trigger(151)) {
+      break;
+    }
+    return;
 
 L1:
-  return;
+    return;
 
 L2:
+  }
   setTrigger(Trigger(151));
   setObjectVisibility(5, 1);
   setObjectVisibility(6, 0);

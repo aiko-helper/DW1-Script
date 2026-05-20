@@ -36,25 +36,25 @@ section(10) {
 }
 
 section(7) {
-  if (trigger(5) && trigger(6)) {
-    speak(Entity(7), "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
-    goto L1;
+  {
+    if (trigger(5) && trigger(6)) {
+      speak(Entity(7), "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+      break;
+    }
+    if (trigger(5) && trigger(7)) {
+      speak(Entity(7), "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+      break;
+    }
+    if (trigger(6) && trigger(7)) {
+      speak(Entity(7), "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
+      break;
+    }
+    if (trigger(5) || trigger(6) || trigger(7)) {
+      speak(Entity(7), "Thanks for coming again.\n");
+      break;
+    }
+    speak(Entity(7), "Hi, I'm Mojyamon!\n");
   }
-  if (trigger(5) && trigger(7)) {
-    speak(Entity(7), "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
-    goto L1;
-  }
-  if (trigger(6) && trigger(7)) {
-    speak(Entity(7), "Hey, <LIGHTBLUE><PLAYER><WHITE>!\n");
-    goto L1;
-  }
-  if (trigger(5) || trigger(6) || trigger(7)) {
-    speak(Entity(7), "Thanks for coming again.\n");
-    goto L1;
-  }
-  speak(Entity(7), "Hi, I'm Mojyamon!\n");
-
-L1:
   setPStat(PStat(254), 7);
   setPStat(PStat(249), 0);
   callSubroutine(2);
@@ -87,9 +87,9 @@ L1:
   }
   speak(Entity(7), "<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n");
   showTextbox("I've decided I'm going\nto the city. We'll work\ntogether, alright?\n");
-  goto L2;
+  goto L1;
 
-L2:
+L1:
   approach(who: Entity(7), x: -1300, y: -1351, tries: 3, wait: 20);
   playSound(8, 11);
   speak(Entity.System, "Mojyamon joins the city!\n");

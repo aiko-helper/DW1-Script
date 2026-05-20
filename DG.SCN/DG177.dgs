@@ -43,32 +43,32 @@ section(6) {
 section(5) {
   look(entity: Entity.Player, at: Entity(5));
   look(entity: Entity(5), at: Entity.Player);
-  if (trigger(70) || trigger(71) || trigger(72) || trigger(73)) {
-    goto L1;
-  }
-  if (trigger(211) && !trigger(70) && pstat[24] == 0) {
-    speak(Entity(5), "Hey! Hola amigos!\n");
-    showTextbox("What kind of shop is this?\nIt's my shop?\nBuy something please.\n");
-    setTrigger(Trigger(70));
+  {
+    if (trigger(70) || trigger(71) || trigger(72) || trigger(73)) {
+      break;
+    }
+    if (trigger(211) && !trigger(70) && pstat[24] == 0) {
+      speak(Entity(5), "Hey! Hola amigos!\n");
+      showTextbox("What kind of shop is this?\nIt's my shop?\nBuy something please.\n");
+      setTrigger(Trigger(70));
+      return;
+    }
+    if (trigger(252) && !trigger(71) && pstat[24] == 1) {
+      speak(Entity(5), "Look <LIGHTBLUE><PLAYER><WHITE>! My shop\nsells interesting stuff. I\nhope you'll come here a lot.\n");
+      setTrigger(Trigger(71));
+      return;
+    }
+    if (trigger(213) && !trigger(72) && pstat[24] == 2) {
+      speak(Entity(5), "The stuff you see here\nisn't ordinary stuff,\nso go ahead and shop!\n");
+      setTrigger(Trigger(72));
+      return;
+    }
+    if (!trigger(206) || trigger(73) || pstat[24] != 3) break;
+    speak(Entity(5), "Hey stranger! I knew\nyou'd come <LIGHTBLUE><PLAYER><WHITE>.\nDon't look so surprised.\n");
+    showTextbox("Can you master how to use\nmy Items? The answer depends\non your ability as a Tamer.\n");
+    setTrigger(Trigger(73));
     return;
   }
-  if (trigger(252) && !trigger(71) && pstat[24] == 1) {
-    speak(Entity(5), "Look <LIGHTBLUE><PLAYER><WHITE>! My shop\nsells interesting stuff. I\nhope you'll come here a lot.\n");
-    setTrigger(Trigger(71));
-    return;
-  }
-  if (trigger(213) && !trigger(72) && pstat[24] == 2) {
-    speak(Entity(5), "The stuff you see here\nisn't ordinary stuff,\nso go ahead and shop!\n");
-    setTrigger(Trigger(72));
-    return;
-  }
-  if (!trigger(206) || trigger(73) || pstat[24] != 3) goto L1;
-  speak(Entity(5), "Hey stranger! I knew\nyou'd come <LIGHTBLUE><PLAYER><WHITE>.\nDon't look so surprised.\n");
-  showTextbox("Can you master how to use\nmy Items? The answer depends\non your ability as a Tamer.\n");
-  setTrigger(Trigger(73));
-  return;
-
-L1:
   if (trigger(211) && !trigger(70) && pstat[24] == 0) {
     speak(Entity(5), "Where am I?\nI love dark places and this\nshop shows that very well!\n");
     setTrigger(Trigger(70));

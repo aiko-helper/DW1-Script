@@ -43,29 +43,31 @@ section(10) {
 
 section(81) {
   {
-    speak(Entity.System, "Vending Machine\n");
-    rotate(entity: Entity.Player, to: 1536);
-    speak(Entity.Player, "A vending machine with\nspecial prizes.\nShould I buy something?\n");
-    choice { "Small Recovery:two hund bits" -> L1, "Portable potty:five hund bits" -> L_019e, "Don't buy" -> L2 }
-    goto L2;
-    return;
+    {
+      speak(Entity.System, "Vending Machine\n");
+      rotate(entity: Entity.Player, to: 1536);
+      speak(Entity.Player, "A vending machine with\nspecial prizes.\nShould I buy something?\n");
+      choice { "Small Recovery:two hund bits" -> L1, "Portable potty:five hund bits" -> L_019e, "Don't buy" -> L2 }
+      goto L2;
+      return;
 
 L1:
-    if (money >= 200) {
-      goto L3;
+      if (money >= 200) {
+        goto L3;
+        break;
+      }
+      speak(Entity.Player, "I don't got enough bits.\n");
+      return;
+    }
+    if (money >= 500) {
+      goto L4;
       break;
     }
     speak(Entity.Player, "I don't got enough bits.\n");
     return;
-  }
-  if (money >= 500) {
-    goto L4;
-    goto L2;
-  }
-  speak(Entity.Player, "I don't got enough bits.\n");
-  return;
 
 L2:
+  }
   return;
 
 L3:
@@ -77,26 +79,26 @@ L3:
   speak(Entity.System, "A <LIGHTBLUE>Small Recovery\nFloppy<WHITE>came out!\n");
   reduceMoney(200);
   roll(pstat: PStat(102), max: 99);
-  if (pstat[102] < 9) {
-    goto L5;
-  }
-  return;
+  {
+    if (pstat[102] < 9) {
+      break;
+    }
+    return;
 
 L4:
-  giveItem(Item.PortaPotty, 1);
-  if (trigger(0)) {
-    speak(Entity.Player, "I got too many Items.\n");
+    giveItem(Item.PortaPotty, 1);
+    if (trigger(0)) {
+      speak(Entity.Player, "I got too many Items.\n");
+      return;
+    }
+    speak(Entity.System, "A <LIGHTBLUE>Portable Potty <WHITE>\ncame out!\n");
+    reduceMoney(500);
+    roll(pstat: PStat(102), max: 99);
+    if (pstat[102] < 9) {
+      break;
+    }
     return;
   }
-  speak(Entity.System, "A <LIGHTBLUE>Portable Potty <WHITE>\ncame out!\n");
-  reduceMoney(500);
-  roll(pstat: PStat(102), max: 99);
-  if (pstat[102] < 9) {
-    goto L5;
-  }
-  return;
-
-L5:
   speak(Entity.Player, "Alright, I won!\n");
   speak(Entity.System, "A <LIGHTBLUE>Double Floppy <WHITE>\ncame out!\n");
   giveItem(Item.DoubleFloppy, 1);

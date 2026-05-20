@@ -67,46 +67,46 @@ section(51) {
 
 section(5) {
   storeDigimonType(PStat(103));
-  if (pstat[103] == 3 || pstat[103] == 5 || pstat[103] == 8 || pstat[103] == 9 || pstat[103] == 47) {
-    goto L2;
-  }
-  if (pstat[103] == 19 || pstat[103] == 32 || pstat[103] == 51 || pstat[103] == 1 || pstat[103] == 2) {
-    goto L2;
-  }
-  if (pstat[103] == 15 || pstat[103] == 16 || pstat[103] == 29 || pstat[103] == 30 || pstat[103] == 43) {
-    goto L2;
-  }
-  if (pstat[103] == 44 || pstat[103] == 21) {
-    goto L2;
-  }
-  speak(Entity.Player, "Hello again.\n");
-  speak(Entity(5), "What happen to\nthe other Digimon?\n");
-  speak(Entity.Player, "Oh, it's the same one.\n");
-  look(entity: Entity(5), at: Entity.Partner);
-  speak(Entity(5), "Huh? Is that right?\nI don't get it.\n");
-  look(entity: Entity(5), at: Entity.Player);
-  speak(Entity.Player, "I came here cuz I have\na favor to ask. I want you\nto come to the city.\n");
-  speak(Entity(5), "What's there for me?\nSomething interesting?\n");
-  anim(Entity.Player, Animation(19), wait: 15);
-  speak(Entity.Player, "Well, you can open\nany shop you want.\n");
-  playAnimation(Entity.Player, Animation(0));
-  anim(Entity(5), Animation(11), wait: 5);
-  speak(Entity(5), "Wow, I always wanted to do\nthat. Alright, I'll go!\n");
-  speak(Entity.Player, "OK, that sounds good.\nThen let's go now.\n");
-  speak(Entity(5), "A shop! Snow cones and\nice cream. This is\ngonna be great!\n");
-  move(entity: Entity(5), to: (-540, -336), sprint: 1);
-  waitForEntity(Entity(5));
-  goto L1;
+  {
+    if (pstat[103] == 3 || pstat[103] == 5 || pstat[103] == 8 || pstat[103] == 9 || pstat[103] == 47) {
+      break;
+    }
+    if (pstat[103] == 19 || pstat[103] == 32 || pstat[103] == 51 || pstat[103] == 1 || pstat[103] == 2) {
+      break;
+    }
+    if (pstat[103] == 15 || pstat[103] == 16 || pstat[103] == 29 || pstat[103] == 30 || pstat[103] == 43) {
+      break;
+    }
+    if (pstat[103] == 44 || pstat[103] == 21) {
+      break;
+    }
+    speak(Entity.Player, "Hello again.\n");
+    speak(Entity(5), "What happen to\nthe other Digimon?\n");
+    speak(Entity.Player, "Oh, it's the same one.\n");
+    look(entity: Entity(5), at: Entity.Partner);
+    speak(Entity(5), "Huh? Is that right?\nI don't get it.\n");
+    look(entity: Entity(5), at: Entity.Player);
+    speak(Entity.Player, "I came here cuz I have\na favor to ask. I want you\nto come to the city.\n");
+    speak(Entity(5), "What's there for me?\nSomething interesting?\n");
+    anim(Entity.Player, Animation(19), wait: 15);
+    speak(Entity.Player, "Well, you can open\nany shop you want.\n");
+    playAnimation(Entity.Player, Animation(0));
+    anim(Entity(5), Animation(11), wait: 5);
+    speak(Entity(5), "Wow, I always wanted to do\nthat. Alright, I'll go!\n");
+    speak(Entity.Player, "OK, that sounds good.\nThen let's go now.\n");
+    speak(Entity(5), "A shop! Snow cones and\nice cream. This is\ngonna be great!\n");
+    move(entity: Entity(5), to: (-540, -336), sprint: 1);
+    waitForEntity(Entity(5));
+    goto L1;
 
 L1:
-  approach(who: Entity(5), x: 93, y: -1700, tries: 3, wait: 20);
-  playSound(8, 11);
-  speak(Entity.System, "Frigimon joins the city!\n");
-  setTrigger(Trigger(223));
-  addPStat(PStat(1), 2);
-  return;
-
-L2:
+    approach(who: Entity(5), x: 93, y: -1700, tries: 3, wait: 20);
+    playSound(8, 11);
+    speak(Entity.System, "Frigimon joins the city!\n");
+    setTrigger(Trigger(223));
+    addPStat(PStat(1), 2);
+    return;
+  }
   speak(Entity(5), "That Digimon can't stand\ncold very well!\n");
   anim(Entity.Player, Animation(15), wait: 15);
   speak(Entity.Player, "I'll be back!\n");

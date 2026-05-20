@@ -36,18 +36,18 @@ section(51) {
   speak(Entity(5), "Something that my ancestors\nleft behind, but\nI don't know what it is.\n");
 
 L1:
-  if (item[Item.Leomonstone] >= 1) {
-    removeItem(Item.Leomonstone, 1);
-    goto L2;
-    goto L2;
+  {
+    if (item[Item.Leomonstone] >= 1) {
+      removeItem(Item.Leomonstone, 1);
+      break;
+      break;
+    }
+    speak(Entity.Player, "I see. If I find it,\nI'll let you know.\n");
+    speak(Entity(5), "I've been looking\na long time.\nIt won't be easy to find.\n");
+    speak(Entity(5), "But if you find it,\nI promise,\nI'll go to your city.\n");
+    followEntity(Entity.Player, speed: 10);
+    return;
   }
-  speak(Entity.Player, "I see. If I find it,\nI'll let you know.\n");
-  speak(Entity(5), "I've been looking\na long time.\nIt won't be easy to find.\n");
-  speak(Entity(5), "But if you find it,\nI promise,\nI'll go to your city.\n");
-  followEntity(Entity.Player, speed: 10);
-  return;
-
-L2:
   anim(Entity.Player, Animation(19), wait: 15);
   speak(Entity.Player, "Is this it?\n");
   playAnimation(Entity.Player, Animation(0));
@@ -71,9 +71,9 @@ L2:
   playAnimation(Entity(5), Animation(22));
   waitForEntity(Entity(5));
   speak(Entity(5), "You can count on me!\n");
-  goto L3;
+  goto L2;
 
-L3:
+L2:
   approach(who: Entity(5), x: -374, y: -1119, tries: 3, wait: 20);
   playSound(8, 17);
   speak(Entity.System, "Leomon joins the city!\n");

@@ -42,21 +42,21 @@ section(81) {
 }
 
 section(82) {
-  if (item[Item.MansionKey] >= 1 && !trigger(111)) {
+  {
+    if (item[Item.MansionKey] >= 1 && !trigger(111)) {
+      rotate(entity: Entity.Player, to: 2954);
+      playSound(8, 3);
+      speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
+      setTrigger(Trigger(111));
+      break;
+    }
+    if (item[Item.MansionKey] >= 1 || trigger(111)) break;
     rotate(entity: Entity.Player, to: 2954);
-    playSound(8, 3);
-    speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
-    setTrigger(Trigger(111));
-    goto L1;
+    sfx(8, 2, wait: 5);
+    playSound(8, 2);
+    speak(Entity.System, "It doesn't open.\nIt's locked.\n");
+    return;
   }
-  if (item[Item.MansionKey] >= 1 || trigger(111)) goto L1;
-  rotate(entity: Entity.Player, to: 2954);
-  sfx(8, 2, wait: 5);
-  playSound(8, 2);
-  speak(Entity.System, "It doesn't open.\nIt's locked.\n");
-  return;
-
-L1:
   rotate3DObject(1, 1);
   sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (1600, 1674), sprint: 0);
@@ -73,21 +73,21 @@ section(84) {
 }
 
 section(83) {
-  if (item[Item.MansionKey] >= 1 && !trigger(113)) {
+  {
+    if (item[Item.MansionKey] >= 1 && !trigger(113)) {
+      rotate(entity: Entity.Player, to: 2954);
+      playSound(8, 3);
+      speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
+      setTrigger(Trigger(113));
+      break;
+    }
+    if (item[Item.MansionKey] >= 1 || trigger(113)) break;
     rotate(entity: Entity.Player, to: 2954);
-    playSound(8, 3);
-    speak(Entity.System, "I used the\n<LIGHTBLUE>Mansion Key<WHITE>!\n");
-    setTrigger(Trigger(113));
-    goto L1;
+    sfx(8, 2, wait: 5);
+    playSound(8, 2);
+    speak(Entity.System, "It doesn't open.\nIt's locked.\n");
+    return;
   }
-  if (item[Item.MansionKey] >= 1 || trigger(113)) goto L1;
-  rotate(entity: Entity.Player, to: 2954);
-  sfx(8, 2, wait: 5);
-  playSound(8, 2);
-  speak(Entity.System, "It doesn't open.\nIt's locked.\n");
-  return;
-
-L1:
   rotate3DObject(2, 1);
   sfx(8, 1, wait: 10);
   move(entity: Entity.Player, to: (1600, -1546), sprint: 0);

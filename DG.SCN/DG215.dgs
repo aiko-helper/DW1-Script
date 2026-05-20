@@ -20,226 +20,226 @@ section(6) {
   delay(20);
   showTextbox("Well, first of all...\n");
   roll(pstat: PStat.RollScratch, max: 11);
-  if (pstat[110] <= 0) {
-    goto L1;
-  }
-  if (pstat[110] <= 3) {
-    goto L2;
-  }
-  if (pstat[110] <= 8) {
-    goto L3;
-  }
-  if (pstat[110] <= 10) {
+  {
+    if (pstat[110] <= 0) {
+      break;
+    }
+    if (pstat[110] <= 3) {
+      goto L1;
+    }
+    if (pstat[110] <= 8) {
+      goto L2;
+    }
+    if (pstat[110] <= 10) {
+      goto L3;
+    }
+    if (pstat[110] > 11) break;
     goto L4;
   }
-  if (pstat[110] > 11) goto L1;
-  goto L5;
-
-L1:
   speak(Entity(6), "Overall, you have\nvery good luck.\n");
   roll(pstat: PStat.RollScratch, max: 2);
   if (pstat[110] <= 0) {
-    goto L6;
+    goto L5;
   }
   if (pstat[110] <= 1) {
   } else {
-    if (pstat[110] > 2) goto L2;
-    goto L7;
+    if (pstat[110] > 2) goto L1;
+    goto L6;
 
-L2:
+L1:
     speak(Entity(6), "Overall, it looks quite good.\n");
     roll(pstat: PStat.RollScratch, max: 3);
     if (pstat[110] <= 0) {
-      goto L8;
+      goto L7;
     }
     if (pstat[110] <= 1) {
-      goto L9;
+      goto L8;
     }
     if (pstat[110] <= 2) {
-      goto L10;
+      goto L9;
     }
-    if (pstat[110] > 3) goto L3;
-    goto L11;
+    if (pstat[110] > 3) goto L2;
+    goto L10;
 
-L3:
+L2:
     speak(Entity(6), "Your overall luck is fair.\n");
     roll(pstat: PStat.RollScratch, max: 3);
     if (pstat[110] <= 0) {
-      goto L12;
+      goto L11;
     }
     if (pstat[110] <= 1) {
-      goto L13;
+      goto L12;
     }
     if (pstat[110] <= 2) {
-      goto L14;
+      goto L13;
     }
-    if (pstat[110] > 3) goto L4;
-    goto L15;
+    if (pstat[110] > 3) goto L3;
+    goto L14;
 
-L4:
+L3:
     speak(Entity(6), "Your overall luck is\nnot so good.\n");
     roll(pstat: PStat.RollScratch, max: 3);
     if (pstat[110] <= 0) {
-      goto L16;
+      goto L15;
     }
     if (pstat[110] <= 1) {
-      goto L17;
+      goto L16;
     }
     if (pstat[110] <= 2) {
-      goto L18;
+      goto L17;
     }
-    if (pstat[110] > 3) goto L5;
-    goto L19;
+    if (pstat[110] > 3) goto L4;
+    goto L18;
 
-L5:
+L4:
     speak(Entity(6), "Overall, it's not good.\n");
     roll(pstat: PStat.RollScratch, max: 2);
     if (pstat[110] <= 0) {
-      goto L20;
+      goto L19;
     }
     if (pstat[110] <= 1) {
-      goto L21;
+      goto L20;
     }
-    if (pstat[110] > 2) goto L6;
-    goto L22;
+    if (pstat[110] > 2) goto L5;
+    goto L21;
 
-L6:
+L5:
     speak(Entity(6), "Whatever you do,\nit will go well.\n");
-    goto L23;
+    goto L22;
   }
   speak(Entity(6), "You'll have a wonderful\nchance coming to you.\n");
-  goto L23;
+  goto L22;
+
+L6:
+  speak(Entity(6), "You might have a\nmemorable event.\n");
+  goto L22;
 
 L7:
-  speak(Entity(6), "You might have a\nmemorable event.\n");
-  goto L23;
+  speak(Entity(6), "You might find\nan unexpected thing.\n");
+  goto L22;
 
 L8:
-  speak(Entity(6), "You might find\nan unexpected thing.\n");
-  goto L23;
+  speak(Entity(6), "Your question will be\nanswered.\n");
+  goto L22;
 
 L9:
-  speak(Entity(6), "Your question will be\nanswered.\n");
-  goto L23;
+  speak(Entity(6), "Your wallet will get fatter.\n");
+  goto L22;
 
 L10:
-  speak(Entity(6), "Your wallet will get fatter.\n");
-  goto L23;
+  speak(Entity(6), "You might get good news\nfrom your friends.\n");
+  goto L22;
 
 L11:
-  speak(Entity(6), "You might get good news\nfrom your friends.\n");
-  goto L23;
+  speak(Entity(6), "Changing your mood may be\ngood for you.\n");
+  goto L22;
 
 L12:
-  speak(Entity(6), "Changing your mood may be\ngood for you.\n");
-  goto L23;
+  speak(Entity(6), "Try going somewhere you\ndon't usually go.\n");
+  goto L22;
 
 L13:
-  speak(Entity(6), "Try going somewhere you\ndon't usually go.\n");
-  goto L23;
+  speak(Entity(6), "You might have an\ninteresting dream.\n");
+  goto L22;
 
 L14:
-  speak(Entity(6), "You might have an\ninteresting dream.\n");
-  goto L23;
+  speak(Entity(6), "Try not spending\ntoo much money.\n");
+  goto L22;
 
 L15:
-  speak(Entity(6), "Try not spending\ntoo much money.\n");
-  goto L23;
+  speak(Entity(6), "Your secret may be revealed.\n");
+  goto L22;
 
 L16:
-  speak(Entity(6), "Your secret may be revealed.\n");
-  goto L23;
+  speak(Entity(6), "Better to go to bed early.\n");
+  goto L22;
 
 L17:
-  speak(Entity(6), "Better to go to bed early.\n");
-  goto L23;
+  speak(Entity(6), "Guard your stuff well.\n");
+  goto L22;
 
 L18:
-  speak(Entity(6), "Guard your stuff well.\n");
-  goto L23;
+  speak(Entity(6), "Your friend may get his\nfrustration out on you.\n");
+  goto L22;
 
 L19:
-  speak(Entity(6), "Your friend may get his\nfrustration out on you.\n");
-  goto L23;
+  speak(Entity(6), "Multiple disasters may fall.\nupon you...\n");
+  goto L22;
 
 L20:
-  speak(Entity(6), "Multiple disasters may fall.\nupon you...\n");
-  goto L23;
+  speak(Entity(6), "You might encounter a\nperson you don't like.\n");
+  goto L22;
 
 L21:
-  speak(Entity(6), "You might encounter a\nperson you don't like.\n");
-  goto L23;
+  speak(Entity(6), "A big loss may fall\nupon you...\n");
+  goto L22;
 
 L22:
-  speak(Entity(6), "A big loss may fall\nupon you...\n");
-  goto L23;
-
-L23:
   roll(pstat: PStat.RollScratch, max: 9);
-  if (pstat[110] <= 0) {
-    speak(Entity(6), "Your lucky color is red.\n");
-    goto L24;
+  {
+    if (pstat[110] <= 0) {
+      speak(Entity(6), "Your lucky color is red.\n");
+      break;
+    }
+    if (pstat[110] <= 1) {
+      speak(Entity(6), "Your lucky color is white.\n");
+      break;
+    }
+    if (pstat[110] <= 2) {
+      speak(Entity(6), "Your lucky color is blue.\n");
+      break;
+    }
+    if (pstat[110] <= 3) {
+      speak(Entity(6), "Your lucky color is black.\n");
+      break;
+    }
+    if (pstat[110] <= 4) {
+      speak(Entity(6), "Your lucky color is green.\n");
+      break;
+    }
+    if (pstat[110] <= 5) {
+      speak(Entity(6), "Your lucky color is gray.\n");
+      break;
+    }
+    if (pstat[110] <= 6) {
+      speak(Entity(6), "Your lucky color is brown.\n");
+      break;
+    }
+    if (pstat[110] <= 7) {
+      speak(Entity(6), "Your lucky color is yellow.\n");
+      break;
+    }
+    if (pstat[110] <= 8) {
+      speak(Entity(6), "Your lucky color is purple.\n");
+      break;
+    }
+    if (pstat[110] > 9) break;
+    speak(Entity(6), "Your lucky color is gold.\n");
+    break;
   }
-  if (pstat[110] <= 1) {
-    speak(Entity(6), "Your lucky color is white.\n");
-    goto L24;
-  }
-  if (pstat[110] <= 2) {
-    speak(Entity(6), "Your lucky color is blue.\n");
-    goto L24;
-  }
-  if (pstat[110] <= 3) {
-    speak(Entity(6), "Your lucky color is black.\n");
-    goto L24;
-  }
-  if (pstat[110] <= 4) {
-    speak(Entity(6), "Your lucky color is green.\n");
-    goto L24;
-  }
-  if (pstat[110] <= 5) {
-    speak(Entity(6), "Your lucky color is gray.\n");
-    goto L24;
-  }
-  if (pstat[110] <= 6) {
-    speak(Entity(6), "Your lucky color is brown.\n");
-    goto L24;
-  }
-  if (pstat[110] <= 7) {
-    speak(Entity(6), "Your lucky color is yellow.\n");
-    goto L24;
-  }
-  if (pstat[110] <= 8) {
-    speak(Entity(6), "Your lucky color is purple.\n");
-    goto L24;
-  }
-  if (pstat[110] > 9) goto L24;
-  speak(Entity(6), "Your lucky color is gold.\n");
-  goto L24;
-
-L24:
   speak(Entity(6), "Finally, about your\ncompatibility with\n<ORANGE><DIGIMON><WHITE>...\n");
   roll(pstat: PStat.RollScratch, max: 4);
-  if (pstat[110] <= 0) {
-    speak(Entity(6), "It's a perfect match.\n");
-    goto L25;
+  {
+    if (pstat[110] <= 0) {
+      speak(Entity(6), "It's a perfect match.\n");
+      break;
+    }
+    if (pstat[110] <= 1) {
+      speak(Entity(6), "It's pretty good.\n");
+      break;
+    }
+    if (pstat[110] <= 2) {
+      speak(Entity(6), "It's ok.\n");
+      break;
+    }
+    if (pstat[110] <= 3) {
+      speak(Entity(6), "It's so so.\n");
+      break;
+    }
+    if (pstat[110] > 4) break;
+    speak(Entity(6), "It's not bad...\n");
+    break;
   }
-  if (pstat[110] <= 1) {
-    speak(Entity(6), "It's pretty good.\n");
-    goto L25;
-  }
-  if (pstat[110] <= 2) {
-    speak(Entity(6), "It's ok.\n");
-    goto L25;
-  }
-  if (pstat[110] <= 3) {
-    speak(Entity(6), "It's so so.\n");
-    goto L25;
-  }
-  if (pstat[110] > 4) goto L25;
-  speak(Entity(6), "It's not bad...\n");
-  goto L25;
-
-L25:
   return;
   garbage { 0c 00 fe 00 0c 00 06 00 0e 00 ff ff fe 00 19 00 01 00 5d 00 18 00 d4 01 19 00 1c 00 5d 00 1b 06 1a 00 82 72 82 89 82 8e 82 83 82 85 81 40 82 8d 82 99 81 40 }
 }

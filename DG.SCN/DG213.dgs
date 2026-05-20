@@ -28,74 +28,74 @@ L1:
 
 L2:
     storeDigimonType(PStat(103));
-    if (pstat[103] == 1 || pstat[103] == 2 || pstat[103] == 15 || pstat[103] == 16) {
-      speak(Entity(5), "Oh yeah, In-Training\nDigimon can't enter though.\nShall I check the schedule?\n");
-      goto L3;
+    {
+      if (pstat[103] == 1 || pstat[103] == 2 || pstat[103] == 15 || pstat[103] == 16) {
+        speak(Entity(5), "Oh yeah, In-Training\nDigimon can't enter though.\nShall I check the schedule?\n");
+        break;
+      }
+      if (pstat[103] == 29 || pstat[103] == 30 || pstat[103] == 43 || pstat[103] == 44) {
+        speak(Entity(5), "Oh yeah, In-Training\nDigimon can't enter though.\nShall I check the schedule?\n");
+        break;
+      }
+      if (!trigger(37)) {
+        speak(Entity(5), "I'm glad you came. Do you\nwanna enter the tournament?\n");
+        break;
+      }
+      goto L4;
     }
-    if (pstat[103] == 29 || pstat[103] == 30 || pstat[103] == 43 || pstat[103] == 44) {
-      speak(Entity(5), "Oh yeah, In-Training\nDigimon can't enter though.\nShall I check the schedule?\n");
-      goto L3;
-    }
-    if (!trigger(37)) {
-      speak(Entity(5), "I'm glad you came. Do you\nwanna enter the tournament?\n");
-      goto L3;
-    }
-    goto L5;
-
-L3:
     setDialogOwner(Entity.Player);
-    choice { "Yes" -> L4, "No" -> L1, "What do you mean?" -> L10 }
+    choice { "Yes" -> L3, "No" -> L1, "What do you mean?" -> L8 }
     return;
 
-L4:
+L3:
     setPStat(PStat(254), 5);
     callSubroutine(18);
     followEntity(Entity.Player, speed: 10);
     return;
 
-L5:
-    if (pstat[2] >= 128) {
-      goto L6;
-      goto L6;
+L4:
+    {
+      if (pstat[2] >= 128) {
+        break;
+        break;
+      }
+      goto L5;
     }
-    goto L7;
-
-L6:
     speak(Entity(5), "So you're entering\ntommorrow's\ncompetition, right?\n");
     showTextbox("Are you going to cancel\nyour entry?\n");
     setDialogOwner(Entity.Player);
-    choice { "No, I won't cancel" -> L1, "Yes, I'm cancelling" -> L9 }
+    choice { "No, I won't cancel" -> L1, "Yes, I'm cancelling" -> L7 }
     continue;
     followEntity(Entity.Player, speed: 10);
     return;
 
-L7:
+L5:
     pstat[:SavedTime] = time();
     if (pstat[107] in 0..10) {
       speak(Entity(5), "So you've entered today's\ncompetition, right?\nYou can go in from ten am.\n");
       showTextbox("You're not planning to cancel,\nare you?!\n");
       setDialogOwner(Entity.Player);
-      choice { "No, I won't cancel" -> L1, "Yes, I'm cancelling" -> L9 }
+      choice { "No, I won't cancel" -> L1, "Yes, I'm cancelling" -> L7 }
       continue;
       followEntity(Entity.Player, speed: 10);
-      goto L8;
+      goto L6;
     }
     speak(Entity(5), "So you've entered today's\ncompetition, right?\nGo in by eleven pm.\n");
     showTextbox("You're not planning to\ncancel, are you?!\n");
     setDialogOwner(Entity.Player);
-    choice { "No, I won't cancel" -> L1, "Yes, I'm cancelling" -> L9 }
+    choice { "No, I won't cancel" -> L1, "Yes, I'm cancelling" -> L7 }
   }
   followEntity(Entity.Player, speed: 10);
 
-L8:
+L6:
   return;
 
-L9:
+L7:
   unsetTrigger(Trigger(37));
   speak(Entity(5), "Well, I'll cancel for you.\n");
   return;
 
-L10:
+L8:
   speak(Entity(5), "Once inside, at start time,\ngo down the left stairs in\norder to compete in battle.\n");
   showTextbox("Registration is free. You can\nregister for only today's and\ntommorrow's competition.\n");
   showTextbox("However, for that day's\ncompetition, you have to\nregister by ten am.\n");
@@ -106,7 +106,7 @@ L10:
   showTextbox("In-Training Digimon\ncannot compete.\n");
   showTextbox("Well, that's about it for\nregistration. Do you want\nto enter?\n");
   setDialogOwner(Entity.Player);
-  choice { "Yes" -> L4, "No" -> L1, "Sorry, explain again" -> L10 }
+  choice { "Yes" -> L3, "No" -> L1, "Sorry, explain again" -> L8 }
   return;
   return;
 }

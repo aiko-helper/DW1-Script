@@ -28,57 +28,59 @@ section(6) {
     warp(to: Map.FRZL17, spawn: 1, trigger: 255);
     return;
   }
-  if (!trigger(257)) {
-    speak(Entity(6), "Hey, do you want to play a\nmatch with me? Give me a\nfish and you can play me.\n");
+  {
+    if (!trigger(257)) {
+      speak(Entity(6), "Hey, do you want to play a\nmatch with me? Give me a\nfish and you can play me.\n");
+      setDialogOwner(Entity.Player);
+      choice { "I'll get you" -> L1, "No thanks" -> L_061e }
+      return;
+    }
+    if (!trigger(92)) {
+      setTrigger(Trigger(92));
+      speak(Entity(6), "Hey bro! I made a\nskating rink here.\n");
+      showTextbox("One fish for one match.\nBut if you win, I'll give\nyou a nice prize.\n");
+    }
+    setPStat(PStat(122), 0);
+    speak(Entity(6), "Hey dude, don't you want to\nhave a match with me? You can\nchallenge me with one fish.\n");
     setDialogOwner(Entity.Player);
-    choice { "I'll get you" -> L2, "No thanks" -> L1 }
+    choice { "You're on" -> L1, "No thanks" -> L_061e }
     return;
   }
-  if (!trigger(92)) {
-    setTrigger(Trigger(92));
-    speak(Entity(6), "Hey bro! I made a\nskating rink here.\n");
-    showTextbox("One fish for one match.\nBut if you win, I'll give\nyou a nice prize.\n");
-  }
-  setPStat(PStat(122), 0);
-  speak(Entity(6), "Hey dude, don't you want to\nhave a match with me? You can\nchallenge me with one fish.\n");
-  setDialogOwner(Entity.Player);
-  choice { "You're on" -> L2, "No thanks" -> L1 }
-  return;
-
-L1:
   setPStat(PStat(113), 0);
   speak(Entity(6), "Shoot, that's no fun.\n");
   return;
 
-L2:
+L1:
   speak(Entity(6), "Give me a fish!\n");
   setTrigger(Trigger(3));
   callSubroutine(0);
-  if (trigger(3)) {
-    speak(Entity.Player, "I don't got anything now...\n");
-    goto L4;
-  }
-  if (pstat[254] == 62 || pstat[254] == 63 || pstat[254] == 64 || pstat[254] == 65) {
-    callSubroutine(12);
-    goto L3;
-  }
-  if (pstat[254] == 66 || pstat[254] == 67) {
-    callSubroutine(12);
-    goto L3;
-  }
-  if (pstat[254] == 255) {
-    goto L4;
-    goto L3;
-  }
-  speak(Entity.Player, "Oh no, giving you this\ndoesn't do any good.\n");
-  goto L4;
+  {
+    if (trigger(3)) {
+      speak(Entity.Player, "I don't got anything now...\n");
+      break;
+    }
+    {
+      if (pstat[254] == 62 || pstat[254] == 63 || pstat[254] == 64 || pstat[254] == 65) {
+        callSubroutine(12);
+        break;
+      }
+      if (pstat[254] == 66 || pstat[254] == 67) {
+        callSubroutine(12);
+        break;
+      }
+      if (pstat[254] == 255) {
+        goto L2;
+        break;
+      }
+      speak(Entity.Player, "Oh no, giving you this\ndoesn't do any good.\n");
+      goto L2;
+    }
+    speak(Entity(6), "Wow, it looks tasty. Ooops,\nwe have to have a match first.\nLet's go inside.\n");
+    warp(to: Map.FRZL17, spawn: 1, trigger: 255);
+    return;
 
-L3:
-  speak(Entity(6), "Wow, it looks tasty. Ooops,\nwe have to have a match first.\nLet's go inside.\n");
-  warp(to: Map.FRZL17, spawn: 1, trigger: 255);
-  return;
-
-L4:
+L2:
+  }
   setPStat(PStat(113), 0);
   speak(Entity(6), "Oh come on, dude.\nWhy don't you go fishing\nat Dragon Eye Lake.\n");
   return;
@@ -130,37 +132,37 @@ section(11) {
   speak(Entity(6), "Well, what can I say.\nHere's your prize.\n");
   roll(pstat: PStat(102), max: 49);
   loop {
-    if (pstat[102] <= 0) {
-      giveItem(Item.Rooster, 1);
-      setPStat(PStat.RollScratch, 85);
-      goto L1;
+    {
+      if (pstat[102] <= 0) {
+        giveItem(Item.Rooster, 1);
+        setPStat(PStat.RollScratch, 85);
+        break;
+      }
+      if (pstat[102] <= 5) {
+        giveItem(Item.Restore, 1);
+        setPStat(PStat.RollScratch, 11);
+        break;
+      }
+      if (pstat[102] <= 15) {
+        giveItem(Item.OmniDisk, 1);
+        setPStat(PStat.RollScratch, 18);
+        break;
+      }
+      if (pstat[102] <= 22) {
+        giveItem(Item.GiantMeat, 1);
+        setPStat(PStat.RollScratch, 39);
+        break;
+      }
+      if (pstat[102] <= 30) {
+        giveItem(Item.LargeRecovery, 1);
+        setPStat(PStat.RollScratch, 2);
+        break;
+      }
+      if (pstat[102] > 50) break;
+      giveItem(Item.MediumMP, 1);
+      setPStat(PStat.RollScratch, 5);
+      break;
     }
-    if (pstat[102] <= 5) {
-      giveItem(Item.Restore, 1);
-      setPStat(PStat.RollScratch, 11);
-      goto L1;
-    }
-    if (pstat[102] <= 15) {
-      giveItem(Item.OmniDisk, 1);
-      setPStat(PStat.RollScratch, 18);
-      goto L1;
-    }
-    if (pstat[102] <= 22) {
-      giveItem(Item.GiantMeat, 1);
-      setPStat(PStat.RollScratch, 39);
-      goto L1;
-    }
-    if (pstat[102] <= 30) {
-      giveItem(Item.LargeRecovery, 1);
-      setPStat(PStat.RollScratch, 2);
-      goto L1;
-    }
-    if (pstat[102] > 50) goto L1;
-    giveItem(Item.MediumMP, 1);
-    setPStat(PStat.RollScratch, 5);
-    goto L1;
-
-L1:
     if (!trigger(0)) break;
     speak(Entity(6), "You have too many Items!\n");
     unsetTrigger(Trigger(3));
@@ -178,43 +180,45 @@ section(7) {
   speak(Entity(6), "Hey <LIGHTBLUE><PLAYER><WHITE>. I'm watching\nthe shop now as a favor for\nPenguinmon.\n");
   showTextbox("Have a match with me!\nIf you win, I'll give you my\nspecial prize. How's that?\n");
   setDialogOwner(Entity.Player);
-  choice { "Alright, let's do it" -> L1, "No thanks" -> L4 }
+  choice { "Alright, let's do it" -> L1, "No thanks" -> L3 }
   return;
 
 L1:
   speak(Entity(6), "Let me get the fish\nbefore the match.\n");
   setTrigger(Trigger(3));
   callSubroutine(0);
-  if (trigger(3)) {
-    speak(Entity.Player, "Oh, I don't have\nanything right now.\n");
-    goto L3;
-  }
-  if (pstat[254] == 62 || pstat[254] == 63 || pstat[254] == 64 || pstat[254] == 65) {
-    callSubroutine(12);
-    goto L2;
-  }
-  if (pstat[254] == 66 || pstat[254] == 67) {
-    callSubroutine(12);
-    goto L2;
-  }
-  if (pstat[254] == 255) {
-    goto L3;
-    goto L2;
-  }
-  speak(Entity.Player, "Giving this to you\nwon't do any good.\n");
-  goto L3;
+  {
+    if (trigger(3)) {
+      speak(Entity.Player, "Oh, I don't have\nanything right now.\n");
+      break;
+    }
+    {
+      if (pstat[254] == 62 || pstat[254] == 63 || pstat[254] == 64 || pstat[254] == 65) {
+        callSubroutine(12);
+        break;
+      }
+      if (pstat[254] == 66 || pstat[254] == 67) {
+        callSubroutine(12);
+        break;
+      }
+      if (pstat[254] == 255) {
+        goto L2;
+        break;
+      }
+      speak(Entity.Player, "Giving this to you\nwon't do any good.\n");
+      goto L2;
+    }
+    speak(Entity(6), "Well, this time, I'm gonna\nwin. Let's go inside.\n");
+    warp(to: Map.FRZL17, spawn: 1, trigger: 255);
+    return;
 
 L2:
-  speak(Entity(6), "Well, this time, I'm gonna\nwin. Let's go inside.\n");
-  warp(to: Map.FRZL17, spawn: 1, trigger: 255);
-  return;
-
-L3:
+  }
   setPStat(PStat(113), 0);
   speak(Entity(6), "I can't have a match\nwithout a fish. Come back\nagain some other time.\n");
   return;
 
-L4:
+L3:
   speak(Entity(6), "What? Are you\nturning me down?\n");
   return;
 }
@@ -235,47 +239,47 @@ section(12) {
   speak(Entity(6), "You are good, <LIGHTBLUE><PLAYER><WHITE>!\nHere's the prize\nI promised you!\n");
   roll(pstat: PStat(102), max: 49);
   loop {
-    if (pstat[102] <= 0) {
-      giveItem(Item.SilverBall, 1);
-      setPStat(PStat.RollScratch, 103);
-      goto L1;
+    {
+      if (pstat[102] <= 0) {
+        giveItem(Item.SilverBall, 1);
+        setPStat(PStat.RollScratch, 103);
+        break;
+      }
+      if (pstat[102] <= 1) {
+        giveItem(Item.MetalArmor, 1);
+        setPStat(PStat.RollScratch, 104);
+        break;
+      }
+      if (pstat[102] <= 2) {
+        giveItem(Item.Chainsaw, 1);
+        setPStat(PStat.RollScratch, 105);
+        break;
+      }
+      if (pstat[102] <= 3) {
+        giveItem(Item.SmallSpear, 1);
+        setPStat(PStat.RollScratch, 106);
+        break;
+      }
+      if (pstat[102] <= 11) {
+        giveItem(Item.SuperRecovery, 1);
+        setPStat(PStat.RollScratch, 3);
+        break;
+      }
+      if (pstat[102] <= 21) {
+        giveItem(Item.Restore, 1);
+        setPStat(PStat.RollScratch, 11);
+        break;
+      }
+      if (pstat[102] <= 33) {
+        giveItem(Item.Omnipotent, 1);
+        setPStat(PStat.RollScratch, 9);
+        break;
+      }
+      if (pstat[102] > 49) break;
+      giveItem(Item.Sirloin, 1);
+      setPStat(PStat.RollScratch, 40);
+      break;
     }
-    if (pstat[102] <= 1) {
-      giveItem(Item.MetalArmor, 1);
-      setPStat(PStat.RollScratch, 104);
-      goto L1;
-    }
-    if (pstat[102] <= 2) {
-      giveItem(Item.Chainsaw, 1);
-      setPStat(PStat.RollScratch, 105);
-      goto L1;
-    }
-    if (pstat[102] <= 3) {
-      giveItem(Item.SmallSpear, 1);
-      setPStat(PStat.RollScratch, 106);
-      goto L1;
-    }
-    if (pstat[102] <= 11) {
-      giveItem(Item.SuperRecovery, 1);
-      setPStat(PStat.RollScratch, 3);
-      goto L1;
-    }
-    if (pstat[102] <= 21) {
-      giveItem(Item.Restore, 1);
-      setPStat(PStat.RollScratch, 11);
-      goto L1;
-    }
-    if (pstat[102] <= 33) {
-      giveItem(Item.Omnipotent, 1);
-      setPStat(PStat.RollScratch, 9);
-      goto L1;
-    }
-    if (pstat[102] > 49) goto L1;
-    giveItem(Item.Sirloin, 1);
-    setPStat(PStat.RollScratch, 40);
-    goto L1;
-
-L1:
     if (!trigger(0)) break;
     speak(Entity(6), "You have too many Items.\n");
     unsetTrigger(Trigger(3));

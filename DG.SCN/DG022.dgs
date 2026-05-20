@@ -28,45 +28,45 @@ section(5) {
   playAnimation(Entity.Player, Animation(0));
   setTrigger(Trigger(3));
   callSubroutine(0);
-  if (trigger(3)) {
-    speak(Entity.Player, "I don't have anything\nright now.\n");
-    goto L3;
-  }
-  if (pstat[254] == 0 || pstat[254] == 1 || pstat[254] == 2 || pstat[254] == 3) {
-    callSubroutine(12);
+  {
+    if (trigger(3)) {
+      speak(Entity.Player, "I don't have anything\nright now.\n");
+      break;
+    }
+    {
+      if (pstat[254] == 0 || pstat[254] == 1 || pstat[254] == 2 || pstat[254] == 3) {
+        callSubroutine(12);
+        break;
+      }
+      if (pstat[254] == 7 || pstat[254] == 9 || pstat[254] == 13 || pstat[254] == 14) {
+        callSubroutine(12);
+        break;
+        break;
+      }
+      speak(Entity.Player, "This won't do.\n");
+      goto L2;
+    }
+    speak(Entity(5), "It's much better. Thank you.\n");
+    playAnimation(Entity(5), Animation(29));
+    waitForEntity(Entity(5));
+    anim(Entity.Player, Animation(25), wait: 20);
+    speak(Entity.Player, "Can you fly now?\n");
+    speak(Entity(5), "I don't think I can fly far.\n");
+    anim(Entity.Player, Animation(19), wait: 20);
+    speak(Entity.Player, "There's a clinic in the city.\nYou should go there.\nIt's not far.\n");
+    speak(Entity(5), "I heard about the city.\nIt's bigger than I thought.\n");
+    speak(Entity.Player, "Go to the city and rest.\n");
+    speak(Entity(5), "Thank you. Maybe\nI can help you someday.\n");
     goto L1;
-  }
-  if (pstat[254] == 7 || pstat[254] == 9 || pstat[254] == 13 || pstat[254] == 14) {
-    callSubroutine(12);
-    goto L1;
-    goto L1;
-  }
-  speak(Entity.Player, "This won't do.\n");
-  goto L3;
 
 L1:
-  speak(Entity(5), "It's much better. Thank you.\n");
-  playAnimation(Entity(5), Animation(29));
-  waitForEntity(Entity(5));
-  anim(Entity.Player, Animation(25), wait: 20);
-  speak(Entity.Player, "Can you fly now?\n");
-  speak(Entity(5), "I don't think I can fly far.\n");
-  anim(Entity.Player, Animation(19), wait: 20);
-  speak(Entity.Player, "There's a clinic in the city.\nYou should go there.\nIt's not far.\n");
-  speak(Entity(5), "I heard about the city.\nIt's bigger than I thought.\n");
-  speak(Entity.Player, "Go to the city and rest.\n");
-  speak(Entity(5), "Thank you. Maybe\nI can help you someday.\n");
-  goto L2;
-
-L2:
-  loop {
-    move(entity: Entity(5), to: (-192, -1849), sprint: 1);
-    if (pstat[101] >= 10) break;
-    addPStat(PStat.LoopIterator, 1);
-    sfx(8, 0, wait: 15);
-    lookPairAt(Entity(5));
-  }
-  {
+    loop {
+      move(entity: Entity(5), to: (-192, -1849), sprint: 1);
+      if (pstat[101] >= 10) break;
+      addPStat(PStat.LoopIterator, 1);
+      sfx(8, 0, wait: 15);
+      lookPairAt(Entity(5));
+    }
     waitForEntity(Entity(5));
     unloadEntity(Entity(5));
     setPStat(PStat.LoopIterator, 0);
@@ -74,13 +74,15 @@ L2:
     speak(Entity.System, "Unimon joins the city!\n");
     setTrigger(Trigger(233));
     addPStat(PStat(1), 2);
-    break;
+    goto L3;
+
+L2:
+  }
+  speak(Entity.Player, "I don't have anything to\ntreat your wound.\nI'll get you something.\n");
+  speak(Entity(5), "I'm sorry, please hurry.\n");
+  goto L3;
 
 L3:
-    speak(Entity.Player, "I don't have anything to\ntreat your wound.\nI'll get you something.\n");
-    speak(Entity(5), "I'm sorry, please hurry.\n");
-    break;
-  }
   return;
 }
 
