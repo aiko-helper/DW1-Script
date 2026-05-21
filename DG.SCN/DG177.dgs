@@ -13,29 +13,31 @@ section(51) {
 }
 
 section(6) {
-  if (pstat[44] == 0) {
-    speak(Entity(6), "I know about Items.\n");
-    showTextbox("There are one hund and twenty\neight kinds of Items in all.\n");
-    showTextbox("Thirty two are food.\n");
-    showTextbox("Rare Items grow naturally\nin some areas and can't be\nfound in others.\n");
-    showTextbox("For example, you can\nfind a Blue Apple in\nNative Forest.\n");
-    showTextbox("These foods have special\neffects, so be careful on\nthe timing of eating them.\n");
-    setPStat(PStat(44), 1);
-    return;
-  }
-  if (pstat[44] == 1) {
-    speak(Entity(6), "Now I'll talk about\nDigivolution Items.\n");
-    showTextbox("Digivolution Items make\nDigimon digivolve, as the\nname suggests.\n");
-    showTextbox("There are many different\nkinds of Digivolution Items.\n");
-    showTextbox("Each kind causes Digimon\nto digivolve into different\ntypes of Digimon.\n");
-    showTextbox("For example, if you use\nGrey Claws, the Digimon\nwill turn into Greymon.\n");
-    showTextbox("Digivolution Items are\nItems of legend and some\nare one of a kind.\n");
-    showTextbox("But sometimes you don't get\nany bonus ability like\nduring normal Digivolution.\n");
-    showTextbox("Also, Happiness level goes\ndown, so they're not perfect.\n");
-    showTextbox("At the same time, it's nice\nto digivolve into the kind of\nDigimon you want to be.\n");
-    showTextbox("You can only digivolve from\none generation before the\nDigimon you want to become.\n");
-    showTextbox("So be careful.\n");
-    setPStat(PStat(44), 0);
+  switch pstat[44] {
+    0 => {
+      speak(Entity(6), "I know about Items.\n");
+      showTextbox("There are one hund and twenty\neight kinds of Items in all.\n");
+      showTextbox("Thirty two are food.\n");
+      showTextbox("Rare Items grow naturally\nin some areas and can't be\nfound in others.\n");
+      showTextbox("For example, you can\nfind a Blue Apple in\nNative Forest.\n");
+      showTextbox("These foods have special\neffects, so be careful on\nthe timing of eating them.\n");
+      setPStat(PStat(44), 1);
+      return;
+    }
+    1 => {
+      speak(Entity(6), "Now I'll talk about\nDigivolution Items.\n");
+      showTextbox("Digivolution Items make\nDigimon digivolve, as the\nname suggests.\n");
+      showTextbox("There are many different\nkinds of Digivolution Items.\n");
+      showTextbox("Each kind causes Digimon\nto digivolve into different\ntypes of Digimon.\n");
+      showTextbox("For example, if you use\nGrey Claws, the Digimon\nwill turn into Greymon.\n");
+      showTextbox("Digivolution Items are\nItems of legend and some\nare one of a kind.\n");
+      showTextbox("But sometimes you don't get\nany bonus ability like\nduring normal Digivolution.\n");
+      showTextbox("Also, Happiness level goes\ndown, so they're not perfect.\n");
+      showTextbox("At the same time, it's nice\nto digivolve into the kind of\nDigimon you want to be.\n");
+      showTextbox("You can only digivolve from\none generation before the\nDigimon you want to become.\n");
+      showTextbox("So be careful.\n");
+      setPStat(PStat(44), 0);
+    }
   }
   return;
 }
@@ -90,49 +92,51 @@ section(5) {
     setTrigger(Trigger(73));
     return;
   }
-  if (pstat[24] == 0) {
-    setTrigger(Trigger(419));
-    setTrigger(Trigger(420));
-    unsetTrigger(Trigger(3));
-    setPStat(PStat(254), 5);
-    callSubroutine(8);
-    unsetTrigger(Trigger(419));
-    unsetTrigger(Trigger(420));
-    return;
-  }
-  if (pstat[24] == 1) {
-    setTrigger(Trigger(418));
-    setTrigger(Trigger(421));
-    unsetTrigger(Trigger(3));
-    setPStat(PStat(254), 5);
-    callSubroutine(8);
-    unsetTrigger(Trigger(418));
-    unsetTrigger(Trigger(421));
-    return;
-  }
-  if (pstat[24] == 2) {
-    for id in Trigger(402)..Trigger(405) {
-      setTrigger(id);
+  switch pstat[24] {
+    0 => {
+      setTrigger(Trigger(419));
+      setTrigger(Trigger(420));
+      unsetTrigger(Trigger(3));
+      setPStat(PStat(254), 5);
+      callSubroutine(8);
+      unsetTrigger(Trigger(419));
+      unsetTrigger(Trigger(420));
+      return;
     }
-    unsetTrigger(Trigger(3));
-    setPStat(PStat(254), 5);
-    callSubroutine(8);
-    for id in Trigger(402)..Trigger(405) {
-      unsetTrigger(id);
+    1 => {
+      setTrigger(Trigger(418));
+      setTrigger(Trigger(421));
+      unsetTrigger(Trigger(3));
+      setPStat(PStat(254), 5);
+      callSubroutine(8);
+      unsetTrigger(Trigger(418));
+      unsetTrigger(Trigger(421));
+      return;
     }
-    return;
-  }
-  if (pstat[24] == 3) {
-    for id in Trigger(413)..Trigger(415) {
-      setTrigger(id);
+    2 => {
+      for id in Trigger(402)..Trigger(405) {
+        setTrigger(id);
+      }
+      unsetTrigger(Trigger(3));
+      setPStat(PStat(254), 5);
+      callSubroutine(8);
+      for id in Trigger(402)..Trigger(405) {
+        unsetTrigger(id);
+      }
+      return;
     }
-    unsetTrigger(Trigger(3));
-    setPStat(PStat(254), 5);
-    callSubroutine(8);
-    for id in Trigger(413)..Trigger(415) {
-      unsetTrigger(id);
+    3 => {
+      for id in Trigger(413)..Trigger(415) {
+        setTrigger(id);
+      }
+      unsetTrigger(Trigger(3));
+      setPStat(PStat(254), 5);
+      callSubroutine(8);
+      for id in Trigger(413)..Trigger(415) {
+        unsetTrigger(id);
+      }
+      return;
     }
-    return;
   }
   return;
   garbage { 14 00 fe 00 14 00 33 00 16 00 06 00 1c 00 05 00 42 08 ff ff fe 00 4b d8 01 ff fe 00 19 00 08 00 2c 00 18 00 aa 02 19 00 }

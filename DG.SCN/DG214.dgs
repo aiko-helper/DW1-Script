@@ -9,62 +9,69 @@ section onEnter(254) {
 
 section(51) {
   unsetTrigger(Trigger(37));
-  if (pstat[255] == 3) {
-  } else {
-    if (pstat[255] == 2) {
-      goto L5;
+  switch pstat[255] {
+    3 => {
+      goto L1;
     }
-    speak(Entity(5), "That was too bad.\nTry again next time.\n");
-    speak(Entity.System, "Participation Award :\n   <LIGHTBLUE>Giant Meat<WHITE>!\n");
-    giveItem(Item.GiantMeat, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.GiantMeat, 1);
+    2 => {
+      goto L7;
     }
-    return;
   }
-  if (pstat[3] == 0) {
-    addMoney(2000);
-    speak(Entity.System, "Victory Reward :\n   two thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Double Floppy<WHITE>!\n");
-    giveItem(Item.DoubleFloppy, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.DoubleFloppy, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 1) {
-    addMoney(4000);
-    speak(Entity.System, "Victory Reward :\n   four thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Three Sirloins<WHITE>!\n");
-    giveItem(Item.Sirloin, 3);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.Sirloin, 3);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  {
-    if (pstat[3] != 2) break;
-    addMoney(6000);
-    speak(Entity.System, "Victory Reward :\n   six thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Restore Floppy<WHITE>!\n");
-    giveItem(Item.Restore, 1);
-    if (!trigger(0)) break;
+  speak(Entity(5), "That was too bad.\nTry again next time.\n");
+  speak(Entity.System, "Participation Award :\n   <LIGHTBLUE>Giant Meat<WHITE>!\n");
+  giveItem(Item.GiantMeat, 1);
+  if (trigger(0)) {
     speak(Entity(5), "You got too much stuff.\n");
     inventoryFullBailout();
-    giveItem(Item.Restore, 1);
+    giveItem(Item.GiantMeat, 1);
   }
+  return;
+
+L1:
+  switch pstat[3] {
+    0 => {
+      addMoney(2000);
+      speak(Entity.System, "Victory Reward :\n   two thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Double Floppy<WHITE>!\n");
+      giveItem(Item.DoubleFloppy, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.DoubleFloppy, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    1 => {
+      addMoney(4000);
+      speak(Entity.System, "Victory Reward :\n   four thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Three Sirloins<WHITE>!\n");
+      giveItem(Item.Sirloin, 3);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Sirloin, 3);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    else 2 => {
+      addMoney(6000);
+      speak(Entity.System, "Victory Reward :\n   six thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Restore Floppy<WHITE>!\n");
+      giveItem(Item.Restore, 1);
+      if (!trigger(0)) goto L2;
+      speak(Entity(5), "You got too much stuff.\n");
+      inventoryFullBailout();
+      giveItem(Item.Restore, 1);
+    }
+  }
+
+L2:
   roll(pstat: PStat.RollScratch, max: 99);
   if (pstat[3] == 2) {
-    if (stat[Stat.TamerLevel] == 10) goto L1;
-    if (pstat[110] > 9) goto L1;
+    if (stat[Stat.TamerLevel] == 10) goto L3;
+    if (pstat[110] > 9) goto L3;
     addStats(tamerLevel: 1);
     speak(Entity.System, "<YELLOW>Tamer Level went up! <WHITE>\n");
     jumpToScriptSection(204, 51);
 
-L1:
+L3:
     jumpToScriptSection(204, 51);
   }
   {
@@ -79,13 +86,13 @@ L1:
   }
   roll(pstat: PStat.RollScratch, max: 99);
   if (pstat[3] == 3) {
-    if (stat[Stat.TamerLevel] == 10) goto L2;
-    if (pstat[110] > 19) goto L2;
+    if (stat[Stat.TamerLevel] == 10) goto L4;
+    if (pstat[110] > 19) goto L4;
     addStats(tamerLevel: 1);
     speak(Entity.System, "<YELLOW>Tamer Level went up! <WHITE>\n");
     jumpToScriptSection(204, 51);
 
-L2:
+L4:
     jumpToScriptSection(204, 51);
   }
   roll(pstat: PStat.RollScratch, max: 2);
@@ -98,7 +105,7 @@ L2:
       inventoryFullBailout();
       giveItem(Item.MetalPart, 1);
     }
-    goto L3;
+    goto L5;
     return;
   }
   if (pstat[3] == 4 && pstat[110] == 1) {
@@ -110,9 +117,9 @@ L2:
       inventoryFullBailout();
       giveItem(Item.FatalBone, 1);
     }
-    goto L3;
+    goto L5;
   }
-  if (pstat[3] != 4 || pstat[110] != 2) goto L3;
+  if (pstat[3] != 4 || pstat[110] != 2) goto L5;
   addMoney(10000);
   speak(Entity.System, "Victory Reward :\n   ten thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Mega Hand<WHITE>!\n");
   giveItem(Item.MegaHand, 1);
@@ -121,427 +128,432 @@ L2:
     inventoryFullBailout();
     giveItem(Item.MegaHand, 1);
   }
-  goto L3;
-
-L3:
-  roll(pstat: PStat.RollScratch, max: 99);
-  if (pstat[3] == 4) {
-    if (stat[Stat.TamerLevel] == 10) goto L4;
-    if (pstat[110] > 29) goto L4;
-    addStats(tamerLevel: 1);
-    speak(Entity.System, "<YELLOW>Tamer Level went up! <WHITE>\n");
-    jumpToScriptSection(204, 51);
-
-L4:
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 6) {
-    addMoney(5000);
-    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>White Fang<WHITE>!\n");
-    giveItem(Item.WhiteFang, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.WhiteFang, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 7) {
-    addMoney(5000);
-    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Blue Crystal<WHITE>!\n");
-    giveItem(Item.BlueCrystal, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.BlueCrystal, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 8) {
-    addMoney(5000);
-    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Iron Hoof <WHITE>!\n");
-    giveItem(Item.IronHoof, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.IronHoof, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 9) {
-    addMoney(5000);
-    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Monochrome Stone<WHITE>!\n");
-    giveItem(Item.MonoStone, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.MonoStone, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 10) {
-    addMoney(5000);
-    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Red Ruby<WHITE>!\n");
-    giveItem(Item.RedRuby, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.RedRuby, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 11) {
-    addMoney(8000);
-    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Fireball<WHITE>!\n");
-    giveItem(Item.Fireball, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.Fireball, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 12) {
-    addMoney(8000);
-    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Spike Club<WHITE>!\n");
-    giveItem(Item.SpikeClub, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.SpikeClub, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 13) {
-    addMoney(8000);
-    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Unihorn<WHITE>!\n");
-    giveItem(Item.Unihorn, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.Unihorn, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 14) {
-    addMoney(8000);
-    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>North Star<WHITE>!\n");
-    giveItem(Item.NorthStar, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.NorthStar, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 15) {
-    addMoney(8000);
-    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Fertilizer<WHITE>!\n");
-    giveItem(Item.Fertilizer, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.Fertilizer, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 16) {
-    addMoney(8000);
-    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Cyber Parts<WHITE>!\n");
-    giveItem(Item.CyberPart, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.CyberPart, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 17) {
-    addMoney(8000);
-    speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Sunglasses<WHITE>!\n");
-    giveItem(Item.Sunglasses, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.Sunglasses, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 18) {
-    addMoney(5000);
-    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Grew Claws<WHITE>!\n");
-    giveItem(Item.GreyClaws, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.GreyClaws, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 19) {
-    addMoney(5000);
-    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>White Wing<WHITE>!\n");
-    giveItem(Item.WhiteWing, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.WhiteWing, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] == 20) {
-    addMoney(5000);
-    speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Steel Drill<WHITE>!\n");
-    giveItem(Item.SteelDrill, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.SteelDrill, 1);
-    }
-    jumpToScriptSection(204, 51);
-  }
-  if (pstat[3] != 21) goto L5;
-  addMoney(5000);
-  speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Black Wing<WHITE>!\n");
-  giveItem(Item.BlackWing, 1);
-  if (trigger(0)) {
-    speak(Entity(5), "You got too much stuff.\n");
-    inventoryFullBailout();
-    giveItem(Item.BlackWing, 1);
-  }
-  jumpToScriptSection(204, 51);
+  goto L5;
 
 L5:
-  if (pstat[3] == 0) {
-    addMoney(500);
-    speak(Entity.System, "Second Place Reward :\n   five hund bits!\nSecond Place Prize :\n   <LIGHTBLUE>Two Giant Meat<WHITE>!\n");
-    giveItem(Item.GiantMeat, 2);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+  roll(pstat: PStat.RollScratch, max: 99);
+  switch pstat[3] {
+    4 => {
+      if (stat[Stat.TamerLevel] == 10) goto L6;
+      if (pstat[110] > 29) goto L6;
+      addStats(tamerLevel: 1);
+      speak(Entity.System, "<YELLOW>Tamer Level went up! <WHITE>\n");
+      jumpToScriptSection(204, 51);
+
+L6:
+      jumpToScriptSection(204, 51);
+    }
+    6 => {
+      addMoney(5000);
+      speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>White Fang<WHITE>!\n");
+      giveItem(Item.WhiteFang, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.WhiteFang, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    7 => {
+      addMoney(5000);
+      speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Blue Crystal<WHITE>!\n");
+      giveItem(Item.BlueCrystal, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.BlueCrystal, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    8 => {
+      addMoney(5000);
+      speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Iron Hoof <WHITE>!\n");
+      giveItem(Item.IronHoof, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.IronHoof, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    9 => {
+      addMoney(5000);
+      speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Monochrome Stone<WHITE>!\n");
+      giveItem(Item.MonoStone, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.MonoStone, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    10 => {
+      addMoney(5000);
+      speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Red Ruby<WHITE>!\n");
+      giveItem(Item.RedRuby, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.RedRuby, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    11 => {
+      addMoney(8000);
+      speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Fireball<WHITE>!\n");
+      giveItem(Item.Fireball, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Fireball, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    12 => {
+      addMoney(8000);
+      speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Spike Club<WHITE>!\n");
+      giveItem(Item.SpikeClub, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.SpikeClub, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    13 => {
+      addMoney(8000);
+      speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Unihorn<WHITE>!\n");
+      giveItem(Item.Unihorn, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Unihorn, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    14 => {
+      addMoney(8000);
+      speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>North Star<WHITE>!\n");
+      giveItem(Item.NorthStar, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.NorthStar, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    15 => {
+      addMoney(8000);
+      speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Fertilizer<WHITE>!\n");
+      giveItem(Item.Fertilizer, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Fertilizer, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    16 => {
+      addMoney(8000);
+      speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Cyber Parts<WHITE>!\n");
+      giveItem(Item.CyberPart, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.CyberPart, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    17 => {
+      addMoney(8000);
+      speak(Entity.System, "Victory Reward :\n   eight thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Sunglasses<WHITE>!\n");
+      giveItem(Item.Sunglasses, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Sunglasses, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    18 => {
+      addMoney(5000);
+      speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Grew Claws<WHITE>!\n");
+      giveItem(Item.GreyClaws, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.GreyClaws, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    19 => {
+      addMoney(5000);
+      speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>White Wing<WHITE>!\n");
+      giveItem(Item.WhiteWing, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.WhiteWing, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    20 => {
+      addMoney(5000);
+      speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Steel Drill<WHITE>!\n");
+      giveItem(Item.SteelDrill, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.SteelDrill, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+    else 21 => {
+      addMoney(5000);
+      speak(Entity.System, "Victory Reward :\n   five thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Black Wing<WHITE>!\n");
+      giveItem(Item.BlackWing, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.BlackWing, 1);
+      }
+      jumpToScriptSection(204, 51);
+    }
+  }
+
+L7:
+  switch pstat[3] {
+    0 => {
+      addMoney(500);
+      speak(Entity.System, "Second Place Reward :\n   five hund bits!\nSecond Place Prize :\n   <LIGHTBLUE>Two Giant Meat<WHITE>!\n");
       giveItem(Item.GiantMeat, 2);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.GiantMeat, 2);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 1) {
-    addMoney(1000);
-    speak(Entity.System, "Second Place Reward :\n   one thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Sirloin<WHITE>!\n");
-    giveItem(Item.Sirloin, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    1 => {
+      addMoney(1000);
+      speak(Entity.System, "Second Place Reward :\n   one thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Sirloin<WHITE>!\n");
       giveItem(Item.Sirloin, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Sirloin, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 2) {
-    addMoney(2000);
-    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Large MP Floppy<WHITE>!\n");
-    giveItem(Item.LargeMP, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    2 => {
+      addMoney(2000);
+      speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Large MP Floppy<WHITE>!\n");
       giveItem(Item.LargeMP, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.LargeMP, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 3) {
-    addMoney(3000);
-    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Restore Floppy<WHITE>!\n");
-    giveItem(Item.Restore, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    3 => {
+      addMoney(3000);
+      speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Restore Floppy<WHITE>!\n");
       giveItem(Item.Restore, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Restore, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 4) {
-    addMoney(4000);
-    speak(Entity.System, "Second Place Reward :\n   four thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Restore Floppy<WHITE>!\n");
-    giveItem(Item.SuperRestore, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    4 => {
+      addMoney(4000);
+      speak(Entity.System, "Second Place Reward :\n   four thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Restore Floppy<WHITE>!\n");
       giveItem(Item.SuperRestore, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.SuperRestore, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 6) {
-    addMoney(2000);
-    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
-    giveItem(Item.SuperRecovery, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    6 => {
+      addMoney(2000);
+      speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
       giveItem(Item.SuperRecovery, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.SuperRecovery, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 7) {
-    addMoney(2000);
-    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
-    giveItem(Item.SuperRecovery, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    7 => {
+      addMoney(2000);
+      speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
       giveItem(Item.SuperRecovery, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.SuperRecovery, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 8) {
-    addMoney(2000);
-    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
-    giveItem(Item.SuperRecovery, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    8 => {
+      addMoney(2000);
+      speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
       giveItem(Item.SuperRecovery, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.SuperRecovery, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 9) {
-    addMoney(2000);
-    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
-    giveItem(Item.SuperRecovery, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    9 => {
+      addMoney(2000);
+      speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
       giveItem(Item.SuperRecovery, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.SuperRecovery, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 10) {
-    addMoney(2000);
-    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
-    giveItem(Item.SuperRecovery, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    10 => {
+      addMoney(2000);
+      speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Super Recovery Floppy<WHITE>!\n");
       giveItem(Item.SuperRecovery, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.SuperRecovery, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 11) {
-    addMoney(3000);
-    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
-    giveItem(Item.Omnipotent, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    11 => {
+      addMoney(3000);
+      speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
       giveItem(Item.Omnipotent, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Omnipotent, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 12) {
-    addMoney(3000);
-    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
-    giveItem(Item.Omnipotent, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    12 => {
+      addMoney(3000);
+      speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
       giveItem(Item.Omnipotent, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Omnipotent, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 13) {
-    addMoney(3000);
-    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
-    giveItem(Item.Omnipotent, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    13 => {
+      addMoney(3000);
+      speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
       giveItem(Item.Omnipotent, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Omnipotent, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 14) {
-    addMoney(3000);
-    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
-    giveItem(Item.Omnipotent, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    14 => {
+      addMoney(3000);
+      speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
       giveItem(Item.Omnipotent, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Omnipotent, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 15) {
-    addMoney(3000);
-    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
-    giveItem(Item.Omnipotent, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    15 => {
+      addMoney(3000);
+      speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
       giveItem(Item.Omnipotent, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Omnipotent, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 16) {
-    addMoney(3000);
-    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
-    giveItem(Item.Omnipotent, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    16 => {
+      addMoney(3000);
+      speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy<WHITE>!\n");
       giveItem(Item.Omnipotent, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Omnipotent, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 17) {
-    addMoney(3000);
-    speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy <WHITE>!\n");
-    giveItem(Item.Omnipotent, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    17 => {
+      addMoney(3000);
+      speak(Entity.System, "Second Place Reward :\n   three thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Floppy <WHITE>!\n");
       giveItem(Item.Omnipotent, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Omnipotent, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 18) {
-    addMoney(2000);
-    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
-    giveItem(Item.OmniDisk, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    18 => {
+      addMoney(2000);
+      speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
       giveItem(Item.OmniDisk, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.OmniDisk, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 19) {
-    addMoney(2000);
-    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
-    giveItem(Item.OmniDisk, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    19 => {
+      addMoney(2000);
+      speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
       giveItem(Item.OmniDisk, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.OmniDisk, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 20) {
-    addMoney(2000);
-    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
-    giveItem(Item.OmniDisk, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    20 => {
+      addMoney(2000);
+      speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
       giveItem(Item.OmniDisk, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.OmniDisk, 1);
+      }
+      return;
     }
-    return;
-  }
-  if (pstat[3] == 21) {
-    addMoney(2000);
-    speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
-    giveItem(Item.OmniDisk, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
+    21 => {
+      addMoney(2000);
+      speak(Entity.System, "Second Place Reward :\n   two thousand bits!\nSecond Place Prize :\n   <LIGHTBLUE>Omnipotent Disk<WHITE>!\n");
       giveItem(Item.OmniDisk, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.OmniDisk, 1);
+      }
+      return;
     }
-    return;
   }
   garbage { 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 1d 00 25 00 19 00 08 00 ff 03 18 00 22 00 19 00 16 00 2e 01 19 00 08 00 ff 02 18 00 32 00 19 00 16 00 d2 19 1b 05 1a 00 82 73 82 88 82 81 82 94 81 40 82 97 82 81 82 93 81 40 82 94 82 8f 82 8f 81 40 82 82 82 81 82 84 81 42 0d 00 82 73 82 92 82 99 81 40 82 81 82 87 82 81 82 89 82 8e 81 40 82 8e 82 85 82 98 82 94 81 40 82 94 82 89 82 8d 82 85 81 42 0d 00 00 00 1b ff 1a 00 82 6f 82 81 82 92 82 94 82 89 82 83 82 89 82 90 82 81 82 94 82 89 82 8f 82 8e 81 40 82 60 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 66 82 89 82 81 82 8e 82 94 81 40 82 6c 82 85 82 81 82 94 01 01 81 49 0d 00 00 00 28 00 27 01 19 00 00 00 00 00 18 00 2c 01 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 27 01 fe 00 19 00 08 00 03 00 18 00 34 02 19 00 2a 00 d0 07 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 94 82 97 82 8f 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 6f 82 92 82 89 82 9a 82 85 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 63 82 8f 82 95 82 82 82 8c 82 85 81 40 82 65 82 8c 82 8f 82 90 82 90 82 99 01 01 81 49 0d 00 00 00 28 00 07 01 19 00 00 00 00 00 18 00 2e 02 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 07 01 17 00 cc 00 33 00 19 00 08 00 03 01 18 00 3e 03 19 00 2a 00 a0 0f 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 86 82 8f 82 95 82 92 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 6f 82 92 82 89 82 9a 82 85 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 73 82 88 82 92 82 85 82 85 81 40 82 72 82 89 82 92 82 8c 82 8f 82 89 82 8e 82 93 01 01 81 49 0d 00 00 00 28 00 28 03 19 00 00 00 00 00 18 00 38 03 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 28 03 17 00 cc 00 33 00 19 00 08 00 03 02 18 00 40 04 19 00 2a 00 70 17 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 93 82 89 82 98 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 6f 82 92 82 89 82 9a 82 85 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 71 82 85 82 93 82 94 82 8f 82 92 82 85 81 40 82 65 82 8c 82 8f 82 90 82 90 82 99 01 01 81 49 0d 00 00 00 28 00 0b 01 19 00 00 00 00 00 18 00 40 04 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 0b 01 24 00 6e 63 19 00 08 00 03 02 18 00 b0 04 19 00 19 00 20 00 15 01 0a 00 18 00 aa 04 19 00 19 00 0b 00 6e 09 18 00 aa 04 19 00 35 15 01 00 1b ff 1a 00 01 07 82 73 82 81 82 8d 82 85 82 92 81 40 82 6b 82 85 82 96 82 85 82 8c 81 40 82 97 82 85 82 8e 82 94 81 40 82 95 82 90 81 49 81 40 01 01 0d 00 00 00 17 00 cc 00 33 00 17 00 cc 00 33 00 19 00 08 00 03 03 18 00 b4 05 19 00 2a 00 40 1f 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 85 82 89 82 87 82 88 82 94 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 6f 82 92 82 89 82 9a 82 85 81 40 81 46 0d 00 81 40 81 40 81 40 01 06 82 65 82 8c 82 81 82 8d 82 89 82 8e 82 87 81 40 82 6c 82 81 82 8e 82 85 81 40 01 01 81 49 0d 00 00 00 28 00 50 01 19 00 00 00 00 00 18 00 b4 05 19 00 1b 05 1a 00 82 78 82 8f 82 95 81 40 82 87 82 8f 82 94 81 40 82 94 82 8f 82 8f 81 40 82 8d 82 95 82 83 82 88 81 40 82 93 82 94 82 95 82 86 82 86 81 42 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 50 01 24 00 6e 63 19 00 08 00 03 03 18 00 24 06 19 00 19 00 20 00 15 01 0a 00 18 00 1e 06 19 00 19 00 0b 00 6e 13 18 00 1e 06 19 00 35 15 01 00 1b ff 1a 00 01 07 82 73 82 81 82 8d 82 85 82 92 81 40 82 6b 82 85 82 96 82 85 82 8c 81 40 82 97 82 85 82 8e 82 94 81 40 82 95 82 90 81 49 81 40 01 01 0d 00 00 00 17 00 cc 00 33 00 17 00 cc 00 33 00 24 00 6e 02 19 00 08 00 03 04 88 00 6e 00 18 00 2c 07 19 00 2a 00 10 27 00 00 1b ff 1a 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 81 40 82 71 82 85 82 97 82 81 82 92 82 84 81 40 81 46 0d 00 81 40 81 40 81 40 82 94 82 85 82 8e 81 40 82 94 82 88 82 8f 82 95 82 93 82 81 82 8e 82 84 81 40 82 82 82 89 82 94 82 93 81 49 0d 00 82 75 82 89 82 83 82 94 82 8f 82 92 82 99 }
 }

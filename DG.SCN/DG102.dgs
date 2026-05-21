@@ -142,22 +142,26 @@ L1:
 
 section(82) {
   unsetTrigger(Trigger(37));
-  if (pstat[255] == 3) {
-  } else {
-    if (pstat[255] == 2) {
+  switch pstat[255] {
+    3 => {
       goto L1;
     }
-    speak(Entity(5), "Too bad.\nIt'll have to be next year.\n");
-    speak(Entity.System, "I got a <LIGHTBLUE>Giant Meat <WHITE>\nfor participating!\n");
-    giveItem(Item.GiantMeat, 1);
-    if (trigger(0)) {
-      speak(Entity(5), "Too much stuff.\nThrow some away.\n");
-      inventoryFullBailout();
-      giveItem(Item.GiantMeat, 1);
+    2 => {
+      goto L2;
     }
-    return;
   }
-  if (pstat[3] != 22) goto L1;
+  speak(Entity(5), "Too bad.\nIt'll have to be next year.\n");
+  speak(Entity.System, "I got a <LIGHTBLUE>Giant Meat <WHITE>\nfor participating!\n");
+  giveItem(Item.GiantMeat, 1);
+  if (trigger(0)) {
+    speak(Entity(5), "Too much stuff.\nThrow some away.\n");
+    inventoryFullBailout();
+    giveItem(Item.GiantMeat, 1);
+  }
+  return;
+
+L1:
+  if (pstat[3] != 22) goto L2;
   addMoney(5000);
   speak(Entity.System, "Championship prize money :\nfive thous bits.\nI got a <LIGHTBLUE>Beetle Pearl <WHITE>\nas a championship prize!\n");
   giveItem(Item.Beetlepearl, 1);
@@ -168,7 +172,7 @@ section(82) {
   }
   jumpToScriptSection(204, 51);
 
-L1:
+L2:
   roll(pstat: PStat.RollScratch, max: 1);
   if (pstat[3] == 22 && pstat[110] == 0) {
     addMoney(2000);

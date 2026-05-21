@@ -120,30 +120,32 @@ section(6) {
   move(entity: Entity(6), to: (182, -571), sprint: 1);
   waitForEntity(Entity(6));
   unloadEntity(Entity(6));
-  if (pstat[21] == 0) {
-    setObjectVisibility(3, 0);
-    move(entity: Entity.Player, to: (150, -138), sprint: 1);
-    waitForEntity(Entity.Player);
-    anim(Entity.Player, Animation(12), wait: 10);
-    setObjectVisibility(3, 1);
-    playSound(0, 7);
-    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>.\nI can carry twenty Items!\n");
-    playSound(0, 7);
-    setInventorySize(20);
-    setTrigger(Trigger(47));
-  }
-  if (pstat[21] == 4) {
-    setObjectVisibility(2, 0);
-    move(entity: Entity.Player, to: (150, -138), sprint: 1);
-    waitForEntity(Entity.Player);
-    anim(Entity.Player, Animation(12), wait: 10);
-    setObjectVisibility(2, 1);
-    playSound(0, 7);
-    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>.\nI can carry thirty Items!\n");
-    setInventorySize(30);
-    setTrigger(Trigger(48));
-    setTrigger(Trigger(253));
-    addPStat(PStat(1), 1);
+  switch pstat[21] {
+    0 => {
+      setObjectVisibility(3, 0);
+      move(entity: Entity.Player, to: (150, -138), sprint: 1);
+      waitForEntity(Entity.Player);
+      anim(Entity.Player, Animation(12), wait: 10);
+      setObjectVisibility(3, 1);
+      playSound(0, 7);
+      speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>.\nI can carry twenty Items!\n");
+      playSound(0, 7);
+      setInventorySize(20);
+      setTrigger(Trigger(47));
+    }
+    4 => {
+      setObjectVisibility(2, 0);
+      move(entity: Entity.Player, to: (150, -138), sprint: 1);
+      waitForEntity(Entity.Player);
+      anim(Entity.Player, Animation(12), wait: 10);
+      setObjectVisibility(2, 1);
+      playSound(0, 7);
+      speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>.\nI can carry thirty Items!\n");
+      setInventorySize(30);
+      setTrigger(Trigger(48));
+      setTrigger(Trigger(253));
+      addPStat(PStat(1), 1);
+    }
   }
   followEntity(Entity.Player, speed: 15);
   addPStat(PStat(21), 1);

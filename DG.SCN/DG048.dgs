@@ -168,30 +168,32 @@ section(11) {
   move(entity: Entity(11), to: (179, -74), sprint: 1);
   waitForEntity(Entity(11));
   unloadEntity(Entity(11));
-  if (pstat[21] == 0) {
-    setObjectVisibility(43, 0);
-    move(entity: Entity.Player, to: (32, 829), sprint: 1);
-    waitForEntity(Entity.Player);
-    anim(Entity.Player, Animation(12), wait: 10);
-    setObjectVisibility(43, 1);
-    playSound(0, 7);
-    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry twenty Items!\n");
-    playSound(0, 7);
-    setInventorySize(20);
-    setTrigger(Trigger(47));
-  }
-  if (pstat[21] == 4) {
-    setObjectVisibility(42, 0);
-    move(entity: Entity.Player, to: (32, 829), sprint: 1);
-    waitForEntity(Entity.Player);
-    anim(Entity.Player, Animation(12), wait: 10);
-    setObjectVisibility(42, 1);
-    playSound(0, 7);
-    speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry thirty Items!\n");
-    setInventorySize(30);
-    setTrigger(Trigger(48));
-    setTrigger(Trigger(253));
-    addPStat(PStat(1), 1);
+  switch pstat[21] {
+    0 => {
+      setObjectVisibility(43, 0);
+      move(entity: Entity.Player, to: (32, 829), sprint: 1);
+      waitForEntity(Entity.Player);
+      anim(Entity.Player, Animation(12), wait: 10);
+      setObjectVisibility(43, 1);
+      playSound(0, 7);
+      speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry twenty Items!\n");
+      playSound(0, 7);
+      setInventorySize(20);
+      setTrigger(Trigger(47));
+    }
+    4 => {
+      setObjectVisibility(42, 0);
+      move(entity: Entity.Player, to: (32, 829), sprint: 1);
+      waitForEntity(Entity.Player);
+      anim(Entity.Player, Animation(12), wait: 10);
+      setObjectVisibility(42, 1);
+      playSound(0, 7);
+      speak(Entity.System, "I got a <PINK>Dimensional\nKey Chain<WHITE>!\nI can carry thirty Items!\n");
+      setInventorySize(30);
+      setTrigger(Trigger(48));
+      setTrigger(Trigger(253));
+      addPStat(PStat(1), 1);
+    }
   }
   addPStat(PStat(21), 1);
   setTrigger(Trigger(334));

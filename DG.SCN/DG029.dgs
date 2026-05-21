@@ -40,13 +40,15 @@ section onEnter(254) {
     setObjectVisibility(18, 1);
     setPStat(PStat(19), 2);
   }
-  if (pstat[17] == 3) {
-    setPStat(PStat(254), 0);
-    callSubroutine(19);
-  }
-  if (pstat[17] == 4) {
-    setPStat(PStat(254), 1);
-    callSubroutine(19);
+  switch pstat[17] {
+    3 => {
+      setPStat(PStat(254), 0);
+      callSubroutine(19);
+    }
+    4 => {
+      setPStat(PStat(254), 1);
+      callSubroutine(19);
+    }
   }
   if (pstat[18] < 8) {
     setRectImpassible(69, 41, 3, 2);
@@ -79,38 +81,40 @@ L1:
     playAnimation(Entity(5), Animation(29));
     return;
   }
-  if (pstat[17] == 4) {
-    speak(Entity(5), "Thanks for your work.\nHere's your payment.\n");
-    setPStat(PStat(254), 2);
-    callSubroutine(19);
-    addMoney(500);
-    addStats(offense: 5, defense: 5, maxHP: 50, tiredness: 10);
-    speak(Entity.System, "I got five hund bits\nfor work!\n");
-    showTextbox("HP is up by fifty!\nOffense Power is up five!\nDefense Power is up five!\n");
-    addPStat(PStat(18), 1);
-    setPStat(PStat(17), 1);
-    rotate(entity: Entity(5), to: 1900);
-    waitForEntity(Entity(5));
-    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
-    waitForEntity(Entity.Player);
-    playAnimation(Entity(5), Animation(29));
-    return;
-  }
-  if (pstat[17] == 3) {
-    speak(Entity(5), "Please dump the dirt\noutside the tunnel.\n");
-    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
-    waitForEntity(Entity.Player);
-    rotate(entity: Entity(5), to: 1900);
-    return;
-  }
-  if (pstat[17] == 2) {
-    speak(Entity(5), "Take it from the pile of dirt.\n");
-    rotate(entity: Entity(5), to: 1900);
-    waitForEntity(Entity(5));
-    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
-    waitForEntity(Entity.Player);
-    playAnimation(Entity(5), Animation(29));
-    return;
+  switch pstat[17] {
+    4 => {
+      speak(Entity(5), "Thanks for your work.\nHere's your payment.\n");
+      setPStat(PStat(254), 2);
+      callSubroutine(19);
+      addMoney(500);
+      addStats(offense: 5, defense: 5, maxHP: 50, tiredness: 10);
+      speak(Entity.System, "I got five hund bits\nfor work!\n");
+      showTextbox("HP is up by fifty!\nOffense Power is up five!\nDefense Power is up five!\n");
+      addPStat(PStat(18), 1);
+      setPStat(PStat(17), 1);
+      rotate(entity: Entity(5), to: 1900);
+      waitForEntity(Entity(5));
+      move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+      waitForEntity(Entity.Player);
+      playAnimation(Entity(5), Animation(29));
+      return;
+    }
+    3 => {
+      speak(Entity(5), "Please dump the dirt\noutside the tunnel.\n");
+      move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+      waitForEntity(Entity.Player);
+      rotate(entity: Entity(5), to: 1900);
+      return;
+    }
+    2 => {
+      speak(Entity(5), "Take it from the pile of dirt.\n");
+      rotate(entity: Entity(5), to: 1900);
+      waitForEntity(Entity(5));
+      move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+      waitForEntity(Entity.Player);
+      playAnimation(Entity(5), Animation(29));
+      return;
+    }
   }
   if (pstat[17] == 1 && stat[Stat.Tiredness] >= 70) {
     speak(Entity(5), "Are you going to carry dirt?\n");

@@ -34,11 +34,13 @@ L1:
 L2:
       if (pstat[40] != 1) break;
     }
-    if (pstat[40] == 2) {
-      goto L1;
-    }
-    if (pstat[40] == 3) {
-      goto L45;
+    switch pstat[40] {
+      2 => {
+        goto L1;
+      }
+      3 => {
+        goto L45;
+      }
     }
     jumpReturn();
 

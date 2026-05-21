@@ -23,14 +23,16 @@ section(5) {
   speak(Entity(5), "The present time is\n<YEAR>month, <DAY>day,\n<HOUR>hours, <MINUTE>minutes.\n");
   storeDigimonType(PStat(103));
   storeDigimonTypus(103, PStat(109));
-  if (pstat[109] == 1) {
-    speak(Entity(5), "<ORANGE><DIGIMON><WHITE> is a Data\nType Digimon, right?\n");
-  }
-  if (pstat[109] == 2) {
-    speak(Entity(5), "<ORANGE><DIGIMON><WHITE> is a Vaccine\nType Digimon, right?\n");
-  }
-  if (pstat[109] == 3) {
-    speak(Entity(5), "<ORANGE><DIGIMON><WHITE> is a Virus\nType Digimon, right?\n");
+  switch pstat[109] {
+    1 => {
+      speak(Entity(5), "<ORANGE><DIGIMON><WHITE> is a Data\nType Digimon, right?\n");
+    }
+    2 => {
+      speak(Entity(5), "<ORANGE><DIGIMON><WHITE> is a Vaccine\nType Digimon, right?\n");
+    }
+    3 => {
+      speak(Entity(5), "<ORANGE><DIGIMON><WHITE> is a Virus\nType Digimon, right?\n");
+    }
   }
   addStats(tiredness: 10);
   reduceStats(happiness: 10);

@@ -401,3 +401,57 @@ function spawnItemChance([PreferNamed] max, [PreferNamed] chance, item: Item, [P
   }
 }
 
+// Monochromon's haggle shop: set (speaker, phase) context PStats and call
+// the dialog-render subroutine.  PStat(247) selects which customer is
+// speaking (matches their Entity ID: 6 Goburimon, 7 Gotsumon, 8 Weedmon,
+// 9 Muchomon).  PStat(248) selects which dialog row within that customer's
+// table.  callSubroutine(28) reads both and shows the textbox.  Appears
+// 35 times per haggle script (DG199-202) -- 140 sites total.
+function setHaggleContext(speaker: Entity, phase) {
+  setPStat(PStat(247), speaker);
+  setPStat(PStat(248), phase);
+  callSubroutine(28);
+}
+
+// Monochromon's haggle shop, offer-presentation preamble.  Wraps the 4-line
+// sequence that precedes every player `choice { ... }` during haggling:
+// (1) set the haggle context PStats and render the customer's reaction line,
+// (2) speak the System narration that proposes a price,
+// (3) set PStat(117) to the offer slot (1..5 within a tier),
+// (4) hand dialog control to System so the choice menu opens with the right
+// owner.  107 sites across DG199-202.
+function presentOffer(speaker: Entity, phase, offerId, prompt) {
+  setHaggleContext(speaker, phase);
+  speak(Entity.System, prompt);
+  setPStat(PStat(117), offerId);
+  setDialogOwner(Entity.System);
+}
+
+// Monochromon's haggle shop, customer arrival: customer walks up to the
+// counter at the canonical (-501, -508) spot and turns to face the player.
+// One site per haggle script (DG199-202), 4 sites total.
+function customerApproaches(who: Entity) {
+  delay(20);
+  move(entity: who, to: (-501, -508), sprint: 0);
+  waitForEntity(who);
+  look(entity: who, at: Entity.Player);
+}
+
+// Monochromon's haggle shop, deal-accepted SFX + textbox shrink.  Fires
+// after the customer says "Yeah! You gotta deal!" (or equivalent) and
+// before the Total Profit cascade displays.  12 sites across DG199-202.
+function ringUpDeal() {
+  sfx(8, 6, wait: 10);
+  setTextboxSize(12, 3);
+}
+
+// Monochromon's haggle shop, retry-attempt preamble: set phase-5 context,
+// bump the retry-counter PStat(119), and roll d100 for the next outcome.
+// Used in the L28-style "customer pushes back" branch.  12 sites total
+// (3 per haggle script in DG199-202).
+function retryHaggle(speaker: Entity) {
+  setHaggleContext(speaker, 5);
+  addPStat(PStat(119), 1);
+  roll(pstat: PStat.RollScratch, max: 99);
+}
+

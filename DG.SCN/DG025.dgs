@@ -5,15 +5,17 @@
 
 section onEnter(254) {
   callSubroutine(26);
-  if (pstat[17] == 3) {
-    setPStat(PStat(254), 0);
-    callSubroutine(19);
-    setAutotalk(Entity(5), 0);
-  }
-  if (pstat[17] == 4) {
-    setPStat(PStat(254), 1);
-    callSubroutine(19);
-    setAutotalk(Entity(5), 0);
+  switch pstat[17] {
+    3 => {
+      setPStat(PStat(254), 0);
+      callSubroutine(19);
+      setAutotalk(Entity(5), 0);
+    }
+    4 => {
+      setPStat(PStat(254), 1);
+      callSubroutine(19);
+      setAutotalk(Entity(5), 0);
+    }
   }
   return;
 }

@@ -103,11 +103,13 @@ L1:
   }
   if (pstat[103] == 12 || pstat[103] == 54) {
   } else {
-    if (pstat[103] == 50) {
-      goto L3;
-    }
-    if (pstat[103] == 20) {
-      goto L4;
+    switch pstat[103] {
+      50 => {
+        goto L3;
+      }
+      20 => {
+        goto L4;
+      }
     }
     return;
 

@@ -69,18 +69,22 @@ L1:
       speak(Entity.Player, "I don't have anything now.\n");
       break;
     }
-    if (pstat[254] == 255) {
-      speak(Entity.Player, "Nothing I have is useful.\n");
-      break;
+    switch pstat[254] {
+      255 => {
+        speak(Entity.Player, "Nothing I have is useful.\n");
+        break;
+      }
+      121 => {
+        fadeOutHUD();
+        callSubroutine(12);
+        goto L2;
+      }
     }
-    if (pstat[254] == 121) {
-      fadeOutHUD();
-      callSubroutine(12);
-    } else {
-      speak(Entity.Player, "This won't work...\n");
-      break;
-      return;
-    }
+    speak(Entity.Player, "This won't work...\n");
+    break;
+    return;
+
+L2:
     loadDigimon(Digimon.NPCVegimon);
     setObjectsVisibleRange(3, 15, 0);
     setPStat(PStat(247), 3);
@@ -141,19 +145,19 @@ L1:
     anim(Entity.Player, Animation(16), wait: 20);
     speak(Entity.Player, "Why are you asking me\nabout veggies? Well?\n");
     setTrigger(Trigger(49));
-    setSelection(L2, L3);
+    setSelection(L3, L4);
     showTextbox("I like them\nI don't\n");
     speak(Entity.Player, "Well, I changed my mind.\n");
     return;
 
-L2:
+L3:
     {
       unsetTrigger(Trigger(49));
       playSound(8, 5);
       speak(Entity(6), "Anyone who likes veggies\nmust be a nice guy.\n");
       break;
 
-L3:
+L4:
       unsetTrigger(Trigger(49));
       playSound(8, 5);
       speak(Entity(6), "No, no!\nVeggies are good!\n");
@@ -174,9 +178,9 @@ L3:
     speak(Entity(6), "Alright, sounds good.\nI've been here way too long.\n");
     move(entity: Entity.Player, to: (-1024, -1820), sprint: 1, withCamera: true);
     move(entity: Entity.Partner, to: (-741, -1923), sprint: 1);
-    goto L4;
+    goto L5;
 
-L4:
+L5:
     approach(who: Entity(6), x: 911, y: -2266, tries: 10, wait: 10);
     playSound(8, 3);
     speak(Entity.System, "Vegiemon joins the city!\n");

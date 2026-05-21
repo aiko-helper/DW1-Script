@@ -84,21 +84,23 @@ section(51) {
     return;
   }
   roll(pstat: PStat.RollScratch, max: 2);
-  if (pstat[110] == 0) {
-    setPStat(PStat(116), 0);
-    for x in [38, 42, 43] {
-      setObjectVisibility(x, 0);
+  switch pstat[110] {
+    0 => {
+      setPStat(PStat(116), 0);
+      for x in [38, 42, 43] {
+        setObjectVisibility(x, 0);
+      }
     }
-  }
-  if (pstat[110] == 1) {
-    setPStat(PStat(116), 1);
-    for x in [39, 41, 43] {
-      setObjectVisibility(x, 0);
+    1 => {
+      setPStat(PStat(116), 1);
+      for x in [39, 41, 43] {
+        setObjectVisibility(x, 0);
+      }
     }
-  }
-  if (pstat[110] == 2) {
-    setPStat(PStat(116), 2);
-    setObjectsVisibleRange(40, 42, 0);
+    2 => {
+      setPStat(PStat(116), 2);
+      setObjectsVisibleRange(40, 42, 0);
+    }
   }
   if (!trigger(137)) {
     setTrigger(Trigger(137));

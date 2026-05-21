@@ -463,16 +463,18 @@ section(35) {
     return;
   }
   roll(pstat: PStat.RollScratch, max: 1);
-  if (pstat[110] == 0) {
-    loadDigimon(Digimon.Tsukaimon);
-    for id in Entity(1)..Entity(3) {
-      setDigimon(Digimon.Tsukaimon, id, 1);
+  switch pstat[110] {
+    0 => {
+      loadDigimon(Digimon.Tsukaimon);
+      for id in Entity(1)..Entity(3) {
+        setDigimon(Digimon.Tsukaimon, id, 1);
+      }
     }
-  }
-  if (pstat[110] == 1) {
-    loadDigimon(Digimon.Soulmon);
-    for id in Entity(4)..Entity(6) {
-      setDigimon(Digimon.Soulmon, id, 1);
+    1 => {
+      loadDigimon(Digimon.Soulmon);
+      for id in Entity(4)..Entity(6) {
+        setDigimon(Digimon.Soulmon, id, 1);
+      }
     }
   }
   return;
@@ -3206,13 +3208,15 @@ section(234) {
 
 section(235) {
   switchToMap(191, Map.ROOM20, 0, 28);
-  if (pstat[122] == 1) {
-    loadAndSetDigimon(Digimon.NPCMetalMamemon, Entity(1), 0);
-    return;
-  }
-  if (pstat[122] == 0) {
-    loadAndSetDigimon(Digimon.NPCPenguinmon, Entity(0), 0);
-    return;
+  switch pstat[122] {
+    1 => {
+      loadAndSetDigimon(Digimon.NPCMetalMamemon, Entity(1), 0);
+      return;
+    }
+    0 => {
+      loadAndSetDigimon(Digimon.NPCPenguinmon, Entity(0), 0);
+      return;
+    }
   }
   roll(pstat: PStat.RollScratch, max: 7);
   if (trigger(227) && pstat[110] <= 0) {
