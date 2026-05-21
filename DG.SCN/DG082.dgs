@@ -66,13 +66,13 @@ L2:
     goto L3;
 
 L3:
-    move(entity: Entity(5), to: (1, -1050), animDuration: 40);
-    if (pstat[101] < 3) {
+    loop {
+      move(entity: Entity(5), to: (1, -1050), animDuration: 40);
+      if (pstat[101] >= 3) break;
       addPStat(PStat.LoopIterator, 1);
       delay(20);
       playSound(8, 5);
       lookPairAt(Entity(5));
-      goto L3;
     }
     waitForEntity(Entity(5));
     unloadEntity(Entity(5));

@@ -67,12 +67,12 @@ section(51) {
     goto L1;
 
 L1:
-    move(entity: Entity(5), to: (691, -1990), sprint: 1);
-    if (pstat[101] < 10) {
+    loop {
+      move(entity: Entity(5), to: (691, -1990), sprint: 1);
+      if (pstat[101] >= 10) break;
       addPStat(PStat.LoopIterator, 1);
       delay(10);
       lookPairAt(Entity(5));
-      goto L1;
     }
     waitForEntity(Entity(5));
     unloadEntity(Entity(5));
