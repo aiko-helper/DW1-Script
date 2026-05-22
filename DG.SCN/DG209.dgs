@@ -6,7 +6,7 @@
 section(5) {
   {
     setDialogOwner(Entity.System);
-    choice { "Store one" -> L4, "Store two" -> L8, "Others" -> L20, "Enter Name" -> L1 }
+    choice { "Store one" -> L4, "Store two" -> L8, "Others" -> L22, "Enter Name" -> L1 }
     break;
 
 L1:
@@ -68,7 +68,7 @@ L7:
 
 L8:
     setDialogOwner(Entity.Player);
-    choice { "Card" -> L10, "Item Keeper" -> L9, "Other shops" -> L16 }
+    choice { "Card" -> L10, "Item Keeper" -> L9, "Other shops" -> L18 }
     break;
 
 L9:
@@ -82,25 +82,27 @@ L10:
     callSubroutine(15);
     loop {
       setDialogOwner(Entity.Player);
-      choice { "Buy a card" -> L11, "Sell a card" -> L14, "Cancel" -> L_0504 }
+      choice { "Buy a card" -> L11, "Sell a card" -> L15, "Cancel" -> L17 }
       break;
 
 L11:
       {
         if (money >= 500) {
-          choice { "Buy a three card pack" -> L_03aa, "Buy a single card" -> L13, "Cancel" -> L15 }
-          goto L15;
+          choice { "Buy a three card pack" -> L12, "Buy a single card" -> L14, "Cancel" -> L16 }
+          goto L16;
           break;
         }
-        choice { "Buy a single card" -> L13, "Cancel" -> L15 }
-        goto L15;
+        choice { "Buy a single card" -> L14, "Cancel" -> L16 }
+        goto L16;
+
+L12:
       }
       speak(Entity(7), "One pack will cost\nfive hund bits. What's\ninside is a surprise.\n");
       setDialogOwner(Entity.Player);
-      choice { "Buy" -> L12, "Cancel" -> L15 }
-      goto L15;
+      choice { "Buy" -> L13, "Cancel" -> L16 }
+      goto L16;
 
-L12:
+L13:
       reduceMoney(500);
       callSubroutine(15);
       speak(Entity(7), "Open your pack right away.\n");
@@ -108,63 +110,65 @@ L12:
       unsetTrigger(Trigger(4));
       callSubroutine(14);
       callSubroutine(22);
-      goto L15;
+      goto L16;
 
-L13:
+L14:
       unsetTrigger(Trigger(3));
       setTrigger(Trigger(4));
       callSubroutine(14);
       callSubroutine(22);
-      goto L15;
+      goto L16;
 
-L14:
+L15:
       setTrigger(Trigger(3));
       callSubroutine(14);
 
-L15:
+L16:
       speak(Entity(7), "What else do ya need amigo?\n");
     }
+
+L17:
     callSubroutine(16);
     speak(Entity(7), "Come again.\n");
     return;
 
-L16:
+L18:
     setDialogOwner(Entity.Player);
-    choice { "Sound Test" -> L17, "Warp Shop" -> L18, "Exchange" -> L19 }
+    choice { "Sound Test" -> L19, "Warp Shop" -> L20, "Exchange" -> L21 }
     break;
 
-L17:
+L19:
     setPStat(PStat(254), 7);
     callSubroutine(9);
     return;
 
-L18:
+L20:
     setPStat(PStat(254), 7);
     callSubroutine(10);
     return;
 
-L19:
+L21:
     setPStat(PStat(254), 7);
     setPStat(PStat(249), 2);
     callSubroutine(2);
     return;
 
-L20:
+L22:
     setDialogOwner(Entity.System);
-    choice { "Entry" -> L26, "Arena" -> L27, "Various" -> L21, "Price" -> L28 }
+    choice { "Entry" -> L28, "Arena" -> L29, "Various" -> L23, "Price" -> L30 }
     break;
 
-L21:
+L23:
     setDialogOwner(Entity.System);
-    choice { "Opening" -> L22, "Ending" -> L23, "Morph" -> L24, "Gone" -> L25 }
+    choice { "Opening" -> L24, "Ending" -> L25, "Morph" -> L26, "Gone" -> L27 }
     return;
 
-L22:
+L24:
     callDigimonSubroutine(5);
     waitForEntity(Entity.System);
     return;
 
-L23:
+L25:
     callDigimonSubroutine(6);
     waitForEntity(Entity.System);
     return;
@@ -191,7 +195,7 @@ L23:
     speak(Entity.Player, "I got number twenty one.\n");
     break;
 
-L24:
+L26:
     storeDigimonType(PStat(200));
     if (pstat[200] == 39) {
       speak(Entity.Player, "Digivolve to original form.\n");
@@ -207,12 +211,12 @@ L24:
     speak(Entity.Player, "Complete.\n");
     break;
 
-L25:
+L27:
     callSubroutine(47);
   }
   return;
 
-L26:
+L28:
   if (!trigger(37)) {
     setPStat(PStat(254), 7);
     callSubroutine(18);
@@ -221,7 +225,7 @@ L26:
   }
   return;
 
-L27:
+L29:
   if (!trigger(37)) {
     speak(Entity(7), "There's no entry.\n");
     return;
@@ -232,20 +236,20 @@ L27:
   callSubroutine(22);
   return;
 
-L28:
-  goto L30;
+L30:
+  goto L32;
   loop {
     speak(Entity.Player, "Currently, it's <DISCOUNT>bits.\n");
-    choice { "Clear" -> L30, "Add" -> L31, "End" -> L29 }
+    choice { "Clear" -> L32, "Add" -> L33, "End" -> L31 }
 
-L29:
+L31:
     return;
 
-L30:
+L32:
     callSubroutine(30);
     continue;
 
-L31:
+L33:
     setPStat(PStat(243), 19);
     setPStat(PStat(244), 136);
     callSubroutine(31);

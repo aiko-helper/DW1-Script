@@ -47,30 +47,32 @@ section(81) {
       speak(Entity.System, "Vending Machine\n");
       rotate(entity: Entity.Player, to: 1536);
       speak(Entity.Player, "A vending machine with\nspecial prizes.\nShould I buy something?\n");
-      choice { "Small Recovery:two hund bits" -> L1, "Portable potty:five hund bits" -> L_019e, "Don't buy" -> L2 }
-      goto L2;
+      choice { "Small Recovery:two hund bits" -> L1, "Portable potty:five hund bits" -> L2, "Don't buy" -> L3 }
+      goto L3;
       return;
 
 L1:
       if (money >= 200) {
-        goto L3;
+        goto L4;
         break;
       }
       speak(Entity.Player, "I don't got enough bits.\n");
       return;
+
+L2:
     }
     if (money >= 500) {
-      goto L4;
+      goto L5;
       break;
     }
     speak(Entity.Player, "I don't got enough bits.\n");
     return;
 
-L2:
+L3:
   }
   return;
 
-L3:
+L4:
   giveItem(Item.SmallRecovery, 1);
   if (trigger(0)) {
     speak(Entity.Player, "I got too many Items.\n");
@@ -85,7 +87,7 @@ L3:
     }
     return;
 
-L4:
+L5:
     giveItem(Item.PortaPotty, 1);
     if (trigger(0)) {
       speak(Entity.Player, "I got too many Items.\n");
@@ -117,7 +119,7 @@ section(82) {
     speak(Entity.System, "MP Stand\n");
     rotate(entity: Entity.Player, to: 2048);
     speak(Entity.Player, "Can this machine recover MP?\n");
-    choice { "Hund MP: two hund bits" -> L1, "Thous MP:eighteen hund bits" -> L2, "Don't use" -> L_021a }
+    choice { "Hund MP: two hund bits" -> L1, "Thous MP:eighteen hund bits" -> L2, "Don't use" -> L3 }
     break;
     return;
 
@@ -142,6 +144,8 @@ L2:
       return;
     }
     return;
+
+L3:
   }
   return;
   garbage { 28 00 fe 00 28 00 }

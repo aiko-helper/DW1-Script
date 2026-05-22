@@ -27,7 +27,7 @@ section(5) {
     look(entity: Entity.Partner, at: Entity(5));
     speak(Entity(5), "Let's do it again.\n");
     setDialogOwner(Entity.Player);
-    choice { "OK" -> L1, "No" -> L_0466 }
+    choice { "OK" -> L1, "No" -> L4 }
     break;
 
 L1:
@@ -45,7 +45,7 @@ L1:
     speak(Entity(5), "Just a little more...\nCome on, one more time!\n");
     playAnimation(Entity.Player, Animation(16));
     setDialogOwner(Entity.Player);
-    choice { "OK" -> L2, "No" -> L_0466 }
+    choice { "OK" -> L2, "No" -> L4 }
     break;
 
 L2:
@@ -84,6 +84,8 @@ L3:
     setTrigger(Trigger(231));
     addPStat(PStat(1), 1);
     return;
+
+L4:
   }
   speak(Entity(5), "That's not fun!\n");
   followEntity(Entity.Player, speed: 10);

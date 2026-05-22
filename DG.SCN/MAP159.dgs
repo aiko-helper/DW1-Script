@@ -222,22 +222,24 @@ section(82) {
     setTextboxOrigin(1484, 0, -241);
     callSubroutine(39);
     speak(Entity(200), " <GREEN>Training: Hide In Trash <WHITE>\n");
-    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L_01a6 }
+    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
     return;
 
 L1:
     setDialogOwner(Entity(200));
-    choice { "Normal" -> L3, "Bonus Try" -> L4, "Quit" -> L_01a6 }
+    choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
     return;
 
 L2:
     speak(Entity(200), "Mental training by putting\nyourself in dirty trash.\nMax MP is greatly boosted.\n");
-    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L_01a6 }
+    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
     return;
+
+L3:
   }
   return;
 
-L3:
+L4:
   fadeOutHUD();
   setPStat(PStat(254), 4);
   setPStat(PStat(246), 0);
@@ -245,7 +247,7 @@ L3:
   callSubroutine(7);
   return;
 
-L4:
+L5:
   setTexboxMode(1, 0);
   speak(Entity.System, " <YELLOW>Slot Game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
   setPStat(PStat(254), 4);

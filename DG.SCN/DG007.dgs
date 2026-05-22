@@ -107,7 +107,7 @@ section(82) {
   loop {
     setTrigger(Trigger(49));
     setDialogOwner(Entity.Player);
-    setSelection(L1, L3, L7);
+    setSelection(L1, L4, L8);
     showTextbox("Let's be friends\nTeach me a Technique\nI want an Item\n");
 
 L1:
@@ -141,8 +141,10 @@ L2:
       showTextbox("So you are the one who's\nbeen fishing so much!\nSo be it. Any requests?\n");
       speak(Entity.Player, "What!? I see why they\ncall you Guardian.\nYes, I have a request.\n");
       setTrigger(Trigger(49));
-      setSelection(L_048a, L3, L7);
+      setSelection(L3, L4, L8);
       showTextbox("Let's be friends\nTeach me a Technique\nI want an Item\n");
+
+L3:
     }
     unsetTrigger(Trigger(49));
     speak(Entity(5), "Okay, fine.\n");
@@ -163,30 +165,30 @@ L2:
     speak(Entity(5), "Beyond the lake, there is\na strange forest. Do you\nwant go there right now?\n");
     setTrigger(Trigger(49));
     setDialogOwner(Entity.Player);
-    setSelection(L8, L9);
+    setSelection(L9, L10);
     showTextbox("Yeah, I'll go\nNo, maybe later\n");
 
-L3:
+L4:
     unsetTrigger(Trigger(49));
     speak(Entity(5), "I'll teach you a Technique.\n");
-    if (hasTech(Move.AquaMagic) == 1) goto L4;
+    if (hasTech(Move.AquaMagic) == 1) goto L5;
     learnMove(Move.AquaMagic);
     speak(Entity.System, "I mastered 'Aqua Magic'!\n");
     break;
 
-L4:
-    if (hasTech(Move.WinterBlast) == 1) goto L5;
+L5:
+    if (hasTech(Move.WinterBlast) == 1) goto L6;
     learnMove(Move.WinterBlast);
     speak(Entity.System, "I mastered 'Winter Blast'!\n");
     break;
 
-L5:
-    if (hasTech(Move.GigaFreeze) == 1) goto L6;
+L6:
+    if (hasTech(Move.GigaFreeze) == 1) goto L7;
     learnMove(Move.GigaFreeze);
     speak(Entity.System, "I mastered 'Giga Freeze'!\n");
     break;
 
-L6:
+L7:
     speak(Entity(5), "Uh, I don't think there are\nany more Techniques\nI can teach you...\n");
   }
   speak(Entity(5), "See ya!\n");
@@ -204,7 +206,7 @@ L6:
   unloadEntity(Entity(5));
   return;
 
-L7:
+L8:
   unsetTrigger(Trigger(49));
   speak(Entity(5), "Well, I'll give you the\n<LIGHTBLUE>Water Bottle<WHITE>.\n");
   giveItem(Item.Waterbottle, 1);
@@ -231,7 +233,7 @@ L7:
   unloadEntity(Entity(5));
   return;
 
-L8:
+L9:
   unsetTrigger(Trigger(49));
   speak(Entity(5), "Well then, hop on my back.\n");
   playAnimation(Entity(5), Animation(29));
@@ -259,7 +261,7 @@ L8:
   warp(to: Map.BETL01, spawn: 0, trigger: 255);
   return;
 
-L9:
+L10:
   unsetTrigger(Trigger(49));
   speak(Entity(5), "Bye for now.\n");
   playAnimation(Entity(5), Animation(29));

@@ -83,13 +83,15 @@ section(51) {
       showTextbox("You're <LIGHTBLUE><PLAYER><WHITE>?\nAnd you must be <ORANGE><DIGIMON><WHITE>!\n");
       showTextbox("You're famous, even as far\nas Ninja Village.  Accept\nmy challenge to fight.\n");
       setDialogOwner(Entity.Player);
-      choice { "Sure" -> L1, "Another time" -> L_032a }
+      choice { "Sure" -> L2, "Another time" -> L1 }
       break;
+
+L1:
     }
     speak(Entity(6), "Ha, that's what you think!\n");
     break;
 
-L1:
+L2:
   }
   setTrigger(Trigger(1));
   setPStat(PStat(250), 1);
@@ -144,7 +146,7 @@ section(8) {
     showTextbox("It's the extremely valuable\n<LIGHTBLUE>Golden Banana<WHITE>.\n");
     showTextbox("That'll be fifty thous bits.\nNo loans, please.\n");
     setDialogOwner(Entity.Player);
-    choice { "Pay" -> L1, "Don't pay" -> L_0378 }
+    choice { "Pay" -> L1, "Don't pay" -> L2 }
     break;
 
 L1:
@@ -162,6 +164,8 @@ L1:
     }
     speak(Entity(8), "Thank you very much!\n");
     return;
+
+L2:
   }
   speak(Entity(8), "Humans should use live money.\n");
   return;

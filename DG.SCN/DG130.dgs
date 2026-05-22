@@ -33,7 +33,7 @@ section(81) {
     if (trigger(352)) {
       speak(Entity(6), "Who are you?\n");
       setDialogOwner(Entity.Player);
-      setSelection(L1, L_04f6);
+      setSelection(L2, L1);
       showTextbox("I came here to help you\nI'm not ready yet...\n");
     }
     setTrigger(Trigger(352));
@@ -54,14 +54,16 @@ section(81) {
     playAnimation(Entity.Player, Animation(0));
     speak(Entity(6), "Please kick them out.\nI want you to help me\nget the cave back.\n");
     setDialogOwner(Entity.Player);
-    setSelection(L1, L_04f6);
+    setSelection(L2, L1);
     showTextbox("I'll help you\nCan't help right now\n");
+
+L1:
   }
   speak(Entity(6), "I see.\n");
   followEntity(Entity.Player, speed: 10);
   return;
 
-L1:
+L2:
   speak(Entity(6), "Then get on my back.\n");
   moveCamera(to: (-3150, 3000), slowdown: 30);
   playAnimation(Entity(6), Animation(28));

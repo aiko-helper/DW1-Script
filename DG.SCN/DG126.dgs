@@ -33,25 +33,27 @@ section(81) {
   callSubroutine(15);
   loop {
     setDialogOwner(Entity.Player);
-    choice { "I'll buy a card" -> L1, "I'll sell a card" -> L4, "Quit" -> L_04e0 }
+    choice { "I'll buy a card" -> L1, "I'll sell a card" -> L5, "Quit" -> L7 }
     break;
 
 L1:
     {
       if (money >= 500) {
-        choice { "Buy a pack of three" -> L_0388, "Buy one" -> L3, "Quit" -> L5 }
-        goto L5;
+        choice { "Buy a pack of three" -> L2, "Buy one" -> L4, "Quit" -> L6 }
+        goto L6;
         break;
       }
-      choice { "Buy one" -> L3, "Quit" -> L5 }
-      goto L5;
+      choice { "Buy one" -> L4, "Quit" -> L6 }
+      goto L6;
+
+L2:
     }
     speak(Entity(5), "Five hundred bits for a pack.\nNo telling what's inside.\n");
     setDialogOwner(Entity.Player);
-    choice { "I'll buy it" -> L2, "No thanks" -> L5 }
-    goto L5;
+    choice { "I'll buy it" -> L3, "No thanks" -> L6 }
+    goto L6;
 
-L2:
+L3:
     reduceMoney(500);
     callSubroutine(15);
     speak(Entity(5), "Open the pack right away.\n");
@@ -59,22 +61,24 @@ L2:
     unsetTrigger(Trigger(4));
     callSubroutine(14);
     callSubroutine(22);
-    goto L5;
+    goto L6;
 
-L3:
+L4:
     unsetTrigger(Trigger(3));
     setTrigger(Trigger(4));
     callSubroutine(14);
     callSubroutine(22);
-    goto L5;
+    goto L6;
 
-L4:
+L5:
     setTrigger(Trigger(3));
     callSubroutine(14);
 
-L5:
+L6:
     speak(Entity(5), "You want something else?\n");
   }
+
+L7:
   callSubroutine(16);
   speak(Entity(5), "Come again.\n");
   return;
@@ -87,7 +91,7 @@ section(82) {
     playSound(8, 4);
     speak(Entity(6), "This's a Recycled Goods shop.\n");
     setDialogOwner(Entity.Player);
-    choice { "I want a regular item" -> L1, "I want a recycled item" -> L2, "Next time" -> L_0120 }
+    choice { "I want a regular item" -> L1, "I want a recycled item" -> L2, "Next time" -> L3 }
     break;
 
 L1:
@@ -113,6 +117,8 @@ L2:
     setPStat(PStat(254), 6);
     callSubroutine(8);
     return;
+
+L3:
   }
   return;
 }

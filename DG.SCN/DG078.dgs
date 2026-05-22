@@ -108,22 +108,24 @@ section(81) {
   {
     speak(Entity.System, "Vending Machine\n");
     speak(Entity.Player, "I wonder what'll come out?\nTwo hund bits each?\nShould I buy it?\n");
-    choice { "Try" -> L1, "Cancel" -> L_012a }
+    choice { "Try" -> L1, "Cancel" -> L2 }
     break;
     return;
 
 L1:
     if (money >= 200) {
-      goto L2;
+      goto L3;
     } else {
       speak(Entity.Player, "I don't got enough money.\n");
       return;
     }
     return;
+
+L2:
   }
   return;
 
-L2:
+L3:
   roll(pstat: PStat(102), max: 99);
   if (pstat[102] < 29) {
     reduceMoney(200);
@@ -135,11 +137,11 @@ L2:
       giveItem(Item.Meat, 1);
     }
   } else {
-    goto L3;
+    goto L4;
   }
   return;
 
-L3:
+L4:
   if (pstat[102] < 59) {
     setDialogOwner(Entity.System);
     reduceMoney(200);
@@ -151,11 +153,11 @@ L3:
       giveItem(Item.SmallRecovery, 1);
     }
   } else {
-    goto L4;
+    goto L5;
   }
   return;
 
-L4:
+L5:
   if (pstat[102] < 79) {
     setDialogOwner(Entity.System);
     reduceMoney(200);
@@ -167,12 +169,12 @@ L4:
       giveItem(Item.MoldyMeat, 1);
     }
   } else {
-    goto L5;
+    goto L6;
   }
   {
     return;
 
-L5:
+L6:
     if (pstat[102] > 99) break;
     setDialogOwner(Entity.System);
     reduceMoney(200);

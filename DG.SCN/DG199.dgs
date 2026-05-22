@@ -15,134 +15,138 @@ section(51) {
   if (pstat[110] <= 34) {
   } else {
     if (pstat[110] <= 84) {
-      goto L16;
+      goto L18;
     }
-    goto L30;
+    goto L34;
     return;
   }
   speak(Entity(6), "Boy, gimme some <LIGHTBLUE>Meat<WHITE>!\n");
   speak(Entity.Player, "Welcome, so you want some\n<LIGHTBLUE>Meat<WHITE>. Well, uh...\n");
+
+L1:
   loop {
     setHaggleContext(Entity(6), 5);
     delay(10);
     setPStat(PStat(117), 6);
     setDialogOwner(Entity.System);
-    choice { "Raise price" -> L1, "Keep price at fifty bits" -> L2, "Lower price" -> L3 }
+    choice { "Raise price" -> L2, "Keep price at fifty bits" -> L3, "Lower price" -> L4 }
     speak(Entity.Player, "Uh, you wanted some\n<LIGHTBLUE>Meat<WHITE>, right? Uh...\n");
     continue;
 
-L1:
+L2:
     roll(pstat: PStat.RollScratch, max: 4);
     {
       if (pstat[110] <= 0) {
         presentOffer(Entity(6), 3, 1, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor seventy five bits?\n");
-        choice { "Raise fifty to seventy five" -> L_09e2, "Let me rethink this" -> L_00de }
+        choice { "Raise fifty to seventy five" -> L5, "Let me rethink this" -> L1 }
         continue;
       }
       if (pstat[110] <= 1) {
         presentOffer(Entity(6), 2, 2, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor seventy bits?\n");
-        choice { "Raise from fifty to seventy" -> L4, "Let me rethink this" -> L_00de }
+        choice { "Raise from fifty to seventy" -> L6, "Let me rethink this" -> L1 }
         continue;
       }
       if (pstat[110] <= 2) {
         presentOffer(Entity(6), 2, 3, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor sixty five bits?\n");
-        choice { "Raise fifty to sixty five" -> L5, "Let me rethink this" -> L_00de }
+        choice { "Raise fifty to sixty five" -> L7, "Let me rethink this" -> L1 }
         continue;
       }
       if (pstat[110] <= 3) {
         presentOffer(Entity(6), 1, 4, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor sixty bits?\n");
-        choice { "Raise from fifty to sixty" -> L6, "Let me rethink this" -> L_00de }
+        choice { "Raise from fifty to sixty" -> L8, "Let me rethink this" -> L1 }
         continue;
       }
-      if (pstat[110] > 4) goto L2;
+      if (pstat[110] > 4) goto L3;
       presentOffer(Entity(6), 1, 5, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor fifty five bits?\n");
-      choice { "Raise fifty to fifty five" -> L7, "Let me rethink this" -> L_00de }
-      continue;
-
-L2:
-      presentOffer(Entity(6), 0, 6, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nat regular price?\n");
-      choice { "Offer at regular price" -> L8, "Let me rethink this" -> L_00de }
+      choice { "Raise fifty to fifty five" -> L9, "Let me rethink this" -> L1 }
       continue;
 
 L3:
+      presentOffer(Entity(6), 0, 6, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nat regular price?\n");
+      choice { "Offer at regular price" -> L10, "Let me rethink this" -> L1 }
+      continue;
+
+L4:
       roll(pstat: PStat.RollScratch, max: 2);
       if (pstat[110] <= 0) {
         presentOffer(Entity(6), 0, 7, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor forty five bits?\n");
-        choice { "Lower fifty to forty five" -> L9, "Let me rethink this" -> L_00de }
+        choice { "Lower fifty to forty five" -> L11, "Let me rethink this" -> L1 }
         continue;
       }
       if (pstat[110] <= 1) {
         presentOffer(Entity(6), 0, 8, "How's fifty bit <LIGHTBLUE>Meat<WHITE>\nfor forty bits?\n");
-        choice { "Lower fifty down to forty" -> L10, "Let me rethink this" -> L_00de }
+        choice { "Lower fifty down to forty" -> L12, "Let me rethink this" -> L1 }
         continue;
       }
       if (pstat[110] > 2) break;
       presentOffer(Entity(6), 0, 9, "How about fifty bit <LIGHTBLUE>Meat<WHITE>\nfor thirty five bits?\n");
-      choice { "Lower fifty to thirty five" -> L11, "Let me rethink this" -> L_00de }
+      choice { "Lower fifty to thirty five" -> L13, "Let me rethink this" -> L1 }
       continue;
+
+L5:
     }
     roll(pstat: PStat.RollScratch, max: 99);
     {
       if (pstat[110] <= 44) {
         break;
       }
-      goto L13;
+      goto L15;
 
-L4:
+L6:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 54) {
         break;
       }
-      goto L13;
+      goto L15;
 
-L5:
+L7:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 64) {
         break;
       }
-      goto L13;
+      goto L15;
 
-L6:
+L8:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 74) {
         break;
       }
-      goto L13;
+      goto L15;
 
-L7:
+L9:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 84) {
         break;
       }
-      goto L13;
+      goto L15;
 
-L8:
+L10:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 94) {
         break;
       }
-      goto L13;
+      goto L15;
 
-L9:
+L11:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 96) {
         break;
       }
-      goto L13;
+      goto L15;
 
-L10:
+L12:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 98) {
         break;
       }
-      goto L13;
+      goto L15;
 
-L11:
+L13:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 99) {
         break;
       }
-      goto L13;
+      goto L15;
     }
     speak(Entity(6), "Good, it's sold!\n");
     ringUpDeal();
@@ -200,7 +204,7 @@ L11:
       }
     }
 
-L12:
+L14:
     setPStat(PStat(119), 0);
     sfx(0, 23, wait: 20);
     setHaggleContext(Entity(6), 5);
@@ -212,20 +216,20 @@ L12:
     jumpToScriptSection(49, 82);
     return;
 
-L13:
+L15:
     retryHaggle(Entity(6));
     if (pstat[110] <= 49 && pstat[119] >= 3) {
-      goto L14;
+      goto L16;
     }
     if (pstat[110] <= 14 && pstat[119] == 2) {
-      goto L14;
+      goto L16;
     }
     if (pstat[110] <= 4 && pstat[119] == 1) {
-      goto L14;
+      goto L16;
     }
-    goto L15;
+    goto L17;
 
-L14:
+L16:
     speak(Entity(6), "See ya! I'm out of here!!\n");
     setPStat(PStat(119), 0);
     sfx(8, 7, wait: 10);
@@ -241,134 +245,138 @@ L14:
     jumpToScriptSection(49, 82);
     return;
 
-L15:
+L17:
     speak(Entity(6), "Gimme a price break!\n");
     speak(Entity.Player, "Well... Well then...\n");
   }
 
-L16:
+L18:
   speak(Entity(6), "Hey! Gimme a \n<LIGHTBLUE>Portable Potty<WHITE>.\n");
   speak(Entity.Player, "Uh... Welcome, so you want a\n<LIGHTBLUE>Portable Potty<WHITE>?\n");
+
+L19:
   loop {
     setHaggleContext(Entity(6), 5);
     setPStat(PStat(117), 6);
     setDialogOwner(Entity.System);
-    choice { "Raise price" -> L17, "Keep price at three hund bits" -> L18, "Lower price" -> L19 }
+    choice { "Raise price" -> L20, "Keep price at three hund bits" -> L21, "Lower price" -> L22 }
     speak(Entity.Player, "Uh... you wanted a\n<LIGHTBLUE>Portable Potty<WHITE>?\n");
     continue;
 
-L17:
+L20:
     roll(pstat: PStat.RollScratch, max: 4);
     {
       if (pstat[110] <= 0) {
         presentOffer(Entity(6), 3, 1, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor four hundred fifty bits?\n");
-        choice { "Raise three hund to four fifty" -> L_1b9a, "Let me rethink this" -> L_1042 }
+        choice { "Raise three hund to four fifty" -> L23, "Let me rethink this" -> L19 }
         continue;
       }
       if (pstat[110] <= 1) {
         presentOffer(Entity(6), 2, 2, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor four hundred twenty bits?\n");
-        choice { "Up three hund to four twenty" -> L20, "Let me rethink this" -> L_1042 }
+        choice { "Up three hund to four twenty" -> L24, "Let me rethink this" -> L19 }
         continue;
       }
       if (pstat[110] <= 2) {
         presentOffer(Entity(6), 2, 3, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred ninety bits?\n");
-        choice { "Up three hund to three ninety" -> L21, "Let me rethink this" -> L_1042 }
+        choice { "Up three hund to three ninety" -> L25, "Let me rethink this" -> L19 }
         continue;
       }
       if (pstat[110] <= 3) {
         presentOffer(Entity(6), 1, 4, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred sixty bits?\n");
-        choice { "Up three hund to three sixty" -> L22, "Let me rethink this" -> L_1042 }
+        choice { "Up three hund to three sixty" -> L26, "Let me rethink this" -> L19 }
         continue;
       }
-      if (pstat[110] > 4) goto L18;
+      if (pstat[110] > 4) goto L21;
       presentOffer(Entity(6), 1, 5, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor three hundred thirty bits?\n");
-      choice { "Up three hund to three thirty" -> L23, "Let me rethink this" -> L_1042 }
+      choice { "Up three hund to three thirty" -> L27, "Let me rethink this" -> L19 }
       continue;
 
-L18:
+L21:
       presentOffer(Entity(6), 0, 6, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nat regular price: three hund?\n");
-      choice { "Offer at regular price" -> L24, "Let me rethink this" -> L_1042 }
+      choice { "Offer at regular price" -> L28, "Let me rethink this" -> L19 }
       continue;
 
-L19:
+L22:
       roll(pstat: PStat.RollScratch, max: 2);
       if (pstat[110] <= 0) {
         presentOffer(Entity(6), 0, 7, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred seventy bits?\n");
-        choice { "drop three hund to two seventy" -> L25, "Let me rethink this" -> L_1042 }
+        choice { "drop three hund to two seventy" -> L29, "Let me rethink this" -> L19 }
         continue;
       }
       if (pstat[110] <= 1) {
         presentOffer(Entity(6), 0, 8, "How about a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred forty bits?\n");
-        choice { "Lower three hund to two forty" -> L26, "Let me rethink this" -> L_1042 }
+        choice { "Lower three hund to two forty" -> L30, "Let me rethink this" -> L19 }
         continue;
       }
       if (pstat[110] > 2) break;
       presentOffer(Entity(6), 0, 9, "How's a three hundred bit\n<LIGHTBLUE>Portable Potty<WHITE>,\nfor two hundred ten bits?\n");
-      choice { "Lower three hund to two ten" -> L27, "Let me rethink this" -> L_1042 }
+      choice { "Lower three hund to two ten" -> L31, "Let me rethink this" -> L19 }
       continue;
+
+L23:
     }
     roll(pstat: PStat.RollScratch, max: 99);
     {
       if (pstat[110] <= 44) {
         break;
       }
-      goto L28;
+      goto L32;
 
-L20:
+L24:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 54) {
         break;
       }
-      goto L28;
+      goto L32;
 
-L21:
+L25:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 64) {
         break;
       }
-      goto L28;
+      goto L32;
 
-L22:
+L26:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 74) {
         break;
       }
-      goto L28;
+      goto L32;
 
-L23:
+L27:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 84) {
         break;
       }
-      goto L28;
+      goto L32;
 
-L24:
+L28:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 94) {
         break;
       }
-      goto L28;
+      goto L32;
 
-L25:
+L29:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 96) {
         break;
       }
-      goto L28;
+      goto L32;
 
-L26:
+L30:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 98) {
         break;
       }
-      goto L28;
+      goto L32;
 
-L27:
+L31:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 99) {
         break;
       }
-      goto L28;
+      goto L32;
     }
     speak(Entity(6), "Yeah! You gotta deal!\n");
     ringUpDeal();
@@ -425,149 +433,153 @@ L27:
         showTextbox("Total Profit: <DISCOUNT>\nProfit:\nzero\n");
       }
     }
-    goto L12;
+    goto L14;
 
-L28:
+L32:
     retryHaggle(Entity(6));
     if (pstat[110] <= 49 && pstat[119] >= 3) {
-      goto L14;
+      goto L16;
     }
     if (pstat[110] <= 14 && pstat[119] == 2) {
-      goto L14;
+      goto L16;
     }
     if (pstat[110] <= 4 && pstat[119] == 1) {
-      goto L14;
+      goto L16;
     }
-    goto L29;
+    goto L33;
 
-L29:
+L33:
     speak(Entity(6), "I think it's a bit high.\n");
     speak(Entity.Player, "Think so? Well then...\n");
   }
 
-L30:
+L34:
   speak(Entity(6), "Boy! Gimme some\n<LIGHTBLUE>Medicine<WHITE>.\n");
   speak(Entity.Player, "Uh... Welcome, you want some\n<LIGHTBLUE>Medicine<WHITE>?\n");
+
+L35:
   loop {
     setHaggleContext(Entity(6), 5);
     setPStat(PStat(117), 6);
     setDialogOwner(Entity.System);
-    choice { "Raise price" -> L31, "Keep price at one thous bits" -> L32, "Lower price" -> L33 }
+    choice { "Raise price" -> L36, "Keep price at one thous bits" -> L37, "Lower price" -> L38 }
     speak(Entity.Player, "Uh, you wanted some\n<LIGHTBLUE>Medicine<WHITE>, right?\n");
     continue;
 
-L31:
+L36:
     roll(pstat: PStat.RollScratch, max: 4);
     {
       if (pstat[110] <= 0) {
         presentOffer(Entity(6), 3, 1, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor fifteen hundred bits?\n");
-        choice { "Up one thous to fifteen hund" -> L_2bf4, "Let me rethink this" -> L_2182 }
+        choice { "Up one thous to fifteen hund" -> L39, "Let me rethink this" -> L35 }
         continue;
       }
       if (pstat[110] <= 1) {
         presentOffer(Entity(6), 2, 2, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor fourteen hundred bits?\n");
-        choice { "Up one thous to fourteen hund" -> L34, "Let me rethink this" -> L_2182 }
+        choice { "Up one thous to fourteen hund" -> L40, "Let me rethink this" -> L35 }
         continue;
       }
       if (pstat[110] <= 2) {
         presentOffer(Entity(6), 2, 3, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor thirteen hundred bits?\n");
-        choice { "Up one thous to thirteen hund" -> L35, "Let me rethink this" -> L_2182 }
+        choice { "Up one thous to thirteen hund" -> L41, "Let me rethink this" -> L35 }
         continue;
       }
       if (pstat[110] <= 3) {
         presentOffer(Entity(6), 1, 4, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor twelve hundred bits?\n");
-        choice { "Up one thous to twelve hund" -> L36, "Let me rethink this" -> L_2182 }
+        choice { "Up one thous to twelve hund" -> L42, "Let me rethink this" -> L35 }
         continue;
       }
-      if (pstat[110] > 4) goto L32;
+      if (pstat[110] > 4) goto L37;
       presentOffer(Entity(6), 1, 5, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor eleven hundred bits?\n");
-      choice { "Up one thous to eleven hund" -> L37, "Let me rethink this" -> L_2182 }
+      choice { "Up one thous to eleven hund" -> L43, "Let me rethink this" -> L35 }
       continue;
 
-L32:
+L37:
       presentOffer(Entity(6), 0, 6, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nat regular price: one thous?\n");
-      choice { "Offer at regular price" -> L38, "Let me rethink this" -> L_2182 }
+      choice { "Offer at regular price" -> L44, "Let me rethink this" -> L35 }
       continue;
 
-L33:
+L38:
       roll(pstat: PStat.RollScratch, max: 2);
       if (pstat[110] <= 0) {
         presentOffer(Entity(6), 0, 7, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor nine hundred bits?\n");
-        choice { "Lower one thous to nine hund" -> L39, "Let me rethink this" -> L_2182 }
+        choice { "Lower one thous to nine hund" -> L45, "Let me rethink this" -> L35 }
         continue;
       }
       if (pstat[110] <= 1) {
         presentOffer(Entity(6), 0, 8, "How's one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor eight hundred bits?\n");
-        choice { "Lower one thous to eight hund" -> L40, "Let me rethink this" -> L_2182 }
+        choice { "Lower one thous to eight hund" -> L46, "Let me rethink this" -> L35 }
         continue;
       }
       if (pstat[110] > 2) break;
       presentOffer(Entity(6), 0, 9, "How about one thousand bit\n<LIGHTBLUE>Medicine<WHITE>,\nfor seven hundred bits?\n");
-      choice { "Lower one thous to seven hund" -> L41, "Let me rethink this" -> L_2182 }
+      choice { "Lower one thous to seven hund" -> L47, "Let me rethink this" -> L35 }
       continue;
+
+L39:
     }
     roll(pstat: PStat.RollScratch, max: 99);
     {
       if (pstat[110] <= 44) {
         break;
       }
-      goto L42;
+      goto L48;
 
-L34:
+L40:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 54) {
         break;
       }
-      goto L42;
+      goto L48;
 
-L35:
+L41:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 64) {
         break;
       }
-      goto L42;
+      goto L48;
 
-L36:
+L42:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 74) {
         break;
       }
-      goto L42;
+      goto L48;
 
-L37:
+L43:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 84) {
         break;
       }
-      goto L42;
+      goto L48;
 
-L38:
+L44:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 94) {
         break;
       }
-      goto L42;
+      goto L48;
 
-L39:
+L45:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 96) {
         break;
       }
-      goto L42;
+      goto L48;
 
-L40:
+L46:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 98) {
         break;
       }
-      goto L42;
+      goto L48;
 
-L41:
+L47:
       roll(pstat: PStat.RollScratch, max: 99);
       if (pstat[110] <= 99) {
         break;
       }
-      goto L42;
+      goto L48;
     }
     speak(Entity(6), "Okay! I'll take it.\n");
     ringUpDeal();
@@ -624,22 +636,22 @@ L41:
         showTextbox("Total Profit: <DISCOUNT>\nProfit:\nzero\n");
       }
     }
-    goto L12;
+    goto L14;
 
-L42:
+L48:
     retryHaggle(Entity(6));
     if (pstat[110] <= 49 && pstat[119] >= 3) {
-      goto L14;
+      goto L16;
     }
     if (pstat[110] <= 14 && pstat[119] == 2) {
-      goto L14;
+      goto L16;
     }
     if (pstat[110] <= 4 && pstat[119] == 1) {
-      goto L14;
+      goto L16;
     }
-    goto L43;
+    goto L49;
 
-L43:
+L49:
     speak(Entity(6), "You charge too much.\n");
     speak(Entity.Player, "Really? Well then...\n");
   }

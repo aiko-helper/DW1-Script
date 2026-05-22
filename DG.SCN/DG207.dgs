@@ -172,7 +172,7 @@ L4:
     {
       speak(Entity(11), "I'll give you more tomorrow.\nOr you can buy more now.\nFive hund bits each?\n");
       setDialogOwner(Entity.Player);
-      choice { "Buy" -> L5, "Don't buy" -> L_11f2 }
+      choice { "Buy" -> L5, "Don't buy" -> L6 }
       break;
 
 L5:
@@ -189,8 +189,10 @@ L5:
       sfx(0, 5, wait: 5);
       speak(Entity(11), "Do you want to buy more?\n");
       setDialogOwner(Entity.Player);
-      choice { "Buy" -> L5, "Don't buy" -> L_11f2 }
+      choice { "Buy" -> L5, "Don't buy" -> L6 }
       break;
+
+L6:
     }
     speak(Entity(11), "See you tomorrow.\n");
     return;
@@ -208,7 +210,7 @@ L5:
   if (pstat[31] >= 1 && pstat[110] <= 0) {
     speak(Entity(11), "I feel good today,\nso I'll give you five pieces\nof Sirloin.\n");
   } else {
-    goto L6;
+    goto L7;
   }
   if (item[Item.Sirloin] >= 99) {
     speak(Entity(11), "You got too much Sirloin.\nYou don't need any today\n");
@@ -232,11 +234,11 @@ L5:
   setPStat(PStat(31), 0);
   return;
 
-L6:
+L7:
   if (pstat[31] >= 1) {
     speak(Entity(11), "Here's today's portion of\nSirloin times three!\n");
   } else {
-    goto L7;
+    goto L8;
   }
   if (item[Item.Sirloin] >= 99) {
     speak(Entity(11), "You got too much Sirloin.\nYou don't need any today.\n");
@@ -259,19 +261,19 @@ L6:
   setPStat(PStat(31), 0);
   return;
 
-L7:
+L8:
   {
     speak(Entity(11), "It's not tomorrow yet!\nDo you want to buy veggies?\n");
     setDialogOwner(Entity.Player);
-    choice { "Buy" -> L8, "Don't buy" -> L_1ab8 }
-    break;
-
-L8:
-    setDialogOwner(Entity.Player);
-    choice { "Super Carrot: five hund bits" -> L9, "Hawk Radish: five hund bits" -> L10, "Don't buy" -> L_1ab8 }
+    choice { "Buy" -> L9, "Don't buy" -> L12 }
     break;
 
 L9:
+    setDialogOwner(Entity.Player);
+    choice { "Super Carrot: five hund bits" -> L10, "Hawk Radish: five hund bits" -> L11, "Don't buy" -> L12 }
+    break;
+
+L10:
     if (money < 500) {
       speak(Entity(11), "You don't got enough money.\n");
       return;
@@ -284,7 +286,7 @@ L9:
     {
       break;
 
-L10:
+L11:
       if (money < 500) {
         speak(Entity(11), "You don't got enough money.\n");
         return;
@@ -300,8 +302,10 @@ L10:
     sfx(0, 5, wait: 5);
     speak(Entity(11), "Do you want to buy more?\n");
     setDialogOwner(Entity.Player);
-    choice { "Buy" -> L8, "Don't buy" -> L_1ab8 }
+    choice { "Buy" -> L9, "Don't buy" -> L12 }
     break;
+
+L12:
   }
   speak(Entity(11), "See ya!\n");
   return;

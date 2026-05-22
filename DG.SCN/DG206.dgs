@@ -32,7 +32,7 @@ section(6) {
     if (!trigger(257)) {
       speak(Entity(6), "Hey, do you want to play a\nmatch with me? Give me a\nfish and you can play me.\n");
       setDialogOwner(Entity.Player);
-      choice { "I'll get you" -> L1, "No thanks" -> L_061e }
+      choice { "I'll get you" -> L2, "No thanks" -> L1 }
       return;
     }
     if (!trigger(92)) {
@@ -43,14 +43,16 @@ section(6) {
     setPStat(PStat(122), 0);
     speak(Entity(6), "Hey dude, don't you want to\nhave a match with me? You can\nchallenge me with one fish.\n");
     setDialogOwner(Entity.Player);
-    choice { "You're on" -> L1, "No thanks" -> L_061e }
+    choice { "You're on" -> L2, "No thanks" -> L1 }
     return;
+
+L1:
   }
   setPStat(PStat(113), 0);
   speak(Entity(6), "Shoot, that's no fun.\n");
   return;
 
-L1:
+L2:
   speak(Entity(6), "Give me a fish!\n");
   setTrigger(Trigger(3));
   callSubroutine(0);
@@ -69,17 +71,17 @@ L1:
         break;
       }
       if (pstat[254] == 255) {
-        goto L2;
+        goto L3;
         break;
       }
       speak(Entity.Player, "Oh no, giving you this\ndoesn't do any good.\n");
-      goto L2;
+      goto L3;
     }
     speak(Entity(6), "Wow, it looks tasty. Ooops,\nwe have to have a match first.\nLet's go inside.\n");
     warp(to: Map.FRZL17, spawn: 1, trigger: 255);
     return;
 
-L2:
+L3:
   }
   setPStat(PStat(113), 0);
   speak(Entity(6), "Oh come on, dude.\nWhy don't you go fishing\nat Dragon Eye Lake.\n");

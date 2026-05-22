@@ -35,8 +35,8 @@ section(81) {
       {
         speak(Entity(5), "Do you want me to find\nsomething? Do you want me to\nexplain how we do it?\n");
         setDialogOwner(Entity.Player);
-        choice { "Explain" -> L1, "Don't explain" -> L_0462, "Never mind" -> L2 }
-        goto L2;
+        choice { "Explain" -> L1, "Don't explain" -> L2, "Never mind" -> L3 }
+        goto L3;
 
 L1:
         speak(Entity(5), "We have two plans with\ndifferent days and prices.\n");
@@ -44,21 +44,23 @@ L1:
         showTextbox("The chances of finding\nbetter treasure is higher\nwith Special Plan.\n");
         showTextbox("That's about it.\nWhat do you want to do?\n");
         setDialogOwner(Entity(5));
-        choice { "Find treasure" -> L_0462, "Explain again" -> L1, "Never mind" -> L2 }
-        goto L2;
+        choice { "Find treasure" -> L2, "Explain again" -> L1, "Never mind" -> L3 }
+        goto L3;
+
+L2:
       }
       speak(Entity(5), "Choose a plan!\n");
       setDialogOwner(Entity.Player);
-      choice { "Reg:three day, one thous bits" -> L3, "Spec:ten day, five thous bits" -> L4, "Cancel" -> L2 }
+      choice { "Reg:three day, one thous bits" -> L4, "Spec:ten day, five thous bits" -> L5, "Cancel" -> L3 }
       break;
 
-L2:
+L3:
     }
     speak(Entity(5), "OK then, good bye.\n");
     followEntity(Entity.Player, speed: 10);
     return;
 
-L3:
+L4:
     {
       if (money < 1000) {
         break;
@@ -73,7 +75,7 @@ L3:
       followEntity(Entity.Player, speed: 10);
       return;
 
-L4:
+L5:
       if (money < 5000) {
         break;
       }
@@ -98,7 +100,7 @@ L4:
     if (pstat[30] < 10 && trigger(179)) {
       break;
     }
-    goto L5;
+    goto L6;
   }
   move(entity: Entity(5), to: (180, 840), sprint: 1);
   waitForEntity(Entity(5));
@@ -108,7 +110,7 @@ L4:
   followEntity(Entity.Player, speed: 10);
   return;
 
-L5:
+L6:
   speak(Entity(5), "You know what?\nWe've got some treasure.\n");
   {
     if (trigger(178)) {
@@ -116,7 +118,7 @@ L5:
     }
     if (!trigger(179)) break;
     unsetTrigger(Trigger(179));
-    goto L7;
+    goto L8;
   }
   {
     if (trigger(217)) {
@@ -125,124 +127,124 @@ L5:
     if (pstat[22] <= 0) {
       giveItem(Item.KogaLaws, 1);
       setPStat(PStat.RollScratch, 90);
-      goto L6;
+      goto L7;
     }
     if (pstat[22] <= 1) {
       giveItem(Item.FlameWing, 1);
       setPStat(PStat.RollScratch, 73);
-      goto L6;
+      goto L7;
     }
     if (pstat[22] <= 2) {
       giveItem(Item.TornTatter, 1);
       setPStat(PStat.RollScratch, 82);
-      goto L6;
+      goto L7;
     }
     if (pstat[22] <= 12) {
       giveItem(Item.SuperRecovery, 1);
       setPStat(PStat.RollScratch, 3);
-      goto L6;
+      goto L7;
     }
     if (pstat[22] <= 15) {
       giveItem(Item.Restore, 1);
       setPStat(PStat.RollScratch, 11);
-      goto L6;
+      goto L7;
     }
     if (pstat[22] <= 19) {
       giveItem(Item.Omnipotent, 1);
       setPStat(PStat.RollScratch, 9);
-      goto L6;
+      goto L7;
     }
     if (pstat[22] <= 23) {
       giveItem(Item.Protection, 1);
       setPStat(PStat.RollScratch, 10);
-      goto L6;
+      goto L7;
     }
     if (pstat[22] <= 33) {
       giveItem(Item.LargeMP, 1);
       setPStat(PStat.RollScratch, 6);
-      goto L6;
+      goto L7;
     }
     if (pstat[22] <= 37) {
       giveItem(Item.SuperOffenseDisk, 1);
       setPStat(PStat.RollScratch, 19);
-      goto L6;
+      goto L7;
     }
     if (pstat[22] <= 41) {
       giveItem(Item.SuperDefenseDisk, 1);
       setPStat(PStat.RollScratch, 20);
-      goto L6;
+      goto L7;
     }
     if (pstat[22] <= 45) {
       giveItem(Item.SuperSpeedDisk, 1);
       setPStat(PStat.RollScratch, 21);
-      goto L6;
+      goto L7;
     }
     if (pstat[22] > 49) break;
     giveItem(Item.OmniDisk, 1);
     setPStat(PStat.RollScratch, 18);
-    goto L6;
+    goto L7;
   }
   if (pstat[22] <= 0) {
     giveItem(Item.KogaLaws, 1);
     setPStat(PStat.RollScratch, 90);
-    goto L6;
+    goto L7;
   }
   if (pstat[22] <= 2) {
     giveItem(Item.FlameWing, 1);
     setPStat(PStat.RollScratch, 73);
-    goto L6;
+    goto L7;
   }
   if (pstat[22] <= 4) {
     giveItem(Item.TornTatter, 1);
     setPStat(PStat.RollScratch, 82);
-    goto L6;
+    goto L7;
   }
   if (pstat[22] <= 12) {
     giveItem(Item.SuperRecovery, 1);
     setPStat(PStat.RollScratch, 3);
-    goto L6;
+    goto L7;
   }
   if (pstat[22] <= 15) {
     giveItem(Item.Restore, 1);
     setPStat(PStat.RollScratch, 11);
-    goto L6;
+    goto L7;
   }
   if (pstat[22] <= 19) {
     giveItem(Item.Omnipotent, 1);
     setPStat(PStat.RollScratch, 9);
-    goto L6;
+    goto L7;
   }
   if (pstat[22] <= 23) {
     giveItem(Item.Protection, 1);
     setPStat(PStat.RollScratch, 10);
-    goto L6;
+    goto L7;
   }
   if (pstat[22] <= 33) {
     giveItem(Item.LargeMP, 1);
     setPStat(PStat.RollScratch, 6);
-    goto L6;
+    goto L7;
   }
   if (pstat[22] <= 37) {
     giveItem(Item.SuperOffenseDisk, 1);
     setPStat(PStat.RollScratch, 19);
-    goto L6;
+    goto L7;
   }
   if (pstat[22] <= 41) {
     giveItem(Item.SuperDefenseDisk, 1);
     setPStat(PStat.RollScratch, 20);
-    goto L6;
+    goto L7;
   }
   if (pstat[22] <= 45) {
     giveItem(Item.SuperSpeedDisk, 1);
     setPStat(PStat.RollScratch, 21);
-    goto L6;
+    goto L7;
   }
-  if (pstat[22] > 49) goto L6;
+  if (pstat[22] > 49) goto L7;
   giveItem(Item.OmniDisk, 1);
   setPStat(PStat.RollScratch, 18);
-  goto L6;
+  goto L7;
 
-L6:
+L7:
   loop {
     if (trigger(0)) {
       speak(Entity(5), "Empty your stuff!\n");
@@ -254,7 +256,7 @@ L6:
     unsetTrigger(Trigger(179));
     break;
 
-L7:
+L8:
     {
       if (trigger(217)) {
         break;

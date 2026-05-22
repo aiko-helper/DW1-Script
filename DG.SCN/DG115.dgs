@@ -96,7 +96,7 @@ section(5) {
     setTrigger(Trigger(44));
     speak(Entity(5), "Did you come here again\nto hear an old man talk?\n");
     setDialogOwner(Entity.Player);
-    choice { "About the island..." -> L1, "Please train <ORANGE><DIGIMON><WHITE>" -> L2, "Never mind" -> L_0380 }
+    choice { "About the island..." -> L1, "Please train <ORANGE><DIGIMON><WHITE>" -> L2, "Never mind" -> L8 }
     break;
 
 L1:
@@ -110,22 +110,24 @@ L2:
       callSubroutine(39);
       setTextboxOrigin(-2017, 0, 1378);
       speak(Entity.System, "<GREEN>Training: The Teachings \nof the Forest <WHITE>\n");
-      choice { "Begin" -> L3, "Explain" -> L4, "Quit" -> L_02f4 }
+      choice { "Begin" -> L3, "Explain" -> L4, "Quit" -> L5 }
       return;
 
 L3:
       setDialogOwner(Entity.System);
-      choice { "Normal" -> L5, "Bonus Try" -> L6, "Quit" -> L_02f4 }
+      choice { "Normal" -> L6, "Bonus Try" -> L7, "Quit" -> L5 }
       return;
 
 L4:
       speak(Entity.System, "Cherrymon will give you much\nknowledge. It'll greatly\nincrease your wisdom.\n");
-      choice { "Explain again" -> L4, "Begin" -> L3, "Quit" -> L_02f4 }
+      choice { "Explain again" -> L4, "Begin" -> L3, "Quit" -> L5 }
       return;
+
+L5:
     }
     return;
 
-L5:
+L6:
     fadeOutHUD();
     setPStat(PStat(254), 5);
     setPStat(PStat(246), 0);
@@ -133,7 +135,7 @@ L5:
     callSubroutine(7);
     return;
 
-L6:
+L7:
     setTexboxMode(1, 0);
     speak(Entity.System, "<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>\nto match three pictures.\n");
     setPStat(PStat(254), 5);
@@ -142,6 +144,8 @@ L6:
     callSubroutine(7);
     setTexboxMode(0, 0);
     return;
+
+L8:
   }
   speak(Entity(5), "Ha ha ha.\n");
   return;

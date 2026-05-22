@@ -99,21 +99,23 @@ section(81) {
     setTextboxOrigin(-541, 0, 1823);
     callSubroutine(39);
     speak(Entity(200), "<GREEN>Training: Rock Pushing <WHITE>\n");
-    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L_0182 }
+    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
     return;
 
 L1:
-    choice { "Normal" -> L3, "Bonus Try" -> L4, "Quit" -> L_0182 }
+    choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
     return;
 
 L2:
     showTextbox("Get power by pushing\non the rock. Maximum\nHP is boosted greatly.\n");
-    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L_0182 }
+    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
     return;
+
+L3:
   }
   return;
 
-L3:
+L4:
   fadeOutHUD();
   setPStat(PStat(254), 0);
   setPStat(PStat(246), 0);
@@ -121,7 +123,7 @@ L3:
   callSubroutine(7);
   return;
 
-L4:
+L5:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>Slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
   setPStat(PStat(254), 0);
@@ -138,22 +140,24 @@ section(83) {
     setTextboxOrigin(-1330, 0, 1434);
     callSubroutine(39);
     speak(Entity(200), "<GREEN>Training: Striking <WHITE>\n");
-    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L_018e }
+    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
     return;
 
 L1:
     setDialogOwner(Entity(200));
-    choice { "Normal" -> L3, "Bonus Try" -> L4, "Quit" -> L_018e }
+    choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
     return;
 
 L2:
     speak(Entity(200), "Using a dummy, strike at\nfull force. Offensive Power\nis boosted greatly.\n");
-    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L_018e }
+    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
     return;
+
+L3:
   }
   return;
 
-L3:
+L4:
   fadeOutHUD();
   setPStat(PStat(254), 1);
   setPStat(PStat(246), 0);
@@ -161,7 +165,7 @@ L3:
   callSubroutine(7);
   return;
 
-L4:
+L5:
   setTexboxMode(1, 0);
   speak(Entity.System, "<YELLOW>slot game <WHITE>\nUse <LIGHTBLUE><X> <WHITE>to\nmatch three pictures.\n");
   setPStat(PStat(254), 1);
