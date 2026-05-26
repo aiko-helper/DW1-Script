@@ -1,0 +1,475 @@
+// DG161.SCN
+#include "functions.dgs"
+#pragma script index=161 start=0x6e800 end=0x70000 headerU16=0x20 sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  if (trigger(206) || trigger(211) || trigger(213) || trigger(252)) {
+    setObjectVisibility(21, 1);
+  } else {
+    setRectImpassible(35, 45, 2, 16);
+  }
+  if (pstat[25] == 3) {
+    playAnimation(Entity(5), Animation(28));
+  }
+  if (pstat[26] < 3) {
+    setObjectVisibility(18, 0);
+    setObjectVisibility(20, 0);
+  } else {
+    setObjectVisibility(18, 1);
+    setObjectVisibility(20, 1);
+  }
+  return;
+}
+
+section(51) {
+  {
+    move(entity: Entity.Player, to: (250, -5000), sprint: 0);
+    unsetTrigger(Trigger(69));
+    if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) goto L16; else break;
+  }
+  {
+    if (trigger(204) || trigger(249)) {
+      break;
+      break;
+    }
+    goto L8;
+  }
+  {
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L4; else break;
+  }
+  {
+    if (trigger(236)) goto L2; else break;
+  }
+  {
+    if (trigger(205)) goto L1; else break;
+  }
+  warp(to: Map.TWNB02, spawn: 3, trigger: 255);
+  return;
+
+L1:
+  {
+    warp(to: Map.TWNB09, spawn: 3, trigger: 255);
+    return;
+
+L2:
+    if (trigger(205)) goto L3; else break;
+  }
+  warp(to: Map.TWNB07, spawn: 3, trigger: 255);
+  return;
+
+L3:
+  {
+    warp(to: Map.TWNB08, spawn: 3, trigger: 255);
+    return;
+
+L4:
+    if (trigger(236)) goto L6; else break;
+  }
+  {
+    if (trigger(205)) goto L5; else break;
+  }
+  warp(to: Map.TWNB03, spawn: 3, trigger: 255);
+  return;
+
+L5:
+  {
+    warp(to: Map.TWNB06, spawn: 3, trigger: 255);
+    return;
+
+L6:
+    if (trigger(205)) goto L7; else break;
+  }
+  warp(to: Map.TWNB04, spawn: 3, trigger: 255);
+  return;
+
+L7:
+  {
+    warp(to: Map.TWNB05, spawn: 3, trigger: 255);
+    return;
+
+L8:
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L12; else break;
+  }
+  {
+    if (trigger(236)) goto L10; else break;
+  }
+  {
+    if (trigger(205)) goto L9; else break;
+  }
+  warp(to: Map.TWNB01, spawn: 3, trigger: 255);
+  return;
+
+L9:
+  warp(to: Map.TWNB24, spawn: 3, trigger: 255);
+  return;
+
+L10:
+  {
+    if (trigger(205)) {
+      break;
+      break;
+    }
+    goto L11;
+  }
+  warp(to: Map.TWNB23, spawn: 3, trigger: 255);
+  return;
+
+L11:
+  {
+    warp(to: Map.TWNB22, spawn: 3, trigger: 255);
+    return;
+
+L12:
+    if (trigger(236)) goto L14; else break;
+  }
+  {
+    if (trigger(205)) goto L13; else break;
+  }
+  warp(to: Map.TWNB18, spawn: 3, trigger: 255);
+  return;
+
+L13:
+  {
+    warp(to: Map.TWNB21, spawn: 3, trigger: 255);
+    return;
+
+L14:
+    if (trigger(205)) goto L15; else break;
+  }
+  warp(to: Map.TWNB19, spawn: 3, trigger: 255);
+  return;
+
+L15:
+  {
+    warp(to: Map.TWNB20, spawn: 3, trigger: 255);
+    return;
+
+L16:
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L20; else break;
+  }
+  {
+    if (trigger(236)) goto L18; else break;
+  }
+  {
+    if (trigger(205)) goto L17; else break;
+  }
+  warp(to: Map.TWNB10, spawn: 3, trigger: 255);
+  return;
+
+L17:
+  {
+    warp(to: Map.TWNB17, spawn: 3, trigger: 255);
+    return;
+
+L18:
+    if (trigger(205)) goto L19; else break;
+  }
+  warp(to: Map.TWNB15, spawn: 3, trigger: 255);
+  return;
+
+L19:
+  {
+    warp(to: Map.TWNB16, spawn: 3, trigger: 255);
+    return;
+
+L20:
+    if (trigger(236)) goto L22; else break;
+  }
+  {
+    if (trigger(205)) goto L21; else break;
+  }
+  warp(to: Map.TWNB11, spawn: 3, trigger: 255);
+  return;
+
+L21:
+  {
+    warp(to: Map.TWNB14, spawn: 3, trigger: 255);
+    return;
+
+L22:
+    if (trigger(205)) goto L23; else break;
+  }
+  warp(to: Map.TWNB12, spawn: 3, trigger: 255);
+  return;
+
+L23:
+  warp(to: Map.TWNB13, spawn: 3, trigger: 255);
+  return;
+}
+
+section(81) {
+  look(entity: Entity.Player, at: Entity(5));
+  if (pstat[25] != 3) {
+    look(entity: Entity(5), at: Entity.Player);
+  }
+  {
+    if (trigger(65) || trigger(66) || trigger(67) || trigger(68)) {
+      break;
+    }
+    if (trigger(231) && !trigger(65) && pstat[25] == 0) {
+      speak(Entity(5), "「いらっしゃい。」<NEWLINE>");
+      showTextbox("「やぁー、<LIGHTBLUE><PLAYER><WHITE>さん。<NEWLINE> 見てよ、ぼくのお店。<NEWLINE> アイテムがんがん売っちゃうよー。」<NEWLINE>");
+      showTextbox("「品ぞろえは、まあそのうち何とか<NEWLINE> するよ。手伝ってくれるデジモンを<NEWLINE> 呼んできてほしいなー。」<NEWLINE>");
+      setTrigger(Trigger(65));
+      addPStat(PStat(26), 1);
+      if (pstat[26] >= 3) {
+        setObjectVisibility(18, 1);
+        setObjectVisibility(20, 1);
+      }
+      return;
+    }
+    if (trigger(245) && !trigger(66) && pstat[25] == 1) {
+      speak(Entity(5), "「ようこそピヨ。ぼく、アイテムの<NEWLINE> 売り買いをすることにしたピヨ。<NEWLINE> これからよろしくピヨ!」<NEWLINE>");
+      showTextbox("「しなぞろえはまだ少ないけど…<NEWLINE> 誰か手伝ってくれるデジモンが<NEWLINE> いればどうにかなるかもピヨ。」<NEWLINE>");
+      setTrigger(Trigger(66));
+      addPStat(PStat(26), 1);
+      if (pstat[26] >= 3) {
+        setObjectVisibility(18, 1);
+        setObjectVisibility(20, 1);
+      }
+      return;
+    }
+    if (trigger(233) && !trigger(67) && pstat[25] == 2) {
+      speak(Entity(5), "「いらっしゃい。せんえつながら、<NEWLINE> アイテムをあつかう店を開くことにした。<NEWLINE> よろしくお願いするよ。」<NEWLINE>");
+      showTextbox("「まだ品ぞろえがいまいちだが、<NEWLINE> 今後店を大きくしたいと思っている。<NEWLINE> しばらくがまんしてくれ。」<NEWLINE>");
+      setTrigger(Trigger(67));
+      addPStat(PStat(26), 1);
+      if (pstat[26] >= 3) {
+        setObjectVisibility(18, 1);
+        setObjectVisibility(20, 1);
+      }
+      return;
+    }
+    if (!trigger(247) || trigger(68) || pstat[25] != 3) break;
+    speak(Entity(5), "「<LIGHTBLUE><PLAYER><WHITE>さん、<ORANGE><DIGIMON><WHITE>さん、<NEWLINE> アイテムショップを開くことができました。<NEWLINE> 大はんじょうの予感がしますよ!」<NEWLINE>");
+    showTextbox("「街にもっとデジモンがくれば、<NEWLINE> もっと品ぞろえを良くできるはず。<NEWLINE> 今はがまんしてくださいね。」<NEWLINE>");
+    setTrigger(Trigger(68));
+    addPStat(PStat(26), 1);
+    if (pstat[26] >= 3) {
+      setObjectVisibility(18, 1);
+      setObjectVisibility(20, 1);
+    }
+    return;
+  }
+  if (trigger(231) && !trigger(65) && pstat[25] == 0) {
+    speak(Entity(5), "「やあー、<LIGHTBLUE><PLAYER><WHITE>さん。ぼく、この店の<NEWLINE> お手伝いすることにしたんだー。<NEWLINE> いっぱい買ってよね!」<NEWLINE>");
+    setTrigger(Trigger(65));
+    addPStat(PStat(26), 1);
+    if (pstat[26] >= 3) {
+      setObjectVisibility(18, 1);
+      setObjectVisibility(20, 1);
+    }
+    return;
+  }
+  if (trigger(245) && !trigger(66) && pstat[25] == 1) {
+    speak(Entity(5), "「ようこそピヨー!今日から店の手伝いを<NEWLINE> するピヨ。よろしくピヨ。」<NEWLINE>");
+    setTrigger(Trigger(66));
+    addPStat(PStat(26), 1);
+    if (pstat[26] >= 3) {
+      setObjectVisibility(18, 1);
+      setObjectVisibility(20, 1);
+    }
+    return;
+  }
+  if (trigger(233) && !trigger(67) && pstat[25] == 2) {
+    speak(Entity(5), "「いらっしゃい、<LIGHTBLUE><PLAYER><WHITE>。<NEWLINE> せんえつながらこの店を手伝うことに<NEWLINE> した。よろしくお願いする。」<NEWLINE>");
+    setTrigger(Trigger(67));
+    addPStat(PStat(26), 1);
+    if (pstat[26] >= 3) {
+      setObjectVisibility(18, 1);
+      setObjectVisibility(20, 1);
+    }
+    return;
+  }
+  if (trigger(247) && !trigger(68) && pstat[25] == 3) {
+    speak(Entity(5), "「やあ、<LIGHTBLUE><PLAYER><WHITE>さん。私の力が<NEWLINE> いかせるのはやはりここですね。<NEWLINE> これからがんばりますよ。」<NEWLINE>");
+    setTrigger(Trigger(68));
+    addPStat(PStat(26), 1);
+    if (pstat[26] >= 3) {
+      setObjectVisibility(18, 1);
+      setObjectVisibility(20, 1);
+    }
+    return;
+  }
+  if (pstat[26] == 1) {
+    for x in [Trigger(384), Trigger(385), Trigger(388), Trigger(392)] {
+      setTrigger(x);
+    }
+    for id in Trigger(399)..Trigger(401) {
+      setTrigger(id);
+    }
+    for x in [Trigger(406), Trigger(416), Trigger(422)] {
+      setTrigger(x);
+    }
+  }
+  switch pstat[25] {
+    0 => {
+      setTrigger(Trigger(393));
+    }
+    1 => {
+      setTrigger(Trigger(387));
+    }
+    2 => {
+      setTrigger(Trigger(396));
+    }
+    3 => {
+      setTrigger(Trigger(394));
+    }
+  }
+  unsetTrigger(Trigger(3));
+  if (pstat[26] == 2 || pstat[26] == 3) {
+    for x in [Trigger(384), Trigger(385), Trigger(388), Trigger(392)] {
+      setTrigger(x);
+    }
+    for id in Trigger(399)..Trigger(401) {
+      setTrigger(id);
+    }
+    for x in [Trigger(406), Trigger(416), Trigger(422), Trigger(386), Trigger(389)] {
+      setTrigger(x);
+    }
+  }
+  switch pstat[25] {
+    0 => {
+      setTrigger(Trigger(393));
+    }
+    1 => {
+      setTrigger(Trigger(387));
+    }
+    2 => {
+      setTrigger(Trigger(396));
+    }
+    3 => {
+      setTrigger(Trigger(394));
+    }
+  }
+  if (pstat[26] == 4) {
+    for x in [Trigger(384), Trigger(385), Trigger(388), Trigger(392)] {
+      setTrigger(x);
+    }
+    for id in Trigger(399)..Trigger(401) {
+      setTrigger(id);
+    }
+    for x in [
+      Trigger(406), Trigger(416), Trigger(422), Trigger(386),
+      Trigger(389), Trigger(391), Trigger(390), Trigger(395)
+    ] {
+      setTrigger(x);
+    }
+  }
+  switch pstat[25] {
+    0 => {
+      setTrigger(Trigger(393));
+    }
+    1 => {
+      setTrigger(Trigger(387));
+    }
+    2 => {
+      setTrigger(Trigger(396));
+    }
+    3 => {
+      setTrigger(Trigger(394));
+    }
+  }
+  if (pstat[26] == 5) {
+    for x in [Trigger(384), Trigger(385), Trigger(388), Trigger(392)] {
+      setTrigger(x);
+    }
+    for id in Trigger(399)..Trigger(401) {
+      setTrigger(id);
+    }
+    for x in [
+      Trigger(406), Trigger(416), Trigger(422), Trigger(386),
+      Trigger(389), Trigger(391), Trigger(390), Trigger(395),
+      Trigger(393), Trigger(387), Trigger(394), Trigger(396)
+    ] {
+      setTrigger(x);
+    }
+  }
+  unsetTrigger(Trigger(3));
+  setPStat(PStat(254), 5);
+  callSubroutine(8);
+  for x in [Trigger(384), Trigger(385), Trigger(388), Trigger(392)] {
+    unsetTrigger(x);
+  }
+  for id in Trigger(399)..Trigger(401) {
+    unsetTrigger(id);
+  }
+  for x in [
+    Trigger(406), Trigger(416), Trigger(422), Trigger(386),
+    Trigger(389), Trigger(391), Trigger(390), Trigger(395),
+    Trigger(393), Trigger(387), Trigger(394), Trigger(396)
+  ] {
+    unsetTrigger(x);
+  }
+  return;
+}
+
+section(82) {
+  if (!trigger(69)) {
+    return;
+  }
+  look(entity: Entity.Player, at: Entity(6));
+  look(entity: Entity(6), at: Entity.Player);
+  speak(Entity(6), "「お~セニョール、元気してたカナ?<NEWLINE> ボキはアイテム売りでいそがしい毎日ヨ。<NEWLINE> なーんてネ!」<NEWLINE>");
+  showTextbox("「ボキ、なかなか面倒くさがりやさんだし、<NEWLINE> めったに店に出ないと思うネ。<NEWLINE> でも、すごいものを用意したヨ。」<NEWLINE>");
+  showTextbox("「その名は『トレーマニュアル』!<NEWLINE> これを持ってるだけで、<NEWLINE> トレーニング効果は絶大ネ!」<NEWLINE>");
+  showTextbox("「とっても貴重なので<NEWLINE> 50000<B><it>で売ってあげるヨ。<NEWLINE> 買わなきゃこうかいするネー!」<NEWLINE>");
+  setDialogOwner(Entity.Player);
+  setSelection(L1, L2);
+  showTextbox("「買う。」<NEWLINE>「買わない。」<NEWLINE>");
+
+L1:
+  if (money >= 50000) {
+    reduceMoney(50000);
+  } else {
+    speak(Entity(6), "「<B><it>がぜんぜん足りないヨ~。」<NEWLINE>");
+    return;
+  }
+  giveItem(Item.TrainingManual, 1);
+  if (trigger(0)) {
+    speak(Entity(6), "「ん、もちものがいっぱいネ~。」<NEWLINE>");
+    addMoney(50000);
+    return;
+  }
+  playSound(0, 5);
+  speak(Entity.System, "「<LIGHTBLUE>トレーマニュアル<WHITE>を手に入れた!。」<NEWLINE>");
+
+L2:
+  speak(Entity(6), "「ビタ一文まけないネ。」<NEWLINE>");
+  return;
+}
+
+section(83) {
+  if (pstat[26] < 3) {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  jumpToScriptSection(222, 51);
+  return;
+}
+
+section(7) {
+  {
+    roll(pstat: PStat.RollScratch, max: 2);
+    if (pstat[1] < 20) break;
+    if (pstat[110] != 0) break;
+    speak(Entity(7), "「そうそう、持ち物がいっぱいで<NEWLINE> 困ってないかプニ?」<NEWLINE>");
+    showTextbox("「世界のどこかに、かばんの中を異次元に<NEWLINE> つなげて、持てるアイテム数をふやして<NEWLINE> くれるキーホルダーがあるらしいプニ!」<NEWLINE>");
+    showTextbox("「すでに行った場所ももう一度<NEWLINE> 回ってみるといいかもプニ。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(7), "「アイテム買いのとっておきのコツを<NEWLINE> おしえてあげるプニ!」<NEWLINE>");
+  showTextbox("「アイテムらんでスタートボタンを<NEWLINE> 押すと説明が出るプニ!」<NEWLINE>");
+  showTextbox("「個数を変える時は<PINK><SQUARE><WHITE><ボき><ヌン>で買えるだけ全部、<NEWLINE> <GREEN><TRIANGLE><WHITE><ボき><ヌン>を押しながら方向キー上下で<NEWLINE> 10コたんいの上げ下げができるプニ。」<NEWLINE>");
+  showTextbox("「いちらんが多いときはR1ボタンを<NEWLINE> 押しながら方向キー上下で<NEWLINE> 一気に進められるプニ。」<NEWLINE>");
+  showTextbox("「それととっておきの話プニ…<NEWLINE> 生まれ変わりたてのときに<NEWLINE> 何か買い物してみてほしいプニ。」<NEWLINE>");
+  showTextbox("「きっといいことがあるプニ!」<NEWLINE>");
+  return;
+}
+
+section(52) {
+  warp(to: Map.ROOM07, spawn: 0, trigger: 255);
+  return;
+  garbage { 20 00 fe 00 20 00 33 00 7a 00 51 00 72 03 52 00 36 0c 53 00 e6 0e 07 00 00 0f 34 00 10 12 ff ff 19 00 00 00 ce 00 40 00 d3 00 40 00 d5 00 40 00 fc 00 18 00 40 00 19 00 57 00 15 01 16 00 48 00 7c 00 23 00 2d 00 02 10 19 00 08 00 19 03 18 00 58 00 19 00 56 00 05 1c 19 00 0d 00 1a 03 18 00 70 00 19 00 57 00 12 00 57 00 14 00 16 00 78 00 57 00 12 01 57 00 14 01 fe 00 4e fd fa 00 78 ec 00 00 1d 00 45 00 19 00 00 00 e7 00 40 00 f5 00 40 00 e9 00 40 00 f7 00 18 00 a6 00 19 00 16 00 8e 02 16 00 aa 00 16 00 aa 00 19 00 00 00 cc 00 40 00 f9 00 18 00 c2 00 19 00 16 00 c6 00 16 00 c6 00 16 00 aa 01 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 e6 00 19 00 16 00 4a 01 16 00 ea 00 16 00 ea 00 19 00 00 00 ec 00 18 00 fe 00 19 00 16 00 26 01 16 00 02 01 16 00 02 01 19 00 00 00 cd 00 18 00 16 01 19 00 16 00 20 01 16 00 1a 01 16 00 1a 01 4b b5 03 ff fe 00 4b bc 03 ff fe 00 19 00 00 00 cd 00 18 00 3a 01 19 00 16 00 44 01 16 00 3e 01 16 00 3e 01 4b ba 03 ff fe 00 4b bb 03 ff fe 00 19 00 00 00 ec 00 18 00 5e 01 19 00 16 00 86 01 16 00 62 01 16 00 62 01 19 00 00 00 cd 00 18 00 76 01 19 00 16 00 80 01 16 00 7a 01 16 00 7a 01 4b b6 03 ff fe 00 4b b9 03 ff fe 00 19 00 00 00 cd 00 18 00 9a 01 19 00 16 00 a4 01 16 00 9e 01 16 00 9e 01 4b b7 03 ff fe 00 4b b8 03 ff fe 00 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 ca 01 19 00 16 00 2e 02 16 00 ce 01 16 00 ce 01 19 00 00 00 ec 00 18 00 e2 01 19 00 16 00 0a 02 16 00 e6 01 16 00 e6 01 19 00 00 00 cd 00 18 00 fa 01 19 00 16 00 04 02 16 00 fe 01 16 00 fe 01 4b b4 03 ff fe 00 4b cb 03 ff fe 00 19 00 00 00 cd 00 18 00 1e 02 19 00 16 00 22 02 16 00 22 02 16 00 28 02 4b ca 03 ff fe 00 4b c9 03 ff fe 00 19 00 00 00 ec 00 18 00 42 02 19 00 16 00 6a 02 16 00 46 02 16 00 46 02 19 00 00 00 cd 00 18 00 5a 02 19 00 16 00 64 02 16 00 5e 02 16 00 5e 02 4b c5 03 ff fe 00 4b c8 03 ff fe 00 19 00 00 00 cd 00 18 00 7e 02 19 00 16 00 88 02 16 00 82 02 16 00 82 02 4b c6 03 ff fe 00 4b c7 03 ff fe 00 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 ae 02 19 00 16 00 12 03 16 00 b2 02 16 00 b2 02 19 00 00 00 ec 00 18 00 c6 02 19 00 16 00 ee 02 16 00 ca 02 16 00 ca 02 19 00 00 00 cd 00 18 00 de 02 19 00 16 00 e8 02 16 00 e2 02 16 00 e2 02 4b bd 03 ff fe 00 4b c4 03 ff fe 00 19 00 00 00 cd 00 18 00 02 03 19 00 16 00 0c 03 16 00 06 03 16 00 06 03 4b c2 03 ff fe 00 4b c3 03 ff fe 00 19 00 00 00 ec 00 18 00 26 03 19 00 16 00 4e 03 16 00 2a 03 16 00 2a 03 19 00 00 00 cd 00 18 00 3e 03 19 00 16 00 48 03 16 00 42 03 16 00 42 03 4b be 03 ff fe 00 4b c1 03 ff fe 00 19 00 00 00 cd 00 18 00 62 03 19 00 16 00 6c 03 16 00 66 03 16 00 66 03 4b bf 03 ff fe 00 4b c0 03 ff fe 00 4c 00 fd 05 19 00 09 00 19 03 18 00 86 03 19 00 4c 00 05 fd 19 00 00 00 41 00 40 00 42 00 40 00 43 00 40 00 44 00 18 00 a2 03 19 00 16 00 c0 07 19 00 00 00 e7 00 81 00 41 00 88 00 19 00 18 00 ae 04 19 00 1b 05 1a 00 81 75 82 a2 82 e7 82 c1 82 b5 82 e1 82 a2 81 42 81 76 0d 00 00 00 1a 00 81 75 82 e2 82 9f 81 5b 81 41 01 06 05 00 01 01 82 b3 82 f1 81 42 0d 00 81 40 8c a9 82 c4 82 e6 81 41 82 da 82 ad 82 cc 82 a8 93 58 81 42 0d 00 81 40 83 41 83 43 83 65 83 80 82 aa 82 f1 82 aa 82 f1 94 84 82 c1 82 bf 82 e1 82 a4 82 e6 81 5b 81 42 81 76 0d 00 00 00 1a 00 81 75 95 69 82 bc 82 eb 82 a6 82 cd 81 41 82 dc 82 a0 82 bb 82 cc 82 a4 82 bf 89 bd 82 c6 82 a9 0d 00 81 40 82 b7 82 e9 82 e6 81 42 8e e8 93 60 82 c1 82 c4 82 ad 82 ea 82 e9 83 66 83 57 83 82 83 93 82 f0 0d 00 81 40 8c c4 82 f1 82 c5 82 ab 82 c4 82 d9 82 b5 82 a2 82 c8 81 5b 81 42 81 76 0d 00 00 00 1c 00 41 00 1f 00 1a 01 19 00 0a 00 1a 03 18 00 ac 04 19 00 57 00 12 01 57 00 14 01 fe 00 19 00 00 00 f5 00 81 00 42 00 88 00 19 01 18 00 ac 05 19 00 1b 05 1a 00 81 75 82 e6 82 a4 82 b1 82 bb 83 73 83 88 81 42 82 da 82 ad 81 41 83 41 83 43 83 65 83 80 82 cc 0d 00 81 40 94 84 82 e8 94 83 82 a2 82 f0 82 b7 82 e9 82 b1 82 c6 82 c9 82 b5 82 bd 83 73 83 88 81 42 0d 00 81 40 82 b1 82 ea 82 a9 82 e7 82 e6 82 eb 82 b5 82 ad 83 73 83 88 81 49 81 76 0d 00 00 00 1a 00 81 75 82 b5 82 c8 82 bc 82 eb 82 a6 82 cd 82 dc 82 be 8f ad 82 c8 82 a2 82 af 82 c7 81 63 0d 00 81 40 92 4e 82 a9 8e e8 93 60 82 c1 82 c4 82 ad 82 ea 82 e9 83 66 83 57 83 82 83 93 82 aa 0d 00 81 40 82 a2 82 ea 82 ce 82 c7 82 a4 82 c9 82 a9 82 c8 82 e9 82 a9 82 e0 83 73 83 88 81 42 81 76 0d 00 00 00 1c 00 42 00 1f 00 1a 01 19 00 0a 00 1a 03 18 00 aa 05 19 00 57 00 12 01 57 00 14 01 fe 00 19 00 00 00 e9 00 81 00 43 00 88 00 19 02 18 00 b4 06 19 00 1b 05 1a 00 81 75 82 a2 82 e7 82 c1 82 b5 82 e1 82 a2 81 42 82 b9 82 f1 82 a6 82 c2 82 c8 82 aa 82 e7 81 41 0d 00 81 40 }
+}

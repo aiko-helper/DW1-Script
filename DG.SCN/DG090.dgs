@@ -1,0 +1,94 @@
+// DG090.SCN
+#include "functions.dgs"
+#pragma script index=90 start=0x3b800 end=0x3c000 headerU16=0x14 sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  if (trigger(322)) {
+    setObjectVisibility(7, 1);
+  }
+  callSubroutine(49);
+  if (trigger(323)) {
+    callSubroutine(50);
+  }
+  return;
+}
+
+section(51) {
+  if (trigger(323)) {
+    warp(to: Map.ICSA02, spawn: 0, trigger: 255);
+    return;
+  }
+  if (!trigger(324)) {
+    rotate(entity: Entity.Player, to: 2048);
+    delay(5);
+    anim(Entity.Player, Animation(23), wait: 5);
+    speak(Entity.Player, "「うわー生きてるみたいだな…」<NEWLINE>");
+    speak(Entity.Player, "「っていうか、こういうのってよくあるよな。<NEWLINE> 俺達がなにかすれば動き出すってやつね。<NEWLINE> えへへ、待ってろよ!」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+    setTrigger(Trigger(324));
+    return;
+  }
+  return;
+}
+
+section(52) {
+  if (trigger(322) && trigger(220)) {
+    goto section_5;
+  }
+  if (!trigger(323) && trigger(324)) {
+    move(entity: Entity.Partner, to: (50, 1050), sprint: 0);
+    waitForEntity(Entity.Partner);
+    delay(10);
+    look(entity: Entity.Player, at: Entity.Partner);
+    speak(Entity.Player, "「何だ?<ORANGE><DIGIMON><WHITE>、何か見つけたか?」<NEWLINE>");
+    callSubroutine(50);
+    delay(20);
+    speak(Entity.Player, "「おっ、すごいじゃん<ORANGE><DIGIMON><WHITE>!」<NEWLINE>");
+    setTrigger(Trigger(323));
+    return;
+  }
+  return;
+}
+
+section(5) {
+  if (trigger(220)) {
+    return;
+  }
+  {
+    rotate(entity: Entity.Player, to: 2048);
+    delay(20);
+    rotate(entity: Entity.Player, to: 1536);
+    delay(10);
+    rotate(entity: Entity.Player, to: 2560);
+    delay(20);
+    speak(Entity.Player, "「あれ?そういえば像が…」<NEWLINE>");
+    rotate(entity: Entity.Player, to: 2048);
+    anim(Entity.Player, Animation(23), wait: 20);
+    panTo(x: -831, y: 2975, slowdown: 20);
+    speak(Entity.Player, "「あっ!」<NEWLINE>");
+    loadAndSetDigimon(Digimon.NPCAngemon, Entity(0), 0);
+    playSound(8, 10);
+    anim(Entity(5), Animation(28), wait: 60);
+    playAnimation(Entity(5), Animation(0));
+    speak(Entity(5), "「ふう……さて。」<NEWLINE>");
+    speak(Entity.Player, "「生き返ったな。やったぜ!」<NEWLINE>");
+    speak(Entity(5), "「我はエンジェモン。汝を守護する天使なり。<NEWLINE> 我がつとめを果たすべくここに覚醒せり。」<NEWLINE>");
+    speak(Entity.Player, "「(うわ、何言ってんのかわからん。)」<NEWLINE>");
+    speak(Entity(5), "「我知るは天の理。地の導きに従いて<NEWLINE> 我がたましいをささげん。」<NEWLINE>");
+    speak(Entity.Player, "「(わけわからん……。)<NEWLINE> 結局、街に来てくれるの…かな?」<NEWLINE>");
+    speak(Entity(5), "「汝の使命、我がつとめのままに。参る。」<NEWLINE>");
+    speak(Entity.Player, "「うーん。悪いんだけど俺に分かる言葉で<NEWLINE> しゃべってくんない?」<NEWLINE>");
+    speak(Entity(5), "「……私は街へ行きますのであなたも<NEWLINE> がんばってください……。<NEWLINE> これでよいですか?」<NEWLINE>");
+    speak(Entity.Player, "「うん、それなら分かる。じゃ、ヨロシク。」<NEWLINE>");
+    break;
+  }
+  approach(who: Entity(5), x: 47, y: -2650, tries: 3, wait: 20);
+  playSound(8, 11);
+  speak(Entity.System, "エンジェモンが街に参加した!!!<NEWLINE>");
+  setTrigger(Trigger(220));
+  addPStat(PStat(1), 2);
+  followEntity(Entity.Player, speed: 10);
+  return;
+  garbage { 14 00 fe 00 14 00 33 00 36 00 34 00 0c 01 05 00 a0 01 ff ff 19 00 00 00 42 01 18 00 24 00 19 00 57 00 07 01 64 31 19 00 00 00 43 01 18 00 34 00 19 00 64 32 fe 00 19 00 00 00 43 01 18 00 48 00 19 00 4b 62 00 ff fe 00 19 00 01 00 44 01 18 00 0a 01 19 00 4d fd 00 08 67 00 05 00 56 00 fd 17 67 00 05 00 1b fd 1a 00 81 75 82 a4 82 ed 81 5b 90 b6 82 ab 82 c4 82 e9 82 dd 82 bd 82 a2 82 be 82 c8 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 c1 82 c4 82 a2 82 a4 82 a9 81 41 82 b1 82 a4 82 a2 82 a4 82 cc 82 c1 82 c4 82 e6 82 ad 82 a0 82 e9 82 e6 82 c8 81 42 0d 00 81 40 89 b4 92 42 82 aa 82 c8 82 c9 82 a9 82 b7 82 ea 82 ce 93 ae 82 ab 8f 6f 82 b7 82 c1 82 c4 82 e2 82 c2 82 cb 81 42 0d 00 81 40 82 a6 82 d6 82 d6 81 41 91 d2 82 c1 82 c4 82 eb 82 e6 81 49 81 76 0d 00 00 00 56 00 fd 00 1c 00 44 01 fe 00 fe 00 19 00 00 00 42 01 80 00 dc 00 18 00 20 01 19 00 16 00 a0 01 19 00 01 00 43 01 80 00 44 01 18 00 9e 01 19 00 4e fc 32 00 1a 04 00 00 4a fc 67 00 0a 00 4c 00 fd fc 1b fd 1a 00 81 75 89 bd 82 be 81 48 01 0a 06 00 01 01 81 41 89 bd 82 a9 8c a9 82 c2 82 af 82 bd 82 a9 81 48 81 76 0d 00 00 00 64 32 67 00 14 00 1b fd 1a 00 81 75 82 a8 82 c1 81 41 82 b7 82 b2 82 a2 82 b6 82 e1 82 f1 01 0a 06 00 01 01 81 49 81 76 0d 00 00 00 1c 00 43 01 fe 00 fe 00 19 00 00 00 dc 00 18 00 ae 01 19 00 fe 00 4d fd 00 08 67 00 14 00 4d fd 00 06 67 00 0a 00 4d fd 00 0a 67 00 14 00 1b fd 1a 00 81 75 82 a0 82 ea 81 48 82 bb 82 a4 82 a2 82 a6 82 ce 91 9c 82 aa 81 63 81 76 0d 00 00 00 4d fd 00 08 56 00 fd 17 67 00 14 00 4f 14 c1 fc 9f 0b 4a c8 1b fd 1a 00 81 75 82 a0 82 c1 81 49 81 76 0d 00 00 00 46 8e 47 8e 00 00 5a 00 08 0a 56 00 05 1c 67 00 3c 00 56 00 05 00 1b 05 1a 00 81 75 82 d3 82 a4 81 63 81 63 82 b3 82 c4 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 90 b6 82 ab 95 d4 82 c1 82 bd 82 c8 81 42 82 e2 82 c1 82 bd 82 ba 81 49 81 76 0d 00 00 00 1b 05 1a 00 81 75 89 e4 82 cd 83 47 83 93 83 57 83 46 83 82 83 93 81 42 93 f0 82 f0 8e e7 8c ec 82 b7 82 e9 93 56 8e 67 82 c8 82 e8 81 42 0d 00 81 40 89 e4 82 aa 82 c2 82 c6 82 df 82 f0 89 ca 82 bd 82 b7 82 d7 82 ad 82 b1 82 b1 82 c9 8a 6f 90 c1 82 b9 82 e8 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 81 69 82 a4 82 ed 81 41 89 bd 8c be 82 c1 82 c4 82 f1 82 cc 82 a9 82 ed 82 a9 82 e7 82 f1 81 42 81 6a 81 76 0d 00 00 00 1b 05 1a 00 81 75 89 e4 92 6d 82 e9 82 cd 93 56 82 cc 97 9d 81 42 92 6e 82 cc 93 b1 82 ab }
+}

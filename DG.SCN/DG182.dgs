@@ -1,0 +1,250 @@
+// DG182.SCN
+#include "functions.dgs"
+#pragma script index=182 start=0x88000 end=0x89000 headerU16=0xc sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(6) {
+  if (!trigger(93)) {
+    setTrigger(Trigger(93));
+    speak(Entity(6), "「<LIGHTBLUE><PLAYER><WHITE>、傷がいえたので、私も<NEWLINE> 働くことにしました。あなた方には本当に<NEWLINE> お世話になりました。」<NEWLINE>");
+    showTextbox("「私は生物の運の力を見通す力を持って<NEWLINE> います。これを商売にするつもりです。」<NEWLINE>");
+    showTextbox("「あなたも気になったならこの店を<NEWLINE> 訪ねてみてください。あなたからお代は<NEWLINE> いただきませんから。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(6), "「おや、自分の運が気になりますか。<NEWLINE> それでは占いましょう。」<NEWLINE>");
+  showTextbox("「ふむふむ、うーむ…やっ、はっ!」<NEWLINE>");
+  delay(20);
+  showTextbox("「……………。えー、まず……」<NEWLINE>");
+  roll(pstat: PStat.RollScratch, max: 11);
+  {
+    if (pstat[110] <= 0) {
+      break;
+    }
+    if (pstat[110] <= 3) {
+      goto L1;
+    }
+    if (pstat[110] <= 8) {
+      goto L2;
+    }
+    if (pstat[110] <= 10) {
+      goto L3;
+    }
+    if (pstat[110] > 11) break;
+    goto L4;
+  }
+  speak(Entity(6), "「全体運は絶好調です。」<NEWLINE>");
+  roll(pstat: PStat.RollScratch, max: 2);
+  if (pstat[110] <= 0) {
+    goto L5;
+  }
+  {
+    if (pstat[110] <= 1) {
+    } else {
+      if (pstat[110] <= 2) {
+        break;
+
+L1:
+      }
+      speak(Entity(6), "「全体運は良好です。」<NEWLINE>");
+      roll(pstat: PStat.RollScratch, max: 3);
+      if (pstat[110] <= 0) {
+        goto L6;
+      }
+      if (pstat[110] <= 1) {
+        goto L7;
+      }
+      if (pstat[110] <= 2) {
+        goto L8;
+      }
+      if (pstat[110] <= 3) {
+        goto L9;
+
+L2:
+      }
+      speak(Entity(6), "「全体運はまあまあです。」<NEWLINE>");
+      roll(pstat: PStat.RollScratch, max: 3);
+      if (pstat[110] <= 0) {
+        goto L10;
+      }
+      if (pstat[110] <= 1) {
+        goto L11;
+      }
+      if (pstat[110] <= 2) {
+        goto L12;
+      }
+      if (pstat[110] <= 3) {
+        goto L13;
+
+L3:
+      }
+      speak(Entity(6), "「全体運はもうひとつです。」<NEWLINE>");
+      roll(pstat: PStat.RollScratch, max: 3);
+      if (pstat[110] <= 0) {
+        goto L14;
+      }
+      if (pstat[110] <= 1) {
+        goto L15;
+      }
+      if (pstat[110] <= 2) {
+        goto L16;
+      }
+      if (pstat[110] <= 3) {
+        goto L17;
+
+L4:
+      }
+      speak(Entity(6), "「全体運は良くありません。」<NEWLINE>");
+      roll(pstat: PStat.RollScratch, max: 2);
+      if (pstat[110] <= 0) {
+        goto L18;
+      }
+      if (pstat[110] <= 1) {
+        goto L19;
+      }
+      if (pstat[110] <= 2) {
+        goto L20;
+
+L5:
+      }
+      speak(Entity(6), "「何をやってもうまくいくでしょう。」<NEWLINE>");
+      goto L21;
+    }
+    speak(Entity(6), "「素晴らしいチャンスが訪れます。」<NEWLINE>");
+    goto L21;
+  }
+  speak(Entity(6), "「記念になる出来事があるかも。」<NEWLINE>");
+  goto L21;
+
+L6:
+  speak(Entity(6), "「意外な見つかり物があるかも。」<NEWLINE>");
+  goto L21;
+
+L7:
+  speak(Entity(6), "「疑問が解決するでしょう。」<NEWLINE>");
+  goto L21;
+
+L8:
+  speak(Entity(6), "「サイフの中身が増えるでしょう。」<NEWLINE>");
+  goto L21;
+
+L9:
+  speak(Entity(6), "「友達から良いしらせがあるかも。」<NEWLINE>");
+  goto L21;
+
+L10:
+  speak(Entity(6), "「気分を変えてみると良いでしょう。」<NEWLINE>");
+  goto L21;
+
+L11:
+  speak(Entity(6), "「いつもとちがう所へ行ってみましょう」<NEWLINE>");
+  goto L21;
+
+L12:
+  speak(Entity(6), "「面白い夢を見るかもしれません。」<NEWLINE>");
+  goto L21;
+
+L13:
+  speak(Entity(6), "「ムダづかいはひかえましょう。」<NEWLINE>");
+  goto L21;
+
+L14:
+  speak(Entity(6), "「秘密がばれてしまうかもしれません。」<NEWLINE>");
+  goto L21;
+
+L15:
+  speak(Entity(6), "「早寝したほうがよいでしょう。」<NEWLINE>");
+  goto L21;
+
+L16:
+  speak(Entity(6), "「忘れ物に注意しましょう。」<NEWLINE>");
+  goto L21;
+
+L17:
+  speak(Entity(6), "「友達にやつあたりされるかも。」<NEWLINE>");
+  goto L21;
+
+L18:
+  speak(Entity(6), "「災難が重なるかも…」<NEWLINE>");
+  goto L21;
+
+L19:
+  speak(Entity(6), "「嫌いな人に出会うかも。」<NEWLINE>");
+  goto L21;
+
+L20:
+  speak(Entity(6), "「大きなそんをするかも…」<NEWLINE>");
+  goto L21;
+
+L21:
+  roll(pstat: PStat.RollScratch, max: 9);
+  {
+    if (pstat[110] <= 0) {
+      speak(Entity(6), "「ラッキーカラーは赤です。」<NEWLINE>");
+      break;
+    }
+    if (pstat[110] <= 1) {
+      speak(Entity(6), "「ラッキーカラーは白です。」<NEWLINE>");
+      break;
+    }
+    if (pstat[110] <= 2) {
+      speak(Entity(6), "「ラッキーカラーは青です。」<NEWLINE>");
+      break;
+    }
+    if (pstat[110] <= 3) {
+      speak(Entity(6), "「ラッキーカラーは黒です。」<NEWLINE>");
+      break;
+    }
+    if (pstat[110] <= 4) {
+      speak(Entity(6), "「ラッキーカラーは緑です。」<NEWLINE>");
+      break;
+    }
+    if (pstat[110] <= 5) {
+      speak(Entity(6), "「ラッキーカラーはグレーです。」<NEWLINE>");
+      break;
+    }
+    if (pstat[110] <= 6) {
+      speak(Entity(6), "「ラッキーカラーは茶色です。」<NEWLINE>");
+      break;
+    }
+    if (pstat[110] <= 7) {
+      speak(Entity(6), "「ラッキーカラーは黄色です。」<NEWLINE>");
+      break;
+    }
+    if (pstat[110] <= 8) {
+      speak(Entity(6), "「ラッキーカラーはむらさきです。」<NEWLINE>");
+      break;
+    }
+    if (pstat[110] > 9) break;
+    speak(Entity(6), "「ラッキーカラーは金色です。」<NEWLINE>");
+    break;
+  }
+  speak(Entity(6), "「最後に、<ORANGE><DIGIMON><WHITE>との相性ですが…」<NEWLINE>");
+  roll(pstat: PStat.RollScratch, max: 4);
+  {
+    if (pstat[110] <= 0) {
+      speak(Entity(6), "「ばつぐんに良い相性です。」<NEWLINE>");
+      break;
+    }
+    if (pstat[110] <= 1) {
+      speak(Entity(6), "「なかなか良いようです。」<NEWLINE>");
+      break;
+    }
+    if (pstat[110] <= 2) {
+      speak(Entity(6), "「どちらかといえば良いほうです。」<NEWLINE>");
+      break;
+    }
+    if (pstat[110] <= 3) {
+      speak(Entity(6), "「まあまあです。」<NEWLINE>");
+      break;
+    }
+    if (pstat[110] > 4) break;
+    speak(Entity(6), "「悪くはありません。」<NEWLINE>");
+    break;
+  }
+  return;
+  garbage { 0c 00 fe 00 0c 00 06 00 0e 00 ff ff fe 00 19 00 01 00 5d 00 18 00 46 01 19 00 1c 00 5d 00 1b 06 1a 00 81 75 01 06 05 00 01 01 81 41 8f 9d 82 aa 82 a2 82 a6 82 bd 82 cc 82 c5 81 41 8e 84 82 e0 0d 00 81 40 93 ad 82 ad 82 b1 82 c6 82 c9 82 b5 82 dc 82 b5 82 bd 81 42 82 a0 82 c8 82 bd 95 fb 82 c9 82 cd 96 7b 93 96 82 c9 0d 00 81 40 82 a8 90 a2 98 62 82 c9 82 c8 82 e8 82 dc 82 b5 82 bd 81 42 81 76 0d 00 00 00 1a 00 81 75 8e 84 82 cd 90 b6 95 a8 82 cc 89 5e 82 cc 97 cd 82 f0 8c a9 92 ca 82 b7 97 cd 82 f0 8e 9d 82 c1 82 c4 0d 00 81 40 82 a2 82 dc 82 b7 81 42 82 b1 82 ea 82 f0 8f a4 94 84 82 c9 82 b7 82 e9 82 c2 82 e0 82 e8 82 c5 82 b7 81 42 81 76 0d 00 00 00 1a 00 81 75 82 a0 82 c8 82 bd 82 e0 8b 43 82 c9 82 c8 82 c1 82 bd 82 c8 82 e7 82 b1 82 cc 93 58 82 f0 0d 00 81 40 96 4b 82 cb 82 c4 82 dd 82 c4 82 ad 82 be 82 b3 82 a2 81 42 82 a0 82 c8 82 bd 82 a9 82 e7 82 a8 91 e3 82 cd 0d 00 81 40 82 a2 82 bd 82 be 82 ab 82 dc 82 b9 82 f1 82 a9 82 e7 81 42 81 76 0d 00 00 00 fe 00 1b 06 1a 00 81 75 82 a8 82 e2 81 41 8e a9 95 aa 82 cc 89 5e 82 aa 8b 43 82 c9 82 c8 82 e8 82 dc 82 b7 82 a9 81 42 0d 00 81 40 82 bb 82 ea 82 c5 82 cd 90 e8 82 a2 82 dc 82 b5 82 e5 82 a4 81 42 81 76 0d 00 00 00 1a 00 81 75 82 d3 82 de 82 d3 82 de 81 41 82 a4 81 5b 82 de 81 63 82 e2 82 c1 81 41 82 cd 82 c1 81 49 81 76 0d 00 00 00 67 00 14 00 1a 00 81 75 81 63 81 63 81 63 81 63 81 63 81 42 82 a6 81 5b 81 41 82 dc 82 b8 81 63 81 63 81 76 0d 00 00 00 24 00 6e 0b 19 00 0b 00 6e 00 18 00 f0 01 19 00 16 00 30 02 19 00 0b 00 6e 03 18 00 00 02 19 00 16 00 84 02 19 00 0b 00 6e 08 18 00 10 02 19 00 16 00 e6 02 19 00 0b 00 6e 0a 18 00 20 02 19 00 16 00 4c 03 19 00 0b 00 6e 0b 18 00 30 02 19 00 16 00 b4 03 1b 06 1a 00 81 75 91 53 91 cc 89 5e 82 cd 90 e2 8d 44 92 b2 82 c5 82 b7 81 42 81 76 0d 00 00 00 24 00 6e 02 19 00 0b 00 6e 00 18 00 64 02 19 00 16 00 0c 04 19 00 0b 00 6e 01 18 00 74 02 19 00 16 00 3c 04 19 00 0b 00 6e 02 18 00 84 02 19 00 16 00 6a 04 1b 06 1a 00 81 75 91 53 91 cc 89 5e 82 cd 97 c7 8d 44 82 c5 82 b7 81 42 81 76 0d 00 00 00 24 00 6e 03 19 00 0b 00 6e 00 18 00 b6 02 19 00 16 00 96 04 19 00 0b 00 6e 01 18 00 c6 02 19 00 16 00 c2 04 19 00 0b 00 6e 02 18 00 d6 02 19 00 16 00 ea 04 19 00 0b 00 6e 03 18 00 e6 02 19 00 16 00 18 05 1b 06 1a 00 81 75 91 53 91 cc 89 5e 82 cd 82 dc 82 a0 82 dc 82 a0 82 c5 82 b7 81 42 81 76 0d 00 00 00 24 00 6e 03 19 00 0b 00 6e 00 18 00 1c 03 19 00 16 00 46 05 19 00 0b 00 6e 01 18 00 2c 03 19 00 16 00 76 05 19 00 0b 00 6e 02 18 00 3c 03 19 00 16 00 a8 05 19 00 0b 00 6e 03 18 00 4c 03 19 00 16 00 d6 05 1b 06 1a 00 81 75 91 53 91 cc 89 5e 82 cd 82 e0 82 a4 82 d0 82 c6 82 c2 82 c5 82 b7 81 42 81 76 0d 00 00 00 24 00 6e 03 19 00 0b 00 6e 00 18 00 84 03 19 00 16 00 02 06 19 00 0b 00 6e 01 18 00 94 03 19 00 16 00 34 06 19 00 0b 00 6e 02 18 00 a4 03 19 00 16 00 60 06 19 00 0b 00 6e 03 18 00 b4 03 19 00 16 00 88 06 1b 06 1a 00 81 75 91 53 91 cc 89 5e 82 cd 97 c7 82 ad 82 a0 82 e8 82 dc 82 b9 82 f1 81 42 81 76 0d 00 00 00 24 00 6e 02 19 00 0b 00 6e 00 18 00 ec 03 19 00 16 00 b4 06 19 00 0b 00 6e 01 18 00 fc 03 19 00 16 00 d6 06 19 00 0b 00 6e 02 18 00 0c 04 19 00 16 00 fc 06 1b 06 1a 00 81 75 89 bd 82 f0 82 e2 82 c1 82 c4 82 e0 82 a4 82 dc 82 ad 82 a2 82 ad 82 c5 82 b5 82 e5 82 a4 81 42 81 76 0d 00 00 00 16 00 22 07 1b 06 1a 00 81 75 91 66 90 b0 82 e7 82 b5 82 a2 83 60 83 83 83 93 83 58 82 aa 96 4b 82 ea 82 dc 82 b7 81 42 81 76 0d 00 00 00 16 00 22 07 1b 06 1a 00 81 75 8b 4c 94 4f 82 c9 82 c8 82 e9 8f 6f 97 88 8e 96 82 aa 82 a0 82 e9 82 a9 82 e0 81 42 81 76 0d 00 00 00 16 00 22 07 1b 06 1a 00 81 75 88 d3 8a 4f 82 c8 8c a9 82 c2 82 a9 82 e8 95 a8 82 aa 82 a0 82 e9 82 a9 82 e0 81 42 81 76 0d 00 00 00 16 00 22 07 1b 06 1a 00 81 75 8b 5e 96 e2 82 aa 89 f0 8c 88 82 b7 82 e9 82 c5 82 b5 82 e5 82 a4 81 42 81 76 0d 00 00 00 16 00 22 07 1b 06 1a 00 81 75 83 54 83 43 83 74 82 cc 92 86 90 67 82 aa 91 9d 82 a6 82 e9 82 c5 82 b5 82 e5 82 a4 81 42 81 76 0d 00 00 00 16 00 22 07 1b 06 1a 00 81 75 97 46 92 42 82 a9 82 e7 97 c7 82 a2 82 b5 82 e7 82 b9 82 aa 82 a0 82 e9 82 a9 82 e0 81 42 81 76 0d 00 00 00 16 00 22 07 1b 06 1a 00 81 75 8b 43 95 aa 82 f0 95 cf 82 a6 82 c4 82 dd 82 e9 82 c6 97 c7 82 a2 82 c5 82 b5 82 e5 82 a4 81 42 81 76 0d 00 00 00 16 00 22 07 1b 06 1a 00 81 75 82 a2 82 c2 82 e0 82 c6 82 bf 82 aa 82 a4 8f 8a 82 d6 8d 73 82 c1 82 c4 82 dd 82 dc }
+}

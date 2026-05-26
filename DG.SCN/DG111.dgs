@@ -1,0 +1,157 @@
+// DG111.SCN
+#include "functions.dgs"
+#pragma script index=111 start=0x4a000 end=0x4b000 headerU16=0x10 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 18, item: Item.Digimushroom, x: 56, y: 34);
+  spawnItemChance(max: 99, chance: 12, item: Item.Digimushroom, x: 56, y: 80);
+  spawnItemChance(max: 99, chance: 3, item: Item.Digipine, x: 35, y: 64);
+  spawnItemChance(max: 99, chance: 0, item: Item.CalmBerry, x: 67, y: 32);
+  if (trigger(147)) {
+    move(entity: Entity(5), to: (-2017, 1378), animDuration: 3);
+    waitForEntity(Entity(20));
+    rotate(entity: Entity(5), to: 0);
+    delay(5);
+  }
+  return;
+}
+
+section(51) {
+  {
+    if (!trigger(147)) {
+      setTrigger(Trigger(147));
+      break;
+      break;
+    }
+    return;
+  }
+  move(entity: Entity.Player, to: (-1606, 166), sprint: 1, withCamera: true);
+  move(entity: Entity.Partner, to: (-1407, 465), sprint: 1);
+  waitForEntity(Entity.Partner);
+  waitForEntity(Entity.Player);
+  look(entity: Entity.Player, at: Entity(5));
+  look(entity: Entity(5), at: Entity.Player);
+  look(entity: Entity.Partner, at: Entity(5));
+  playSound(8, 18);
+  speak(Entity(5), "「ほっほー。よく来なすったな少年よ。」<NEWLINE>");
+  anim(Entity.Player, Animation(20), wait: 15);
+  if (trigger(309)) {
+    speak(Entity.Player, "「ジュレイモンだな。」<NEWLINE>");
+  } else {
+    speak(Entity.Player, "「誰だ?」<NEWLINE>");
+  }
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(5), "「この老いぼれに何の用事がおありかな?」<NEWLINE>");
+  if (trigger(309)) {
+    speak(Entity.Player, "「まずは霧を晴らしてくれ。」<NEWLINE>");
+  } else {
+    speak(Entity.Player, "「霧でよく見えないんだ。<NEWLINE> まずこれを何とかできないかな?」<NEWLINE>");
+  }
+  playSound(8, 18);
+  speak(Entity(5), "「ほっほー。そうくるか。やはりそうか。」<NEWLINE>");
+  anim(Entity.Player, Animation(19), wait: 15);
+  speak(Entity.Player, "「…できないのか?」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(5), "「まずはわしの話を聞くのじゃ。さて…<NEWLINE> 何から話そうかのう。」<NEWLINE>");
+  speak(Entity.Player, "「この島の異変について、知ってるなら<NEWLINE> 教えて欲しい。」<NEWLINE>");
+  speak(Entity(5), "「ふむ。そうじゃそうじゃ。異変じゃな。」<NEWLINE>");
+
+L1:
+  playSound(8, 18);
+  speak(Entity(5), "「この島がおかしくなったのは80年ほど前<NEWLINE> のこと。地形が変化してからじゃった。」<NEWLINE>");
+  showTextbox("「フリーズランド、闇貴族の館、グレート<NEWLINE> キャニオンなど、島の北東の地形は今より<NEWLINE> 80年前ごろに急に出現したのじゃ。」<NEWLINE>");
+  showTextbox("「それ以後、島のデジモン達はだんだん自分の<NEWLINE> 住みやすい地方へと移り住んで行った。<NEWLINE> 種族が散っていったのじゃ。」<NEWLINE>");
+  showTextbox("「そして、昔はひとつの言葉で話し合っていた<NEWLINE> デジモンたちは、自分達の種族の言葉を<NEWLINE> 使うようになった。」<NEWLINE>");
+  playSound(8, 18);
+  showTextbox("「街で使っていた言葉を忘れてな…」<NEWLINE>");
+  showTextbox("「結果、多くの種族が共存していた<NEWLINE> はじまりの街も、デジモンの数が激減し<NEWLINE> さびれていった。」<NEWLINE>");
+  showTextbox("「そして…恐ろしいことにデジモンたちは<NEWLINE> 記憶を失い始めた!自分の過去、島の過去、<NEWLINE> 理性…。それは日ごとに進行していく。」<NEWLINE>");
+  showTextbox("「かくいうわしも、何か大切なこと…<NEWLINE> おぬしに伝えなくてはならないことが<NEWLINE> 思い出せぬ。」<NEWLINE>");
+  playSound(8, 18);
+  showTextbox("「しかしな、結局はひとつにつながるのじゃ。<NEWLINE> そうなるように仕向けた者がいる!<NEWLINE> 全てがつごうのいい状態になるように…」<NEWLINE>");
+  showTextbox("「いまにデジモン達は異変を異変と思わなく<NEWLINE> なってしまうだろうて。」<NEWLINE>");
+  showTextbox("「それを止めることができるのは、<NEWLINE> おぬし達とはじまりの街の団結力じゃ!」<NEWLINE>");
+  showTextbox("「街にデジモンを集めて奇跡をおこすのじゃ。<NEWLINE> 奇跡は必ず起きる。みなおぬし達に<NEWLINE> 期待しておるぞ!!!」<NEWLINE>");
+  showTextbox("「…と、熱くなってしまったわい。<NEWLINE> ふぅ…これでわしの話は全てじゃ…」<NEWLINE>");
+  if (!trigger(148)) {
+    setTrigger(Trigger(148));
+    playSound(8, 18);
+    speak(Entity(5), "「それでは霧を晴らすとしようかの。」<NEWLINE>");
+    callSubroutine(37);
+  } else {
+    return;
+  }
+  speak(Entity(5), "「霧によって森を守っておったのは、<NEWLINE> わしの話をおぬしに伝えるため…。<NEWLINE> それともうひとつ。」<NEWLINE>");
+  playSound(8, 18);
+  showTextbox("「この森には他にも過去のことを知る者たち<NEWLINE> がおるんじゃよ。<NEWLINE> 奥へ行くがよい。ほっほっほ…」<NEWLINE>");
+  anim(Entity(5), Animation(29), wait: 60);
+  return;
+}
+
+section(5) {
+  {
+    setTrigger(Trigger(44));
+    speak(Entity(5), "「ほっほ~。また、この老いぼれの話を<NEWLINE> 聞きたいのか?」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L2, L8);
+    showTextbox("「島の異変について。」<NEWLINE>「<ORANGE><DIGIMON><WHITE>をきたえてほしい。」<NEWLINE>「いや、何でもない。」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L1:
+    speak(Entity(5), "「ふむ、では話すとしよう。」<NEWLINE>");
+    goto section_51.L1;
+    return;
+
+L2:
+    speak(Entity(5), "「ほっほ、よいだろう…」<NEWLINE>");
+    callSubroutine(39);
+    setTextboxOrigin(-2017, 0, 1378);
+    speak(Entity.System, " <NEWLINE><GREEN>   トレーニング・森の教え<WHITE><NEWLINE>");
+    setSelection(L3, L4, L5);
+    showTextbox("トレーニング開始<NEWLINE>このトレーニングの説明<NEWLINE>やめる<NEWLINE>");
+    waitForSelectionChoice();
+    return;
+
+L3:
+    setDialogOwner(Entity.System);
+    setSelection(L6, L7, L5);
+    showTextbox("ノーマルトレーニング<NEWLINE>ボーナストライトレーニング<NEWLINE>やっぱりやめる<NEWLINE>");
+    waitForSelectionChoice();
+    return;
+
+L4:
+    speak(Entity.System, "ジュレイモンから様々な知識を授かります。<NEWLINE>かしこさが大きくアップします。<NEWLINE>");
+    setSelection(L4, L3, L5);
+    showTextbox("もう一度説明<NEWLINE>トレーニング開始<NEWLINE>やめる<NEWLINE>");
+    waitForSelectionChoice();
+    return;
+
+L5:
+    return;
+
+L6:
+    fadeOutHUD();
+    setPStat(PStat(254), 5);
+    setPStat(PStat(246), 0);
+    callDigimonSubroutine(214);
+    callSubroutine(7);
+    return;
+
+L7:
+    setTexboxMode(1, 0);
+    speak(Entity.System, "       <YELLOW>スロットゲーム<WHITE><NEWLINE> <NEWLINE>   <ORANGE><CIRCLE><WHITE><ボき><ヌン>で3つのスロットを止めて、<NEWLINE>    うまく絵をそろえてください。<NEWLINE>");
+    setPStat(PStat(254), 5);
+    setPStat(PStat(246), 1);
+    callDigimonSubroutine(214);
+    callSubroutine(7);
+    setTexboxMode(0, 0);
+    return;
+
+L8:
+  }
+  speak(Entity(5), "「ふぉっほほほ…」<NEWLINE>");
+  return;
+  garbage { 10 00 fe 00 10 00 33 00 88 00 05 00 26 09 ff ff 24 00 6e 63 19 00 0b 00 6e 12 18 00 26 00 19 00 74 2c 38 00 22 00 24 00 6e 63 19 00 0b 00 6e 0c 18 00 3c 00 19 00 74 2c 38 00 50 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 52 00 19 00 74 2f 23 00 40 00 24 00 6e 63 19 00 0b 00 6e 00 18 00 68 00 19 00 74 3d 43 00 20 00 19 00 00 00 93 00 18 00 86 00 19 00 6c 05 1f f8 62 05 03 00 4a 14 4d 05 00 00 67 00 05 00 fe 00 19 00 01 00 93 00 18 00 a0 00 19 00 1c 00 93 00 16 00 a2 00 16 00 a2 00 fe 00 52 fd ba f9 a6 00 01 00 4e fc 81 fa d1 01 01 00 4a fc 4a fd 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 5a 00 08 12 1b 05 1a 00 81 75 82 d9 82 c1 82 d9 81 5b 81 42 82 e6 82 ad 97 88 82 c8 82 b7 82 c1 82 bd 82 c8 8f ad 94 4e 82 e6 81 42 81 76 0d 00 00 00 56 00 fd 14 67 00 0f 00 19 00 00 00 35 01 18 00 2a 01 19 00 1b fd 1a 00 81 75 83 57 83 85 83 8c 83 43 83 82 83 93 82 be 82 c8 81 42 81 76 0d 00 00 00 16 00 3c 01 1b fd 1a 00 81 75 92 4e 82 be 81 48 81 76 0d 00 00 00 56 00 fd 00 1b 05 1a 00 81 75 82 b1 82 cc 98 56 82 a2 82 da 82 ea 82 c9 89 bd 82 cc 97 70 8e 96 82 aa 82 a8 82 a0 82 e8 82 a9 82 c8 81 48 81 76 0d 00 00 00 19 00 00 00 35 01 18 00 a4 01 19 00 1b fd 1a 00 81 75 82 dc 82 b8 82 cd 96 b6 82 f0 90 b0 82 e7 82 b5 82 c4 82 ad 82 ea 81 42 81 76 0d 00 00 00 16 00 e8 01 1b fd 1a 00 81 75 96 b6 82 c5 82 e6 82 ad 8c a9 82 a6 82 c8 82 a2 82 f1 82 be 81 42 0d 00 81 40 82 dc 82 b8 82 b1 82 ea 82 f0 89 bd 82 c6 82 a9 82 c5 82 ab 82 c8 82 a2 82 a9 82 c8 81 48 81 76 0d 00 00 00 5a 00 08 12 1b 05 1a 00 81 75 82 d9 82 c1 82 d9 81 5b 81 42 82 bb 82 a4 82 ad 82 e9 82 a9 81 42 82 e2 82 cd 82 e8 82 bb 82 a4 82 a9 81 42 81 76 0d 00 00 00 56 00 fd 13 67 00 0f 00 1b fd 1a 00 81 75 81 63 82 c5 82 ab 82 c8 82 a2 82 cc 82 a9 81 48 81 76 0d 00 00 00 56 00 fd 00 1b 05 1a 00 81 75 82 dc 82 b8 82 cd 82 ed 82 b5 82 cc 98 62 82 f0 95 b7 82 ad 82 cc 82 b6 82 e1 81 42 82 b3 82 c4 81 63 0d 00 81 40 89 bd 82 a9 82 e7 98 62 82 bb 82 a4 82 a9 82 cc 82 a4 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 b1 82 cc 93 87 82 cc 88 d9 95 cf 82 c9 82 c2 82 a2 82 c4 81 41 92 6d 82 c1 82 c4 82 e9 82 c8 82 e7 0d 00 81 40 8b b3 82 a6 82 c4 97 7e 82 b5 82 a2 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 d3 82 de 81 42 82 bb 82 a4 82 b6 82 e1 82 bb 82 a4 82 b6 82 e1 81 42 88 d9 95 cf 82 b6 82 e1 82 c8 81 42 81 76 0d 00 00 00 5a 00 08 12 1b 05 1a 00 81 75 82 b1 82 cc 93 87 82 aa 82 a8 82 a9 82 b5 82 ad 82 c8 82 c1 82 bd 82 cc 82 cd 82 57 82 4f 94 4e 82 d9 82 c7 91 4f 0d 00 81 40 82 cc 82 b1 82 c6 81 42 92 6e 8c 60 82 aa 95 cf 89 bb 82 b5 82 c4 82 a9 82 e7 82 b6 82 e1 82 c1 82 bd 81 42 81 76 0d 00 00 00 1a 00 81 75 83 74 83 8a 81 5b 83 59 83 89 83 93 83 68 81 41 88 c5 8b 4d 91 b0 82 cc 8a d9 81 41 83 4f 83 8c 81 5b 83 67 0d 00 81 40 83 4c 83 83 83 6a 83 49 83 93 82 c8 82 c7 81 41 93 87 82 cc 96 6b 93 8c 82 cc 92 6e 8c 60 82 cd 8d a1 82 e6 82 e8 0d 00 81 40 82 57 82 4f 94 4e 91 4f 82 b2 82 eb 82 c9 8b 7d 82 c9 8f 6f 8c bb 82 b5 82 bd 82 cc 82 b6 82 e1 81 42 81 76 }
+}

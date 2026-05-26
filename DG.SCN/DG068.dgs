@@ -1,0 +1,156 @@
+// DG068.SCN
+#include "functions.dgs"
+#pragma script index=68 start=0x2f000 end=0x2f800 headerU16=0x28 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 11, item: Item.Digimushroom, x: 68, y: 50);
+  spawnItemChance(max: 99, chance: 17, item: Item.Digimushroom, x: 46, y: 29);
+  spawnItemChance(max: 99, chance: 3, item: Item.SweetNut, x: 46, y: 73);
+  spawnItemChance(max: 99, chance: 0, item: Item.ChainMelon, x: 57, y: 83);
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「なるほど…そう言われればそうかもね。」<NEWLINE>");
+  finishEncounter(Trigger(282));
+}
+
+section(6) {
+  speak(Entity(6), "「君にこのうつくしさがわかるかな?」<NEWLINE>");
+  finishEncounter(Trigger(282));
+}
+
+section(7) {
+  speak(Entity(7), "「クククククェーーッ!」<NEWLINE>");
+  finishEncounter(Trigger(295));
+}
+
+section(8) {
+  speak(Entity(8), "「もうヤケクソ!」<NEWLINE>");
+  finishEncounter(Trigger(296));
+}
+
+section(9) {
+  speak(Entity(9), "「くそったれ! なんてね…」<NEWLINE>");
+  finishEncounter(Trigger(296));
+}
+
+section(10) {
+  speak(Entity(10), "「うーん…ハラいたい…」<NEWLINE>");
+  finishEncounter(Trigger(297));
+}
+
+section(81) {
+  {
+    {
+      speak(Entity.System, " <NEWLINE>       自動はん売機<NEWLINE>");
+      rotate(entity: Entity.Player, to: 1536);
+      speak(Entity.Player, "「当たりつきの機械だ!<NEWLINE> どうするかな。」<NEWLINE>");
+      setSelection(L1, L2, L3);
+      showTextbox("回復フロッピー        200<B><it><NEWLINE>けいたいトイレ        500<B><it><NEWLINE>買わない<NEWLINE>");
+      waitForSelectionChoice();
+      goto L3;
+      return;
+
+L1:
+      if (money >= 200) {
+        goto L4;
+        break;
+      }
+      speak(Entity.Player, "「お金が足りないか。」<NEWLINE>");
+      return;
+
+L2:
+    }
+    if (money >= 500) {
+      goto L5;
+      break;
+    }
+    speak(Entity.Player, "「お金が足りないか。」<NEWLINE>");
+    return;
+
+L3:
+  }
+  return;
+
+L4:
+  giveItem(Item.SmallRecovery, 1);
+  if (trigger(0)) {
+    speak(Entity.Player, "「いまアイテム持ちすぎだな。」<NEWLINE>");
+  }
+  return;
+  speak(Entity.System, "<LIGHTBLUE>回復フロッピー<WHITE>が出てきた!<NEWLINE>");
+  reduceMoney(200);
+  roll(pstat: PStat(102), max: 99);
+  {
+    if (pstat[102] < 9) {
+      break;
+    }
+    return;
+
+L5:
+    giveItem(Item.PortaPotty, 1);
+    if (trigger(0)) {
+      speak(Entity.Player, "「いまアイテム持ちすぎだな。」<NEWLINE>");
+    }
+    return;
+    speak(Entity.System, "<LIGHTBLUE>けいたいトイレ<WHITE>が出てきた!<NEWLINE>");
+    reduceMoney(500);
+    roll(pstat: PStat(102), max: 99);
+    if (pstat[102] < 9) {
+      break;
+    }
+    return;
+  }
+  speak(Entity.Player, "「やった、当たりだ!」<NEWLINE>");
+  speak(Entity.System, "<LIGHTBLUE>ダブルフロッピー<WHITE>が出てきた!<NEWLINE>");
+  giveItem(Item.DoubleFloppy, 1);
+  if (trigger(0)) {
+    setTrigger(Trigger(3));
+    speak(Entity.Player, "「いけね、アイテムのもちすぎだ。」<NEWLINE>");
+    callSubroutine(0);
+    callSubroutine(13);
+    giveItem(Item.SuperSpeedDisk, 1);
+  }
+  return;
+}
+
+section(82) {
+  {
+    speak(Entity.System, " <NEWLINE>       MPスタンド<NEWLINE>");
+    rotate(entity: Entity.Player, to: 2048);
+    speak(Entity.Player, "「MPを回復できる機械か。」<NEWLINE>");
+    setSelection(L1, L2, L3);
+    showTextbox("MP100回復        200<B><it><NEWLINE>MP1000回復      1800<B><it><NEWLINE>使用しない<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+    return;
+
+L1:
+    if (money >= 200) {
+      addStats(currentMP: 100);
+      reduceMoney(200);
+      speak(Entity.System, "MPが回復した!<NEWLINE>");
+    } else {
+      speak(Entity.Player, "「お金が足りないか。」<NEWLINE>");
+      return;
+    }
+    return;
+
+L2:
+    if (money >= 1800) {
+      addStats(currentMP: 1000);
+      reduceMoney(1800);
+      speak(Entity.System, "MPが回復した!<NEWLINE>");
+    } else {
+      speak(Entity.Player, "「お金が足りないか。」<NEWLINE>");
+      return;
+    }
+    return;
+
+L3:
+  }
+  return;
+  garbage { 28 00 fe 00 28 00 05 00 82 00 06 00 c0 00 07 00 fa 00 08 00 28 01 09 00 50 01 0a 00 82 01 51 00 b0 01 52 00 72 04 ff ff 24 00 6e 63 19 00 0b 00 6e 0b 18 00 3e 00 19 00 74 2c 44 00 32 00 24 00 6e 63 19 00 0b 00 6e 11 18 00 54 00 19 00 74 2c 2e 00 1d 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 6a 00 19 00 74 34 2e 00 49 00 24 00 6e 63 19 00 0b 00 6e 00 18 00 80 00 19 00 74 46 39 00 53 00 fe 00 1b 05 1a 00 81 75 82 c8 82 e9 82 d9 82 c7 81 63 82 bb 82 a4 8c be 82 ed 82 ea 82 ea 82 ce 82 bb 82 a4 82 a9 82 e0 82 cb 81 42 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1a 01 fe 00 1b 06 1a 00 81 75 8c 4e 82 c9 82 b1 82 cc 82 a4 82 c2 82 ad 82 b5 82 b3 82 aa 82 ed 82 a9 82 e9 82 a9 82 c8 81 48 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1a 01 fe 00 1b 07 1a 00 81 75 83 4e 83 4e 83 4e 83 4e 83 4e 83 46 81 5b 81 5b 83 62 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 27 01 fe 00 1b 08 1a 00 81 75 82 e0 82 a4 83 84 83 50 83 4e 83 5c 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 09 1a 00 81 75 82 ad 82 bb 82 c1 82 bd 82 ea 81 49 81 40 82 c8 82 f1 82 c4 82 cb 81 63 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 0a 1a 00 81 75 82 a4 81 5b 82 f1 81 63 83 6e 83 89 82 a2 82 bd 82 a2 81 63 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 29 01 fe 00 1b ff 1a 00 81 40 0d 00 81 40 81 40 81 40 81 40 81 40 81 40 81 40 8e a9 93 ae 82 cd 82 f1 94 84 8b 40 0d 00 00 00 4d fd 00 06 1b fd 1a 00 81 75 93 96 82 bd 82 e8 82 c2 82 ab 82 cc 8b 40 8a 42 82 be 81 49 0d 00 81 40 82 c7 82 a4 82 b7 82 e9 82 a9 82 c8 81 42 81 76 0d 00 00 00 10 03 7e 02 b6 02 ee 02 1a 00 89 f1 }
+}

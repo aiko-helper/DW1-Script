@@ -1,0 +1,89 @@
+// MAP151.SCN
+#include "functions.dgs"
+#pragma script index=151 start=0x66800 end=0x67000 headerU16=0x18 sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  if (trigger(88) && !trigger(50)) {
+    playAnimation(Entity(7), Animation(30));
+  }
+  if (trigger(214)) {
+    playAnimation(Entity(6), Animation(30));
+  }
+  return;
+}
+
+section(60) {
+  {
+    unloadEntity(Entity(5));
+    unloadModel(Digimon.Botamon);
+    loadAndSetDigimon(Digimon.Jijimon, Entity(3), 0);
+    look(entity: Entity(8), at: Entity.Player);
+    delay(20);
+    speak(Entity(8), "「うむ、とりあえずは大丈夫なようじゃ。」<NEWLINE>");
+    speak(Entity.Player, "「ふぅ、よかった…」<NEWLINE>");
+    speak(Entity(8), "「こいつのためにも、いっこくも早く親玉を<NEWLINE> 倒さねばなるまいて。」<NEWLINE>");
+    speak(Entity.Player, "「…わかってるって。」<NEWLINE>");
+    delay(40);
+    if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L2; else break;
+  }
+  {
+    if (trigger(221)) goto L1; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA04, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA03, spawn: 2, trigger: 255);
+  }
+  warp(to: Map.TWNA02, spawn: 2, trigger: 255);
+
+L1:
+  if (trigger(225)) {
+    warp(to: Map.TWNA07, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA06, spawn: 2, trigger: 255);
+  }
+  {
+    warp(to: Map.TWNA05, spawn: 2, trigger: 255);
+
+L2:
+    if (trigger(221)) goto L3; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA10, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA09, spawn: 2, trigger: 255);
+  }
+  warp(to: Map.TWNA08, spawn: 2, trigger: 255);
+
+L3:
+  if (trigger(225)) {
+    warp(to: Map.TWNA13, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA12, spawn: 2, trigger: 255);
+  }
+  warp(to: Map.TWNA11, spawn: 2, trigger: 255);
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「みんながんばってるでしゅ。」<NEWLINE>");
+  return;
+}
+
+section(6) {
+  setTrigger(Trigger(44));
+  speak(Entity.Player, "「中身は無いみたいだ。」<NEWLINE>");
+  return;
+}
+
+section(7) {
+  setTrigger(Trigger(44));
+  speak(Entity.System, " エアドラモンは眠っている…<NEWLINE>");
+  return;
+  garbage { 18 00 fe 00 18 00 3c 00 3e 00 05 00 ea 01 06 00 12 02 07 00 38 02 ff ff 19 00 00 00 58 00 81 00 32 00 18 00 2c 00 19 00 56 00 07 1e 19 00 00 00 d6 00 18 00 3c 00 19 00 56 00 06 1e fe 00 48 05 79 01 46 75 47 75 03 00 4c 00 08 fd 67 00 14 00 1b 08 1a 00 81 75 82 a4 82 de 81 41 82 c6 82 e8 82 a0 82 a6 82 b8 82 cd 91 e5 8f e4 95 76 82 c8 82 e6 82 a4 82 b6 82 e1 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 d3 82 a3 81 41 82 e6 82 a9 82 c1 82 bd 81 63 81 76 0d 00 00 00 1b 08 1a 00 81 75 82 b1 82 a2 82 c2 82 cc 82 bd 82 df 82 c9 82 e0 81 41 82 a2 82 c1 82 b1 82 ad 82 e0 91 81 82 ad 90 65 8b ca 82 f0 0d 00 81 40 93 7c 82 b3 82 cb 82 ce 82 c8 82 e9 82 dc 82 a2 82 c4 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 81 63 82 ed 82 a9 82 c1 82 c4 82 e9 82 c1 82 c4 81 42 81 76 0d 00 00 00 67 00 28 00 19 00 00 00 dc 00 40 00 d6 00 4a 00 01 32 18 00 24 01 19 00 16 00 88 01 16 00 28 01 16 00 28 01 19 00 00 00 dd 00 18 00 3c 01 19 00 16 00 64 01 16 00 40 01 16 00 40 01 19 00 00 00 e1 00 18 00 50 01 19 00 4b aa 02 ff 19 00 00 00 f6 00 18 00 60 01 19 00 4b a9 02 ff 4b a8 02 ff 19 00 00 00 e1 00 18 00 74 01 19 00 4b ad 02 ff 19 00 00 00 f6 00 18 00 84 01 19 00 4b ac 02 ff 4b ab 02 ff 19 00 00 00 dd 00 18 00 9c 01 19 00 16 00 c4 01 16 00 a0 01 16 00 a0 01 19 00 00 00 e1 00 18 00 b0 01 19 00 4b b0 02 ff 19 00 00 00 f6 00 18 00 c0 01 19 00 4b af 02 ff 4b ae 02 ff 19 00 00 00 e1 00 18 00 d4 01 19 00 4b b3 02 ff 19 00 00 00 f6 00 18 00 e4 01 19 00 4b b2 02 ff 4b b1 02 ff fe 00 1b 05 1a 00 81 75 82 dd 82 f1 82 c8 82 aa 82 f1 82 ce 82 c1 82 c4 82 e9 82 c5 82 b5 82 e3 81 42 81 76 0d 00 00 00 fe 00 1c 00 2c 00 1b fd 1a 00 81 75 92 86 90 67 82 cd 96 b3 82 a2 82 dd 82 bd 82 a2 82 be 81 42 81 76 0d 00 00 00 fe 00 1c 00 2c 00 1b ff 1a 00 81 40 83 47 83 41 83 68 83 89 83 82 83 93 82 cd 96 b0 82 c1 82 c4 82 a2 82 e9 81 63 0d 00 00 00 fe 00 ff 00 82 dc 82 a0 81 41 82 b1 82 ea 82 c5 82 dc 82 bd 95 bd 98 61 82 c9 82 c8 82 e9 82 a9 82 cc 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 dc 82 bd 83 80 83 51 83 93 83 68 83 89 83 82 83 93 82 aa 95 9c 8a 88 82 b5 82 bd 82 e7 81 41 0d 00 81 40 82 dc 82 bd 93 7c 82 b9 82 ce 82 a2 82 a2 82 cc 82 b3 81 42 0d 00 81 40 94 4e 8a d4 8d 73 8e 96 82 dd 82 bd 82 a2 82 c5 8a 79 82 b5 82 a2 82 b6 82 e1 82 f1 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 cd 82 cd 81 41 82 bd 82 cc 82 e0 82 b5 82 a2 82 b1 82 c6 82 b6 82 e1 81 42 0d 00 81 40 82 f1 81 41 82 bb 82 a4 82 b6 82 e1 81 41 82 a8 82 ea 82 a2 82 c9 82 b1 82 ea 82 f0 82 e2 82 eb 82 a4 81 42 0d 00 81 40 93 f7 94 a8 82 c9 82 ae 82 a4 82 ba 82 f1 88 e7 82 c1 82 bd 82 f1 82 b6 82 e1 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a8 82 a8 81 41 01 06 83 4e 83 54 83 8a 83 4a 83 50 83 81 83 8d 83 93 01 01 81 48 81 76 0d 00 00 00 28 00 46 01 19 00 00 00 00 00 18 00 da 03 19 00 19 00 24 00 4f 02 63 00 18 00 a6 03 19 00 fe 00 1b fd 1a 00 81 75 82 a2 82 af 82 cb 81 41 8e 9d 82 bf 95 a8 82 aa 82 a2 82 c1 82 cf 82 a2 82 be 81 42 81 76 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 46 01 1b fd 1a 00 81 75 82 e0 82 e7 82 c1 82 c6 82 ad 82 e6 81 41 83 54 83 93 83 4c 83 85 81 5b 81 49 81 76 0d 00 00 00 1e 00 1c 00 1c 00 d7 00 fe 00 19 00 00 00 32 00 81 00 c9 00 18 00 98 05 19 00 1b 05 1a 00 81 75 82 a8 82 a8 81 41 97 88 82 c4 82 ad 82 ea 82 bd 82 f1 82 b6 82 e1 82 c8 81 49 0d 00 81 40 82 a8 82 ca 82 b5 82 c9 82 b5 82 a9 82 bd 82 cc 82 df 82 c8 82 a2 91 e5 8e 96 82 c8 0d 00 81 40 82 b1 82 c6 82 b6 82 e1 82 c1 82 bd 82 f1 82 c5 82 cc 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 d6 82 d6 82 d6 81 41 82 a2 82 a2 82 c1 82 c4 82 b1 82 c6 82 b3 81 42 0d 00 81 40 82 c5 81 41 83 41 83 69 83 8d 83 4f 83 7d 83 93 82 aa 95 9c 8a 88 82 b5 82 bd 82 c1 82 c4 82 cc 82 cd 81 48 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a4 82 de 81 41 8a b4 82 b6 82 e9 82 f1 82 b6 82 e1 81 42 0d 00 81 40 82 e2 82 c2 82 c6 91 53 82 ad 93 af 82 b6 8e d7 94 4f 82 cc 82 e6 82 a4 82 c8 82 e0 82 cc 82 f0 81 42 0d 00 81 40 8f ea 8f 8a 82 cd 82 c7 82 b1 82 a9 82 e7 82 c8 82 cc 82 a9 93 c1 92 e8 82 c5 82 ab 82 f1 82 aa 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 e6 82 b5 81 41 82 dc 82 a9 82 b9 82 c4 82 ad 82 ea 81 49 0d 00 81 40 92 54 82 b5 8f 6f 82 b5 82 c4 82 e2 82 c1 82 c2 82 af 82 c4 82 e2 82 e9 82 ba 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a8 82 a8 81 41 82 b7 82 dc 82 f1 81 42 82 c6 82 b1 82 eb 82 c5 81 63 81 76 0d 00 00 00 1c 00 c9 00 19 00 00 00 }
+}

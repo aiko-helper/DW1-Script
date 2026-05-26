@@ -1,0 +1,277 @@
+// DG184.SCN
+#include "functions.dgs"
+#pragma script index=184 start=0x8a000 end=0x8b000 headerU16=0xc sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(51) {
+  if (trigger(209) && pstat[27] == 0) {
+    speak(Entity(5), "「ふ…何かオーダーするか?」<NEWLINE>");
+    goto L1;
+  }
+  {
+    if (trigger(208) && pstat[27] == 1) {
+      speak(Entity(5), "「何が食べたいんだ?」<NEWLINE>");
+    } else {
+      if (trigger(222) && pstat[27] == 2) {
+        speak(Entity(5), "「さあ、何を食うんだ?」<NEWLINE>");
+        break;
+
+L1:
+      }
+      {
+        setDialogOwner(Entity.System);
+        setSelection(L2, L3, L4);
+        showTextbox(" 『赤熱ラーメン』      400<B><it> <NEWLINE> 『バーニングカレー』   1200<B><it> <NEWLINE> 『溶岩風なべ』      3500<B><it> <NEWLINE>");
+        waitForSelectionChoice();
+        break;
+
+L2:
+        if (money >= 400) {
+        } else {
+          speak(Entity(5), "「<B><it>が足りないようだ。」<NEWLINE>");
+          return;
+        }
+        {
+          if (trigger(640) && (cond & 0x04) == 0x00) break;
+          speak(Entity.System, "<ORANGE><DIGIMON><WHITE>は『赤熱ラーメン』を<NEWLINE> おいしくいただいた!<NEWLINE>");
+          addStats(offense: 1, defense: 0, speed: 0, brains: 1, maxHP: 0, maxMP: 0);
+          reduceStats(tiredness: 5);
+          addStats(happiness: 2, discipline: 0, energy: 20, weight: 2);
+          reduceMoney(400);
+          speak(Entity.System, "攻撃力 が1上がった!<NEWLINE>かしこさが 1上がった!<NEWLINE>");
+          showTextbox("ごきげん が上がった!<NEWLINE>つかれがとれた!<NEWLINE>");
+          playAnimation(Entity.Partner, Animation(11));
+          waitForEntity(Entity.Partner);
+          goto L5;
+        }
+        playAnimation(Entity.Partner, Animation(13));
+        waitForEntity(Entity.System);
+        speak(Entity(5), "「<ORANGE><DIGIMON><WHITE>は腹が減っていないようだ。」<NEWLINE>");
+        return;
+
+L3:
+        if (money >= 1200) {
+        } else {
+          speak(Entity(5), "「<B><it>が足りないようだ。」<NEWLINE>");
+          return;
+        }
+        {
+          if (trigger(640) && (cond & 0x04) == 0x00) break;
+          speak(Entity.System, "<ORANGE><DIGIMON><WHITE>は『バーニングカレー』を<NEWLINE> おいしくいただいた!<NEWLINE>");
+          addStats(offense: 3, defense: 0, speed: 0, brains: 2, maxHP: 0, maxMP: 0);
+          reduceStats(tiredness: 5);
+          addStats(happiness: 4, discipline: 0, energy: 26, weight: 3);
+          reduceMoney(1200);
+          speak(Entity.System, "攻撃力 が3上がった!<NEWLINE>かしこさが 2上がった!<NEWLINE>");
+          showTextbox("ごきげん が上がった!<NEWLINE>つかれがとれた!<NEWLINE>");
+          playAnimation(Entity.Partner, Animation(11));
+          waitForEntity(Entity.Partner);
+          goto L5;
+        }
+        playAnimation(Entity.Partner, Animation(13));
+        waitForEntity(Entity.System);
+        speak(Entity(5), "「<ORANGE><DIGIMON><WHITE>は腹が減っていないようだ。」<NEWLINE>");
+        return;
+
+L4:
+        if (money >= 3500) {
+        } else {
+          speak(Entity(5), "「<B><it>が足りないようだ。」<NEWLINE>");
+          return;
+        }
+        {
+          if (trigger(640) && (cond & 0x04) == 0x00) break;
+          speak(Entity.System, "<ORANGE><DIGIMON><WHITE>は『溶岩風なべ』を<NEWLINE> おいしくいただいた!<NEWLINE>");
+          addStats(offense: 5, defense: 0, speed: 0, brains: 3, maxHP: 0, maxMP: 0);
+          reduceStats(tiredness: 5);
+          addStats(happiness: 6, discipline: 1, energy: 20, weight: 4);
+          reduceMoney(3500);
+          speak(Entity.System, "攻撃力 が5上がった!<NEWLINE>かしこさが 3上がった!<NEWLINE>");
+          showTextbox("ごきげん が上がった!<NEWLINE>しつけ が上がった!<NEWLINE>つかれがとれた!<NEWLINE>");
+          playAnimation(Entity.Partner, Animation(11));
+          waitForEntity(Entity.Partner);
+          goto L5;
+        }
+        playAnimation(Entity.Partner, Animation(13));
+        waitForEntity(Entity.System);
+        speak(Entity(5), "「<ORANGE><DIGIMON><WHITE>は腹が減っていないようだ。」<NEWLINE>");
+        return;
+
+L5:
+      }
+      speak(Entity(5), "「またいつでも利用するがいい。」<NEWLINE>");
+      return;
+    }
+    {
+      setDialogOwner(Entity.System);
+      setSelection(L6, L7, L8);
+      showTextbox(" 『暴君竜そば』       400<B><it> <NEWLINE> 『ザウルスピザ』     1000<B><it> <NEWLINE> 『ジュラシックバーガー』 2500<B><it> <NEWLINE>");
+      waitForSelectionChoice();
+      break;
+
+L6:
+      if (money >= 400) {
+      } else {
+        speak(Entity(5), "「<B><it>が足りないな。」<NEWLINE>");
+        return;
+      }
+      {
+        if (trigger(640) && (cond & 0x04) == 0x00) break;
+        speak(Entity.System, "<ORANGE><DIGIMON><WHITE>は『暴君竜そば』を<NEWLINE> おいしくいただいた!<NEWLINE>");
+        addStats(offense: 0, defense: 1, speed: 1, brains: 0, maxHP: 10, maxMP: 0);
+        reduceStats(tiredness: 5);
+        addStats(happiness: 2, discipline: 0, energy: 18, weight: 2);
+        reduceMoney(400);
+        speak(Entity.System, "防御力 が1上がった!<NEWLINE>すばやさが 1上がった!<NEWLINE>");
+        showTextbox("ごきげん が上がった!<NEWLINE>つかれがとれた!<NEWLINE>");
+        playAnimation(Entity.Partner, Animation(11));
+        waitForEntity(Entity.Partner);
+        goto L9;
+      }
+      playAnimation(Entity.Partner, Animation(13));
+      waitForEntity(Entity.System);
+      speak(Entity(5), "「<ORANGE><DIGIMON><WHITE>は腹が減ってないようだな。」<NEWLINE>");
+      return;
+
+L7:
+      if (money >= 1000) {
+      } else {
+        speak(Entity(5), "「<B><it>が足りないな。」<NEWLINE>");
+        return;
+      }
+      {
+        if (trigger(640) && (cond & 0x04) == 0x00) break;
+        speak(Entity.System, "<ORANGE><DIGIMON><WHITE>は『ザウルスピザ』を<NEWLINE> おいしくいただいた!<NEWLINE>");
+        addStats(offense: 0, defense: 3, speed: 2, brains: 0, maxHP: 30, maxMP: 0);
+        reduceStats(tiredness: 5);
+        addStats(happiness: 4, discipline: 0, energy: 28, weight: 3);
+        reduceMoney(1000);
+        speak(Entity.System, "防御力 が3上がった!<NEWLINE>すばやさ が2上がった!<NEWLINE>");
+        showTextbox("ごきげん が上がった!<NEWLINE>つかれがとれた!<NEWLINE>");
+        playAnimation(Entity.Partner, Animation(11));
+        waitForEntity(Entity.Partner);
+        goto L9;
+      }
+      playAnimation(Entity.Partner, Animation(13));
+      waitForEntity(Entity.System);
+      speak(Entity(5), "「<ORANGE><DIGIMON><WHITE>は腹が減ってないようだな。」<NEWLINE>");
+      return;
+
+L8:
+      if (money >= 2500) {
+      } else {
+        speak(Entity(5), "「<B><it>が足りないな。」<NEWLINE>");
+        return;
+      }
+      {
+        if (trigger(640) && (cond & 0x04) == 0x00) break;
+        speak(Entity.System, "<ORANGE><DIGIMON><WHITE>は『ジュラシックバーガー』を<NEWLINE> おいしくいただいた!<NEWLINE>");
+        addStats(offense: 0, defense: 5, speed: 3, brains: 0, maxHP: 50, maxMP: 0);
+        reduceStats(tiredness: 5);
+        addStats(happiness: 8, discipline: 1, energy: 35, weight: 4);
+        reduceMoney(2500);
+        speak(Entity.System, "防御力 が5上がった!<NEWLINE>すばやさ が3上がった!<NEWLINE>");
+        showTextbox("ごきげん が上がった!<NEWLINE>しつけ が上がった!<NEWLINE>つかれがとれた!<NEWLINE>");
+        playAnimation(Entity.Partner, Animation(11));
+        waitForEntity(Entity.Partner);
+        goto L9;
+      }
+      playAnimation(Entity.Partner, Animation(13));
+      waitForEntity(Entity.System);
+      speak(Entity(5), "「<ORANGE><DIGIMON><WHITE>は腹が減ってないようだな。」<NEWLINE>");
+      return;
+
+L9:
+    }
+    speak(Entity(5), "「何だ、もう終わりか。」<NEWLINE>");
+    return;
+  }
+  {
+    setDialogOwner(Entity.System);
+    setSelection(L10, L11, L12);
+    showTextbox(" 『骨つきステーキ』    1000<B><it> <NEWLINE> 『DX骨つきステーキ』  2500<B><it> <NEWLINE> 『幻の骨つきステーキ』  5000<B><it> <NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L10:
+    if (money >= 1000) {
+    } else {
+      speak(Entity(5), "「<B><it>が足りねえな。」<NEWLINE>");
+      return;
+    }
+    {
+      if (trigger(640) && (cond & 0x04) == 0x00) break;
+      speak(Entity.System, "<ORANGE><DIGIMON><WHITE>は『骨つきステーキ』を<NEWLINE> おいしくいただいた!<NEWLINE>");
+      addStats(offense: 0, defense: 0, speed: 0, brains: 1, maxHP: 10, maxMP: 0);
+      reduceStats(tiredness: 5);
+      addStats(happiness: 0, discipline: 1, energy: 30, weight: 3);
+      reduceMoney(1000);
+      speak(Entity.System, "HP が10上がった!<NEWLINE>かしこさ が1上がった!<NEWLINE>");
+      showTextbox("しつけ が上がった!<NEWLINE>つかれがとれた!<NEWLINE>");
+      playAnimation(Entity.Partner, Animation(11));
+      waitForEntity(Entity.Partner);
+      goto L13;
+    }
+    playAnimation(Entity.Partner, Animation(13));
+    waitForEntity(Entity.System);
+    speak(Entity(5), "「<ORANGE><DIGIMON><WHITE>は腹が減ってないようだぜ。」<NEWLINE>");
+    return;
+
+L11:
+    if (money >= 2500) {
+    } else {
+      speak(Entity(5), "「<B><it>が足りねえな。」<NEWLINE>");
+      return;
+    }
+    {
+      if (trigger(640) && (cond & 0x04) == 0x00) break;
+      speak(Entity.System, "<ORANGE><DIGIMON><WHITE>は『DX骨つきステーキ』を<NEWLINE> おいしくいただいた!<NEWLINE>");
+      addStats(offense: 0, defense: 0, speed: 0, brains: 2, maxHP: 30, maxMP: 0);
+      reduceStats(tiredness: 5);
+      addStats(happiness: 1, discipline: 2, energy: 40, weight: 4);
+      reduceMoney(2500);
+      speak(Entity.System, "HP が30上がった!<NEWLINE>かしこさ が2上がった!<NEWLINE>");
+      showTextbox("ごきげん が上がった!<NEWLINE>しつけ が上がった!<NEWLINE>つかれがとれた!<NEWLINE>");
+      playAnimation(Entity.Partner, Animation(11));
+      waitForEntity(Entity.Partner);
+      goto L13;
+    }
+    playAnimation(Entity.Partner, Animation(13));
+    waitForEntity(Entity.System);
+    speak(Entity(5), "「<ORANGE><DIGIMON><WHITE>は腹が減ってないようだぜ。」<NEWLINE>");
+    return;
+
+L12:
+    if (money >= 5000) {
+    } else {
+      speak(Entity(5), "「<B><it>が足りねえな。」<NEWLINE>");
+      return;
+    }
+    {
+      if (trigger(640) && (cond & 0x04) == 0x00) break;
+      speak(Entity.System, "<ORANGE><DIGIMON><WHITE>は『幻の骨つきステーキ』を<NEWLINE> おいしくいただいた!<NEWLINE>");
+      addStats(offense: 0, defense: 0, speed: 0, brains: 3, maxHP: 50, maxMP: 0);
+      reduceStats(tiredness: 5);
+      addStats(happiness: 2, discipline: 3, energy: 50, weight: 5);
+      reduceMoney(5000);
+      speak(Entity.System, "HP が50上がった!<NEWLINE>かしこさ が3上がった!<NEWLINE>");
+      showTextbox("ごきげん が上がった!<NEWLINE>しつけ が上がった!<NEWLINE>つかれがとれた!<NEWLINE>");
+      playAnimation(Entity.Partner, Animation(11));
+      waitForEntity(Entity.Partner);
+      goto L13;
+    }
+    playAnimation(Entity.Partner, Animation(13));
+    waitForEntity(Entity.System);
+    speak(Entity(5), "「<ORANGE><DIGIMON><WHITE>は腹が減ってないようだぜ。」<NEWLINE>");
+    return;
+
+L13:
+  }
+  speak(Entity(5), "「また食べに来いよな!」<NEWLINE>");
+  return;
+  garbage { 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 19 00 00 00 d1 00 88 00 1b 00 18 00 46 00 19 00 1b 05 1a 00 81 75 82 d3 81 63 89 bd 82 a9 83 49 81 5b 83 5f 81 5b 82 b7 82 e9 82 a9 81 48 81 76 0d 00 00 00 16 00 ac 00 19 00 00 00 d0 00 88 00 1b 01 18 00 78 00 19 00 1b 05 1a 00 81 75 89 bd 82 aa 90 48 82 d7 82 bd 82 a2 82 f1 82 be 81 48 81 76 0d 00 00 00 16 00 8e 05 19 00 00 00 de 00 88 00 1b 02 18 00 ac 00 19 00 1b 05 1a 00 81 75 82 b3 82 a0 81 41 89 bd 82 f0 90 48 82 a4 82 f1 82 be 81 48 81 76 0d 00 00 00 16 00 60 0a 1b ff 10 03 }
+}

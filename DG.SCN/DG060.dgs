@@ -1,0 +1,177 @@
+// DG060.SCN
+#include "functions.dgs"
+#pragma script index=60 start=0x2a000 end=0x2b000 headerU16=0x10 sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  if (!trigger(104) || !trigger(128)) {
+    playAnimation(Entity(5), Animation(28));
+  }
+  if (!trigger(129) && trigger(356)) {
+    delay(20);
+    rotate(entity: Entity.Player, to: 2048);
+    delay(5);
+    speak(Entity.Player, "「…ヴァンデモン、いないか。」<NEWLINE>");
+    setTrigger(Trigger(359));
+  }
+  return;
+}
+
+section(5) {
+  setTrigger(Trigger(44));
+  move(entity: Entity.Player, to: (-253, -1358), sprint: 1, withCamera: true);
+  waitForEntity(Entity.Player);
+  look(entity: Entity.Player, at: Entity(5));
+  anim(Entity(5), Animation(29), wait: 5);
+  if (item[Item.Steak] >= 1) {
+  } else {
+    if (trigger(104)) {
+      speak(Entity(5), "「う…く…肉を…れいぞ…う…カギ…」<NEWLINE>");
+    } else {
+      setTrigger(Trigger(104));
+      speak(Entity.Player, "'!\"\n");
+      speak(Entity(5), "「おお…誰か…助けに来てくれたのか…?」<NEWLINE>");
+      speak(Entity.Player, "「デジモン…?大丈夫かっ?!」<NEWLINE>");
+      speak(Entity(5), "「はぁ…誰か知らないが…食べ物を……」<NEWLINE>");
+      speak(Entity.Player, "「腹が減ってるのか?!何が欲しい?」<NEWLINE>");
+      speak(Entity(5), "「に…肉…う…血の…したたる…」<NEWLINE>");
+      if (item[Item.Meat] >= 1 || item[Item.GiantMeat] >= 1 || item[Item.Sirloin] >= 1) {
+        speak(Entity.Player, "「肉ならあるぞ!」<NEWLINE>");
+        speak(Entity(5), "「う…ちがう…血の…したたる…肉…」<NEWLINE>");
+        speak(Entity.Player, "「えっ…?」<NEWLINE>");
+      } else {
+        speak(Entity.Player, "「肉…?しまった、今持ってない。」<NEWLINE>");
+      }
+      speak(Entity(5), "「これを…」<NEWLINE>");
+      giveItem(Item.FridgeKey, 1);
+      speak(Entity.Player, "「なんだ…カギ?」<NEWLINE>");
+      if (trigger(0)) {
+        speak(Entity.Player, "「いけね、何か捨てなきゃ。」<NEWLINE>");
+        unsetTrigger(Trigger(3));
+        callSubroutine(0);
+        callSubroutine(13);
+        giveItem(Item.FridgeKey, 1);
+      }
+      speak(Entity.System, "<LIGHTBLUE>れいぞうこのカギ<WHITE>をうけとった!<NEWLINE>");
+      speak(Entity(5), "「…はぁ…はぁ……」<NEWLINE>");
+    }
+    speak(Entity.Player, "「うわ、急がなきゃ!」<NEWLINE>");
+    showTextbox("「今から持ってくるからもう少しだけ<NEWLINE> がんばってくれ!」<NEWLINE>");
+    playAnimation(Entity(5), Animation(28));
+    return;
+  }
+  removeItem(Item.Steak, 1);
+  speak(Entity(5), "「おお…!」<NEWLINE>");
+  anim(Entity(5), Animation(30), wait: 40);
+  playAnimation(Entity(5), Animation(0));
+  look(entity: Entity(5), at: Entity.Player);
+  speak(Entity(5), "「ふぁっ、生き返ったー!いやいや、<NEWLINE> ほんとに面倒かけたね。すまなかった。」<NEWLINE>");
+  speak(Entity.Player, "「いったいどうしたんだ?」<NEWLINE>");
+  speak(Entity(5), "「ふむ…その前に…自己しょうかい<NEWLINE> しようじゃないか。私はヴァンデモン。<NEWLINE> この館のあるじだ。君たちは?」<NEWLINE>");
+  speak(Entity.Player, "「俺は外の世界から来た人間、<LIGHTBLUE><PLAYER><WHITE>。<NEWLINE> こいつは相棒の<ORANGE><DIGIMON><WHITE>さ。<NEWLINE> この島を救うための旅をしてるんだ。」<NEWLINE>");
+  speak(Entity(5), "「ほほう!君達とは色々話すべきことが<NEWLINE> ありそうだ。晩さん会にておもてなしする<NEWLINE> べきだろうな。ついてきたまえ。」<NEWLINE>");
+  setTrigger(Trigger(128));
+  move(entity: Entity(5), to: (-29, -2765), animDuration: 30);
+  delay(30);
+  move(entity: Entity.Player, to: (-29, -2765), sprint: 0);
+  waitForEntity(Entity(5));
+  unloadEntity(Entity(5));
+  delay(10);
+  move(entity: Entity.Partner, to: (-29, -2765), sprint: 0);
+  delay(10);
+  warp(to: Map.YAKA26, spawn: 0, trigger: 60);
+  return;
+}
+
+section(60) {
+  {
+    delay(40);
+    moveCamera(to: (-1455, 1463), slowdown: 20);
+    anim(Entity.Player, Animation(15), wait: 20);
+    speak(Entity.Player, "「うっげぇ!」<NEWLINE>");
+    speak(Entity(7), "「………」<NEWLINE>");
+    speak(Entity.Player, "「ま、まじかよー!」<NEWLINE>");
+    waitForEntity(Entity(7));
+    unloadEntity(Entity(7));
+    delay(20);
+    speak(Entity.Player, "「消えた…まぼろし…?」<NEWLINE>");
+    anim(Entity(6), Animation(28), wait: 40);
+    delay(40);
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 6);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    move(entity: Entity(6), to: (-100, 800), sprint: 0);
+    waitForEntity(Entity(6));
+    anim(Entity(6), Animation(43), wait: 40);
+    speak(Entity.Player, "「なんとか、やっつけたか…」<NEWLINE>");
+    look(entity: Entity.Player, at: Entity(6));
+    waitForEntity(Entity(6));
+    waitForEntity(Entity.Player);
+    unloadEntity(Entity(6));
+    speak(Entity.Player, "「あっ!?」<NEWLINE>");
+    loadAndSetDigimon(Digimon.Soulmon, Entity(3), 0);
+    speak(Entity(8), "「ん、んー。あれっ?!」<NEWLINE>");
+    look(entity: Entity(8), at: Entity.Player);
+    delay(20);
+    speak(Entity(8), "「なんか急に意識が無くなって…<NEWLINE> ハッ、ご、ごめんよー!」<NEWLINE>");
+    setTrigger(Trigger(202));
+    setPStat(PStat(16), 0);
+    setPStat(PStat(28), 0);
+    setTrigger(Trigger(243));
+    break;
+  }
+  {
+    approach(who: Entity(8), x: -40, y: -2800, tries: 3, wait: 20);
+    anim(Entity.Player, Animation(16), wait: 40);
+    speak(Entity.Player, "「むぅーーー??<NEWLINE> 何なんだ?アナログマンののろいか?!<NEWLINE> まぁいいや、これで大丈夫だろ。」<NEWLINE>");
+    delay(20);
+    if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L2; else break;
+  }
+  {
+    if (trigger(221)) goto L1; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA04, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA03, spawn: 0, trigger: 255);
+  }
+  warp(to: Map.TWNA02, spawn: 0, trigger: 255);
+
+L1:
+  if (trigger(225)) {
+    warp(to: Map.TWNA07, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA06, spawn: 0, trigger: 255);
+  }
+  {
+    warp(to: Map.TWNA05, spawn: 0, trigger: 255);
+
+L2:
+    if (trigger(221)) goto L3; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA10, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA09, spawn: 0, trigger: 255);
+  }
+  warp(to: Map.TWNA08, spawn: 0, trigger: 255);
+
+L3:
+  if (trigger(225)) {
+    warp(to: Map.TWNA13, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA12, spawn: 0, trigger: 255);
+  }
+  warp(to: Map.TWNA11, spawn: 0, trigger: 255);
+  return;
+  garbage { 10 00 fe 00 10 00 05 00 6c 00 3c 00 a2 05 ff ff 19 00 01 00 68 00 41 00 80 00 18 00 24 00 19 00 56 00 05 1c 19 00 01 00 81 00 80 00 64 01 18 00 6a 00 19 00 67 00 14 00 4d fd 00 08 67 00 05 00 1b fd 1a 00 81 75 81 63 83 94 83 40 83 93 83 66 83 82 83 93 81 41 82 a2 82 c8 82 a2 82 a9 81 42 81 76 0d 00 00 00 1c 00 67 01 fe 00 1c 00 2c 00 52 fd 03 ff b2 fa 01 00 4a fd 4c 00 fd 05 56 00 05 1d 67 00 05 00 19 00 24 00 7a 02 01 00 18 00 98 00 19 00 16 00 76 03 19 00 00 00 68 00 18 00 d4 00 19 00 1b 05 1a 00 81 75 82 a4 81 63 82 ad 81 63 93 f7 82 f0 81 63 82 ea 82 a2 82 bc 81 63 82 a4 81 63 83 4a 83 4d 81 63 81 76 0d 00 00 00 16 00 14 03 1c 00 68 00 1b fd 1a 00 81 75 81 49 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a8 82 a8 81 63 92 4e 82 a9 81 63 8f 95 82 af 82 c9 97 88 82 c4 82 ad 82 ea 82 bd 82 cc 82 a9 81 63 81 48 81 76 0d 00 00 00 1b fd 1a 00 81 75 83 66 83 57 83 82 83 93 81 63 81 48 91 e5 8f e4 95 76 82 a9 82 c1 81 48 81 49 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 cd 82 9f 81 63 92 4e 82 a9 92 6d 82 e7 82 c8 82 a2 82 aa 81 63 90 48 82 d7 95 a8 82 f0 81 63 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 95 a0 82 aa 8c b8 82 c1 82 c4 82 e9 82 cc 82 a9 81 48 81 49 89 bd 82 aa 97 7e 82 b5 82 a2 81 48 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 c9 81 63 93 f7 81 63 82 a4 81 63 8c 8c 82 cc 81 63 82 b5 82 bd 82 bd 82 e9 81 63 81 76 0d 00 00 00 19 00 24 00 26 02 01 00 64 00 27 02 01 00 64 00 28 02 01 00 18 00 36 02 19 00 1b fd 1a 00 81 75 93 f7 82 c8 82 e7 82 a0 82 e9 82 bc 81 49 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a4 81 63 82 bf 82 aa 82 a4 81 63 8c 8c 82 cc 81 63 82 b5 82 bd 82 bd 82 e9 81 63 93 f7 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a6 82 c1 81 63 81 48 81 76 0d 00 00 00 16 00 60 02 1b fd 1a 00 81 75 93 f7 81 63 81 48 82 b5 82 dc 82 c1 82 bd 81 41 8d a1 8e 9d 82 c1 82 c4 82 c8 82 a2 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 b1 82 ea 82 f0 81 63 81 76 0d 00 00 00 28 00 7b 01 1b fd 1a 00 81 75 82 c8 82 f1 82 be 81 63 83 4a 83 4d 81 48 81 76 0d 00 00 00 19 00 00 00 00 00 18 00 ce 02 19 00 1b fd 1a 00 81 75 82 a2 82 af 82 cb 81 41 89 bd 82 a9 8e cc 82 c4 82 c8 82 ab 82 e1 81 42 81 76 0d 00 00 00 1d 00 03 00 64 00 64 0d 28 00 7b 01 1b ff 1a 00 01 06 82 ea 82 a2 82 bc 82 a4 82 b1 82 cc 83 4a 83 4d 01 01 82 f0 82 a4 82 af 82 c6 82 c1 82 bd 81 49 0d 00 00 00 1b 05 1a 00 81 75 81 63 82 cd 82 9f 81 63 82 cd 82 9f 81 63 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a4 82 ed 81 41 8b 7d 82 aa 82 c8 82 ab 82 e1 81 49 81 76 0d 00 00 00 1a 00 81 75 8d a1 82 a9 82 e7 8e 9d 82 c1 82 c4 82 ad 82 e9 82 a9 82 e7 82 e0 82 a4 8f ad 82 b5 82 be 82 af 0d 00 81 40 82 aa 82 f1 82 ce 82 c1 82 c4 82 ad 82 ea 81 49 81 76 0d 00 00 00 56 00 05 1c fe 00 29 00 7a 01 1b 05 1a 00 81 75 82 a8 82 a8 81 63 81 49 81 76 0d 00 00 00 56 00 05 1e 67 00 28 00 56 00 05 00 4c 00 05 fd 1b 05 1a 00 81 75 82 d3 82 9f 82 c1 81 41 90 b6 82 ab 95 d4 82 c1 82 bd 81 5b 81 49 82 a2 82 e2 82 a2 82 e2 81 41 0d 00 81 40 82 d9 82 f1 82 c6 82 c9 96 ca 93 7c 82 a9 82 af 82 bd 82 cb 81 42 82 b7 82 dc 82 c8 82 a9 82 c1 82 bd 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a2 82 c1 82 bd 82 a2 82 c7 82 a4 82 b5 82 bd 82 f1 82 be 81 48 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 d3 82 de 81 63 82 bb 82 cc 91 4f 82 c9 81 63 8e a9 8c c8 82 b5 82 e5 82 a4 82 a9 82 a2 0d 00 81 40 82 b5 82 e6 82 a4 82 b6 82 e1 82 c8 82 a2 82 a9 81 42 8e 84 82 cd 83 94 83 40 83 93 83 66 83 82 83 93 81 42 0d 00 81 40 82 b1 82 cc 8a d9 82 cc 82 a0 82 e9 82 b6 82 be 81 42 8c 4e 82 bd 82 bf 82 cd 81 48 81 76 0d 00 00 00 1b fd 1a 00 81 75 89 b4 82 cd 8a 4f 82 cc 90 a2 8a 45 82 a9 82 e7 97 88 82 bd 90 6c 8a d4 81 41 01 06 05 00 01 01 81 42 0d 00 81 40 82 b1 82 a2 82 c2 82 cd 91 8a 96 5f 82 cc 01 0a 06 00 01 01 82 b3 81 42 0d 00 81 40 82 b1 82 cc 93 87 82 f0 8b 7e 82 a4 82 bd 82 df 82 cc 97 b7 82 f0 82 b5 82 c4 82 e9 82 f1 82 be 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 d9 82 d9 82 a4 81 49 8c 4e 92 42 82 c6 82 cd 90 46 81 58 98 62 82 b7 82 d7 82 ab 82 b1 82 c6 82 aa 0d 00 81 40 82 a0 82 e8 82 bb 82 a4 82 be 81 42 94 d3 82 b3 82 f1 89 ef 82 c9 82 c4 82 a8 82 e0 82 c4 82 c8 82 b5 82 b7 82 e9 0d 00 81 40 82 d7 82 ab 82 be 82 eb 82 a4 82 c8 81 42 82 c2 82 a2 82 c4 82 ab 82 bd 82 dc 82 a6 81 42 81 76 0d 00 00 00 1c 00 80 00 6c 05 e3 ff 33 f5 1e 00 67 00 1e 00 4e fd e3 ff 33 f5 00 00 4a 05 48 05 67 00 0a 00 4e fc e3 ff 33 f5 00 00 67 00 0a 00 4b e0 00 3c fe 00 67 00 28 00 4f 14 51 fa b7 05 56 00 fd 0f 67 00 14 00 1b fd 1a 00 81 75 82 a4 82 c1 82 b0 82 a5 81 49 81 76 0d 00 00 00 1b 07 1a 00 81 75 81 63 81 63 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 dc 81 41 82 dc 82 b6 82 a9 82 e6 81 5b 81 49 81 76 0d 00 00 00 4a 07 48 07 67 00 14 00 1b fd 1a 00 81 75 8f c1 82 a6 82 bd 81 63 82 dc 82 da 82 eb 82 b5 81 63 81 48 81 76 0d 00 00 00 56 00 06 1c 67 00 28 00 67 00 28 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 06 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4e 06 9c ff 20 03 00 00 4a 06 56 00 06 2b 67 00 28 00 1b fd 1a 00 81 75 82 c8 82 f1 82 c6 82 a9 81 41 82 e2 82 c1 82 c2 82 af 82 bd 82 a9 81 63 81 76 0d 00 00 00 4c 00 fd 06 4a 06 4a fd 48 06 1b fd 1a 00 81 75 82 a0 82 c1 81 49 81 48 81 76 0d 00 00 00 46 6b 47 6b 03 00 1b 08 1a 00 81 75 82 f1 81 41 82 f1 81 5b 81 42 82 a0 82 ea 82 c1 81 48 81 49 81 76 0d 00 00 00 4c 00 08 fd 67 00 14 00 1b 08 1a 00 81 75 82 c8 82 f1 82 a9 8b 7d 82 c9 88 d3 8e af 82 aa 96 b3 82 ad 82 c8 82 c1 82 c4 81 63 0d 00 81 40 83 6e 83 62 81 41 82 b2 81 41 82 b2 82 df 82 f1 82 e6 81 5b 81 49 81 76 0d 00 00 00 1c 00 ca 00 1e 00 10 00 1e 00 1c 00 1c 00 f3 00 16 00 28 07 4e 08 d8 ff 10 f5 01 00 19 00 0d 00 65 03 18 00 50 07 19 00 1f 00 65 01 67 00 14 00 4c 00 fd 08 4c 00 fc 08 16 00 28 07 4a 08 48 08 }
+}

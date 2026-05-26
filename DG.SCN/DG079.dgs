@@ -1,0 +1,153 @@
+// DG079.SCN
+#include "functions.dgs"
+#pragma script index=79 start=0x36000 end=0x36800 headerU16=0x10 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 0, item: Item.SageFruit, x: 60, y: 53);
+  if (!trigger(313)) {
+    delay(5);
+    playAnimation(Entity(5), Animation(28));
+  }
+  return;
+}
+
+section(5) {
+  setTrigger(Trigger(44));
+  speak(Entity.Player, "「これか…!<NEWLINE> 見るからにいん石だな。まずは…」<NEWLINE>");
+  setSelection(L1, L3);
+  showTextbox("「さわって調べる!」<NEWLINE>「たたき割ってしまえ!」<NEWLINE>");
+
+L1:
+  {
+    anim(Entity.Player, Animation(5), wait: 20);
+    speak(Entity.Player, "「うーん…」<NEWLINE>");
+    anim(Entity.Player, Animation(16), wait: 5);
+    showTextbox("「何か…思ったよりフツーの<NEWLINE> いん石みたいだな…」<NEWLINE>");
+    speak(Entity.System, "<YELLOW>???モン<WHITE><NEWLINE>「フツーで悪かったダスな…」<NEWLINE>");
+    break;
+  }
+  loop {
+    anim(Entity(5), Animation(29), wait: 10);
+    speak(Entity.Player, "'!\"\n");
+    speak(Entity.Player, "「デジモンだったのか!何者だ?」<NEWLINE>");
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
+    delay(5);
+    speak(Entity.System, "<YELLOW>???モン<WHITE><NEWLINE>「…おらはインセキモンって言うダス。」<NEWLINE>");
+    speak(Entity.Player, "「何か異変について知らないか?」<NEWLINE>");
+    speak(Entity(5), "「…何も知らないダス!」<NEWLINE>");
+    speak(Entity.Player, "「何も知らないって…本当かよ…<NEWLINE> 何か隠してないか?」<NEWLINE>");
+    speak(Entity(5), "「む~何て失礼なやつダス!<NEWLINE> わかったダス、おらと勝負するダス!<NEWLINE> どっちが正しいのか証明するダス!」<NEWLINE>");
+    speak(Entity.Player, "「お、おう!よーし…」<NEWLINE>");
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 5);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    look(entity: Entity.Player, at: Entity(5));
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(5));
+    speak(Entity(5), "「む~参ったダス。強いダスな。」<NEWLINE>");
+    speak(Entity.Player, "「何でもいいから島の異変について<NEWLINE> 知らないか?頼む。」<NEWLINE>");
+    anim(Entity.Player, Animation(19), wait: 5);
+    speak(Entity(5), "「知らないダス。だっておらは生まれて<NEWLINE> 間もないダスから。」<NEWLINE>");
+    speak(Entity.Player, "「何だって!?」<NEWLINE>");
+    anim(Entity.Player, Animation(0), wait: 5);
+    speak(Entity(5), "「インセキモン族は空に生まれるとすぐ<NEWLINE> 地上へ落ちて、しばらくじっと眠るダス。<NEWLINE> 本当はもっとじっとしてるはずダスが…」<NEWLINE>");
+    speak(Entity.Player, "「そうか、ここは時間の流れが早いから。」<NEWLINE>");
+    speak(Entity(5), "「どうやらそういうわけダス。<NEWLINE> じゃあ、おらは今から島を見て回るダス。<NEWLINE> 健闘をいのるダスよ。」<NEWLINE>");
+    anim(Entity(5), Animation(30), wait: 10);
+    goto L2;
+
+L2:
+    loop {
+      move(entity: Entity(5), to: (1, -1050), animDuration: 40);
+      if (pstat[101] >= 3) break;
+      addPStat(PStat.LoopIterator, 1);
+      delay(20);
+      playSound(8, 5);
+      lookPairAt(Entity(5));
+    }
+    waitForEntity(Entity(5));
+    unloadEntity(Entity(5));
+    setPStat(PStat.LoopIterator, 0);
+    speak(Entity.Player, "「……。はー。結局手がかりは無しか…。<NEWLINE> さあ、急いでここを出よう。」<NEWLINE>");
+    unsetTrigger(Trigger(1));
+    setTrigger(Trigger(313));
+    followEntity(Entity.Player, speed: 15);
+    return;
+
+L3:
+    speak(Entity.Player, "「見て調べてもどうせわかんないし。<NEWLINE> 割っちゃえー!」<NEWLINE>");
+    move(entity: Entity.Partner, to: Entity(5), sprint: 0);
+    waitForEntity(Entity.Partner);
+    anim(Entity.Partner, Animation(46), wait: 20);
+    speak(Entity.System, "<YELLOW>???モン<WHITE><NEWLINE>「何をするダスか!乱暴ダス!」<NEWLINE>");
+    anim(Entity(5), Animation(29), wait: 20);
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
+    delay(5);
+  }
+}
+
+section(6) {
+  delay(10);
+  anim(Entity(6), Animation(28), wait: 10);
+  speak(Entity.Player, "「ん?なにもんだ?!」<NEWLINE>");
+  speak(Entity(6), "「ナニモンだァ!」<NEWLINE>");
+  rotate(entity: Entity(6), to: 1276);
+  delay(5);
+  rotate(entity: Entity(6), to: 2300);
+  delay(5);
+  rotate(entity: Entity(6), to: 3324);
+  delay(5);
+  rotate(entity: Entity(6), to: 252);
+  delay(5);
+  rotate(entity: Entity(6), to: 1276);
+  delay(5);
+  rotate(entity: Entity(6), to: 2300);
+  delay(5);
+  rotate(entity: Entity(6), to: 3324);
+  delay(5);
+  rotate(entity: Entity(6), to: 252);
+  delay(5);
+  move(entity: Entity(6), to: (182, -571), sprint: 1);
+  waitForEntity(Entity(6));
+  unloadEntity(Entity(6));
+  switch pstat[21] {
+    0 => {
+      setObjectVisibility(3, 0);
+      move(entity: Entity.Player, to: (150, -138), sprint: 1);
+      waitForEntity(Entity.Player);
+      anim(Entity.Player, Animation(12), wait: 10);
+      setObjectVisibility(3, 1);
+      playSound(0, 7);
+      speak(Entity.System, "『<PINK>次元キーホルダー<WHITE>』を<NEWLINE> 手に入れた!<NEWLINE> アイテムを20個まで持てるぞ!<NEWLINE>");
+      playSound(0, 7);
+      setInventorySize(20);
+      setTrigger(Trigger(47));
+    }
+    4 => {
+      setObjectVisibility(2, 0);
+      move(entity: Entity.Player, to: (150, -138), sprint: 1);
+      waitForEntity(Entity.Player);
+      anim(Entity.Player, Animation(12), wait: 10);
+      setObjectVisibility(2, 1);
+      playSound(0, 7);
+      speak(Entity.System, "『<PINK>次元キーホルダー<WHITE>』を<NEWLINE> 手に入れた!<NEWLINE> アイテムを30個まで持てるぞ!<NEWLINE>");
+      setInventorySize(30);
+      setTrigger(Trigger(48));
+      setTrigger(Trigger(253));
+      addPStat(PStat(1), 1);
+    }
+  }
+  followEntity(Entity.Player, speed: 15);
+  addPStat(PStat(21), 1);
+  setTrigger(Trigger(335));
+  return;
+  garbage { 10 00 fe 00 10 00 05 00 3c 00 06 00 34 06 ff ff 24 00 6e 63 19 00 }
+}

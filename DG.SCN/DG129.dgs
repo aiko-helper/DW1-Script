@@ -1,0 +1,301 @@
+// DG129.SCN
+#include "functions.dgs"
+#pragma script index=129 start=0x54800 end=0x55800 headerU16=0x18 sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  if (trigger(224)) {
+    setObjectsVisibleRange(105, 109, 1);
+    setObjectsVisibleRange(39, 56, 1);
+    setObjectsVisibleRange(24, 28, 0);
+  }
+  if (trigger(224)) {
+    move(entity: Entity(5), to: (1457, 2916), animDuration: 2);
+    delay(10);
+  }
+  return;
+}
+
+section(61) {
+  move(entity: Entity(5), to: (1457, 2916), animDuration: 2);
+  delay(10);
+  return;
+}
+
+section(60) {
+  move(entity: Entity.Player, axis: 1, to: -150, speed: 1);
+  move(entity: Entity.Partner, axis: 1, to: -150, speed: 1);
+  delay(20);
+  playSound(8, 3);
+  move(entity: Entity(5), to: (1457, 2916), animDuration: 30);
+  delay(10);
+  moveCamera(to: (651, 406), slowdown: 99);
+  delay(40);
+  setObjectsVisibleRange(105, 109, 0);
+  setPStat(PStat(247), 105);
+  setPStat(PStat(248), 5);
+  callSubroutine(21);
+  delay(30);
+  move(entity: Entity.Player, axis: 1, to: 0, speed: 1);
+  move(entity: Entity.Partner, axis: 1, to: 0, speed: 1);
+  waitForPair();
+  move(entity: Entity.Player, to: (734, 2222), animDuration: 1);
+  move(entity: Entity.Partner, to: (839, 2689), animDuration: 1);
+  delay(20);
+  move(entity: Entity.Player, to: (832, 804), sprint: 1);
+  move(entity: Entity.Partner, to: (300, 805), sprint: 1);
+  waitForPair();
+  delay(10);
+  followEntity(Entity.Player, speed: 20);
+  speak(Entity.Player, "「奥から声がする…この声は!」<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  return;
+}
+
+section(6) {
+  setObjectsVisibleRange(105, 109, 0);
+  setPStat(PStat(247), 105);
+  setPStat(PStat(248), 5);
+  callSubroutine(21);
+  loadAndSetDigimon(Digimon.NPCOgremon, Entity(1), 0);
+  move(entity: Entity(5), to: (1457, 2916), animDuration: 1);
+  look(entity: Entity.Player, at: Entity(5));
+  delay(5);
+  speak(Entity.Player, "「まて!」<NEWLINE>");
+  speak(Entity(6), "「誰がまつかよ!」<NEWLINE>");
+  look(entity: Entity(6), at: Entity.Player);
+  delay(5);
+  speak(Entity(6), "「がーっはっはっは!」<NEWLINE>");
+  panTo(x: 1116, y: 2183, slowdown: 15);
+  setObjectsVisibleRange(105, 109, 1);
+  playSound(8, 5);
+  anim(Entity(5), Animation(31), wait: 20);
+  playAnimation(Entity(6), Animation(0));
+  followEntity(Entity.Player, speed: 10);
+  setObjectsVisibleRange(105, 109, 0);
+  setPStat(PStat(247), 105);
+  setPStat(PStat(248), 5);
+  callSubroutine(21);
+  move(entity: Entity(5), to: (1457, 2916), animDuration: 1);
+  anim(Entity(6), Animation(40), wait: 20);
+  playAnimation(Entity(6), Animation(0));
+  speak(Entity(6), "「うわっと、ビックリ!」<NEWLINE>");
+  speak(Entity.Player, "「ホエーモン、ナイス!<NEWLINE> 今だっ!」<NEWLINE>");
+  move(entity: Entity.Player, to: (830, 813), sprint: 1);
+  move(entity: Entity.Partner, to: (473, 481), sprint: 1);
+  waitForPair();
+  lookPairAt(Entity(6));
+  panTo(x: 212, y: 958, slowdown: 10);
+  speak(Entity.Player, "「さあかんねんしろ!」<NEWLINE>");
+  move(entity: Entity(6), to: (212, 958), sprint: 0);
+  waitForEntity(Entity(6));
+  look(entity: Entity(6), at: Entity.Player);
+  speak(Entity(6), "「く、くぅー…」<NEWLINE>");
+  speak(Entity.Player, "「街に来て働いて、つみをつぐなうんだ。」<NEWLINE>");
+  speak(Entity(6), "「わ、わかった…街へ行く…」<NEWLINE>");
+  playSound(8, 6);
+  move(entity: Entity(6), to: (-381, 1112), sprint: 1);
+  waitForEntity(Entity(6));
+  look(entity: Entity(6), at: Entity.Player);
+  waitForEntity(Entity(6));
+  speak(Entity(6), "「どわっはっは、行くわけねーだろ!<NEWLINE> あーばよ!」<NEWLINE>");
+  panTo(x: -28, y: 1976, slowdown: 30);
+  waitForEntity(Entity(6));
+  move(entity: Entity(6), to: (-28, 1976), sprint: 1);
+  waitForEntity(Entity(6));
+  playSound(8, 2);
+  unloadEntity(Entity(6));
+  delay(25);
+  setObjectsVisibleRange(39, 56, 1);
+  setObjectsVisibleRange(24, 38, 0);
+  delay(40);
+  playSound(8, 3);
+  moveObjectTo(0, 29, 1, 5, 0, 80, 197);
+  moveObjectTo(1, 30, 1, 5, 0, 96, 133);
+  moveObjectTo(2, 31, 1, 5, 0, 160, 277);
+  moveObjectTo(3, 32, 1, 5, 0, 112, 101);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 149);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 213);
+  moveObjectTo(6, 35, 1, 5, 0, 96, 277);
+  moveObjectTo(7, 36, 1, 5, 0, 160, 369);
+  moveObjectTo(8, 37, 1, 5, 0, 176, 181);
+  moveObjectTo(9, 38, 1, 5, 0, 224, 261);
+  delay(6);
+  moveObjectTo(0, 29, 1, 5, 0, 80, 192);
+  moveObjectTo(1, 30, 1, 5, 0, 96, 128);
+  moveObjectTo(2, 31, 1, 5, 0, 160, 272);
+  moveObjectTo(3, 32, 1, 5, 0, 112, 96);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 144);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 208);
+  moveObjectTo(6, 35, 1, 5, 0, 96, 272);
+  moveObjectTo(7, 36, 1, 5, 0, 160, 364);
+  moveObjectTo(8, 37, 1, 5, 0, 176, 176);
+  moveObjectTo(9, 38, 1, 5, 0, 224, 256);
+  delay(6);
+  playSound(8, 3);
+  moveObjectTo(0, 29, 1, 5, 0, 80, 197);
+  moveObjectTo(1, 30, 1, 5, 0, 96, 133);
+  moveObjectTo(2, 31, 1, 5, 0, 160, 277);
+  moveObjectTo(3, 32, 1, 5, 0, 112, 101);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 149);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 213);
+  moveObjectTo(6, 35, 1, 5, 0, 96, 277);
+  moveObjectTo(7, 36, 1, 5, 0, 160, 369);
+  moveObjectTo(8, 37, 1, 5, 0, 176, 181);
+  moveObjectTo(9, 38, 1, 5, 0, 224, 261);
+  delay(6);
+  moveObjectTo(0, 29, 1, 5, 0, 80, 192);
+  moveObjectTo(1, 30, 1, 5, 0, 96, 128);
+  moveObjectTo(2, 31, 1, 5, 0, 160, 272);
+  moveObjectTo(3, 32, 1, 5, 0, 112, 96);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 144);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 208);
+  moveObjectTo(6, 35, 1, 5, 0, 96, 272);
+  moveObjectTo(7, 36, 1, 5, 0, 160, 364);
+  moveObjectTo(8, 37, 1, 5, 0, 176, 176);
+  moveObjectTo(9, 38, 1, 5, 0, 224, 256);
+  delay(6);
+  playSound(8, 3);
+  moveObjectTo(0, 29, 1, 5, 0, 80, 197);
+  moveObjectTo(1, 30, 1, 5, 0, 96, 133);
+  moveObjectTo(2, 31, 1, 5, 0, 160, 277);
+  moveObjectTo(3, 32, 1, 5, 0, 112, 101);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 149);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 213);
+  moveObjectTo(6, 35, 1, 5, 0, 96, 277);
+  moveObjectTo(7, 36, 1, 5, 0, 160, 369);
+  moveObjectTo(8, 37, 1, 5, 0, 176, 181);
+  moveObjectTo(9, 38, 1, 5, 0, 224, 261);
+  delay(6);
+  moveObjectTo(0, 29, 1, 5, 0, 80, 192);
+  moveObjectTo(1, 30, 1, 5, 0, 96, 128);
+  moveObjectTo(2, 31, 1, 5, 0, 160, 272);
+  moveObjectTo(3, 32, 1, 5, 0, 112, 96);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 144);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 208);
+  moveObjectTo(6, 35, 1, 5, 0, 96, 272);
+  moveObjectTo(7, 36, 1, 5, 0, 160, 364);
+  moveObjectTo(8, 37, 1, 5, 0, 176, 176);
+  moveObjectTo(9, 38, 1, 5, 0, 224, 256);
+  delay(6);
+  playSound(8, 4);
+  moveObjectTo(0, 29, 1, 5, 0, 80, 197);
+  moveObjectTo(1, 30, 1, 5, 0, 96, 133);
+  moveObjectTo(2, 31, 1, 5, 0, 160, 277);
+  moveObjectTo(3, 32, 1, 5, 0, 112, 101);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 149);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 213);
+  moveObjectTo(6, 35, 1, 5, 0, 96, 277);
+  moveObjectTo(7, 36, 1, 5, 0, 160, 369);
+  moveObjectTo(8, 37, 1, 5, 0, 176, 181);
+  moveObjectTo(9, 38, 1, 5, 0, 224, 261);
+  delay(6);
+  moveObjectTo(0, 29, 1, 5, 0, 80, 192);
+  moveObjectTo(1, 30, 1, 5, 0, 96, 128);
+  moveObjectTo(2, 31, 1, 5, 0, 160, 272);
+  moveObjectTo(3, 32, 1, 5, 0, 112, 96);
+  moveObjectTo(4, 33, 1, 5, 0, 160, 144);
+  moveObjectTo(5, 34, 1, 5, 0, 64, 208);
+  moveObjectTo(6, 35, 1, 5, 0, 96, 272);
+  moveObjectTo(7, 36, 1, 5, 0, 160, 364);
+  moveObjectTo(8, 37, 1, 5, 0, 176, 176);
+  moveObjectTo(9, 38, 1, 5, 0, 224, 256);
+  delay(10);
+  playSound(8, 4);
+  moveObjectTo(0, 29, 1, 100, 0, -420, 392);
+  moveObjectTo(1, 30, 1, 100, 0, -404, 328);
+  moveObjectTo(2, 31, 1, 100, 0, -340, 472);
+  moveObjectTo(3, 32, 1, 100, 0, -388, 296);
+  moveObjectTo(4, 33, 1, 100, 0, -340, 344);
+  moveObjectTo(5, 34, 1, 100, 0, -436, 408);
+  moveObjectTo(6, 35, 1, 100, 0, -404, 472);
+  moveObjectTo(7, 36, 1, 100, 0, -340, 564);
+  moveObjectTo(8, 37, 1, 100, 0, -424, 376);
+  moveObjectTo(9, 38, 1, 100, 0, -276, 556);
+  delay(80);
+  followEntity(Entity.Player, speed: 10);
+  speak(Entity.Player, "「うわ、はめられた!くーっ。」<NEWLINE>");
+  speak(Entity.Player, "「あーあ。でも洞くつは<NEWLINE> とりもどせたからよしとするか。」<NEWLINE>");
+  move(entity: Entity.Player, to: (705, 1585), sprint: 0, withCamera: true);
+  move(entity: Entity.Partner, to: (740, 1100), sprint: 0);
+  speak(Entity.Player, "「さ、もうこの洞くつは大丈夫だと思うよ。」<NEWLINE>");
+  speak(Entity(5), "「……。あなたは本当に良い心の持ち主の<NEWLINE> ようだ。やつらもそのうちあやまちに<NEWLINE> 気づくだろう。」<NEWLINE>");
+  speak(Entity(5), "「私の宝物はあなたにあげよう。<NEWLINE> この奥にある。」<NEWLINE>");
+  speak(Entity.Player, "「え、待ってくれ、それはおまえの宝物<NEWLINE> なんだろ?もらうわけにはいかない。」<NEWLINE>");
+  speak(Entity(5), "「いや、私にはもう必要無いんだ。<NEWLINE> 私はあなたの街に行きたくなった<NEWLINE> のだから。」<NEWLINE>");
+  speak(Entity.Player, "「へ?どうしたんだ急に。じゃあこの洞くつ<NEWLINE> をとりかえした意味も無いじゃないか。」<NEWLINE>");
+  speak(Entity(5), "「気を悪くしたならすまない。だが、私は<NEWLINE> あなたの気持ちに答えたくなった。<NEWLINE> どうしてもあなたを助けたい。」<NEWLINE>");
+  speak(Entity.Player, "「そっか。ありがとう。おまえも本当に<NEWLINE> いいやつだな。」<NEWLINE>");
+  speak(Entity(5), "「では私はこのまま街に向かう。<NEWLINE> 途中まで乗せていくよ。」<NEWLINE>");
+  playSound(8, 11);
+  speak(Entity.System, "ホエーモンが街に参加した!!!<NEWLINE>");
+  setTrigger(Trigger(224));
+  addPStat(PStat(1), 2);
+  warp(to: Map.FRZL16, spawn: 0, trigger: 255);
+  return;
+}
+
+section(81) {
+  {
+    speak(Entity(5), "「街へもどるのかい?」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L5);
+    showTextbox("「もどる。」<NEWLINE>「もどらない。」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L1:
+    if (!trigger(203)) {
+      warp(to: Map.TWNA01, spawn: 0, trigger: 255);
+    }
+    {
+      if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L3; else break;
+    }
+    {
+      if (trigger(221)) goto L2; else break;
+    }
+    if (trigger(225)) {
+      warp(to: Map.TWNA04, spawn: 0, trigger: 255);
+    }
+    if (trigger(246)) {
+      warp(to: Map.TWNA03, spawn: 0, trigger: 255);
+    }
+    warp(to: Map.TWNA02, spawn: 0, trigger: 255);
+
+L2:
+    if (trigger(225)) {
+      warp(to: Map.TWNA07, spawn: 0, trigger: 255);
+    }
+    if (trigger(246)) {
+      warp(to: Map.TWNA06, spawn: 0, trigger: 255);
+    }
+    {
+      warp(to: Map.TWNA05, spawn: 0, trigger: 255);
+
+L3:
+      if (trigger(221)) goto L4; else break;
+    }
+    if (trigger(225)) {
+      warp(to: Map.TWNA10, spawn: 0, trigger: 255);
+    }
+    if (trigger(246)) {
+      warp(to: Map.TWNA09, spawn: 0, trigger: 255);
+    }
+    warp(to: Map.TWNA08, spawn: 0, trigger: 255);
+
+L4:
+    if (trigger(225)) {
+      warp(to: Map.TWNA13, spawn: 0, trigger: 255);
+    }
+    if (trigger(246)) {
+      warp(to: Map.TWNA12, spawn: 0, trigger: 255);
+    }
+    warp(to: Map.TWNA11, spawn: 0, trigger: 255);
+    return;
+
+L5:
+  }
+  return;
+  return;
+  garbage { 18 00 fe 00 18 00 3d 00 ae 00 3c 00 bc 00 06 00 78 01 51 00 a2 0b ff ff 19 00 00 00 e0 00 18 00 94 00 19 00 57 00 69 01 57 00 6a 01 57 00 6b 01 57 00 6c 01 57 00 6d 01 57 00 27 01 57 00 28 01 57 00 29 01 57 00 2a 01 57 00 2b 01 57 00 2c 01 57 00 2d 01 57 00 2e 01 57 00 2f 01 57 00 30 01 57 00 31 01 57 00 32 01 57 00 33 01 57 00 34 01 57 00 35 01 57 00 36 01 57 00 37 01 57 00 38 01 57 00 18 00 57 00 19 00 57 00 1a 00 57 00 1b 00 57 00 1c 00 19 00 00 00 e0 00 18 00 ac 00 19 00 6c 05 b1 05 64 0b 02 00 67 00 0a 00 fe 00 6c 05 b1 05 64 0b 02 00 67 00 0a 00 fe 00 72 fd 6a ff 01 01 72 fc 6a ff 01 01 67 00 14 00 5a 00 08 03 6c 05 b1 05 64 0b 1e 00 67 00 0a 00 4f 63 8b 02 96 01 67 00 28 00 57 00 69 00 57 00 6a 00 57 00 6b 00 57 00 6c 00 57 00 6d 00 1e 00 f7 69 1e 00 f8 05 64 15 67 00 1e 00 72 fd 00 00 01 01 72 fc 00 00 01 01 4a fd 4a fc 6c fd de 02 ae 08 01 00 6c fc 47 03 81 0a 01 00 67 00 14 00 4e fd 40 03 24 03 01 00 4e fc 2c 01 25 03 01 00 4a fd 4a fc 67 00 0a 00 50 00 fd 14 4a c8 1b fd 1a 00 81 75 89 9c 82 a9 82 e7 90 ba 82 aa 82 b7 82 e9 81 63 82 b1 82 cc 90 ba 82 cd 81 49 81 76 0d 00 00 00 50 00 fd 0a 4a c8 fe 00 57 00 69 00 57 00 6a 00 57 00 6b 00 57 00 6c 00 57 00 6d 00 1e 00 f7 69 1e 00 f8 05 64 15 46 9a 47 9a 01 00 6c 05 b1 05 64 0b 01 00 4c 00 fd 05 67 00 05 00 1b fd 1a 00 81 75 82 dc 82 c4 81 49 81 76 0d 00 00 00 1b 06 1a 00 81 75 92 4e 82 aa 82 dc 82 c2 82 a9 82 e6 81 49 81 76 0d 00 00 00 4c 00 06 fd 67 00 05 00 1b 06 1a 00 81 75 82 aa 81 5b 82 c1 82 cd 82 c1 82 cd 82 c1 82 cd 81 49 81 76 0d 00 00 00 4f 0f 5c 04 87 08 4a c8 57 00 69 01 57 00 6a 01 57 00 6b 01 57 00 6c 01 57 00 6d 01 5a 00 08 05 56 00 05 1f 67 00 14 00 56 00 06 00 50 00 fd 0a 4a c8 57 00 69 00 57 00 6a 00 57 00 6b 00 57 00 6c 00 57 00 6d 00 1e 00 f7 69 1e 00 f8 05 64 15 6c 05 b1 05 64 0b 01 00 56 00 06 28 67 00 14 00 56 00 06 00 1b 06 1a 00 81 75 82 a4 82 ed 82 c1 82 c6 81 41 83 72 83 62 83 4e 83 8a 81 49 81 76 0d 00 00 00 1b fd 1a 00 81 75 83 7a 83 47 81 5b 83 82 83 93 81 41 83 69 83 43 83 58 81 49 0d 00 81 40 8d a1 82 be 82 c1 81 49 81 76 0d 00 00 00 4e fd 3e 03 2d 03 01 00 4e fc d9 01 e1 01 01 00 4a fd 4a fc 4c 00 fd 06 4c 00 fc 06 4f 0a d4 00 be 03 4a c8 1b fd 1a 00 81 75 82 b3 82 a0 82 a9 82 f1 82 cb 82 f1 82 b5 82 eb 81 49 81 76 0d 00 00 00 4e 06 d4 00 be 03 00 00 4a 06 4c 00 06 fd 1b 06 1a 00 81 75 82 ad 81 41 82 ad 82 a3 81 5b 81 63 81 76 0d 00 00 00 }
+}

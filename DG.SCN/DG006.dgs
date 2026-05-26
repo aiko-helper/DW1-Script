@@ -1,0 +1,275 @@
+// DG006.SCN
+#include "functions.dgs"
+#pragma script index=6 start=0x9000 end=0xa000 headerU16=0x20 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 29, item: Item.Digimushroom, x: 42, y: 54);
+  spawnItemChance(max: 99, chance: 59, item: Item.Digimushroom, x: 34, y: 30);
+  spawnItemChance(max: 99, chance: 9, item: Item.Digimushroom, x: 53, y: 47);
+  spawnItemChance(max: 99, chance: 19, item: Item.Digimushroom, x: 69, y: 60);
+  if (trigger(185) && !trigger(249)) {
+    setObjectsVisibleRange(13, 28, 0);
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] >= 15 && pstat[107] <= 19 && !trigger(249)) {
+    setObjectsVisibleRange(13, 28, 0);
+  }
+  return;
+}
+
+section(6) {
+  speak(Entity(6), "「まけるもんか~!」<NEWLINE>");
+  startBattle();
+  return;
+}
+
+section(7) {
+  speak(Entity(7), "「こっちくんな!あっちへ行けよっ!」<NEWLINE>");
+  startBattle();
+  return;
+}
+
+section(8) {
+  speak(Entity(8), "「もう、あったまきたかんな~!」<NEWLINE>");
+  startBattle();
+  return;
+}
+
+section(9) {
+  speak(Entity(9), "「一発ぶったら、一発ぶつぞ!」<NEWLINE>");
+  startBattle();
+  return;
+}
+
+section(10) {
+  speak(Entity(10), "「やれるもんなら、やってみろよ!」<NEWLINE>");
+  startBattle();
+  return;
+}
+
+section(51) {
+  if (trigger(185) && !trigger(249)) {
+    panTo(x: 2214, y: 865, slowdown: 20);
+    setPStat(PStat(247), 13);
+    setPStat(PStat(248), 16);
+    callSubroutine(21);
+    move(entity: Entity.Player, to: (1642, -107), sprint: 0);
+    move(entity: Entity.Partner, to: (1252, -547), sprint: 1);
+    delay(80);
+    setObjectsVisibleRange(13, 28, 1);
+    setDigimon(Digimon.Coelamon, Entity(0), 0);
+    playSound(8, 7);
+    setObjectVisibility(31, 0);
+    setPStat(PStat(247), 31);
+    setPStat(PStat(248), 1);
+    callSubroutine(21);
+    delay(10);
+    setObjectVisibility(31, 1);
+    setObjectVisibility(34, 0);
+    lookPairAt(Entity(5));
+    delay(20);
+    look(entity: Entity(5), at: Entity.Player);
+    speak(Entity(5), "「んん?<LIGHTBLUE><PLAYER><WHITE>か。<NEWLINE> もう橋は直ったようじゃな。」<NEWLINE>");
+    showTextbox("「おぬしら、街をつくっとるらしいな。」<NEWLINE>");
+    showTextbox("「そこでひとつたのみがあるんじゃ。<NEWLINE> わしがおぬしを助けたように、<NEWLINE> おぬしもまた、わしを助けてほしい。」<NEWLINE>");
+    speak(Entity.Player, "'?\"\n");
+    speak(Entity(5), "「街をつくることは、この島を救うこと。<NEWLINE> みんなが助かる。わしも助かる。<NEWLINE> わかるのう?」<NEWLINE>");
+    anim(Entity.Player, Animation(19), wait: 15);
+    speak(Entity.Player, "「街に来てくれるってこと?」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(5), "「うむ。ではおぬしの街へ行くとしよう。」<NEWLINE>");
+    delay(10);
+    setObjectVisibility(34, 1);
+    unloadEntity(Entity(5));
+    playSound(8, 7);
+    setObjectVisibility(37, 0);
+    setPStat(PStat(247), 37);
+    setPStat(PStat(248), 1);
+    callSubroutine(21);
+    delay(10);
+    setObjectVisibility(37, 1);
+    setObjectVisibility(29, 0);
+    setObjectVisibility(30, 0);
+    setPStat(PStat(247), 29);
+    setPStat(PStat(248), 2);
+    callSubroutine(21);
+    moveObjectTo(0, 29, 1, 30, 0, 640, 130);
+    moveObjectTo(1, 30, 1, 30, 0, 640, 130);
+    delay(40);
+    setObjectVisibility(29, 1);
+    setObjectVisibility(30, 1);
+    delay(10);
+    playSound(8, 11);
+    speak(Entity.System, "シーラモンが街に参加した!!!<NEWLINE>");
+    move(entity: Entity.Player, to: (1000, -461), sprint: 1);
+    followEntity(Entity.Player, speed: 10);
+    setTrigger(Trigger(249));
+    addPStat(PStat(1), 2);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] >= 15 && pstat[107] <= 19 && !trigger(249)) {
+  } else {
+    return;
+  }
+  panTo(x: 2214, y: 865, slowdown: 20);
+  setPStat(PStat(247), 13);
+  setPStat(PStat(248), 16);
+  callSubroutine(21);
+  move(entity: Entity.Player, to: (1642, -107), sprint: 0);
+  move(entity: Entity.Partner, to: (1252, -547), sprint: 1);
+  delay(80);
+  setObjectsVisibleRange(13, 28, 1);
+  setDigimon(Digimon.Coelamon, Entity(0), 0);
+  playSound(8, 7);
+  setObjectVisibility(31, 0);
+  setPStat(PStat(247), 31);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  delay(10);
+  setObjectVisibility(31, 1);
+  setObjectVisibility(34, 0);
+  lookPairAt(Entity(5));
+  delay(20);
+  look(entity: Entity(5), at: Entity.Player);
+  anim(Entity.Player, Animation(15), wait: 20);
+  if (trigger(96)) {
+  } else {
+    speak(Entity(5), "「んん?おぬし、もしかして人間か?」<NEWLINE>");
+    showTextbox("「わしに会えるなんてめずらシーラ。<NEWLINE> わしは魚デジモンのシーラモン。もしや、<NEWLINE> わざわざ会いに来てくれたのか?」<NEWLINE>");
+    setTrigger(Trigger(49));
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L2);
+    showTextbox("「探したぜ!」<NEWLINE>「ぐうぜんさ。」<NEWLINE>");
+
+L1:
+    {
+      anim(Entity.Player, Animation(19), wait: 20);
+      unsetTrigger(Trigger(49));
+      speak(Entity(5), "「ほっほーそうかそうか!」<NEWLINE>");
+      break;
+
+L2:
+      anim(Entity.Player, Animation(19), wait: 20);
+      unsetTrigger(Trigger(49));
+      speak(Entity(5), "「ふふ…わしにはわかるぞ。<NEWLINE> 照れなくてもよいのに。」<NEWLINE>");
+    }
+    speak(Entity(5), "「おぬしの目的はだいたい分かるぞ。<NEWLINE> 上流の橋が壊れとる。だが向こうへ渡り<NEWLINE> たい…そうじゃろう?」<NEWLINE>");
+    playSound(8, 8);
+    anim(Entity.Player, Animation(22), wait: 8);
+    anim(Entity.Player, Animation(22), wait: 8);
+    anim(Entity.Player, Animation(0), wait: 3);
+    playSound(8, 14);
+    showTextbox("「ふむ、よいじゃろ。<NEWLINE> わしがなんとかしよう。」<NEWLINE>");
+  }
+  if (trigger(96)) {
+    speak(Entity(5), "「はは、また来たのか。」<NEWLINE>");
+  }
+  followEntity(Entity(5), speed: 10);
+  setObjectVisibility(34, 1);
+  unloadEntity(Entity(5));
+  playSound(8, 7);
+  setObjectVisibility(37, 0);
+  setPStat(PStat(247), 37);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  delay(60);
+  setObjectVisibility(37, 1);
+  setDigimon(Digimon.Coelamon, Entity(0), 0);
+  playSound(8, 7);
+  setObjectVisibility(31, 0);
+  setPStat(PStat(247), 31);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  delay(15);
+  setObjectVisibility(31, 1);
+  setObjectVisibility(34, 0);
+  setDigimon(Digimon.Coelamon, Entity(6), 0);
+  playSound(8, 7);
+  setObjectVisibility(32, 0);
+  setPStat(PStat(247), 32);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  delay(15);
+  setObjectVisibility(32, 1);
+  setObjectVisibility(35, 0);
+  setDigimon(Digimon.Coelamon, Entity(7), 0);
+  playSound(8, 7);
+  setObjectVisibility(33, 0);
+  setPStat(PStat(247), 33);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  delay(15);
+  setObjectVisibility(33, 1);
+  setObjectVisibility(36, 0);
+  look(entity: Entity(5), at: Entity.Player);
+  delay(20);
+  speak(Entity(5), "「さあ、わしらの頭を渡っていけ。<NEWLINE> エンリョすることはないぞ、ほれほれ。」<NEWLINE>");
+  sfx(8, 14, wait: 10);
+  sfx(8, 14, wait: 10);
+  sfx(8, 14, wait: 10);
+  anim(Entity.Player, Animation(11), wait: 20);
+  speak(Entity.Player, "「よーし、行くぞ!」<NEWLINE>");
+  look(entity: Entity.Player, at: Entity(5));
+  delay(3);
+  playAnimation(Entity.Player, Animation(21));
+  move(entity: Entity.Player, to: (2214, 865), animDuration: 15);
+  delay(5);
+  sfx(8, 9, wait: 12);
+  playSound(8, 7);
+  setObjectVisibility(31, 0);
+  setPStat(PStat(247), 31);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  look(entity: Entity.Player, at: Entity(11));
+  delay(3);
+  playAnimation(Entity.Player, Animation(21));
+  move(entity: Entity.Player, to: (2900, 1300), animDuration: 14);
+  delay(5);
+  sfx(8, 9, wait: 12);
+  setObjectVisibility(31, 1);
+  playSound(8, 7);
+  setObjectVisibility(32, 0);
+  setPStat(PStat(247), 32);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  look(entity: Entity.Player, at: Entity(12));
+  delay(3);
+  playAnimation(Entity.Player, Animation(21));
+  move(entity: Entity.Player, to: (3967, 3068), animDuration: 15);
+  delay(5);
+  sfx(8, 9, wait: 12);
+  setObjectVisibility(32, 1);
+  playSound(8, 7);
+  setObjectVisibility(33, 0);
+  setPStat(PStat(247), 33);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  look(entity: Entity.Player, at: Entity(12));
+  delay(3);
+  playAnimation(Entity.Player, Animation(21));
+  move(entity: Entity.Player, to: (5009, 4260), animDuration: 15);
+  delay(5);
+  sfx(8, 9, wait: 12);
+  playSound(8, 7);
+  setObjectVisibility(33, 1);
+  look(entity: Entity(5), at: Entity.Player);
+  playSound(8, 7);
+  setObjectVisibility(31, 0);
+  setPStat(PStat(247), 31);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  delay(15);
+  setObjectVisibility(31, 1);
+  look(entity: Entity(11), at: Entity.Player);
+  look(entity: Entity(12), at: Entity.Player);
+  delay(20);
+  speak(Entity(5), "「世の中、助け合いの気持ちが大切じゃ。<NEWLINE> また会おうな~。」<NEWLINE>");
+  playSound(8, 14);
+  setTrigger(Trigger(96));
+  move(entity: Entity.Partner, to: (3500, 2500), sprint: 0);
+  warp(to: Map.TROP01, spawn: 4, trigger: 255);
+  return;
+  garbage { 20 00 fe 00 20 00 06 00 20 01 07 00 46 01 08 00 7c 01 09 00 ae 01 0a 00 de 01 33 00 12 02 ff ff 24 00 6e 63 19 00 0b 00 6e 1d 18 00 36 00 19 00 74 2c 2a 00 36 00 24 00 6e 63 19 00 0b 00 6e 3b 18 00 4c 00 19 00 74 2c 22 00 1e 00 24 00 6e 63 19 00 0b 00 6e 09 18 00 62 00 19 00 74 2c 35 00 2f 00 24 00 6e 63 19 00 0b 00 6e 13 18 00 78 00 19 00 74 2c 45 00 3c 00 19 00 00 00 b9 00 81 00 f9 00 18 00 c8 00 19 00 57 00 0d 00 57 00 0e 00 57 00 0f 00 57 00 10 00 57 00 11 00 57 00 12 00 57 00 13 00 57 00 14 00 57 00 15 00 57 00 16 00 57 00 17 00 57 00 18 00 57 00 19 00 57 00 1a 00 57 00 1b 00 57 00 1c 00 25 69 19 00 0a 00 6b 0f 8b 00 6b 13 81 00 f9 00 18 00 1e 01 19 00 57 00 0d 00 57 00 0e 00 57 00 0f 00 57 00 10 00 57 00 11 00 57 00 12 00 57 00 13 00 57 00 14 00 57 00 15 00 57 00 16 00 57 00 17 00 57 00 18 00 57 00 19 00 57 00 1a 00 57 00 1b 00 57 00 1c 00 fe 00 1b 06 1a 00 81 75 82 dc 82 af 82 e9 82 e0 82 f1 82 a9 81 60 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 07 1a 00 81 75 82 b1 82 c1 82 bf 82 ad 82 f1 82 c8 81 49 82 a0 82 c1 82 bf 82 d6 8d 73 82 af 82 e6 82 c1 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 08 1a 00 81 75 82 e0 82 a4 81 41 82 a0 82 c1 82 bd 82 dc 82 ab 82 bd 82 a9 82 f1 82 c8 81 60 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 09 1a 00 81 75 88 ea 94 ad 82 d4 82 c1 82 bd 82 e7 81 41 88 ea 94 ad 82 d4 82 c2 82 bc 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 1b 0a 1a 00 81 75 82 e2 82 ea 82 e9 82 e0 82 f1 82 c8 82 e7 81 41 82 e2 82 c1 82 c4 82 dd 82 eb 82 e6 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 fe 00 19 00 00 00 b9 00 81 00 f9 00 18 00 fc 04 19 00 4f 14 a6 08 61 03 4a c8 1e 00 f7 0d 1e 00 f8 10 64 15 4e fd 6a 06 95 ff 00 00 4e fc e4 04 dd fd 01 00 67 00 50 00 57 00 0d 01 57 00 0e 01 57 00 0f 01 57 00 10 01 57 00 11 01 57 00 12 01 57 00 13 01 57 00 14 01 57 00 15 01 57 00 16 01 57 00 17 01 57 00 18 01 57 00 19 01 57 00 1a 01 57 00 1b 01 57 00 1c 01 47 31 00 00 5a 00 08 07 57 00 1f 00 1e 00 f7 1f 1e 00 f8 01 64 15 67 00 0a 00 57 00 1f 01 57 00 22 00 4c 00 fd 05 4c 00 fc 05 67 00 14 00 4c 00 05 fd 1b 05 1a 00 81 75 82 f1 82 f1 81 48 01 06 05 00 01 01 82 a9 81 42 0d 00 81 40 82 e0 82 a4 8b b4 82 cd 92 bc 82 c1 82 bd 82 e6 82 a4 82 b6 82 e1 82 c8 81 42 81 76 0d 00 00 00 1a 00 81 75 82 a8 82 ca 82 b5 82 e7 81 41 8a 58 82 f0 82 c2 82 ad 82 c1 82 c6 82 e9 82 e7 82 b5 82 a2 82 c8 81 42 81 76 0d 00 00 00 1a 00 81 75 82 bb 82 b1 82 c5 82 d0 82 c6 82 c2 82 bd 82 cc 82 dd 82 aa 82 a0 82 e9 82 f1 82 b6 82 e1 81 42 0d 00 81 40 82 ed 82 b5 82 aa 82 a8 82 ca 82 b5 82 f0 8f 95 82 af 82 bd 82 e6 82 a4 82 c9 81 41 0d 00 81 40 82 a8 82 ca 82 b5 82 e0 82 dc 82 bd 81 41 82 ed 82 b5 82 f0 8f 95 82 af 82 c4 82 d9 82 b5 82 a2 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 81 48 81 76 0d 00 00 00 1b 05 1a 00 81 75 8a 58 82 f0 82 c2 82 ad 82 e9 82 b1 82 c6 82 cd 81 41 82 b1 82 cc 93 87 82 f0 8b 7e 82 a4 82 b1 82 c6 81 42 0d 00 81 40 82 dd 82 f1 82 c8 82 aa 8f 95 82 a9 82 e9 81 42 82 ed 82 b5 82 e0 8f 95 82 a9 82 e9 81 42 0d 00 81 40 82 ed 82 a9 82 e9 82 cc 82 a4 81 48 81 76 0d 00 00 00 56 00 fd 13 67 00 0f 00 1b fd 1a 00 81 75 8a 58 82 c9 97 88 82 c4 82 ad 82 ea 82 e9 82 c1 82 c4 82 b1 82 c6 81 48 81 76 0d 00 00 00 56 00 fd 00 1b 05 1a 00 81 75 82 a4 82 de 81 42 82 c5 82 cd 82 a8 82 ca 82 b5 82 cc 8a 58 82 d6 8d 73 82 ad 82 c6 82 b5 82 e6 82 a4 81 42 81 76 0d 00 00 00 67 00 0a 00 57 00 22 01 48 05 5a 00 08 07 57 00 25 00 1e 00 f7 25 1e 00 f8 01 64 15 67 00 0a 00 57 00 25 01 57 00 1d 00 57 00 1e 00 1e 00 f7 1d 1e 00 f8 02 64 15 71 00 1d 01 1e 00 80 02 82 00 71 01 1e 01 1e 00 80 02 82 00 67 00 28 00 57 00 1d 01 57 00 1e 01 67 00 0a 00 5a 00 08 0b 1b ff 1a 00 83 56 81 5b 83 89 83 82 83 93 82 aa 8a 58 82 c9 8e 51 89 c1 82 b5 82 bd 81 49 81 49 81 49 0d 00 00 00 4e fd e8 03 33 fe 01 00 50 00 fd 0a 4a c8 1c 00 f9 00 1f 00 01 02 fe 00 25 69 19 00 0a 00 6b 0f 8b 00 6b 13 81 00 f9 00 18 00 16 05 19 00 16 00 18 05 fe 00 4f 14 a6 08 61 03 4a c8 1e 00 f7 0d 1e 00 f8 10 64 15 4e fd 6a 06 95 ff 00 00 4e fc e4 04 dd fd 01 00 67 00 50 00 57 00 0d 01 57 00 0e 01 57 00 0f 01 57 00 10 01 57 00 11 01 57 00 12 01 57 00 13 01 57 00 14 01 57 00 15 01 57 00 16 01 57 00 17 01 57 00 18 01 57 00 19 01 57 00 1a 01 57 00 1b 01 57 00 1c 01 47 31 00 00 5a 00 08 07 57 00 1f 00 1e 00 }
+}

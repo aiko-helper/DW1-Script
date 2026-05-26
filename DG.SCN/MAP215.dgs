@@ -1,0 +1,45 @@
+// MAP215.SCN
+#include "functions.dgs"
+#pragma script index=215 start=0xa0800 end=0xa1000 headerU16=0xc sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(83) {
+  if (trigger(203)) {
+    return;
+  }
+  playSound(0, 0);
+  speak(Entity.System, "<YELLOW>ポヨモン<WHITE><NEWLINE>「ポヨヨン。ぼくはポヨモンだよー。」<NEWLINE>");
+  if (pstat[1] >= 30) {
+    speak(Entity.System, "<YELLOW>ポヨモン<WHITE><NEWLINE>「進化の話のまたつづきだよー。<NEWLINE> えーと、成熟期の次の世代の<NEWLINE> ことなんだけどー。」<NEWLINE>");
+    showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「完全体っていうんだってー。<NEWLINE> 成熟期から必ずなれるわけじゃない<NEWLINE> みたいー。」<NEWLINE>");
+    showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「進化のじょうけんはすごくきびしいってー。<NEWLINE> でも、もし完全体なれたら、寿命が<NEWLINE> のびるんだってー。」<NEWLINE>");
+    showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「アイテムで進化した時は寿命は<NEWLINE> そのままみたいだけどねー。」<NEWLINE>");
+    playSound(0, 1);
+    return;
+  }
+  if (pstat[1] >= 15) {
+    speak(Entity.System, "<YELLOW>ポヨモン<WHITE><NEWLINE>「進化の話のつづきだよー。<NEWLINE> えっとね、進化のじょうけんについて<NEWLINE> なんだけどー。」<NEWLINE>");
+    showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「まず体重は、進化先の体重に<NEWLINE> 近くないとだめみたいだよー。」<NEWLINE>");
+    showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「それからパラメータは、やっぱり<NEWLINE> 高いほどいいんだけど、何が高いと<NEWLINE> いいのかはそれぞれ違うみたいー。」<NEWLINE>");
+    showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「あと育成ミスについてだけど、<NEWLINE> わざと多く失敗させたほうがいい<NEWLINE> 場合もあるみたいだねー<NEWLINE>");
+    showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「そうそう、ほかにも進化先ごとに<NEWLINE> 特別に進化のじょうけんになるものが<NEWLINE> あるみたいー。」<NEWLINE>");
+    showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「たとえばしつけがすごく高いとかー。<NEWLINE> バトルの回数が多いとかねー。」<NEWLINE>");
+    showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「そういうのを満たしてれば、3つの<NEWLINE> 基本じょうけんが完全じゃなくても<NEWLINE> 進化できちゃうんだってさー。」<NEWLINE>");
+    playSound(0, 1);
+    return;
+  }
+  speak(Entity.System, "<YELLOW>ポヨモン<WHITE><NEWLINE>「じーちゃんに聞いたんだけど、<ORANGE><DIGIMON><WHITE><NEWLINE> さんって『進化』するんだってー。」<NEWLINE>");
+  showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「幼年期1から幼年期2へは<NEWLINE> たったの6時間で進化するってー。」<NEWLINE>");
+  showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「次の成長期へは<NEWLINE> だいたい1日で進化するってー。」<NEWLINE>");
+  showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「その次の成熟期へは<NEWLINE> 3日ぐらいで進化するってー。」<NEWLINE>");
+  showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「そのまた次の世代は…なんだっけー?<NEWLINE> 忘れちゃったけど、まだあるんだよー。」<NEWLINE>");
+  showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「進化には、体重とパラメータと育成ミスが<NEWLINE> 関係してるんだってさー。」<NEWLINE>");
+  showTextbox("<YELLOW>ポヨモン<WHITE><NEWLINE>「そのへん、まだよくわかんないから<NEWLINE> 今度じーちゃんに聞いとくねー。」<NEWLINE>");
+  playSound(0, 1);
+  return;
+  garbage { 0c 00 fe 00 0c 00 53 00 0e 00 ff ff fe 00 19 00 00 00 cb 00 18 00 1c 00 19 00 fe 00 5a 00 00 00 1b ff 1a 00 01 07 83 7c 83 88 83 82 83 93 01 01 0d 00 81 75 83 7c 83 88 83 88 83 93 81 42 82 da 82 ad 82 cd 83 7c 83 88 83 82 83 93 82 be 82 e6 81 5b 81 42 81 76 0d 00 00 00 19 00 0a 00 01 1e 18 00 06 02 19 00 1b ff 1a 00 01 07 83 7c 83 88 83 82 83 93 01 01 0d 00 81 75 90 69 89 bb 82 cc 98 62 82 cc 82 dc 82 bd 82 c2 82 c3 82 ab 82 be 82 e6 81 5b 81 42 0d 00 }
+}

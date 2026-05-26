@@ -1,0 +1,224 @@
+// DG158.SCN
+#include "functions.dgs"
+#pragma script index=158 start=0x6c000 end=0x6c800 headerU16=0x14 sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(5) {
+  jumpToScriptSection(183, 51);
+  return;
+}
+
+section(6) {
+  roll(pstat: PStat.RollScratch, max: 3);
+  switch pstat[110] {
+    0 => {
+      speak(Entity(6), "「なんじゃのう、こまめに<NEWLINE> つかれをとっておくのが健康の<NEWLINE> ヒケツじゃな。」<NEWLINE>");
+      return;
+    }
+    1 => {
+      speak(Entity(6), "「なんじゃのう、はんえい度の<NEWLINE> 増えかたについて教えてやるかのう。」<NEWLINE>");
+      showTextbox("「成長期のデジモンが街に来れば+1、<NEWLINE> 成熟期のデジモンが街に来れば+2。」<NEWLINE>");
+      showTextbox("「完全体のデジモンが街に来れば+3、<NEWLINE> となっておるらしい。」<NEWLINE>");
+      showTextbox("「ただ、成熟期の中であまり役に立たない<NEWLINE> 3びきだけは+1なんじゃよ。」<NEWLINE>");
+      return;
+    }
+    2 => {
+      speak(Entity(6), "「なんじゃのう、属性について<NEWLINE> 少し教えてやるかのう。」<NEWLINE>");
+      showTextbox("「まず、パートナーと同じ属性の敵は、<NEWLINE> 戦闘に参加しにくいのじゃ。」<NEWLINE>");
+      showTextbox("「あと、属性が合わないと入り口で<NEWLINE> はじかれてしまう場所が2つある。」<NEWLINE>");
+      showTextbox("「それ以外はまあ、あまり気にしなくて<NEWLINE> いいかもしれんのう。」<NEWLINE>");
+      return;
+    }
+    3 => {
+      speak(Entity(6), "「なんじゃのう、テイマーレベルについて<NEWLINE> 教えてやるかのう。」<NEWLINE>");
+      showTextbox("「まずは進化の時じゃな。<NEWLINE> 完全体まで育てることができれば確実に<NEWLINE> 1レベル上がるのじゃ。」<NEWLINE>");
+      showTextbox("「それと、高レベルの大会で優勝するのも<NEWLINE> いいのう。」<NEWLINE>");
+      showTextbox("「まあ、あまり意識しなくても自然に<NEWLINE> 上がっていくもんじゃよ。」<NEWLINE>");
+      showTextbox("「ぎゃくに、下がるほうは気をつけられよ。<NEWLINE> たとえばライフが無くなると<NEWLINE> 確実に下がってしまう。」<NEWLINE>");
+      showTextbox("「めったにないが、<NEWLINE> 日々の育成のミスでも下がることがある。<NEWLINE> つねに気をくばるべきじゃな。」<NEWLINE>");
+      return;
+    }
+  }
+  return;
+}
+
+section(51) {
+  {
+    move(entity: Entity.Player, to: (1909, 860), sprint: 0);
+    unsetTrigger(Trigger(69));
+    if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) goto L16; else break;
+  }
+  {
+    if (trigger(204) || trigger(249)) {
+      break;
+      break;
+    }
+    goto L8;
+  }
+  {
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L4; else break;
+  }
+  {
+    if (trigger(236)) goto L2; else break;
+  }
+  {
+    if (trigger(205)) goto L1; else break;
+  }
+  warp(to: Map.TWNB02, spawn: 5, trigger: 255);
+  return;
+
+L1:
+  {
+    warp(to: Map.TWNB09, spawn: 5, trigger: 255);
+    return;
+
+L2:
+    if (trigger(205)) goto L3; else break;
+  }
+  warp(to: Map.TWNB07, spawn: 5, trigger: 255);
+  return;
+
+L3:
+  {
+    warp(to: Map.TWNB08, spawn: 5, trigger: 255);
+    return;
+
+L4:
+    if (trigger(236)) goto L6; else break;
+  }
+  {
+    if (trigger(205)) goto L5; else break;
+  }
+  warp(to: Map.TWNB03, spawn: 5, trigger: 255);
+  return;
+
+L5:
+  {
+    warp(to: Map.TWNB06, spawn: 5, trigger: 255);
+    return;
+
+L6:
+    if (trigger(205)) goto L7; else break;
+  }
+  warp(to: Map.TWNB04, spawn: 5, trigger: 255);
+  return;
+
+L7:
+  {
+    warp(to: Map.TWNB05, spawn: 5, trigger: 255);
+    return;
+
+L8:
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L12; else break;
+  }
+  {
+    if (trigger(236)) goto L10; else break;
+  }
+  {
+    if (trigger(205)) goto L9; else break;
+  }
+  warp(to: Map.TWNB01, spawn: 5, trigger: 255);
+  return;
+
+L9:
+  warp(to: Map.TWNB24, spawn: 5, trigger: 255);
+  return;
+
+L10:
+  {
+    if (trigger(205)) {
+      break;
+      break;
+    }
+    goto L11;
+  }
+  warp(to: Map.TWNB23, spawn: 5, trigger: 255);
+  return;
+
+L11:
+  {
+    warp(to: Map.TWNB22, spawn: 5, trigger: 255);
+    return;
+
+L12:
+    if (trigger(236)) goto L14; else break;
+  }
+  {
+    if (trigger(205)) goto L13; else break;
+  }
+  warp(to: Map.TWNB18, spawn: 5, trigger: 255);
+  return;
+
+L13:
+  {
+    warp(to: Map.TWNB21, spawn: 5, trigger: 255);
+    return;
+
+L14:
+    if (trigger(205)) goto L15; else break;
+  }
+  warp(to: Map.TWNB19, spawn: 5, trigger: 255);
+  return;
+
+L15:
+  {
+    warp(to: Map.TWNB20, spawn: 5, trigger: 255);
+    return;
+
+L16:
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L20; else break;
+  }
+  {
+    if (trigger(236)) goto L18; else break;
+  }
+  {
+    if (trigger(205)) goto L17; else break;
+  }
+  warp(to: Map.TWNB10, spawn: 5, trigger: 255);
+  return;
+
+L17:
+  {
+    warp(to: Map.TWNB17, spawn: 5, trigger: 255);
+    return;
+
+L18:
+    if (trigger(205)) goto L19; else break;
+  }
+  warp(to: Map.TWNB15, spawn: 5, trigger: 255);
+  return;
+
+L19:
+  {
+    warp(to: Map.TWNB16, spawn: 5, trigger: 255);
+    return;
+
+L20:
+    if (trigger(236)) goto L22; else break;
+  }
+  {
+    if (trigger(205)) goto L21; else break;
+  }
+  warp(to: Map.TWNB11, spawn: 5, trigger: 255);
+  return;
+
+L21:
+  {
+    warp(to: Map.TWNB14, spawn: 5, trigger: 255);
+    return;
+
+L22:
+    if (trigger(205)) goto L23; else break;
+  }
+  warp(to: Map.TWNB12, spawn: 5, trigger: 255);
+  return;
+
+L23:
+  warp(to: Map.TWNB13, spawn: 5, trigger: 255);
+  return;
+  garbage { 14 00 fe 00 14 00 05 00 16 00 06 00 1e 00 33 00 f0 04 ff ff fe 00 }
+}

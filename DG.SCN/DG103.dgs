@@ -1,0 +1,98 @@
+// DG103.SCN
+#include "functions.dgs"
+#pragma script index=103 start=0x44800 end=0x45000 headerU16=0x14 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 19, item: Item.Digimushroom, x: 61, y: 54);
+  spawnItemChance(max: 99, chance: 4, item: Item.Happymushroom, x: 39, y: 46);
+  spawnItemChance(max: 99, chance: 14, item: Item.Digimushroom, x: 55, y: 63);
+  return;
+}
+
+section(51) {
+  if (!trigger(105) && trigger(230)) {
+    speak(Entity.System, "さっきの地震で土砂が無くなっている!<NEWLINE>");
+    setTrigger(Trigger(105));
+  }
+  return;
+}
+
+section(5) {
+  pstat[:SavedTime] = time();
+  speak(Entity(5), "「ただいま<MONTH>月<DAY>日<HOUR>時<MINUTE>分。」<NEWLINE>");
+  storeDigimonType(PStat(103));
+  storeDigimonTypus(103, PStat(109));
+  switch pstat[109] {
+    1 => {
+      speak(Entity(5), "「<ORANGE><DIGIMON><WHITE>はデータ属性だね。」<NEWLINE>");
+    }
+    2 => {
+      speak(Entity(5), "「<ORANGE><DIGIMON><WHITE>はワクチン属性だね。」<NEWLINE>");
+    }
+    3 => {
+      speak(Entity(5), "「<ORANGE><DIGIMON><WHITE>はウイルス属性だね。」<NEWLINE>");
+    }
+  }
+  addStats(tiredness: 10);
+  reduceStats(happiness: 10);
+  return;
+}
+
+section(6) {
+  speak(Entity(6), "「俺様はベンリくんだ!<NEWLINE> どうするのかね?」<NEWLINE>");
+  setDialogOwner(Entity.Player);
+  setSelection(L1, L2, L9);
+  showTextbox("「パラメータを変更してくれ。」<NEWLINE>「時間を進めてくれ。」<NEWLINE>「店にチェンジ。」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L1:
+  setDialogOwner(Entity.Player);
+  setSelection(L6, L7, L8);
+  showTextbox("「最強にしてくれ。」<NEWLINE>「最弱にしてくれ。」<NEWLINE>「中くらいにしてくれ。」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L2:
+  setDialogOwner(Entity.Player);
+  setSelection(L3, L4, L5);
+  showTextbox("「1時間進めてくれ。」<NEWLINE>「6時間進めてくれ。」<NEWLINE>「24時間進めてくれ。」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L3:
+  pstat[:SavedTime] = time();
+  addMinutesToDate(PStat.SavedTime, 60);
+  advanceToDate(PStat.SavedTime);
+  return;
+
+L4:
+  pstat[:SavedTime] = time();
+  addMinutesToDate(PStat.SavedTime, 360);
+  advanceToDate(PStat.SavedTime);
+  return;
+
+L5:
+  pstat[:SavedTime] = time();
+  addMinutesToDate(PStat.SavedTime, 1440);
+  advanceToDate(PStat.SavedTime);
+  return;
+
+L6:
+  setStats(offense: 999, defense: 999, speed: 999, brains: 999, maxHP: 9999, maxMP: 9999, currentHP: 9999, currentMP: 9999);
+  return;
+
+L7:
+  setStats(offense: 1, defense: 1, speed: 1, brains: 1, maxHP: 1, maxMP: 1, currentHP: 1, currentMP: 1);
+  return;
+
+L8:
+  setStats(offense: 500, defense: 500, speed: 500, brains: 500, maxHP: 5000, maxMP: 5000, currentHP: 5000, currentMP: 5000);
+  return;
+
+L9:
+  jumpToScriptSection(175, 6);
+  return;
+  garbage { 14 00 fe 00 14 00 33 00 58 00 05 00 9a 00 06 00 66 01 ff ff 24 00 6e 63 19 00 0b 00 6e 13 18 00 2a 00 19 00 74 2c 3d 00 36 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 40 00 19 00 74 45 27 00 2e 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 56 00 19 00 74 2c 37 00 3f 00 fe 00 19 00 01 00 69 00 80 00 e6 00 18 00 98 00 19 00 1b ff 1a 00 82 b3 82 c1 82 ab 82 cc 92 6e 90 6b 82 c5 93 79 8d bb 82 aa 96 b3 82 ad 82 c8 82 c1 82 c4 82 a2 82 e9 81 49 0d 00 00 00 1c 00 69 00 fe 00 25 69 1b 05 1a 00 81 75 82 bd 82 be 82 a2 82 dc 04 69 8c 8e 04 6a 93 fa 04 6b 8e 9e 04 6c 95 aa 81 42 81 76 0d 00 00 00 22 67 3f 00 67 6d 19 00 08 00 6d 01 18 00 f8 00 19 00 1b 05 1a 00 81 75 01 0a 06 00 01 01 82 cd 83 66 81 5b 83 5e 91 ae 90 ab 82 be 82 cb 81 42 81 76 0d 00 00 00 19 00 08 00 6d 02 18 00 2a 01 19 00 1b 05 1a 00 81 75 01 0a 06 00 01 01 82 cd 83 8f 83 4e 83 60 83 93 91 ae 90 ab 82 be 82 cb 81 42 81 76 0d 00 00 00 19 00 08 00 6d 03 18 00 5c 01 19 00 1b 05 1a 00 81 75 01 0a 06 00 01 01 82 cd 83 45 83 43 83 8b 83 58 91 ae 90 ab 82 be 82 cb 81 42 81 76 0d 00 00 00 35 08 0a 00 36 09 0a 00 fe 00 1b 06 1a 00 81 75 89 b4 97 6c 82 cd 83 78 83 93 83 8a 82 ad 82 f1 82 be 81 49 0d 00 81 40 82 c7 82 a4 82 b7 82 e9 82 cc 82 a9 82 cb 81 48 81 76 0d 00 00 00 1b fd 10 03 f8 01 50 02 36 03 1a 00 81 75 83 70 83 89 83 81 81 5b 83 5e 82 f0 95 cf 8d 58 82 b5 82 c4 82 ad 82 ea 81 42 81 76 0d 00 81 75 8e 9e 8a d4 82 f0 90 69 82 df 82 c4 82 ad 82 ea 81 42 81 76 0d 00 81 75 93 58 82 c9 83 60 83 46 83 93 83 57 81 42 81 76 0d 00 00 00 12 00 fe 00 1b fd 10 03 d0 02 f2 02 14 03 1a 00 81 75 8d c5 8b ad 82 c9 82 b5 82 c4 82 ad 82 ea 81 42 81 76 0d 00 81 75 8d c5 8e e3 82 c9 82 b5 82 c4 82 ad 82 ea 81 42 81 76 0d 00 81 75 92 86 82 ad 82 e7 82 a2 82 c9 82 b5 82 c4 82 ad 82 ea 81 42 81 76 0d 00 00 00 12 00 fe 00 1b fd 10 03 ac 02 b8 02 c4 02 1a 00 81 75 82 50 8e 9e 8a d4 90 69 82 df 82 c4 82 ad 82 ea 81 42 81 76 0d 00 81 75 82 55 8e 9e 8a d4 90 69 82 df 82 c4 82 ad 82 ea 81 42 81 76 0d 00 81 75 82 51 82 53 8e 9e 8a d4 90 69 82 df 82 c4 82 ad 82 ea 81 42 81 76 0d 00 00 00 12 00 fe 00 25 69 38 69 3c 00 00 00 37 69 fe 00 25 69 38 69 68 01 00 00 37 69 fe 00 25 69 38 69 a0 05 00 00 37 69 fe 00 34 00 e7 03 34 01 e7 03 34 02 e7 03 34 03 e7 03 34 04 0f 27 34 05 0f 27 34 06 0f 27 34 07 0f 27 fe 00 34 00 01 00 34 01 01 00 34 02 01 00 34 03 01 00 34 04 01 00 34 05 01 00 34 06 01 00 34 07 01 00 fe 00 34 00 f4 01 34 01 f4 01 34 02 f4 01 34 03 f4 01 34 04 88 13 34 05 88 13 34 06 88 13 34 07 88 13 fe 00 17 00 af 00 06 00 fe 00 ff 00 36 07 e8 03 16 00 4c 01 fe 00 36 00 c8 00 36 01 c8 00 36 02 c8 00 36 03 c8 00 36 04 d0 07 36 05 d0 07 36 06 d0 07 36 07 d0 07 16 00 4c 01 fe 00 2d 00 2d 01 2d 02 2d 03 2d 04 2d 05 2d 06 2d 07 2d 08 2d 09 2d 0a 2d 0b 2d 0c 2d 0d 2d 0e 2d 0f 2d 10 2d 11 2d 12 2d 13 2d 14 2d 15 2d 16 2d 17 2d 18 2d 19 2d 1a 2d 1b 2d 1c 2d 1d 2d 1e 2d 1f 2d 20 2d 21 2d 22 2d 23 2d 24 2d 25 2d 26 2d 27 2d 28 2d 29 2d 2a 2d 2b 2d 2c 2d 2d 2d 2e 2d 2f 2d 31 2d 32 2d 33 2d 34 2d 35 2d 36 2d 37 2d 38 16 00 4c 01 fe 00 34 00 32 00 34 01 32 00 34 02 32 00 34 03 32 00 34 04 f4 01 34 05 f4 01 34 06 f4 01 34 07 f4 01 16 00 4c 01 fe 00 17 00 af 00 06 00 fe 00 ff 00 8d a1 82 aa 83 60 83 83 83 93 83 58 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1b 01 fe 00 4e fd fc 08 40 06 00 00 19 00 00 00 e7 00 40 00 f5 00 40 00 e9 00 40 00 f7 00 18 00 60 04 19 00 16 00 48 06 16 00 64 04 16 00 64 04 19 00 00 00 cc 00 40 00 f9 00 18 00 7c 04 19 00 16 00 80 04 16 00 80 04 16 00 64 05 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 a0 04 19 00 16 00 04 05 16 00 a4 04 16 00 a4 04 19 00 00 00 ec 00 18 00 b8 04 19 00 16 00 e0 04 16 00 bc 04 16 00 bc 04 19 00 00 00 }
+}

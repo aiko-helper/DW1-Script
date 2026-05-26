@@ -1,0 +1,70 @@
+// DG086.SCN
+#include "functions.dgs"
+#pragma script index=86 start=0x39800 end=0x3a000 headerU16=0x28 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 11, item: Item.Digimushroom, x: 72, y: 53);
+  spawnItemChance(max: 99, chance: 17, item: Item.Digimushroom, x: 48, y: 45);
+  spawnItemChance(max: 99, chance: 3, item: Item.IceMushroom, x: 35, y: 91);
+  setTrigger(Trigger(351));
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「金目のもの置いてけや。」<NEWLINE>");
+  finishEncounter(Trigger(272));
+}
+
+section(6) {
+  speak(Entity(6), "「氷づけにしてやるー!」<NEWLINE>");
+  finishEncounter(Trigger(272));
+}
+
+section(7) {
+  speak(Entity(7), "「右にも左にも行かせねぇぜ。」<NEWLINE>");
+  finishEncounter(Trigger(272));
+}
+
+section(8) {
+  speak(Entity(8), "「氷づけにしてくれる!」<NEWLINE>");
+  finishEncounter(Trigger(300));
+}
+
+section(9) {
+  speak(Entity(9), "「氷ジゴクを見せてやろう…」<NEWLINE>");
+  finishEncounter(Trigger(300));
+}
+
+section(10) {
+  speak(Entity(10), "「こごえ死にたい?」<NEWLINE>");
+  finishEncounter(Trigger(272));
+}
+
+section(81) {
+  rotate(entity: Entity.Player, to: 2468);
+  speak(Entity.System, "西・ミスティツリーズ<NEWLINE> <NEWLINE>東・流氷海岸<NEWLINE>");
+  return;
+}
+
+section(53) {
+  {
+    if ((cond & 0x40) == 0x01 && !trigger(133)) break;
+    return;
+  }
+  storeDigimonType(PStat(103));
+  if (pstat[103] == 3 || pstat[103] == 5 || pstat[103] == 8 || pstat[103] == 9 || pstat[103] == 47) {
+    jumpToScriptSection(174, 51);
+  }
+  if (pstat[103] == 19 || pstat[103] == 32 || pstat[103] == 51 || pstat[103] == 1 || pstat[103] == 2) {
+    jumpToScriptSection(174, 51);
+  }
+  if (pstat[103] == 15 || pstat[103] == 16 || pstat[103] == 29 || pstat[103] == 30 || pstat[103] == 43) {
+    jumpToScriptSection(174, 51);
+  }
+  if (pstat[103] == 44 || pstat[103] == 21) {
+    jumpToScriptSection(174, 51);
+  }
+  return;
+  garbage { 28 00 fe 00 28 00 05 00 70 00 06 00 a0 00 07 00 ce 00 08 00 02 01 09 00 30 01 0a 00 62 01 51 00 8c 01 35 00 c0 01 ff ff 24 00 6e 63 19 00 0b 00 6e 0b 18 00 3e 00 19 00 74 2c 48 00 35 00 24 00 6e 63 19 00 0b 00 6e 11 18 00 54 00 19 00 74 2c 30 00 2d 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 6a 00 19 00 74 2d 23 00 5b 00 1c 00 5f 01 fe 00 1b 05 1a 00 81 75 8b e0 96 da 82 cc 82 e0 82 cc 92 75 82 a2 82 c4 82 af 82 e2 81 42 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 10 01 fe 00 1b 06 1a 00 81 75 95 58 82 c3 82 af 82 c9 82 b5 82 c4 82 e2 82 e9 81 5b 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 10 01 fe 00 1b 07 1a 00 81 75 89 45 82 c9 82 e0 8d b6 82 c9 82 e0 8d 73 82 a9 82 b9 82 cb 82 a5 82 ba 81 42 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 10 01 fe 00 1b 08 1a 00 81 75 95 58 82 c3 82 af 82 c9 82 b5 82 c4 82 ad 82 ea 82 e9 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2c 01 fe 00 1b 09 1a 00 81 75 95 58 83 57 83 53 83 4e 82 f0 8c a9 82 b9 82 c4 82 e2 82 eb 82 a4 81 63 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2c 01 fe 00 1b 0a 1a 00 81 75 82 b1 82 b2 82 a6 8e 80 82 c9 82 bd 82 a2 81 48 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 10 01 fe 00 4d fd a4 09 1b ff 1a 00 90 bc 81 45 83 7e 83 58 83 65 83 42 83 63 83 8a 81 5b 83 59 0d 00 81 40 0d 00 93 8c 81 45 97 ac 95 58 8a 43 8a dd 0d 00 00 00 fe 00 19 00 23 00 40 01 40 00 85 00 18 00 d2 01 19 00 fe 00 22 67 19 00 08 00 67 03 48 00 67 05 48 00 67 08 48 00 67 09 48 00 67 2f 18 00 f6 01 19 00 17 00 ae 00 33 00 19 00 08 00 67 13 48 00 67 20 48 00 67 33 48 00 67 01 48 00 67 02 18 00 18 02 19 00 17 00 ae 00 33 00 19 00 08 00 67 0f 48 00 67 10 48 00 67 1d 48 00 67 1e 48 00 67 2b 18 00 3a 02 19 00 17 00 ae 00 33 00 19 00 08 00 67 2c 48 00 67 15 18 00 50 02 19 00 17 00 ae 00 33 00 fe 00 ff 00 1b 05 1a 00 81 75 82 de 81 60 89 bd 82 c4 8e b8 97 e7 82 c8 82 e2 82 c2 83 5f 83 58 81 49 0d 00 81 40 82 ed 82 a9 82 c1 82 bd 83 5f 83 58 81 41 82 a8 82 e7 82 c6 8f 9f 95 89 82 b7 82 e9 83 5f 83 58 81 49 0d 00 81 40 82 c7 82 c1 82 bf 82 aa 90 b3 82 b5 82 a2 82 cc 82 a9 8f d8 96 be 82 b7 82 e9 83 5f 83 58 81 49 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a8 81 41 82 a8 82 a4 81 49 82 e6 81 5b 82 b5 81 63 81 76 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 1b 05 1a 00 81 75 82 de 81 60 8e 51 82 c1 82 bd 83 5f 83 58 81 42 8b ad 82 a2 83 5f 83 58 82 c8 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 89 bd 82 c5 82 e0 82 a2 82 a2 82 a9 82 e7 93 87 82 cc 88 d9 95 cf 82 c9 82 c2 82 a2 82 c4 0d 00 81 40 92 6d 82 e7 82 c8 82 a2 82 a9 81 48 97 8a 82 de 81 42 81 76 0d 00 00 00 56 00 fd 13 67 00 05 00 1b 05 1a 00 81 75 92 6d 82 e7 82 c8 82 a2 83 5f 83 58 81 42 82 be 82 c1 82 c4 82 a8 82 e7 82 cd 90 b6 82 dc 82 ea 82 c4 0d 00 81 40 8a d4 82 e0 82 c8 82 a2 83 5f 83 58 82 a9 82 e7 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 89 bd 82 be 82 c1 82 c4 81 49 81 48 81 76 0d 00 00 00 56 00 fd 00 67 00 05 00 1b 05 1a 00 81 75 83 43 83 93 83 5a 83 4c 83 82 83 93 91 b0 82 cd 8b f3 82 c9 90 b6 82 dc 82 ea 82 e9 82 c6 82 b7 82 ae 0d 00 81 40 92 6e 8f e3 82 d6 97 8e 82 bf 82 c4 81 41 82 b5 82 ce 82 e7 82 ad 82 b6 82 c1 82 c6 96 b0 82 e9 83 5f 83 58 81 42 0d 00 81 40 96 7b 93 96 82 cd 82 e0 82 c1 82 c6 82 b6 82 c1 82 c6 82 b5 82 c4 82 e9 82 cd 82 b8 83 5f 83 58 82 aa 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 bb 82 a4 82 a9 81 41 82 b1 82 b1 82 cd 8e 9e 8a d4 82 cc 97 ac 82 ea 82 aa 91 81 82 a2 82 a9 82 e7 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 c7 82 a4 82 e2 82 e7 82 bb 82 a4 82 a2 82 a4 82 ed 82 af 83 5f 83 58 81 42 0d 00 81 40 82 b6 82 e1 82 a0 81 41 82 a8 82 e7 82 cd 8d a1 82 a9 82 e7 93 87 82 f0 8c a9 82 c4 89 f1 82 e9 83 5f 83 58 81 42 0d 00 81 40 8c 92 93 ac 82 f0 82 a2 82 cc 82 e9 83 5f 83 58 82 e6 81 42 81 76 0d 00 00 00 56 00 05 1e 67 00 0a 00 16 00 08 05 6c 05 01 00 e6 fb 28 00 19 00 0d 00 65 03 18 00 34 05 19 00 1f 00 65 01 67 00 14 00 5a 00 08 05 4c 00 fd 05 4c 00 fc 05 16 00 08 05 4a 05 48 05 1e 00 65 00 1b fd 1a 00 81 75 81 63 81 63 81 42 82 cd 81 5b 81 42 8c 8b 8b c7 8e e8 82 aa 82 a9 82 e8 82 cd 96 b3 82 b5 82 a9 81 63 81 42 0d 00 81 40 82 b3 82 a0 81 41 8b 7d 82 a2 82 c5 82 b1 82 b1 82 f0 8f 6f 82 e6 82 a4 81 42 81 76 0d 00 00 00 1d 00 01 00 1c 00 39 01 50 00 fd 0f 4a c8 fe 00 1b fd 1a 00 81 75 8c a9 82 c4 92 b2 82 d7 82 c4 82 e0 }
+}

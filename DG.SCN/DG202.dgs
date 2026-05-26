@@ -1,0 +1,182 @@
+// DG202.SCN
+#include "functions.dgs"
+#pragma script index=202 start=0x97800 end=0x98800 headerU16=0xc sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(82) {
+  rotate(entity: Entity.Player, to: 3152);
+  delay(5);
+  loop {
+    if (trigger(154) && pstat[1] >= 45) {
+      setTrigger(Trigger(153));
+      setTextboxSize(21, 8);
+      showTextbox("       シェル新聞8<NEWLINE>   『宇宙人型デジモンあらわる!』<NEWLINE>「先日発見された謎の飛行物体を再び確認。<NEWLINE> 飛行物体より生物が上半身をあらわにし、<NEWLINE> 未知の言葉を発した、との報告があった。<NEWLINE> 現在、この生物は宇宙人型デジモンである<NEWLINE> との見解が有力で、我々の前に再び姿を<NEWLINE> 現すのではと話題がもちきりのようだ。」<NEWLINE>");
+      fadeOutHUD();
+      setDialogOwner(Entity.System);
+      setSelection(L1, L15);
+      showTextbox("「もどす」<NEWLINE>「見るのをやめる」<NEWLINE>");
+      waitForSelectionChoice();
+      return;
+
+L1:
+    }
+    if (trigger(226)) {
+      setTextboxSize(21, 10);
+      showTextbox("       シェル新聞7<NEWLINE>   『ヴァンデモン会見、引退否定』<NEWLINE>「先日ヴァンデモンの会見がおこなわれ、<NEWLINE> うわさされていた引退はデマであることが<NEWLINE> はっきりした。<NEWLINE> ヴァンデモンは、ファンのためにも引退は<NEWLINE> しないと力強くかたり、意気ごみも新た。<NEWLINE> さらに弟子のスカルグレイモンをデビュー<NEWLINE> させることも発表し、記者を大いに<NEWLINE> わかせる会見となった。」<NEWLINE>");
+      fadeOutHUD();
+      setTrigger(Trigger(325));
+      setDialogOwner(Entity.System);
+      setSelection(L3, L2, L15);
+      showTextbox("「もどす」<NEWLINE>「すすめる」<NEWLINE>「見るのをやめる」<NEWLINE>");
+      waitForSelectionChoice();
+      return;
+    }
+    goto L3;
+
+L2:
+    if (trigger(154) && pstat[1] >= 45) {
+      continue;
+    } else {
+      goto L1;
+
+L3:
+    }
+    if (pstat[1] >= 35 && trigger(128)) {
+      setTextboxSize(21, 8);
+      showTextbox("       シェル新聞6<NEWLINE>    『ヴァンデモン引退か?』<NEWLINE>「人気・実力ともに一流との呼び声も高い<NEWLINE> ヴァンデモンだが、闘技場を引退するのでは<NEWLINE> ないかと目されてれている。<NEWLINE> ヴァンデモンは最近闘技場にめっきり姿を<NEWLINE> 見せなくなり、体力の限界ではないかと<NEWLINE> 事情通はかたっている。」<NEWLINE>");
+      fadeOutHUD();
+      if (!trigger(226)) {
+        unsetTrigger(Trigger(266));
+        setTrigger(Trigger(356));
+      }
+      setDialogOwner(Entity.System);
+      setSelection(L5, L4, L15);
+      showTextbox("「もどす」<NEWLINE>「すすめる」<NEWLINE>「見るのをやめる」<NEWLINE>");
+      waitForSelectionChoice();
+      return;
+    }
+    goto L5;
+
+L4:
+    if (trigger(226)) {
+      goto L1;
+    }
+    if (trigger(154) && pstat[1] >= 45) {
+      continue;
+    }
+    goto L3;
+
+L5:
+    if (pstat[1] >= 25) {
+      setTextboxSize(21, 9);
+      showTextbox("       シェル新聞5<NEWLINE>     『隠れた名店発見!』<NEWLINE>「ギアサバンナに、通の集まるショップが<NEWLINE> あることが明らかになった。<NEWLINE> この店は毎年1日から15日までしか開いて<NEWLINE> おらず、店長いわく『うちは仕入れを重視<NEWLINE> してるアルよ』とのこと。<NEWLINE> レアアイテムを探しに、一度行ってみる<NEWLINE> ことをおすすめしたい。」<NEWLINE>");
+      fadeOutHUD();
+      setDialogOwner(Entity.System);
+      setSelection(L7, L6, L15);
+      showTextbox("「もどす」<NEWLINE>「すすめる」<NEWLINE>「見るのをやめる」<NEWLINE>");
+      waitForSelectionChoice();
+      return;
+    }
+    goto L7;
+
+L6:
+    if (pstat[1] >= 35 && trigger(128)) {
+      goto L3;
+    }
+    if (trigger(226)) {
+      goto L1;
+    }
+    if (trigger(154) && pstat[1] >= 45) {
+      continue;
+    }
+    goto L5;
+
+L7:
+    if (pstat[1] >= 20) {
+      setTextboxSize(21, 10);
+      showTextbox("       シェル新聞4<NEWLINE>    『雪の中に幻のデジモン?』<NEWLINE>「先ごろ、フリーズランド地方での不思議な<NEWLINE> 出来事がMさんによって報告された。<NEWLINE> 『寒さはめっぽう苦手の俺だが、雪の中<NEWLINE> 立ち往生し、寒さにやられて倒れてしまった<NEWLINE> ことがあった。しかし奇跡的に助かった<NEWLINE> んだ。そう、あのときは雪のかたまり…<NEWLINE> みたいなやつに助けられたんだ。』<NEWLINE> 寒さに弱いデジモンは気をつけてほしい。」<NEWLINE>");
+      fadeOutHUD();
+      setDialogOwner(Entity.System);
+      setSelection(L9, L8, L15);
+      showTextbox("「もどす」<NEWLINE>「すすめる」<NEWLINE>「見るのをやめる」<NEWLINE>");
+      waitForSelectionChoice();
+      return;
+    }
+    goto L9;
+
+L8:
+    if (pstat[1] >= 25) {
+      goto L5;
+    }
+    goto L7;
+
+L9:
+    if (pstat[1] >= 15) {
+      setTextboxSize(21, 10);
+      showTextbox("       シェル新聞3<NEWLINE>     『湖にぬしがいた?』<NEWLINE>「釣りの名所、竜の目の湖にて湖のぬしが<NEWLINE> 釣れたとの情報が入ってきた。<NEWLINE> 釣れた、と言ってもぬしは大型のデジモンと<NEWLINE> 目される生物であり、呼びかけにおうじて<NEWLINE> 現われたと言ったほうが正しいだろう。<NEWLINE> このぬしに会うと願いをかなえてくれると<NEWLINE> いううわさもあって、今後釣り熱が高まる<NEWLINE> 予感がする。」<NEWLINE>");
+      fadeOutHUD();
+      setDialogOwner(Entity.System);
+      setSelection(L11, L10, L15);
+      showTextbox("「もどす」<NEWLINE>「すすめる」<NEWLINE>「見るのをやめる」<NEWLINE>");
+      waitForSelectionChoice();
+      return;
+    }
+    goto L11;
+
+L10:
+    if (pstat[1] >= 20) {
+      goto L7;
+    }
+    if (!trigger(154) || pstat[1] < 45) break;
+  }
+  goto L9;
+
+L11:
+  loop {
+    {
+      if (trigger(118)) {
+        setTextboxSize(21, 9);
+        showTextbox("       シェル新聞2<NEWLINE>    『謎の飛行物体あらわる!』<NEWLINE>「先日、ミハラシ山方面にて謎の飛行物体を<NEWLINE> 見たとの情報がよせられた。<NEWLINE> 飛行物体は銀色の皿状の形で、下部を発光<NEWLINE> しながら地上30Mあたりを飛行していた<NEWLINE> もよう。宇宙人(デジモン)ではないか?<NEWLINE> とのうわさもあり、今後のくわしい調査が<NEWLINE> 待たれるところである。」<NEWLINE>");
+        fadeOutHUD();
+        setTrigger(Trigger(152));
+        setDialogOwner(Entity.System);
+        setSelection(L13, L12, L15);
+        showTextbox("「もどす」<NEWLINE>「すすめる」<NEWLINE>「見るのをやめる」<NEWLINE>");
+        waitForSelectionChoice();
+        return;
+      }
+      break;
+
+L12:
+      if (pstat[1] >= 15) {
+        goto L9;
+      }
+      continue;
+
+L13:
+    }
+    setTextboxSize(21, 9);
+    showTextbox("       シェル新聞1<NEWLINE>    『山賊団退治される!』<NEWLINE>「オーガモンひきいる山賊団のアジトが<NEWLINE> <LIGHTBLUE><PLAYER><WHITE>によってつきとめられ、<NEWLINE> 世間をなやませていたオーガ山賊団は<NEWLINE> バトルのすえ、事実上壊めつした。<NEWLINE> しかしオーガモン本人は姿をくらませた<NEWLINE> ままとなっており、心配のタネは<NEWLINE> まだつきていないといえよう。」<NEWLINE>");
+    fadeOutHUD();
+    if (trigger(118) || pstat[1] >= 15) {
+      setDialogOwner(Entity.System);
+      setSelection(L14, L15);
+      showTextbox("「すすめる」<NEWLINE>「見るのをやめる」<NEWLINE>");
+      waitForSelectionChoice();
+      return;
+    }
+    return;
+
+L14:
+    if (!trigger(118)) break;
+  }
+  goto L9;
+
+L15:
+  return;
+  garbage { 0c 00 fe 00 0c 00 52 00 0e 00 ff ff fe 00 4d fd 50 0c 67 00 05 00 19 00 00 00 9a 00 8a 00 01 2d 18 00 a0 01 19 00 1c 00 99 00 26 00 15 08 1a 00 81 40 81 40 81 40 81 40 81 40 81 40 81 40 83 56 83 46 83 8b 90 56 95 b7 82 57 0d 00 81 40 81 40 81 40 81 77 89 46 92 88 90 6c 8c 5e 83 66 83 57 83 82 83 93 82 a0 82 e7 82 ed 82 e9 81 49 81 78 0d 00 81 75 90 e6 93 fa 94 ad 8c a9 82 b3 82 ea 82 bd 93 e4 82 cc 94 f2 8d 73 95 a8 91 cc 82 f0 8d c4 82 d1 8a 6d 94 46 81 42 0d 00 81 40 94 f2 8d 73 95 a8 91 cc 82 e6 82 e8 90 b6 95 a8 82 aa 8f e3 94 bc 90 67 82 f0 82 a0 82 e7 82 ed 82 c9 82 b5 81 41 0d 00 81 40 96 a2 92 6d 82 cc 8c be 97 74 82 f0 94 ad 82 b5 82 bd 81 41 82 c6 82 cc 95 f1 8d 90 82 aa 82 a0 82 c1 82 bd 81 42 0d 00 81 40 8c bb 8d dd 81 41 82 b1 82 cc 90 b6 95 a8 82 cd 89 46 92 88 90 6c 8c 5e 83 66 83 57 83 82 83 93 82 c5 82 a0 82 e9 0d 00 81 40 82 c6 82 cc 8c a9 89 f0 82 aa 97 4c 97 cd 82 c5 81 41 89 e4 81 58 82 cc 91 4f 82 c9 8d c4 82 d1 8e 70 82 f0 0d 00 81 40 8c bb 82 b7 82 cc 82 c5 82 cd 82 c6 98 62 91 e8 82 aa 82 e0 82 bf 82 ab 82 e8 82 cc 82 e6 82 a4 82 be 81 42 81 76 0d 00 00 00 27 00 1b ff 10 02 a0 01 38 0e 1a 00 81 75 82 e0 82 c7 82 b7 81 76 0d 00 81 75 8c a9 82 e9 82 cc 82 f0 82 e2 82 df 82 e9 81 76 0d 00 00 00 12 00 fe 00 19 00 00 00 e2 00 18 00 5e 03 19 00 26 00 15 0a 1a 00 81 40 81 40 81 40 81 40 81 40 81 40 81 40 83 56 83 46 }
+}

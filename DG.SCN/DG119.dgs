@@ -1,0 +1,145 @@
+// DG119.SCN
+#include "functions.dgs"
+#pragma script index=119 start=0x4e800 end=0x4f000 headerU16=0x14 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 16, item: Item.Digimushroom, x: 49, y: 70);
+  spawnItemChance(max: 99, chance: 2, item: Item.Happymushroom, x: 25, y: 68);
+  return;
+}
+
+section(81) {
+  look(entity: Entity(5), at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(5));
+  if (!trigger(139)) {
+    setTrigger(Trigger(139));
+    playSound(8, 4);
+    speak(Entity(5), "「ここは『デジモンカード』の店アルよ。」<NEWLINE>");
+    speak(Entity.Player, "「『デジモンカード』?何なの?」<NEWLINE>");
+    speak(Entity(5), "「今、これを集めるのが大ブームアルよ。<NEWLINE> 集めてそんはないアルね。」<NEWLINE>");
+    speak(Entity.Player, "「ふーん。」<NEWLINE>");
+    playSound(8, 4);
+    speak(Entity(5), "「とりあえずこれをタダであげるアル。<NEWLINE> よろしくアルよ~。」<NEWLINE>");
+    speak(Entity.Player, "「おっ!これ、俺のカードじゃん!」<NEWLINE>");
+    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE>カードを手に入れた!<NEWLINE>");
+    giveCard(0);
+    return;
+  }
+  speak(Entity(5), "「ここは『デジモンカード』の店アルよ。」<NEWLINE>");
+  setPStat(PStat(254), 5);
+  playSound(8, 4);
+  speak(Entity(5), "「今日もイキのいいカードを<NEWLINE> そろえたアルよ」<NEWLINE>");
+  callSubroutine(15);
+  loop {
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L5, L_0396);
+    showTextbox("「カードを買う」<NEWLINE>「カードを売る」<NEWLINE>「やめる」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L1:
+    {
+      if (money >= 500) {
+        setSelection(L2, L4, L6);
+        showTextbox("「3枚パック買い」<NEWLINE>「1枚買い」<NEWLINE>「やっぱりやめる」<NEWLINE>");
+        waitForSelectionChoice();
+        goto L6;
+        break;
+      }
+      setSelection(L4, L6);
+      showTextbox("「1枚買い」<NEWLINE>「やっぱりやめる」<NEWLINE>");
+      waitForSelectionChoice();
+      goto L6;
+
+L2:
+    }
+    speak(Entity(5), "「パックは500<B><it>よ。<NEWLINE> 何が入っているかは運しだいアル。」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L3, L6);
+    showTextbox("「買う」<NEWLINE>「やっぱりやめる」<NEWLINE>");
+    waitForSelectionChoice();
+    goto L6;
+
+L3:
+    reduceMoney(500);
+    callSubroutine(15);
+    speak(Entity(5), "「パックはすぐ開けるよろし。」<NEWLINE>");
+    unsetTrigger(Trigger(3));
+    unsetTrigger(Trigger(4));
+    callSubroutine(14);
+    callSubroutine(22);
+    goto L6;
+
+L4:
+    unsetTrigger(Trigger(3));
+    setTrigger(Trigger(4));
+    callSubroutine(14);
+    callSubroutine(22);
+    goto L6;
+
+L5:
+    setTrigger(Trigger(3));
+    callSubroutine(14);
+
+L6:
+    speak(Entity(5), "「まだ用アルか?」<NEWLINE>");
+  }
+  callSubroutine(16);
+  speak(Entity(5), "「またくるアルよ。」<NEWLINE>");
+  return;
+}
+
+section(82) {
+  {
+    look(entity: Entity(6), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(6));
+    playSound(8, 4);
+    speak(Entity(6), "「ここは『回しゅう品』の店アルよ。」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L2, L3);
+    showTextbox("「普通の品が欲しい。」<NEWLINE>「回しゅう品が欲しい。」<NEWLINE>「またな。」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L1:
+    for x in [Trigger(385), Trigger(389), Trigger(406), Trigger(423)] {
+      setTrigger(x);
+    }
+    for id in Trigger(399)..Trigger(401) {
+      setTrigger(id);
+    }
+    unsetTrigger(Trigger(3));
+    setPStat(PStat(254), 6);
+    callSubroutine(8);
+    for x in [Trigger(385), Trigger(389), Trigger(406), Trigger(423)] {
+      unsetTrigger(x);
+    }
+    for id in Trigger(399)..Trigger(401) {
+      unsetTrigger(id);
+    }
+    return;
+
+L2:
+    setTrigger(Trigger(3));
+    setPStat(PStat(254), 6);
+    callSubroutine(8);
+    return;
+
+L3:
+  }
+  return;
+}
+
+section(51) {
+  if (trigger(190)) {
+    return;
+  }
+  speak(Entity.Player, "「おっ!?」<NEWLINE>");
+  panTo(x: 800, y: 4000, slowdown: 30);
+  speak(Entity.Player, "「店だっ!」<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  setTrigger(Trigger(190));
+  return;
+  garbage { 14 00 fe 00 14 00 51 00 42 00 52 00 f8 03 33 00 d6 04 ff ff 24 00 6e 63 19 00 0b 00 6e 10 18 00 2a 00 19 00 74 2c 31 00 46 00 24 00 6e 63 19 00 0b 00 6e 02 18 00 40 00 19 00 74 45 19 00 44 00 fe 00 4c 00 05 fd 4c 00 fd 05 19 00 01 00 8b 00 18 00 ae 01 19 00 1c 00 8b 00 5a 00 08 04 1b 05 1a 00 81 75 82 b1 82 b1 82 cd 81 77 83 66 83 57 83 82 83 93 83 4a 81 5b 83 68 81 78 82 cc 93 58 83 41 83 8b 82 e6 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 81 77 83 66 83 57 83 82 83 93 83 4a 81 5b 83 68 81 78 81 48 89 bd 82 c8 82 cc 81 48 81 76 0d 00 00 00 1b 05 1a 00 81 75 8d a1 81 41 82 b1 82 ea 82 f0 8f 57 82 df 82 e9 82 cc 82 aa 91 e5 83 75 81 5b 83 80 83 41 83 8b 82 e6 81 42 0d 00 81 40 8f 57 82 df 82 c4 82 bb 82 f1 82 cd 82 c8 82 a2 83 41 83 8b 82 cb 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 d3 81 5b 82 f1 81 42 81 76 0d 00 00 00 5a 00 08 04 1b 05 1a 00 81 75 82 c6 82 e8 82 a0 82 a6 82 b8 82 b1 82 ea 82 f0 83 5e 83 5f 82 c5 82 a0 82 b0 82 e9 83 41 83 8b 81 42 0d 00 81 40 82 e6 82 eb 82 b5 82 ad 83 41 83 8b 82 e6 81 60 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a8 82 c1 81 49 82 b1 82 ea 81 41 89 b4 82 cc 83 4a 81 5b 83 68 82 b6 82 e1 82 f1 81 49 81 76 0d 00 00 00 1b ff 1a 00 01 06 05 00 01 01 83 4a 81 5b 83 68 82 f0 8e e8 82 c9 93 fc 82 ea 82 bd 81 49 0d 00 00 00 2f 00 fe 00 1b 05 1a 00 81 75 82 b1 82 b1 82 cd 81 77 83 66 83 57 83 82 83 93 83 4a 81 5b 83 68 81 78 82 cc 93 58 83 41 83 8b 82 e6 81 42 81 76 0d 00 00 00 1e 00 fe 05 5a 00 08 04 1b 05 1a 00 81 75 8d a1 93 fa 82 e0 83 43 83 4c 82 cc 82 a2 82 a2 83 4a 81 5b 83 68 82 f0 0d 00 81 40 82 bb 82 eb 82 a6 82 bd 83 41 83 8b 82 e6 81 76 0d 00 00 00 64 0f 1b fd 10 03 62 02 b4 03 d8 03 1a 00 81 75 83 4a 81 5b 83 68 82 f0 94 83 82 a4 81 76 0d 00 81 75 83 4a 81 5b 83 68 82 f0 94 84 82 e9 81 76 0d 00 81 75 82 e2 82 df 82 e9 81 76 0d 00 00 00 12 00 16 00 d8 03 19 00 25 00 00 02 f4 01 00 00 18 00 be 02 19 00 10 03 f0 02 a4 03 ba 03 1a 00 81 75 82 52 96 87 83 70 83 62 83 4e 94 83 82 a2 81 76 0d 00 81 75 82 50 96 87 94 83 82 a2 81 76 0d 00 81 75 82 e2 82 c1 82 cf 82 e8 82 e2 82 df 82 e9 81 76 0d 00 00 00 12 00 16 00 ba 03 16 00 f0 02 10 02 a4 03 ba 03 1a 00 81 75 82 50 96 87 94 83 82 a2 81 76 0d 00 81 75 82 e2 82 c1 82 cf 82 e8 }
+}

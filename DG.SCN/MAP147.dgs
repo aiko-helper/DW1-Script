@@ -1,0 +1,622 @@
+// MAP147.SCN
+#include "functions.dgs"
+#pragma script index=147 start=0x60800 end=0x62800 headerU16=0x4c sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  {
+    if (!trigger(202) || !trigger(215) || pstat[28] < 20) break;
+    unsetTrigger(Trigger(202));
+    unsetTrigger(Trigger(215));
+    roll(pstat: PStat(16), max: 2);
+    if (pstat[16] != 0) break;
+    setPStat(PStat(16), 3);
+    for id in Trigger(707)..Trigger(713) {
+      unsetTrigger(id);
+    }
+  }
+  setPStat(PStat(254), 0);
+  callSubroutine(25);
+  unsetTrigger(Trigger(2));
+  if (pstat[17] >= 3) {
+    addPStat(PStat(18), 1);
+  }
+  if (pstat[17] >= 1) {
+    setPStat(PStat(17), 1);
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[106] != 14) {
+    unsetTrigger(Trigger(76));
+  }
+  if (trigger(50) && !trigger(43)) {
+    move(entity: Entity.Partner, to: (302, -2961), animDuration: 5);
+    waitForEntity(Entity.Partner);
+    rotate(entity: Entity.Partner, to: 2048);
+    delay(40);
+    speak(Entity.Player, "「ふぃ~~、ただいまーー!」<NEWLINE>");
+    anim(Entity.Player, Animation(11), wait: 20);
+    look(entity: Entity.Player, at: Entity.Partner);
+    delay(5);
+    speak(Entity.Player, "「また呼んでくれてうれしいぜ!<NEWLINE> もっぺんよろしく、<ORANGE><DIGIMON><WHITE>!」<NEWLINE>");
+    anim(Entity.Player, Animation(5), wait: 10);
+    anim(Entity.Partner, Animation(11), wait: 40);
+    setTrigger(Trigger(43));
+    followEntity(Entity.Player, speed: 10);
+    if (stat[Stat.TamerLevel] != 10) {
+      addStats(tamerLevel: 1);
+      speak(Entity.System, " <NEWLINE> <YELLOW>テイマーレベルが上がった!!!<WHITE><NEWLINE>");
+    }
+    setTrigger(Trigger(374));
+    playSound(0, 7);
+    speak(Entity.System, " <YELLOW>おめでとうございます!<NEWLINE> あなたのすばらしい功績に対して<NEWLINE> メダルがおくられました!<WHITE><NEWLINE>");
+    giveCard(65);
+    speak(Entity.System, " ムゲンドラモンカードをゲット!<NEWLINE>");
+  }
+  if (trigger(238)) {
+    setObjectsVisibleRange(0, 2, 0);
+  }
+  if (trigger(224)) {
+    setObjectsVisibleRange(3, 12, 0);
+  }
+  if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) {
+    setObjectsVisibleRange(13, 20, 0);
+  }
+  if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
+    setObjectsVisibleRange(21, 26, 0);
+  }
+  if (trigger(250)) {
+    setObjectsVisibleRange(27, 32, 0);
+    setRectImpassible(33, 69, 3, 2);
+  }
+  pstat[:SavedTime] = time();
+  {
+    if (pstat[107] >= 7 || pstat[107] < 19) {
+      break;
+    }
+    if (trigger(250)) {
+      setObjectsVisibleRange(59, 62, 0);
+    }
+    if (!trigger(220) && !trigger(214) && pstat[1] < 50) break;
+    if (!trigger(218)) break;
+    setObjectsVisibleRange(63, 67, 0);
+  }
+  if (trigger(246)) {
+    setObjectsVisibleRange(68, 70, 0);
+  }
+  if (trigger(225)) {
+    setObjectVisibility(71, 0);
+  }
+  if (trigger(246) && pstat[106] == 14 && !trigger(76)) {
+    setObjectVisibility(72, 0);
+  }
+  if (trigger(354)) {
+    setObjectsVisibleRange(73, 78, 1);
+    setObjectsVisibleRange(79, 83, 0);
+  }
+  return;
+}
+
+section(51) {
+  {
+    move(entity: Entity.Player, to: (250, -5000), sprint: 0);
+    if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) goto L16; else break;
+  }
+  {
+    if (trigger(204) || trigger(249)) {
+      break;
+      break;
+    }
+    goto L8;
+  }
+  {
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L4; else break;
+  }
+  {
+    if (trigger(236)) goto L2; else break;
+  }
+  {
+    if (trigger(205)) goto L1; else break;
+  }
+  warp(to: Map.TWNB02, spawn: 1, trigger: 255);
+  return;
+
+L1:
+  {
+    warp(to: Map.TWNB09, spawn: 1, trigger: 255);
+    return;
+
+L2:
+    if (trigger(205)) goto L3; else break;
+  }
+  warp(to: Map.TWNB07, spawn: 1, trigger: 255);
+  return;
+
+L3:
+  {
+    warp(to: Map.TWNB08, spawn: 1, trigger: 255);
+    return;
+
+L4:
+    if (trigger(236)) goto L6; else break;
+  }
+  {
+    if (trigger(205)) goto L5; else break;
+  }
+  warp(to: Map.TWNB03, spawn: 1, trigger: 255);
+  return;
+
+L5:
+  {
+    warp(to: Map.TWNB06, spawn: 1, trigger: 255);
+    return;
+
+L6:
+    if (trigger(205)) goto L7; else break;
+  }
+  warp(to: Map.TWNB04, spawn: 1, trigger: 255);
+  return;
+
+L7:
+  {
+    warp(to: Map.TWNB05, spawn: 1, trigger: 255);
+    return;
+
+L8:
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L12; else break;
+  }
+  {
+    if (trigger(236)) goto L10; else break;
+  }
+  {
+    if (trigger(205)) goto L9; else break;
+  }
+  warp(to: Map.TWNB01, spawn: 1, trigger: 255);
+  return;
+
+L9:
+  warp(to: Map.TWNB24, spawn: 1, trigger: 255);
+  return;
+
+L10:
+  {
+    if (trigger(205)) {
+      break;
+      break;
+    }
+    goto L11;
+  }
+  warp(to: Map.TWNB23, spawn: 1, trigger: 255);
+  return;
+
+L11:
+  {
+    warp(to: Map.TWNB22, spawn: 1, trigger: 255);
+    return;
+
+L12:
+    if (trigger(236)) goto L14; else break;
+  }
+  {
+    if (trigger(205)) goto L13; else break;
+  }
+  warp(to: Map.TWNB18, spawn: 1, trigger: 255);
+  return;
+
+L13:
+  {
+    warp(to: Map.TWNB21, spawn: 1, trigger: 255);
+    return;
+
+L14:
+    if (trigger(205)) goto L15; else break;
+  }
+  warp(to: Map.TWNB19, spawn: 1, trigger: 255);
+  return;
+
+L15:
+  {
+    warp(to: Map.TWNB20, spawn: 1, trigger: 255);
+    return;
+
+L16:
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L20; else break;
+  }
+  {
+    if (trigger(236)) goto L18; else break;
+  }
+  {
+    if (trigger(205)) goto L17; else break;
+  }
+  warp(to: Map.TWNB10, spawn: 1, trigger: 255);
+  return;
+
+L17:
+  {
+    warp(to: Map.TWNB17, spawn: 1, trigger: 255);
+    return;
+
+L18:
+    if (trigger(205)) goto L19; else break;
+  }
+  warp(to: Map.TWNB15, spawn: 1, trigger: 255);
+  return;
+
+L19:
+  {
+    warp(to: Map.TWNB16, spawn: 1, trigger: 255);
+    return;
+
+L20:
+    if (trigger(236)) goto L22; else break;
+  }
+  {
+    if (trigger(205)) goto L21; else break;
+  }
+  warp(to: Map.TWNB11, spawn: 1, trigger: 255);
+  return;
+
+L21:
+  {
+    warp(to: Map.TWNB14, spawn: 1, trigger: 255);
+    return;
+
+L22:
+    if (trigger(205)) goto L23; else break;
+  }
+  warp(to: Map.TWNB12, spawn: 1, trigger: 255);
+  return;
+
+L23:
+  warp(to: Map.TWNB13, spawn: 1, trigger: 255);
+  return;
+}
+
+section(5) {
+  {
+    if (trigger(210) || pstat[1] < 40 || trigger(224) || !trigger(175)) break;
+    if (trigger(250)) break;
+    speak(Entity(5), "「湖のぬしにはもう会ったですぅ?<NEWLINE> まだなら南がわのポイントでじっくり<NEWLINE> <0x5f91>ってみるですぅ!」<NEWLINE>");
+    return;
+  }
+  if (!trigger(250) && pstat[1] >= 25 && !trigger(224) && trigger(175)) {
+    speak(Entity(5), "「すっごく早起きして<NEWLINE> 霧の中をさまよってみるですぅ。<NEWLINE> いいことがあるですぅ!」<NEWLINE>");
+    return;
+  }
+  if (!trigger(224) && trigger(175)) {
+    speak(Entity(5), "「ねえ、知ってるですぅ?<NEWLINE> 北~のほうに流氷海岸ってとこが<NEWLINE> あるらしいですぅ。」<NEWLINE>");
+    showTextbox("「最近、すっごく大きなデジモンが<NEWLINE> よくその海岸にいるってうわさですぅ。」<NEWLINE>");
+    return;
+  }
+  if (!trigger(175) && trigger(198)) {
+    speak(Entity(5), "「さんぞくはやっつけたですぅ?<NEWLINE> まださんぞくの『きち』があるらしい<NEWLINE> ですぅ。」<NEWLINE>");
+    return;
+  }
+  if (!trigger(198) && trigger(103)) {
+    setTrigger(Trigger(197));
+    speak(Entity(5), "「グレートキャニオンには<NEWLINE> もう行ったですか?」<NEWLINE>");
+    showTextbox("「あそこにはさんぞくが出るって<NEWLINE> うわさですぅ。」<NEWLINE>");
+    speak(Entity.Player, "「悪いやつなのか?」<NEWLINE>");
+    speak(Entity(5), "「たにまをとおると、まわりをかこんで<NEWLINE> 出てきて、『ごうとう』するんですぅ。<NEWLINE> 誰かたいじしてほしいですぅ。」<NEWLINE>");
+    speak(Entity.Player, "「うむ、ほっておけないようだな。」<NEWLINE>");
+    return;
+  }
+  if (pstat[1] >= 6) {
+    setTrigger(Trigger(124));
+    speak(Entity(5), "「グレートキャニオンには<NEWLINE> もう行ったですか?」<NEWLINE>");
+    showTextbox("「あそこには『見えない橋』が<NEWLINE> かかってるってうわさですぅ。」<NEWLINE>");
+    return;
+  }
+  if (trigger(50) && !trigger(202)) {
+    speak(Entity(5), "「ムゲンドラモンが復活したらしい<NEWLINE> ですぅ!」<NEWLINE>");
+    return;
+  }
+  if (trigger(50) && trigger(202)) {
+    speak(Entity(5), "「またムゲンドラモンを倒した<NEWLINE> ですぅ?すごいですぅ。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(5), "「えへへ、ぼくがこの街の外について、<NEWLINE> せつめーしますぅ。」<NEWLINE>");
+  showTextbox("「街のまわりは『迷わずの森』ですぅ。<NEWLINE> あまり強いデジモンはいないですぅ。」<NEWLINE>");
+  showTextbox("「西はすぐ近くにトレーニング場が<NEWLINE> ありますぅ。これからよく行くことになると<NEWLINE> 思いますぅ。」<NEWLINE>");
+  showTextbox("「川をわたって東は『トロピカジャングル』<NEWLINE> ですぅ。その向こうは知らないですぅ。」<NEWLINE>");
+  showTextbox("「西のほうは山と湖があって、行き止まり<NEWLINE> ですぅ。でもその向こうにもなにか別の<NEWLINE> 地形が広がっているらしいですぅ。」<NEWLINE>");
+  showTextbox("「ずっと南のほうは海ですぅ。北のほうは<NEWLINE> 高ーーい山がそびえてるですぅ。どっちも<NEWLINE> 行き止まりですぅ。」<NEWLINE>");
+  showTextbox("「あとはよくしらないですぅ。でもこの街は<NEWLINE> 島の中心らしいですから、北のほうはまだ<NEWLINE> 知らない広い場所があると思うですぅ。」<NEWLINE>");
+  showTextbox("「これから街の外のうわさについては<NEWLINE> 調べておきますから、ときどき<NEWLINE> 話をききに来てほしいですぅ。」<NEWLINE>");
+  return;
+}
+
+section(6) {
+  speak(Entity(6), "「うーん、こっちの様子を見にきたゾ!」<NEWLINE>");
+  showTextbox("「トイレがきにくわないが、ほかは<NEWLINE> なかなかいいゾ!」<NEWLINE>");
+  return;
+}
+
+section(7) {
+  speak(Entity(7), "「ふむ……なかなか…にぎわって<NEWLINE> いるようですね。」<NEWLINE>");
+  showTextbox("「ファクトリアルタウンにもどらなくて<NEWLINE> いいのか…ですって?」<NEWLINE>");
+  showTextbox("「私のスケジュール機能は正常に<NEWLINE> 作動しています。問題ありません。」<NEWLINE>");
+  return;
+}
+
+section(8) {
+  if (!trigger(84)) {
+    setTrigger(Trigger(84));
+    speak(Entity(8), "「おー、ちょうどよいところに来おったの!」<NEWLINE>");
+    showTextbox("「見ろこの彫像を!え?おい?」<NEWLINE>");
+    showTextbox("「何とも見事な芸術大作よのー…。<NEWLINE> さすがはわしといったところかのー。」<NEWLINE>");
+    showTextbox("「ん?これは何か?何じゃって?<NEWLINE> 何と~~~~。バカにしよってから!」<NEWLINE>");
+    showTextbox("「さて…………何じゃったのか?うーん。<NEWLINE> ま、何でもいいわい。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(8), "「うーーーん…わしは…いったい何を<NEWLINE> イメージしておったのか……はぁー。<NEWLINE> 分かったら教えてくれんか?」<NEWLINE>");
+  return;
+}
+
+section(11) {
+  jumpToScriptSection(177, 11);
+  return;
+}
+
+section(81) {
+  if (!trigger(246)) {
+    return;
+  }
+  setTextboxOrigin(944, 0, 1158);
+  pstat[:SavedTime] = time();
+  if (trigger(225) && pstat[107] >= 7 && pstat[107] < 19) {
+  }
+  if (pstat[107] not in 7..19) {
+    speak(Entity(204), "「すやすや…」<NEWLINE>");
+    return;
+  }
+  if (pstat[1] >= 10 && !trigger(225)) {
+    setTrigger(Trigger(86));
+    speak(Entity(204), "「そういえば知ってる?<NEWLINE> トロピカジャングルに、変な植物が<NEWLINE> はえてるって。」<NEWLINE>");
+  }
+  if (pstat[1] >= 20) {
+    speak(Entity(204), "「あ、そうそう。」<NEWLINE>");
+    showTextbox("「となりに<LIGHTBLUE>雨ふり草<WHITE>植えといたよ。<NEWLINE> 毎年15日ぐらいに実がなるからさ、<NEWLINE> もってっていいよ。」<NEWLINE>");
+    showTextbox("「何に使うって?雨がふるんだよ。」<NEWLINE>");
+    return;
+  }
+  if (pstat[1] < 10) {
+    speak(Entity(204), "「あー気持ちいいや!光合成、光合成。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(204), "「あー気持ちいいや!光合成、光合成。」<NEWLINE>");
+  return;
+}
+
+section(82) {
+  if (!trigger(225)) {
+    return;
+  }
+  setTextboxOrigin(600, 0, 1502);
+  speak(Entity(205), "「ふー、ごくらくごくらく。」<NEWLINE>");
+  return;
+}
+
+section(83) {
+  if (trigger(76) || !trigger(246)) {
+    return;
+  }
+  if (pstat[106] != 14) {
+    return;
+  }
+  speak(Entity.Player, "「お、これは…」<NEWLINE>");
+  giveItem(Item.RainPlant, 1);
+  if (trigger(0)) {
+    speak(Entity.System, " アイテムのもちすぎです<NEWLINE>");
+    return;
+  }
+  setObjectVisibility(72, 1);
+  speak(Entity.System, " <LIGHTBLUE>雨ふり草の実<WHITE>を手に入れた!<NEWLINE>");
+  setTrigger(Trigger(76));
+  return;
+}
+
+section(52) {
+  move(entity: Entity.Player, to: (171, -327), sprint: 0);
+  if (trigger(220) || trigger(214) || pstat[1] >= 50) {
+    warp(to: Map.ROOM10, spawn: 0, trigger: 255);
+    goto section_53;
+  }
+  warp(to: Map.ROOM08, spawn: 0, trigger: 255);
+}
+
+section(53) {
+  move(entity: Entity.Player, to: (1507, -2574), sprint: 1);
+  waitForEntity(Entity.Player);
+  move(entity: Entity.Player, to: (2061, -1997), sprint: 0);
+  delay(10);
+  warp(to: Map.ROOM12, spawn: 0, trigger: 255);
+  return;
+}
+
+section(54) {
+  if (trigger(238)) {
+    move(entity: Entity.Player, to: (401, 3992), sprint: 0);
+    warp(to: Map.ROOM14, spawn: 0, trigger: 255);
+  }
+  return;
+}
+
+section(55) {
+  if (!trigger(224)) {
+    return;
+  }
+  move(entity: Entity.Player, to: (2594, 630), sprint: 1);
+  move(entity: Entity.Partner, to: (2189, 545), sprint: 1);
+  waitForPair();
+  rotate(entity: Entity.Player, to: 2128);
+  rotate(entity: Entity.Partner, to: 2128);
+  delay(5);
+  if (!trigger(83)) {
+    setTrigger(Trigger(83));
+    speak(Entity(12), "「こんにちは、はは、びっくりしたでしょう。<NEWLINE> みなさんを海の旅へお連れする、<NEWLINE> それが私の仕事というわけです。」<NEWLINE>");
+    showTextbox("「あなた方もどうです、海からしか行けない<NEWLINE> ところへ連れていってあげますよ。」<NEWLINE>");
+    showTextbox("「では…」<NEWLINE>");
+  }
+  {
+    speak(Entity(12), "「ふむ、どこにしましょうかね。<NEWLINE> ファクトリアルタウンか…<NEWLINE> 海岸洞くつといったところですかな。」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L2, L3);
+    showTextbox("「ファクトリアルタウンへ。」<NEWLINE>「ひみつの海岸洞へ。」<NEWLINE>「やめる。」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L1:
+    warp(to: Map.FACT01, spawn: 1, trigger: 255);
+
+L2:
+    warp(to: Map.OGRE10, spawn: 2, trigger: 61);
+
+L3:
+  }
+  move(entity: Entity.Partner, to: (1184, 316), sprint: 1);
+  delay(10);
+  move(entity: Entity.Player, to: (1556, 348), sprint: 1);
+  waitForPair();
+  followEntity(Entity.Player, speed: 10);
+  return;
+}
+
+section(56) {
+  move(entity: Entity.Player, to: (3583, 3620), sprint: 0);
+  warp(to: Map.MGEN01, spawn: 0, trigger: 255);
+  return;
+}
+
+section(57) {
+  if (trigger(87) && !trigger(205)) {
+  } else {
+    if (trigger(354) && !trigger(88)) {
+      goto L1;
+    }
+    return;
+  }
+  {
+    unsetTrigger(Trigger(87));
+    loadAndSetDigimon(Digimon.NPCGreymon, Entity(4), 0);
+    lookPairAt(Entity(9));
+    rotate(entity: Entity(9), to: 2048);
+    delay(20);
+    followEntity(Entity(9), speed: 20);
+    move(entity: Entity(9), to: (256, -3385), sprint: 0);
+    speak(Entity(9), "「見つけたぞ!」<NEWLINE>");
+    followEntity(Entity.Player, speed: 20);
+    anim(Entity.Player, Animation(15), wait: 5);
+    speak(Entity.Player, "「な、向かってくる?!」<NEWLINE>");
+    move(entity: Entity(9), to: (432, -2236), sprint: 0);
+    waitForEntity(Entity(9));
+    look(entity: Entity(9), at: Entity.Player);
+    delay(5);
+    speak(Entity(9), "「ようやく会えたか!俺は流れ者のグレイモン<NEWLINE> ってんだ。さっそく本題に入るぜ!」<NEWLINE>");
+    anim(Entity.Player, Animation(1), wait: 5);
+    speak(Entity.Player, "「何だっ!?」<NEWLINE>");
+    speak(Entity(9), "「おまえ達のうわさを聞くうちにここにたどり<NEWLINE> ついた。俺と勝負してもらおう!<NEWLINE> もし俺が勝ったら…」<NEWLINE>");
+    showTextbox("「この街のカンバンはもらうぜ!」<NEWLINE>");
+    anim(Entity.Player, Animation(16), wait: 30);
+    speak(Entity.Player, "「カンバンなんか無いよ。」<NEWLINE>");
+    speak(Entity(9), "「とにかく勝負っ!」<NEWLINE>");
+    move(entity: Entity.Partner, to: (50, -1950), sprint: 1);
+    waitForEntity(Entity.Partner);
+    look(entity: Entity.Partner, at: Entity(9));
+    delay(5);
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 9);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    look(entity: Entity.Player, at: Entity(9));
+    look(entity: Entity(9), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(9));
+    speak(Entity(9), "「ふふ、俺を苦戦させるとはさすがだな。<NEWLINE> だが、おまえ達の目的を果たすには<NEWLINE> まだまだ未熟よ!」<NEWLINE>");
+    anim(Entity.Player, Animation(1), wait: 5);
+    speak(Entity.Player, "「むむ…」<NEWLINE>");
+    speak(Entity(9), "「俺はここに残っておまえ達をきたえ上げる<NEWLINE> ことにする。もっともっと強くなって<NEWLINE> もらうからな!」<NEWLINE>");
+    break;
+  }
+  approach(who: Entity(9), x: 412, y: -4500, tries: 3, wait: 20);
+  playSound(8, 12);
+  speak(Entity.System, "グレイモンが街に参加した!!!<NEWLINE>");
+  setTrigger(Trigger(87));
+  setTrigger(Trigger(205));
+  addPStat(PStat(1), 2);
+  followEntity(Entity.Player, speed: 20);
+  return;
+
+L1:
+  unsetTrigger(Trigger(354));
+  loadAndSetDigimon(Digimon.NPCAirdramon, Entity(5), 0);
+  lookPairAt(Entity(10));
+  look(entity: Entity(10), at: Entity.Player);
+  delay(20);
+  followEntity(Entity(10), speed: 20);
+  move(entity: Entity(10), to: (2084, -211), animDuration: 30);
+  moveCamera(to: Entity.Player, speed: 20);
+  delay(20);
+  playAnimation(Entity.Player, Animation(17));
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 10);
+  dealMapDamage(PStat(200));
+  delay(15);
+  move(entity: Entity(10), to: (432, -2236), sprint: 1);
+  panTo(x: 410, y: -1474, slowdown: 2);
+  move(entity: Entity(10), to: (432, -2236), sprint: 1);
+  waitForEntity(Entity(10));
+  lookPairAt(Entity(10));
+  look(entity: Entity(10), at: Entity.Player);
+  delay(5);
+  speak(Entity(10), "「ふふ、見つけましたよ、<LIGHTBLUE><PLAYER><WHITE>!」<NEWLINE>");
+  speak(Entity.Player, "「ふいうちかよ!」<NEWLINE>");
+  speak(Entity(10), "「私の目的はあなた達を倒すこと…<NEWLINE> そのためには手段を選びません!」<NEWLINE>");
+  speak(Entity.Player, "「(…これは!誰かに操られている目だ!)」<NEWLINE>");
+  move(entity: Entity.Partner, to: (50, -1950), sprint: 1);
+  waitForEntity(Entity.Partner);
+  look(entity: Entity.Partner, at: Entity(10));
+  delay(5);
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 10);
+  setPStat(PStat(252), 255);
+  setPStat(PStat(253), 255);
+  startBattle();
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  look(entity: Entity.Player, at: Entity(10));
+  look(entity: Entity(10), at: Entity.Player);
+  look(entity: Entity.Partner, at: Entity(10));
+  speak(Entity(10), "「ぐ…このままでは…<NEWLINE> さしちがえてでも…倒してこいと…命令…」<NEWLINE>");
+  anim(Entity(10), Animation(29), wait: 30);
+  anim(Entity.Player, Animation(7), wait: 5);
+  speak(Entity.Player, "「何を言ってるんだ、このままじゃ本当に<NEWLINE> 死んでしまうぞ!早く手当てを…」<NEWLINE>");
+  move(entity: Entity.Player, to: Entity(10), sprint: 1);
+  move(entity: Entity.Partner, to: Entity(10), sprint: 1);
+  delay(40);
+  for x in [Trigger(88), Trigger(355), Trigger(354)] {
+    setTrigger(x);
+  }
+  warp(to: Map.ROOM11, spawn: 1, trigger: 60);
+  return;
+}
+
+section(58) {
+  if (trigger(354)) {
+    move(entity: Entity.Player, to: (2980, 3318), sprint: 1);
+    waitForEntity(Entity.Player);
+  }
+  return;
+}
+
+section(59) {
+  if (trigger(354)) {
+    move(entity: Entity.Player, to: (1780, 3318), sprint: 1);
+    waitForEntity(Entity.Player);
+  }
+  return;
+  garbage { 4c 00 fe 00 4c 00 33 00 20 04 05 00 14 07 06 00 ce 0e 07 00 3a 0f 08 00 06 10 0b 00 c0 11 51 00 c8 11 52 00 aa 13 53 00 e6 13 34 00 82 14 35 00 aa 14 36 00 c6 14 37 00 e0 14 38 00 e4 16 39 00 f2 16 3a 00 c2 1c 3b 00 da 1c ff ff 19 00 00 00 ca 00 80 00 d7 00 8a 00 1c 14 18 00 98 00 19 00 1d 00 ca 00 1d 00 d7 00 24 00 10 02 19 00 08 00 10 00 18 00 98 00 19 00 1e 00 10 03 1d 00 c3 02 1d 00 c4 02 1d 00 c5 02 1d 00 c6 02 1d 00 c7 02 1d 00 c8 02 1d 00 c9 02 1e 00 fe 00 64 19 1d 00 02 00 19 00 0a 00 11 03 18 00 b2 00 19 00 1f 00 12 01 19 00 0a 00 11 01 18 00 c2 00 19 00 1e 00 11 01 25 69 19 00 09 00 6a 0e 18 00 d4 00 19 00 1d 00 4c 00 19 00 00 00 32 00 81 00 2b 00 18 00 60 02 19 00 6c fc 2e 01 6f f4 05 00 4a fc 4d fc 00 08 67 00 28 00 1b fd 1a 00 81 75 82 d3 82 a1 81 60 81 60 81 41 82 bd 82 be 82 a2 82 dc 81 5b 81 5b 81 49 81 76 0d 00 00 00 56 00 fd 0b 67 00 14 00 4c 00 fd fc 67 00 05 00 1b fd 1a 00 81 75 82 dc 82 bd 8c c4 82 f1 82 c5 82 ad 82 ea 82 c4 82 a4 82 ea 82 b5 82 a2 82 ba 81 49 0d 00 81 40 82 e0 82 c1 82 d8 82 f1 82 e6 82 eb 82 b5 82 ad 81 41 01 0a 06 00 01 01 81 49 81 76 0d 00 00 00 56 00 fd 05 67 00 0a 00 56 00 fc 0b 67 00 28 00 1c 00 2b 00 50 00 fd 0a 4a c8 19 00 20 00 15 01 0a 00 18 00 cc 01 19 00 35 15 01 00 1b ff 1a 00 81 40 0d 00 81 40 01 07 83 65 83 43 83 7d 81 5b 83 8c 83 78 83 8b 82 aa 8f e3 82 aa 82 c1 82 bd 81 49 81 49 81 49 01 01 0d 00 00 00 1c 00 76 01 5a 00 00 07 1b ff 1a 00 81 40 01 07 82 a8 82 df 82 c5 82 c6 82 a4 82 b2 82 b4 82 a2 82 dc 82 b7 81 49 0d 00 81 40 82 a0 82 c8 82 bd 82 cc 82 b7 82 ce 82 e7 82 b5 82 a2 8c f7 90 d1 82 c9 91 ce 82 b5 82 c4 0d 00 81 40 83 81 83 5f 83 8b 82 aa 82 a8 82 ad 82 e7 82 ea 82 dc 82 b5 82 bd 81 49 01 01 0d 00 00 00 2f 41 1b ff 1a 00 81 40 83 80 83 51 83 93 83 68 83 89 83 82 83 93 83 4a 81 5b 83 68 82 f0 83 51 83 62 83 67 81 49 0d 00 00 00 19 00 00 00 ee 00 18 00 78 02 19 00 57 00 00 00 57 00 01 00 57 00 02 00 19 00 00 00 e0 00 18 00 ac 02 19 00 57 00 03 00 57 00 04 00 57 00 05 00 57 00 06 00 57 00 07 00 57 00 08 00 57 00 09 00 57 00 0a 00 57 00 0b 00 57 00 0c 00 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 e4 02 19 00 57 00 0d 00 57 00 0e 00 57 00 0f 00 57 00 10 00 57 00 11 00 57 00 12 00 57 00 13 00 57 00 14 00 19 00 00 00 e7 00 40 00 f5 00 40 00 e9 00 40 00 f7 00 18 00 14 03 19 00 57 00 15 00 57 00 16 00 57 00 17 00 57 00 18 00 }
+}

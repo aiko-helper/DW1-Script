@@ -1,0 +1,184 @@
+// DG099.SCN
+#include "functions.dgs"
+#pragma script index=99 start=0x41800 end=0x42800 headerU16=0x1c sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「オレ ここのトレーニング あきた。<NEWLINE> どうしよう。」<NEWLINE>");
+  speak(Entity.Player, "「どうしようって…」<NEWLINE>");
+  speak(Entity(5), "「おまえ どこで しゅぎょう してる?」<NEWLINE>");
+  if (!trigger(205)) {
+    speak(Entity.Player, "「トレーニング場かな。」<NEWLINE>");
+    speak(Entity(5), "「トレーニング あきた。 実戦で<NEWLINE> きたえたい。」<NEWLINE>");
+    return;
+  }
+  setDialogOwner(Entity.Player);
+  setSelection(L1, L2);
+  showTextbox("「トレーニング場かな。」<NEWLINE>「闘技場かなあ。」<NEWLINE>");
+
+L1:
+  speak(Entity(5), "「トレーニング あきた。 実戦で<NEWLINE> きたえたい。」<NEWLINE>");
+  return;
+
+L2:
+  {
+    speak(Entity(5), "「オレ そこ 行く。 しゅぎょう する。」<NEWLINE>");
+    break;
+  }
+  approach(who: Entity(5), x: -1342, y: -2147, tries: 3, wait: 20);
+  playSound(8, 17);
+  speak(Entity.System, "カブテリモンが街に参加した!!!<NEWLINE>");
+  setTrigger(Trigger(219));
+  addPStat(PStat(1), 2);
+  return;
+}
+
+section(6) {
+  speak(Entity(6), "「まい年2がならぶ日 こん虫武闘大会が<NEWLINE> ここで おこなわれる。 ゆうしょう者<NEWLINE> すごいもの もらえる。」<NEWLINE>");
+  showTextbox("「ただし 虫のデジモンしか でられない。」<NEWLINE>");
+  if (trigger(346)) {
+    speak(Entity(6), "「カブテリモン クワガーモン クネモン<NEWLINE> それと あと1しゅるい 虫 いる。<NEWLINE> でも ヌメモン ちがう。」<NEWLINE>");
+    showTextbox("「まい年 2がならぶ日に <NEWLINE> こん虫武闘大会が ここで <NEWLINE> おこなわれる… ん?」<NEWLINE>");
+    showTextbox("「おまえ ゆうしょう したことあるな。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(6), "「カブテリモン クワガーモン クネモン<NEWLINE> それと あと一しゅるい 虫 いる。<NEWLINE> それは ヘラクルカブテリモン。」<NEWLINE>");
+  showTextbox("「ヘラクル とてつもなく つよい。<NEWLINE> 大会の ゆうしょうしゃは ヘラクルに<NEWLINE> なれる アイテム もらえる。」<NEWLINE>");
+  showTextbox("「こん虫武闘大会 何回でも でていい。」<NEWLINE>");
+  return;
+}
+
+section(7) {
+  {
+    if (hasTech(Move.MassMorph) == 0) break;
+    speak(Entity(7), "「おまえ つよい。おれが<NEWLINE> おしえること なにもない。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(7), "「オレたち 技のけんきゅうしてる。<NEWLINE> 強い技 覚えるのむずかしい。」<NEWLINE>");
+  showTextbox("「おまえに のうりょく あれば<NEWLINE> 技 おぼえられる かもしれない<NEWLINE> おまえ 強い技 ほしいか?」<NEWLINE>");
+  setDialogOwner(Entity.Player);
+  setSelection(L1, L2);
+  showTextbox("「もっちろん!」<NEWLINE>「いらない。」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L1:
+  speak(Entity(7), "「なら ためしてみる。」<NEWLINE>");
+  if (stat[Stat.Defense] < 500) {
+    speak(Entity(7), "「おまえ 防御力 たりない。<NEWLINE> もっと きたえろ。」<NEWLINE>");
+    return;
+  }
+  if (stat[Stat.Speed] < 500) {
+    speak(Entity(7), "「おまえ すばやさ たりない。」<NEWLINE> もっと きたえろ。」<NEWLINE>");
+    return;
+  }
+  if (stat[Stat.MaxHP] < 500) {
+    speak(Entity(7), "「おまえ HP たりない。」<NEWLINE> もっと きたえろ。」<NEWLINE>");
+    return;
+  }
+  learnMove(Move.MassMorph);
+  speak(Entity(7), "「技 覚えたな。」<NEWLINE>");
+  speak(Entity.System, "『バグ』を覚えた!<NEWLINE>");
+  waitForEntity(Entity(7));
+  followEntity(Entity.Player, speed: 10);
+  return;
+
+L2:
+  return;
+}
+
+section(81) {
+  rotate(entity: Entity.Player, to: 2128);
+  setTextboxOrigin(-541, 0, 1823);
+  callSubroutine(39);
+  speak(Entity(200), " <NEWLINE><GREEN>    トレーニング・ダンゴ岩<WHITE><NEWLINE>");
+  setSelection(L1, L2, L3);
+  showTextbox("トレーニング開始<NEWLINE>このトレーニングの説明<NEWLINE>やめる<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L1:
+  setSelection(L4, L5, L3);
+  showTextbox("ノーマルトレーニング<NEWLINE>ボーナストライトレーニング<NEWLINE>やっぱりやめる<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L2:
+  showTextbox("ダンゴ岩を押すことで、底力をつけます。<NEWLINE>最大HPが大きくアップします。<NEWLINE>");
+  setSelection(L2, L1, L3);
+  showTextbox("もう一度説明<NEWLINE>トレーニング開始<NEWLINE>やめる<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L3:
+  return;
+
+L4:
+  fadeOutHUD();
+  setPStat(PStat(254), 0);
+  setPStat(PStat(246), 0);
+  callDigimonSubroutine(214);
+  callSubroutine(7);
+  return;
+
+L5:
+  setTexboxMode(1, 0);
+  speak(Entity.System, "       <YELLOW>スロットゲーム<WHITE><NEWLINE> <NEWLINE>   <ORANGE><CIRCLE><WHITE><ボき><ヌン>で3つのスロットを止めて、<NEWLINE>    うまく絵をそろえてください。<NEWLINE>");
+  setPStat(PStat(254), 0);
+  setPStat(PStat(246), 1);
+  callDigimonSubroutine(214);
+  callSubroutine(7);
+  setTexboxMode(0, 0);
+  return;
+}
+
+section(83) {
+  rotate(entity: Entity.Player, to: 1968);
+  setTextboxOrigin(-1330, 0, 1434);
+  callSubroutine(39);
+  speak(Entity(200), " <NEWLINE><GREEN>     トレーニング・うちこみ<WHITE><NEWLINE>");
+  setSelection(L1, L2, L3);
+  showTextbox("トレーニング開始<NEWLINE>このトレーニングの説明<NEWLINE>やめる<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L1:
+  setDialogOwner(Entity(200));
+  setSelection(L4, L5, L3);
+  showTextbox("ノーマルトレーニング<NEWLINE>ボーナストライトレーニング<NEWLINE>やっぱりやめる<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L2:
+  speak(Entity(200), "ダミーを練習台に、技の打ちこみをします。<NEWLINE>攻撃力が大きくアップします。<NEWLINE>");
+  setSelection(L2, L1, L3);
+  showTextbox("もう一度説明<NEWLINE>トレーニング開始<NEWLINE>やめる<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L3:
+  return;
+
+L4:
+  fadeOutHUD();
+  setPStat(PStat(254), 1);
+  setPStat(PStat(246), 0);
+  callDigimonSubroutine(214);
+  callSubroutine(7);
+  return;
+
+L5:
+  setTexboxMode(1, 0);
+  speak(Entity.System, "       <YELLOW>スロットゲーム<WHITE><NEWLINE> <NEWLINE>   <ORANGE><CIRCLE><WHITE><ボき><ヌン>で3つのスロットを止めて、<NEWLINE>    うまく絵をそろえてください。<NEWLINE>");
+  setPStat(PStat(254), 1);
+  setPStat(PStat(246), 1);
+  callDigimonSubroutine(214);
+  callSubroutine(7);
+  setTexboxMode(0, 0);
+  return;
+  garbage { 1c 00 fe 00 1c 00 05 00 1e 00 06 00 22 02 07 00 e4 04 51 00 60 07 53 00 5a 09 ff ff fe 00 1b 05 1a 00 81 75 83 49 83 8c 81 40 82 b1 82 b1 82 cc 83 67 83 8c 81 5b 83 6a 83 93 83 4f 81 40 82 a0 82 ab 82 bd 81 42 0d 00 81 40 82 c7 82 a4 82 b5 82 e6 82 a4 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 c7 82 a4 82 b5 82 e6 82 a4 82 c1 82 c4 81 63 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a8 82 dc 82 a6 81 40 82 c7 82 b1 82 c5 81 40 82 b5 82 e3 82 ac 82 e5 82 a4 81 40 82 b5 82 c4 82 e9 81 48 81 76 0d 00 00 00 19 00 01 00 cd 00 18 00 10 01 19 00 1b fd 1a 00 81 75 83 67 83 8c 81 5b 83 6a 83 93 83 4f 8f ea 82 a9 82 c8 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 83 67 83 8c 81 5b 83 6a 83 93 83 4f 81 40 82 a0 82 ab 82 bd 81 42 81 40 8e c0 90 ed 82 c5 0d 00 81 40 82 ab 82 bd 82 a6 82 bd 82 a2 81 42 81 76 0d 00 00 00 fe 00 1b fd 10 02 4a 01 86 01 1a 00 81 75 83 67 83 8c 81 5b 83 6a 83 93 83 4f 8f ea 82 a9 82 c8 81 42 81 76 0d 00 81 75 93 ac 8b 5a 8f ea 82 a9 82 c8 82 a0 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 83 67 83 8c 81 5b 83 6a 83 93 83 4f 81 40 82 a0 82 ab 82 bd 81 42 81 40 8e c0 90 ed 82 c5 0d 00 81 40 82 ab 82 bd 82 a6 82 bd 82 a2 81 42 81 76 0d 00 00 00 fe 00 1b 05 1a 00 81 75 83 49 83 8c 81 40 82 bb 82 b1 81 40 8d 73 82 ad 81 42 81 40 82 b5 82 e3 82 ac 82 e5 82 a4 81 40 82 b7 82 e9 81 42 81 76 0d 00 00 00 16 00 bc 01 4e 05 c2 fa 9d f7 01 00 19 00 0d 00 65 03 18 00 e4 01 19 00 1f 00 65 01 67 00 14 00 4c 00 fd 05 4c 00 fc 05 16 00 bc 01 4a 05 48 05 1e 00 65 00 5a 00 08 11 1b ff 1a 00 83 4a 83 75 83 65 83 8a 83 82 83 93 82 aa 8a 58 82 c9 8e 51 89 c1 82 b5 82 bd 81 49 81 49 81 49 0d 00 00 00 1c 00 db 00 1f 00 01 02 fe 00 1b 06 1a 00 81 75 82 dc 82 a2 94 4e 82 51 82 aa 82 c8 82 e7 82 d4 93 fa 81 40 82 b1 82 f1 92 8e 95 90 93 ac 91 e5 89 ef 82 aa 0d 00 81 40 82 b1 82 b1 82 c5 81 40 82 a8 82 b1 82 c8 82 ed 82 ea 82 e9 81 42 81 40 82 e4 82 a4 82 b5 82 e5 82 a4 8e d2 0d 00 81 40 82 b7 82 b2 82 a2 82 e0 82 cc 81 40 82 e0 82 e7 82 a6 82 e9 81 42 81 76 0d 00 00 00 1a 00 81 75 82 bd 82 be 82 b5 81 40 92 8e 82 cc 83 66 83 57 83 82 83 93 82 b5 82 a9 81 40 82 c5 82 e7 82 ea 82 c8 82 a2 81 42 81 76 0d 00 00 00 19 00 00 00 5a 01 18 00 ca 03 19 00 1b 06 1a 00 81 75 83 4a 83 75 83 65 83 8a 83 82 83 93 81 40 83 4e 83 8f 83 4b 81 5b 83 82 83 93 81 40 83 4e 83 6c 83 82 83 93 0d 00 81 40 82 bb 82 ea 82 c6 81 40 82 a0 82 c6 82 50 82 b5 82 e3 82 e9 82 a2 81 40 92 8e 81 40 82 a2 82 e9 81 42 0d 00 81 40 82 c5 82 e0 81 40 83 6b 83 81 83 82 83 93 81 40 82 bf 82 aa 82 a4 81 42 81 76 0d 00 00 00 1a 00 81 75 82 dc 82 a2 94 4e 81 40 82 51 82 aa 82 c8 82 e7 82 d4 93 fa 82 c9 81 40 0d 00 81 40 82 b1 82 f1 92 8e 95 90 93 ac 91 e5 89 ef 82 aa 81 40 82 b1 82 b1 82 c5 81 40 0d 00 81 40 82 a8 82 b1 82 c8 82 ed 82 ea 82 e9 81 63 81 40 82 f1 81 48 81 76 0d 00 00 00 1a 00 81 75 82 a8 82 dc 82 a6 81 40 82 e4 82 a4 82 b5 82 e5 82 a4 81 40 82 b5 82 bd 82 b1 82 c6 82 a0 82 e9 82 c8 81 42 81 76 0d 00 00 00 fe 00 1b 06 1a 00 81 75 83 4a 83 75 83 65 83 8a 83 82 83 93 81 40 83 4e 83 8f 83 4b 81 5b 83 82 83 93 81 40 83 4e 83 6c 83 82 83 93 0d 00 81 40 82 bb 82 ea 82 c6 81 40 82 a0 82 c6 88 ea 82 b5 82 e3 82 e9 82 a2 81 40 92 8e 81 40 82 a2 82 e9 81 42 0d 00 81 40 82 bb 82 ea 82 cd 81 40 83 77 83 89 83 4e 83 8b 83 4a 83 75 83 65 83 8a 83 82 83 93 81 42 81 76 0d 00 00 00 1a 00 81 75 83 77 83 89 83 4e 83 8b 81 40 82 c6 82 c4 82 c2 82 e0 82 c8 82 ad 81 40 82 c2 82 e6 82 a2 81 42 0d 00 81 40 91 e5 89 ef 82 cc 81 40 82 e4 82 a4 82 b5 82 e5 82 a4 82 b5 82 e1 82 cd 81 40 83 77 83 89 83 4e 83 8b 82 c9 0d 00 81 40 82 c8 82 ea 82 e9 81 40 83 41 83 43 83 65 83 80 81 40 }
+}

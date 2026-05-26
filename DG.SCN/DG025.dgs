@@ -1,0 +1,200 @@
+// DG025.SCN
+#include "functions.dgs"
+#pragma script index=25 start=0x16800 end=0x17800 headerU16=0x28 sentinelOff=0x1a64
+#include "entities.dgs"
+
+section onEnter(254) {
+  callSubroutine(26);
+  switch pstat[17] {
+    3 => {
+      setPStat(PStat(254), 0);
+      callSubroutine(19);
+      for id in Entity(5)..Entity(7) {
+        setAutotalk(id, 0);
+      }
+    }
+    4 => {
+      setPStat(PStat(254), 1);
+      callSubroutine(19);
+      for id in Entity(5)..Entity(7) {
+        setAutotalk(id, 0);
+      }
+    }
+  }
+  return;
+}
+
+section(5) {
+  if (pstat[17] >= 3) {
+    speak(Entity(5), "「へっへっへ、ごくろうさん!」<NEWLINE>");
+    return;
+  }
+  speak(Entity(5), "「あんだ?やんのか!」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(6) {
+  if (pstat[17] >= 3) {
+    speak(Entity(6), "「いやー、ごくろうね!」<NEWLINE>");
+    return;
+  }
+  speak(Entity(6), "「ほっとけよ!」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(7) {
+  if (pstat[17] >= 3) {
+    speak(Entity(7), "「ムリしちゃって!」<NEWLINE>");
+    return;
+  }
+  speak(Entity(7), "「せーなー!」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(9) {
+  speak(Entity(9), "「もう、こうさんだよ~」<NEWLINE>");
+  return;
+}
+
+section(10) {
+  speak(Entity(10), "「かしら、行っちゃったなあ。」<NEWLINE>");
+  return;
+}
+
+section(51) {
+  if (!trigger(150) || trigger(234)) {
+    return;
+  }
+  {
+    move(entity: Entity.Player, to: (-165, 221), sprint: 0, withCamera: true);
+    move(entity: Entity.Partner, to: (171, 615), sprint: 0);
+    waitForPair();
+    move(entity: Entity(9), to: (-323, 93), sprint: 0);
+    move(entity: Entity(10), to: (498, -51), sprint: 0);
+    move(entity: Entity(8), to: (160, -193), sprint: 0);
+    for x in [Entity(5), Entity(6), Entity(8)] {
+      waitForEntity(x);
+    }
+    rotate(entity: Entity.Player, to: 100);
+    rotate(entity: Entity.Partner, to: 100);
+    look(entity: Entity(9), at: Entity.Player);
+    look(entity: Entity(10), at: Entity.Player);
+    look(entity: Entity(8), at: Entity.Player);
+    speak(Entity(8), "「ぐへへ、貴様ら、ここを通りたきゃ、荷物<NEWLINE> 全部置いてきな!」<NEWLINE>");
+    speak(Entity.Player, "「おまえとも長いつきあいだな。」<NEWLINE>");
+    speak(Entity(8), "「むぐ!またキサマらか…!」<NEWLINE>");
+    speak(Entity.Player, "「それはこっちのセリフだ!こーんな分かり<NEWLINE> やすい場所にこもって…。<NEWLINE> 覚悟を決めているようだな!」<NEWLINE>");
+    playAnimation(Entity(8), Animation(32));
+    speak(Entity(8), "「ふぁははは!覚悟だと?<NEWLINE> 俺様が本気になったらどうなるか!<NEWLINE> 見るがいいぜ!」<NEWLINE>");
+    playAnimation(Entity(8), Animation(0));
+    speak(Entity.Player, "「終わりにしようぜ!」<NEWLINE>");
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 9);
+    setPStat(PStat(252), 10);
+    setPStat(PStat(253), 8);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    playAnimation(Entity(9), Animation(43));
+    playAnimation(Entity(10), Animation(43));
+    move(entity: Entity(8), to: (89, -659), sprint: 0);
+    waitForEntity(Entity(8));
+    rotate(entity: Entity(8), to: 100);
+    lookPairAt(Entity(8));
+    waitForEntity(Entity(8));
+    anim(Entity(8), Animation(28), wait: 30);
+    speak(Entity(8), "「…なぜ…勝てねえ…」<NEWLINE>");
+    playAnimation(Entity(8), Animation(29));
+    anim(Entity.Player, Animation(19), wait: 20);
+    speak(Entity.Player, "「どうした?逃げ出さないのか?」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(8), "「疲れちまった…」<NEWLINE>");
+    speak(Entity.Player, "「………」<NEWLINE>");
+    speak(Entity(8), "「俺様が山賊になったのはな、この島は<NEWLINE> もうだめだ、ならば好き放題やってやる…<NEWLINE> そう思ったからなのさ…」<NEWLINE>");
+    speak(Entity.Player, "「この島がやばいってこと、知ってたのか。」<NEWLINE>");
+    speak(Entity(8), "「たりめえよ。だけどな、お前らみたいな奴が<NEWLINE> でてきてな…。いまさら力を合わせてなんて<NEWLINE> みっともねえじゃねえか…」<NEWLINE>");
+    anim(Entity.Player, Animation(19), wait: 15);
+    speak(Entity.Player, "「そんなことは無いさ。街へ来いよ。」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(8), "「ダメさ…俺なんてよ。何の役にも…<NEWLINE> それに俺がゆるしてもらえるわけが…」<NEWLINE>");
+    anim(Entity.Player, Animation(7), wait: 15);
+    speak(Entity.Player, "「るせーっ!!!<NEWLINE> ガタガタ言ってねーで来い!!!」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+    move(entity: Entity.Player, to: (160, -193), sprint: 1, withCamera: true);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 100);
+    showTextbox("「お前は役に立つ!<NEWLINE> 今この島に役に立たない奴なんて<NEWLINE> いやしねーんだ!同じだみんな!」<NEWLINE>");
+    speak(Entity(8), "'!!!\"\n");
+    playAnimation(Entity(8), Animation(30));
+    look(entity: Entity(8), at: Entity.Player);
+    speak(Entity(8), "「助かる…?この島は助かるのかっ!<NEWLINE> おまえ達がよ、助けてくれるんだな!<NEWLINE> ええ!?」<NEWLINE>");
+    move(entity: Entity(8), to: (119, -494), sprint: 1);
+    waitForEntity(Entity(8));
+    look(entity: Entity(8), at: Entity.Player);
+    speak(Entity.Player, "「ったりめえよ!!!!!!!<NEWLINE> …街の場所、分かるな?」<NEWLINE>");
+    speak(Entity(8), "「おおおおお!<NEWLINE> 待ってろよ、俺様のシゴトよぉー!」<NEWLINE>");
+    break;
+  }
+  move(entity: Entity(8), to: (155, 873), sprint: 1);
+  if (pstat[101] < 6) {
+    addPStat(PStat.LoopIterator, 1);
+    delay(10);
+    lookPairAt(Entity(8));
+  }
+  waitForEntity(Entity(8));
+  unloadEntity(Entity(8));
+  setPStat(PStat.LoopIterator, 0);
+  playSound(8, 8);
+  speak(Entity.System, "オーガモンが街に参加した!!!<NEWLINE>");
+  setTrigger(Trigger(234));
+  addPStat(PStat(1), 2);
+  followEntity(Entity.Player, speed: 10);
+  return;
+}
+
+section(52) {
+  switch pstat[17] {
+    3 => {
+      speak(Entity.Player, "「っと!出口はこっちじゃない!」<NEWLINE>");
+      move(entity: Entity.Player, to: (-51, -1550), sprint: 1);
+      waitForEntity(Entity.Player);
+      followEntity(Entity.Player, speed: 10);
+      return;
+    }
+    4 => {
+      speak(Entity.Player, "「っと!ドリモゲモンに土箱を<NEWLINE> 返さなきゃ!」<NEWLINE>");
+      move(entity: Entity.Player, to: (-51, -1550), sprint: 1);
+      waitForEntity(Entity.Player);
+      followEntity(Entity.Player, speed: 10);
+      return;
+    }
+  }
+  if (trigger(209) && pstat[1] >= 45) {
+    move(entity: Entity.Player, to: (-105, -2200), sprint: 0);
+    warp(to: Map.TUNN03_2, spawn: 0, trigger: 255);
+  }
+  move(entity: Entity.Player, to: (-105, -2200), sprint: 0);
+  warp(to: Map.TUNN03, spawn: 0, trigger: 255);
+}
+
+section(53) {
+  switch pstat[17] {
+    3 => {
+      speak(Entity.Player, "「っと!出口はこっちじゃない!」<NEWLINE>");
+      move(entity: Entity.Player, to: (-2253, 359), sprint: 1);
+      waitForEntity(Entity.Player);
+      followEntity(Entity.Player, speed: 10);
+      return;
+    }
+    4 => {
+      speak(Entity.Player, "「っと!ドリモゲモンに土箱を<NEWLINE> 返さなきゃ!」<NEWLINE>");
+      move(entity: Entity.Player, to: (-2253, 359), sprint: 1);
+      waitForEntity(Entity.Player);
+      followEntity(Entity.Player, speed: 10);
+      return;
+    }
+  }
+  return;
+  garbage { 28 00 fe 00 28 00 05 00 68 00 06 00 c8 00 07 00 1c 01 09 00 6a 01 0a 00 8c 01 33 00 b4 01 34 00 20 08 35 00 e2 08 ff ff 64 1a 19 00 08 00 11 03 18 00 48 00 19 00 1e 00 fe 00 64 13 6a 00 05 00 6a 00 06 00 6a 00 07 00 19 00 08 00 11 04 18 00 66 00 19 00 1e 00 fe 01 64 13 6a 00 05 00 6a 00 06 00 6a 00 07 00 fe 00 19 00 0a 00 11 03 18 00 9c 00 19 00 1b 05 1a 00 81 75 82 d6 82 c1 82 d6 82 c1 82 d6 81 41 82 b2 82 ad 82 eb 82 a4 82 b3 82 f1 81 49 81 76 0d 00 00 00 fe 00 1b 05 1a 00 81 75 82 a0 82 f1 82 be 81 48 82 e2 82 f1 82 cc 82 a9 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 19 00 0a 00 11 03 18 00 f6 00 19 00 1b 06 1a 00 81 75 82 a2 82 e2 81 5b 81 41 82 b2 82 ad 82 eb 82 a4 82 cb 81 49 81 76 0d 00 00 00 fe 00 1b 06 1a 00 81 75 82 d9 82 c1 82 c6 82 af 82 e6 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 19 00 0a 00 11 03 18 00 46 01 19 00 1b 07 1a 00 81 75 83 80 83 8a 82 b5 82 bf 82 e1 82 c1 82 c4 81 49 81 76 0d 00 00 00 fe 00 1b 07 1a 00 81 75 82 b9 81 5b 82 c8 81 5b 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 09 1a 00 81 75 82 e0 82 a4 81 41 82 b1 82 a4 82 b3 82 f1 82 be 82 e6 81 60 81 76 0d 00 00 00 fe 00 1b 0a 1a 00 81 75 82 a9 82 b5 82 e7 81 41 8d 73 82 c1 82 bf 82 e1 82 c1 82 bd 82 c8 82 a0 81 42 81 76 0d 00 00 00 fe 00 19 00 01 00 96 00 40 00 ea 00 18 00 c6 01 19 00 fe 00 52 fd 5b ff dd 00 00 00 4e fc ab 00 67 02 00 00 4a fd 4a fc 4e 09 bd fe 5d 00 00 00 4e 0a f2 01 cd ff 00 00 4e 08 a0 00 3f ff 00 00 4a 05 4a 06 4a 08 4d fd 64 00 4d fc 64 00 4c 00 09 fd 4c 00 0a fd 4c 00 08 fd 1b 08 1a 00 81 75 82 ae 82 d6 82 d6 81 41 8b 4d 97 6c 82 e7 81 41 82 b1 82 b1 82 f0 92 ca 82 e8 82 bd 82 ab 82 e1 81 41 89 d7 95 a8 0d 00 81 40 91 53 95 94 92 75 82 a2 82 c4 82 ab 82 c8 81 49 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a8 82 dc 82 a6 82 c6 82 e0 92 b7 82 a2 82 c2 82 ab 82 a0 82 a2 82 be 82 c8 81 42 81 76 0d 00 00 00 1b 08 1a 00 81 75 82 de 82 ae 81 49 82 dc 82 bd 83 4c 83 54 83 7d 82 e7 82 a9 81 63 81 49 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 bb 82 ea 82 cd 82 b1 82 c1 82 bf 82 cc 83 5a 83 8a 83 74 82 be 81 49 82 b1 81 5b 82 f1 82 c8 95 aa 82 a9 82 e8 0d 00 81 40 82 e2 82 b7 82 a2 8f ea 8f 8a 82 c9 82 b1 82 e0 82 c1 82 c4 81 63 81 42 0d 00 81 40 8a 6f 8c e5 82 f0 8c 88 82 df 82 c4 82 a2 82 e9 82 e6 82 a4 82 be 82 c8 81 49 81 76 0d 00 00 00 56 00 08 20 1b 08 1a 00 81 75 82 d3 82 9f 82 cd 82 cd 82 cd 81 49 8a 6f 8c e5 82 be 82 c6 81 48 0d 00 81 40 89 b4 97 6c 82 aa 96 7b 8b 43 82 c9 82 c8 82 c1 82 bd 82 e7 82 c7 82 a4 82 c8 82 e9 82 a9 81 49 0d 00 81 40 8c a9 82 e9 82 aa 82 a2 82 a2 82 ba 81 49 81 76 0d 00 00 00 56 00 08 00 1b fd 1a 00 81 75 8f 49 82 ed 82 e8 82 c9 82 b5 82 e6 82 a4 82 ba 81 49 81 76 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 09 1e 00 fc 0a 1e 00 fd 08 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 56 00 09 2b 56 00 0a 2b 4e 08 59 00 6d fd 00 00 4a 08 4d 08 64 00 4c 00 fd 08 4c 00 fc 08 4a 08 56 00 08 1c 67 00 1e 00 1b 08 1a 00 81 75 81 63 82 c8 82 ba 81 63 8f 9f 82 c4 82 cb 82 a6 81 63 81 76 0d 00 00 00 56 00 08 1d 56 00 fd 13 67 00 14 00 1b fd 1a 00 81 75 82 c7 82 a4 82 b5 82 bd 81 48 93 a6 82 b0 8f 6f 82 b3 82 c8 82 a2 82 cc 82 a9 81 48 81 76 0d 00 00 00 56 00 fd 00 1b 08 1a 00 81 75 94 e6 82 ea 82 bf 82 dc 82 c1 82 bd 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 81 63 81 63 81 63 81 76 0d 00 00 00 1b 08 1a 00 81 75 89 b4 97 6c 82 aa 8e 52 91 af 82 c9 82 c8 82 c1 82 bd 82 cc 82 cd 82 c8 81 41 82 b1 82 cc 93 87 82 cd 0d 00 81 40 82 e0 82 a4 82 be 82 df 82 be 81 41 82 c8 82 e7 82 ce 8d 44 82 ab 95 fa 91 e8 82 e2 82 c1 82 c4 82 e2 82 e9 81 63 0d 00 81 40 82 bb 82 a4 8e 76 82 c1 82 bd 82 a9 82 e7 82 c8 82 cc 82 b3 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 b1 82 cc 93 87 82 aa 82 e2 82 ce 82 a2 82 c1 82 c4 82 b1 82 c6 81 41 92 6d 82 c1 82 c4 82 bd 82 cc 82 a9 81 42 81 76 0d 00 00 00 1b 08 1a 00 81 75 82 bd 82 e8 82 df 82 a6 82 e6 81 42 82 be 82 af 82 c7 82 c8 81 41 82 a8 91 4f 82 e7 82 dd 82 bd 82 a2 82 c8 93 7a 82 aa 0d 00 81 40 82 c5 82 c4 82 ab 82 c4 82 c8 81 63 81 42 82 a2 82 dc 82 b3 82 e7 97 cd 82 f0 8d 87 82 ed 82 b9 82 c4 82 c8 82 f1 82 c4 0d 00 81 40 82 dd 82 c1 82 c6 82 e0 82 cb 82 a6 82 b6 82 e1 82 cb 82 a6 82 a9 81 63 81 76 0d 00 00 00 56 00 fd 13 67 00 0f 00 1b fd 1a 00 81 75 82 bb 82 f1 82 c8 82 b1 82 c6 82 cd 96 b3 82 a2 82 b3 81 42 8a 58 82 d6 97 88 82 a2 82 e6 81 42 81 76 0d 00 00 00 56 00 fd 00 1b 08 1a 00 81 75 83 5f 83 81 82 b3 81 63 89 b4 82 c8 82 f1 82 c4 82 e6 81 42 89 bd 82 cc 96 f0 82 c9 82 e0 81 63 0d 00 81 40 82 bb 82 ea 82 c9 89 b4 82 aa 82 e4 82 e9 82 b5 82 c4 82 e0 82 e7 82 a6 82 e9 82 ed 82 af 82 aa 81 63 81 76 0d 00 00 00 56 00 fd 07 67 00 0f 00 1b fd 1a 00 81 75 82 e9 82 b9 81 5b 82 c1 81 49 81 49 81 49 0d 00 81 40 83 4b 83 5e 83 4b 83 5e 8c be 82 c1 82 c4 82 cb 81 5b 82 c5 97 88 82 a2 81 49 81 49 81 49 81 76 0d 00 00 00 56 00 fd 00 52 fd a0 00 3f ff 01 00 4a fd 4d fd 64 00 1a 00 81 75 82 a8 91 4f 82 cd 96 f0 82 c9 97 a7 82 c2 81 49 0d 00 81 40 8d a1 82 b1 82 cc 93 87 82 c9 96 f0 82 c9 97 a7 82 bd }
+}

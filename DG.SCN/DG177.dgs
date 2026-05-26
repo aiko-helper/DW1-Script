@@ -1,0 +1,322 @@
+// DG177.SCN
+#include "functions.dgs"
+#pragma script index=177 start=0x80800 end=0x82000 headerU16=0xc sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(11) {
+  if (trigger(225)) {
+  } else {
+    if (trigger(246)) {
+    } else {
+      if (trigger(74)) {
+      } else {
+        setTrigger(Trigger(74));
+        speak(Entity(11), "「あ、こんにちは。お肉いりますか?」<NEWLINE>");
+        showTextbox("「いけない、まだ説明してなかったんだ。」<NEWLINE>");
+        showTextbox("「えと、ここはお肉の畑、肉畑です。<NEWLINE> ここでみんなが食べる肉を育ててます。」<NEWLINE>");
+        speak(Entity.Player, "「!、ちょっと待ってよ、肉が畑で<NEWLINE> とれるのか?」<NEWLINE>");
+        speak(Entity(11), "「うん。何かおかしい?」<NEWLINE>");
+        speak(Entity.Player, "「いや……ま、いいや。それで?」<NEWLINE>");
+        speak(Entity(11), "「じっちゃんとぼくらで相談して、<NEWLINE> <LIGHTBLUE><PLAYER><WHITE>さんに1日3つ、お肉を<NEWLINE> わけてあげることにしたんです。」<NEWLINE>");
+        showTextbox("「だから、はい。今日のお肉。」<NEWLINE>");
+        if (item[Item.Meat] >= 99) {
+          speak(Entity(11), "「ん、肉の持ちすぎだね。<NEWLINE> 今日のぶんはパスでいいよね。」<NEWLINE>");
+          setPStat(PStat(31), 1);
+          return;
+        }
+        if (item[Item.Meat] >= 97) {
+          speak(Entity(11), "「ん、肉の持ちすぎだね。<NEWLINE> 持てないぶんはぼくがもらうね。」<NEWLINE>");
+          giveItem(Item.Meat, 3);
+          speak(Entity.System, "<LIGHTBLUE>肉<WHITE>を手に入れた!<NEWLINE>");
+          setTrigger(Trigger(74));
+          setPStat(PStat(31), 0);
+          return;
+        }
+        giveItem(Item.Meat, 3);
+        if (trigger(0)) {
+          speak(Entity(11), "「アイテムのもちすぎだよ。」<NEWLINE>");
+          return;
+        }
+        speak(Entity.System, "<LIGHTBLUE>肉<WHITE>を3つ手に入れた!<NEWLINE>");
+        setPStat(PStat(31), 0);
+        return;
+      }
+      roll(pstat: PStat.RollScratch, max: 9);
+      {
+        if (pstat[31] >= 1 && pstat[110] <= 0) {
+          speak(Entity(11), "「今日はいっぱいお肉がとれましたよ!<NEWLINE> だから、5つお肉あげる。」<NEWLINE>");
+        } else {
+          break;
+        }
+        if (item[Item.Meat] >= 99) {
+          speak(Entity(11), "「ん、肉の持ちすぎだね。<NEWLINE> 今日のぶんはパスでいいよね。」<NEWLINE>");
+          return;
+        }
+        if (item[Item.Meat] >= 95) {
+          speak(Entity(11), "「ん、肉の持ちすぎだね。<NEWLINE> 持てないぶんはぼくがもらうね。」<NEWLINE>");
+          giveItem(Item.Meat, 5);
+          speak(Entity.System, "<LIGHTBLUE>肉<WHITE>を手に入れた!<NEWLINE>");
+          setTrigger(Trigger(74));
+          setPStat(PStat(31), 0);
+          return;
+        }
+        giveItem(Item.Meat, 5);
+        if (trigger(0)) {
+          speak(Entity(11), "「ん、ざんねんだけど<NEWLINE> アイテムのもちすぎだよ。」<NEWLINE>");
+          return;
+        }
+        speak(Entity.System, "<LIGHTBLUE>肉<WHITE>を5つ手に入れた!<NEWLINE>");
+        speak(Entity(11), "「次のぶんは明日ですー。」<NEWLINE>");
+        setPStat(PStat(31), 0);
+        return;
+      }
+      {
+        if (pstat[31] >= 1) {
+          speak(Entity(11), "「はい。今日のお肉どうぞー。」<NEWLINE>");
+        } else {
+          break;
+        }
+        if (item[Item.Meat] >= 99) {
+          speak(Entity(11), "「ん、肉の持ちすぎだね。<NEWLINE> 今日のぶんはパスでいいよね。」<NEWLINE>");
+          return;
+        }
+        if (item[Item.Meat] >= 97) {
+          speak(Entity(11), "「ん、肉の持ちすぎだね。<NEWLINE> 持てないぶんはぼくがもらうね。」<NEWLINE>");
+          giveItem(Item.Meat, 3);
+          speak(Entity.System, "<LIGHTBLUE>肉<WHITE>を手に入れた!<NEWLINE>");
+          setTrigger(Trigger(74));
+          setPStat(PStat(31), 0);
+          return;
+        }
+        giveItem(Item.Meat, 3);
+        if (trigger(0)) {
+          speak(Entity(11), "「アイテムのもちすぎだよ。」<NEWLINE>");
+          return;
+        }
+        speak(Entity.System, "<LIGHTBLUE>肉<WHITE>を手に入れた!<NEWLINE>");
+        speak(Entity(11), "「次のぶんは明日ですー。」<NEWLINE>");
+        setPStat(PStat(31), 0);
+        return;
+      }
+      speak(Entity(11), "「ん、今日はもうお肉あげましたよね。」<NEWLINE>");
+      showTextbox("「食べ物が無くなった時は…<NEWLINE> 迷わずの森ではけっこう自然の<NEWLINE> キノコがみつかるらしいですよ。」<NEWLINE>");
+      return;
+    }
+    if (!trigger(82)) {
+      setTrigger(Trigger(82));
+      speak(Entity(11), "「あ、<LIGHTBLUE><PLAYER><WHITE>!ボク、肉畑を倍に拡張<NEWLINE> したよ。これからは1日に3つの巨大肉を<NEWLINE> わけてあげられるよ。」<NEWLINE>");
+      showTextbox("「さらに余分にほしいなら、1つ500<B><it><NEWLINE> で売ってあげる。」<NEWLINE>");
+      showTextbox("「あと、これからはボクがタネモンに<NEWLINE> かわって畑の番をすることにしたよ。<NEWLINE> タネモンはどこかで休んでるみたい。」<NEWLINE>");
+    }
+    roll(pstat: PStat.RollScratch, max: 9);
+    {
+      if (pstat[31] >= 1 && pstat[110] <= 0) {
+        speak(Entity(11), "「今日はいっぱい肉がとれましたよ!」<NEWLINE>");
+      } else {
+        break;
+      }
+      if (item[Item.GiantMeat] >= 99) {
+        speak(Entity(11), "「ん、巨大肉の持ちすぎだね。<NEWLINE> 今日のぶんはパスでいいよね。」<NEWLINE>");
+        return;
+      }
+      if (item[Item.GiantMeat] >= 95) {
+        speak(Entity(11), "「ん、巨大肉の持ちすぎだね。<NEWLINE> 持てないぶんはぼくがもらうね。」<NEWLINE>");
+        giveItem(Item.GiantMeat, 5);
+        speak(Entity.System, "<LIGHTBLUE>巨大肉<WHITE>を手に入れた!<NEWLINE>");
+        setTrigger(Trigger(74));
+        setPStat(PStat(31), 0);
+        return;
+      }
+      giveItem(Item.GiantMeat, 5);
+      if (trigger(0)) {
+        showTextbox("「ん、ざんねんだけど<NEWLINE> アイテムのもちすぎだよ。」<NEWLINE>");
+        return;
+      }
+      speak(Entity.System, "<LIGHTBLUE>巨大肉<WHITE>を5つ手に入れた!<NEWLINE>");
+      speak(Entity(11), "「次のぶんは明日ですー。」<NEWLINE>");
+      setPStat(PStat(31), 0);
+      return;
+    }
+    {
+      if (pstat[31] >= 1) {
+        speak(Entity(11), "「ハイ、今日の分の巨大肉3つだよ。」<NEWLINE>");
+      } else {
+        break;
+      }
+      if (item[Item.GiantMeat] >= 99) {
+        speak(Entity(11), "「ん、巨大肉の持ちすぎだね。<NEWLINE> 今日のぶんはパスでいいよね。」<NEWLINE>");
+        return;
+      }
+      if (item[Item.GiantMeat] >= 97) {
+        speak(Entity(11), "「ん、巨大肉の持ちすぎだね。<NEWLINE> 持てないぶんはぼくがもらうね。」<NEWLINE>");
+        giveItem(Item.GiantMeat, 3);
+        speak(Entity.System, "<LIGHTBLUE>巨大肉<WHITE>を手に入れた!<NEWLINE>");
+        setTrigger(Trigger(74));
+        setPStat(PStat(31), 0);
+        return;
+      }
+      giveItem(Item.GiantMeat, 3);
+      if (trigger(0)) {
+        showTextbox("「ん、ざんねんだけど<NEWLINE> アイテムのもちすぎだよ。」<NEWLINE>");
+        return;
+      }
+      speak(Entity.System, "<LIGHTBLUE>巨大肉<WHITE>を3つ手に入れた!<NEWLINE>");
+      setPStat(PStat(31), 0);
+      return;
+    }
+    {
+      speak(Entity(11), "「あしたになったら、次の分をあげるよ。<NEWLINE> それとも今、1つ500<B><it>で買う?」<NEWLINE>");
+      setDialogOwner(Entity.Player);
+      setSelection(L1, L2);
+      showTextbox("「買う。」<NEWLINE>「買わない。」<NEWLINE>");
+      waitForSelectionChoice();
+      break;
+
+L1:
+      if (money < 500) {
+        speak(Entity(11), "「お金がたりないよ。」<NEWLINE>");
+        return;
+      }
+      giveItem(Item.GiantMeat, 1);
+      if (trigger(0)) {
+        showTextbox("「アイテムのもちすぎだよ。」<NEWLINE>");
+        return;
+      }
+      reduceMoney(500);
+      sfx(0, 5, wait: 5);
+      speak(Entity(11), "「まだ買う?」<NEWLINE>");
+      setDialogOwner(Entity.Player);
+      setSelection(L1, L2);
+      showTextbox("「買う。」<NEWLINE>「買わない。」<NEWLINE>");
+      waitForSelectionChoice();
+      break;
+
+L2:
+    }
+    speak(Entity(11), "「じゃ、またあしたね。」<NEWLINE>");
+    return;
+  }
+  if (!trigger(186)) {
+    setTrigger(Trigger(186));
+    speak(Entity(11), "「ケケケ!<LIGHTBLUE><PLAYER><WHITE>、見ろ見ろ!」<NEWLINE>");
+    panTo(x: -2243, y: 1914, slowdown: 30);
+    delay(20);
+    followEntity(Entity.Player, speed: 20);
+    speak(Entity(11), "「ケケケ!極上の肉がモリモリ育つぜ!<NEWLINE> <LIGHTBLUE><PLAYER><WHITE>には1日3つ、極上肉を<NEWLINE> タダでやる。」<NEWLINE>");
+    showTextbox("「ケケ、さらに珍しいヤサイを育て始めたぞ!<NEWLINE> 好きなだけ買っていけ!」<NEWLINE>");
+  }
+  roll(pstat: PStat.RollScratch, max: 9);
+  {
+    if (pstat[31] >= 1 && pstat[110] <= 0) {
+      speak(Entity(11), "「オス!今日は気分がいいからな、<NEWLINE> 極上肉を5つやるぜ。ケケ。」<NEWLINE>");
+    } else {
+      break;
+    }
+    if (item[Item.Sirloin] >= 99) {
+      speak(Entity(11), "「極上肉の持ちすぎだぞ!<NEWLINE> 今日のぶんはいらねえな。」<NEWLINE>");
+      return;
+    }
+    if (item[Item.Sirloin] >= 95) {
+      speak(Entity(11), "「極上肉の持ちすぎだぞ!<NEWLINE> 持てないぶんはやらねえからな!」<NEWLINE>");
+      giveItem(Item.Sirloin, 5);
+      speak(Entity.System, "<LIGHTBLUE>極上肉<WHITE>を手に入れた!<NEWLINE>");
+      setTrigger(Trigger(74));
+      setPStat(PStat(31), 0);
+      return;
+    }
+    giveItem(Item.Sirloin, 5);
+    if (trigger(0)) {
+      showTextbox("「なんだよオイ、<NEWLINE> アイテムのもちすぎじゃねーか。」<NEWLINE>");
+      return;
+    }
+    speak(Entity.System, "<LIGHTBLUE>極上肉<WHITE>を5つ手に入れた!<NEWLINE>");
+    speak(Entity(11), "「じゃまた明日だな。ケケケ!」<NEWLINE>");
+    setPStat(PStat(31), 0);
+    return;
+  }
+  {
+    if (pstat[31] >= 1) {
+      speak(Entity(11), "「ケケケ、今日の分の極上肉×3だぜ!」<NEWLINE>");
+    } else {
+      break;
+    }
+    if (item[Item.Sirloin] >= 99) {
+      speak(Entity(11), "「極上肉の持ちすぎだぞ!<NEWLINE> 今日のぶんはいらねえな。」<NEWLINE>");
+      return;
+    }
+    if (item[Item.Sirloin] >= 97) {
+      speak(Entity(11), "「極上肉の持ちすぎだぞ!<NEWLINE> 持てないぶんはやらねえからな!」<NEWLINE>");
+      giveItem(Item.Sirloin, 3);
+      speak(Entity.System, "<LIGHTBLUE>極上肉<WHITE>を手に入れた!<NEWLINE>");
+      setTrigger(Trigger(74));
+      setPStat(PStat(31), 0);
+      return;
+    }
+    giveItem(Item.Sirloin, 3);
+    if (trigger(0)) {
+      speak(Entity(11), "「なんだよオイ、<NEWLINE> アイテムのもちすぎじゃねーか。」<NEWLINE>");
+      return;
+    }
+    speak(Entity.System, "<LIGHTBLUE>極上肉<WHITE>を3つ手に入れた!<NEWLINE>");
+    setPStat(PStat(31), 0);
+    return;
+  }
+  {
+    speak(Entity(11), "「ン?まだ明日じゃねえぞ!<NEWLINE> それともヤサイ買うってか?」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L3, L6);
+    showTextbox("「買う。」<NEWLINE>「買わない。」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L3:
+    setDialogOwner(Entity.Player);
+    setSelection(L4, L5, L6);
+    showTextbox(" 挑戦ニンジン        500<B><it><NEWLINE> サクラ鳥大根        500<B><it><NEWLINE> やっぱり買わない<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L4:
+    if (money < 500) {
+      speak(Entity(11), "「金がたんねえな、ケケ!」<NEWLINE>");
+      return;
+    }
+    giveItem(Item.Supercarrot, 1);
+    if (trigger(0)) {
+      showTextbox("「アイテムのもちすぎだっての!」<NEWLINE>");
+      return;
+    }
+    {
+      break;
+
+L5:
+      if (money < 500) {
+        speak(Entity(11), "「金がたんねえな、ケケ!」<NEWLINE>");
+        return;
+      }
+      giveItem(Item.HawkRadish, 1);
+      if (trigger(0)) {
+        showTextbox("「アイテムのもちすぎだっての!」<NEWLINE>");
+        return;
+      }
+      break;
+    }
+    reduceMoney(500);
+    sfx(0, 5, wait: 5);
+    speak(Entity(11), "「ケケ、まだ買うのか?」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L3, L6);
+    showTextbox("「買う。」<NEWLINE>「買わない。」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L6:
+  }
+  speak(Entity(11), "「ケケッ、あばよ!」<NEWLINE>");
+  return;
+  garbage { 0c 00 fe 00 0c 00 0b 00 0e 00 ff ff fe 00 19 00 00 00 e1 00 18 00 1e 00 19 00 16 00 e6 0c 19 00 00 00 f6 00 18 00 2e 00 19 00 16 00 0c 07 19 00 00 00 4a 00 18 00 3e 00 19 00 16 00 2e 03 1c 00 4a 00 1b 0b 1a 00 81 75 82 a0 81 41 82 b1 82 f1 82 c9 82 bf 82 cd 81 42 82 a8 93 f7 82 a2 82 e8 82 dc 82 b7 82 a9 81 48 81 76 0d 00 00 00 1a 00 81 75 82 a2 82 af 82 c8 82 a2 81 41 82 dc 82 be 90 e0 96 be 82 b5 82 c4 82 c8 82 a9 82 c1 82 bd 82 f1 82 be 81 42 81 76 0d 00 00 00 1a 00 81 75 82 a6 82 c6 81 41 82 b1 82 b1 82 cd 82 a8 93 f7 82 cc 94 a8 81 41 93 f7 94 a8 82 c5 82 b7 81 42 0d 00 81 40 82 b1 82 b1 82 c5 82 dd 82 f1 82 c8 82 aa 90 48 82 d7 82 e9 93 f7 82 f0 88 e7 82 c4 82 c4 82 dc 82 b7 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 81 49 81 41 82 bf 82 e5 82 c1 82 c6 91 d2 82 c1 82 c4 82 e6 81 41 93 f7 82 aa 94 a8 82 c5 0d 00 81 40 82 c6 82 ea 82 e9 82 cc 82 a9 81 48 81 76 0d 00 00 00 1b 0b 1a 00 81 75 82 a4 82 f1 81 42 89 bd 82 a9 82 a8 82 a9 82 b5 82 a2 81 48 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a2 82 e2 81 63 81 63 82 dc 81 41 82 a2 82 a2 82 e2 81 42 82 bb 82 ea 82 c5 81 48 81 76 0d 00 00 00 1b 0b 1a 00 81 75 82 b6 82 c1 82 bf 82 e1 82 f1 82 c6 82 da 82 ad 82 e7 82 c5 91 8a 92 6b 82 b5 82 c4 81 41 0d 00 81 40 01 06 05 00 01 01 82 b3 82 f1 82 c9 82 50 93 fa 82 52 82 c2 81 41 82 a8 93 f7 82 f0 0d 00 81 40 82 ed 82 af 82 c4 82 a0 82 b0 82 e9 82 b1 82 c6 82 c9 82 b5 82 bd 82 f1 82 c5 82 b7 81 42 81 76 0d 00 00 00 1a 00 81 75 82 be 82 a9 82 e7 81 41 82 cd 82 a2 81 42 8d a1 93 fa 82 cc 82 a8 93 f7 81 42 81 76 0d 00 00 00 19 00 24 00 26 02 63 00 18 00 56 02 19 00 1b 0b 1a 00 81 75 82 f1 81 41 93 f7 82 cc 8e 9d 82 bf 82 b7 82 ac 82 be 82 cb 81 42 0d 00 81 40 8d a1 93 fa 82 cc 82 d4 82 f1 82 cd 83 70 83 58 82 c5 82 a2 82 a2 82 e6 82 cb 81 42 81 76 0d 00 00 00 1e 00 1f 01 fe 00 19 00 24 00 26 02 61 00 18 00 d2 02 19 00 1b 0b 1a 00 81 75 82 f1 81 41 93 f7 82 cc 8e 9d 82 bf 82 b7 82 ac 82 be 82 cb 81 42 0d 00 81 40 8e 9d 82 c4 82 c8 82 a2 82 d4 82 f1 82 cd 82 da 82 ad 82 aa 82 e0 82 e7 82 a4 82 cb 81 42 81 76 0d 00 00 00 28 00 26 03 1b ff 1a 00 01 06 93 f7 01 01 82 f0 8e e8 82 c9 93 fc 82 ea 82 bd 81 49 0d 00 00 00 1c 00 4a 00 1e 00 1f 00 fe 00 28 00 26 03 19 00 00 00 00 00 18 00 08 03 19 00 1b 0b 1a 00 81 75 83 41 83 43 83 65 83 80 82 cc 82 e0 82 bf 82 b7 82 ac 82 be 82 e6 81 42 81 76 0d 00 00 00 fe 00 1b ff 1a 00 01 06 93 f7 01 01 82 f0 82 52 82 c2 8e e8 82 c9 93 fc 82 ea 82 bd 81 49 0d 00 00 00 1e 00 1f 00 fe 00 24 00 6e 09 19 00 0a 00 1f 01 8b 00 6e 00 18 00 90 03 19 00 1b 0b 1a 00 81 75 8d a1 93 fa 82 cd 82 a2 82 c1 82 cf 82 a2 82 a8 93 f7 82 aa 82 c6 82 ea 82 dc 82 b5 82 bd 82 e6 81 49 0d 00 81 40 82 be 82 a9 82 e7 81 41 82 54 82 c2 82 a8 93 f7 82 a0 82 b0 82 e9 81 42 81 76 0d 00 00 00 16 00 94 03 16 00 f6 04 19 00 24 00 26 02 63 00 18 00 e6 03 19 00 1b 0b 1a 00 81 75 82 f1 81 41 93 f7 82 cc 8e 9d 82 bf 82 b7 82 ac 82 be 82 cb 81 42 0d 00 81 40 8d a1 93 fa 82 cc 82 d4 82 f1 82 cd 83 70 83 58 82 c5 82 a2 82 a2 82 e6 82 cb 81 42 81 76 0d 00 00 00 fe 00 19 00 24 00 26 02 5f 00 18 00 62 04 19 00 1b 0b 1a 00 81 75 82 f1 81 41 93 f7 82 cc 8e 9d 82 bf 82 b7 82 ac 82 be 82 cb 81 42 0d 00 81 40 8e 9d 82 c4 82 c8 82 a2 82 d4 82 f1 82 cd 82 da 82 ad 82 aa 82 e0 82 e7 82 a4 82 cb 81 42 81 76 0d 00 00 00 28 00 26 05 1b ff 1a 00 01 06 93 f7 01 01 82 f0 8e e8 82 c9 93 fc 82 ea 82 bd 81 49 0d 00 00 00 1c 00 4a 00 1e 00 1f 00 fe 00 28 00 26 05 19 00 00 00 00 00 18 00 ae 04 19 00 1b 0b 1a 00 81 75 82 f1 81 41 82 b4 82 f1 82 cb 82 f1 82 be 82 af 82 c7 }
+}

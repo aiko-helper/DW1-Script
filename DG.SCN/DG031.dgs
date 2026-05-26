@@ -1,0 +1,77 @@
+// DG031.SCN
+#include "functions.dgs"
+#pragma script index=31 start=0x1a800 end=0x1b000 headerU16=0x14 sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  if (trigger(353) && pstat[30] >= 3) {
+    setTrigger(Trigger(126));
+    setObjectVisibility(4, 1);
+    move(entity: Entity(5), to: (-1134, -566), animDuration: 3);
+    delay(5);
+    rotate(entity: Entity(5), to: 3072);
+    delay(5);
+  }
+  if (pstat[30] < 3 && !trigger(238)) {
+    playAnimation(Entity(5), Animation(29));
+  }
+  return;
+}
+
+section(52) {
+  if (trigger(238)) {
+    return;
+  }
+  look(entity: Entity(5), at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(5));
+  delay(5);
+  if (!trigger(353)) {
+    speak(Entity(5), "「おう、もう少しで開通するぜ!」<NEWLINE>");
+    rotate(entity: Entity(5), to: 512);
+    delay(5);
+    playAnimation(Entity(5), Animation(29));
+    setTrigger(Trigger(353));
+    setPStat(PStat(30), 0);
+    move(entity: Entity.Player, to: (-334, -853), sprint: 0);
+    waitForEntity(Entity.Player);
+    return;
+  }
+  if (trigger(353) && pstat[30] >= 3) {
+    speak(Entity(5), "「いよーぅ、待ってたぜ!ついにトンネルが<NEWLINE> 開通したぜ!」<NEWLINE>");
+    speak(Entity.Player, "「これで山をこえなくてすむよ。<NEWLINE> ありがとう。」<NEWLINE>");
+    speak(Entity(5), "「いや、礼を言うのはこっちだぜ。俺っちでは<NEWLINE> あの大岩をどうにもできなかったからな。」<NEWLINE>");
+    speak(Entity(5), "「しかし…これから俺っちは何をしよう?」<NEWLINE>");
+    anim(Entity.Player, Animation(19), wait: 15);
+    speak(Entity.Player, "「それなら街へおいでよ。何かやることが<NEWLINE> みつかるはずさ!」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(5), "「おお、俺っちはまだまだ気力充分よ。<NEWLINE> その話、乗っからしてもらうぜ!」<NEWLINE>");
+  } else {
+    speak(Entity(5), "「もう少しで開通するからな!」<NEWLINE>");
+    rotate(entity: Entity(5), to: 512);
+    anim(Entity(5), Animation(29), wait: 5);
+    move(entity: Entity.Player, to: (-334, -853), sprint: 0);
+    waitForEntity(Entity.Player);
+    return;
+  }
+  approach(who: Entity(5), x: 600, y: 1700, tries: 3, wait: 25);
+  playSound(8, 8);
+  speak(Entity.System, "ドリモゲモンが街に参加した!!!<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  setTrigger(Trigger(238));
+  addPStat(PStat(1), 2);
+  return;
+}
+
+section(5) {
+  goto section_52;
+
+L1:
+  return;
+}
+
+section(51) {
+  move(entity: Entity.Player, to: (-1996, -2148), sprint: 0);
+  warp(to: Map.MIHA04B, spawn: 2, trigger: 255);
+  return;
+  garbage { 14 00 fe 00 14 00 34 00 56 00 05 00 2a 03 33 00 30 03 ff ff 19 00 00 00 61 01 8a 00 1e 03 18 00 40 00 19 00 1c 00 7e 00 57 00 04 01 6c 05 92 fb ca fd 03 00 67 00 05 00 4d 05 00 0c 67 00 05 00 19 00 0d 00 1e 03 81 00 ee 00 18 00 54 00 19 00 56 00 05 1d fe 00 19 00 00 00 ee 00 18 00 64 00 19 00 fe 00 4c 00 05 fd 4c 00 fd 05 67 00 05 00 19 00 01 00 61 01 18 00 c4 00 19 00 1b 05 1a 00 81 75 82 a8 82 a4 81 41 82 e0 82 a4 8f ad 82 b5 82 c5 8a 4a 92 ca 82 b7 82 e9 82 ba 81 49 81 76 0d 00 00 00 4d 05 00 02 67 00 05 00 56 00 05 1d 1c 00 61 01 1e 00 1e 00 4e fd b2 fe ab fc 00 00 4a fd fe 00 19 00 00 00 61 01 8a 00 1e 03 18 00 80 02 19 00 1b 05 1a 00 81 75 82 a2 82 e6 81 5b 82 a3 81 41 91 d2 82 c1 82 c4 82 bd 82 ba 81 49 82 c2 82 a2 82 c9 83 67 83 93 83 6c 83 8b 82 aa 0d 00 81 40 8a 4a 92 ca 82 b5 82 bd 82 ba 81 49 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 b1 82 ea 82 c5 8e 52 82 f0 82 b1 82 a6 82 c8 82 ad 82 c4 82 b7 82 de 82 e6 81 42 0d 00 81 40 82 a0 82 e8 82 aa 82 c6 82 a4 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a2 82 e2 81 41 97 e7 82 f0 8c be 82 a4 82 cc 82 cd 82 b1 82 c1 82 bf 82 be 82 ba 81 42 89 b4 82 c1 82 bf 82 c5 82 cd 0d 00 81 40 82 a0 82 cc 91 e5 8a e2 82 f0 82 c7 82 a4 82 c9 82 e0 82 c5 82 ab 82 c8 82 a9 82 c1 82 bd 82 a9 82 e7 82 c8 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 b5 82 a9 82 b5 81 63 82 b1 82 ea 82 a9 82 e7 89 b4 82 c1 82 bf 82 cd 89 bd 82 f0 82 b5 82 e6 82 a4 81 48 81 76 0d 00 00 00 56 00 fd 13 67 00 0f 00 1b fd 1a 00 81 75 82 bb 82 ea 82 c8 82 e7 8a 58 82 d6 82 a8 82 a2 82 c5 82 e6 81 42 89 bd 82 a9 82 e2 82 e9 82 b1 82 c6 82 aa 0d 00 81 40 82 dd 82 c2 82 a9 82 e9 82 cd 82 b8 82 b3 81 49 81 76 0d 00 00 00 56 00 fd 00 1b 05 1a 00 81 75 82 a8 82 a8 81 41 89 b4 82 c1 82 bf 82 cd 82 dc 82 be 82 dc 82 be 8b 43 97 cd 8f 5b 95 aa 82 e6 81 42 0d 00 81 40 82 bb 82 cc 98 62 81 41 8f e6 82 c1 82 a9 82 e7 82 b5 82 c4 82 e0 82 e7 82 a4 82 ba 81 49 81 76 0d 00 00 00 16 00 be 02 1b 05 1a 00 81 75 82 e0 82 a4 8f ad 82 b5 82 c5 8a 4a 92 ca 82 b7 82 e9 82 a9 82 e7 82 c8 81 49 81 76 0d 00 00 00 4d 05 00 02 56 00 05 1d 67 00 05 00 4e fd b2 fe ab fc 00 00 4a fd fe 00 4e 05 58 02 a4 06 01 00 19 00 0d 00 65 03 18 00 e6 02 19 00 1f 00 65 01 67 00 19 00 4c 00 fd 05 4c 00 fc 05 16 00 be 02 4a 05 48 05 1e 00 65 00 5a 00 08 08 1b ff 1a 00 83 68 83 8a 83 82 83 51 83 82 83 93 82 aa 8a 58 82 c9 8e 51 89 c1 82 b5 82 bd 81 49 81 49 81 49 0d 00 00 00 50 00 fd 0a 4a c8 1c 00 ee 00 1f 00 01 02 fe 00 16 00 56 00 fe 00 4e fd 34 f8 9c f7 00 00 4b 17 02 ff fe 00 ff 00 14 00 1b fd 1a 00 81 75 89 b4 92 42 82 cd 81 41 93 87 82 cc 82 bd 82 df 81 41 8a 58 82 f0 8d ec 82 c1 82 c4 82 a2 82 e9 81 42 0d 00 81 40 93 87 82 b6 82 e3 82 a4 82 cc 83 66 83 57 83 82 83 93 82 f0 8f 57 82 df 82 c4 82 cb 81 42 81 76 0d 00 00 00 1a 00 81 75 83 66 83 57 83 82 83 93 82 aa 92 63 8c 8b 82 b7 82 ea 82 ce 81 41 93 87 82 cc 8a eb 8b 40 82 e0 0d 00 81 40 89 bd 82 c6 82 a9 82 c5 82 ab 82 e9 82 c1 82 c4 98 62 82 be 82 a9 82 e7 82 b3 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a4 82 de 81 63 82 bb 82 cc 8d 6c 82 a6 82 cd 90 b3 82 b5 82 a2 82 c6 8e 76 82 a4 81 42 82 b5 82 a9 82 b5 0d 00 81 40 93 87 82 b6 82 e3 82 a4 82 cc 83 66 83 57 83 82 83 93 82 f0 8f 57 82 df 82 e9 82 c8 82 c7 81 63 81 76 0d 00 00 00 56 00 fd 07 67 00 14 00 1b fd 1a 00 81 75 89 b4 92 42 82 cd 8d a1 82 bb 82 ea 82 f0 82 e2 82 c1 82 c4 82 a2 82 e9 81 42 82 c5 82 ab 82 c8 82 a2 82 b1 82 c6 82 cd 0d 00 81 40 96 b3 82 a2 82 b3 81 49 81 76 0d 00 00 00 1b 05 1a 00 81 75 89 bd 82 c8 82 cc 82 be 81 63 82 bb 82 f1 82 c8 91 73 91 e5 82 c8 98 62 82 f0 81 63 90 4d 82 b6 82 e7 82 ea 82 e9 0d 00 81 40 82 ed 82 af 82 aa 81 63 82 be 82 aa 8e 84 82 cc 90 53 82 cd 8d a1 82 e4 }
+}

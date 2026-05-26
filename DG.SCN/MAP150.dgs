@@ -1,0 +1,191 @@
+// MAP150.SCN
+#include "functions.dgs"
+#pragma script index=150 start=0x65800 end=0x66800 headerU16=0x30 sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(54) {
+  jumpToScriptSection(178, 55);
+  return;
+}
+
+section(5) {
+  {
+    {
+      if (trigger(202) || trigger(215) || pstat[16] == 0) break;
+      if (!trigger(201) || !trigger(243)) break;
+      speak(Entity(5), "「おお、いいところに来てくれた!<NEWLINE> おぬしにしかたのめない大事な<NEWLINE> 用があるんじゃ。」<NEWLINE>");
+      speak(Entity.Player, "「何?」<NEWLINE>");
+      speak(Entity(5), "「今、またアナログマンとムゲンドラモン<NEWLINE> と同じ邪念を感じたんじゃ。<NEWLINE> やはり場所はわからんが…」<NEWLINE>");
+      speak(Entity.Player, "「またかよー。よし、まかしとけっ!」<NEWLINE>");
+      speak(Entity(5), "「おお、すまん。ところで…」<NEWLINE>");
+      goto L1;
+    }
+    if (trigger(202) && !trigger(215)) {
+      speak(Entity(5), "「ムゲンドラモンを倒したようじゃな!」<NEWLINE>");
+      speak(Entity.Player, "「うん。でもよくわからないんだ。<NEWLINE> アナログマンののろいみたいな<NEWLINE> 感じだったよ。」<NEWLINE>");
+      speak(Entity(5), "「あの者のおんねんが、よほど強く<NEWLINE> 残っているのかのう。<NEWLINE> まあ、これでまた平和になるかの。」<NEWLINE>");
+      speak(Entity.Player, "「またムゲンドラモンが復活したら、<NEWLINE> また倒せばいいのさ。<NEWLINE> 年間行事みたいで楽しいじゃん。」<NEWLINE>");
+      speak(Entity(5), "「はは、たのもしいことじゃ。<NEWLINE> ん、そうじゃ、おれいにこれをやろう。<NEWLINE> 肉畑にぐうぜん育ったんじゃ。」<NEWLINE>");
+      speak(Entity.Player, "「おお、<LIGHTBLUE>クサリカケメロン<WHITE>?」<NEWLINE>");
+      giveItem(Item.ChainMelon, 1);
+      if (trigger(0)) {
+        if (item[Item.SpikeClub] >= 99) {
+          return;
+        }
+        speak(Entity.Player, "「いけね、持ち物がいっぱいだ。」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.ChainMelon, 1);
+      }
+      speak(Entity.Player, "「もらっとくよ、サンキュー!」<NEWLINE>");
+      setPStat(PStat(28), 0);
+      setTrigger(Trigger(215));
+      return;
+    }
+    if (!trigger(50) || trigger(201)) break;
+    speak(Entity(5), "「おお、来てくれたんじゃな!<NEWLINE> おぬしにしかたのめない大事な<NEWLINE> ことじゃったんでの。」<NEWLINE>");
+    speak(Entity.Player, "「へへへ、いいってことさ。<NEWLINE> で、アナログマンが復活したってのは?」<NEWLINE>");
+    speak(Entity(5), "「うむ、感じるんじゃ。<NEWLINE> やつと全く同じ邪念のようなものを。<NEWLINE> 場所はどこからなのか特定できんが…」<NEWLINE>");
+    speak(Entity.Player, "「よし、まかせてくれ!<NEWLINE> 探し出してやっつけてやるぜ。」<NEWLINE>");
+    speak(Entity(5), "「おお、すまん。ところで…」<NEWLINE>");
+    setTrigger(Trigger(201));
+
+L1:
+  }
+  if (trigger(203)) {
+    jumpToScriptSection(180, 51);
+  }
+  return;
+}
+
+section(6) {
+  jumpToScriptSection(181, 8);
+  return;
+}
+
+section(20) {
+  panTo(x: 183, y: 221, slowdown: 20);
+  delay(20);
+  addStats(currentHP: 9999, currentMP: 9999);
+  unsetTrigger(Trigger(1));
+  anim(Entity(5), Animation(29), wait: 5);
+  speak(Entity(5), "「気づいたか…<NEWLINE> 残念じゃったのう。」<NEWLINE>");
+  playAnimation(Entity(5), Animation(0));
+  return;
+}
+
+section(71) {
+  jumpToScriptSection(223, 71);
+  return;
+}
+
+section(72) {
+  jumpToScriptSection(223, 72);
+  return;
+}
+
+section(73) {
+  jumpToScriptSection(223, 73);
+  return;
+}
+
+section(85) {
+  if (!trigger(94)) {
+    setTrigger(Trigger(94));
+    speak(Entity.Player, "「おや、この機械は?」<NEWLINE>");
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
+    delay(5);
+    speak(Entity(5), "「うーむ、それはのう、<NEWLINE> 『<PINK>メモリーカード対戦データ保存マシン<WHITE>』<NEWLINE> じゃよ。」<NEWLINE>");
+    showTextbox("「今のパートナーのデータを、<NEWLINE> 対戦用に保存しておける機械じゃ。」<NEWLINE>");
+    showTextbox("「そこで<ORANGE><CIRCLE><WHITE><ボき><ヌン>を押せば、あとは機械が<NEWLINE> 何をすればいいか教えてくれるぞい。」<NEWLINE>");
+    rotate(entity: Entity.Player, to: 0);
+    delay(5);
+    return;
+  }
+  speak(Entity.System, " <NEWLINE>『<PINK>メモリーカード対戦データ保存マシン<WHITE>』<NEWLINE> を使いますか?<NEWLINE>");
+  setSelection(L1, L2);
+  showTextbox("「使う。」<NEWLINE>「使わない。」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L1:
+  fadeOutHUD();
+  callSubroutine(48);
+  return;
+
+L2:
+  return;
+}
+
+section(7) {
+  if (!trigger(224) && trigger(175)) {
+    speak(Entity(7), "「ユラモンがまた新しいうわさを<NEWLINE> しいれたみたいだよ。」<NEWLINE>");
+    return;
+  }
+  if (trigger(124) && trigger(103)) {
+    speak(Entity(7), "「そうそう、ユラモンが新しいうわさを<NEWLINE> 知ってるってさ。」<NEWLINE>");
+    return;
+  }
+  if (pstat[1] >= 6) {
+    speak(Entity(7), "「だんだん街もにぎわってきて、<NEWLINE> 街できける話もすこし変わってきてる<NEWLINE> みたいだよ。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(7), "「<LIGHTBLUE><PLAYER><WHITE>さんの冒険のしかた、<NEWLINE> かなりふつうじゃないよ。」<NEWLINE>");
+  return;
+}
+
+section(51) {
+  move(entity: Entity.Player, to: (-470, -1970), sprint: 0);
+  if (!trigger(203)) {
+    warp(to: Map.TWNA01, spawn: 2, trigger: 255);
+  }
+  {
+    if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L2; else break;
+  }
+  {
+    if (trigger(221)) goto L1; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA04, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA03, spawn: 2, trigger: 255);
+  }
+  warp(to: Map.TWNA02, spawn: 2, trigger: 255);
+
+L1:
+  if (trigger(225)) {
+    warp(to: Map.TWNA07, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA06, spawn: 2, trigger: 255);
+  }
+  {
+    warp(to: Map.TWNA05, spawn: 2, trigger: 255);
+
+L2:
+    if (trigger(221)) goto L3; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA10, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA09, spawn: 2, trigger: 255);
+  }
+  warp(to: Map.TWNA08, spawn: 2, trigger: 255);
+
+L3:
+  if (trigger(225)) {
+    warp(to: Map.TWNA13, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA12, spawn: 2, trigger: 255);
+  }
+  warp(to: Map.TWNA11, spawn: 2, trigger: 255);
+  return;
+  garbage { 30 00 fe 00 30 00 36 00 32 00 05 00 3a 00 06 00 ac 05 14 00 b4 05 47 00 08 06 48 00 10 06 49 00 18 06 55 00 20 06 07 00 d6 07 33 00 2c 09 ff ff fe 00 17 00 b2 00 37 00 fe 00 19 00 01 00 ca 00 81 00 d7 00 89 00 10 00 18 00 8a 01 19 00 19 00 00 00 c9 00 80 00 f3 00 18 00 8a 01 19 00 1b 05 1a 00 81 75 82 a8 82 a8 81 41 82 a2 82 a2 82 c6 82 b1 82 eb 82 c9 97 88 82 c4 82 ad 82 ea 82 bd 81 49 0d 00 81 40 82 a8 82 ca 82 b5 82 c9 82 b5 82 a9 82 bd 82 cc 82 df 82 c8 82 a2 91 e5 8e 96 82 c8 0d 00 81 40 97 70 82 aa 82 a0 82 e9 82 f1 82 b6 82 e1 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 89 bd 81 48 81 76 0d 00 00 00 1b 05 1a 00 81 75 8d a1 81 41 82 dc 82 bd 83 41 83 69 83 8d 83 4f 83 7d 83 93 82 c6 83 80 83 51 83 93 83 68 83 89 83 82 83 93 0d 00 81 40 82 c6 93 af 82 b6 8e d7 94 4f 82 f0 8a b4 82 b6 82 bd 82 f1 82 b6 82 e1 81 42 0d 00 81 40 82 e2 82 cd 82 e8 8f ea 8f 8a 82 cd 82 ed 82 a9 82 e7 82 f1 82 aa 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 dc 82 bd 82 a9 82 e6 81 5b 81 42 82 e6 82 b5 81 41 82 dc 82 a9 82 b5 82 c6 82 af 82 c1 81 49 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a8 82 a8 81 41 82 b7 82 dc 82 f1 81 42 82 c6 82 b1 82 eb 82 c5 81 63 81 76 0d 00 00 00 16 00 98 05 19 00 00 00 ca 00 81 00 d7 00 18 00 0a 04 19 00 1b 05 1a 00 81 75 83 80 83 51 83 93 83 68 83 89 83 82 83 93 82 f0 93 7c 82 b5 82 bd 82 e6 82 a4 82 b6 82 e1 82 c8 81 49 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a4 82 f1 81 42 82 c5 82 e0 82 e6 82 ad 82 ed 82 a9 82 e7 82 c8 82 a2 82 f1 82 be 81 42 0d 00 81 40 83 41 83 69 83 8d 83 4f 83 7d 83 93 82 cc 82 cc 82 eb 82 a2 82 dd 82 bd 82 a2 82 c8 0d 00 81 40 8a b4 82 b6 82 be 82 c1 82 bd 82 e6 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a0 82 cc 8e d2 82 cc 82 a8 82 f1 82 cb 82 f1 82 aa 81 41 82 e6 82 d9 82 c7 8b ad 82 ad 0d 00 81 40 8e 63 82 c1 82 c4 82 a2 82 e9 82 cc 82 a9 82 cc 82 a4 81 42 0d 00 81 40 82 dc 82 a0 81 41 82 b1 82 ea 82 c5 82 dc 82 bd 95 bd 98 61 82 c9 82 c8 82 e9 82 a9 82 cc 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 dc 82 bd 83 80 83 51 83 93 83 68 83 89 83 82 83 93 82 aa 95 9c 8a 88 82 b5 82 bd 82 e7 81 41 0d 00 81 40 82 dc 82 bd 93 7c 82 b9 82 ce 82 a2 82 a2 82 cc 82 b3 81 42 0d 00 81 40 94 4e 8a d4 8d 73 8e 96 82 dd 82 bd 82 a2 82 c5 8a 79 82 b5 82 a2 82 b6 82 e1 82 f1 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 cd 82 cd 81 41 82 bd 82 cc 82 e0 82 b5 82 a2 82 b1 82 c6 82 b6 82 e1 81 42 0d 00 81 40 82 f1 81 41 82 bb 82 a4 82 b6 82 e1 81 41 82 a8 82 ea 82 a2 82 c9 82 b1 82 ea 82 f0 82 e2 82 eb 82 a4 81 42 0d 00 81 40 93 f7 94 a8 82 c9 82 ae 82 a4 82 ba 82 f1 88 e7 82 c1 82 bd 82 f1 82 b6 82 e1 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a8 82 a8 81 41 01 06 83 4e 83 54 83 8a 83 4a 83 50 83 81 83 8d 83 93 01 01 81 48 81 76 0d 00 00 00 28 00 46 01 19 00 00 00 00 00 18 00 da 03 19 00 19 00 24 00 4f 02 63 00 18 00 a6 03 19 00 fe 00 1b fd 1a 00 81 75 82 a2 82 af 82 cb 81 41 8e 9d 82 bf 95 a8 82 aa 82 a2 82 c1 82 cf 82 a2 82 be 81 42 81 76 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 46 01 1b fd 1a 00 81 75 82 e0 82 e7 82 c1 82 c6 82 ad 82 e6 81 41 83 54 83 93 83 4c 83 85 81 5b 81 49 81 76 0d 00 00 00 1e 00 1c 00 1c 00 d7 00 fe 00 19 00 00 00 32 00 81 00 c9 00 18 00 98 05 19 00 1b 05 1a 00 81 75 82 a8 82 a8 81 41 97 88 82 c4 82 ad 82 ea 82 bd 82 f1 82 b6 82 e1 82 c8 81 49 0d 00 81 40 82 a8 82 ca 82 b5 82 c9 82 b5 82 a9 82 bd 82 cc 82 df 82 c8 82 a2 91 e5 8e 96 82 c8 0d 00 81 40 82 b1 82 c6 82 b6 82 e1 82 c1 82 bd 82 f1 82 c5 82 cc 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 d6 82 d6 82 d6 81 41 82 a2 82 a2 82 c1 82 c4 82 b1 82 c6 82 b3 81 42 0d 00 81 40 82 c5 81 41 83 41 83 69 83 8d 83 4f 83 7d 83 93 82 aa 95 9c 8a 88 82 b5 82 bd 82 c1 82 c4 82 cc 82 cd 81 48 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a4 82 de 81 41 8a b4 82 b6 82 e9 82 f1 82 b6 82 e1 81 42 0d 00 81 40 82 e2 82 c2 82 c6 91 53 82 ad 93 af 82 b6 8e d7 94 4f 82 cc 82 e6 82 a4 82 c8 82 e0 82 cc 82 f0 81 42 0d 00 81 40 8f ea 8f 8a 82 cd 82 c7 82 b1 82 a9 82 e7 82 c8 82 cc 82 a9 93 c1 92 e8 82 c5 82 ab 82 f1 82 aa 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 e6 82 b5 81 41 82 dc 82 a9 82 b9 82 c4 82 ad 82 ea 81 49 0d 00 81 40 92 54 82 b5 8f 6f 82 b5 82 c4 82 e2 82 c1 82 c2 82 af 82 c4 82 e2 82 e9 82 ba 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a8 82 a8 81 41 82 b7 82 dc 82 f1 81 42 82 c6 82 b1 82 eb 82 c5 81 63 81 76 0d 00 00 00 1c 00 c9 00 19 00 00 00 cb 00 18 00 aa 05 19 00 17 00 b4 00 33 00 fe 00 17 00 b5 00 08 00 fe 00 4f 14 b7 00 dd 00 4a c8 67 00 14 00 35 06 0f 27 35 07 0f 27 1d 00 01 00 56 00 05 1d 67 00 05 00 1b 05 1a 00 }
+}

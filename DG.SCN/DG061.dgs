@@ -1,0 +1,81 @@
+// DG061.SCN
+#include "functions.dgs"
+#pragma script index=61 start=0x2b000 end=0x2b800 headerU16=0x14 sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  if (trigger(345)) {
+    setObjectsVisibleRange(0, 2, 1);
+  } else {
+    setRectImpassible(62, 39, 2, 13);
+  }
+  if (!trigger(129)) {
+    playAnimation(Entity(5), Animation(28));
+    playAnimation(Entity(6), Animation(28));
+  }
+  return;
+}
+
+section(81) {
+  look(entity: Entity.Player, at: Entity(5));
+  anim(Entity.Player, Animation(19), wait: 15);
+  speak(Entity.Player, "「ヴァンデモン!<NEWLINE> いったい何がおきたんだ…?」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  return;
+}
+
+section(6) {
+  setTrigger(Trigger(44));
+  if (trigger(129)) {
+    look(entity: Entity(6), at: Entity.Player);
+    speak(Entity(6), "「バケッ!」<NEWLINE>");
+    return;
+  }
+  speak(Entity(6), "「……」<NEWLINE>");
+  return;
+}
+
+section(5) {
+  setTrigger(Trigger(44));
+  if (trigger(129)) {
+    look(entity: Entity(5), at: Entity.Player);
+    speak(Entity(5), "「私たちはまた闘技場に参加しよう。<NEWLINE> わたしがいないとさびしがる連中も<NEWLINE> いるだろう?フフ…」<NEWLINE>");
+    return;
+  }
+  if (trigger(325)) {
+    look(entity: Entity(5), at: Entity.Player);
+    speak(Entity(5), "「私にくらべて部下はだらしないので、<NEWLINE> スカルグレイモンを闘技場へ連れて<NEWLINE> いっているんだ。」<NEWLINE>");
+    speak(Entity(5), "「おっと、今のスカルグレイモンは<NEWLINE> 以前と違って言うことを聞くやつ<NEWLINE> だから安心してくれ。」<NEWLINE>");
+    return;
+  }
+  speak(Entity.Player, "「ヴァンデモン、無事か?!」<NEWLINE>");
+  playAnimation(Entity(5), Animation(21));
+  anim(Entity(6), Animation(21), wait: 20);
+  playAnimation(Entity(5), Animation(0));
+  anim(Entity(6), Animation(0), wait: 10);
+  look(entity: Entity(5), at: Entity.Player);
+  look(entity: Entity(6), at: Entity.Player);
+  delay(5);
+  speak(Entity(5), "「う…うーん、お?君か!君には助けられっ<NEWLINE> ぱなしだな。」<NEWLINE>");
+  speak(Entity.Player, "「何が起きたんだ?」<NEWLINE>");
+  speak(Entity(5), "「うむ…君はデビモンに会ったかね?」<NEWLINE>");
+  speak(Entity.Player, "「会ったよ。あのにくたらしいやつ。」<NEWLINE>");
+  speak(Entity(5), "「やつが、私の研究していた素材に<NEWLINE> 暗黒エネルギーをふきこんだのだ。」<NEWLINE>");
+  anim(Entity.Player, Animation(19), wait: 15);
+  speak(Entity.Player, "「研究ってスカルグレイモンを?!<NEWLINE> 危ないなあ…」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(5), "「研究というよりコレクション感覚で<NEWLINE> 骨を集めては組み立てていたんだが…<NEWLINE> ちょっと反省したよ。」<NEWLINE>");
+  speak(Entity.Player, "「でも悪いのはデビモンのやつだな。」<NEWLINE>");
+  speak(Entity(5), "「……実はな、私はあいつと知り合いでな。」<NEWLINE>");
+  speak(Entity.Player, "「ええっ!?」<NEWLINE>");
+  speak(Entity(5), "「以前からひねくれてはいたが…<NEWLINE> こんなことをするやつではなかった。<NEWLINE> 何者かに操られているのかもしれんな。」<NEWLINE>");
+  speak(Entity.Player, "「…そうだったのか…」<NEWLINE>");
+  speak(Entity(5), "「元に戻るなら…あいつだって君の仲間に<NEWLINE> なってくれる可能性があるということを<NEWLINE> 覚えておいてくれ。」<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  for x in [Trigger(129), Trigger(266), Trigger(226)] {
+    setTrigger(x);
+  }
+  addPStat(PStat(1), 3);
+  return;
+  garbage { 14 00 fe 00 14 00 51 00 4e 00 06 00 98 00 05 00 d4 00 ff ff 19 00 00 00 59 01 18 00 30 00 19 00 57 00 00 01 57 00 01 01 57 00 02 01 16 00 38 00 7c 00 3e 00 27 00 02 0d 19 00 01 00 81 00 18 00 4c 00 19 00 56 00 05 1c 56 00 06 1c fe 00 4c 00 fd 05 56 00 fd 13 67 00 0f 00 1b fd 1a 00 81 75 83 94 83 40 83 93 83 66 83 82 83 93 81 49 0d 00 81 40 82 a2 82 c1 82 bd 82 a2 89 bd 82 aa 82 a8 82 ab 82 bd 82 f1 82 be 81 63 81 48 81 76 0d 00 00 00 56 00 fd 00 fe 00 1c 00 2c 00 19 00 00 00 81 00 18 00 c2 00 19 00 4c 00 06 fd 1b 06 1a 00 81 75 83 6f 83 50 83 62 81 49 81 76 0d 00 00 00 fe 00 1b 06 1a 00 81 75 81 63 81 63 81 76 0d 00 00 00 fe 00 1c 00 2c 00 19 00 00 00 81 00 18 00 50 01 19 00 4c 00 05 fd 1b 05 1a 00 81 75 8e 84 82 bd 82 bf 82 cd 82 dc 82 bd 93 ac 8b 5a 8f ea 82 c9 8e 51 89 c1 82 b5 82 e6 82 a4 81 42 0d 00 81 40 82 ed 82 bd 82 b5 82 aa 82 a2 82 c8 82 a2 82 c6 82 b3 82 d1 82 b5 82 aa 82 e9 98 41 92 86 82 e0 0d 00 81 40 82 a2 82 e9 82 be 82 eb 82 a4 81 48 83 74 83 74 81 63 81 76 0d 00 00 00 fe 00 19 00 00 00 45 01 18 00 2c 02 19 00 4c 00 05 fd 1b 05 1a 00 81 75 8e 84 82 c9 82 ad 82 e7 82 d7 82 c4 95 94 89 ba 82 cd 82 be 82 e7 82 b5 82 c8 82 a2 82 cc 82 c5 81 41 0d 00 81 40 83 58 83 4a 83 8b 83 4f 83 8c 83 43 83 82 83 93 82 f0 93 ac 8b 5a 8f ea 82 d6 98 41 82 ea 82 c4 0d 00 81 40 82 a2 82 c1 82 c4 82 a2 82 e9 82 f1 82 be 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a8 82 c1 82 c6 81 41 8d a1 82 cc 83 58 83 4a 83 8b 83 4f 83 8c 83 43 83 82 83 93 82 cd 0d 00 81 40 88 c8 91 4f 82 c6 88 e1 82 c1 82 c4 8c be 82 a4 82 b1 82 c6 82 f0 95 b7 82 ad 82 e2 82 c2 0d 00 81 40 82 be 82 a9 82 e7 88 c0 90 53 82 b5 82 c4 82 ad 82 ea 81 42 81 76 0d 00 00 00 fe 00 1b fd 1a 00 81 75 83 94 83 40 83 93 83 66 83 82 83 93 81 41 96 b3 8e 96 82 a9 81 48 }
+}

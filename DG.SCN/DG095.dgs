@@ -1,0 +1,59 @@
+// DG095.SCN
+#include "functions.dgs"
+#pragma script index=95 start=0x3e000 end=0x3e800 headerU16=0x1c sentinelOff=0x375
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnChest(Item.SuperRecovery, 9, 1196, 0, 660);
+  spawnChest(Item.LargeMP, 1223, 266, 1024, 661);
+  if (trigger(322)) {
+    setObjectVisibility(0, 1);
+  }
+  return;
+}
+
+section(51) {
+  warp(to: Map.ICSA05, spawn: 0, trigger: 255);
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「帰ったほうがいいんじゃない?」<NEWLINE>");
+  finishEncounter(Trigger(294));
+}
+
+section(6) {
+  speak(Entity(6), "「帰れ!」<NEWLINE>");
+  finishEncounter(Trigger(272));
+}
+
+section(7) {
+  speak(Entity(7), "「もどったほうがいい!」<NEWLINE>");
+  finishEncounter(Trigger(272));
+}
+
+section(52) {
+  if (trigger(322)) {
+    return;
+  }
+  playAnimation(Entity.Player, Animation(22));
+  sfx(8, 9, wait: 15);
+  speak(Entity.Player, "「ま…まぶしい…!」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  setPStat(PStat(254), 40);
+  callSubroutine(45);
+  delay(40);
+  speak(Entity.System, "<YELLOW>???モン<WHITE><NEWLINE>「我がたましいを求める者よ、今、目ざめの<NEWLINE> 時は来た。なんじにわがつばさの祝福を!」<NEWLINE>");
+  speak(Entity.Player, "「何だ…?ここは…?誰の…声…?」<NEWLINE>");
+  showTextbox("「う………!」<NEWLINE>");
+  setObjectVisibility(0, 1);
+  callSubroutine(46);
+  delay(40);
+  anim(Entity.Player, Animation(24), wait: 15);
+  speak(Entity.Player, "「今のは…?<NEWLINE> 光が無くなってる…。ここにはもう<NEWLINE> 何も無い…ってことは!上か!」<NEWLINE>");
+  anim(Entity.Player, Animation(23), wait: 15);
+  playAnimation(Entity.Player, Animation(0));
+  setTrigger(Trigger(322));
+  return;
+  garbage { 1c 00 fe 00 1c 00 33 00 46 00 05 00 4c 00 06 00 82 00 07 00 a2 00 34 00 d0 00 ff ff 75 03 09 00 00 00 ac 04 00 00 94 02 75 06 c7 04 00 00 0a 01 00 04 95 02 19 00 00 00 42 01 18 00 44 00 19 00 57 00 00 01 fe 00 4b 65 00 ff fe 00 1b 05 1a 00 81 75 8b 41 82 c1 82 bd 82 d9 82 a4 82 aa 82 a2 82 a2 82 f1 82 b6 82 e1 82 c8 82 a2 81 48 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 26 01 fe 00 1b 06 1a 00 81 75 8b 41 82 ea 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 10 01 fe 00 1b 07 1a 00 81 75 82 e0 82 c7 82 c1 82 bd 82 d9 82 a4 82 aa 82 a2 82 a2 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 10 01 fe 00 19 00 00 00 42 01 18 00 de 00 19 00 fe 00 56 00 fd 16 5a 00 08 09 67 00 0f 00 1b fd 1a 00 81 75 82 dc 81 63 82 dc 82 d4 82 b5 82 a2 81 63 81 49 81 76 0d 00 00 00 56 00 fd 00 1e 00 fe 28 64 2d 67 00 28 00 1b ff 1a 00 01 07 81 48 81 48 81 48 83 82 83 93 01 01 0d 00 81 75 89 e4 82 aa 82 bd 82 dc 82 b5 82 a2 82 f0 8b 81 82 df 82 e9 8e d2 82 e6 81 41 8d a1 81 41 96 da 82 b4 82 df 82 cc 0d 00 81 40 8e 9e 82 cd 97 88 82 bd 81 42 82 c8 82 f1 82 b6 82 c9 82 ed 82 aa 82 c2 82 ce 82 b3 82 cc 8f 6a 95 9f 82 f0 81 49 81 76 0d 00 00 00 1b fd 1a 00 81 75 89 bd 82 be 81 63 81 48 82 b1 82 b1 82 cd 81 63 81 48 92 4e 82 cc 81 63 90 ba 81 63 81 48 81 76 0d 00 00 00 1a 00 81 75 82 a4 81 63 81 63 81 63 81 49 81 76 0d 00 00 00 57 00 00 01 64 2e 67 00 28 00 56 00 fd 18 67 00 0f 00 1b fd 1a 00 81 75 8d a1 82 cc 82 cd 81 63 81 48 0d 00 81 40 8c f5 82 aa 96 b3 82 ad 82 c8 82 c1 82 c4 82 e9 81 63 81 42 82 b1 82 b1 82 c9 82 cd 82 e0 82 a4 0d 00 81 40 89 bd 82 e0 96 b3 82 a2 81 63 82 c1 82 c4 82 b1 82 c6 82 cd 81 49 8f e3 82 a9 81 49 81 76 0d 00 00 00 56 00 fd 17 67 00 0f 00 56 00 fd 00 1c 00 42 01 fe 00 ff 00 1b c8 1a 00 81 40 0d 00 01 05 81 40 81 40 81 40 83 67 83 8c 81 5b 83 6a 83 93 83 4f 81 45 83 41 83 43 83 56 83 4e 83 8b 83 74 83 48 81 5b 83 8b 01 01 0d 00 00 00 10 03 b6 02 0a 03 a6 03 1a 00 83 67 83 8c 81 5b 83 6a 83 93 83 4f 8a 4a 8e 6e 0d 00 82 b1 82 cc 83 67 83 8c 81 5b 83 6a 83 93 83 4f 82 cc 90 e0 96 be 0d 00 82 e2 82 df 82 e9 0d 00 00 00 12 00 fe 00 1b c8 10 03 a8 03 b8 03 a6 03 1a 00 83 6d 81 5b 83 7d 83 8b 83 67 83 8c 81 5b 83 6a 83 93 83 4f 0d 00 83 7b 81 5b 83 69 83 58 83 67 83 89 83 43 83 67 83 8c 81 5b 83 6a 83 93 83 4f 0d 00 82 e2 82 c1 82 cf 82 e8 82 e2 82 df 82 e9 0d 00 00 00 12 00 fe 00 1b c8 1a 00 91 e5 82 ab 82 c8 82 c2 82 e7 82 e7 82 f0 8e f3 82 af 8e 7e 82 df 82 e9 82 bd 82 f1 97 fb 82 f0 8d 73 82 a2 82 dc 82 b7 81 42 0d 00 96 68 8c e4 97 cd 82 aa 91 e5 82 ab 82 ad 83 41 83 62 83 76 81 41 82 b7 82 ce 82 e2 82 b3 82 e0 83 41 83 62 83 76 0d 00 82 b5 82 dc 82 b7 81 42 0d 00 00 00 10 03 0a 03 b6 02 a6 03 1a 00 82 e0 82 a4 88 ea 93 78 90 e0 96 be 0d 00 83 67 83 8c 81 5b 83 6a 83 93 83 4f 8a 4a 8e 6e 0d 00 82 e2 82 df 82 e9 0d 00 00 00 12 00 fe 00 fe 00 27 00 1e 00 fe 03 1e 00 f6 00 49 d6 64 07 fe 00 68 00 01 00 1b ff 1a 00 81 40 81 40 81 40 81 40 81 40 81 40 81 40 01 07 83 58 83 8d 83 62 83 67 83 51 81 5b 83 80 01 01 0d 00 81 40 0d 00 81 40 81 40 81 40 01 0a 82 81 01 01 82 88 82 89 82 c5 82 52 82 c2 82 cc 83 58 83 8d 83 62 83 67 82 f0 8e 7e 82 df 82 c4 81 41 0d 00 81 40 81 40 81 40 81 40 82 a4 82 dc 82 ad 8a 47 82 f0 82 bb 82 eb 82 a6 82 c4 82 ad 82 be 82 b3 82 a2 81 42 0d 00 00 00 1e 00 fe 03 1e 00 f6 01 49 d6 64 07 68 00 00 00 fe 00 ff 00 00 00 1b fd 1a 00 81 75 82 a4 82 f1 81 41 82 bb 82 ea 82 c8 82 e7 95 aa 82 a9 82 e9 81 42 82 b6 82 e1 81 41 83 88 83 8d 83 56 83 4e 81 42 81 76 0d 00 00 00 16 00 86 04 4e 05 2f 00 a6 f5 01 00 19 00 0d 00 65 03 18 00 ae 04 19 00 1f 00 65 01 67 00 14 00 4c 00 fd 05 4c 00 fc 05 16 00 86 04 4a 05 48 05 1e 00 65 00 5a 00 08 0b 1b ff 1a 00 83 47 83 93 83 57 83 46 83 82 83 93 82 aa 8a 58 82 c9 8e 51 89 c1 82 b5 82 bd 81 49 81 49 81 49 0d 00 00 00 1c 00 dc 00 1f 00 01 02 50 00 fd 0a 4a c8 fe 00 ff 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 1d 00 02 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 1b 05 1a 00 81 75 82 a8 82 dc 82 a6 81 63 8b ad 82 a6 82 e6 81 49 89 bd 8e d2 82 be 81 41 82 a2 82 c1 82 bd 82 a2 81 48 81 76 0d 00 00 00 1b fd 1a 00 81 75 89 b4 92 42 82 cd 82 b1 82 cc 93 87 82 cc 8a eb 8b 40 82 f0 8b 7e 82 a4 82 bd 82 df 82 c9 81 41 0d 00 81 40 97 b7 82 f0 82 b5 82 c4 82 a2 82 e9 93 72 92 86 82 b3 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 89 bd 82 be 82 c1 82 c4 81 48 81 76 0d 00 00 00 1b ff 1a 00 01 06 05 00 01 01 82 cd 82 af 82 f1 82 df 82 a2 82 c9 90 e0 93 be 82 b5 82 bd 81 49 }
+}

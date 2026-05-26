@@ -1,0 +1,639 @@
+// DG181.SCN
+#include "functions.dgs"
+#pragma script index=181 start=0x86000 end=0x88000 headerU16=0xc sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(8) {
+  if (!trigger(81)) {
+    setTrigger(Trigger(81));
+    speak(Entity(6), "「おかえりなさい。<LIGHTBLUE><PLAYER><WHITE>。」<NEWLINE>");
+    speak(Entity(6), "「私の仕事はジジモン様の記録係。」<NEWLINE>");
+    speak(Entity(6), "「日ごろよりジジモン様が思い出す情報や、<NEWLINE> うわさ、そして私の知っていることを<NEWLINE> 記録し、あなたに伝える役割です。」<NEWLINE>");
+    speak(Entity(6), "「何をするべきか分からなくなったら、<NEWLINE> 私のところへ来てください。きっと<NEWLINE> 道しるべが見えてくるはずです。」<NEWLINE>");
+    return;
+  }
+  if (pstat[1] == 100) {
+    speak(Entity(6), "「全てのデジモンがこの街に集まりました。<NEWLINE> 本当におつかれ様でした。」<NEWLINE>");
+    return;
+  }
+  {
+    speak(Entity(6), "「私が集めた情報について話しましょう。<NEWLINE> そうですね…」<NEWLINE>");
+    break;
+    loop {
+      speak(Entity(6), "「それから…」<NEWLINE>");
+      goto L3;
+
+L1:
+      speak(Entity(6), "「それと…」<NEWLINE>");
+      goto L3;
+
+L2:
+      if (pstat[40] != 1) break;
+    }
+    switch pstat[40] {
+      2 => {
+        goto L1;
+      }
+      3 => {
+        goto L4;
+      }
+    }
+    jumpReturn();
+
+L3:
+  }
+  {
+    if (pstat[41] < 1) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(246)) {
+      speak(Entity(6), "「植物型のデジモンは森にいるはずです。<NEWLINE> 近いところほど見落としがちなものです。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 2) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(232)) {
+      speak(Entity(6), "「虫タイプのデジモンは緑を好みます。<NEWLINE> そう、この街のまわりのような…」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 3) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(236)) {
+      speak(Entity(6), "「トロピカジャングルの奥に、めいろ状の<NEWLINE> 変わった森があるそうです。その森の<NEWLINE> 番人はすご腕のデジモンだとか。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 4) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(249)) {
+      speak(Entity(6), "「川には誰かを待っている古き者がいます。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 5) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(204)) {
+      speak(Entity(6), "「暑い水辺を好むデジモンがいるそうです。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 6) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(237)) {
+      speak(Entity(6), "「墓場にはゴーストがつきもの。ゴーストは<NEWLINE> 人と話したがるものです。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 7) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(225)) {
+      speak(Entity(6), "「この街の花だんには何か秘密があるとか。<NEWLINE> やはり植物のことは植物に聞くのがよい<NEWLINE> でしょう。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 8) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(208)) {
+      speak(Entity(6), "「ダイノ古代境の奥は危険な場所ですが、<NEWLINE> やはり調べてみたほうがよいでしょう。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 9) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(209)) {
+      speak(Entity(6), "「ミハラシ山内部には溶岩が流れている<NEWLINE> そうです。そんな場所を好むデジモンも<NEWLINE> いるようです。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 10) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(223)) {
+      speak(Entity(6), "「寒いところに、暑いところが好きな<NEWLINE> デジモンをつれていく…やっては<NEWLINE> いけないことですが…」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 11) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(222)) {
+      speak(Entity(6), "「フリーズランドには街に来てくれそうな<NEWLINE> デジモンが意外に多くいるようです。<NEWLINE> 西のほうを特に探してみてください。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 12) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(221)) {
+      speak(Entity(6), "「グレートキャニオンの最も高い所に<NEWLINE> 住んでいる鳥形のデジモンがいるとか、<NEWLINE> いないとか…」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 13) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(235)) {
+      speak(Entity(6), "「グレートキャニオンはいりくんだ地形です。<NEWLINE> よそ者が入りこむと出られなくなってしまう<NEWLINE> …デジモンも例外ではないようです。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 14) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(218)) {
+      speak(Entity(6), "「ギアサバンナでは電気をさえぎるものが<NEWLINE> ないので、電気を武器にするデジモンが<NEWLINE> 住んでいるようです。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 15) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(250)) {
+      speak(Entity(6), "「ミスティツリーズには、とても<NEWLINE> 朝早起きのデジモンが現われる<NEWLINE> という話です。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 16) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(247)) {
+      speak(Entity(6), "「グレートキャニオンに場違いな店が<NEWLINE> 立っていて、意外なデジモンが店主をして<NEWLINE> いるそうです。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 17) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(233)) {
+      speak(Entity(6), "「ミハラシ山をひと飛びでこえる羽をもった<NEWLINE> デジモンがいるそうです。山で会えるかも<NEWLINE> しれないですよ。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 18) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(231) || !trigger(245)) {
+      speak(Entity(6), "「ギアサバンナは高く空を飛べないデジモンが<NEWLINE> くらすのにてきしています。広い土地ですが<NEWLINE> 探してみてはどうでしょう。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 19) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(205)) {
+      speak(Entity(6), "「あなたのうわさを聞いて挑戦しにやって来る<NEWLINE> ようなデジモンがいないとも限りません。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 20) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(257)) {
+      speak(Entity(6), "「フリーズランドに洞くつをかまえ、奇妙な<NEWLINE> 遊びにさそいこむというデジモンがいる<NEWLINE> そうです。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 21) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(238)) {
+      speak(Entity(6), "「地道に仕事を続けている…そんなデジモン<NEWLINE> は、役目を終えたらこの街にさそうべき<NEWLINE> でしょう。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 22) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(217)) {
+      speak(Entity(6), "「ミスティツリーズは、隠れるのによい<NEWLINE> 地域です。隠れたデジモンを導いてあげる<NEWLINE> のも、あなたの役目ですよ。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 23) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(258)) {
+      speak(Entity(6), "「街が発展すれば、あなたのうわさも広まり<NEWLINE> ます。その時はもう一度島をめぐってみて<NEWLINE> ください。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 24) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(224)) {
+      speak(Entity(6), "「フリーズランドの流氷海岸に時々現われる<NEWLINE> 大きな影。あれはデジモンなのではないで<NEWLINE> しょうか。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 25) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(252)) {
+      speak(Entity(6), "「物を集めるのが好きなデジモンがいたら<NEWLINE> 協力しあいましょう。フリーズランドに<NEWLINE> 行ってみてください。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 26) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(213)) {
+      speak(Entity(6), "「ミハラシ山の上に、とても珍しいデジモンが<NEWLINE> ごくまれに現われ、戦いを挑んでくるとか。<NEWLINE> 100回行けば3回は会えるでしょう。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 27) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(211)) {
+      speak(Entity(6), "「下水道などジメジメした場所にもデジモンは<NEWLINE> います。悩みを解決してあげれば、街へ<NEWLINE> 引っこしてくれるかも…」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 28) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(210)) {
+      speak(Entity(6), "「竜の目の湖の向こうに、虫デジモンエリアが<NEWLINE> あるそうです。どうやって湖をこえるか…<NEWLINE> 釣りでもして考えてみてはどうです?」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 29) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(241)) {
+      speak(Entity(6), "「機械のデジモンは一度壊れても自己修復して<NEWLINE> いつのまにか完全に直っていることがある<NEWLINE> そうです。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 30) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(142)) {
+      speak(Entity(6), "「危険を恐れるあまり、目的を見失っては<NEWLINE> いけません。危険なガケも、一度乗って<NEWLINE> 確かめるぐらいの勇気が必要です。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 31) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(198)) {
+      speak(Entity(6), "「街の言葉に耳をかたむけてください。<NEWLINE> 困っている人の話を聞き逃しては<NEWLINE> いけません。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 32) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(150)) {
+      speak(Entity(6), "「行き来がさかんな場所に陣取っている<NEWLINE> 悪者がいるようです。最近引っこしてきた<NEWLINE> ようですが、もしや…」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 33) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(135)) {
+      speak(Entity(6), "「うもれたほこらがどこかにあるそうですが…<NEWLINE> 誰かに掘ってもらわないことには。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 34) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(255)) {
+      speak(Entity(6), "「ジャングルには、とても珍しいデジモンが<NEWLINE> ごくまれに現われ、戦いを挑んでくるとか。<NEWLINE> 100回行けば3回は会えるでしょう。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 35) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(242)) {
+      speak(Entity(6), "「猿も木から…。この世界にも木に住んでいる<NEWLINE> デジモンがいますが、はたしてどうでしょう<NEWLINE> ね。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 36) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(227)) {
+      speak(Entity(6), "「西の鉄の町には、とても珍しいデジモンが<NEWLINE> ごくまれに現われ、戦いを挑んでくるとか。<NEWLINE> 100回行けば3回は会えるでしょう。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 37) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(228)) {
+      speak(Entity(6), "「宇宙人型デジモンのうわさがあります。<NEWLINE> 定期的に現われているようですから、いつか<NEWLINE> 本当に会えるかもしれません。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 38) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (pstat[21] == 0) {
+      speak(Entity(6), "「誰もいないはずの場所に現われる、不思議な<NEWLINE> デジモンがいるそうです。<NEWLINE> あるじを失った家などにいるとか…」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 39) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (pstat[21] == 1) {
+      speak(Entity(6), "「本当の宝をもらうまでは、ナニモンを<NEWLINE> 探しつづけるべきでしょう。」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 40) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(129)) {
+      speak(Entity(6), "「どうやらヴァンデモンは本当に行方不明の<NEWLINE> ようです。彼の館に残された謎をといて<NEWLINE> ゆけば…」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  {
+    if (pstat[41] < 41) {
+      addPStat(PStat(41), 1);
+    } else {
+      break;
+    }
+    if (!trigger(50)) {
+      speak(Entity(6), "「まだ未知のデジモンがいるはずですが…<NEWLINE> あなたには先にやらなくてはならないことが<NEWLINE> あります!」<NEWLINE>");
+      addPStat(PStat(40), 1);
+    } else {
+      break;
+    }
+    jumpAndLink(L2);
+  }
+  if (pstat[41] < 42) {
+    addPStat(PStat(41), 1);
+  } else {
+    goto L4;
+  }
+  if (!trigger(256) && trigger(50)) {
+    speak(Entity(6), "「最後のデジモンは最後の場所に生まれる…<NEWLINE> あなたにはこの意味がわかりますか?」<NEWLINE>");
+    addPStat(PStat(40), 1);
+  }
+  goto L4;
+
+L4:
+  setPStat(PStat(41), 0);
+  setPStat(PStat(40), 0);
+  return;
+  garbage { 0c 00 fe 00 0c 00 08 00 0e 00 ff ff fe 00 19 00 01 00 51 00 18 00 5e 01 19 00 1c 00 51 00 1b 06 1a 00 81 75 82 a8 82 a9 82 a6 82 e8 82 c8 82 b3 82 a2 81 42 01 06 05 00 01 01 81 42 81 76 0d 00 00 00 1b 06 1a 00 81 75 8e 84 82 cc 8e 64 8e 96 82 cd 83 57 83 57 83 82 83 93 97 6c 82 cc 8b 4c 98 5e 8c 57 81 42 81 76 0d 00 00 00 1b 06 1a 00 81 75 93 fa 82 b2 82 eb 82 e6 82 e8 83 57 83 57 83 82 83 93 97 6c 82 aa 8e 76 82 a2 8f 6f 82 b7 8f ee 95 f1 82 e2 81 41 0d 00 81 40 82 a4 82 ed 82 b3 81 41 82 bb 82 b5 82 c4 8e 84 82 cc 92 6d 82 c1 82 c4 82 a2 82 e9 82 b1 82 c6 82 f0 0d 00 81 40 8b 4c 98 5e 82 b5 81 41 82 a0 82 c8 82 bd 82 c9 93 60 82 a6 82 e9 96 f0 8a 84 82 c5 82 b7 81 42 81 76 0d 00 00 00 1b 06 1a 00 81 75 89 bd 82 f0 82 b7 82 e9 82 d7 82 ab 82 a9 95 aa 82 a9 82 e7 82 c8 82 ad 82 c8 82 c1 82 bd 82 e7 81 41 0d 00 81 40 8e 84 82 cc 82 c6 82 b1 82 eb 82 d6 97 88 82 c4 82 ad 82 be 82 b3 82 a2 81 42 82 ab 82 c1 82 c6 0d 00 81 40 93 b9 82 b5 82 e9 82 d7 82 aa 8c a9 82 a6 82 c4 82 ad 82 e9 82 cd 82 b8 82 c5 82 b7 81 42 81 76 0d 00 00 00 fe 00 19 00 08 00 01 64 18 00 ba 01 19 00 1b 06 1a 00 81 75 91 53 82 c4 82 cc 83 66 83 57 83 82 83 93 82 aa 82 b1 82 cc 8a 58 82 c9 8f 57 82 dc 82 e8 82 dc 82 b5 82 bd 81 42 0d 00 81 40 96 7b 93 96 82 c9 82 a8 82 c2 82 a9 82 ea 97 6c 82 c5 82 b5 82 bd 81 42 81 76 0d 00 00 00 fe 00 1b 06 1a 00 81 75 8e 84 82 aa 8f 57 82 df 82 bd 8f ee 95 f1 82 c9 82 c2 82 a2 82 c4 98 62 82 b5 82 dc 82 b5 82 e5 82 a4 81 42 0d 00 81 40 82 bb 82 a4 82 c5 82 b7 82 cb 81 63 81 76 0d 00 00 00 16 00 62 02 1b 06 1a 00 81 75 82 bb 82 ea 82 a9 82 e7 81 63 81 76 0d 00 00 00 16 00 62 02 1b 06 1a 00 81 75 82 bb 82 ea 82 c6 81 63 81 76 0d 00 00 00 16 00 62 02 19 00 08 00 28 01 18 00 40 02 19 00 16 00 fe 01 19 00 08 00 28 02 18 00 50 02 19 00 16 00 18 02 19 00 08 00 28 03 18 00 60 02 19 00 16 00 24 1c 15 00 19 00 0d 00 29 01 18 00 76 02 19 00 1f 00 29 01 16 00 7a 02 16 00 f0 02 19 00 01 00 f6 00 18 00 e8 02 19 00 1b 06 1a 00 81 75 90 41 95 a8 8c 5e 82 cc 83 66 83 57 83 82 83 93 82 cd 90 58 82 c9 82 a2 82 e9 82 cd 82 b8 82 c5 82 b7 81 42 0d 00 81 40 8b df 82 a2 82 c6 82 b1 82 eb 82 d9 82 c7 8c a9 97 8e 82 c6 82 b5 82 aa 82 bf 82 c8 82 e0 82 cc 82 c5 82 b7 81 42 81 76 0d 00 00 00 1f 00 28 01 16 00 ec 02 16 00 f0 02 13 00 30 02 19 00 0d 00 29 02 18 00 04 03 19 00 1f 00 29 01 16 00 08 03 16 00 74 03 19 00 01 00 e8 00 18 00 6c 03 19 00 1b 06 1a 00 81 75 92 8e 83 5e 83 43 83 76 82 cc 83 66 83 57 83 82 83 93 82 cd 97 ce 82 f0 8d 44 82 dd 82 dc 82 b7 81 42 0d 00 81 40 82 bb 82 a4 81 41 82 b1 82 cc 8a 58 82 cc 82 dc 82 ed 82 e8 82 cc 82 e6 82 a4 82 c8 81 63 81 76 0d 00 00 00 1f 00 28 01 16 00 70 03 16 00 74 03 13 00 30 02 19 00 0d 00 29 03 18 00 88 03 19 00 1f 00 29 01 16 00 8c 03 16 00 20 04 19 00 01 00 ec 00 18 00 18 04 19 00 1b 06 1a 00 81 75 83 67 83 8d 83 73 83 4a 83 57 83 83 83 93 83 4f 83 8b 82 cc 89 9c 82 c9 81 41 82 df 82 a2 82 eb 8f f3 82 cc 0d 00 81 40 95 cf 82 ed 82 c1 82 bd 90 58 }
+}

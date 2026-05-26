@@ -1,0 +1,1119 @@
+// DG017.SCN
+#include "functions.dgs"
+#pragma script index=17 start=0x10800 end=0x12800 headerU16=0x70 sentinelOff=0x1e
+#include "entities.dgs"
+
+section onEnter(254) {
+  setPStat(PStat(254), 0);
+  callSubroutine(25);
+  if (trigger(236)) {
+    return;
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  {
+    if (pstat[110] <= 29) {
+      spawnItem(Item.GiantMeat, x: 33, y: 49);
+      break;
+    }
+    if (pstat[110] > 49) break;
+    spawnItem(Item.OffenseDisk, x: 33, y: 49);
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  {
+    if (pstat[110] <= 29) {
+      spawnItem(Item.MPFloppy, x: 49, y: 53);
+      break;
+    }
+    if (pstat[110] > 49) break;
+    spawnItem(Item.SmallRecovery, x: 49, y: 53);
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  {
+    if (pstat[110] <= 29) {
+      spawnItem(Item.DefenseDisk, x: 67, y: 42);
+      break;
+    }
+    if (pstat[110] > 49) break;
+    spawnItem(Item.Meat, x: 67, y: 42);
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  {
+    if (pstat[110] <= 9) {
+      spawnItem(Item.PortaPotty, x: 34, y: 29);
+      break;
+    }
+    if (pstat[110] > 29) break;
+    spawnItem(Item.SpeedDisk, x: 34, y: 29);
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  {
+    if (pstat[110] <= 9) {
+      spawnItem(Item.MediumRecovery, x: 50, y: 34);
+      break;
+    }
+    if (pstat[110] > 29) break;
+    spawnItem(Item.MoldyMeat, x: 50, y: 34);
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  {
+    if (pstat[110] <= 1) {
+      spawnItem(Item.OrangeBanana, x: 49, y: 18);
+      break;
+    }
+    if (pstat[110] <= 9) {
+      spawnItem(Item.Happymushroom, x: 49, y: 18);
+      break;
+    }
+    if (pstat[110] > 29) break;
+    spawnItem(Item.Autopilot, x: 49, y: 18);
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  if (pstat[110] <= 4) {
+    spawnItem(Item.OmniDisk, x: 65, y: 22);
+    return;
+  }
+  if (pstat[110] <= 29) {
+    spawnItem(Item.MediumMP, x: 65, y: 22);
+  }
+  return;
+}
+
+section(51) {
+  setObjectsVisibleRange(38, 43, 1);
+  if (trigger(236)) {
+    return;
+  }
+  roll(pstat: PStat.RollScratch, max: 2);
+  switch pstat[110] {
+    0 => {
+      setPStat(PStat(116), 0);
+      for x in [38, 42, 43] {
+        setObjectVisibility(x, 0);
+      }
+    }
+    1 => {
+      setPStat(PStat(116), 1);
+      for x in [39, 41, 43] {
+        setObjectVisibility(x, 0);
+      }
+    }
+    2 => {
+      setPStat(PStat(116), 2);
+      setObjectsVisibleRange(40, 42, 0);
+    }
+  }
+  if (!trigger(137)) {
+    setTrigger(Trigger(137));
+    rotate(entity: Entity.Player, to: 2048);
+    sfx(8, 0, wait: 20);
+    sfx(8, 0, wait: 20);
+    sfx(8, 0, wait: 20);
+    speak(Entity.System, "<YELLOW>???<WHITE><NEWLINE>侵入確認…<NEWLINE>");
+    showTextbox("<YELLOW>???<WHITE><NEWLINE>侵入確認…<NEWLINE>侵入確認…<NEWLINE>");
+    showTextbox("<YELLOW>???<WHITE><NEWLINE>侵入確認…<NEWLINE>侵入確認…<NEWLINE>ただちに砲撃の準備に入る…<NEWLINE>");
+  }
+  jumpAndLink(section_10);
+  return;
+}
+
+section(10) {
+  for id in Trigger(158)..Trigger(173) {
+    unsetTrigger(id);
+  }
+  jumpReturn();
+
+L1:
+  if (stat[Stat.CurrentHP] == 1) {
+    look(entity: Entity.Player, at: Entity.Partner);
+    speak(Entity.Player, "「大丈夫か、<ORANGE><DIGIMON><WHITE>!」<NEWLINE>");
+    showTextbox("「ここはいったんもどろう…」<NEWLINE>");
+    warp(to: Map.TROP06, spawn: 0, trigger: 51);
+  }
+  jumpReturn();
+
+L2:
+  if (stat[Stat.CurrentHP] == 1) {
+    look(entity: Entity.Player, at: Entity.Partner);
+    speak(Entity.Player, "「いっけね!<ORANGE><DIGIMON><WHITE>を回復させなきゃ。」<NEWLINE>");
+    warp(to: Map.TROP06, spawn: 0, trigger: 51);
+  }
+  jumpReturn();
+
+L3:
+  playSound(8, 1);
+  setObjectVisibility(44, 0);
+  setObjectVisibility(45, 0);
+  spawnSpriteAtEntity(253, 11274);
+  spawnSpriteAtEntity(253, 11530);
+  delay(4);
+  setObjectVisibility(44, 1);
+  setObjectVisibility(45, 1);
+  delay(4);
+  setObjectVisibility(44, 0);
+  setObjectVisibility(45, 0);
+  spawnSpriteAtEntity(253, 11274);
+  spawnSpriteAtEntity(253, 11530);
+  delay(4);
+  setObjectVisibility(44, 1);
+  setObjectVisibility(45, 1);
+  delay(4);
+  setObjectVisibility(44, 0);
+  setObjectVisibility(45, 0);
+  spawnSpriteAtEntity(253, 11274);
+  spawnSpriteAtEntity(253, 11530);
+  delay(4);
+  setObjectVisibility(44, 1);
+  setObjectVisibility(45, 1);
+  delay(10);
+  jumpReturn();
+
+L4:
+  setObjectsVisibleRange(46, 48, 1);
+  moveObjectTo(0, 46, 1, 0, 0, 600, 900);
+  moveObjectTo(1, 47, 1, 0, 0, 600, 900);
+  moveObjectTo(2, 48, 1, 0, 0, 600, 900);
+  delay(1);
+  jumpReturn();
+}
+
+section(52) {
+  if (trigger(236)) {
+    return;
+  }
+  jumpAndLink(section_10.L2);
+  setTrigger(Trigger(158));
+  unsetTrigger(Trigger(159));
+  unsetTrigger(Trigger(160));
+  if (trigger(161)) {
+  } else {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 109, 428);
+  moveObjectTo(1, 47, 1, 0, 0, 109, 432);
+  moveObjectTo(2, 48, 1, 0, 0, 109, 436);
+  delay(1);
+  moveObjectTo(0, 46, 1, 10, 0, 52, 765);
+  moveObjectTo(1, 47, 1, 10, 0, 52, 769);
+  moveObjectTo(2, 48, 1, 10, 0, 52, 773);
+  delay(3);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  playAnimation(Entity.Player, Animation(17));
+  move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+  delay(40);
+  jumpAndLink(section_10.L4);
+  followEntity(Entity.Player, speed: 10);
+  jumpAndLink(section_10);
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(53) {
+  if (trigger(236)) {
+    return;
+  }
+  jumpAndLink(section_10.L2);
+  setTrigger(Trigger(159));
+  unsetTrigger(Trigger(158));
+  unsetTrigger(Trigger(160));
+  if (trigger(162)) {
+  } else {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 300, 430);
+  moveObjectTo(1, 47, 1, 0, 0, 300, 434);
+  moveObjectTo(2, 48, 1, 0, 0, 300, 438);
+  delay(1);
+  moveObjectTo(0, 46, 1, 10, 0, 300, 765);
+  moveObjectTo(1, 47, 1, 10, 0, 300, 769);
+  moveObjectTo(2, 48, 1, 10, 0, 300, 773);
+  delay(3);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  playAnimation(Entity.Player, Animation(17));
+  move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+  delay(40);
+  jumpAndLink(section_10.L4);
+  followEntity(Entity.Player, speed: 10);
+  jumpAndLink(section_10);
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(54) {
+  if (trigger(236)) {
+    return;
+  }
+  jumpAndLink(section_10.L2);
+  setTrigger(Trigger(160));
+  unsetTrigger(Trigger(158));
+  unsetTrigger(Trigger(159));
+  if (trigger(164)) {
+  } else {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 495, 430);
+  moveObjectTo(1, 47, 1, 0, 0, 495, 434);
+  moveObjectTo(2, 48, 1, 0, 0, 495, 438);
+  delay(1);
+  moveObjectTo(0, 46, 1, 10, 0, 540, 765);
+  moveObjectTo(1, 47, 1, 10, 0, 540, 769);
+  moveObjectTo(2, 48, 1, 10, 0, 540, 773);
+  delay(3);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  playAnimation(Entity.Player, Animation(17));
+  move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+  delay(40);
+  jumpAndLink(section_10.L4);
+  followEntity(Entity.Player, speed: 10);
+  jumpAndLink(section_10);
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(55) {
+  if (trigger(236)) {
+    return;
+  }
+  setTrigger(Trigger(161));
+  roll(pstat: PStat.RollScratch, max: 1);
+  if (trigger(165)) {
+  } else {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 135, 215);
+  moveObjectTo(1, 47, 1, 0, 0, 135, 219);
+  moveObjectTo(2, 48, 1, 0, 0, 135, 223);
+  delay(1);
+  moveObjectTo(0, 46, 1, 17, 0, 52, 765);
+  moveObjectTo(1, 47, 1, 17, 0, 52, 769);
+  moveObjectTo(2, 48, 1, 17, 0, 52, 773);
+  delay(5);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  if (pstat[110] == 0) {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  } else {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  }
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(56) {
+  if (trigger(236)) {
+    return;
+  }
+  setTrigger(Trigger(162));
+  roll(pstat: PStat.RollScratch, max: 1);
+  if (trigger(163)) {
+  } else {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 300, 225);
+  moveObjectTo(1, 47, 1, 0, 0, 300, 229);
+  moveObjectTo(2, 48, 1, 0, 0, 300, 233);
+  delay(1);
+  moveObjectTo(0, 46, 1, 17, 0, 300, 765);
+  moveObjectTo(1, 47, 1, 17, 0, 300, 769);
+  moveObjectTo(2, 48, 1, 17, 0, 300, 773);
+  delay(5);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  if (pstat[110] == 0) {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  } else {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -3800, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  }
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(57) {
+  if (trigger(236)) {
+    return;
+  }
+  setTrigger(Trigger(163));
+  roll(pstat: PStat.RollScratch, max: 1);
+  {
+    if (trigger(159) && trigger(162)) {
+      break;
+    }
+    if (trigger(166)) {
+      break;
+    }
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 300, 200);
+  moveObjectTo(1, 47, 1, 0, 0, 300, 204);
+  moveObjectTo(2, 48, 1, 0, 0, 300, 208);
+  delay(1);
+  moveObjectTo(0, 46, 1, 19, 0, 300, 765);
+  moveObjectTo(1, 47, 1, 19, 0, 300, 769);
+  moveObjectTo(2, 48, 1, 19, 0, 300, 773);
+  delay(4);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  if (pstat[110] == 0) {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -1000, speed: 5, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  } else {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  }
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(58) {
+  if (trigger(236)) {
+    return;
+  }
+  setTrigger(Trigger(164));
+  roll(pstat: PStat.RollScratch, max: 1);
+  if (trigger(169)) {
+  } else {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 470, 225);
+  moveObjectTo(1, 47, 1, 0, 0, 470, 229);
+  moveObjectTo(2, 48, 1, 0, 0, 470, 223);
+  delay(1);
+  moveObjectTo(0, 46, 1, 19, 0, 540, 765);
+  moveObjectTo(1, 47, 1, 19, 0, 540, 769);
+  moveObjectTo(2, 48, 1, 19, 0, 540, 773);
+  delay(4);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  if (pstat[110] == 0) {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  } else {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -3650, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  }
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(59) {
+  if (trigger(236)) {
+    return;
+  }
+  setTrigger(Trigger(165));
+  roll(pstat: PStat.RollScratch, max: 1);
+  {
+    if (trigger(158) && trigger(161)) {
+      break;
+    }
+    if (trigger(167)) {
+      break;
+    }
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 150, 95);
+  moveObjectTo(1, 47, 1, 0, 0, 150, 99);
+  moveObjectTo(2, 48, 1, 0, 0, 150, 103);
+  delay(1);
+  moveObjectTo(0, 46, 1, 21, 0, 52, 765);
+  moveObjectTo(1, 47, 1, 21, 0, 52, 769);
+  moveObjectTo(2, 48, 1, 21, 0, 52, 773);
+  delay(3);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  if (pstat[110] == 0) {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -400, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  } else {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  }
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(60) {
+  if (trigger(236)) {
+    return;
+  }
+  setTrigger(Trigger(166));
+  roll(pstat: PStat.RollScratch, max: 1);
+  {
+    if (trigger(163) && trigger(162)) {
+      break;
+    }
+    if (trigger(168)) {
+      break;
+    }
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 300, 95);
+  moveObjectTo(1, 47, 1, 0, 0, 300, 99);
+  moveObjectTo(2, 48, 1, 0, 0, 300, 103);
+  delay(1);
+  moveObjectTo(0, 46, 1, 21, 0, 300, 765);
+  moveObjectTo(1, 47, 1, 21, 0, 300, 769);
+  moveObjectTo(2, 48, 1, 21, 0, 300, 773);
+  delay(3);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  if (pstat[110] == 0) {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -1100, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  } else {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -2600, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  }
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(61) {
+  if (trigger(236)) {
+    return;
+  }
+  setTrigger(Trigger(167));
+  roll(pstat: PStat.RollScratch, max: 1);
+  {
+    if (trigger(161) && trigger(165)) {
+      break;
+    }
+    if (trigger(171)) {
+      break;
+    }
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 165, 0);
+  moveObjectTo(1, 47, 1, 0, 0, 165, 4);
+  moveObjectTo(2, 48, 1, 0, 0, 165, 8);
+  delay(1);
+  moveObjectTo(0, 46, 1, 25, 0, 52, 765);
+  moveObjectTo(1, 47, 1, 25, 0, 52, 769);
+  moveObjectTo(2, 48, 1, 25, 0, 52, 773);
+  delay(3);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  if (pstat[110] == 0) {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: 2000, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  } else {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: 0, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  }
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(62) {
+  if (trigger(236)) {
+    return;
+  }
+  setTrigger(Trigger(168));
+  roll(pstat: PStat.RollScratch, max: 1);
+  {
+    if (trigger(163) && trigger(166)) {
+      break;
+    }
+    if (trigger(170)) {
+      break;
+    }
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 300, 0);
+  moveObjectTo(1, 47, 1, 0, 0, 300, 4);
+  moveObjectTo(2, 48, 1, 0, 0, 300, 8);
+  delay(1);
+  moveObjectTo(0, 46, 1, 25, 0, 300, 765);
+  moveObjectTo(1, 47, 1, 25, 0, 300, 769);
+  moveObjectTo(2, 48, 1, 25, 0, 300, 773);
+  delay(3);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  playAnimation(Entity.Player, Animation(17));
+  move(entity: Entity.Player, axis: 2, to: 1400, speed: 10, withCamera: true);
+  delay(40);
+  jumpAndLink(section_10.L4);
+  jumpAndLink(section_10);
+  followEntity(Entity.Player, speed: 10);
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(63) {
+  if (trigger(236)) {
+    return;
+  }
+  setTrigger(Trigger(169));
+  roll(pstat: PStat.RollScratch, max: 1);
+  {
+    if (trigger(160) && trigger(164)) {
+      break;
+    }
+    if (trigger(173)) {
+      break;
+    }
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 445, 0);
+  moveObjectTo(1, 47, 1, 0, 0, 445, 4);
+  moveObjectTo(2, 48, 1, 0, 0, 445, 8);
+  delay(1);
+  moveObjectTo(0, 46, 1, 25, 0, 540, 765);
+  moveObjectTo(1, 47, 1, 25, 0, 540, 769);
+  moveObjectTo(2, 48, 1, 25, 0, 540, 773);
+  delay(5);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  if (pstat[110] == 0) {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: 800, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  } else {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -2000, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  }
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(64) {
+  if (trigger(236)) {
+    return;
+  }
+  setTrigger(Trigger(170));
+  roll(pstat: PStat.RollScratch, max: 1);
+  {
+    if (trigger(166) && trigger(168)) {
+      break;
+    }
+    if (trigger(172)) {
+      break;
+    }
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 300, 0);
+  moveObjectTo(1, 47, 1, 0, 0, 300, 4);
+  moveObjectTo(2, 48, 1, 0, 0, 300, 8);
+  delay(1);
+  moveObjectTo(0, 46, 1, 29, 0, 300, 765);
+  moveObjectTo(1, 47, 1, 29, 0, 300, 769);
+  moveObjectTo(2, 48, 1, 29, 0, 300, 773);
+  delay(3);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  playAnimation(Entity.Player, Animation(17));
+  move(entity: Entity.Player, axis: 2, to: 1500, speed: 10, withCamera: true);
+  delay(40);
+  jumpAndLink(section_10.L4);
+  jumpAndLink(section_10);
+  followEntity(Entity.Player, speed: 10);
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(65) {
+  if (trigger(236)) {
+    return;
+  }
+  setTrigger(Trigger(171));
+  roll(pstat: PStat.RollScratch, max: 1);
+  if (trigger(165) && trigger(167)) {
+  } else {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 158, 0);
+  moveObjectTo(1, 47, 1, 0, 0, 158, 4);
+  moveObjectTo(2, 48, 1, 0, 0, 158, 8);
+  delay(1);
+  moveObjectTo(0, 46, 1, 29, 0, 25, 765);
+  moveObjectTo(1, 47, 1, 29, 0, 25, 769);
+  moveObjectTo(2, 48, 1, 29, 0, 25, 773);
+  delay(3);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  if (pstat[110] == 0) {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: 1800, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  } else {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -400, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  }
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(66) {
+  if (trigger(236)) {
+    return;
+  }
+  setTrigger(Trigger(172));
+  roll(pstat: PStat.RollScratch, max: 1);
+  if (trigger(170) && trigger(168)) {
+  } else {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 300, 0);
+  moveObjectTo(1, 47, 1, 0, 0, 300, 4);
+  moveObjectTo(2, 48, 1, 0, 0, 300, 8);
+  delay(1);
+  moveObjectTo(0, 46, 1, 29, 0, 300, 765);
+  moveObjectTo(1, 47, 1, 29, 0, 300, 769);
+  moveObjectTo(2, 48, 1, 29, 0, 300, 773);
+  delay(3);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  if (pstat[110] == 0) {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: 2550, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  } else {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: 1400, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  }
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(67) {
+  if (trigger(236)) {
+    return;
+  }
+  setTrigger(Trigger(173));
+  roll(pstat: PStat.RollScratch, max: 1);
+  if (trigger(169) && trigger(164)) {
+  } else {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  jumpAndLink(section_10.L3);
+  playSound(8, 2);
+  playSound(8, 2);
+  setObjectsVisibleRange(46, 48, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 3);
+  callSubroutine(21);
+  moveObjectTo(0, 46, 1, 0, 0, 445, 0);
+  moveObjectTo(1, 47, 1, 0, 0, 445, 4);
+  moveObjectTo(2, 48, 1, 0, 0, 445, 8);
+  delay(1);
+  moveObjectTo(0, 46, 1, 25, 0, 540, 765);
+  moveObjectTo(1, 47, 1, 25, 0, 540, 769);
+  moveObjectTo(2, 48, 1, 25, 0, 540, 773);
+  delay(3);
+  playAnimation(Entity.Partner, Animation(40));
+  setPStat(PStat(200), 50);
+  dealMapDamage(PStat(200));
+  if (pstat[110] == 0) {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: 1000, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  } else {
+    playAnimation(Entity.Player, Animation(17));
+    move(entity: Entity.Player, axis: 2, to: -1800, speed: 10, withCamera: true);
+    delay(40);
+    jumpAndLink(section_10.L4);
+    jumpAndLink(section_10);
+    followEntity(Entity.Player, speed: 10);
+  }
+  jumpAndLink(section_10.L1);
+  return;
+}
+
+section(68) {
+  if (trigger(236)) {
+    return;
+  }
+  if (pstat[116] == 0) {
+    speak(Entity.Player, "'!!\"\n");
+    sfx(8, 2, wait: 20);
+    setObjectVisibility(38, 1);
+    move(entity: Entity.Player, to: (-1750, 3600), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (-1450, 3600), sprint: 1);
+    waitForEntity(Entity.Partner);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    setDigimon(Digimon.NPCCentarumon, Entity(0), 0);
+    move(entity: Entity(5), to: (-1600, 4300), sprint: 0);
+    waitForEntity(Entity(5));
+    speak(Entity(5), "「この森をぬけてくるとは、<NEWLINE> さすがというべきだな。」<NEWLINE>");
+    showTextbox("「私はケンタルモン。今までの無礼を<NEWLINE> わびよう。すまなかった。」<NEWLINE>");
+    showTextbox("「私はきまぐれに君たちを試したのではない。<NEWLINE> これからは君たちに協力するつもりだ。」<NEWLINE>");
+    setTrigger(Trigger(236));
+    addPStat(PStat(1), 2);
+    showTextbox("「さあ、行きたまえ。<NEWLINE> 私は街で待っているよ。」<NEWLINE>");
+    goto L1;
+
+L1:
+    approach(who: Entity(5), x: -1600, y: 1000, tries: 4, wait: 20);
+    playSound(8, 9);
+    speak(Entity.System, "ケンタルモンが街に参加した!!!<NEWLINE>");
+    followEntity(Entity.Player, speed: 10);
+    look(entity: Entity.Player, at: Entity.Partner);
+    look(entity: Entity.Partner, at: Entity.Player);
+    delay(5);
+    speak(Entity.Player, "「<ORANGE><DIGIMON><WHITE>、<NEWLINE> 俺達けっこう有名になってる<NEWLINE> みたいだぜ、へへ!」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(11));
+    speak(Entity.Player, "「この調子でいこうぜ!」<NEWLINE>");
+    move(entity: Entity.Player, to: (-1600, 5200), sprint: 0);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1600, 5200), sprint: 0);
+    delay(20);
+    warp(to: Map.KODA00, spawn: 0, trigger: 255);
+    return;
+  } else {
+    playSound(0, 11);
+    speak(Entity.System, "はずれ!<NEWLINE>");
+    warp(to: Map.TROP06, spawn: 0, trigger: 255);
+  }
+  return;
+}
+
+section(69) {
+  if (trigger(236)) {
+    return;
+  }
+  if (pstat[116] == 1) {
+    speak(Entity.Player, "'!!\"\n");
+    sfx(8, 2, wait: 20);
+    setObjectVisibility(39, 1);
+    move(entity: Entity.Player, to: (-241, 3600), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (200, 3600), sprint: 1);
+    waitForEntity(Entity.Partner);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    setDigimon(Digimon.NPCCentarumon, Entity(1), 0);
+    move(entity: Entity(6), to: (0, 4300), sprint: 0);
+    waitForEntity(Entity(6));
+    speak(Entity(6), "「この森をぬけてくるとは、<NEWLINE> さすがというべきだな。」<NEWLINE>");
+    showTextbox("「私はケンタルモン。今までの無礼を<NEWLINE> わびよう。すまなかった。」<NEWLINE>");
+    showTextbox("「私はきまぐれに君たちを試したのではない。<NEWLINE> これからは君たちに協力するつもりだ。」<NEWLINE>");
+    setTrigger(Trigger(236));
+    addPStat(PStat(1), 2);
+    showTextbox("「さあ、行きたまえ。<NEWLINE> 私は街で待っているよ。」<NEWLINE>");
+    goto L1;
+
+L1:
+    approach(who: Entity(6), x: 0, y: 1000, tries: 4, wait: 20);
+    playSound(8, 9);
+    speak(Entity.System, "ケンタルモンが街に参加した!!!<NEWLINE>");
+    followEntity(Entity.Player, speed: 10);
+    look(entity: Entity.Player, at: Entity.Partner);
+    look(entity: Entity.Partner, at: Entity.Player);
+    delay(5);
+    speak(Entity.Player, "「<ORANGE><DIGIMON><WHITE>、<NEWLINE> 俺達けっこう有名になってる<NEWLINE> みたいだぜ、へへ!」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(11));
+    speak(Entity.Player, "「この調子でいこうぜ!」<NEWLINE>");
+    move(entity: Entity.Player, to: (0, 5200), sprint: 0);
+    delay(20);
+    move(entity: Entity.Partner, to: (0, 5200), sprint: 0);
+    delay(20);
+    warp(to: Map.KODA00, spawn: 0, trigger: 255);
+    return;
+  } else {
+    playSound(0, 11);
+    speak(Entity.System, "はずれ!<NEWLINE>");
+    warp(to: Map.TROP06, spawn: 0, trigger: 255);
+  }
+  return;
+}
+
+section(70) {
+  if (trigger(236)) {
+    return;
+  }
+  if (pstat[116] == 2) {
+    speak(Entity.Player, "'!!\"\n");
+    sfx(8, 2, wait: 20);
+    setObjectVisibility(40, 1);
+    move(entity: Entity.Player, to: (1450, 3600), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (1667, 3600), sprint: 1);
+    waitForEntity(Entity.Partner);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    setDigimon(Digimon.NPCCentarumon, Entity(2), 0);
+    move(entity: Entity(7), to: (1600, 4300), sprint: 0);
+    waitForEntity(Entity(7));
+    speak(Entity(7), "「この森をぬけてくるとは、<NEWLINE> さすがというべきだな。」<NEWLINE>");
+    showTextbox("「私はケンタルモン。今までの無礼を<NEWLINE> わびよう。すまなかった。」<NEWLINE>");
+    showTextbox("「私はきまぐれに君たちを試したのではない。<NEWLINE> これからは君たちに協力するつもりだ。」<NEWLINE>");
+    setTrigger(Trigger(236));
+    addPStat(PStat(1), 2);
+    showTextbox("「さあ、行きたまえ。<NEWLINE> 私は街で待っているよ。」<NEWLINE>");
+    goto L1;
+
+L1:
+    approach(who: Entity(7), x: 1600, y: 1000, tries: 4, wait: 20);
+    playSound(8, 9);
+    speak(Entity.System, "ケンタルモンが街に参加した!!!<NEWLINE>");
+    followEntity(Entity.Player, speed: 10);
+    look(entity: Entity.Player, at: Entity.Partner);
+    look(entity: Entity.Partner, at: Entity.Player);
+    delay(5);
+    speak(Entity.Player, "「<ORANGE><DIGIMON><WHITE>、<NEWLINE> 俺達けっこう有名になってる<NEWLINE> みたいだぜ、へへ!」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(11));
+    speak(Entity.Player, "「この調子でいこうぜ!」<NEWLINE>");
+    move(entity: Entity.Player, to: (1600, 5200), sprint: 0);
+    delay(20);
+    move(entity: Entity.Partner, to: (1600, 5200), sprint: 0);
+    delay(20);
+    warp(to: Map.KODA00, spawn: 0, trigger: 255);
+    return;
+  } else {
+    playSound(0, 11);
+    speak(Entity.System, "はずれ!<NEWLINE>");
+    warp(to: Map.TROP06, spawn: 0, trigger: 255);
+  }
+  return;
+}
+
+section(5) {
+  return;
+}
+
+section(6) {
+  return;
+}
+
+section(71) {
+  move(entity: Entity.Player, to: (-1600, 5200), sprint: 0);
+  warp(to: Map.KODA00, spawn: 0, trigger: 255);
+  return;
+}
+
+section(72) {
+  move(entity: Entity.Player, to: (0, 5200), sprint: 0);
+  warp(to: Map.KODA00, spawn: 0, trigger: 255);
+  return;
+}
+
+section(73) {
+  move(entity: Entity.Player, to: (1600, 5200), sprint: 0);
+  warp(to: Map.KODA00, spawn: 0, trigger: 255);
+  return;
+  garbage { 70 00 fe 00 70 00 33 00 ce 01 0a 00 08 03 34 00 7e 04 35 00 44 05 36 00 0a 06 37 00 d0 06 38 00 ba 07 39 00 a4 08 3a 00 a2 09 3b 00 8c 0a 3c 00 8a 0b 3d 00 88 0c 3e 00 86 0d 3f 00 58 0e 40 00 56 0f 41 00 28 10 42 00 16 11 43 00 04 12 44 00 f6 12 45 00 8c 15 46 00 22 18 05 00 b8 1a 06 00 ba 1a 47 00 bc 1a 48 00 ca 1a 49 00 d8 1a ff ff 1e 00 fe 00 64 19 19 00 00 00 ec 00 18 00 84 00 19 00 fe 00 24 00 6e 63 19 00 0b 00 6e 1d 18 00 9e 00 19 00 74 27 21 00 31 00 16 00 b0 00 19 00 0b 00 6e 31 18 00 b0 00 19 00 74 0f 21 00 31 00 24 00 6e 63 19 00 0b 00 6e 1d 18 00 ca 00 19 00 74 04 31 00 35 00 16 00 dc 00 19 00 0b 00 6e 31 18 00 dc 00 19 00 74 00 31 00 35 00 24 00 6e 63 19 00 0b 00 6e 1d 18 00 f6 00 19 00 74 10 43 00 2a 00 16 00 08 01 19 00 0b 00 6e 31 18 00 08 01 19 00 74 26 43 00 2a 00 24 00 6e 63 19 00 0b 00 6e 09 18 00 22 01 19 00 74 20 22 00 1d 00 16 00 34 01 19 00 0b 00 6e 1d 18 00 34 01 19 00 74 11 22 00 1d 00 24 00 6e 63 19 00 0b 00 6e 09 18 00 4e 01 19 00 74 01 32 00 22 00 16 00 60 01 19 00 0b 00 6e 1d 18 00 60 01 19 00 74 44 32 00 22 00 24 00 6e 63 19 00 0b 00 6e 01 18 00 7a 01 19 00 74 37 31 00 12 00 16 00 a2 01 19 00 0b 00 6e 09 18 00 90 01 19 00 74 45 31 00 12 00 16 00 a2 01 19 00 0b 00 6e 1d 18 00 a2 01 19 00 74 16 31 00 12 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 ba 01 19 00 74 12 41 00 16 00 fe 00 19 00 0b 00 6e 1d 18 00 cc 01 19 00 74 05 41 00 16 00 fe 00 57 00 26 01 57 00 27 01 57 00 28 01 57 00 29 01 57 00 2a 01 57 00 2b 01 19 00 00 00 ec 00 18 00 f4 01 19 00 fe 00 24 00 6e 02 19 00 08 00 6e 00 18 00 14 02 19 00 1e 00 74 00 57 00 26 00 57 00 2a 00 57 00 2b 00 19 00 08 00 6e 01 18 00 30 02 19 00 1e 00 74 01 57 00 27 00 57 00 29 00 57 00 2b 00 19 00 08 00 6e 02 18 00 4c 02 19 00 1e 00 74 02 57 00 28 00 57 00 29 00 57 00 2a 00 19 00 01 00 89 00 18 00 02 03 19 00 1c 00 89 00 4d fd 00 08 5a 00 08 00 67 00 14 00 5a 00 08 00 67 00 14 00 5a 00 08 00 67 00 14 00 1b ff 1a 00 01 07 81 48 81 48 81 48 01 01 0d 00 90 4e 93 fc 8a 6d 94 46 81 63 0d 00 00 00 1a 00 01 07 81 48 81 48 81 48 01 01 0d 00 90 4e 93 fc 8a 6d 94 46 81 63 0d 00 90 4e 93 fc 8a 6d 94 46 81 63 0d 00 00 00 1a 00 01 07 81 48 81 48 81 48 01 01 0d 00 90 4e 93 fc 8a 6d 94 46 81 63 0d 00 90 4e 93 fc 8a 6d 94 46 81 63 0d 00 82 bd 82 be 82 bf 82 c9 96 43 8c 82 82 cc 8f 80 94 f5 82 c9 93 fc 82 e9 81 63 0d 00 00 00 13 00 08 03 fe 00 1d 00 9e 00 1d 00 9f 00 1d 00 a0 00 1d 00 a1 00 1d 00 a2 00 1d 00 a3 00 1d 00 a4 00 1d 00 a5 00 1d 00 a6 00 1d 00 a7 00 1d 00 a8 00 1d 00 a9 00 1d 00 aa 00 1d 00 ab 00 1d 00 ac 00 1d 00 ad 00 15 00 19 00 20 00 06 00 01 00 18 00 a0 03 19 00 4c 00 fd fc 1b fd 1a 00 81 75 91 e5 8f e4 95 76 82 a9 81 41 01 0a 06 00 01 01 81 49 81 76 0d 00 00 00 1a 00 81 75 82 b1 82 b1 82 cd 82 a2 82 c1 82 bd 82 f1 82 e0 82 c7 82 eb 82 a4 81 63 81 76 0d 00 00 00 4b 11 00 33 15 00 19 00 20 00 06 00 01 00 18 00 e6 03 19 00 4c 00 fd fc 1b fd 1a 00 81 75 82 a2 82 c1 82 af 82 cb 81 49 01 0a 06 00 01 01 82 f0 89 f1 95 9c 82 b3 82 b9 82 c8 82 ab 82 e1 81 42 81 76 0d 00 00 00 4b 11 00 33 15 00 5a 00 08 01 57 00 2c 00 57 00 2d 00 7e fd 0a 2c 7e fd 0a 2d 67 00 04 00 57 00 2c 01 57 00 2d 01 67 00 04 00 57 00 2c 00 57 00 2d 00 7e fd 0a 2c 7e fd 0a 2d 67 00 04 00 57 00 2c 01 57 00 2d 01 67 00 04 00 57 00 2c 00 57 00 2d 00 7e fd 0a 2c 7e fd 0a 2d 67 00 04 00 57 00 2c 01 57 00 2d 01 67 00 0a 00 15 00 57 00 2e 01 57 00 2f 01 57 00 30 01 71 00 2e 01 00 00 58 02 84 03 71 01 2f 01 00 00 58 02 84 03 71 02 30 01 00 00 58 02 84 03 67 00 01 00 15 00 19 00 00 00 ec 00 18 00 8c 04 19 00 fe 00 13 00 a2 03 1c 00 9e 00 1d 00 9f 00 1d 00 a0 00 19 00 00 00 a1 00 18 00 ac 04 19 00 16 00 ae 04 fe 00 4d fd 00 08 4d fc 00 08 13 00 e8 03 5a 00 08 02 57 00 2e 00 57 00 2f 00 57 00 30 00 1e 00 f7 2e 1e 00 f8 03 64 15 71 00 2e 01 00 00 6d 00 ac 01 71 01 2f 01 00 00 6d 00 b0 01 71 02 30 01 00 00 6d 00 b4 01 67 00 01 00 71 00 2e 01 0a 00 34 00 fd 02 71 01 2f 01 0a 00 34 00 01 03 71 02 30 01 0a 00 34 00 05 03 67 00 03 00 }
+}

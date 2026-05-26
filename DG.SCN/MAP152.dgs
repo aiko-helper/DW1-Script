@@ -1,0 +1,90 @@
+// MAP152.SCN
+#include "functions.dgs"
+#pragma script index=152 start=0x67000 end=0x67800 headerU16=0x18 sentinelOff=0x56
+#include "entities.dgs"
+
+section onEnter(254) {
+  playAnimation(Entity(5), Animation(30));
+  return;
+}
+
+section(81) {
+  look(entity: Entity.Player, at: Entity(5));
+  delay(5);
+  if (!trigger(89)) {
+    setTrigger(Trigger(89));
+    speak(Entity(5), "「来たか、<LIGHTBLUE><PLAYER><WHITE>、<ORANGE><DIGIMON><WHITE>。」<NEWLINE>");
+    showTextbox("「俺の仕事は運送屋だ。何でも運ぶぜ。」<NEWLINE>");
+    showTextbox("「…と言っても、あんたらが運ぶものと<NEWLINE> 言えばその体だけ…。それなら…」<NEWLINE>");
+    showTextbox("「俺があんたらを体ごと運ぶってのは<NEWLINE> 悪くないと思わないか?フフ…」<NEWLINE>");
+    showTextbox("「あんたらが知っている場所へいつでも<NEWLINE> 連れてってやるぜ。金はもらうがね。」<NEWLINE>");
+  }
+  setPStat(PStat(254), 5);
+  callSubroutine(10);
+  return;
+}
+
+section(5) {
+  setTrigger(Trigger(44));
+  goto section_81;
+  return;
+}
+
+section(6) {
+  speak(Entity(6), "「やぁ、<LIGHTBLUE><PLAYER><WHITE>。」<NEWLINE>");
+  speak(Entity(6), "「私は時々ギアサバンナにもどって<NEWLINE> パトロールをつづけているのだが、<NEWLINE> この店はとても役に立つな。」<NEWLINE>");
+  speak(Entity(6), "「ところでギアサバンナの海ぞいには<NEWLINE> お店があるようだが、もう<NEWLINE> 行ったかい?」<NEWLINE>");
+  return;
+}
+
+section(51) {
+  move(entity: Entity.Player, to: (2200, -3000), sprint: 0);
+  if (!trigger(203)) {
+    warp(to: Map.TWNA01, spawn: 4, trigger: 255);
+  }
+  {
+    if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L2; else break;
+  }
+  {
+    if (trigger(221)) goto L1; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA04, spawn: 4, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA03, spawn: 4, trigger: 255);
+  }
+  warp(to: Map.TWNA02, spawn: 4, trigger: 255);
+
+L1:
+  if (trigger(225)) {
+    warp(to: Map.TWNA07, spawn: 4, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA06, spawn: 4, trigger: 255);
+  }
+  {
+    warp(to: Map.TWNA05, spawn: 4, trigger: 255);
+
+L2:
+    if (trigger(221)) goto L3; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA10, spawn: 4, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA09, spawn: 4, trigger: 255);
+  }
+  warp(to: Map.TWNA08, spawn: 4, trigger: 255);
+
+L3:
+  if (trigger(225)) {
+    warp(to: Map.TWNA13, spawn: 4, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA12, spawn: 4, trigger: 255);
+  }
+  warp(to: Map.TWNA11, spawn: 4, trigger: 255);
+  return;
+  garbage { 18 00 fe 00 18 00 51 00 1e 00 05 00 78 01 06 00 82 01 33 00 62 02 ff ff 56 00 05 1e fe 00 4c 00 fd 05 67 00 05 00 19 00 01 00 59 00 18 00 70 01 19 00 1c 00 59 00 1b 05 1a 00 81 75 97 88 82 bd 82 a9 81 41 01 06 05 00 01 01 81 41 01 0a 06 00 01 01 81 42 81 76 0d 00 00 00 1a 00 81 75 89 b4 82 cc 8e 64 8e 96 82 cd 89 5e 91 97 89 ae 82 be 81 42 89 bd 82 c5 82 e0 89 5e 82 d4 82 ba 81 42 81 76 0d 00 00 00 1a 00 81 75 81 63 82 c6 8c be 82 c1 82 c4 82 e0 81 41 82 a0 82 f1 82 bd 82 e7 82 aa 89 5e 82 d4 82 e0 82 cc 82 c6 0d 00 81 40 8c be 82 a6 82 ce 82 bb 82 cc 91 cc 82 be 82 af 81 63 81 42 82 bb 82 ea 82 c8 82 e7 81 63 81 76 0d 00 00 00 1a 00 81 75 89 b4 82 aa 82 a0 82 f1 82 bd 82 e7 82 f0 91 cc 82 b2 82 c6 89 5e 82 d4 82 c1 82 c4 82 cc 82 cd 0d 00 81 40 88 ab 82 ad 82 c8 82 a2 82 c6 8e 76 82 ed 82 c8 82 a2 82 a9 81 48 83 74 83 74 81 63 81 76 0d 00 00 00 1a 00 81 75 82 a0 82 f1 82 bd 82 e7 82 aa 92 6d 82 c1 82 c4 82 a2 82 e9 8f ea 8f 8a 82 d6 82 a2 82 c2 82 c5 82 e0 0d 00 81 40 98 41 82 ea 82 c4 82 c1 82 c4 82 e2 82 e9 82 ba 81 42 8b e0 82 cd 82 e0 82 e7 82 a4 82 aa 82 cb 81 42 81 76 0d 00 00 00 1e 00 fe 05 64 0a fe 00 1c 00 2c 00 16 00 1e 00 fe 00 1b 06 1a 00 81 75 82 e2 82 9f 81 41 01 06 05 00 01 01 81 42 81 76 0d 00 00 00 1b 06 1a 00 81 75 8e 84 82 cd 8e 9e 81 58 83 4d 83 41 83 54 83 6f 83 93 83 69 82 c9 82 e0 82 c7 82 c1 82 c4 0d 00 81 40 83 70 83 67 83 8d 81 5b 83 8b 82 f0 82 c2 82 c3 82 af 82 c4 82 a2 82 e9 82 cc 82 be 82 aa 81 41 0d 00 81 40 82 b1 82 cc 93 58 82 cd 82 c6 82 c4 82 e0 96 f0 82 c9 97 a7 82 c2 82 c8 81 42 81 76 0d 00 00 00 1b 06 1a 00 81 75 82 c6 82 b1 82 eb 82 c5 83 4d 83 41 83 54 83 6f 83 93 83 69 82 cc 8a 43 82 bc 82 a2 82 c9 82 cd 0d 00 81 40 82 a8 93 58 82 aa 82 a0 82 e9 82 e6 82 a4 82 be 82 aa 81 41 82 e0 82 a4 0d 00 81 40 8d 73 82 c1 82 bd 82 a9 82 a2 81 48 81 76 0d 00 00 00 fe 00 4e fd 98 08 48 f4 00 00 19 00 01 00 cb 00 18 00 7a 02 19 00 4b cc 04 ff 19 00 00 00 dc 00 40 00 d6 00 4a 00 01 32 18 00 96 02 19 00 16 00 fa 02 16 00 9a 02 16 00 9a 02 19 00 00 00 dd 00 18 00 ae 02 19 00 16 00 d6 02 16 00 b2 02 16 00 b2 02 19 00 00 00 e1 00 18 00 c2 02 19 00 4b aa 04 ff 19 00 00 00 f6 00 18 00 d2 02 19 00 4b a9 04 ff 4b a8 04 ff 19 00 00 00 e1 00 18 00 e6 02 19 00 4b ad 04 ff 19 00 00 00 f6 00 18 00 f6 02 19 00 4b ac 04 ff 4b ab 04 ff 19 00 00 00 dd 00 18 00 0e 03 19 00 16 00 36 03 16 00 12 03 16 00 12 03 19 00 00 00 e1 00 18 00 22 03 19 00 4b b0 04 ff 19 00 00 00 f6 00 18 00 32 03 19 00 4b af 04 ff 4b ae 04 ff 19 00 00 00 e1 00 18 00 46 03 19 00 4b b3 04 ff 19 00 00 00 f6 00 18 00 56 03 19 00 4b b2 04 ff 4b b1 04 ff fe 00 ff 00 1b fd 1a 00 81 75 82 a8 82 a8 81 41 01 06 83 4e 83 54 83 8a 83 4a 83 50 83 81 83 8d 83 93 01 01 81 48 81 76 0d 00 00 00 28 00 46 01 19 00 00 00 00 00 18 00 da 03 19 00 19 00 24 00 4f 02 63 00 18 00 a6 03 19 00 fe 00 1b fd 1a 00 81 75 82 a2 82 af 82 cb 81 41 8e 9d 82 bf 95 a8 82 aa 82 a2 82 c1 82 cf 82 a2 82 be 81 42 81 76 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 46 01 1b fd 1a 00 81 75 82 e0 82 e7 82 c1 82 c6 82 ad 82 e6 81 41 83 54 83 93 83 4c 83 85 81 5b 81 49 81 76 0d 00 00 00 1e 00 1c 00 1c 00 d7 00 fe 00 19 00 00 00 32 00 81 00 c9 00 18 00 98 05 19 00 1b 05 1a 00 81 75 82 a8 82 a8 81 41 97 88 82 c4 82 ad 82 ea 82 bd 82 f1 82 b6 82 e1 82 c8 81 49 0d 00 81 40 82 a8 82 ca 82 b5 82 c9 82 b5 82 a9 82 bd 82 cc 82 df 82 c8 82 a2 91 e5 8e 96 82 c8 0d 00 81 40 82 b1 82 c6 82 b6 82 e1 82 c1 82 bd 82 f1 82 c5 82 cc 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 d6 82 d6 82 d6 81 41 82 a2 82 a2 82 c1 82 c4 82 b1 82 c6 82 b3 81 42 0d 00 81 40 82 c5 81 41 83 41 83 69 }
+}

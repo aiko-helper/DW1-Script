@@ -1,0 +1,78 @@
+// DG011.SCN
+#include "functions.dgs"
+#pragma script index=11 start=0xd000 end=0xd800 headerU16=0x20 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 9, item: Item.Digimushroom, x: 55, y: 43);
+  spawnItemChance(max: 99, chance: 4, item: Item.Digimushroom, x: 68, y: 46);
+  return;
+}
+
+section(81) {
+  {
+    speak(Entity.System, " <NEWLINE>       MPスタンド<NEWLINE>");
+    rotate(entity: Entity.Player, to: 2048);
+    speak(Entity.Player, "「MPを回復できる機械か。」<NEWLINE>");
+    setSelection(L1, L2, L3);
+    showTextbox("MP100回復        200<B><it><NEWLINE>MP1000回復      1800<B><it><NEWLINE>使用しない<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L1:
+    if (money >= 200) {
+      addStats(currentMP: 100);
+      reduceMoney(200);
+      speak(Entity.System, "MPが回復した!<NEWLINE>");
+    } else {
+      speak(Entity.Player, "「お金が足りないか。」<NEWLINE>");
+      return;
+    }
+    return;
+
+L2:
+    if (money >= 1800) {
+      addStats(currentMP: 1000);
+      reduceMoney(1800);
+      speak(Entity.System, "MPが回復した!<NEWLINE>");
+    } else {
+      speak(Entity.Player, "「お金が足りないか。」<NEWLINE>");
+      return;
+    }
+    return;
+
+L3:
+  }
+  speak(Entity.Player, "「やめとこ。」<NEWLINE>");
+  return;
+}
+
+section(53) {
+  if (trigger(185)) {
+    return;
+  }
+  speak(Entity.Player, "「あっ、橋!」<NEWLINE>");
+  setTrigger(Trigger(185));
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「僕と戦うんですか?」<NEWLINE>");
+  finishEncounter(Trigger(286));
+}
+
+section(6) {
+  speak(Entity(6), "「ずいぶんと、なまいきですね。」<NEWLINE>");
+  finishEncounter(Trigger(286));
+}
+
+section(7) {
+  speak(Entity(7), "「な、何をするつもり?」<NEWLINE>");
+  finishEncounter(Trigger(296));
+}
+
+section(8) {
+  speak(Entity(8), "「言いつけてやるからな!」<NEWLINE>");
+  finishEncounter(Trigger(296));
+  garbage { 20 00 fe 00 20 00 51 00 4e 00 35 00 d6 01 05 00 00 02 06 00 2c 02 07 00 62 02 08 00 90 02 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 36 00 19 00 74 2c 37 00 2b 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 4c 00 19 00 74 2c 44 00 2e 00 fe 00 1b ff 1a 00 81 40 0d 00 81 40 81 40 81 40 81 40 81 40 81 40 81 40 82 6c 82 6f 83 58 83 5e 83 93 83 68 0d 00 00 00 4d fd 00 08 1b fd 1a 00 81 75 82 6c 82 6f 82 f0 89 f1 95 9c 82 c5 82 ab 82 e9 8b 40 8a 42 82 a9 81 42 81 76 0d 00 00 00 10 03 0e 01 66 01 be 01 1a 00 82 6c 82 6f 82 50 82 4f 82 4f 89 f1 95 9c 81 40 81 40 81 40 81 40 81 40 81 40 81 40 81 40 82 51 82 4f 82 4f 81 6f 81 70 0d 00 82 6c 82 6f 82 50 82 4f 82 4f 82 4f 89 f1 95 9c 81 40 81 40 81 40 81 40 81 40 81 40 82 50 82 57 82 4f 82 4f 81 6f 81 70 0d 00 8e 67 97 70 82 b5 82 c8 82 a2 0d 00 00 00 12 00 16 00 be 01 19 00 25 00 00 02 c8 00 00 00 18 00 44 01 19 00 35 07 64 00 2b 00 c8 00 00 00 1b ff 1a 00 82 6c 82 6f 82 aa 89 f1 95 9c 82 b5 82 bd 81 49 0d 00 00 00 16 00 64 01 1b fd 1a 00 81 75 82 a8 8b e0 82 aa 91 ab 82 e8 82 c8 82 a2 82 a9 81 42 81 76 0d 00 00 00 fe 00 fe 00 19 00 25 00 00 02 08 07 00 00 18 00 9c 01 19 00 35 07 e8 03 2b 00 08 07 00 00 1b ff 1a 00 82 6c 82 6f 82 aa 89 f1 95 9c 82 b5 82 bd 81 49 0d 00 00 00 16 00 bc 01 1b fd 1a 00 81 75 82 a8 8b e0 82 aa 91 ab 82 e8 82 c8 82 a2 82 a9 81 42 81 76 0d 00 00 00 fe 00 fe 00 1b fd 1a 00 81 75 82 e2 82 df 82 c6 82 b1 81 42 81 76 0d 00 00 00 fe 00 19 00 00 00 b9 00 18 00 e4 01 19 00 fe 00 1b fd 1a 00 81 75 82 a0 82 c1 81 41 8b b4 81 49 81 76 0d 00 00 00 1c 00 b9 00 fe 00 1b 05 1a 00 81 75 96 6c 82 c6 90 ed 82 a4 82 f1 82 c5 82 b7 82 a9 81 48 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1e 01 fe 00 1b 06 1a 00 81 75 82 b8 82 a2 82 d4 82 f1 82 c6 81 41 82 c8 82 dc 82 a2 82 ab 82 c5 82 b7 82 cb 81 42 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1e 01 fe 00 1b 07 1a 00 81 75 82 c8 81 41 89 bd 82 f0 82 b7 82 e9 82 c2 82 e0 82 e8 81 48 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 08 1a 00 81 75 8c be 82 a2 82 c2 82 af 82 c4 82 e2 82 e9 82 a9 82 e7 82 c8 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 ff 00 fe 00 4b b9 02 ff fe 00 19 00 00 00 cd 00 18 00 de 02 19 00 16 00 e8 02 16 00 e2 02 16 00 e2 02 4b b7 02 ff fe 00 4b b8 02 ff fe 00 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 0e 03 19 00 16 00 72 03 16 00 12 03 16 00 12 03 19 00 00 00 ec 00 18 00 26 03 19 00 16 00 4e 03 16 00 2a 03 16 00 2a 03 19 00 00 00 cd 00 18 00 3e 03 19 00 16 00 48 03 16 00 42 03 16 00 42 03 4b b4 02 ff fe 00 4b cb 02 ff fe 00 19 00 00 00 cd 00 18 00 62 03 19 00 16 00 66 03 16 00 66 03 16 00 6c 03 4b ca 02 ff fe 00 4b c9 02 ff fe 00 19 00 00 00 ec 00 18 00 86 03 19 00 16 00 ae 03 16 00 8a 03 16 00 8a 03 19 00 00 00 cd 00 18 00 9e 03 19 00 16 00 a8 03 16 00 a2 03 16 00 a2 03 4b c5 02 ff fe 00 4b c8 02 ff fe 00 19 00 00 00 cd 00 18 00 c2 03 19 00 16 00 cc 03 16 00 c6 03 16 00 c6 03 4b c6 02 ff fe 00 4b c7 02 ff fe 00 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 f2 03 19 00 16 00 56 04 16 00 f6 03 16 00 f6 03 19 00 00 00 ec 00 18 00 0a 04 19 00 16 00 32 04 16 00 0e 04 16 00 0e 04 19 00 00 00 cd 00 18 00 22 04 19 00 16 00 2c 04 16 00 26 04 16 00 26 04 4b bd 02 ff fe 00 4b c4 02 ff fe 00 19 00 00 00 cd 00 18 00 46 04 19 00 16 00 50 04 16 00 4a 04 16 00 4a 04 4b c2 02 ff fe 00 4b c3 02 ff fe 00 19 00 00 00 ec 00 18 00 6a 04 19 00 16 00 92 04 16 00 6e 04 16 00 6e 04 19 00 00 00 cd 00 18 00 82 04 19 00 16 00 8c 04 16 00 86 04 16 00 86 04 4b be 02 ff fe 00 4b c1 02 ff fe 00 19 00 00 00 cd 00 18 00 a6 04 19 00 16 00 b0 04 16 00 aa 04 16 00 aa 04 4b bf 02 ff fe 00 4b c0 02 ff fe 00 ff 00 82 ea 82 cd 8d a2 82 e9 82 c8 81 42 0d 00 81 40 82 c5 82 e0 8a 58 8d ec 82 e8 82 f0 8e e8 93 60 82 c1 82 c4 82 ad 82 ea 82 e9 82 c8 82 e7 82 a2 81 5b 82 e6 81 42 81 76 0d 00 00 00 1b 06 1a 00 81 75 82 ed 82 a9 82 c1 82 bd 82 c5 82 bf 81 42 82 bb 82 ea 82 e0 97 a7 94 68 82 c8 8f 43 8d 73 82 c5 82 bf 82 cb 81 42 0d 00 81 40 82 aa 82 f1 82 ce 82 c1 82 c4 82 dd 82 e9 82 c5 82 bf 82 e6 81 42 81 76 0d 00 }
+}

@@ -1,0 +1,118 @@
+// DG066.SCN
+#include "functions.dgs"
+#pragma script index=66 start=0x2d800 end=0x2e000 headerU16=0x1c sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 12, item: Item.Digimushroom, x: 44, y: 56);
+  spawnItemChance(max: 99, chance: 8, item: Item.Digimushroom, x: 74, y: 50);
+  spawnItemChance(max: 99, chance: 1, item: Item.Happymushroom, x: 45, y: 46);
+  return;
+}
+
+section(5) {
+  {
+    playSound(8, 7);
+    speak(Entity(5), "「やっつけてやるー!」<NEWLINE>");
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 5);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    look(entity: Entity.Player, at: Entity(5));
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(5));
+    speak(Entity(5), "「くそ~もう一回やろーよ。」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L3);
+    showTextbox("「いいよ。」<NEWLINE>「ダメだよ。」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L1:
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 5);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    look(entity: Entity.Player, at: Entity(5));
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(5));
+    speak(Entity(5), "「あとちょっとなんだよね~。<NEWLINE> ね、もう一回!」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(16));
+    setDialogOwner(Entity.Player);
+    setSelection(L2, L3);
+    showTextbox("「しかたない。」<NEWLINE>「ダメ~。」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L2:
+    {
+      setTrigger(Trigger(1));
+      setPStat(PStat(250), 1);
+      setPStat(PStat(251), 5);
+      setPStat(PStat(252), 255);
+      setPStat(PStat(253), 255);
+      startBattle();
+      unsetTrigger(Trigger(1));
+      setPStat(PStat(250), 0);
+      look(entity: Entity.Player, at: Entity(5));
+      look(entity: Entity(5), at: Entity.Player);
+      look(entity: Entity.Partner, at: Entity(5));
+      delay(5);
+      playAnimation(Entity(5), Animation(28));
+      sfx(8, 7, wait: 40);
+      speak(Entity(5), "「勝てない~~!うわ~~ん!」<NEWLINE>");
+      playAnimation(Entity.Player, Animation(8));
+      speak(Entity.Player, "「勝ってどうするのさ。」<NEWLINE>");
+      playAnimation(Entity(5), Animation(0));
+      playAnimation(Entity.Player, Animation(0));
+      speak(Entity(5), "「え?う、うーん。どうしよ。」<NEWLINE>");
+      speak(Entity.Player, "「どうしよ…って何もないのか?」<NEWLINE>");
+      speak(Entity(5), "「何となくなんだ。ヒマだし。」<NEWLINE>");
+      playAnimation(Entity.Player, Animation(19));
+      speak(Entity.Player, "「はぁ…。ヒマなら街へおいで。<NEWLINE> 色んなデジモンがいるぜ。」<NEWLINE>");
+      speak(Entity(5), "「へえー、いいな。行くよ。<NEWLINE> ぼくパタモン。また後でね!」<NEWLINE>");
+      break;
+    }
+    approach(who: Entity(5), x: -1673, y: 122, tries: 10, wait: 10);
+    playSound(8, 5);
+    speak(Entity.System, "パタモンが街に参加した!!!<NEWLINE>");
+    followEntity(Entity.Player, speed: 10);
+    setTrigger(Trigger(231));
+    addPStat(PStat(1), 1);
+    return;
+
+L3:
+  }
+  speak(Entity(5), "「なんだい、つまんないの!」<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  return;
+}
+
+section(6) {
+  speak(Entity(6), "「おう、来るか!」<NEWLINE>");
+  finishEncounter(Trigger(275));
+}
+
+section(7) {
+  speak(Entity(7), "「オマエ、においしないな!」<NEWLINE>");
+  finishEncounter(Trigger(297));
+}
+
+section(8) {
+  speak(Entity(8), "「うまそう、オレ、オマエ、くう!」<NEWLINE>");
+  finishEncounter(Trigger(297));
+}
+
+section(9) {
+  speak(Entity(9), "「ガハハハハ、オマエおもしろい!」<NEWLINE>");
+  finishEncounter(Trigger(297));
+  garbage { 1c 00 fe 00 1c 00 05 00 60 00 06 00 cc 03 07 00 f4 03 08 00 26 04 09 00 5e 04 ff ff 24 00 6e 63 19 00 0b 00 6e 0c 18 00 32 00 19 00 74 2c 2c 00 38 00 24 00 6e 63 19 00 0b 00 6e 08 18 00 48 00 19 00 74 2c 4a 00 32 00 24 00 6e 63 19 00 0b 00 6e 01 18 00 5e 00 19 00 74 45 2d 00 2e 00 fe 00 5a 00 08 07 1b 05 1a 00 81 75 82 e2 82 c1 82 c2 82 af 82 c4 82 e2 82 e9 81 5b 81 49 81 76 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 1b 05 1a 00 81 75 82 ad 82 bb 81 60 82 e0 82 a4 88 ea 89 f1 82 e2 82 eb 81 5b 82 e6 81 42 81 76 0d 00 00 00 1b fd 10 02 06 01 a0 03 1a 00 81 75 82 a2 82 a2 82 e6 81 42 81 76 0d 00 81 75 83 5f 83 81 82 be 82 e6 81 42 81 76 0d 00 00 00 12 00 16 00 a0 03 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 1b 05 1a 00 81 75 82 a0 82 c6 82 bf 82 e5 82 c1 82 c6 82 c8 82 f1 82 be 82 e6 82 cb 81 60 81 42 0d 00 81 40 82 cb 81 41 82 e0 82 a4 88 ea 89 f1 81 49 81 76 0d 00 00 00 56 00 fd 10 1b fd 10 02 a4 01 a0 03 1a 00 81 75 82 b5 82 a9 82 bd 82 c8 82 a2 81 42 81 76 0d 00 81 75 83 5f 83 81 81 60 81 42 81 76 0d 00 00 00 12 00 16 00 a0 03 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 05 4c 00 05 fd 4c 00 fc 05 67 00 05 00 56 00 05 1c 5a 00 08 07 67 00 28 00 1b 05 1a 00 81 75 8f 9f 82 c4 82 c8 82 a2 81 60 81 60 81 49 82 a4 82 ed 81 60 81 60 82 f1 81 49 81 76 0d 00 00 00 56 00 fd 08 1b fd 1a 00 81 75 8f 9f 82 c1 82 c4 82 c7 82 a4 82 b7 82 e9 82 cc 82 b3 81 42 81 76 0d 00 00 00 56 00 05 00 56 00 fd 00 1b 05 1a 00 81 75 82 a6 81 48 82 a4 81 41 82 a4 81 5b 82 f1 81 42 82 c7 82 a4 82 b5 82 e6 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 c7 82 a4 82 b5 82 e6 81 63 82 c1 82 c4 89 bd 82 e0 82 c8 82 a2 82 cc 82 a9 81 48 81 76 0d 00 00 00 1b 05 1a 00 81 75 89 bd 82 c6 82 c8 82 ad 82 c8 82 f1 82 be 81 42 83 71 83 7d 82 be 82 b5 81 42 81 76 0d 00 00 00 56 00 fd 13 1b fd 1a 00 81 75 82 cd 82 9f 81 63 81 42 83 71 83 7d 82 c8 82 e7 8a 58 82 d6 82 a8 82 a2 82 c5 81 42 0d 00 81 40 90 46 82 f1 82 c8 83 66 83 57 83 82 83 93 82 aa 82 a2 82 e9 82 ba 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 d6 82 a6 81 5b 81 41 82 a2 82 a2 82 c8 81 42 8d 73 82 ad 82 e6 81 42 0d 00 81 40 82 da 82 ad 83 70 83 5e 83 82 83 93 81 42 82 dc 82 bd 8c e3 82 c5 82 cb 81 49 81 76 0d 00 00 00 16 00 38 03 4e 05 77 f9 7a 00 01 00 19 00 0d 00 65 0a 18 00 60 03 19 00 1f 00 65 01 67 00 0a 00 4c 00 fd 05 4c 00 fc 05 16 00 38 03 4a 05 48 05 1e 00 65 00 }
+}

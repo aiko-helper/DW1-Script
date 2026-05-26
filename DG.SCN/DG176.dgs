@@ -1,0 +1,298 @@
+// DG176.SCN
+#include "functions.dgs"
+#pragma script index=176 start=0x7f800 end=0x80800 headerU16=0x1c sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(6) {
+  setPStat(PStat(122), 0);
+  if (!trigger(257) && !trigger(357)) {
+    speak(Entity(6), "「あんちゃん、オイラと勝負しねーか?<NEWLINE> オイラに勝ったら何でもいうこときくぜ。」<NEWLINE>");
+    speak(Entity.Player, "「ん、何の勝負だ?」<NEWLINE>");
+    speak(Entity(6), "「名づけて、デジモンカーリング!<NEWLINE> くわしくは中で説明するよ。」<NEWLINE>");
+    speak(Entity.Player, "「ふーん、俺が負けたらどうなる?」<NEWLINE>");
+    speak(Entity(6), "「最初の一回は何もなしでいーよ。<NEWLINE> でも次に挑戦する時はサカナを1ぴき<NEWLINE> 先にもらうよ。」<NEWLINE>");
+    speak(Entity.Player, "「わかった。じゃあ俺達が勝ったら、街に<NEWLINE> 来てもらう。それでいいならやろう。」<NEWLINE>");
+    speak(Entity(6), "「うん。オッケーだよ。じゃ、中へ。」<NEWLINE>");
+    setTrigger(Trigger(357));
+    move(entity: Entity(6), to: (1905, 1667), sprint: 0);
+    delay(10);
+    move(entity: Entity.Player, to: (1905, 1667), sprint: 0);
+    delay(10);
+    move(entity: Entity.Partner, to: (1905, 1667), sprint: 0);
+    delay(10);
+    warp(to: Map.FRZL17, spawn: 1, trigger: 255);
+    return;
+  }
+  if (!trigger(257)) {
+    speak(Entity(6), "「やあ、あんちゃん、おいらと勝負すんの<NEWLINE> かい?挑戦料はサカナ1ぴきだよ。」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L2, L1);
+    showTextbox("「やってやる!」<NEWLINE>「やめとく。」<NEWLINE>");
+    waitForSelectionChoice();
+    return;
+  }
+  if (!trigger(92)) {
+    setTrigger(Trigger(92));
+    speak(Entity(6), "「おっす、あんちゃん!ここにも<NEWLINE> スケートリンク作ったよ。」<NEWLINE>");
+    showTextbox("「前と同じくサカナ1ぴきで1ゲームだよ。<NEWLINE> ただしおいらに勝つとステキな賞品を<NEWLINE> プレゼントさ。」<NEWLINE>");
+  }
+  setPStat(PStat(122), 0);
+  speak(Entity(6), "「さあ、あんちゃん、おいらと勝負すんの<NEWLINE> かい?挑戦料はサカナ1ぴきだ。」<NEWLINE>");
+  setDialogOwner(Entity.Player);
+  setSelection(L2, L1);
+  showTextbox("「やってやる!」<NEWLINE>「やめとく。」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L1:
+  setPStat(PStat(113), 0);
+  speak(Entity(6), "「何だい、つまんないの。」<NEWLINE>");
+  return;
+
+L2:
+  speak(Entity(6), "「サカナちょうだい!」<NEWLINE>");
+  setTrigger(Trigger(3));
+  callSubroutine(0);
+  {
+    if (trigger(3)) {
+      speak(Entity.Player, "「今、何も無いんだった…」<NEWLINE>");
+      break;
+    }
+    {
+      if (pstat[254] == 62 || pstat[254] == 63 || pstat[254] == 64 || pstat[254] == 65) {
+        callSubroutine(12);
+        break;
+      }
+      if (pstat[254] == 66 || pstat[254] == 67) {
+        callSubroutine(12);
+        break;
+      }
+      if (pstat[254] == 255) {
+        goto L3;
+        break;
+      }
+      speak(Entity.Player, "「おっと、これをあげても仕方ない。」<NEWLINE>");
+      goto L3;
+    }
+    speak(Entity(6), "「わあ、うまそう。おっと、勝負が先だね。<NEWLINE> じゃ、中へ。」<NEWLINE>");
+    warp(to: Map.FRZL17, spawn: 1, trigger: 255);
+    return;
+
+L3:
+  }
+  setPStat(PStat(113), 0);
+  speak(Entity(6), "「そりゃないよあんちゃん。<NEWLINE> 竜の目の湖でサカナ釣って来なよー。」<NEWLINE>");
+  return;
+  return;
+}
+
+section(10) {
+  if (pstat[121] == 0) {
+    speak(Entity(6), "「悪いねぇ、あんちゃん。<NEWLINE> またサカナを持ってチャレンジしに<NEWLINE> 来てよね。」<NEWLINE>");
+    return;
+  }
+  {
+    if (pstat[121] != 2) break;
+    speak(Entity(6), "「何と、満点じゃないか!<NEWLINE> あんちゃん…もしかしてプロかい?」<NEWLINE>");
+    if (trigger(372)) break;
+    setTrigger(Trigger(372));
+    playSound(0, 7);
+    speak(Entity.System, " <YELLOW>おめでとうございます!<NEWLINE> あなたのすばらしい功績に対して<NEWLINE> メダルがおくられました!<WHITE><NEWLINE>");
+  }
+  {
+    speak(Entity(6), "「すげえや、あんちゃん。<NEWLINE> オイラ初めて負けたよ。」<NEWLINE>");
+    speak(Entity.Player, "「よーし、約そく通り街に来てもらうぜ。」<NEWLINE>");
+    speak(Entity(6), "「しかたない。でもおいら街でやることもう<NEWLINE> 決めてあるんだ。楽しみにしててよ。」<NEWLINE>");
+    break;
+  }
+  approach(who: Entity(6), x: -105, y: 1821, tries: 3, wait: 20);
+  playSound(8, 11);
+  speak(Entity.System, "ペンモンが街に参加した!!!<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  setTrigger(Trigger(257));
+  addPStat(PStat(1), 1);
+  return;
+}
+
+section(11) {
+  if (pstat[121] == 0) {
+    speak(Entity(6), "「悪いねぇ、あんちゃん。<NEWLINE> またサカナを持ってチャレンジしに<NEWLINE> 来てよね。」<NEWLINE>");
+    return;
+  }
+  {
+    if (pstat[121] != 2) break;
+    speak(Entity(6), "「何と、満点じゃないか!<NEWLINE> あんちゃん…もしかしてプロかい?」<NEWLINE>");
+    if (trigger(372)) break;
+    setTrigger(Trigger(372));
+    playSound(0, 7);
+    speak(Entity.System, " <YELLOW>おめでとうございます!<NEWLINE> あなたのすばらしい功績に対して<NEWLINE> メダルがおくられました!<WHITE><NEWLINE>");
+  }
+  speak(Entity(6), "「うわぉ、すごいよあんちゃん。<NEWLINE> おいらまた負けた。」<NEWLINE>");
+  speak(Entity(6), "「仕方ない、はい、賞品。」<NEWLINE>");
+  roll(pstat: PStat(102), max: 49);
+  loop {
+    {
+      if (pstat[102] <= 0) {
+        giveItem(Item.Rooster, 1);
+        setPStat(PStat.RollScratch, 85);
+        break;
+      }
+      if (pstat[102] <= 5) {
+        giveItem(Item.Restore, 1);
+        setPStat(PStat.RollScratch, 11);
+        break;
+      }
+      if (pstat[102] <= 15) {
+        giveItem(Item.OmniDisk, 1);
+        setPStat(PStat.RollScratch, 18);
+        break;
+      }
+      if (pstat[102] <= 22) {
+        giveItem(Item.GiantMeat, 1);
+        setPStat(PStat.RollScratch, 39);
+        break;
+      }
+      if (pstat[102] <= 30) {
+        giveItem(Item.LargeRecovery, 1);
+        setPStat(PStat.RollScratch, 2);
+        break;
+      }
+      if (pstat[102] > 50) break;
+      giveItem(Item.MediumMP, 1);
+      setPStat(PStat.RollScratch, 5);
+      break;
+    }
+    if (!trigger(0)) break;
+    speak(Entity(6), "「持ち物がいっぱいだよ!」<NEWLINE>");
+    unsetTrigger(Trigger(3));
+    callSubroutine(0);
+    callSubroutine(13);
+  }
+  speak(Entity.System, "<LIGHTBLUE><TREASURE ITEM><WHITE>を手に入れた!<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  return;
+  return;
+}
+
+section(7) {
+  setPStat(PStat(122), 1);
+  speak(Entity(6), "「よう、<LIGHTBLUE><PLAYER><WHITE>。俺は今ペンモンに<NEWLINE> たのまれて店番をしているのだ。」<NEWLINE>");
+  showTextbox("「そうだ、今回は俺と勝負してみないか?<NEWLINE> 俺に勝てばとっておきの賞品をやるが、<NEWLINE> どうだ?」<NEWLINE>");
+  setDialogOwner(Entity.Player);
+  setSelection(L1, L3);
+  showTextbox("「やったろうじゃん。」<NEWLINE>「ことわる。」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L1:
+  speak(Entity(6), "「勝負前にサカナをもらっておくぞ。」<NEWLINE>");
+  setTrigger(Trigger(3));
+  callSubroutine(0);
+  {
+    if (trigger(3)) {
+      speak(Entity.Player, "「今、何も無いんだった…」<NEWLINE>");
+      break;
+    }
+    {
+      if (pstat[254] == 62 || pstat[254] == 63 || pstat[254] == 64 || pstat[254] == 65) {
+        callSubroutine(12);
+        break;
+      }
+      if (pstat[254] == 66 || pstat[254] == 67) {
+        callSubroutine(12);
+        break;
+      }
+      if (pstat[254] == 255) {
+        goto L2;
+        break;
+      }
+      speak(Entity.Player, "「おっと、これをあげても仕方ない。」<NEWLINE>");
+      goto L2;
+    }
+    speak(Entity(6), "「フッ、今日は勝たせてもらうぞ。<NEWLINE> さあ、中へ。」<NEWLINE>");
+    warp(to: Map.FRZL17, spawn: 1, trigger: 255);
+    return;
+
+L2:
+  }
+  setPStat(PStat(113), 0);
+  speak(Entity(6), "「ペンモンの店番としてはサカナなしに<NEWLINE> 勝負するわけにはいかん。<NEWLINE> 残念だが出直してくるんだな。」<NEWLINE>");
+  return;
+
+L3:
+  speak(Entity(6), "「な…断るというのか…!」<NEWLINE>");
+  return;
+}
+
+section(12) {
+  if (pstat[121] == 0) {
+    speak(Entity(6), "「ふはは、もうすこし頭をつかわないと<NEWLINE> 俺には勝てんぞ!またそのうち会おう。」<NEWLINE>");
+    return;
+  }
+  {
+    if (pstat[121] != 2) break;
+    speak(Entity(6), "「俺を相手に満点とは!<NEWLINE> おまえはカーリングの天才か!?」<NEWLINE>");
+    if (trigger(372)) break;
+    setTrigger(Trigger(372));
+    playSound(0, 7);
+    speak(Entity.System, " <YELLOW>おめでとうございます!<NEWLINE> あなたのすばらしい功績に対して<NEWLINE> メダルがおくられました!<WHITE><NEWLINE>");
+  }
+  speak(Entity(6), "「くっ、さすがにやるな、<LIGHTBLUE><PLAYER><WHITE>!<NEWLINE> 約そくの賞品だ。」<NEWLINE>");
+  roll(pstat: PStat(102), max: 49);
+  loop {
+    {
+      if (pstat[102] <= 0) {
+        giveItem(Item.SilverBall, 1);
+        setPStat(PStat.RollScratch, 103);
+        break;
+      }
+      if (pstat[102] <= 1) {
+        giveItem(Item.MetalArmor, 1);
+        setPStat(PStat.RollScratch, 104);
+        break;
+      }
+      if (pstat[102] <= 2) {
+        giveItem(Item.Chainsaw, 1);
+        setPStat(PStat.RollScratch, 105);
+        break;
+      }
+      if (pstat[102] <= 3) {
+        giveItem(Item.SmallSpear, 1);
+        setPStat(PStat.RollScratch, 106);
+        break;
+      }
+      if (pstat[102] <= 11) {
+        giveItem(Item.SuperRecovery, 1);
+        setPStat(PStat.RollScratch, 3);
+        break;
+      }
+      if (pstat[102] <= 21) {
+        giveItem(Item.Restore, 1);
+        setPStat(PStat.RollScratch, 11);
+        break;
+      }
+      if (pstat[102] <= 33) {
+        giveItem(Item.Omnipotent, 1);
+        setPStat(PStat.RollScratch, 9);
+        break;
+      }
+      if (pstat[102] > 49) break;
+      giveItem(Item.Sirloin, 1);
+      setPStat(PStat.RollScratch, 40);
+      break;
+    }
+    if (!trigger(0)) break;
+    speak(Entity(6), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+    unsetTrigger(Trigger(3));
+    callSubroutine(0);
+    callSubroutine(13);
+  }
+  speak(Entity.System, "<LIGHTBLUE><TREASURE ITEM><WHITE>を手に入れた!<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  return;
+  garbage { 1c 00 fe 00 1c 00 06 00 1e 00 0a 00 90 05 0b 00 ea 07 07 00 68 0a 0c 00 02 0d ff ff fe 00 1e 00 7a 00 19 00 01 00 01 01 81 00 65 01 18 00 2a 02 19 00 1b 06 1a 00 81 75 82 a0 82 f1 82 bf 82 e1 82 f1 81 41 83 49 83 43 83 89 82 c6 8f 9f 95 89 82 b5 82 cb 81 5b 82 a9 81 48 0d 00 81 40 83 49 83 43 83 89 82 c9 8f 9f 82 c1 82 bd 82 e7 89 bd 82 c5 82 e0 }
+}

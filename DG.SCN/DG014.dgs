@@ -1,0 +1,200 @@
+// DG014.SCN
+#include "functions.dgs"
+#pragma script index=14 start=0xe800 end=0xf800 headerU16=0x1c sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 14, item: Item.Digimushroom, x: 48, y: 80);
+  spawnItemChance(max: 99, chance: 6, item: Item.Happymushroom, x: 40, y: 60);
+  if (trigger(86) && !trigger(225)) {
+    setObjectsVisibleRange(0, 3, 0);
+  }
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「アナタ、デジモンデスカ?」<NEWLINE>");
+  finishEncounter(Trigger(277));
+}
+
+section(7) {
+  speak(Entity(7), "「ハウ、アー、ユー?どっからきたの?」<NEWLINE>");
+  finishEncounter(Trigger(277));
+}
+
+section(8) {
+  speak(Entity(8), "「ボクのことバカにするな!」<NEWLINE>");
+  finishEncounter(Trigger(296));
+}
+
+section(9) {
+  speak(Entity(9), "「ガブガブしてやるぅ!」<NEWLINE>");
+  finishEncounter(Trigger(278));
+}
+
+section(51) {
+  if (trigger(225)) {
+    return;
+  }
+  if (!trigger(86)) {
+    return;
+  }
+  move(entity: Entity.Player, to: (-715, -2329), sprint: 0, withCamera: true);
+  delay(20);
+  rotate(entity: Entity.Player, to: 1024);
+  delay(5);
+  if (trigger(186)) {
+    speak(Entity.Player, "「んー、このままほっとくと本当に<NEWLINE> かれてしまいそうだ。」<NEWLINE>");
+    showTextbox("「雨でもふればいいんだけど…」<NEWLINE>");
+  } else {
+    setTrigger(Trigger(186));
+    speak(Entity.Player, "「へー、珍しい。芽が出てるよ。」<NEWLINE>");
+    delay(20);
+    anim(Entity.Player, Animation(16), wait: 20);
+    speak(Entity.Player, "「ん?今少し動いたような…<NEWLINE> これがウワサの不思議な植物ってやつか?」<NEWLINE>");
+    anim(Entity.Player, Animation(22), wait: 20);
+    speak(Entity.Player, "「でも、ちょっとしおれてるなあ。<NEWLINE> このままだと、かれちゃうぞ。」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+  }
+  {
+    speak(Entity.System, "何かアイテムを使いますか?<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L5);
+    showTextbox("「使ってみよう。」<NEWLINE>「使わない。」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L1:
+    setTrigger(Trigger(3));
+    callSubroutine(0);
+    if (trigger(3)) {
+      speak(Entity.Player, "「今、何も無いんだった…」<NEWLINE>");
+      break;
+    }
+    switch pstat[254] {
+      255 => {
+        speak(Entity.Player, "「今の持ち物じゃダメだな。」<NEWLINE>");
+        break;
+      }
+      121 => {
+        fadeOutHUD();
+        callSubroutine(12);
+        goto L2;
+      }
+    }
+    speak(Entity.Player, "「これじゃ意味無いか…」<NEWLINE>");
+    break;
+    return;
+
+L2:
+    loadDigimon(Digimon.NPCVegimon);
+    setObjectsVisibleRange(3, 15, 0);
+    setPStat(PStat(247), 3);
+    setPStat(PStat(248), 13);
+    callSubroutine(21);
+    setObjectsVisibleRange(16, 19, 0);
+    setPStat(PStat(247), 16);
+    setPStat(PStat(248), 4);
+    callSubroutine(21);
+    setObjectsVisibleRange(20, 32, 0);
+    setPStat(PStat(247), 20);
+    setPStat(PStat(248), 13);
+    callSubroutine(21);
+    delay(50);
+    sfx(8, 1, wait: 100);
+    setObjectsVisibleRange(3, 32, 1);
+    setObjectsVisibleRange(33, 76, 0);
+    setPStat(PStat(247), 33);
+    setPStat(PStat(248), 44);
+    callSubroutine(21);
+    delay(30);
+    setObjectsVisibleRange(0, 3, 1);
+    delay(40);
+    playSound(8, 2);
+    setDigimon(Digimon.NPCVegimon, Entity(1), 0);
+    delay(5);
+    playAnimation(Entity(6), Animation(28));
+    waitForEntity(Entity(6));
+    anim(Entity(6), Animation(0), wait: 20);
+    setObjectsVisibleRange(33, 75, 1);
+    anim(Entity.Player, Animation(15), wait: 10);
+    playSound(8, 2);
+    anim(Entity(6), Animation(28), wait: 20);
+    playSound(8, 2);
+    playAnimation(Entity(6), Animation(28));
+    move(entity: Entity(6), to: (-977, -1946), animDuration: 3);
+    delay(20);
+    playSound(8, 2);
+    playAnimation(Entity(6), Animation(28));
+    move(entity: Entity(6), to: (-1254, -2263), animDuration: 3);
+    delay(20);
+    playSound(8, 2);
+    playAnimation(Entity(6), Animation(28));
+    move(entity: Entity(6), to: (-1025, -2799), animDuration: 3);
+    delay(20);
+    playSound(8, 2);
+    playAnimation(Entity(6), Animation(28));
+    move(entity: Entity(6), to: (-1025, -2349), animDuration: 3);
+    delay(20);
+    look(entity: Entity(6), at: Entity.Player);
+    delay(5);
+    speak(Entity(6), "'ûûûû!\"\n");
+    showTextbox("「ウォッス!オレ、ベジーモン!」<NEWLINE>");
+    anim(Entity.Player, Animation(15), wait: 20);
+    speak(Entity.Player, "「びっくりした~。植物のデジモンかよ…」<NEWLINE>");
+    speak(Entity(6), "「ケケッ、ところでおまえ、ヤサイ好きか?」<NEWLINE>");
+    playSound(8, 5);
+    anim(Entity.Player, Animation(16), wait: 20);
+    speak(Entity.Player, "「なんだよいきなり…ヤサイ?<NEWLINE> うーん…」<NEWLINE>");
+    setTrigger(Trigger(49));
+    setSelection(L3, L4);
+    showTextbox("「好きだな。」<NEWLINE>「キライだな。」<NEWLINE>");
+    speak(Entity.Player, "「…やめとこう。」<NEWLINE>");
+    return;
+
+L3:
+    {
+      unsetTrigger(Trigger(49));
+      playSound(8, 5);
+      speak(Entity(6), "「お、ヤサイ好きに悪いヤツはいねー。」<NEWLINE>");
+      break;
+
+L4:
+      unsetTrigger(Trigger(49));
+      playSound(8, 5);
+      speak(Entity(6), "「いかんいかーん!ヤサイはいいぞー。」<NEWLINE>");
+      break;
+    }
+    {
+      speak(Entity.Player, "'???\"\n");
+      speak(Entity(6), "「よーし決定。オレ、おまえについていく!」<NEWLINE>");
+      anim(Entity.Player, Animation(19), wait: 20);
+      speak(Entity.Player, "「げ、強引なやつ…ちょっと待てよ!」<NEWLINE>");
+      playSound(8, 5);
+      speak(Entity(6), "「じゃあついていかない!じゃーな!」<NEWLINE>");
+      speak(Entity.Player, "「気まぐれすぎるよ!」<NEWLINE>");
+      speak(Entity(6), "「あーん?どうすりゃいーんだよ?」<NEWLINE>");
+      anim(Entity.Player, Animation(20), wait: 10);
+      speak(Entity.Player, "「えーとな、街に来て何か手伝え!」<NEWLINE>");
+      playAnimation(Entity.Player, Animation(0));
+      playSound(8, 5);
+      speak(Entity(6), "「ケケケ、いーぜ!とにかくここにいるのは<NEWLINE> もうアキた。ケケ!」<NEWLINE>");
+      move(entity: Entity.Player, to: (-1024, -1820), sprint: 1, withCamera: true);
+      move(entity: Entity.Partner, to: (-741, -1923), sprint: 1);
+      break;
+    }
+    approach(who: Entity(6), x: 911, y: -2266, tries: 10, wait: 10);
+    playSound(8, 3);
+    speak(Entity.System, "ベジーモンが街に参加した!!!<NEWLINE>");
+    followEntity(Entity.Player, speed: 10);
+    setTrigger(Trigger(225));
+    addPStat(PStat(1), 2);
+    return;
+
+L5:
+  }
+  move(entity: Entity.Player, to: (-61, -2273), sprint: 0, withCamera: true);
+  waitForEntity(Entity.Player);
+  return;
+  garbage { 1c 00 fe 00 1c 00 05 00 6a 00 07 00 9c 00 08 00 d8 00 09 00 0a 01 33 00 38 01 ff ff 24 00 6e 63 19 00 0b 00 6e 0e 18 00 32 00 19 00 74 2c 30 00 50 00 24 00 6e 63 19 00 0b 00 6e 06 18 00 48 00 19 00 74 45 28 00 3c 00 19 00 00 00 56 00 81 00 e1 00 18 00 68 00 19 00 57 00 00 00 57 00 01 00 57 00 02 00 57 00 03 00 fe 00 1b 05 1a 00 81 75 83 41 83 69 83 5e 81 41 83 66 83 57 83 82 83 93 83 66 83 58 83 4a 81 48 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 15 01 fe 00 1b 07 1a 00 81 75 83 6e 83 45 81 41 83 41 81 5b 81 41 83 86 81 5b 81 48 82 c7 82 c1 82 a9 82 e7 82 ab 82 bd 82 cc 81 48 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 15 01 fe 00 1b 08 1a 00 81 75 83 7b 83 4e 82 cc 82 b1 82 c6 83 6f 83 4a 82 c9 82 b7 82 e9 82 c8 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 09 1a 00 81 75 83 4b 83 75 83 4b 83 75 82 b5 82 c4 82 e2 82 e9 82 a3 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 16 01 fe 00 19 00 00 00 e1 00 18 00 46 01 19 00 fe 00 19 00 01 00 56 00 18 00 54 01 19 00 fe 00 52 fd 35 fd e7 f6 00 00 67 00 14 00 4d fd 00 04 67 00 05 00 19 00 00 00 ba 00 18 00 de 01 19 00 1b fd 1a 00 81 75 82 f1 81 5b 81 41 82 b1 82 cc 82 dc 82 dc 82 d9 82 c1 82 c6 82 ad 82 c6 96 7b 93 96 82 c9 0d 00 81 40 82 a9 82 ea 82 c4 82 b5 82 dc 82 a2 82 bb 82 a4 82 be 81 42 81 76 0d 00 00 00 1a 00 81 75 89 4a 82 c5 82 e0 82 d3 82 ea 82 ce 82 a2 82 a2 82 f1 82 be 82 af 82 c7 81 63 81 76 0d 00 00 00 16 00 ba 02 1c 00 ba 00 1b fd 1a 00 81 75 82 d6 81 5b 81 41 92 bf 82 b5 82 a2 81 42 89 e8 82 aa 8f 6f 82 c4 82 e9 82 e6 81 42 81 76 0d 00 00 00 67 00 14 00 56 00 fd 10 67 00 14 00 1b fd 1a 00 81 75 82 f1 81 48 8d a1 8f ad 82 b5 93 ae 82 a2 82 bd 82 e6 82 a4 82 c8 81 63 0d 00 81 40 82 b1 82 ea 82 aa 83 45 83 8f 83 54 82 cc 95 73 8e 76 8b 63 82 c8 90 41 95 a8 82 c1 82 c4 82 e2 82 c2 82 a9 81 48 81 76 0d 00 00 00 56 00 fd 16 67 00 14 00 1b fd 1a 00 81 75 82 c5 82 e0 81 41 82 bf 82 e5 82 c1 82 c6 82 b5 82 a8 82 ea 82 c4 82 e9 82 c8 82 a0 81 42 0d 00 81 40 82 b1 82 cc 82 dc 82 dc 82 be 82 c6 81 41 82 a9 82 ea 82 bf 82 e1 82 a4 82 bc 81 42 81 76 0d 00 00 00 56 00 fd 00 1b ff 1a 00 89 bd 82 a9 83 41 83 43 83 65 83 80 82 f0 8e 67 82 a2 82 dc 82 b7 82 a9 81 48 0d 00 00 00 1b fd 10 02 12 03 6c 0a 1a 00 81 75 8e 67 82 c1 82 c4 82 dd 82 e6 82 a4 81 42 81 76 0d 00 81 75 8e 67 82 ed 82 c8 82 a2 81 42 81 76 0d 00 00 00 12 00 16 00 6c 0a 1c 00 03 00 64 00 19 00 00 00 03 00 18 00 4a 03 19 00 1b fd 1a 00 81 75 8d a1 81 41 89 bd 82 e0 96 b3 82 a2 82 f1 82 be 82 c1 82 bd 81 63 81 76 0d 00 00 00 16 00 6c 0a 19 00 08 00 fe ff 18 00 7e 03 19 00 1b fd 1a 00 81 75 8d a1 82 cc 8e 9d 82 bf 95 a8 82 b6 82 e1 83 5f 83 81 82 be 82 c8 81 42 81 76 0d 00 00 00 16 00 6c 0a 19 00 08 00 fe 79 18 00 92 03 19 00 27 00 64 0c 16 00 b8 03 1b fd 1a 00 81 75 82 b1 82 ea 82 b6 82 e1 88 d3 96 a1 96 b3 82 a2 82 a9 81 63 81 76 0d 00 00 00 16 00 6c 0a fe 00 46 93 57 00 03 00 57 00 04 00 57 00 05 00 57 00 06 00 57 00 07 00 57 00 08 00 57 00 09 00 57 00 0a 00 57 00 0b 00 57 00 0c 00 57 00 0d 00 57 00 0e 00 57 00 0f 00 1e 00 f7 03 1e 00 f8 0d 64 15 57 00 10 00 57 00 11 00 57 00 12 00 57 00 13 00 1e 00 f7 10 1e 00 f8 04 64 15 57 00 14 00 57 00 15 00 57 00 16 00 57 00 17 00 57 00 18 00 57 00 19 00 57 00 1a 00 57 00 1b 00 57 00 1c 00 57 00 1d 00 57 00 1e 00 57 00 1f 00 57 00 20 00 1e 00 f7 14 1e 00 f8 0d 64 15 67 00 32 00 5a 00 08 01 67 00 64 00 57 00 03 01 57 00 04 01 57 00 05 01 57 00 06 01 57 00 07 01 57 00 08 01 57 00 09 01 57 00 0a 01 57 00 0b 01 57 00 0c 01 57 00 0d 01 57 00 0e 01 57 00 0f 01 57 00 10 01 57 00 11 01 57 00 12 01 57 00 13 01 57 00 14 01 57 00 15 01 57 00 16 01 57 00 17 01 57 00 18 01 57 00 19 01 57 00 1a 01 57 00 1b 01 57 00 1c 01 57 00 1d 01 57 00 1e 01 57 00 1f 01 57 00 20 01 57 00 21 00 57 00 22 00 57 00 23 00 57 00 24 00 57 00 25 00 57 00 26 00 57 00 27 00 57 00 28 00 57 00 29 00 57 00 2a 00 57 00 2b 00 57 00 2c 00 57 00 2d 00 57 00 2e 00 57 00 2f 00 57 00 30 00 57 00 31 00 57 00 32 00 57 00 33 00 57 00 34 00 57 00 35 00 57 00 36 00 57 00 37 00 57 00 38 00 57 00 39 00 57 00 3a 00 57 00 3b 00 57 00 3c 00 57 00 3d 00 57 00 3e 00 57 00 3f 00 57 00 40 00 57 00 41 00 57 00 42 00 57 00 43 00 57 00 44 00 57 00 45 00 57 00 46 00 57 00 47 00 57 00 48 00 57 00 49 00 57 00 4a 00 57 00 4b 00 57 00 4c 00 1e 00 }
+}

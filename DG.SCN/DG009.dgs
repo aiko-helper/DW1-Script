@@ -1,0 +1,350 @@
+// DG009.SCN
+#include "functions.dgs"
+#pragma script index=9 start=0xb800 end=0xc800 headerU16=0x20 sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  if (trigger(232)) {
+    setObjectsVisibleRange(68, 70, 1);
+  } else {
+    setRectImpassible(22, 16, 3, 12);
+  }
+  if (trigger(232) && pstat[1] >= 35) {
+    setObjectsVisibleRange(71, 73, 0);
+  }
+  spawnItemChance(max: 99, chance: 39, item: Item.Digimushroom, x: 37, y: 48);
+  spawnItemChance(max: 99, chance: 3, item: Item.BlueApple, x: 38, y: 52);
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「みのほどしらずだね!」<NEWLINE>");
+  finishEncounter(Trigger(286));
+}
+
+section(7) {
+  speak(Entity(7), "「ボクが何したって言うんだよっ!」<NEWLINE>");
+  finishEncounter(Trigger(296));
+}
+
+section(55) {
+  return;
+}
+
+section(51) {
+  if (trigger(258)) {
+    return;
+  }
+  if (trigger(206) || trigger(211) || trigger(252) || trigger(213)) {
+  } else {
+    return;
+  }
+  {
+    {
+      speak(Entity.System, "<YELLOW>???<WHITE><NEWLINE>「待たれーい!!!」<NEWLINE>");
+      anim(Entity.Player, Animation(16), wait: 20);
+      playAnimation(Entity.Player, Animation(0));
+      move(entity: Entity.Player, to: (-1050, -1473), sprint: 1);
+      move(entity: Entity.Partner, to: (-709, -1473), sprint: 1);
+      waitForPair();
+      rotate(entity: Entity.Player, to: 2048);
+      rotate(entity: Entity.Partner, to: 2048);
+      callSubroutine(38);
+      playSound(8, 0);
+      panTo(x: -836, y: -663, slowdown: 20);
+      setObjectVisibility(41, 0);
+      moveObjectTo(1, 41, 1, 7, 0, 153, 349);
+      delay(12);
+      moveObjectTo(1, 41, 1, 7, 0, 184, 381);
+      delay(12);
+      moveObjectTo(1, 41, 1, 7, 0, 153, 411);
+      delay(12);
+      moveObjectTo(1, 41, 1, 7, 0, 184, 443);
+      delay(12);
+      moveObjectTo(1, 41, 1, 7, 0, 153, 475);
+      delay(12);
+      setDigimon(Digimon.NPCNinjamon, Entity(1), 1);
+      setObjectsVisibleRange(42, 67, 0);
+      setPStat(PStat(247), 42);
+      setPStat(PStat(248), 26);
+      callSubroutine(21);
+      setObjectVisibility(41, 1);
+      playSound(8, 0);
+      anim(Entity(6), Animation(28), wait: 10);
+      setObjectsVisibleRange(42, 67, 1);
+      sfx(8, 1, wait: 10);
+      speak(Entity(6), "「セッチャ、イガモンともうす!」<NEWLINE>");
+      anim(Entity.Player, Animation(15), wait: 20);
+      look(entity: Entity(6), at: Entity.Player);
+      delay(10);
+      look(entity: Entity(6), at: Entity.Partner);
+      delay(10);
+      look(entity: Entity(6), at: Entity.Player);
+      showTextbox("「<LIGHTBLUE><PLAYER><WHITE>殿と…<NEWLINE> <ORANGE><DIGIMON><WHITE>殿とお見うけした!」<NEWLINE>");
+      showTextbox("「おぬちらの評判は遠くイガの里まで聞こえ<NEWLINE> るほどでち。ぜひセッチャと一太刀交えて<NEWLINE> もらえぬか!」<NEWLINE>");
+      setDialogOwner(Entity.Player);
+      setSelection(L2, L1);
+      showTextbox("「いーよ。」<NEWLINE>「またね。」<NEWLINE>");
+      waitForSelectionChoice();
+      break;
+
+L1:
+    }
+    speak(Entity(6), "「ふっ、そうはいかないでち!」<NEWLINE>");
+    break;
+
+L2:
+  }
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 6);
+  setPStat(PStat(252), 255);
+  setPStat(PStat(253), 255);
+  startBattle();
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  move(entity: Entity.Partner, to: (-633, -581), sprint: 1);
+  move(entity: Entity.Partner, to: (-1033, -481), sprint: 1);
+  move(entity: Entity(6), to: (-905, -1096), sprint: 1);
+  waitForEntity(Entity(20));
+  look(entity: Entity.Player, at: Entity(6));
+  look(entity: Entity(6), at: Entity.Player);
+  look(entity: Entity.Partner, at: Entity(6));
+  waitForEntity(Entity.Player);
+  speak(Entity(6), "「評判どおりの腕前でち!ぜひともセッチャ<NEWLINE> をデチにしてほしいでち!」<NEWLINE>");
+  anim(Entity.Player, Animation(19), wait: 20);
+  speak(Entity.Player, "「デチ…?ああ、弟子ね。それは困るな。<NEWLINE> でも街作りを手伝ってくれるならいーよ。」<NEWLINE>");
+  speak(Entity(6), "「わかったでち。それも立派な修行でちね。<NEWLINE> がんばってみるでちよ。」<NEWLINE>");
+  delay(20);
+  anim(Entity(6), Animation(28), wait: 10);
+  setObjectsVisibleRange(42, 67, 0);
+  setPStat(PStat(247), 42);
+  setPStat(PStat(248), 26);
+  callSubroutine(21);
+  sfx(8, 0, wait: 10);
+  unloadEntity(Entity(6));
+  delay(40);
+  setObjectsVisibleRange(42, 67, 1);
+  delay(10);
+  playSound(8, 11);
+  speak(Entity.System, "イガモンが街に参加した!!!<NEWLINE>");
+  unsetTrigger(Trigger(1));
+  followEntity(Entity.Player, speed: 10);
+  setTrigger(Trigger(258));
+  addPStat(PStat(1), 2);
+  return;
+}
+
+section(8) {
+  speak(Entity(8), "「ムキーー!」<NEWLINE>");
+  showTextbox("「なんでここにいるのか、だと!?」<NEWLINE>");
+  showTextbox("「おい、<LIGHTBLUE><PLAYER><WHITE>!<NEWLINE> 街に俺様のハーレムをつくろうとしたら<NEWLINE> 追い出されたんだよ!」<NEWLINE>");
+  if (money < 50000) {
+    return;
+  }
+  {
+    speak(Entity(8), "「チッ…そうだ、おまえ最近<NEWLINE> はぶりがいいらしいなぁ?<NEWLINE> いいもん売ってやるぜウキッ!」<NEWLINE>");
+    showTextbox("「世にも貴重な<LIGHTBLUE>金のバナナ<WHITE>だぜ。<NEWLINE> とりあえず50000<B><it>だ。<NEWLINE> ローンはきかんぞムキキ。」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L2);
+    showTextbox("「出す。」<NEWLINE>「出さない。」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L1:
+    reduceMoney(50000);
+    giveItem(Item.GoldBanana, 1);
+    if (trigger(0)) {
+      if (item[Item.GoldBanana] >= 99) {
+        speak(Entity(8), "「おまえアホか。集めすぎ!」<NEWLINE>");
+        addMoney(50000);
+        return;
+      }
+      speak(Entity.Player, "「いけね、持ち物がいっぱいだ。」<NEWLINE>");
+      inventoryFullBailout();
+      giveItem(Item.GoldBanana, 1);
+    }
+    speak(Entity(8), "「ムキ、まいどあり~。」<NEWLINE>");
+    return;
+
+L2:
+  }
+  speak(Entity(8), "「人間、生きた金つかわねぇと。」<NEWLINE>");
+  return;
+}
+
+section(52) {
+  {
+    move(entity: Entity.Player, to: (-2800, 3000), sprint: 0);
+    if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) goto L16; else break;
+  }
+  {
+    if (trigger(204) || trigger(249)) {
+      break;
+      break;
+    }
+    goto L8;
+  }
+  {
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L4; else break;
+  }
+  {
+    if (trigger(236)) goto L2; else break;
+  }
+  {
+    if (trigger(205)) goto L1; else break;
+  }
+  warp(to: Map.TWNB02, spawn: 2, trigger: 255);
+  return;
+
+L1:
+  {
+    warp(to: Map.TWNB09, spawn: 2, trigger: 255);
+    return;
+
+L2:
+    if (trigger(205)) goto L3; else break;
+  }
+  warp(to: Map.TWNB07, spawn: 2, trigger: 255);
+  return;
+
+L3:
+  {
+    warp(to: Map.TWNB08, spawn: 2, trigger: 255);
+    return;
+
+L4:
+    if (trigger(236)) goto L6; else break;
+  }
+  {
+    if (trigger(205)) goto L5; else break;
+  }
+  warp(to: Map.TWNB03, spawn: 2, trigger: 255);
+  return;
+
+L5:
+  {
+    warp(to: Map.TWNB06, spawn: 2, trigger: 255);
+    return;
+
+L6:
+    if (trigger(205)) goto L7; else break;
+  }
+  warp(to: Map.TWNB04, spawn: 2, trigger: 255);
+  return;
+
+L7:
+  {
+    warp(to: Map.TWNB05, spawn: 2, trigger: 255);
+    return;
+
+L8:
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L12; else break;
+  }
+  {
+    if (trigger(236)) goto L10; else break;
+  }
+  {
+    if (trigger(205)) goto L9; else break;
+  }
+  warp(to: Map.TWNB01, spawn: 2, trigger: 255);
+  return;
+
+L9:
+  warp(to: Map.TWNB24, spawn: 2, trigger: 255);
+  return;
+
+L10:
+  {
+    if (trigger(205)) {
+      break;
+      break;
+    }
+    goto L11;
+  }
+  warp(to: Map.TWNB23, spawn: 2, trigger: 255);
+  return;
+
+L11:
+  {
+    warp(to: Map.TWNB22, spawn: 2, trigger: 255);
+    return;
+
+L12:
+    if (trigger(236)) goto L14; else break;
+  }
+  {
+    if (trigger(205)) goto L13; else break;
+  }
+  warp(to: Map.TWNB18, spawn: 2, trigger: 255);
+  return;
+
+L13:
+  {
+    warp(to: Map.TWNB21, spawn: 2, trigger: 255);
+    return;
+
+L14:
+    if (trigger(205)) goto L15; else break;
+  }
+  warp(to: Map.TWNB19, spawn: 2, trigger: 255);
+  return;
+
+L15:
+  {
+    warp(to: Map.TWNB20, spawn: 2, trigger: 255);
+    return;
+
+L16:
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L20; else break;
+  }
+  {
+    if (trigger(236)) goto L18; else break;
+  }
+  {
+    if (trigger(205)) goto L17; else break;
+  }
+  warp(to: Map.TWNB10, spawn: 2, trigger: 255);
+  return;
+
+L17:
+  {
+    warp(to: Map.TWNB17, spawn: 2, trigger: 255);
+    return;
+
+L18:
+    if (trigger(205)) goto L19; else break;
+  }
+  warp(to: Map.TWNB15, spawn: 2, trigger: 255);
+  return;
+
+L19:
+  {
+    warp(to: Map.TWNB16, spawn: 2, trigger: 255);
+    return;
+
+L20:
+    if (trigger(236)) goto L22; else break;
+  }
+  {
+    if (trigger(205)) goto L21; else break;
+  }
+  warp(to: Map.TWNB11, spawn: 2, trigger: 255);
+  return;
+
+L21:
+  {
+    warp(to: Map.TWNB14, spawn: 2, trigger: 255);
+    return;
+
+L22:
+    if (trigger(205)) goto L23; else break;
+  }
+  warp(to: Map.TWNB12, spawn: 2, trigger: 255);
+  return;
+
+L23:
+  warp(to: Map.TWNB13, spawn: 2, trigger: 255);
+  return;
+  garbage { 20 00 fe 00 20 00 05 00 8e 00 07 00 bc 00 37 00 f4 00 33 00 f6 00 08 00 74 06 34 00 e0 08 ff ff 19 00 00 00 e8 00 18 00 3c 00 19 00 57 00 44 01 57 00 45 01 57 00 46 01 16 00 44 00 7c 00 16 00 10 00 03 0c 19 00 00 00 e8 00 8a 00 01 23 18 00 60 00 19 00 57 00 47 00 57 00 48 00 57 00 49 00 24 00 6e 63 19 00 0b 00 6e 27 18 00 76 00 19 00 74 2c 25 00 30 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 8c 00 19 00 74 30 26 00 34 00 fe 00 1b 05 1a 00 81 75 82 dd 82 cc 82 d9 82 c7 82 b5 82 e7 82 b8 82 be 82 cb 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1e 01 fe 00 1b 07 1a 00 81 75 83 7b 83 4e 82 aa 89 bd 82 b5 82 bd 82 c1 82 c4 8c be 82 a4 82 f1 82 be 82 e6 82 c1 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 fe 00 19 00 00 00 02 01 18 00 04 01 19 00 fe 00 19 00 00 00 ce 00 40 00 d3 00 40 00 fc 00 40 00 d5 00 18 00 20 01 19 00 16 00 22 01 fe 00 1b ff 1a 00 01 07 81 48 81 48 81 48 01 01 0d 00 81 75 91 d2 82 bd 82 ea 81 5b 82 a2 81 49 81 49 81 49 81 76 0d 00 00 00 56 00 fd 10 67 00 14 00 56 00 fd 00 4e fd e6 fb 3f fa 01 00 4e fc 3b fd 3f fa 01 00 4a fd 4a fc 4d fd 00 08 4d fc 00 08 64 26 5a 00 08 00 4f 14 bc fc 69 fd 4a c8 57 00 29 00 71 01 29 01 07 00 99 00 5d 01 67 00 0c 00 71 01 29 01 07 00 b8 00 7d 01 67 00 0c 00 71 01 29 01 07 00 99 00 9b 01 67 00 0c 00 71 01 29 01 07 00 b8 00 bb 01 67 00 0c 00 71 01 29 01 07 00 99 00 db 01 67 00 0c 00 47 af 01 01 57 00 2a 00 57 00 2b 00 57 00 2c 00 57 00 2d 00 57 00 2e 00 57 00 2f 00 57 00 30 00 57 00 31 00 57 00 32 00 57 00 33 00 57 00 34 00 57 00 35 00 57 00 36 00 57 00 37 00 57 00 38 00 57 00 39 00 57 00 3a 00 57 00 3b 00 57 00 3c 00 57 00 3d 00 57 00 3e 00 57 00 3f 00 57 00 40 00 57 00 41 00 57 00 42 00 57 00 43 00 1e 00 f7 2a 1e 00 f8 1a 64 15 57 00 29 01 5a 00 08 00 56 00 06 1c 67 00 0a 00 57 00 2a 01 57 00 2b 01 57 00 2c 01 57 00 2d 01 57 00 2e 01 57 00 2f 01 57 00 30 01 57 00 31 01 57 00 32 01 57 00 33 01 57 00 34 01 57 00 35 01 57 00 36 01 57 00 37 01 57 00 38 01 57 00 39 01 57 00 3a 01 57 00 3b 01 57 00 3c 01 57 00 3d 01 57 00 3e 01 57 00 3f 01 57 00 40 01 57 00 41 01 57 00 42 01 57 00 43 01 5a 00 08 01 67 00 0a 00 1b 06 1a 00 81 75 83 5a 83 62 83 60 83 83 81 41 83 43 83 4b 83 82 83 93 82 c6 82 e0 82 a4 82 b7 81 49 81 76 0d 00 00 00 56 00 fd 0f 67 00 14 00 4c 00 06 fd 67 00 0a 00 4c 00 06 fc 67 00 0a 00 4c 00 06 fd 1a 00 81 75 01 06 05 00 01 01 93 61 82 c6 81 63 0d 00 81 40 01 0a 06 00 01 01 93 61 82 c6 82 a8 8c a9 82 a4 82 af 82 b5 82 bd 81 49 81 76 0d 00 00 00 1a 00 81 75 82 a8 82 ca 82 bf 82 e7 82 cc 95 5d 94 bb 82 cd 89 93 82 ad 83 43 83 4b 82 cc 97 a2 82 dc 82 c5 95 b7 82 b1 82 a6 0d 00 81 40 82 e9 82 d9 82 c7 82 c5 82 bf 81 42 82 ba 82 d0 83 5a 83 62 83 60 83 83 82 c6 88 ea 91 be 93 81 8c f0 82 a6 82 c4 0d 00 81 40 82 e0 82 e7 82 a6 82 ca 82 a9 81 49 81 76 0d 00 00 00 1b fd 10 02 f8 03 ce 03 1a 00 81 75 82 a2 81 5b 82 e6 81 42 81 76 0d 00 81 75 82 dc 82 bd 82 cb 81 42 81 76 0d 00 00 00 12 00 16 00 ce 03 1b 06 1a 00 81 75 82 d3 82 c1 81 41 82 bb 82 a4 82 cd 82 a2 82 a9 82 c8 82 a2 82 c5 82 bf 81 49 81 76 0d 00 00 00 16 00 f8 03 1c 00 01 00 1e 00 fa 01 1e 00 fb 06 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4e fc 87 fd bb fd 01 00 4e fc f7 fb 1f fe }
+}

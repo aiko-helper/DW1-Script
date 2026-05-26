@@ -1,0 +1,208 @@
+// DG046.SCN
+#include "functions.dgs"
+#pragma script index=46 start=0x22000 end=0x22800 headerU16=0x24 sentinelOff=0x2075
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnChest(Item.PortaPotty, -1455, 184, 3072, 671);
+  if (trigger(175)) {
+    moveObjectTo(0, 45, 1, 10, 0, 385, -50);
+    delay(10);
+  }
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「あ……!」<NEWLINE>");
+  finishEncounter(Trigger(203));
+}
+
+section(6) {
+  speak(Entity(6), "「あ……!」<NEWLINE>");
+  finishEncounter(Trigger(203));
+}
+
+section(51) {
+  if (trigger(182) && !trigger(235)) {
+    speak(Entity.Player, "「ん…もしやこのエレベーターが<NEWLINE> 上の地面をせりあげてる?」<NEWLINE>");
+  }
+  if (!trigger(175)) {
+    return;
+  }
+  {
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L2);
+    showTextbox("「エレベーターに乗る。」<NEWLINE>「エレベーターに乗らない。」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L1:
+    move(entity: Entity.Player, to: (1220, 3988), sprint: 0);
+    move(entity: Entity.Partner, to: (1201, 3486), sprint: 0);
+    waitForPair();
+    playSound(8, 5);
+    warp(to: Map.GCAN02, spawn: 3, trigger: 53);
+    return;
+
+L2:
+  }
+  move(entity: Entity.Player, to: (1152, 2851), sprint: 0);
+  waitForEntity(Entity.Player);
+  return;
+}
+
+section(52) {
+  {
+    if (!trigger(175)) {
+      break;
+    }
+    return;
+
+L1:
+  }
+  panTo(x: 40, y: 2922, slowdown: 30);
+  lookPairAt(Entity(7));
+  anim(Entity.Player, Animation(7), wait: 15);
+  speak(Entity.Player, "「おいっ!」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  look(entity: Entity(7), at: Entity.Player);
+  look(entity: Entity(8), at: Entity.Player);
+  look(entity: Entity(9), at: Entity.Player);
+  speak(Entity(7), "「ン?」<NEWLINE>");
+  showTextbox("「ムハハハ、やられに来たか?」<NEWLINE>");
+  playSound(8, 11);
+  anim(Entity.Player, Animation(20), wait: 15);
+  speak(Entity.Player, "「それはこっちのセリフだよ!」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(7), "「こないだのように手かげんは<NEWLINE> せんぞー!泣かしたるわ!」<NEWLINE>");
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 7);
+  setPStat(PStat(252), 8);
+  setPStat(PStat(253), 9);
+  startBattle();
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  look(entity: Entity.Player, at: Entity(7));
+  look(entity: Entity(7), at: Entity.Player);
+  look(entity: Entity.Partner, at: Entity(7));
+  speak(Entity(8), "「ひぇ~~」<NEWLINE>");
+  speak(Entity(9), "「あわわ~」<NEWLINE>");
+  move(entity: Entity(8), to: (224, -784), sprint: 1);
+  move(entity: Entity(9), to: (116, -784), sprint: 1);
+  waitForEntity(Entity(8));
+  waitForEntity(Entity(9));
+  unloadEntity(Entity(8));
+  unloadEntity(Entity(9));
+  speak(Entity(7), "「く、くそ!」<NEWLINE>");
+  anim(Entity(7), Animation(46), wait: 30);
+  playSound(8, 9);
+  setObjectsVisibleRange(0, 25, 0);
+  delay(40);
+  setPStat(PStat(254), 40);
+  callSubroutine(45);
+  delay(40);
+  unloadEntity(Entity(7));
+  anim(Entity.Player, Animation(24), wait: 15);
+  speak(Entity.Player, "「わ、何だ!?」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  setObjectsVisibleRange(0, 25, 1);
+  setDigimon(Digimon.NPCOgremon, Entity(5), 0);
+  rotate(entity: Entity(10), to: 0);
+  moveObjectTo(0, 45, 1, 10, 0, 385, -50);
+  delay(10);
+  callSubroutine(46);
+  delay(40);
+  playSound(8, 11);
+  speak(Entity(10), "「グヒャヒャヒャ、あばよ、マヌケども。」<NEWLINE>");
+  look(entity: Entity.Player, at: Entity(10));
+  playSound(8, 5);
+  waitForEntity(Entity(10));
+  unloadEntity(Entity(10));
+  setTrigger(Trigger(176));
+  speak(Entity.Player, "「くっそー、また逃げられたか!」<NEWLINE>");
+  move(entity: Entity.Player, to: (1234, 2267), sprint: 1, withCamera: true);
+  move(entity: Entity.Partner, to: (774, 2251), sprint: 1);
+  waitForPair();
+  rotate(entity: Entity.Player, to: 2037);
+  rotate(entity: Entity.Partner, to: 2300);
+  speak(Entity.Player, "「脱出エレベータまであるとは…。<NEWLINE> 追っかけてももうムダか。あいつめ!」<NEWLINE>");
+  setTrigger(Trigger(175));
+  followEntity(Entity.Player, speed: 10);
+  return;
+}
+
+section(53) {
+  if (!trigger(175)) {
+    move(entity: Entity.Player, to: (245, 1250), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (-50, 1250), sprint: 1);
+    waitForPair();
+    goto section_52.L1;
+  }
+  return;
+}
+
+section(54) {
+  playSound(8, 5);
+  rotate(entity: Entity.Player, to: 0);
+  unsetTrigger(Trigger(180));
+  setTrigger(Trigger(181));
+  return;
+}
+
+section(11) {
+  delay(10);
+  anim(Entity(11), Animation(28), wait: 10);
+  speak(Entity.Player, "「ん?なにもんだ?!」<NEWLINE>");
+  speak(Entity(11), "「ナニモンだァ!」<NEWLINE>");
+  rotate(entity: Entity(11), to: 1276);
+  delay(5);
+  rotate(entity: Entity(11), to: 2300);
+  delay(5);
+  rotate(entity: Entity(11), to: 3324);
+  delay(5);
+  rotate(entity: Entity(11), to: 252);
+  delay(5);
+  rotate(entity: Entity(11), to: 1276);
+  delay(5);
+  rotate(entity: Entity(11), to: 2300);
+  delay(5);
+  rotate(entity: Entity(11), to: 3324);
+  delay(5);
+  rotate(entity: Entity(11), to: 252);
+  delay(5);
+  move(entity: Entity(11), to: (179, -74), sprint: 1);
+  waitForEntity(Entity(11));
+  unloadEntity(Entity(11));
+  switch pstat[21] {
+    0 => {
+      setObjectVisibility(43, 0);
+      move(entity: Entity.Player, to: (32, 829), sprint: 1);
+      waitForEntity(Entity.Player);
+      anim(Entity.Player, Animation(12), wait: 10);
+      setObjectVisibility(43, 1);
+      playSound(0, 7);
+      speak(Entity.System, "『<PINK>次元キーホルダー<WHITE>』を<NEWLINE> 手に入れた!<NEWLINE> アイテムを20個まで持てるぞ!<NEWLINE>");
+      playSound(0, 7);
+      setInventorySize(20);
+      setTrigger(Trigger(47));
+    }
+    4 => {
+      setObjectVisibility(42, 0);
+      move(entity: Entity.Player, to: (32, 829), sprint: 1);
+      waitForEntity(Entity.Player);
+      anim(Entity.Player, Animation(12), wait: 10);
+      setObjectVisibility(42, 1);
+      playSound(0, 7);
+      speak(Entity.System, "『<PINK>次元キーホルダー<WHITE>』を<NEWLINE> 手に入れた!<NEWLINE> アイテムを30個まで持てるぞ!<NEWLINE>");
+      setInventorySize(30);
+      setTrigger(Trigger(48));
+      setTrigger(Trigger(253));
+      addPStat(PStat(1), 1);
+    }
+  }
+  addPStat(PStat(21), 1);
+  setTrigger(Trigger(334));
+  return;
+  garbage { 24 00 fe 00 24 00 05 00 4c 00 06 00 6e 00 33 00 90 00 34 00 66 01 35 00 f6 04 36 00 1c 05 0b 00 2e 05 ff ff 75 20 51 fa 00 00 b8 00 00 0c 9f 02 19 00 00 00 af 00 18 00 4a 00 19 00 71 00 2d 01 0a 00 81 01 ce ff 67 00 0a 00 fe 00 1b 05 1a 00 81 75 82 a0 81 63 81 63 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 cb 00 fe 00 1b 06 1a 00 81 75 82 a0 81 63 81 63 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 cb 00 fe 00 19 00 00 00 b6 00 81 00 eb 00 18 00 e4 00 19 00 1b fd 1a 00 81 75 82 f1 81 63 82 e0 82 b5 82 e2 82 b1 82 cc 83 47 83 8c 83 78 81 5b 83 5e 81 5b 82 aa 0d 00 81 40 8f e3 82 cc 92 6e 96 ca 82 f0 82 b9 82 e8 82 a0 82 b0 82 c4 82 e9 81 48 81 76 0d 00 00 00 19 00 01 00 af 00 18 00 f2 00 19 00 fe 00 1b fd 10 02 3c 01 5a 01 1a 00 81 75 83 47 83 8c 83 78 81 5b 83 5e 81 5b 82 c9 8f e6 82 e9 81 42 81 76 0d 00 81 75 83 47 83 8c 83 78 81 5b 83 5e }
+}

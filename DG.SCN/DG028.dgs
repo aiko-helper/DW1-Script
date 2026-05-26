@@ -1,0 +1,202 @@
+// DG028.SCN
+#include "functions.dgs"
+#pragma script index=28 start=0x18800 end=0x19800 headerU16=0x18 sentinelOff=0x1a64
+#include "entities.dgs"
+
+section onEnter(254) {
+  callSubroutine(26);
+  callSubroutine(27);
+  if (pstat[30] >= 5 && pstat[17] < 3 && pstat[17] >= 1) {
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    callSubroutine(20);
+    setPStat(PStat(254), 2);
+    callSubroutine(19);
+    setPStat(PStat(19), 2);
+    setObjectVisibility(19, 1);
+    setObjectVisibility(18, 1);
+    setPStat(PStat(18), 10);
+    return;
+  }
+  playAnimation(Entity(5), Animation(29));
+  setObjectVisibility(19, 1);
+  setObjectVisibility(18, 0);
+  if (pstat[18] >= 5) {
+    setObjectVisibility(19, 0);
+    setObjectVisibility(18, 1);
+    setPStat(PStat(19), 1);
+  }
+  {
+    if (pstat[18] < 10) break;
+    if (pstat[17] >= 3) break;
+    setObjectVisibility(19, 1);
+    setObjectVisibility(18, 1);
+    setPStat(PStat(19), 2);
+  }
+  switch pstat[17] {
+    3 => {
+      setPStat(PStat(254), 0);
+      callSubroutine(19);
+    }
+    4 => {
+      setPStat(PStat(254), 1);
+      callSubroutine(19);
+    }
+  }
+  if (pstat[18] < 8) {
+    setRectImpassible(69, 41, 3, 2);
+  }
+  return;
+}
+
+section(52) {
+  if (pstat[19] >= 2) {
+    return;
+  }
+  goto section_51.L1;
+}
+
+section(51) {
+  if (pstat[19] >= 1) {
+    return;
+
+L1:
+  }
+  look(entity: Entity(5), at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(5));
+  waitForEntity(Entity(5));
+  if (pstat[18] >= 10) {
+    speak(Entity(5), "「おう、土はあらかた運び出した<NEWLINE> みてえだな。」<NEWLINE>");
+    showTextbox("「おかげで仕事がはかどってるぜ。<NEWLINE> あと少し待ってくんなよ。」<NEWLINE>");
+    rotate(entity: Entity(5), to: 1900);
+    waitForEntity(Entity(5));
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    playAnimation(Entity(5), Animation(29));
+    return;
+  }
+  switch pstat[17] {
+    4 => {
+      speak(Entity(5), "「おっ、おつかれさん。これバイト賃な。」<NEWLINE>");
+      setPStat(PStat(254), 2);
+      callSubroutine(19);
+      addMoney(500);
+      addStats(offense: 5, defense: 5, maxHP: 50, tiredness: 10);
+      speak(Entity.System, "アルバイト賃500<B><it>を得た!<NEWLINE>");
+      showTextbox("HPが 50上がった!<NEWLINE>攻撃力が 5上がった!<NEWLINE>防御力が 5上がった!<NEWLINE>");
+      addPStat(PStat(18), 1);
+      setPStat(PStat(17), 1);
+      rotate(entity: Entity(5), to: 1900);
+      waitForEntity(Entity(5));
+      move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+      waitForEntity(Entity.Player);
+      playAnimation(Entity(5), Animation(29));
+      return;
+    }
+    3 => {
+      speak(Entity(5), "「土はトンネルの外に捨ててくれ。」<NEWLINE>");
+      move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+      waitForEntity(Entity.Player);
+      rotate(entity: Entity(5), to: 1900);
+      return;
+    }
+    2 => {
+      speak(Entity(5), "「ほら、そこの土の山から<NEWLINE> 持ってってくれ。」<NEWLINE>");
+      rotate(entity: Entity(5), to: 1900);
+      waitForEntity(Entity(5));
+      move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+      waitForEntity(Entity.Player);
+      playAnimation(Entity(5), Animation(29));
+      return;
+    }
+  }
+  if (pstat[17] == 1 && stat[Stat.Tiredness] >= 70) {
+    speak(Entity(5), "「ん、土運び、やんのか?」<NEWLINE>");
+    showTextbox("「だいぶつかれがたまってるな。<NEWLINE> まずは休んでから来な。」<NEWLINE>");
+    rotate(entity: Entity(5), to: 1900);
+    waitForEntity(Entity(5));
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    playAnimation(Entity(5), Animation(29));
+    return;
+  }
+  {
+    if (pstat[17] == 1) {
+      speak(Entity(5), "「ん、土運び、やんのか?」<NEWLINE>");
+      setDialogOwner(Entity.Player);
+      setSelection(L2, L3);
+      showTextbox("「やるよ!」<NEWLINE>「ごめん、今度また来る。」<NEWLINE>");
+      waitForSelectionChoice();
+      break;
+    }
+    if (!trigger(140)) {
+      speak(Entity(5), "「あんだ、おめえは?<NEWLINE> シロウトはあぶないから近よるな。」<NEWLINE>");
+      move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+      waitForEntity(Entity.Player);
+      rotate(entity: Entity(5), to: 1900);
+      waitForEntity(Entity(5));
+      playAnimation(Entity(5), Animation(29));
+      return;
+    }
+    setPStat(PStat(17), 1);
+    setPStat(PStat(30), 0);
+    speak(Entity(5), "「あんだ、おめえは?<NEWLINE> このトンネルはまだ開通前だ。<NEWLINE> ジャマすんじゃねー。」<NEWLINE>");
+    speak(Entity.Player, "「いや、ごめん。いつごろ開通しそう?」<NEWLINE>");
+    speak(Entity(5), "「まーだ分かんねーよ。まだしばらくだな。」<NEWLINE>");
+    speak(Entity.Player, "「んー、困ったな…。<NEWLINE> 何か俺達で手伝えること無いか?」<NEWLINE>");
+    speak(Entity(5), "「おいおい、俺っちの楽しみをうばう気か?<NEWLINE> いや、待て…土運びぐれーなら、おめえら<NEWLINE> でもできるな。」<NEWLINE>");
+    speak(Entity.Player, "「お、何なに?」<NEWLINE>");
+    panTo(x: 2027, y: 764, slowdown: 20);
+    delay(30);
+    speak(Entity(5), "「そこに俺っちが掘った土がある。これを<NEWLINE> トンネルの外まで運んで捨ててくるんだ。」<NEWLINE>");
+    followEntity(Entity.Player, speed: 20);
+    speak(Entity(5), "「けっこうつらい仕事なんで<NEWLINE> アルバイトってことにしてやるぜ。<NEWLINE> 1おうふくで、500<B><it>やろう。」<NEWLINE>");
+    speak(Entity.Player, "「(穴掘りは早く進むし、お金ももらえる<NEWLINE> のか…トレーニングにもなるし…<NEWLINE> これはいいかも…!)」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L2, L3);
+    showTextbox("「やるよ!」<NEWLINE>「ごめん、今度また来る。」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L2:
+    setTextboxSize(21, 6);
+    showTextbox("   土運びアルバイトの説明<NEWLINE> <NEWLINE> まず、土の前で<ORANGE><CIRCLE><WHITE><ボき><ヌン>で土箱をつけます。<NEWLINE> そのままトンネルの外へ行くと<NEWLINE> 自動で捨てます。1おうふくしたら、<NEWLINE> ドリモゲモンに話しかけてください。<NEWLINE>");
+    fadeOutHUD();
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    setPStat(PStat(17), 2);
+    return;
+
+L3:
+  }
+  speak(Entity(5), "「あんだ、おじけづいたか?」<NEWLINE>");
+  rotate(entity: Entity(5), to: 1900);
+  waitForEntity(Entity(5));
+  move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+  waitForEntity(Entity.Player);
+  playAnimation(Entity(5), Animation(29));
+  return;
+}
+
+section(81) {
+  if (pstat[17] == 2) {
+    speak(Entity.System, "土箱をつけた<NEWLINE>");
+    setPStat(PStat(17), 3);
+    setPStat(PStat(254), 0);
+    callSubroutine(19);
+    callSubroutine(20);
+  }
+  return;
+}
+
+section(5) {
+  return;
+  garbage { 18 00 fe 00 18 00 34 00 de 00 33 00 f0 00 51 00 96 08 05 00 c4 08 ff ff 64 1a 64 1b 19 00 0a 00 1e 05 8d 00 11 03 8a 00 11 01 18 00 5c 00 19 00 64 14 64 14 64 14 64 14 64 14 64 14 64 14 64 14 64 14 64 14 1e 00 fe 02 64 13 1e 00 13 02 57 00 13 01 57 00 12 01 1e 00 12 0a fe 00 56 00 05 1d 57 00 13 01 57 00 12 00 19 00 0a 00 12 05 18 00 80 00 19 00 57 00 13 00 57 00 12 01 1e 00 13 01 19 00 0a 00 12 0a 18 00 a4 00 19 00 19 00 0d 00 11 03 18 00 a4 00 19 00 57 00 13 01 57 00 12 01 1e 00 13 02 19 00 08 00 11 03 18 00 b6 00 19 00 1e 00 fe 00 64 13 19 00 08 00 11 04 18 00 c8 00 19 00 1e 00 fe 01 64 13 19 00 0d 00 12 08 18 00 dc 00 19 00 7c 00 45 00 29 00 03 02 fe 00 19 00 0a 00 13 02 18 00 ec 00 19 00 fe 00 16 00 fe 00 19 00 0a 00 13 01 18 00 fe 00 19 00 fe 00 4c 00 05 fd 4c 00 fd 05 4a 05 19 00 0a 00 12 0a 18 00 a6 01 19 00 1b 05 1a 00 81 75 82 a8 82 a4 81 41 93 79 82 cd 82 a0 82 e7 82 a9 82 bd 89 5e 82 d1 8f 6f 82 b5 82 bd 0d 00 81 40 82 dd 82 c4 82 a6 82 be 82 c8 81 42 81 76 0d 00 00 00 1a 00 81 75 82 a8 82 a9 82 b0 82 c5 8e 64 8e 96 82 aa 82 cd 82 a9 82 c7 82 c1 82 c4 82 e9 82 ba 81 42 0d 00 81 40 82 a0 82 c6 8f ad 82 b5 91 d2 82 c1 82 c4 82 ad 82 f1 82 c8 82 e6 81 42 81 76 0d 00 00 00 4d 05 6c 07 4a 05 52 fd af 0a b3 04 00 00 4a fd 56 00 05 1d fe 00 19 00 08 00 11 04 18 00 8e 02 19 00 1b 05 1a 00 81 75 82 a8 82 c1 81 41 82 a8 82 c2 82 a9 82 ea 82 b3 82 f1 81 42 82 b1 82 ea 83 6f 83 43 83 67 92 c0 82 c8 81 42 81 76 0d 00 00 00 1e 00 fe 02 64 13 2a 00 f4 01 00 00 35 00 05 00 35 01 05 00 35 04 32 00 35 08 0a 00 1b ff 1a 00 83 41 83 8b 83 6f 83 43 83 67 92 c0 82 54 82 4f 82 4f 81 6f 81 70 82 f0 93 be 82 bd 81 49 0d 00 00 00 1a 00 82 67 82 6f 82 aa 81 40 82 54 82 4f 8f e3 82 aa 82 c1 82 bd 81 49 0d 00 8d 55 8c 82 97 cd 82 aa 81 40 82 54 8f e3 82 aa 82 c1 82 bd 81 49 0d 00 96 68 8c e4 97 cd 82 aa 81 40 82 54 8f e3 82 aa 82 c1 82 bd 81 49 0d 00 00 00 1f 00 12 01 1e 00 11 01 4d 05 6c 07 4a 05 52 fd af 0a b3 04 00 00 4a fd 56 00 05 1d fe 00 19 00 08 00 11 03 18 00 d4 02 19 00 1b 05 1a 00 81 75 93 79 82 cd 83 67 83 93 83 6c 83 8b 82 cc 8a 4f 82 c9 8e cc 82 c4 82 c4 82 ad 82 ea 81 42 81 76 0d 00 00 00 52 fd af 0a b3 04 00 00 4a fd 4d 05 6c 07 fe 00 19 00 08 00 11 02 18 00 2c 03 19 00 1b 05 1a 00 81 75 82 d9 82 e7 81 41 82 bb 82 b1 82 cc 93 79 82 cc 8e 52 82 a9 82 e7 0d 00 81 40 8e 9d 82 c1 82 c4 82 c1 82 c4 82 ad 82 ea 81 42 81 76 0d 00 00 00 4d 05 6c 07 4a 05 52 fd af 0a b3 04 00 00 4a fd 56 00 05 1d fe 00 19 00 08 00 11 01 a0 00 08 02 46 00 18 00 b6 03 19 00 1b 05 1a 00 81 75 82 f1 81 41 93 79 89 5e 82 d1 81 41 82 e2 82 f1 82 cc 82 a9 81 48 81 76 0d 00 00 00 1a 00 81 75 82 be 82 a2 82 d4 82 c2 82 a9 82 ea 82 aa 82 bd 82 dc 82 c1 82 c4 82 e9 82 c8 81 42 0d 00 81 40 82 dc 82 b8 82 cd 8b 78 82 f1 82 c5 82 a9 82 e7 97 88 82 c8 81 42 81 76 0d 00 00 00 4d 05 6c 07 4a 05 52 fd af 0a b3 04 00 00 4a fd 56 00 05 1d fe 00 19 00 08 00 11 01 18 00 20 04 19 00 1b 05 1a 00 81 75 82 f1 81 41 93 79 89 5e 82 d1 81 41 82 e2 82 f1 82 cc 82 a9 81 48 81 76 0d 00 00 00 1b fd 10 02 86 07 5c 08 1a 00 81 75 82 e2 82 e9 82 e6 81 49 81 76 0d 00 81 75 82 b2 82 df 82 f1 81 41 8d a1 93 78 82 dc 82 bd 97 88 82 e9 81 42 81 76 0d 00 00 00 12 00 16 00 5c 08 19 00 01 00 8c 00 18 00 84 04 19 00 1b 05 1a 00 81 75 82 a0 82 f1 82 be 81 41 82 a8 82 df 82 a6 82 cd 81 48 0d 00 81 40 83 56 83 8d 83 45 83 67 82 cd 82 a0 82 d4 82 c8 82 a2 82 a9 82 e7 8b df 82 e6 82 e9 82 c8 81 42 81 76 0d 00 00 00 52 fd af 0a b3 04 00 00 4a fd 4d 05 6c 07 4a 05 56 00 05 1d fe 00 1e 00 11 01 1e 00 1e 00 1b 05 1a 00 81 75 82 a0 82 f1 82 be 81 41 82 a8 82 df 82 a6 82 cd 81 48 0d 00 81 40 82 b1 82 cc 83 67 83 93 83 6c 83 8b 82 cd 82 dc 82 be 8a 4a 92 ca 91 4f 82 be 81 42 0d 00 81 40 83 57 83 83 83 7d 82 b7 82 f1 82 b6 82 e1 82 cb 81 5b 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a2 82 e2 81 41 82 b2 82 df 82 f1 81 42 82 a2 82 c2 82 b2 82 eb 8a 4a 92 ca 82 b5 82 bb 82 a4 81 48 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 dc 81 5b 82 be 95 aa 82 a9 82 f1 82 cb 81 5b 82 e6 81 42 82 dc 82 be 82 b5 82 ce 82 e7 82 ad 82 be 82 c8 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 f1 81 5b 81 41 8d a2 82 c1 82 bd 82 c8 81 63 81 42 0d 00 81 40 89 bd 82 a9 89 b4 92 42 82 c5 8e e8 93 60 82 a6 82 e9 82 b1 82 c6 96 b3 82 a2 82 a9 81 48 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a8 82 a2 82 a8 82 a2 81 41 89 b4 82 c1 82 bf 82 cc 8a 79 82 b5 82 dd 82 f0 82 a4 82 ce 82 a4 8b 43 82 a9 81 48 0d 00 81 40 82 a2 82 e2 81 41 91 d2 82 c4 81 63 93 79 89 5e 82 d1 82 ae 82 ea 81 5b 82 c8 82 e7 81 41 82 a8 82 df 82 a6 82 e7 0d 00 81 40 82 c5 82 e0 82 c5 82 ab 82 e9 82 c8 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a8 81 41 89 bd 82 c8 82 c9 81 48 81 76 0d 00 00 00 4f 14 eb 07 fc 02 4a c8 67 00 1e 00 1b 05 1a 00 81 75 82 bb 82 b1 82 c9 89 b4 82 c1 82 bf 82 aa 8c 40 82 c1 82 bd 93 79 82 aa 82 a0 82 e9 81 42 82 b1 82 ea 82 f0 0d 00 81 40 83 67 83 93 83 6c 83 8b 82 cc 8a 4f 82 dc 82 c5 89 5e 82 f1 82 c5 8e cc 82 c4 82 c4 82 ad 82 e9 82 f1 82 be 81 42 81 76 0d 00 00 00 50 00 fd 14 4a c8 1b 05 1a 00 81 75 82 af 82 c1 82 b1 82 a4 82 c2 82 e7 82 a2 8e 64 8e 96 82 c8 82 f1 82 c5 0d 00 81 40 83 41 83 8b 83 6f 83 43 83 67 82 c1 82 c4 82 b1 82 c6 82 c9 82 b5 82 c4 82 e2 82 e9 82 ba 81 42 0d 00 81 40 82 50 82 a8 82 a4 82 d3 82 ad 82 c5 81 41 82 54 82 4f 82 4f 81 6f 81 70 82 e2 82 eb 82 a4 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 81 69 8c 8a 8c 40 82 e8 82 cd 91 81 82 ad 90 69 82 de 82 b5 81 41 82 a8 8b e0 82 e0 82 e0 82 e7 82 a6 82 e9 0d 00 81 40 82 cc 82 a9 81 63 83 67 83 8c 81 5b 83 6a 83 93 83 4f 82 c9 82 e0 82 c8 82 e9 82 b5 81 63 0d 00 81 40 82 b1 82 ea 82 cd 82 a2 }
+}

@@ -1,0 +1,99 @@
+// DG073.SCN
+#include "functions.dgs"
+#pragma script index=73 start=0x32000 end=0x32800 headerU16=0x1c sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 9, item: Item.Digimushroom, x: 34, y: 56);
+  spawnItemChance(max: 99, chance: 5, item: Item.Digimushroom, x: 37, y: 43);
+  setPStat(PStat(254), 2);
+  callSubroutine(25);
+  return;
+}
+
+section(6) {
+  speak(Entity(6), "「どぅおりゃぁぁぁぁぁ!」<NEWLINE>");
+  finishEncounter(Trigger(288));
+}
+
+section(7) {
+  speak(Entity(7), "「おっしゃぁぁ、行くぜぇぇぇぇ!!」<NEWLINE>");
+  finishEncounter(Trigger(288));
+}
+
+section(8) {
+  speak(Entity(8), "「シャーーー!」<NEWLINE>");
+  finishEncounter(Trigger(267));
+}
+
+section(9) {
+  speak(Entity(9), "「ブォーーーン!」<NEWLINE>");
+  finishEncounter(Trigger(267));
+}
+
+section(51) {
+  if (!trigger(144)) {
+    move(entity: Entity(5), to: (-421, 374), sprint: 1);
+    waitForEntity(Entity(5));
+    look(entity: Entity(5), at: Entity.Player);
+    lookPairAt(Entity(5));
+    waitForEntity(Entity(5));
+    playSound(8, 10);
+    speak(Entity(5), "「おめえ何者だぁ?!ここをあらす奴ぁ<NEWLINE> ゆるさねぇぞ!」<NEWLINE>");
+    anim(Entity.Player, Animation(19), wait: 15);
+    speak(Entity.Player, "「いや、俺達は島を救うために世界を<NEWLINE> めぐって…」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+    playSound(8, 10);
+    speak(Entity(5), "「そんなバカげたウソが通じるかよ!<NEWLINE> くらえぇぇ!」<NEWLINE>");
+    speak(Entity.Player, "「お、おいちょっと…」<NEWLINE>");
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 5);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    move(entity: Entity.Player, to: (-97, -448), sprint: 0);
+    move(entity: Entity.Partner, to: (-597, -443), sprint: 0);
+    move(entity: Entity(5), to: (-421, 374), sprint: 1);
+    for x in [Entity.Player, Entity.Partner, Entity(5)] {
+      waitForEntity(x);
+    }
+    look(entity: Entity.Player, at: Entity(5));
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(5));
+    speak(Entity(5), "「おまえもしかして本当に…?」<NEWLINE>");
+    anim(Entity.Player, Animation(7), wait: 15);
+    speak(Entity.Player, "「だーから言っただろ!」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(5), "「やー、スマン。ここにはめったによそものは<NEWLINE> 来ねえからなぁ。久しぶりの仕事なんで<NEWLINE> うかれちまった。」<NEWLINE>");
+    speak(Entity.Player, "「仕事?」<NEWLINE>");
+    speak(Entity(5), "「そう、俺はこの島の中でも特に秘境と<NEWLINE> 言われている、ここダイノ古代境を<NEWLINE> 守護しているのさ!」<NEWLINE>");
+    speak(Entity.Player, "「ふーん…じゃ、あんないしてくれよ。」<NEWLINE>");
+    speak(Entity(5), "「ダイノ古代境は大きく2つに分かれている。<NEWLINE> まず俺たち恐竜デジモンが住んでいるのが<NEWLINE> 『時静域(じせいいき)』。」<NEWLINE>");
+    showTextbox("「時間の流れが普通よりゆっくりしている<NEWLINE> 特別な場所さ。」<NEWLINE>");
+    anim(Entity.Player, Animation(16), wait: 15);
+    speak(Entity.Player, "「時間の流れが…?不思議だな。」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(5), "「で、もう一つが『時急域(じきゅういき)』。<NEWLINE> 時静域のさらに奥にある危険地帯だ。」<NEWLINE>");
+    showTextbox("「なにが危険かって、時間の流れが急激に<NEWLINE> 早いんだ。おかげで土地がひどく荒れて、<NEWLINE> 骨や化石がゴロゴロしている。」<NEWLINE>");
+    speak(Entity.Player, "「そうか、他の場所より時間がたってるから<NEWLINE> なあ。」<NEWLINE>");
+    speak(Entity(5), "「そうだ。死にたくなければあまり<NEWLINE> 近よらないほうがいい。」<NEWLINE>");
+    showTextbox("「…と言っても、この俺が道をふさいでいる<NEWLINE> から行かせはしないがね。」<NEWLINE>");
+    speak(Entity.Player, "「おまえ負けたじゃん、さっき。」<NEWLINE>");
+    playSound(8, 10);
+    speak(Entity(5), "「う…たまたまだ!普段はこうはいかん!」<NEWLINE>");
+    speak(Entity.Player, "「そうかなー?」<NEWLINE>");
+    speak(Entity(5), "「ん…そ、そろそろ持ち場にもどらなくては!<NEWLINE> ま、他のことはそこら辺のデジモンに<NEWLINE> 聞いてくれ。じゃな!」<NEWLINE>");
+    setTrigger(Trigger(144));
+    goto L1;
+
+L1:
+    approach(who: Entity(5), x: -293, y: 1172, tries: 3, wait: 20);
+    followEntity(Entity.Player, speed: 10);
+    return;
+  }
+  return;
+  garbage { 1c 00 fe 00 1c 00 06 00 50 00 07 00 80 00 08 00 ba 00 09 00 e0 00 33 00 08 01 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 32 00 19 00 74 2c 22 00 38 00 24 00 6e 63 19 00 0b 00 6e 05 18 00 48 00 19 00 74 2c 25 00 2b 00 1e 00 fe 02 64 19 fe 00 1b 06 1a 00 81 75 82 c7 82 a3 82 a8 82 e8 82 e1 82 9f 82 9f 82 9f 82 9f 82 9f 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 }
+}

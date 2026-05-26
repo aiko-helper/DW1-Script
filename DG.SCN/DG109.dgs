@@ -1,0 +1,132 @@
+// DG109.SCN
+#include "functions.dgs"
+#pragma script index=109 start=0x49000 end=0x49800 headerU16=0x38 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 19, item: Item.Digimushroom, x: 37, y: 84);
+  spawnItemChance(max: 99, chance: 16, item: Item.Digimushroom, x: 33, y: 67);
+  spawnItemChance(max: 99, chance: 12, item: Item.Digimushroom, x: 56, y: 63);
+  spawnItemChance(max: 99, chance: 2, item: Item.Digipine, x: 56, y: 83);
+  return;
+}
+
+section(6) {
+  speak(Entity(6), "「まっすぐ行って、右だよ。ケケケケケ…」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(7) {
+  speak(Entity(7), "「右にまがってすぐ左だよ。ケケッ…」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(8) {
+  speak(Entity(8), "「この森から出られやしないよ。ケケケ…」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(9) {
+  speak(Entity(9), "「道に迷っちゃったよ…」<NEWLINE>");
+  finishEncounter(Trigger(291));
+}
+
+section(10) {
+  speak(Entity(10), "「なんか最近、つかれぎみで…」<NEWLINE>");
+  finishEncounter(Trigger(291));
+}
+
+section(11) {
+  speak(Entity(11), "「てめぇ、まさか!?」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(12) {
+  speak(Entity(12), "「足元に気をつけな…」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(5) {
+  {
+    playSound(8, 11);
+    speak(Entity(5), "「こりゃああ!」<NEWLINE>");
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 5);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    look(entity: Entity(5), at: Entity.Player);
+    lookPairAt(Entity(5));
+    delay(10);
+    speak(Entity(5), "「んーーーむ。おぬし、やるのーーー。<NEWLINE> 朝早くから感心な子だ。」<NEWLINE>");
+    anim(Entity.Player, Animation(16), wait: 20);
+    speak(Entity.Player, "「おいおい、他人ごとみたいに…」<NEWLINE>");
+    speak(Entity(5), "「わーっとるー。<NEWLINE> おぬしが島のためにデジモンを集めて<NEWLINE> 街をつくっとるってな。」<NEWLINE>");
+    anim(Entity.Player, Animation(19), wait: 20);
+    speak(Entity.Player, "「何だ、わかってんのかあ。<NEWLINE> じゃ協力してくれよ。」<NEWLINE>");
+    speak(Entity(5), "「で、わしはどこで何をするんだったかな?」<NEWLINE>");
+    anim(Entity.Player, Animation(7), wait: 20);
+    speak(Entity.Player, "「わかってねえじゃん!街でお仕事だろ。」<NEWLINE>");
+    speak(Entity(5), "「まあ…早起きは16文の得というてな…」<NEWLINE>");
+    anim(Entity.Player, Animation(7), wait: 20);
+    speak(Entity.Player, "「全っ然関係ねーだろー!<NEWLINE> しかも16文じゃなくて3文だよ!」<NEWLINE>");
+    anim(Entity.Partner, Animation(11), wait: 5);
+    speak(Entity(5), "「フ、ほんの『うそボケ』じゃよ。<NEWLINE> じゃあ街でなぁーーー。」<NEWLINE>");
+    fadeOutHUD();
+    break;
+  }
+  approach(who: Entity(5), x: -330, y: -2751, tries: 10, wait: 10);
+  playSound(8, 10);
+  speak(Entity.System, "コカトリモンが街に参加した!!!<NEWLINE>");
+  anim(Entity.Player, Animation(16), wait: 20);
+  speak(Entity.Player, "「あいつどこまでがマジなんだ…?<NEWLINE> 大丈夫かなー。」<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  setTrigger(Trigger(250));
+  addPStat(PStat(1), 2);
+  return;
+}
+
+section(54) {
+  anim(Entity.Player, Animation(24), wait: 20);
+  speak(Entity.Player, "「おや…鳥の羽が落ちてる…。まだ新しいな。<NEWLINE> 一足おそかったかな?」<NEWLINE>");
+  return;
+}
+
+section(52) {
+  pstat[:SavedTime] = time();
+  if (!trigger(174) && !trigger(250) && pstat[107] >= 4 && pstat[107] <= 6) {
+    setDigimon(Digimon.Devimon, Entity(0), 1);
+    setTrigger(Trigger(174));
+  }
+  return;
+}
+
+section(51) {
+  move(entity: Entity.Player, to: (-2500, -2900), sprint: 0);
+  if (trigger(114) || trigger(147)) {
+    warp(to: Map.MIST02, spawn: 1, trigger: 255);
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  if (pstat[110] < 49) {
+    warp(to: Map.MIST02, spawn: 1, trigger: 255);
+    goto section_53;
+  }
+  warp(to: Map.MIST07, spawn: 2, trigger: 255);
+}
+
+section(53) {
+  move(entity: Entity.Player, to: (2600, -2550), sprint: 0);
+  if (trigger(114) || trigger(147)) {
+    warp(to: Map.MIST07, spawn: 0, trigger: 255);
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  if (pstat[110] < 69) {
+    warp(to: Map.MIST07, spawn: 0, trigger: 255);
+  } else {
+    warp(to: Map.MIST02, spawn: 0, trigger: 255);
+  }
+  garbage { 38 00 fe 00 38 00 06 00 92 00 07 00 d0 00 08 00 0a 01 09 00 48 01 0a 00 76 01 0b 00 aa 01 0c 00 d6 01 05 00 02 02 36 00 52 05 34 00 a8 05 33 00 cc 05 35 00 04 06 ff ff 24 00 6e 63 19 00 0b 00 6e 13 18 00 4e 00 19 00 74 2c 25 00 54 00 24 00 6e 63 19 00 0b 00 6e 10 18 00 64 00 19 00 74 2c 21 00 43 00 24 00 6e 63 19 00 0b 00 6e 0c 18 00 7a 00 19 00 74 2c 38 00 3f 00 24 00 6e 63 19 00 0b 00 6e 02 18 00 90 00 19 00 74 2f 38 00 53 00 fe 00 1b 06 1a 00 81 75 82 dc 82 c1 82 b7 82 ae 8d 73 82 c1 82 c4 81 41 89 45 82 be 82 e6 81 42 83 50 83 50 83 50 83 50 83 50 81 63 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 07 1a 00 81 75 89 45 82 c9 82 dc 82 aa 82 c1 82 c4 82 b7 82 ae 8d b6 82 be 82 e6 81 42 83 50 83 50 83 62 81 63 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 08 1a 00 81 75 82 b1 82 cc 90 58 82 a9 82 e7 8f 6f 82 e7 82 ea 82 e2 82 b5 82 c8 82 a2 82 e6 81 42 83 50 83 50 83 50 81 63 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 09 1a 00 81 75 93 b9 82 c9 96 c0 82 c1 82 bf 82 e1 82 c1 82 bd 82 e6 81 63 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 23 01 fe 00 1b 0a 1a 00 81 75 82 c8 82 f1 82 a9 8d c5 8b df 81 41 82 c2 82 a9 82 ea 82 ac 82 dd 82 c5 81 63 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 23 01 fe 00 1b 0b 1a 00 81 75 82 c4 82 df 82 a5 81 41 82 dc 82 b3 82 a9 81 49 81 48 }
+}

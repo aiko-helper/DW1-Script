@@ -1,0 +1,282 @@
+// DG007.SCN
+#include "functions.dgs"
+#pragma script index=7 start=0xa000 end=0xb000 headerU16=0x10 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 4, item: Item.Digimushroom, x: 57, y: 83);
+  return;
+}
+
+section(81) {
+  if (item[Item.BlueFlute] >= 1) {
+    speak(Entity.Player, "「おっ、そうだ。」<NEWLINE>");
+    speak(Entity.System, "<LIGHTBLUE>湖のぬしの笛<WHITE>をつかいますか?<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L2, L1);
+    showTextbox("「笛をふく。」<NEWLINE>「笛をふかない。」<NEWLINE>");
+    waitForSelectionChoice();
+    return;
+  }
+  return;
+
+L1:
+  return;
+
+L2:
+  sfx(8, 13, wait: 60);
+  followEntity(Entity.Player, speed: 10);
+  move(entity: Entity.Player, to: (445, -1448), sprint: 1, withCamera: true);
+  move(entity: Entity.Partner, to: (743, -2280), sprint: 1);
+  waitForPair();
+  rotate(entity: Entity.Player, to: 1536);
+  rotate(entity: Entity.Partner, to: 1536);
+  panTo(x: 242, y: -1810, slowdown: 10);
+  loadAndSetDigimon(Digimon.NPCSeadramon, Entity(0), 0);
+  playAnimation(Entity(5), Animation(28));
+  setObjectsVisibleRange(38, 44, 0);
+  setPStat(PStat(247), 40);
+  setPStat(PStat(248), 5);
+  callSubroutine(21);
+  playAnimation(Entity.Player, Animation(15));
+  waitForEntity(Entity(5));
+  sfx(8, 12, wait: 60);
+  setObjectsVisibleRange(40, 44, 1);
+  setObjectVisibility(45, 0);
+  playAnimation(Entity(5), Animation(32));
+  playSound(8, 7);
+  speak(Entity(5), "「わが友よ、私の力が必要か?」<NEWLINE>");
+  anim(Entity.Player, Animation(19), wait: 15);
+  speak(Entity.Player, "「向こう岸に乗せてって。」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(5), "「お安いご用。さあ乗った。」<NEWLINE>");
+  playAnimation(Entity(5), Animation(29));
+  setObjectVisibility(45, 1);
+  setObjectVisibility(46, 0);
+  setObjectVisibility(47, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 2);
+  callSubroutine(21);
+  delay(20);
+  setObjectVisibility(46, 1);
+  setObjectVisibility(47, 1);
+  anim(Entity(5), Animation(30), wait: 10);
+  panTo(x: -310, y: -1980, slowdown: 15);
+  move(entity: Entity.Player, axis: 1, to: -200, speed: 2);
+  delay(5);
+  playAnimation(Entity.Player, Animation(21));
+  move(entity: Entity.Player, to: (-194, -1810), animDuration: 50);
+  move(entity: Entity.Partner, to: (50, -2538), sprint: 1);
+  waitForEntity(Entity.Partner);
+  move(entity: Entity(5), to: (-791, 74), animDuration: 30);
+  move(entity: Entity.Player, to: (-791, 74), animDuration: 30);
+  move(entity: Entity.Partner, to: (-791, 74), animDuration: 30);
+  delay(20);
+  warp(to: Map.BETL01, spawn: 0, trigger: 255);
+  return;
+  return;
+}
+
+section(82) {
+  move(entity: Entity.Player, to: (445, -1448), sprint: 1, withCamera: true);
+  move(entity: Entity.Partner, to: (743, -2280), sprint: 1);
+  waitForPair();
+  rotate(entity: Entity.Player, to: 1536);
+  rotate(entity: Entity.Partner, to: 1536);
+  panTo(x: 242, y: -1810, slowdown: 10);
+  if (trigger(339)) {
+    setTrigger(Trigger(339));
+    setObjectVisibility(38, 0);
+    setObjectVisibility(39, 0);
+    loadAndSetDigimon(Digimon.NPCSeadramon, Entity(0), 0);
+    playAnimation(Entity(5), Animation(28));
+    setObjectsVisibleRange(40, 44, 0);
+    setPStat(PStat(247), 40);
+    setPStat(PStat(248), 5);
+    callSubroutine(21);
+    playAnimation(Entity.Player, Animation(15));
+    waitForEntity(Entity(5));
+    sfx(8, 12, wait: 60);
+    setObjectsVisibleRange(40, 44, 1);
+    setObjectVisibility(45, 0);
+    playAnimation(Entity(5), Animation(32));
+    playSound(8, 7);
+    speak(Entity.Player, "「シードラモン!」<NEWLINE>");
+    speak(Entity(5), "「また会ったな。<NEWLINE> 何か願い事があるか?」<NEWLINE>");
+  } else {
+    goto L2;
+  }
+  loop {
+    setTrigger(Trigger(49));
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L4, L8);
+    showTextbox("「友達になろう。」<NEWLINE>「技を教えてくれ!」<NEWLINE>「アイテムがほしい。」<NEWLINE>");
+
+L1:
+    unsetTrigger(Trigger(49));
+    if (trigger(210)) {
+      speak(Entity(5), "「私とお前はもう友達だ。<NEWLINE> 他の願いは?」<NEWLINE>");
+      continue;
+      return;
+    }
+    {
+      break;
+
+L2:
+      setTrigger(Trigger(339));
+      loadAndSetDigimon(Digimon.NPCSeadramon, Entity(0), 0);
+      playAnimation(Entity(5), Animation(28));
+      setObjectsVisibleRange(38, 44, 0);
+      setPStat(PStat(247), 40);
+      setPStat(PStat(248), 5);
+      callSubroutine(21);
+      playAnimation(Entity.Player, Animation(15));
+      waitForEntity(Entity(5));
+      sfx(8, 12, wait: 60);
+      setObjectsVisibleRange(40, 44, 1);
+      setObjectVisibility(45, 0);
+      playAnimation(Entity(5), Animation(32));
+      playSound(8, 7);
+      speak(Entity.Player, "「う、うわぁー!湖のぬしだぁっ!」<NEWLINE>");
+      playAnimation(Entity.Player, Animation(0));
+      speak(Entity(5), "「ふぅー…いかにも。私はシードラモン。<NEWLINE> 最近釣りばっかりしてるのはお前だな?<NEWLINE> まぁいい、何か願い事があるか?」<NEWLINE>");
+      speak(Entity.Player, "「ええっ!…さすがはぬしだな、すげー。<NEWLINE> えーと、それじゃあ。」<NEWLINE>");
+      setTrigger(Trigger(49));
+      setSelection(L3, L4, L8);
+      showTextbox("「友達になろう。」<NEWLINE>「技を教えてくれ!」<NEWLINE>「アイテムがほしい。」<NEWLINE>");
+
+L3:
+    }
+    unsetTrigger(Trigger(49));
+    speak(Entity(5), "「よーし、よかろう。」<NEWLINE>");
+    showTextbox("「お前と私は今から友達だ。しるしとして<NEWLINE> この笛をあげよう。」<NEWLINE>");
+    setTrigger(Trigger(210));
+    addPStat(PStat(1), 2);
+    giveItem(Item.BlueFlute, 1);
+    if (trigger(0)) {
+      unsetTrigger(Trigger(3));
+      speak(Entity.Player, "「しまった、アイテムがいっぱいだ。<NEWLINE> 捨てなきゃ。」<NEWLINE>");
+      callSubroutine(0);
+      callSubroutine(13);
+      giveItem(Item.BlueFlute, 1);
+    }
+    speak(Entity.System, "<LIGHTBLUE>湖のぬしの笛<WHITE>を手に入れた!<NEWLINE>");
+    speak(Entity(5), "「それを湖の近くで吹いてくれれば、いつ<NEWLINE> でも私は現われる。友達として、湖の<NEWLINE> 向こうへ渡してあげよう。」<NEWLINE>");
+    speak(Entity.Player, "「へぇー、むこうに行けるのか!<NEWLINE> サンキュ。」<NEWLINE>");
+    speak(Entity(5), "「湖の向こうには、少し変わった森がある<NEWLINE> のだが、今すぐ行ってみるか?」<NEWLINE>");
+    setTrigger(Trigger(49));
+    setDialogOwner(Entity.Player);
+    setSelection(L9, L10);
+    showTextbox("「お、行く行く!」<NEWLINE>「今度準備してから来るよ。」<NEWLINE>");
+
+L4:
+    unsetTrigger(Trigger(49));
+    speak(Entity(5), "「うむ、ではこの技を伝授しよう。」<NEWLINE>");
+    if (hasTech(Move.AquaMagic) == 1) goto L5;
+    learnMove(Move.AquaMagic);
+    speak(Entity.System, "『アクアマジック』を覚えた!<NEWLINE>");
+    break;
+
+L5:
+    if (hasTech(Move.WinterBlast) == 1) goto L6;
+    learnMove(Move.WinterBlast);
+    speak(Entity.System, "『ウインターブラスト』を覚えた!<NEWLINE>");
+    break;
+
+L6:
+    if (hasTech(Move.GigaFreeze) == 1) goto L7;
+    learnMove(Move.GigaFreeze);
+    speak(Entity.System, "『ギガフリーズ』を覚えた!<NEWLINE>");
+    break;
+
+L7:
+    speak(Entity(5), "「むう、私から教えられる技は<NEWLINE> もう無いようだ…」<NEWLINE>");
+  }
+  speak(Entity(5), "「ではさらば。」<NEWLINE>");
+  playAnimation(Entity(5), Animation(29));
+  setObjectVisibility(45, 1);
+  setObjectVisibility(46, 0);
+  setObjectVisibility(47, 0);
+  delay(20);
+  playAnimation(Entity(5), Animation(30));
+  setObjectVisibility(46, 1);
+  setObjectVisibility(47, 1);
+  delay(5);
+  move(entity: Entity(5), to: (-791, 74), animDuration: 30);
+  waitForEntity(Entity(5));
+  unloadEntity(Entity(5));
+  return;
+
+L8:
+  unsetTrigger(Trigger(49));
+  speak(Entity(5), "「うむ、<LIGHTBLUE>お供え酒<WHITE>を与えよう。」<NEWLINE>");
+  giveItem(Item.Waterbottle, 1);
+  if (trigger(0)) {
+    unsetTrigger(Trigger(3));
+    speak(Entity.Player, "「しまった、アイテムがいっぱいだ。<NEWLINE> 捨てなきゃ。」<NEWLINE>");
+    callSubroutine(0);
+    callSubroutine(13);
+    giveItem(Item.Waterbottle, 1);
+  }
+  speak(Entity.System, "<LIGHTBLUE>お供え酒<WHITE>を手に入れた!<NEWLINE>");
+  speak(Entity(5), "「ではさらばだ。」<NEWLINE>");
+  playAnimation(Entity(5), Animation(29));
+  setObjectVisibility(45, 1);
+  setObjectVisibility(46, 0);
+  setObjectVisibility(47, 0);
+  delay(20);
+  playAnimation(Entity(5), Animation(30));
+  setObjectVisibility(46, 1);
+  setObjectVisibility(47, 1);
+  delay(5);
+  move(entity: Entity(5), to: (-791, 74), animDuration: 30);
+  waitForEntity(Entity(5));
+  unloadEntity(Entity(5));
+  return;
+
+L9:
+  unsetTrigger(Trigger(49));
+  speak(Entity(5), "「それでは、私に乗りなさい。」<NEWLINE>");
+  playAnimation(Entity(5), Animation(29));
+  setObjectVisibility(45, 1);
+  setObjectVisibility(46, 0);
+  setObjectVisibility(47, 0);
+  setPStat(PStat(247), 46);
+  setPStat(PStat(248), 2);
+  callSubroutine(21);
+  delay(20);
+  setObjectVisibility(46, 1);
+  setObjectVisibility(47, 1);
+  anim(Entity(5), Animation(30), wait: 10);
+  panTo(x: -310, y: -1980, slowdown: 15);
+  move(entity: Entity.Player, axis: 1, to: -200, speed: 2);
+  delay(5);
+  playAnimation(Entity.Player, Animation(21));
+  move(entity: Entity.Player, to: (-194, -1810), animDuration: 50);
+  move(entity: Entity.Partner, to: (50, -2538), sprint: 1);
+  waitForEntity(Entity.Partner);
+  move(entity: Entity(5), to: (-791, 74), animDuration: 30);
+  move(entity: Entity.Player, to: (-791, 74), animDuration: 30);
+  move(entity: Entity.Partner, to: (-791, 74), animDuration: 30);
+  delay(20);
+  warp(to: Map.BETL01, spawn: 0, trigger: 255);
+  return;
+
+L10:
+  unsetTrigger(Trigger(49));
+  speak(Entity(5), "「ではひとまずさらばだ。」<NEWLINE>");
+  playAnimation(Entity(5), Animation(29));
+  setObjectVisibility(45, 1);
+  setObjectVisibility(46, 0);
+  setObjectVisibility(47, 0);
+  delay(20);
+  playAnimation(Entity(5), Animation(30));
+  setObjectVisibility(46, 1);
+  setObjectVisibility(47, 1);
+  delay(5);
+  move(entity: Entity(5), to: (-791, 74), animDuration: 30);
+  waitForEntity(Entity(5));
+  unloadEntity(Entity(5));
+  return;
+  garbage { 10 00 fe 00 10 00 51 00 28 00 52 00 32 02 ff ff 24 00 6e 63 19 00 0b 00 6e 04 18 00 26 00 19 00 74 2c 39 00 53 00 fe 00 19 00 24 00 73 02 01 00 18 00 ac 00 19 00 1b fd 1a 00 81 75 82 a8 82 c1 81 41 82 bb 82 a4 82 be 81 42 81 76 0d 00 00 00 1b ff 1a 00 01 06 8c ce 82 cc 82 ca 82 b5 82 cc 93 4a 01 01 82 f0 82 c2 82 a9 82 a2 82 dc 82 b7 82 a9 81 48 0d 00 00 00 1b fd 10 02 b0 00 ae 00 1a 00 81 75 93 4a 82 f0 82 d3 82 ad 81 42 81 76 0d 00 81 75 93 4a 82 f0 82 d3 82 a9 82 c8 82 a2 81 42 81 76 0d 00 00 00 12 00 fe 00 fe 00 fe 00 5a 00 08 0d 67 00 3c 00 50 00 fd 0a 4a c8 52 fd bd 01 58 fa 01 00 4e fc e7 02 18 f7 01 00 4a fd 4a fc 4d fd 00 06 4d fc 00 06 4f 0a f2 00 ee f8 4a c8 46 86 47 86 00 00 56 00 05 1c 57 00 26 00 57 00 27 00 57 00 28 00 57 00 29 00 57 00 2a 00 57 00 2b 00 57 00 2c 00 1e 00 f7 28 1e 00 f8 05 64 15 56 00 fd 0f 4a 05 5a 00 08 0c 67 00 3c 00 57 00 28 01 57 00 29 01 57 00 2a 01 57 00 2b 01 57 00 2c 01 57 00 2d 00 56 00 05 20 5a 00 08 07 1b 05 1a 00 81 75 82 ed 82 aa 97 46 82 e6 81 41 8e 84 82 cc 97 cd 82 aa 95 4b 97 76 82 a9 81 48 81 76 0d 00 00 00 56 00 fd 13 67 00 0f 00 1b fd 1a 00 81 75 8c fc 82 b1 82 a4 8a dd 82 c9 8f e6 82 b9 82 c4 82 c1 82 c4 81 42 81 76 0d 00 00 00 56 00 fd 00 1b 05 1a 00 81 75 82 a8 88 c0 82 a2 82 b2 97 70 81 42 82 b3 82 a0 8f e6 82 c1 82 bd 81 42 81 76 0d 00 00 00 56 00 05 1d 57 00 2d 01 57 00 2e 00 57 00 2f 00 1e 00 f7 2e 1e 00 f8 02 64 15 67 00 14 00 57 00 2e 01 57 00 2f 01 56 00 05 1e 67 00 0a 00 4f 0f ca fe 44 f8 4a c8 72 fd 38 ff 01 02 67 00 05 00 56 00 fd 15 6c fd 3e ff ee f8 32 00 4e fc 32 00 16 f6 01 00 4a fc 6c 05 e9 fc 4a 00 1e 00 6c fd e9 fc 4a 00 1e 00 6c fc e9 fc 4a 00 1e 00 67 00 14 00 4b 69 00 ff fe 00 fe 00 52 fd bd 01 58 fa 01 00 4e fc e7 02 18 f7 01 00 4a fd 4a fc 4d fd 00 06 4d fc 00 06 4f 0a f2 00 ee f8 4a c8 19 00 00 00 53 01 18 00 14 03 19 00 1c 00 53 01 57 00 26 00 57 00 27 00 46 86 47 86 00 00 56 00 05 1c 57 00 28 00 57 00 29 00 57 00 2a 00 57 00 2b 00 57 00 2c 00 1e 00 f7 28 1e 00 f8 05 64 15 56 00 fd 0f 4a 05 5a 00 08 0c 67 00 3c 00 57 00 28 01 57 00 29 01 57 00 2a 01 57 00 2b 01 57 00 2c 01 57 00 2d 00 56 00 05 20 5a 00 08 07 1b fd 1a 00 81 75 83 56 81 5b 83 68 83 89 83 82 83 93 81 49 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 dc 82 bd 89 ef 82 c1 82 bd 82 c8 81 42 0d 00 81 40 89 bd 82 a9 8a e8 82 a2 8e 96 82 aa 82 a0 82 e9 82 a9 81 48 81 76 0d 00 00 00 16 00 18 03 16 00 b8 03 1c 00 31 00 1b fd 10 03 6c 03 82 07 dc 08 1a 00 81 75 97 46 92 42 82 c9 82 c8 82 eb 82 a4 81 42 81 76 0d 00 81 75 8b 5a 82 f0 8b b3 82 a6 82 c4 82 ad 82 ea 81 49 81 76 0d 00 81 75 83 41 83 43 83 65 83 80 82 aa 82 d9 82 b5 82 a2 81 42 81 76 0d 00 00 00 1d 00 31 00 19 00 00 00 d2 00 18 00 b4 03 19 00 1b 05 1a 00 81 75 8e 84 82 c6 82 a8 91 4f 82 cd 82 e0 82 a4 97 46 92 42 82 be 81 42 0d 00 81 40 91 bc 82 cc 8a e8 82 a2 82 cd 81 48 81 76 0d 00 00 00 16 00 18 03 fe 00 16 00 5c 05 1c 00 53 01 46 86 47 86 00 00 56 00 05 1c 57 00 26 00 57 00 27 00 57 00 28 00 57 00 29 00 57 00 2a 00 57 00 2b 00 57 00 2c 00 1e 00 f7 28 1e 00 f8 05 64 15 56 00 fd 0f 4a 05 5a 00 08 0c 67 00 3c 00 57 00 28 01 57 00 29 01 57 00 2a 01 57 00 2b 01 57 00 2c 01 57 00 2d 00 56 00 05 20 5a 00 08 07 1b fd 1a 00 81 75 82 a4 81 41 82 a4 82 ed 82 9f 81 5b 81 49 8c ce 82 cc 82 ca 82 b5 82 be 82 9f 82 c1 81 49 81 76 0d 00 00 00 56 00 fd 00 1b 05 1a 00 81 75 82 d3 82 a3 81 5b 81 63 82 a2 82 a9 82 c9 82 e0 81 42 8e 84 82 cd 83 56 81 5b 83 68 83 89 83 82 83 93 81 42 0d 00 81 40 8d c5 8b df 92 de 82 e8 82 ce 82 c1 82 a9 82 e8 82 b5 82 c4 82 e9 82 cc 82 cd 82 a8 91 4f 82 be 82 c8 81 48 0d 00 81 40 82 dc 82 9f 82 a2 82 a2 81 41 89 bd 82 a9 8a e8 82 a2 8e 96 82 aa 82 a0 82 e9 82 a9 81 48 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a6 82 a6 82 c1 81 49 81 63 82 b3 82 b7 82 aa 82 cd 82 ca 82 b5 82 be 82 c8 81 41 82 b7 82 b0 81 5b 81 42 0d 00 81 40 82 a6 81 5b 82 c6 81 41 82 bb 82 ea 82 b6 82 e1 82 a0 81 42 81 76 0d 00 00 00 1c 00 31 00 10 03 5c 05 82 07 dc 08 1a 00 81 75 97 46 92 42 82 c9 82 c8 82 eb 82 a4 81 42 81 76 0d 00 81 75 8b 5a 82 f0 8b b3 }
+}

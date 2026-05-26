@@ -1,0 +1,259 @@
+// DG160.SCN
+#include "functions.dgs"
+#pragma script index=160 start=0x6d800 end=0x6e800 headerU16=0x14 sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(81) {
+  look(entity: Entity.Player, at: Entity(5));
+  look(entity: Entity(5), at: Entity.Player);
+  {
+    if (trigger(58) || trigger(61) || trigger(60) || trigger(59)) {
+      break;
+    }
+    if (trigger(209) && !trigger(58) && pstat[27] == 0) {
+      speak(Entity(5), "「いらっしゃい。」<NEWLINE>");
+      showTextbox("「見てくれ、<LIGHTBLUE><PLAYER><WHITE>。<NEWLINE> 私は外食屋のオーナー兼シェフになることに<NEWLINE> したぞ。」<NEWLINE>");
+      showTextbox("「おまえ達には私の炎の料理をじっくり<NEWLINE> 味わってもらうぞ…フフフ…」<NEWLINE>");
+      setTrigger(Trigger(58));
+      return;
+    }
+    if (trigger(208) && !trigger(61) && pstat[27] == 1) {
+      speak(Entity(5), "「はっはっは、<LIGHTBLUE><PLAYER><WHITE>、<ORANGE><DIGIMON><WHITE><NEWLINE> 俺の料理食べてけよ!」<NEWLINE>");
+      showTextbox("「まさか俺の隠れた特技を生かせるとは<NEWLINE> 思わなかったぜ。アイテムとは違う本格的な<NEWLINE> 食事を味わってくれよな!」<NEWLINE>");
+      setTrigger(Trigger(61));
+      return;
+    }
+    if (trigger(222) && !trigger(60) && pstat[27] == 2) {
+      speak(Entity(5), "「おーす、<LIGHTBLUE><PLAYER><WHITE>、<ORANGE><DIGIMON><WHITE>!<NEWLINE> 俺は料理で食っていくことにしたぜ。<NEWLINE> こう見えて料理は得意でな。」<NEWLINE>");
+      showTextbox("「けいたい食ばっかりじゃアキるだろ?<NEWLINE> たまにはゆっくり店で食事すんのもオツな<NEWLINE> もんだぜ!」<NEWLINE>");
+      setTrigger(Trigger(60));
+      return;
+    }
+    if (!trigger(223) || trigger(59) || pstat[27] != 3) break;
+    speak(Entity(5), "「やあー!<LIGHTBLUE><PLAYER><WHITE>、<ORANGE><DIGIMON><WHITE>。<NEWLINE> ぼくのレストランがついにオープンだよ!」<NEWLINE>");
+    showTextbox("「ぼく特製の冷たいデサート、おいしいから<NEWLINE> ぜひ食べてってよね~!」<NEWLINE>");
+    setTrigger(Trigger(59));
+    return;
+  }
+  if (trigger(209) && !trigger(58) && pstat[27] == 0) {
+    speak(Entity(5), "「ふ…<LIGHTBLUE><PLAYER><WHITE>、私はこの店のシェフと<NEWLINE> して働くことになった。」<NEWLINE>");
+    showTextbox(" 「おまえ達には真昼の暑い料理をじっくり<NEWLINE> 味わってもらうぞ。」<NEWLINE>");
+    setTrigger(Trigger(58));
+    return;
+  }
+  if (trigger(208) && !trigger(61) && pstat[27] == 1) {
+    speak(Entity(5), "「はっは!<LIGHTBLUE><PLAYER><WHITE>、<ORANGE><DIGIMON><WHITE>。<NEWLINE> 俺ぁ料理人になったんだぜ!」<NEWLINE>");
+    showTextbox("「まさか俺の隠れた特技を生かせるたぁ<NEWLINE> 思わなかったぜ。俺の特別料理を食いたい<NEWLINE> なら午前中に来な!」<NEWLINE>");
+    setTrigger(Trigger(61));
+    return;
+  }
+  if (trigger(222) && !trigger(60) && pstat[27] == 2) {
+    speak(Entity(5), "「おーす、<LIGHTBLUE><PLAYER><WHITE>、<ORANGE><DIGIMON><WHITE>!<NEWLINE> 俺は料理に生きることに決めたぜ!」<NEWLINE>");
+    showTextbox("「俺の特別料理は夜中か早朝にしか<NEWLINE> 食えないが、栄養満点だぜ!」<NEWLINE>");
+    setTrigger(Trigger(60));
+    return;
+  }
+  if (trigger(223) && !trigger(59) && pstat[27] == 3) {
+    speak(Entity(5), "「やあー!<LIGHTBLUE><PLAYER><WHITE>、<ORANGE><DIGIMON><WHITE>!<NEWLINE>");
+    showTextbox("「ぼく、この店を手伝うことにしたよ。<NEWLINE> デザート作らせてくれるっていうし。」<NEWLINE>");
+    showTextbox("「ぼく特製のデザート、絶対おいしいから<NEWLINE> 食べてってね。」<NEWLINE>");
+    setTrigger(Trigger(59));
+    return;
+  }
+  if (pstat[27] == 0 || pstat[27] == 1 || pstat[27] == 2) {
+    jumpToScriptSection(184, 51);
+  }
+  if (pstat[27] != 3 && pstat[27] != 4 && pstat[27] != 5) goto section_6;
+  jumpToScriptSection(185, 51);
+}
+
+section(6) {
+  if (!trigger(64)) {
+    speak(Entity(6), "「ギギギッ、よお、<LIGHTBLUE><PLAYER><WHITE>!<NEWLINE> さあーこのマシンは何だ?」<NEWLINE>");
+    showTextbox("「ギギッ!あぶねえモンじゃねーよ!<NEWLINE> こいつぁ オレのハートをアツくする<NEWLINE> ジュークボックスだ!ギヒヒ!」<NEWLINE>");
+    showTextbox("「オマエもよぉ、たまにはハジケるんだよ!<NEWLINE> バ・ク・ハ・ツ・するんだよぉ!<NEWLINE> アツいリクエスト待ってるぜ、ギギ!」<NEWLINE>");
+    setTrigger(Trigger(64));
+  }
+  setPStat(PStat(254), 6);
+  callSubroutine(9);
+  return;
+}
+
+section(51) {
+  {
+    if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) goto L16; else break;
+  }
+  {
+    if (trigger(204) || trigger(249)) {
+      break;
+      break;
+    }
+    goto L8;
+  }
+  {
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L4; else break;
+  }
+  {
+    if (trigger(236)) goto L2; else break;
+  }
+  {
+    if (trigger(205)) goto L1; else break;
+  }
+  warp(to: Map.TWNB02, spawn: 4, trigger: 255);
+  return;
+
+L1:
+  {
+    warp(to: Map.TWNB09, spawn: 4, trigger: 255);
+    return;
+
+L2:
+    if (trigger(205)) goto L3; else break;
+  }
+  warp(to: Map.TWNB07, spawn: 4, trigger: 255);
+  return;
+
+L3:
+  {
+    warp(to: Map.TWNB08, spawn: 4, trigger: 255);
+    return;
+
+L4:
+    if (trigger(236)) goto L6; else break;
+  }
+  {
+    if (trigger(205)) goto L5; else break;
+  }
+  warp(to: Map.TWNB03, spawn: 4, trigger: 255);
+  return;
+
+L5:
+  {
+    warp(to: Map.TWNB06, spawn: 4, trigger: 255);
+    return;
+
+L6:
+    if (trigger(205)) goto L7; else break;
+  }
+  warp(to: Map.TWNB04, spawn: 4, trigger: 255);
+  return;
+
+L7:
+  {
+    warp(to: Map.TWNB05, spawn: 4, trigger: 255);
+    return;
+
+L8:
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L12; else break;
+  }
+  {
+    if (trigger(236)) goto L10; else break;
+  }
+  {
+    if (trigger(205)) goto L9; else break;
+  }
+  warp(to: Map.TWNB01, spawn: 4, trigger: 255);
+  return;
+
+L9:
+  warp(to: Map.TWNB24, spawn: 4, trigger: 255);
+  return;
+
+L10:
+  {
+    if (trigger(205)) {
+      break;
+      break;
+    }
+    goto L11;
+  }
+  warp(to: Map.TWNB23, spawn: 4, trigger: 255);
+  return;
+
+L11:
+  {
+    warp(to: Map.TWNB22, spawn: 4, trigger: 255);
+    return;
+
+L12:
+    if (trigger(236)) goto L14; else break;
+  }
+  {
+    if (trigger(205)) goto L13; else break;
+  }
+  warp(to: Map.TWNB18, spawn: 4, trigger: 255);
+  return;
+
+L13:
+  {
+    warp(to: Map.TWNB21, spawn: 4, trigger: 255);
+    return;
+
+L14:
+    if (trigger(205)) goto L15; else break;
+  }
+  warp(to: Map.TWNB19, spawn: 4, trigger: 255);
+  return;
+
+L15:
+  {
+    warp(to: Map.TWNB20, spawn: 4, trigger: 255);
+    return;
+
+L16:
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L20; else break;
+  }
+  {
+    if (trigger(236)) goto L18; else break;
+  }
+  {
+    if (trigger(205)) goto L17; else break;
+  }
+  warp(to: Map.TWNB10, spawn: 4, trigger: 255);
+  return;
+
+L17:
+  {
+    warp(to: Map.TWNB17, spawn: 4, trigger: 255);
+    return;
+
+L18:
+    if (trigger(205)) goto L19; else break;
+  }
+  warp(to: Map.TWNB15, spawn: 4, trigger: 255);
+  return;
+
+L19:
+  {
+    warp(to: Map.TWNB16, spawn: 4, trigger: 255);
+    return;
+
+L20:
+    if (trigger(236)) goto L22; else break;
+  }
+  {
+    if (trigger(205)) goto L21; else break;
+  }
+  warp(to: Map.TWNB11, spawn: 4, trigger: 255);
+  return;
+
+L21:
+  {
+    warp(to: Map.TWNB14, spawn: 4, trigger: 255);
+    return;
+
+L22:
+    if (trigger(205)) goto L23; else break;
+  }
+  warp(to: Map.TWNB12, spawn: 4, trigger: 255);
+  return;
+
+L23:
+  warp(to: Map.TWNB13, spawn: 4, trigger: 255);
+  return;
+  garbage { 14 00 fe 00 14 00 51 00 16 00 06 00 88 06 33 00 c8 07 ff ff fe 00 4c 00 fd 05 4c 00 05 fd 19 00 00 00 3a 00 40 00 3d 00 40 00 3c 00 40 00 3b 00 18 00 3a 00 19 00 16 00 70 03 19 00 00 00 d1 00 81 00 3a 00 88 00 1b 00 18 00 0c 01 19 00 1b 05 1a 00 81 75 82 a2 82 e7 82 c1 82 b5 82 e1 82 a2 81 42 81 76 0d 00 00 00 1a 00 81 75 8c a9 82 c4 82 ad 82 ea 81 41 01 06 05 00 01 01 81 42 0d 00 81 40 8e 84 82 cd 8a 4f 90 48 89 ae 82 cc 83 49 81 5b 83 69 81 5b 8c 93 83 56 83 46 83 74 82 c9 82 c8 82 e9 82 b1 82 c6 82 c9 0d 00 81 40 82 b5 82 bd 82 bc 81 42 81 76 0d 00 00 00 1a 00 81 75 82 a8 82 dc 82 a6 92 42 82 c9 82 cd 8e 84 82 cc 89 8a 82 cc 97 bf 97 9d 82 f0 82 b6 82 c1 82 ad 82 e8 0d 00 81 40 96 a1 82 ed 82 c1 82 c4 82 e0 82 e7 82 a4 82 bc 81 63 83 74 83 74 83 74 81 63 81 76 0d 00 00 00 1c 00 3a 00 fe 00 19 00 00 00 d0 00 81 00 3d 00 88 00 1b 01 18 00 d8 01 19 00 1b 05 1a 00 81 75 82 cd 82 c1 82 cd 82 c1 82 cd 81 41 01 06 05 00 01 01 81 41 01 0a 06 00 01 01 0d 00 81 40 89 b4 82 cc 97 bf 97 9d 90 48 82 d7 82 c4 82 af 82 e6 81 49 81 76 0d 00 00 00 1a 00 81 75 82 dc 82 b3 82 a9 89 b4 82 cc 89 42 82 ea 82 bd 93 c1 8b 5a 82 f0 90 b6 82 a9 82 b9 82 e9 82 c6 82 cd 0d 00 81 40 8e 76 82 ed 82 c8 82 a9 82 c1 82 bd 82 ba 81 42 83 41 83 43 83 65 83 80 82 c6 82 cd 88 e1 82 a4 96 7b 8a 69 93 49 82 c8 0d 00 81 40 90 48 8e 96 82 f0 96 a1 82 ed 82 c1 82 c4 82 ad 82 ea 82 e6 82 c8 81 49 81 76 0d 00 00 00 1c 00 3d 00 fe 00 19 00 00 00 de 00 81 00 3c 00 88 00 1b 02 18 00 be 02 19 00 1b 05 1a 00 81 75 82 a8 81 5b 82 b7 81 41 01 06 05 00 01 01 81 41 01 0a 06 00 01 01 81 49 0d 00 81 40 89 b4 82 cd 97 bf 97 9d 82 c5 90 48 82 c1 82 c4 82 a2 82 ad 82 b1 82 c6 82 c9 82 b5 82 bd 82 ba 81 42 0d 00 81 40 82 b1 82 a4 8c a9 82 a6 82 c4 97 bf 97 9d 82 cd 93 be 88 d3 82 c5 82 c8 81 42 81 76 0d 00 00 00 1a 00 81 75 82 af 82 a2 82 bd 82 a2 90 48 82 ce 82 c1 82 a9 82 e8 82 b6 82 e1 83 41 83 4c 82 e9 82 be 82 eb 81 48 0d 00 81 40 82 bd 82 dc 82 c9 82 cd 82 e4 82 c1 82 ad 82 e8 93 58 82 c5 90 48 8e 96 82 b7 82 f1 82 cc 82 e0 83 49 83 63 82 c8 0d 00 81 40 82 e0 82 f1 82 be 82 ba 81 49 81 76 0d 00 00 00 1c 00 3c 00 fe 00 19 00 00 00 df 00 81 00 3b 00 88 00 1b 03 18 00 70 03 19 00 1b 05 1a 00 81 75 82 e2 82 a0 81 5b 81 49 01 06 05 00 01 01 81 41 01 0a 06 00 01 01 81 42 0d 00 81 40 82 da 82 ad 82 cc 83 8c 83 58 83 67 83 89 83 93 82 aa 82 c2 82 a2 82 c9 83 49 81 5b 83 76 83 93 82 be 82 e6 81 49 81 76 0d 00 00 00 1a 00 81 75 82 da 82 ad 93 c1 90 bb 82 cc 97 e2 82 bd 82 a2 83 66 83 54 81 5b 83 67 81 41 82 a8 82 a2 82 b5 82 a2 82 a9 82 e7 0d 00 81 40 82 ba 82 d0 90 48 82 d7 82 c4 82 c1 82 c4 82 e6 82 cb 81 60 81 49 81 76 0d 00 00 00 1c 00 3b 00 fe 00 19 00 00 00 d1 00 81 00 3a 00 88 00 1b 00 18 00 16 04 19 00 1b 05 1a 00 81 75 82 d3 81 63 01 06 05 00 01 01 81 41 8e 84 82 cd 82 b1 82 cc 93 58 82 cc 83 56 83 46 83 74 82 c6 0d 00 81 40 82 b5 82 c4 93 ad 82 ad 82 b1 82 c6 82 c9 82 c8 82 c1 82 bd 81 42 81 76 0d 00 00 00 1a 00 81 40 81 75 82 a8 82 dc 82 a6 92 42 82 c9 82 cd 90 5e 92 8b 82 cc 8f 8b 82 a2 97 bf 97 9d 82 f0 82 b6 82 c1 82 ad 82 e8 0d 00 81 40 96 a1 82 ed 82 c1 82 c4 82 e0 82 e7 82 a4 82 bc 81 42 81 76 0d 00 00 00 1c 00 3a 00 fe 00 19 00 00 00 d0 00 81 00 3d 00 88 00 1b 01 18 00 de 04 19 00 1b 05 1a 00 81 75 82 cd 82 c1 82 cd 81 49 01 06 05 00 01 01 81 41 01 0a 06 00 01 01 81 42 0d 00 81 40 89 b4 82 9f 97 bf 97 9d 90 6c 82 c9 82 c8 82 c1 82 bd 82 f1 82 be 82 ba 81 49 81 76 0d 00 00 00 1a 00 81 75 82 dc 82 b3 82 a9 89 b4 82 cc 89 42 82 ea 82 bd 93 c1 8b 5a 82 f0 90 b6 82 a9 82 b9 82 e9 82 bd 82 9f 0d 00 81 40 8e 76 82 ed 82 c8 82 a9 82 c1 82 bd 82 ba 81 42 89 b4 82 cc 93 c1 95 ca 97 bf 97 9d 82 f0 90 48 82 a2 82 bd 82 a2 0d 00 81 40 82 c8 82 e7 8c df 91 4f 92 86 82 c9 97 88 82 c8 81 49 81 76 0d 00 00 00 1c 00 3d 00 fe 00 19 00 00 00 de 00 81 00 3c 00 88 00 1b 02 18 00 86 05 19 00 1b 05 1a 00 81 75 82 a8 81 5b 82 b7 81 41 01 06 05 00 01 01 81 41 01 0a 06 00 01 01 81 49 0d 00 81 40 89 b4 82 cd 97 bf 97 9d 82 c9 90 b6 82 ab 82 e9 82 b1 82 c6 82 c9 8c 88 82 df 82 bd 82 ba 81 49 81 76 0d 00 00 00 1a 00 81 75 89 b4 82 cc 93 c1 95 ca 97 bf 97 9d }
+}

@@ -1,0 +1,528 @@
+// MAP149.SCN
+#include "functions.dgs"
+#pragma script index=149 start=0x64000 end=0x65800 headerU16=0x34 sentinelOff=0x1e
+#include "entities.dgs"
+
+section onEnter(254) {
+  setPStat(PStat(254), 0);
+  callSubroutine(25);
+  setObjectsVisibleRange(73, 78, 0);
+  setObjectsVisibleRange(79, 83, 1);
+  return;
+}
+
+section(54) {
+  if (trigger(55)) {
+    jumpToScriptSection(178, 54);
+  }
+  goto section_66;
+  if (!trigger(54)) {
+    delay(20);
+    setDialogOwner(Entity.System);
+    setSelection(L1, L2, L3, L4);
+    showTextbox("「ギロモンコンピュータ室」<NEWLINE>「おもちゃ最深」<NEWLINE>「戦闘チェック」<NEWLINE>「ラストバトル」<NEWLINE>");
+    waitForSelectionChoice();
+    return;
+
+L1:
+    warp(to: Map.FACT08B, spawn: 0, trigger: 255);
+
+L2:
+    warp(to: Map.OMOC08, spawn: 0, trigger: 255);
+
+L3:
+    warp(to: Map.MAYO01_2, spawn: 0, trigger: 255);
+
+L4:
+    warp(to: Map.MGEN99, spawn: 0, trigger: 255);
+  }
+  return;
+}
+
+section(51) {
+  {
+    move(entity: Entity.Player, to: (250, -5000), sprint: 0);
+    if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) goto L16; else break;
+  }
+  {
+    if (trigger(204) || trigger(249)) {
+      break;
+      break;
+    }
+    goto L8;
+  }
+  {
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L4; else break;
+  }
+  {
+    if (trigger(236)) goto L2; else break;
+  }
+  {
+    if (trigger(205)) goto L1; else break;
+  }
+  warp(to: Map.TWNB02, spawn: 1, trigger: 255);
+  return;
+
+L1:
+  {
+    warp(to: Map.TWNB09, spawn: 1, trigger: 255);
+    return;
+
+L2:
+    if (trigger(205)) goto L3; else break;
+  }
+  warp(to: Map.TWNB07, spawn: 1, trigger: 255);
+  return;
+
+L3:
+  {
+    warp(to: Map.TWNB08, spawn: 1, trigger: 255);
+    return;
+
+L4:
+    if (trigger(236)) goto L6; else break;
+  }
+  {
+    if (trigger(205)) goto L5; else break;
+  }
+  warp(to: Map.TWNB03, spawn: 1, trigger: 255);
+  return;
+
+L5:
+  {
+    warp(to: Map.TWNB06, spawn: 1, trigger: 255);
+    return;
+
+L6:
+    if (trigger(205)) goto L7; else break;
+  }
+  warp(to: Map.TWNB04, spawn: 1, trigger: 255);
+  return;
+
+L7:
+  {
+    warp(to: Map.TWNB05, spawn: 1, trigger: 255);
+    return;
+
+L8:
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L12; else break;
+  }
+  {
+    if (trigger(236)) goto L10; else break;
+  }
+  {
+    if (trigger(205)) goto L9; else break;
+  }
+  warp(to: Map.TWNB01, spawn: 1, trigger: 255);
+  return;
+
+L9:
+  warp(to: Map.TWNB24, spawn: 1, trigger: 255);
+  return;
+
+L10:
+  {
+    if (trigger(205)) {
+      break;
+      break;
+    }
+    goto L11;
+  }
+  warp(to: Map.TWNB23, spawn: 1, trigger: 255);
+  return;
+
+L11:
+  {
+    warp(to: Map.TWNB22, spawn: 1, trigger: 255);
+    return;
+
+L12:
+    if (trigger(236)) goto L14; else break;
+  }
+  {
+    if (trigger(205)) goto L13; else break;
+  }
+  warp(to: Map.TWNB18, spawn: 1, trigger: 255);
+  return;
+
+L13:
+  {
+    warp(to: Map.TWNB21, spawn: 1, trigger: 255);
+    return;
+
+L14:
+    if (trigger(205)) goto L15; else break;
+  }
+  warp(to: Map.TWNB19, spawn: 1, trigger: 255);
+  return;
+
+L15:
+  {
+    warp(to: Map.TWNB20, spawn: 1, trigger: 255);
+    return;
+
+L16:
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L20; else break;
+  }
+  {
+    if (trigger(236)) goto L18; else break;
+  }
+  {
+    if (trigger(205)) goto L17; else break;
+  }
+  warp(to: Map.TWNB10, spawn: 1, trigger: 255);
+  return;
+
+L17:
+  {
+    warp(to: Map.TWNB17, spawn: 1, trigger: 255);
+    return;
+
+L18:
+    if (trigger(205)) goto L19; else break;
+  }
+  warp(to: Map.TWNB15, spawn: 1, trigger: 255);
+  return;
+
+L19:
+  {
+    warp(to: Map.TWNB16, spawn: 1, trigger: 255);
+    return;
+
+L20:
+    if (trigger(236)) goto L22; else break;
+  }
+  {
+    if (trigger(205)) goto L21; else break;
+  }
+  warp(to: Map.TWNB11, spawn: 1, trigger: 255);
+  return;
+
+L21:
+  {
+    warp(to: Map.TWNB14, spawn: 1, trigger: 255);
+    return;
+
+L22:
+    if (trigger(205)) goto L23; else break;
+  }
+  warp(to: Map.TWNB12, spawn: 1, trigger: 255);
+  return;
+
+L23:
+  warp(to: Map.TWNB13, spawn: 1, trigger: 255);
+  return;
+}
+
+section(52) {
+  move(entity: Entity.Player, to: (-3000, -2588), sprint: 0);
+  warp(to: Map.TRAI00, spawn: 1, trigger: 255);
+  return;
+}
+
+section(5) {
+  setStats(tournamentsWon: 99, tournamentWins: 99, tournamentsLost: 99);
+  speak(Entity(5), "「<WHITE>白白白 <BLUE>青青青 <RED>赤赤赤 <PINK>ピンク<NEWLINE> <GREEN>みどり <LIGHTBLUE>水水水 <YELLOW>きいろ <ORANGE>オレンジ」<NEWLINE> <ORANGE><CIRCLE> <LIGHTBLUE><CROSS> <PINK><SQUARE> <GREEN><TRIANGLE><NEWLINE>");
+  pstat[:SavedTime] = time();
+  speak(Entity(5), "「ただいま<MONTH>月<DAY>日<HOUR>時<MINUTE>分。」<NEWLINE>");
+  speak(Entity(5), "「ぼくはワープくんさ。<NEWLINE> どこへ行きたいの?」<NEWLINE>");
+  setDialogOwner(Entity.Player);
+  setSelection(L1, L2, L3);
+  showTextbox("「近く」<NEWLINE>「遠く」<NEWLINE>「すげー遠く」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L1:
+  setDialogOwner(Entity.Player);
+  setSelection(L4, L5, L6);
+  showTextbox("「ミハラシ山の上」<NEWLINE>「トロピカジャングル」<NEWLINE>「ドリルトンネル」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L2:
+  setDialogOwner(Entity.Player);
+  setSelection(L7, L8, L9);
+  showTextbox("「ギアサバンナ」<NEWLINE>「闇貴族の館」<NEWLINE>「グレートキャニオン」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L3:
+  setDialogOwner(Entity.Player);
+  setSelection(L10, L11, L12);
+  showTextbox("「ダイノ古代境・入口」<NEWLINE>「ダイノ古代境・奥」<NEWLINE>「未知の世界」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L4:
+  warp(to: Map.MIHA00, spawn: 0, trigger: 255);
+
+L5:
+  warp(to: Map.TROP01, spawn: 0, trigger: 255);
+
+L6:
+  warp(to: Map.TUNN01, spawn: 0, trigger: 255);
+
+L7:
+  warp(to: Map.GIAS00, spawn: 0, trigger: 255);
+
+L8:
+  warp(to: Map.YAKA11A, spawn: 0, trigger: 255);
+
+L9:
+  warp(to: Map.GCAN09, spawn: 0, trigger: 255);
+
+L10:
+  warp(to: Map.KODA00, spawn: 0, trigger: 255);
+
+L11:
+  warp(to: Map.KODA07, spawn: 0, trigger: 255);
+
+L12:
+  setDialogOwner(Entity.Player);
+  setSelection(L13, L14, L15);
+  showTextbox("「カーリング洞くつ前」<NEWLINE>「シードラ釣り」<NEWLINE>「溶岩洞」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L13:
+  warp(to: Map.FRZL15, spawn: 0, trigger: 255);
+
+L14:
+  warp(to: Map.MAYO06, spawn: 0, trigger: 255);
+
+L15:
+  warp(to: Map.TUNN08, spawn: 0, trigger: 255);
+  return;
+}
+
+section(6) {
+  setStats(lives: 3);
+  speak(Entity(5), "「ライフ3」<NEWLINE>");
+  speak(Entity(6), "「ぼくは進化くんさ。<NEWLINE> 何になりたいの?」<NEWLINE>");
+  setDialogOwner(Entity.Player);
+  setSelection(L1, L2, L3);
+  showTextbox("「ヌメモン」<NEWLINE>「スカモン」<NEWLINE>「ボタモン」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L1:
+  setPStat(PStat(254), 11);
+  callDigimonSubroutine(10);
+  waitForEntity(Entity.System);
+  return;
+
+L2:
+  setPStat(PStat(254), 39);
+  callDigimonSubroutine(10);
+  waitForEntity(Entity.System);
+  return;
+
+L3:
+  setPStat(PStat(254), 1);
+  callDigimonSubroutine(10);
+  waitForEntity(Entity.System);
+  return;
+}
+
+section(7) {
+  jumpToScriptSection(179, 5);
+  return;
+}
+
+section(66) {
+  if (trigger(75) || trigger(54)) {
+    return;
+  }
+  setTrigger(Trigger(75));
+  goto section_8.L2;
+  setDialogOwner(Entity.Player);
+  setSelection(L1, L2, section_8.L2);
+  showTextbox("「通常デバッグ(能力強)へ」<NEWLINE>「通常デバッグ(初期能力)へ」<NEWLINE>「オープニングへ」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L1:
+  setStats(offense: 999, defense: 999, speed: 999, brains: 999, maxHP: 9999, maxMP: 9999, currentHP: 9999, currentMP: 9999);
+  learnMoves([
+    :FireTower, :ProminenceBeam, :SpitFire, :RedInferno,
+    :MagmaBomb, :HeatLaser, :InifinityBurn, :Meltdown,
+    :ThunderJustice, :SpinningShot, :ElectricCloud, :MegaloSpark,
+    :StaticElect, :WindCutter, :ConfusedStorm, :Hurricane,
+    :GigaFreeze, :IceStatue, :WinterBlast, :IceNeedle,
+    :WaterBlit, :AquaMagic, :AuroraFreeze, :TearDrop,
+    :PowerCrane, :AllRangeBeam, :MetalSprinter, :PulseLaser,
+    :DeleteProgram, :DGDimension, :FullPotential, :ReverseProg,
+    :PoisonPowder, :MassMorph, :InsectPlague, :CharmPerfume,
+    :PoisonClaw, :DangerSting, :GreenTrap, :MuscleCharge,
+    :SonicJab, :DynamiteKick, :MegatonPunch, :BusterDive,
+    :OdorSpray, :PoopSpdToss, :BigPoopToss, :BigRndToss,
+    :PoopRndToss, :RndSpdToss, :HorizontalKick, :UltPoopHell,
+    :BlazeBlast, :PepperBreath, :LovelyAttack, :Fireball,
+    :DeathClaw, :MegaFlame
+    ]);
+  return;
+
+L2:
+  setStats(offense: 80, defense: 60, speed: 70, brains: 70, maxHP: 800, maxMP: 600, currentHP: 800, currentMP: 600);
+  return;
+}
+
+section(8) {
+  setDialogOwner(Entity(8));
+  setSelection(L1, L2, L3);
+  showTextbox("「死にかけ」<NEWLINE>「オープニングモード」<NEWLINE>「時間を進める」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L1:
+  setStats(currentHP: 1, lifetime: 1);
+  return;
+
+L2:
+  setTrigger(Trigger(54));
+  setTrigger(Trigger(55));
+  warp(to: Map.TOPN01, spawn: 9, trigger: 255);
+  return;
+
+L3:
+  setDialogOwner(Entity.Player);
+  setSelection(L4, L5, L6);
+  showTextbox("「1時間進めてくれ。」<NEWLINE>「6時間進めてくれ。」<NEWLINE>「240時間進めてくれ。」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L4:
+  pstat[:SavedTime] = time();
+  addMinutesToDate(PStat.SavedTime, 60);
+  advanceToDate(PStat.SavedTime);
+  return;
+
+L5:
+  pstat[:SavedTime] = time();
+  addMinutesToDate(PStat.SavedTime, 360);
+  advanceToDate(PStat.SavedTime);
+  return;
+
+L6:
+  pstat[:SavedTime] = time();
+  addMinutesToDate(PStat.SavedTime, 14400);
+  advanceToDate(PStat.SavedTime);
+  return;
+}
+
+section(11) {
+  {
+    if (!trigger(74)) {
+      speak(Entity(11), "「あ、こんにちは。お肉いりますか?」<NEWLINE>");
+      showTextbox("「いけない、まだ説明してなかったんだ。」<NEWLINE>");
+      showTextbox("「えと、ここはお肉の畑、肉畑です。<NEWLINE> ここでみんなが食べる肉を育ててます。」<NEWLINE>");
+      speak(Entity.Player, "「!、ちょっと待ってよ、肉が畑で<NEWLINE> とれるのか?」<NEWLINE>");
+      speak(Entity(11), "「うん。何かおかしい?」<NEWLINE>");
+      speak(Entity.Player, "「いや……ま、いいや。それで?」<NEWLINE>");
+      speak(Entity(11), "「じっちゃんとぼくらで相談して、<NEWLINE> <LIGHTBLUE><PLAYER><WHITE>さんに1日3つ、お肉を<NEWLINE> わけてあげることにしたんです。」<NEWLINE>");
+      showTextbox("「だから、はい。今日のお肉。」<NEWLINE>");
+    } else {
+      break;
+    }
+    giveItem(Item.Meat, 3);
+    if (item[Item.Meat] >= 99) {
+      speak(Entity(11), "「ん、肉の持ちすぎだね。<NEWLINE> 今日のぶんはパスでいいよね。」<NEWLINE>");
+      setPStat(PStat(31), 1);
+      return;
+    }
+    if (item[Item.Meat] >= 97) {
+      speak(Entity(11), "「ん、肉の持ちすぎだね。<NEWLINE> 持てないぶんはぼくがもらうね。」<NEWLINE>");
+      speak(Entity.System, "<LIGHTBLUE>肉<WHITE>を手に入れた!<NEWLINE>");
+      setTrigger(Trigger(74));
+      setPStat(PStat(31), 0);
+      return;
+    }
+    if (trigger(0)) {
+      speak(Entity(11), "「アイテムのもちすぎだよ。」<NEWLINE>");
+      return;
+    }
+    speak(Entity.System, "<LIGHTBLUE>肉<WHITE>を3つ手に入れた!<NEWLINE>");
+    setTrigger(Trigger(74));
+    setPStat(PStat(31), 0);
+    return;
+  }
+  roll(pstat: PStat.RollScratch, max: 9);
+  {
+    if (pstat[31] >= 1 && pstat[110] <= 0) {
+      speak(Entity(11), "「今日はいっぱいお肉がとれましたよ!<NEWLINE> だから、5つお肉あげる。」<NEWLINE>");
+    } else {
+      break;
+    }
+    if (item[Item.Meat] >= 99) {
+      speak(Entity(11), "「ん、肉の持ちすぎだね。<NEWLINE> 今日のぶんはパスでいいよね。」<NEWLINE>");
+      return;
+    }
+    if (item[Item.Meat] >= 95) {
+      speak(Entity(11), "「ん、肉の持ちすぎだね。<NEWLINE> 持てないぶんはぼくがもらうね。」<NEWLINE>");
+      speak(Entity.System, "<LIGHTBLUE>肉<WHITE>を手に入れた!<NEWLINE>");
+      giveItem(Item.Meat, 5);
+      setTrigger(Trigger(74));
+      setPStat(PStat(31), 0);
+      return;
+    }
+    giveItem(Item.Meat, 5);
+    if (trigger(0)) {
+      speak(Entity(11), "「ん、ざんねんだけど<NEWLINE> アイテムのもちすぎだよ。」<NEWLINE>");
+      return;
+    }
+    speak(Entity.System, "<LIGHTBLUE>肉<WHITE>を5つ手に入れた!<NEWLINE>");
+    speak(Entity(11), "「次のぶんは明日ですー。」<NEWLINE>");
+    setPStat(PStat(31), 0);
+    return;
+  }
+  {
+    if (pstat[31] >= 1) {
+      speak(Entity(11), "「はい。今日のお肉どうぞー。」<NEWLINE>");
+    } else {
+      break;
+    }
+    if (item[Item.Meat] >= 99) {
+      speak(Entity(11), "「ん、肉の持ちすぎだね。<NEWLINE> 今日のぶんはパスでいいよね。」<NEWLINE>");
+      return;
+    }
+    if (item[Item.Meat] >= 97) {
+      speak(Entity(11), "「ん、肉の持ちすぎだね。<NEWLINE> 持てないぶんはぼくがもらうね。」<NEWLINE>");
+      speak(Entity.System, "<LIGHTBLUE>肉<WHITE>を3つ手に入れた!<NEWLINE>");
+      giveItem(Item.Meat, 3);
+      setTrigger(Trigger(74));
+      setPStat(PStat(31), 0);
+      return;
+    }
+    giveItem(Item.Meat, 3);
+    if (trigger(0)) {
+      speak(Entity(11), "「アイテムのもちすぎだよ。」<NEWLINE>");
+      return;
+    }
+    speak(Entity.System, "<LIGHTBLUE>肉<WHITE>を手に入れた!<NEWLINE>");
+    speak(Entity(11), "「次のぶんは明日ですー。」<NEWLINE>");
+    setPStat(PStat(31), 0);
+    return;
+  }
+  speak(Entity(11), "「ん、今日はもうお肉あげましたよね。」<NEWLINE>");
+  showTextbox("「食べ物が無くなった時は…<NEWLINE> 迷わずの森ではけっこう自然の<NEWLINE> キノコがみつかるらしいですよ。」<NEWLINE>");
+  return;
+}
+
+section(9) {
+  speak(Entity(9), "「えへへ、ぼくがこの街の外について、<NEWLINE> せつめーしますぅ。」<NEWLINE>");
+  showTextbox("「街のまわりは『迷わずの森』ですぅ。<NEWLINE> あまり強いデジモンはいないですぅ。」<NEWLINE>");
+  showTextbox("「西はすぐ近くにトレーニング場が<NEWLINE> ありますぅ。これからよく行くことになると<NEWLINE> 思いますぅ。」<NEWLINE>");
+  showTextbox("「川をわたって東は『トロピカジャングル』<NEWLINE> ですぅ。その向こうは知らないですぅ。」<NEWLINE>");
+  showTextbox("「西のほうは山と湖があって、行き止まり<NEWLINE> ですぅ。でもその向こうにもなにか別の<NEWLINE> 地形が広がっているらしいですぅ。」<NEWLINE>");
+  showTextbox("「ずっと南のほうは海ですぅ。北のほうは<NEWLINE> 高ーーい山がそびえてるですぅ。どっちも<NEWLINE> 行き止まりですぅ。」<NEWLINE>");
+  showTextbox("「あとはよくしらないですぅ。でもこの街は<NEWLINE> 島の中心らしいですから、北のほうはまだ<NEWLINE> 知らない広い場所があると思うですぅ。」<NEWLINE>");
+  showTextbox("「これから街の外のうわさについては<NEWLINE> 調べておきますから、ときどき<NEWLINE> 話をききに来てほしいですぅ。」<NEWLINE>");
+  return;
+}
+
+section(53) {
+  move(entity: Entity.Player, to: (23, -842), sprint: 0);
+  warp(to: Map.ROOM08, spawn: 0, trigger: 255);
+  return;
+  garbage { 34 00 fe 00 34 00 36 00 68 00 33 00 06 01 34 00 fa 03 05 00 08 04 06 00 84 06 07 00 28 07 42 00 30 07 08 00 66 08 0b 00 4a 09 09 00 2c 10 35 00 54 13 ff ff 1e 00 fe 00 64 19 57 00 49 00 57 00 4a 00 57 00 4b 00 57 00 4c 00 57 00 4d 00 57 00 4e 00 57 00 4f 01 57 00 50 01 57 00 51 01 57 00 52 01 57 00 53 01 fe 00 19 00 00 00 37 00 18 00 7a 00 19 00 17 00 b2 00 36 00 16 00 30 07 19 00 01 00 36 00 18 00 04 01 19 00 67 00 14 00 1b ff 10 04 f4 00 f8 00 fc 00 00 01 1a 00 81 75 83 4d 83 8d 83 82 83 93 83 52 83 93 83 73 83 85 81 5b 83 5e 8e ba 81 76 0d 00 81 75 82 a8 82 e0 82 bf 82 e1 8d c5 90 5b 81 76 0d 00 81 75 90 ed 93 ac 83 60 83 46 83 62 83 4e 81 76 0d 00 81 75 83 89 83 58 83 67 83 6f 83 67 83 8b 81 76 0d 00 00 00 12 00 fe 00 4b a0 00 ff 4b 97 00 ff 4b 6e 00 ff 4b e1 00 ff fe 00 4e fd fa 00 78 ec 00 00 19 00 00 00 e7 00 40 00 f5 00 40 00 e9 00 40 00 f7 00 18 00 2e 01 19 00 16 00 16 03 16 00 32 01 16 00 32 01 19 00 00 00 cc 00 40 00 f9 00 18 00 4a 01 19 00 16 00 4e 01 16 00 4e 01 16 00 32 02 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 6e 01 19 00 16 00 d2 01 16 00 72 01 16 00 72 01 19 00 00 00 ec 00 18 00 86 01 19 00 16 00 ae 01 16 00 8a 01 16 00 8a 01 19 00 00 00 cd 00 18 00 9e 01 19 00 16 00 a8 01 16 00 a2 01 16 00 a2 01 4b b5 01 ff fe 00 4b bc 01 ff fe 00 19 00 00 00 cd 00 18 00 c2 01 19 00 16 00 cc 01 16 00 c6 01 16 00 c6 01 4b ba 01 ff fe 00 4b bb 01 ff fe 00 19 00 00 00 ec 00 18 00 e6 01 19 00 16 00 0e 02 16 00 ea 01 16 00 ea 01 19 00 00 00 cd 00 18 00 fe 01 19 00 16 00 08 02 16 00 02 02 16 00 02 02 4b b6 01 ff fe 00 4b b9 01 ff fe 00 19 00 00 00 cd 00 18 00 22 02 19 00 16 00 2c 02 16 00 26 02 16 00 26 02 4b b7 01 ff fe 00 4b b8 01 ff fe 00 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 52 02 19 00 16 00 b6 02 16 00 56 02 16 00 56 02 19 00 00 00 ec 00 18 00 6a 02 19 00 16 00 92 02 16 00 6e 02 16 00 6e 02 19 00 00 00 cd 00 18 00 82 02 19 00 16 00 8c 02 16 00 86 02 16 00 86 02 4b b4 01 ff fe 00 4b cb 01 ff fe 00 19 00 00 00 cd 00 18 00 a6 02 19 00 16 00 aa 02 16 00 aa 02 16 00 b0 02 4b ca 01 ff fe 00 4b c9 01 ff fe 00 19 00 00 00 ec 00 18 00 ca 02 19 00 16 00 f2 02 16 00 ce 02 16 00 ce 02 19 00 00 00 cd 00 18 00 e2 02 19 00 16 00 ec 02 16 00 e6 02 16 00 e6 02 4b c5 01 ff fe 00 4b c8 01 ff fe 00 19 00 00 00 cd 00 18 00 06 03 19 00 16 00 10 03 16 00 0a 03 16 00 0a 03 4b c6 01 ff fe 00 4b c7 01 ff fe 00 19 00 00 00 d1 00 40 00 d0 00 40 00 de 00 40 00 df 00 18 00 36 03 19 00 16 00 9a 03 16 00 3a 03 16 00 3a 03 19 00 00 00 ec 00 18 00 4e 03 19 00 16 00 76 03 16 00 52 03 16 00 52 03 19 00 00 00 cd 00 18 00 66 03 19 00 16 00 70 03 16 00 6a 03 16 00 6a 03 4b bd 01 ff fe 00 4b c4 01 ff fe 00 19 00 00 00 cd 00 18 00 8a 03 19 00 16 00 94 03 16 00 8e 03 16 00 8e 03 4b c2 01 ff fe 00 4b c3 01 ff fe 00 19 00 00 00 ec 00 18 00 ae 03 19 00 16 00 d6 03 16 00 b2 03 16 00 b2 03 19 00 00 00 cd 00 18 00 c6 03 19 00 16 00 d0 03 16 00 ca 03 16 00 ca 03 4b be 01 ff fe 00 4b c1 01 ff fe 00 19 00 00 00 cd 00 18 00 ea 03 19 00 16 00 f4 03 16 00 ee 03 16 00 ee 03 4b bf 01 ff fe 00 4b c0 01 ff fe 00 4e fd 48 f4 e4 f5 00 00 4b 70 01 ff fe 00 34 11 63 00 34 12 63 00 34 13 63 00 1b 05 1a 00 81 75 01 01 94 92 94 92 94 92 81 40 01 02 90 c2 90 c2 90 c2 81 40 01 03 90 d4 90 d4 90 d4 81 40 01 04 83 73 83 93 83 4e 0d 00 81 40 01 05 82 dd 82 c7 82 e8 81 40 01 06 90 85 90 85 90 85 81 40 01 07 82 ab 82 a2 82 eb 81 40 01 0a 83 49 83 8c 83 93 83 57 81 76 0d 00 81 40 01 0a 82 81 81 40 01 06 82 82 81 40 01 04 82 83 81 40 01 05 82 84 0d 00 00 00 25 69 1b 05 1a 00 81 75 82 bd 82 be 82 a2 82 dc }
+}

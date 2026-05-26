@@ -1,0 +1,139 @@
+// DG162.SCN
+#include "functions.dgs"
+#pragma script index=162 start=0x70000 end=0x71000 headerU16=0x14 sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(51) {
+  warp(to: Map.ROOM06, spawn: 1, trigger: 255);
+  return;
+}
+
+section(6) {
+  switch pstat[44] {
+    0 => {
+      speak(Entity(6), "「セッチャ、アイテムに関して少し<NEWLINE> 知識があるでち。」<NEWLINE>");
+      showTextbox("「アイテムは全部で128種類あると<NEWLINE> 言われているでち。」<NEWLINE>");
+      showTextbox("「そのなかでも食べ物は32種類も<NEWLINE> あるでち。」<NEWLINE>");
+      showTextbox("「地方によって、そこに自然に育って<NEWLINE> いるものがあって、これは他の場所には<NEWLINE> 無いでち。なかなかめずらしいでち。」<NEWLINE>");
+      showTextbox("「たとえば、迷わずの森では<NEWLINE> 『ブルーリンゴ』が見つかるでち。」<NEWLINE>");
+      showTextbox("「こういった食べ物は、何か特別な<NEWLINE> 効果を持っているでち。それゆえ<NEWLINE> 食べるタイミングをよく考えるでちよ。」<NEWLINE>");
+      setPStat(PStat(44), 1);
+      return;
+    }
+    1 => {
+      speak(Entity(6), "「今回は進化アイテムの話をするでち。」<NEWLINE>");
+      showTextbox("「進化アイテムとはその名の通り、デジモン<NEWLINE> を進化させるでち。進化後の種族に応じて<NEWLINE> 様々な進化アイテムがあるらしいでち。」<NEWLINE>");
+      showTextbox("「例えば『灰色の爪』を使うとグレイモンに<NEWLINE> なるでち。」<NEWLINE>");
+      showTextbox("「進化アイテムは伝説のアイテムでち。<NEWLINE> 中にはこの世に1つしか無いものもある<NEWLINE> らしいでち。」<NEWLINE>");
+      showTextbox("「ただ普通の進化にくらべると、能力の<NEWLINE> ボーナスが無かったり、ご機嫌が下がったり<NEWLINE> あまり得ではないでち。」<NEWLINE>");
+      showTextbox("「でも、すぐになりたいデジモンに進化できる<NEWLINE> のはやっぱりミリョクでちね。」<NEWLINE>");
+      showTextbox("「進化できるのはひとつ前の世代からだけ<NEWLINE> だからそこだけは気をつけるでちよ。」<NEWLINE>");
+      setPStat(PStat(44), 0);
+    }
+  }
+  return;
+}
+
+section(5) {
+  look(entity: Entity.Player, at: Entity(5));
+  look(entity: Entity(5), at: Entity.Player);
+  {
+    if (trigger(70) || trigger(71) || trigger(72) || trigger(73)) {
+      break;
+    }
+    if (trigger(211) && !trigger(70) && pstat[24] == 0) {
+      speak(Entity(5), "「へこへこ。んー皆の衆、おいっす。」<NEWLINE>");
+      showTextbox("「さてさて何でしょうこの店は?<NEWLINE> え?おりが?開いたの?ふーん。へこ。<NEWLINE> 何となく何か買ってよ。」<NEWLINE>");
+      setTrigger(Trigger(70));
+      return;
+    }
+    if (trigger(252) && !trigger(71) && pstat[24] == 1) {
+      speak(Entity(5), "「おお~<LIGHTBLUE><PLAYER><WHITE>どんでねえか。<NEWLINE> オラ、ちっとばかり変わったものを売る<NEWLINE> 店を開いただ。よろしくたのむだよ。」<NEWLINE>");
+      setTrigger(Trigger(71));
+      return;
+    }
+    if (trigger(213) && !trigger(72) && pstat[24] == 2) {
+      speak(Entity(5), "「お~~~よく来たな~~~。ここで<NEWLINE> 売ってるモノ、ちっとフツーじゃないぞ!<NEWLINE> だからいっぱい買え~~~!」<NEWLINE>");
+      setTrigger(Trigger(72));
+      return;
+    }
+    if (!trigger(206) || trigger(73) || pstat[24] != 3) break;
+    speak(Entity(5), "「クックック…<NEWLINE> やはり来たな<LIGHTBLUE><PLAYER><WHITE>。<NEWLINE> そう意外そうなカオをするな。」<NEWLINE>");
+    showTextbox("「俺のアイテムを使いこなせるか…<NEWLINE> お前のテイマーとしての力が<NEWLINE> 問われるということだ。ククク…」<NEWLINE>");
+    setTrigger(Trigger(73));
+    return;
+  }
+  if (trigger(211) && !trigger(70) && pstat[24] == 0) {
+    speak(Entity(5), "「へこへこ。ここはどこ?<NEWLINE> やっぱりおりは暗いところ大スキ。<NEWLINE> という感じの店なのね!」<NEWLINE>");
+    setTrigger(Trigger(70));
+    return;
+  }
+  if (trigger(252) && !trigger(71) && pstat[24] == 1) {
+    speak(Entity(5), "「おお<LIGHTBLUE><PLAYER><WHITE>どん来てくれただか。<NEWLINE> ここはひとつあいさつがわりに、何か<NEWLINE> 買っていってくれろ。」<NEWLINE>");
+    setTrigger(Trigger(71));
+    return;
+  }
+  if (trigger(213) && !trigger(72) && pstat[24] == 2) {
+    speak(Entity(5), "「お~~、<LIGHTBLUE><PLAYER><WHITE>。来たのか~。<NEWLINE> オレのむちゃ役立つアイテム、<NEWLINE> 買ってけ~~。」<NEWLINE>");
+    setTrigger(Trigger(72));
+    return;
+  }
+  if (trigger(206) && !trigger(73) && pstat[24] == 3) {
+    speak(Entity(5), "「クックック…<NEWLINE> やはり来たな<LIGHTBLUE><PLAYER><WHITE>。<NEWLINE> そう意外そうなカオをするな。」<NEWLINE>");
+    showTextbox("「俺のアイテムを使いこなせるか…<NEWLINE> お前のテイマーとしての力が<NEWLINE> 問われるということだ。ククク…」<NEWLINE>");
+    setTrigger(Trigger(73));
+    return;
+  }
+  switch pstat[24] {
+    0 => {
+      setTrigger(Trigger(419));
+      setTrigger(Trigger(420));
+      unsetTrigger(Trigger(3));
+      setPStat(PStat(254), 5);
+      callSubroutine(8);
+      unsetTrigger(Trigger(419));
+      unsetTrigger(Trigger(420));
+      return;
+    }
+    1 => {
+      setTrigger(Trigger(418));
+      setTrigger(Trigger(421));
+      unsetTrigger(Trigger(3));
+      setPStat(PStat(254), 5);
+      callSubroutine(8);
+      unsetTrigger(Trigger(418));
+      unsetTrigger(Trigger(421));
+      return;
+    }
+    2 => {
+      for id in Trigger(402)..Trigger(405) {
+        setTrigger(id);
+      }
+      unsetTrigger(Trigger(3));
+      setPStat(PStat(254), 5);
+      callSubroutine(8);
+      for id in Trigger(402)..Trigger(405) {
+        unsetTrigger(id);
+      }
+      return;
+    }
+    3 => {
+      for id in Trigger(413)..Trigger(415) {
+        setTrigger(id);
+      }
+      unsetTrigger(Trigger(3));
+      setPStat(PStat(254), 5);
+      callSubroutine(8);
+      for id in Trigger(413)..Trigger(415) {
+        unsetTrigger(id);
+      }
+      return;
+    }
+  }
+  return;
+  garbage { 14 00 fe 00 14 00 33 00 16 00 06 00 1c 00 05 00 8e 04 ff ff fe 00 4b d8 01 ff fe 00 19 00 08 00 2c 00 18 00 12 02 19 00 1b 06 1a 00 81 75 83 5a 83 62 83 60 83 83 81 41 83 41 83 43 83 65 83 80 82 c9 8a d6 82 b5 82 c4 8f ad 82 b5 0d 00 81 40 92 6d 8e af 82 aa 82 a0 82 e9 82 c5 82 bf 81 42 81 76 0d 00 00 00 1a 00 81 75 83 41 83 43 83 65 83 80 82 cd 91 53 95 94 82 c5 82 50 82 51 82 57 8e ed 97 de 82 a0 82 e9 82 c6 0d 00 81 40 8c be 82 ed 82 ea 82 c4 82 a2 82 e9 82 c5 82 bf 81 42 81 76 0d 00 00 00 1a 00 81 75 82 bb 82 cc 82 c8 82 a9 82 c5 82 e0 90 48 82 d7 95 a8 82 cd 82 52 82 51 8e ed 97 de 82 e0 0d 00 81 40 82 a0 82 e9 82 c5 82 bf 81 42 81 76 0d 00 00 00 1a 00 81 75 92 6e 95 fb 82 c9 82 e6 82 c1 82 c4 81 41 82 bb 82 b1 82 c9 8e a9 91 52 82 c9 88 e7 82 c1 82 c4 0d 00 81 40 82 a2 82 e9 82 e0 82 cc 82 aa 82 a0 82 c1 82 c4 81 41 82 b1 82 ea 82 cd 91 bc 82 cc 8f ea 8f 8a 82 c9 82 cd 0d 00 81 40 96 b3 82 a2 82 c5 82 bf 81 42 82 c8 82 a9 82 c8 82 a9 82 df 82 b8 82 e7 82 b5 82 a2 82 c5 82 bf 81 42 81 76 0d 00 00 00 1a 00 81 75 82 bd 82 c6 82 a6 82 ce 81 41 96 c0 82 ed 82 b8 82 cc 90 58 82 c5 82 cd 0d 00 81 40 81 77 83 75 83 8b 81 5b 83 8a 83 93 83 53 81 78 82 aa 8c a9 82 c2 82 a9 82 e9 82 c5 82 bf 81 42 81 76 0d 00 00 00 1a 00 81 75 82 b1 82 a4 82 a2 82 c1 82 bd 90 48 82 d7 95 a8 82 cd 81 41 89 bd 82 a9 93 c1 95 ca 82 c8 0d 00 81 40 8c f8 89 ca 82 f0 8e 9d 82 c1 82 c4 82 a2 82 e9 82 c5 82 bf 81 42 82 bb 82 ea 82 e4 82 a6 0d 00 81 40 90 48 82 d7 82 e9 83 5e 83 43 83 7e 83 93 83 4f 82 f0 82 e6 82 ad 8d 6c 82 a6 82 e9 82 c5 82 bf 82 e6 81 42 81 76 0d 00 00 00 1e 00 2c 01 fe 00 19 00 08 00 2c 01 18 00 8c 04 19 00 1b 06 1a 00 81 75 8d a1 89 f1 82 cd 90 69 89 bb 83 41 83 43 83 65 83 80 82 cc 98 62 82 f0 82 b7 82 e9 82 c5 82 bf 81 42 81 76 0d 00 00 00 1a 00 81 75 90 69 89 bb 83 41 83 43 83 65 83 80 82 c6 82 cd 82 bb 82 cc 96 bc 82 cc 92 ca 82 e8 81 41 83 66 83 57 83 82 83 93 0d 00 81 40 82 f0 90 69 89 bb 82 b3 82 b9 82 e9 82 c5 82 bf 81 42 90 69 89 bb 8c e3 82 cc 8e ed 91 b0 82 c9 89 9e 82 b6 82 c4 0d 00 81 40 97 6c 81 58 82 c8 90 69 89 bb 83 41 83 43 83 65 83 80 82 aa 82 a0 82 e9 82 e7 82 b5 82 a2 82 c5 82 bf 81 42 81 76 0d 00 00 00 1a 00 81 75 97 e1 82 a6 82 ce 81 77 8a 44 90 46 82 cc 92 dc 81 78 82 f0 8e 67 82 a4 82 c6 83 4f 83 8c 83 43 83 82 83 93 82 c9 0d 00 81 40 82 c8 82 e9 82 c5 82 bf 81 42 81 76 0d 00 00 00 1a 00 81 75 90 69 89 bb 83 41 83 43 83 65 83 80 82 cd 93 60 90 e0 82 cc 83 41 83 43 83 65 83 80 82 c5 82 bf 81 42 0d 00 81 40 92 86 82 c9 82 cd 82 b1 82 cc 90 a2 82 c9 82 50 82 c2 82 b5 82 a9 96 b3 82 a2 82 e0 82 cc 82 e0 82 a0 82 e9 0d 00 81 40 82 e7 82 b5 82 a2 82 c5 82 bf 81 42 81 76 0d 00 00 00 1a 00 81 75 82 bd 82 be 95 81 92 ca 82 cc 90 69 89 bb 82 c9 82 ad 82 e7 82 d7 82 e9 82 c6 81 41 94 5c 97 cd 82 cc 0d 00 81 40 83 7b 81 5b 83 69 83 58 82 aa 96 b3 82 a9 82 c1 82 bd 82 e8 81 41 82 b2 8b 40 8c 99 82 aa 89 ba 82 aa 82 c1 82 bd 82 e8 0d 00 81 40 82 a0 82 dc 82 e8 93 be 82 c5 82 cd 82 c8 82 a2 82 c5 82 bf 81 42 81 76 0d 00 00 00 1a 00 81 75 82 c5 82 e0 81 41 82 b7 82 ae 82 c9 82 c8 82 e8 82 bd 82 a2 83 66 83 57 83 82 83 93 82 c9 90 69 89 bb 82 c5 82 ab 82 e9 0d 00 81 40 82 cc 82 cd 82 e2 82 c1 82 cf 82 e8 83 7e 83 8a 83 87 83 4e 82 c5 82 bf 82 cb 81 42 81 76 0d 00 00 00 1a 00 81 75 90 69 89 bb 82 c5 82 ab 82 e9 82 cc 82 cd 82 d0 82 c6 82 c2 91 4f 82 cc 90 a2 91 e3 82 a9 82 e7 82 be 82 af 0d 00 81 40 82 be 82 a9 82 e7 82 bb 82 b1 82 be 82 af 82 cd 8b 43 82 f0 82 c2 82 af 82 e9 82 c5 82 bf 82 e6 81 42 81 76 0d 00 00 00 1e 00 2c 00 fe 00 4c 00 fd 05 4c 00 05 fd 19 00 00 00 46 00 40 00 47 00 40 00 48 00 40 00 49 00 18 00 b2 04 19 00 16 00 4e 07 19 00 00 00 d3 00 81 00 46 00 88 00 18 00 18 00 60 05 19 00 1b 05 1a 00 81 75 82 d6 82 b1 82 d6 82 b1 81 42 82 f1 81 5b 8a 46 82 cc 8f 4f 81 41 82 a8 82 a2 82 c1 82 b7 81 42 81 76 0d 00 00 00 1a 00 81 75 82 b3 82 c4 82 b3 82 c4 89 bd 82 c5 82 b5 82 e5 82 a4 82 b1 82 cc 93 58 82 cd 81 48 0d 00 81 40 82 a6 81 48 82 a8 82 e8 82 aa 81 48 8a 4a 82 a2 82 bd 82 cc 81 48 82 d3 81 5b 82 f1 81 42 82 d6 82 b1 81 42 0d 00 81 40 89 bd 82 c6 82 c8 82 ad 89 bd 82 a9 94 83 82 c1 82 c4 82 e6 81 42 81 76 0d 00 00 00 1c 00 46 00 fe 00 19 00 00 00 fc 00 81 00 47 00 88 00 18 01 18 00 ee 05 19 00 1b 05 1a 00 81 75 82 a8 82 a8 81 60 01 06 05 00 01 01 82 c7 82 f1 82 c5 82 cb 82 a6 82 a9 81 42 0d 00 81 40 83 49 83 89 81 41 82 bf 82 c1 82 c6 82 ce 82 a9 82 e8 95 cf 82 ed 82 c1 82 bd 82 e0 }
+}

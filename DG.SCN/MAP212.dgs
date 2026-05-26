@@ -1,0 +1,559 @@
+// MAP212.SCN
+#include "functions.dgs"
+#pragma script index=212 start=0x9d800 end=0x9f800 headerU16=0xc sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(51) {
+  unsetTrigger(Trigger(37));
+  switch pstat[255] {
+    3 => {
+      goto L1;
+    }
+    2 => {
+      goto L3;
+    }
+  }
+  speak(Entity(5), "「残念だったな。<NEWLINE> また挑戦してくれよ。」<NEWLINE>");
+  speak(Entity.System, " <NEWLINE>参加賞の<LIGHTBLUE>巨大肉<WHITE>をもらった!<NEWLINE>");
+  giveItem(Item.GiantMeat, 1);
+  if (trigger(0)) {
+    speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+    inventoryFullBailout();
+    giveItem(Item.GiantMeat, 1);
+  }
+  return;
+
+L1:
+  switch pstat[3] {
+    0 => {
+      addMoney(2000);
+      speak(Entity.System, " <NEWLINE>優勝賞金2000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>ダブルフロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.DoubleFloppy, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.DoubleFloppy, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    1 => {
+      addMoney(4000);
+      speak(Entity.System, " <NEWLINE>優勝賞金4000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>極上肉×3<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Sirloin, 3);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Sirloin, 3);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    else 2 => {
+      addMoney(6000);
+      speak(Entity.System, " <NEWLINE>優勝賞金6000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>再生フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Restore, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Restore, 1);
+      }
+    }
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  if (pstat[3] == 2) {
+    if (stat[Stat.TamerLevel] != 10) {
+      if (pstat[110] <= 9) {
+        addStats(tamerLevel: 1);
+        speak(Entity.System, " <NEWLINE> <YELLOW>テイマーレベルが上がった!!!<WHITE><NEWLINE>");
+        jumpToScriptSection(221, 51);
+      }
+    }
+    jumpToScriptSection(221, 51);
+  }
+  {
+    if (pstat[3] != 3) break;
+    addMoney(8000);
+    speak(Entity.System, " <NEWLINE>優勝賞金8000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>輝くたてがみ<WHITE>をゲット!<NEWLINE>");
+    giveItem(Item.FlamingMane, 1);
+    if (!trigger(0)) break;
+    speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+    inventoryFullBailout();
+    giveItem(Item.FlamingMane, 1);
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  if (pstat[3] == 3) {
+    if (stat[Stat.TamerLevel] != 10) {
+      if (pstat[110] <= 19) {
+        addStats(tamerLevel: 1);
+        speak(Entity.System, " <NEWLINE> <YELLOW>テイマーレベルが上がった!!!<WHITE><NEWLINE>");
+        jumpToScriptSection(221, 51);
+      }
+    }
+    jumpToScriptSection(221, 51);
+  }
+  roll(pstat: PStat.RollScratch, max: 2);
+  if (pstat[3] == 4 && pstat[110] == 0) {
+    addMoney(10000);
+    speak(Entity.System, " <NEWLINE>優勝賞金10000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>メタルパーツ<WHITE>をゲット!<NEWLINE>");
+    giveItem(Item.MetalPart, 1);
+    if (trigger(0)) {
+      speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+      inventoryFullBailout();
+      giveItem(Item.MetalPart, 1);
+    }
+    goto L2;
+    return;
+  }
+  if (pstat[3] == 4 && pstat[110] == 1) {
+    addMoney(10000);
+    speak(Entity.System, " <NEWLINE>優勝賞金10000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>死を呼ぶ骨<WHITE>をゲット!<NEWLINE>");
+    giveItem(Item.FatalBone, 1);
+    if (trigger(0)) {
+      speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+      inventoryFullBailout();
+      giveItem(Item.FatalBone, 1);
+    }
+    goto L2;
+  }
+  if (pstat[3] == 4 && pstat[110] == 2) {
+    addMoney(10000);
+    speak(Entity.System, " <NEWLINE>優勝賞金10000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>メガハンド<WHITE>をゲット!<NEWLINE>");
+    giveItem(Item.MegaHand, 1);
+    if (trigger(0)) {
+      speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+      inventoryFullBailout();
+      giveItem(Item.MegaHand, 1);
+    }
+  } else {
+
+L2:
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  switch pstat[3] {
+    4 => {
+      if (stat[Stat.TamerLevel] != 10) {
+        if (pstat[110] <= 29) {
+          addStats(tamerLevel: 1);
+          speak(Entity.System, " <NEWLINE> <YELLOW>テイマーレベルが上がった!!!<WHITE><NEWLINE>");
+          jumpToScriptSection(221, 51);
+        }
+      }
+      jumpToScriptSection(221, 51);
+    }
+    6 => {
+      addMoney(5000);
+      speak(Entity.System, " <NEWLINE>優勝賞金5000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>牙の化石<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.WhiteFang, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.WhiteFang, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    7 => {
+      addMoney(5000);
+      speak(Entity.System, " <NEWLINE>優勝賞金5000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>ミスリル<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.BlueCrystal, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.BlueCrystal, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    8 => {
+      addMoney(5000);
+      speak(Entity.System, " <NEWLINE>優勝賞金5000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>鉄のヒヅメ<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.IronHoof, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.IronHoof, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    9 => {
+      addMoney(5000);
+      speak(Entity.System, " <NEWLINE>優勝賞金5000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>モノクロストーン<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.MonoStone, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.MonoStone, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    10 => {
+      addMoney(5000);
+      speak(Entity.System, " <NEWLINE>優勝賞金5000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>奇跡のルビー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.RedRuby, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.RedRuby, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    11 => {
+      addMoney(8000);
+      speak(Entity.System, " <NEWLINE>優勝賞金8000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>炎のかけら<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Fireball, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Fireball, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    12 => {
+      addMoney(8000);
+      speak(Entity.System, " <NEWLINE>優勝賞金8000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>トゲこん棒<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.SpikeClub, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.SpikeClub, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    13 => {
+      addMoney(8000);
+      speak(Entity.System, " <NEWLINE>優勝賞金8000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>聖なる角<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Unihorn, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Unihorn, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    14 => {
+      addMoney(8000);
+      speak(Entity.System, " <NEWLINE>優勝賞金8000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>北極星の印<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.NorthStar, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.NorthStar, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    15 => {
+      addMoney(8000);
+      speak(Entity.System, " <NEWLINE>優勝賞金8000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>有機肥料<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Fertilizer, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Fertilizer, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    16 => {
+      addMoney(8000);
+      speak(Entity.System, " <NEWLINE>優勝賞金8000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>サイバーパーツ<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.CyberPart, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.CyberPart, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    17 => {
+      addMoney(8000);
+      speak(Entity.System, " <NEWLINE>優勝賞金8000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>サングラス<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Sunglasses, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Sunglasses, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    18 => {
+      addMoney(5000);
+      speak(Entity.System, " <NEWLINE>優勝賞金5000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>灰色の爪<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.GreyClaws, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.GreyClaws, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    19 => {
+      addMoney(5000);
+      speak(Entity.System, " <NEWLINE>優勝賞金5000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>白い羽<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.WhiteWing, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.WhiteWing, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    20 => {
+      addMoney(5000);
+      speak(Entity.System, " <NEWLINE>優勝賞金5000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>鋼のドリル<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.SteelDrill, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.SteelDrill, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+    else 21 => {
+      addMoney(5000);
+      speak(Entity.System, " <NEWLINE>優勝賞金5000<B><it>!<NEWLINE> <NEWLINE>優勝賞品<LIGHTBLUE>黒い羽<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.BlackWing, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.BlackWing, 1);
+      }
+      jumpToScriptSection(221, 51);
+    }
+  }
+
+L3:
+  switch pstat[3] {
+    0 => {
+      addMoney(500);
+      speak(Entity.System, " <NEWLINE>準優勝賞金500<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>巨大肉×2<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.GiantMeat, 2);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.GiantMeat, 2);
+      }
+      return;
+    }
+    1 => {
+      addMoney(1000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金1000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>極上肉<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Sirloin, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Sirloin, 1);
+      }
+      return;
+    }
+    2 => {
+      addMoney(2000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金2000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>大MPフロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.LargeMP, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.LargeMP, 1);
+      }
+      return;
+    }
+    3 => {
+      addMoney(3000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金3000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>再生フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Restore, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Restore, 1);
+      }
+      return;
+    }
+    4 => {
+      addMoney(4000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金4000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>超再生フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.SuperRestore, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.SuperRestore, 1);
+      }
+      return;
+    }
+    6 => {
+      addMoney(2000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金2000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>超回復フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.SuperRecovery, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.SuperRecovery, 1);
+      }
+      return;
+    }
+    7 => {
+      addMoney(2000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金2000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>超回復フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.SuperRecovery, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.SuperRecovery, 1);
+      }
+      return;
+    }
+    8 => {
+      addMoney(2000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金2000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>超回復フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.SuperRecovery, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.SuperRecovery, 1);
+      }
+      return;
+    }
+    9 => {
+      addMoney(2000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金2000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>超回復フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.SuperRecovery, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.SuperRecovery, 1);
+      }
+      return;
+    }
+    10 => {
+      addMoney(2000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金2000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>超回復フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.SuperRecovery, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.SuperRecovery, 1);
+      }
+      return;
+    }
+    11 => {
+      addMoney(3000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金3000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>万能フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Omnipotent, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Omnipotent, 1);
+      }
+      return;
+    }
+    12 => {
+      addMoney(3000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金3000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>万能フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Omnipotent, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Omnipotent, 1);
+      }
+      return;
+    }
+    13 => {
+      addMoney(3000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金3000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>万能フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Omnipotent, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Omnipotent, 1);
+      }
+      return;
+    }
+    14 => {
+      addMoney(3000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金3000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>万能フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Omnipotent, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Omnipotent, 1);
+      }
+      return;
+    }
+    15 => {
+      addMoney(3000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金3000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>万能フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Omnipotent, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Omnipotent, 1);
+      }
+      return;
+    }
+    16 => {
+      addMoney(3000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金3000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>万能フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Omnipotent, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Omnipotent, 1);
+      }
+      return;
+    }
+    17 => {
+      addMoney(3000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金3000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>万能フロッピー<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.Omnipotent, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.Omnipotent, 1);
+      }
+      return;
+    }
+    18 => {
+      addMoney(2000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金2000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>万能プラグイン<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.OmniDisk, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.OmniDisk, 1);
+      }
+      return;
+    }
+    19 => {
+      addMoney(2000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金2000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>万能プラグイン<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.OmniDisk, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.OmniDisk, 1);
+      }
+      return;
+    }
+    20 => {
+      addMoney(2000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金2000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>万能プラグイン<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.OmniDisk, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.OmniDisk, 1);
+      }
+      return;
+    }
+    21 => {
+      addMoney(2000);
+      speak(Entity.System, " <NEWLINE>準優勝賞金2000<B><it>!<NEWLINE> <NEWLINE>準優勝賞品<LIGHTBLUE>万能プラグイン<WHITE>をゲット!<NEWLINE>");
+      giveItem(Item.OmniDisk, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "「持ち物がいっぱいだぞ!」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.OmniDisk, 1);
+      }
+      return;
+    }
+  }
+  garbage { 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 1d 00 25 00 19 00 08 00 ff 03 18 00 22 00 19 00 16 00 ce 00 19 00 08 00 ff 02 18 00 32 00 19 00 16 00 4c 10 1b 05 1a 00 81 75 8e 63 94 4f 82 be 82 c1 82 bd 82 c8 81 42 0d 00 81 40 82 dc 82 bd 92 a7 90 ed 82 b5 82 c4 82 ad 82 ea 82 e6 81 42 81 76 0d 00 00 00 1b ff 1a 00 81 40 0d 00 8e 51 89 c1 8f dc 82 cc 01 06 8b 90 91 e5 93 f7 01 01 82 f0 82 e0 82 e7 82 c1 82 bd 81 49 0d 00 00 00 28 00 27 01 19 00 00 00 00 00 18 00 cc 00 19 00 1b 05 1a 00 81 75 8e 9d 82 bf 95 a8 82 aa 82 a2 82 c1 82 cf 82 a2 82 be 82 bc 81 49 81 76 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 27 01 fe 00 19 00 08 00 03 00 18 00 72 01 19 00 2a 00 d0 07 00 00 1b ff 1a 00 81 40 0d 00 97 44 8f 9f 8f dc 8b e0 82 51 82 4f 82 4f 82 4f 81 6f 81 70 81 49 0d 00 81 40 0d 00 97 44 8f 9f 8f dc 95 69 01 06 83 5f 83 75 83 8b 83 74 83 8d 83 62 83 73 81 5b 01 01 82 f0 83 51 83 62 83 67 81 49 0d 00 00 00 28 00 07 01 19 00 00 00 00 00 18 00 6c 01 19 00 1b 05 1a 00 81 75 8e 9d 82 bf 95 a8 82 aa 82 a2 82 c1 82 cf 82 a2 82 be 82 bc 81 49 81 76 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 07 01 17 00 dd 00 33 00 19 00 08 00 03 01 18 00 10 02 19 00 2a 00 a0 0f 00 00 1b ff 1a 00 81 40 0d 00 97 44 8f 9f 8f dc 8b e0 82 53 82 4f 82 4f 82 4f 81 6f 81 70 81 49 0d 00 81 40 0d 00 97 44 8f 9f 8f dc 95 69 01 06 8b c9 8f e3 93 f7 81 7e 82 52 01 01 82 f0 83 51 83 62 83 67 81 49 0d 00 00 00 28 00 28 03 19 00 00 00 00 00 18 00 0a 02 19 00 1b 05 1a 00 81 75 8e 9d 82 bf 95 a8 82 aa 82 a2 82 c1 82 cf 82 a2 82 be 82 bc 81 49 81 76 0d 00 00 00 1c 00 03 00 64 00 64 0d 28 00 28 03 17 00 dd 00 33 00 19 00 08 00 03 02 18 00 ac 02 19 00 2a 00 70 17 00 00 1b ff 1a 00 81 40 0d 00 97 44 8f 9f 8f dc 8b e0 82 55 82 4f 82 4f 82 4f 81 6f 81 70 81 49 0d 00 81 40 0d 00 97 44 8f 9f 8f dc 95 69 01 06 8d c4 90 b6 83 74 83 8d 83 62 83 73 81 5b 01 01 82 f0 83 51 83 62 83 67 }
+}

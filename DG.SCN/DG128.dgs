@@ -1,0 +1,156 @@
+// DG128.SCN
+#include "functions.dgs"
+#pragma script index=128 start=0x53800 end=0x54800 headerU16=0x1c sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(5) {
+  move(entity: Entity.Player, to: (-77, 119), sprint: 0, withCamera: true);
+  move(entity: Entity.Partner, to: (397, 151), sprint: 0);
+  waitForPair();
+  lookPairAt(Entity(5));
+  delay(10);
+  panTo(x: -400, y: 2100, slowdown: 20);
+  playSound(8, 1);
+  speak(Entity(5), "「そち達が<LIGHTBLUE><PLAYER><WHITE>、<ORANGE><DIGIMON><WHITE>だな?<NEWLINE> ゲコモン郷へよく来てくれたのう!」<NEWLINE>");
+  anim(Entity.Player, Animation(22), wait: 20);
+  speak(Entity.Player, "「……。オタマモンをいじめたのは<NEWLINE> 悪かったよ。」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(5), "「そんなことはどうでもよい。」<NEWLINE>");
+  anim(Entity.Player, Animation(23), wait: 20);
+  speak(Entity.Player, "「はぁ?」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  anim(Entity(5), Animation(5), wait: 38);
+  playAnimation(Entity(5), Animation(0));
+  speak(Entity(5), "「ヨはそち達に感謝しておるのじゃ。<NEWLINE> 島を救うために色々活やくしていること、<NEWLINE> すべて聞いておるぞよ。」<NEWLINE>");
+  speak(Entity.Player, "「へぇー。」<NEWLINE>");
+  speak(Entity(5), "「ヨもそちの手助けをしたいと思って<NEWLINE> おったんじゃ。ここの北、ミスティツリーズ<NEWLINE> と呼ばれる森へはもう行かれたか?」<NEWLINE>");
+  if (!trigger(112)) {
+    speak(Entity.Player, "「まだ。」<NEWLINE>");
+  }
+  if (trigger(112)) {
+    speak(Entity.Player, "「行ったけど。」<NEWLINE>");
+  }
+  speak(Entity(5), "「あそこは霧がかかっておってな。進むのは<NEWLINE> 大変なはず。しかしあの森の長である<NEWLINE> ジュレイモンには会っておくべきじゃ。」<NEWLINE>");
+  if (trigger(147)) {
+  } else {
+    anim(Entity.Player, Animation(16), wait: 20);
+    speak(Entity.Player, "「ジュレイモン?聞いたことも無い<NEWLINE> デジモンだな…」<NEWLINE>");
+    speak(Entity(5), "「ミスティツリーズの霧はジュレイモンの<NEWLINE> しわざなのじゃ。彼は島の異変を知り、<NEWLINE> 森を守ろうとして霧をつくっておる。」<NEWLINE>");
+    anim(Entity.Player, Animation(25), wait: 20);
+    speak(Entity.Player, "「俺達としては困るなあ。」<NEWLINE>");
+    anim(Entity(5), Animation(5), wait: 38);
+    playAnimation(Entity(5), Animation(0));
+    speak(Entity(5), "「ジュレイモンは異変の原因について何か<NEWLINE> 知っているようじゃ。霧をぬけてでも<NEWLINE> 会いに行く価値はあろう。」<NEWLINE>");
+    speak(Entity.Player, "「霧をどうにかできればね。」<NEWLINE>");
+    speak(Entity(5), "「霧自体はジュレイモンに止めてもらわないと<NEWLINE> 無くならない。しかし方法はあるぞよ。<NEWLINE> ヨがそち達に、まじないをかける。」<NEWLINE>");
+    speak(Entity.Player, "「どうなるんだ?」<NEWLINE>");
+    speak(Entity(5), "「霧の中でも道が見えるようになるぞよ。」<NEWLINE>");
+    playAnimation(Entity(5), Animation(0));
+    anim(Entity.Player, Animation(19), wait: 20);
+    speak(Entity.Player, "「そりゃいいな!」<NEWLINE>");
+    speak(Entity(5), "「ではさっそくやるぞよ。」<NEWLINE>");
+    speak(Entity(5), "「ケロケロッゲロッケ~!!」<NEWLINE>");
+    playAnimation(Entity(5), Animation(31));
+    sfx(8, 0, wait: 70);
+    playAnimation(Entity(5), Animation(0));
+    anim(Entity.Player, Animation(15), wait: 30);
+    speak(Entity(5), "「これでよしじゃ。<NEWLINE> さっそくミスティツリーズへ<NEWLINE> 行ってみると良いぞ。」<NEWLINE>");
+    anim(Entity(5), Animation(30), wait: 55);
+    playAnimation(Entity(5), Animation(0));
+    setTrigger(Trigger(319));
+    setTrigger(Trigger(114));
+    followEntity(Entity.Player, speed: 10);
+    return;
+  }
+  speak(Entity.Player, "「会ったよ。霧ももう消えてるし。」<NEWLINE>");
+  speak(Entity(5), "「な、なんと!それはすごい。<NEWLINE> うーむ、そうすると何を手助けして<NEWLINE> よいのやら…」<NEWLINE>");
+  showTextbox("「うむ、そうじゃ、これをやろう。」<NEWLINE>");
+  playAnimation(Entity(5), Animation(0));
+  speak(Entity.System, "<LIGHTBLUE>デジカムル<WHITE>を手に入れた!<NEWLINE>");
+  if (trigger(0) && item[Item.Digiseabass] < 1) {
+    speak(Entity.System, "かわりに何か捨ててください<NEWLINE>");
+    unsetTrigger(Trigger(3));
+    callSubroutine(0);
+    callSubroutine(13);
+  }
+  giveItem(Item.Digiseabass, 1);
+  speak(Entity(5), "「貴重なものじゃ。役にたつだろうて。」<NEWLINE>");
+  anim(Entity.Player, Animation(19), wait: 20);
+  speak(Entity.Player, "「ありがとう。ところでトノサマは<NEWLINE> 街へは来てくれないの?」<NEWLINE>");
+  speak(Entity(5), "「ヨはゲッコー湿地のゲコモン100ぴきの<NEWLINE> 長である。残念だが無理じゃ。」<NEWLINE>");
+  showTextbox("「そのかわり、ここにいながらの協力は<NEWLINE> おしまない。また来るがよい。」<NEWLINE>");
+  anim(Entity(5), Animation(30), wait: 55);
+  playAnimation(Entity(5), Animation(0));
+  setTrigger(Trigger(319));
+  followEntity(Entity.Player, speed: 10);
+  return;
+}
+
+section(81) {
+  lookPairAt(Entity(5));
+  delay(10);
+  panTo(x: -400, y: 2100, slowdown: 20);
+  playSound(8, 1);
+  storeDigimonType(PStat(103));
+  if (trigger(116) && pstat[103] != 14) {
+    speak(Entity(5), "「そち、悩み事があるようじゃな。よいよい、<NEWLINE> 分かっておるのじゃ。ぬいぐるみのことで<NEWLINE> あろう?」<NEWLINE>");
+    speak(Entity.Player, "「えっ!分かるの?」<NEWLINE>");
+    speak(Entity(5), "「ヨをあなどるでないぞ。さて、ぬいぐるみ。<NEWLINE> あれはの、ヌメモンなら着ることができる<NEWLINE> のじゃ。」<NEWLINE>");
+    showTextbox("「おどろいたかの?しかもな、あれを着ると<NEWLINE> 信じられんことに……!<NEWLINE> まあ、試してソンはないぞよ。」<NEWLINE>");
+    unsetTrigger(Trigger(116));
+    followEntity(Entity.Player, speed: 10);
+    return;
+  }
+  if (trigger(122)) {
+    setPStat(PStat(254), 5);
+    callSubroutine(1);
+    followEntity(Entity.Player, speed: 10);
+    if (item[Item.AmazingRod] >= 1) {
+      removeItem(Item.AmazingRod, 1);
+      setTrigger(Trigger(46));
+      speak(Entity(5), "「んー、そうじゃ、<NEWLINE> <LIGHTBLUE>すごい釣りざお<WHITE>は特別アイテム<NEWLINE> じゃからアイテムからはずしておくぞ。」<NEWLINE>");
+    }
+    return;
+  }
+  if (!trigger(319)) goto section_6;
+  playSound(8, 1);
+  speak(Entity(5), "「がんばるのじゃ!」<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  return;
+}
+
+section(6) {
+  if (trigger(122)) {
+    speak(Entity(6), "「釣りは、竜の目の湖のほとり<NEWLINE> だけでしかできないよ。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(6), "「ひかえい、ひかえーい!」<NEWLINE>");
+  return;
+}
+
+section(7) {
+  speak(Entity(7), "「殿はめずらしいものを集めていてね。以前は<NEWLINE> アイテムを集めていたんだけど、今は<NEWLINE> デジモンカードにご執心なんだ。」<NEWLINE>");
+  speak(Entity(7), "「珍しいカードを持ってくれば、誰でも<NEWLINE> 『功績』ポイントがもらえる。」<NEWLINE>");
+  speak(Entity(7), "「ためた『功績』はアイテムと交換して<NEWLINE> もらえるしくみだ。」<NEWLINE>");
+  setTrigger(Trigger(122));
+  return;
+}
+
+section(8) {
+  if (!trigger(205)) {
+    speak(Entity(8), "「あの…いえ、なんでもないケロ。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(8), "「あの…!僕、街へ行きたいケロ!」<NEWLINE>");
+  speak(Entity.Player, "「ん、それはいいけど、どうしたの?」<NEWLINE>");
+  speak(Entity(8), "「僕、闘技場ってとこで戦ってみたいケロ。<NEWLINE> どうもわれらゲコモン族はいなか者だと<NEWLINE> バカにされているようだケロ…」<NEWLINE>");
+  showTextbox("「でもいなか者にはいなか者の意地が<NEWLINE> あるケロ!どうかおねがいするケロ。」<NEWLINE>");
+  speak(Entity.Player, "「そうかぁ。気持ちはわかるよ…。<NEWLINE> じゃあがんばってみてよ。」<NEWLINE>");
+  speak(Entity.System, "ゲコモンが闘技場に参加した!<NEWLINE>");
+  return;
+  garbage { 1c 00 fe 00 1c 00 05 00 1e 00 51 00 8c 08 06 00 e8 0a 07 00 5a 0b 08 00 6e 0c ff ff fe 00 52 fd b3 ff 77 00 00 00 4e fc 8d 01 97 00 00 00 4a fd 4a fc 4c 00 fd 05 4c 00 fc 05 67 00 0a 00 4f 14 70 fe 34 08 4a c8 5a 00 08 01 1b 05 1a 00 81 75 82 bb 82 bf 92 42 82 aa 01 06 05 00 01 01 81 41 01 0a 06 00 01 01 82 be 82 c8 81 48 0d 00 81 40 83 51 83 52 83 82 83 93 8b bd 82 d6 82 e6 82 ad 97 88 82 c4 82 ad 82 ea 82 bd 82 cc 82 a4 81 49 81 76 0d 00 00 00 56 00 fd 16 67 00 14 00 1b fd 1a 00 81 75 81 63 81 63 81 42 83 49 83 5e 83 7d 83 82 83 93 82 f0 82 a2 82 b6 82 df 82 bd 82 cc 82 cd 0d 00 81 40 88 ab 82 a9 82 c1 82 bd 82 e6 81 42 81 76 0d 00 00 00 56 00 fd 00 1b 05 1a 00 81 75 82 bb 82 f1 82 c8 82 b1 82 c6 82 cd 82 c7 82 a4 82 c5 82 e0 82 e6 82 a2 81 42 81 76 0d 00 00 00 56 00 fd 17 67 00 14 00 1b fd 1a 00 81 75 82 cd 82 9f 81 48 81 76 0d 00 00 00 56 00 fd 00 56 00 05 05 67 00 26 00 56 00 05 00 1b 05 1a 00 81 75 83 88 82 cd 82 bb 82 bf 92 42 82 c9 8a b4 8e d3 82 b5 82 c4 82 a8 82 e9 82 cc 82 b6 82 e1 81 42 0d 00 81 40 93 87 82 f0 8b 7e 82 a4 82 bd 82 df 82 c9 90 46 81 58 8a 88 82 e2 82 ad 82 b5 82 c4 82 a2 82 e9 82 b1 82 c6 81 41 0d 00 81 40 82 b7 82 d7 82 c4 95 b7 82 a2 82 c4 82 a8 82 e9 82 bc 82 e6 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 d6 82 a5 81 5b 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 83 88 82 e0 82 bb 82 bf 82 cc 8e e8 8f 95 82 af 82 f0 82 b5 82 bd }
+}

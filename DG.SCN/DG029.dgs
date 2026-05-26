@@ -1,0 +1,125 @@
+// DG029.SCN
+#include "functions.dgs"
+#pragma script index=29 start=0x19800 end=0x1a000 headerU16=0x10 sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  if (!trigger(120)) {
+    spawnBoulder();
+    setRectImpassible(42, 39, 9, 6);
+  }
+  setObjectVisibility(0, 1);
+  return;
+}
+
+section(51) {
+  if (!trigger(209)) {
+    warp(to: Map.TUNN07, spawn: 0, trigger: 255);
+    return;
+  }
+  warp(to: Map.TUNN07_2, spawn: 0, trigger: 255);
+  return;
+}
+
+section(5) {
+  {
+    if (!trigger(120)) {
+      break;
+    } else {
+      goto L1;
+    }
+    return;
+  }
+  speak(Entity(5), "「やべえ、硬い大岩に当たっちまった!」<NEWLINE>");
+  showTextbox("「こいつぁ、俺っちでも掘るのはムリだ。」<NEWLINE>");
+  speak(Entity.Player, "「えっ、無理って…そんなぁ!」<NEWLINE>");
+  speak(Entity(5), "「どうにか押してどかすしかねえ…。<NEWLINE> おめえら、できるか?」<NEWLINE>");
+  anim(Entity.Player, Animation(19), wait: 20);
+  speak(Entity.Player, "「う~ん?!」<NEWLINE>");
+  look(entity: Entity.Player, at: Entity.Partner);
+  anim(Entity.Player, Animation(14), wait: 20);
+  speak(Entity.Player, "「<ORANGE><DIGIMON><WHITE>、頼むぞ!」<NEWLINE>");
+  move(entity: Entity.Partner, to: (-337, 170), sprint: 0);
+  look(entity: Entity.Player, at: Entity.Partner);
+  waitForEntity(Entity.Partner);
+  delay(20);
+  rotate(entity: Entity.Partner, to: 2000);
+  look(entity: Entity(5), at: Entity.Partner);
+  look(entity: Entity.Player, at: Entity.Partner);
+  storeDigimonType(PStat(103));
+  {
+    if (pstat[103] == 1 || pstat[103] == 2 || pstat[103] == 3 || pstat[103] == 4 || pstat[103] == 15) {
+      break;
+    }
+    if (pstat[103] == 16 || pstat[103] == 17 || pstat[103] == 18 || pstat[103] == 29 || pstat[103] == 30) {
+      break;
+    }
+    if (pstat[103] == 31 || pstat[103] == 32 || pstat[103] == 43 || pstat[103] == 44 || pstat[103] == 45) {
+      break;
+    }
+    if (pstat[103] == 46 || pstat[103] == 57) {
+      break;
+    }
+    playAnimation(Entity.Partner, Animation(27));
+    setObjectVisibility(0, 0);
+    moveBoulder(0, 50);
+    sfx(8, 3, wait: 20);
+    moveBoulder(0, 100);
+    move(entity: Entity.Partner, to: (-337, 270), sprint: 0);
+    sfx(8, 3, wait: 20);
+    moveBoulder(0, 100);
+    move(entity: Entity.Partner, to: (-337, 370), sprint: 0);
+    sfx(8, 3, wait: 20);
+    moveBoulder(0, 100);
+    move(entity: Entity.Partner, to: (-337, 470), sprint: 0);
+    sfx(8, 3, wait: 20);
+    moveBoulder(10, 200);
+    move(entity: Entity.Partner, to: (-337, 670), sprint: 0);
+    sfx(8, 3, wait: 5);
+    moveBoulder(50, 300);
+    sfx(8, 3, wait: 5);
+    moveBoulder(60, 400);
+    sfx(8, 3, wait: 5);
+    moveBoulder(80, 500);
+    sfx(8, 3, wait: 3);
+    moveBoulder(80, 600);
+    sfx(8, 3, wait: 3);
+    moveBoulder(80, 600);
+    sfx(8, 3, wait: 3);
+    moveBoulder(120, 300);
+    sfx(8, 3, wait: 2);
+    moveBoulder(120, 100);
+    sfx(8, 3, wait: 2);
+    moveBoulder(120, 100);
+    sfx(8, 3, wait: 1);
+    despawnBoulder();
+    sfx(8, 3, wait: 20);
+    anim(Entity.Partner, Animation(0), wait: 5);
+    setObjectVisibility(0, 1);
+    speak(Entity.Player, "「やったー!」<NEWLINE>");
+    speak(Entity(5), "「ひょお、すげえ力だ!岩が動いたぜ。」<NEWLINE>");
+    speak(Entity.Player, "「奥は空洞らしいぞ…」<NEWLINE>");
+    rotate(entity: Entity.Player, to: 2000);
+    move(entity: Entity.Player, to: (-131, 1250), sprint: 0);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 2000);
+    speak(Entity.Player, "「わ、溶岩の川だ!危ない危ない。」<NEWLINE>");
+    showTextbox("「川べりの道が奥へ続いてる…行こう!」<NEWLINE>");
+    speak(Entity(5), "「おい、中へ行くのか?気をつけろ!」<NEWLINE>");
+    setTrigger(Trigger(120));
+    warp(to: Map.TUNN07, spawn: 0, trigger: 255);
+    return;
+
+L1:
+    speak(Entity(5), "「おい、中へ行くのか?気をつけろ!」<NEWLINE>");
+    return;
+  }
+  delay(20);
+  anim(Entity.Partner, Animation(27), wait: 20);
+  anim(Entity.Partner, Animation(1), wait: 30);
+  speak(Entity(5), "「だめだな…<ORANGE><DIGIMON><WHITE>がもう少し<NEWLINE> 成長したらまた来てくれ。」<NEWLINE>");
+  move(entity: Entity.Player, to: (-337, 0), sprint: 0);
+  waitForEntity(Entity.Player);
+  return;
+  garbage { 10 00 fe 00 10 00 33 00 2c 00 05 00 44 00 ff ff 19 00 01 00 78 00 18 00 26 00 19 00 76 00 7c 00 2a 00 27 00 09 06 57 00 00 01 fe 00 19 00 01 00 d1 00 18 00 3e 00 19 00 4b 1e 00 ff fe 00 4b 7a 00 ff fe 00 19 00 01 00 78 00 18 00 58 00 19 00 16 00 5e 00 16 00 5c 00 16 00 f2 03 fe 00 1b 05 1a 00 81 75 82 e2 82 d7 82 a6 81 41 8d 64 82 a2 91 e5 8a e2 82 c9 93 96 82 bd 82 c1 82 bf 82 dc 82 c1 82 bd 81 49 81 76 0d 00 00 00 1a 00 81 75 82 b1 82 a2 82 c2 82 9f 81 41 89 b4 82 c1 82 bf 82 c5 82 e0 8c 40 82 e9 82 cc 82 cd 83 80 83 8a 82 be 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a6 82 c1 81 41 96 b3 97 9d 82 c1 82 c4 81 63 82 bb 82 f1 82 c8 82 9f 81 49 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 c7 82 a4 82 c9 82 a9 89 9f 82 b5 82 c4 82 c7 82 a9 82 b7 82 b5 82 a9 82 cb 82 a6 81 63 81 42 0d 00 81 40 82 a8 82 df 82 a6 82 e7 81 41 82 c5 82 ab 82 e9 82 a9 81 48 81 76 0d 00 00 00 56 00 fd 13 67 00 14 00 1b fd 1a 00 81 75 82 a4 81 60 82 f1 81 48 81 49 81 76 0d 00 00 00 4c 00 fd fc 56 00 fd 0e 67 00 14 00 1b fd 1a 00 81 75 01 0a 06 00 01 01 81 41 97 8a 82 de 82 bc 81 49 81 76 0d 00 00 00 4e fc af fe aa 00 00 00 4c 00 fd fc 4a fc 67 00 14 00 4d fc d0 07 4c 00 05 fc 4c 00 fd fc 22 67 19 00 08 00 67 01 48 00 67 02 48 00 67 03 48 00 67 04 48 00 67 0f 18 00 aa 01 19 00 16 00 20 04 19 00 08 00 67 10 48 00 67 11 48 00 67 12 48 00 67 1d 48 00 67 1e 18 00 ca 01 19 00 16 00 20 04 19 00 08 00 67 1f 48 00 67 20 48 00 67 2b 48 00 67 2c 48 00 67 2d 18 00 ea 01 19 00 16 00 20 04 19 00 08 00 67 2e 48 00 67 39 18 00 fe 01 19 00 16 00 20 04 56 00 fc 1b 57 00 00 00 77 00 00 00 32 00 5a 00 08 03 67 00 14 00 77 00 00 00 64 00 4e fc af fe 0e 01 00 00 5a 00 08 03 67 00 14 00 77 00 00 00 64 00 4e fc af fe 72 01 00 00 5a 00 08 03 67 00 14 00 77 00 00 00 64 00 4e fc af fe d6 01 00 00 5a 00 08 03 67 00 14 00 77 00 0a 00 c8 00 4e fc af fe 9e 02 00 00 5a 00 08 03 67 00 05 00 77 00 32 00 2c 01 5a 00 08 03 67 00 05 00 77 00 3c 00 90 01 5a 00 08 03 67 00 05 00 77 00 50 00 f4 01 5a 00 08 03 67 00 03 00 77 00 50 00 58 02 5a 00 08 03 67 00 03 00 77 00 50 00 58 02 5a 00 08 03 67 00 03 00 77 00 78 00 2c 01 5a 00 08 03 67 00 02 00 77 00 78 00 64 00 5a 00 08 03 67 00 02 00 77 00 78 00 64 00 5a 00 08 03 67 00 01 00 78 00 5a 00 08 03 67 00 14 00 56 00 fc 00 67 00 05 00 57 00 00 01 1b fd 1a 00 81 75 82 e2 82 c1 82 bd 81 5b 81 49 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 d0 82 e5 82 a8 81 41 82 b7 82 b0 82 a6 97 cd 82 be 81 49 8a e2 82 aa 93 ae 82 a2 82 bd 82 ba 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 89 9c 82 cd 8b f3 93 b4 82 e7 82 b5 82 a2 82 bc 81 63 81 76 0d 00 00 00 4d fd d0 07 4e fd 7d ff e2 04 00 00 4a fd 4d fd d0 07 1b fd 1a 00 81 75 82 ed 81 41 97 6e 8a e2 82 cc 90 ec 82 be 81 49 }
+}

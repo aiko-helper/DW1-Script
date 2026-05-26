@@ -1,0 +1,184 @@
+// MAP142.SCN
+#include "functions.dgs"
+#pragma script index=142 start=0x5c800 end=0x5d800 headerU16=0x30 sentinelOff=0x6925
+#include "entities.dgs"
+
+section onEnter(254) {
+  pstat[:SavedTime] = time();
+  {
+    if (pstat[107] == 11 && pstat[108] >= 55) {
+      break;
+    }
+    if (pstat[107] == 12 && pstat[108] <= 5) {
+      break;
+    }
+    if (pstat[107] == 23 && pstat[108] >= 55) {
+      break;
+    }
+    if (pstat[107] == 0 && pstat[108] <= 5) {
+      break;
+    }
+    return;
+  }
+  if (!trigger(332)) {
+    anim(Entity.Player, Animation(24), wait: 15);
+    speak(Entity.Player, "「おお、見張りがいないぞ!」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+    panTo(x: 2799, y: 74, slowdown: 20);
+    followEntity(Entity.Player, speed: 15);
+  }
+  return;
+}
+
+section(51) {
+  move(entity: Entity.Player, to: (-1061, -331), sprint: 0);
+  warp(to: Map.FACT03, spawn: 3, trigger: 255);
+  return;
+}
+
+section(52) {
+  move(entity: Entity.Player, to: (5589, -69), sprint: 0);
+  warp(to: Map.FACT09, spawn: 1, trigger: 255);
+  return;
+}
+
+section(12) {
+  playSound(8, 9);
+  speak(Entity(12), "「ここはとおれません。」<NEWLINE>");
+  return;
+}
+
+section(11) {
+  playSound(8, 9);
+  speak(Entity(11), "「ここはとおれません。」<NEWLINE>");
+  pstat[:SavedTime] = time();
+  {
+    if (trigger(331) && pstat[107] == 11 && pstat[108] >= 55) {
+      break;
+    }
+    if (trigger(331) && pstat[107] == 12 && pstat[108] <= 5) {
+      break;
+    }
+    if (trigger(331) && pstat[107] == 23 && pstat[108] >= 55) {
+      break;
+    }
+    if (trigger(331) && pstat[107] == 0 && pstat[108] <= 5) {
+      break;
+    }
+    if (trigger(331)) {
+      speak(Entity(11), "「……」<NEWLINE>");
+      speak(Entity.Player, "「(うわ、じっとこっちを見てる!<NEWLINE> あやしまれてるかな。)」<NEWLINE>");
+      showTextbox("「(出直そう…。こいつらの見えないところで<NEWLINE> 待ったほうがいいみたいだ。<NEWLINE> 0:00と12:00だったっけ。)」<NEWLINE>");
+      return;
+    }
+    if (trigger(342) && !trigger(343)) {
+      speak(Entity.Player, "「たぶんこの工場が下水に廃液か何かを流し<NEWLINE> ているはずだ。確かめないと。」<NEWLINE>");
+      look(entity: Entity.Player, at: Entity.Partner);
+      delay(5);
+      playAnimation(Entity.Player, Animation(22));
+      anim(Entity.Partner, Animation(22), wait: 5);
+      playAnimation(Entity.Player, Animation(22));
+      anim(Entity.Partner, Animation(22), wait: 5);
+      look(entity: Entity.Player, at: Entity(11));
+      anim(Entity.Partner, Animation(0), wait: 10);
+      anim(Entity.Player, Animation(19), wait: 15);
+      speak(Entity.Player, "「ちょっと…どいてくれないかな。」<NEWLINE>");
+      playAnimation(Entity.Player, Animation(0));
+      sfx(8, 9, wait: 5);
+      speak(Entity(11), "「責任者の許可無しには通れません。」<NEWLINE>");
+      speak(Entity.Player, "「急いでるんだけど。」<NEWLINE>");
+      speak(Entity(11), "「だめです。許可を取ってください。」<NEWLINE>");
+      anim(Entity.Player, Animation(25), wait: 15);
+      speak(Entity.Player, "「く…仕方ないか。」<NEWLINE>");
+      playAnimation(Entity.Player, Animation(0));
+      setTrigger(Trigger(347));
+      return;
+    }
+    if (!trigger(343)) {
+      return;
+    }
+    {
+      if (!trigger(343)) break;
+      speak(Entity.Player, "「(さてどうするか…)」<NEWLINE>");
+      setDialogOwner(Entity.Player);
+      setSelection(L1, L4, L6);
+      showTextbox("「おい、交代だぞ。」<NEWLINE>「通してくれないと暴れるぞ。」<NEWLINE>「や、何でもないよ。」<NEWLINE>");
+      waitForSelectionChoice();
+      return;
+
+L1:
+    }
+    playSound(8, 9);
+    speak(Entity(11), "「まだ交代時間ではありません。」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L2, L3);
+    showTextbox("「いいからいいから。」<NEWLINE>「えっ、何時交代なの?」<NEWLINE>");
+    waitForSelectionChoice();
+    return;
+
+L2:
+    playSound(8, 9);
+    speak(Entity(11), "「だめです。時間厳守です。」<NEWLINE>");
+    return;
+
+L3:
+    speak(Entity(11), "「0:00と12:00が交代時間です。」<NEWLINE>");
+    speak(Entity.Player, "「あ、そう。(しめたっ!)」<NEWLINE>");
+    setTrigger(Trigger(331));
+    return;
+
+L4:
+    playSound(8, 9);
+    speak(Entity(11), "「おどしてもダメです。<NEWLINE> 許可を取って下さい。」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L5, L5);
+    showTextbox("「許可、実は取ってあるんだ。」<NEWLINE>「俺が許可する!」<NEWLINE>");
+    waitForSelectionChoice();
+    return;
+
+L5:
+    playSound(8, 9);
+    speak(Entity(11), "「認証がおりません。<NEWLINE> 正しく許可を取って下さい。」<NEWLINE>");
+    speak(Entity.Player, "「ううっ、キビシー!」<NEWLINE>");
+    return;
+
+L6:
+    return;
+  }
+  speak(Entity.Player, "「(あれっ、交代時間じゃないのか?)」<NEWLINE>");
+  speak(Entity(11), "「……」<NEWLINE>");
+  speak(Entity.Player, "「(うわ、じっとこっちを見てる!<NEWLINE> さすがにこの状態では交代しないか。)」<NEWLINE>");
+  showTextbox("「(出直そう…。こいつらの見えないところで<NEWLINE> 待ったほうがいいみたいだ。)」<NEWLINE>");
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「ぼぴぼぴぷぅ~うっ。」<NEWLINE>");
+  finishEncounter(Trigger(287));
+}
+
+section(6) {
+  speak(Entity(6), "「げばぁげばぁ!」<NEWLINE>");
+  finishEncounter(Trigger(287));
+}
+
+section(7) {
+  speak(Entity(7), "「ぶひょ?」<NEWLINE>");
+  finishEncounter(Trigger(287));
+}
+
+section(8) {
+  speak(Entity(8), "「まろはまんぞくじゃ!」<NEWLINE>");
+  finishEncounter(Trigger(273));
+}
+
+section(9) {
+  speak(Entity(9), "「これもしごとでおじゃる。」<NEWLINE>");
+  finishEncounter(Trigger(273));
+}
+
+section(10) {
+  speak(Entity(10), "「さわがしいのぉ、なにごとじゃ?」<NEWLINE>");
+  finishEncounter(Trigger(273));
+  garbage { 30 00 fe 00 30 00 33 00 d0 00 34 00 de 00 0c 00 ec 00 0b 00 12 01 05 00 32 07 06 00 60 07 07 00 88 07 08 00 aa 07 09 00 d8 07 0a 00 0a 08 ff ff 25 69 19 00 08 00 6b 0b 8a 00 6c 37 18 00 46 00 19 00 16 00 84 00 19 00 08 00 6b 0c 8b 00 6c 05 18 00 5a 00 19 00 16 00 84 00 19 00 08 00 6b 17 8a 00 6c 37 18 00 6e 00 19 00 16 00 84 00 19 00 08 00 6b 00 8b 00 6c 05 18 00 82 00 19 00 16 00 84 00 fe 00 19 00 01 00 4c 01 18 00 ce 00 19 00 56 00 fd 18 67 00 0f 00 1b fd 1a 00 81 75 82 a8 82 a8 81 41 8c a9 92 a3 82 e8 82 aa 82 a2 82 c8 82 a2 82 bc 81 49 81 76 0d 00 00 00 56 00 fd 00 4f 14 ef 0a 4a 00 4a c8 50 00 fd 0f 4a c8 fe 00 4e fd db fb b5 fe 00 00 4b 9a 03 ff fe 00 4e fd d5 15 bb ff 00 00 4b a1 01 ff fe 00 5a 00 08 09 1b 0c 1a 00 81 75 82 b1 82 b1 82 cd 82 c6 82 a8 82 ea 82 dc 82 b9 82 f1 81 42 81 76 0d 00 00 00 fe 00 5a 00 08 09 1b 0b 1a 00 81 75 82 b1 82 b1 82 cd 82 c6 82 a8 82 ea 82 dc 82 b9 82 f1 81 42 81 76 0d 00 00 00 25 69 19 00 00 00 4b 01 88 00 6b 0b 8a 00 6c 37 18 00 50 01 19 00 16 00 4e 06 19 00 00 00 4b 01 88 00 6b 0c 8b 00 6c 05 18 00 68 01 19 00 16 00 4e 06 19 00 00 00 4b 01 88 00 6b 17 8a 00 6c 37 18 00 80 01 19 00 16 00 4e 06 19 00 00 00 4b 01 88 00 6b 00 8b 00 6c 05 18 00 98 01 19 00 16 00 4e 06 19 00 00 00 4b 01 18 00 70 02 19 00 1b 0b 1a 00 81 75 81 63 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 81 69 82 a4 82 ed 81 41 82 b6 82 c1 82 c6 82 b1 82 c1 82 bf 82 f0 8c a9 82 c4 82 e9 81 49 0d 00 81 40 82 a0 82 e2 82 b5 82 dc 82 ea 82 c4 82 e9 82 a9 82 c8 81 42 81 6a 81 76 0d 00 00 00 1a 00 81 75 81 69 8f 6f 92 bc 82 bb 82 a4 81 63 81 42 82 b1 82 a2 82 c2 82 e7 82 cc 8c a9 82 a6 82 c8 82 a2 82 c6 82 b1 82 eb 82 c5 0d 00 81 40 91 d2 82 c1 82 bd 82 d9 82 a4 82 aa 82 a2 82 a2 82 dd 82 bd 82 a2 82 be 81 42 0d 00 81 40 82 4f 81 46 82 4f 82 4f 82 c6 82 50 82 51 81 46 82 4f 82 4f 82 be 82 c1 82 bd 82 c1 82 af 81 42 81 6a 81 76 0d 00 00 00 fe 00 19 00 00 00 56 01 81 00 57 01 18 00 e0 03 19 00 1b fd 1a 00 81 75 82 bd 82 d4 82 f1 82 b1 82 cc 8d 48 8f ea 82 aa 89 ba 90 85 82 c9 94 70 89 74 82 a9 89 bd 82 a9 82 f0 97 ac 82 b5 0d 00 81 40 82 c4 82 a2 82 e9 82 cd 82 b8 82 be 81 42 8a 6d 82 a9 82 df 82 c8 82 a2 82 c6 81 42 81 76 0d 00 00 00 4c 00 fd fc 67 00 05 00 56 00 fd 16 56 00 fc 16 67 00 05 00 56 00 fd 16 56 00 fc 16 67 00 05 00 4c 00 fd 0b 56 00 fc 00 67 00 0a 00 56 00 fd 13 67 00 0f 00 1b fd 1a 00 81 75 82 bf 82 e5 82 c1 82 c6 81 63 82 c7 82 a2 82 c4 82 ad 82 ea 82 c8 82 a2 82 a9 82 c8 81 42 81 76 0d 00 00 00 56 00 fd 00 5a 00 08 09 67 00 05 00 1b 0b 1a 00 81 75 90 d3 94 43 8e d2 82 cc 8b 96 89 c2 96 b3 82 b5 82 c9 82 cd 92 ca 82 ea 82 dc 82 b9 82 f1 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 8b 7d 82 a2 82 c5 82 e9 82 f1 82 be 82 af 82 c7 81 42 81 76 0d 00 00 00 1b 0b 1a 00 81 75 82 be 82 df 82 c5 82 b7 81 42 8b 96 89 c2 82 f0 8e e6 82 c1 82 c4 82 ad 82 be 82 b3 82 a2 81 42 81 76 0d 00 00 00 56 00 fd 19 67 00 0f 00 1b fd 1a 00 81 75 82 ad 81 63 8e 64 95 fb 82 c8 82 a2 82 a9 81 42 81 76 0d 00 00 00 56 00 fd 00 1c 00 5b 01 fe 00 19 00 01 00 57 01 18 00 ee 03 19 00 fe 00 19 00 00 00 57 01 18 00 7a 04 19 00 1b fd 1a 00 81 75 81 69 82 b3 82 c4 82 c7 82 a4 82 b7 82 e9 82 a9 81 63 81 6a 81 76 0d 00 00 00 1b fd 10 03 7a 04 6c 05 4c 06 1a 00 81 75 82 a8 82 a2 81 41 8c f0 91 e3 82 be 82 bc 81 42 81 76 0d 00 81 75 92 ca 82 b5 82 c4 82 ad 82 ea 82 c8 82 a2 82 c6 96 5c 82 ea 82 e9 82 bc 81 42 81 76 0d 00 81 75 82 e2 81 41 89 bd 82 c5 82 e0 82 c8 82 a2 82 e6 81 42 81 76 0d 00 00 00 12 00 fe 00 5a 00 08 09 1b 0b 1a 00 81 75 82 dc 82 be 8c f0 91 e3 8e 9e 8a d4 82 c5 82 cd 82 a0 82 e8 82 dc 82 b9 82 f1 81 42 81 76 0d 00 00 00 1b fd 10 02 e8 04 12 05 1a 00 81 75 82 a2 82 a2 82 a9 82 e7 82 a2 82 a2 82 a9 82 e7 81 42 81 76 0d 00 81 75 82 a6 82 c1 81 41 89 bd 8e 9e 8c f0 91 e3 82 c8 82 cc 81 48 81 76 0d 00 00 00 12 00 fe 00 5a 00 08 09 1b 0b 1a 00 81 75 82 be 82 df 82 c5 82 b7 81 42 8e 9e 8a d4 8c b5 8e e7 82 c5 82 b7 81 42 81 76 0d 00 00 00 fe 00 1b 0b 1a 00 81 75 82 4f 81 46 82 4f 82 4f 82 c6 82 50 82 51 81 46 82 4f 82 4f 82 aa 8c f0 91 e3 8e 9e 8a d4 82 c5 82 b7 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a0 81 41 82 bb 82 a4 81 42 81 69 82 b5 82 df 82 bd 82 c1 81 49 81 6a 81 76 0d 00 00 00 1c 00 4b 01 fe 00 5a 00 08 09 1b 0b 1a 00 81 75 82 a8 82 c7 82 b5 82 c4 82 e0 83 5f 83 81 82 c5 82 b7 81 42 0d 00 81 40 8b 96 89 c2 82 f0 8e e6 82 c1 82 c4 89 ba 82 b3 82 a2 81 42 81 76 0d 00 00 00 1b fd 10 02 ec 05 ec 05 1a 00 81 75 8b 96 89 c2 81 41 8e c0 82 cd 8e e6 82 c1 82 c4 82 a0 82 e9 82 f1 82 be 81 42 81 76 0d 00 81 75 89 b4 82 aa 8b 96 89 c2 82 b7 82 e9 81 49 81 76 0d 00 00 00 12 00 fe 00 5a 00 08 09 1b 0b 1a 00 81 75 94 46 8f d8 82 aa 82 a8 82 e8 82 dc 82 b9 82 f1 81 42 0d 00 81 40 90 b3 82 b5 82 ad 8b 96 89 c2 82 f0 8e e6 82 c1 82 c4 89 ba 82 b3 82 a2 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a4 82 a4 82 c1 81 41 83 4c 83 72 83 56 81 5b 81 49 81 76 0d 00 00 00 fe 00 fe 00 1b fd 1a 00 81 75 81 69 82 a0 82 ea 82 c1 81 41 8c f0 91 e3 8e 9e 8a d4 82 b6 82 e1 82 c8 82 a2 82 cc 82 a9 81 48 81 6a 81 76 0d 00 00 00 1b 0b 1a 00 81 75 81 63 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 81 69 82 a4 82 ed 81 41 82 b6 82 c1 82 c6 82 b1 82 c1 82 bf 82 f0 8c a9 82 c4 82 e9 81 49 0d 00 81 40 82 b3 82 b7 82 aa 82 c9 82 b1 82 cc 8f f3 91 d4 82 c5 82 cd 8c f0 91 e3 82 b5 82 c8 82 a2 82 a9 81 42 81 6a 81 76 0d 00 00 00 1a 00 81 75 81 69 8f 6f 92 bc 82 bb 82 a4 81 63 81 42 82 b1 82 a2 82 c2 82 e7 82 cc 8c a9 82 a6 82 c8 82 a2 82 c6 82 b1 82 eb 82 c5 0d 00 81 40 91 d2 82 c1 82 bd 82 d9 82 a4 82 aa 82 a2 82 a2 82 dd 82 bd 82 a2 82 be 81 42 81 6a 81 76 0d 00 00 00 fe 00 1b 05 1a 00 81 75 82 da 82 d2 82 da 82 d2 82 d5 82 a3 81 60 82 a4 82 c1 81 42 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1f 01 fe 00 1b 06 1a 00 81 75 82 b0 82 ce 82 9f 82 b0 82 ce 82 9f 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1f 01 fe 00 1b 07 1a 00 81 75 82 d4 82 d0 82 e5 81 48 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1f 01 fe 00 1b 08 1a 00 81 75 82 dc 82 eb 82 cd 82 dc 82 f1 82 bc }
+}

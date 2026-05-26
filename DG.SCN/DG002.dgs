@@ -1,0 +1,121 @@
+// DG002.SCN
+#include "functions.dgs"
+#pragma script index=2 start=0x7000 end=0x7800 headerU16=0x20 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 24, item: Item.Digimushroom, x: 46, y: 45);
+  spawnItemChance(max: 99, chance: 4, item: Item.Happymushroom, x: 60, y: 59);
+  if (!trigger(232)) {
+    playAnimation(Entity(6), Animation(28));
+  }
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「お前さんには、負けないアルヨ!」<NEWLINE>");
+  finishEncounter(Trigger(277));
+}
+
+section(7) {
+  speak(Entity(7), "「オッケー、カモンボーイ!」<NEWLINE>");
+  finishEncounter(Trigger(277));
+}
+
+section(8) {
+  speak(Entity(8), "「ハァ~、この先どうなることやら…」<NEWLINE>");
+  finishEncounter(Trigger(274));
+}
+
+section(9) {
+  speak(Entity(9), "「ぶつぶつ…、かなうワケないじゃん…」<NEWLINE>");
+  finishEncounter(Trigger(274));
+}
+
+section(6) {
+  {
+    setTrigger(Trigger(44));
+    playAnimation(Entity(6), Animation(29));
+    speak(Entity(6), "「お腹すいた。食べ物ない?」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L2);
+    showTextbox("「食べ物を渡す」<NEWLINE>「何もあげない」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L1:
+    setTrigger(Trigger(3));
+    callSubroutine(0);
+    if (trigger(3)) {
+      speak(Entity.Player, "「今、何も無いんだった…」<NEWLINE>");
+      break;
+    }
+    if (pstat[254] == 255) {
+      break;
+    }
+    {
+      if (pstat[254] == 38 || pstat[254] == 39 || pstat[254] == 40 || pstat[254] == 41) {
+        callSubroutine(12);
+        break;
+      }
+      if (pstat[254] == 42 || pstat[254] == 44 || pstat[254] == 62 || pstat[254] == 68) {
+        callSubroutine(12);
+        break;
+        break;
+      }
+      speak(Entity.Player, "「おっと、これをあげるわけにはいかない。」<NEWLINE>");
+      goto L2;
+    }
+    {
+      anim(Entity(6), Animation(30), wait: 20);
+      playAnimation(Entity(6), Animation(8));
+      waitForEntity(Entity(6));
+      speak(Entity(6), "「ムシャムシャ…なかなか…」<NEWLINE>");
+      playAnimation(Entity(6), Animation(0));
+      showTextbox("「フゥー、それじゃ戦うとしよう。」<NEWLINE>");
+      setTrigger(Trigger(1));
+      setPStat(PStat(250), 1);
+      setPStat(PStat(251), 6);
+      setPStat(PStat(252), 255);
+      setPStat(PStat(253), 255);
+      startBattle();
+      unsetTrigger(Trigger(1));
+      setPStat(PStat(250), 0);
+      look(entity: Entity.Player, at: Entity(6));
+      look(entity: Entity(6), at: Entity.Player);
+      look(entity: Entity.Partner, at: Entity(6));
+      speak(Entity(6), "「かなわないね。どうしよう。」<NEWLINE>");
+      playAnimation(Entity.Player, Animation(20));
+      waitForEntity(Entity.Player);
+      speak(Entity.Player, "「…食った分、街に来て働けよな!」<NEWLINE>");
+      anim(Entity.Player, Animation(0), wait: 10);
+      speak(Entity(6), "「ふむ、そうしよう。ボクは虫デジモンの<NEWLINE> クネモンだ。ヨロシク。」<NEWLINE>");
+      break;
+    }
+    approach(who: Entity(6), x: 1219, y: 984, tries: 3, wait: 20);
+    playSound(8, 11);
+    speak(Entity.System, "クネモンが街に参加した!!!<NEWLINE>");
+    followEntity(Entity.Player, speed: 10);
+    setTrigger(Trigger(232));
+    addPStat(PStat(1), 1);
+    goto L3;
+
+L2:
+  }
+  speak(Entity(6), "「今度は持ってきてよ。」<NEWLINE>");
+  anim(Entity(6), Animation(28), wait: 20);
+  goto L3;
+
+L3:
+  return;
+}
+
+section(51) {
+  if (!trigger(185)) {
+    move(entity: Entity.Player, to: (413, 2200), sprint: 0);
+    warp(to: Map.MAYO08B, spawn: 1, trigger: 255);
+  }
+  move(entity: Entity.Player, to: (413, 2200), sprint: 0);
+  warp(to: Map.MAYO08A, spawn: 1, trigger: 255);
+  garbage { 20 00 fe 00 20 00 05 00 5e 00 07 00 96 00 08 00 c8 00 09 00 02 01 06 00 3e 01 33 00 30 04 ff ff 24 00 6e 63 19 00 0b 00 6e 18 18 00 36 00 19 00 74 2c 2e 00 2d 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 4c 00 19 00 74 45 3c 00 3b 00 19 00 01 00 e8 00 18 00 5c 00 19 00 56 00 06 1c fe 00 1b 05 1a 00 81 75 82 a8 91 4f 82 b3 82 f1 82 c9 82 cd 81 41 95 89 82 af 82 c8 82 a2 83 41 83 8b 83 88 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 15 01 fe 00 1b 07 1a 00 81 75 83 49 83 62 83 50 81 5b 81 41 83 4a 83 82 83 93 83 7b 81 5b 83 43 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 15 01 fe 00 1b 08 1a 00 81 75 83 6e 83 40 81 60 81 41 82 b1 82 cc 90 e6 82 c7 82 a4 82 c8 82 e9 82 b1 82 c6 82 e2 82 e7 81 63 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 12 01 fe 00 1b 09 1a 00 81 75 82 d4 82 c2 82 d4 82 c2 81 63 81 41 82 a9 82 c8 82 a4 83 8f 83 50 82 c8 82 a2 82 b6 82 e1 82 f1 81 63 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 12 01 fe 00 1c 00 2c 00 56 00 06 1d 1b 06 1a 00 81 75 82 a8 95 a0 82 b7 82 a2 82 bd 81 42 90 48 82 d7 95 a8 82 c8 82 a2 81 48 81 76 0d 00 00 00 1b fd 10 02 a0 01 02 04 1a 00 81 75 90 48 82 d7 95 a8 82 f0 93 6e 82 b7 81 76 0d 00 81 75 89 bd 82 e0 82 a0 82 b0 82 c8 82 a2 81 76 0d 00 00 00 12 00 16 00 02 04 1c 00 03 00 64 00 19 00 00 00 03 00 18 00 d8 01 19 00 1b fd 1a 00 81 75 8d a1 81 41 89 bd 82 e0 96 b3 82 a2 82 f1 82 be 82 c1 82 bd 81 63 81 76 0d 00 00 00 16 00 02 04 19 00 08 00 fe ff 18 00 e8 01 19 00 16 00 02 04 19 00 08 00 fe 26 48 00 fe 27 48 00 fe 28 48 00 fe 29 18 00 06 02 19 00 64 0c 16 00 5e 02 19 00 08 00 fe 2a 48 00 fe 2c 48 00 fe 3e 48 00 fe 44 18 00 28 02 19 00 64 0c 16 00 5e 02 16 00 5e 02 1b fd 1a 00 81 75 82 a8 82 c1 82 c6 81 41 82 b1 82 ea 82 f0 82 a0 82 b0 82 e9 82 ed 82 af 82 c9 82 cd 82 a2 82 a9 82 c8 82 a2 81 42 81 76 0d 00 00 00 16 00 02 04 56 00 06 1e 67 00 14 00 56 00 06 08 4a 06 1b 06 1a 00 81 75 83 80 83 56 83 83 83 80 83 56 83 83 81 63 82 c8 82 a9 82 c8 82 a9 81 63 81 76 0d 00 00 00 56 00 06 00 1a 00 81 75 83 74 83 44 81 5b 81 41 82 bb 82 ea 82 b6 82 e1 90 ed 82 a4 82 c6 82 b5 82 e6 82 a4 81 42 81 76 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 06 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 06 4c 00 06 fd 4c 00 fc 06 1b 06 1a 00 81 75 82 a9 82 c8 82 ed 82 c8 82 a2 82 cb 81 42 82 c7 82 a4 82 b5 82 e6 82 a4 81 42 81 76 0d 00 00 00 56 00 fd 14 4a fd 1b fd 1a 00 81 75 81 63 90 48 82 c1 82 bd 95 aa 81 41 8a 58 82 c9 97 88 82 c4 93 ad 82 af 82 e6 82 c8 81 49 81 76 0d 00 00 00 56 00 fd 00 67 00 0a 00 1b 06 1a 00 81 75 82 d3 82 de 81 41 82 bb 82 a4 82 b5 82 e6 82 a4 81 42 83 7b 83 4e 82 cd 92 8e 83 66 83 57 83 82 83 93 82 cc 0d 00 81 40 83 4e 83 6c 83 82 83 93 82 be 81 42 83 88 83 8d 83 56 83 4e 81 42 81 76 0d 00 00 00 16 00 98 03 4e 06 c3 04 d8 03 01 00 19 00 0d 00 65 03 18 00 c0 03 }
+}

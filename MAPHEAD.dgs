@@ -1,0 +1,4751 @@
+// MAPHEAD.SCN
+#pragma container
+#include "functions.dgs"
+#pragma script index=0 start=0x0 end=0x5a3a headerU16=0x468 sentinelOff=0xfb
+#include "entities.dgs"
+
+section(0) {
+  switchToMap(1, Map.MAYO01, 0, 1);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.ModokiBetamon);
+    loadDigimon(Digimon.RedVegimon);
+    setDigimonBatch([
+      Digimon.ModokiBetamon => Entity(0),
+      Digimon.ModokiBetamon => Entity(1),
+      Digimon.RedVegimon => Entity(2),
+      Digimon.RedVegimon => Entity(3),
+      Digimon.ModokiBetamon => Entity(4),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.Dokunemon);
+    for id in Entity(5)..Entity(7) {
+      setDigimon(Digimon.Dokunemon, id, 1);
+    }
+  }
+  return;
+}
+
+section(1) {
+  switchToMap(2, Map.MAYO02, 0, 1);
+  if (!trigger(232)) {
+    loadAndSetDigimon(Digimon.NPCKunemon, Entity(1), 0);
+  }
+  if (pstat[107] >= 7 && pstat[107] < 19 && trigger(232)) {
+    loadAndSetDigimon(Digimon.RedVegimon, Entity(0), 1);
+    setDigimon(Digimon.RedVegimon, Entity(2), 1);
+  }
+  if (pstat[107] < 7 || pstat[107] >= 19 && trigger(232)) {
+    loadAndSetDigimon(Digimon.Dokunemon, Entity(3), 1);
+    setDigimon(Digimon.Dokunemon, Entity(4), 1);
+  }
+  return;
+}
+
+section(2) {
+  switchToMap(3, Map.MAYO03, 0, 1);
+  if (!trigger(246)) {
+    loadAndSetDigimon(Digimon.NPCPalmon, Entity(2), 0);
+  } else {
+    loadDigimon(Digimon.Goburimon);
+    setDigimonAt(Digimon.Goburimon, entities: [
+      Entity(0),
+      Entity(1),
+      Entity(3),
+      Entity(4),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(3) {
+  switchToMap(4, Map.MAYO04A, 0, 1);
+  if (!trigger(242)) {
+    loadAndSetDigimon(Digimon.NPCEtemon, Entity(0), 1);
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Aruraumon, Entity(2), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Goburimon, Entity(4), 1);
+  }
+  if (pstat[107] >= 7 && pstat[107] < 19 && trigger(242)) {
+    loadAndSetDigimon(Digimon.Aruraumon, Entity(1), 1);
+  }
+  if (pstat[107] < 7 || pstat[107] >= 19 && trigger(242)) {
+    setDigimon(Digimon.Goburimon, Entity(3), 1);
+  }
+  return;
+}
+
+section(4) {
+  switchToMap(5, Map.MAYO04B, 0, 1);
+  return;
+}
+
+section(5) {
+  switchToMap(6, Map.MAYO05, 0, 1);
+  loadDigimon(Digimon.Coelamon);
+  return;
+}
+
+section(6) {
+  switchToMap(7, Map.MAYO06, 0, 1);
+  return;
+}
+
+section(7) {
+  switchToMap(8, Map.MAYO11, 0, 1);
+  loadDigimon(Digimon.MarketManager);
+  return;
+}
+
+section(8) {
+  switchToMap(213, Map.MAYO10, 0, 1);
+  return;
+}
+
+section(9) {
+  switchToMap(9, Map.MAYO08A, 0, 1);
+  if (trigger(242) && trigger(258)) {
+    loadAndSetDigimon(Digimon.NPCEtemon, Entity(3), 0);
+    return;
+  }
+  if (!trigger(258)) {
+    loadDigimon(Digimon.NPCNinjamon);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Aruraumon, Entity(0), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Tsukaimon, Entity(2), 1);
+  }
+  return;
+}
+
+section(10) {
+  switchToMap(10, Map.MAYO08B, 0, 1);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.ModokiBetamon);
+    loadDigimon(Digimon.Aruraumon);
+    setDigimonBatch([
+      Digimon.ModokiBetamon => Entity(0),
+      Digimon.ModokiBetamon => Entity(1),
+      Digimon.Aruraumon => Entity(2),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.Tsukaimon);
+    for id in Entity(3)..Entity(5) {
+      setDigimon(Digimon.Tsukaimon, id, 1);
+    }
+  }
+  return;
+}
+
+section(11) {
+  switchToMap(11, Map.TROP00, 0, 2);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Aruraumon, Entity(0), 1);
+    setDigimon(Digimon.Aruraumon, Entity(1), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Tsukaimon, Entity(2), 1);
+    setDigimon(Digimon.Tsukaimon, Entity(3), 1);
+  }
+  return;
+  return;
+}
+
+section(12) {
+  switchToMap(12, Map.TROP01, 0, 2);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Muchomon, Entity(1), 1);
+    setDigimon(Digimon.Muchomon, Entity(2), 1);
+  } else {
+    loadAndSetDigimon(Digimon.JMojyamon, Entity(4), 1);
+    setDigimon(Digimon.JMojyamon, Entity(3), 1);
+  }
+  if (trigger(255)) {
+    return;
+  }
+  roll(pstat: PStat(100), max: 99);
+  if (pstat[100] <= 2) {
+    loadAndSetDigimon(Digimon.NPCPiximon, Entity(0), 1);
+  }
+  return;
+}
+
+section(13) {
+  switchToMap(13, Map.TROP02, 0, 2);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Yanmamon);
+    for id in Entity(0)..Entity(2) {
+      setDigimon(Digimon.Yanmamon, id, 1);
+    }
+  } else {
+    loadDigimon(Digimon.Tsukaimon);
+    loadDigimon(Digimon.JMojyamon);
+    setDigimonBatch([
+      Digimon.Tsukaimon => Entity(3),
+      Digimon.JMojyamon => Entity(4),
+      Digimon.JMojyamon => Entity(5),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(14) {
+  switchToMap(14, Map.TROP03, 0, 2);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.RedVegimon, Entity(0), 1);
+    setDigimon(Digimon.RedVegimon, Entity(2), 1);
+  } else {
+    loadDigimon(Digimon.Tsukaimon);
+    loadDigimon(Digimon.JMojyamon);
+    setDigimon(Digimon.Tsukaimon, Entity(3), 1);
+    setDigimon(Digimon.JMojyamon, Entity(4), 1);
+  }
+  return;
+}
+
+section(15) {
+  switchToMap(15, Map.TROP04, 0, 2);
+  if (!trigger(204)) {
+    loadAndSetDigimon(Digimon.NPCBetamon, Entity(0), 1);
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.ModokiBetamon, Entity(1), 1);
+  } else {
+    loadDigimon(Digimon.Tsukaimon);
+    loadAndSetDigimon(Digimon.JMojyamon, Entity(2), 1);
+  }
+  return;
+}
+
+section(16) {
+  switchToMap(16, Map.TROP05, 0, 2);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Yanmamon, Entity(0), 1);
+    setDigimon(Digimon.Yanmamon, Entity(1), 1);
+    loadAndSetDigimon(Digimon.Muchomon, Entity(2), 1);
+  } else {
+    loadDigimon(Digimon.JMojyamon);
+    for id in Entity(3)..Entity(5) {
+      setDigimon(Digimon.JMojyamon, id, 1);
+    }
+  }
+  return;
+}
+
+section(17) {
+  switchToMap(17, Map.TROP06, 0, 12);
+  loadDigimon(Digimon.NPCCentarumon);
+  return;
+}
+
+section(18) {
+  switchToMap(18, Map.MIHA00, 0, 3);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Goburimon, Entity(0), 1);
+    setDigimon(Digimon.Goburimon, Entity(1), 1);
+    loadAndSetDigimon(Digimon.Aruraumon, Entity(2), 1);
+    setDigimon(Digimon.Aruraumon, Entity(3), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Goburimon, Entity(4), 1);
+    setDigimon(Digimon.Goburimon, Entity(5), 1);
+    loadAndSetDigimon(Digimon.Gotsumon, Entity(6), 1);
+    setDigimon(Digimon.Gotsumon, Entity(7), 1);
+  }
+  return;
+  return;
+}
+
+section(19) {
+  switchToMap(19, Map.MIHA01, 0, 3);
+  roll(pstat: PStat(100), max: 99);
+  if (pstat[100] <= 2 && !trigger(213)) {
+    loadAndSetDigimon(Digimon.NPCMamemon, Entity(0), 1);
+  } else {
+    loadDigimon(Digimon.MudFrigimon);
+    for id in Entity(1)..Entity(3) {
+      setDigimon(Digimon.MudFrigimon, id, 1);
+    }
+  }
+  return;
+}
+
+section(20) {
+  switchToMap(20, Map.MIHA02, 0, 3);
+  loadAndSetDigimon(Digimon.Gotsumon, Entity(0), 1);
+  setDigimon(Digimon.Gotsumon, Entity(2), 1);
+  loadAndSetDigimon(Digimon.Goburimon, Entity(1), 1);
+  setDigimon(Digimon.Goburimon, Entity(3), 1);
+  return;
+}
+
+section(21) {
+  switchToMap(21, Map.MIHA03, 0, 3);
+  return;
+}
+
+section(22) {
+  switchToMap(22, Map.MIHA04A, 0, 3);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Flareizamon);
+    loadDigimon(Digimon.Aruraumon);
+    setDigimonBatch([
+      Digimon.Flareizamon => Entity(0),
+      Digimon.Flareizamon => Entity(1),
+      Digimon.Aruraumon => Entity(2),
+      Digimon.Aruraumon => Entity(3),
+    ], autotalk: 1);
+  } else {
+    loadAndSetDigimon(Digimon.Tsukaimon, Entity(4), 1);
+    setDigimon(Digimon.Tsukaimon, Entity(5), 1);
+    loadAndSetDigimon(Digimon.Goburimon, Entity(6), 1);
+    setDigimon(Digimon.Goburimon, Entity(7), 1);
+  }
+  return;
+}
+
+section(23) {
+  switchToMap(23, Map.MIHA04B, 0, 3);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Flareizamon);
+    loadDigimon(Digimon.Aruraumon);
+    setDigimonBatch([
+      Digimon.Flareizamon => Entity(0),
+      Digimon.Flareizamon => Entity(1),
+      Digimon.Aruraumon => Entity(2),
+      Digimon.Aruraumon => Entity(3),
+    ], autotalk: 1);
+  } else {
+    loadAndSetDigimon(Digimon.Tsukaimon, Entity(4), 1);
+    setDigimon(Digimon.Tsukaimon, Entity(5), 1);
+    loadAndSetDigimon(Digimon.Goburimon, Entity(6), 1);
+    setDigimon(Digimon.Goburimon, Entity(7), 1);
+  }
+  return;
+}
+
+section(24) {
+  switchToMap(24, Map.TUNN01, 1, 4);
+  loadAndSetDigimon(Digimon.Goburimon, Entity(0), 1);
+  return;
+}
+
+section(25) {
+  setScript(25, Map.TUNN02);
+  if (!trigger(150) || trigger(234)) {
+    setPStat(PStat(245), 1);
+    setBGM(4);
+    loadDigimon(Digimon.Goburimon);
+    for id in Entity(0)..Entity(2) {
+      setDigimon(Digimon.Goburimon, id, 1);
+    }
+  } else {
+    setPStat(PStat(245), 2);
+    setBGM(6);
+    loadDigimon(Digimon.NPCOgremon);
+    loadDigimon(Digimon.Agumon);
+    setDigimonBatch([
+      Digimon.NPCOgremon => Entity(3),
+      Digimon.Agumon => Entity(4),
+      Digimon.Agumon => Entity(5),
+    ], autotalk: 0);
+  }
+  if (pstat[17] == 2) {
+    setPStat(PStat(17), 1);
+  }
+  return;
+}
+
+section(26) {
+  switchToMap(26, Map.TUNN03, 1, 4);
+  loadAndSetDigimon(Digimon.NPCDrimogemon, Entity(0), 0);
+  return;
+}
+
+section(27) {
+  switchToMap(27, Map.TUNN04, 1, 4);
+  loadAndSetDigimon(Digimon.NPCDrimogemon, Entity(0), 0);
+  return;
+}
+
+section(28) {
+  switchToMap(28, Map.TUNN05, 1, 4);
+  if (pstat[30] >= 5 && pstat[17] < 3 && pstat[17] >= 1) {
+    return;
+  }
+  if (pstat[18] >= 10) {
+    return;
+  }
+  if (pstat[18] >= 5) {
+    loadAndSetDigimon(Digimon.NPCDrimogemon, Entity(1), 0);
+    return;
+  }
+  loadAndSetDigimon(Digimon.NPCDrimogemon, Entity(0), 0);
+  return;
+}
+
+section(29) {
+  switchToMap(29, Map.TUNN06, 1, 4);
+  if (!trigger(209)) {
+    loadAndSetDigimon(Digimon.NPCDrimogemon, Entity(0), 0);
+  }
+  return;
+}
+
+section(30) {
+  switchToMap(5, Map.TUNN07, 1, 9);
+  return;
+}
+
+section(31) {
+  switchToMap(30, Map.TUNN08, 1, 9);
+  if (!trigger(209)) {
+    loadAndSetDigimon(Digimon.NPCMeramon, Entity(0), 1);
+  }
+  return;
+}
+
+section(32) {
+  switchToMap(31, Map.TUNN09, 1, 4);
+  if (!trigger(238)) {
+    loadAndSetDigimon(Digimon.NPCDrimogemon, Entity(0), 0);
+  }
+  return;
+}
+
+section(33) {
+  setScript(200, Map.TUNN10);
+  loadAndSetDigimon(Digimon.DemiMeramon, Entity(0), 0);
+  setDigimon(Digimon.DemiMeramon, Entity(1), 0);
+  return;
+}
+
+section(34) {
+  switchToMap(32, Map.DGHA01, 1, 5);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Darkrizamon);
+    for id in Entity(0)..Entity(3) {
+      setDigimon(Digimon.Darkrizamon, id, 1);
+    }
+  } else {
+    loadDigimon(Digimon.Darkrizamon);
+    loadDigimon(Digimon.Tsukaimon);
+    setDigimonBatch([
+      Digimon.Darkrizamon => Entity(4),
+      Digimon.Darkrizamon => Entity(5),
+      Digimon.Tsukaimon => Entity(6),
+      Digimon.Tsukaimon => Entity(7),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(35) {
+  switchToMap(33, Map.DGHA02, 1, 5);
+  if (!trigger(237)) {
+    loadAndSetDigimon(Digimon.NPCBakemon, Entity(0), 1);
+    loadAndSetDigimon(Digimon.Tsukaimon, Entity(1), 1);
+    setDigimon(Digimon.Tsukaimon, Entity(2), 1);
+    return;
+  }
+  roll(pstat: PStat.RollScratch, max: 1);
+  switch pstat[110] {
+    0 => {
+      loadDigimon(Digimon.Tsukaimon);
+      for id in Entity(1)..Entity(3) {
+        setDigimon(Digimon.Tsukaimon, id, 1);
+      }
+    }
+    1 => {
+      loadDigimon(Digimon.Soulmon);
+      for id in Entity(4)..Entity(6) {
+        setDigimon(Digimon.Soulmon, id, 1);
+      }
+    }
+  }
+  return;
+}
+
+section(36) {
+  switchToMap(34, Map.GCAN01, 0, 6);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Goburimon, Entity(0), 1);
+    setDigimon(Digimon.Goburimon, Entity(1), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Gotsumon, Entity(2), 1);
+    setDigimon(Digimon.Gotsumon, Entity(3), 1);
+  }
+  return;
+}
+
+section(37) {
+  switchToMap(35, Map.GCAN02, 0, 6);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Goburimon);
+    for id in Entity(0)..Entity(2) {
+      setDigimon(Digimon.Goburimon, id, 1);
+    }
+  } else {
+    loadDigimon(Digimon.Weedmon);
+    for id in Entity(3)..Entity(5) {
+      setDigimon(Digimon.Weedmon, id, 1);
+    }
+  }
+  return;
+}
+
+section(38) {
+  switchToMap(36, Map.GCAN03, 0, 6);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Weedmon);
+    loadDigimon(Digimon.SandYanmamon);
+    setDigimonBatch([
+      Digimon.Weedmon => Entity(0),
+      Digimon.SandYanmamon => Entity(1),
+      Digimon.SandYanmamon => Entity(2),
+    ], autotalk: 1);
+  } else {
+    loadAndSetDigimon(Digimon.Gotsumon, Entity(3), 1);
+    setDigimon(Digimon.Gotsumon, Entity(4), 1);
+  }
+  return;
+}
+
+section(39) {
+  switchToMap(37, Map.GCAN04, 0, 6);
+  if (trigger(175) && trigger(180) && !trigger(235)) {
+    loadAndSetDigimon(Digimon.NPCShellmon, Entity(0), 0);
+  }
+  loadAndSetDigimon(Digimon.Goburimon, Entity(1), 1);
+  return;
+}
+
+section(40) {
+  switchToMap(38, Map.GCAN05, 0, 6);
+  if (!trigger(200)) {
+    loadAndSetDigimon(Digimon.Agumon, Entity(0), 0);
+  }
+  return;
+}
+
+section(41) {
+  switchToMap(39, Map.GCAN06, 0, 6);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Weedmon);
+    loadDigimon(Digimon.Muchomon);
+    setDigimonBatch([
+      Digimon.Muchomon => Entity(0),
+      Digimon.Muchomon => Entity(1),
+      Digimon.Weedmon => Entity(2),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.Weedmon);
+    loadDigimon(Digimon.Goburimon);
+    setDigimonBatch([
+      Digimon.Weedmon => Entity(3),
+      Digimon.Weedmon => Entity(4),
+      Digimon.Goburimon => Entity(5),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(42) {
+  switchToMap(40, Map.GCAN07, 0, 6);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.SandYanmamon);
+    loadDigimon(Digimon.Weedmon);
+    setDigimonBatch([
+      Digimon.SandYanmamon => Entity(0),
+      Digimon.SandYanmamon => Entity(1),
+      Digimon.Weedmon => Entity(2),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.Gotsumon);
+    loadDigimon(Digimon.Gururumon);
+    setDigimonBatch([
+      Digimon.Gotsumon => Entity(3),
+      Digimon.Gotsumon => Entity(4),
+      Digimon.Gururumon => Entity(5),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(43) {
+  setScript(41, Map.GCAN08_1);
+  if (trigger(197)) {
+    setPStat(PStat(245), 2);
+    setBGM(6);
+    return;
+  }
+  setPStat(PStat(245), 0);
+  setBGM(6);
+  loadDigimon(Digimon.Goburimon);
+  for id in Entity(0)..Entity(2) {
+    setDigimon(Digimon.Goburimon, id, 1);
+  }
+  return;
+}
+
+section(44) {
+  switchToMap(42, Map.GCAN09, 0, 6);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Gotsumon);
+    loadDigimon(Digimon.Weedmon);
+    setDigimon(Digimon.Gotsumon, Entity(0), 1);
+    setDigimon(Digimon.Weedmon, Entity(1), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Gururumon, Entity(2), 1);
+    setDigimon(Digimon.Gururumon, Entity(3), 1);
+  }
+  return;
+}
+
+section(45) {
+  switchToMap(43, Map.OGRE00, 1, 8);
+  if (!trigger(175)) {
+    loadDigimon(Digimon.NPCGabumon);
+    for id in Entity(0)..Entity(2) {
+      setDigimon(Digimon.NPCGabumon, id, 1);
+    }
+  }
+  return;
+}
+
+section(46) {
+  switchToMap(44, Map.OGRE01, 1, 8);
+  if (!trigger(175)) {
+    loadDigimon(Digimon.NPCGabumon);
+    loadDigimon(Digimon.Agumon);
+    setDigimonBatch([
+      Digimon.NPCGabumon => Entity(0),
+      Digimon.NPCGabumon => Entity(1),
+      Digimon.Agumon => Entity(2),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(47) {
+  switchToMap(45, Map.OGRE02, 1, 8);
+  if (pstat[16] == 3) {
+    loadDigimon(Digimon.Machinedramon);
+    loadDigimon(Digimon.Analogman);
+    setDigimon(Digimon.Machinedramon, Entity(3), 1);
+    setDigimon(Digimon.Analogman, Entity(4), 1);
+    return;
+  }
+  if (!trigger(175)) {
+    loadDigimon(Digimon.Agumon);
+    for id in Entity(0)..Entity(2) {
+      setDigimon(Digimon.Agumon, id, 1);
+    }
+  }
+  return;
+}
+
+section(48) {
+  switchToMap(46, Map.OGRE03, 1, 8);
+  if (!trigger(175)) {
+    setPStat(PStat(245), 2);
+    setBGM(6);
+    loadDigimon(Digimon.Agumon);
+    loadDigimon(Digimon.NPCOgremon);
+    setDigimonBatch([
+      Digimon.Agumon => Entity(0),
+      Digimon.Agumon => Entity(1),
+      Digimon.NPCOgremon => Entity(2),
+      Digimon.Agumon => Entity(3),
+      Digimon.Agumon => Entity(4),
+    ], autotalk: 1);
+  }
+  if (trigger(150) && !trigger(334)) {
+    loadAndSetDigimon(Digimon.NPCNanimon, Entity(6), 0);
+  }
+  return;
+}
+
+section(49) {
+  switchToMap(47, Map.GCAN11, 1, 7);
+  if (!trigger(247)) {
+    loadAndSetDigimon(Digimon.NPCMonochromon, Entity(0), 0);
+  }
+  return;
+}
+
+section(50) {
+  switchToMap(5, Map.YAKA01, 1, 10);
+  return;
+}
+
+section(51) {
+  switchToMap(48, Map.YAKA02, 1, 10);
+  loadAndSetDigimon(Digimon.Rockmon, Entity(0), 1);
+  setDigimon(Digimon.Rockmon, Entity(1), 1);
+  return;
+}
+
+section(52) {
+  switchToMap(49, Map.YAKA11A, 1, 10);
+  return;
+}
+
+section(53) {
+  switchToMap(50, Map.YAKA11B, 1, 10);
+  return;
+}
+
+section(54) {
+  switchToMap(214, Map.YAKA12, 1, 10);
+  return;
+}
+
+section(55) {
+  switchToMap(51, Map.YAKA13, 1, 10);
+  if (trigger(226)) {
+    loadAndSetDigimon(Digimon.NPCMyotismon, Entity(0), 0);
+    return;
+  }
+  if (trigger(128) && !trigger(356)) {
+    loadAndSetDigimon(Digimon.NPCMyotismon, Entity(0), 0);
+  }
+  return;
+}
+
+section(56) {
+  switchToMap(52, Map.YAKA14, 1, 10);
+  loadDigimon(Digimon.Soulmon);
+  for id in Entity(0)..Entity(2) {
+    setDigimon(Digimon.Soulmon, id, 1);
+  }
+  return;
+}
+
+section(57) {
+  switchToMap(53, Map.YAKA15, 1, 10);
+  return;
+}
+
+section(58) {
+  switchToMap(54, Map.YAKA16, 1, 10);
+  loadAndSetDigimon(Digimon.Tsukaimon, Entity(0), 1);
+  return;
+}
+
+section(59) {
+  switchToMap(55, Map.YAKA17, 1, 10);
+  loadAndSetDigimon(Digimon.Tsukaimon, Entity(0), 1);
+  return;
+}
+
+section(60) {
+  switchToMap(56, Map.YAKA18, 1, 10);
+  unsetTrigger(Trigger(290));
+  return;
+}
+
+section(61) {
+  switchToMap(5, Map.YAKA21, 1, 10);
+  return;
+}
+
+section(62) {
+  switchToMap(57, Map.YAKA22, 1, 10);
+  return;
+}
+
+section(63) {
+  switchToMap(58, Map.YAKA23, 1, 10);
+  return;
+}
+
+section(64) {
+  switchToMap(59, Map.YAKA24, 1, 10);
+  return;
+}
+
+section(65) {
+  switchToMap(5, Map.YAKA25, 1, 10);
+  return;
+}
+
+section(66) {
+  switchToMap(60, Map.CHKA01, 1, 10);
+  if (pstat[16] == 2) {
+    loadDigimon(Digimon.Machinedramon);
+    loadDigimon(Digimon.Analogman);
+    setDigimon(Digimon.Machinedramon, Entity(1), 0);
+    setDigimon(Digimon.Analogman, Entity(2), 0);
+    return;
+  }
+  if (!trigger(128)) {
+    loadAndSetDigimon(Digimon.NPCMyotismon, Entity(0), 0);
+  }
+  return;
+}
+
+section(67) {
+  switchToMap(61, Map.SAIB01, 1, 10);
+  if (!trigger(129)) {
+    loadDigimon(Digimon.NPCMyotismon);
+    loadDigimon(Digimon.NPCBakemon);
+    setDigimon(Digimon.NPCMyotismon, Entity(0), 0);
+    setDigimon(Digimon.NPCBakemon, Entity(1), 0);
+  }
+  return;
+}
+
+section(68) {
+  switchToMap(62, Map.SAIB02, 1, 10);
+  loadDigimon(Digimon.Darkrizamon);
+  for id in Entity(1)..Entity(5) {
+    setDigimon(Digimon.Darkrizamon, id, 1);
+  }
+  if (!trigger(130)) {
+    loadAndSetDigimon(Digimon.Tekkamon, Entity(0), 1);
+  }
+  return;
+}
+
+section(69) {
+  switchToMap(63, Map.GIAS00, 0, 11);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.ShimaUnimon, Entity(0), 1);
+    setDigimon(Digimon.ShimaUnimon, Entity(1), 1);
+  } else {
+    loadDigimon(Digimon.Tsukaimon);
+    loadDigimon(Digimon.NiseDrimogemon);
+    setDigimon(Digimon.Tsukaimon, Entity(2), 1);
+    setDigimon(Digimon.NiseDrimogemon, Entity(3), 1);
+  }
+  return;
+}
+
+section(70) {
+  switchToMap(64, Map.GIAS01, 0, 11);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Psychemon, Entity(0), 1);
+    setDigimon(Digimon.Psychemon, Entity(1), 1);
+    loadAndSetDigimon(Digimon.ShimaUnimon, Entity(2), 1);
+  } else {
+    loadAndSetDigimon(Digimon.NiseDrimogemon, Entity(3), 1);
+    setDigimon(Digimon.NiseDrimogemon, Entity(4), 1);
+    loadAndSetDigimon(Digimon.Sharmamon, Entity(5), 1);
+  }
+  return;
+}
+
+section(71) {
+  switchToMap(65, Map.GIAS02, 0, 11);
+  if (!trigger(218)) {
+    loadAndSetDigimon(Digimon.NPCElecmon, Entity(0), 0);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Sharmamon);
+    loadDigimon(Digimon.Akatorimon);
+    setDigimonBatch([
+      Digimon.Akatorimon => Entity(1),
+      Digimon.Akatorimon => Entity(2),
+      Digimon.Sharmamon => Entity(3),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.Psychemon);
+    loadDigimon(Digimon.Sharmamon);
+    setDigimonBatch([
+      Digimon.Psychemon => Entity(4),
+      Digimon.Psychemon => Entity(5),
+      Digimon.Sharmamon => Entity(6),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(72) {
+  switchToMap(66, Map.GIAS03, 0, 11);
+  if (!trigger(231)) {
+    loadAndSetDigimon(Digimon.NPCPatamon, Entity(0), 1);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.ShimaUnimon);
+    loadDigimon(Digimon.Sharmamon);
+    setDigimon(Digimon.ShimaUnimon, Entity(1), 1);
+    setDigimon(Digimon.Sharmamon, Entity(2), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Sharmamon, Entity(3), 1);
+    setDigimon(Digimon.Sharmamon, Entity(4), 1);
+  }
+  return;
+}
+
+section(73) {
+  switchToMap(67, Map.GIAS04, 0, 11);
+  if (!trigger(245)) {
+    setPStat(PStat(111), 0);
+    loadAndSetDigimon(Digimon.NPCBiyomon, Entity(0), 1);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.ShimaUnimon);
+    loadDigimon(Digimon.Akatorimon);
+    setDigimonBatch([
+      Digimon.ShimaUnimon => Entity(1),
+      Digimon.ShimaUnimon => Entity(2),
+      Digimon.Akatorimon => Entity(3),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.Sharmamon);
+    loadDigimon(Digimon.Tsukaimon);
+    setDigimonBatch([
+      Digimon.Sharmamon => Entity(4),
+      Digimon.Sharmamon => Entity(5),
+      Digimon.Tsukaimon => Entity(6),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(74) {
+  switchToMap(68, Map.GIAS05, 0, 11);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Psychemon);
+    loadDigimon(Digimon.Akatorimon);
+    setDigimonBatch([
+      Digimon.Psychemon => Entity(0),
+      Digimon.Psychemon => Entity(1),
+      Digimon.Akatorimon => Entity(2),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.Tsukaimon);
+    loadDigimon(Digimon.Sharmamon);
+    setDigimonBatch([
+      Digimon.Tsukaimon => Entity(3),
+      Digimon.Tsukaimon => Entity(4),
+      Digimon.Sharmamon => Entity(5),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(75) {
+  switchToMap(69, Map.GIAS06A, 0, 11);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Psychemon, Entity(2), 1);
+    setDigimon(Digimon.Psychemon, Entity(3), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Sharmamon, Entity(4), 1);
+    setDigimon(Digimon.Sharmamon, Entity(5), 1);
+  }
+  return;
+}
+
+section(76) {
+  switchToMap(70, Map.GIAS07, 0, 11);
+  if (!trigger(196)) {
+    loadDigimonBatch([
+      Digimon.NPCGobiromon,
+      Digimon.NPCPatamon,
+      Digimon.NPCLeomon,
+    ]);
+    return;
+  }
+  loadAndSetDigimon(Digimon.Sharmamon, Entity(3), 1);
+  setDigimon(Digimon.Sharmamon, Entity(4), 1);
+  return;
+}
+
+section(77) {
+  switchToMap(71, Map.GIAS08, 0, 11);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.ShimaUnimon);
+    loadDigimon(Digimon.Sharmamon);
+    setDigimonBatch([
+      Digimon.ShimaUnimon => Entity(0),
+      Digimon.Sharmamon => Entity(1),
+      Digimon.Sharmamon => Entity(2),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.NiseDrimogemon);
+    loadDigimon(Digimon.Sharmamon);
+    setDigimonBatch([
+      Digimon.NiseDrimogemon => Entity(3),
+      Digimon.Sharmamon => Entity(4),
+      Digimon.Sharmamon => Entity(5),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(78) {
+  switchToMap(72, Map.GIAS09, 0, 11);
+  if (!trigger(248) && trigger(196)) {
+    loadAndSetDigimon(Digimon.NPCLeomon, Entity(0), 1);
+  }
+  return;
+}
+
+section(79) {
+  switchToMap(73, Map.KODA00, 0, 14);
+  loadDigimon(Digimon.NPCTyrannomon);
+  if (!trigger(144)) {
+    setDigimon(Digimon.NPCTyrannomon, Entity(0), 1);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Vermilimon, Entity(1), 1);
+    setDigimon(Digimon.Vermilimon, Entity(2), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Yanmamon, Entity(3), 1);
+    setDigimon(Digimon.Yanmamon, Entity(4), 1);
+  }
+  return;
+}
+
+section(80) {
+  switchToMap(74, Map.KODA01, 0, 14);
+  loadDigimon(Digimon.Vermilimon);
+  loadDigimon(Digimon.Yanmamon);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    setDigimonBatch([
+      Digimon.Vermilimon => Entity(0),
+      Digimon.Yanmamon => Entity(1),
+      Digimon.Vermilimon => Entity(2),
+    ], autotalk: 1);
+  } else {
+    setDigimonBatch([
+      Digimon.Yanmamon => Entity(3),
+      Digimon.Vermilimon => Entity(4),
+      Digimon.Vermilimon => Entity(5),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(81) {
+  switchToMap(75, Map.KODA02, 0, 14);
+  loadDigimonBatch([
+    Digimon.NPCMonochromon,
+    Digimon.Saberdramon,
+    Digimon.Brachiomon,
+  ]);
+  setDigimonBatch([
+    Digimon.NPCMonochromon => Entity(0),
+    Digimon.Saberdramon => Entity(1),
+    Digimon.Brachiomon => Entity(2),
+    Digimon.Brachiomon => Entity(3),
+  ], autotalk: 0);
+  return;
+}
+
+section(82) {
+  switchToMap(76, Map.KODA03, 0, 14);
+  loadDigimon(Digimon.NPCTyrannomon);
+  loadDigimon(Digimon.MasterTyrannomon);
+  if (!trigger(187)) {
+    setDigimon(Digimon.NPCTyrannomon, Entity(0), 0);
+  }
+  if (trigger(187) && !trigger(208)) {
+    setDigimon(Digimon.NPCTyrannomon, Entity(1), 0);
+  }
+  if (trigger(208)) {
+    setDigimon(Digimon.MasterTyrannomon, Entity(3), 0);
+  }
+  return;
+}
+
+section(83) {
+  switchToMap(77, Map.KODA04, 0, 13);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Gotsumon);
+    loadDigimon(Digimon.Saberdramon);
+    setDigimonBatch([
+      Digimon.Gotsumon => Entity(0),
+      Digimon.Gotsumon => Entity(1),
+      Digimon.Saberdramon => Entity(2),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.Darkrizamon);
+    loadDigimon(Digimon.Gotsumon);
+    setDigimonBatch([
+      Digimon.Darkrizamon => Entity(3),
+      Digimon.Darkrizamon => Entity(4),
+      Digimon.Gotsumon => Entity(5),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(84) {
+  switchToMap(5, Map.KODA05, 0, 13);
+  return;
+}
+
+section(85) {
+  switchToMap(78, Map.KODA06, 0, 13);
+  loadAndSetDigimon(Digimon.Saberdramon, Entity(0), 1);
+  return;
+}
+
+section(86) {
+  switchToMap(79, Map.KODA07, 0, 13);
+  if (!trigger(313)) {
+    loadAndSetDigimon(Digimon.Meteormon, Entity(0), 0);
+  }
+  if (trigger(313) && !trigger(335) && trigger(208)) {
+    loadAndSetDigimon(Digimon.NPCNanimon, Entity(1), 0);
+  }
+  return;
+}
+
+section(87) {
+  switchToMap(80, Map.KODA08, 0, 13);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Saberdramon, Entity(0), 1);
+    setDigimon(Digimon.Saberdramon, Entity(1), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Darkrizamon, Entity(2), 1);
+    setDigimon(Digimon.Darkrizamon, Entity(3), 1);
+  }
+  return;
+}
+
+section(88) {
+  switchToMap(81, Map.FRZL01, 0, 15);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.SnowAgumon);
+    loadDigimon(Digimon.SnowGoburimon);
+    setDigimon(Digimon.SnowAgumon, Entity(0), 1);
+    setDigimon(Digimon.SnowGoburimon, Entity(1), 1);
+  } else {
+    loadAndSetDigimon(Digimon.IceDevimon, Entity(2), 1);
+    setDigimon(Digimon.IceDevimon, Entity(3), 1);
+  }
+  return;
+}
+
+section(89) {
+  switchToMap(82, Map.FRZL02, 0, 15);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Hyogamon, Entity(0), 1);
+    setDigimon(Digimon.Hyogamon, Entity(1), 1);
+  } else {
+    loadAndSetDigimon(Digimon.IceDevimon, Entity(2), 1);
+    setDigimon(Digimon.IceDevimon, Entity(3), 1);
+  }
+  return;
+}
+
+section(90) {
+  switchToMap(83, Map.FRZL03, 0, 15);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.SnowAgumon, Entity(0), 1);
+    setDigimon(Digimon.SnowAgumon, Entity(1), 1);
+  } else {
+    loadAndSetDigimon(Digimon.SnowGoburimon, Entity(2), 1);
+    setDigimon(Digimon.SnowGoburimon, Entity(3), 1);
+  }
+  return;
+}
+
+section(91) {
+  switchToMap(84, Map.FRZL04, 0, 15);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Hyogamon);
+    loadDigimon(Digimon.SnowGoburimon);
+    setDigimonBatch([
+      Digimon.SnowGoburimon => Entity(0),
+      Digimon.SnowGoburimon => Entity(1),
+      Digimon.Hyogamon => Entity(2),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.IceDevimon);
+    for id in Entity(3)..Entity(5) {
+      setDigimon(Digimon.IceDevimon, id, 1);
+    }
+  }
+  return;
+}
+
+section(92) {
+  switchToMap(85, Map.FRZL05, 0, 15);
+  return;
+}
+
+section(93) {
+  switchToMap(86, Map.FRZL06, 0, 15);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Hyogamon);
+    for id in Entity(0)..Entity(2) {
+      setDigimon(Digimon.Hyogamon, id, 1);
+    }
+  } else {
+    loadDigimon(Digimon.IceDevimon);
+    loadDigimon(Digimon.Hyogamon);
+    setDigimonBatch([
+      Digimon.IceDevimon => Entity(3),
+      Digimon.IceDevimon => Entity(4),
+      Digimon.Hyogamon => Entity(5),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(94) {
+  switchToMap(87, Map.FRZL07, 0, 15);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.SnowGoburimon, Entity(0), 1);
+    setDigimon(Digimon.SnowGoburimon, Entity(1), 1);
+  } else {
+    loadAndSetDigimon(Digimon.IceDevimon, Entity(2), 1);
+    setDigimon(Digimon.IceDevimon, Entity(3), 1);
+  }
+  return;
+}
+
+section(95) {
+  switchToMap(88, Map.FRZL08, 0, 15);
+  if (!trigger(195)) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, Entity(0), 0);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (trigger(195) && pstat[107] >= 15 && pstat[107] < 17 && !trigger(222) && pstat[29] >= 1) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, Entity(5), 0);
+    return;
+  }
+  if (trigger(195) && pstat[107] >= 17 && !trigger(222) && pstat[29] >= 1) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, Entity(0), 0);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.SnowAgumon, Entity(1), 1);
+    setDigimon(Digimon.SnowAgumon, Entity(2), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Hyogamon, Entity(3), 1);
+    setDigimon(Digimon.Hyogamon, Entity(4), 1);
+  }
+  return;
+}
+
+section(96) {
+  switchToMap(89, Map.FRZL12, 0, 15);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.SnowAgumon, Entity(0), 1);
+    setDigimon(Digimon.SnowAgumon, Entity(1), 1);
+  } else {
+    loadAndSetDigimon(Digimon.SnowGoburimon, Entity(2), 1);
+    setDigimon(Digimon.SnowGoburimon, Entity(3), 1);
+  }
+  return;
+}
+
+section(97) {
+  switchToMap(90, Map.ICSA01, 1, 17);
+  return;
+}
+
+section(98) {
+  switchToMap(91, Map.ICSA02, 1, 18);
+  loadDigimon(Digimon.Icemon);
+  loadDigimon(Digimon.BlueMeramon);
+  setDigimonBatch([
+    Digimon.Icemon => Entity(0),
+    Digimon.Icemon => Entity(1),
+    Digimon.BlueMeramon => Entity(2),
+  ], autotalk: 1);
+  return;
+}
+
+section(99) {
+  switchToMap(92, Map.ICSA03, 1, 18);
+  return;
+}
+
+section(100) {
+  switchToMap(93, Map.ICSA04, 1, 18);
+  loadDigimon(Digimon.Hyogamon);
+  loadDigimon(Digimon.Gururumon);
+  setDigimonBatch([
+    Digimon.Hyogamon => Entity(0),
+    Digimon.Hyogamon => Entity(1),
+    Digimon.Gururumon => Entity(2),
+  ], autotalk: 1);
+  return;
+}
+
+section(101) {
+  switchToMap(94, Map.ICSA05, 1, 18);
+  loadDigimon(Digimon.BlueMeramon);
+  loadDigimon(Digimon.Icemon);
+  setDigimonBatch([
+    Digimon.BlueMeramon => Entity(0),
+    Digimon.BlueMeramon => Entity(1),
+    Digimon.Icemon => Entity(2),
+    Digimon.Icemon => Entity(3),
+  ], autotalk: 1);
+  return;
+}
+
+section(102) {
+  switchToMap(95, Map.ICSA06, 1, 18);
+  loadDigimon(Digimon.Icemon);
+  loadDigimon(Digimon.Hyogamon);
+  setDigimonBatch([
+    Digimon.Icemon => Entity(0),
+    Digimon.Hyogamon => Entity(1),
+    Digimon.Hyogamon => Entity(2),
+  ], autotalk: 1);
+  return;
+}
+
+section(103) {
+  switchToMap(96, Map.ICSA07, 1, 18);
+  loadAndSetDigimon(Digimon.Gururumon, Entity(0), 1);
+  setDigimon(Digimon.Gururumon, Entity(1), 1);
+  return;
+}
+
+section(104) {
+  switchToMap(219, Map.ICSA08, 1, 18);
+  loadDigimon(Digimon.Machinedramon);
+  loadDigimon(Digimon.Analogman);
+  setDigimon(Digimon.Machinedramon, Entity(0), 1);
+  setDigimon(Digimon.Analogman, Entity(1), 1);
+  return;
+}
+
+section(105) {
+  switchToMap(97, Map.BETL01, 0, 25);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Tentomon);
+    loadDigimon(Digimon.Dokunemon);
+    for id in Entity(0)..Entity(2) {
+      setDigimon(Digimon.Tentomon, id, 1);
+    }
+    setDigimon(Digimon.Dokunemon, Entity(3), 1);
+  } else {
+    loadDigimon(Digimon.Tentomon);
+    loadDigimon(Digimon.Dokunemon);
+    setDigimonBatch([
+      Digimon.Dokunemon => Entity(4),
+      Digimon.Dokunemon => Entity(5),
+      Digimon.Tentomon => Entity(6),
+      Digimon.Tentomon => Entity(7),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(106) {
+  switchToMap(98, Map.BETL02, 0, 25);
+  loadAndSetDigimon(Digimon.Tentomon, Entity(0), 0);
+  return;
+}
+
+section(107) {
+  switchToMap(99, Map.BETL03, 0, 25);
+  if (!trigger(219)) {
+    loadAndSetDigimon(Digimon.NPCKabuterimon, Entity(0), 0);
+  }
+  loadAndSetDigimon(Digimon.NPCKabuterimon, Entity(1), 0);
+  setDigimon(Digimon.NPCKabuterimon, Entity(2), 0);
+  return;
+}
+
+section(108) {
+  switchToMap(100, Map.BETL04, 0, 25);
+  if (!trigger(251)) {
+    loadAndSetDigimon(Digimon.NPCKuwagamon, Entity(0), 0);
+  }
+  loadAndSetDigimon(Digimon.NPCKuwagamon, Entity(1), 0);
+  setDigimon(Digimon.NPCKuwagamon, Entity(2), 0);
+  return;
+}
+
+section(109) {
+  switchToMap(101, Map.MAYO00, 0, 1);
+  if (!trigger(203)) {
+    loadAndSetDigimon(Digimon.Agumon, Entity(2), 1);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.ModokiBetamon, Entity(3), 1);
+    setDigimon(Digimon.ModokiBetamon, Entity(4), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Dokunemon, Entity(0), 1);
+    setDigimon(Digimon.Dokunemon, Entity(1), 1);
+  }
+  return;
+}
+
+section(110) {
+  switchToMap(102, Map.MAYO01_2, 0, 1);
+  if (trigger(54)) {
+    return;
+  }
+  loadAndSetDigimon(Digimon.Sukamon, Entity(0), 0);
+  setDigimon(Digimon.Sukamon, Entity(1), 0);
+  return;
+}
+
+section(111) {
+  switchToMap(103, Map.MAYO02_2, 0, 1);
+  if (trigger(54)) {
+    return;
+  }
+  loadAndSetDigimon(Digimon.Sukamon, Entity(0), 0);
+  setDigimon(Digimon.Sukamon, Entity(1), 0);
+  return;
+}
+
+section(112) {
+  switchToMap(104, Map.TRAI00, 0, 1);
+  loadAndSetDigimon(Digimon.Koromon, Entity(0), 0);
+  if (trigger(219)) {
+    loadAndSetDigimon(Digimon.NPCKabuterimon, Entity(1), 0);
+  }
+  if (trigger(251)) {
+    loadAndSetDigimon(Digimon.NPCKuwagamon, Entity(2), 0);
+  }
+  return;
+}
+
+section(113) {
+  switchToMap(105, Map.LEOM01, 1, 4);
+  if (trigger(248) && !trigger(333)) {
+    loadAndSetDigimon(Digimon.NPCNanimon, Entity(0), 0);
+  }
+  return;
+}
+
+section(114) {
+  switchToMap(106, Map.LEOM02, 1, 4);
+  loadAndSetDigimon(Digimon.NPCDrimogemon, Entity(0), 0);
+  return;
+}
+
+section(115) {
+  switchToMap(107, Map.MIST01, 0, 20);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Fugamon);
+    loadDigimon(Digimon.MoriShellmon);
+    setDigimonBatch([
+      Digimon.Fugamon => Entity(0),
+      Digimon.Fugamon => Entity(1),
+      Digimon.MoriShellmon => Entity(2),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.Darkrizamon);
+    loadDigimon(Digimon.Tsukaimon);
+    setDigimonBatch([
+      Digimon.Darkrizamon => Entity(3),
+      Digimon.Darkrizamon => Entity(4),
+      Digimon.Tsukaimon => Entity(5),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(116) {
+  switchToMap(108, Map.MIST02, 0, 20);
+  if (!trigger(114) && !trigger(147)) {
+    loadDigimon(Digimon.MoriShellmon);
+    for id in Entity(0)..Entity(2) {
+      setDigimon(Digimon.MoriShellmon, id, 1);
+    }
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Fugamon, Entity(3), 1);
+    setDigimon(Digimon.Fugamon, Entity(4), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Darkrizamon, Entity(5), 1);
+    setDigimon(Digimon.Darkrizamon, Entity(6), 1);
+  }
+  return;
+}
+
+section(117) {
+  switchToMap(109, Map.MIST03, 0, 20);
+  pstat[:SavedTime] = time();
+  unsetTrigger(Trigger(174));
+  if (pstat[107] >= 4 && pstat[107] <= 6 && !trigger(250)) {
+    loadAndSetDigimon(Digimon.NPCKokatorimon, Entity(0), 1);
+    setTrigger(Trigger(174));
+    return;
+  }
+  if (!trigger(114) && !trigger(147)) {
+    loadDigimon(Digimon.Goburimon);
+    for id in Entity(1)..Entity(3) {
+      setDigimon(Digimon.Goburimon, id, 1);
+    }
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.MoriShellmon, Entity(4), 1);
+    setDigimon(Digimon.MoriShellmon, Entity(5), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Goburimon, Entity(6), 1);
+    setDigimon(Digimon.Goburimon, Entity(7), 1);
+  }
+  return;
+}
+
+section(118) {
+  switchToMap(110, Map.MIST04, 0, 20);
+  if (!trigger(114) && !trigger(147)) {
+    loadAndSetDigimon(Digimon.Goburimon, Entity(0), 1);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Fugamon);
+    loadDigimon(Digimon.MoriShellmon);
+    setDigimon(Digimon.Fugamon, Entity(1), 1);
+    setDigimon(Digimon.MoriShellmon, Entity(2), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Saberdramon, Entity(3), 1);
+    setDigimon(Digimon.Saberdramon, Entity(4), 1);
+  }
+  return;
+}
+
+section(119) {
+  switchToMap(111, Map.MIST05, 0, 20);
+  loadAndSetDigimon(Digimon.Cherrymon, Entity(0), 0);
+  return;
+}
+
+section(120) {
+  switchToMap(112, Map.MIST06, 0, 20);
+  if (!trigger(217)) {
+    loadAndSetDigimon(Digimon.NPCGabumon, Entity(0), 1);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Goburimon, Entity(1), 1);
+    setDigimon(Digimon.Goburimon, Entity(2), 1);
+  } else {
+    loadDigimon(Digimon.Tsukaimon);
+    loadDigimon(Digimon.Darkrizamon);
+    setDigimon(Digimon.Tsukaimon, Entity(3), 1);
+    setDigimon(Digimon.Darkrizamon, Entity(4), 1);
+  }
+  return;
+}
+
+section(121) {
+  switchToMap(113, Map.MIST07, 0, 20);
+  if (!trigger(114) && !trigger(147)) {
+    loadDigimon(Digimon.Fugamon);
+    for id in Entity(0)..Entity(2) {
+      setDigimon(Digimon.Fugamon, id, 1);
+    }
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Goburimon);
+    loadDigimon(Digimon.Fugamon);
+    setDigimonBatch([
+      Digimon.Goburimon => Entity(3),
+      Digimon.Goburimon => Entity(4),
+      Digimon.Fugamon => Entity(5),
+    ], autotalk: 1);
+  } else {
+    loadAndSetDigimon(Digimon.Tsukaimon, Entity(6), 1);
+    setDigimon(Digimon.Tsukaimon, Entity(7), 1);
+  }
+  return;
+}
+
+section(122) {
+  setScript(114, Map.TUNN07_2);
+  return;
+}
+
+section(123) {
+  setScript(115, Map.TUNN07_3);
+  loadAndSetDigimon(Digimon.DemiMeramon, Entity(0), 0);
+  return;
+}
+
+section(124) {
+  setScript(197, Map.TUNN08_2);
+  return;
+}
+
+section(125) {
+  setScript(198, Map.TUNN08_3);
+  loadAndSetDigimon(Digimon.DemiMeramon, Entity(0), 0);
+  return;
+}
+
+section(126) {
+  switchToMap(5, Map.TUNN03_2, 1, 4);
+  return;
+}
+
+section(127) {
+  switchToMap(116, Map.GCAN04_2, 0, 6);
+  loadDigimon(Digimon.Goburimon);
+  loadDigimon(Digimon.NPCShellmon);
+  if (trigger(181) && trigger(182) && !trigger(235)) {
+    setDigimon(Digimon.NPCShellmon, Entity(0), 0);
+  }
+  setDigimon(Digimon.Goburimon, Entity(1), 1);
+  return;
+}
+
+section(128) {
+  switchToMap(117, Map.GCAN08_2, 0, 6);
+  if (trigger(197)) {
+    return;
+  }
+  loadDigimon(Digimon.Goburimon);
+  for id in Entity(0)..Entity(2) {
+    setDigimon(Digimon.Goburimon, id, 1);
+  }
+  return;
+}
+
+section(129) {
+  switchToMap(118, Map.GCAN10, 0, 6);
+  loadDigimon(Digimon.NPCBirdramon);
+  return;
+}
+
+section(130) {
+  switchToMap(199, Map.OGRE04, 1, 8);
+  return;
+}
+
+section(131) {
+  switchToMap(119, Map.GIAS06B, 0, 11);
+  loadAndSetDigimon(Digimon.MarketManager, Entity(0), 0);
+  setDigimon(Digimon.MarketManager, Entity(1), 0);
+  return;
+}
+
+section(132) {
+  switchToMap(120, Map.FRZL13, 0, 15);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Hyogamon, Entity(0), 1);
+    setDigimon(Digimon.Hyogamon, Entity(1), 1);
+  } else {
+    loadAndSetDigimon(Digimon.IceDevimon, Entity(2), 1);
+    setDigimon(Digimon.IceDevimon, Entity(3), 1);
+  }
+  return;
+}
+
+section(133) {
+  switchToMap(121, Map.FRZL14, 0, 15);
+  loadDigimon(Digimon.NPCMojyamon);
+  if (!trigger(108)) {
+    setDigimon(Digimon.NPCMojyamon, Entity(0), 0);
+  }
+  if (!trigger(109)) {
+    setDigimon(Digimon.NPCMojyamon, Entity(1), 0);
+  }
+  return;
+}
+
+section(134) {
+  switchToMap(122, Map.FRZL15, 0, 15);
+  if (!trigger(257)) {
+    loadAndSetDigimon(Digimon.Penguinmon, Entity(0), 0);
+  }
+  if (!trigger(107)) {
+    loadAndSetDigimon(Digimon.NPCMojyamon, Entity(1), 0);
+  }
+  return;
+}
+
+section(135) {
+  switchToMap(123, Map.FRZL16, 0, 15);
+  if (trigger(175) && !trigger(224)) {
+    loadAndSetDigimon(Digimon.NPCWhamon, Entity(1), 0);
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.SnowGoburimon, Entity(0), 1);
+  } else {
+    loadAndSetDigimon(Digimon.IceDevimon, Entity(2), 1);
+  }
+  return;
+}
+
+section(136) {
+  switchToMap(124, Map.FRZL17, 1, 16);
+  if (pstat[122] == 1) {
+    loadAndSetDigimon(Digimon.NPCMetalMamemon, Entity(1), 0);
+    return;
+  }
+  if (pstat[113] == 1) {
+    loadAndSetDigimon(Digimon.Penguinmon, Entity(0), 0);
+  }
+  return;
+}
+
+section(137) {
+  switchToMap(125, Map.FRZL18, 4, 15);
+  if (!trigger(223)) {
+    loadAndSetDigimon(Digimon.NPCFrigimon, Entity(0), 0);
+  }
+  return;
+}
+
+section(138) {
+  switchToMap(126, Map.STIC01, 0, 19);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Yanmamon);
+    for id in Entity(0)..Entity(2) {
+      setDigimon(Digimon.Yanmamon, id, 1);
+    }
+  } else {
+    loadDigimon(Digimon.Gekomon);
+    for id in Entity(3)..Entity(5) {
+      setDigimon(Digimon.Gekomon, id, 1);
+    }
+  }
+  return;
+}
+
+section(139) {
+  switchToMap(127, Map.STIC02, 0, 19);
+  roll(pstat: PStat.RollScratch, max: 2);
+  if (pstat[110] <= 0 && !trigger(309)) {
+    loadAndSetDigimon(Digimon.Otamamon, Entity(4), 0);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Yanmamon, Entity(0), 1);
+    setDigimon(Digimon.Yanmamon, Entity(1), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Gekomon, Entity(2), 1);
+    setDigimon(Digimon.Gekomon, Entity(3), 1);
+  }
+  return;
+}
+
+section(140) {
+  switchToMap(5, Map.GKYO01, 0, 19);
+  return;
+}
+
+section(141) {
+  switchToMap(128, Map.GKYO02, 0, 19);
+  loadDigimon(Digimon.ShogunGekomon);
+  loadDigimon(Digimon.Gekomon);
+  setDigimon(Digimon.ShogunGekomon, Entity(0), 0);
+  for id in Entity(1)..Entity(3) {
+    setDigimon(Digimon.Gekomon, id, 0);
+  }
+  return;
+}
+
+section(142) {
+  switchToMap(129, Map.OGRE10, 7, 26);
+  loadAndSetDigimon(Digimon.NPCWhamon, Entity(0), 0);
+  return;
+}
+
+section(143) {
+  switchToMap(130, Map.OGRE11, 8, 26);
+  if (!trigger(150)) {
+    loadDigimonBatch([
+      Digimon.NPCOgremon,
+      Digimon.NPCGabumon,
+      Digimon.WaruSeadramon,
+    ]);
+    setDigimonBatch([
+      Digimon.NPCOgremon => Entity(0),
+      Digimon.NPCGabumon => Entity(1),
+      Digimon.NPCGabumon => Entity(2),
+    ], autotalk: 0);
+  }
+  return;
+}
+
+section(144) {
+  setScript(131, Map.OMOC01);
+  if (trigger(350)) {
+    setPStat(PStat(245), 6);
+    setBGM(21);
+  } else {
+    setPStat(PStat(245), 5);
+    setBGM(21);
+  }
+  if (trigger(350)) {
+    loadDigimonBatch([
+      Digimon.ClearAgumon,
+      Digimon.ToyAgumon,
+      Digimon.Tankmon,
+    ]);
+    setDigimonBatch([
+      Digimon.ClearAgumon => Entity(0),
+      Digimon.ToyAgumon => Entity(1),
+      Digimon.Tankmon => Entity(2),
+    ], autotalk: 0);
+  }
+  return;
+}
+
+section(145) {
+  setScript(132, Map.OMOC02);
+  if (trigger(350)) {
+    setPStat(PStat(245), 6);
+    setBGM(21);
+  } else {
+    setPStat(PStat(245), 5);
+    setBGM(21);
+  }
+  storeDigimonType(PStat(103));
+  if (trigger(350) || pstat[103] == 14) {
+    return;
+  }
+  loadAndSetDigimon(Digimon.NPCMonzaemon, Entity(0), 0);
+  return;
+}
+
+section(146) {
+  setScript(133, Map.OMOC03);
+  if (trigger(350)) {
+    setPStat(PStat(245), 6);
+    setBGM(21);
+  } else {
+    setPStat(PStat(245), 5);
+    setBGM(21);
+  }
+  loadDigimon(Digimon.Tinmon);
+  setDigimonAt(Digimon.Tinmon, entities: [
+    Entity(0),
+    Entity(2),
+    Entity(3),
+  ], autotalk: 0);
+  return;
+}
+
+section(147) {
+  setScript(134, Map.OMOC04);
+  if (trigger(350)) {
+    setPStat(PStat(245), 6);
+    setBGM(21);
+  } else {
+    setPStat(PStat(245), 5);
+    setBGM(21);
+  }
+  return;
+}
+
+section(148) {
+  setScript(135, Map.OMOC05);
+  if (trigger(350)) {
+    setPStat(PStat(245), 6);
+    setBGM(21);
+  } else {
+    setPStat(PStat(245), 5);
+    setBGM(21);
+  }
+  loadDigimon(Digimon.ToyAgumon);
+  for id in Entity(0)..Entity(2) {
+    setDigimon(Digimon.ToyAgumon, id, 1);
+  }
+  return;
+}
+
+section(149) {
+  setScript(136, Map.OMOC06);
+  if (trigger(350)) {
+    setPStat(PStat(245), 6);
+    setBGM(21);
+  } else {
+    setPStat(PStat(245), 5);
+    setBGM(21);
+  }
+  loadAndSetDigimon(Digimon.Tankmon, Entity(0), 1);
+  setDigimon(Digimon.Tankmon, Entity(1), 1);
+  return;
+}
+
+section(150) {
+  setScript(137, Map.OMOC07);
+  if (trigger(350)) {
+    setPStat(PStat(245), 6);
+    setBGM(21);
+  } else {
+    setPStat(PStat(245), 5);
+    setBGM(21);
+  }
+  loadDigimon(Digimon.ClearAgumon);
+  for id in Entity(0)..Entity(2) {
+    setDigimon(Digimon.ClearAgumon, id, 1);
+  }
+  return;
+}
+
+section(151) {
+  setScript(138, Map.OMOC08);
+  if (trigger(350)) {
+    setPStat(PStat(245), 6);
+    setBGM(21);
+  } else {
+    setPStat(PStat(245), 5);
+    setBGM(21);
+  }
+  loadDigimon(Digimon.WaruMonzaemon);
+  loadDigimon(Digimon.Hagurumon);
+  if (trigger(350) && !trigger(337)) {
+    loadAndSetDigimon(Digimon.NPCNanimon, Entity(1), 0);
+  }
+  return;
+}
+
+section(152) {
+  switchToMap(139, Map.FACT01, 0, 22);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Guardromon, Entity(0), 1);
+    setDigimon(Digimon.Guardromon, Entity(1), 1);
+  } else {
+    loadAndSetDigimon(Digimon.PlatinumSukamon, Entity(2), 1);
+    setDigimon(Digimon.PlatinumSukamon, Entity(3), 1);
+  }
+  loadAndSetDigimon(Digimon.NPCWhamon, Entity(4), 0);
+  return;
+}
+
+section(153) {
+  switchToMap(140, Map.FACT02, 0, 22);
+  roll(pstat: PStat.RollScratch, max: 99);
+  if (pstat[110] <= 2 && !trigger(227)) {
+    loadAndSetDigimon(Digimon.NPCMetalMamemon, Entity(4), 1);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadAndSetDigimon(Digimon.Guardromon, Entity(0), 1);
+    setDigimon(Digimon.Guardromon, Entity(1), 1);
+  } else {
+    loadAndSetDigimon(Digimon.Geremon, Entity(2), 1);
+    setDigimon(Digimon.Geremon, Entity(3), 1);
+  }
+  return;
+}
+
+section(154) {
+  switchToMap(141, Map.FACT03, 0, 22);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Guardromon);
+    loadDigimon(Digimon.PlatinumSukamon);
+    setDigimonBatch([
+      Digimon.Guardromon => Entity(0),
+      Digimon.PlatinumSukamon => Entity(1),
+      Digimon.PlatinumSukamon => Entity(2),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.Geremon);
+    loadDigimon(Digimon.Guardromon);
+    setDigimonBatch([
+      Digimon.Geremon => Entity(3),
+      Digimon.Guardromon => Entity(4),
+      Digimon.Guardromon => Entity(5),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(155) {
+  switchToMap(142, Map.FACT04, 0, 22);
+  pstat[:SavedTime] = time();
+  if (pstat[107] == 11 && pstat[108] >= 55) {
+    return;
+  }
+  if (pstat[107] == 12 && pstat[108] <= 5) {
+    return;
+  }
+  if (pstat[107] == 23 && pstat[108] >= 55) {
+    return;
+  }
+  if (pstat[107] == 0 && pstat[108] <= 5) {
+    return;
+  }
+  if (!trigger(332)) {
+    loadAndSetDigimon(Digimon.Guardromon, Entity(6), 0);
+    setDigimon(Digimon.Guardromon, Entity(7), 0);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Geremon);
+    for id in Entity(0)..Entity(2) {
+      setDigimon(Digimon.Geremon, id, 1);
+    }
+  } else {
+    loadDigimon(Digimon.PlatinumSukamon);
+    for id in Entity(3)..Entity(5) {
+      setDigimon(Digimon.PlatinumSukamon, id, 1);
+    }
+  }
+  return;
+}
+
+section(156) {
+  switchToMap(193, Map.FACT05, 0, 22);
+  return;
+}
+
+section(157) {
+  switchToMap(186, Map.FACT06, 0, 22);
+  loadAndSetDigimon(Digimon.NPCAndromon, Entity(0), 0);
+  return;
+}
+
+section(158) {
+  switchToMap(194, Map.FACT07, 0, 22);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Guardromon);
+    loadDigimon(Digimon.Geremon);
+    setDigimonBatch([
+      Digimon.Geremon => Entity(0),
+      Digimon.Geremon => Entity(1),
+      Digimon.Guardromon => Entity(2),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.Guardromon);
+    for id in Entity(3)..Entity(5) {
+      setDigimon(Digimon.Guardromon, id, 1);
+    }
+  }
+  return;
+}
+
+section(159) {
+  switchToMap(187, Map.FACT08A, 0, 22);
+  if (!trigger(241)) {
+    loadAndSetDigimon(Digimon.NPCGiromon, Entity(0), 0);
+    return;
+  }
+  return;
+}
+
+section(160) {
+  switchToMap(188, Map.FACT08B, 0, 22);
+  loadAndSetDigimon(Digimon.NPCGiromon, Entity(0), 0);
+  return;
+}
+
+section(161) {
+  switchToMap(189, Map.FACT09, 0, 22);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Guardromon);
+    loadDigimon(Digimon.PlatinumSukamon);
+    setDigimonBatch([
+      Digimon.Guardromon => Entity(0),
+      Digimon.PlatinumSukamon => Entity(1),
+      Digimon.Guardromon => Entity(2),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.Geremon);
+    for id in Entity(3)..Entity(5) {
+      setDigimon(Digimon.Geremon, id, 1);
+    }
+  }
+  return;
+}
+
+section(162) {
+  switchToMap(190, Map.FACT10, 0, 22);
+  loadAndSetDigimon(Digimon.Guardromon, Entity(0), 0);
+  setDigimon(Digimon.Guardromon, Entity(1), 1);
+  setDigimon(Digimon.Guardromon, Entity(2), 1);
+  return;
+}
+
+section(163) {
+  switchToMap(191, Map.FACT11A, 1, 23);
+  return;
+}
+
+section(164) {
+  switchToMap(143, Map.GOMI01, 0, 24);
+  pstat[:SavedTime] = time();
+  if (pstat[107] in 7..19) {
+    loadDigimon(Digimon.Psychemon);
+    loadDigimon(Digimon.Geremon);
+    setDigimonBatch([
+      Digimon.Psychemon => Entity(0),
+      Digimon.Geremon => Entity(1),
+      Digimon.Geremon => Entity(2),
+    ], autotalk: 1);
+  } else {
+    loadDigimon(Digimon.Psychemon);
+    loadDigimon(Digimon.Geremon);
+    setDigimonBatch([
+      Digimon.Geremon => Entity(3),
+      Digimon.Psychemon => Entity(4),
+      Digimon.Psychemon => Entity(5),
+    ], autotalk: 1);
+  }
+  return;
+}
+
+section(165) {
+  switchToMap(144, Map.GOMI02, 0, 24);
+  loadDigimon(Digimon.Sukamon);
+  loadAndSetDigimon(Digimon.KingSukamon, Entity(0), 0);
+  for id in Entity(1)..Entity(3) {
+    setDigimon(Digimon.Sukamon, id, 0);
+  }
+  return;
+}
+
+section(166) {
+  switchToMap(145, Map.MGEN01, 1, 27);
+  loadDigimon(Digimon.Vermilimon);
+  loadDigimon(Digimon.Rockmon);
+  setDigimonBatch([
+    Digimon.Vermilimon => Entity(0),
+    Digimon.Vermilimon => Entity(1),
+    Digimon.Rockmon => Entity(2),
+    Digimon.Vermilimon => Entity(3),
+    Digimon.Rockmon => Entity(4),
+  ], autotalk: 1);
+  return;
+}
+
+section(167) {
+  switchToMap(146, Map.MGEN02, 1, 27);
+  loadDigimon(Digimon.Piddomon);
+  loadDigimon(Digimon.Gururumon);
+  setDigimonBatch([
+    Digimon.Piddomon => Entity(0),
+    Digimon.Piddomon => Entity(1),
+    Digimon.Gururumon => Entity(2),
+    Digimon.Piddomon => Entity(3),
+    Digimon.Gururumon => Entity(4),
+  ], autotalk: 1);
+  return;
+}
+
+section(168) {
+  switchToMap(147, Map.TWNA02, 0, 28);
+  goto section_177.L1;
+  return;
+}
+
+section(169) {
+  switchToMap(147, Map.TWNA03, 0, 28);
+  goto section_178.L1;
+  return;
+}
+
+section(170) {
+  switchToMap(147, Map.TWNA04, 0, 28);
+  goto section_179.L1;
+  return;
+}
+
+section(171) {
+  switchToMap(147, Map.TWNA05, 0, 28);
+  goto section_177.L1;
+  return;
+}
+
+section(172) {
+  switchToMap(147, Map.TWNA06, 0, 28);
+  goto section_178.L1;
+  return;
+}
+
+section(173) {
+  switchToMap(147, Map.TWNA07, 0, 28);
+  goto section_179.L1;
+  return;
+}
+
+section(174) {
+  switchToMap(147, Map.TWNA08, 0, 28);
+  goto section_177.L1;
+  return;
+}
+
+section(175) {
+  switchToMap(147, Map.TWNA09, 0, 28);
+  goto section_178.L1;
+  return;
+}
+
+section(176) {
+  switchToMap(147, Map.TWNA10, 0, 28);
+  goto section_179.L1;
+  return;
+}
+
+section(177) {
+  switchToMap(147, Map.TWNA11, 0, 28);
+
+L1:
+  setPStat(PStat(42), 0);
+  loadAndSetDigimon(Digimon.Tanemon, Entity(6), 0);
+  addPStat(PStat(42), 1);
+  goto section_179.L2;
+  return;
+}
+
+section(178) {
+  switchToMap(147, Map.TWNA12, 0, 28);
+
+L1:
+  setPStat(PStat(42), 0);
+  loadAndSetDigimon(Digimon.NPCPalmon, Entity(6), 0);
+  addPStat(PStat(42), 1);
+  goto section_179.L2;
+  return;
+}
+
+section(179) {
+  switchToMap(147, Map.TWNA13, 0, 28);
+
+L1:
+  setPStat(PStat(42), 0);
+  loadAndSetDigimon(Digimon.NPCVegimon, Entity(6), 0);
+  addPStat(PStat(42), 1);
+
+L2:
+  if (trigger(224)) {
+    loadAndSetDigimon(Digimon.NPCWhamon, Entity(7), 0);
+    addPStat(PStat(42), 1);
+  }
+  if (trigger(87) && !trigger(205)) {
+    return;
+  }
+  if (trigger(354) && !trigger(355)) {
+    return;
+  }
+  if (!trigger(84) && trigger(250)) {
+    loadAndSetDigimon(Digimon.NPCKokatorimon, Entity(3), 0);
+    addPStat(PStat(42), 1);
+  }
+  if (pstat[42] == 3) {
+    return;
+  }
+  pstat[:SavedTime] = time();
+  {
+    if (pstat[107] in 7..19) {
+      break;
+      break;
+    }
+    goto L3;
+  }
+  roll(pstat: PStat.RollScratch, max: 3);
+  if (trigger(240) && pstat[110] <= 0 && pstat[42] <= 2) {
+    loadAndSetDigimon(Digimon.NPCAndromon, Entity(2), 0);
+    addPStat(PStat(42), 1);
+  }
+  if (pstat[42] == 3) {
+    return;
+  }
+  loadAndSetDigimon(Digimon.Yuramon, Entity(0), 0);
+  return;
+
+L3:
+  if (pstat[42] <= 2) {
+  } else {
+    return;
+  }
+  if (trigger(250) && trigger(84) && pstat[107] >= 4 && pstat[107] < 8) {
+    loadAndSetDigimon(Digimon.NPCKokatorimon, Entity(3), 0);
+    addPStat(PStat(42), 1);
+  }
+  if (pstat[42] == 3) {
+    return;
+  }
+  if (trigger(239)) {
+    loadAndSetDigimon(Digimon.NPCSukamon, Entity(1), 0);
+  }
+  return;
+}
+
+section(180) {
+  switchToMap(148, Map.TWNB01, 0, 28);
+  setPStat(PStat(43), 1);
+  goto section_192.L1;
+  return;
+}
+
+section(181) {
+  switchToMap(148, Map.TWNB02, 0, 28);
+  setPStat(PStat(43), 2);
+  goto section_192.L1;
+  return;
+}
+
+section(182) {
+  switchToMap(148, Map.TWNB03, 0, 28);
+  setPStat(PStat(43), 3);
+  goto section_192.L1;
+  return;
+}
+
+section(183) {
+  switchToMap(148, Map.TWNB04, 0, 28);
+  setPStat(PStat(43), 4);
+  goto section_192.L1;
+  return;
+}
+
+section(184) {
+  switchToMap(148, Map.TWNB05, 0, 28);
+  setPStat(PStat(43), 5);
+  goto section_192.L1;
+  return;
+}
+
+section(185) {
+  switchToMap(148, Map.TWNB06, 0, 28);
+  setPStat(PStat(43), 6);
+  goto section_192.L1;
+  return;
+}
+
+section(186) {
+  switchToMap(148, Map.TWNB07, 0, 28);
+  setPStat(PStat(43), 7);
+  goto section_192.L1;
+  return;
+}
+
+section(187) {
+  switchToMap(148, Map.TWNB08, 0, 28);
+  setPStat(PStat(43), 8);
+  goto section_192.L1;
+  return;
+}
+
+section(188) {
+  switchToMap(148, Map.TWNB09, 0, 28);
+  setPStat(PStat(43), 9);
+  goto section_192.L1;
+  return;
+}
+
+section(189) {
+  switchToMap(148, Map.TWNB10, 0, 28);
+  setPStat(PStat(43), 10);
+  goto section_192.L1;
+  return;
+}
+
+section(190) {
+  switchToMap(148, Map.TWNB11, 0, 28);
+  setPStat(PStat(43), 11);
+  goto section_192.L1;
+  return;
+}
+
+section(191) {
+  switchToMap(148, Map.TWNB12, 0, 28);
+  setPStat(PStat(43), 12);
+  goto section_192.L1;
+  return;
+}
+
+section(192) {
+  switchToMap(148, Map.TWNB13, 0, 28);
+  setPStat(PStat(43), 13);
+  if (trigger(328)) {
+    setTrigger(Trigger(329));
+
+L1:
+  }
+  {
+    setPStat(PStat(38), 0);
+    setPStat(PStat(39), 0);
+    if (!trigger(204)) break;
+    if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
+      break;
+    }
+    addPStat(PStat(38), 1);
+    loadAndSetDigimon(Digimon.NPCBetamon, Entity(2), 0);
+  }
+  if (!trigger(77) && trigger(237)) {
+    addPStat(PStat(38), 1);
+    loadAndSetDigimon(Digimon.NPCBakemon, Entity(0), 0);
+  }
+  if (!trigger(78) && trigger(235)) {
+    addPStat(PStat(38), 1);
+    loadAndSetDigimon(Digimon.NPCShellmon, Entity(1), 0);
+  }
+  if (pstat[38] == 3) {
+    return;
+  }
+  if (!trigger(79) && trigger(232)) {
+    addPStat(PStat(38), 1);
+    loadAndSetDigimon(Digimon.NPCKunemon, Entity(3), 0);
+  }
+  if (pstat[38] == 3) {
+    return;
+  }
+  pstat[:SavedTime] = time();
+  {
+    if (pstat[107] in 7..19) {
+      break;
+    }
+    if (!trigger(80) && trigger(218)) {
+      addPStat(PStat(38), 1);
+      loadAndSetDigimon(Digimon.NPCElecmon, Entity(5), 0);
+    }
+    if (pstat[38] != 3) break;
+    return;
+  }
+  pstat[:SavedTime] = time();
+  {
+    if (pstat[107] in 7..19) {
+      break;
+      break;
+    }
+    goto L2;
+  }
+  loop {
+    addPStat(PStat(38), 1);
+    loadAndSetDigimon(Digimon.Tsunomon, Entity(4), 0);
+    if (pstat[38] == 3) {
+      return;
+    }
+    {
+      if (!trigger(204)) break;
+      if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) break;
+      addPStat(PStat(38), 1);
+      loadAndSetDigimon(Digimon.NPCBetamon, Entity(2), 0);
+      if (pstat[38] != 3) break;
+      return;
+    }
+    roll(pstat: PStat.RollScratch, max: 1);
+    {
+      if (pstat[110] == 0 && trigger(235) && trigger(78)) {
+        break;
+      }
+      if (trigger(234)) {
+        addPStat(PStat(38), 1);
+        loadAndSetDigimon(Digimon.NPCOgremon, Entity(7), 0);
+      }
+      if (pstat[38] != 3) break;
+      return;
+    }
+    if (trigger(235) && trigger(78)) {
+      addPStat(PStat(38), 1);
+      loadAndSetDigimon(Digimon.NPCShellmon, Entity(1), 0);
+    }
+    if (pstat[38] == 3) {
+      return;
+    }
+    addPStat(PStat(39), 1);
+    if (pstat[39] < 2) {
+    } else {
+      return;
+
+L2:
+    }
+    pstat[:SavedTime] = time();
+    {
+      if (pstat[107] in 7..19) {
+        break;
+      }
+      if (trigger(237) && trigger(77)) {
+        addPStat(PStat(38), 1);
+        loadAndSetDigimon(Digimon.NPCBakemon, Entity(0), 0);
+      }
+      if (pstat[38] != 3) break;
+      return;
+    }
+    if (trigger(218)) {
+      addPStat(PStat(38), 1);
+      loadAndSetDigimon(Digimon.NPCElecmon, Entity(5), 0);
+    }
+    if (pstat[38] == 3) {
+      return;
+    }
+    roll(pstat: PStat.RollScratch, max: 1);
+    {
+      if (pstat[110] == 0 && trigger(254)) {
+        break;
+      }
+      if (trigger(232) && trigger(79)) {
+        addPStat(PStat(38), 1);
+        loadAndSetDigimon(Digimon.NPCKunemon, Entity(3), 0);
+      }
+      if (pstat[38] != 3) break;
+      return;
+    }
+    if (trigger(254)) {
+      addPStat(PStat(38), 1);
+      loadAndSetDigimon(Digimon.NPCMegadramon, Entity(6), 0);
+    }
+    if (pstat[38] == 3) {
+      return;
+    }
+    addPStat(PStat(39), 1);
+    if (pstat[39] >= 2) break;
+  }
+  return;
+}
+
+section(193) {
+  switchToMap(148, Map.TWNB14, 0, 28);
+  setPStat(PStat(43), 14);
+  goto section_192.L1;
+  return;
+}
+
+section(194) {
+  switchToMap(148, Map.TWNB15, 0, 28);
+  setPStat(PStat(43), 15);
+  goto section_192.L1;
+  return;
+}
+
+section(195) {
+  switchToMap(148, Map.TWNB16, 0, 28);
+  setPStat(PStat(43), 16);
+  goto section_192.L1;
+  return;
+}
+
+section(196) {
+  switchToMap(148, Map.TWNB17, 0, 28);
+  setPStat(PStat(43), 17);
+  goto section_192.L1;
+  return;
+}
+
+section(197) {
+  switchToMap(148, Map.TWNB18, 0, 28);
+  setPStat(PStat(43), 18);
+  goto section_192.L1;
+  return;
+}
+
+section(198) {
+  switchToMap(148, Map.TWNB19, 0, 28);
+  setPStat(PStat(43), 19);
+  goto section_192.L1;
+  return;
+}
+
+section(199) {
+  switchToMap(148, Map.TWNB20, 0, 28);
+  setPStat(PStat(43), 20);
+  goto section_192.L1;
+  return;
+}
+
+section(200) {
+  switchToMap(148, Map.TWNB21, 0, 28);
+  setPStat(PStat(43), 21);
+  goto section_192.L1;
+  return;
+}
+
+section(201) {
+  switchToMap(148, Map.TWNB22, 0, 28);
+  setPStat(PStat(43), 22);
+  goto section_192.L1;
+  return;
+}
+
+section(202) {
+  switchToMap(148, Map.TWNB23, 0, 28);
+  setPStat(PStat(43), 23);
+  goto section_192.L1;
+  return;
+}
+
+section(203) {
+  switchToMap(148, Map.TWNB24, 0, 28);
+  setPStat(PStat(43), 24);
+  goto section_192.L1;
+  return;
+}
+
+section(204) {
+  switchToMap(149, Map.TWNA01, 0, 28);
+  if (trigger(55)) {
+    loadDigimon(Digimon.Jijimon);
+    loadAndSetDigimon(Digimon.Tokomon, Entity(5), 0);
+    setDigimon(Digimon.Jijimon, Entity(3), 0);
+    return;
+  }
+  if (!trigger(54)) {
+    loadDigimon(Digimon.Jijimon);
+    loadDigimon(Digimon.Tokomon);
+    setDigimonBatch([
+      Digimon.Jijimon => Entity(0),
+      Digimon.Tokomon => Entity(1),
+      Digimon.Jijimon => Entity(2),
+      Digimon.Jijimon => Entity(3),
+    ], autotalk: 0);
+    return;
+  }
+  loadDigimon(Digimon.Yuramon);
+  loadDigimon(Digimon.Tanemon);
+  setDigimon(Digimon.Yuramon, Entity(4), 0);
+  setDigimon(Digimon.Tanemon, Entity(6), 0);
+  return;
+}
+
+section(205) {
+  switchToMap(150, Map.ROOM10, 0, 28);
+  loadAndSetDigimon(Digimon.Jijimon, Entity(0), 0);
+  if (trigger(220)) {
+    loadAndSetDigimon(Digimon.NPCAngemon, Entity(1), 0);
+  }
+  loadAndSetDigimon(Digimon.Tokomon, Entity(2), 0);
+  return;
+}
+
+section(206) {
+  switchToMap(151, Map.ROOM11, 0, 28);
+  loadAndSetDigimon(Digimon.Botamon, Entity(0), 0);
+  if (trigger(214)) {
+    loadAndSetDigimon(Digimon.NPCMonzaemon, Entity(1), 0);
+  }
+  if (trigger(88) && !trigger(50)) {
+    loadAndSetDigimon(Digimon.NPCAirdramon, Entity(2), 0);
+  }
+  return;
+}
+
+section(207) {
+  switchToMap(152, Map.ROOM12, 0, 28);
+  loadAndSetDigimon(Digimon.NPCBirdramon, Entity(0), 0);
+  if (trigger(248)) {
+    loadAndSetDigimon(Digimon.NPCLeomon, Entity(1), 0);
+  }
+  return;
+}
+
+section(208) {
+  switchToMap(153, Map.ROOM13, 0, 28);
+  loadAndSetDigimon(Digimon.NPC2Greymon, Entity(0), 0);
+  return;
+}
+
+section(209) {
+  switchToMap(154, Map.ROOM14, 0, 28);
+  loadAndSetDigimon(Digimon.NPCDrimogemon, Entity(0), 0);
+  if (trigger(217)) {
+    loadAndSetDigimon(Digimon.NPCGabumon, Entity(1), 0);
+  }
+  return;
+}
+
+section(210) {
+  switchToMap(155, Map.MGEN03, 1, 27);
+  loadDigimon(Digimon.Piddomon);
+  loadDigimon(Digimon.Rockmon);
+  setDigimonBatch([
+    Digimon.Rockmon => Entity(0),
+    Digimon.Piddomon => Entity(1),
+    Digimon.Piddomon => Entity(3),
+    Digimon.Piddomon => Entity(4),
+  ], autotalk: 1);
+  return;
+}
+
+section(211) {
+  switchToMap(156, Map.ROOM02, 0, 28);
+  loadDigimon(Digimon.Agumon);
+  loadDigimon(Digimon.Poyomon);
+  setDigimon(Digimon.Agumon, Entity(0), 0);
+  setDigimon(Digimon.Poyomon, Entity(1), 0);
+  if (trigger(253)) {
+    loadAndSetDigimon(Digimon.NPCNanimon, Entity(2), 0);
+  }
+  return;
+}
+
+section(212) {
+  switchToMap(157, Map.MGEN04, 1, 27);
+  loadDigimon(Digimon.Vermilimon);
+  loadDigimon(Digimon.Gururumon);
+  setDigimonBatch([
+    Digimon.Vermilimon => Entity(0),
+    Digimon.Gururumon => Entity(1),
+    Digimon.Vermilimon => Entity(2),
+    Digimon.Gururumon => Entity(4),
+  ], autotalk: 1);
+  return;
+}
+
+section(213) {
+  {
+    switchToMap(158, Map.ROOM04, 0, 28);
+    loadAndSetDigimon(Digimon.NPCCentarumon, Entity(0), 0);
+    if (!trigger(231) && !trigger(245) && !trigger(233) && !trigger(247)) break;
+    if (!trigger(249)) break;
+    loadAndSetDigimon(Digimon.NPCCoelamon, Entity(1), 0);
+  }
+  return;
+}
+
+section(214) {
+  switchToMap(159, Map.ROOM05A, 0, 28);
+  if (trigger(209) && !trigger(58)) {
+    loadAndSetDigimon(Digimon.NPCMeramon, Entity(0), 0);
+    setPStat(PStat(27), 0);
+    return;
+  }
+  if (trigger(208) && !trigger(61)) {
+    loadAndSetDigimon(Digimon.NPCTyrannomon, Entity(1), 0);
+    setPStat(PStat(27), 1);
+    return;
+  }
+  if (trigger(222) && !trigger(60)) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, Entity(2), 0);
+    setPStat(PStat(27), 2);
+    return;
+  }
+  if (trigger(223) && !trigger(59)) {
+    loadAndSetDigimon(Digimon.NPCFrigimon, Entity(3), 0);
+    setPStat(PStat(27), 3);
+    return;
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  if (trigger(228) && pstat[110] <= 19) {
+    loadAndSetDigimon(Digimon.NPCVademon, Entity(4), 0);
+    setPStat(PStat(27), 4);
+    return;
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  if (trigger(256) && pstat[110] <= 9) {
+    loadAndSetDigimon(Digimon.NPCDigitamamon, Entity(5), 0);
+    setPStat(PStat(27), 5);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (trigger(58) && pstat[107] >= 12 && pstat[107] < 18) {
+    loadAndSetDigimon(Digimon.NPCMeramon, Entity(0), 0);
+    setPStat(PStat(27), 0);
+    return;
+  }
+  if (trigger(61) && pstat[107] >= 6 && pstat[107] < 12) {
+    loadAndSetDigimon(Digimon.NPCTyrannomon, Entity(1), 0);
+    setPStat(PStat(27), 1);
+    return;
+  }
+  if (trigger(60) && pstat[107] >= 0 && pstat[107] < 6) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, Entity(2), 0);
+    setPStat(PStat(27), 2);
+    return;
+  }
+  if (trigger(59) && pstat[107] >= 18) {
+    loadAndSetDigimon(Digimon.NPCFrigimon, Entity(3), 0);
+    setPStat(PStat(27), 3);
+    return;
+  }
+  if (trigger(209)) {
+    loadAndSetDigimon(Digimon.NPCMeramon, Entity(0), 0);
+    setPStat(PStat(27), 0);
+    return;
+  }
+  if (trigger(208)) {
+    loadAndSetDigimon(Digimon.NPCTyrannomon, Entity(1), 0);
+    setPStat(PStat(27), 1);
+    return;
+  }
+  if (trigger(222)) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, Entity(2), 0);
+    setPStat(PStat(27), 2);
+    return;
+  }
+  if (trigger(223)) {
+    loadAndSetDigimon(Digimon.NPCFrigimon, Entity(3), 0);
+    setPStat(PStat(27), 3);
+    return;
+  }
+  return;
+}
+
+section(215) {
+  switchToMap(160, Map.ROOM05B, 0, 28);
+  loadAndSetDigimon(Digimon.NPCGiromon, Entity(6), 0);
+  if (trigger(209) && !trigger(58)) {
+    loadAndSetDigimon(Digimon.NPCMeramon, Entity(0), 0);
+    setPStat(PStat(27), 0);
+    return;
+  }
+  if (trigger(208) && !trigger(61)) {
+    loadAndSetDigimon(Digimon.NPCTyrannomon, Entity(1), 0);
+    setPStat(PStat(27), 1);
+    return;
+  }
+  if (trigger(222) && !trigger(60)) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, Entity(2), 0);
+    setPStat(PStat(27), 2);
+    return;
+  }
+  if (trigger(223) && !trigger(59)) {
+    loadAndSetDigimon(Digimon.NPCFrigimon, Entity(3), 0);
+    setPStat(PStat(27), 3);
+    return;
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  if (trigger(228) && pstat[110] <= 19) {
+    loadAndSetDigimon(Digimon.NPCVademon, Entity(4), 0);
+    setPStat(PStat(27), 4);
+    return;
+  }
+  roll(pstat: PStat.RollScratch, max: 99);
+  if (trigger(256) && pstat[110] <= 9) {
+    loadAndSetDigimon(Digimon.NPCDigitamamon, Entity(5), 0);
+    setPStat(PStat(27), 5);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (trigger(58) && pstat[107] >= 12 && pstat[107] < 18) {
+    loadAndSetDigimon(Digimon.NPCMeramon, Entity(0), 0);
+    setPStat(PStat(27), 0);
+    return;
+  }
+  if (trigger(61) && pstat[107] >= 6 && pstat[107] < 12) {
+    loadAndSetDigimon(Digimon.NPCTyrannomon, Entity(1), 0);
+    setPStat(PStat(27), 1);
+    return;
+  }
+  if (trigger(60) && pstat[107] >= 0 && pstat[107] < 6) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, Entity(2), 0);
+    setPStat(PStat(27), 2);
+    return;
+  }
+  if (trigger(59) && pstat[107] >= 18) {
+    loadAndSetDigimon(Digimon.NPCFrigimon, Entity(3), 0);
+    setPStat(PStat(27), 3);
+    return;
+  }
+  if (trigger(209)) {
+    loadAndSetDigimon(Digimon.NPCMeramon, Entity(0), 0);
+    setPStat(PStat(27), 0);
+    return;
+  }
+  if (trigger(208)) {
+    loadAndSetDigimon(Digimon.NPCTyrannomon, Entity(1), 0);
+    setPStat(PStat(27), 1);
+    return;
+  }
+  if (trigger(222)) {
+    loadAndSetDigimon(Digimon.NPCGarurumon, Entity(2), 0);
+    setPStat(PStat(27), 2);
+    return;
+  }
+  if (trigger(223)) {
+    loadAndSetDigimon(Digimon.NPCFrigimon, Entity(3), 0);
+    setPStat(PStat(27), 3);
+    return;
+  }
+  return;
+}
+
+section(216) {
+  switchToMap(161, Map.ROOM06, 0, 28);
+  loadAndSetDigimon(Digimon.Punimon, Entity(5), 0);
+  if (trigger(231) && !trigger(65)) {
+    loadAndSetDigimon(Digimon.NPCPatamon, Entity(0), 0);
+    setPStat(PStat(25), 0);
+    return;
+  }
+  if (trigger(245) && !trigger(66)) {
+    loadAndSetDigimon(Digimon.NPCBiyomon, Entity(1), 0);
+    setPStat(PStat(25), 1);
+    return;
+  }
+  if (trigger(233) && !trigger(67)) {
+    loadAndSetDigimon(Digimon.NPCUnimon, Entity(2), 0);
+    setPStat(PStat(25), 2);
+    return;
+  }
+  if (trigger(247) && !trigger(68)) {
+    loadAndSetDigimon(Digimon.NPCMonochromon, Entity(3), 0);
+    setPStat(PStat(25), 3);
+    return;
+  }
+  unsetTrigger(Trigger(69));
+  roll(pstat: PStat.RollScratch, max: 9);
+  if (trigger(255) && pstat[110] <= 1) {
+    loadAndSetDigimon(Digimon.NPCPiximon, Entity(4), 0);
+    setTrigger(Trigger(69));
+  }
+  pstat[:SavedTime] = time();
+  if (trigger(65) && pstat[107] >= 12 && pstat[107] < 18) {
+    loadAndSetDigimon(Digimon.NPCPatamon, Entity(0), 0);
+    setPStat(PStat(25), 0);
+    return;
+  }
+  if (trigger(66) && pstat[107] >= 6 && pstat[107] < 12) {
+    loadAndSetDigimon(Digimon.NPCBiyomon, Entity(1), 0);
+    setPStat(PStat(25), 1);
+    return;
+  }
+  if (trigger(67) && pstat[107] >= 0 && pstat[107] < 6) {
+    loadAndSetDigimon(Digimon.NPCUnimon, Entity(2), 0);
+    setPStat(PStat(25), 2);
+    return;
+  }
+  if (trigger(68) && pstat[107] >= 18) {
+    loadAndSetDigimon(Digimon.NPCMonochromon, Entity(3), 0);
+    setPStat(PStat(25), 3);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (trigger(231)) {
+    loadAndSetDigimon(Digimon.NPCPatamon, Entity(0), 0);
+    setPStat(PStat(25), 0);
+    return;
+  }
+  if (trigger(245)) {
+    loadAndSetDigimon(Digimon.NPCBiyomon, Entity(1), 0);
+    setPStat(PStat(25), 1);
+    return;
+  }
+  if (trigger(233)) {
+    loadAndSetDigimon(Digimon.NPCUnimon, Entity(2), 0);
+    setPStat(PStat(25), 2);
+    return;
+  }
+  if (trigger(247)) {
+    loadAndSetDigimon(Digimon.NPCMonochromon, Entity(3), 0);
+    setPStat(PStat(25), 3);
+    return;
+  }
+  return;
+}
+
+section(217) {
+  switchToMap(162, Map.ROOM07, 0, 28);
+  if (trigger(258)) {
+    loadAndSetDigimon(Digimon.NPCNinjamon, Entity(4), 0);
+  }
+  if (trigger(211) && !trigger(70)) {
+    loadAndSetDigimon(Digimon.NPCNumemon, Entity(0), 0);
+    setPStat(PStat(24), 0);
+    return;
+  }
+  if (trigger(252) && !trigger(71)) {
+    loadAndSetDigimon(Digimon.NPCMojyamon, Entity(1), 0);
+    setPStat(PStat(24), 1);
+    return;
+  }
+  if (trigger(213) && !trigger(72)) {
+    loadAndSetDigimon(Digimon.NPCMamemon, Entity(2), 0);
+    setPStat(PStat(24), 2);
+    return;
+  }
+  if (trigger(206) && !trigger(73)) {
+    loadAndSetDigimon(Digimon.NPCDevimon, Entity(3), 0);
+    setPStat(PStat(24), 3);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (trigger(70) && pstat[107] >= 0 && pstat[107] < 6) {
+    loadAndSetDigimon(Digimon.NPCNumemon, Entity(0), 0);
+    setPStat(PStat(24), 0);
+    return;
+  }
+  if (trigger(71) && pstat[107] >= 6 && pstat[107] < 12) {
+    loadAndSetDigimon(Digimon.NPCMojyamon, Entity(1), 0);
+    setPStat(PStat(24), 1);
+    return;
+  }
+  if (trigger(72) && pstat[107] >= 12 && pstat[107] < 18) {
+    loadAndSetDigimon(Digimon.NPCMamemon, Entity(2), 0);
+    setPStat(PStat(24), 2);
+    return;
+  }
+  if (trigger(73) && pstat[107] >= 18) {
+    loadAndSetDigimon(Digimon.NPCDevimon, Entity(3), 0);
+    setPStat(PStat(24), 3);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  if (trigger(211)) {
+    loadAndSetDigimon(Digimon.NPCNumemon, Entity(0), 0);
+    setPStat(PStat(24), 0);
+    return;
+  }
+  if (trigger(252)) {
+    loadAndSetDigimon(Digimon.NPCMojyamon, Entity(1), 0);
+    setPStat(PStat(24), 1);
+    return;
+  }
+  if (trigger(213)) {
+    loadAndSetDigimon(Digimon.NPCMamemon, Entity(2), 0);
+    setPStat(PStat(24), 2);
+    return;
+  }
+  if (trigger(206)) {
+    loadAndSetDigimon(Digimon.NPCDevimon, Entity(3), 0);
+    setPStat(PStat(24), 3);
+    return;
+  }
+  return;
+}
+
+section(218) {
+  switchToMap(163, Map.ROOM08, 0, 28);
+  loadDigimonBatch([
+    Digimon.Jijimon,
+    Digimon.Tokomon,
+    Digimon.Botamon,
+  ]);
+  setDigimonBatch([
+    Digimon.Jijimon => Entity(0),
+    Digimon.Tokomon => Entity(1),
+    Digimon.Botamon => Entity(2),
+  ], autotalk: 0);
+  return;
+}
+
+section(219) {
+  switchToMap(164, Map.MGEN05, 1, 27);
+  loadDigimon(Digimon.Vermilimon);
+  loadDigimon(Digimon.Rockmon);
+  setDigimonBatch([
+    Digimon.Vermilimon => Entity(0),
+    Digimon.Rockmon => Entity(1),
+    Digimon.Rockmon => Entity(2),
+  ], autotalk: 1);
+  return;
+}
+
+section(220) {
+  switchToMap(192, Map.FACT11B, 1, 23);
+  if (trigger(341) && !trigger(211)) {
+    loadAndSetDigimon(Digimon.NPCNumemon, Entity(1), 0);
+    return;
+  }
+  if (!trigger(211)) {
+    loadAndSetDigimon(Digimon.NPCNumemon, Entity(0), 0);
+  }
+  if (trigger(330) && !trigger(336)) {
+    loadAndSetDigimon(Digimon.NPCNanimon, Entity(2), 0);
+  }
+  return;
+}
+
+section(221) {
+  switchToMap(195, Map.SAIB03, 1, 10);
+  if (!trigger(345)) {
+    loadAndSetDigimon(Digimon.NPCSkullGreymon, Entity(0), 1);
+  }
+  return;
+}
+
+section(222) {
+  switchToMap(196, Map.MGEN98, 1, 27);
+  if (!trigger(326)) {
+    loadAndSetDigimon(Digimon.NPCMetalGreymon, Entity(0), 1);
+  }
+  return;
+}
+
+section(223) {
+  switchToMap(153, Map.ROOM19, 0, 28);
+  loadAndSetDigimon(Digimon.NPC2Greymon, Entity(0), 0);
+  if (trigger(50)) {
+    loadDigimon(Digimon.NPCAirdramon);
+    loadDigimon(Digimon.NPC2MetalGreymon);
+    setDigimon(Digimon.NPCAirdramon, Entity(1), 0);
+    setDigimon(Digimon.NPC2MetalGreymon, Entity(2), 0);
+  }
+  return;
+}
+
+section(224) {
+  switchToMap(204, Map.YAKA26, 1, 10);
+  loadAndSetDigimon(Digimon.NPCMyotismon, Entity(0), 0);
+  return;
+}
+
+section(225) {
+  switchToMap(205, Map.MGEN99, 10, 27);
+  if (!trigger(50)) {
+    loadAndSetDigimon(Digimon.Analogman, Entity(1), 0);
+    loadDigimon(Digimon.Machinedramon);
+    return;
+  }
+  if (!trigger(256) && trigger(50)) {
+    loadAndSetDigimon(Digimon.NPCDigitamamon, Entity(3), 0);
+  }
+  return;
+}
+
+section(226) {
+  switchToMap(216, Map.MGEN11, 1, 27);
+  loadDigimon(Digimon.Piddomon);
+  loadDigimon(Digimon.IceDevimon);
+  setDigimonBatch([
+    Digimon.Piddomon => Entity(0),
+    Digimon.Piddomon => Entity(1),
+    Digimon.IceDevimon => Entity(2),
+    Digimon.IceDevimon => Entity(3),
+  ], autotalk: 1);
+  return;
+}
+
+section(227) {
+  switchToMap(217, Map.MGEN12, 1, 27);
+  loadDigimon(Digimon.Tekkamon);
+  loadDigimon(Digimon.BlueMeramon);
+  setDigimonBatch([
+    Digimon.Tekkamon => Entity(0),
+    Digimon.Tekkamon => Entity(1),
+    Digimon.BlueMeramon => Entity(2),
+    Digimon.BlueMeramon => Entity(3),
+  ], autotalk: 1);
+  return;
+}
+
+section(228) {
+  switchToMap(218, Map.MGEN13, 1, 27);
+  loadDigimon(Digimon.Tankmon);
+  loadDigimon(Digimon.Rockmon);
+  setDigimonBatch([
+    Digimon.Tankmon => Entity(0),
+    Digimon.Tankmon => Entity(1),
+    Digimon.Rockmon => Entity(2),
+    Digimon.Rockmon => Entity(3),
+  ], autotalk: 1);
+  return;
+}
+
+section(229) {
+  switchToMap(192, Map.MGEN14, 1, 23);
+  return;
+}
+
+section(230) {
+  switchToMap(192, Map.MGEN15, 1, 23);
+  return;
+}
+
+section(231) {
+  switchToMap(192, Map.MGEN16, 1, 23);
+  return;
+}
+
+section(232) {
+  switchToMap(206, Map.YAKA25_2, 1, 10);
+  return;
+}
+
+section(233) {
+  switchToMap(207, Map.MIHA05, 0, 3);
+  if (!trigger(233) && trigger(53)) {
+    loadAndSetDigimon(Digimon.NPCUnimon, Entity(0), 0);
+  }
+  return;
+}
+
+section(234) {
+  switchToMap(208, Map.MIHA06, 0, 3);
+  loadDigimon(Digimon.NPCVademon);
+  return;
+}
+
+section(235) {
+  switchToMap(209, Map.ROOM20, 0, 28);
+  switch pstat[122] {
+    1 => {
+      loadAndSetDigimon(Digimon.NPCMetalMamemon, Entity(1), 0);
+      return;
+    }
+    0 => {
+      loadAndSetDigimon(Digimon.NPCPenguinmon, Entity(0), 0);
+      return;
+    }
+  }
+  roll(pstat: PStat.RollScratch, max: 7);
+  if (trigger(227) && pstat[110] <= 0) {
+    setPStat(PStat(122), 1);
+    loadAndSetDigimon(Digimon.NPCMetalMamemon, Entity(1), 0);
+    return;
+  }
+  if (trigger(257)) {
+    setPStat(PStat(122), 0);
+    loadAndSetDigimon(Digimon.NPCPenguinmon, Entity(0), 0);
+  }
+  return;
+  return;
+}
+
+section(236) {
+  switchToMap(210, Map.TEND01, 0, 28);
+  loadDigimonBatch([
+    Digimon.Jijimon,
+    Digimon.NPCGreymon,
+    Digimon.NPCAirdramon,
+  ]);
+  setDigimonBatch([
+    Digimon.Jijimon => Entity(0),
+    Digimon.NPCGreymon => Entity(1),
+    Digimon.NPCAirdramon => Entity(2),
+  ], autotalk: 0);
+  return;
+}
+
+section(237) {
+  switchToMap(210, Map.TEND02, 0, 28);
+  loadDigimonBatch([
+    Digimon.Jijimon,
+    Digimon.NPCGreymon,
+    Digimon.NPCAirdramon,
+  ]);
+  setDigimonBatch([
+    Digimon.Jijimon => Entity(0),
+    Digimon.NPCGreymon => Entity(1),
+    Digimon.NPCAirdramon => Entity(2),
+  ], autotalk: 0);
+  return;
+}
+
+section(238) {
+  switchToMap(178, Map.TOPN01, 0, 28);
+  if (trigger(55)) {
+    loadDigimonBatch([
+      Digimon.Jijimon,
+      Digimon.Tokomon,
+      Digimon.Poyomon,
+    ]);
+    setDigimonBatch([
+      Digimon.Tokomon => Entity(5),
+      Digimon.Jijimon => Entity(3),
+      Digimon.Poyomon => Entity(7),
+    ], autotalk: 0);
+    return;
+  }
+  return;
+}
+
+section(239) {
+  switchToMap(192, Map(239), 1, 23);
+  return;
+}
+
+section(240) {
+  switchToMap(192, Map(240), 1, 23);
+  return;
+}
+
+section(241) {
+  switchToMap(192, Map(241), 1, 23);
+  return;
+}
+
+section(242) {
+  switchToMap(192, Map(242), 1, 23);
+  return;
+}
+
+section(243) {
+  switchToMap(192, Map(243), 1, 23);
+  return;
+}
+
+section(244) {
+  switchToMap(192, Map(244), 1, 23);
+  return;
+}
+
+section(245) {
+  switchToMap(192, Map(245), 1, 23);
+  return;
+}
+
+section(246) {
+  switchToMap(192, Map(246), 1, 23);
+  return;
+}
+
+section(247) {
+  switchToMap(165, Map.MGEN06, 1, 27);
+  if (!trigger(321)) {
+    loadAndSetDigimon(Digimon.NPCDevimon, Entity(5), 1);
+    return;
+  }
+  loadDigimon(Digimon.Vermilimon);
+  loadDigimon(Digimon.Piddomon);
+  setDigimonBatch([
+    Digimon.Vermilimon => Entity(0),
+    Digimon.Piddomon => Entity(1),
+    Digimon.Piddomon => Entity(2),
+    Digimon.Vermilimon => Entity(3),
+    Digimon.Piddomon => Entity(4),
+  ], autotalk: 1);
+  return;
+}
+
+section(248) {
+  switchToMap(166, Map.MGEN07, 1, 27);
+  loadDigimon(Digimon.Rockmon);
+  for id in Entity(0)..Entity(2) {
+    setDigimon(Digimon.Rockmon, id, 1);
+  }
+  return;
+}
+
+section(249) {
+  switchToMap(167, Map.MGEN08, 1, 27);
+  loadDigimon(Digimon.Gururumon);
+  loadDigimon(Digimon.Vermilimon);
+  setDigimonBatch([
+    Digimon.Gururumon => Entity(0),
+    Digimon.Gururumon => Entity(1),
+    Digimon.Vermilimon => Entity(2),
+    Digimon.Vermilimon => Entity(3),
+  ], autotalk: 1);
+  return;
+}
+
+section(250) {
+  switchToMap(192, Map(250), 1, 23);
+  return;
+}
+
+section(251) {
+  switchToMap(192, Map(251), 1, 23);
+  return;
+}
+
+section(252) {
+  switchToMap(192, Map(252), 1, 23);
+  return;
+}
+
+section(253) {
+  switchToMap(168, Map.MGEN09, 1, 27);
+  loadDigimon(Digimon.Piddomon);
+  loadDigimon(Digimon.Rockmon);
+  setDigimonBatch([
+    Digimon.Piddomon => Entity(0),
+    Digimon.Rockmon => Entity(1),
+    Digimon.Piddomon => Entity(2),
+  ], autotalk: 1);
+  return;
+}
+
+section onEnter(254) {
+  switchToMap(169, Map.MGEN10, 1, 27);
+  if (!trigger(254)) {
+    loadAndSetDigimon(Digimon.NPCMegadramon, Entity(6), 1);
+    return;
+  }
+  loadDigimon(Digimon.Gururumon);
+  loadDigimon(Digimon.Piddomon);
+  setDigimonBatch([
+    Digimon.Piddomon => Entity(0),
+    Digimon.Gururumon => Entity(1),
+    Digimon.Piddomon => Entity(2),
+    Digimon.Gururumon => Entity(3),
+    Digimon.Piddomon => Entity(4),
+    Digimon.Gururumon => Entity(5),
+  ], autotalk: 1);
+  return;
+}
+
+section(1220) {
+  goto section_1230.L14;
+
+L1:
+  goto section_1230.L15;
+
+L2:
+  goto section_1230.L16;
+
+L3:
+  goto section_1230.L17;
+
+L4:
+  goto section_1230.L18;
+
+L5:
+  goto section_1230.L19;
+
+L6:
+  goto section_1230.L20;
+
+L7:
+  goto section_1230.L21;
+
+L8:
+  goto section_1230.L22;
+
+L9:
+  goto section_1230.L23;
+
+L10:
+  goto section_1230.L24;
+
+L11:
+  goto section_1230.L25;
+
+L12:
+  goto section_1230.L26;
+
+L13:
+  goto section_1230.L27;
+}
+
+section(1221) {
+  goto section_1230.L28;
+
+L1:
+  goto section_1230.L15;
+
+L2:
+  goto section_1230.L16;
+
+L3:
+  goto section_1230.L17;
+
+L4:
+  goto section_1230.L29;
+
+L5:
+  goto section_1230.L30;
+
+L6:
+  goto section_1230.L20;
+
+L7:
+  goto section_1230.L21;
+
+L8:
+  goto section_1230.L31;
+
+L9:
+  goto section_1230.L32;
+
+L10:
+  goto section_1230.L33;
+
+L11:
+  goto section_1230.L34;
+
+L12:
+  goto section_1230.L26;
+
+L13:
+  goto section_1230.L35;
+}
+
+section(1222) {
+  goto section_1230.L36;
+
+L1:
+  goto section_1230.L15;
+
+L2:
+  goto section_1230.L16;
+
+L3:
+  goto section_1230.L17;
+
+L4:
+  goto section_1230.L37;
+
+L5:
+  goto section_1230.L38;
+
+L6:
+  goto section_1230.L20;
+
+L7:
+  goto section_1230.L21;
+
+L8:
+  goto section_1230.L39;
+
+L9:
+  goto section_1230.L40;
+
+L10:
+  goto section_1230.L41;
+
+L11:
+  goto section_1230.L42;
+
+L12:
+  goto section_1230.L26;
+
+L13:
+  goto section_1230.L43;
+}
+
+section(1223) {
+  goto section_1230.L44;
+
+L1:
+  goto section_1230.L15;
+
+L2:
+  goto section_1230.L16;
+
+L3:
+  goto section_1230.L17;
+
+L4:
+  goto section_1230.L45;
+
+L5:
+  goto section_1230.L46;
+
+L6:
+  goto section_1230.L20;
+
+L7:
+  goto section_1230.L21;
+
+L8:
+  goto section_1230.L47;
+
+L9:
+  goto section_1230.L48;
+
+L10:
+  goto section_1230.L49;
+
+L11:
+  goto section_1230.L50;
+
+L12:
+  goto section_1230.L26;
+
+L13:
+  goto section_1230.L51;
+}
+
+section(1224) {
+  goto section_1230.L52;
+
+L1:
+  goto section_1230.L15;
+
+L2:
+  goto section_1230.L16;
+
+L3:
+  goto section_1230.L17;
+
+L4:
+  goto section_1230.L53;
+
+L5:
+  goto section_1230.L54;
+
+L6:
+  goto section_1230.L20;
+
+L7:
+  goto section_1230.L21;
+
+L8:
+  goto section_1230.L55;
+
+L9:
+  goto section_1230.L56;
+
+L10:
+  goto section_1230.L57;
+
+L11:
+  goto section_1230.L58;
+
+L12:
+  goto section_1230.L26;
+
+L13:
+  goto section_1230.L59;
+}
+
+section(1225) {
+  goto section_1230.L60;
+
+L1:
+  goto section_1230.L15;
+
+L2:
+  goto section_1230.L16;
+
+L3:
+  goto section_1230.L17;
+
+L4:
+  goto section_1230.L61;
+
+L5:
+  goto section_1230.L62;
+
+L6:
+  goto section_1230.L20;
+
+L7:
+  goto section_1230.L21;
+
+L8:
+  goto section_1230.L63;
+
+L9:
+  goto section_1230.L64;
+
+L10:
+  goto section_1230.L65;
+
+L11:
+  goto section_1230.L66;
+
+L12:
+  goto section_1230.L26;
+
+L13:
+  goto section_1230.L67;
+}
+
+section(1226) {
+  goto section_1230.L68;
+
+L1:
+  goto section_1230.L15;
+
+L2:
+  goto section_1230.L16;
+
+L3:
+  goto section_1230.L17;
+
+L4:
+  goto section_1230.L69;
+
+L5:
+  goto section_1230.L70;
+
+L6:
+  goto section_1230.L20;
+
+L7:
+  goto section_1230.L21;
+
+L8:
+  goto section_1230.L71;
+
+L9:
+  goto section_1230.L72;
+
+L10:
+  goto section_1230.L73;
+
+L11:
+  goto section_1230.L74;
+
+L12:
+  goto section_1230.L26;
+
+L13:
+  goto section_1230.L75;
+}
+
+section(1227) {
+  goto section_1230.L76;
+
+L1:
+  goto section_1230.L15;
+
+L2:
+  goto section_1230.L16;
+
+L3:
+  goto section_1230.L17;
+
+L4:
+  goto section_1230.L77;
+
+L5:
+  goto section_1230.L78;
+
+L6:
+  goto section_1230.L20;
+
+L7:
+  goto section_1230.L21;
+
+L8:
+  goto section_1230.L79;
+
+L9:
+  goto section_1230.L80;
+
+L10:
+  goto section_1230.L81;
+
+L11:
+  goto section_1230.L82;
+
+L12:
+  goto section_1230.L26;
+
+L13:
+  goto section_1230.L83;
+}
+
+section(1228) {
+  goto section_1230.L84;
+
+L1:
+  goto section_1230.L15;
+
+L2:
+  goto section_1230.L16;
+
+L3:
+  goto section_1230.L17;
+
+L4:
+  goto section_1230.L85;
+
+L5:
+  goto section_1230.L86;
+
+L6:
+  goto section_1230.L20;
+
+L7:
+  goto section_1230.L21;
+
+L8:
+  goto section_1230.L87;
+
+L9:
+  goto section_1230.L88;
+
+L10:
+  goto section_1230.L89;
+
+L11:
+  goto section_1230.L90;
+
+L12:
+  goto section_1230.L26;
+
+L13:
+  goto section_1230.L91;
+}
+
+section(1229) {
+  goto section_1230.L92;
+
+L1:
+  goto section_1230.L15;
+
+L2:
+  goto section_1230.L16;
+
+L3:
+  goto section_1230.L17;
+
+L4:
+  goto section_1230.L93;
+
+L5:
+  goto section_1230.L94;
+
+L6:
+  goto section_1230.L20;
+
+L7:
+  goto section_1230.L21;
+
+L8:
+  goto section_1230.L95;
+
+L9:
+  goto section_1230.L96;
+
+L10:
+  goto section_1230.L97;
+
+L11:
+  goto section_1230.L98;
+
+L12:
+  goto section_1230.L26;
+
+L13:
+  goto section_1230.L99;
+}
+
+section(1230) {
+  {
+    goto L100;
+
+L1:
+    break;
+
+L2:
+    goto L16;
+
+L3:
+    goto L17;
+
+L4:
+    goto L101;
+
+L5:
+    goto L102;
+
+L6:
+    goto L20;
+
+L7:
+    goto L21;
+
+L8:
+    goto L103;
+
+L9:
+    goto L104;
+
+L10:
+    goto L105;
+
+L11:
+    goto L106;
+
+L12:
+    goto L26;
+
+L13:
+    goto L107;
+    showTextbox("『いらっしゃい!<NEWLINE> ご用は何でしょうか?』<NEWLINE>");
+    showTextbox("『じゅんびちゅうです』<NEWLINE>");
+    showTextbox("『買いたい』<NEWLINE>『売りたい』<NEWLINE>『また今度』<NEWLINE>");
+    showTextbox("『買いたい』<NEWLINE>『また今度』<NEWLINE>");
+    showTextbox("『またきてね!』<NEWLINE>");
+    showTextbox("『いやがらせにきたんですか!』<NEWLINE>");
+    showTextbox("所持<B><it>   <BITS><NEWLINE>");
+    showTextbox("功績ポイント  <POINTS><NEWLINE>");
+    showTextbox("『ほしいものはありますか?』<NEWLINE>");
+    showTextbox("『どれを売りたいんだい?』<NEWLINE>");
+    showTextbox("『ありがとうございます。』<NEWLINE>");
+    showTextbox("『ほかにご用件はありますか?』<NEWLINE>");
+    showTextbox("『もう、ざいこはありません』<NEWLINE>");
+    showTextbox("『<UNKNOWN2>値引きしました』<NEWLINE>");
+
+L14:
+    showTextbox("「わぁー、来た来たぁ♪<NEWLINE> 何をするのー?」<NEWLINE>");
+
+L15:
+  }
+  showTextbox("「今は売る物が無いアルな。」<NEWLINE>");
+
+L16:
+  showTextbox("「買いたい」<NEWLINE>「売りたい」<NEWLINE>「また今度」<NEWLINE>");
+
+L17:
+  showTextbox("「買いたい」<NEWLINE>「また今度」<NEWLINE>");
+
+L18:
+  showTextbox("「わーい、またきてね♪」<NEWLINE>");
+
+L19:
+  showTextbox("「なんだぁ、ちぇ。」<NEWLINE>");
+
+L20:
+  showTextbox("所持<B><it>  <BITS>×<NEWLINE>");
+
+L21:
+  showTextbox("功績ポイント  <POINTS>×<NEWLINE>");
+
+L22:
+  showTextbox("「いっぱい買ってよ。」<NEWLINE>");
+
+L23:
+  showTextbox("「何かいらなくなったのー?」<NEWLINE>");
+
+L24:
+  showTextbox("「わーい、ありがとう。」<NEWLINE>");
+
+L25:
+  showTextbox("「まだ何かあるー?」<NEWLINE>");
+
+L26:
+  showTextbox("「もう売るものが無いアルよ。」<NEWLINE>");
+
+L27:
+  showTextbox("「<ORANGE><DIGIMON><WHITE>はまだちっちゃいんだねー。<NEWLINE> <UNKNOWN2><B><it>ねびきしたげるよ♪」<NEWLINE>");
+
+L28:
+  showTextbox("「いらっしゃい。」<NEWLINE>");
+
+L29:
+  showTextbox("「またきてくれ。」<NEWLINE>");
+
+L30:
+  showTextbox("「ひやかしは良くないぞ。」<NEWLINE>");
+
+L31:
+  showTextbox("「何を買う?」<NEWLINE>");
+
+L32:
+  showTextbox("「売ってくれるのか?」<NEWLINE>");
+
+L33:
+  showTextbox("「ありがとう。」<NEWLINE>");
+
+L34:
+  showTextbox("「まだ用があるか?」<NEWLINE>");
+
+L35:
+  showTextbox("「<ORANGE><DIGIMON><WHITE>には早く大きくなって<NEWLINE> もらわないと。<NEWLINE> よし、<UNKNOWN2><B><it>値引きしよう。」<NEWLINE>");
+
+L36:
+  showTextbox("「いらっしゃいピヨ。<NEWLINE> どうするピヨ?」<NEWLINE>");
+
+L37:
+  showTextbox("「毎度ありがとうピヨ。」<NEWLINE>");
+
+L38:
+  showTextbox("「うっ、ひやかしピヨ!?」<NEWLINE>");
+
+L39:
+  showTextbox("「選ぶピヨ。」<NEWLINE>");
+
+L40:
+  showTextbox("「何でも買い取るピヨ。」<NEWLINE>");
+
+L41:
+  showTextbox("「ありがとうピヨ。」<NEWLINE>");
+
+L42:
+  showTextbox("「まだ続けるピヨ?」<NEWLINE>");
+
+L43:
+  showTextbox("「<ORANGE><DIGIMON><WHITE>はこどもピヨね。<NEWLINE> <UNKNOWN2><B><it>値引きしてあげるピヨ。」<NEWLINE>");
+
+L44:
+  showTextbox("「やあいらっしゃい。<NEWLINE> どうするね?」<NEWLINE>");
+
+L45:
+  showTextbox("「ありがとう。またよろしく。」<NEWLINE>");
+
+L46:
+  showTextbox("「…次に来た時はよろしく。」<NEWLINE>");
+
+L47:
+  showTextbox("「では、どれにするかな。」<NEWLINE>");
+
+L48:
+  showTextbox("「何を売りたいのかな?」<NEWLINE>");
+
+L49:
+  showTextbox("「ありがとう。」<NEWLINE>");
+
+L50:
+  showTextbox("「まだあるかな?」<NEWLINE>");
+
+L51:
+  showTextbox("「おや、<ORANGE><DIGIMON><WHITE>は小さいから<NEWLINE> <UNKNOWN2><B><it>値引きしてあげないとね。」<NEWLINE>");
+
+L52:
+  showTextbox("「ふふん、来たな。<NEWLINE> 俺の売り物はここでしか手に入らない。<NEWLINE> 好きなだけ買うがいい…ククク…」<NEWLINE>");
+
+L53:
+  showTextbox("「ククク…金をためてまた来るんだな。」<NEWLINE>");
+
+L54:
+  showTextbox("「な…!きさま、冷やかしか!」<NEWLINE>");
+
+L55:
+  showTextbox("「好きなものを買えばいい。」<NEWLINE>");
+
+L56:
+  showTextbox("「ガラクタはひきとらんぞ。クク…」<NEWLINE>");
+
+L57:
+  showTextbox("「クク…せいぜい気をつけるがいい。」<NEWLINE>");
+
+L58:
+  showTextbox("「きさま…まだなにか用があるのか?」<NEWLINE>");
+
+L59:
+  showTextbox("「クク…、<ORANGE><DIGIMON><WHITE>、<NEWLINE> おまえにめんじて<UNKNOWN2><B><it><NEWLINE> 値引きしてやろうじゃないか。」<NEWLINE>");
+
+L60:
+  showTextbox("「おー、おまえ客ー!」<NEWLINE>");
+
+L61:
+  showTextbox("「こんどはもっと買えー!」<NEWLINE>");
+
+L62:
+  showTextbox("「おまえ、ケチ!」<NEWLINE>");
+
+L63:
+  showTextbox("「全部買ってけー!」<NEWLINE>");
+
+L64:
+  showTextbox("「なんでも売れー!」<NEWLINE>");
+
+L65:
+  showTextbox("「よーし、いーぞ!」<NEWLINE>");
+
+L66:
+  showTextbox("「まだなんかあるかー?」<NEWLINE>");
+
+L67:
+  showTextbox("「<ORANGE><DIGIMON><WHITE>、おまえチビだー!<NEWLINE> <UNKNOWN2><B><it>値引きしてやるー。」<NEWLINE>");
+
+L68:
+  showTextbox("「おりのアイテムはスッゲーどぇ!」<NEWLINE> へこへこ。」<NEWLINE>");
+
+L69:
+  showTextbox("「またど~ぞなんつって。へこへこ。」<NEWLINE>");
+
+L70:
+  showTextbox("「あ~もう帰れへこへこ?」<NEWLINE>");
+
+L71:
+  showTextbox("「ど~れがいいのか~。」<NEWLINE>");
+
+L72:
+  showTextbox("「うりうり。」<NEWLINE>");
+
+L73:
+  showTextbox("「まじですか?へこ?」<NEWLINE>");
+
+L74:
+  showTextbox("「まだ何か?あるのか?な?へこ?」<NEWLINE>");
+
+L75:
+  showTextbox("「おお?こども?ねびき?<NEWLINE> マイナス<UNKNOWN2><B><it>な~り~。」<NEWLINE>");
+
+L76:
+  showTextbox("「生活に役立つものをそろえてみただよ。<NEWLINE> どーだね?」<NEWLINE>");
+
+L77:
+  showTextbox("「また来るだーよ。」<NEWLINE>");
+
+L78:
+  showTextbox("「からかってるだか?」<NEWLINE>");
+
+L79:
+  showTextbox("「何にすっだ?」<NEWLINE>");
+
+L80:
+  showTextbox("「どれにすっだ?」<NEWLINE>");
+
+L81:
+  showTextbox("「ありがとさんだ。」<NEWLINE>");
+
+L82:
+  showTextbox("「まーだあんのか?」<NEWLINE>");
+
+L83:
+  showTextbox("「おんや、<ORANGE><DIGIMON><WHITE>はちいせえだな。<NEWLINE> <UNKNOWN2><B><it>値引きしてやっだよ。」<NEWLINE>");
+
+L84:
+  showTextbox("「さあ今がチャンスアルよ。<NEWLINE> 好きなだけ買うよろし!」<NEWLINE>");
+
+L85:
+  showTextbox("「またのおこしをアルね。」<NEWLINE>");
+
+L86:
+  showTextbox("「商売のジャマする気アルか?」<NEWLINE>");
+
+L87:
+  showTextbox("「どれにするネ?」<NEWLINE>");
+
+L88:
+  showTextbox("「何を売るアル?」<NEWLINE>");
+
+L89:
+  showTextbox("「ありがとうアルね!」<NEWLINE>");
+
+L90:
+  showTextbox("「ほかに用があるアルか?」<NEWLINE>");
+
+L91:
+  showTextbox("「やや、<ORANGE><DIGIMON><WHITE>は子供アルね。<NEWLINE> <UNKNOWN2><B><it>値引きサービスね!」<NEWLINE>");
+
+L92:
+  showTextbox("「いらっしゃーい。」<NEWLINE>");
+
+L93:
+  showTextbox("「また来てよね。」<NEWLINE>");
+
+L94:
+  showTextbox("「ひどいな、買わないの?」<NEWLINE>");
+
+L95:
+  showTextbox("「何にする?」<NEWLINE>");
+
+L96:
+  showTextbox("「どれを売る?」<NEWLINE>");
+
+L97:
+  showTextbox("「ありがとう。」<NEWLINE>");
+
+L98:
+  showTextbox("「まだ何かある?」<NEWLINE>");
+
+L99:
+  showTextbox("「ん、<ORANGE><DIGIMON><WHITE>はボクより小さいね。<NEWLINE> <UNKNOWN2><B><it>値引きしてあげるよ。」<NEWLINE>");
+
+L100:
+  showTextbox("<YELLOW>シーラモン<WHITE><NEWLINE>「ここはアイテムの店じゃ。」<NEWLINE>");
+
+L101:
+  showTextbox("<YELLOW>シーラモン<WHITE><NEWLINE>「また来るのじゃ。」<NEWLINE>");
+
+L102:
+  showTextbox("<YELLOW>シーラモン<WHITE><NEWLINE>「冷やかしというやつか?」<NEWLINE>");
+
+L103:
+  showTextbox("<YELLOW>シーラモン<WHITE><NEWLINE>「何にするかの?」<NEWLINE>");
+
+L104:
+  showTextbox("<YELLOW>シーラモン<WHITE><NEWLINE>「どれにするかの?」<NEWLINE>");
+
+L105:
+  showTextbox("<YELLOW>シーラモン<WHITE><NEWLINE>「ありがたや。」<NEWLINE>");
+
+L106:
+  showTextbox("<YELLOW>シーラモン<WHITE><NEWLINE>「まだあるかの?」<NEWLINE>");
+
+L107:
+  showTextbox("<YELLOW>シーラモン<WHITE><NEWLINE>「ほほぉ、<ORANGE><DIGIMON><WHITE>はまだ幼いのか。<NEWLINE> <UNKNOWN2><B><it>値引きしてやらんと<NEWLINE> いかんの。」<NEWLINE>");
+  return;
+}
+
+section(1235) {
+  {
+    break;
+
+L1:
+    goto L9;
+
+L2:
+    goto L10;
+
+L3:
+    goto L11;
+
+L4:
+    goto L12;
+
+L5:
+    goto L13;
+
+L6:
+    goto L14;
+
+L7:
+    goto L15;
+
+L8:
+    goto L16;
+  }
+  showTextbox("「今日はこんなのがあるアルよ。」<NEWLINE>");
+
+L9:
+  showTextbox("「もう今日のぶんは無いアル。」<NEWLINE>");
+
+L10:
+  showTextbox("「うおー!これは幻の<NEWLINE> <PLAYER2>カードだ!」<NEWLINE>");
+
+L11:
+  showTextbox("「お、これは<PLAYER2>カードだ!」<NEWLINE>");
+
+L12:
+  showTextbox("「まだ持っていない<NEWLINE> <PLAYER2>カードだ。」<NEWLINE>");
+
+L13:
+  showTextbox("「<PLAYER2>カードだ。」<NEWLINE>");
+
+L14:
+  showTextbox("「げっ、また<PLAYER2>カードかよ。」<NEWLINE>");
+
+L15:
+  showTextbox("「カードを持ってなかった。」<NEWLINE>");
+
+L16:
+  showTextbox("「どのカードを売りたいんだい?」<NEWLINE>");
+  return;
+}
+
+section(1236) {
+  {
+    break;
+
+L1:
+    goto L12;
+
+L2:
+    goto L13;
+
+L3:
+    goto L14;
+
+L4:
+    goto L15;
+
+L5:
+    goto L16;
+
+L6:
+    goto L17;
+
+L7:
+    goto L18;
+
+L8:
+    goto L19;
+
+L9:
+    goto L20;
+
+L10:
+    goto L21;
+
+L11:
+    goto L22;
+  }
+  showTextbox("「おお、そちも『功績』がほしいのか?<NEWLINE> さて、どうするのじゃ?」<NEWLINE>");
+
+L12:
+  showTextbox("「デジモンカードを見せる」<NEWLINE>「功績ポイントを使う」<NEWLINE>「また今度」<NEWLINE>");
+
+L13:
+  showTextbox("「渡す。」<NEWLINE>「やっぱりやめる。」<NEWLINE>");
+
+L14:
+  showTextbox("「オッケー!」<NEWLINE>「やっぱりやめる。」<NEWLINE>");
+
+L15:
+  showTextbox("「これでよいのか?」<NEWLINE>");
+
+L16:
+  showTextbox("「何を持ってきたのじゃ?」<NEWLINE>");
+
+L17:
+  showTextbox("「何がほしいのじゃ?」<NEWLINE>");
+
+L18:
+  showTextbox("「ふむ、これは…超レアじゃ!<NEWLINE> ぜひ欲しいのう!これをくれるなら<NEWLINE> <UNKNOWN2>ポイントになるが、よいか?」<NEWLINE>");
+
+L19:
+  showTextbox("「ふむ、これはかなりレアじゃ!<NEWLINE> よくぞ見つけたのう。これをくれるなら<NEWLINE> <UNKNOWN2>ポイントになるが、よいか?」<NEWLINE>");
+
+L20:
+  showTextbox("「ふむ、これはなかなか良いものじゃ。<NEWLINE> そうじゃな…<UNKNOWN2>ポイントになるかの。<NEWLINE> これをくれるのか?」<NEWLINE>");
+
+L21:
+  showTextbox("「ふむ、これはいたって普通じゃな。<NEWLINE> <UNKNOWN2>ポイントになるぞ。<NEWLINE> これをくれるのか?」<NEWLINE>");
+
+L22:
+  showTextbox("「ふむ、これは…全然ダメじゃな。<NEWLINE> <UNKNOWN2>ポイントでひきとってやらん<NEWLINE> こともないが…よいか?」<NEWLINE>");
+  return;
+}
+
+section(1237) {
+  {
+    break;
+
+L1:
+    goto L6;
+
+L2:
+    goto L7;
+
+L3:
+    goto L8;
+
+L4:
+    goto L9;
+
+L5:
+    goto L10;
+  }
+  showTextbox("「やあ!『預り屋』に用かい?」<NEWLINE>");
+
+L6:
+  showTextbox("「利用する。」<NEWLINE>「用は無いよ。」<NEWLINE>");
+
+L7:
+  showTextbox("「いいのかい?じゃんじゃん利用して<NEWLINE> くれよな!」<NEWLINE>");
+
+L8:
+  showTextbox("「方向キーでカーソルを動かして、<ORANGE><CIRCLE><WHITE><ボき><ヌン>で<NEWLINE> 選んだ物が反対がわへ移動する。<GREEN><TRIANGLE><WHITE><ボき><ヌン>で<NEWLINE> 10個、<PINK><SQUARE><WHITE><ボき><ヌン>で全部移動するよ。」<NEWLINE>");
+
+L9:
+  showTextbox("預り品<NEWLINE>");
+
+L10:
+  showTextbox("所持品<NEWLINE>");
+  return;
+}
+
+section(1238) {
+  {
+    break;
+
+L1:
+    goto L33;
+
+L2:
+    goto L34;
+
+L3:
+    goto L35;
+
+L4:
+    goto L36;
+
+L5:
+    goto L37;
+
+L6:
+    goto L38;
+
+L7:
+    goto L39;
+
+L8:
+    goto L40;
+
+L9:
+    goto L41;
+
+L10:
+    goto L42;
+
+L11:
+    goto L43;
+
+L12:
+    goto L44;
+
+L13:
+    goto L45;
+
+L14:
+    goto L46;
+
+L15:
+    goto L47;
+
+L16:
+    goto L48;
+
+L17:
+    goto L49;
+
+L18:
+    goto L50;
+
+L19:
+    goto L51;
+
+L20:
+    goto L52;
+
+L21:
+    goto L53;
+
+L22:
+    goto L54;
+
+L23:
+    goto L55;
+
+L24:
+    goto L56;
+
+L25:
+    goto L57;
+
+L26:
+    goto L58;
+
+L27:
+    goto L59;
+
+L28:
+    goto L60;
+
+L29:
+    goto L61;
+
+L30:
+    goto L62;
+
+L31:
+    goto L63;
+
+L32:
+    goto L64;
+  }
+  showTextbox("「どれにすんだ?ギギギ!」<NEWLINE>");
+
+L33:
+  showTextbox("「次のリクエストもよろしくギギ!」<NEWLINE>");
+
+L34:
+  showTextbox("「<MUSIC>だな」<NEWLINE>");
+
+L35:
+  showTextbox("「さぁ!オレをアツく燃えさせる<NEWLINE> ナンバーをリクエストしてくんな!」<NEWLINE>");
+
+L36:
+  showTextbox("「……どこへ運ぼうか?」<NEWLINE>");
+
+L37:
+  showTextbox("「自らの足で進むのか……<NEWLINE> それが一番いいのかもしれんよ。」<NEWLINE>");
+
+L38:
+  showTextbox("「いいのか?行ったらそれっきりだぞ。」<NEWLINE>");
+
+L39:
+  showTextbox("「わかってる。」<NEWLINE>「やっぱりやめる。」<NEWLINE>");
+
+L40:
+  showTextbox("「オラ、集めているものがあるだ。<NEWLINE> もし持ってたらとっかえてほしいだよ。」<NEWLINE>");
+
+L41:
+  showTextbox("「何をくれるだ?」<NEWLINE>");
+
+L42:
+  showTextbox("「いつでも交換するから<NEWLINE> どんどん持ってきてほしいだよ。」<NEWLINE>");
+
+L43:
+  showTextbox("「<UNKNOWN3>を本当にくれるだか?」<NEWLINE>");
+
+L44:
+  showTextbox("「うん。」<NEWLINE>「やっぱりあげない。」<NEWLINE>");
+
+L45:
+  showTextbox("「ありがてえだよ!」<NEWLINE>");
+
+L46:
+  showTextbox("「アイテムの持ちすぎだ。」<NEWLINE>");
+
+L47:
+  showTextbox("ほしいものくれるもの<NEWLINE>");
+
+L48:
+  showTextbox("<YELLOW>ジジモン<WHITE><NEWLINE>「わしの名はジジモン。<NEWLINE> とつぜんですまんが、すこしだけ<NEWLINE> おぬしのことを教えてくれんかのー。」<NEWLINE>");
+
+L49:
+  showTextbox("<YELLOW>ジジモン<WHITE><NEWLINE>「まず…<NEWLINE> おぬしはデジタルモンスターを<NEWLINE> 持っているかな?」<NEWLINE>");
+
+L50:
+  showTextbox("<LIGHTBLUE><PLAYER><WHITE><NEWLINE>「持っている。」<NEWLINE>「持っていない。」<NEWLINE>");
+
+L51:
+  showTextbox("<YELLOW>ジジモン<WHITE><NEWLINE>「ほーっ。」<NEWLINE>");
+
+L52:
+  showTextbox("<YELLOW>ジジモン<WHITE><NEWLINE>「つぎの質問じゃ。<NEWLINE> 昼と夜では、どっちが好きかな?」<NEWLINE>");
+
+L53:
+  showTextbox("<LIGHTBLUE><PLAYER><WHITE><NEWLINE>「昼。」<NEWLINE>「夜。」<NEWLINE>");
+
+L54:
+  showTextbox("<YELLOW>ジジモン<WHITE><NEWLINE>「ふーむ。」<NEWLINE>");
+
+L55:
+  showTextbox("<YELLOW>ジジモン<WHITE><NEWLINE>「つぎの質問じゃ。<NEWLINE> 友達は、いっぱいいるかな?」<NEWLINE>");
+
+L56:
+  showTextbox("<LIGHTBLUE><PLAYER><WHITE><NEWLINE>「いる。」<NEWLINE>「そうでもない。」<NEWLINE>");
+
+L57:
+  showTextbox("<YELLOW>ジジモン<WHITE><NEWLINE>「なるほどなるほど。」<NEWLINE>");
+
+L58:
+  showTextbox("<YELLOW>ジジモン<WHITE><NEWLINE>「おー、そうじゃ、<NEWLINE> おぬしの名前を聞くのを忘れる<NEWLINE> とこじゃった!」<NEWLINE>");
+
+L59:
+  showTextbox("<YELLOW>ジジモン<WHITE><NEWLINE>「<LIGHTBLUE><PLAYER><WHITE>じゃな?」<NEWLINE>");
+
+L60:
+  showTextbox("<LIGHTBLUE><PLAYER><WHITE><NEWLINE>「はい。」<NEWLINE>「いいえ。」<NEWLINE>");
+
+L61:
+  showTextbox("<YELLOW>ジジモン<WHITE><NEWLINE>「おぬしが育てるデジモンの名前を<NEWLINE> 入力しておくれ。」<NEWLINE>");
+
+L62:
+  showTextbox("<YELLOW>ジジモン<WHITE><NEWLINE>「<ORANGE><DIGIMON><WHITE>じゃな?」<NEWLINE>");
+
+L63:
+  showTextbox("<YELLOW>ジジモン<WHITE><NEWLINE>「うむ、よい名前じゃな。」<NEWLINE>");
+
+L64:
+  showTextbox("<YELLOW>ジジモン<WHITE><NEWLINE>「うむ。<NEWLINE> これでわしの質問は終わりじゃ。<NEWLINE> では、のちほど会おうぞ!」<NEWLINE>");
+  return;
+}
+
+section(1240) {
+  {
+    break;
+
+L1:
+    goto L8;
+
+L2:
+    goto L9;
+
+L3:
+    goto L10;
+
+L4:
+    goto L11;
+
+L5:
+    goto L12;
+
+L6:
+    goto L13;
+
+L7:
+    goto L14;
+  }
+  showTextbox("よろしいですか?<NEWLINE>はいいいえ<NEWLINE>");
+
+L8:
+  showTextbox("大会スケジュール<NEWLINE>");
+
+L9:
+  showTextbox("「『-<TOURNAMENT>-』に<NEWLINE> エントリーするか?」<NEWLINE>");
+
+L10:
+  showTextbox("「<ORANGE><DIGIMON><WHITE>が『-<TOURNAMENT>-』に<NEWLINE> 出るようじゃなぁ…。<NEWLINE> 本当にいいのか?」<NEWLINE>");
+
+L11:
+  showTextbox("「エントリーする。」<NEWLINE>「エントリーしない。」<NEWLINE>");
+
+L12:
+  showTextbox("「ペナルティー」<NEWLINE>");
+
+L13:
+  showTextbox("「まだ、入っちゃダメだ。<NEWLINE> 大会日の朝10時から夜11時に<NEWLINE> 来てくれ。」<NEWLINE>");
+
+L14:
+  showTextbox("<UNKNOWN4>は<NEWLINE>けいしょうされなかった。<NEWLINE>");
+  return;
+}
+
+section(1241) {
+  playSound(0, 6);
+  speak(Entity.Player, "「そうだ、今日の<NEWLINE> 『-<TOURNAMENT>-』に<NEWLINE> エントリー中だったっけ。」<NEWLINE>");
+  return;
+}
+
+section(1242) {
+  playSound(0, 6);
+  speak(Entity.Player, "「しまった、今日の<NEWLINE> 『-<TOURNAMENT>-』に<NEWLINE> エントリー中だったのを忘れてた!」<NEWLINE>");
+  return;
+}
+
+section(1243) {
+  {
+    break;
+
+L1:
+    goto L6;
+
+L2:
+    goto L7;
+
+L3:
+    goto L8;
+
+L4:
+    goto L9;
+
+L5:
+    goto L10;
+  }
+  showTextbox("「グレート」<NEWLINE>");
+
+L6:
+  showTextbox("「バージョン」<NEWLINE>");
+
+L7:
+  showTextbox("「性質」<NEWLINE>");
+
+L8:
+  showTextbox("「特別」<NEWLINE>");
+
+L9:
+  showTextbox("「通<0x5a8e>」<NEWLINE>");
+
+L10:
+  showTextbox("「トレカ」<NEWLINE>");
+  return;
+}
+
+section(1244) {
+  sfx(0, 7, wait: 10);
+  setDialogOwner(Entity.Player);
+  if (pstat[254] == 0) {
+    showTextbox("『<LIGHTBLUE><UNKNOWN5><WHITE>だっ!』<NEWLINE>");
+  } else {
+    showTextbox("『でも もうアイテムがいっぱいだ…』<NEWLINE>");
+  }
+  return;
+}
+
+section(1245) {
+  playSound(0, 9);
+  if (!trigger(203)) {
+    warp(to: Map.TWNA01, spawn: 0, trigger: 255);
+  }
+  {
+    if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L2; else break;
+  }
+  {
+    if (trigger(221)) goto L1; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA04, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA03, spawn: 0, trigger: 255);
+  }
+  warp(to: Map.TWNA02, spawn: 0, trigger: 255);
+
+L1:
+  if (trigger(225)) {
+    warp(to: Map.TWNA07, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA06, spawn: 0, trigger: 255);
+  }
+  {
+    warp(to: Map.TWNA05, spawn: 0, trigger: 255);
+
+L2:
+    if (trigger(221)) goto L3; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA10, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA09, spawn: 0, trigger: 255);
+  }
+  warp(to: Map.TWNA08, spawn: 0, trigger: 255);
+
+L3:
+  if (trigger(225)) {
+    warp(to: Map.TWNA13, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA12, spawn: 0, trigger: 255);
+  }
+  warp(to: Map.TWNA11, spawn: 0, trigger: 255);
+  return;
+}
+
+section(1246) {
+  unsetTrigger(Trigger(1));
+  setTrigger(Trigger(41));
+  if (stat[Stat.Lives] == 0 && stat[Stat.CurrentHP] == 0) {
+    runDigimonRoutine(73, 7);
+    return;
+  }
+  if (stat[Stat.Lives] == 0 && stat[Stat.CurrentHP] != 0) {
+    runDigimonRoutine(73, 7);
+    return;
+  }
+  if (stat[Stat.Lifetime] <= 0) {
+    runDigimonRoutine(71, 3);
+    return;
+  }
+  runDigimonRoutine(72, 9);
+  return;
+}
+
+section(1250) {
+  callDigimonSubroutine(0);
+  waitForEntity(Entity.System);
+  playSound(0, 10);
+  return;
+}
+
+section(1251) {
+  speak(Entity(5), "「フッしっかりつかまっていろ!」<NEWLINE>");
+}
+
+section(1253) {
+  teleport(pstat: PStat(247));
+  return;
+}
+
+section(1252) {
+  jumpToScriptSection(7, 82);
+  garbage {}
+}

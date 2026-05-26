@@ -1,0 +1,272 @@
+// MAP205.SCN
+#include "functions.dgs"
+#pragma script index=205 start=0x99800 end=0x9a800 headerU16=0x10 sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(51) {
+  if (trigger(256)) {
+    return;
+  }
+  if (!trigger(50)) {
+  } else {
+    lookPairAt(Entity(8));
+    delay(5);
+    speak(Entity.Player, "'!!!\"\n");
+    move(entity: Entity.Player, to: (150, -1050), sprint: 1, withCamera: true);
+    move(entity: Entity.Partner, to: (-250, -1050), sprint: 1);
+    waitForPair();
+    lookPairAt(Entity(8));
+    delay(5);
+    speak(Entity.Player, "「タマゴ!」<NEWLINE>");
+    showTextbox("「まさかムゲンドラモンの…」<NEWLINE>");
+    anim(Entity(8), Animation(28), wait: 40);
+    speak(Entity.Player, "「わ!やばいか?!」<NEWLINE>");
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 8);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    look(entity: Entity.Player, at: Entity(8));
+    look(entity: Entity(8), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(8));
+    playSound(8, 3);
+    goto L1;
+
+L1:
+    approach(who: Entity(8), x: 0, y: -2500, tries: 3, wait: 20);
+    playSound(8, 0);
+    speak(Entity.System, "デジタマモンが街に参加した!!!<NEWLINE>");
+    followEntity(Entity.Player, speed: 10);
+    setTrigger(Trigger(256));
+    addPStat(PStat(1), 3);
+    return;
+  }
+  lookPairAt(Entity(6));
+  delay(5);
+  speak(Entity.Player, "'!!!\"\n");
+  move(entity: Entity.Player, to: (150, -1443), sprint: 1, withCamera: true);
+  move(entity: Entity.Partner, to: (-250, -1443), sprint: 1);
+  waitForPair();
+  lookPairAt(Entity(6));
+  delay(5);
+  speak(Entity.Player, "「い…いた!見つけたぞ!」<NEWLINE>");
+  panTo(x: 14, y: -416, slowdown: 20);
+  delay(20);
+  look(entity: Entity(6), at: Entity.Partner);
+  speak(Entity.Player, "「おまえが親玉だなっ!?」<NEWLINE>");
+  speak(Entity(6), "「ふふふ…初めてお目にかかる。<NEWLINE> 私はアナログマン。」<NEWLINE>");
+  speak(Entity(6), "「君たちのことはよく知っているよ…<NEWLINE> ふーん、目の前で見ると本当にガキだね。」<NEWLINE>");
+  showTextbox("「こんなガキに我が野望をジャマされて<NEWLINE> 来たとは…もう少しでネットの世界を<NEWLINE> 私のものにすることができたのに…」<NEWLINE>");
+  speak(Entity.Player, "「な、お前…人間の大人だろ!<NEWLINE> 何が野望だよ、くだらないぜ。<NEWLINE> みんなめいわくしてるじゃんかよ!」<NEWLINE>");
+  speak(Entity(6), "「めいわく?デジモンどもがか?<NEWLINE> くっくっくく…」<NEWLINE>");
+  anim(Entity(6), Animation(29), wait: 20);
+  speak(Entity(6), "「デジモンなぞ、人間の言うことを聞いて<NEWLINE> いればいいのだ。私の思うがままに、<NEWLINE> 道具のようになっ!」<NEWLINE>");
+  callSubroutine(51);
+  anim(Entity.Player, Animation(19), wait: 20);
+  speak(Entity.Player, "「おまえは間違ってる!デジモンにも<NEWLINE> 心があるんだ!みんな友達なんだ!」<NEWLINE>");
+  speak(Entity(6), "「ふん、ではお前の友達と、私の道具の<NEWLINE> どちらがすぐれているか、<NEWLINE> 確かめてみるがいい!」<NEWLINE>");
+  move(entity: Entity(6), to: (780, 530), sprint: 0);
+  waitForEntity(Entity(6));
+  rotate(entity: Entity(6), to: 512);
+  delay(20);
+  setDigimon(Digimon.Machinedramon, Entity(0), 0);
+  callSubroutine(40);
+  playAnimation(Entity(6), Animation(28));
+  sfx(8, 6, wait: 5);
+  speak(Entity(6), "「出番だぞ、究極最強デジモン、<NEWLINE> ムゲンドラモンっ!」<NEWLINE>");
+  move(entity: Entity(6), to: (1984, 1681), sprint: 0);
+  waitForEntity(Entity(6));
+  fadeOutHUD();
+  rotate(entity: Entity(6), to: 512);
+  callDigimonSubroutine(8);
+  waitForEntity(Entity(201));
+  delay(40);
+  playAnimation(Entity(5), Animation(28));
+  sfx(8, 1, wait: 40);
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 5);
+  setPStat(PStat(252), 255);
+  setPStat(PStat(253), 255);
+  startBattle();
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  playAnimation(Entity(5), Animation(43));
+  waitForEntity(Entity(5));
+  unloadEntity(Entity(5));
+  unloadModel(Digimon.Machinedramon);
+  speak(Entity.Player, "「やった、やったぞ<ORANGE><DIGIMON><WHITE>!」<NEWLINE>");
+  move(entity: Entity.Player, to: (-50, -261), sprint: 1);
+  move(entity: Entity.Partner, to: (-50, 424), sprint: 0);
+  waitForPair();
+  playAnimation(Entity.Player, Animation(11));
+  move(entity: Entity(6), to: (1022, 881), sprint: 0);
+  waitForEntity(Entity(6));
+  speak(Entity(6), "「ば…ばかな!私の最強兵器がぁぁっ!」<NEWLINE>");
+  look(entity: Entity.Player, at: Entity(6));
+  delay(5);
+  look(entity: Entity.Partner, at: Entity(6));
+  delay(5);
+  speak(Entity.Player, "「見ろ!おまえが間違ってたのさ。」<NEWLINE>");
+  move(entity: Entity(6), to: (915, 774), sprint: 0);
+  waitForEntity(Entity(6));
+  speak(Entity(6), "「お…おおお…」<NEWLINE>");
+  move(entity: Entity(6), to: (738, 597), sprint: 0);
+  waitForEntity(Entity(6));
+  move(entity: Entity.Player, to: (395, 204), sprint: 0, withCamera: true);
+  waitForEntity(Entity(6));
+  look(entity: Entity.Player, at: Entity(6));
+  delay(5);
+  panTo(x: 592, y: 994, slowdown: 20);
+  speak(Entity.Player, "「…なぁ、島をもとにもどして、<NEWLINE> 街のみんなの前であやまればゆるして<NEWLINE> やるよ。みんなもきっと…」<NEWLINE>");
+  speak(Entity(6), "「ふ…ふふ…そうだ、デジモンなど<NEWLINE> あてにはならん…たよれるのは自分の<NEWLINE> 力だけだ…」<NEWLINE>");
+  move(entity: Entity(6), to: (592, 574), sprint: 0);
+  waitForEntity(Entity(6));
+  rotate(entity: Entity(6), to: 2048);
+  delay(5);
+  playAnimation(Entity(6), Animation(28));
+  sfx(8, 6, wait: 40);
+  speak(Entity.Player, "「あっ、何をする!?」<NEWLINE>");
+  rotate(entity: Entity(6), to: 1024);
+  delay(5);
+  speak(Entity.System, "<YELLOW>アナログマン<WHITE><NEWLINE>「ここをふっ飛ばして、私は別の<NEWLINE> 世界へ脱出する…<NEWLINE> 残念だったな、ガキ!」<NEWLINE>");
+  anim(Entity(6), Animation(29), wait: 40);
+  playSound(8, 7);
+  for x in [11, 9, 10] {
+    setObjectVisibility(x, 0);
+  }
+  setPStat(PStat(247), 12);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  setPStat(PStat(247), 9);
+  setPStat(PStat(248), 10);
+  callSubroutine(21);
+  unloadEntity(Entity(6));
+  speak(Entity.Player, "「しまった、そんな!」<NEWLINE>");
+  setObjectVisibility(0, 0);
+  setPStat(PStat(247), 0);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  speak(Entity.System, "<YELLOW>アナログマン<WHITE><NEWLINE>「ふ、ふははははは!さらばだ!」<NEWLINE>");
+  speak(Entity.Player, "「ちくしょう!ごめん、みんな…」<NEWLINE>");
+  anim(Entity.Player, Animation(22), wait: 20);
+  speak(Entity.System, "<YELLOW>???<WHITE><NEWLINE>「大丈夫。」<NEWLINE>");
+  rotate(entity: Entity.Player, to: 1024);
+  delay(20);
+  rotate(entity: Entity.Player, to: 3072);
+  delay(20);
+  speak(Entity.Player, "「えっ…?」<NEWLINE>");
+  setObjectVisibility(0, 1);
+  setObjectVisibility(1, 0);
+  setObjectVisibility(2, 0);
+  setPStat(PStat(247), 1);
+  setPStat(PStat(248), 2);
+  callSubroutine(21);
+  speak(Entity.System, "<YELLOW>アナログマン<WHITE><NEWLINE>「なんだ…?転送が始まらん…<NEWLINE> お、おかしい…プログラムに…<NEWLINE> 異常が…!?何だこれはっ!?」<NEWLINE>");
+  rotate(entity: Entity.Player, to: 0);
+  delay(20);
+  speak(Entity.Player, "「みんなの…声が聞こえる…!」<NEWLINE>");
+  anim(Entity.Player, Animation(23), wait: 5);
+  speak(Entity.System, "<YELLOW>ジジモン<WHITE><NEWLINE>「今、わしらの力をそっちに送っておる。」<NEWLINE>");
+  speak(Entity.System, "<YELLOW>トコモン<WHITE><NEWLINE>「ボクらの声、とどいてるー?」<NEWLINE>");
+  speak(Entity.System, "<YELLOW>アグモン<WHITE><NEWLINE>「まにあったみたいだねっ!」<NEWLINE>");
+  speak(Entity.Player, "「みんな…」<NEWLINE>");
+  setObjectVisibility(1, 1);
+  setObjectVisibility(2, 1);
+  setObjectVisibility(3, 0);
+  setObjectVisibility(4, 0);
+  setPStat(PStat(247), 3);
+  setPStat(PStat(248), 2);
+  callSubroutine(21);
+  speak(Entity.System, "<YELLOW>アナログマン<WHITE><NEWLINE>「バカな…このままでは…<NEWLINE> いやだ…た、助けてくれ…うぉ…<NEWLINE> うおおおおああああああ!!!」<NEWLINE>");
+  playSound(8, 8);
+  setObjectVisibility(3, 1);
+  setObjectVisibility(4, 1);
+  setObjectVisibility(5, 0);
+  delay(40);
+  setPStat(PStat(247), 5);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  delay(20);
+  rotate(entity: Entity.Player, to: 2048);
+  setObjectVisibility(5, 1);
+  setObjectsVisibleRange(9, 11, 1);
+  setObjectVisibility(6, 0);
+  setPStat(PStat(247), 6);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  delay(4);
+  setObjectVisibility(6, 1);
+  setObjectVisibility(7, 0);
+  setPStat(PStat(247), 7);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  delay(3);
+  setObjectVisibility(7, 1);
+  setObjectVisibility(8, 0);
+  setPStat(PStat(247), 8);
+  setPStat(PStat(248), 1);
+  callSubroutine(21);
+  delay(3);
+  setObjectVisibility(8, 1);
+  delay(10);
+  speak(Entity.Player, "「消えた!?どうなったんだ?」<NEWLINE>");
+  speak(Entity.System, "<YELLOW>ジジモン<WHITE><NEWLINE>「わからん。だがしかし…」<NEWLINE>");
+  rotate(entity: Entity.Player, to: 0);
+  delay(20);
+  speak(Entity.Player, "「と、いけね、ジジモン聞こえるか?<NEWLINE> ここは爆発するって!<NEWLINE> なんとかして!!!」<NEWLINE>");
+  speak(Entity.System, "<YELLOW>ジジモン<WHITE><NEWLINE>「うむ、そろそろ来ておらんか?」<NEWLINE>");
+  rotate(entity: Entity.Player, to: 1024);
+  delay(5);
+  panTo(x: -775, y: 596, slowdown: 20);
+  delay(10);
+  setObjectVisibility(12, 0);
+  delay(20);
+  loadAndSetDigimon(Digimon.NPCAirdramon, Entity(2), 0);
+  lookPairAt(Entity(7));
+  move(entity: Entity(7), to: (-808, 124), animDuration: 15);
+  delay(40);
+  move(entity: Entity.Player, to: (-358, 124), sprint: 1, withCamera: true);
+  waitForEntity(Entity.Player);
+  speak(Entity.Player, "「エアドラモン!!!」<NEWLINE>");
+  speak(Entity(7), "「さあ早く!」<NEWLINE>");
+  move(entity: Entity.Player, to: Entity(7), sprint: 1);
+  move(entity: Entity.Partner, to: Entity(7), sprint: 1);
+  delay(30);
+  setPStat(PStat(254), 20);
+  callSubroutine(45);
+  sfx(8, 12, wait: 20);
+  sfx(8, 13, wait: 20);
+  sfx(8, 14, wait: 20);
+  sfx(8, 12, wait: 20);
+  speak(Entity.System, " <NEWLINE> アナログマンは消え…<NEWLINE> <NEWLINE>");
+  speak(Entity.System, " <NEWLINE> ファイル島に平和がもどった…<NEWLINE> <NEWLINE>");
+  speak(Entity.System, " <NEWLINE> そして…<NEWLINE> <NEWLINE>");
+  for x in [Trigger(50), Trigger(212), Trigger(207), Trigger(206)] {
+    setTrigger(x);
+  }
+  addPStat(PStat(1), 7);
+  roll(pstat: PStat(16), max: 2);
+  if (pstat[16] == 0) {
+    setPStat(PStat(16), 3);
+  }
+  setPStat(PStat(28), 0);
+  if (trigger(220) || trigger(214) || pstat[1] >= 50) {
+    warp(to: Map.TEND02, spawn: 0, trigger: 51);
+  } else {
+    warp(to: Map.TEND01, spawn: 0, trigger: 51);
+  }
+  return;
+}
+
+section(5) {
+  return;
+  garbage { 10 00 fe 00 10 00 33 00 12 00 05 00 d6 0d ff ff fe 00 19 00 00 00 00 01 18 00 20 00 19 00 fe 00 19 00 01 00 32 00 18 00 30 00 19 00 16 00 6c 01 4c 00 fd 08 4c 00 fc 08 67 00 05 00 1b fd 1a 00 81 75 81 49 81 49 81 49 81 76 0d 00 00 00 52 fd 96 00 e6 fb 01 00 4e fc 06 ff e6 fb 01 00 4a fd 4a fc 4c 00 fd 08 4c 00 fc 08 67 00 05 00 1b fd 1a 00 81 75 83 5e 83 7d 83 53 81 49 81 76 0d 00 00 00 1a 00 81 75 82 dc 82 b3 82 a9 83 80 83 51 83 93 83 68 83 89 83 82 83 93 82 cc 81 63 81 76 0d 00 00 00 56 00 08 1c 67 00 28 00 1b fd 1a 00 81 75 82 ed 81 49 82 e2 82 ce 82 a2 82 a9 81 48 81 49 81 76 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 08 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4c 00 fd 08 4c 00 08 fd 4c 00 fc 08 5a 00 08 03 16 00 00 01 4e 08 00 00 3c f6 01 00 19 00 0d 00 65 03 18 00 28 01 19 00 1f 00 65 01 67 00 14 00 4c 00 fd 08 4c 00 fc 08 16 00 00 01 4a 08 48 08 1e 00 65 00 5a 00 08 00 1b ff 1a 00 83 66 83 57 83 5e 83 7d 83 82 83 93 82 aa 8a 58 82 c9 8e 51 89 c1 82 b5 82 bd 81 49 81 49 81 49 0d 00 00 00 50 00 fd 0a 4a c8 1c 00 00 01 1f 00 01 03 fe 00 4c 00 fd 06 4c 00 fc 06 67 00 05 00 1b fd 1a 00 81 75 81 49 81 49 81 49 81 76 0d 00 00 00 52 fd 96 00 5d fa 01 00 4e fc 06 ff 5d fa 01 00 4a fd 4a fc 4c 00 fd 06 4c 00 fc 06 67 00 05 00 1b fd 1a 00 81 75 82 a2 81 63 82 a2 82 bd 81 49 8c a9 82 c2 82 af 82 bd 82 bc 81 49 81 76 0d 00 00 00 4f 14 0e 00 60 fe 4a c8 67 00 14 00 4c 00 06 fc 1b fd 1a 00 81 75 82 a8 82 dc 82 a6 82 aa 90 65 8b ca 82 be 82 c8 82 c1 81 49 81 48 81 76 0d 00 00 00 1b 06 1a 00 81 75 82 d3 82 d3 82 d3 81 63 8f 89 82 df 82 c4 82 a8 96 da 82 c9 82 a9 82 a9 82 e9 81 42 0d 00 81 40 8e 84 }
+}

@@ -1,0 +1,141 @@
+// DG088.SCN
+#include "functions.dgs"
+#pragma script index=88 start=0x3a800 end=0x3b000 headerU16=0x20 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 5, item: Item.Digimushroom, x: 49, y: 36);
+  spawnItemChance(max: 99, chance: 17, item: Item.Digimushroom, x: 59, y: 55);
+  spawnItemChance(max: 99, chance: 7, item: Item.Digimushroom, x: 48, y: 61);
+  spawnItemChance(max: 99, chance: 2, item: Item.IceMushroom, x: 38, y: 60);
+  return;
+}
+
+section(6) {
+  speak(Entity(6), "「やっつけてやる~!」<NEWLINE>");
+  finishEncounter(Trigger(271));
+}
+
+section(7) {
+  speak(Entity(7), "「オマエになんか、まけるもんか!」<NEWLINE>");
+  finishEncounter(Trigger(271));
+}
+
+section(8) {
+  speak(Entity(8), "「ケケケケッ!残念でした。」<NEWLINE>");
+  finishEncounter(Trigger(272));
+}
+
+section(9) {
+  speak(Entity(9), "「おい、オレ様の目の前をすどおりかい?」<NEWLINE>");
+  finishEncounter(Trigger(272));
+}
+
+section(5) {
+  if (trigger(195)) {
+  } else {
+    speak(Entity(5), "「ここを通るやつは、俺と勝負<NEWLINE> していってもらうぜ!」<NEWLINE>");
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 5);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    look(entity: Entity.Player, at: Entity(5));
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(5));
+    speak(Entity(5), "「ち、油断したぜ。だけど1対2ってのは<NEWLINE> ひきょうじゃないか?」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(16));
+    setTrigger(Trigger(49));
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L1);
+    showTextbox("「言われてみるとそうかも。」<NEWLINE>「負けおしみは良くないな。」<NEWLINE>");
+
+L1:
+    speak(Entity(5), "「俺はなぁ、1対1なら絶対負けねえ!」<NEWLINE>");
+    showTextbox("「1対1の決闘をもうしこむ!<NEWLINE> 明日の16:00にまたここに来い。<NEWLINE> こんどはデジモンだけで戦うんだ。」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L2, L2);
+    showTextbox("「む、いいだろう。」<NEWLINE>「めんどうだな~。」<NEWLINE>");
+
+L2:
+    {
+      playAnimation(Entity.Player, Animation(16));
+      unsetTrigger(Trigger(49));
+      speak(Entity(5), "「約そくしたぜ、じゃ明日な!」<NEWLINE>");
+      setTrigger(Trigger(195));
+      pstat[PStat(29)] = time();
+      break;
+    }
+    approach(who: Entity(5), x: -2050, y: -150, tries: 6, wait: 10);
+    followEntity(Entity.Player, speed: 10);
+    return;
+  }
+  pstat[:SavedTime] = time();
+  {
+    if (trigger(195) && pstat[107] >= 15 && pstat[107] <= 17 && pstat[29] == 1) {
+      speak(Entity(5), "「逃げずに来るとは感心だ。<NEWLINE> 今日は約そくどおり1対1だぞ!」<NEWLINE>");
+      break;
+      break;
+    }
+    speak(Entity(5), "「指定時間に来ないとは何てやつ!<NEWLINE> だが俺もじっくり傷をなおせたのでまあ<NEWLINE> 許してやろう。じゃあいくぜ!」<NEWLINE>");
+    break;
+  }
+  {
+    speak(Entity.Player, "「ん。俺は見てるだけにする。<NEWLINE> 始めてくれ。」<NEWLINE>");
+    look(entity: Entity.Player, at: Entity.Partner);
+    waitForEntity(Entity.Player);
+    playAnimation(Entity.Player, Animation(20));
+    showTextbox("「たのむぜ、<ORANGE><DIGIMON><WHITE>!」<NEWLINE>");
+    setTrigger(Trigger(2));
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 5);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    unsetTrigger(Trigger(2));
+    look(entity: Entity.Player, at: Entity(5));
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(5));
+    speak(Entity(5), "「おまえ…強えよ!何者だ、いったい?」<NEWLINE>");
+    speak(Entity.Player, "「俺達はこの島の危機を救うために、<NEWLINE> 旅をしている途中さ。」<NEWLINE>");
+    speak(Entity(5), "「何だって?」<NEWLINE>");
+    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE>はけんめいに説得した!<NEWLINE>");
+    anim(Entity.Player, Animation(19), wait: 40);
+    speak(Entity(5), "「わかったよ。協力してもいい。<NEWLINE> 街とやらを見てみないことには始まらん。」<NEWLINE>");
+    break;
+  }
+  approach(who: Entity(5), x: -2000, y: -100, tries: 6, wait: 10);
+  playSound(8, 11);
+  speak(Entity.System, "ガルルモンが街に参加した!!!<NEWLINE>");
+  setTrigger(Trigger(222));
+  addPStat(PStat(1), 2);
+  followEntity(Entity.Player, speed: 10);
+}
+
+section(51) {
+  {
+    if ((cond & 0x40) == 0x01 && !trigger(133)) break;
+    return;
+  }
+  storeDigimonType(PStat(103));
+  if (pstat[103] == 3 || pstat[103] == 5 || pstat[103] == 8 || pstat[103] == 9 || pstat[103] == 47) {
+    jumpToScriptSection(174, 51);
+  }
+  if (pstat[103] == 19 || pstat[103] == 32 || pstat[103] == 51 || pstat[103] == 1 || pstat[103] == 2) {
+    jumpToScriptSection(174, 51);
+  }
+  if (pstat[103] == 15 || pstat[103] == 16 || pstat[103] == 29 || pstat[103] == 30 || pstat[103] == 43) {
+    jumpToScriptSection(174, 51);
+  }
+  if (pstat[103] == 44 || pstat[103] == 21) {
+    jumpToScriptSection(174, 51);
+  }
+  return;
+  garbage { 20 00 fe 00 20 00 06 00 7a 00 07 00 a6 00 08 00 de 00 09 00 10 01 05 00 4e 01 33 00 8c 06 ff ff 24 00 6e 63 19 00 0b 00 6e 05 18 00 36 00 19 00 74 2c 31 00 24 00 24 00 6e 63 19 00 0b 00 6e 11 18 00 4c 00 19 00 74 2c 3b 00 37 00 24 00 6e 63 19 00 0b 00 6e 07 18 00 62 00 19 00 74 2c 30 00 3d 00 24 00 6e 63 19 00 0b 00 6e 02 18 00 78 00 19 00 74 2d 26 00 3c 00 fe 00 1b 06 1a 00 81 75 82 e2 82 c1 82 c2 82 af 82 c4 82 e2 82 e9 81 60 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 0f 01 fe 00 1b 07 1a 00 81 75 83 49 83 7d 83 47 82 c9 82 c8 82 f1 82 a9 81 41 82 dc 82 af 82 e9 82 e0 82 f1 82 a9 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 0f 01 fe 00 1b 08 }
+}

@@ -1,0 +1,111 @@
+// DG008.SCN
+#include "functions.dgs"
+#pragma script index=8 start=0xb000 end=0xb800 headerU16=0x18 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 1, item: Item.Happymushroom, x: 22, y: 69);
+  return;
+}
+
+section(51) {
+  {
+    {
+      if (trigger(149)) break;
+      moveCamera(to: (-5000, 2000), slowdown: 30);
+      rotate(entity: Entity.Player, to: 1117);
+      waitForEntity(Entity(200));
+      delay(50);
+      speak(Entity.Player, "「ドリルトンネル…」<NEWLINE>");
+      followEntity(Entity.Player, speed: 20);
+      setTrigger(Trigger(149));
+      if (trigger(54)) break;
+      setDialogOwner(Entity.Player);
+      setSelection(L1, L2);
+      showTextbox("「通常」<NEWLINE>「オーガモード」<NEWLINE>");
+      waitForSelectionChoice();
+      goto L1;
+    }
+    if (trigger(150) && !trigger(151)) {
+      break;
+    }
+    return;
+
+L1:
+    return;
+
+L2:
+  }
+  setTrigger(Trigger(151));
+  setObjectVisibility(5, 1);
+  setObjectVisibility(6, 0);
+  moveCamera(to: (-5000, 2000), slowdown: 30);
+  rotate(entity: Entity.Player, to: 1117);
+  waitForEntity(Entity(200));
+  delay(50);
+  speak(Entity.Player, "「げっ、あいつ!しょうこりも無く…!」<NEWLINE>");
+  panTo(x: -2900, y: 0, slowdown: 30);
+  delay(20);
+  speak(Entity.Player, "「ん?」<NEWLINE>");
+  setDigimon(Digimon.MarketManager, Entity(0), 0);
+  move(entity: Entity(5), to: (-2028, -842), sprint: 0);
+  rotate(entity: Entity.Player, to: 1117);
+  waitForEntity(Entity(5));
+  rotate(entity: Entity(5), to: 1117);
+  waitForEntity(Entity(5));
+  delay(10);
+  speak(Entity.System, "<YELLOW>マーケット店主<WHITE><NEWLINE>「トンネルに通行料がいるなんて<NEWLINE> 聞いてないアルよ~。」<NEWLINE>");
+  move(entity: Entity(5), to: (-1323, -815), sprint: 0);
+  waitForEntity(Entity(5));
+  look(entity: Entity(5), at: Entity.Player);
+  waitForEntity(Entity(5));
+  followEntity(Entity.Player, speed: 20);
+  look(entity: Entity.Player, at: Entity(5));
+  speak(Entity.System, "<YELLOW>マーケット店主<WHITE><NEWLINE>「あ、君は…もしや!どうにかして<NEWLINE> ほしいアル~。」<NEWLINE>");
+  speak(Entity.Player, "「中のドリモゲモンたちは?」<NEWLINE>");
+  speak(Entity.System, "<YELLOW>マーケット店主<WHITE><NEWLINE>「わからないアル…」<NEWLINE>");
+  speak(Entity.Player, "「無事だといいけど…<NEWLINE> よし、乗りこむぞ!」<NEWLINE>");
+  move(entity: Entity(5), to: (-2333, 59), sprint: 0);
+  waitForEntity(Entity(5));
+  rotate(entity: Entity(5), to: 4000);
+  waitForEntity(Entity(5));
+  return;
+}
+
+section(5) {
+  speak(Entity.System, "<YELLOW>マーケット店主<WHITE><NEWLINE>「早くなんとかしてほしいアル。」<NEWLINE>");
+  return;
+}
+
+section(52) {
+  if (trigger(106)) {
+    move(entity: Entity.Player, to: (2000, -152), sprint: 0);
+    warp(to: Map.MAYO02_2, spawn: 2, trigger: 255);
+  }
+  move(entity: Entity.Player, to: (2000, -152), sprint: 0);
+  warp(to: Map.MAYO01_2, spawn: 1, trigger: 255);
+  return;
+}
+
+section(53) {
+  {
+    if (!trigger(238)) break;
+    if (trigger(150) && !trigger(234)) break;
+    speak(Entity.Player, "「トンネルにはもう何も無いからな…<NEWLINE> 一気にかけぬけるか?どうする?」<NEWLINE>");
+    setSelection(L1, L2);
+    showTextbox("「いくぞ!」<NEWLINE>「やめとこう。」<NEWLINE>");
+    waitForSelectionChoice();
+    goto L2;
+  }
+  return;
+
+L1:
+  move(entity: Entity.Player, to: (-4017, -828), sprint: 1);
+  warp(to: Map.MIHA04B, spawn: 2, trigger: 255);
+
+L2:
+  move(entity: Entity.Player, to: (-4017, -828), sprint: 0);
+  warp(to: Map.TUNN01, spawn: 0, trigger: 255);
+  return;
+  garbage { 18 00 fe 00 18 00 33 00 30 00 05 00 9e 02 34 00 dc 02 35 00 02 03 ff ff 24 00 6e 63 19 00 0b 00 6e 01 18 00 2e 00 19 00 74 45 16 00 45 00 fe 00 19 00 01 00 95 00 18 00 ac 00 19 00 4f 1e 78 ec d0 07 4d fd 5d 04 4a c8 67 00 32 00 1b fd 1a 00 81 75 83 68 83 8a 83 8b 83 67 83 93 83 6c 83 8b 81 63 81 76 0d 00 00 00 50 00 fd 14 4a c8 1c 00 95 00 19 00 01 00 36 00 18 00 ac 00 19 00 1b fd 10 02 c2 00 c4 00 1a 00 81 75 92 ca 8f ed 81 76 0d 00 81 75 83 49 81 5b 83 4b 83 82 81 5b 83 68 81 76 0d 00 00 00 12 00 16 00 c2 00 19 00 00 00 96 00 81 00 97 00 18 00 c0 00 19 00 16 00 c4 00 fe 00 fe 00 1c 00 97 00 57 00 05 01 57 00 06 00 4f 1e 78 ec d0 07 4d fd 5d 04 4a c8 67 00 32 00 1b fd 1a 00 81 75 82 b0 82 c1 81 41 82 a0 82 a2 82 c2 81 49 82 b5 82 e5 82 a4 82 b1 82 e8 82 e0 96 b3 82 ad 81 63 81 49 81 76 0d 00 00 00 4f 1e ac f4 00 00 4a c8 67 00 14 00 1b fd 1a 00 81 75 82 f1 81 48 81 76 0d 00 00 00 47 76 00 00 4e 05 14 f8 b6 fc 00 00 4d fd 5d 04 4a 05 4d 05 5d 04 4a 05 67 00 0a 00 1b ff 1a 00 01 07 83 7d 81 5b 83 50 83 62 83 67 93 58 8e e5 01 01 0d 00 81 75 83 67 83 93 83 6c 83 8b 82 c9 92 ca 8d 73 97 bf 82 aa 82 a2 82 e9 82 c8 82 f1 82 c4 0d 00 81 40 95 b7 82 a2 82 c4 82 c8 82 a2 83 41 83 8b 82 e6 81 60 81 42 81 76 0d 00 00 00 4e 05 d5 fa d1 fc 00 00 4a 05 4c 00 05 fd 4a 05 50 00 fd 14 4a c8 4c 00 fd 05 1b ff 1a 00 01 07 83 7d 81 5b 83 50 83 62 83 67 93 58 8e e5 01 01 0d 00 81 75 82 a0 81 41 8c 4e 82 cd 81 63 82 e0 82 b5 82 e2 81 49 82 c7 82 a4 82 c9 82 a9 82 b5 82 c4 0d 00 81 40 82 d9 82 b5 82 a2 83 41 83 8b 81 60 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 92 86 82 cc 83 68 83 8a 83 82 83 51 83 82 83 93 82 bd 82 bf 82 cd 81 48 81 76 0d 00 00 00 1b ff 1a 00 01 07 83 7d 81 5b 83 50 83 62 83 67 93 58 8e e5 01 01 0d 00 81 75 82 ed 82 a9 82 e7 82 c8 82 a2 83 41 83 8b 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 96 b3 8e 96 82 be 82 c6 82 a2 82 a2 82 af 82 c7 81 63 0d 00 81 40 82 e6 82 b5 81 41 8f e6 82 e8 82 b1 82 de 82 bc 81 49 81 76 0d 00 00 00 4e 05 e3 f6 3b 00 00 00 4a 05 4d 05 a0 0f 4a 05 fe 00 1b ff 1a 00 01 07 83 7d 81 5b 83 50 83 62 83 67 93 58 8e e5 01 01 0d 00 81 75 91 81 82 ad 82 c8 82 f1 82 c6 82 a9 82 b5 82 c4 82 d9 82 b5 82 a2 83 41 83 8b 81 42 81 76 0d 00 00 00 fe 00 19 00 00 00 6a 00 18 00 f4 02 19 00 4e fd d0 07 68 ff 00 00 4b 6f 02 ff 4e fd d0 07 68 ff 00 00 4b 6e 01 ff fe 00 19 00 00 00 ee 00 18 00 9c 03 19 00 19 00 01 00 96 00 40 00 ea 00 18 00 9c 03 19 00 1b fd 1a 00 81 75 83 67 83 93 83 6c 83 8b 82 c9 82 cd 82 e0 82 a4 89 bd 82 e0 96 b3 82 a2 82 a9 82 e7 82 c8 81 63 0d 00 81 40 88 ea 8b 43 82 c9 82 a9 82 af 82 ca 82 af 82 e9 82 a9 81 48 82 c7 82 a4 82 b7 82 e9 81 48 81 76 0d 00 00 00 10 02 9e 03 aa 03 1a 00 81 75 82 a2 82 ad 82 bc 81 49 81 76 0d 00 81 75 82 e2 82 df 82 c6 82 b1 82 a4 81 42 81 76 0d 00 00 00 12 00 16 00 aa 03 fe 00 4e fd 4f f0 c4 fc 01 00 4b 17 02 ff 4e fd 4f f0 c4 fc 00 00 4b 18 00 ff fe 00 ff 00 53 01 46 86 47 86 00 00 56 00 05 1c 57 00 26 00 57 00 27 00 57 00 28 00 57 00 29 00 57 00 2a 00 57 00 2b 00 57 00 2c 00 1e 00 f7 28 1e 00 f8 05 64 15 56 00 fd 0f 4a 05 5a 00 08 0c 67 00 3c 00 57 00 28 01 57 00 29 01 57 00 2a 01 57 00 2b 01 57 00 2c 01 57 00 2d 00 56 00 05 20 5a 00 08 07 1b fd 1a 00 81 75 82 a4 81 41 82 a4 82 ed 82 9f 81 5b 81 49 8c ce 82 cc 82 ca 82 b5 82 be 82 9f 82 c1 81 49 81 76 0d 00 00 00 56 00 }
+}

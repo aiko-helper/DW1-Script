@@ -1,0 +1,216 @@
+// DG041.SCN
+#include "functions.dgs"
+#pragma script index=41 start=0x1f800 end=0x20000 headerU16=0x2c sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 9, item: Item.Digimushroom, x: 48, y: 68);
+  spawnItemChance(max: 99, chance: 3, item: Item.Pricklypear, x: 76, y: 49);
+  unsetTrigger(Trigger(98));
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「どりゃあああ!」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(6) {
+  speak(Entity(6), "「はぁぁぁぁぁーっ!」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(7) {
+  speak(Entity(7), "「きぇぇぇぇーっ!」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(81) {
+  rotate(entity: Entity.Player, to: 1944);
+  waitForEntity(Entity.Player);
+  speak(Entity.System, "東・エレベーター<NEWLINE> <NEWLINE>西・危険!ガケに注意<NEWLINE>");
+  if (trigger(54)) {
+    return;
+  }
+  setDialogOwner(Entity.System);
+  setSelection(L1, L2);
+  showTextbox("「オーガモード・ON」<NEWLINE>「オーガモード・OFF」<NEWLINE>");
+
+L1:
+  setTrigger(Trigger(197));
+  warp(to: Map.GCAN08_1, spawn: 0, trigger: 255);
+  return;
+
+L2:
+  unsetTrigger(Trigger(197));
+  warp(to: Map.GCAN08_1, spawn: 0, trigger: 255);
+  return;
+}
+
+section(53) {
+  if (!trigger(143) && !trigger(141)) {
+    setTrigger(Trigger(143));
+    setTrigger(Trigger(141));
+    speak(Entity.Player, "「ん?」<NEWLINE>");
+    move(entity: Entity.Player, to: (-1048, -498), sprint: 0, withCamera: true);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1048, -498), sprint: 0);
+    waitForEntity(Entity.Player);
+    move(entity: Entity.Player, to: (-1473, 823), sprint: 0, withCamera: true);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1473, 823), sprint: 0);
+    waitForEntity(Entity.Player);
+    move(entity: Entity.Player, to: (-2333, 261), sprint: 0, withCamera: true);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1952, 165), sprint: 0);
+    waitForEntity(Entity.Player);
+    delay(20);
+    look(entity: Entity.Player, at: Entity.Partner);
+    delay(20);
+    rotate(entity: Entity.Player, to: 1000);
+    speak(Entity.Player, "「今、地面が動いたような?<NEWLINE> …気のせいか。」<NEWLINE>");
+  }
+  if (!trigger(143) && trigger(141)) {
+    setTrigger(Trigger(142));
+    move(entity: Entity.Player, to: (-1048, -498), sprint: 0, withCamera: true);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1048, -498), sprint: 0);
+    waitForEntity(Entity.Player);
+    move(entity: Entity.Player, to: (-1473, 823), sprint: 0, withCamera: true);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1473, 823), sprint: 0);
+    waitForEntity(Entity.Player);
+    move(entity: Entity.Player, to: (-2333, 261), sprint: 0, withCamera: true);
+    delay(20);
+    move(entity: Entity.Partner, to: (-1952, 165), sprint: 0);
+    waitForEntity(Entity.Player);
+    delay(20);
+    look(entity: Entity.Player, at: Entity.Partner);
+    delay(20);
+    rotate(entity: Entity.Player, to: 1000);
+    playSound(8, 8);
+    speak(Entity.Player, "「えっ!まさか…」<NEWLINE>");
+    look(entity: Entity.Player, at: Entity.Partner);
+    look(entity: Entity.Partner, at: Entity.Player);
+    setPStat(PStat(247), 2);
+    setPStat(PStat(248), 2);
+    callSubroutine(21);
+    setObjectVisibility(0, 1);
+    setObjectVisibility(1, 1);
+    setObjectVisibility(2, 0);
+    setObjectVisibility(3, 0);
+    playSound(8, 8);
+    anim(Entity.Player, Animation(15), wait: 40);
+    setObjectVisibility(2, 1);
+    setObjectVisibility(3, 1);
+    setObjectVisibility(7, 0);
+    anim(Entity.Player, Animation(26), wait: 2);
+    move(entity: Entity.Partner, axis: 1, to: 5000, speed: 5);
+    delay(1);
+    move(entity: Entity.Player, axis: 1, to: 5000, speed: 5);
+    playSound(8, 0);
+    setTexboxMode(2, 20);
+    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE><NEWLINE>「う、うわぁぁぁーーー!」<NEWLINE>");
+    warp(to: Map.GCAN07, spawn: 1, trigger: 51);
+    return;
+  }
+  return;
+}
+
+section(54) {
+  unsetTrigger(Trigger(143));
+  return;
+}
+
+section(82) {
+  rotate(entity: Entity.Player, to: 1944);
+  waitForEntity(Entity.Player);
+  speak(Entity.System, "落ばんに注意!!<NEWLINE>");
+  return;
+}
+
+section(51) {
+  if (!trigger(197)) {
+    return;
+  }
+  if (trigger(198)) {
+    return;
+  }
+  if (trigger(98)) {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 1944);
+  panTo(x: 2000, y: 173, slowdown: 30);
+  speak(Entity.Player, "「今までの情報をもとにすると、<NEWLINE> どうやらウワサの山賊が出る道は<NEWLINE> ここらしいな…」<NEWLINE>");
+  showTextbox("「よーし、いくぜ、<ORANGE><DIGIMON><WHITE>。」<NEWLINE>");
+  move(entity: Entity.Player, to: (1925, 468), sprint: 0);
+  move(entity: Entity.Partner, to: (1925, 78), sprint: 0);
+  waitForPair();
+  loadDigimon(Digimon.NPCOgremon);
+  loadDigimon(Digimon.Agumon);
+  setDigimonBatch([
+    Digimon.NPCOgremon => Entity(3),
+    Digimon.Agumon => Entity(4),
+    Digimon.Agumon => Entity(5),
+  ], autotalk: 0);
+  speak(Entity(9), "「いやっほーーーい!」<NEWLINE>");
+  playSound(8, 11);
+  speak(Entity(8), "「ぐわはははは!」<NEWLINE>");
+  speak(Entity(10), "「ひゃっほーう!」<NEWLINE>");
+  delay(10);
+  playSound(8, 1);
+  playAnimation(Entity(8), Animation(31));
+  move(entity: Entity(8), to: (1000, 1288), animDuration: 30);
+  move(entity: Entity(9), to: (2067, 1561), sprint: 1);
+  move(entity: Entity(10), to: (2059, -383), sprint: 1);
+  for id in Entity(8)..Entity(10) {
+    waitForEntity(id);
+  }
+  look(entity: Entity(8), at: Entity.Player);
+  look(entity: Entity(9), at: Entity.Player);
+  look(entity: Entity(10), at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(8));
+  look(entity: Entity.Partner, at: Entity(9));
+  delay(10);
+  playSound(8, 11);
+  speak(Entity(8), "「ぬははは、カンネンして荷物を置いてけ!<NEWLINE> いてえ目にあうぜぇ!」<NEWLINE>");
+  speak(Entity.Player, "「カンネンするのはそっちだ!」<NEWLINE>");
+  speak(Entity(8), "「ん?!てめえらは…」<NEWLINE>");
+  speak(Entity(8), "「もしかして…」<NEWLINE>");
+  speak(Entity(9), "「お、おかしら、どうしましょう?!」<NEWLINE>");
+  look(entity: Entity(9), at: Entity(8));
+  speak(Entity(8), "「さわぐな!数でも力でもこっちが上だ。<NEWLINE> たたきのめしてやれ!」<NEWLINE>");
+  look(entity: Entity(8), at: Entity(9));
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 8);
+  setPStat(PStat(252), 9);
+  setPStat(PStat(253), 10);
+  startBattle();
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  look(entity: Entity.Player, at: Entity(8));
+  look(entity: Entity(8), at: Entity.Player);
+  look(entity: Entity.Partner, at: Entity(8));
+  move(entity: Entity(9), to: (1350, 2350), sprint: 1);
+  move(entity: Entity(10), to: (1850, 2350), sprint: 1);
+  waitForEntity(Entity(9));
+  waitForEntity(Entity(10));
+  unloadEntity(Entity(9));
+  unloadEntity(Entity(10));
+  speak(Entity(8), "「むぐぐ…お、覚えてろよー!」<NEWLINE>");
+  move(entity: Entity(8), to: (1650, 2350), sprint: 1);
+  waitForEntity(Entity(8));
+  unloadEntity(Entity(8));
+  speak(Entity.Player, "「何て逃げ足だ!でもこれでしばらくは<NEWLINE> ここには現われないだろう。」<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  setTrigger(Trigger(198));
+  setTrigger(Trigger(155));
+  return;
+}
+
+section(52) {
+  setTrigger(Trigger(98));
+  return;
+  garbage { 2c 00 fe 00 2c 00 05 00 5e 00 06 00 86 00 07 00 b2 00 51 00 dc 00 35 00 74 01 36 00 34 03 52 00 3a 03 33 00 5a 03 34 00 c6 06 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 42 00 19 00 74 2c 30 00 44 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 58 00 19 00 74 36 4c 00 31 00 1d 00 62 00 fe 00 1b 05 1a 00 81 75 82 c7 82 e8 82 e1 82 a0 82 a0 82 a0 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 06 1a 00 81 75 82 cd 82 9f 82 9f 82 9f 82 9f 82 9f 81 5b 82 c1 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 07 1a 00 81 75 82 ab 82 a5 82 a5 82 a5 82 a5 81 5b 82 c1 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 4d fd 98 07 4a fd 1b ff 1a 00 93 8c 81 45 83 47 83 8c 83 78 81 5b 83 5e 81 5b 0d 00 81 40 0d 00 90 bc 81 45 8a eb 8c af 81 49 83 4b 83 50 82 c9 92 8d 88 d3 0d 00 00 00 19 00 00 00 36 00 18 00 22 01 19 00 fe 00 1b ff 10 02 60 01 6a 01 1a 00 81 75 83 49 81 5b }
+}

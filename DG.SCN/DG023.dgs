@@ -1,0 +1,84 @@
+// DG023.SCN
+#include "functions.dgs"
+#pragma script index=23 start=0x15800 end=0x16000 headerU16=0x2c sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 7, item: Item.Digimushroom, x: 44, y: 33);
+  spawnItemChance(max: 99, chance: 15, item: Item.Digimushroom, x: 23, y: 49);
+  spawnItemChance(max: 99, chance: 3, item: Item.BigBerry, x: 25, y: 74);
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「アツい、アツいぜ!」<NEWLINE>");
+  finishEncounter(Trigger(269));
+}
+
+section(6) {
+  speak(Entity(6), "「たぎって来たぞぉ!」<NEWLINE>");
+  finishEncounter(Trigger(269));
+}
+
+section(7) {
+  speak(Entity(7), "「おやおや、そうなんだ。」<NEWLINE>");
+  finishEncounter(Trigger(286));
+}
+
+section(8) {
+  speak(Entity(8), "「いいでしょう。さあ!」<NEWLINE>");
+  finishEncounter(Trigger(286));
+}
+
+section(9) {
+  speak(Entity(9), "「もうやだよぉ!」<NEWLINE>");
+  finishEncounter(Trigger(296));
+}
+
+section(10) {
+  speak(Entity(10), "「まっぴらごめんだね。」<NEWLINE>");
+  finishEncounter(Trigger(296));
+}
+
+section(11) {
+  speak(Entity(11), "「んだよ!」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(12) {
+  speak(Entity(12), "「なろぉー!」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(51) {
+  if (trigger(150) && !trigger(234)) {
+    speak(Entity.Player, "「何かいやな予感がするな…」<NEWLINE>");
+    look(entity: Entity.Player, at: Entity.Partner);
+    look(entity: Entity.Partner, at: Entity.Player);
+    delay(5);
+    speak(Entity.Player, "「おまえもそうか?そうだな。」<NEWLINE>");
+    move(entity: Entity.Player, to: (1745, -1614), sprint: 0);
+    waitForEntity(Entity.Player);
+    return;
+  }
+  {
+    if (!trigger(238)) break;
+    if (trigger(150) && !trigger(234)) break;
+    speak(Entity.Player, "「トンネルにはもう何も無いからな…<NEWLINE> 一気にかけぬけるか?どうする?」<NEWLINE>");
+    setSelection(L1, L2);
+    showTextbox("「いくぞ!」<NEWLINE>「やめとこう。」<NEWLINE>");
+    waitForSelectionChoice();
+    goto L2;
+  }
+  return;
+
+L1:
+  move(entity: Entity.Player, to: (2876, -1583), sprint: 1);
+  warp(to: Map.MAYO11, spawn: 1, trigger: 255);
+
+L2:
+  move(entity: Entity.Player, to: (2876, -1583), sprint: 0);
+  warp(to: Map.TUNN09, spawn: 1, trigger: 255);
+  return;
+  garbage { 2c 00 fe 00 2c 00 05 00 70 00 06 00 9c 00 07 00 c8 00 08 00 f8 00 09 00 26 01 0a 00 4e 01 0b 00 7c 01 0c 00 9e 01 33 00 c2 01 ff ff 24 00 6e 63 19 00 0b 00 6e 07 18 00 42 00 19 00 74 2c 2c 00 21 00 24 00 6e 63 19 00 0b 00 6e 0f 18 00 58 00 19 00 74 2c 17 00 31 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 6e 00 19 00 74 33 19 00 4a 00 fe 00 1b 05 1a 00 81 75 83 41 83 63 82 a2 81 41 83 41 83 63 82 a2 82 ba 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 0d 01 fe 00 1b 06 1a 00 81 75 82 bd 82 ac 82 c1 82 c4 97 88 82 bd 82 bc 82 a7 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 0d 01 fe 00 1b 07 1a 00 81 75 82 a8 82 e2 82 a8 82 e2 81 41 82 bb 82 a4 82 c8 82 f1 82 be 81 42 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1e 01 fe 00 1b 08 1a 00 81 75 82 a2 82 a2 82 c5 82 b5 82 e5 82 a4 81 42 82 b3 82 a0 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 1e 01 fe 00 1b 09 1a 00 81 75 82 e0 82 a4 82 e2 82 be 82 e6 82 a7 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 0a 1a 00 81 75 82 dc 82 c1 82 d2 82 e7 82 b2 82 df 82 f1 82 be 82 cb 81 42 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 28 01 fe 00 1b 0b 1a 00 81 75 82 f1 82 be 82 e6 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 0c 1a 00 81 75 82 c8 82 eb 82 a7 81 5b 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 19 00 00 00 96 00 81 00 ea 00 18 00 34 02 19 00 1b fd 1a 00 81 75 89 bd 82 a9 82 a2 82 e2 82 c8 97 5c 8a b4 82 aa 82 b7 82 e9 82 c8 81 63 81 76 0d 00 00 00 4c 00 fd fc 4c 00 fc fd 67 00 05 00 1b fd 1a 00 81 75 82 a8 82 dc 82 a6 82 e0 82 bb 82 a4 82 a9 81 48 82 bb 82 a4 82 be 82 c8 81 42 81 76 0d 00 00 00 4e fd d1 06 b2 f9 00 00 4a fd fe 00 19 00 00 00 ee 00 18 00 ce 02 19 00 19 00 01 00 96 00 40 00 ea 00 18 00 ce 02 19 00 1b fd 1a 00 81 75 83 67 83 93 83 6c 83 8b 82 c9 82 cd 82 e0 82 a4 89 bd 82 e0 96 b3 82 a2 82 a9 82 e7 82 c8 81 63 0d 00 81 40 88 ea 8b 43 82 c9 82 a9 82 af 82 ca 82 af 82 e9 82 a9 81 48 82 c7 82 a4 82 b7 82 e9 81 48 81 76 0d 00 00 00 10 02 d0 02 dc 02 1a 00 81 75 82 a2 82 ad 82 bc 81 49 81 76 0d 00 81 75 82 e2 82 df 82 c6 82 b1 82 a4 81 42 81 76 0d 00 00 00 12 00 16 00 dc 02 fe 00 4e fd 3c 0b d1 f9 01 00 4b 07 01 ff 4e fd 3c 0b d1 f9 00 00 4b 20 01 ff fe 00 ff 00 81 42 0d 00 81 40 82 b1 82 b1 82 a9 82 e7 82 bb 82 f1 82 c8 82 c9 89 93 82 ad 82 c8 82 a2 82 b5 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 bb 82 ea 82 cd 82 b7 82 b2 82 a2 81 42 8a 58 82 cc 82 a4 82 ed 82 b3 82 cd 8e a8 82 c9 82 b5 82 c4 0d 00 81 40 82 a2 82 bd 82 aa 81 41 82 e0 82 a4 82 bb 82 f1 82 c8 82 c9 94 ad 93 57 82 b5 82 c4 82 a2 82 bd 82 cc 82 a9 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 d6 82 d6 81 42 8a 58 82 c5 82 e4 82 c1 82 ad 82 e8 8b 78 82 f1 82 c5 82 a2 82 c1 82 c4 82 e6 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 b7 82 dc 82 c8 82 a2 81 63 81 42 95 4b 82 b8 89 b6 82 c9 82 de 82 ad 82 a2 82 e9 82 e6 81 42 81 76 0d 00 00 00 16 00 ca 03 4e 05 40 ff c7 f8 01 00 19 00 0d 00 65 0a 18 00 f6 03 19 00 1f 00 65 01 5a 00 08 00 67 00 0f 00 4c 00 fd 05 4c 00 fc 05 16 00 ca 03 4a 05 48 05 1e 00 65 00 5a 00 08 09 1b ff 1a 00 83 86 83 6a 83 82 83 93 82 aa 8a 58 82 c9 8e 51 89 c1 82 b5 82 bd 81 49 81 49 81 49 0d 00 00 00 1c 00 e9 00 1f 00 01 02 16 00 9c 04 1b fd 1a 00 81 75 83 4c 83 59 82 f0 82 c8 82 a8 82 b7 82 e0 82 cc 81 63 0d 00 81 40 82 ed 82 a9 82 c1 82 bd 81 42 89 bd 82 a9 8e 9d 82 c1 82 c4 82 ad 82 e9 82 e6 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 b7 82 dc 82 c8 82 a2 81 63 91 81 82 a2 82 c6 82 b1 82 bd 82 cc 82 de 82 e6 81 63 81 76 0d 00 00 00 16 00 9c 04 fe 00 fe 00 19 00 01 00 76 00 18 00 b0 04 19 00 16 00 e4 04 19 00 01 00 9a 00 80 00 98 00 81 00 99 00 18 00 c8 04 19 00 16 00 6e 05 19 00 00 00 99 00 81 00 e4 00 18 00 e0 04 19 00 16 00 d2 05 16 00 e4 04 16 00 da 08 1b ff 1a 00 92 6e 96 ca 82 c9 95 73 8e 76 8b 63 82 c8 96 cd 97 6c 82 aa 82 a6 82 aa 82 a9 82 ea 82 c4 82 a2 82 e9 81 63 0d 00 00 00 1b fd 1a 00 }
+}

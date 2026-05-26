@@ -1,0 +1,116 @@
+// DG125.SCN
+#include "functions.dgs"
+#pragma script index=125 start=0x51800 end=0x52800 headerU16=0x10 sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(51) {
+  removeCondition(Condition.Injured);
+  removeCondition(Condition.Sick);
+  look(entity: Entity(5), at: Entity.Player);
+  look(entity: Entity.Partner, at: Entity.Player);
+  anim(Entity.Player, Animation(24), wait: 15);
+  speak(Entity.Player, "「な…何だここ…夢か…?」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  rotate(entity: Entity.Player, to: 1050);
+  delay(20);
+  rotate(entity: Entity.Player, to: 1561);
+  delay(20);
+  look(entity: Entity.Player, at: Entity(5));
+  anim(Entity.Player, Animation(15), wait: 15);
+  speak(Entity.Player, "「わっ!誰だぁ!<ORANGE><DIGIMON><WHITE>は?!<NEWLINE> ど、ど、どこだぁ?」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  rotate(entity: Entity.Player, to: 1050);
+  delay(5);
+  look(entity: Entity.Player, at: Entity(5));
+  speak(Entity(5), "「はいはい、落ち着いてねー。<NEWLINE> ぼくは氷雪デジモンのユキダルモン。」<NEWLINE> ここはぼくの家。」<NEWLINE>");
+  showTextbox("「君らは雪の中気を失ってた。それを<NEWLINE> ぼくがひろってきてかいほうした。<NEWLINE> わかった?」<NEWLINE>");
+  rotate(entity: Entity.Player, to: 25);
+  delay(5);
+  look(entity: Entity.Player, at: Entity.Partner);
+  speak(Entity.Player, "「あ、<ORANGE><DIGIMON><WHITE>、無事だ!よかったー。」<NEWLINE>");
+  speak(Entity(5), "「コラ!聞いてんのか!?ぼくがかいほう<NEWLINE> しなきゃ無事じゃなかったんだよ!」<NEWLINE>");
+  look(entity: Entity.Player, at: Entity(5));
+  anim(Entity.Player, Animation(25), wait: 15);
+  speak(Entity.Player, "「えへへ、悪い悪い。サンキューな。」<NEWLINE>");
+  anim(Entity.Player, Animation(0), wait: 30);
+  look(entity: Entity.Player, at: Entity.Partner);
+  anim(Entity.Player, Animation(7), wait: 15);
+  speak(Entity.Player, "「おいこら、<ORANGE><DIGIMON><WHITE>、<NEWLINE> おまえがいきなりぶっ倒れるから<NEWLINE> 俺も頭打っちゃったじゃないか!」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  storeDigimonType(PStat(103));
+  speak(Entity(5), "「きみ、<DIGIMONTYPE2>は寒さには弱い<NEWLINE> ってこと知らないの?無茶なことして、<NEWLINE> きみこそ反省しなさい。」<NEWLINE>");
+  look(entity: Entity.Player, at: Entity(5));
+  delay(20);
+  look(entity: Entity.Player, at: Entity.Partner);
+  anim(Entity.Player, Animation(19), wait: 15);
+  speak(Entity.Player, "「そうだったのか…ごめん<ORANGE><DIGIMON><WHITE>。」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  look(entity: Entity.Player, at: Entity(5));
+  speak(Entity.Player, "「…色々ありがとーな、ユキダルモン。<NEWLINE> で、すまないついでにちょっと<NEWLINE> お願いがあるんだけど…」<NEWLINE>");
+  speak(Entity(5), "「あ~もう。また<DIGIMONTYPE2>が<NEWLINE> ぶっ倒れたらどうするの?早く帰った<NEWLINE> ほうがいいよ!」<NEWLINE>");
+  speak(Entity.Player, "「わ…わかった。<ORANGE><DIGIMON><WHITE>は別の<NEWLINE> デジモンに進化させてくるよ。」<NEWLINE>");
+  move(entity: Entity.Player, to: (93, -1700), sprint: 1);
+  delay(20);
+  move(entity: Entity.Partner, to: (93, -1700), sprint: 1);
+  delay(20);
+  look(entity: Entity(5), at: Entity.Player);
+  waitForPair();
+  speak(Entity(5), "「???進化…?」<NEWLINE>");
+  setTrigger(Trigger(133));
+  warp(to: Map.FRZL07, spawn: 2, trigger: 255);
+  return;
+}
+
+section(5) {
+  storeDigimonType(PStat(103));
+  {
+    if (pstat[103] == 3 || pstat[103] == 5 || pstat[103] == 8 || pstat[103] == 9 || pstat[103] == 47) {
+      break;
+    }
+    if (pstat[103] == 19 || pstat[103] == 32 || pstat[103] == 51 || pstat[103] == 1 || pstat[103] == 2) {
+      break;
+    }
+    if (pstat[103] == 15 || pstat[103] == 16 || pstat[103] == 29 || pstat[103] == 30 || pstat[103] == 43) {
+      break;
+    }
+    if (pstat[103] == 44 || pstat[103] == 21) {
+      break;
+    }
+    {
+      speak(Entity.Player, "「やー、こんちわ。また来たよ。」<NEWLINE>");
+      speak(Entity(5), "「きみは…。前のデジモンはどーしたの?」<NEWLINE>");
+      speak(Entity.Player, "「何言ってんの?同じ同じ。」<NEWLINE>");
+      look(entity: Entity(5), at: Entity.Partner);
+      speak(Entity(5), "「ん?そ…そう?だっけ…?」<NEWLINE>");
+      look(entity: Entity(5), at: Entity.Player);
+      speak(Entity.Player, "「あらためてたのみがあって来たんだ。<NEWLINE> 簡単に言うと、街に来て欲しい。」<NEWLINE>");
+      speak(Entity(5), "「ほえ?なんかいいことある?面白い?」<NEWLINE>");
+      anim(Entity.Player, Animation(19), wait: 15);
+      speak(Entity.Player, "「えーと…何か好きなお店を作っていいよ。」<NEWLINE>");
+      playAnimation(Entity.Player, Animation(0));
+      anim(Entity(5), Animation(11), wait: 5);
+      speak(Entity(5), "「えーっ!お店?ぼくあこがれてたんだよ。<NEWLINE> いいないいな、行く、行くよ~。」<NEWLINE>");
+      speak(Entity.Player, "「おーそっかそっか。じゃあすぐにでも。」<NEWLINE>");
+      speak(Entity(5), "「お店お店~♪かき氷♪アイスクリーム♪<NEWLINE> 楽しみだなぁ~。」<NEWLINE>");
+      move(entity: Entity(5), to: (-540, -336), sprint: 1);
+      waitForEntity(Entity(5));
+      break;
+    }
+    approach(who: Entity(5), x: 93, y: -1700, tries: 3, wait: 20);
+    playSound(8, 11);
+    speak(Entity.System, "ユキダルモンが街に参加した!!!<NEWLINE>");
+    setTrigger(Trigger(223));
+    addPStat(PStat(1), 2);
+    return;
+  }
+  speak(Entity(5), "「あ、こらぁ!そのデジモンは寒さに弱いん<NEWLINE> だってば!」<NEWLINE>");
+  anim(Entity.Player, Animation(15), wait: 15);
+  speak(Entity.Player, "「うわ、また来まーす!」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  return;
+  garbage { 10 00 fe 00 10 00 33 00 12 00 05 00 a4 04 ff ff fe 00 65 20 65 40 4c 00 05 fd 4c 00 fc fd 56 00 fd 18 67 00 0f 00 1b fd 1a 00 81 75 82 c8 81 63 89 bd 82 be 82 b1 82 b1 81 63 96 b2 82 a9 81 63 81 48 81 76 0d 00 00 00 56 00 fd 00 4d fd 1a 04 67 00 14 00 4d fd 19 06 67 00 14 00 4c 00 fd 05 56 00 fd 0f 67 00 0f 00 1b fd 1a 00 81 75 82 ed 82 c1 81 49 92 4e 82 be 82 9f 81 49 01 0a 06 00 01 01 82 cd 81 48 81 49 0d 00 81 40 82 c7 81 41 82 c7 81 41 82 c7 82 b1 82 be 82 9f 81 48 81 76 0d 00 00 00 56 00 fd 00 4d fd 1a 04 67 00 05 00 4c 00 fd 05 1b 05 1a 00 81 75 82 cd 82 a2 82 cd 82 a2 81 41 97 8e 82 bf 92 85 82 a2 82 c4 82 cb 81 5b 81 42 0d 00 81 40 82 da 82 ad 82 cd 95 58 90 e1 83 66 83 57 83 82 83 93 82 cc 83 86 83 4c 83 5f 83 8b 83 82 83 93 81 42 81 76 0d 00 81 40 82 b1 82 b1 82 cd 82 da 82 ad 82 cc 89 c6 81 42 81 76 0d 00 00 00 1a 00 81 75 8c 4e 82 e7 82 cd 90 e1 82 cc 92 86 8b 43 82 f0 8e b8 82 c1 82 c4 82 bd 81 42 82 bb 82 ea 82 f0 0d 00 81 40 82 da 82 ad 82 aa 82 d0 82 eb 82 c1 82 c4 82 ab 82 c4 82 a9 82 a2 82 d9 82 a4 82 b5 82 bd 81 42 0d 00 81 40 82 ed 82 a9 82 c1 82 bd 81 48 81 76 0d 00 00 00 4d fd 19 00 67 00 05 00 4c 00 fd fc 1b fd 1a 00 81 75 82 a0 81 41 01 0a 06 00 01 01 81 41 96 b3 8e 96 82 be 81 49 82 e6 82 a9 82 c1 82 bd 81 5b 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 83 52 83 89 81 49 95 b7 82 a2 82 c4 82 f1 82 cc 82 a9 81 49 81 48 82 da 82 ad 82 aa 82 a9 82 a2 82 d9 82 a4 0d 00 81 40 82 b5 82 c8 82 ab 82 e1 96 b3 8e 96 82 b6 82 e1 82 c8 82 a9 82 c1 82 bd 82 f1 82 be 82 e6 81 49 81 76 0d 00 00 00 4c 00 fd 05 56 00 fd 19 67 00 0f 00 1b fd 1a 00 81 75 82 a6 82 d6 82 d6 81 41 88 ab 82 a2 88 ab 82 a2 81 42 83 54 83 93 83 4c 83 85 81 5b 82 c8 81 42 81 76 0d 00 00 00 56 00 fd 00 67 00 1e 00 4c 00 fd fc 56 00 fd 07 67 00 0f 00 1b fd 1a 00 81 75 82 a8 82 a2 82 b1 82 e7 81 41 01 0a 06 00 01 01 81 41 0d 00 81 40 82 a8 82 dc 82 a6 82 aa 82 a2 82 ab 82 c8 82 e8 82 d4 82 c1 93 7c 82 ea 82 e9 82 a9 82 e7 0d 00 81 40 89 b4 82 e0 93 aa 91 c5 82 c1 82 bf 82 e1 82 c1 82 bd 82 b6 82 e1 82 c8 82 a2 82 a9 81 49 81 76 0d 00 00 00 56 00 fd 00 22 67 1b 05 1a 00 81 75 82 ab 82 dd 81 41 07 67 82 cd 8a a6 82 b3 82 c9 82 cd 8e e3 82 a2 0d 00 81 40 82 c1 82 c4 82 b1 82 c6 92 6d 82 e7 82 c8 82 a2 82 cc 81 48 96 b3 92 83 82 c8 82 b1 82 c6 82 b5 82 c4 81 41 0d 00 81 40 82 ab 82 dd 82 b1 82 bb 94 bd 8f c8 82 b5 82 c8 82 b3 82 a2 81 42 81 76 0d 00 00 00 4c 00 fd 05 67 00 14 00 4c 00 fd fc 56 00 fd 13 67 00 0f 00 1b fd 1a 00 81 75 82 bb 82 a4 82 be 82 c1 82 bd 82 cc 82 a9 81 63 82 b2 82 df 82 f1 01 0a 06 00 01 01 81 42 81 76 0d 00 00 00 56 00 fd 00 4c 00 fd 05 1b fd 1a 00 81 75 81 63 90 46 81 58 82 a0 82 e8 82 aa 82 c6 81 5b 82 c8 81 41 83 86 83 4c 83 5f 83 8b 83 82 83 93 81 42 0d 00 81 40 82 c5 81 41 82 b7 82 dc 82 c8 82 a2 82 c2 82 a2 82 c5 82 c9 82 bf 82 e5 82 c1 82 c6 0d 00 81 40 82 a8 8a e8 82 a2 82 aa 82 a0 82 e9 82 f1 82 be 82 af 82 c7 81 63 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a0 81 60 82 e0 82 a4 81 42 82 dc 82 bd 07 67 82 aa 0d 00 81 40 82 d4 82 c1 93 7c 82 ea 82 bd 82 e7 82 c7 82 a4 82 b7 82 e9 82 cc 81 48 91 81 82 ad 8b 41 82 c1 82 bd 0d 00 81 40 82 d9 82 a4 82 aa 82 a2 82 a2 82 e6 81 49 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 ed 81 63 82 ed 82 a9 82 c1 82 bd 81 42 01 0a 06 00 01 01 82 cd 95 ca 82 cc 0d 00 81 40 83 66 83 57 83 82 83 93 82 c9 90 69 89 bb 82 b3 82 b9 82 c4 82 ad 82 e9 82 e6 81 42 81 76 0d 00 00 00 4e fd 5d 00 5c f9 01 00 67 00 14 00 4e fc 5d 00 5c f9 01 00 67 00 14 00 4c 00 05 fd 4a fd 4a fc 1b 05 1a 00 81 75 81 48 81 48 81 48 90 69 89 bb 81 63 81 48 81 76 0d 00 00 00 1c 00 85 00 4b 5e 02 ff fe 00 22 67 19 00 08 00 67 03 48 00 67 05 48 00 67 08 48 00 67 09 48 00 67 2f 18 00 c6 04 19 00 16 00 c2 07 19 00 08 00 67 13 48 00 67 20 48 00 67 33 48 00 67 01 48 00 67 02 18 00 e6 04 19 00 16 00 c2 07 19 00 08 00 67 0f 48 00 67 10 48 00 67 1d 48 00 67 1e 48 00 67 2b 18 00 06 05 19 00 16 00 c2 07 19 00 08 00 67 2c 48 00 67 15 18 00 1a 05 19 00 16 00 c2 07 1b fd 1a 00 81 75 82 e2 81 5b 81 41 82 b1 82 f1 82 bf 82 ed 81 42 82 dc 82 bd 97 88 82 bd 82 e6 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 ab 82 dd 82 cd 81 63 81 42 91 4f 82 cc 83 66 83 57 83 82 83 93 82 cd 82 c7 81 5b 82 b5 82 bd 82 cc 81 48 81 76 0d 00 00 00 1b fd 1a 00 81 75 89 bd 8c be 82 c1 82 c4 82 f1 82 cc 81 48 93 af 82 b6 93 af 82 b6 81 42 81 76 0d 00 00 00 4c 00 05 fc 1b 05 1a 00 81 75 82 f1 81 48 82 bb 81 63 82 bb 82 a4 81 48 82 be 82 c1 82 af 81 63 81 48 81 76 0d 00 00 00 4c 00 05 fd 1b fd 1a 00 81 75 82 a0 82 e7 82 bd 82 df 82 c4 82 bd 82 cc 82 dd 82 aa 82 a0 82 c1 82 c4 97 88 82 bd 82 f1 82 be 81 42 0d 00 81 40 8a c8 92 50 82 c9 8c be 82 a4 82 c6 81 41 8a 58 82 c9 97 88 82 c4 97 7e 82 b5 82 a2 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 d9 82 a6 81 48 82 c8 82 f1 82 a9 82 a2 82 a2 82 b1 82 c6 82 a0 82 e9 81 48 96 ca 94 92 82 a2 81 48 81 76 0d 00 00 00 56 00 fd 13 67 00 0f 00 1b fd 1a 00 81 75 82 a6 81 5b 82 c6 81 63 89 bd 82 a9 8d 44 82 ab 82 c8 82 a8 93 58 82 f0 8d ec 82 c1 82 c4 82 a2 82 a2 82 e6 81 42 81 76 0d 00 00 00 56 00 fd 00 56 00 05 0b 67 00 05 00 1b 05 1a 00 81 75 82 a6 81 5b 82 c1 81 49 82 a8 93 58 81 48 82 da 82 ad 82 a0 82 b1 82 aa 82 ea 82 c4 82 bd 82 f1 82 be 82 e6 81 42 0d 00 81 40 82 a2 82 a2 82 c8 82 a2 82 a2 82 c8 81 41 8d 73 82 ad 81 41 8d 73 82 ad 82 e6 81 60 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a8 81 5b 82 bb 82 c1 82 a9 82 bb 82 c1 82 a9 81 42 82 b6 82 e1 82 a0 82 b7 82 ae 82 c9 82 c5 82 e0 81 42 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 a8 93 58 82 a8 93 58 81 60 81 f4 82 a9 82 ab 95 58 81 f4 83 41 83 43 83 58 83 4e 83 8a 81 5b 83 80 81 f4 0d 00 81 40 8a 79 82 b5 82 dd 82 be 82 c8 82 9f 81 60 81 42 81 76 0d 00 00 00 4e 05 e4 fd b0 fe 01 00 4a 05 16 00 5c 07 4e 05 5d 00 5c f9 01 00 19 00 0d 00 65 03 18 00 84 07 19 00 1f 00 65 01 67 00 14 00 4c 00 fd 05 4c 00 fc 05 16 00 5c 07 4a 05 48 05 1e 00 65 00 5a 00 08 0b 1b ff 1a 00 83 86 83 4c 83 5f 83 8b 83 82 83 93 82 aa 8a 58 82 c9 8e 51 89 c1 82 b5 82 bd 81 49 81 49 81 49 0d 00 00 00 1c 00 df 00 1f 00 01 02 fe 00 1b 05 1a 00 81 75 82 a0 81 41 82 b1 }
+}

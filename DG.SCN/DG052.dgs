@@ -1,0 +1,81 @@
+// DG052.SCN
+#include "functions.dgs"
+#pragma script index=52 start=0x26000 end=0x26800 headerU16=0x20 sentinelOff=0x2875
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnChest(Item.Sirloin, 500, 567, 0, 653);
+  unsetTrigger(Trigger(100));
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「料理してやる!」<NEWLINE>");
+  finishEncounter(Trigger(307));
+}
+
+section(6) {
+  speak(Entity(6), "「料理してやる!」<NEWLINE>");
+  finishEncounter(Trigger(307));
+}
+
+section(7) {
+  speak(Entity(7), "「料理してやる!」<NEWLINE>");
+  finishEncounter(Trigger(307));
+}
+
+section(83) {
+  rotate(entity: Entity.Player, to: 1024);
+  delay(5);
+  if (trigger(348)) {
+    if (!trigger(100)) {
+      rotate3DObject(2, 1);
+      rotate3DObject(3, 1);
+    }
+    delay(20);
+    speak(Entity.Player, "「えっとメモは…と。」<NEWLINE>");
+    speak(Entity.System, " <NEWLINE>『バカから点をとったところにもどれ』<NEWLINE>");
+    setTrigger(Trigger(100));
+    return;
+  }
+  if (item[Item.FridgeKey] >= 1 && !trigger(348)) {
+    setTrigger(Trigger(100));
+    playSound(8, 3);
+    speak(Entity.System, "<LIGHTBLUE>れいぞうこのカギ<WHITE>をつかった!<NEWLINE>");
+    rotate3DObject(2, 1);
+    rotate3DObject(3, 1);
+    delay(60);
+    removeItem(Item.FridgeKey, 1);
+    anim(Entity.Player, Animation(24), wait: 15);
+    speak(Entity.Player, "「んん?ない、ないぞ?」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity.Player, "「お?メモがはってある…」<NEWLINE>");
+    speak(Entity.System, " <NEWLINE>『バカから点をとったところにもどれ』<NEWLINE>");
+    speak(Entity.Player, "「む、今はこのメモをたよりにするしか<NEWLINE> なさそうだ。うーん。」<NEWLINE>");
+    setTrigger(Trigger(348));
+    return;
+  }
+  if (item[Item.FridgeKey] < 1 && !trigger(348)) {
+    speak(Entity.Player, "「おや、れいぞうこか。」<NEWLINE>");
+    speak(Entity.Player, "「うげ、カギがかかってる。<NEWLINE> そんなれいぞうこってありか?」<NEWLINE>");
+    return;
+  }
+  return;
+}
+
+section(81) {
+  rotate3DObject(1, 1);
+  sfx(8, 1, wait: 10);
+  move(entity: Entity.Player, to: (81, -1600), sprint: 0);
+  warp(to: Map.YAKA12, spawn: 0, trigger: 255);
+  return;
+}
+
+section(82) {
+  rotate3DObject(0, 1);
+  sfx(8, 1, wait: 10);
+  move(entity: Entity.Player, to: (-117, 1200), sprint: 0);
+  warp(to: Map.YAKA15, spawn: 1, trigger: 255);
+  return;
+  garbage { 20 00 fe 00 20 00 05 00 32 00 06 00 5a 00 07 00 82 00 53 00 aa 00 51 00 c0 02 52 00 da 02 ff ff 75 28 f4 01 00 00 37 02 00 00 8d 02 1d 00 64 00 fe 00 1b 05 1a 00 81 75 97 bf 97 9d 82 b5 82 c4 82 e2 82 e9 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 33 01 fe 00 1b 06 1a 00 81 75 97 bf 97 9d 82 b5 82 c4 82 e2 82 e9 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 33 01 fe 00 1b 07 1a 00 81 75 97 bf 97 9d 82 b5 82 c4 82 e2 82 e9 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 33 01 fe 00 4d fd 00 04 67 00 05 00 19 00 00 00 5c 01 18 00 2a 01 19 00 19 00 01 00 64 00 18 00 d2 00 19 00 70 02 00 01 70 03 00 01 67 00 14 00 1b fd 1a 00 81 75 82 a6 82 c1 82 c6 83 81 83 82 82 cd 81 63 82 c6 81 42 81 76 0d 00 00 00 1b ff 1a 00 81 40 0d 00 81 77 83 6f 83 4a 82 a9 82 e7 93 5f 82 f0 82 c6 82 c1 82 bd 82 c6 82 b1 82 eb 82 c9 82 e0 82 c7 82 ea 81 78 0d 00 00 00 1c 00 64 00 fe 00 19 00 24 00 7b 02 01 00 81 00 5c 01 18 00 46 02 19 00 1c 00 64 00 5a 00 08 03 1b ff 1a 00 01 06 82 ea 82 a2 82 bc 82 a4 82 b1 82 cc 83 4a 83 4d 01 01 82 f0 82 c2 82 a9 82 c1 82 bd 81 49 0d 00 00 00 70 02 00 01 70 03 00 01 67 00 3c 00 29 00 7b 01 56 00 fd 18 67 00 0f 00 1b fd 1a 00 81 75 82 f1 82 f1 81 48 82 c8 82 a2 81 41 82 c8 82 a2 82 bc 81 48 81 76 0d 00 00 00 56 00 fd 00 1b fd 1a 00 81 75 82 a8 81 48 83 81 83 82 82 aa 82 cd 82 c1 82 c4 82 a0 82 e9 81 63 81 76 0d 00 00 00 1b ff 1a 00 81 40 0d 00 81 77 83 6f 83 4a 82 a9 82 e7 93 5f 82 f0 82 c6 82 c1 82 bd 82 c6 82 b1 82 eb 82 c9 82 e0 82 c7 82 ea 81 78 0d 00 00 00 1b fd 1a 00 81 75 82 de 81 41 8d a1 82 cd 82 b1 82 cc 83 81 83 82 82 f0 82 bd 82 e6 82 e8 82 c9 82 b7 82 e9 82 b5 82 a9 0d 00 81 40 82 c8 82 b3 82 bb 82 a4 82 be 81 42 82 a4 81 5b 82 f1 81 42 81 76 0d 00 00 00 1c 00 5c 01 fe 00 19 00 24 00 7b 05 01 00 81 00 5c 01 18 00 be 02 19 00 1b fd 1a 00 81 75 82 a8 82 e2 81 41 82 ea 82 a2 82 bc 82 a4 82 b1 82 a9 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a4 82 b0 81 41 83 4a 83 4d 82 aa 82 a9 82 a9 82 c1 82 c4 82 e9 81 42 0d 00 81 40 82 bb 82 f1 82 c8 82 ea 82 a2 82 bc 82 a4 82 b1 82 c1 82 c4 82 a0 82 e8 82 a9 81 48 81 76 0d 00 00 00 fe 00 fe 00 70 01 00 01 5a 00 08 01 67 00 0a 00 4e fd 51 00 c0 f9 00 00 4b 36 00 ff fe 00 70 00 00 01 5a 00 08 01 67 00 0a 00 4e fd 8b ff b0 04 00 00 4b 39 01 ff fe 00 ff 00 82 c4 81 63 81 76 0d 00 00 00 4c 00 05 fd 1b 05 1a 00 81 75 98 62 82 f0 95 b7 82 a2 82 c4 82 e0 82 e7 82 a4 82 c6 82 b5 82 e6 82 a4 82 a9 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 69 83 80 83 56 83 83 83 80 83 56 83 83 81 63 81 6a 0d 00 00 00 1b 05 1a 00 81 75 8d c5 8b df 8e 84 82 cc 95 94 89 ba 92 42 82 cd 81 41 8e 84 82 cc 8c be 82 a4 82 b1 82 c6 82 f0 0d 00 81 40 95 b7 82 a9 82 c8 82 ad 82 c8 82 c1 82 c4 82 ab 82 c4 82 a2 82 e9 81 42 0d 00 00 00 1a 00 81 75 94 bd 8d 52 93 49 82 c5 82 cd 82 c8 82 a2 82 aa 81 41 96 bd 97 df 82 f0 0d 00 81 40 82 db 82 c1 82 a9 82 e8 82 ed 82 b7 82 ea 82 c4 82 a2 82 e9 82 e6 82 a4 82 c8 82 cc 82 be 81 42 81 76 0d 00 00 00 1a 00 81 75 96 59 82 ea 82 e9 82 a2 82 ba 82 f1 82 c9 81 41 97 9d 89 f0 82 b7 82 e7 82 b5 82 c4 82 a2 82 c8 82 a2 8e 9e 82 e0 0d 00 81 40 82 a0 82 e9 81 42 82 c5 81 41 96 7b 97 88 8e 84 82 cc 90 48 8e 96 82 cd 95 94 89 ba 82 aa 89 5e 82 f1 82 c5 0d 00 81 40 82 ad 82 e9 82 b1 82 c6 82 c9 82 c8 82 c1 82 c4 82 a2 82 e9 82 cc 82 be 82 aa 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 69 83 70 83 4e 83 70 83 4e 81 63 81 6a 0d 00 00 00 1b 05 1a 00 81 75 8e 84 82 aa 8c a4 8b 86 82 c9 94 4d 92 86 82 b7 82 e9 8a d4 81 41 90 48 8e 96 82 cd 91 53 82 ad 0d 00 81 40 89 5e 82 ce 82 ea 82 c4 82 b1 82 b8 81 63 8e 84 82 e0 94 4d 92 86 82 cc 82 a0 82 dc 82 e8 81 41 8b f3 95 a0 0d 00 81 40 82 f0 96 59 82 ea 82 c4 82 a2 82 bd 82 c6 81 42 82 c5 81 41 82 a0 82 a0 82 c8 82 c1 82 bd 81 42 81 76 0d 00 00 00 4c 00 fd 05 1b fd 1a 00 81 75 81 63 81 63 81 63 94 4d 92 86 82 b5 82 b7 82 ac 82 be 82 e6 81 41 82 bb 82 ea 82 cd 81 42 81 76 0d 00 00 00 1b 05 1a 00 }
+}

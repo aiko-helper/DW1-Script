@@ -1,0 +1,190 @@
+// DG121.SCN
+#include "functions.dgs"
+#pragma script index=121 start=0x4f800 end=0x50000 headerU16=0x14 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 17, item: Item.Digimushroom, x: 46, y: 61);
+  spawnItemChance(max: 99, chance: 0, item: Item.SageFruit, x: 60, y: 53);
+  if (trigger(8) || trigger(9) || trigger(10)) {
+    playAnimation(Entity(5), Animation(29));
+  }
+  if (trigger(8) && trigger(9)) {
+    playAnimation(Entity(5), Animation(30));
+  }
+  if (trigger(8) && trigger(10)) {
+    playAnimation(Entity(5), Animation(30));
+  }
+  if (trigger(9) && trigger(10)) {
+    playAnimation(Entity(5), Animation(30));
+  }
+  if (trigger(8) ?? !trigger(9) && trigger(10)) {
+    playAnimation(Entity(5), Animation(31));
+  }
+  if (trigger(11) || trigger(12) || trigger(13)) {
+    playAnimation(Entity(6), Animation(29));
+  }
+  if (trigger(11) && trigger(12)) {
+    playAnimation(Entity(6), Animation(30));
+  }
+  if (trigger(11) && trigger(13)) {
+    playAnimation(Entity(6), Animation(30));
+  }
+  if (trigger(12) && trigger(13)) {
+    playAnimation(Entity(6), Animation(30));
+  }
+  if (trigger(11) ?? !trigger(12) && trigger(13)) {
+    playAnimation(Entity(6), Animation(31));
+  }
+  return;
+}
+
+section(5) {
+  {
+    if (trigger(8) && trigger(9)) {
+      speak(Entity(5), "「よう、<LIGHTBLUE><PLAYER><WHITE>どんでねえか!」<NEWLINE>");
+      break;
+    }
+    if (trigger(8) && trigger(10)) {
+      speak(Entity(5), "「よう、<LIGHTBLUE><PLAYER><WHITE>どんでねえか!」<NEWLINE>");
+      break;
+    }
+    if (trigger(9) && trigger(10)) {
+      speak(Entity(5), "「よう、<LIGHTBLUE><PLAYER><WHITE>どんでねえか!」<NEWLINE>");
+      break;
+    }
+    if (trigger(8) || trigger(9) || trigger(10)) {
+      speak(Entity(5), "「よう、また来てくれただな!」<NEWLINE>");
+      break;
+    }
+    speak(Entity(5), "「よう、オラぁ、モジャモンだ!」<NEWLINE>");
+  }
+  setPStat(PStat(254), 5);
+  setPStat(PStat(249), 1);
+  callSubroutine(2);
+  if (trigger(8) || trigger(9) || trigger(10)) {
+    playAnimation(Entity(5), Animation(29));
+  }
+  if (trigger(8) && trigger(9)) {
+    playAnimation(Entity(5), Animation(30));
+  }
+  if (trigger(8) && trigger(10)) {
+    playAnimation(Entity(5), Animation(30));
+  }
+  if (trigger(9) && trigger(10)) {
+    playAnimation(Entity(5), Animation(30));
+  }
+  if (trigger(8) ?? !trigger(9) && trigger(10)) {
+    playAnimation(Entity(5), Animation(31));
+  }
+  if (!trigger(5) || !trigger(6) || !trigger(7)) {
+    return;
+  }
+  if (!trigger(8) || !trigger(9) || !trigger(10)) {
+    return;
+  }
+  if (!trigger(11) || !trigger(12) || !trigger(13)) {
+    return;
+  }
+  if (trigger(252)) {
+    return;
+  }
+  {
+    speak(Entity(5), "「<LIGHTBLUE><PLAYER><WHITE>どん、オラぁ、本当に<NEWLINE> カンゲキしただ!<NEWLINE> オラたちのために色々してくれて…」<NEWLINE>");
+    showTextbox("「オラぁ決めただ。街へ行くだよ。<NEWLINE> よろしくたのむだよ!」<NEWLINE>");
+    break;
+  }
+  approach(who: Entity(5), x: 1931, y: -1543, tries: 6, wait: 10);
+  playSound(8, 11);
+  speak(Entity.System, "モジャモンが街に参加した!!!<NEWLINE>");
+  setTrigger(Trigger(252));
+  setTrigger(Trigger(108));
+  addPStat(PStat(1), 2);
+  return;
+}
+
+section(6) {
+  {
+    if (trigger(11) && trigger(12)) {
+      speak(Entity(6), "「よう、<LIGHTBLUE><PLAYER><WHITE>どんでねえか!」<NEWLINE>");
+      break;
+    }
+    if (trigger(12) && trigger(13)) {
+      speak(Entity(6), "「よう、<LIGHTBLUE><PLAYER><WHITE>どんでねえか!」<NEWLINE>");
+      break;
+    }
+    if (trigger(12) && trigger(13)) {
+      speak(Entity(6), "「よう、<LIGHTBLUE><PLAYER><WHITE>どんでねえか!」<NEWLINE>");
+      break;
+    }
+    if (trigger(11) || trigger(12) || trigger(13)) {
+      speak(Entity(6), "「よう、また来てくれただな!」<NEWLINE>");
+      break;
+    }
+    speak(Entity(6), "「よう、オラぁ、モジャモンだ!」<NEWLINE>");
+  }
+  setPStat(PStat(254), 6);
+  setPStat(PStat(249), 2);
+  callSubroutine(2);
+  if (trigger(11) || trigger(12) || trigger(13)) {
+    playAnimation(Entity(6), Animation(29));
+  }
+  if (trigger(11) && trigger(12)) {
+    playAnimation(Entity(6), Animation(30));
+  }
+  if (trigger(11) && trigger(13)) {
+    playAnimation(Entity(6), Animation(30));
+  }
+  if (trigger(12) && trigger(13)) {
+    playAnimation(Entity(6), Animation(30));
+  }
+  if (trigger(11) ?? !trigger(12) && trigger(13)) {
+    playAnimation(Entity(6), Animation(31));
+  }
+  if (!trigger(5) || !trigger(6) || !trigger(7)) {
+    return;
+  }
+  if (!trigger(8) || !trigger(9) || !trigger(10)) {
+    return;
+  }
+  if (!trigger(11) || !trigger(12) || !trigger(13)) {
+    return;
+  }
+  if (trigger(252)) {
+    return;
+  }
+  {
+    speak(Entity(6), "「<LIGHTBLUE><PLAYER><WHITE>どん、オラぁ、本当に<NEWLINE> カンゲキしただ!<NEWLINE> オラたちのために色々してくれて…」<NEWLINE>");
+    showTextbox("「オラぁ決めただ。街へ行くだよ。<NEWLINE> よろしくたのむだよ!」<NEWLINE>");
+    break;
+  }
+  approach(who: Entity(6), x: -1605, y: -856, tries: 6, wait: 10);
+  playSound(8, 11);
+  speak(Entity.System, "モジャモンが街に参加した!!!<NEWLINE>");
+  setTrigger(Trigger(252));
+  setTrigger(Trigger(109));
+  addPStat(PStat(1), 2);
+  return;
+}
+
+section(51) {
+  {
+    if ((cond & 0x40) == 0x01 && !trigger(133)) break;
+    return;
+  }
+  storeDigimonType(PStat(103));
+  if (pstat[103] == 3 || pstat[103] == 5 || pstat[103] == 8 || pstat[103] == 9 || pstat[103] == 47) {
+    jumpToScriptSection(174, 51);
+  }
+  if (pstat[103] == 19 || pstat[103] == 32 || pstat[103] == 51 || pstat[103] == 1 || pstat[103] == 2) {
+    jumpToScriptSection(174, 51);
+  }
+  if (pstat[103] == 15 || pstat[103] == 16 || pstat[103] == 29 || pstat[103] == 30 || pstat[103] == 43) {
+    jumpToScriptSection(174, 51);
+  }
+  if (pstat[103] == 44 || pstat[103] == 21) {
+    jumpToScriptSection(174, 51);
+  }
+  return;
+  garbage { 14 00 fe 00 14 00 05 00 1a 01 06 00 fe 03 33 00 e2 06 ff ff 24 00 6e 63 19 00 0b 00 6e 11 18 00 2a 00 19 00 74 2c 2e 00 3d 00 24 00 6e 63 19 00 0b 00 6e 00 18 00 40 00 19 00 74 3b 3c 00 35 00 19 00 00 00 08 00 40 00 09 00 40 00 0a 00 18 00 58 00 19 00 56 00 05 1d 19 00 00 00 08 00 80 00 09 00 18 00 6c 00 19 00 56 00 05 1e 19 00 00 00 08 00 80 00 0a 00 18 00 80 00 19 00 56 00 05 1e 19 00 00 00 09 00 80 00 0a 00 }
+}

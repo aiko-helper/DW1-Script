@@ -1,0 +1,212 @@
+// DG049.SCN
+#include "functions.dgs"
+#pragma script index=49 start=0x24000 end=0x24800 headerU16=0x24 sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(57) {
+  if (trigger(358) && trigger(359) && !trigger(360)) {
+    setTrigger(Trigger(360));
+    loadAndSetDigimon(Digimon.Devimon, Entity(0), 0);
+    setDialogOwner(Entity.Player);
+    anim(Entity.Player, Animation(25), wait: 15);
+    showTextbox("「(!……殺気を感じる…)」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+    look(entity: Entity.Player, at: Entity(5));
+    delay(10);
+    panTo(x: 0, y: 1614, slowdown: 20);
+    speak(Entity(5), "「フフフ…ハハ…やはり来たか!」<NEWLINE>");
+    move(entity: Entity.Player, to: (-150, -239), sprint: 1);
+    move(entity: Entity.Partner, to: (150, -239), sprint: 1);
+    waitForPair();
+    lookPairAt(Entity(5));
+    delay(5);
+    speak(Entity.Player, "「誰だ!」<NEWLINE>");
+    speak(Entity(5), "「俺はデビモン!闇の力にみいられた<NEWLINE> 堕天使(だてんし)さ。ククク…」<NEWLINE>");
+    speak(Entity.Player, "「何か知っているらしいな!」<NEWLINE>");
+    speak(Entity(5), "「ヴァンデモンは館のどこかにいるぜ。<NEWLINE> 多分まだ生きているだろう。」<NEWLINE>");
+    anim(Entity.Player, Animation(20), wait: 15);
+    speak(Entity.Player, "「おまえのしわざなのかっ!」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(5), "「さあな。だが俺はキサマ達の敵。<NEWLINE> それだけは間違いない。」<NEWLINE>");
+    playAnimation(Entity(5), Animation(28));
+    sfx(8, 8, wait: 20);
+    speak(Entity.Player, "「あっ、逃がすかっ!」<NEWLINE>");
+    move(entity: Entity.Player, to: (-150, 921), sprint: 1);
+    move(entity: Entity.Partner, to: (150, 721), sprint: 1);
+    delay(20);
+    look(entity: Entity.Player, at: Entity(5));
+    delay(5);
+    speak(Entity(5), "「フフフ…ハハハハ!」<NEWLINE>");
+    move(entity: Entity(5), to: (145, 795), animDuration: 5);
+    waitForEntity(Entity(5));
+    panTo(x: 0, y: 1614, slowdown: 20);
+    move(entity: Entity(5), to: (0, -489), animDuration: 5);
+    waitForEntity(Entity(5));
+    look(entity: Entity.Player, at: Entity(5));
+    delay(10);
+    speak(Entity.Player, "「しまった!」<NEWLINE>");
+    look(entity: Entity.Player, at: Entity(5));
+    delay(10);
+    look(entity: Entity(5), at: Entity.Player);
+    delay(10);
+    speak(Entity(5), "「クク…ヴァンデモンに会ったらよろしく。」<NEWLINE>");
+    move(entity: Entity.Player, to: (50, 250), sprint: 1);
+    move(entity: Entity(5), to: (50, -1640), animDuration: 12);
+    waitForEntity(Entity(5));
+    waitForEntity(Entity.Player);
+    unloadEntity(Entity(5));
+    move(entity: Entity.Player, to: (50, -480), sprint: 1);
+    waitForEntity(Entity.Player);
+    speak(Entity.Player, "「逃げられた…くそ!イヤなやつだっ。」<NEWLINE>");
+    followEntity(Entity.Player, speed: 10);
+    return;
+  }
+  if (!trigger(121)) {
+    setTrigger(Trigger(121));
+    delay(20);
+    rotate(entity: Entity.Player, to: 2048);
+    waitForEntity(Entity.Player);
+    delay(10);
+    rotate(entity: Entity.Player, to: 2560);
+    waitForEntity(Entity.Player);
+    delay(10);
+    rotate(entity: Entity.Player, to: 1536);
+    waitForEntity(Entity.Player);
+    delay(10);
+    panTo(x: -997, y: -977, slowdown: 30);
+    panTo(x: -1035, y: 4000, slowdown: 50);
+    panTo(x: 1222, y: 4000, slowdown: 30);
+    panTo(x: 1066, y: -977, slowdown: 50);
+    rotate(entity: Entity.Player, to: 2560);
+    followEntity(Entity.Player, speed: 30);
+    rotate(entity: Entity.Player, to: 2048);
+    rotate(entity: Entity.Partner, to: 2048);
+    waitForPair();
+    speak(Entity.Player, "「ふぇー、広そうなお屋敷だなー。」<NEWLINE>");
+    move(entity: Entity.Player, to: (-6, -1255), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    anim(Entity.Player, Animation(24), wait: 15);
+    speak(Entity.Player, "「誰かいますかーーーーーっ?」<NEWLINE>");
+    anim(Entity.Player, Animation(0), wait: 40);
+    look(entity: Entity.Player, at: Entity.Partner);
+    waitForEntity(Entity.Player);
+    look(entity: Entity.Partner, at: Entity.Player);
+    waitForEntity(Entity.Partner);
+    speak(Entity.Player, "「いないのかな?それとも広くて聞こえて<NEWLINE> ないのかな?」<NEWLINE>");
+    rotate(entity: Entity.Player, to: 3584);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 3072);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 2560);
+    waitForEntity(Entity.Player);
+    rotate(entity: Entity.Player, to: 2048);
+    waitForEntity(Entity.Player);
+    showTextbox("「まぁいいや、よし、探険開始っ!」<NEWLINE>");
+    return;
+  }
+  return;
+}
+
+section(84) {
+  {
+    if (item[Item.MansionKey] >= 1 && !trigger(111)) {
+      rotate(entity: Entity.Player, to: 1024);
+      playSound(8, 3);
+      speak(Entity.System, "<LIGHTBLUE>館のカギ<WHITE>を使った!<NEWLINE>");
+      setTrigger(Trigger(111));
+      break;
+    }
+    if (item[Item.MansionKey] >= 1 || trigger(111)) break;
+    rotate(entity: Entity.Player, to: 1024);
+    sfx(8, 2, wait: 5);
+    playSound(8, 2);
+    speak(Entity.System, "開かない…カギがかかっている。<NEWLINE>");
+    return;
+  }
+  rotate3DObject(4, 1);
+  sfx(8, 1, wait: 10);
+  move(entity: Entity.Player, to: (-2000, 1433), sprint: 0);
+  warp(to: Map.YAKA13, spawn: 1, trigger: 255);
+  return;
+}
+
+section(85) {
+  {
+    if (item[Item.MansionKey] >= 1 && !trigger(113)) {
+      rotate(entity: Entity.Player, to: 1024);
+      playSound(8, 3);
+      speak(Entity.System, "<LIGHTBLUE>館のカギ<WHITE>を使った!<NEWLINE>");
+      setTrigger(Trigger(113));
+      break;
+    }
+    if (item[Item.MansionKey] >= 1 || trigger(113)) break;
+    rotate(entity: Entity.Player, to: 1024);
+    sfx(8, 2, wait: 5);
+    playSound(8, 2);
+    speak(Entity.System, "開かない…カギがかかっている。<NEWLINE>");
+    return;
+  }
+  rotate3DObject(5, 1);
+  sfx(8, 1, wait: 10);
+  move(entity: Entity.Player, to: (-2000, -882), sprint: 0);
+  warp(to: Map.YAKA13, spawn: 2, trigger: 255);
+  return;
+}
+
+section(82) {
+  {
+    if (item[Item.MansionKey] >= 1 && !trigger(123)) {
+      rotate(entity: Entity.Player, to: 3072);
+      playSound(8, 3);
+      speak(Entity.System, "<LIGHTBLUE>館のカギ<WHITE>を使った!<NEWLINE>");
+      setTrigger(Trigger(123));
+      break;
+    }
+    if (item[Item.MansionKey] >= 1 || trigger(123)) break;
+    rotate(entity: Entity.Player, to: 3072);
+    sfx(8, 2, wait: 5);
+    playSound(8, 2);
+    speak(Entity.System, "開かない…カギがかかっている。<NEWLINE>");
+    return;
+  }
+  rotate3DObject(2, 1);
+  sfx(8, 1, wait: 10);
+  move(entity: Entity.Player, to: (2000, 1171), sprint: 0);
+  warp(to: Map.YAKA17, spawn: 0, trigger: 255);
+  return;
+}
+
+section(58) {
+  move(entity: Entity.Player, to: (0, -2000), sprint: 0);
+  playSound(8, 1);
+  warp(to: Map.DGHA02, spawn: 0, trigger: 255);
+  return;
+}
+
+section(81) {
+  if (!trigger(360)) {
+    rotate(entity: Entity.Player, to: 3072);
+    sfx(8, 2, wait: 5);
+    playSound(8, 2);
+    speak(Entity.System, "開かない…<NEWLINE>謎の力でふう印されている。<NEWLINE>");
+    return;
+  }
+  rotate3DObject(1, 1);
+  sfx(8, 1, wait: 10);
+  move(entity: Entity.Player, to: (2000, -722), sprint: 0);
+  warp(to: Map.YAKA18, spawn: 0, trigger: 255);
+  return;
+}
+
+section(83) {
+  rotate3DObject(3, 1);
+  sfx(8, 1, wait: 10);
+  move(entity: Entity.Player, to: (1005, 3000), sprint: 0);
+  warp(to: Map.YAKA15, spawn: 2, trigger: 255);
+  return;
+  garbage { 24 00 fe 00 24 00 39 00 26 00 54 00 a8 04 55 00 4c 05 52 00 f0 05 3a 00 94 06 51 00 a6 06 53 00 0c 07 ff ff fe 00 19 00 00 00 66 01 80 00 67 01 81 00 68 01 18 00 46 03 19 00 1c 00 68 01 46 06 47 06 00 00 1b fd 56 00 fd 19 67 00 0f 00 1a 00 81 75 81 69 81 49 81 63 81 63 8e 45 8b 43 82 f0 8a b4 82 b6 82 e9 81 63 81 6a 81 76 0d 00 00 00 56 00 fd 00 4c 00 fd 05 67 00 0a 00 4f 14 00 00 4e 06 4a c8 1b 05 1a 00 81 75 83 74 83 74 83 74 81 63 83 6e 83 6e 81 63 82 e2 82 cd 82 e8 97 88 82 bd 82 a9 81 49 81 76 0d 00 00 00 4e fd 6a ff 11 ff 01 00 4e fc 96 00 11 ff 01 00 4a fd 4a fc 4c 00 fd 05 4c 00 fc 05 67 00 05 00 1b fd 1a 00 81 75 92 4e 82 be 81 49 }
+}

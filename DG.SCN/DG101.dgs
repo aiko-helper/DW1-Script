@@ -1,0 +1,287 @@
+// DG101.SCN
+#include "functions.dgs"
+#pragma script index=101 start=0x43800 end=0x44000 headerU16=0x24 sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  if (pstat[1] < 10) {
+    setObjectVisibility(18, 0);
+    setObjectVisibility(23, 1);
+  } else {
+    setObjectVisibility(18, 1);
+    setObjectVisibility(23, 0);
+  }
+  spawnItemChance(max: 99, chance: 2, item: Item.Happymushroom, x: 61, y: 64);
+  spawnItemChance(max: 99, chance: 29, item: Item.Digimushroom, x: 55, y: 71);
+  spawnItemChance(max: 99, chance: 39, item: Item.Digimushroom, x: 36, y: 44);
+  if (pstat[1] >= 25) {
+    setObjectsVisibleRange(28, 33, 0);
+  }
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「し、知らないぞ!」<NEWLINE>");
+  finishEncounter(Trigger(274));
+}
+
+section(6) {
+  {
+    speak(Entity.Player, "「うわっ!」<NEWLINE>");
+    anim(Entity.Player, Animation(15), wait: 20);
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(6), "「…………?…!…♪」<NEWLINE>");
+    speak(Entity.Player, "「くっ、いきなりかよ!<NEWLINE> よーし、やってやる!」<NEWLINE>");
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 6);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    look(entity: Entity(6), at: Entity.Player);
+    lookPairAt(Entity(6));
+    waitForPair();
+    speak(Entity(6), "「負けちゃったよ。ちぇっ。」<NEWLINE>");
+    playAnimation(Entity(6), Animation(18));
+    speak(Entity.Player, "「(そうだ、街にさそうんだよな。)」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(25));
+    showTextbox("「…えと、あのさぁ。」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(19));
+    showTextbox("「街に…来てくんない…かな?」<NEWLINE>");
+    playAnimation(Entity.Player, Animation(0));
+    playAnimation(Entity(6), Animation(0));
+    speak(Entity(6), "「え?街ぃ?」<NEWLINE>");
+    showTextbox("「街って…あのオンボロ?」<NEWLINE>");
+    playAnimation(Entity(6), Animation(19));
+    speak(Entity(6), "「うーん…」<NEWLINE>");
+    showTextbox("「うーん……………」<NEWLINE>");
+    showTextbox("「うーん………………………」<NEWLINE>");
+    fadeOutHUD();
+    playAnimation(Entity(6), Animation(22));
+    waitForEntity(Entity(6));
+    playAnimation(Entity(6), Animation(22));
+    speak(Entity(6), "「ま、いいよ。<NEWLINE> おいらアグモン。よろしくな。」<NEWLINE>");
+    fadeOutHUD();
+    break;
+  }
+  approach(who: Entity(6), x: 2400, y: 1663, tries: 3, wait: 20);
+  playSound(8, 11);
+  speak(Entity.System, "アグモンが街に参加した!!!<NEWLINE>");
+  setTrigger(Trigger(203));
+  addPStat(PStat(1), 1);
+  followEntity(Entity.Player, speed: 10);
+  speak(Entity.Player, "「おー、言ってみるもんだなー。<NEWLINE> よーし、どんどんさそってみよっと!」<NEWLINE>");
+  anim(Entity.Player, Animation(11), wait: 20);
+  playAnimation(Entity.Player, Animation(0));
+  return;
+}
+
+section(7) {
+  speak(Entity(7), "「ここはオイラのなわばりだ!」<NEWLINE>");
+  finishEncounter(Trigger(283));
+}
+
+section(8) {
+  speak(Entity(8), "「えっ!?」<NEWLINE>");
+  finishEncounter(Trigger(274));
+}
+
+section(9) {
+  speak(Entity(9), "「今がチャンス!」<NEWLINE>");
+  finishEncounter(Trigger(283));
+}
+
+section(51) {
+  {
+    move(entity: Entity.Player, to: (2300, 1600), sprint: 0);
+    if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) goto L16; else break;
+  }
+  {
+    if (trigger(204) || trigger(249)) {
+      break;
+      break;
+    }
+    goto L8;
+  }
+  {
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L4; else break;
+  }
+  {
+    if (trigger(236)) goto L2; else break;
+  }
+  {
+    if (trigger(205)) goto L1; else break;
+  }
+  warp(to: Map.TWNB02, spawn: 0, trigger: 255);
+  return;
+
+L1:
+  {
+    warp(to: Map.TWNB09, spawn: 0, trigger: 255);
+    return;
+
+L2:
+    if (trigger(205)) goto L3; else break;
+  }
+  warp(to: Map.TWNB07, spawn: 0, trigger: 255);
+  return;
+
+L3:
+  {
+    warp(to: Map.TWNB08, spawn: 0, trigger: 255);
+    return;
+
+L4:
+    if (trigger(236)) goto L6; else break;
+  }
+  {
+    if (trigger(205)) goto L5; else break;
+  }
+  warp(to: Map.TWNB03, spawn: 0, trigger: 255);
+  return;
+
+L5:
+  {
+    warp(to: Map.TWNB06, spawn: 0, trigger: 255);
+    return;
+
+L6:
+    if (trigger(205)) goto L7; else break;
+  }
+  warp(to: Map.TWNB04, spawn: 0, trigger: 255);
+  return;
+
+L7:
+  {
+    warp(to: Map.TWNB05, spawn: 0, trigger: 255);
+    return;
+
+L8:
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L12; else break;
+  }
+  {
+    if (trigger(236)) goto L10; else break;
+  }
+  {
+    if (trigger(205)) goto L9; else break;
+  }
+  warp(to: Map.TWNB01, spawn: 0, trigger: 255);
+  return;
+
+L9:
+  warp(to: Map.TWNB24, spawn: 0, trigger: 255);
+  return;
+
+L10:
+  {
+    if (trigger(205)) {
+      break;
+      break;
+    }
+    goto L11;
+  }
+  warp(to: Map.TWNB23, spawn: 0, trigger: 255);
+  return;
+
+L11:
+  {
+    warp(to: Map.TWNB22, spawn: 0, trigger: 255);
+    return;
+
+L12:
+    if (trigger(236)) goto L14; else break;
+  }
+  {
+    if (trigger(205)) goto L13; else break;
+  }
+  warp(to: Map.TWNB18, spawn: 0, trigger: 255);
+  return;
+
+L13:
+  {
+    warp(to: Map.TWNB21, spawn: 0, trigger: 255);
+    return;
+
+L14:
+    if (trigger(205)) goto L15; else break;
+  }
+  warp(to: Map.TWNB19, spawn: 0, trigger: 255);
+  return;
+
+L15:
+  {
+    warp(to: Map.TWNB20, spawn: 0, trigger: 255);
+    return;
+
+L16:
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) goto L20; else break;
+  }
+  {
+    if (trigger(236)) goto L18; else break;
+  }
+  {
+    if (trigger(205)) goto L17; else break;
+  }
+  warp(to: Map.TWNB10, spawn: 0, trigger: 255);
+  return;
+
+L17:
+  {
+    warp(to: Map.TWNB17, spawn: 0, trigger: 255);
+    return;
+
+L18:
+    if (trigger(205)) goto L19; else break;
+  }
+  warp(to: Map.TWNB15, spawn: 0, trigger: 255);
+  return;
+
+L19:
+  {
+    warp(to: Map.TWNB16, spawn: 0, trigger: 255);
+    return;
+
+L20:
+    if (trigger(236)) goto L22; else break;
+  }
+  {
+    if (trigger(205)) goto L21; else break;
+  }
+  warp(to: Map.TWNB11, spawn: 0, trigger: 255);
+  return;
+
+L21:
+  {
+    warp(to: Map.TWNB14, spawn: 0, trigger: 255);
+    return;
+
+L22:
+    if (trigger(205)) goto L23; else break;
+  }
+  warp(to: Map.TWNB12, spawn: 0, trigger: 255);
+  return;
+
+L23:
+  warp(to: Map.TWNB13, spawn: 0, trigger: 255);
+  return;
+}
+
+section(52) {
+  if (!trigger(203)) {
+    speak(Entity.Player, "「…ここで逃げてちゃ、後がないぞ。」<NEWLINE>");
+    move(entity: Entity.Player, to: (-1115, -1503), sprint: 1);
+    waitForEntity(Entity.Player);
+    followEntity(Entity.Player, speed: 10);
+    return;
+  }
+  if (trigger(106)) {
+    move(entity: Entity.Player, to: (-2000, -1725), sprint: 0);
+    warp(to: Map.MAYO02_2, spawn: 0, trigger: 255);
+  }
+  move(entity: Entity.Player, to: (-2000, -1725), sprint: 0);
+  warp(to: Map.MAYO01_2, spawn: 0, trigger: 255);
+  return;
+  garbage { 24 00 fe 00 24 00 05 00 ac 00 06 00 d6 00 07 00 ba 03 08 00 ee 03 09 00 10 04 33 00 38 04 34 00 2c 07 ff ff 19 00 0d 00 01 0a 18 00 3c 00 19 00 57 00 12 00 57 00 17 01 16 00 44 00 57 00 12 01 57 00 17 00 24 00 6e 63 19 00 0b 00 6e 02 18 00 5a 00 19 00 74 45 3d 00 40 00 24 00 6e 63 19 00 0b 00 }
+}

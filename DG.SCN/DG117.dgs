@@ -1,0 +1,144 @@
+// DG117.SCN
+#include "functions.dgs"
+#pragma script index=117 start=0x4d800 end=0x4e000 headerU16=0x24 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 9, item: Item.Digimushroom, x: 48, y: 68);
+  spawnItemChance(max: 99, chance: 3, item: Item.Pricklypear, x: 76, y: 49);
+  unsetTrigger(Trigger(98));
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「どりゃあああ!」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(6) {
+  speak(Entity(6), "「はぁぁぁぁぁーっ!」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(7) {
+  speak(Entity(7), "「きぇぇぇぇーっ!」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(81) {
+  rotate(entity: Entity.Player, to: 1944);
+  waitForEntity(Entity.Player);
+  speak(Entity.System, "東・エレベータ<NEWLINE> <NEWLINE>西・危険!ガケに注意<NEWLINE>");
+  if (trigger(54)) {
+    return;
+  }
+  setDialogOwner(Entity.System);
+  setSelection(L1, L2);
+  showTextbox("「オーガモード・ON」<NEWLINE>「オーガモード・OFF」<NEWLINE>");
+
+L1:
+  setTrigger(Trigger(197));
+  warp(to: Map.GCAN08_2, spawn: 0, trigger: 255);
+  return;
+
+L2:
+  unsetTrigger(Trigger(197));
+  warp(to: Map.GCAN08_2, spawn: 0, trigger: 255);
+  return;
+}
+
+section(82) {
+  rotate(entity: Entity.Player, to: 1944);
+  waitForEntity(Entity.Player);
+  speak(Entity.System, "落ばんに注意!!<NEWLINE>");
+  return;
+}
+
+section(51) {
+  if (!trigger(197)) {
+    return;
+  }
+  if (trigger(198)) {
+    return;
+  }
+  if (trigger(98)) {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 1944);
+  panTo(x: 2000, y: 173, slowdown: 30);
+  speak(Entity.Player, "「今までの情報をもとにすると、<NEWLINE> どうやらウワサの山賊が出る道は<NEWLINE> ここらしいな…」<NEWLINE>");
+  showTextbox("「よーし、いくぜ、<ORANGE><DIGIMON><WHITE>。」<NEWLINE>");
+  move(entity: Entity.Player, to: (1925, 468), sprint: 0);
+  move(entity: Entity.Partner, to: (1925, 78), sprint: 0);
+  waitForPair();
+  loadDigimon(Digimon.NPCOgremon);
+  loadDigimon(Digimon.Agumon);
+  setDigimonBatch([
+    Digimon.NPCOgremon => Entity(3),
+    Digimon.Agumon => Entity(4),
+    Digimon.Agumon => Entity(5),
+  ], autotalk: 0);
+  speak(Entity(9), "「いやっほーーーい!」<NEWLINE>");
+  playSound(8, 11);
+  speak(Entity(8), "「ぐわはははは!」<NEWLINE>");
+  speak(Entity(10), "「ひゃっほーう!」<NEWLINE>");
+  delay(10);
+  playSound(8, 1);
+  playAnimation(Entity(8), Animation(31));
+  move(entity: Entity(8), to: (1000, 1288), animDuration: 30);
+  move(entity: Entity(9), to: (2067, 1561), sprint: 1);
+  move(entity: Entity(10), to: (2059, -383), sprint: 1);
+  for id in Entity(8)..Entity(10) {
+    waitForEntity(id);
+  }
+  look(entity: Entity(8), at: Entity.Player);
+  look(entity: Entity(9), at: Entity.Player);
+  look(entity: Entity(10), at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(8));
+  look(entity: Entity.Partner, at: Entity(9));
+  delay(10);
+  playSound(8, 11);
+  speak(Entity(8), "「ぬははは、カンネンして荷物を置いてけ!<NEWLINE> いてえ目にあうぜぇ!」<NEWLINE>");
+  anim(Entity.Player, Animation(20), wait: 15);
+  speak(Entity.Player, "「カンネンするのはそっちだ!」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(8), "「ん?!てめえらは…」<NEWLINE>");
+  speak(Entity(8), "「もしかして…」<NEWLINE>");
+  speak(Entity(9), "「お、おかしら、どうしましょう?!」<NEWLINE>");
+  look(entity: Entity(9), at: Entity(8));
+  speak(Entity(8), "「さわぐな!数でも力でもこっちが上だ。<NEWLINE> たたきのめしてやれ!」<NEWLINE>");
+  look(entity: Entity(8), at: Entity(9));
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 8);
+  setPStat(PStat(252), 9);
+  setPStat(PStat(253), 10);
+  startBattle();
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  look(entity: Entity.Player, at: Entity(8));
+  look(entity: Entity(8), at: Entity.Player);
+  look(entity: Entity.Partner, at: Entity(8));
+  move(entity: Entity(9), to: (1350, 2350), sprint: 1);
+  move(entity: Entity(10), to: (1850, 2350), sprint: 1);
+  waitForEntity(Entity(9));
+  waitForEntity(Entity(10));
+  unloadEntity(Entity(9));
+  unloadEntity(Entity(10));
+  speak(Entity(8), "「むぐぐ…お、覚えてろよー!」<NEWLINE>");
+  move(entity: Entity(8), to: (1650, 2350), sprint: 1);
+  waitForEntity(Entity(8));
+  unloadEntity(Entity(8));
+  speak(Entity.Player, "「何て逃げ足だ!でもこれでしばらくは<NEWLINE> ここには現われないだろう。」<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  for x in [Trigger(198), Trigger(142), Trigger(155)] {
+    setTrigger(x);
+  }
+  return;
+}
+
+section(52) {
+  setTrigger(Trigger(98));
+  return;
+  garbage { 24 00 fe 00 24 00 05 00 56 00 06 00 7e 00 07 00 aa 00 51 00 d4 00 52 00 6a 01 33 00 8a 01 34 00 06 05 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 3a 00 19 00 74 2c 30 00 44 00 24 00 6e 63 19 00 0b 00 6e 03 18 00 50 00 19 00 74 36 4c 00 31 00 1d 00 62 00 fe 00 1b 05 1a 00 81 75 82 c7 82 e8 82 e1 82 a0 82 a0 82 a0 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 06 1a 00 81 75 82 cd 82 9f 82 9f 82 9f 82 9f 82 9f 81 5b 82 c1 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 1b 07 1a 00 81 75 82 ab 82 a5 82 a5 82 a5 82 a5 81 5b 82 c1 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 4d fd 98 07 4a fd 1b ff 1a 00 93 8c 81 45 83 47 83 8c 83 78 81 5b 83 5e 0d 00 81 40 0d 00 90 bc 81 45 8a eb 8c af 81 49 83 4b 83 50 82 c9 92 8d 88 d3 0d 00 00 00 19 00 00 00 36 00 18 00 18 01 19 00 fe 00 1b ff 10 02 56 01 60 01 1a 00 81 75 83 49 81 5b 83 4b 83 82 81 5b 83 68 81 45 82 6e 82 6d 81 76 0d 00 81 75 83 49 81 5b 83 4b 83 82 81 5b 83 68 81 45 82 6e 82 65 82 65 81 76 0d 00 00 00 1c 00 c5 00 4b 80 00 ff fe 00 1d 00 c5 00 4b 80 00 ff fe 00 4d fd 98 07 4a fd 1b ff 1a 00 97 8e 82 ce 82 f1 82 c9 92 8d 88 d3 81 49 81 49 0d 00 00 00 fe 00 19 00 01 00 c5 00 18 00 98 01 19 00 fe 00 19 00 00 00 c6 00 18 00 a6 01 19 00 fe 00 19 00 00 00 62 00 18 00 b4 01 19 00 fe 00 4d fd 98 07 4f 1e d0 07 ad 00 4a c8 1b fd 1a 00 81 75 8d a1 82 dc 82 c5 82 cc 8f ee 95 f1 82 f0 82 e0 82 c6 82 c9 82 b7 82 e9 82 c6 81 41 0d 00 81 40 82 c7 82 a4 82 e2 82 e7 83 45 83 8f 83 54 82 cc 8e 52 91 af 82 aa 8f 6f 82 e9 93 b9 82 cd 0d 00 81 40 82 b1 82 b1 82 e7 82 b5 82 a2 82 c8 81 63 81 76 0d 00 00 00 1a 00 81 75 82 e6 81 5b 82 b5 81 41 82 a2 82 ad 82 ba 81 41 01 0a 06 00 01 01 81 42 81 76 0d 00 00 00 4e fd 85 07 d4 01 00 00 4e fc 85 07 4e 00 00 00 4a fd 4a fc 46 9a 46 03 47 9a 03 00 47 03 04 00 47 03 05 00 1b 09 1a 00 81 75 82 a2 82 e2 82 c1 82 d9 81 5b 81 5b 81 5b 82 a2 81 49 81 76 0d 00 00 00 5a 00 08 0b 1b 08 1a 00 81 75 82 ae 82 ed 82 cd 82 cd 82 cd 82 cd 81 49 81 76 0d 00 00 00 1b 0a 1a 00 81 75 82 d0 82 e1 82 c1 82 d9 81 5b 82 a4 81 49 81 76 0d 00 00 00 67 00 0a 00 5a 00 08 01 56 00 08 1f 6c 08 e8 03 08 05 1e 00 4e 09 13 08 19 06 01 00 4e 0a 0b 08 81 fe 01 00 4a 08 4a 09 4a 0a 4c 00 08 fd 4c 00 09 fd 4c 00 0a fd 4c 00 fd 08 }
+}

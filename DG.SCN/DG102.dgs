@@ -1,0 +1,136 @@
+// DG102.SCN
+#include "functions.dgs"
+#pragma script index=102 start=0x44000 end=0x44800 headerU16=0x14 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 19, item: Item.Digimushroom, x: 61, y: 54);
+  spawnItemChance(max: 99, chance: 4, item: Item.Happymushroom, x: 39, y: 46);
+  spawnItemChance(max: 99, chance: 14, item: Item.Digimushroom, x: 55, y: 63);
+  return;
+}
+
+section(81) {
+  rotate(entity: Entity.Player, to: 1536);
+  speak(Entity.System, "岩くずれで道はふさがっている…<NEWLINE>");
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「戦闘テスト!」<NEWLINE>");
+  showTextbox("「なんちって。ウソ。」<NEWLINE>");
+  unloadEntity(Entity(5));
+  return;
+}
+
+section(6) {
+  speak(Entity(6), "「俺様はベンリくんだ!<NEWLINE> どうするのかね?」<NEWLINE>");
+  setDialogOwner(Entity.Player);
+  setSelection(L1, L2, L14);
+  showTextbox("「パラメータを変こうしてくれ。」<NEWLINE>「時間を進めてくれ。」<NEWLINE>「全技修得。」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L1:
+  loop {
+    setDialogOwner(Entity.Player);
+    setSelection(L6, L10, L15);
+    showTextbox("「上げる。」<NEWLINE>「下げる。」<NEWLINE>「能力値初期化」<NEWLINE>");
+    waitForSelectionChoice();
+    return;
+
+L2:
+    setDialogOwner(Entity.Player);
+    setSelection(L3, L4, L5);
+    showTextbox("「1時間進めてくれ。」<NEWLINE>「6時間進めてくれ。」<NEWLINE>「24時間進めてくれ。」<NEWLINE>");
+    waitForSelectionChoice();
+    return;
+
+L3:
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 60);
+    advanceToDate(PStat.SavedTime);
+    return;
+
+L4:
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 360);
+    advanceToDate(PStat.SavedTime);
+    return;
+
+L5:
+    pstat[:SavedTime] = time();
+    addMinutesToDate(PStat.SavedTime, 1440);
+    advanceToDate(PStat.SavedTime);
+    return;
+
+L6:
+    setDialogOwner(Entity.Player);
+    setSelection(L7, L8, L9);
+    showTextbox("「+50。」<NEWLINE>「+100。」<NEWLINE>「+200。」<NEWLINE>");
+    waitForSelectionChoice();
+    return;
+
+L7:
+    addStats(offense: 50, defense: 50, speed: 50, brains: 50, maxHP: 500, maxMP: 500, currentHP: 500, currentMP: 500);
+    continue;
+    return;
+
+L8:
+    addStats(offense: 100, defense: 100, speed: 100, brains: 100, maxHP: 1000, maxMP: 1000, currentHP: 1000, currentMP: 1000);
+    continue;
+    return;
+
+L9:
+    addStats(offense: 200, defense: 200, speed: 200, brains: 200, maxHP: 2000, maxMP: 2000, currentHP: 2000, currentMP: 2000);
+    continue;
+    return;
+
+L10:
+    setDialogOwner(Entity.Player);
+    choice { "'-50.\"" -> L11, "'-100.\"" -> L12, "'-200.\"" -> L13 }
+    return;
+
+L11:
+    reduceStats(offense: 50, defense: 50, speed: 50, brains: 50, maxHP: 500, maxMP: 500, currentHP: 500, currentMP: 500);
+    continue;
+    return;
+
+L12:
+    reduceStats(offense: 100, defense: 100, speed: 100, brains: 100, maxHP: 1000, maxMP: 1000, currentHP: 1000, currentMP: 1000);
+    continue;
+    return;
+
+L13:
+    reduceStats(offense: 200, defense: 200, speed: 200, brains: 200, maxHP: 2000, maxMP: 2000, currentHP: 2000, currentMP: 2000);
+    continue;
+    return;
+
+L14:
+    learnMoves([
+      :FireTower, :ProminenceBeam, :SpitFire, :RedInferno,
+      :MagmaBomb, :HeatLaser, :InifinityBurn, :Meltdown,
+      :ThunderJustice, :SpinningShot, :ElectricCloud, :MegaloSpark,
+      :StaticElect, :WindCutter, :ConfusedStorm, :Hurricane,
+      :GigaFreeze, :IceStatue, :WinterBlast, :IceNeedle,
+      :WaterBlit, :AquaMagic, :AuroraFreeze, :TearDrop,
+      :PowerCrane, :AllRangeBeam, :MetalSprinter, :PulseLaser,
+      :DeleteProgram, :DGDimension, :FullPotential, :ReverseProg,
+      :PoisonPowder, :MassMorph, :InsectPlague, :CharmPerfume,
+      :PoisonClaw, :DangerSting, :GreenTrap, :MuscleCharge,
+      :SonicJab, :DynamiteKick, :MegatonPunch, :BusterDive,
+      :OdorSpray, :PoopSpdToss, :BigPoopToss, :BigRndToss,
+      :RndSpdToss, :HorizontalKick, :UltPoopHell, :BlazeBlast,
+      :PepperBreath, :LovelyAttack, :Fireball, :DeathClaw
+      ]);
+    continue;
+    return;
+
+L15:
+    setStats(offense: 50, defense: 50, speed: 50, brains: 50, maxHP: 500, maxMP: 500, currentHP: 500, currentMP: 500);
+  }
+  return;
+  jumpToScriptSection(175, 6);
+  return;
+  garbage { 14 00 fe 00 14 00 51 00 58 00 05 00 84 00 06 00 bc 00 ff ff 24 00 6e 63 19 00 0b 00 6e 13 18 00 2a 00 19 00 74 2c 3d 00 36 00 24 00 6e 63 19 00 0b 00 6e 04 18 00 40 00 19 00 74 45 27 00 2e 00 24 00 6e 63 19 00 0b 00 6e 0e 18 00 56 00 19 00 74 2c 37 00 3f 00 fe 00 4d fd 00 06 1b ff 1a 00 8a e2 82 ad 82 b8 82 ea 82 c5 93 b9 82 cd 82 d3 82 b3 82 aa 82 c1 82 c4 82 a2 82 e9 81 63 0d 00 00 00 fe 00 1b 05 1a 00 81 75 90 ed 93 ac 83 65 83 58 83 67 81 49 81 76 0d 00 00 00 1a 00 81 75 82 c8 82 f1 82 bf 82 c1 82 c4 81 42 83 45 83 5c 81 42 81 76 0d 00 00 00 48 05 fe 00 1b 06 1a 00 81 75 89 b4 97 6c 82 cd 83 78 83 93 83 8a 82 ad 82 f1 82 be 81 49 0d 00 81 40 82 c7 82 a4 82 b7 82 e9 82 cc 82 a9 82 cb 81 48 81 76 0d 00 00 00 1b fd 10 03 4c 01 8c 01 70 03 1a 00 81 75 83 70 83 89 83 81 81 5b 83 5e 82 f0 95 cf 82 b1 82 a4 82 b5 82 c4 82 ad 82 ea 81 42 81 76 0d 00 81 75 8e 9e 8a d4 82 f0 90 69 82 df 82 c4 82 ad 82 ea 81 42 81 76 0d 00 81 75 91 53 8b 5a 8f 43 93 be 81 42 81 76 0d 00 00 00 12 00 fe 00 1b fd 10 03 0c 02 be 02 e6 03 1a 00 81 75 8f e3 82 b0 82 e9 81 42 81 76 0d 00 81 75 89 ba 82 b0 82 e9 81 42 81 76 0d 00 81 75 94 5c 97 cd 92 6c 8f 89 8a fa 89 bb 81 76 0d 00 00 00 12 00 fe 00 1b fd 10 03 e8 01 f4 01 00 02 1a 00 81 75 82 50 8e 9e 8a d4 90 69 82 df 82 c4 82 ad 82 ea 81 42 81 76 0d 00 81 75 82 55 8e 9e 8a d4 90 69 82 df 82 c4 82 ad 82 ea 81 42 81 76 0d 00 81 75 82 51 82 53 8e 9e 8a d4 90 69 82 df 82 c4 82 ad 82 ea 81 42 81 76 0d 00 00 00 12 00 fe 00 25 69 38 69 3c 00 00 00 37 69 fe 00 25 69 38 69 68 01 00 00 37 69 fe 00 25 69 38 69 a0 05 00 00 37 69 fe 00 1b fd 10 03 4c 02 72 02 98 02 1a 00 81 75 81 7b 82 54 82 4f 81 42 81 76 0d 00 81 75 81 7b 82 50 82 4f 82 4f 81 42 81 76 0d 00 81 75 81 7b 82 51 82 4f 82 4f 81 42 81 76 0d 00 00 00 12 00 fe 00 35 00 32 00 35 01 32 00 35 02 32 00 35 03 32 00 35 04 f4 01 35 05 f4 01 35 06 f4 01 35 07 f4 01 16 00 4c 01 fe 00 35 00 64 00 35 01 64 00 35 02 64 00 35 03 64 00 35 04 e8 03 35 05 e8 03 35 06 e8 03 35 07 e8 03 16 00 4c 01 fe 00 35 00 c8 00 35 01 c8 00 35 02 c8 00 35 03 c8 00 35 04 d0 07 35 05 d0 07 35 06 d0 07 35 07 d0 07 16 00 4c 01 fe 00 1b fd 10 03 fe 02 24 03 4a 03 1a 00 81 75 81 7c 82 54 82 4f 81 42 81 76 0d 00 81 75 81 7c 82 50 82 4f 82 4f 81 42 81 76 0d 00 81 75 81 7c 82 51 82 4f 82 4f 81 42 81 76 0d 00 00 00 12 00 fe 00 36 00 32 00 36 01 32 00 36 02 32 00 36 03 32 00 36 04 f4 01 36 05 f4 01 36 06 f4 01 36 07 f4 01 16 00 4c 01 fe 00 36 00 64 00 36 01 64 00 36 02 64 00 36 03 64 00 36 04 e8 03 36 05 e8 03 36 06 e8 03 36 07 e8 03 16 00 4c 01 fe 00 36 00 c8 00 36 01 c8 00 36 02 c8 00 36 03 c8 00 36 04 d0 07 36 05 d0 07 36 06 d0 07 36 07 d0 07 16 00 4c 01 fe 00 2d 00 2d 01 2d 02 2d 03 2d 04 2d 05 2d 06 2d 07 2d 08 2d 09 2d 0a 2d 0b 2d 0c 2d 0d 2d 0e 2d 0f 2d 10 2d 11 2d 12 2d 13 2d 14 2d 15 2d 16 2d 17 2d 18 2d 19 2d 1a 2d 1b 2d 1c 2d 1d 2d 1e 2d 1f 2d 20 2d 21 2d 22 2d 23 2d 24 2d 25 2d 26 2d 27 2d 28 2d 29 2d 2a 2d 2b 2d 2c 2d 2d 2d 2e 2d 2f 2d 31 2d 32 2d 33 2d 34 2d 35 2d 36 2d 37 2d 38 16 00 4c 01 fe 00 34 00 32 00 }
+}

@@ -1,0 +1,457 @@
+function waitForSelectionChoice() {
+  raw(0x12, 0);
+}
+
+function jumpReturn() {
+  raw(0x15, 0);
+}
+
+function setDialogOwner(v: Entity) {
+  raw(0x1b, v);
+}
+
+function setPStat(p: PStat, v) {
+  raw(0x1e, 0, p, v);
+}
+
+function addPStat(p: PStat, v) {
+  raw(0x1f, 0, p, v);
+}
+
+function reducePStat(p: PStat, v) {
+  raw(0x20, 0, p, v);
+}
+
+function storeMapID(p: PStat) {
+  raw(0x21, p);
+}
+
+function storeDigimonType(p: PStat) {
+  raw(0x22, p);
+}
+
+function setInventorySize(s: int) {
+  raw(0x23, s);
+}
+
+function setTextboxSize(w: int, h: int) {
+  raw(0x26, 0, w, h);
+}
+
+function fadeOutHUD() {
+  raw(0x27, 0);
+}
+
+function giveItem(i: Item, a) {
+  raw(0x28, 0, i, a);
+}
+
+function removeItem(i: Item, a) {
+  raw(0x29, 0, i, a);
+}
+
+function learnMove(m: Move) {
+  raw(0x2d, m);
+}
+
+function giveCard(c) {
+  raw(0x2f, c);
+}
+
+function takeCard(c) {
+  raw(0x30, c);
+}
+
+function advanceToDate(p: PStat) {
+  raw(0x37, p);
+}
+
+function storeDigimonTypus(v, p: PStat) {
+  raw(0x3f, 0, v, p);
+}
+
+function loadDigimon(d: Digimon) {
+  raw(0x46, d);
+}
+
+function setDigimon(t: Digimon, e: Entity, a) {
+  raw(0x47, t, e, a);
+}
+
+function unloadEntity(e: Entity) {
+  raw(0x48, e);
+}
+
+function callDigimonSubroutine(r) {
+  raw(0x49, r);
+}
+
+function waitForEntity(e: Entity) {
+  raw(0x4a, e);
+}
+
+function playAnimation(e: Entity, a: Animation) {
+  raw(0x56, 0, e, a);
+}
+
+function setObjectVisibility(o, i) {
+  raw(0x57, 0, o, i);
+}
+
+function playSound(r, s) {
+  raw(0x5a, 0, r, s);
+}
+
+function setBGM(m) {
+  raw(0x5d, m);
+}
+
+function callSubroutine(r) {
+  raw(0x64, r);
+}
+
+function removeCondition(m: Condition) {
+  raw(0x65, m);
+}
+
+function setTexboxMode(m, d) {
+  raw(0x68, 0, m, d);
+}
+
+// S16 / S32 payload opcodes (use width-typed raw wrappers).
+
+function setTrigger(bit: Trigger) {
+  raw(0x1c, 0, s16(bit));
+}
+
+function unsetTrigger(bit: Trigger) {
+  raw(0x1d, 0, s16(bit));
+}
+
+function setMerit(v) {
+  raw(0x31, 0, s16(v));
+}
+
+function addMerit(v) {
+  raw(0x32, 0, s16(v));
+}
+
+function delay(d) {
+  raw(0x67, 0, s16(d));
+}
+
+function addMoney(v) {
+  raw(0x2a, 0, s32(v));
+}
+
+function reduceMoney(v) {
+  raw(0x2b, 0, s32(v));
+}
+
+function addMinutesToDate(pstat: PStat, v) {
+  raw(0x38, pstat, s32(v));
+}
+
+function setScript(scriptId, mapId: Map) {
+  raw(0xfb, 0, s16(scriptId), s16(mapId));
+}
+
+function setStats(stat: Stat, value) {
+  raw(0x34, stat, s16(value));
+}
+
+function addStats(stat: Stat, value) {
+  raw(0x35, stat, s16(value));
+}
+
+function reduceStats(stat: Stat, value) {
+  raw(0x36, stat, s16(value));
+}
+
+function rotate(entity: Entity, to) {
+  raw(0x4d, entity, s16(to));
+}
+
+function setTextboxOrigin(x, z, y) {
+  raw(0x55, 0, s16(x), s16(z), s16(y));
+}
+
+function dealMapDamage(pstat: PStat) {
+  raw(0x69, pstat);
+}
+
+function setAutotalk(entity: Entity, value) {
+  raw(0x6a, 0, entity, value);
+}
+
+function rotate3DObject(modelId, rotation) {
+  raw(0x70, modelId, 0, rotation);
+}
+
+function moveObjectTo(v1, v2, v3, v4, v5, x, y) {
+  raw(0x71, v1, v2, v3, v4, v5, s16(x), s16(y));
+}
+
+function spawnBoulder() {
+  raw(0x76, 0);
+}
+
+function moveBoulder(translateZ, translateY) {
+  raw(0x77, 0, s16(translateZ), s16(translateY));
+}
+
+function despawnBoulder() {
+  raw(0x78, 0);
+}
+
+function unloadModel(digimon: Digimon) {
+  raw(0x79, digimon);
+}
+
+function copyPStat(source: PStat, target: PStat) {
+  raw(0x7a, 0, source, target);
+}
+
+function sectionOnExit(trigger) {
+  raw(0x7b, trigger);
+}
+
+function setRectImpassible(x, y, width, height) {
+  raw(0x7c, 0, s16(x), s16(y), width, height);
+}
+
+function spawnSpriteAtLocation(sprite, x, y, z, unk) {
+  raw(0x7d, sprite, s16(x), s16(y), s16(z), s16(unk));
+}
+
+function spawnSpriteAtEntity(entity: Entity, sprite) {
+  raw(0x7e, entity, s16(sprite));
+}
+
+// Named-arg synonyms (disasm emits with `field: value` form).
+
+function teleport(pstat: PStat) {
+  raw(0x58, pstat);
+}
+
+function roll(pstat: PStat, max) {
+  raw(0x24, 0, pstat, max);
+}
+
+function warp(to: Map, spawn, trigger) {
+  raw(0x4b, to, spawn, trigger);
+}
+
+// Multi-opcode composites (previously built-in C++ sugars).
+
+function loadAndSetDigimon(digimon: Digimon, entity: Entity, autotalk) {
+  loadDigimon(digimon);
+  setDigimon(digimon, entity, autotalk);
+}
+
+// pstat[245] is the script-start sentinel the engine reads when entering a new
+// map; the value selects the entry section/branch and is map-specific.
+function switchToMap(scriptId, map: Map, pStatValue, musicId) {
+  setScript(scriptId, map);
+  setPStat(245, pStatValue);
+  setBGM(musicId);
+}
+
+// Installs a section-exit trigger, fires a digimon subroutine, and blocks
+// on Entity.System so any spawns/animations queued by the subroutine settle
+// before the caller continues.
+function runDigimonRoutine(trigger, routine) {
+  sectionOnExit(trigger);
+  callDigimonSubroutine(routine);
+  waitForEntity(Entity.System);
+}
+
+function startBattle() {
+  fadeOutHUD();
+  delay(1);
+  raw(0x66, 0);
+}
+
+function speak(o, t) {
+  setDialogOwner(o);
+  showTextbox(t);
+}
+
+function learnMoves(moves: Move[]) {
+  for m in moves {
+    learnMove(m);
+  }
+}
+
+// Place the same digimon model at multiple entity slots with one call.
+// Compiles to N back-to-back setDigimon ops; identical bytecode to writing
+// them out individually but kinder to read.
+function setDigimonAt(t: Digimon, entities: Entity[], autotalk) {
+  for e in entities {
+    setDigimon(t, e, autotalk);
+  }
+}
+
+// Place a heterogenous sequence of digimon at specific entity slots, preserving
+// emit order (so an interleaved bytecode pattern like
+// `setDigimon(A, 0); setDigimon(A, 1); setDigimon(B, 2); setDigimon(A, 3)`
+// folds into one batch instead of breaking at every type boundary).
+function setDigimonBatch(pairs: (Digimon, Entity)[], [PreferNamed] autotalk: int) {
+  for d, e in pairs {
+    setDigimon(d, e, autotalk);
+  }
+}
+
+// Preload several digimon models at once.  Emits N back-to-back `loadDigimon`
+// ops; folds runs of >=3 consecutive `loadDigimon` calls back into this form.
+function loadDigimonBatch(digimon: Digimon[]) {
+  for d in digimon {
+    loadDigimon(d);
+  }
+}
+
+// Stereotyped "NPC walks up to the camera, party watches, then despawns" routine. 
+// Drives `who` toward (x, y) up to `tries` times, waiting `wait` ticks between 
+// attempts; the player and partner turn to track it; finally waits for `who` to 
+// settle, unloads it, and resets the retry counter. 
+//
+// Parameter names avoid the macro-expansion shadowing trap: `entity` and
+// `delay` would textually replace the named-arg label and the opcode name
+// inside the body. (This is a compiler bug)
+function finishEncounter(trigger) {
+  startBattle();
+  setTrigger(trigger);
+  return;
+}
+
+function anim(e: Entity, a, [PreferNamed] wait) {
+  playAnimation(e, a);
+  delay(wait);
+}
+
+// Trigger 3 is the engine-wide "inventory full" flag; subroutines 0 and 13 are
+// the standard message + restore-state cleanup pair that every encounter uses
+// when it can't hand the player an item.
+function inventoryFullBailout() {
+  setTrigger(3);
+  callSubroutine(0);
+  callSubroutine(13);
+}
+
+function waitForPair() {
+  waitForEntity(Entity.Player);
+  waitForEntity(Entity.Partner);
+}
+
+function lookPairAt(target) {
+  look(entity: Entity.Player, at: target);
+  look(entity: Entity.Partner, at: target);
+}
+
+function setObjectsVisibleRange(start, end, vis) {
+  for id in start..end {
+    setObjectVisibility(id, vis);
+  }
+}
+
+// Camera-choreography helpers.  `Entity(200)` is the camera-move completion
+// entity; `waitForEntity(Entity(200))` blocks until the in-flight camera op
+// finishes, which is what every observed `moveCamera + wait` site does.
+
+// Pan the camera to a fixed (x, y) point with the given slowdown, then wait
+// for the move to settle.
+function panTo([PreferNamed] x: int, [PreferNamed] y: int, [PreferNamed] slowdown: int) {
+  moveCamera(to: (x, y), slowdown: slowdown);
+  waitForEntity(Entity(200));
+}
+
+// Snap the camera onto an entity (typically Entity.Player/Entity.Partner) and
+// wait for the move to settle.
+function followEntity(target: Entity, [PreferNamed] speed: int) {
+  moveCamera(to: target, speed: speed);
+  waitForEntity(Entity(200));
+}
+
+function sfx(sound, channel, [PreferNamed] wait) {
+  playSound(sound, channel);
+  delay(wait);
+}
+
+function approach(who: Entity, [PreferNamed] x, [PreferNamed] y, [PreferNamed] tries, [PreferNamed] wait) {
+  loop {
+    move(entity: who, to: (x, y), sprint: 1);
+    if (pstat[:LoopIterator] >= tries) break;
+    addPStat(PStat.LoopIterator, 1);
+    delay(wait);
+    look(entity: Entity.Player, at: who);
+    look(entity: Entity.Partner, at: who);
+  }
+  waitForEntity(who);
+  unloadEntity(who);
+  setPStat(PStat.LoopIterator, 0);
+}
+
+// Rolls 0..max into pstat[:RollScratch]; if the result is <= chance, spawns
+// `item` at (x, y).  Always uses :RollScratch -- callers cannot nest these
+// because the slot is shared.
+function spawnItemChance([PreferNamed] max, [PreferNamed] chance, item: Item, [PreferNamed] x, [PreferNamed] y) {
+  roll(pstat: PStat.RollScratch, max: max);
+  if (pstat[:RollScratch] <= chance) {
+    spawnItem(item, x: x, y: y);
+  }
+}
+
+// Monochromon's haggle shop: set (speaker, phase) context PStats and call
+// the dialog-render subroutine.  PStat(247) selects which customer is
+// speaking (matches their Entity ID: 6 Goburimon, 7 Gotsumon, 8 Weedmon,
+// 9 Muchomon).  PStat(248) selects which dialog row within that customer's
+// table.  callSubroutine(28) reads both and shows the textbox.  Appears
+// 35 times per haggle script (DG199-202) -- 140 sites total.
+function setHaggleContext(speaker: Entity, phase) {
+  setPStat(PStat(247), speaker);
+  setPStat(PStat(248), phase);
+  callSubroutine(28);
+}
+
+// Monochromon's haggle shop, offer-presentation preamble.  Wraps the 4-line
+// sequence that precedes every player `choice { ... }` during haggling:
+// (1) set the haggle context PStats and render the customer's reaction line,
+// (2) speak the System narration that proposes a price,
+// (3) set PStat(117) to the offer slot (1..5 within a tier),
+// (4) hand dialog control to System so the choice menu opens with the right
+// owner.  107 sites across DG199-202.
+function presentOffer(speaker: Entity, phase, offerId, prompt) {
+  setHaggleContext(speaker, phase);
+  speak(Entity.System, prompt);
+  setPStat(PStat(117), offerId);
+  setDialogOwner(Entity.System);
+}
+
+// Monochromon's haggle shop, customer arrival: customer walks up to the
+// counter at the canonical (-501, -508) spot and turns to face the player.
+// One site per haggle script (DG199-202), 4 sites total.
+function customerApproaches(who: Entity) {
+  delay(20);
+  move(entity: who, to: (-501, -508), sprint: 0);
+  waitForEntity(who);
+  look(entity: who, at: Entity.Player);
+}
+
+// Monochromon's haggle shop, deal-accepted SFX + textbox shrink.  Fires
+// after the customer says "Yeah! You gotta deal!" (or equivalent) and
+// before the Total Profit cascade displays.  12 sites across DG199-202.
+function ringUpDeal() {
+  sfx(8, 6, wait: 10);
+  setTextboxSize(12, 3);
+}
+
+// Monochromon's haggle shop, retry-attempt preamble: set phase-5 context,
+// bump the retry-counter PStat(119), and roll d100 for the next outcome.
+// Used in the L28-style "customer pushes back" branch.  12 sites total
+// (3 per haggle script in DG199-202).
+function retryHaggle(speaker: Entity) {
+  setHaggleContext(speaker, 5);
+  addPStat(PStat(119), 1);
+  roll(pstat: PStat.RollScratch, max: 99);
+}
+

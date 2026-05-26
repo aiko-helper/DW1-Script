@@ -1,0 +1,49 @@
+// DG195.SCN
+#include "functions.dgs"
+#pragma script index=195 start=0x92800 end=0x93000 headerU16=0xc sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  if (!trigger(345)) {
+    playAnimation(Entity(5), Animation(28));
+  }
+  return;
+}
+
+section(51) {
+  if (trigger(345)) {
+    return;
+  }
+  speak(Entity.Player, "'!\"\n");
+  move(entity: Entity.Player, to: (-835, -37), sprint: 1, withCamera: true);
+  move(entity: Entity.Partner, to: (-353, 32), sprint: 1);
+  waitForPair();
+  lookPairAt(Entity(5));
+  waitForPair();
+  playAnimation(Entity(5), Animation(29));
+  waitForEntity(Entity(5));
+  speak(Entity(5), "「……オマエハ…<LIGHTBLUE><PLAYER><WHITE>カ?」<NEWLINE>");
+  speak(Entity.Player, "「がい骨のデジモンなのか!」<NEWLINE>");
+  speak(Entity(5), "「……オマエハ…<ORANGE><DIGIMON><WHITE>カ?」<NEWLINE>");
+  speak(Entity.Player, "「こいつからは生気を感じない…<NEWLINE> だけど殺気は感じるぞ…!<NEWLINE> こいつがヴァンデモンを?!」<NEWLINE>");
+  playSound(8, 13);
+  speak(Entity(5), "「コタエ…ナイ…コウゲキスル。」<NEWLINE>");
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 5);
+  setPStat(PStat(252), 255);
+  setPStat(PStat(253), 255);
+  startBattle();
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  setTrigger(Trigger(345));
+  speak(Entity(5), "「…コウゲキ…ウゲキスル…コウゲキ…ス…」<NEWLINE>");
+  playSound(8, 9);
+  anim(Entity(5), Animation(28), wait: 60);
+  unloadEntity(Entity(5));
+  rotate(entity: Entity.Player, to: 3072);
+  speak(Entity.Player, "「早くヴァンデモンを助けないと。」<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  return;
+  garbage { 0c 00 fe 00 0c 00 33 00 1e 00 ff ff 19 00 01 00 59 01 18 00 1c 00 19 00 56 00 05 1c fe 00 19 00 00 00 59 01 18 00 2c 00 19 00 fe 00 1b fd 1a 00 81 75 81 49 81 76 0d 00 00 00 52 fd bd fc db ff 01 00 4e fc 9f fe 20 00 01 00 4a fd 4a fc 4c 00 fd 05 4c 00 fc 05 4a fd 4a fc 56 00 05 1d 4a 05 1b 05 1a 00 81 75 81 63 81 63 83 49 83 7d 83 47 83 6e 81 63 01 06 05 00 01 01 83 4a 81 48 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 aa 82 a2 8d 9c 82 cc 83 66 83 57 83 82 83 93 82 c8 82 cc 82 a9 81 49 81 76 0d 00 00 00 1b 05 1a 00 81 75 81 63 81 63 83 49 83 7d 83 47 83 6e 81 63 01 0a 06 00 01 01 83 4a 81 48 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 b1 82 a2 82 c2 82 a9 82 e7 82 cd 90 b6 8b 43 82 f0 8a b4 82 b6 82 c8 82 a2 81 63 0d 00 81 40 82 be 82 af 82 c7 8e 45 8b 43 82 cd 8a b4 82 b6 82 e9 82 bc 81 63 81 49 0d 00 81 40 82 b1 82 a2 82 c2 82 aa 83 94 83 40 83 93 83 66 83 82 83 93 82 f0 81 48 81 49 81 76 0d 00 00 00 5a 00 08 0d 1b 05 1a 00 81 75 83 52 83 5e 83 47 81 63 83 69 83 43 81 63 83 52 83 45 83 51 83 4c 83 58 83 8b 81 42 81 76 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 05 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 1c 00 59 01 1b 05 1a 00 81 75 81 63 83 52 83 45 83 51 83 4c 81 63 83 45 83 51 83 4c 83 58 83 8b 81 63 83 52 83 45 83 51 83 4c 81 63 83 58 81 63 81 76 0d 00 00 00 5a 00 08 09 56 00 05 1c 67 00 3c 00 48 05 4d fd 00 0c 1b fd 1a 00 81 75 91 81 82 ad 83 94 83 40 83 93 83 66 83 82 83 93 82 f0 8f 95 82 af 82 c8 82 a2 82 c6 81 42 81 76 0d 00 00 00 50 00 fd 0a 4a c8 fe 00 ff 00 82 de 81 5b 81 42 89 bd 82 a9 8c b4 88 f6 82 f0 82 b3 82 ae 82 e7 82 c8 82 a2 82 c6 83 5f 83 81 82 a9 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 b1 82 cc 94 72 90 85 82 cd 82 c7 82 b1 82 a9 82 e7 97 88 82 c4 82 e9 82 cc 82 a9 82 c8 81 42 0d 00 81 40 82 b3 82 ae 82 c1 82 c4 82 dd 82 e6 82 a4 81 49 81 76 0d 00 00 00 fe 00 1c 00 54 01 67 00 14 00 52 fd 8b 07 1e fe 00 00 4e fc 1e 07 85 fc 00 00 4a fd 4a fc 1b fd 1a 00 81 75 82 a4 81 41 82 c8 82 f1 82 be 82 b1 82 e8 82 e1 81 42 81 76 0d 00 00 00 56 00 fc 17 67 00 28 00 4c 00 fd fc 67 00 05 00 1b fd 1a 00 81 75 81 49 82 c7 82 a4 82 b5 82 bd 81 41 01 0a 06 00 01 01 81 49 81 48 81 76 0d 00 00 00 56 00 fd 10 67 00 14 00 1b fd 1a 00 81 75 82 b1 82 cc 96 b6 82 cc 81 63 82 c9 82 a8 82 a2 82 a9 81 63 81 48 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a4 82 de 81 63 89 f6 82 b5 82 a2 82 c8 81 42 89 bd 82 a9 82 e2 82 ce 82 a2 82 e0 82 cc 82 aa 0d 00 81 40 82 dc 82 b6 82 c1 82 c4 82 e9 82 c6 82 a9 81 63 81 76 0d 00 00 00 fe 00 67 00 14 00 1b fd 1a 00 81 75 82 e6 82 b5 81 41 95 81 92 ca 82 cc 89 ba 90 85 82 c9 82 e0 82 c7 82 c1 82 c4 82 e9 82 c8 81 42 81 76 0d 00 00 00 1a 00 81 75 8c b4 88 f6 82 cd 89 f0 8c 88 82 b5 82 bd 82 b5 81 42 0d 00 81 40 82 ab 82 c1 82 c6 82 a0 82 a2 82 c2 82 e0 8c b3 8b 43 82 c9 82 c8 82 c1 82 c4 81 63 81 76 0d 00 00 00 4f 14 4d 09 46 fd 4a c8 5a 00 08 0d 56 00 06 0f 67 00 14 00 1b fd 1a 00 81 75 82 be 82 9f 81 49 81 48 89 bd 82 a9 95 cf 82 be 81 49 81 76 0d 00 00 00 4c 00 06 fd 67 00 0a 00 5a 00 08 0b 56 00 06 1c 5a 00 08 0d 67 00 28 00 1b 06 1a 00 81 75 82 c7 81 45 82 c7 81 45 82 c7 81 45 82 c7 82 c7 82 c7 82 c7 82 c7 81 49 81 76 0d 00 00 00 1c 00 01 00 1e 00 fa 01 1e 00 fb 06 1e 00 fc ff 1e 00 fd ff 27 00 67 00 01 00 66 00 1d 00 01 00 1e 00 fa 00 4e fd 53 09 fd fc 00 00 4e fc 49 07 fc fc 00 00 4e 06 eb 0a fd fc 00 00 4a fd 4a fc 4a 06 4c 00 fd 06 4c 00 06 fd 4c 00 fc 06 67 00 05 00 1b 06 1a 00 81 75 82 d3 82 9f 81 60 81 60 82 a0 81 63 81 63 82 d6 82 b1 82 d6 82 b1 81 42 82 a8 82 f1 82 e2 81 48 0d 00 81 40 82 c7 81 5b 82 b5 82 dc 82 b5 82 bd 8a 46 82 cc 8f 4f 81 48 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a8 82 c1 81 49 89 bd 82 a9 83 41 83 7a 82 c1 82 db 82 ad 82 c8 82 c1 82 bd 82 bc 81 49 0d 00 81 40 90 b3 8b 43 82 c9 8b 41 82 c1 82 bd 82 cc 82 a9 81 48 81 76 0d 00 00 00 1b 06 1a 00 81 75 82 a0 81 48 83 41 83 7a 82 c6 82 cd 83 56 83 63 83 8c 83 43 82 be 82 c9 81 60 81 42 82 a8 82 e8 82 cd 0d 00 81 40 83 6b 83 81 83 82 83 93 82 c1 82 c4 82 a2 82 a4 82 a9 83 6b 83 81 83 82 83 93 81 48 81 76 0d 00 00 00 1b fd 1a 00 81 75 81 69 82 a4 82 c1 81 63 82 b1 82 a2 82 c2 82 cd 83 41 83 7a 82 c6 82 a2 82 a4 82 e6 82 e8 81 63 81 6a 0d 00 81 40 82 a0 81 5b 83 49 83 7a 83 93 81 42 83 6b 83 81 83 82 83 93 81 41 82 a8 82 dc 82 a6 82 f0 8f 95 82 af 82 c4 0d 00 81 40 82 a0 82 b0 82 bd 82 cc 82 cd 92 4e 82 be 82 a9 82 ed 82 a9 82 e9 82 a9 82 c8 81 48 81 76 0d 00 00 00 1b 06 1a 00 81 75 82 d0 82 e5 81 48 8f 95 82 af 82 c4 82 d9 82 b5 81 5b 82 cc 81 48 95 ca 82 c9 82 a6 81 5b 82 c7 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 b0 82 b0 82 c1 81 41 89 bd 82 a9 82 a9 82 f1 82 bf 82 aa 82 a2 82 b5 82 b7 82 ac 81 49 0d 00 }
+}

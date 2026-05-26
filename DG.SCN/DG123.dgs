@@ -1,0 +1,171 @@
+// DG123.SCN
+#include "functions.dgs"
+#pragma script index=123 start=0x50800 end=0x51000 headerU16=0x1c sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 16, item: Item.Digimushroom, x: 31, y: 3);
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「どたまかちわるど!」<NEWLINE>");
+  finishEncounter(Trigger(303));
+}
+
+section(7) {
+  speak(Entity(7), "「ごぅとぅーへる」<NEWLINE>");
+  finishEncounter(Trigger(300));
+}
+
+section(6) {
+  return;
+}
+
+section(81) {
+  if (trigger(224) || !trigger(175)) {
+    return;
+  }
+  lookPairAt(Entity(6));
+  delay(5);
+  panTo(x: -2852, y: 2621, slowdown: 30);
+  if (trigger(352)) {
+    speak(Entity(6), "「おや、あなたは。」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L2, L1);
+    showTextbox("「協力しにきたぜ。」<NEWLINE>「あ、まだ準備が…」<NEWLINE>");
+  }
+  setTrigger(Trigger(352));
+  speak(Entity(6), "「そこに…誰かいるね…?」<NEWLINE>");
+  anim(Entity.Player, Animation(25), wait: 15);
+  speak(Entity.Player, "「目がみえないのか!?」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(6), "「私はホエーモン。いつもは海の中でくらして<NEWLINE> いる。目はないがだいたいのことは<NEWLINE> 感じとれるよ。」<NEWLINE>");
+  storeDigimonType(PStat(103));
+  speak(Entity.Player, "「俺は人間の<LIGHTBLUE><PLAYER><WHITE>、こいつは…って<NEWLINE> 見えないだろうけど<DIGIMONTYPE2>の<NEWLINE> <ORANGE><DIGIMON><WHITE>。俺の相棒。」<NEWLINE>");
+  speak(Entity(6), "「ほう…何か強い力を感じるね…」<NEWLINE>");
+  speak(Entity(6), "「うむ…私の話を聞いてくれるかね?<NEWLINE> ここから少し離れたところに、私が体を<NEWLINE> 休めるのに使う海岸洞くつがある。」<NEWLINE>");
+  showTextbox("「しかし最近そこにガラの悪い連中が住み<NEWLINE> 着いて、私は追い出されてしまった。<NEWLINE> その時大事な宝を落としてきたのだ。」<NEWLINE>");
+  anim(Entity.Player, Animation(16), wait: 15);
+  speak(Entity.Player, "「ガラの悪い連中ねえ。気になるな。」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(6), "「頼みがある。そいつらを追い出し、宝を<NEWLINE> 取りもどす手助けをしてほしい。」<NEWLINE>");
+  setDialogOwner(Entity.Player);
+  setSelection(L2, L1);
+  showTextbox("「わかった。協力しよう。」<NEWLINE>「今は他にやることが…」<NEWLINE>");
+
+L1:
+  speak(Entity(6), "「そうですか…」<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  return;
+
+L2:
+  speak(Entity(6), "「では私の背中に乗ってください。」<NEWLINE>");
+  moveCamera(to: (-3150, 3000), slowdown: 30);
+  playAnimation(Entity(6), Animation(28));
+  sfx(8, 3, wait: 40);
+  rotate(entity: Entity(6), to: 3459);
+  playSound(8, 3);
+  rotate(entity: Entity(6), to: 3331);
+  delay(3);
+  rotate(entity: Entity(6), to: 3203);
+  delay(3);
+  rotate(entity: Entity(6), to: 3075);
+  delay(3);
+  rotate(entity: Entity(6), to: 2947);
+  delay(3);
+  rotate(entity: Entity(6), to: 2819);
+  delay(3);
+  rotate(entity: Entity(6), to: 2691);
+  delay(3);
+  rotate(entity: Entity(6), to: 2563);
+  sfx(8, 3, wait: 10);
+  rotate(entity: Entity(6), to: 2435);
+  delay(3);
+  rotate(entity: Entity(6), to: 2307);
+  delay(3);
+  rotate(entity: Entity(6), to: 2179);
+  delay(3);
+  rotate(entity: Entity(6), to: 2051);
+  delay(3);
+  rotate(entity: Entity(6), to: 1923);
+  sfx(8, 3, wait: 10);
+  rotate(entity: Entity(6), to: 1795);
+  delay(3);
+  rotate(entity: Entity(6), to: 1667);
+  delay(3);
+  rotate(entity: Entity(6), to: 1539);
+  delay(3);
+  rotate(entity: Entity(6), to: 1411);
+  delay(3);
+  rotate(entity: Entity(6), to: 1283);
+  delay(3);
+  move(entity: Entity.Player, to: (-2454, 2707), sprint: 0);
+  waitForEntity(Entity.Player);
+  move(entity: Entity.Player, to: (-3041, 3042), sprint: 0);
+  move(entity: Entity.Partner, to: (-2454, 2707), sprint: 0);
+  waitForEntity(Entity.Partner);
+  move(entity: Entity.Partner, to: (-2771, 2915), sprint: 0);
+  waitForPair();
+  delay(20);
+  rotate(entity: Entity.Player, to: 1283);
+  rotate(entity: Entity.Partner, to: 1283);
+  delay(5);
+  speak(Entity.Player, "「さあ行こう!」<NEWLINE>");
+  playSound(8, 3);
+  move(entity: Entity.Player, to: (-4053, 3680), animDuration: 99);
+  move(entity: Entity.Partner, to: (-4053, 3680), animDuration: 99);
+  move(entity: Entity(6), to: (-4053, 3680), animDuration: 99);
+  moveObjectTo(0, 35, 1, 0, 0, 350, 410);
+  moveObjectTo(1, 36, 1, 0, 0, 438, 410);
+  moveObjectTo(2, 37, 1, 0, 0, 412, 410);
+  moveObjectTo(3, 38, 1, 0, 0, 366, 410);
+  moveObjectTo(4, 39, 1, 0, 0, 350, 434);
+  moveObjectTo(5, 40, 1, 0, 0, 350, 458);
+  moveObjectTo(6, 41, 1, 0, 0, 366, 482);
+  moveObjectTo(7, 42, 1, 0, 0, 390, 506);
+  delay(10);
+  playSound(8, 3);
+  setObjectsVisibleRange(35, 42, 0);
+  setPStat(PStat(247), 35);
+  setPStat(PStat(248), 8);
+  callSubroutine(21);
+  delay(10);
+  moveObjectTo(0, 35, 1, 120, 0, 0, 730);
+  moveObjectTo(1, 36, 1, 120, 0, 88, 730);
+  moveObjectTo(2, 37, 1, 120, 0, 64, 730);
+  moveObjectTo(3, 38, 1, 120, 0, 16, 730);
+  moveObjectTo(4, 39, 1, 120, 0, 0, 754);
+  moveObjectTo(5, 40, 1, 120, 0, 0, 778);
+  moveObjectTo(6, 41, 1, 120, 0, 16, 802);
+  moveObjectTo(7, 42, 1, 120, 0, 40, 826);
+  delay(10);
+  move(entity: Entity.Player, to: (-4053, 3680), animDuration: 99);
+  move(entity: Entity.Partner, to: (-4053, 3680), animDuration: 99);
+  move(entity: Entity(6), to: (-4053, 3680), animDuration: 99);
+  delay(30);
+  warp(to: Map.OGRE10, spawn: 1, trigger: 60);
+  return;
+}
+
+section(51) {
+  {
+    if ((cond & 0x40) == 0x01 && !trigger(133)) break;
+    return;
+  }
+  storeDigimonType(PStat(103));
+  if (pstat[103] == 3 || pstat[103] == 5 || pstat[103] == 8 || pstat[103] == 9 || pstat[103] == 47) {
+    jumpToScriptSection(174, 51);
+  }
+  if (pstat[103] == 19 || pstat[103] == 32 || pstat[103] == 51 || pstat[103] == 1 || pstat[103] == 2) {
+    jumpToScriptSection(174, 51);
+  }
+  if (pstat[103] == 15 || pstat[103] == 16 || pstat[103] == 29 || pstat[103] == 30 || pstat[103] == 43) {
+    jumpToScriptSection(174, 51);
+  }
+  if (pstat[103] == 44 || pstat[103] == 21) {
+    jumpToScriptSection(174, 51);
+  }
+  return;
+  garbage { 1c 00 fe 00 1c 00 05 00 34 00 07 00 60 00 06 00 88 00 51 00 8a 00 33 00 6c 06 ff ff 24 00 6e 63 19 00 0b 00 6e 10 18 00 32 00 19 00 74 2c 1f 00 03 00 fe 00 1b 05 1a 00 81 75 82 c7 82 bd 82 dc 82 a9 82 bf 82 ed 82 e9 82 c7 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2f 01 fe 00 1b 07 1a 00 81 75 82 b2 82 a3 82 c6 82 a3 81 5b 82 d6 82 e9 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2c 01 fe 00 fe 00 19 00 00 00 e0 00 41 00 af 00 18 00 9c 00 19 00 fe 00 4c 00 fd 06 4c 00 fc 06 67 00 05 00 4f 1e dc f4 3d 0a 4a c8 19 00 00 00 60 01 18 00 10 01 19 00 1b 06 1a 00 81 75 82 a8 82 e2 81 41 82 a0 82 c8 82 bd 82 cd 81 42 81 76 0d 00 00 00 1b fd 10 02 30 04 10 04 1a 00 81 75 8b a6 97 cd 82 b5 82 c9 82 ab 82 bd 82 ba 81 42 81 76 0d 00 81 75 82 a0 81 41 82 dc }
+}

@@ -1,0 +1,276 @@
+// DG138.SCN
+#include "functions.dgs"
+#pragma script index=138 start=0x5a000 end=0x5b000 headerU16=0x14 sentinelOff=0x1b75
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnChest(Item.HPChip, -857, 483, 0, 668);
+  callSubroutine(43);
+  if (!trigger(270)) {
+    goto section_5;
+  }
+  return;
+}
+
+section(51) {
+  move(entity: Entity.Player, to: (24, -2500), sprint: 0);
+  warp(to: Map.OMOC07, spawn: 2, trigger: 255);
+  return;
+}
+
+section(5) {
+  if (trigger(270)) {
+    playAnimation(Entity.Player, Animation(20));
+    speak(Entity.Player, "「おまえ、もう悪さするなよ!」<NEWLINE>");
+    speak(Entity(5), "「へいへい。しないんじゃない?」<NEWLINE>");
+    return;
+  }
+  delay(60);
+  speak(Entity.Player, "「む、ここが最後の部屋みたいだ。」<NEWLINE>");
+  move(entity: Entity.Player, to: (14, -754), sprint: 0);
+  panTo(x: 73, y: 181, slowdown: 20);
+  move(entity: Entity.Player, to: (-205, -608), sprint: 0);
+  move(entity: Entity.Partner, to: (195, -608), sprint: 0);
+  delay(40);
+  rotate(entity: Entity.Player, to: 2048);
+  rotate(entity: Entity.Partner, to: 2048);
+  delay(5);
+  speak(Entity.System, "<YELLOW>???<WHITE><NEWLINE>「ど~~~っちだ?」<NEWLINE>");
+  rotate(entity: Entity.Player, to: 2560);
+  delay(20);
+  rotate(entity: Entity.Player, to: 1536);
+  delay(20);
+  rotate(entity: Entity.Player, to: 2048);
+  delay(5);
+  speak(Entity.Player, "「今の声…ワルモンザエモンか!」<NEWLINE>");
+  showTextbox("「大きい箱と小さい箱か。<NEWLINE> ふふ、おまえの考えはお見とおしさ!」<NEWLINE>");
+  setSelection(L1, L2);
+  showTextbox("「大きい箱だ!」<NEWLINE>「小さい箱だ!」<NEWLINE>");
+
+L1:
+  {
+    setPStat(PStat(254), 1);
+    callSubroutine(44);
+    delay(10);
+    setObjectVisibility(0, 0);
+    setObjectVisibility(1, 0);
+    setPStat(PStat(247), 0);
+    setPStat(PStat(248), 2);
+    callSubroutine(21);
+    moveObjectTo(0, 0, 1, 1, 0, 260, 117);
+    moveObjectTo(1, 1, 1, 1, 0, 255, 130);
+    delay(10);
+    playSound(8, 14);
+    moveObjectTo(0, 0, 1, 8, 0, 260, 27);
+    moveObjectTo(1, 1, 1, 8, 0, 255, 40);
+    delay(9);
+    moveObjectTo(0, 0, 1, 13, 0, 165, 27);
+    moveObjectTo(1, 1, 1, 13, 0, 160, 40);
+    delay(14);
+    playSound(8, 14);
+    moveObjectTo(0, 0, 1, 12, 0, 165, 177);
+    moveObjectTo(1, 1, 1, 12, 0, 160, 190);
+    delay(13);
+    speak(Entity.Player, "「ん?わああああ!」<NEWLINE>");
+    setObjectVisibility(0, 1);
+    setObjectVisibility(1, 1);
+    setObjectsVisibleRange(13, 50, 0);
+    setPStat(PStat(247), 13);
+    setPStat(PStat(248), 38);
+    callSubroutine(21);
+    playSound(8, 15);
+    anim(Entity.Player, Animation(15), wait: 20);
+    setObjectsVisibleRange(13, 50, 1);
+    delay(20);
+    setPStat(PStat(254), 2);
+    callSubroutine(44);
+    setDigimon(Digimon.WaruMonzaemon, Entity(0), 0);
+    move(entity: Entity(5), axis: 1, to: -2000, speed: 10);
+    delay(20);
+    move(entity: Entity(5), to: (-5, 41), animDuration: 2);
+    delay(10);
+    move(entity: Entity(5), axis: 1, to: 0, speed: 10);
+    delay(20);
+    speak(Entity(5), "「どわっはっはっは、バーカバーカ!<NEWLINE> ハッズレだよ~~~ん!」<NEWLINE>");
+    move(entity: Entity(5), to: (-5, 41), sprint: 0);
+    waitForEntity(Entity(5));
+    rotate(entity: Entity(5), to: 0);
+    delay(5);
+    break;
+
+L2:
+    setPStat(PStat(254), 2);
+    callSubroutine(44);
+    delay(40);
+    setDigimon(Digimon.WaruMonzaemon, Entity(0), 0);
+    move(entity: Entity(5), axis: 1, to: -2000, speed: 10);
+    delay(20);
+    move(entity: Entity(5), to: (-5, 41), animDuration: 2);
+    delay(10);
+    move(entity: Entity(5), axis: 1, to: 0, speed: 10);
+    delay(20);
+    speak(Entity(5), "「ばーりーたーかー!ぐひひひ。<NEWLINE> ドキドキしたか?」<NEWLINE>");
+    move(entity: Entity(5), to: (-5, 41), sprint: 0);
+    waitForEntity(Entity(5));
+    rotate(entity: Entity(5), to: 0);
+    delay(5);
+    break;
+  }
+  speak(Entity.Player, "「ちくしょ~~ふざけやがって!」<NEWLINE>");
+  speak(Entity(5), "「おやおや、元気がいーじゃないの?<NEWLINE> ところで何の用?俺様の子分にでも<NEWLINE> なりにきた?ふひひ。」<NEWLINE>");
+  anim(Entity.Player, Animation(20), wait: 5);
+  speak(Entity.Player, "「さらった仲間をかえせ!」<NEWLINE>");
+  speak(Entity(5), "「ナカマぁ?知らないよ?<NEWLINE> 俺様がそんなコトするように見える?」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity.Player, "「…見える。」<NEWLINE>");
+  speak(Entity(5), "「だっはは~。見える?ピンポーン!<NEWLINE> そーでーす俺様でーす!でも返さないよ。<NEWLINE> だって俺様、ワルモンザエモンじゃん?」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(1));
+  speak(Entity.Player, "「そっちがそのつもりなら力ずくで!」<NEWLINE>");
+  speak(Entity(5), "「え?え?何々?もしかして今のギャグ?<NEWLINE> 俺様を倒すって?あー、そう。ふーん。<NEWLINE> いかんなー、現実ってものを見ないと!」<NEWLINE>");
+  setTrigger(Trigger(1));
+  setPStat(PStat(250), 1);
+  setPStat(PStat(251), 5);
+  setPStat(PStat(252), 255);
+  setPStat(PStat(253), 255);
+  startBattle();
+  unsetTrigger(Trigger(1));
+  setPStat(PStat(250), 0);
+  look(entity: Entity.Player, at: Entity(5));
+  look(entity: Entity(5), at: Entity.Player);
+  look(entity: Entity.Partner, at: Entity(5));
+  for x in [Entity.Player, Entity.Partner, Entity(5)] {
+    waitForEntity(x);
+  }
+  anim(Entity.Player, Animation(19), wait: 5);
+  speak(Entity.Player, "「さあ、さらった仲間を返すんだ。」<NEWLINE>");
+  move(entity: Entity(5), to: (-5, 41), sprint: 0);
+  waitForEntity(Entity(5));
+  rotate(entity: Entity(5), to: 0);
+  speak(Entity(5), "「ぐわぁーーつええーーうそだぁーー<NEWLINE> 俺様が負けるわけがぁ~~~…」<NEWLINE>");
+  move(entity: Entity.Player, to: (-205, -608), sprint: 0);
+  move(entity: Entity.Partner, to: (195, -608), sprint: 0);
+  waitForPair();
+  lookPairAt(Entity(5));
+  waitForPair();
+  anim(Entity.Player, Animation(20), wait: 5);
+  speak(Entity.Player, "「さあっ!」<NEWLINE>");
+  speak(Entity(5), "「しょーがねーなー。ほらよ。」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(0));
+  playSound(8, 6);
+  setObjectVisibility(0, 0);
+  setObjectVisibility(1, 0);
+  setPStat(PStat(247), 0);
+  setPStat(PStat(248), 2);
+  callSubroutine(21);
+  moveObjectTo(0, 0, 1, 0, 0, 205, 147);
+  moveObjectTo(1, 1, 1, 0, 0, 200, 160);
+  delay(40);
+  playSound(8, 14);
+  moveObjectTo(0, 0, 1, 10, 0, 205, 27);
+  moveObjectTo(1, 1, 1, 10, 0, 200, 40);
+  delay(11);
+  moveObjectTo(0, 0, 1, 13, 0, 165, 27);
+  moveObjectTo(1, 1, 1, 13, 0, 160, 40);
+  delay(14);
+  playSound(8, 14);
+  moveObjectTo(0, 0, 1, 12, 0, 165, 177);
+  moveObjectTo(1, 1, 1, 12, 0, 160, 190);
+  delay(13);
+  speak(Entity.Player, "「ん?わああああ…って、オイ!」<NEWLINE>");
+  setObjectVisibility(0, 1);
+  setObjectVisibility(1, 1);
+  setObjectsVisibleRange(13, 50, 0);
+  setPStat(PStat(247), 13);
+  setPStat(PStat(248), 38);
+  callSubroutine(21);
+  playSound(8, 15);
+  anim(Entity.Player, Animation(15), wait: 20);
+  setObjectsVisibleRange(13, 50, 1);
+  speak(Entity.Player, "「お、お前いいかげんにしろよ!!」<NEWLINE>");
+  anim(Entity.Player, Animation(7), wait: 20);
+  speak(Entity(5), "「ほんのジョークだっつーの。<NEWLINE> 本物はコレ!」<NEWLINE>");
+  sfx(8, 6, wait: 20);
+  setDigimon(Digimon.Hagurumon, Entity(2), 0);
+  delay(10);
+  speak(Entity.Player, "「おい何だこれ。はぐるまじゃないか。」<NEWLINE>");
+  speak(Entity(5), "「そうだろ。」<NEWLINE>");
+  anim(Entity.Player, Animation(16), wait: 20);
+  speak(Entity.Player, "「……。仲間ってこれかな。」<NEWLINE>");
+  speak(Entity(5), "「他にはなにもとっちゃいねーよ。マジで。」<NEWLINE>");
+  speak(Entity.Player, "「とりあえず持って帰るか…」<NEWLINE>");
+  anim(Entity.Player, Animation(12), wait: 20);
+  unloadEntity(Entity(7));
+  anim(Entity.Player, Animation(20), wait: 5);
+  speak(Entity.Player, "「おまえ、もう悪さするなよ!」<NEWLINE>");
+  speak(Entity(5), "「へいへい。しないんじゃない?」<NEWLINE>");
+  playAnimation(Entity.Player, Animation(1));
+  speak(Entity.Player, "「うー信じられん。でもお前にばっかり<NEWLINE> かまってられないんだ、こっちは。」<NEWLINE>");
+  giveItem(Item.Gear, 1);
+  if (trigger(0)) {
+    unsetTrigger(Trigger(3));
+    speak(Entity.Player, "「しまった、アイテムがいっぱいだ。<NEWLINE> 捨てなきゃ。」<NEWLINE>");
+    callSubroutine(0);
+    callSubroutine(13);
+    giveItem(Item.Gear, 1);
+  }
+  speak(Entity.System, "<LIGHTBLUE>はぐるま<WHITE>を手に入れた!<NEWLINE>");
+  setTrigger(Trigger(270));
+  return;
+}
+
+section(6) {
+  delay(10);
+  anim(Entity(6), Animation(28), wait: 10);
+  speak(Entity.Player, "「ん?なにもんだ?!」<NEWLINE>");
+  speak(Entity(6), "「ナニモンだァ!」<NEWLINE>");
+  rotate(entity: Entity(6), to: 1276);
+  delay(5);
+  rotate(entity: Entity(6), to: 2300);
+  delay(5);
+  rotate(entity: Entity(6), to: 3324);
+  delay(5);
+  rotate(entity: Entity(6), to: 252);
+  delay(5);
+  rotate(entity: Entity(6), to: 1276);
+  delay(5);
+  rotate(entity: Entity(6), to: 2300);
+  delay(5);
+  rotate(entity: Entity(6), to: 3324);
+  delay(5);
+  rotate(entity: Entity(6), to: 252);
+  delay(5);
+  move(entity: Entity(6), to: (20, -1041), sprint: 1);
+  waitForEntity(Entity(6));
+  unloadEntity(Entity(6));
+  switch pstat[21] {
+    0 => {
+      setObjectVisibility(54, 0);
+      move(entity: Entity.Player, to: (-126, -518), sprint: 1);
+      waitForEntity(Entity.Player);
+      anim(Entity.Player, Animation(12), wait: 10);
+      setObjectVisibility(54, 1);
+      playSound(0, 7);
+      speak(Entity.System, "『<PINK>次元キーホルダー<WHITE>』を<NEWLINE> 手に入れた!<NEWLINE> アイテムを20個まで持てるぞ!<NEWLINE>");
+      playSound(0, 7);
+      setInventorySize(20);
+      setTrigger(Trigger(47));
+    }
+    4 => {
+      setObjectVisibility(53, 0);
+      move(entity: Entity.Player, to: (-126, -518), sprint: 1);
+      waitForEntity(Entity.Player);
+      anim(Entity.Player, Animation(12), wait: 10);
+      setObjectVisibility(53, 1);
+      playSound(0, 7);
+      speak(Entity.System, "『<PINK>次元キーホルダー<WHITE>』を<NEWLINE> 手に入れた!<NEWLINE> アイテムを30個まで持てるぞ!<NEWLINE>");
+      setInventorySize(30);
+      setTrigger(Trigger(48));
+      setTrigger(Trigger(253));
+      addPStat(PStat(1), 1);
+    }
+  }
+  addPStat(PStat(21), 1);
+  setTrigger(Trigger(337));
+  return;
+  garbage { 14 00 fe 00 14 00 33 00 34 00 05 00 42 00 06 00 ae 0c ff ff 75 1b a7 fc 00 00 e3 01 00 00 9c 02 64 2b 19 00 01 00 0e 01 18 00 32 00 19 00 16 00 42 00 fe 00 4e fd 18 00 3c f6 00 00 4b 96 02 ff fe 00 19 00 00 00 0e 01 18 00 a2 00 19 00 56 00 fd 14 1b fd 1a 00 81 75 82 a8 82 dc 82 a6 81 41 82 e0 82 a4 88 ab 82 b3 82 b7 82 e9 82 c8 82 e6 81 49 81 76 0d 00 00 00 1b 05 1a 00 81 75 82 d6 82 a2 82 d6 82 a2 81 42 82 b5 82 c8 82 a2 82 f1 82 b6 82 e1 82 c8 82 a2 81 48 81 76 0d 00 00 00 fe 00 67 00 3c 00 1b fd 1a 00 81 75 82 de 81 41 82 b1 82 b1 82 aa 8d c5 8c e3 82 cc 95 94 89 ae 82 dd 82 bd 82 a2 82 be 81 42 81 76 0d 00 00 00 4e fd 0e 00 0e fd 00 00 4f 14 49 00 b5 00 4a c8 4e fd 33 ff a0 fd 00 00 4e fc c3 00 a0 fd 00 00 67 00 28 00 4d fd 00 08 4d fc 00 08 67 00 05 00 1b ff 1a 00 01 07 81 48 81 48 81 48 01 01 0d 00 81 75 82 c7 81 60 81 60 81 60 82 c1 82 bf 82 be 81 48 81 76 0d 00 00 00 4d fd 00 0a 67 00 14 00 4d fd 00 06 67 00 14 00 4d fd 00 08 67 00 05 00 1b fd 1a 00 81 75 8d a1 82 cc 90 ba 81 63 83 8f 83 8b 83 82 83 93 83 55 83 47 83 82 83 93 82 a9 81 49 81 76 0d 00 00 00 1a 00 81 75 91 e5 82 ab 82 a2 94 a0 82 c6 8f ac 82 b3 82 a2 94 a0 82 a9 81 42 0d 00 81 40 82 d3 82 d3 81 41 82 a8 82 dc 82 a6 82 cc 8d 6c 82 a6 82 cd 82 a8 8c a9 82 c6 82 a8 }
+}

@@ -1,0 +1,161 @@
+// DG051.SCN
+#include "functions.dgs"
+#pragma script index=51 start=0x25000 end=0x26000 headerU16=0x20 sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  if (trigger(110)) {
+    setObjectVisibility(14, 1);
+  }
+  if (trigger(356) && !trigger(358)) {
+    delay(20);
+    rotate(entity: Entity.Player, to: 1024);
+    delay(5);
+    panTo(x: 234, y: 211, slowdown: 30);
+    speak(Entity.Player, "「…ヴァンデモン、いないな。」<NEWLINE>");
+    setTrigger(Trigger(358));
+    followEntity(Entity.Player, speed: 10);
+  }
+  return;
+}
+
+section(81) {
+  if (!trigger(110)) {
+    speak(Entity.Player, "「お!」<NEWLINE>");
+    anim(Entity.Player, Animation(12), wait: 20);
+    setObjectVisibility(14, 1);
+    giveItem(Item.MansionKey, 1);
+    speak(Entity.Player, "「やった、カギだ。これで開かないドアが<NEWLINE> 開くんじゃない?」<NEWLINE>");
+    speak(Entity.System, "<LIGHTBLUE>館のカギ<WHITE>を手に入れた!<NEWLINE>");
+    if (trigger(0)) {
+      speak(Entity.Player, "「いけね、何か捨てなきゃ。」<NEWLINE>");
+      unsetTrigger(Trigger(3));
+      callSubroutine(0);
+      callSubroutine(13);
+      giveItem(Item.MansionKey, 1);
+    }
+    setTrigger(Trigger(110));
+  } else {
+    return;
+  }
+  return;
+}
+
+section(82) {
+  {
+    if (item[Item.MansionKey] >= 1 && !trigger(111)) {
+      rotate(entity: Entity.Player, to: 2954);
+      playSound(8, 3);
+      speak(Entity.System, "<LIGHTBLUE>館のカギ<WHITE>を使った!<NEWLINE>");
+      setTrigger(Trigger(111));
+      break;
+    }
+    if (item[Item.MansionKey] >= 1 || trigger(111)) break;
+    rotate(entity: Entity.Player, to: 2954);
+    sfx(8, 2, wait: 5);
+    playSound(8, 2);
+    speak(Entity.System, "開かない…カギがかかっている。<NEWLINE>");
+    return;
+  }
+  rotate3DObject(1, 1);
+  sfx(8, 1, wait: 10);
+  move(entity: Entity.Player, to: (1600, 1674), sprint: 0);
+  warp(to: Map.YAKA11A, spawn: 4, trigger: 255);
+  return;
+}
+
+section(84) {
+  rotate3DObject(0, 1);
+  sfx(8, 1, wait: 10);
+  move(entity: Entity.Player, to: (-866, 3000), sprint: 0);
+  warp(to: Map.YAKA12, spawn: 1, trigger: 255);
+  return;
+}
+
+section(83) {
+  {
+    if (item[Item.MansionKey] >= 1 && !trigger(113)) {
+      rotate(entity: Entity.Player, to: 2954);
+      playSound(8, 3);
+      speak(Entity.System, "<LIGHTBLUE>館のカギ<WHITE>を使った!<NEWLINE>");
+      setTrigger(Trigger(113));
+      break;
+    }
+    if (item[Item.MansionKey] >= 1 || trigger(113)) break;
+    rotate(entity: Entity.Player, to: 2954);
+    sfx(8, 2, wait: 5);
+    playSound(8, 2);
+    speak(Entity.System, "開かない…カギがかかっている。<NEWLINE>");
+    return;
+  }
+  rotate3DObject(2, 1);
+  sfx(8, 1, wait: 10);
+  move(entity: Entity.Player, to: (1600, -1546), sprint: 0);
+  warp(to: Map.YAKA11A, spawn: 5, trigger: 255);
+  return;
+}
+
+section(60) {
+  setDigimon(Digimon.Devimon, Entity(0), 0);
+  rotate(entity: Entity.Player, to: 906);
+  move(entity: Entity.Partner, to: (775, -69), sprint: 1);
+  waitForEntity(Entity.Partner);
+  rotate(entity: Entity.Partner, to: 906);
+  speak(Entity.Player, "(モグモグ…)<NEWLINE>");
+  speak(Entity(5), "「さて…」<NEWLINE>");
+  look(entity: Entity(5), at: Entity.Player);
+  speak(Entity(5), "「話を聞いてもらうとしようか。」<NEWLINE>");
+  speak(Entity.Player, "(ムシャムシャ…)<NEWLINE>");
+  speak(Entity(5), "「最近私の部下達は、私の言うことを<NEWLINE> 聞かなくなってきている。<NEWLINE>");
+  showTextbox("「反抗的ではないが、命令を<NEWLINE> ぽっかりわすれているようなのだ。」<NEWLINE>");
+  showTextbox("「忘れるいぜんに、理解すらしていない時も<NEWLINE> ある。で、本来私の食事は部下が運んで<NEWLINE> くることになっているのだが…」<NEWLINE>");
+  speak(Entity.Player, "(パクパク…)<NEWLINE>");
+  speak(Entity(5), "「私が研究に熱中する間、食事は全く<NEWLINE> 運ばれてこず…私も熱中のあまり、空腹<NEWLINE> を忘れていたと。で、ああなった。」<NEWLINE>");
+  look(entity: Entity.Player, at: Entity(5));
+  speak(Entity.Player, "「………熱中しすぎだよ、それは。」<NEWLINE>");
+  speak(Entity(5), "「いや、おはずかしい。」<NEWLINE>");
+  speak(Entity.Player, "「しかし館の中でも外と同じ異変が<NEWLINE> 起きてるみたいだね。」<NEWLINE>");
+  speak(Entity(5), "「ほう、島の異変とは、みんなが<NEWLINE> 私の部下と同じ状態になっている<NEWLINE> ということかね?」<NEWLINE>");
+  speak(Entity.Player, "「うん。種族が孤立して、記憶が無く<NEWLINE> なって。まだみんながそうじゃない<NEWLINE> けど、このままだと…」<NEWLINE>");
+  speak(Entity(5), "「誰かが、そうなるように仕向けて<NEWLINE> いるのだろうか?うーむ。<NEWLINE> だとしたら何が目的なのか…」<NEWLINE>");
+  speak(Entity.Player, "「うーん…」<NEWLINE>");
+  speak(Entity(5), "「私は島のために何をすればよいか?」<NEWLINE>");
+  speak(Entity.Player, "「俺達は、デジモンの心を一つにする<NEWLINE> ために街をつくっている。島をめぐって<NEWLINE> いるのもその仲間さがしのためさ。」<NEWLINE>");
+  speak(Entity(5), "「なるほど。しかし困った。私はともかく<NEWLINE> 部下達は戦うことぐらいしか能の無い<NEWLINE> 連中ばかりだからな。」<NEWLINE>");
+  showTextbox("「かといって部下を置いていく<NEWLINE> わけにもいかん…」<NEWLINE>");
+  speak(Entity.Player, "「そうか…」<NEWLINE>");
+  speak(Entity(5), "「それについてはいずれ答えをだそう。<NEWLINE> 私もここでやることがあるのでね。<NEWLINE> 本当にすまないが…」<NEWLINE>");
+  speak(Entity.Player, "「わかった。じゃあまた来るよ。<NEWLINE> ごはんはちゃんと食べろよな!」<NEWLINE>");
+  return;
+  speak(Entity.Player, "「それなら闘技場に出てみたら?」<NEWLINE>");
+  speak(Entity(5), "「ほう…闘技場?それは面白いな。<NEWLINE> 部下にカツを入れるにはちょうどよい。<NEWLINE> 私もたまには体を動かしたいしな。」<NEWLINE>");
+  speak(Entity.Player, "「じゃあ、参加してくれるのか?!」<NEWLINE>");
+  speak(Entity(5), "「ああ、ただ私はここで研究したいものが<NEWLINE> 残っているので、その合間に街に行くこと<NEWLINE> にするよ。よろしく。」<NEWLINE>");
+}
+
+section(5) {
+  if (trigger(226)) {
+    speak(Entity(5), "「君たちには何度も世話になっているね。<NEWLINE> ここはひとつ私の研究の結果について<NEWLINE> 教えようじゃないか。」<NEWLINE>");
+    showTextbox("「スカルグレイモンは、メタルグレイモンが<NEWLINE> 戦闘や病気で死んだ時になれることが<NEWLINE> あるらしいのだ。」<NEWLINE>");
+    showTextbox("「このように進化できるものは、他にも<NEWLINE> バケモン、デビモン、ホウオウモンなどが<NEWLINE> いるようだ。」<NEWLINE>");
+    showTextbox("「何から進化するのかは、わからないがね。<NEWLINE> こういった進化は進化系図では<NEWLINE> わからないから覚えておきたまえ。」<NEWLINE>");
+    return;
+  }
+  if (trigger(266)) {
+    speak(Entity(5), "「私の部下達も闘技場に参加し始めてから<NEWLINE> だんだん昔の状態をとりもどしている。<NEWLINE> すばらしい効果があるようだ。」<NEWLINE>");
+    showTextbox("「私も研究の合間の闘技場出場が良い<NEWLINE> 気分てんかんになっているよ。」<NEWLINE>");
+    speak(Entity.Player, "「(何なんだろう…研究って…?)」<NEWLINE>");
+    return;
+  }
+  if (trigger(205)) {
+    speak(Entity(5), "「ヴァンデモン、街に闘技場ができたぜ!」<NEWLINE>");
+    speak(Entity(5), "「ふむ、私の部下は役にたてそうかね?」<NEWLINE>");
+    speak(Entity.Player, "「もちろん!暴れまくってくれ!」<NEWLINE>");
+    setTrigger(Trigger(266));
+  } else {
+    speak(Entity(5), "「部下達はどんどんひどい状態になって<NEWLINE> きている…この館を出て行くのも時間の<NEWLINE> 問題かもしれん。」<NEWLINE>");
+    return;
+  }
+  return;
+  garbage { 20 00 fe 00 20 00 51 00 86 00 52 00 60 01 54 00 04 02 53 00 1e 02 3c 00 c2 02 05 00 f0 09 ff ff 19 00 00 00 6e 00 18 00 30 00 19 00 57 00 0e 01 19 00 00 00 64 01 81 00 66 01 18 00 84 00 19 00 67 00 14 00 4d fd 00 04 67 00 05 00 4f 1e ea 00 d3 00 4a c8 1b fd 1a 00 81 75 81 63 83 94 83 40 83 93 83 66 83 82 83 93 81 41 82 a2 82 c8 82 a2 82 c8 81 42 81 76 0d 00 00 00 1c 00 66 01 50 00 fd 0a 4a c8 fe 00 19 00 01 00 6e 00 18 00 5c 01 19 00 1b fd 1a 00 81 75 82 a8 81 49 81 76 0d 00 00 00 56 00 fd 0c 67 00 14 00 57 00 0e 01 28 00 77 01 1b fd 1a 00 81 75 82 e2 82 c1 82 bd 81 41 83 4a 83 4d 82 be 81 42 82 b1 82 ea 82 c5 8a 4a 82 a9 82 c8 82 a2 83 68 83 41 82 aa 0d 00 81 40 8a 4a 82 ad 82 f1 82 b6 82 e1 82 c8 82 a2 81 48 81 76 0d 00 00 00 1b ff 1a 00 01 06 8a d9 82 cc 83 4a 83 4d 01 01 82 f0 8e e8 82 c9 93 fc 82 ea 82 bd 81 49 0d 00 00 00 19 00 00 00 00 00 18 00 54 01 19 00 1b fd 1a 00 81 75 82 a2 82 af 82 cb 81 41 89 bd 82 a9 8e cc 82 c4 82 c8 82 ab 82 e1 81 42 81 76 0d 00 00 00 1d 00 03 00 64 00 64 0d 28 00 77 01 1c 00 6e 00 16 00 5e 01 fe 00 fe 00 19 00 24 00 77 02 01 00 81 00 6f 00 18 00 a0 01 19 00 4d fd 8a 0b 5a 00 08 03 1b ff 1a 00 01 06 8a d9 82 cc 83 4a 83 4d 01 01 82 f0 8e 67 82 c1 82 bd 81 49 0d 00 00 00 1c 00 6f 00 16 00 ea 01 19 00 24 00 77 05 01 00 81 00 6f 00 18 00 ea 01 19 00 4d fd 8a 0b 5a 00 08 02 67 00 05 00 5a 00 08 02 1b ff 1a 00 8a 4a 82 a9 82 c8 82 a2 81 63 83 4a 83 4d 82 aa 82 a9 82 a9 82 c1 82 c4 82 a2 82 e9 81 42 0d 00 00 00 fe 00 70 01 00 01 5a 00 08 01 67 00 0a 00 4e fd 40 06 8a 06 00 00 4b 34 04 ff fe 00 70 00 00 01 5a 00 08 01 67 00 0a 00 4e fd 9e fc b8 0b 00 00 4b 36 01 ff fe 00 19 00 24 00 77 02 01 00 81 00 71 00 18 00 5e 02 19 00 4d fd 8a 0b 5a 00 08 03 1b ff 1a 00 01 06 8a d9 82 cc 83 4a 83 4d 01 01 82 f0 8e 67 }
+}

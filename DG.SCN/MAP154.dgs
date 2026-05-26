@@ -1,0 +1,447 @@
+// MAP154.SCN
+#include "functions.dgs"
+#pragma script index=154 start=0x69800 end=0x6a800 headerU16=0x14 sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  if (pstat[30] < 3 && trigger(178)) {
+    move(entity: Entity(5), to: (169, 2232), animDuration: 5);
+    waitForEntity(Entity(5));
+  }
+  if (pstat[30] < 10 && trigger(179)) {
+    move(entity: Entity(5), to: (169, 2232), animDuration: 5);
+    waitForEntity(Entity(5));
+    return;
+  }
+  return;
+}
+
+section(81) {
+  look(entity: Entity(5), at: Entity.Player);
+  look(entity: Entity.Player, at: Entity(5));
+  delay(5);
+  panTo(x: 184, y: 686, slowdown: 10);
+  if (!trigger(90)) {
+    setTrigger(Trigger(90));
+    speak(Entity(5), "「おっす、よー来たな、<LIGHTBLUE><PLAYER><WHITE>!」<NEWLINE>");
+    showTextbox("「ここは宝探し屋だ。俺っち得意の穴掘りを<NEWLINE> いかして、地中の宝を探してくるって<NEWLINE> 商売よ。」<NEWLINE>");
+    showTextbox("「この島は色んなお宝がざくざく<NEWLINE> うまってるんだぜ。ま、俺っちにまかせて<NEWLINE> おきな!」<NEWLINE>");
+    return;
+    followEntity(Entity.Player, speed: 10);
+  }
+  if (trigger(178) || trigger(179)) {
+  } else {
+    speak(Entity(5), "「おう、宝探し依頼か?まず説明を聞くか?」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L2, L3);
+    showTextbox("「説明して欲しい。」<NEWLINE>「説明はいらない。」<NEWLINE>「別に用はない。」<NEWLINE>");
+    waitForSelectionChoice();
+    goto L3;
+
+L1:
+    speak(Entity(5), "「元手になる代金とひきかえに、俺っちが<NEWLINE> 宝を見つけてくるしくみだ。期間と値段を<NEWLINE> 分けて2つのコースがあるぜ。」<NEWLINE>");
+    showTextbox("「ノーマルコースは3日間1000<B><it>。<NEWLINE> スペシャルコースは10日間で5000<NEWLINE> <B><it>になっているぞ。」<NEWLINE>");
+    showTextbox("「もちろん、スペシャルコースのほうが<NEWLINE> 良い宝が見つかる可能性は高いぜ!」<NEWLINE>");
+    showTextbox("「説明はそんなとこだな。<NEWLINE> で、どうすんだ?」<NEWLINE>");
+    setDialogOwner(Entity(5));
+    setSelection(L2, L1, L3);
+    showTextbox("「宝探しをたのむ。」<NEWLINE>「もう一度説明してほしい。」<NEWLINE>「いや、もう用はない。」<NEWLINE>");
+    waitForSelectionChoice();
+    goto L3;
+
+L2:
+    speak(Entity(5), "「じゃあ、コースを選びな!」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L4, L5, L3);
+    showTextbox("ノーマルコース       1000<B><it><NEWLINE>スペシャルコース      5000<B><it><NEWLINE>とりやめ<NEWLINE>");
+    waitForSelectionChoice();
+    goto L3;
+
+L3:
+    speak(Entity(5), "「そうか。じゃあな。」<NEWLINE>");
+    followEntity(Entity.Player, speed: 10);
+    return;
+
+L4:
+    {
+      if (money < 1000) {
+        break;
+      }
+      reduceMoney(1000);
+      setTrigger(Trigger(178));
+      setPStat(PStat(30), 0);
+      speak(Entity(5), "「よーし、じゃあ3日後には結果が出る<NEWLINE> からな。がんばるぜ。」<NEWLINE>");
+      roll(pstat: PStat(22), max: 49);
+      move(entity: Entity(5), to: (169, 2232), sprint: 1);
+      waitForEntity(Entity(5));
+      followEntity(Entity.Player, speed: 10);
+      return;
+
+L5:
+      if (money < 5000) {
+        break;
+      }
+      reduceMoney(5000);
+      setTrigger(Trigger(179));
+      setPStat(PStat(30), 0);
+      speak(Entity(5), "「よーし、じゃあ10日後には結果が出る<NEWLINE> からな。がんばるぜ。」<NEWLINE>");
+      roll(pstat: PStat(23), max: 49);
+      move(entity: Entity(5), to: (169, 2232), sprint: 1);
+      waitForEntity(Entity(5));
+      followEntity(Entity.Player, speed: 10);
+      return;
+    }
+    speak(Entity(5), "「<B><it>がたりねーぜ。いくら俺っちでも、<NEWLINE> 元手が無くちゃ宝は探せねえ。」<NEWLINE>");
+    followEntity(Entity.Player, speed: 10);
+    return;
+  }
+  {
+    if (pstat[30] < 3 && trigger(178)) {
+      break;
+    }
+    if (pstat[30] < 10 && trigger(179)) {
+      break;
+    }
+    goto L6;
+  }
+  move(entity: Entity(5), to: (180, 840), sprint: 1);
+  waitForEntity(Entity(5));
+  speak(Entity(5), "「いま宝を探してるとこだ。<NEWLINE> まあもうちょい待ってな。」<NEWLINE>");
+  move(entity: Entity(5), to: (169, 2232), sprint: 1);
+  waitForEntity(Entity(5));
+  followEntity(Entity.Player, speed: 10);
+  return;
+
+L6:
+  speak(Entity(5), "「いよーう、お宝、あがってるぜえ。」<NEWLINE>");
+  {
+    if (trigger(178)) {
+      break;
+    }
+    if (!trigger(179)) break;
+    unsetTrigger(Trigger(179));
+    goto L8;
+  }
+  {
+    if (trigger(217)) {
+      break;
+    }
+    if (pstat[22] <= 0) {
+      giveItem(Item.KogaLaws, 1);
+      setPStat(PStat.RollScratch, 90);
+      goto L7;
+    }
+    if (pstat[22] <= 1) {
+      giveItem(Item.FlameWing, 1);
+      setPStat(PStat.RollScratch, 73);
+      goto L7;
+    }
+    if (pstat[22] <= 2) {
+      giveItem(Item.TornTatter, 1);
+      setPStat(PStat.RollScratch, 82);
+      goto L7;
+    }
+    if (pstat[22] <= 12) {
+      giveItem(Item.SuperRecovery, 1);
+      setPStat(PStat.RollScratch, 3);
+      goto L7;
+    }
+    if (pstat[22] <= 15) {
+      giveItem(Item.Restore, 1);
+      setPStat(PStat.RollScratch, 11);
+      goto L7;
+    }
+    if (pstat[22] <= 19) {
+      giveItem(Item.Omnipotent, 1);
+      setPStat(PStat.RollScratch, 9);
+      goto L7;
+    }
+    if (pstat[22] <= 23) {
+      giveItem(Item.Protection, 1);
+      setPStat(PStat.RollScratch, 10);
+      goto L7;
+    }
+    if (pstat[22] <= 33) {
+      giveItem(Item.LargeMP, 1);
+      setPStat(PStat.RollScratch, 6);
+      goto L7;
+    }
+    if (pstat[22] <= 37) {
+      giveItem(Item.SuperOffenseDisk, 1);
+      setPStat(PStat.RollScratch, 19);
+      goto L7;
+    }
+    if (pstat[22] <= 41) {
+      giveItem(Item.SuperDefenseDisk, 1);
+      setPStat(PStat.RollScratch, 20);
+      goto L7;
+    }
+    if (pstat[22] <= 45) {
+      giveItem(Item.SuperSpeedDisk, 1);
+      setPStat(PStat.RollScratch, 21);
+      goto L7;
+    }
+    if (pstat[22] > 49) break;
+    giveItem(Item.OmniDisk, 1);
+    setPStat(PStat.RollScratch, 18);
+    goto L7;
+  }
+  if (pstat[22] <= 0) {
+    giveItem(Item.KogaLaws, 1);
+    setPStat(PStat.RollScratch, 90);
+    goto L7;
+  }
+  if (pstat[22] <= 2) {
+    giveItem(Item.FlameWing, 1);
+    setPStat(PStat.RollScratch, 73);
+    goto L7;
+  }
+  if (pstat[22] <= 4) {
+    giveItem(Item.TornTatter, 1);
+    setPStat(PStat.RollScratch, 82);
+    goto L7;
+  }
+  if (pstat[22] <= 12) {
+    giveItem(Item.SuperRecovery, 1);
+    setPStat(PStat.RollScratch, 3);
+    goto L7;
+  }
+  if (pstat[22] <= 15) {
+    giveItem(Item.Restore, 1);
+    setPStat(PStat.RollScratch, 11);
+    goto L7;
+  }
+  if (pstat[22] <= 19) {
+    giveItem(Item.Omnipotent, 1);
+    setPStat(PStat.RollScratch, 9);
+    goto L7;
+  }
+  if (pstat[22] <= 23) {
+    giveItem(Item.Protection, 1);
+    setPStat(PStat.RollScratch, 10);
+    goto L7;
+  }
+  if (pstat[22] <= 33) {
+    giveItem(Item.LargeMP, 1);
+    setPStat(PStat.RollScratch, 6);
+    goto L7;
+  }
+  if (pstat[22] <= 37) {
+    giveItem(Item.SuperOffenseDisk, 1);
+    setPStat(PStat.RollScratch, 19);
+    goto L7;
+  }
+  if (pstat[22] <= 41) {
+    giveItem(Item.SuperDefenseDisk, 1);
+    setPStat(PStat.RollScratch, 20);
+    goto L7;
+  }
+  if (pstat[22] <= 45) {
+    giveItem(Item.SuperSpeedDisk, 1);
+    setPStat(PStat.RollScratch, 21);
+    goto L7;
+  }
+  if (pstat[22] <= 49) {
+    giveItem(Item.OmniDisk, 1);
+    setPStat(PStat.RollScratch, 18);
+  } else {
+
+L7:
+  }
+  loop {
+    if (trigger(0)) {
+      speak(Entity(5), "「持ち物を空けてきてくんな!」<NEWLINE>");
+      followEntity(Entity.Player, speed: 10);
+      return;
+    }
+    speak(Entity.System, "<LIGHTBLUE><TREASURE ITEM><WHITE>を手に入れた!<NEWLINE>");
+    unsetTrigger(Trigger(178));
+    unsetTrigger(Trigger(179));
+    break;
+
+L8:
+    {
+      if (trigger(217)) {
+        break;
+      }
+      if (pstat[23] <= 0) {
+        giveItem(Item.OffenseChip, 1);
+        setPStat(PStat.RollScratch, 23);
+        continue;
+      }
+      if (pstat[23] <= 1) {
+        giveItem(Item.HPChip, 1);
+        setPStat(PStat.RollScratch, 27);
+        continue;
+      }
+      if (pstat[23] <= 2) {
+        giveItem(Item.BrainChip, 1);
+        setPStat(PStat.RollScratch, 25);
+        continue;
+      }
+      if (pstat[23] <= 3) {
+        giveItem(Item.DefenseChip, 1);
+        setPStat(PStat.RollScratch, 24);
+        continue;
+      }
+      if (pstat[23] <= 4) {
+        giveItem(Item.MPChip, 1);
+        setPStat(PStat.RollScratch, 28);
+        continue;
+      }
+      if (pstat[23] <= 5) {
+        giveItem(Item.SpeedChip, 1);
+        setPStat(PStat.RollScratch, 26);
+        continue;
+      }
+      if (pstat[23] <= 6) {
+        giveItem(Item.KogaLaws, 1);
+        setPStat(PStat.RollScratch, 90);
+        continue;
+      }
+      if (pstat[23] <= 7) {
+        giveItem(Item.FlameWing, 1);
+        setPStat(PStat.RollScratch, 73);
+        continue;
+      }
+      if (pstat[23] <= 8) {
+        giveItem(Item.TornTatter, 1);
+        setPStat(PStat.RollScratch, 82);
+        continue;
+      }
+      if (pstat[23] <= 20) {
+        giveItem(Item.SuperRecovery, 1);
+        setPStat(PStat.RollScratch, 3);
+        continue;
+      }
+      if (pstat[23] <= 29) {
+        giveItem(Item.Restore, 1);
+        setPStat(PStat.RollScratch, 11);
+        continue;
+      }
+      if (pstat[23] > 49) break;
+      giveItem(Item.Omnipotent, 1);
+      setPStat(PStat.RollScratch, 9);
+      continue;
+    }
+    if (pstat[23] <= 1) {
+      giveItem(Item.OffenseChip, 1);
+      setPStat(PStat.RollScratch, 23);
+      continue;
+    }
+    if (pstat[23] <= 3) {
+      giveItem(Item.HPChip, 1);
+      setPStat(PStat.RollScratch, 27);
+      continue;
+    }
+    if (pstat[23] <= 5) {
+      giveItem(Item.BrainChip, 1);
+      setPStat(PStat.RollScratch, 25);
+      continue;
+    }
+    if (pstat[23] <= 7) {
+      giveItem(Item.DefenseChip, 1);
+      setPStat(PStat.RollScratch, 24);
+      continue;
+    }
+    if (pstat[23] <= 9) {
+      giveItem(Item.MPChip, 1);
+      setPStat(PStat.RollScratch, 28);
+      continue;
+    }
+    if (pstat[23] <= 11) {
+      giveItem(Item.SpeedChip, 1);
+      setPStat(PStat.RollScratch, 26);
+      continue;
+    }
+    if (pstat[23] <= 13) {
+      giveItem(Item.KogaLaws, 1);
+      setPStat(PStat.RollScratch, 90);
+      continue;
+    }
+    if (pstat[23] <= 15) {
+      giveItem(Item.FlameWing, 1);
+      setPStat(PStat.RollScratch, 73);
+      continue;
+    }
+    if (pstat[23] <= 17) {
+      giveItem(Item.TornTatter, 1);
+      setPStat(PStat.RollScratch, 82);
+      continue;
+    }
+    if (pstat[23] <= 21) {
+      giveItem(Item.SuperRestore, 1);
+      setPStat(PStat.RollScratch, 12);
+      continue;
+    }
+    if (pstat[23] <= 33) {
+      giveItem(Item.Restore, 1);
+      setPStat(PStat.RollScratch, 11);
+      continue;
+    }
+    if (pstat[23] > 49) break;
+    giveItem(Item.Omnipotent, 1);
+    setPStat(PStat.RollScratch, 9);
+  }
+  speak(Entity(5), "「まいど!」<NEWLINE>");
+  followEntity(Entity.Player, speed: 10);
+  return;
+}
+
+section(6) {
+  speak(Entity(6), "「どーも、<LIGHTBLUE><PLAYER><WHITE>さん!」<NEWLINE>");
+  showTextbox("「ぼくドリモゲさんのお手伝いを<NEWLINE> 始めたんだ。ぼくけっこう探し物とか<NEWLINE> 得意なんだよ。」<NEWLINE>");
+  return;
+}
+
+section(51) {
+  move(entity: Entity.Player, to: (2200, -3000), sprint: 0);
+  if (!trigger(203)) {
+    warp(to: Map.TWNA01, spawn: 5, trigger: 255);
+  }
+  {
+    if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L2; else break;
+  }
+  {
+    if (trigger(221)) goto L1; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA04, spawn: 5, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA03, spawn: 5, trigger: 255);
+  }
+  warp(to: Map.TWNA02, spawn: 5, trigger: 255);
+
+L1:
+  if (trigger(225)) {
+    warp(to: Map.TWNA07, spawn: 5, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA06, spawn: 5, trigger: 255);
+  }
+  {
+    warp(to: Map.TWNA05, spawn: 5, trigger: 255);
+
+L2:
+    if (trigger(221)) goto L3; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA10, spawn: 5, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA09, spawn: 5, trigger: 255);
+  }
+  warp(to: Map.TWNA08, spawn: 5, trigger: 255);
+
+L3:
+  if (trigger(225)) {
+    warp(to: Map.TWNA13, spawn: 5, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA12, spawn: 5, trigger: 255);
+  }
+  warp(to: Map.TWNA11, spawn: 5, trigger: 255);
+  return;
+  garbage { 14 00 fe 00 14 00 51 00 4c 00 06 00 ce 0b 33 00 4e 0c ff ff 19 00 0d 00 1e 03 80 00 b2 00 18 00 2e 00 19 00 6c 05 a9 00 b8 08 05 00 4a 05 19 00 0d 00 1e 0a 80 00 b3 00 18 00 4a 00 19 00 6c 05 a9 00 b8 08 05 00 4a 05 fe 00 fe 00 4c 00 05 fd 4c 00 fd 05 67 00 05 00 4f 0a b8 00 ae 02 4a c8 19 00 01 00 5a 00 18 00 5e 01 19 00 1c 00 5a 00 1b 05 1a 00 81 75 82 a8 82 c1 82 b7 81 41 82 e6 81 5b 97 88 82 bd 82 c8 81 41 01 06 05 00 01 01 81 49 81 76 0d 00 00 00 1a 00 81 75 82 b1 82 b1 82 cd 95 f3 92 54 82 b5 89 ae 82 be 81 42 89 b4 82 c1 82 bf 93 be 88 d3 82 cc 8c 8a 8c 40 82 e8 82 f0 0d 00 81 40 82 a2 82 a9 82 b5 82 c4 81 41 92 6e 92 86 82 cc 95 f3 82 f0 92 54 82 b5 82 c4 82 ad 82 e9 82 c1 82 c4 0d 00 81 40 8f a4 94 84 82 e6 81 42 81 76 0d 00 00 00 1a 00 81 75 82 b1 82 cc 93 87 82 cd 90 46 82 f1 82 c8 82 a8 95 f3 82 aa 82 b4 82 ad 82 b4 82 ad 0d 00 81 40 82 a4 82 dc 82 c1 82 c4 82 e9 82 f1 82 be 82 ba 81 42 82 dc 81 41 89 b4 82 c1 82 bf 82 c9 82 dc 82 a9 82 b9 82 c4 0d 00 81 40 82 a8 82 ab 82 c8 81 49 81 76 0d 00 00 00 fe 00 50 00 fd 0a 4a c8 19 00 00 00 b2 00 40 00 b3 00 18 00 72 01 19 00 16 00 d8 05 1b 05 1a 00 81 75 82 a8 82 a4 81 41 95 f3 92 54 82 b5 88 cb 97 8a 82 a9 81 48 82 dc 82 b8 90 e0 96 be 82 f0 95 b7 82 ad 82 a9 81 48 81 76 0d 00 00 00 1b fd 10 03 f8 01 c6 03 5c 04 1a 00 81 75 90 e0 96 be 82 b5 82 c4 97 7e 82 b5 82 a2 81 42 81 76 0d 00 81 75 90 e0 96 be 82 cd 82 a2 82 e7 82 c8 82 a2 81 42 81 76 0d 00 81 75 95 ca 82 c9 97 70 82 cd 82 c8 82 a2 81 42 81 76 0d 00 00 00 12 00 16 00 5c 04 1b 05 1a 00 81 75 8c b3 8e e8 82 c9 82 c8 82 e9 91 e3 8b e0 82 c6 82 d0 82 ab 82 a9 82 a6 82 c9 81 41 89 b4 82 c1 82 bf 82 aa 0d 00 81 40 95 f3 82 f0 8c a9 82 c2 82 af 82 c4 82 ad 82 e9 82 b5 82 ad 82 dd 82 be 81 42 8a fa 8a d4 82 c6 92 6c 92 69 82 f0 0d 00 81 40 95 aa 82 af 82 c4 82 51 82 c2 82 cc 83 52 81 5b 83 58 82 aa 82 a0 82 e9 82 ba 81 42 81 76 0d 00 00 00 1a 00 81 75 83 6d 81 5b 83 7d 83 8b 83 52 81 5b 83 58 82 cd 82 52 93 fa 8a d4 82 50 82 4f 82 4f 82 4f 81 6f 81 70 81 42 0d 00 81 40 83 58 83 79 83 56 83 83 83 8b 83 52 81 5b 83 58 82 cd 82 50 82 4f 93 fa }
+}

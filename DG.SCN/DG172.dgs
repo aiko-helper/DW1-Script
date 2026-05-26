@@ -1,0 +1,716 @@
+// DG172.SCN
+#include "functions.dgs"
+#pragma script index=172 start=0x79800 end=0x7b800 headerU16=0xc sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(51) {
+  addPStat(PStat(123), 1);
+  loadAndSetDigimon(Digimon.Weedmon, Entity(3), 0);
+  customerApproaches(Entity(8));
+  roll(pstat: PStat.RollScratch, max: 99);
+  if (pstat[110] <= 49) {
+  } else {
+    if (pstat[110] <= 84) {
+      goto L16;
+    }
+    goto L30;
+    return;
+  }
+  speak(Entity(8), "「<LIGHTBLUE>肉<WHITE>が…ほしいな…」<NEWLINE>");
+  speak(Entity.Player, "「いらっしゃい、<NEWLINE> <LIGHTBLUE>肉<WHITE>ね…えーと…」<NEWLINE>");
+  loop {
+    setHaggleContext(Entity(8), 5);
+    delay(10);
+    setPStat(PStat(117), 6);
+    setDialogOwner(Entity.System);
+    setSelection(L1, L2, L3);
+    showTextbox(" 値上げ<NEWLINE> そのまま(50<B><it>)<NEWLINE> 値下げ<NEWLINE>");
+    waitForSelectionChoice();
+    speak(Entity.Player, "「<LIGHTBLUE>肉<WHITE>だったな…えーと…」<NEWLINE>");
+    continue;
+
+L1:
+    roll(pstat: PStat.RollScratch, max: 4);
+    {
+      if (pstat[110] <= 0) {
+        presentOffer(Entity(8), 3, 1, "定価50<B><it>の<LIGHTBLUE>肉<WHITE>を<NEWLINE>75<B><it>で売ります<NEWLINE>");
+        setSelection(L4, L_0096);
+        showTextbox("50→75でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 1) {
+        presentOffer(Entity(8), 2, 2, "定価50<B><it>の<LIGHTBLUE>肉<WHITE>を<NEWLINE>70<B><it>で売ります<NEWLINE>");
+        setSelection(L5, L_0096);
+        showTextbox("50→70でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 2) {
+        presentOffer(Entity(8), 2, 3, "定価50<B><it>の<LIGHTBLUE>肉<WHITE>を<NEWLINE>65<B><it>で売ります<NEWLINE>");
+        setSelection(L6, L_0096);
+        showTextbox("50→65でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 3) {
+        presentOffer(Entity(8), 1, 4, "定価50<B><it>の<LIGHTBLUE>肉<WHITE>を<NEWLINE>60<B><it>で売ります<NEWLINE>");
+        setSelection(L7, L_0096);
+        showTextbox("50→60でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 4) {
+        presentOffer(Entity(8), 1, 5, "定価50<B><it>の<LIGHTBLUE>肉<WHITE>を<NEWLINE>55<B><it>で売ります<NEWLINE>");
+        setSelection(L8, L_0096);
+        showTextbox("50→55でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+
+L2:
+      }
+      presentOffer(Entity(8), 0, 6, "定価50<B><it>の<LIGHTBLUE>肉<WHITE>を<NEWLINE>そのままの値段で売ります<NEWLINE>");
+      setSelection(L9, L_0096);
+      showTextbox("定価でOK<NEWLINE>考え直す<NEWLINE>");
+      waitForSelectionChoice();
+      continue;
+
+L3:
+      roll(pstat: PStat.RollScratch, max: 2);
+      if (pstat[110] <= 0) {
+        presentOffer(Entity(8), 0, 7, "定価50<B><it>の<LIGHTBLUE>肉<WHITE>を<NEWLINE>45<B><it>で売ります<NEWLINE>");
+        setSelection(L10, L_0096);
+        showTextbox("50→45でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 1) {
+        presentOffer(Entity(8), 0, 8, "定価50<B><it>の<LIGHTBLUE>肉<WHITE>を<NEWLINE>40<B><it>で売ります<NEWLINE>");
+        setSelection(L11, L_0096);
+        showTextbox("50→40でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] > 2) break;
+      presentOffer(Entity(8), 0, 9, "定価50<B><it>の<LIGHTBLUE>肉<WHITE>を<NEWLINE>35<B><it>で売ります<NEWLINE>");
+      setSelection(L12, L_0096);
+      showTextbox("50→35でOK<NEWLINE>考え直す<NEWLINE>");
+      waitForSelectionChoice();
+      continue;
+
+L4:
+    }
+    roll(pstat: PStat.RollScratch, max: 99);
+    {
+      if (pstat[110] <= 0) {
+        break;
+      }
+      goto L14;
+
+L5:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 0) {
+        break;
+      }
+      goto L14;
+
+L6:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 0) {
+        break;
+      }
+      goto L14;
+
+L7:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 19) {
+        break;
+      }
+      goto L14;
+
+L8:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 49) {
+        break;
+      }
+      goto L14;
+
+L9:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 79) {
+        break;
+      }
+      goto L14;
+
+L10:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 84) {
+        break;
+      }
+      goto L14;
+
+L11:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 89) {
+        break;
+      }
+      goto L14;
+
+L12:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 94) {
+        break;
+      }
+      goto L14;
+    }
+    speak(Entity(8), "「じゃ、それもらうよ…」<NEWLINE>");
+    ringUpDeal();
+    switch pstat[117] {
+      1 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 40);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +40<NEWLINE>");
+      }
+      2 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 35);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +35<NEWLINE>");
+      }
+      3 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 30);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +30<NEWLINE>");
+      }
+      4 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 25);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +25<NEWLINE>");
+      }
+      5 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 20);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +20<NEWLINE>");
+      }
+      6 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 15);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +15<NEWLINE>");
+      }
+      7 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 10);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +10<NEWLINE>");
+      }
+      8 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 5);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +5<NEWLINE>");
+      }
+      else 9 => {
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +0<NEWLINE>");
+      }
+    }
+
+L13:
+    setPStat(PStat(119), 0);
+    sfx(0, 23, wait: 20);
+    setHaggleContext(Entity(8), 5);
+    move(entity: Entity(8), to: (-109, -853), sprint: 0);
+    waitForEntity(Entity(8));
+    unloadEntity(Entity(8));
+    unloadModel(Digimon.Weedmon);
+    delay(20);
+    jumpToScriptSection(47, 82);
+    return;
+
+L14:
+    retryHaggle(Entity(8));
+    if (pstat[110] <= 89 && pstat[119] >= 3) {
+      goto L15;
+    }
+    if (pstat[110] <= 59 && pstat[119] == 2) {
+      goto L15;
+    }
+    if (pstat[110] <= 19 && pstat[119] == 1) {
+      goto L15;
+    }
+    {
+      break;
+
+L15:
+      speak(Entity(8), "「こんな店じゃ買い物できないね…」<NEWLINE>");
+      setPStat(PStat(119), 0);
+      sfx(8, 7, wait: 10);
+      setHaggleContext(Entity(8), 5);
+      move(entity: Entity(8), to: (-109, -853), sprint: 0);
+      waitForEntity(Entity(8));
+      unloadEntity(Entity(8));
+      unloadModel(Digimon.Weedmon);
+      delay(40);
+      speak(Entity.Player, "「お客さん来ないな…」<NEWLINE>");
+      fadeOutHUD();
+      addPStat(PStat(123), 1);
+      jumpToScriptSection(47, 82);
+      return;
+    }
+    speak(Entity(8), "「高いんじゃないか…」<NEWLINE>");
+    speak(Entity.Player, "「そう?じゃあね…」<NEWLINE>");
+  }
+
+L16:
+  speak(Entity(8), "「<LIGHTBLUE>けいたいトイレ<WHITE>が…ほしいな…」<NEWLINE>");
+  speak(Entity.Player, "「いらっしゃい、<NEWLINE> <LIGHTBLUE>けいたいトイレ<WHITE>ね…えーと…」<NEWLINE>");
+  loop {
+    setHaggleContext(Entity(8), 5);
+    setPStat(PStat(117), 6);
+    setDialogOwner(Entity.System);
+    setSelection(L17, L18, L19);
+    showTextbox(" 値上げ<NEWLINE> そのまま(300<B><it>)<NEWLINE> 値下げ<NEWLINE>");
+    waitForSelectionChoice();
+    speak(Entity.Player, "「<LIGHTBLUE>けいたいトイレ<WHITE>だったな…えーと…」<NEWLINE>");
+    continue;
+
+L17:
+    roll(pstat: PStat.RollScratch, max: 4);
+    {
+      if (pstat[110] <= 0) {
+        presentOffer(Entity(8), 3, 1, "定価300<B><it>の<LIGHTBLUE>けいたいトイレ<WHITE>を<NEWLINE>450<B><it>で売ります<NEWLINE>");
+        setSelection(L20, L_0a52);
+        showTextbox("300→450でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 1) {
+        presentOffer(Entity(8), 2, 2, "定価300<B><it>の<LIGHTBLUE>けいたいトイレ<WHITE>を<NEWLINE>420<B><it>で売ります<NEWLINE>");
+        setSelection(L21, L_0a52);
+        showTextbox("300→420でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 2) {
+        presentOffer(Entity(8), 2, 3, "定価300<B><it>の<LIGHTBLUE>けいたいトイレ<WHITE>を<NEWLINE>390<B><it>で売ります<NEWLINE>");
+        setSelection(L22, L_0a52);
+        showTextbox("300→390でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 3) {
+        presentOffer(Entity(8), 1, 4, "定価300<B><it>の<LIGHTBLUE>けいたいトイレ<WHITE>を<NEWLINE>360<B><it>で売ります<NEWLINE>");
+        setSelection(L23, L_0a52);
+        showTextbox("300→360でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 4) {
+        presentOffer(Entity(8), 1, 5, "定価300<B><it>の<LIGHTBLUE>けいたいトイレ<WHITE>を<NEWLINE>330<B><it>で売ります<NEWLINE>");
+        setSelection(L24, L_0a52);
+        showTextbox("300→330でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+
+L18:
+      }
+      presentOffer(Entity(8), 0, 6, "定価300<B><it>の<LIGHTBLUE>けいたいトイレ<WHITE>を<NEWLINE>そのままの値段で売ります<NEWLINE>");
+      setSelection(L25, L_0a52);
+      showTextbox("定価でOK<NEWLINE>考え直す<NEWLINE>");
+      waitForSelectionChoice();
+      continue;
+
+L19:
+      roll(pstat: PStat.RollScratch, max: 2);
+      if (pstat[110] <= 0) {
+        presentOffer(Entity(8), 0, 7, "定価300<B><it>の<LIGHTBLUE>けいたいトイレ<WHITE>を<NEWLINE>270<B><it>で売ります<NEWLINE>");
+        setSelection(L26, L_0a52);
+        showTextbox("300→270でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 1) {
+        presentOffer(Entity(8), 0, 8, "定価300<B><it>の<LIGHTBLUE>けいたいトイレ<WHITE>を<NEWLINE>240<B><it>で売ります<NEWLINE>");
+        setSelection(L27, L_0a52);
+        showTextbox("300→240でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] > 2) break;
+      presentOffer(Entity(8), 0, 9, "定価300<B><it>の<LIGHTBLUE>けいたいトイレ<WHITE>を<NEWLINE>210<B><it>で売ります<NEWLINE>");
+      setSelection(L28, L_0a52);
+      showTextbox("300→210でOK<NEWLINE>考え直す<NEWLINE>");
+      waitForSelectionChoice();
+      continue;
+
+L20:
+    }
+    roll(pstat: PStat.RollScratch, max: 99);
+    {
+      if (pstat[110] <= 0) {
+        break;
+      }
+      goto L29;
+
+L21:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 0) {
+        break;
+      }
+      goto L29;
+
+L22:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 0) {
+        break;
+      }
+      goto L29;
+
+L23:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 19) {
+        break;
+      }
+      goto L29;
+
+L24:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 49) {
+        break;
+      }
+      goto L29;
+
+L25:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 79) {
+        break;
+      }
+      goto L29;
+
+L26:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 84) {
+        break;
+      }
+      goto L29;
+
+L27:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 89) {
+        break;
+      }
+      goto L29;
+
+L28:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 94) {
+        break;
+      }
+      goto L29;
+    }
+    speak(Entity(8), "「じゃ…それもらうよ…」<NEWLINE>");
+    ringUpDeal();
+    switch pstat[117] {
+      1 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 240);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +240<NEWLINE>");
+      }
+      2 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 210);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +210<NEWLINE>");
+      }
+      3 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 180);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +180<NEWLINE>");
+      }
+      4 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 150);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +150<NEWLINE>");
+      }
+      5 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 120);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +120<NEWLINE>");
+      }
+      6 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 90);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +90<NEWLINE>");
+      }
+      7 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 60);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +60<NEWLINE>");
+      }
+      8 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 30);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +30<NEWLINE>");
+      }
+      9 => {
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +0<NEWLINE>");
+      }
+    }
+    goto L13;
+
+L29:
+    retryHaggle(Entity(8));
+    if (pstat[110] <= 89 && pstat[119] >= 3) {
+      goto L15;
+    }
+    if (pstat[110] <= 59 && pstat[119] == 2) {
+      goto L15;
+    }
+    if (pstat[110] <= 19 && pstat[119] == 1) {
+      goto L15;
+    }
+    {
+      break;
+    }
+    speak(Entity(8), "「高いんじゃないか…」<NEWLINE>");
+    speak(Entity.Player, "「そう?じゃあね…」<NEWLINE>");
+  }
+
+L30:
+  speak(Entity(8), "「<LIGHTBLUE>薬<WHITE>が…ほしいな…」<NEWLINE>");
+  speak(Entity.Player, "「いらっしゃい、<NEWLINE> <LIGHTBLUE>薬<WHITE>ね…えーと…」<NEWLINE>");
+  loop {
+    setHaggleContext(Entity(8), 5);
+    setPStat(PStat(117), 6);
+    setDialogOwner(Entity.System);
+    setSelection(L31, L32, L33);
+    showTextbox(" 値上げ<NEWLINE> そのまま(1000<B><it>)<NEWLINE> 値下げ<NEWLINE>");
+    waitForSelectionChoice();
+    speak(Entity.Player, "「<LIGHTBLUE>薬<WHITE>だったな…えーと…」<NEWLINE>");
+    continue;
+
+L31:
+    roll(pstat: PStat.RollScratch, max: 4);
+    {
+      if (pstat[110] <= 0) {
+        presentOffer(Entity(8), 3, 1, "定価1000<B><it>の<LIGHTBLUE>薬<WHITE>を<NEWLINE>1500<B><it>で売ります<NEWLINE>");
+        setSelection(L34, L_1410);
+        showTextbox("1000→1500でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 1) {
+        presentOffer(Entity(8), 2, 2, "定価1000<B><it>の<LIGHTBLUE>薬<WHITE>を<NEWLINE>1400<B><it>で売ります<NEWLINE>");
+        setSelection(L35, L_1410);
+        showTextbox("1000→1400でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 2) {
+        presentOffer(Entity(8), 2, 3, "定価1000<B><it>の<LIGHTBLUE>薬<WHITE>を<NEWLINE>1300<B><it>で売ります<NEWLINE>");
+        setSelection(L36, L_1410);
+        showTextbox("1000→1300でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 3) {
+        presentOffer(Entity(8), 1, 4, "定価1000<B><it>の<LIGHTBLUE>薬<WHITE>を<NEWLINE>1200<B><it>で売ります<NEWLINE>");
+        setSelection(L37, L_1410);
+        showTextbox("1000→1200でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 4) {
+        presentOffer(Entity(8), 1, 5, "定価1000<B><it>の<LIGHTBLUE>薬<WHITE>を<NEWLINE>1100<B><it>で売ります<NEWLINE>");
+        setSelection(L38, L_1410);
+        showTextbox("1000→1100でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+
+L32:
+      }
+      presentOffer(Entity(8), 0, 6, "定価1000<B><it>の<LIGHTBLUE>薬<WHITE>を<NEWLINE>そのままの値段で売ります<NEWLINE>");
+      setSelection(L39, L_1410);
+      showTextbox("定価でOK<NEWLINE>考え直す<NEWLINE>");
+      waitForSelectionChoice();
+      continue;
+
+L33:
+      roll(pstat: PStat.RollScratch, max: 2);
+      if (pstat[110] <= 0) {
+        presentOffer(Entity(8), 0, 7, "定価1000<B><it>の<LIGHTBLUE>薬<WHITE>を<NEWLINE>900<B><it>で売ります<NEWLINE>");
+        setSelection(L40, L_1410);
+        showTextbox("1000→900でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] <= 1) {
+        presentOffer(Entity(8), 0, 8, "定価1000<B><it>の<LIGHTBLUE>薬<WHITE>を<NEWLINE>800<B><it>で売ります<NEWLINE>");
+        setSelection(L41, L_1410);
+        showTextbox("1000→800でOK<NEWLINE>考え直す<NEWLINE>");
+        waitForSelectionChoice();
+        continue;
+      }
+      if (pstat[110] > 2) break;
+      presentOffer(Entity(8), 0, 9, "定価1000<B><it>の<LIGHTBLUE>薬<WHITE>を<NEWLINE>700<B><it>で売ります<NEWLINE>");
+      setSelection(L42, L_1410);
+      showTextbox("1000→700でOK<NEWLINE>考え直す<NEWLINE>");
+      waitForSelectionChoice();
+      continue;
+
+L34:
+    }
+    roll(pstat: PStat.RollScratch, max: 99);
+    {
+      if (pstat[110] <= 1) {
+        break;
+      }
+      goto L43;
+
+L35:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 1) {
+        break;
+      }
+      goto L43;
+
+L36:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 1) {
+        break;
+      }
+      goto L43;
+
+L37:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 19) {
+        break;
+      }
+      goto L43;
+
+L38:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 49) {
+        break;
+      }
+      goto L43;
+
+L39:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 79) {
+        break;
+      }
+      goto L43;
+
+L40:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 84) {
+        break;
+      }
+      goto L43;
+
+L41:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 89) {
+        break;
+      }
+      goto L43;
+
+L42:
+      roll(pstat: PStat.RollScratch, max: 99);
+      if (pstat[110] <= 94) {
+        break;
+      }
+      goto L43;
+    }
+    speak(Entity(8), "「じゃ…それもらうよ…」<NEWLINE>");
+    ringUpDeal();
+    switch pstat[117] {
+      1 => {
+        setPStat(PStat(243), 3);
+        setPStat(PStat(244), 32);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +800<NEWLINE>");
+      }
+      2 => {
+        setPStat(PStat(243), 2);
+        setPStat(PStat(244), 188);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +700<NEWLINE>");
+      }
+      3 => {
+        setPStat(PStat(243), 2);
+        setPStat(PStat(244), 88);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +600<NEWLINE>");
+      }
+      4 => {
+        setPStat(PStat(243), 1);
+        setPStat(PStat(244), 244);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +500<NEWLINE>");
+      }
+      5 => {
+        setPStat(PStat(243), 1);
+        setPStat(PStat(244), 144);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +400<NEWLINE>");
+      }
+      6 => {
+        setPStat(PStat(243), 1);
+        setPStat(PStat(244), 44);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +300<NEWLINE>");
+      }
+      7 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 200);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +200<NEWLINE>");
+      }
+      8 => {
+        setPStat(PStat(243), 0);
+        setPStat(PStat(244), 100);
+        callSubroutine(31);
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +100<NEWLINE>");
+      }
+      9 => {
+        showTextbox(" 全売り上げ <UNKNOWN2><NEWLINE> <NEWLINE> 売り上げ +0<NEWLINE>");
+      }
+    }
+    goto L13;
+
+L43:
+    retryHaggle(Entity(8));
+    if (pstat[110] <= 89 && pstat[119] >= 3) {
+      goto L15;
+    }
+    if (pstat[110] <= 59 && pstat[119] == 2) {
+      goto L15;
+    }
+    if (pstat[110] <= 19 && pstat[119] == 1) {
+      goto L15;
+    }
+    {
+      break;
+    }
+    speak(Entity(8), "「高いんじゃないか…」<NEWLINE>");
+    speak(Entity.Player, "「そう?じゃあね…」<NEWLINE>");
+  }
+  garbage { 0c 00 fe 00 0c 00 33 00 0e 00 ff ff fe 00 1f 00 7b 01 46 63 47 63 03 00 67 00 14 00 4e 08 0b fe 04 fe 00 00 4a 08 4c 00 08 fd 24 00 6e 63 19 00 0b 00 6e 31 18 00 3e 00 19 00 16 00 54 00 19 00 0b 00 6e 54 18 00 4e 00 19 00 16 00 f8 09 16 00 ce 13 fe 00 1b 08 1a 00 81 75 01 06 93 f7 01 01 82 aa 81 63 82 d9 82 b5 82 a2 82 c8 81 63 81 76 0d 00 00 00 1b fd 1a 00 81 75 82 a2 82 e7 82 c1 82 b5 82 e1 82 a2 81 41 0d 00 81 40 01 06 93 f7 01 01 82 cb 81 63 82 a6 81 5b 82 c6 81 63 81 76 0d 00 00 00 1e 00 f7 08 1e 00 f8 05 64 1c 67 00 0a 00 1e 00 75 06 1b ff 10 03 1a 01 80 03 ee 03 1a 00 81 40 92 6c 8f e3 82 b0 0d 00 81 40 82 bb 82 cc 82 dc 82 dc 81 69 82 54 82 4f 81 6f 81 70 81 6a 0d 00 81 40 92 6c 89 ba 82 b0 0d 00 00 00 12 00 1b fd 1a 00 81 75 01 06 93 f7 01 01 82 be 82 c1 82 bd 82 c8 81 63 82 a6 81 5b 82 c6 81 63 81 76 0d 00 00 00 16 00 a4 00 24 00 6e 04 19 00 0b 00 6e 00 18 00 98 01 19 00 1e 00 f7 08 1e 00 f8 03 64 1c 1b ff 1a 00 92 e8 89 bf 82 54 82 4f 81 6f 81 70 82 cc 01 06 93 f7 01 01 82 f0 0d 00 82 56 82 54 81 6f 81 70 82 c5 94 84 82 e8 82 dc 82 b7 0d 00 00 00 1e 00 75 01 1b ff 10 02 60 05 a4 00 1a 00 82 54 82 4f 81 a8 82 56 82 54 82 c5 82 6e 82 6a 0d 00 8d 6c 82 a6 92 bc 82 b7 0d 00 00 00 12 00 16 00 a4 00 19 00 0b 00 6e 01 18 00 12 02 19 00 1e 00 f7 08 1e 00 f8 02 64 1c 1b ff 1a 00 92 e8 89 bf 82 54 82 4f 81 6f 81 70 82 cc 01 06 93 f7 01 01 82 f0 0d 00 82 56 82 4f 81 6f 81 70 82 c5 94 84 82 e8 82 dc 82 b7 0d 00 00 00 1e 00 75 02 1b ff 10 02 78 05 a4 00 1a 00 82 54 82 4f 81 a8 82 56 82 4f 82 c5 82 6e 82 6a 0d 00 8d 6c 82 a6 92 bc 82 b7 0d 00 00 00 12 00 16 00 a4 00 19 00 0b 00 6e 02 18 00 8c 02 19 00 1e 00 f7 08 1e 00 f8 02 64 1c 1b ff 1a 00 92 e8 89 bf 82 54 82 4f 81 6f 81 70 82 cc 01 06 93 f7 01 01 82 f0 0d 00 82 55 82 54 81 6f 81 70 82 c5 94 84 82 e8 82 dc 82 b7 0d 00 00 00 1e 00 75 03 1b ff 10 02 90 05 a4 00 1a 00 82 54 82 4f 81 a8 82 55 82 54 82 c5 82 6e 82 6a 0d 00 8d 6c 82 a6 92 bc 82 b7 0d 00 00 00 12 00 16 00 a4 00 19 00 0b 00 6e 03 18 00 06 03 19 00 1e 00 f7 08 1e 00 f8 01 64 1c 1b ff 1a 00 92 e8 89 bf 82 54 }
+}

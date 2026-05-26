@@ -1,0 +1,457 @@
+// MAP148.SCN
+#include "functions.dgs"
+#pragma script index=148 start=0x62800 end=0x64000 headerU16=0x4c sentinelOff=0x6925
+#include "entities.dgs"
+
+section onEnter(254) {
+  pstat[:SavedTime] = time();
+  {
+    if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
+    } else {
+      break;
+    }
+    if (!trigger(204)) break;
+    setRectImpassible(47, 48, 7, 8);
+    setObjectsVisibleRange(0, 6, 0);
+    setObjectVisibility(65, 0);
+    setObjectVisibility(66, 0);
+  }
+  if (trigger(50)) {
+    setRectImpassible(47, 48, 7, 8);
+    setObjectsVisibleRange(0, 12, 0);
+    setObjectVisibility(65, 0);
+    setObjectVisibility(66, 1);
+    setObjectVisibility(67, 0);
+  }
+  if (trigger(235)) {
+    setRectImpassible(71, 50, 1, 9);
+    setObjectsVisibleRange(13, 23, 0);
+  }
+  {
+    if (pstat[107] in 7..19) break;
+    if (!trigger(218) || !trigger(235)) break;
+    setObjectsVisibleRange(68, 73, 0);
+  }
+  if (trigger(232)) {
+    setObjectVisibility(24, 1);
+    setObjectVisibility(25, 1);
+  } else {
+    setRectImpassible(79, 38, 2, 4);
+    setRectImpassible(80, 42, 2, 8);
+  }
+  {
+    if (!trigger(236)) {
+      break;
+    }
+    if (pstat[107] in 7..19) break;
+    if (!trigger(218)) break;
+    setObjectVisibility(49, 0);
+    setObjectVisibility(50, 0);
+  }
+  if (trigger(218)) {
+    setObjectsVisibleRange(53, 56, 0);
+  }
+  {
+    if (pstat[107] in 7..19) break;
+    if (!trigger(218)) break;
+    setObjectsVisibleRange(57, 60, 0);
+  }
+  {
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) {
+    } else {
+      break;
+    }
+    if (pstat[107] in 7..19) break;
+    if (!trigger(218)) break;
+    setObjectsVisibleRange(61, 64, 0);
+  }
+  if (!trigger(249) && pstat[43] == 2) {
+    setObjectVisibility(108, 1);
+  }
+  if (!trigger(249) && pstat[43] == 3) {
+    setObjectVisibility(109, 1);
+  }
+  if (!trigger(249) && pstat[43] == 4) {
+    setObjectVisibility(111, 1);
+  }
+  if (!trigger(249) && pstat[43] == 5) {
+    setObjectVisibility(143, 1);
+  }
+  if (!trigger(249) && pstat[43] == 6) {
+    setObjectVisibility(139, 1);
+  }
+  if (!trigger(249) && pstat[43] == 7) {
+    setObjectVisibility(108, 1);
+  }
+  if (!trigger(249) && pstat[43] == 8) {
+    setObjectVisibility(140, 1);
+  }
+  if (!trigger(249) && pstat[43] == 9) {
+    setObjectVisibility(138, 1);
+  }
+  setPStat(PStat(122), 255);
+  if (!trigger(204)) {
+    return;
+  }
+  if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
+  } else {
+    move(entity: Entity(7), to: (-1232, 2903), animDuration: 10);
+    delay(15);
+    rotate(entity: Entity(7), to: 3664);
+    delay(5);
+  }
+  return;
+}
+
+section(5) {
+  setTrigger(Trigger(77));
+  speak(Entity(5), "「バケ。バーケー。」<NEWLINE>");
+  speak(Entity.Player, "「相変わらず…<NEWLINE> 何言ってるのかわかんないな。」<NEWLINE>");
+  storeDigimonType(PStat(103));
+  if (pstat[103] == 37) {
+    look(entity: Entity.Player, at: Entity.Partner);
+    delay(5);
+    anim(Entity.Partner, Animation(11), wait: 10);
+    look(entity: Entity.Player, at: Entity.Partner);
+    delay(5);
+    speak(Entity.Player, "「え?ふむふむ。<NEWLINE> そうか、見回りしてくれてるのか。」<NEWLINE>");
+  }
+  return;
+}
+
+section(6) {
+  if (!trigger(78)) {
+    setTrigger(Trigger(78));
+    speak(Entity(6), "「ふふふ…見てくれ、ボク特製の掲示板。」<NEWLINE>");
+    speak(Entity(6), "「街の発展に情報はつきものだろ?そこで<NEWLINE> ボクは新聞を書くことにしたのさ!<NEWLINE> どうだい、あったまいいだろう!」<NEWLINE>");
+    speak(Entity(6), "「まあ、ボクの情報力に期待しててくれ。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(6), "「やあ、ボクの新聞読んでる?」<NEWLINE>");
+  return;
+}
+
+section(7) {
+  if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
+    speak(Entity(7), "「はー。冷たくて気持ちいいや。」<NEWLINE>");
+    showTextbox("「気持ちいいところにいると、<NEWLINE> ごきげんもアップだよね。」<NEWLINE>");
+    return;
+  }
+  if (trigger(204) && !trigger(52) && !trigger(249)) {
+    setTrigger(Trigger(52));
+    speak(Entity(7), "「てへへへ、どう?ボクのお店。」<NEWLINE>");
+    showTextbox("「ほんとは商売って得意じゃないけど、<NEWLINE> 今はボクがやるしかないでしょ!」<NEWLINE>");
+    showTextbox("「はやく、デジモンいっぱいつれて<NEWLINE> 来てよね!」<NEWLINE>");
+    return;
+  }
+  if (trigger(204) && trigger(249) && !trigger(95)) {
+    setTrigger(Trigger(95));
+    speak(Entity(7), "「てへへへ、どう?。」<NEWLINE>");
+    speak(Entity.System, "<YELLOW>シーラモン<WHITE><NEWLINE>「わしら協力してアイテムを売ることに<NEWLINE> したのじゃ。」<NEWLINE>");
+    return;
+  }
+  if (trigger(204) && trigger(249)) {
+    for x in [Trigger(384), Trigger(385), Trigger(388), Trigger(392), Trigger(406), Trigger(422)] {
+      setTrigger(x);
+    }
+    unsetTrigger(Trigger(3));
+    setPStat(PStat(254), 7);
+    callSubroutine(8);
+    for x in [Trigger(384), Trigger(385), Trigger(388), Trigger(392), Trigger(406), Trigger(422)] {
+      unsetTrigger(x);
+    }
+    return;
+  }
+  for x in [Trigger(384), Trigger(388), Trigger(422)] {
+    setTrigger(x);
+  }
+  unsetTrigger(Trigger(3));
+  setPStat(PStat(254), 7);
+  callSubroutine(8);
+  for x in [Trigger(384), Trigger(388), Trigger(422)] {
+    unsetTrigger(x);
+  }
+  return;
+}
+
+section(8) {
+  if (!trigger(79)) {
+    setTrigger(Trigger(79));
+    speak(Entity(8), "「ンー。なかなかうまい草が<NEWLINE> 生えてたんで、ごちそうになった。」<NEWLINE>");
+    showTextbox("「すこしばかり街の風通しが<NEWLINE> よくなってしまったけどね。」<NEWLINE>");
+    return;
+  }
+  if (pstat[1] <= 30) {
+    speak(Entity(8), "「そういえばこの前、ぐうぜん<NEWLINE> <LIGHTBLUE>運試しキノコ<WHITE>というのをひろったな。<NEWLINE> めずらしいものらしい。」<NEWLINE>");
+    speak(Entity(8), "「ほかにも<LIGHTBLUE>デラックスキノコ<WHITE>なんてのも<NEWLINE> あるらしいね。もしみつけたら<NEWLINE> じまんできそうだよ。」<NEWLINE>");
+    return;
+  }
+  {
+    switch (pstat[37]) { case 0: break; case 1: goto L1; case 2: goto L2; case 3: goto L3; case 4: goto L4; case 5: goto L5; case 6: goto L6; case 7: goto L7; }
+  }
+  speak(Entity(8), "「そういえば迷わずの森の<NEWLINE> <LIGHTBLUE>ブルーリンゴ<WHITE>、あれはうまいね。」<NEWLINE>");
+  addPStat(PStat(37), 1);
+  return;
+
+L1:
+  speak(Entity(8), "「そういえばトロピカジャングルの<NEWLINE> <LIGHTBLUE>オレンジバナナ<WHITE>、あれはうまいね。」<NEWLINE>");
+  addPStat(PStat(37), 1);
+  return;
+
+L2:
+  speak(Entity(8), "「そういえばミハラシ山の<NEWLINE> <LIGHTBLUE>ヘビーいちご<WHITE>、あれはうまいね。」<NEWLINE>");
+  return;
+
+L3:
+  speak(Entity(8), "「そういえばギアサバンナの<NEWLINE> <LIGHTBLUE>天然あまぐり<WHITE>、あれはうまいね。」<NEWLINE>");
+  return;
+
+L4:
+  speak(Entity(8), "「そういえばオーバーデル墓地の<NEWLINE> <LIGHTBLUE>モンドレイク<WHITE>、あれはうまいね。」<NEWLINE>");
+  return;
+
+L5:
+  speak(Entity(8), "「そういえばダイノ古代境の<NEWLINE> <LIGHTBLUE>アセラロ<WHITE>、あれはうまいね。」<NEWLINE>");
+  return;
+
+L6:
+  speak(Entity(8), "「そういえばグレートキャニオンの<NEWLINE> <LIGHTBLUE>食用サボテン<WHITE>、あれはうまいね。」<NEWLINE>");
+  return;
+
+L7:
+  speak(Entity(8), "「そういえばミスティツリーズの<NEWLINE> <LIGHTBLUE>デジぼっくり<WHITE>、あれはうまいね。」<NEWLINE>");
+  return;
+  speak(Entity(8), "「そういえばゲッコー湿地の<NEWLINE> <LIGHTBLUE>ペンペンペン草<WHITE>、あれはうまいね。」<NEWLINE>");
+  return;
+  speak(Entity(8), "「そういえばフリーズランドの<NEWLINE> <LIGHTBLUE>雪割りキノコ<WHITE>、あれはうまいね。」<NEWLINE>");
+  return;
+  speak(Entity(8), "「そういえばビートランドの<NEWLINE> <LIGHTBLUE>黄金どんぐり<WHITE>、あれはうまいね。」<NEWLINE>");
+  setPStat(PStat(37), 0);
+  return;
+}
+
+section(9) {
+  if (pstat[1] >= 20 && trigger(185)) {
+    speak(Entity(9), "「ねえ、ちょっとボクの話聞いて。」<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L2);
+    showTextbox("「何かな?」<NEWLINE>「また後ね。」<NEWLINE>");
+  }
+  if (trigger(185)) {
+    speak(Entity(9), "「東の橋、見た?直ってたでしょ!<NEWLINE> ボクたち、がんばったんだ。」<NEWLINE>");
+    return;
+  }
+  if (pstat[1] >= 2 && !trigger(185)) {
+    speak(Entity(9), "「デジブリッジは、ボクらで直し中だよ。<NEWLINE> もうすこし待ってね。」<NEWLINE>");
+    showTextbox("「あ、そういえば南のシーラ岬に、<NEWLINE> 珍しいデジモンがいるらしいよ。」<NEWLINE>");
+    showTextbox("「そいつは毎日、ゆうがたごろに<NEWLINE> ちらっとかおを見せるってうわさだよ。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(9), "「あのね、街の東にさぁ、<NEWLINE> こわれた橋があるの知ってる?」<NEWLINE>");
+  showTextbox("「誰も使わないだろうってことでさ、<NEWLINE> ほったらかしておいたんだ。でも<NEWLINE> もう、そういうわけにはいかないよね。」<NEWLINE>");
+  showTextbox("「で、ボクたちでがんばって直してみようと<NEWLINE> 思うんだ。」<NEWLINE>");
+  showTextbox("「それまでは西のほう、南のほうを見て<NEWLINE> 来るといいよ。ひとまわりしたら、<NEWLINE> また会いに来てよ。」<NEWLINE>");
+  return;
+
+L1:
+  if (pstat[1] >= 25) {
+    speak(Entity(9), "「ゲッコー湿地ってとこ行った?<NEWLINE> あそこでは、たまにいたずらなデジモンが<NEWLINE> ちょっかいかけてくるってさ。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(9), "「進化するとさぁ、<NEWLINE> 技セットやりなおしになっちゃうから<NEWLINE> 忘れちゃダメだよ。」<NEWLINE>");
+  return;
+
+L2:
+  speak(Entity(9), "「ちぇっ。」<NEWLINE>");
+  return;
+}
+
+section(10) {
+  if (!trigger(80)) {
+    setTrigger(Trigger(80));
+    speak(Entity(10), "「どう?電気つけてみたんだけど、<NEWLINE> 明るいかな?」<NEWLINE>");
+    speak(Entity(10), "「みんな明るい街づくりをしよう!」<NEWLINE>");
+    return;
+  }
+  speak(Entity(10), "「電気つくと何かかわるのかって?」<NEWLINE>");
+  speak(Entity(10), "「それは気持ちの問題だね。」<NEWLINE>");
+  return;
+}
+
+section(11) {
+  speak(Entity(11), "「我は最強…」<NEWLINE>");
+  showTextbox("「貴様に負けたつもりはない。<NEWLINE> 闘技場に来ればそれがわかるだろう…」<NEWLINE>");
+  return;
+}
+
+section(12) {
+  speak(Entity(12), "「おう、<LIGHTBLUE><PLAYER><WHITE>。<NEWLINE> 俺ぁ街に怪しいやつがいねえか<NEWLINE> 見回りしてるところよ。」<NEWLINE>");
+  showTextbox("「な、なんだよ。<NEWLINE> 別にジャマしてるわけじゃねえって!」<NEWLINE>");
+  return;
+}
+
+section(81) {
+  rotate(entity: Entity.Player, to: 1024);
+  sfx(0, 0, wait: 5);
+  setTextboxOrigin(-628, 0, 2226);
+  if (trigger(249) && !trigger(52) && !trigger(204)) {
+    setTrigger(Trigger(52));
+    speak(Entity(203), "「やあやあ、ワシの店にようこそ!<NEWLINE> <LIGHTBLUE><PLAYER><WHITE>どんには、格安にしとくぞい。」<NEWLINE>");
+    showTextbox("「ワシは本当は商売は苦手なんだがのう。<NEWLINE> 他に商売の得意な者もおらんようだし…」<NEWLINE>");
+    showTextbox("「まぁ、そんなわけでしばらくは<NEWLINE> ワシがアイテムを売ることになったんで、<NEWLINE> よろしくのう。」<NEWLINE>");
+    showTextbox("「<LIGHTBLUE><PLAYER><WHITE>どんはがんばってデジモンを<NEWLINE> いっぱい連れてきてくだされよ!」<NEWLINE>");
+    return;
+    playSound(0, 1);
+  }
+  if (trigger(204) && !trigger(52) && !trigger(249)) {
+    setTrigger(Trigger(52));
+    speak(Entity(202), "「てへへへ、どう?ボクのお店。」<NEWLINE>");
+    showTextbox("「ほんとは商売って得意じゃないけど、<NEWLINE> 今はボクがやるしかないでしょ!」<NEWLINE>");
+    showTextbox("「はやく、デジモンいっぱいつれて<NEWLINE> 来てよね!」<NEWLINE>");
+    playSound(0, 1);
+    return;
+  }
+  if (trigger(204) && trigger(249) && !trigger(95)) {
+    setTrigger(Trigger(95));
+    speak(Entity(202), "「てへへへ、どう?」<NEWLINE>");
+    speak(Entity.System, "<YELLOW>シーラモン<WHITE><NEWLINE>「わしら協力してアイテムを売ることに<NEWLINE> したのじゃ。」<NEWLINE>");
+    playSound(0, 1);
+    return;
+  }
+  if (trigger(204) && trigger(249)) {
+    for x in [Trigger(384), Trigger(385), Trigger(388), Trigger(392), Trigger(406), Trigger(422)] {
+      setTrigger(x);
+    }
+    unsetTrigger(Trigger(3));
+    setPStat(PStat(254), 255);
+    callSubroutine(8);
+    for x in [Trigger(384), Trigger(385), Trigger(388), Trigger(392), Trigger(406), Trigger(422)] {
+      unsetTrigger(x);
+    }
+    return;
+  }
+  for x in [Trigger(384), Trigger(388), Trigger(422)] {
+    setTrigger(x);
+  }
+  unsetTrigger(Trigger(3));
+  if (trigger(249)) {
+    setPStat(PStat(254), 255);
+  } else {
+    setPStat(PStat(254), 7);
+  }
+  callSubroutine(8);
+  for x in [Trigger(384), Trigger(388), Trigger(422)] {
+    unsetTrigger(x);
+  }
+  return;
+}
+
+section(82) {
+  if (trigger(235)) {
+    jumpToScriptSection(202, 82);
+  }
+  return;
+}
+
+section(51) {
+  move(entity: Entity.Player, to: (-3000, 492), sprint: 0);
+  warp(to: Map.MAYO00, spawn: 2, trigger: 255);
+  return;
+}
+
+section(53) {
+  if (!trigger(232)) {
+    return;
+  }
+  if (trigger(185)) {
+    move(entity: Entity.Player, to: (3500, 952), sprint: 0);
+    warp(to: Map.MAYO08A, spawn: 0, trigger: 255);
+  } else {
+    move(entity: Entity.Player, to: (3500, 952), sprint: 0);
+    warp(to: Map.MAYO08B, spawn: 0, trigger: 255);
+  }
+  return;
+}
+
+section(54) {
+  move(entity: Entity.Player, to: (-1464, 1954), sprint: 0);
+  warp(to: Map.ROOM06, spawn: 0, trigger: 255);
+  return;
+}
+
+section(55) {
+  move(entity: Entity.Player, to: (1853, 1853), sprint: 0);
+  if (trigger(241)) {
+    warp(to: Map.ROOM05B, spawn: 0, trigger: 255);
+  }
+  warp(to: Map.ROOM05A, spawn: 0, trigger: 255);
+  return;
+}
+
+section(56) {
+  move(entity: Entity.Player, to: (-1291, -1863), sprint: 0);
+  warp(to: Map.ROOM04, spawn: 0, trigger: 255);
+  return;
+}
+
+section(57) {
+  move(entity: Entity.Player, to: (1481, -3326), sprint: 0);
+  if (trigger(50)) {
+    warp(to: Map.ROOM19, spawn: 1, trigger: 255);
+    return;
+  }
+  warp(to: Map.ROOM13, spawn: 1, trigger: 255);
+  return;
+}
+
+section(52) {
+  move(entity: Entity.Player, to: (0, 5000), sprint: 0);
+  if (!trigger(203)) {
+    warp(to: Map.TWNA01, spawn: 0, trigger: 255);
+  }
+  {
+    if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L2; else break;
+  }
+  {
+    if (trigger(221)) goto L1; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA04, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA03, spawn: 0, trigger: 255);
+  }
+  warp(to: Map.TWNA02, spawn: 0, trigger: 255);
+
+L1:
+  if (trigger(225)) {
+    warp(to: Map.TWNA07, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA06, spawn: 0, trigger: 255);
+  }
+  {
+    warp(to: Map.TWNA05, spawn: 0, trigger: 255);
+
+L2:
+    if (trigger(221)) goto L3; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA10, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA09, spawn: 0, trigger: 255);
+  }
+  warp(to: Map.TWNA08, spawn: 0, trigger: 255);
+
+L3:
+  if (trigger(225)) {
+    warp(to: Map.TWNA13, spawn: 0, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA12, spawn: 0, trigger: 255);
+  }
+  warp(to: Map.TWNA11, spawn: 0, trigger: 255);
+  return;
+  garbage { 4c 00 fe 00 4c 00 05 00 46 03 06 00 04 04 07 00 14 05 08 00 52 07 09 00 44 0c 0a 00 3c 10 0b 00 02 11 0c 00 64 11 51 00 f8 11 52 00 54 15 33 00 68 15 35 00 76 15 36 00 ae 15 37 00 bc 15 38 00 da 15 39 00 e8 15 34 00 08 16 ff ff 25 69 19 00 00 00 e7 00 40 00 f5 00 40 00 e9 00 40 00 f7 00 18 00 6a 00 19 00 16 00 6e 00 16 00 a6 00 19 00 00 00 cc 00 18 00 a6 00 19 00 7c 00 2f 00 30 00 07 08 57 00 00 00 57 00 01 00 57 00 02 00 57 00 03 00 57 00 04 00 57 00 05 00 57 00 06 00 57 00 41 00 57 00 42 00 19 00 00 00 32 00 18 00 fa 00 19 00 7c 00 2f 00 30 00 07 08 57 00 00 00 57 00 01 00 57 00 02 00 57 00 03 00 57 00 04 00 57 00 05 00 57 00 06 00 57 00 07 00 57 00 08 00 57 00 09 00 57 00 0a 00 57 00 0b 00 57 00 0c 00 57 00 41 00 57 00 42 01 57 00 43 00 19 00 }
+}

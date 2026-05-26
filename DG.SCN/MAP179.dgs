@@ -1,0 +1,766 @@
+// MAP179.SCN
+#include "functions.dgs"
+#pragma script index=179 start=0x83800 end=0x85800 headerU16=0x10 sentinelOff=0xff1b
+#include "entities.dgs"
+
+section(5) {
+  {
+    setDialogOwner(Entity.System);
+    setSelection(L4, L8, L21, L1);
+    showTextbox("「おみせ1」<NEWLINE>「おみせ2」<NEWLINE>「そのた」<NEWLINE>「名前入力」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L1:
+    setDialogOwner(Entity.System);
+    choice { "'<LIGHTBLUE><PLAYER><WHITE>\"" -> L2, "'<ORANGE><DIGIMON><WHITE>\"" -> L3 }
+    break;
+
+L2:
+    setPStat(PStat(254), 2);
+    callSubroutine(32);
+    return;
+
+L3:
+    setPStat(PStat(254), 3);
+    callSubroutine(32);
+    return;
+
+L4:
+    setDialogOwner(Entity.Player);
+    setSelection(L5, L6, L7);
+    showTextbox("「ショップ」<NEWLINE>「マーケット」<NEWLINE>「ポイント」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L5:
+    for x in [
+      Trigger(385), Trigger(396), Trigger(404), Trigger(406),
+      Trigger(407), Trigger(416), Trigger(434), Trigger(455),
+      Trigger(456), Trigger(458), Trigger(462), Trigger(465),
+      Trigger(470), Trigger(473), Trigger(480), Trigger(482),
+      Trigger(484), Trigger(485), Trigger(489), Trigger(491),
+      Trigger(493), Trigger(401), Trigger(423), Trigger(428),
+      Trigger(425), Trigger(449), Trigger(446), Trigger(453),
+      Trigger(466), Trigger(457), Trigger(435), Trigger(460),
+      Trigger(476), Trigger(490), Trigger(452), Trigger(463),
+      Trigger(475), Trigger(481), Trigger(492), Trigger(497),
+      Trigger(459), Trigger(464), Trigger(469), Trigger(494),
+      Trigger(495), Trigger(477), Trigger(471), Trigger(472),
+      Trigger(496), Trigger(468), Trigger(474), Trigger(478),
+      Trigger(479), Trigger(487), Trigger(488), Trigger(499),
+      Trigger(451), Trigger(454), Trigger(506), Trigger(422),
+      Trigger(424), Trigger(417)
+    ] {
+      setTrigger(x);
+    }
+    unsetTrigger(Trigger(3));
+    setPStat(PStat(254), 7);
+    callSubroutine(8);
+    break;
+
+L6:
+    setTrigger(Trigger(3));
+    setPStat(PStat(254), 7);
+    callSubroutine(8);
+    break;
+
+L7:
+    setPStat(PStat(254), 7);
+    callSubroutine(1);
+    break;
+
+L8:
+    setDialogOwner(Entity.Player);
+    setSelection(L10, L9, L17);
+    showTextbox("「カード」<NEWLINE>「預かり所」<NEWLINE>「その他の店」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L9:
+    setPStat(PStat(254), 7);
+    callSubroutine(11);
+    return;
+
+L10:
+    setPStat(PStat(254), 7);
+    speak(Entity(7), "「今日もイキのいいカードを<NEWLINE> そろえたアルよ」<NEWLINE>");
+    callSubroutine(15);
+    loop {
+      setDialogOwner(Entity.Player);
+      setSelection(L11, L15, L_0420);
+      showTextbox("「カードを買う」<NEWLINE>「カードを売る」<NEWLINE>「やめる」<NEWLINE>");
+      waitForSelectionChoice();
+      break;
+
+L11:
+      {
+        if (money >= 500) {
+          setSelection(L12, L14, L16);
+          showTextbox("「3枚パック買い」<NEWLINE>「1枚買い」<NEWLINE>「やっぱりやめる」<NEWLINE>");
+          waitForSelectionChoice();
+          goto L16;
+          break;
+        }
+        setSelection(L14, L16);
+        showTextbox("「1枚買い」<NEWLINE>「やっぱりやめる」<NEWLINE>");
+        waitForSelectionChoice();
+        goto L16;
+
+L12:
+      }
+      speak(Entity(7), "「パックは500<B><it>よ。<NEWLINE> 何が入っているかは運しだいアル。」<NEWLINE>");
+      setDialogOwner(Entity.Player);
+      setSelection(L13, L16);
+      showTextbox("「買う」<NEWLINE>「やっぱりやめる」<NEWLINE>");
+      waitForSelectionChoice();
+      goto L16;
+
+L13:
+      reduceMoney(500);
+      callSubroutine(15);
+      speak(Entity(7), "「パックはすぐ開けるよろし。」<NEWLINE>");
+      unsetTrigger(Trigger(3));
+      unsetTrigger(Trigger(4));
+      callSubroutine(14);
+      callSubroutine(22);
+      goto L16;
+
+L14:
+      unsetTrigger(Trigger(3));
+      setTrigger(Trigger(4));
+      callSubroutine(14);
+      callSubroutine(22);
+      goto L16;
+
+L15:
+      setTrigger(Trigger(3));
+      callSubroutine(14);
+
+L16:
+      speak(Entity(7), "「まだ用アルか?」<NEWLINE>");
+    }
+    callSubroutine(16);
+    speak(Entity(7), "「またくるアルよ。」<NEWLINE>");
+    return;
+
+L17:
+    setDialogOwner(Entity.Player);
+    setSelection(L18, L19, L20);
+    showTextbox("「サウンドテスト」<NEWLINE>「ワープ屋」<NEWLINE>「交換」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L18:
+    setPStat(PStat(254), 7);
+    callSubroutine(9);
+    return;
+
+L19:
+    setPStat(PStat(254), 7);
+    callSubroutine(10);
+    return;
+
+L20:
+    setPStat(PStat(254), 7);
+    setPStat(PStat(249), 2);
+    callSubroutine(2);
+    return;
+
+L21:
+    setDialogOwner(Entity.System);
+    setSelection(L27, L28, L22, L29);
+    showTextbox("「エントリー」<NEWLINE>「闘技場」<NEWLINE>「いろいろ」<NEWLINE>「ねだん」<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L22:
+    setDialogOwner(Entity.System);
+    setSelection(L23, L24, L25, L26);
+    showTextbox("「オープニング」<NEWLINE>「エンディング」<NEWLINE>「へんしん」<NEWLINE>「死ぬ(なくなりました)」<NEWLINE>");
+    waitForSelectionChoice();
+    return;
+
+L23:
+    callDigimonSubroutine(5);
+    waitForEntity(Entity.System);
+    return;
+
+L24:
+    callDigimonSubroutine(6);
+    waitForEntity(Entity.System);
+    return;
+    setTrigger(Trigger(3));
+    callSubroutine(0);
+    if (trigger(3)) {
+      speak(Entity.Player, "「なにももってなかった。」<NEWLINE>");
+      break;
+    }
+    if (pstat[254] == 255) {
+      speak(Entity(7), "「なにもくれないの?」<NEWLINE>");
+    } else {
+      callSubroutine(12);
+      speak(Entity(7), "「ありがと。」<NEWLINE>");
+    }
+    break;
+    giveItem(Item.SuperSpeedDisk, 1);
+    if (trigger(0)) {
+      unsetTrigger(Trigger(3));
+      callSubroutine(0);
+      callSubroutine(13);
+      giveItem(Item.SuperSpeedDisk, 1);
+    }
+    speak(Entity.Player, "「21番を手に入れた。」<NEWLINE>");
+    break;
+
+L25:
+    storeDigimonType(PStat(200));
+    if (pstat[200] == 39) {
+      speak(Entity.Player, "「もとにへんしん。」<NEWLINE>");
+      copyPStat(PStat(5), PStat(254));
+    } else {
+      speak(Entity.Player, "「スカモンにへんしん。」<NEWLINE>");
+      storeDigimonType(PStat(5));
+      setPStat(PStat(254), 39);
+    }
+    fadeOutHUD();
+    callDigimonSubroutine(2);
+    waitForEntity(Entity(201));
+    speak(Entity.Player, "「かんりょう。」<NEWLINE>");
+    break;
+
+L26:
+    callSubroutine(47);
+  }
+  return;
+
+L27:
+  if (!trigger(37)) {
+    setPStat(PStat(254), 7);
+    callSubroutine(18);
+  } else {
+    speak(Entity(7), "『-<TOURNAMENT>-』にエントリー中<NEWLINE>");
+  }
+  return;
+
+L28:
+  if (!trigger(37)) {
+    speak(Entity(7), "「エントリーしてません。」<NEWLINE>");
+    return;
+  }
+  setPStat(PStat(254), 7);
+  callSubroutine(6);
+  warp(to: Map.TWNB01, spawn: 0, trigger: 255);
+  callSubroutine(22);
+  return;
+
+L29:
+  goto L31;
+  loop {
+    speak(Entity.Player, "「現在<UNKNOWN2><B><it>」<NEWLINE>");
+    setSelection(L31, L32, L30);
+    showTextbox("「クリア」<NEWLINE>「足す」<NEWLINE>「おわり」<NEWLINE>");
+    waitForSelectionChoice();
+
+L30:
+    return;
+
+L31:
+    callSubroutine(30);
+    continue;
+
+L32:
+    setPStat(PStat(243), 19);
+    setPStat(PStat(244), 136);
+    callSubroutine(31);
+  }
+}
+
+section(10) {
+  {
+    break;
+
+L1:
+    goto L27;
+
+L2:
+    goto L28;
+
+L3:
+    goto L29;
+
+L4:
+    goto L30;
+
+L5:
+    goto L31;
+
+L6:
+    goto L32;
+
+L7:
+    goto L33;
+
+L8:
+    goto L34;
+
+L9:
+    goto L35;
+
+L10:
+    goto L36;
+
+L11:
+    goto L37;
+
+L12:
+    goto L38;
+
+L13:
+    goto L39;
+
+L14:
+    goto L40;
+
+L15:
+    goto L41;
+
+L16:
+    goto L42;
+
+L17:
+    goto L43;
+
+L18:
+    goto L44;
+
+L19:
+    goto L45;
+
+L20:
+    goto L46;
+
+L21:
+    goto L47;
+
+L22:
+    goto L48;
+  }
+  {
+    break;
+
+L23:
+    goto section_11.L1;
+
+L24:
+    goto section_11.L15;
+
+L25:
+    goto section_11.L17;
+
+L26:
+    goto section_11.L37;
+  }
+  {
+    showTextbox("-グレードD-<NEWLINE> 成長期のデジモンを中心とした大会。<NEWLINE><NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-とくになし<NEWLINE>");
+
+L27:
+    break;
+    goto section_11.L2;
+    goto section_11.L16;
+    goto section_11.L18;
+    goto section_11.L38;
+  }
+  {
+    showTextbox("-グレードC-<NEWLINE> 成熟期のデジモンを中心とした大会。<NEWLINE><NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-とくになし<NEWLINE>");
+
+L28:
+    break;
+    goto section_11.L3;
+    goto section_11.L14;
+    goto section_11.L19;
+    goto section_11.L39;
+  }
+  {
+    showTextbox("-グレードB-<NEWLINE> 成熟期のデジモンのなかでも自信のある<NEWLINE> ものが集まる大会。<NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-とくになし<NEWLINE>");
+
+L29:
+    break;
+    goto section_11.L4;
+    goto section_11.L14;
+    goto section_11.L19;
+    goto section_11.L40;
+  }
+  {
+    showTextbox("-グレードA-<NEWLINE> 完全体のデジモンを中心とした大会。<NEWLINE><NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-とくになし<NEWLINE>");
+
+L30:
+    break;
+    goto section_11.L5;
+    goto section_11.L14;
+    goto section_11.L18;
+    goto section_11.L41;
+  }
+  {
+    showTextbox("-グレードS-<NEWLINE> 最強のデジモンたちが集まる大会。<NEWLINE><NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-グレードA優勝<NEWLINE>");
+
+L31:
+    break;
+    goto section_11.L2;
+    goto section_11.L14;
+    goto section_11.L18;
+    goto section_11.L42;
+  }
+  {
+    showTextbox("-グレードR-<NEWLINE> かけひきが決め手のバトルロイヤル大会。<NEWLINE><NEWLINE><NEWLINE><NEWLINE> 4人バトルロイヤル2回戦 8名出場<NEWLINE>参加資格-とくになし<NEWLINE>");
+
+L32:
+    break;
+    goto section_11.L2;
+    goto section_11.L14;
+    goto section_11.L20;
+    goto section_11.L43;
+  }
+  {
+    showTextbox("-バージョン1カップ-<NEWLINE> バージョン1デジモンの頂点を決める大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-バージョン1デジモン<NEWLINE>");
+
+L33:
+    break;
+    goto section_11.L2;
+    goto section_11.L14;
+    goto section_11.L21;
+    goto section_11.L44;
+  }
+  {
+    showTextbox("-バージョン2カップ-<NEWLINE> バージョン2デジモンの頂点を決める大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-バージョン2デジモン<NEWLINE>");
+
+L34:
+    break;
+    goto section_11.L2;
+    goto section_11.L14;
+    goto section_11.L22;
+    goto section_11.L45;
+  }
+  {
+    showTextbox("-バージョン3カップ-<NEWLINE> バージョン3デジモンの頂点を決める大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-バージョン3デジモン<NEWLINE>");
+
+L35:
+    break;
+    goto section_11.L2;
+    goto section_11.L14;
+    goto section_11.L23;
+    goto section_11.L46;
+  }
+  {
+    showTextbox("-バージョン4カップ-<NEWLINE> バージョン4デジモンの頂点を決める大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-バージョン4デジモン<NEWLINE>");
+
+L36:
+    break;
+    goto section_11.L2;
+    goto section_11.L14;
+    goto section_11.L24;
+    goto section_11.L47;
+  }
+  {
+    showTextbox("-バージョンOカップ-<NEWLINE> バージョン1~4に属さないデジモンの<NEWLINE> 頂点を決める大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-バージョン1~4以外のデジモン<NEWLINE>");
+
+L37:
+    break;
+    goto section_11.L6;
+    goto section_11.L14;
+    goto section_11.L25;
+    goto section_11.L48;
+  }
+  {
+    showTextbox("-ファイアーカップ-<NEWLINE> 燃えるデジモンの王者を決める大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-火炎性質のデジモン<NEWLINE>");
+
+L38:
+    break;
+    goto section_11.L7;
+    goto section_11.L14;
+    goto section_11.L26;
+    goto section_11.L49;
+  }
+  {
+    showTextbox("-グラップルカップ-<NEWLINE> デジモン格闘技の王者を決める大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-格闘性質のデジモン<NEWLINE>");
+
+L39:
+    break;
+    goto section_11.L8;
+    goto section_11.L14;
+    goto section_11.L27;
+    goto section_11.L50;
+  }
+  {
+    showTextbox("-サンダーウインドカップ-<NEWLINE> 大気デジモンの王者を決める大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-大気性質のデジモン<NEWLINE>");
+
+L40:
+    break;
+    goto section_11.L9;
+    goto section_11.L14;
+    goto section_11.L28;
+    goto section_11.L51;
+  }
+  {
+    showTextbox("-クールカップ-<NEWLINE> クールなデジモンの王者を決める大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-氷水性質のデジモン<NEWLINE>");
+
+L41:
+    break;
+    goto section_11.L10;
+    goto section_11.L14;
+    goto section_11.L29;
+    goto section_11.L52;
+  }
+  {
+    showTextbox("-ネイチャーカップ-<NEWLINE> 自然派デジモンの王者を決める大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-自然性質のデジモン<NEWLINE>");
+
+L42:
+    break;
+    goto section_11.L11;
+    goto section_11.L14;
+    goto section_11.L30;
+    goto section_11.L53;
+  }
+  {
+    showTextbox("-メタリックカップ-<NEWLINE> 超機械デジモンの王者を決める大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-機械性質のデジモン<NEWLINE>");
+
+L43:
+    break;
+    goto section_11.L12;
+    goto section_11.L14;
+    goto section_11.L31;
+    goto section_11.L54;
+  }
+  {
+    showTextbox("-ダーティカップ-<NEWLINE> 汚~いデジモンの王者を決める大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-汚物性質のデジモン<NEWLINE>");
+
+L44:
+    break;
+    goto section_11.L13;
+    goto section_11.L14;
+    goto section_11.L32;
+    goto section_11.L55;
+  }
+  {
+    showTextbox("-ダイノカップ-<NEWLINE> いにしえの血をひくデジモンが<NEWLINE> 強さをきそう大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-???<NEWLINE>");
+
+L45:
+    break;
+    goto section_11.L10;
+    goto section_11.L14;
+    goto section_11.L33;
+    goto section_11.L56;
+  }
+  {
+    showTextbox("-ウイングカップ-<NEWLINE> 羽じまんのデジモンが強さをきそう大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-???<NEWLINE>");
+
+L46:
+    break;
+    goto section_11.L9;
+    goto section_11.L14;
+    goto section_11.L34;
+    goto section_11.L57;
+  }
+  {
+    showTextbox("-アニマルカップ-<NEWLINE> けものの血をひくデジモンが強さを<NEWLINE> きそう大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-???<NEWLINE>");
+
+L47:
+    break;
+    goto section_11.L9;
+    goto section_11.L14;
+    goto section_11.L35;
+    goto section_11.L58;
+  }
+  loop {
+    showTextbox("-ヒューマンカップ-<NEWLINE> 人型デジモンが強さをきそう大会。<NEWLINE> 時間制限試合。<NEWLINE><NEWLINE><NEWLINE> シングルマッチ3回戦 8名出場<NEWLINE>参加資格-???<NEWLINE>");
+
+L48:
+  }
+  goto section_11.L1;
+  goto section_11.L14;
+  goto section_11.L36;
+  goto section_11.L59;
+}
+
+section(11) {
+  tournamentData(12, 13, 14, 26, 27, 28, 40, 41, 42, 54, 55, 56, 59, 60, 61, 255);
+
+L1:
+  tournamentData(0, 0, 0, 255);
+
+L2:
+  tournamentData(8, 0, 0, 255);
+
+L3:
+  tournamentData(24, 0, 0, 255);
+
+L4:
+  tournamentData(8, 4, 2, 255);
+
+L5:
+  tournamentData(8, 0, 1, 255);
+
+L6:
+  tournamentData(8, 4, 56, 255);
+
+L7:
+  tournamentData(8, 4, 48, 255);
+
+L8:
+  tournamentData(8, 4, 59, 255);
+
+L9:
+  tournamentData(8, 4, 61, 255);
+
+L10:
+  tournamentData(8, 4, 60, 255);
+
+L11:
+  tournamentData(6, 3, 60, 255);
+
+L12:
+  tournamentData(3, 2, 53, 255);
+
+L13:
+  tournamentData(8, 4, 61, 255);
+
+L14:
+  tournamentData(254, 255);
+
+L15:
+  tournamentData(12, 13, 14, 26, 27, 28, 40, 41, 42, 54, 55, 56, 59, 60, 61, 63, 64, 65, 66, 255);
+
+L16:
+  tournamentData(12, 13, 14, 26, 27, 28, 40, 41, 42, 54, 55, 56, 59, 60, 61, 255);
+
+L17:
+  tournamentData(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 63, 64, 65, 66, 255);
+
+L18:
+  tournamentData(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 63, 64, 65, 254, 255);
+
+L19:
+  tournamentData(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 255);
+
+L20:
+  tournamentData(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 254, 255);
+
+L21:
+  tournamentData(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 254, 255);
+
+L22:
+  tournamentData(31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 254, 255);
+
+L23:
+  tournamentData(45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 254, 255);
+
+L24:
+  tournamentData(57, 58, 59, 60, 61, 63, 64, 65, 254, 255);
+
+L25:
+  tournamentData(3, 5, 9, 21, 36, 47, 56, 255);
+
+L26:
+  tournamentData(6, 8, 13, 14, 17, 26, 27, 31, 34, 38, 42, 48, 63, 65, 254, 255);
+
+L27:
+  tournamentData(7, 18, 20, 33, 37, 45, 50, 59, 254, 255);
+
+L28:
+  tournamentData(4, 10, 22, 23, 24, 35, 49, 52, 57, 61, 254, 255);
+
+L29:
+  tournamentData(19, 25, 32, 46, 51, 55, 58, 60, 254, 255);
+
+L30:
+  tournamentData(12, 28, 40, 41, 54, 65, 254, 255);
+
+L31:
+  tournamentData(11, 39, 53, 255);
+
+L32:
+  tournamentData(3, 4, 8, 5, 7, 10, 12, 35, 47, 54, 61, 65, 254, 255);
+
+L33:
+  tournamentData(6, 7, 12, 19, 20, 21, 31, 33, 45, 50, 51, 54, 55, 59, 60, 255);
+
+L34:
+  tournamentData(14, 22, 24, 33, 36, 38, 42, 48, 57, 63, 254, 255);
+
+L35:
+  tournamentData(6, 9, 20, 34, 36, 40, 42, 48, 58, 65, 254, 255);
+
+L36:
+  tournamentData(19, 32, 51, 60, 254, 255);
+
+L37:
+  tournamentData(3, 4, 17, 18, 31, 32, 45, 46, 57, 74, 80, 82, 83, 86, 96, 103, 109, 111, 254, 255);
+
+L38:
+  tournamentData(5, 6, 7, 8, 9, 10, 11, 19, 20, 21, 22, 23, 24, 25, 33, 34, 35, 36, 37, 38, 39, 47, 48, 49, 50, 51, 52, 53, 58, 67, 68, 69, 71, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 86, 87, 91, 92, 93, 94, 95, 96, 97, 98, 99, 101, 102, 103, 105, 106, 107, 109, 111, 255);
+
+L39:
+  tournamentData(5, 6, 7, 8, 9, 10, 11, 19, 20, 21, 22, 23, 24, 25, 33, 34, 35, 36, 37, 38, 39, 47, 48, 49, 50, 51, 52, 53, 58, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 255);
+
+L40:
+  tournamentData(5, 6, 7, 12, 13, 14, 19, 20, 21, 26, 27, 28, 32, 33, 34, 40, 41, 42, 47, 48, 49, 54, 55, 56, 58, 59, 60, 61, 63, 64, 65, 66, 70, 72, 85, 88, 89, 90, 100, 104, 108, 110, 254, 255);
+
+L41:
+  tournamentData(12, 13, 14, 26, 27, 28, 40, 41, 42, 54, 55, 56, 59, 60, 61, 66, 254, 255);
+
+L42:
+  tournamentData(254, 255);
+
+L43:
+  tournamentData(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 254, 255);
+
+L44:
+  tournamentData(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 254, 255);
+
+L45:
+  tournamentData(31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 254, 255);
+
+L46:
+  tournamentData(45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 254, 255);
+
+L47:
+  tournamentData(57, 58, 59, 60, 61, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 254, 255);
+
+L48:
+  tournamentData(3, 5, 9, 21, 36, 47, 56, 69, 88, 101, 104, 105, 254, 255);
+
+L49:
+  tournamentData(6, 8, 13, 14, 17, 26, 27, 31, 34, 38, 42, 48, 68, 70, 72, 78, 79, 80, 81, 82, 83, 97, 106, 107, 108, 90, 254, 255);
+
+L50:
+  tournamentData(7, 18, 20, 33, 37, 45, 50, 66, 67, 75, 85, 95, 102, 255);
+
+L51:
+  tournamentData(4, 10, 22, 23, 24, 35, 49, 52, 57, 61, 71, 89, 94, 98, 100, 103, 109, 110, 254, 255);
+
+L52:
+  tournamentData(19, 25, 32, 46, 51, 55, 58, 60, 74, 77, 86, 91, 93, 99, 254, 255);
+
+L53:
+  tournamentData(12, 28, 40, 41, 54, 76, 84, 92, 255);
+
+L54:
+  tournamentData(11, 39, 53, 73, 87, 255);
+
+L55:
+  tournamentData(3, 4, 8, 5, 7, 10, 12, 35, 47, 54, 61, 69, 71, 83, 84, 88, 91, 98, 101, 106, 254, 255);
+
+L56:
+  tournamentData(6, 7, 12, 19, 20, 21, 31, 33, 45, 50, 51, 54, 55, 59, 60, 67, 85, 95, 96, 100, 102, 106, 254, 255);
+
+L57:
+  tournamentData(14, 22, 24, 33, 36, 38, 42, 48, 57, 69, 70, 75, 79, 93, 101, 105, 254, 255);
+
+L58:
+  tournamentData(6, 9, 20, 34, 36, 40, 42, 48, 52, 58, 66, 72, 80, 85, 89, 97, 100, 110, 104, 255);
+
+L59:
+  tournamentData(67, 74, 102, 111, 19, 32, 51, 60, 254, 255);
+  return;
+  garbage { 10 00 05 00 10 00 0a 00 7c 07 0b 00 24 16 ff ff 1b ff 10 04 96 00 f4 01 ac 04 5c 00 1a 00 81 75 82 a8 82 dd 82 b9 82 50 81 76 0d 00 81 75 82 a8 82 dd 82 b9 82 51 81 76 0d 00 81 75 82 bb 82 cc 82 bd 81 76 0d 00 81 75 96 bc 91 4f 93 fc 97 cd 81 76 0d 00 00 00 12 00 16 00 a4 06 1b ff 10 02 86 00 8e 00 1a 00 81 75 01 06 05 00 01 01 81 76 0d 00 81 75 01 0a 06 00 01 01 81 76 0d 00 00 00 12 00 16 00 a4 06 1e 00 fe 02 64 20 fe 00 1e 00 fe 03 64 20 fe 00 1b fd 10 03 d6 00 dc 01 ea 01 1a 00 81 75 83 56 83 87 83 62 83 76 81 76 0d 00 81 75 83 7d 81 5b 83 50 83 62 83 67 81 76 0d 00 81 75 83 7c 83 43 83 93 83 67 81 76 0d 00 00 00 12 00 16 00 a4 06 1c 00 81 01 1c 00 8c 01 1c 00 94 01 1c 00 96 01 1c 00 97 01 1c 00 a0 01 1c 00 b2 01 1c 00 c7 01 1c 00 c8 01 1c 00 ca 01 1c 00 ce 01 1c 00 d1 01 1c 00 d6 01 1c 00 d9 01 1c 00 e0 01 1c 00 e2 01 1c 00 e4 01 1c 00 e5 01 1c 00 e9 01 1c 00 eb 01 1c 00 ed 01 1c 00 91 01 1c 00 a7 01 1c 00 ac 01 1c 00 a9 01 1c 00 c1 01 1c 00 be 01 1c 00 c5 01 1c 00 d2 01 1c 00 c9 01 1c 00 b3 01 1c 00 cc 01 1c 00 dc 01 1c 00 ea 01 1c 00 c4 01 1c 00 cf 01 1c 00 db 01 1c 00 e1 01 1c 00 ec 01 1c 00 f1 01 1c 00 cb 01 1c 00 d0 01 1c 00 d5 01 1c 00 ee 01 1c 00 ef 01 1c 00 dd 01 1c 00 d7 01 1c 00 d8 01 1c 00 f0 01 1c 00 d4 01 1c 00 da 01 1c 00 de 01 1c 00 df 01 1c 00 e7 01 1c 00 e8 01 1c 00 f3 01 1c 00 c3 01 1c 00 c6 01 1c 00 fa 01 1c 00 a6 01 1c 00 a8 01 1c 00 a1 01 1d 00 03 00 1e 00 fe 07 64 08 16 00 a4 06 1c 00 03 00 1e 00 fe 07 64 08 16 00 a4 06 1e 00 fe 07 64 01 16 00 a4 06 1b fd 10 03 3a 02 32 02 50 04 1a 00 81 75 83 4a 81 5b 83 68 81 76 0d 00 81 75 97 61 82 a9 82 e8 8f 8a 81 76 0d 00 81 75 82 bb 82 cc 91 bc 82 cc 93 58 81 76 0d 00 00 00 12 00 16 00 a4 06 1e 00 fe 07 64 0b fe 00 1e 00 fe 07 1b 07 1a 00 81 75 8d a1 93 fa 82 e0 83 43 83 4c 82 cc 82 a2 82 a2 83 4a 81 5b 83 68 82 f0 0d 00 81 40 82 bb 82 eb 82 a6 82 bd 83 41 83 8b 82 e6 81 76 0d 00 00 00 64 0f 1b fd 10 03 ba 02 0c 04 30 04 1a 00 81 75 83 4a 81 5b 83 68 82 f0 94 83 82 a4 81 76 0d 00 81 75 83 4a 81 5b 83 68 82 f0 94 84 82 e9 81 76 0d 00 81 75 82 e2 82 df 82 e9 81 76 0d 00 00 00 12 00 16 00 30 04 19 00 25 00 00 02 f4 01 00 00 18 00 16 03 19 00 10 03 48 03 fc 03 12 04 1a 00 81 75 82 52 96 87 83 70 83 62 83 4e 94 83 82 a2 81 76 0d 00 81 75 82 50 96 87 94 83 82 a2 81 76 0d 00 81 75 82 e2 82 c1 82 cf 82 e8 82 e2 82 df 82 e9 81 76 0d 00 00 00 12 00 16 00 12 04 16 00 48 03 10 02 fc 03 12 04 1a 00 81 75 82 50 96 87 94 83 82 a2 81 76 0d 00 81 75 82 e2 82 c1 82 cf 82 e8 82 e2 82 df 82 e9 81 76 0d 00 00 00 12 00 16 00 12 04 1b 07 1a 00 81 75 83 70 83 62 83 4e 82 cd 82 54 82 4f 82 4f 81 6f 81 70 82 e6 81 42 0d 00 81 40 89 bd 82 aa 93 fc 82 c1 82 c4 82 a2 82 e9 82 a9 82 cd 89 5e 82 b5 82 be 82 a2 83 41 83 8b 81 42 81 76 0d 00 00 00 1b fd 10 02 be 03 12 04 1a 00 81 75 94 83 82 a4 81 76 0d 00 81 75 82 e2 82 c1 82 cf 82 e8 82 e2 82 df 82 e9 81 76 0d 00 00 00 12 00 16 00 12 04 2b 00 f4 01 00 00 64 0f 1b 07 1a 00 81 75 83 70 83 62 83 4e 82 cd 82 b7 82 ae 8a 4a 82 af 82 e9 82 e6 82 eb 82 b5 81 42 81 76 0d 00 00 00 1d 00 03 00 1d 00 04 00 64 0e 64 16 16 00 12 04 1d 00 03 00 1c 00 04 00 64 0e 64 16 16 00 12 04 1c 00 03 00 64 0e 1b 07 1a 00 81 75 82 dc 82 be 97 70 83 41 83 8b 82 a9 81 48 81 76 0d 00 00 00 16 00 76 02 64 10 1b 07 1a 00 81 75 82 dc 82 bd 82 ad 82 e9 83 41 83 8b 82 e6 81 42 81 76 0d 00 00 00 fe 00 1b fd 10 03 90 04 98 04 a0 04 1a 00 81 75 83 54 83 45 83 93 83 68 83 65 83 58 83 67 81 76 0d 00 81 75 83 8f 81 5b 83 76 89 ae 81 76 0d 00 81 75 8c f0 8a b7 81 76 0d 00 00 00 12 00 16 00 a4 06 1e 00 fe 07 64 09 fe 00 1e 00 fe 07 64 0a fe 00 1e 00 fe 07 1e 00 f9 02 64 02 fe 00 1b ff 10 04 a6 06 de 06 f8 04 1c 07 1a 00 81 75 83 47 83 93 83 67 83 8a 81 5b 81 76 0d 00 81 75 93 ac 8b 5a 8f ea 81 76 0d 00 81 75 82 a2 82 eb 82 a2 82 eb 81 76 0d 00 81 75 82 cb 82 be 82 f1 81 76 0d 00 00 00 12 00 16 00 a4 06 1b ff 10 04 5a 05 60 05 28 06 a2 06 1a 00 81 75 83 49 81 5b 83 76 83 6a 83 93 83 4f 81 76 0d 00 81 75 83 47 83 93 83 66 83 42 83 93 83 4f 81 76 0d 00 81 75 82 d6 82 f1 82 b5 82 f1 81 76 0d 00 81 75 8e 80 82 ca 81 69 82 c8 82 ad 82 c8 82 e8 82 dc 82 b5 82 bd 81 6a 81 76 0d 00 00 00 12 00 fe 00 49 05 4a ff fe 00 49 06 4a ff fe 00 1c 00 03 00 64 00 19 00 00 00 }
+}

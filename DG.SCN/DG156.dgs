@@ -1,0 +1,103 @@
+// DG156.SCN
+#include "functions.dgs"
+#pragma script index=156 start=0x6b000 end=0x6b800 headerU16=0x14 sentinelOff=0xfe
+#include "entities.dgs"
+
+section onEnter(254) {
+  return;
+}
+
+section(81) {
+  look(entity: Entity.Player, at: Entity(5));
+  look(entity: Entity(5), at: Entity.Player);
+  delay(5);
+  if (!trigger(51)) {
+    setTrigger(Trigger(51));
+    speak(Entity(5), "「やぁー、よく来てくれたね!<NEWLINE> オイラ、アイテムを預かる『預り屋』を<NEWLINE> 始めたよ。」<NEWLINE>");
+    showTextbox("「キミ達のはタダでアイテムを預かって<NEWLINE> あげるよ。特別サービスね。」<NEWLINE>");
+    return;
+  }
+  setPStat(PStat(254), 5);
+  callSubroutine(11);
+  return;
+}
+
+section(6) {
+  if (pstat[1] >= 30) {
+    speak(Entity(6), "「進化の話のまたつづきだよー。<NEWLINE> えーと、成熟期の次の世代の<NEWLINE> ことなんだけどー。」<NEWLINE>");
+    showTextbox("「完全体っていうんだってー。<NEWLINE> 成熟期から必ずなれるわけじゃない<NEWLINE> みたいー。」<NEWLINE>");
+    showTextbox("「進化のじょうけんはすごくきびしいってー。<NEWLINE> でも、もし完全体なれたら、寿命が<NEWLINE> のびるんだってー。」<NEWLINE>");
+    showTextbox("「アイテムで進化した時は寿命は<NEWLINE> そのままみたいだけどねー。」<NEWLINE>");
+    return;
+  }
+  if (pstat[1] >= 15) {
+    speak(Entity(6), "「進化の話のつづきだよー。<NEWLINE> えっとね、進化のじょうけんについて<NEWLINE> なんだけどー。」<NEWLINE>");
+    showTextbox("「まず体重は、進化先の体重に<NEWLINE> 近くないとだめみたいだよー。」<NEWLINE>");
+    showTextbox("「それからパラメータは、やっぱり<NEWLINE> 高いほどいいんだけど、何が高いと<NEWLINE> いいのかはそれぞれ違うみたいー。」<NEWLINE>");
+    showTextbox("「あと育成ミスについてだけど、<NEWLINE> わざと多く失敗させたほうがいい<NEWLINE> 場合もあるみたいだねー。」<NEWLINE>");
+    showTextbox("「そうそう、ほかにも進化先ごとに<NEWLINE> 特別に進化のじょうけんになるものが<NEWLINE> あるみたいー。」<NEWLINE>");
+    showTextbox("「たとえばしつけがすごく高いとかー。<NEWLINE> バトルの回数が多いとかねー。」<NEWLINE>");
+    showTextbox("「そういうのを満たしてれば、3つの<NEWLINE> 基本じょうけんが完全じゃなくても<NEWLINE> 進化できちゃうんだってさー。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(6), "「じーちゃんに聞いたんだけど、<ORANGE><DIGIMON><WHITE><NEWLINE> さんって『進化』するんだってー。」<NEWLINE>");
+  showTextbox("「幼年期1から幼年期2へは<NEWLINE> たったの6時間で進化するってー。」<NEWLINE>");
+  showTextbox("「次の成長期へは<NEWLINE> だいたい1日で進化するってー。」<NEWLINE>");
+  showTextbox("「その次の成熟期へは<NEWLINE> 3日ぐらいで進化するってー。」<NEWLINE>");
+  showTextbox("「そのまた次の世代は…なんだっけー?<NEWLINE> 忘れちゃったけど、まだあるんだよー。」<NEWLINE>");
+  showTextbox("「進化には、体重とパラメータと育成ミスが<NEWLINE> 関係してるんだってさー。」<NEWLINE>");
+  showTextbox("「そのへん、まだよくわかんないから<NEWLINE> 今度じーちゃんに聞いとくねー。」<NEWLINE>");
+  return;
+}
+
+section(51) {
+  move(entity: Entity.Player, to: (123, -1391), sprint: 0);
+  if (!trigger(203)) {
+    warp(to: Map.TWNA01, spawn: 3, trigger: 255);
+  }
+  {
+    if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L2; else break;
+  }
+  {
+    if (trigger(221)) goto L1; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA04, spawn: 3, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA03, spawn: 3, trigger: 255);
+  }
+  warp(to: Map.TWNA02, spawn: 3, trigger: 255);
+
+L1:
+  if (trigger(225)) {
+    warp(to: Map.TWNA07, spawn: 3, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA06, spawn: 3, trigger: 255);
+  }
+  {
+    warp(to: Map.TWNA05, spawn: 3, trigger: 255);
+
+L2:
+    if (trigger(221)) goto L3; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA10, spawn: 3, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA09, spawn: 3, trigger: 255);
+  }
+  warp(to: Map.TWNA08, spawn: 3, trigger: 255);
+
+L3:
+  if (trigger(225)) {
+    warp(to: Map.TWNA13, spawn: 3, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA12, spawn: 3, trigger: 255);
+  }
+  warp(to: Map.TWNA11, spawn: 3, trigger: 255);
+  return;
+  garbage { 14 00 fe 00 14 00 51 00 16 00 06 00 e2 00 33 00 ea 06 ff ff fe 00 4c 00 fd 05 }
+}

@@ -1,0 +1,322 @@
+// DG163.SCN
+#include "functions.dgs"
+#pragma script index=163 start=0x71000 end=0x72800 headerU16=0x40 sentinelOff=0x19
+#include "entities.dgs"
+
+section onEnter(254) {
+  if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
+    setObjectVisibility(7, 1);
+  }
+  if (trigger(203)) {
+    setObjectVisibility(8, 1);
+  } else {
+    setRectImpassible(40, 38, 2, 2);
+  }
+  return;
+}
+
+section(54) {
+  jumpToScriptSection(178, 55);
+  return;
+}
+
+section(5) {
+  {
+    {
+      if (trigger(202) || trigger(215) || pstat[16] == 0) break;
+      if (!trigger(201) || !trigger(243)) break;
+      speak(Entity(5), "「おお、いいところに来てくれた!<NEWLINE> おぬしにしかたのめない大事な<NEWLINE> 用があるんじゃ。」<NEWLINE>");
+      speak(Entity.Player, "「何?」<NEWLINE>");
+      speak(Entity(5), "「今、またアナログマンとムゲンドラモン<NEWLINE> と同じ邪念を感じたんじゃ。<NEWLINE> やはり場所はわからんが…」<NEWLINE>");
+      speak(Entity.Player, "「またかよー。よし、まかしとけっ!」<NEWLINE>");
+      speak(Entity(5), "「おお、すまん。ところで…」<NEWLINE>");
+      goto L1;
+    }
+    if (trigger(202) && !trigger(215)) {
+      speak(Entity(5), "「ムゲンドラモンを倒したようじゃな!」<NEWLINE>");
+      speak(Entity.Player, "「うん。でもよくわからないんだ。<NEWLINE> アナログマンののろいみたいな<NEWLINE> 感じだったよ。」<NEWLINE>");
+      speak(Entity(5), "「あの者のおんねんが、よほど強く<NEWLINE> 残っているのかのう。<NEWLINE> まあ、これでまた平和になるかの。」<NEWLINE>");
+      speak(Entity.Player, "「またムゲンドラモンが復活したら、<NEWLINE> また倒せばいいのさ。<NEWLINE> 年間行事みたいで楽しいじゃん。」<NEWLINE>");
+      speak(Entity(5), "「はは、たのもしいことじゃ。<NEWLINE> ん、そうじゃ、おれいにこれをやろう。<NEWLINE> 肉畑にぐうぜん育ったんじゃ。」<NEWLINE>");
+      speak(Entity.Player, "「おお、<LIGHTBLUE>クサリカケメロン<WHITE>?」<NEWLINE>");
+      giveItem(Item.ChainMelon, 1);
+      if (trigger(0)) {
+        if (item[Item.SpikeClub] >= 99) {
+          return;
+        }
+        speak(Entity.Player, "「いけね、持ち物がいっぱいだ。」<NEWLINE>");
+        inventoryFullBailout();
+        giveItem(Item.ChainMelon, 1);
+      }
+      speak(Entity.Player, "「もらっとくよ、サンキュー!」<NEWLINE>");
+      setPStat(PStat(28), 0);
+      setTrigger(Trigger(215));
+      return;
+    }
+    if (!trigger(50) || trigger(201)) break;
+    speak(Entity(5), "「おお、来てくれたんじゃな!<NEWLINE> おぬしにしかたのめない大事な<NEWLINE> ことじゃったんでの。」<NEWLINE>");
+    speak(Entity.Player, "「へへへ、いいってことさ。<NEWLINE> で、アナログマンが復活したってのは?」<NEWLINE>");
+    speak(Entity(5), "「うむ、感じるんじゃ。<NEWLINE> やつと全く同じ邪念のようなものを。<NEWLINE> 場所はどこからなのか特定できんが…」<NEWLINE>");
+    speak(Entity.Player, "「よし、まかせてくれ!<NEWLINE> 探し出してやっつけてやるぜ。」<NEWLINE>");
+    speak(Entity(5), "「おお、すまん。ところで…」<NEWLINE>");
+    setTrigger(Trigger(201));
+
+L1:
+  }
+  if (trigger(203)) {
+    jumpToScriptSection(180, 51);
+  }
+  if (trigger(55)) goto section_6;
+  playAnimation(Entity(5), Animation(0));
+  anim(Entity(5), Animation(29), wait: 5);
+  speak(Entity(5), "「あー、オホン。わしは街に戻った<NEWLINE> デジモンと協力して『はじまりの街』を<NEWLINE> 復こうしていくつもりじゃ。」<NEWLINE>");
+  playAnimation(Entity(5), Animation(0));
+  anim(Entity(5), Animation(29), wait: 5);
+  speak(Entity(5), "「おぬしと<ORANGE><DIGIMON><WHITE>が便利に利用できる<NEWLINE> ような店を建てていく予定じゃ。」<NEWLINE>");
+  playAnimation(Entity(5), Animation(0));
+  anim(Entity(5), Animation(29), wait: 5);
+  speak(Entity(5), "「まずは、そうじゃな、街のすぐ外の<NEWLINE> 『迷わずの森』を探険してみては<NEWLINE> どうかな。」<NEWLINE>");
+  playAnimation(Entity(5), Animation(0));
+  return;
+}
+
+section(6) {
+  {
+    if (trigger(56)) break;
+    if (trigger(96) || pstat[18] >= 10) {
+      break;
+    }
+    speak(Entity(6), "「これアゲルよ。がんばってね。」<NEWLINE>");
+    speak(Entity.System, "アイテムをいろいろもらった!<NEWLINE>");
+    for x in [:SmallRecovery, :Meat, :MPFloppy] {
+      giveItem(x, 3);
+    }
+    giveItem(Item.Restore, 1);
+    giveItem(Item.Bandage, 2);
+    giveItem(Item.Medicine, 1);
+    speak(Entity(6), "「アイテムは<GREEN><TRIANGLE><WHITE><ボき><ヌン>をおして、<NEWLINE> 『アイテム』を選んで<ORANGE><CIRCLE><WHITE><ボき><ヌン>で見てね。」<NEWLINE>");
+    setTrigger(Trigger(56));
+    return;
+  }
+  if (!trigger(224) && trigger(175)) {
+    speak(Entity(6), "「ユラモンがまた新しいうわさを<NEWLINE> しいれたみたいだよ。」<NEWLINE>");
+    return;
+  }
+  if (trigger(124) && trigger(103)) {
+    speak(Entity(6), "「そうそう、ユラモンが新しいうわさを<NEWLINE> 知ってるってさ。」<NEWLINE>");
+    return;
+  }
+  if (pstat[1] >= 6) {
+    speak(Entity(6), "「だんだん街もにぎわってきて、<NEWLINE> 街できける話もすこし変わってきてる<NEWLINE> みたいだよ。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(6), "「この世界のじょーしきってやつを教えて<NEWLINE> あげるよ。」<NEWLINE>");
+  showTextbox("「1日は24時間で、朝昼夜があるよ。<NEWLINE> でもちょっとペースが早いって<NEWLINE> 思うかもね。」<NEWLINE>");
+  showTextbox("「1年間は30日なんだ。月?何それ?<NEWLINE> きせつ…?それっておいしいの?」<NEWLINE>");
+  showTextbox("「お金はもちろんあるよ。<B><it>(ビット)<NEWLINE> っていうんだ。いっぱいあっても困るって<NEWLINE> ことはないね。」<NEWLINE>");
+  showTextbox("「この島で、街って言ったらここのことさ。<NEWLINE> 他にもちょっとした町や集落はあるみたい<NEWLINE> だけど。」<NEWLINE>");
+  showTextbox("「あと、そうだね、時計の見方について。<NEWLINE> きいろい点が時間で、ハリが分だよ。<NEWLINE> 上が0時で下が12時ね。」<NEWLINE>");
+  showTextbox("「左の赤いところはゆうがたで、16時から<NEWLINE> 20時まで。右のむらさきのところは<NEWLINE> 朝で、4時から8時なんだ。」<NEWLINE>");
+  showTextbox("「デジモンには活動時間があるんだ。やっぱり<NEWLINE> 朝起きて、夜寝るのが普通なんだけど、<NEWLINE> 夜起きて昼寝るやつなんかもいる。」<NEWLINE>");
+  showTextbox("「もし会いたいデジモンに会えないなら、<NEWLINE> 時間を変えてみるといいかもね。」<NEWLINE>");
+  return;
+}
+
+section(7) {
+  if (!trigger(54)) {
+    jumpToScriptSection(179, 5);
+    return;
+  }
+  roll(pstat: PStat.RollScratch, max: 2);
+  if (pstat[1] >= 3 && pstat[110] == 0) {
+    speak(Entity(7), "「ツノモンとユラモンの話は<NEWLINE> こまめにチェックするでしゅ。」<NEWLINE>");
+    return;
+  }
+  if (pstat[1] >= 3 && pstat[110] == 1) {
+    speak(Entity(7), "「テイマーレベルについて<NEWLINE> 教えてあげるでしゅ。」<NEWLINE>");
+    showTextbox("「テイマーレベルが高いと、<NEWLINE> 寿命で死んだ時のパラメータの<NEWLINE> けいしょう値が多くなるしゅ。」<NEWLINE>");
+    showTextbox("「ただ最初のうちはなかなか上がらないと<NEWLINE> 思うでしゅけど、地道にデジモンを<NEWLINE> 育てていけばそのうち上がるでしゅよ。」<NEWLINE>");
+    return;
+  }
+  if (pstat[1] >= 3 && pstat[110] == 2) {
+    speak(Entity(7), "「必殺技をうつとき、ちゃんと<NEWLINE> L1<ボき><ヌン>、R1<ボき><ヌン>を連打してましゅか?」<NEWLINE>");
+    showTextbox("「ゲージが0めもりのときと、フルめもりの<NEWLINE> ときでは、なんと2倍もダメージが<NEWLINE> 違うんでしゅよ。」<NEWLINE>");
+    return;
+  }
+  speak(Entity(7), "「ボクがデジモンの生活について教えて<NEWLINE> あげるでしゅ。」<NEWLINE>");
+  showTextbox("「まず、あたりまえでしゅが、デジモンは<NEWLINE> 食事をするでしゅ。おなかが減るとちゃんと<NEWLINE> うったえるでしゅよ。」<NEWLINE>");
+  showTextbox("「それからウンチをするでしゅ。ウンチは<NEWLINE> なるべくトイレでするほうがいいでしゅ。」<NEWLINE>");
+  showTextbox("「眠くなると寝るでしゅ。<LIGHTBLUE><PLAYER><WHITE>さんが<NEWLINE> 寝ようっていうまでは寝ないでしゅが、<NEWLINE> 早く寝かせるほうがいいでしゅ。」<NEWLINE>");
+  showTextbox("「あと、つかれるし、病気になるし、<NEWLINE> きげんが悪くなることもありましゅ。<NEWLINE> なかなかデリケートなのでしゅ。」<NEWLINE>");
+  showTextbox("「もともとデジモンは野生的な生き物でしゅ<NEWLINE> から、時にはほめてあげたり、<NEWLINE> しかったりしてあげるといいでしゅ。」<NEWLINE>");
+  showTextbox("「何にしても、デジモンの様子をよく見て、<NEWLINE> 注意してくらすのがいいでしゅね。」<NEWLINE>");
+  return;
+}
+
+section(20) {
+  panTo(x: 183, y: 221, slowdown: 20);
+  delay(20);
+  addStats(currentHP: 9999, currentMP: 9999);
+  unsetTrigger(Trigger(1));
+  anim(Entity(5), Animation(29), wait: 5);
+  speak(Entity(5), "「気づいたか…<NEWLINE> 残念じゃったのう。」<NEWLINE>");
+  playAnimation(Entity(5), Animation(0));
+  return;
+}
+
+section(71) {
+  jumpToScriptSection(223, 71);
+  return;
+}
+
+section(72) {
+  jumpToScriptSection(223, 72);
+  return;
+}
+
+section(73) {
+  jumpToScriptSection(223, 73);
+  return;
+}
+
+section(85) {
+  if (!trigger(94)) {
+    setTrigger(Trigger(94));
+    speak(Entity.Player, "「ん、この機械は?」<NEWLINE>");
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Player, at: Entity(5));
+    delay(5);
+    speak(Entity(5), "「うーむ、それはのう、<NEWLINE> 『<PINK>メモリーカード対戦データ保存マシン<WHITE>』<NEWLINE> じゃよ。」<NEWLINE>");
+    showTextbox("「今のパートナーのデータを、<NEWLINE> 対戦用に保存しておける機械じゃ。」<NEWLINE>");
+    showTextbox("「そこで<ORANGE><CIRCLE><WHITE><ボき><ヌン>を押せば、あとは機械が<NEWLINE> 何をすればいいか教えてくれるぞい。」<NEWLINE>");
+    rotate(entity: Entity.Player, to: 0);
+    delay(5);
+    return;
+  }
+  speak(Entity.System, " <NEWLINE>『<PINK>メモリーカード対戦データ保存マシン<WHITE>』<NEWLINE> を使いますか?<NEWLINE>");
+  setSelection(L1, L2);
+  showTextbox("「使う。」<NEWLINE>「使わない。」<NEWLINE>");
+  waitForSelectionChoice();
+  return;
+
+L1:
+  fadeOutHUD();
+  callSubroutine(48);
+  return;
+
+L2:
+  return;
+}
+
+section(82) {
+  rotate(entity: Entity.Player, to: 3072);
+  delay(5);
+  playSound(0, 0);
+  if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
+    speak(Entity.Player, "「プニモンいないけど、<NEWLINE> 勝手に休んじゃうかな。」<NEWLINE>");
+  } else {
+    speak(Entity.System, "<YELLOW>プニモン<WHITE><NEWLINE>「ぼくプニモン!<NEWLINE> 少し休んでいったらどう?」<NEWLINE>");
+    showTextbox("<YELLOW>プニモン<WHITE><NEWLINE>「1時間休むと、HP、MPが<NEWLINE> すこし回復して、『ひろう』もすこし<NEWLINE> とれるんだよ。」<NEWLINE>");
+  }
+  setDialogOwner(Entity.Player);
+  setSelection(L1, L2);
+  showTextbox("「休んでいく。」<NEWLINE>「休まない。」<NEWLINE>");
+  waitForSelectionChoice();
+  playSound(0, 1);
+  return;
+
+L1:
+  pstat[:SavedTime] = time();
+  addMinutesToDate(PStat.SavedTime, 60);
+  advanceToDate(PStat.SavedTime);
+  addStats(currentHP: 300, currentMP: 300);
+  reduceStats(tiredness: 10);
+  warp(to: Map.ROOM08, spawn: 2, trigger: 255);
+  return;
+
+L2:
+  playSound(0, 1);
+  return;
+}
+
+section(83) {
+  if (trigger(203)) {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 3072);
+  delay(5);
+  jumpToScriptSection(215, 83);
+  return;
+}
+
+section(84) {
+  if (trigger(203)) {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 1024);
+  delay(5);
+  jumpToScriptSection(215, 83);
+  return;
+}
+
+section(86) {
+  if (trigger(203)) {
+    return;
+  }
+  rotate(entity: Entity.Player, to: 2048);
+  delay(5);
+  jumpToScriptSection(215, 83);
+  return;
+}
+
+section(51) {
+  move(entity: Entity.Player, to: (-470, -1970), sprint: 0);
+  if (!trigger(203)) {
+    warp(to: Map.TWNA01, spawn: 2, trigger: 255);
+  }
+  {
+    if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L2; else break;
+  }
+  {
+    if (trigger(221)) goto L1; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA04, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA03, spawn: 2, trigger: 255);
+  }
+  warp(to: Map.TWNA02, spawn: 2, trigger: 255);
+
+L1:
+  if (trigger(225)) {
+    warp(to: Map.TWNA07, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA06, spawn: 2, trigger: 255);
+  }
+  {
+    warp(to: Map.TWNA05, spawn: 2, trigger: 255);
+
+L2:
+    if (trigger(221)) goto L3; else break;
+  }
+  if (trigger(225)) {
+    warp(to: Map.TWNA10, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA09, spawn: 2, trigger: 255);
+  }
+  warp(to: Map.TWNA08, spawn: 2, trigger: 255);
+
+L3:
+  if (trigger(225)) {
+    warp(to: Map.TWNA13, spawn: 2, trigger: 255);
+  }
+  if (trigger(246)) {
+    warp(to: Map.TWNA12, spawn: 2, trigger: 255);
+  }
+  warp(to: Map.TWNA11, spawn: 2, trigger: 255);
+  return;
+  garbage { 40 00 fe 00 40 00 36 00 7a 00 05 00 82 00 06 00 42 07 07 00 a0 0c 14 00 be 11 47 00 12 12 48 00 1a 12 49 00 22 12 55 00 2a 12 52 00 de 13 53 00 46 15 54 00 64 15 56 00 82 15 33 00 a0 15 ff ff 19 00 00 00 e7 00 40 00 f5 00 40 00 e9 00 40 00 f7 00 18 00 5c 00 19 00 57 00 07 01 19 00 00 00 cb 00 18 00 70 00 19 00 57 00 08 01 16 00 78 00 7c 00 28 00 26 00 02 02 fe 00 17 00 b2 00 37 00 fe 00 19 00 01 00 ca 00 81 00 d7 00 89 00 10 00 18 00 d2 01 19 00 19 00 00 00 c9 00 80 00 f3 00 18 00 d2 01 19 00 1b 05 1a 00 81 75 82 a8 82 a8 81 41 82 a2 82 a2 82 c6 82 b1 82 eb 82 c9 97 88 82 c4 82 ad 82 ea 82 bd 81 49 0d 00 81 40 82 a8 82 ca 82 b5 82 c9 82 b5 82 a9 82 bd 82 cc 82 df 82 c8 82 a2 91 e5 8e 96 82 c8 0d 00 81 40 97 70 82 aa 82 a0 82 e9 82 f1 82 b6 82 e1 81 42 81 76 0d 00 00 00 1b fd 1a 00 81 75 89 bd 81 48 81 76 0d 00 00 00 1b 05 1a 00 81 75 8d a1 81 41 82 dc 82 bd 83 41 83 69 83 8d 83 4f 83 7d 83 93 82 c6 83 80 83 51 83 93 83 68 83 89 83 82 83 93 0d 00 81 40 82 c6 93 af 82 b6 8e d7 94 4f 82 f0 8a b4 82 b6 82 bd 82 f1 82 b6 82 e1 81 42 0d 00 81 40 82 e2 82 cd }
+}

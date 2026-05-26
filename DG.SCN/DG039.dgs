@@ -1,0 +1,144 @@
+// DG039.SCN
+#include "functions.dgs"
+#pragma script index=39 start=0x1e800 end=0x1f000 headerU16=0x28 sentinelOff=0x24
+#include "entities.dgs"
+
+section onEnter(254) {
+  spawnItemChance(max: 99, chance: 9, item: Item.Digimushroom, x: 69, y: 49);
+  spawnItemChance(max: 99, chance: 2, item: Item.Happymushroom, x: 37, y: 33);
+  return;
+}
+
+section(5) {
+  speak(Entity(5), "「ノリが悪いなぁ!」<NEWLINE>");
+  finishEncounter(Trigger(293));
+}
+
+section(6) {
+  speak(Entity(6), "「ハハ、なにか言った?」<NEWLINE>");
+  finishEncounter(Trigger(293));
+}
+
+section(7) {
+  speak(Entity(7), "「ほんとにムリだってば…」<NEWLINE>");
+  finishEncounter(Trigger(299));
+}
+
+section(8) {
+  speak(Entity(8), "「あんまり自信ないんだよなぁ、ボク。」<NEWLINE>");
+  finishEncounter(Trigger(299));
+}
+
+section(9) {
+  speak(Entity(9), "「てかげんしてよ…」<NEWLINE>");
+  finishEncounter(Trigger(299));
+}
+
+section(10) {
+  speak(Entity(10), "「ケッ、なめんなよ!」<NEWLINE>");
+  finishEncounter(Trigger(280));
+}
+
+section(81) {
+  {
+    rotate(entity: Entity.Player, to: 2128);
+    delay(5);
+    speak(Entity.System, " <NEWLINE>       エレベーター<NEWLINE>");
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L2, L3);
+    showTextbox("屋上ボタンを押す<NEWLINE>上ボタンを押す<NEWLINE>乗らない<NEWLINE>");
+    waitForSelectionChoice();
+    break;
+
+L1:
+    if (!trigger(155)) {
+      anim(Entity.Player, Animation(16), wait: 15);
+      speak(Entity.Player, "「うーん、反応が無いな…」<NEWLINE>");
+      playAnimation(Entity.Player, Animation(0));
+      rotate(entity: Entity.Player, to: 2297);
+      delay(10);
+      rotate(entity: Entity.Player, to: 1785);
+      delay(10);
+      rotate(entity: Entity.Player, to: 2297);
+      showTextbox("「およ、機械に小石がはさまってる。<NEWLINE> さてはこれか…?」<NEWLINE>");
+      anim(Entity.Player, Animation(25), wait: 20);
+      speak(Entity.System, "小石をとりのぞいた!<NEWLINE>");
+      speak(Entity.Player, "「これでいいはずだ。」<NEWLINE>");
+      setTrigger(Trigger(155));
+      return;
+    } else {
+      playSound(8, 4);
+      rotate3DObject(0, 1);
+      delay(1);
+      rotate3DObject(1, 1);
+      delay(1);
+      rotate3DObject(0, 1);
+      delay(1);
+      rotate3DObject(1, 1);
+      delay(1);
+      rotate3DObject(0, 1);
+      delay(1);
+      rotate3DObject(1, 1);
+      delay(1);
+      rotate3DObject(0, 1);
+      delay(1);
+      rotate3DObject(1, 1);
+      delay(1);
+      playSound(8, 5);
+      warp(to: Map.GCAN10, spawn: 0, trigger: 52);
+      return;
+    }
+    return;
+
+L2:
+    fadeOutHUD();
+    if (!trigger(155)) {
+      anim(Entity.Player, Animation(16), wait: 15);
+      speak(Entity.Player, "「うーん、反応が無いな…」<NEWLINE>");
+      playAnimation(Entity.Player, Animation(0));
+      rotate(entity: Entity.Player, to: 2297);
+      delay(10);
+      rotate(entity: Entity.Player, to: 1785);
+      delay(10);
+      rotate(entity: Entity.Player, to: 2297);
+      showTextbox("「およ、機械に小石がはさまってる。<NEWLINE> さてはこれか…?」<NEWLINE>");
+      speak(Entity.System, "小石をとりのぞいた!<NEWLINE>");
+      speak(Entity.Player, "「これでいいはずだ。」<NEWLINE>");
+      setTrigger(Trigger(155));
+      return;
+    } else {
+      playSound(8, 4);
+      rotate3DObject(0, 1);
+      delay(1);
+      rotate3DObject(1, 1);
+      delay(1);
+      rotate3DObject(0, 1);
+      delay(1);
+      rotate3DObject(1, 1);
+      delay(1);
+      rotate3DObject(0, 1);
+      delay(1);
+      rotate3DObject(1, 1);
+      delay(1);
+      rotate3DObject(0, 1);
+      delay(1);
+      rotate3DObject(1, 1);
+      delay(1);
+      playSound(8, 5);
+      warp(to: Map.GCAN03, spawn: 2, trigger: 55);
+      return;
+    }
+    return;
+
+L3:
+  }
+  return;
+}
+
+section(53) {
+  playSound(8, 5);
+  setTrigger(Trigger(180));
+  unsetTrigger(Trigger(181));
+  return;
+  garbage { 28 00 fe 00 28 00 05 00 56 00 06 00 80 00 07 00 ae 00 08 00 de 00 09 00 1a 01 0a 00 44 01 51 00 70 01 35 00 2a 04 ff ff 24 00 6e 63 19 00 0b 00 6e 09 18 00 3e 00 19 00 74 2c 45 00 31 00 24 00 6e 63 19 00 0b 00 6e 02 18 00 54 00 19 00 74 45 25 00 21 00 fe 00 1b 05 1a 00 81 75 83 6d 83 8a 82 aa 88 ab 82 a2 82 c8 82 9f 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 25 01 fe 00 1b 06 1a 00 81 75 83 6e 83 6e 81 41 82 c8 82 c9 82 a9 8c be 82 c1 82 bd 81 48 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 25 01 fe 00 1b 07 1a 00 81 75 82 d9 82 f1 82 c6 82 c9 83 80 83 8a 82 be 82 c1 82 c4 82 ce 81 63 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2b 01 fe 00 1b 08 1a 00 81 75 82 a0 82 f1 82 dc 82 e8 8e a9 90 4d 82 c8 82 a2 82 f1 82 be 82 e6 82 c8 82 9f 81 41 83 7b 83 4e 81 42 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2b 01 fe 00 1b 09 1a 00 81 75 82 c4 82 a9 82 b0 82 f1 82 b5 82 c4 82 e6 81 63 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 2b 01 fe 00 1b 0a 1a 00 81 75 83 50 83 62 81 41 82 c8 82 df 82 f1 82 c8 82 e6 81 49 81 76 0d 00 00 00 27 00 67 00 01 00 66 00 1c 00 18 01 fe 00 4d fd 50 08 67 00 05 00 1b ff 1a 00 81 40 0d 00 81 40 81 40 81 40 81 40 81 40 81 40 81 40 83 47 83 8c 83 78 81 5b 83 5e 81 5b 0d 00 00 00 1b fd 10 03 de 01 06 03 28 04 1a 00 89 ae 8f e3 83 7b 83 5e 83 93 82 f0 89 9f 82 b7 0d 00 8f e3 83 7b 83 5e 83 93 82 f0 89 9f 82 b7 0d 00 8f e6 82 e7 82 c8 82 a2 0d 00 00 00 12 00 16 00 28 04 19 00 01 00 9b 00 18 00 b6 02 19 00 56 00 fd 10 67 00 0f 00 1b fd 1a 00 81 75 82 a4 81 5b 82 f1 81 41 94 bd 89 9e 82 aa 96 b3 82 a2 82 c8 81 63 81 76 0d 00 00 00 56 00 fd 00 4d fd f9 08 67 00 0a 00 4d fd f9 06 67 00 0a 00 4d fd f9 08 1a 00 81 75 82 a8 82 e6 81 41 8b 40 8a 42 82 c9 8f ac 90 ce 82 aa 82 cd 82 b3 82 dc 82 c1 82 c4 82 e9 81 42 0d 00 81 40 82 b3 82 c4 82 cd 82 b1 82 ea 82 a9 81 63 81 48 81 76 0d 00 00 00 56 00 fd 19 67 00 14 00 1b ff 1a 00 8f ac 90 ce 82 f0 82 c6 82 e8 82 cc 82 bc 82 a2 82 bd 81 49 0d 00 00 00 1b fd 1a 00 81 75 82 b1 82 ea 82 c5 82 a2 82 a2 82 cd 82 b8 82 be 81 42 81 76 0d 00 00 00 1c 00 9b 00 fe 00 16 00 04 03 5a 00 08 04 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 70 00 00 01 67 00 01 00 70 01 00 01 67 00 01 00 5a 00 08 05 4b 81 00 34 fe 00 fe 00 27 00 19 00 01 00 9b 00 18 00 d8 03 19 00 56 00 fd 10 67 00 0f 00 1b fd 1a 00 81 75 82 a4 81 5b 82 f1 81 41 94 bd 89 9e 82 aa 96 b3 82 a2 82 c8 81 63 81 76 0d 00 00 00 56 00 fd 00 4d fd f9 08 67 00 0a 00 4d fd f9 06 67 00 0a 00 4d fd f9 08 1a 00 81 75 82 a8 82 e6 81 41 8b 40 8a 42 82 c9 8f ac 90 ce 82 aa 82 cd 82 b3 82 dc 82 c1 82 c4 82 e9 81 42 0d 00 81 40 82 b3 82 c4 82 cd 82 b1 82 ea 82 a9 81 63 81 48 81 76 0d 00 00 00 1b ff 1a 00 8f ac 90 ce 82 f0 82 c6 82 e8 82 cc 82 bc 82 a2 82 bd 81 49 0d 00 00 00 1b fd 1a 00 81 75 82 b1 82 ea 82 c5 82 a2 82 a2 82 cd 82 b8 82 be }
+}
