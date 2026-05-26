@@ -27,7 +27,7 @@ section(5) {
     look(entity: Entity.Partner, at: Entity(5));
     speak(Entity(5), "Let's do it again.\n");
     setDialogOwner(Entity.Player);
-    choice { "OK" -> L1, "No" -> L4 }
+    choice { "OK" -> L1, "No" -> L3 }
     break;
 
 L1:
@@ -45,38 +45,38 @@ L1:
     speak(Entity(5), "Just a little more...\nCome on, one more time!\n");
     playAnimation(Entity.Player, Animation(16));
     setDialogOwner(Entity.Player);
-    choice { "OK" -> L2, "No" -> L4 }
+    choice { "OK" -> L2, "No" -> L3 }
     break;
 
 L2:
-    setTrigger(Trigger(1));
-    setPStat(PStat(250), 1);
-    setPStat(PStat(251), 5);
-    setPStat(PStat(252), 255);
-    setPStat(PStat(253), 255);
-    startBattle();
-    unsetTrigger(Trigger(1));
-    setPStat(PStat(250), 0);
-    look(entity: Entity.Player, at: Entity(5));
-    look(entity: Entity(5), at: Entity.Player);
-    look(entity: Entity.Partner, at: Entity(5));
-    delay(5);
-    playAnimation(Entity(5), Animation(28));
-    sfx(8, 7, wait: 40);
-    speak(Entity(5), "I can't win!\n");
-    playAnimation(Entity.Player, Animation(8));
-    speak(Entity.Player, "Why do you want to win?\n");
-    playAnimation(Entity(5), Animation(0));
-    playAnimation(Entity.Player, Animation(0));
-    speak(Entity(5), "What should I do?\n");
-    speak(Entity.Player, "What do you mean?\nYou don't have anything?\n");
-    speak(Entity(5), "I've got lots of time.\n");
-    playAnimation(Entity.Player, Animation(19));
-    speak(Entity.Player, "If you have too much time,\ncome to the city. There're\nall kinds of Digimon there.\n");
-    speak(Entity(5), "Sounds good. I'll go.\nMy name's Patamon.\nSee ya later.\n");
-    goto L3;
-
-L3:
+    {
+      setTrigger(Trigger(1));
+      setPStat(PStat(250), 1);
+      setPStat(PStat(251), 5);
+      setPStat(PStat(252), 255);
+      setPStat(PStat(253), 255);
+      startBattle();
+      unsetTrigger(Trigger(1));
+      setPStat(PStat(250), 0);
+      look(entity: Entity.Player, at: Entity(5));
+      look(entity: Entity(5), at: Entity.Player);
+      look(entity: Entity.Partner, at: Entity(5));
+      delay(5);
+      playAnimation(Entity(5), Animation(28));
+      sfx(8, 7, wait: 40);
+      speak(Entity(5), "I can't win!\n");
+      playAnimation(Entity.Player, Animation(8));
+      speak(Entity.Player, "Why do you want to win?\n");
+      playAnimation(Entity(5), Animation(0));
+      playAnimation(Entity.Player, Animation(0));
+      speak(Entity(5), "What should I do?\n");
+      speak(Entity.Player, "What do you mean?\nYou don't have anything?\n");
+      speak(Entity(5), "I've got lots of time.\n");
+      playAnimation(Entity.Player, Animation(19));
+      speak(Entity.Player, "If you have too much time,\ncome to the city. There're\nall kinds of Digimon there.\n");
+      speak(Entity(5), "Sounds good. I'll go.\nMy name's Patamon.\nSee ya later.\n");
+      break;
+    }
     approach(who: Entity(5), x: -1673, y: 122, tries: 10, wait: 10);
     playSound(8, 5);
     speak(Entity.System, "Patamon joins the city!\n");
@@ -85,7 +85,7 @@ L3:
     addPStat(PStat(1), 1);
     return;
 
-L4:
+L3:
   }
   speak(Entity(5), "That's not fun!\n");
   followEntity(Entity.Player, speed: 10);

@@ -14,7 +14,7 @@ section(51) {
       goto L1;
     }
     2 => {
-      goto L7;
+      goto L3;
     }
   }
   speak(Entity(5), "That was too bad.\nTry again next time.\n");
@@ -55,23 +55,22 @@ L1:
       addMoney(6000);
       speak(Entity.System, "Victory Reward :\n   six thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Restore Floppy<WHITE>!\n");
       giveItem(Item.Restore, 1);
-      if (!trigger(0)) goto L2;
-      speak(Entity(5), "You got too much stuff.\n");
-      inventoryFullBailout();
-      giveItem(Item.Restore, 1);
+      if (trigger(0)) {
+        speak(Entity(5), "You got too much stuff.\n");
+        inventoryFullBailout();
+        giveItem(Item.Restore, 1);
+      }
     }
   }
-
-L2:
   roll(pstat: PStat.RollScratch, max: 99);
   if (pstat[3] == 2) {
-    if (stat[Stat.TamerLevel] == 10) goto L3;
-    if (pstat[110] > 9) goto L3;
-    addStats(tamerLevel: 1);
-    speak(Entity.System, "<YELLOW>Tamer Level went up! <WHITE>\n");
-    jumpToScriptSection(204, 51);
-
-L3:
+    if (stat[Stat.TamerLevel] != 10) {
+      if (pstat[110] <= 9) {
+        addStats(tamerLevel: 1);
+        speak(Entity.System, "<YELLOW>Tamer Level went up! <WHITE>\n");
+        jumpToScriptSection(204, 51);
+      }
+    }
     jumpToScriptSection(204, 51);
   }
   {
@@ -86,13 +85,13 @@ L3:
   }
   roll(pstat: PStat.RollScratch, max: 99);
   if (pstat[3] == 3) {
-    if (stat[Stat.TamerLevel] == 10) goto L4;
-    if (pstat[110] > 19) goto L4;
-    addStats(tamerLevel: 1);
-    speak(Entity.System, "<YELLOW>Tamer Level went up! <WHITE>\n");
-    jumpToScriptSection(204, 51);
-
-L4:
+    if (stat[Stat.TamerLevel] != 10) {
+      if (pstat[110] <= 19) {
+        addStats(tamerLevel: 1);
+        speak(Entity.System, "<YELLOW>Tamer Level went up! <WHITE>\n");
+        jumpToScriptSection(204, 51);
+      }
+    }
     jumpToScriptSection(204, 51);
   }
   roll(pstat: PStat.RollScratch, max: 2);
@@ -105,7 +104,7 @@ L4:
       inventoryFullBailout();
       giveItem(Item.MetalPart, 1);
     }
-    goto L5;
+    goto L2;
     return;
   }
   if (pstat[3] == 4 && pstat[110] == 1) {
@@ -117,30 +116,31 @@ L4:
       inventoryFullBailout();
       giveItem(Item.FatalBone, 1);
     }
-    goto L5;
+    goto L2;
   }
-  if (pstat[3] != 4 || pstat[110] != 2) goto L5;
-  addMoney(10000);
-  speak(Entity.System, "Victory Reward :\n   ten thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Mega Hand<WHITE>!\n");
-  giveItem(Item.MegaHand, 1);
-  if (trigger(0)) {
-    speak(Entity(5), "You got too much stuff.\n");
-    inventoryFullBailout();
+  if (pstat[3] == 4 && pstat[110] == 2) {
+    addMoney(10000);
+    speak(Entity.System, "Victory Reward :\n   ten thousand bits!\nVictory Prize :\n   <LIGHTBLUE>Mega Hand<WHITE>!\n");
     giveItem(Item.MegaHand, 1);
-  }
-  goto L5;
+    if (trigger(0)) {
+      speak(Entity(5), "You got too much stuff.\n");
+      inventoryFullBailout();
+      giveItem(Item.MegaHand, 1);
+    }
+  } else {
 
-L5:
+L2:
+  }
   roll(pstat: PStat.RollScratch, max: 99);
   switch pstat[3] {
     4 => {
-      if (stat[Stat.TamerLevel] == 10) goto L6;
-      if (pstat[110] > 29) goto L6;
-      addStats(tamerLevel: 1);
-      speak(Entity.System, "<YELLOW>Tamer Level went up! <WHITE>\n");
-      jumpToScriptSection(204, 51);
-
-L6:
+      if (stat[Stat.TamerLevel] != 10) {
+        if (pstat[110] <= 29) {
+          addStats(tamerLevel: 1);
+          speak(Entity.System, "<YELLOW>Tamer Level went up! <WHITE>\n");
+          jumpToScriptSection(204, 51);
+        }
+      }
       jumpToScriptSection(204, 51);
     }
     6 => {
@@ -321,7 +321,7 @@ L6:
     }
   }
 
-L7:
+L3:
   switch pstat[3] {
     0 => {
       addMoney(500);

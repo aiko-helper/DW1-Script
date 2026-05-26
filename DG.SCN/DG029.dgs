@@ -64,10 +64,11 @@ section(52) {
 }
 
 section(51) {
-  if (pstat[19] < 1) goto L1;
-  return;
+  if (pstat[19] >= 1) {
+    return;
 
 L1:
+  }
   look(entity: Entity(5), at: Entity.Player);
   look(entity: Entity.Player, at: Entity(5));
   waitForEntity(Entity(5));
@@ -131,7 +132,7 @@ L1:
       speak(Entity(5), "Are you going to carry dirt?\n");
       setDialogOwner(Entity.Player);
       choice { "Yes" -> L2, "No" -> L3 }
-      goto L3;
+      break;
     }
     if (!trigger(140)) {
       speak(Entity(5), "This is not a place for\namateurs. Stay away,\nit's too dangerous.\n");
@@ -158,19 +159,19 @@ L1:
     speak(Entity.Player, "This will make digging go\nfaster. I can make money,\nand it's good training.\n");
     setDialogOwner(Entity.Player);
     choice { "OK" -> L2, "No thanks" -> L3 }
-    goto L3;
+    break;
 
 L2:
-  }
-  setTextboxSize(21, 6);
-  showTextbox("Dirt Transport Job\nUse <LIGHTBLUE><X> <WHITE>to set a\ndirt box in front of dirt.\nDump dirt outside tunnel.\nOnce you finish a round,\nplease tell Drimogemon.\n");
-  fadeOutHUD();
-  move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
-  waitForEntity(Entity.Player);
-  setPStat(PStat(17), 2);
-  return;
+    setTextboxSize(21, 6);
+    showTextbox("Dirt Transport Job\nUse <LIGHTBLUE><X> <WHITE>to set a\ndirt box in front of dirt.\nDump dirt outside tunnel.\nOnce you finish a round,\nplease tell Drimogemon.\n");
+    fadeOutHUD();
+    move(entity: Entity.Player, to: (2735, 1203), sprint: 0, withCamera: true);
+    waitForEntity(Entity.Player);
+    setPStat(PStat(17), 2);
+    return;
 
 L3:
+  }
   speak(Entity(5), "Are you scared?\n");
   rotate(entity: Entity(5), to: 1900);
   waitForEntity(Entity(5));

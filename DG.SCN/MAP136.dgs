@@ -239,19 +239,19 @@ section(81) {
   {
     speak(Entity(5), "Going back to the city?\n");
     setDialogOwner(Entity.Player);
-    choice { "I'm going back" -> L1, "I'm not" -> L8 }
+    choice { "I'm going back" -> L1, "I'm not" -> L5 }
     break;
 
 L1:
     if (!trigger(203)) {
       warp(to: Map.TWNA01, spawn: 0, trigger: 255);
     }
-    if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L5; else goto L2;
-
-L2:
-    if (trigger(221)) goto L4; else goto L3;
-
-L3:
+    {
+      if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L3; else break;
+    }
+    {
+      if (trigger(221)) goto L2; else break;
+    }
     if (trigger(225)) {
       warp(to: Map.TWNA04, spawn: 0, trigger: 255);
     }
@@ -260,19 +260,19 @@ L3:
     }
     warp(to: Map.TWNA02, spawn: 0, trigger: 255);
 
-L4:
+L2:
     if (trigger(225)) {
       warp(to: Map.TWNA07, spawn: 0, trigger: 255);
     }
     if (trigger(246)) {
       warp(to: Map.TWNA06, spawn: 0, trigger: 255);
     }
-    warp(to: Map.TWNA05, spawn: 0, trigger: 255);
+    {
+      warp(to: Map.TWNA05, spawn: 0, trigger: 255);
 
-L5:
-    if (trigger(221)) goto L7; else goto L6;
-
-L6:
+L3:
+      if (trigger(221)) goto L4; else break;
+    }
     if (trigger(225)) {
       warp(to: Map.TWNA10, spawn: 0, trigger: 255);
     }
@@ -281,7 +281,7 @@ L6:
     }
     warp(to: Map.TWNA08, spawn: 0, trigger: 255);
 
-L7:
+L4:
     if (trigger(225)) {
       warp(to: Map.TWNA13, spawn: 0, trigger: 255);
     }
@@ -291,7 +291,7 @@ L7:
     warp(to: Map.TWNA11, spawn: 0, trigger: 255);
     return;
 
-L8:
+L5:
   }
   return;
   return;

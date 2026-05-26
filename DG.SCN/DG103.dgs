@@ -25,10 +25,10 @@ L1:
   return;
 
 L2:
-  speak(Entity(5), "I want to go there.\nI'll train there.\n");
-  goto L3;
-
-L3:
+  {
+    speak(Entity(5), "I want to go there.\nI'll train there.\n");
+    break;
+  }
   approach(who: Entity(5), x: -1342, y: -2147, tries: 3, wait: 20);
   playSound(8, 17);
   speak(Entity.System, "Kabuterimon joins the city!\n");
@@ -57,18 +57,18 @@ section(6) {
 }
 
 section(7) {
-  if (hasTech(Move.MassMorph) == 0) goto L1;
-  speak(Entity(7), "You're strong.\nThere's nothing to teach you.\n");
-  return;
-
-L1:
+  {
+    if (hasTech(Move.MassMorph) == 0) break;
+    speak(Entity(7), "You're strong.\nThere's nothing to teach you.\n");
+    return;
+  }
   speak(Entity(7), "We're researching Techniques.\nIt's difficult to master\nhard Techniques.\n");
   showTextbox("If you have ability, you\nmight master the Techniques.\nWant to master the hard ones?\n");
   setDialogOwner(Entity.Player);
-  choice { "Of course!" -> L2, "No, I don't" -> L3 }
+  choice { "Of course!" -> L1, "No, I don't" -> L2 }
   return;
 
-L2:
+L1:
   speak(Entity(7), "Then I'll try it.\n");
   if (stat[Stat.Defense] < 500) {
     speak(Entity(7), "You lack Defensive Power.\nTrain more.\n");
@@ -89,30 +89,28 @@ L2:
   followEntity(Entity.Player, speed: 10);
   return;
 
-L3:
+L2:
   return;
 }
 
 section(81) {
-  {
-    rotate(entity: Entity.Player, to: 2128);
-    setTextboxOrigin(-541, 0, 1823);
-    callSubroutine(39);
-    speak(Entity(200), "<GREEN>Training: Rock Pushing <WHITE>\n");
-    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
-    return;
+  rotate(entity: Entity.Player, to: 2128);
+  setTextboxOrigin(-541, 0, 1823);
+  callSubroutine(39);
+  speak(Entity(200), "<GREEN>Training: Rock Pushing <WHITE>\n");
+  choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
+  return;
 
 L1:
-    choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
-    return;
+  choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
+  return;
 
 L2:
-    showTextbox("Get power by pushing\non the rock. Maximum\nHP is boosted greatly.\n");
-    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
-    return;
+  showTextbox("Get power by pushing\non the rock. Maximum\nHP is boosted greatly.\n");
+  choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
+  return;
 
 L3:
-  }
   return;
 
 L4:
@@ -135,26 +133,24 @@ L5:
 }
 
 section(83) {
-  {
-    rotate(entity: Entity.Player, to: 1968);
-    setTextboxOrigin(-1330, 0, 1434);
-    callSubroutine(39);
-    speak(Entity(200), "<GREEN>Training: Striking <WHITE>\n");
-    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
-    return;
+  rotate(entity: Entity.Player, to: 1968);
+  setTextboxOrigin(-1330, 0, 1434);
+  callSubroutine(39);
+  speak(Entity(200), "<GREEN>Training: Striking <WHITE>\n");
+  choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
+  return;
 
 L1:
-    setDialogOwner(Entity(200));
-    choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
-    return;
+  setDialogOwner(Entity(200));
+  choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
+  return;
 
 L2:
-    speak(Entity(200), "Using a dummy, strike at\nfull force. Offensive Power\nis boosted greatly.\n");
-    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
-    return;
+  speak(Entity(200), "Using a dummy, strike at\nfull force. Offensive Power\nis boosted greatly.\n");
+  choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
+  return;
 
 L3:
-  }
   return;
 
 L4:

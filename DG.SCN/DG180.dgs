@@ -55,53 +55,53 @@ section(52) {
 }
 
 section(6) {
-  delay(20);
-  speak(Entity.Player, "Good, the sewer is\nback to normal.\n");
-  showTextbox("He'll be alright now.\nI solved the problem.\n");
-  panTo(x: 2381, y: -698, slowdown: 20);
-  playSound(8, 13);
-  anim(Entity(6), Animation(15), wait: 20);
-  speak(Entity.Player, "Something's wrong!\n");
-  look(entity: Entity(6), at: Entity.Player);
-  delay(10);
-  playSound(8, 11);
-  playAnimation(Entity(6), Animation(28));
-  sfx(8, 13, wait: 40);
-  speak(Entity(6), "Da da da!\n");
-  setTrigger(Trigger(1));
-  setPStat(PStat(250), 1);
-  setPStat(PStat(251), 6);
-  setPStat(PStat(252), 255);
-  setPStat(PStat(253), 255);
-  startBattle();
-  unsetTrigger(Trigger(1));
-  setPStat(PStat(250), 0);
-  move(entity: Entity.Player, to: (2387, -771), sprint: 0);
-  move(entity: Entity.Partner, to: (1865, -772), sprint: 0);
-  move(entity: Entity(6), to: (2795, -771), sprint: 0);
-  for x in [Entity.Player, Entity.Partner, Entity(6)] {
-    waitForEntity(x);
+  {
+    delay(20);
+    speak(Entity.Player, "Good, the sewer is\nback to normal.\n");
+    showTextbox("He'll be alright now.\nI solved the problem.\n");
+    panTo(x: 2381, y: -698, slowdown: 20);
+    playSound(8, 13);
+    anim(Entity(6), Animation(15), wait: 20);
+    speak(Entity.Player, "Something's wrong!\n");
+    look(entity: Entity(6), at: Entity.Player);
+    delay(10);
+    playSound(8, 11);
+    playAnimation(Entity(6), Animation(28));
+    sfx(8, 13, wait: 40);
+    speak(Entity(6), "Da da da!\n");
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 6);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    move(entity: Entity.Player, to: (2387, -771), sprint: 0);
+    move(entity: Entity.Partner, to: (1865, -772), sprint: 0);
+    move(entity: Entity(6), to: (2795, -771), sprint: 0);
+    for x in [Entity.Player, Entity.Partner, Entity(6)] {
+      waitForEntity(x);
+    }
+    look(entity: Entity.Player, at: Entity(6));
+    look(entity: Entity(6), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(6));
+    delay(5);
+    speak(Entity(6), "I'm tired.\nWhat happened to you guys?\n");
+    speak(Entity.Player, "He sounds dumber!\nMaybe he regained his senses.\n");
+    speak(Entity(6), "Are you calling me dumb?\nHow rude! My name is Numemon.\n");
+    speak(Entity.Player, "If you're not dumb,\nwhat are you?\n");
+    showTextbox("Excuse me, Numemon. Do you\nknow who saved your life?\n");
+    speak(Entity(6), "Huh? Do you want me to\nsave your life? OK.\n");
+    speak(Entity.Player, "Ugghh. He doesn't get it\nat all! Well, no matter.\n");
+    speak(Entity(6), "Hey, I'll be a savior. Cool!\n");
+    setDialogOwner(Entity.Player);
+    anim(Entity.Player, Animation(19), wait: 15);
+    showTextbox("Please come to our city.\nDo you know where it is?\n");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(6), "I know a little.\n");
+    break;
   }
-  look(entity: Entity.Player, at: Entity(6));
-  look(entity: Entity(6), at: Entity.Player);
-  look(entity: Entity.Partner, at: Entity(6));
-  delay(5);
-  speak(Entity(6), "I'm tired.\nWhat happened to you guys?\n");
-  speak(Entity.Player, "He sounds dumber!\nMaybe he regained his senses.\n");
-  speak(Entity(6), "Are you calling me dumb?\nHow rude! My name is Numemon.\n");
-  speak(Entity.Player, "If you're not dumb,\nwhat are you?\n");
-  showTextbox("Excuse me, Numemon. Do you\nknow who saved your life?\n");
-  speak(Entity(6), "Huh? Do you want me to\nsave your life? OK.\n");
-  speak(Entity.Player, "Ugghh. He doesn't get it\nat all! Well, no matter.\n");
-  speak(Entity(6), "Hey, I'll be a savior. Cool!\n");
-  setDialogOwner(Entity.Player);
-  anim(Entity.Player, Animation(19), wait: 15);
-  showTextbox("Please come to our city.\nDo you know where it is?\n");
-  playAnimation(Entity.Player, Animation(0));
-  speak(Entity(6), "I know a little.\n");
-  goto L1;
-
-L1:
   approach(who: Entity(6), x: -137, y: 34, tries: 6, wait: 10);
   playSound(8, 10);
   speak(Entity.System, "Numemon joins the city!\n");

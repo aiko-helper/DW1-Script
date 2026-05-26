@@ -11,16 +11,17 @@ section(82) {
   rotate(entity: Entity.Player, to: 3152);
   delay(5);
   loop {
-    if (!trigger(154) || pstat[1] < 45) goto L1;
-    setTrigger(Trigger(153));
-    setTextboxSize(21, 8);
-    showTextbox("Shell Newspaper Eigth\nAlien Digimon Appears:\nWe have found the UFO.\nThe creature showed its body\nand spoke unknown words.\nIs the creature an Alien?\nWill it appear again?\n");
-    fadeOutHUD();
-    setDialogOwner(Entity.System);
-    choice { "Back" -> L1, "Stop" -> L15 }
-    return;
+    if (trigger(154) && pstat[1] >= 45) {
+      setTrigger(Trigger(153));
+      setTextboxSize(21, 8);
+      showTextbox("Shell Newspaper Eigth\nAlien Digimon Appears:\nWe have found the UFO.\nThe creature showed its body\nand spoke unknown words.\nIs the creature an Alien?\nWill it appear again?\n");
+      fadeOutHUD();
+      setDialogOwner(Entity.System);
+      choice { "Back" -> L1, "Stop" -> L15 }
+      return;
 
 L1:
+    }
     if (trigger(226)) {
       setTextboxSize(21, 10);
       showTextbox("Shell Newspaper Seven\nMyotismon Denies His\nRetirement:\nIn an interview,\nhe denied the rumors.\nHe is still working hard.\nHe loves his fans.\nHe also announced that\nhis pupil, SkullGreymon,\nwill make his debut.\n");
@@ -35,11 +36,11 @@ L1:
 L2:
     if (trigger(154) && pstat[1] >= 45) {
       continue;
-      goto L3;
-    }
-    goto L1;
+    } else {
+      goto L1;
 
 L3:
+    }
     if (pstat[1] >= 35 && trigger(128)) {
       setTextboxSize(21, 8);
       showTextbox("Shell Newspaper Six\nMyotismon to Retire?:\nRumor is that popular and \nable Myotismon will retire.\nNo one at the arena has\nseen him. His career is at\nits end. He is too old.\n");

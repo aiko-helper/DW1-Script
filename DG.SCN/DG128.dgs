@@ -89,11 +89,11 @@ section(5) {
   if (trigger(252)) {
     return;
   }
-  speak(Entity(5), "<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n");
-  showTextbox("I've decided I'm going\nto the city. We'll work\ntogether, alright?\n");
-  goto L1;
-
-L1:
+  {
+    speak(Entity(5), "<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n");
+    showTextbox("I've decided I'm going\nto the city. We'll work\ntogether, alright?\n");
+    break;
+  }
   approach(who: Entity(5), x: 1931, y: -1543, tries: 6, wait: 10);
   playSound(8, 11);
   speak(Entity.System, "Mojyamon joins the city!\n");
@@ -153,11 +153,11 @@ section(6) {
   if (trigger(252)) {
     return;
   }
-  speak(Entity(6), "<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n");
-  showTextbox("I've decided I'm going\nto the city. We'll work\ntogether, alright?\n");
-  goto L1;
-
-L1:
+  {
+    speak(Entity(6), "<LIGHTBLUE><PLAYER><WHITE>, I'm so happy!\nYou've done so much for us.\n");
+    showTextbox("I've decided I'm going\nto the city. We'll work\ntogether, alright?\n");
+    break;
+  }
   approach(who: Entity(6), x: -1605, y: -856, tries: 6, wait: 10);
   playSound(8, 11);
   speak(Entity.System, "Mojyamon joins the city!\n");
@@ -168,10 +168,10 @@ L1:
 }
 
 section(51) {
-  if ((cond & 0x40) == 0x01 && !trigger(133)) goto L1;
-  return;
-
-L1:
+  {
+    if ((cond & 0x40) == 0x01 && !trigger(133)) break;
+    return;
+  }
   storeDigimonType(PStat(103));
   if (pstat[103] == 3 || pstat[103] == 5 || pstat[103] == 8 || pstat[103] == 9 || pstat[103] == 47) {
     jumpToScriptSection(203, 51);

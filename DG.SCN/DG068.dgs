@@ -15,9 +15,9 @@ section onEnter(254) {
 }
 
 section(5) {
-  switch (pstat[33]) { case 0: goto L1; case 1: goto L2; case 2: goto L3; }
-
-L1:
+  {
+    switch (pstat[33]) { case 0: break; case 1: goto L1; case 2: goto L2; }
+  }
   delay(1);
   setPStat(PStat(200), 20);
   dealMapDamage(PStat(200));
@@ -38,7 +38,7 @@ L1:
   addPStat(PStat(33), 1);
   return;
 
-L2:
+L1:
   delay(1);
   setPStat(PStat(200), 20);
   dealMapDamage(PStat(200));
@@ -59,32 +59,32 @@ L2:
   addPStat(PStat(33), 1);
   return;
 
-L3:
-  delay(1);
-  setPStat(PStat(200), 20);
-  dealMapDamage(PStat(200));
-  setObjectVisibility(41, 0);
-  setPStat(PStat(247), 41);
-  setPStat(PStat(248), 1);
-  callSubroutine(21);
-  spawnSpriteAtEntity(5, 10498);
-  playSound(8, 0);
-  anim(Entity.Partner, Animation(40), wait: 3);
-  playAnimation(Entity.Player, Animation(17));
-  look(entity: Entity(5), at: Entity.Player);
-  waitForEntity(Entity(5));
-  setObjectVisibility(41, 1);
-  setObjectVisibility(42, 1);
-  followEntity(Entity.Player, speed: 10);
-  speak(Entity(5), "Wow, amazing! He's got guts.\n");
-  showTextbox("You're gonna be somebody!\nAlright, I'll help you.\n");
-  playAnimation(Entity.Player, Animation(19));
-  speak(Entity.Player, "Won't you use your electric\npower for the city?\n");
-  speak(Entity(5), "City? What's that?\nSounds familiar, but...\n");
-  showTextbox("I'll help. I'm Elecmon,\nnice to meet you.\n");
-  goto L4;
-
-L4:
+L2:
+  {
+    delay(1);
+    setPStat(PStat(200), 20);
+    dealMapDamage(PStat(200));
+    setObjectVisibility(41, 0);
+    setPStat(PStat(247), 41);
+    setPStat(PStat(248), 1);
+    callSubroutine(21);
+    spawnSpriteAtEntity(5, 10498);
+    playSound(8, 0);
+    anim(Entity.Partner, Animation(40), wait: 3);
+    playAnimation(Entity.Player, Animation(17));
+    look(entity: Entity(5), at: Entity.Player);
+    waitForEntity(Entity(5));
+    setObjectVisibility(41, 1);
+    setObjectVisibility(42, 1);
+    followEntity(Entity.Player, speed: 10);
+    speak(Entity(5), "Wow, amazing! He's got guts.\n");
+    showTextbox("You're gonna be somebody!\nAlright, I'll help you.\n");
+    playAnimation(Entity.Player, Animation(19));
+    speak(Entity.Player, "Won't you use your electric\npower for the city?\n");
+    speak(Entity(5), "City? What's that?\nSounds familiar, but...\n");
+    showTextbox("I'll help. I'm Elecmon,\nnice to meet you.\n");
+    break;
+  }
   approach(who: Entity(5), x: -171, y: -2105, tries: 6, wait: 10);
   playSound(8, 5);
   speak(Entity.System, "Elecmon joins the city!\n");

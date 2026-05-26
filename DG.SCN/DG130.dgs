@@ -29,36 +29,34 @@ section(81) {
   lookPairAt(Entity(6));
   delay(5);
   panTo(x: -2852, y: 2621, slowdown: 30);
-  {
-    if (trigger(352)) {
-      speak(Entity(6), "Who are you?\n");
-      setDialogOwner(Entity.Player);
-      setSelection(L2, L1);
-      showTextbox("I came here to help you\nI'm not ready yet...\n");
-    }
-    setTrigger(Trigger(352));
-    speak(Entity(6), "Is somebody there?\n");
-    anim(Entity.Player, Animation(25), wait: 15);
-    speak(Entity.Player, "You can't see?\n");
-    playAnimation(Entity.Player, Animation(0));
-    speak(Entity(6), "I'm Whamon. Usually\nI live in the sea.\n");
-    showTextbox("I don't have eyes, but\nI can feel most things.\n");
-    storeDigimonType(PStat(103));
-    speak(Entity.Player, "I'm human. My name is\n<LIGHTBLUE><PLAYER><WHITE>.\n");
-    showTextbox("This is <ORANGE><DIGIMON><WHITE>,\nmy partner and he is <DIGIMONTYPE2>.\n");
-    speak(Entity(6), "I feel some strong power.\n");
-    speak(Entity(6), "Will you listen to my story?\nThere's a beach cave near\nhere where I rest.\n");
-    showTextbox("But, some mean guys kicked me\nout and I lost my important\ntreasure there.\n");
-    anim(Entity.Player, Animation(16), wait: 15);
-    speak(Entity.Player, "Mean guys, huh?\nDoesn't sound good.\n");
-    playAnimation(Entity.Player, Animation(0));
-    speak(Entity(6), "Please kick them out.\nI want you to help me\nget the cave back.\n");
+  if (trigger(352)) {
+    speak(Entity(6), "Who are you?\n");
     setDialogOwner(Entity.Player);
     setSelection(L2, L1);
-    showTextbox("I'll help you\nCan't help right now\n");
+    showTextbox("I came here to help you\nI'm not ready yet...\n");
+  }
+  setTrigger(Trigger(352));
+  speak(Entity(6), "Is somebody there?\n");
+  anim(Entity.Player, Animation(25), wait: 15);
+  speak(Entity.Player, "You can't see?\n");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(6), "I'm Whamon. Usually\nI live in the sea.\n");
+  showTextbox("I don't have eyes, but\nI can feel most things.\n");
+  storeDigimonType(PStat(103));
+  speak(Entity.Player, "I'm human. My name is\n<LIGHTBLUE><PLAYER><WHITE>.\n");
+  showTextbox("This is <ORANGE><DIGIMON><WHITE>,\nmy partner and he is <DIGIMONTYPE2>.\n");
+  speak(Entity(6), "I feel some strong power.\n");
+  speak(Entity(6), "Will you listen to my story?\nThere's a beach cave near\nhere where I rest.\n");
+  showTextbox("But, some mean guys kicked me\nout and I lost my important\ntreasure there.\n");
+  anim(Entity.Player, Animation(16), wait: 15);
+  speak(Entity.Player, "Mean guys, huh?\nDoesn't sound good.\n");
+  playAnimation(Entity.Player, Animation(0));
+  speak(Entity(6), "Please kick them out.\nI want you to help me\nget the cave back.\n");
+  setDialogOwner(Entity.Player);
+  setSelection(L2, L1);
+  showTextbox("I'll help you\nCan't help right now\n");
 
 L1:
-  }
   speak(Entity(6), "I see.\n");
   followEntity(Entity.Player, speed: 10);
   return;
@@ -153,10 +151,10 @@ L2:
 }
 
 section(51) {
-  if ((cond & 0x40) == 0x01 && !trigger(133)) goto L1;
-  return;
-
-L1:
+  {
+    if ((cond & 0x40) == 0x01 && !trigger(133)) break;
+    return;
+  }
   storeDigimonType(PStat(103));
   if (pstat[103] == 3 || pstat[103] == 5 || pstat[103] == 8 || pstat[103] == 9 || pstat[103] == 47) {
     jumpToScriptSection(203, 51);

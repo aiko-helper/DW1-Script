@@ -28,26 +28,24 @@ section(6) {
     warp(to: Map.FRZL17, spawn: 1, trigger: 255);
     return;
   }
-  {
-    if (!trigger(257)) {
-      speak(Entity(6), "Hey, do you want to play a\nmatch with me? Give me a\nfish and you can play me.\n");
-      setDialogOwner(Entity.Player);
-      choice { "I'll get you" -> L2, "No thanks" -> L1 }
-      return;
-    }
-    if (!trigger(92)) {
-      setTrigger(Trigger(92));
-      speak(Entity(6), "Hey bro! I made a\nskating rink here.\n");
-      showTextbox("One fish for one match.\nBut if you win, I'll give\nyou a nice prize.\n");
-    }
-    setPStat(PStat(122), 0);
-    speak(Entity(6), "Hey dude, don't you want to\nhave a match with me? You can\nchallenge me with one fish.\n");
+  if (!trigger(257)) {
+    speak(Entity(6), "Hey, do you want to play a\nmatch with me? Give me a\nfish and you can play me.\n");
     setDialogOwner(Entity.Player);
-    choice { "You're on" -> L2, "No thanks" -> L1 }
+    choice { "I'll get you" -> L2, "No thanks" -> L1 }
     return;
+  }
+  if (!trigger(92)) {
+    setTrigger(Trigger(92));
+    speak(Entity(6), "Hey bro! I made a\nskating rink here.\n");
+    showTextbox("One fish for one match.\nBut if you win, I'll give\nyou a nice prize.\n");
+  }
+  setPStat(PStat(122), 0);
+  speak(Entity(6), "Hey dude, don't you want to\nhave a match with me? You can\nchallenge me with one fish.\n");
+  setDialogOwner(Entity.Player);
+  choice { "You're on" -> L2, "No thanks" -> L1 }
+  return;
 
 L1:
-  }
   setPStat(PStat(113), 0);
   speak(Entity(6), "Shoot, that's no fun.\n");
   return;
@@ -102,12 +100,12 @@ section(10) {
     playSound(0, 7);
     speak(Entity.System, "<YELLOW>Congratulations!\nHere's a Medal for your\ngreat competition! <WHITE>\n");
   }
-  speak(Entity(6), "Amazing dude. I lost a\nmatch for the first time.\n");
-  speak(Entity.Player, "Alright, now come to the city\nwith me as you promised.\n");
-  speak(Entity(6), "Oh well, I guess I have to.\nBut I already decided what\nI'm going to do in the city.\n");
-  goto L1;
-
-L1:
+  {
+    speak(Entity(6), "Amazing dude. I lost a\nmatch for the first time.\n");
+    speak(Entity.Player, "Alright, now come to the city\nwith me as you promised.\n");
+    speak(Entity(6), "Oh well, I guess I have to.\nBut I already decided what\nI'm going to do in the city.\n");
+    break;
+  }
   approach(who: Entity(6), x: -105, y: 1821, tries: 3, wait: 20);
   playSound(8, 11);
   speak(Entity.System, "Penguinmon joins the city!\n");

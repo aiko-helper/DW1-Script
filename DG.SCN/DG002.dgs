@@ -38,7 +38,7 @@ section(6) {
     playAnimation(Entity(6), Animation(29));
     speak(Entity(6), "I'm hungry.\n");
     setDialogOwner(Entity.Player);
-    choice { "Give food" -> L1, "Don't give food" -> L3 }
+    choice { "Give food" -> L1, "Don't give food" -> L2 }
     break;
 
 L1:
@@ -62,49 +62,49 @@ L1:
         break;
       }
       speak(Entity.Player, "Oops, I can't give you this.\n");
-      goto L3;
+      goto L2;
     }
-    anim(Entity(6), Animation(30), wait: 20);
-    playAnimation(Entity(6), Animation(8));
-    waitForEntity(Entity(6));
-    speak(Entity(6), "That's good...\n");
-    playAnimation(Entity(6), Animation(0));
-    showTextbox("Let's fight!\n");
-    setTrigger(Trigger(1));
-    setPStat(PStat(250), 1);
-    setPStat(PStat(251), 6);
-    setPStat(PStat(252), 255);
-    setPStat(PStat(253), 255);
-    startBattle();
-    unsetTrigger(Trigger(1));
-    setPStat(PStat(250), 0);
-    look(entity: Entity.Player, at: Entity(6));
-    look(entity: Entity(6), at: Entity.Player);
-    look(entity: Entity.Partner, at: Entity(6));
-    speak(Entity(6), "This isn't good.\nWhat should I do?\n");
-    playAnimation(Entity.Player, Animation(20));
-    waitForEntity(Entity.Player);
-    speak(Entity.Player, "Come to the city and work\noff what you ate!\n");
-    anim(Entity.Player, Animation(0), wait: 10);
-    speak(Entity(6), "Okay, I'll do that. I'm an\nInsectoid-Digimon named\nKunemon. Nice meeting you.\n");
-    goto L2;
-
-L2:
+    {
+      anim(Entity(6), Animation(30), wait: 20);
+      playAnimation(Entity(6), Animation(8));
+      waitForEntity(Entity(6));
+      speak(Entity(6), "That's good...\n");
+      playAnimation(Entity(6), Animation(0));
+      showTextbox("Let's fight!\n");
+      setTrigger(Trigger(1));
+      setPStat(PStat(250), 1);
+      setPStat(PStat(251), 6);
+      setPStat(PStat(252), 255);
+      setPStat(PStat(253), 255);
+      startBattle();
+      unsetTrigger(Trigger(1));
+      setPStat(PStat(250), 0);
+      look(entity: Entity.Player, at: Entity(6));
+      look(entity: Entity(6), at: Entity.Player);
+      look(entity: Entity.Partner, at: Entity(6));
+      speak(Entity(6), "This isn't good.\nWhat should I do?\n");
+      playAnimation(Entity.Player, Animation(20));
+      waitForEntity(Entity.Player);
+      speak(Entity.Player, "Come to the city and work\noff what you ate!\n");
+      anim(Entity.Player, Animation(0), wait: 10);
+      speak(Entity(6), "Okay, I'll do that. I'm an\nInsectoid-Digimon named\nKunemon. Nice meeting you.\n");
+      break;
+    }
     approach(who: Entity(6), x: 1219, y: 984, tries: 3, wait: 20);
     playSound(8, 11);
     speak(Entity.System, "Kunemon joins the city!\n");
     followEntity(Entity.Player, speed: 10);
     setTrigger(Trigger(232));
     addPStat(PStat(1), 1);
-    goto L4;
+    goto L3;
 
-L3:
+L2:
   }
   speak(Entity(6), "Bring some next time.\n");
   anim(Entity(6), Animation(28), wait: 20);
-  goto L4;
+  goto L3;
 
-L4:
+L3:
   return;
 }
 

@@ -50,12 +50,14 @@ L2:
 }
 
 section(52) {
-  if (!trigger(175)) {
-    goto L1;
-  }
-  return;
+  {
+    if (!trigger(175)) {
+      break;
+    }
+    return;
 
 L1:
+  }
   panTo(x: 40, y: 2922, slowdown: 30);
   lookPairAt(Entity(7));
   anim(Entity.Player, Animation(7), wait: 15);

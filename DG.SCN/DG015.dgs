@@ -59,7 +59,7 @@ section(51) {
   {
     speak(Entity.System, "Gonna use some Items?\n");
     setDialogOwner(Entity.Player);
-    choice { "Yes" -> L1, "No" -> L6 }
+    choice { "Yes" -> L1, "No" -> L5 }
     break;
 
 L1:
@@ -163,24 +163,24 @@ L4:
       speak(Entity(6), "No, no!\nVeggies are good!\n");
       break;
     }
-    speak(Entity.Player, " ? ? ? \n");
-    speak(Entity(6), "Alright, I've decided.\nI'll come with you!\n");
-    anim(Entity.Player, Animation(19), wait: 20);
-    speak(Entity.Player, "What a persistent guy...\nHey, wait!\n");
-    playSound(8, 5);
-    speak(Entity(6), "Well, then I won't come!\nBye!\n");
-    speak(Entity.Player, "Make up your mind!\n");
-    speak(Entity(6), "What do you want me to do?\n");
-    anim(Entity.Player, Animation(20), wait: 10);
-    speak(Entity.Player, "Why don't you come to\nthe city and help us!\n");
-    playAnimation(Entity.Player, Animation(0));
-    playSound(8, 5);
-    speak(Entity(6), "Alright, sounds good.\nI've been here way too long.\n");
-    move(entity: Entity.Player, to: (-1024, -1820), sprint: 1, withCamera: true);
-    move(entity: Entity.Partner, to: (-741, -1923), sprint: 1);
-    goto L5;
-
-L5:
+    {
+      speak(Entity.Player, " ? ? ? \n");
+      speak(Entity(6), "Alright, I've decided.\nI'll come with you!\n");
+      anim(Entity.Player, Animation(19), wait: 20);
+      speak(Entity.Player, "What a persistent guy...\nHey, wait!\n");
+      playSound(8, 5);
+      speak(Entity(6), "Well, then I won't come!\nBye!\n");
+      speak(Entity.Player, "Make up your mind!\n");
+      speak(Entity(6), "What do you want me to do?\n");
+      anim(Entity.Player, Animation(20), wait: 10);
+      speak(Entity.Player, "Why don't you come to\nthe city and help us!\n");
+      playAnimation(Entity.Player, Animation(0));
+      playSound(8, 5);
+      speak(Entity(6), "Alright, sounds good.\nI've been here way too long.\n");
+      move(entity: Entity.Player, to: (-1024, -1820), sprint: 1, withCamera: true);
+      move(entity: Entity.Partner, to: (-741, -1923), sprint: 1);
+      break;
+    }
     approach(who: Entity(6), x: 911, y: -2266, tries: 10, wait: 10);
     playSound(8, 3);
     speak(Entity.System, "Vegiemon joins the city!\n");
@@ -189,7 +189,7 @@ L5:
     addPStat(PStat(1), 2);
     return;
 
-L6:
+L5:
   }
   move(entity: Entity.Player, to: (-61, -2273), sprint: 0, withCamera: true);
   waitForEntity(Entity.Player);

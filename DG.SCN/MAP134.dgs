@@ -46,27 +46,27 @@ section(9) {
   speak(Entity(9), "Dumb, dumb!\n");
   speak(Entity(9), "Eau de Geek!\n");
   speak(Entity.Player, "What did you say?!\n");
-  setSelection(L1, L3);
+  setSelection(L1, L2);
   showTextbox("That gets me mad\nI'll just ignore them\n");
 
 L1:
-  setTrigger(Trigger(1));
-  setPStat(PStat(250), 1);
-  setPStat(PStat(251), 9);
-  setPStat(PStat(252), 255);
-  setPStat(PStat(253), 255);
-  startBattle();
-  unsetTrigger(Trigger(1));
-  setPStat(PStat(250), 0);
-  look(entity: Entity.Player, at: Entity(9));
-  look(entity: Entity(9), at: Entity.Player);
-  look(entity: Entity.Partner, at: Entity(9));
-  speak(Entity(9), "They aren't nice!\n");
-  anim(Entity.Player, Animation(15), wait: 20);
-  setTrigger(Trigger(309));
-  goto L2;
-
-L2:
+  {
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 9);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    look(entity: Entity.Player, at: Entity(9));
+    look(entity: Entity(9), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(9));
+    speak(Entity(9), "They aren't nice!\n");
+    anim(Entity.Player, Animation(15), wait: 20);
+    setTrigger(Trigger(309));
+    break;
+  }
   approach(who: Entity(9), x: -174, y: -388, tries: 3, wait: 20);
   followEntity(Entity.Player, speed: 10);
   speak(Entity.Player, "Wait, what is it?\n");
@@ -87,7 +87,7 @@ L2:
   speak(Entity.Player, "Oh no!\n");
   warp(to: Map.GKYO02, spawn: 0, trigger: 5);
 
-L3:
+L2:
   anim(Entity.Player, Animation(25), wait: 20);
   speak(Entity.Player, "Ha ha ha, he's bluffing.\nI won't deal with kids.\n");
   return;

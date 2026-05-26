@@ -23,40 +23,40 @@ section(53) {
   if (trigger(326)) {
     return;
   }
-  look(entity: Entity.Player, at: Entity(5));
-  panTo(x: -400, y: 2400, slowdown: 15);
-  look(entity: Entity(5), at: Entity.Player);
-  delay(5);
-  speak(Entity(5), "We're here at last.\n");
-  anim(Entity.Player, Animation(20), wait: 15);
-  speak(Entity.Player, "Are you the boss?\n");
-  playAnimation(Entity.Player, Animation(0));
-  speak(Entity(5), "I'm sorry, I'm not.\nI'm MetalGreymon!\n");
-  setDialogOwner(Entity.Player);
-  anim(Entity.Player, Animation(19), wait: 15);
-  showTextbox("I'll deal with you later!\nMove!\n");
-  playAnimation(Entity.Player, Animation(0));
-  speak(Entity(5), "I will not move for you.\nYou won't get past me.\n");
-  speak(Entity.Player, "I want to save energy.\nFighting him won't help me.\n");
-  speak(Entity(5), "I'm coming to get you!\n");
-  setTrigger(Trigger(1));
-  setPStat(PStat(250), 1);
-  setPStat(PStat(251), 5);
-  setPStat(PStat(252), 255);
-  setPStat(PStat(253), 255);
-  startBattle();
-  unsetTrigger(Trigger(1));
-  setPStat(PStat(250), 0);
-  look(entity: Entity.Player, at: Entity(5));
-  look(entity: Entity(5), at: Entity.Player);
-  look(entity: Entity.Partner, at: Entity(5));
-  speak(Entity(5), "Huh? Where am I?\n");
-  speak(Entity.Player, "You regained your senses!\n");
-  speak(Entity(5), "I guess so...\n");
-  showTextbox("If you beat them\nmaybe I'll see you again.\nUntil then, I'm gone.\n");
-  goto L1;
-
-L1:
+  {
+    look(entity: Entity.Player, at: Entity(5));
+    panTo(x: -400, y: 2400, slowdown: 15);
+    look(entity: Entity(5), at: Entity.Player);
+    delay(5);
+    speak(Entity(5), "We're here at last.\n");
+    anim(Entity.Player, Animation(20), wait: 15);
+    speak(Entity.Player, "Are you the boss?\n");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(5), "I'm sorry, I'm not.\nI'm MetalGreymon!\n");
+    setDialogOwner(Entity.Player);
+    anim(Entity.Player, Animation(19), wait: 15);
+    showTextbox("I'll deal with you later!\nMove!\n");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(5), "I will not move for you.\nYou won't get past me.\n");
+    speak(Entity.Player, "I want to save energy.\nFighting him won't help me.\n");
+    speak(Entity(5), "I'm coming to get you!\n");
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 5);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    look(entity: Entity.Player, at: Entity(5));
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(5));
+    speak(Entity(5), "Huh? Where am I?\n");
+    speak(Entity.Player, "You regained your senses!\n");
+    speak(Entity(5), "I guess so...\n");
+    showTextbox("If you beat them\nmaybe I'll see you again.\nUntil then, I'm gone.\n");
+    break;
+  }
   loop {
     move(entity: Entity(5), to: (-400, -500), sprint: 0);
     if (pstat[101] >= 3) break;

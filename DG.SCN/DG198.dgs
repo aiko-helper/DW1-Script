@@ -64,27 +64,27 @@ section(53) {
     speak(Entity(11), "...\n");
     speak(Entity.Player, "Don't you need to fight?\n");
     setDialogOwner(Entity.Player);
-    choice { "We should hurry up and go." -> L3, "We have to test our skills." -> L1 }
+    choice { "We should hurry up and go." -> L2, "We have to test our skills." -> L1 }
     break;
 
 L1:
   }
-  speak(Entity.Player, "Let's go, <ORANGE><DIGIMON><WHITE>!\n");
-  setTrigger(Trigger(1));
-  setPStat(PStat(250), 1);
-  setPStat(PStat(251), 11);
-  setPStat(PStat(252), 255);
-  setPStat(PStat(253), 255);
-  startBattle();
-  unsetTrigger(Trigger(1));
-  setPStat(PStat(250), 0);
-  look(entity: Entity.Player, at: Entity(11));
-  look(entity: Entity(11), at: Entity.Player);
-  look(entity: Entity.Partner, at: Entity(11));
-  speak(Entity(11), "...\n");
-  goto L2;
-
-L2:
+  {
+    speak(Entity.Player, "Let's go, <ORANGE><DIGIMON><WHITE>!\n");
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 11);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    look(entity: Entity.Player, at: Entity(11));
+    look(entity: Entity(11), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(11));
+    speak(Entity(11), "...\n");
+    break;
+  }
   approach(who: Entity(11), x: 0, y: 0, tries: 3, wait: 20);
   speak(Entity.Player, "Did we win?\n");
   setTrigger(Trigger(254));
@@ -92,7 +92,7 @@ L2:
   followEntity(Entity.Player, speed: 15);
   return;
 
-L3:
+L2:
   move(entity: Entity.Player, to: (43, 1754), sprint: 1, withCamera: true);
   waitForEntity(Entity.Player);
   return;

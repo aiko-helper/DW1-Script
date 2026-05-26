@@ -31,53 +31,53 @@ section(9) {
 }
 
 section(7) {
-  setTrigger(Trigger(44));
-  switch (pstat[32]) { case 0: goto L1; case 1: goto L2; case 2: goto L3; case 3: goto L4; }
-
-L1:
+  {
+    setTrigger(Trigger(44));
+    switch (pstat[32]) { case 0: break; case 1: goto L1; case 2: goto L2; case 3: goto L3; }
+  }
   {
     speak(Entity.System, "<YELLOW>? ? ? <WHITE>\n...\n");
     addPStat(PStat(32), 1);
     break;
 
-L2:
+L1:
     speak(Entity.System, "<YELLOW>? ? ? <WHITE>. A flower.\n");
     addPStat(PStat(32), 1);
     break;
 
-L3:
+L2:
     speak(Entity.System, "<YELLOW>? ? ? <WHITE>\nI'm a flower.\n");
     addPStat(PStat(32), 1);
     break;
 
-L4:
-    speak(Entity.System, "<YELLOW>? ? ? <WHITE>\nI said I'm a flower!\nAren't you listening!?\n");
-    playSound(8, 12);
-    look(entity: Entity(7), at: Entity.Player);
-    delay(20);
-    setTrigger(Trigger(1));
-    setPStat(PStat(250), 1);
-    setPStat(PStat(251), 7);
-    setPStat(PStat(252), 255);
-    setPStat(PStat(253), 255);
-    startBattle();
-    unsetTrigger(Trigger(1));
-    setPStat(PStat(250), 0);
-    look(entity: Entity(7), at: Entity.Player);
-    lookPairAt(Entity(7));
-    waitForPair();
-    playSound(8, 12);
-    speak(Entity(7), "I hate fighting.\n");
-    playAnimation(Entity.Player, Animation(19));
-    speak(Entity.Player, "In that case,\ncome to the city.\n");
-    playAnimation(Entity.Player, Animation(19));
-    showTextbox("It's peaceful there.\n");
-    playAnimation(Entity.Player, Animation(0));
-    speak(Entity(7), "The city?\n");
-    showTextbox("Sounds like fun.\nI'm Palmon.\nYou'll find me useful!\n");
-    goto L5;
-
-L5:
+L3:
+    {
+      speak(Entity.System, "<YELLOW>? ? ? <WHITE>\nI said I'm a flower!\nAren't you listening!?\n");
+      playSound(8, 12);
+      look(entity: Entity(7), at: Entity.Player);
+      delay(20);
+      setTrigger(Trigger(1));
+      setPStat(PStat(250), 1);
+      setPStat(PStat(251), 7);
+      setPStat(PStat(252), 255);
+      setPStat(PStat(253), 255);
+      startBattle();
+      unsetTrigger(Trigger(1));
+      setPStat(PStat(250), 0);
+      look(entity: Entity(7), at: Entity.Player);
+      lookPairAt(Entity(7));
+      waitForPair();
+      playSound(8, 12);
+      speak(Entity(7), "I hate fighting.\n");
+      playAnimation(Entity.Player, Animation(19));
+      speak(Entity.Player, "In that case,\ncome to the city.\n");
+      playAnimation(Entity.Player, Animation(19));
+      showTextbox("It's peaceful there.\n");
+      playAnimation(Entity.Player, Animation(0));
+      speak(Entity(7), "The city?\n");
+      showTextbox("Sounds like fun.\nI'm Palmon.\nYou'll find me useful!\n");
+      break;
+    }
     approach(who: Entity(7), x: 170, y: 1863, tries: 3, wait: 18);
     moveCamera(to: Entity.Player, speed: 10);
     playSound(8, 11);

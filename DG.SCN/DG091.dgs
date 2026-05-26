@@ -34,45 +34,41 @@ section(9) {
 section(5) {
   if (trigger(195)) {
   } else {
-    {
-      speak(Entity(5), "If you want to go thru,\nyou must accept my challenge.\n");
-      setTrigger(Trigger(1));
-      setPStat(PStat(250), 1);
-      setPStat(PStat(251), 5);
-      setPStat(PStat(252), 255);
-      setPStat(PStat(253), 255);
-      startBattle();
-      unsetTrigger(Trigger(1));
-      setPStat(PStat(250), 0);
-      look(entity: Entity.Player, at: Entity(5));
-      look(entity: Entity(5), at: Entity.Player);
-      look(entity: Entity.Partner, at: Entity(5));
-      speak(Entity(5), "I let my guard down,\nbut two on one isn't fair.\n");
-      playAnimation(Entity.Player, Animation(16));
-      setTrigger(Trigger(49));
-      setDialogOwner(Entity.Player);
-      setSelection(L1, L1);
-      showTextbox("Well, that maybe so\nDon't be a sore loser\n");
+    speak(Entity(5), "If you want to go thru,\nyou must accept my challenge.\n");
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 5);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    look(entity: Entity.Player, at: Entity(5));
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(5));
+    speak(Entity(5), "I let my guard down,\nbut two on one isn't fair.\n");
+    playAnimation(Entity.Player, Animation(16));
+    setTrigger(Trigger(49));
+    setDialogOwner(Entity.Player);
+    setSelection(L1, L1);
+    showTextbox("Well, that maybe so\nDon't be a sore loser\n");
 
 L1:
-    }
-    {
-      speak(Entity(5), "I never lose to anybody\nwhen it's a fair fight.\n");
-      showTextbox("Let's fight one on one. Come\nback tomorrow at four O'clock.\nOnly Digimon will fight.\n");
-      setDialogOwner(Entity.Player);
-      setSelection(L2, L2);
-      showTextbox("Alright\nNo thanks\n");
+    speak(Entity(5), "I never lose to anybody\nwhen it's a fair fight.\n");
+    showTextbox("Let's fight one on one. Come\nback tomorrow at four O'clock.\nOnly Digimon will fight.\n");
+    setDialogOwner(Entity.Player);
+    setSelection(L2, L2);
+    showTextbox("Alright\nNo thanks\n");
 
 L2:
+    {
+      playAnimation(Entity.Player, Animation(16));
+      unsetTrigger(Trigger(49));
+      speak(Entity(5), "It's a promise then.\nSee you tomorrow!\n");
+      setTrigger(Trigger(195));
+      pstat[PStat(29)] = time();
+      break;
     }
-    playAnimation(Entity.Player, Animation(16));
-    unsetTrigger(Trigger(49));
-    speak(Entity(5), "It's a promise then.\nSee you tomorrow!\n");
-    setTrigger(Trigger(195));
-    pstat[PStat(29)] = time();
-    goto L3;
-
-L3:
     approach(who: Entity(5), x: -2050, y: -150, tries: 6, wait: 10);
     followEntity(Entity.Player, speed: 10);
     return;
@@ -87,33 +83,33 @@ L3:
     speak(Entity(5), "You're late, but that gave\nme time to nurse my injury.\nNow let's go for it.\n");
     break;
   }
-  speak(Entity.Player, "I'll just watch. Start!\n");
-  look(entity: Entity.Player, at: Entity.Partner);
-  waitForEntity(Entity.Player);
-  playAnimation(Entity.Player, Animation(20));
-  showTextbox("Go <ORANGE><DIGIMON><WHITE>!\n");
-  setTrigger(Trigger(2));
-  setTrigger(Trigger(1));
-  setPStat(PStat(250), 1);
-  setPStat(PStat(251), 5);
-  setPStat(PStat(252), 255);
-  setPStat(PStat(253), 255);
-  startBattle();
-  unsetTrigger(Trigger(1));
-  setPStat(PStat(250), 0);
-  unsetTrigger(Trigger(2));
-  look(entity: Entity.Player, at: Entity(5));
-  look(entity: Entity(5), at: Entity.Player);
-  look(entity: Entity.Partner, at: Entity(5));
-  speak(Entity(5), "You're good! Who are you?\n");
-  speak(Entity.Player, "We're exploring and trying to\nsave the island from danger.\n");
-  speak(Entity(5), "What?\n");
-  speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> tries so hard\nto convince him!\n");
-  anim(Entity.Player, Animation(19), wait: 40);
-  speak(Entity(5), "I'll help you. But, I'll\nhave to see that city first.\n");
-  goto L4;
-
-L4:
+  {
+    speak(Entity.Player, "I'll just watch. Start!\n");
+    look(entity: Entity.Player, at: Entity.Partner);
+    waitForEntity(Entity.Player);
+    playAnimation(Entity.Player, Animation(20));
+    showTextbox("Go <ORANGE><DIGIMON><WHITE>!\n");
+    setTrigger(Trigger(2));
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 5);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    unsetTrigger(Trigger(2));
+    look(entity: Entity.Player, at: Entity(5));
+    look(entity: Entity(5), at: Entity.Player);
+    look(entity: Entity.Partner, at: Entity(5));
+    speak(Entity(5), "You're good! Who are you?\n");
+    speak(Entity.Player, "We're exploring and trying to\nsave the island from danger.\n");
+    speak(Entity(5), "What?\n");
+    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> tries so hard\nto convince him!\n");
+    anim(Entity.Player, Animation(19), wait: 40);
+    speak(Entity(5), "I'll help you. But, I'll\nhave to see that city first.\n");
+    break;
+  }
   approach(who: Entity(5), x: -2000, y: -100, tries: 6, wait: 10);
   playSound(8, 11);
   speak(Entity.System, "Garurumon joins the city!\n");
@@ -123,10 +119,10 @@ L4:
 }
 
 section(51) {
-  if ((cond & 0x40) == 0x01 && !trigger(133)) goto L1;
-  return;
-
-L1:
+  {
+    if ((cond & 0x40) == 0x01 && !trigger(133)) break;
+    return;
+  }
   storeDigimonType(PStat(103));
   if (pstat[103] == 3 || pstat[103] == 5 || pstat[103] == 8 || pstat[103] == 9 || pstat[103] == 47) {
     jumpToScriptSection(203, 51);

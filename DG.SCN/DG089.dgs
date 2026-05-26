@@ -48,10 +48,10 @@ section(81) {
 }
 
 section(53) {
-  if ((cond & 0x40) == 0x01 && !trigger(133)) goto L1;
-  return;
-
-L1:
+  {
+    if ((cond & 0x40) == 0x01 && !trigger(133)) break;
+    return;
+  }
   storeDigimonType(PStat(103));
   if (pstat[103] == 3 || pstat[103] == 5 || pstat[103] == 8 || pstat[103] == 9 || pstat[103] == 47) {
     jumpToScriptSection(203, 51);

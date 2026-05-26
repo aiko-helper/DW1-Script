@@ -274,42 +274,44 @@ L1:
   waitForEntity(Entity.Partner);
   look(entity: Entity.Player, at: Entity(5));
   jumpAndLink(section_5.L2);
-  if (pstat[112] == 3) {
-    move(entity: Entity.Partner, to: Entity(5), sprint: 1);
-    waitForEntity(Entity.Partner);
-    goto L2;
-  } else {
-    playAnimation(Entity.Player, Animation(16));
-    speak(Entity.Player, "He went to the wrong place!\n");
-  }
-  followEntity(Entity.Player, speed: 10);
-  return;
+  {
+    if (pstat[112] == 3) {
+      move(entity: Entity.Partner, to: Entity(5), sprint: 1);
+      waitForEntity(Entity.Partner);
+      break;
+    } else {
+      playAnimation(Entity.Player, Animation(16));
+      speak(Entity.Player, "He went to the wrong place!\n");
+    }
+    followEntity(Entity.Player, speed: 10);
+    return;
 
 L2:
-  anim(Entity.Player, Animation(11), wait: 10);
-  lookPairAt(Entity(5));
-  look(entity: Entity(5), at: Entity.Player);
-  for x in [Entity.Player, Entity.Partner, Entity(5)] {
-    waitForEntity(x);
   }
-  speak(Entity.Player, "The ambush is a success!\n");
-  playSound(8, 6);
-  speak(Entity(5), "Help me out!\n");
-  playAnimation(Entity.Player, Animation(19));
-  speak(Entity.Player, "Don't panic. We're not\nthe bad guys here.\n");
-  anim(Entity(5), Animation(28), wait: 20);
-  speak(Entity(5), "Are you the famous\nDigimon kidnapper?\n");
-  playAnimation(Entity.Player, Animation(16));
-  speak(Entity.Player, "I think everyone has\nthe wrong idea.\n");
-  anim(Entity(5), Animation(19), wait: 40);
-  playAnimation(Entity.Player, Animation(19));
-  speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> tried\nto convince them.\n");
-  playAnimation(Entity(5), Animation(0));
-  speak(Entity(5), "I see. It's my mistake.\n");
-  speak(Entity(5), "I'll go to the city.\n");
-  goto L3;
-
-L3:
+  {
+    anim(Entity.Player, Animation(11), wait: 10);
+    lookPairAt(Entity(5));
+    look(entity: Entity(5), at: Entity.Player);
+    for x in [Entity.Player, Entity.Partner, Entity(5)] {
+      waitForEntity(x);
+    }
+    speak(Entity.Player, "The ambush is a success!\n");
+    playSound(8, 6);
+    speak(Entity(5), "Help me out!\n");
+    playAnimation(Entity.Player, Animation(19));
+    speak(Entity.Player, "Don't panic. We're not\nthe bad guys here.\n");
+    anim(Entity(5), Animation(28), wait: 20);
+    speak(Entity(5), "Are you the famous\nDigimon kidnapper?\n");
+    playAnimation(Entity.Player, Animation(16));
+    speak(Entity.Player, "I think everyone has\nthe wrong idea.\n");
+    anim(Entity(5), Animation(19), wait: 40);
+    playAnimation(Entity.Player, Animation(19));
+    speak(Entity.System, "<LIGHTBLUE><PLAYER><WHITE> tried\nto convince them.\n");
+    playAnimation(Entity(5), Animation(0));
+    speak(Entity(5), "I see. It's my mistake.\n");
+    speak(Entity(5), "I'll go to the city.\n");
+    break;
+  }
   loop {
     move(entity: Entity(5), to: (-1232, 4250), sprint: 1);
     if (pstat[101] < 6 && pstat[112] != 0) {

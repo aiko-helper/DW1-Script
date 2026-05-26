@@ -46,62 +46,62 @@ section(11) {
         return;
       }
       roll(pstat: PStat.RollScratch, max: 9);
-      if (pstat[31] >= 1 && pstat[110] <= 0) {
-        speak(Entity(11), "We harvested a lot of Meat\ntoday! We'll give you\nfive pieces.\n");
-      } else {
-        goto L1;
-      }
-      if (item[Item.Meat] >= 99) {
-        speak(Entity(11), "You got too much Meat.\n");
-        return;
-      }
-      if (item[Item.Meat] >= 95) {
-        speak(Entity(11), "You got too much Meat. I'll\ntake what you can't hold.\n");
+      {
+        if (pstat[31] >= 1 && pstat[110] <= 0) {
+          speak(Entity(11), "We harvested a lot of Meat\ntoday! We'll give you\nfive pieces.\n");
+        } else {
+          break;
+        }
+        if (item[Item.Meat] >= 99) {
+          speak(Entity(11), "You got too much Meat.\n");
+          return;
+        }
+        if (item[Item.Meat] >= 95) {
+          speak(Entity(11), "You got too much Meat. I'll\ntake what you can't hold.\n");
+          giveItem(Item.Meat, 5);
+          speak(Entity.System, "I got a five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+          setTrigger(Trigger(74));
+          setPStat(PStat(31), 0);
+          return;
+        }
         giveItem(Item.Meat, 5);
-        speak(Entity.System, "I got a five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
-        setTrigger(Trigger(74));
+        if (trigger(0)) {
+          speak(Entity(11), "You got too many Items.\n");
+          return;
+        }
+        speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
+        speak(Entity(11), "You'll get more tomorrow.\n");
         setPStat(PStat(31), 0);
         return;
       }
-      giveItem(Item.Meat, 5);
-      if (trigger(0)) {
-        speak(Entity(11), "You got too many Items.\n");
-        return;
-      }
-      speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Meat<WHITE>!\n");
-      speak(Entity(11), "You'll get more tomorrow.\n");
-      setPStat(PStat(31), 0);
-      return;
-
-L1:
-      if (pstat[31] >= 1) {
-        speak(Entity(11), "Here's today's Meat.\n");
-      } else {
-        goto L2;
-      }
-      if (item[Item.Meat] >= 99) {
-        speak(Entity(11), "You got too much Meat.\n");
-        return;
-      }
-      if (item[Item.Meat] >= 97) {
-        speak(Entity(11), "You got too much Meat. I'll\ntake what you can't hold.\n");
+      {
+        if (pstat[31] >= 1) {
+          speak(Entity(11), "Here's today's Meat.\n");
+        } else {
+          break;
+        }
+        if (item[Item.Meat] >= 99) {
+          speak(Entity(11), "You got too much Meat.\n");
+          return;
+        }
+        if (item[Item.Meat] >= 97) {
+          speak(Entity(11), "You got too much Meat. I'll\ntake what you can't hold.\n");
+          giveItem(Item.Meat, 3);
+          speak(Entity.System, "I got <LIGHTBLUE>Meat<WHITE>!\n");
+          setTrigger(Trigger(74));
+          setPStat(PStat(31), 0);
+          return;
+        }
         giveItem(Item.Meat, 3);
+        if (trigger(0)) {
+          speak(Entity(11), "You got too many Items.\n");
+          return;
+        }
         speak(Entity.System, "I got <LIGHTBLUE>Meat<WHITE>!\n");
-        setTrigger(Trigger(74));
+        speak(Entity(11), "I'll give you more tomorrow.\n");
         setPStat(PStat(31), 0);
         return;
       }
-      giveItem(Item.Meat, 3);
-      if (trigger(0)) {
-        speak(Entity(11), "You got too many Items.\n");
-        return;
-      }
-      speak(Entity.System, "I got <LIGHTBLUE>Meat<WHITE>!\n");
-      speak(Entity(11), "I'll give you more tomorrow.\n");
-      setPStat(PStat(31), 0);
-      return;
-
-L2:
       speak(Entity(11), "I thought I gave you\ntoday's Meat.\n");
       showTextbox("If you run out of food,\ngo to Native Forest and\nfind mushrooms.\n");
       return;
@@ -114,68 +114,68 @@ L2:
       showTextbox("I'll be in charge of\nthis farm for Tanemon.\nHe's resting somewhere.\n");
     }
     roll(pstat: PStat.RollScratch, max: 9);
-    if (pstat[31] >= 1 && pstat[110] <= 0) {
-      speak(Entity(11), "I harvested a lot of\nMeat today!\n");
-    } else {
-      goto L3;
-    }
-    if (item[Item.GiantMeat] >= 99) {
-      speak(Entity(11), "You got too much Giant Meat.\nYou don't need any today.\n");
-      return;
-    }
-    if (item[Item.GiantMeat] >= 95) {
-      speak(Entity(11), "You got too much Giant Meat.\nYou don't need any today.\n");
+    {
+      if (pstat[31] >= 1 && pstat[110] <= 0) {
+        speak(Entity(11), "I harvested a lot of\nMeat today!\n");
+      } else {
+        break;
+      }
+      if (item[Item.GiantMeat] >= 99) {
+        speak(Entity(11), "You got too much Giant Meat.\nYou don't need any today.\n");
+        return;
+      }
+      if (item[Item.GiantMeat] >= 95) {
+        speak(Entity(11), "You got too much Giant Meat.\nYou don't need any today.\n");
+        giveItem(Item.GiantMeat, 5);
+        speak(Entity.System, "I got <LIGHTBLUE>Giant Meat<WHITE>!\n");
+        setTrigger(Trigger(74));
+        setPStat(PStat(31), 0);
+        return;
+      }
       giveItem(Item.GiantMeat, 5);
-      speak(Entity.System, "I got <LIGHTBLUE>Giant Meat<WHITE>!\n");
-      setTrigger(Trigger(74));
+      if (trigger(0)) {
+        showTextbox("You got too many Items.\n");
+        return;
+      }
+      speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Giant Meat<WHITE>!\n");
+      speak(Entity(11), "I'll give you more tomorrow.\n");
       setPStat(PStat(31), 0);
       return;
     }
-    giveItem(Item.GiantMeat, 5);
-    if (trigger(0)) {
-      showTextbox("You got too many Items.\n");
-      return;
-    }
-    speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Giant Meat<WHITE>!\n");
-    speak(Entity(11), "I'll give you more tomorrow.\n");
-    setPStat(PStat(31), 0);
-    return;
-
-L3:
-    if (pstat[31] >= 1) {
-      speak(Entity(11), "Here's three pieces of\nGiant Meat for today.\n");
-    } else {
-      goto L4;
-    }
-    if (item[Item.GiantMeat] >= 99) {
-      speak(Entity(11), "You got too much Giant Meat.\nYou don't need any today\n");
-      return;
-    }
-    if (item[Item.GiantMeat] >= 97) {
-      speak(Entity(11), "You got too much\nGiant Meat. I'll take\nwhat you can't hold.\n");
+    {
+      if (pstat[31] >= 1) {
+        speak(Entity(11), "Here's three pieces of\nGiant Meat for today.\n");
+      } else {
+        break;
+      }
+      if (item[Item.GiantMeat] >= 99) {
+        speak(Entity(11), "You got too much Giant Meat.\nYou don't need any today\n");
+        return;
+      }
+      if (item[Item.GiantMeat] >= 97) {
+        speak(Entity(11), "You got too much\nGiant Meat. I'll take\nwhat you can't hold.\n");
+        giveItem(Item.GiantMeat, 3);
+        speak(Entity.System, "I got <LIGHTBLUE>Giant Meat<WHITE>!\n");
+        setTrigger(Trigger(74));
+        setPStat(PStat(31), 0);
+        return;
+      }
       giveItem(Item.GiantMeat, 3);
-      speak(Entity.System, "I got <LIGHTBLUE>Giant Meat<WHITE>!\n");
-      setTrigger(Trigger(74));
+      if (trigger(0)) {
+        showTextbox("You got too many Items.\n");
+        return;
+      }
+      speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Giant Meat<WHITE>!\n");
       setPStat(PStat(31), 0);
       return;
     }
-    giveItem(Item.GiantMeat, 3);
-    if (trigger(0)) {
-      showTextbox("You got too many Items.\n");
-      return;
-    }
-    speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Giant Meat<WHITE>!\n");
-    setPStat(PStat(31), 0);
-    return;
-
-L4:
     {
       speak(Entity(11), "I'll give you more tomorrow.\nOr you can buy more now.\nFive hund bits each?\n");
       setDialogOwner(Entity.Player);
-      choice { "Buy" -> L5, "Don't buy" -> L6 }
+      choice { "Buy" -> L1, "Don't buy" -> L2 }
       break;
 
-L5:
+L1:
       if (money < 500) {
         speak(Entity(11), "You need more money.\n");
         return;
@@ -189,10 +189,10 @@ L5:
       sfx(0, 5, wait: 5);
       speak(Entity(11), "Do you want to buy more?\n");
       setDialogOwner(Entity.Player);
-      choice { "Buy" -> L5, "Don't buy" -> L6 }
+      choice { "Buy" -> L1, "Don't buy" -> L2 }
       break;
 
-L6:
+L2:
     }
     speak(Entity(11), "See you tomorrow.\n");
     return;
@@ -207,73 +207,73 @@ L6:
     showTextbox("I also started to\ngrow rare veggies!\nBuy as many as you want!\n");
   }
   roll(pstat: PStat.RollScratch, max: 9);
-  if (pstat[31] >= 1 && pstat[110] <= 0) {
-    speak(Entity(11), "I feel good today,\nso I'll give you five pieces\nof Sirloin.\n");
-  } else {
-    goto L7;
-  }
-  if (item[Item.Sirloin] >= 99) {
-    speak(Entity(11), "You got too much Sirloin.\nYou don't need any today\n");
-    return;
-  }
-  if (item[Item.Sirloin] >= 95) {
-    speak(Entity(11), "You got too much Sirloin.\n");
+  {
+    if (pstat[31] >= 1 && pstat[110] <= 0) {
+      speak(Entity(11), "I feel good today,\nso I'll give you five pieces\nof Sirloin.\n");
+    } else {
+      break;
+    }
+    if (item[Item.Sirloin] >= 99) {
+      speak(Entity(11), "You got too much Sirloin.\nYou don't need any today\n");
+      return;
+    }
+    if (item[Item.Sirloin] >= 95) {
+      speak(Entity(11), "You got too much Sirloin.\n");
+      giveItem(Item.Sirloin, 5);
+      speak(Entity.System, "I got <LIGHTBLUE>Sirloin<WHITE>!\n");
+      setTrigger(Trigger(74));
+      setPStat(PStat(31), 0);
+      return;
+    }
     giveItem(Item.Sirloin, 5);
-    speak(Entity.System, "I got <LIGHTBLUE>Sirloin<WHITE>!\n");
-    setTrigger(Trigger(74));
+    if (trigger(0)) {
+      showTextbox("You got too many Items.\n");
+      return;
+    }
+    speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Sirloin<WHITE>!\n");
+    speak(Entity(11), "See you tomorrow!\n");
     setPStat(PStat(31), 0);
     return;
   }
-  giveItem(Item.Sirloin, 5);
-  if (trigger(0)) {
-    showTextbox("You got too many Items.\n");
-    return;
-  }
-  speak(Entity.System, "I got five pieces of\n<LIGHTBLUE>Sirloin<WHITE>!\n");
-  speak(Entity(11), "See you tomorrow!\n");
-  setPStat(PStat(31), 0);
-  return;
-
-L7:
-  if (pstat[31] >= 1) {
-    speak(Entity(11), "Here's today's portion of\nSirloin times three!\n");
-  } else {
-    goto L8;
-  }
-  if (item[Item.Sirloin] >= 99) {
-    speak(Entity(11), "You got too much Sirloin.\nYou don't need any today.\n");
-    return;
-  }
-  if (item[Item.Sirloin] >= 97) {
-    speak(Entity(11), "You got too much Sirloin.\n");
+  {
+    if (pstat[31] >= 1) {
+      speak(Entity(11), "Here's today's portion of\nSirloin times three!\n");
+    } else {
+      break;
+    }
+    if (item[Item.Sirloin] >= 99) {
+      speak(Entity(11), "You got too much Sirloin.\nYou don't need any today.\n");
+      return;
+    }
+    if (item[Item.Sirloin] >= 97) {
+      speak(Entity(11), "You got too much Sirloin.\n");
+      giveItem(Item.Sirloin, 3);
+      speak(Entity.System, "I got <LIGHTBLUE>Sirloin<WHITE>!\n");
+      setTrigger(Trigger(74));
+      setPStat(PStat(31), 0);
+      return;
+    }
     giveItem(Item.Sirloin, 3);
-    speak(Entity.System, "I got <LIGHTBLUE>Sirloin<WHITE>!\n");
-    setTrigger(Trigger(74));
+    if (trigger(0)) {
+      speak(Entity(11), "You got too many Items.\n");
+      return;
+    }
+    speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Sirloin<WHITE>!\n");
     setPStat(PStat(31), 0);
     return;
   }
-  giveItem(Item.Sirloin, 3);
-  if (trigger(0)) {
-    speak(Entity(11), "You got too many Items.\n");
-    return;
-  }
-  speak(Entity.System, "I got three pieces of\n<LIGHTBLUE>Sirloin<WHITE>!\n");
-  setPStat(PStat(31), 0);
-  return;
-
-L8:
   {
     speak(Entity(11), "It's not tomorrow yet!\nDo you want to buy veggies?\n");
     setDialogOwner(Entity.Player);
-    choice { "Buy" -> L9, "Don't buy" -> L12 }
+    choice { "Buy" -> L3, "Don't buy" -> L6 }
     break;
 
-L9:
+L3:
     setDialogOwner(Entity.Player);
-    choice { "Super Carrot: five hund bits" -> L10, "Hawk Radish: five hund bits" -> L11, "Don't buy" -> L12 }
+    choice { "Super Carrot: five hund bits" -> L4, "Hawk Radish: five hund bits" -> L5, "Don't buy" -> L6 }
     break;
 
-L10:
+L4:
     if (money < 500) {
       speak(Entity(11), "You don't got enough money.\n");
       return;
@@ -286,7 +286,7 @@ L10:
     {
       break;
 
-L11:
+L5:
       if (money < 500) {
         speak(Entity(11), "You don't got enough money.\n");
         return;
@@ -302,10 +302,10 @@ L11:
     sfx(0, 5, wait: 5);
     speak(Entity(11), "Do you want to buy more?\n");
     setDialogOwner(Entity.Player);
-    choice { "Buy" -> L9, "Don't buy" -> L12 }
+    choice { "Buy" -> L3, "Don't buy" -> L6 }
     break;
 
-L12:
+L6:
   }
   speak(Entity(11), "See ya!\n");
   return;

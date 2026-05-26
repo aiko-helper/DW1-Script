@@ -42,12 +42,12 @@ section(51) {
   if (!trigger(203)) {
     warp(to: Map.TWNA01, spawn: 4, trigger: 255);
   }
-  if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L4; else goto L1;
-
-L1:
-  if (trigger(221)) goto L3; else goto L2;
-
-L2:
+  {
+    if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L2; else break;
+  }
+  {
+    if (trigger(221)) goto L1; else break;
+  }
   if (trigger(225)) {
     warp(to: Map.TWNA04, spawn: 4, trigger: 255);
   }
@@ -56,19 +56,19 @@ L2:
   }
   warp(to: Map.TWNA02, spawn: 4, trigger: 255);
 
-L3:
+L1:
   if (trigger(225)) {
     warp(to: Map.TWNA07, spawn: 4, trigger: 255);
   }
   if (trigger(246)) {
     warp(to: Map.TWNA06, spawn: 4, trigger: 255);
   }
-  warp(to: Map.TWNA05, spawn: 4, trigger: 255);
+  {
+    warp(to: Map.TWNA05, spawn: 4, trigger: 255);
 
-L4:
-  if (trigger(221)) goto L6; else goto L5;
-
-L5:
+L2:
+    if (trigger(221)) goto L3; else break;
+  }
   if (trigger(225)) {
     warp(to: Map.TWNA10, spawn: 4, trigger: 255);
   }
@@ -77,7 +77,7 @@ L5:
   }
   warp(to: Map.TWNA08, spawn: 4, trigger: 255);
 
-L6:
+L3:
   if (trigger(225)) {
     warp(to: Map.TWNA13, spawn: 4, trigger: 255);
   }

@@ -17,6 +17,8 @@ section onEnter(254) {
 
 section(5) {
   goto section_81;
+
+L1:
   return;
 }
 
@@ -26,55 +28,55 @@ section(81) {
   look(entity: Entity(5), at: Entity.Player);
   delay(5);
   storeDigimonType(PStat(103));
-  if (trigger(363) && pstat[103] == 39) {
-    playSound(8, 20);
-    speak(Entity(5), "You again! Get out of here!\n");
-    anim(Entity.Player, Animation(16), wait: 15);
-    speak(Entity.Player, "Uhh...\n");
-    playAnimation(Entity.Player, Animation(0));
-    speak(Entity(5), "You... you're a pest!\nIs that okay now?!\n");
+  {
+    if (trigger(363) && pstat[103] == 39) {
+      playSound(8, 20);
+      speak(Entity(5), "You again! Get out of here!\n");
+      anim(Entity.Player, Animation(16), wait: 15);
+      speak(Entity.Player, "Uhh...\n");
+      playAnimation(Entity.Player, Animation(0));
+      speak(Entity(5), "You... you're a pest!\nIs that okay now?!\n");
+      break;
+      followEntity(Entity.Player, speed: 10);
+      return;
+    }
+    if (trigger(363)) {
+      playSound(8, 20);
+      speak(Entity(5), "You again! Get out of here\nright now!\n");
+      followEntity(Entity.Player, speed: 10);
+      return;
+    }
+    if (pstat[103] == 39) {
+      speak(Entity(5), "Good to see you, my friends.\nIf you want to live here,\nI give you permission.\n");
+      setTrigger(Trigger(49));
+      setDialogOwner(Entity.Player);
+      setSelection(L1, L2);
+      showTextbox("We want to live here\nWe want to return\n");
+    }
     goto L3;
-    followEntity(Entity.Player, speed: 10);
-    return;
-  }
-  if (trigger(363)) {
-    playSound(8, 20);
-    speak(Entity(5), "You again! Get out of here\nright now!\n");
-    followEntity(Entity.Player, speed: 10);
-    return;
-  }
-  if (pstat[103] == 39) {
-    speak(Entity(5), "Good to see you, my friends.\nIf you want to live here,\nI give you permission.\n");
-    setTrigger(Trigger(49));
-    setDialogOwner(Entity.Player);
-    setSelection(L1, L2);
-    showTextbox("We want to live here\nWe want to return\n");
-  }
-  goto L4;
 
 L1:
-  unsetTrigger(Trigger(49));
-  playSound(8, 20);
-  speak(Entity(5), "Hmmm, that's good. What?\nBut you are analog,\nso you can't live here.\n");
-  speak(Entity.Player, "We have to be together!\n");
-  speak(Entity(5), "Then, get out of here\nwith him!\n");
-  followEntity(Entity.Player, speed: 10);
-  return;
+    unsetTrigger(Trigger(49));
+    playSound(8, 20);
+    speak(Entity(5), "Hmmm, that's good. What?\nBut you are analog,\nso you can't live here.\n");
+    speak(Entity.Player, "We have to be together!\n");
+    speak(Entity(5), "Then, get out of here\nwith him!\n");
+    followEntity(Entity.Player, speed: 10);
+    return;
 
 L2:
-  unsetTrigger(Trigger(49));
-  speak(Entity(5), "What? What are you saying?\n");
-  anim(Entity.Player, Animation(16), wait: 15);
-  speak(Entity.Player, "He's not originally Sukamon.\nKing, please return him\nto his original form!\n");
-  playAnimation(Entity.Player, Animation(0));
-  speak(Entity(5), "Isn't it great that\nhe became Sukamon?\n");
-  speak(Entity.Player, "No, it's not very good\nright now. Please.\n");
-  speak(Entity(5), "Only way to become Sukamon\nis to try hard.\n");
-  speak(Entity.Player, "He became a Sukamon\nnaturally and\nthat's the problem.\n");
-  playSound(8, 20);
-  speak(Entity(5), "You guys are unbelievable!\n");
-
-L3:
+    unsetTrigger(Trigger(49));
+    speak(Entity(5), "What? What are you saying?\n");
+    anim(Entity.Player, Animation(16), wait: 15);
+    speak(Entity.Player, "He's not originally Sukamon.\nKing, please return him\nto his original form!\n");
+    playAnimation(Entity.Player, Animation(0));
+    speak(Entity(5), "Isn't it great that\nhe became Sukamon?\n");
+    speak(Entity.Player, "No, it's not very good\nright now. Please.\n");
+    speak(Entity(5), "Only way to become Sukamon\nis to try hard.\n");
+    speak(Entity.Player, "He became a Sukamon\nnaturally and\nthat's the problem.\n");
+    playSound(8, 20);
+    speak(Entity(5), "You guys are unbelievable!\n");
+  }
   if (pstat[200] == 39) {
     storeDigimonType(PStat(200));
     copyPStat(PStat(5), PStat(254));
@@ -92,7 +94,7 @@ L3:
   followEntity(Entity.Player, speed: 10);
   return;
 
-L4:
+L3:
   playSound(8, 20);
   speak(Entity(5), "Did you come here for\nsomething?\n");
   speak(Entity.Player, "Well...\n");
@@ -217,26 +219,24 @@ section(51) {
 }
 
 section(82) {
-  {
-    rotate(entity: Entity.Player, to: 2640);
-    setTextboxOrigin(1484, 0, -241);
-    callSubroutine(39);
-    speak(Entity(200), " <GREEN>Training: Hide In Trash <WHITE>\n");
-    choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
-    return;
+  rotate(entity: Entity.Player, to: 2640);
+  setTextboxOrigin(1484, 0, -241);
+  callSubroutine(39);
+  speak(Entity(200), " <GREEN>Training: Hide In Trash <WHITE>\n");
+  choice { "Begin" -> L1, "Explain" -> L2, "Quit" -> L3 }
+  return;
 
 L1:
-    setDialogOwner(Entity(200));
-    choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
-    return;
+  setDialogOwner(Entity(200));
+  choice { "Normal" -> L4, "Bonus Try" -> L5, "Quit" -> L3 }
+  return;
 
 L2:
-    speak(Entity(200), "Mental training by putting\nyourself in dirty trash.\nMax MP is greatly boosted.\n");
-    choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
-    return;
+  speak(Entity(200), "Mental training by putting\nyourself in dirty trash.\nMax MP is greatly boosted.\n");
+  choice { "Explain again" -> L2, "Begin" -> L1, "Quit" -> L3 }
+  return;
 
 L3:
-  }
   return;
 
 L4:

@@ -85,57 +85,57 @@ section(5) {
 }
 
 section(60) {
-  delay(40);
-  moveCamera(to: (-1455, 1463), slowdown: 20);
-  anim(Entity.Player, Animation(15), wait: 20);
-  speak(Entity.Player, "Wow!\n");
-  speak(Entity(7), "...\n");
-  speak(Entity.Player, "Are you serious?\n");
-  waitForEntity(Entity(7));
-  unloadEntity(Entity(7));
-  delay(20);
-  speak(Entity.Player, "It's gone. Is this a dream?\n");
-  anim(Entity(6), Animation(28), wait: 40);
-  delay(40);
-  setTrigger(Trigger(1));
-  setPStat(PStat(250), 1);
-  setPStat(PStat(251), 6);
-  setPStat(PStat(252), 255);
-  setPStat(PStat(253), 255);
-  startBattle();
-  unsetTrigger(Trigger(1));
-  setPStat(PStat(250), 0);
-  move(entity: Entity(6), to: (-100, 800), sprint: 0);
-  waitForEntity(Entity(6));
-  anim(Entity(6), Animation(43), wait: 40);
-  speak(Entity.Player, "I think we took care of it.\n");
-  look(entity: Entity.Player, at: Entity(6));
-  waitForEntity(Entity(6));
-  waitForEntity(Entity.Player);
-  unloadEntity(Entity(6));
-  speak(Entity.Player, "What?\n");
-  loadAndSetDigimon(Digimon.Soulmon, Entity(3), 0);
-  speak(Entity(8), "Huh? What?\n");
-  look(entity: Entity(8), at: Entity.Player);
-  delay(20);
-  speak(Entity(8), "I passed out. I'm sorry.\n");
-  setTrigger(Trigger(202));
-  setPStat(PStat(16), 0);
-  setPStat(PStat(28), 0);
-  setTrigger(Trigger(243));
-  goto L1;
-
-L1:
-  approach(who: Entity(8), x: -40, y: -2800, tries: 3, wait: 20);
-  anim(Entity.Player, Animation(16), wait: 40);
-  speak(Entity.Player, "The curse of Analogman!\nDon't worry, it'll be OK.\n");
-  delay(20);
-  if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L5; else goto L2;
-
-L2:
-  if (trigger(221)) goto L4; else goto L3;
-
-L3:
+  {
+    delay(40);
+    moveCamera(to: (-1455, 1463), slowdown: 20);
+    anim(Entity.Player, Animation(15), wait: 20);
+    speak(Entity.Player, "Wow!\n");
+    speak(Entity(7), "...\n");
+    speak(Entity.Player, "Are you serious?\n");
+    waitForEntity(Entity(7));
+    unloadEntity(Entity(7));
+    delay(20);
+    speak(Entity.Player, "It's gone. Is this a dream?\n");
+    anim(Entity(6), Animation(28), wait: 40);
+    delay(40);
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 6);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    move(entity: Entity(6), to: (-100, 800), sprint: 0);
+    waitForEntity(Entity(6));
+    anim(Entity(6), Animation(43), wait: 40);
+    speak(Entity.Player, "I think we took care of it.\n");
+    look(entity: Entity.Player, at: Entity(6));
+    waitForEntity(Entity(6));
+    waitForEntity(Entity.Player);
+    unloadEntity(Entity(6));
+    speak(Entity.Player, "What?\n");
+    loadAndSetDigimon(Digimon.Soulmon, Entity(3), 0);
+    speak(Entity(8), "Huh? What?\n");
+    look(entity: Entity(8), at: Entity.Player);
+    delay(20);
+    speak(Entity(8), "I passed out. I'm sorry.\n");
+    setTrigger(Trigger(202));
+    setPStat(PStat(16), 0);
+    setPStat(PStat(28), 0);
+    setTrigger(Trigger(243));
+    break;
+  }
+  {
+    approach(who: Entity(8), x: -40, y: -2800, tries: 3, wait: 20);
+    anim(Entity.Player, Animation(16), wait: 40);
+    speak(Entity.Player, "The curse of Analogman!\nDon't worry, it'll be OK.\n");
+    delay(20);
+    if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L2; else break;
+  }
+  {
+    if (trigger(221)) goto L1; else break;
+  }
   if (trigger(225)) {
     warp(to: Map.TWNA04, spawn: 0, trigger: 255);
   }
@@ -144,19 +144,19 @@ L3:
   }
   warp(to: Map.TWNA02, spawn: 0, trigger: 255);
 
-L4:
+L1:
   if (trigger(225)) {
     warp(to: Map.TWNA07, spawn: 0, trigger: 255);
   }
   if (trigger(246)) {
     warp(to: Map.TWNA06, spawn: 0, trigger: 255);
   }
-  warp(to: Map.TWNA05, spawn: 0, trigger: 255);
+  {
+    warp(to: Map.TWNA05, spawn: 0, trigger: 255);
 
-L5:
-  if (trigger(221)) goto L7; else goto L6;
-
-L6:
+L2:
+    if (trigger(221)) goto L3; else break;
+  }
   if (trigger(225)) {
     warp(to: Map.TWNA10, spawn: 0, trigger: 255);
   }
@@ -165,7 +165,7 @@ L6:
   }
   warp(to: Map.TWNA08, spawn: 0, trigger: 255);
 
-L7:
+L3:
   if (trigger(225)) {
     warp(to: Map.TWNA13, spawn: 0, trigger: 255);
   }

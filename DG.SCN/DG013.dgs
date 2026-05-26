@@ -21,28 +21,28 @@ section(5) {
     showTextbox("I don't look it, but I'm an\nUltimate Digimon. If you\nbeat me, I'll help you.\n");
     playAnimation(Entity.Player, Animation(16));
     setDialogOwner(Entity.Player);
-    choice { "Okay, I accept" -> L1, "No thanks" -> L3 }
+    choice { "Okay, I accept" -> L1, "No thanks" -> L2 }
     break;
 
 L1:
-    setTrigger(Trigger(1));
-    setPStat(PStat(250), 1);
-    setPStat(PStat(251), 5);
-    setPStat(PStat(252), 255);
-    setPStat(PStat(253), 255);
-    startBattle();
-    unsetTrigger(Trigger(1));
-    setPStat(PStat(250), 0);
-    look(entity: Entity.Player, at: Entity(5));
-    look(entity: Entity(5), at: Entity.Player);
-    look(entity: Entity.Partner, at: Entity(5));
-    lookPairAt(Entity(5));
-    look(entity: Entity(5), at: Entity.Player);
-    waitForEntity(Entity.Player);
-    speak(Entity(5), "Wow, I lost! Well, I'll\nsee you in the city.\n");
-    goto L2;
-
-L2:
+    {
+      setTrigger(Trigger(1));
+      setPStat(PStat(250), 1);
+      setPStat(PStat(251), 5);
+      setPStat(PStat(252), 255);
+      setPStat(PStat(253), 255);
+      startBattle();
+      unsetTrigger(Trigger(1));
+      setPStat(PStat(250), 0);
+      look(entity: Entity.Player, at: Entity(5));
+      look(entity: Entity(5), at: Entity.Player);
+      look(entity: Entity.Partner, at: Entity(5));
+      lookPairAt(Entity(5));
+      look(entity: Entity(5), at: Entity.Player);
+      waitForEntity(Entity.Player);
+      speak(Entity(5), "Wow, I lost! Well, I'll\nsee you in the city.\n");
+      break;
+    }
     approach(who: Entity(5), x: -2444, y: -3233, tries: 10, wait: 10);
     playSound(8, 3);
     speak(Entity.System, "Piximon joins the city!\n");
@@ -52,12 +52,12 @@ L2:
     followEntity(Entity.Player, speed: 10);
     return;
 
-L3:
+L2:
   }
-  speak(Entity(5), "Oh, what a coward!\nLet's meet again!\n");
-  goto L4;
-
-L4:
+  {
+    speak(Entity(5), "Oh, what a coward!\nLet's meet again!\n");
+    break;
+  }
   approach(who: Entity(5), x: -2444, y: -3233, tries: 10, wait: 10);
   return;
 }

@@ -5,17 +5,17 @@
 
 section onEnter(254) {
   pstat[:SavedTime] = time();
-  if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
-  } else {
-    goto L1;
+  {
+    if (trigger(231) || trigger(245) || trigger(233) || trigger(247)) {
+    } else {
+      break;
+    }
+    if (!trigger(204)) break;
+    setRectImpassible(47, 48, 7, 8);
+    setObjectsVisibleRange(0, 6, 0);
+    setObjectVisibility(65, 0);
+    setObjectVisibility(66, 0);
   }
-  if (!trigger(204)) goto L1;
-  setRectImpassible(47, 48, 7, 8);
-  setObjectsVisibleRange(0, 6, 0);
-  setObjectVisibility(65, 0);
-  setObjectVisibility(66, 0);
-
-L1:
   if (trigger(50)) {
     setRectImpassible(47, 48, 7, 8);
     setObjectsVisibleRange(0, 12, 0);
@@ -56,15 +56,15 @@ L1:
     if (!trigger(218)) break;
     setObjectsVisibleRange(57, 60, 0);
   }
-  if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) {
-  } else {
-    goto L2;
+  {
+    if (trigger(209) || trigger(208) || trigger(222) || trigger(223)) {
+    } else {
+      break;
+    }
+    if (pstat[107] in 7..19) break;
+    if (!trigger(218)) break;
+    setObjectsVisibleRange(61, 64, 0);
   }
-  if (pstat[107] in 7..19) goto L2;
-  if (!trigger(218)) goto L2;
-  setObjectsVisibleRange(61, 64, 0);
-
-L2:
   if (!trigger(249) && pstat[43] == 2) {
     setObjectVisibility(108, 1);
   }
@@ -187,39 +187,39 @@ section(8) {
     speak(Entity(8), "I also heard about a\n<LIGHTBLUE>Deluxe Mushroom<WHITE>.\nIt'll be nice to find.\n");
     return;
   }
-  switch (pstat[37]) { case 0: goto L1; case 1: goto L2; case 2: goto L3; case 3: goto L4; case 4: goto L5; case 5: goto L6; case 6: goto L7; case 7: goto L8; }
-
-L1:
+  {
+    switch (pstat[37]) { case 0: break; case 1: goto L1; case 2: goto L2; case 3: goto L3; case 4: goto L4; case 5: goto L5; case 6: goto L6; case 7: goto L7; }
+  }
   speak(Entity(8), "<LIGHTBLUE>Blue Apple <WHITE>\nfrom Native Forest\ntastes real good.\n");
   addPStat(PStat(37), 1);
   return;
 
-L2:
+L1:
   speak(Entity(8), "<LIGHTBLUE>Orange Banana <WHITE>\nfrom Tropical Jungle\ntastes real good.\n");
   addPStat(PStat(37), 1);
   return;
 
-L3:
+L2:
   speak(Entity(8), "<LIGHTBLUE>Big  Berry <WHITE>\nfrom Mt. Panorama\ntastes real good.\n");
   return;
 
-L4:
+L3:
   speak(Entity(8), "<LIGHTBLUE>Sweet Nut <WHITE>\nfrom Gear Savanna\ntastes real good.\n");
   return;
 
-L5:
+L4:
   speak(Entity(8), "<LIGHTBLUE>Super Veggy <WHITE>\nfrom Overdell Cemetery\ntastes good.\n");
   return;
 
-L6:
+L5:
   speak(Entity(8), "<LIGHTBLUE>Red Berry <WHITE>\nfrom Ancient Dino Tomb\ntastes good.\n");
   return;
 
-L7:
+L6:
   speak(Entity(8), "<LIGHTBLUE>Prickly Pear Cactus <WHITE>\nfrom Great Canyon\ntastes good.\n");
   return;
 
-L8:
+L7:
   speak(Entity(8), "<LIGHTBLUE>Digital Pine Cone <WHITE>\nfrom Misty Trees\ntastes good.\n");
   return;
   speak(Entity(8), "<LIGHTBLUE>Spiny Green <WHITE>\nfrom Geko Swamp\ntastes good.\n");
@@ -410,12 +410,12 @@ section(52) {
   if (!trigger(203)) {
     warp(to: Map.TWNA01, spawn: 0, trigger: 255);
   }
-  if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L4; else goto L1;
-
-L1:
-  if (trigger(221)) goto L3; else goto L2;
-
-L2:
+  {
+    if (trigger(220) || trigger(214) || pstat[1] >= 50) goto L2; else break;
+  }
+  {
+    if (trigger(221)) goto L1; else break;
+  }
   if (trigger(225)) {
     warp(to: Map.TWNA04, spawn: 0, trigger: 255);
   }
@@ -424,19 +424,19 @@ L2:
   }
   warp(to: Map.TWNA02, spawn: 0, trigger: 255);
 
-L3:
+L1:
   if (trigger(225)) {
     warp(to: Map.TWNA07, spawn: 0, trigger: 255);
   }
   if (trigger(246)) {
     warp(to: Map.TWNA06, spawn: 0, trigger: 255);
   }
-  warp(to: Map.TWNA05, spawn: 0, trigger: 255);
+  {
+    warp(to: Map.TWNA05, spawn: 0, trigger: 255);
 
-L4:
-  if (trigger(221)) goto L6; else goto L5;
-
-L5:
+L2:
+    if (trigger(221)) goto L3; else break;
+  }
   if (trigger(225)) {
     warp(to: Map.TWNA10, spawn: 0, trigger: 255);
   }
@@ -445,7 +445,7 @@ L5:
   }
   warp(to: Map.TWNA08, spawn: 0, trigger: 255);
 
-L6:
+L3:
   if (trigger(225)) {
     warp(to: Map.TWNA13, spawn: 0, trigger: 255);
   }

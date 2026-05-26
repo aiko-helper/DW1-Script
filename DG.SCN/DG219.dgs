@@ -33,10 +33,11 @@ L1:
     if (pstat[110] <= 29) {
       goto L5;
     }
-    if (pstat[110] > 99) goto L2;
-    goto L6;
+    if (pstat[110] <= 99) {
+      goto L6;
 
 L2:
+    }
     return;
   }
   roll(pstat: PStat.RollScratch, max: 4);
@@ -61,12 +62,13 @@ L2:
       speak(Entity.Player, "A ShogunGekomon Card!\n");
       break;
     }
-    if (pstat[110] > 4) goto L3;
-    giveCard(5);
-    speak(Entity.Player, "A Myotismon Card!\n");
-    break;
+    if (pstat[110] <= 4) {
+      giveCard(5);
+      speak(Entity.Player, "A Myotismon Card!\n");
+      break;
 
 L3:
+    }
     roll(pstat: PStat.RollScratch, max: 19);
     if (pstat[110] <= 0) {
       giveCard(6);
@@ -163,12 +165,13 @@ L3:
       speak(Entity.Player, "A Hagurumon Card!\n");
       break;
     }
-    if (pstat[110] > 19) goto L4;
-    giveCard(25);
-    speak(Entity.Player, "A Brachiomon Card!\n");
-    break;
+    if (pstat[110] <= 19) {
+      giveCard(25);
+      speak(Entity.Player, "A Brachiomon Card!\n");
+      break;
 
 L4:
+    }
     roll(pstat: PStat.RollScratch, max: 24);
     if (pstat[110] <= 0) {
       giveCard(26);
@@ -290,12 +293,13 @@ L4:
       speak(Entity.Player, "A Mojyamon Card!\n");
       break;
     }
-    if (pstat[110] > 24) goto L5;
-    giveCard(50);
-    speak(Entity.Player, "An Ninjamon Card!\n");
-    break;
+    if (pstat[110] <= 24) {
+      giveCard(50);
+      speak(Entity.Player, "An Ninjamon Card!\n");
+      break;
 
 L5:
+    }
     roll(pstat: PStat.RollScratch, max: 9);
     if (pstat[110] <= 0) {
       giveCard(51);
@@ -342,12 +346,13 @@ L5:
       speak(Entity.Player, "A Tankmon Card!\n");
       break;
     }
-    if (pstat[110] > 9) goto L6;
-    giveCard(60);
-    speak(Entity.Player, "A Goburimon Card\n");
-    break;
+    if (pstat[110] <= 9) {
+      giveCard(60);
+      speak(Entity.Player, "A Goburimon Card\n");
+      break;
 
 L6:
+    }
     roll(pstat: PStat.RollScratch, max: 3);
     if (pstat[110] <= 0) {
       giveCard(61);

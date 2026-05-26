@@ -15,18 +15,18 @@ section onEnter(254) {
 section(5) {
   setTrigger(Trigger(44));
   speak(Entity.Player, "This must be it!\nNo matter how I look at it,\nit looks a plain meteorite.\n");
-  setSelection(L1, L4);
+  setSelection(L1, L3);
   showTextbox("Crack it and check\nLeave it alone\n");
 
 L1:
-  anim(Entity.Player, Animation(5), wait: 20);
-  speak(Entity.Player, "Hmmm\n");
-  anim(Entity.Player, Animation(16), wait: 5);
-  showTextbox("Looks like a plain\nold meteorite to me.\n");
-  speak(Entity.System, "<YELLOW>???mon <WHITE>\nSorry to look\nso plain and old.\n");
-  goto L2;
-
-L2:
+  {
+    anim(Entity.Player, Animation(5), wait: 20);
+    speak(Entity.Player, "Hmmm\n");
+    anim(Entity.Player, Animation(16), wait: 5);
+    showTextbox("Looks like a plain\nold meteorite to me.\n");
+    speak(Entity.System, "<YELLOW>???mon <WHITE>\nSorry to look\nso plain and old.\n");
+    break;
+  }
   loop {
     anim(Entity(5), Animation(29), wait: 10);
     speak(Entity.Player, "Wow!\n");
@@ -63,9 +63,9 @@ L2:
     speak(Entity(5), "Probably. Anyway, I'll go\ncheck out the island.");
     dead_string("?o\nSee ya!\n");
     anim(Entity(5), Animation(30), wait: 10);
-    goto L3;
+    goto L2;
 
-L3:
+L2:
     loop {
       move(entity: Entity(5), to: (1, -1050), animDuration: 40);
       if (pstat[101] >= 3) break;
@@ -83,7 +83,7 @@ L3:
     followEntity(Entity.Player, speed: 15);
     return;
 
-L4:
+L3:
     speak(Entity.Player, "We looked at it, and\nwe can't tell anything.\nLet's crack it!\n");
     move(entity: Entity.Partner, to: Entity(5), sprint: 0);
     waitForEntity(Entity.Partner);

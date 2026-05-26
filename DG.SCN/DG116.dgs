@@ -31,32 +31,32 @@ section(9) {
 }
 
 section(5) {
-  speak(Entity(5), "...!\n");
-  setTrigger(Trigger(1));
-  setPStat(PStat(250), 1);
-  setPStat(PStat(251), 5);
-  setPStat(PStat(252), 255);
-  setPStat(PStat(253), 255);
-  startBattle();
-  unsetTrigger(Trigger(1));
-  setPStat(PStat(250), 0);
-  look(entity: Entity(5), at: Entity.Player);
-  lookPairAt(Entity(5));
-  waitForPair();
-  speak(Entity(5), "No, I don't want to!\nI don't want to fight!\n");
-  speak(Entity.Player, "If you don't want to\nfight, then run away.\n");
-  speak(Entity(5), "That's too bad.\n");
-  anim(Entity.Player, Animation(16), wait: 20);
-  speak(Entity.Player, "I don't understand you.\n");
-  showTextbox("Oh well, why don't you come\nto our city? Better than\nhiding out here.\n");
-  speak(Entity(5), "Uh, city?\n");
-  anim(Entity.Player, Animation(19), wait: 20);
-  speak(Entity.Player, "We are not going to\nforce you.\n");
-  speak(Entity(5), "That makes me want to go.\nOkay, I'll go!\n");
-  fadeOutHUD();
-  goto L1;
-
-L1:
+  {
+    speak(Entity(5), "...!\n");
+    setTrigger(Trigger(1));
+    setPStat(PStat(250), 1);
+    setPStat(PStat(251), 5);
+    setPStat(PStat(252), 255);
+    setPStat(PStat(253), 255);
+    startBattle();
+    unsetTrigger(Trigger(1));
+    setPStat(PStat(250), 0);
+    look(entity: Entity(5), at: Entity.Player);
+    lookPairAt(Entity(5));
+    waitForPair();
+    speak(Entity(5), "No, I don't want to!\nI don't want to fight!\n");
+    speak(Entity.Player, "If you don't want to\nfight, then run away.\n");
+    speak(Entity(5), "That's too bad.\n");
+    anim(Entity.Player, Animation(16), wait: 20);
+    speak(Entity.Player, "I don't understand you.\n");
+    showTextbox("Oh well, why don't you come\nto our city? Better than\nhiding out here.\n");
+    speak(Entity(5), "Uh, city?\n");
+    anim(Entity.Player, Animation(19), wait: 20);
+    speak(Entity.Player, "We are not going to\nforce you.\n");
+    speak(Entity(5), "That makes me want to go.\nOkay, I'll go!\n");
+    fadeOutHUD();
+    break;
+  }
   approach(who: Entity(5), x: -330, y: -2751, tries: 5, wait: 20);
   playSound(8, 10);
   speak(Entity.System, "Gabumon joins the city!\n");

@@ -22,14 +22,14 @@ section(51) {
 }
 
 section(5) {
-  if (!trigger(120)) {
-    goto L1;
-  } else {
-    goto L2;
+  {
+    if (!trigger(120)) {
+      break;
+    } else {
+      goto L1;
+    }
+    return;
   }
-  return;
-
-L1:
   speak(Entity(5), "Shoot! We hit a big rock!\n");
   showTextbox("I can't drill thru.\n");
   speak(Entity.Player, "You can't? Oh no!\n");
@@ -110,7 +110,7 @@ L1:
     warp(to: Map.TUNN07, spawn: 0, trigger: 255);
     return;
 
-L2:
+L1:
     speak(Entity(5), "Are you going inside?\nBe careful!\n");
     return;
   }
